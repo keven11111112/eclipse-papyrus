@@ -1,6 +1,16 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
  *
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.part;
 
 import org.eclipse.core.commands.operations.IUndoContext;
@@ -14,8 +24,13 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.ReconcileHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
+import org.eclipse.papyrus.infra.internationalization.InternationalizationPackage;
+import org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationUtils;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
@@ -28,7 +43,7 @@ import org.eclipse.ui.contexts.IContextService;
  * @author cedric dumoulin
  *
  */
-public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
+public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implements IInternationalizationEditor {
 
 	/**
 	 * The associated Diagram.
@@ -59,6 +74,9 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		this.servicesRegistry = servicesRegistry;
 		// Install synchronizer
 		partNameSynchronizer = new PartNameSynchronizer(diagram);
+
+		// Need to manage the part label synchronizer for the table labels
+		LabelInternationalizationUtils.managePartLabelSynchronizer(diagram, this);
 
 		// Register this part to the ISaveAndDirtyService.
 		// This will allows to be notified of saveAs events, and the isDirty
@@ -186,7 +204,9 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 			@Override
 			public void notifyChanged(Notification notification) {
 				if (notification.getFeatureID(Diagram.class) == NotationPackage.DIAGRAM__NAME && notification.getNotifier() == diagram) {
-					setPartName(diagram.getName());
+					setPartName(LabelInternationalization.getInstance().getDiagramLabel(diagram));
+				} else if (notification.getFeature() == InternationalizationPackage.eINSTANCE.getInternationalizationEntry_Value() && notification.getNotifier() == diagram) {
+					setPartName(LabelInternationalization.getInstance().getDiagramLabel(diagram));
 				}
 
 			}
@@ -231,7 +251,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 			// Set new Diagram
 			this.diagram = diagram;
 			// Set editor name
-			setPartName(diagram.getName());
+			setPartName(LabelInternationalization.getInstance().getDiagramLabel(diagram));
 			// Listen to name change
 			diagram.eAdapters().add(diagramNameListener);
 		}
@@ -245,5 +265,25 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		contextService.activateContext("org.eclipse.gmf.runtime.diagram.ui.diagramContext"); //$NON-NLS-1$
 		super.createPartControl(parent);
 
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#modifyPartName(java.lang.String)
+	 *
+	 * @param name
+	 */
+	@Override
+	public void modifyPartName(final String name) {
+		setPartName(name);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#refreshEditorPart()
+	 */
+	@Override
+	public void refreshEditorPart(){
+		DiagramHelper.forceRefresh(getDiagramEditPart());
 	}
 }

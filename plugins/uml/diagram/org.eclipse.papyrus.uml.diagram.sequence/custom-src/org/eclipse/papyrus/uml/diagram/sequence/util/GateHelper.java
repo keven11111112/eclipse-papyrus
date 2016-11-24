@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -46,6 +47,7 @@ import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Gate;
@@ -448,7 +450,7 @@ public class GateHelper {
 			if (direction != null) {
 				StringBuffer buf = new StringBuffer();
 				buf.append(direction.getName() + "_");
-				buf.append(message.getName());
+				buf.append(UMLLabelInternationalization.getInstance().getLabel(message));
 				return new String(buf);
 			}
 		}

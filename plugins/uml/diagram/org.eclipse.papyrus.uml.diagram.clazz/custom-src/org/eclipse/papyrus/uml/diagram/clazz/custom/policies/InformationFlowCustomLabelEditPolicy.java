@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
@@ -16,6 +18,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowConveyedLabelEditPart;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InformationFlow;
 
@@ -124,7 +127,7 @@ public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEdi
 		if (getUMLElement() instanceof InformationFlow) {
 			EList<Classifier> classes = ((InformationFlow) getUMLElement()).getConveyeds();
 			for (int i = 0; i < classes.size(); i++) {
-				name += classes.get(i).getName();
+				name += UMLLabelInternationalization.getInstance().getLabel(classes.get(i));
 				if (i != classes.size() - 1) {
 					name += ", ";
 				}

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -28,6 +29,7 @@ import org.eclipse.papyrus.uml.decoratormodel.internal.properties.messages.Messa
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.wizards.ExternalizeProfileApplicationsWizard;
 import org.eclipse.papyrus.uml.decoratormodel.properties.Activator;
 import org.eclipse.papyrus.uml.decoratormodel.ui.providers.DeleteEmptyDecoratorModelsPolicy;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.properties.widgets.ProfileApplicationEditor;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
@@ -191,7 +193,7 @@ public class ProfileApplicationPropertyEditor extends org.eclipse.papyrus.uml.pr
 
 				if ((application != null) && (application.eResource() != getInputPackage().eResource())) {
 					Package rootPackage = (Package) EcoreUtil.getRootContainer(application);
-					String modelName = rootPackage.getName();
+					String modelName = UMLLabelInternationalization.getInstance().getLabel(rootPackage);
 					if (Strings.isNullOrEmpty(modelName)) {
 						modelName = rootPackage.eResource().getURI().trimFileExtension().lastSegment();
 					}

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
@@ -16,6 +17,7 @@ package org.eclipse.papyrus.uml.tools.providers;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -52,7 +54,7 @@ public class UMLMetaclassLabelProvider extends UMLEClassLabelProvider {
 	 */
 	@Override
 	protected String getText(final EObject element) {
-		return ((Class) element).getName();
+		return UMLLabelInternationalization.getInstance().getLabel(((Class) element));
 	}
 
 	/**

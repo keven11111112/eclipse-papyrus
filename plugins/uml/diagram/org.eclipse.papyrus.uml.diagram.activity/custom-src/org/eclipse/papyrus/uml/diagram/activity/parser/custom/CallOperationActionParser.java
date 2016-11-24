@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Operation;
@@ -83,13 +85,13 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 		Object obj = element.getAdapter(EObject.class);
 		if (obj instanceof CallOperationAction) {
 			CallOperationAction action = (CallOperationAction) obj;
-			String name = action.getName();
+			String name = UMLLabelInternationalization.getInstance().getLabel(action);
 			String operation = "";
 			if (name == null) {
 				name = "";
 			}
 			if (action.getOperation() != null) {
-				operation = action.getOperation().getName();
+				operation = UMLLabelInternationalization.getInstance().getLabel(action.getOperation());
 				if (operation == null) {
 					operation = "";
 				}

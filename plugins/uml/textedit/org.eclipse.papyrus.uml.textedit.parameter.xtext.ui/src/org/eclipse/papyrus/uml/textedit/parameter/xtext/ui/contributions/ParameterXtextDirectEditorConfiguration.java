@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contributions;
 
 import java.util.ArrayList;
@@ -9,8 +23,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.internal.UmlParameterActivator;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.BooleanLiterals;
@@ -49,6 +67,24 @@ public class ParameterXtextDirectEditorConfiguration extends DefaultXtextDirectE
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(umlObject);
 		if (provider != null) {
 
+			// Manage the name or the label set
+			if (!(xtextObject instanceof Parameter)) {
+				
+				final ParameterRule parameterRuleObject = (ParameterRule) xtextObject;
+				final Parameter parameter = (Parameter) umlObject;
+				String newName = parameterRuleObject.getName();
+				
+				ICommand setNameCommand = null;
+				if(InternationalizationPreferencesUtils.getInternationalizationPreference(parameter) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter)){
+					final ModelSet modelSet = (ModelSet)parameter.eResource().getResourceSet();
+					setNameCommand = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), parameter, newName, null));
+				}else{
+					final SetRequest setNameRequest = new SetRequest(parameter, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
+					setNameCommand = provider.getEditCommand(setNameRequest);
+				}
+				cc.add(setNameCommand);
+			}
+			
 			ICommand editCommand = null;
 			for (IEditCommandRequest current : getRequests(umlObject, xtextObject)) {
 				editCommand = provider.getEditCommand(current);
@@ -337,9 +373,6 @@ public class ParameterXtextDirectEditorConfiguration extends DefaultXtextDirectE
 				requests.add(request);
 			}
 		}
-
-		String newName = parameterRuleObject.getName();
-		requests.add(new SetRequest(parameter, UMLPackage.eINSTANCE.getNamedElement_Name(), newName));
 
 		return requests;
 	}

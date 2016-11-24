@@ -11,6 +11,8 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC)  gabriel.pascual@all4tec.net -  bug 382954
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Patch #44973
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
@@ -29,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -191,7 +194,7 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 	protected void refreshDisplay() {
 		if (hostSemanticElement != null) {
 			if (getInterestingProperty() != null) {
-				((ITextAwareEditPart) getHost()).setLabelText(getInterestingProperty().getName());
+				((ITextAwareEditPart) getHost()).setLabelText(UMLLabelInternationalization.getInstance().getLabel(getInterestingProperty()));
 			}
 		}
 	}

@@ -11,6 +11,7 @@
  *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
  *  Christian W. Damus (CEA) - bug 402525
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -606,8 +608,8 @@ public class PackageUtil {
 		 * {@inheritDoc}
 		 */
 		public int compare(Type o1, Type o2) {
-			final String o1Name = ((o1.getName() != null) ? o1.getName() : ""); //$NON-NLS-1$
-			final String o2Name = ((o2.getName() != null) ? o2.getName() : ""); //$NON-NLS-1$
+			final String o1Name = ((o1.getName() != null) ? UMLLabelInternationalization.getInstance().getLabel(o1) : ""); //$NON-NLS-1$
+			final String o2Name = ((o2.getName() != null) ? UMLLabelInternationalization.getInstance().getLabel(o2) : ""); //$NON-NLS-1$
 			return o1Name.compareTo(o2Name);
 		}
 	}

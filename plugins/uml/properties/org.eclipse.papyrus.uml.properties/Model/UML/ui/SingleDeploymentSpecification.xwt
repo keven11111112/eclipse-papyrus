@@ -15,6 +15,7 @@
 			property="UML:DeploymentSpecification:executionLocation"></ppe:StringEditor>
 		<ppe:StringEditor input="{Binding}" property="UML:Artifact:fileName"></ppe:StringEditor>
 		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:label"></ppe:StringEditor>
 	</Composite>
 	<Composite>
 		<Composite.layout>

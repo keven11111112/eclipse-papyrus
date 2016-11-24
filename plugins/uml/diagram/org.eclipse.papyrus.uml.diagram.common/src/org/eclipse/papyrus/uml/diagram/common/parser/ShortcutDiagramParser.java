@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier(CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -27,8 +28,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 
 /**
  * parser to display the name of diagram in the case of a short cut
@@ -47,7 +53,7 @@ public class ShortcutDiagramParser implements IParser {
 			return Messages.DiagramNotFound;
 		}
 
-		return diagram.getName();
+		return LabelInternationalization.getInstance().getDiagramLabel(diagram);
 	}
 
 	/**
@@ -73,9 +79,15 @@ public class ShortcutDiagramParser implements IParser {
 		if (editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, Messages.SetNameDiagram);
-		SetRequest request = new SetRequest(diagram, NotationPackage.eINSTANCE.getDiagram_Name(), newString);
-		command.compose(new SetValueCommand(request));
+		ICommand command = null;
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(diagram) && null != LabelInternationalization.getInstance().getDiagramLabel(diagram)) {
+			final ModelSet modelSet = (ModelSet) diagram.eResource().getResourceSet();
+			command = new EMFtoGMFCommandWrapper(LabelInternationalization.getInstance().getSetDiagramLabelCommand(modelSet.getTransactionalEditingDomain(), diagram, newString, null));
+		} else {
+			command = new CompositeTransactionalCommand(editingDomain, Messages.SetNameDiagram);
+			SetRequest request = new SetRequest(diagram, NotationPackage.eINSTANCE.getDiagram_Name(), newString);
+			command.compose(new SetValueCommand(request));
+		}
 		return command;
 	}
 
@@ -90,7 +102,7 @@ public class ShortcutDiagramParser implements IParser {
 			return Messages.DiagramNotFound;
 		}
 
-		return diagram.getName();
+		return LabelInternationalization.getInstance().getDiagramLabel(diagram);
 	}
 
 	/**

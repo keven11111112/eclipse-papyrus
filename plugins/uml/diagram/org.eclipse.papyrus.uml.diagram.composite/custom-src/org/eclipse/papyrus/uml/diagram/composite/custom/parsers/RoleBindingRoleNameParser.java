@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.parsers;
@@ -26,6 +27,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
@@ -122,7 +124,7 @@ public class RoleBindingRoleNameParser implements ISemanticParser {
 
 		if (!binding.getClients().isEmpty()) {
 			NamedElement role = binding.getClients().get(0);
-			return role.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(role);
 		} // else
 		return ""; //$NON-NLS-1$
 	}

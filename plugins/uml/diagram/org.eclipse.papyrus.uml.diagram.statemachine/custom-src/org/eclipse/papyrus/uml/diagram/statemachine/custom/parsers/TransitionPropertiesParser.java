@@ -9,6 +9,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Jeremie TATIBOUET (CEA LIST) - Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=477573
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
@@ -41,9 +42,11 @@ import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CSSOptionsConstants;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.PreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallEvent;
@@ -111,7 +114,11 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 								// 2. no constraint exists already
 								if (guardConstraint == null) {
 									guardConstraint = UMLFactory.eINSTANCE.createConstraint();
-									guardConstraint.setName(result);
+									if (InternationalizationPreferencesUtils.getInternationalizationPreference(guardConstraint) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(guardConstraint)) {
+										UMLLabelInternationalization.getInstance().setLabel(guardConstraint, result, null);
+									}else{
+										guardConstraint.setName(result);
+									}
 									guardConstraint.setContext(transition.getNamespace());
 									transition.setGuard(guardConstraint);
 								}
@@ -197,7 +204,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				value = ValueSpecificationUtil.getConstraintnValue(constraint);
 			}
 			else {
-				String name = constraint.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(constraint);
 				if (name == null) {
 					name = "<undef>"; //$NON-NLS-1$
 				}
@@ -230,7 +237,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				}
 			}
 			if (eClass != null) {
-				result.append(eClass.getName()).append(": ").append(effect.getName()); //$NON-NLS-1$
+				result.append(eClass.getName()).append(": ").append(UMLLabelInternationalization.getInstance().getLabel(effect)); //$NON-NLS-1$
 			}
 		}
 		return result.toString();
@@ -256,22 +263,22 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				if (e instanceof CallEvent) {
 					Operation op = ((CallEvent) e).getOperation();
 					if (op != null) {
-						result.append(op.getName());
+						result.append(UMLLabelInternationalization.getInstance().getLabel(op));
 						if ((op.getOwnedParameters().size() > 0) && OpaqueBehaviorViewUtil.displayParamDots(view)) {
 							result.append(OpaqueBehaviorViewUtil.PARAM_DOTS);
 						}
 					} else {
-						result.append(((CallEvent) e).getName());
+						result.append(UMLLabelInternationalization.getInstance().getLabel(((CallEvent) e)));
 					}
 				} else if (e instanceof SignalEvent) {
 					Signal signal = ((SignalEvent) e).getSignal();
 					if (signal != null) {
-						result.append(signal.getName());
+						result.append(UMLLabelInternationalization.getInstance().getLabel(signal));
 						if ((signal.getAttributes().size() > 0) && OpaqueBehaviorViewUtil.displayParamDots(view)) {
 							result.append(OpaqueBehaviorViewUtil.PARAM_DOTS);
 						}
 					} else {
-						result.append(((SignalEvent) e).getName());
+						result.append(UMLLabelInternationalization.getInstance().getLabel(((SignalEvent) e)));
 					}
 				} else if (e instanceof ChangeEvent) {
 					ValueSpecification vs = ((ChangeEvent) e).getChangeExpression();

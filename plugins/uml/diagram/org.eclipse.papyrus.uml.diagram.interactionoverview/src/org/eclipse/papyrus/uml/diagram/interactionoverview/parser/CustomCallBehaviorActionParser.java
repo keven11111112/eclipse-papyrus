@@ -7,6 +7,9 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.parser;
 
@@ -19,6 +22,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.activity.parser.custom.CallBehaviorActionParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -35,14 +39,14 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 		final Object obj = EMFHelper.getEObject(element);
 		if (obj instanceof CallBehaviorAction) {
 			final CallBehaviorAction action = (CallBehaviorAction) obj;
-			String actionName = action.getName();
+			String actionName = UMLLabelInternationalization.getInstance().getLabel(action);
 			if (hasContent(actionName)) {
 				return actionName;
 			}
 			
 			String behaviorName = null;
 			if (action.getBehavior() != null) {
-				behaviorName = action.getBehavior().getName();
+				behaviorName = UMLLabelInternationalization.getInstance().getLabel(action.getBehavior());
 			}
 			
 			if (hasContent(behaviorName)) {
@@ -57,7 +61,7 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 		final Object obj = EMFHelper.getEObject(element);
 		if (obj instanceof CallBehaviorAction) {
 			final CallBehaviorAction action = (CallBehaviorAction) obj;
-			String actionName = action.getName();
+			String actionName = UMLLabelInternationalization.getInstance().getLabel(action);
 			if (hasContent(actionName)) {
 				return actionName;
 			}

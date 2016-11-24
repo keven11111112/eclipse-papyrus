@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
@@ -17,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomStateCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.StateMachine;
 
 public class CustomStateMachineCompartmentEditPart extends StateMachineCompartmentEditPart {
@@ -56,7 +58,7 @@ public class CustomStateMachineCompartmentEditPart extends StateMachineCompartme
 		View smView = (View) ((View) getModel()).eContainer();
 		StateMachine sm = (StateMachine) smView.getElement();
 
-		((CustomStateCompartmentFigure) getFigure()).setToolTip(sm.getName());
+		((CustomStateCompartmentFigure) getFigure()).setToolTip(UMLLabelInternationalization.getInstance().getLabel(sm));
 
 	}
 

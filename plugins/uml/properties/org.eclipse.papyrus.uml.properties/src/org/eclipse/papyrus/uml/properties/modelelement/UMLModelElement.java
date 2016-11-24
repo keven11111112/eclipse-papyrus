@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 440108
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
@@ -25,7 +26,6 @@ import java.util.Set;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
-import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.InternationalizationConstants;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.properties.ui.providers.FeatureContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
@@ -52,6 +53,8 @@ import org.eclipse.papyrus.uml.properties.creation.ConnectorTypeEditorFactory;
 import org.eclipse.papyrus.uml.properties.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.uml.properties.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.uml.properties.creation.UMLPropertyEditorFactory;
+import org.eclipse.papyrus.uml.properties.databinding.KeywordObservableValue;
+import org.eclipse.papyrus.uml.properties.databinding.UMLLabelObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.ExtensionRequiredObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
@@ -68,8 +71,11 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -87,7 +93,7 @@ public class UMLModelElement extends EMFModelElement {
 	 * @param source
 	 *            The EObject represented by this ModelElement
 	 */
-	public UMLModelElement(EObject source) {
+	public UMLModelElement(final EObject source) {
 		super(source);
 	}
 
@@ -100,65 +106,65 @@ public class UMLModelElement extends EMFModelElement {
 	 * @param domain
 	 *            The EditingDomain on which the commands will be executed
 	 */
-	public UMLModelElement(EObject source, EditingDomain domain) {
+	public UMLModelElement(final EObject source, final EditingDomain domain) {
 		super(source, domain);
 	}
 
 	@Override
-	public IObservable doGetObservable(String propertyPath) {
-		FeaturePath featurePath = getFeaturePath(propertyPath);
-		EStructuralFeature feature = getFeature(propertyPath);
+	public IObservable doGetObservable(final String propertyPath) {
+		IObservable value = null;
+		if (InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)) {
+			value = new UMLLabelObservableValue((NamedElement) source, domain);
+		} else if (InternationalizationConstants.KEYWORD_PROPERTY_PATH.equals(propertyPath)) {
+			value = new KeywordObservableValue((Stereotype) source, domain);
+		} else {
+			FeaturePath featurePath = getFeaturePath(propertyPath);
+			EStructuralFeature feature = getFeature(propertyPath);
 
-		if (feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
-			return new ExtensionRequiredObservableValue((Extension) source, domain);
+			if (feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
+				value = new ExtensionRequiredObservableValue((Extension) source, domain);
+			} else if (feature == UMLPackage.eINSTANCE.getPort_Provided()) {
+				value = new ProvidedInterfaceObservableList((Port) source, domain);
+			} else if (feature == UMLPackage.eINSTANCE.getPort_Required()) {
+				value = new RequiredInterfaceObservableList((Port) source, domain);
+			} else if (feature == null) {
+				value = null;
+			} else if (feature.getUpperBound() != 1) {
+				IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+				value = list;
+			} else if ((feature == UMLPackage.Literals.NAMED_ELEMENT__NAME) && (domain != null)) {
+				// Empty string as a name is not useful, so we unset instead
+				value = new UnsettableStringValue(getSource(featurePath), feature, domain);
+			} else {
+				value = domain == null ? EMFProperties.value(featurePath).observe(source) : new PapyrusObservableValue(getSource(featurePath), feature, domain);
+			}
 		}
-
-		if (feature == UMLPackage.eINSTANCE.getPort_Provided()) {
-			return new ProvidedInterfaceObservableList((Port) source, domain);
-		}
-
-		if (feature == UMLPackage.eINSTANCE.getPort_Required()) {
-			return new RequiredInterfaceObservableList((Port) source, domain);
-		}
-
-		if (feature == null) {
-			return null;
-		}
-
-		if (feature.getUpperBound() != 1) {
-			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
-			return list;
-		}
-
-		if ((feature == UMLPackage.Literals.NAMED_ELEMENT__NAME) && (domain != null)) {
-			// Empty string as a name is not useful, so we unset instead
-			return new UnsettableStringValue(getSource(featurePath), feature, domain);
-		}
-
-		IObservableValue value = domain == null ? EMFProperties.value(featurePath).observe(source) : new PapyrusObservableValue(getSource(featurePath), feature, domain);
 		return value;
 	}
 
 	@Override
-	protected boolean isFeatureEditable(String propertyPath) {
-		EStructuralFeature feature = getFeature(propertyPath);
-		if (feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
-			return true;
-		}
-		if (feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
-			return true;
-		}
-		if (feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required()) {
-			if (source instanceof Port) {
-				return ((Port) source).getType() != null;
+	protected boolean isFeatureEditable(final String propertyPath) {
+		boolean result = false;
+		if (InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath) || InternationalizationConstants.KEYWORD_PROPERTY_PATH.equals(propertyPath)) {
+			result = true;
+		} else {
+			EStructuralFeature feature = getFeature(propertyPath);
+			if (feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
+				result = true;
+			} else if (feature == UMLPackage.eINSTANCE.getExtension_IsRequired()) {
+				result = true;
+			} else if (feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required() &&
+					source instanceof Port) {
+				result = ((Port) source).getType() != null;
+			} else {
+				result = super.isFeatureEditable(propertyPath);
 			}
 		}
-
-		return super.isFeatureEditable(propertyPath);
+		return result;
 	}
 
 	@Override
-	public IStaticContentProvider getContentProvider(String propertyPath) {
+	public IStaticContentProvider getContentProvider(final String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 
 		if (feature == null) {
@@ -176,7 +182,7 @@ public class UMLModelElement extends EMFModelElement {
 	}
 
 	@Override
-	public boolean isOrdered(String propertyPath) {
+	public boolean isOrdered(final String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if (feature == UMLPackage.eINSTANCE.getStereotype_Icon()) {
 			return true;
@@ -185,7 +191,7 @@ public class UMLModelElement extends EMFModelElement {
 	}
 
 	@Override
-	public ReferenceValueFactory getValueFactory(String propertyPath) {
+	public ReferenceValueFactory getValueFactory(final String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if (!(feature instanceof EReference)) {
 			return null;

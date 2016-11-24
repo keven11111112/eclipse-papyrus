@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Olivier Mélois (ATOS) - Initial API and implementation
+ *   Olivier Mélois (ATOS) - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  ******************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.edit.part;
@@ -22,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.requirement.figure.CustomRequirementFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideCompartmentRequest;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 
 public class CustomRequirementEditPart extends ClassEditPart {
@@ -49,7 +51,7 @@ public class CustomRequirementEditPart extends ClassEditPart {
 
 	public void refreshTitle() {
 		NamedElement clazz = (NamedElement) ((View) this.getModel()).getElement();
-		String requirementName = clazz.getName();
+		String requirementName = UMLLabelInternationalization.getInstance().getLabel(clazz);
 		((CustomRequirementFigure) this.getFigure()).setName(requirementName);
 	}
 

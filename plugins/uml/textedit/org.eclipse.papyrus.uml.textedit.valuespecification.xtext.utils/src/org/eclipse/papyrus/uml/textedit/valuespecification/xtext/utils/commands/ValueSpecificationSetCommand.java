@@ -22,10 +22,14 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralBooleanRule;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralIntegerOrUnlimitedNaturalRule;
@@ -541,12 +545,24 @@ public class ValueSpecificationSetCommand {
 		}
 
 		// Set the name if it was created
-		if (null != getName(abstractRule)) {
-			// Set the name by command
-			final ICommand setNameCommand = createSetNameCommand(valueSpecification, getName(abstractRule));
-			if (null != setNameCommand
-					&& setNameCommand.canExecute()) {
-				setAttributesCommand.add(setNameCommand);
+		final String newName = getName(abstractRule);
+		if (null != newName) {
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(valueSpecification) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(valueSpecification)){
+				// Set the label by command
+				final ModelSet modelSet = (ModelSet)valueSpecification.eResource().getResourceSet();
+				if (null != modelSet){
+					final ICommand setLabelCommand = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), valueSpecification, newName, null));
+					if(null != setLabelCommand && setLabelCommand.canExecute()){
+						setAttributesCommand.add(setLabelCommand);
+					}
+				}
+			}else{
+				// Set the name by command
+				final ICommand setNameCommand = createSetNameCommand(valueSpecification, newName);
+				if (null != setNameCommand
+						&& setNameCommand.canExecute()) {
+					setAttributesCommand.add(setNameCommand);
+				}
 			}
 		}
 
@@ -693,6 +709,12 @@ public class ValueSpecificationSetCommand {
 					}
 				}
 			}
+			
+			// Copy the label is existing
+			final String existingLabel = UMLLabelInternationalization.getInstance().getLabelWithoutUML((ValueSpecification)existingObject);
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(existingObject) && null != existingLabel){
+				UMLLabelInternationalization.getInstance().setLabel(newValueSpecification, existingLabel, null);
+			}
 		}
 	}
 
@@ -777,11 +799,22 @@ public class ValueSpecificationSetCommand {
 		final CompositeCommand setAttributesCommand = new CompositeCommand("Update Opaque Expression Command"); //$NON-NLS-1$
 
 		if (!name.isEmpty()) {
-			// Set the name by command
-			ICommand setNameCommand = createSetNameCommand(opaqueExpression, name);
-			if (null != setNameCommand
-					&& setNameCommand.canExecute()) {
-				setAttributesCommand.add(setNameCommand);
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(opaqueExpression) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(opaqueExpression)){
+				// Set the label by command
+				final ModelSet modelSet = (ModelSet)opaqueExpression.eResource().getResourceSet();
+				if (null != modelSet){
+					final ICommand setLabelCommand = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), opaqueExpression, name, null));
+					if(null != setLabelCommand && setLabelCommand.canExecute()){
+						setAttributesCommand.add(setLabelCommand);
+					}
+				}
+			}else{
+				// Set the name by command
+				ICommand setNameCommand = createSetNameCommand(opaqueExpression, name);
+				if (null != setNameCommand
+						&& setNameCommand.canExecute()) {
+					setAttributesCommand.add(setNameCommand);
+				}
 			}
 		}
 

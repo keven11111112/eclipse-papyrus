@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.drafter.ui.contentassist;
 
 import org.eclipse.jface.fieldassist.IContentProposal;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Stereotype;
 
 
@@ -48,7 +50,7 @@ public class StereotypeContentProvider implements IContentProposal, Comparable<S
 	 * @return
 	 */
 	public String getContent() {
-		return stereotype.getName();
+		return UMLLabelInternationalization.getInstance().getKeyword(stereotype);
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class StereotypeContentProvider implements IContentProposal, Comparable<S
 	 * @return
 	 */
 	public String getLabel() {
-		return stereotype.getName();
+		return UMLLabelInternationalization.getInstance().getKeyword(stereotype);
 	}
 
 	/**

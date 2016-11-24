@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
@@ -16,6 +17,7 @@ package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.CollaborationUse;
 
 /**
@@ -38,11 +40,11 @@ public class CollaborationUseUtil {
 
 		// name
 		buffer.append(" ");
-		buffer.append(collaborationUse.getName());
+		buffer.append(UMLLabelInternationalization.getInstance().getLabel(collaborationUse));
 
 		// type
 		if (collaborationUse.getType() != null) {
-			buffer.append(": " + collaborationUse.getType().getName());
+			buffer.append(": " + UMLLabelInternationalization.getInstance().getLabel(collaborationUse.getType()));
 		} else {
 			buffer.append(": " + UNDEFINED_TYPE_NAME);
 		}
@@ -70,13 +72,13 @@ public class CollaborationUseUtil {
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(collaborationUse.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(collaborationUse));
 		}
 
 		if (maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if (collaborationUse.getType() != null) {
-				buffer.append(": " + collaborationUse.getType().getName());
+				buffer.append(": " + UMLLabelInternationalization.getInstance().getLabel(collaborationUse.getType()));
 			} else {
 				buffer.append(": " + UNDEFINED_TYPE_NAME);
 			}

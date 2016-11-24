@@ -11,6 +11,7 @@
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.ui.dialogs;
@@ -41,6 +42,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -350,7 +352,7 @@ public class ElementImportTreeSelectionDialog<E extends Element> extends Dialog 
 		String result = null;
 
 		if (element instanceof NamedElement) {
-			result = ((NamedElement) element).getName();
+			result = UMLLabelInternationalization.getInstance().getLabel(((NamedElement) element));
 		}
 
 		return (result == null) ? "" : result;

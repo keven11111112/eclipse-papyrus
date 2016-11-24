@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Klaas Gadeyne (Flanders' Make) klaas.gadeyne@flandersmake.be - Extended for CallBehaviorActions,
  *  see bug 453721
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.navigation.navigableElement;
 
@@ -20,9 +21,11 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.papyrus.infra.services.navigation.service.ExtendedNavigableElement;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * Navigates from a CallBehaviorAction to its Behavior declaration
@@ -55,7 +58,7 @@ public class CBANavigableElement implements ExtendedNavigableElement {
 		if (behavior == null) {
 			return " (Undefined)";
 		} else {
-			return " (" + behavior.getName() + ")";
+			return " (" + UMLLabelInternationalization.getInstance().getLabel(behavior) + ")";
 		}
 	}
 

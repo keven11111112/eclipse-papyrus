@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.state.xtext.validation;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.DoRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.EntryRule;
@@ -65,7 +68,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 
 		String newName = "" + stateRule.getName();
 
-		if (alreadyUsedNames.contains("" + newName)) {
+		if (alreadyUsedNames.contains("" + newName) && InternationalizationPreferencesUtils.getInternationalizationPreference(stateRule)) {
 			warning("Name " + newName + " is already used by another State in this Region", UmlStatePackage.eINSTANCE.getStateRule_Name());
 		}
 

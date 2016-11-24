@@ -8,12 +8,14 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Transition;
 
 /**
@@ -37,7 +39,7 @@ public class InternalTransitionParser extends TransitionPropertiesParser {
 			boolean noGuard = tran.getGuard() == null;
 			boolean noEffect = tran.getEffect() == null;
 			if (noEffect && noGuard && noTrigger) {
-				return tran.getName();
+				return UMLLabelInternationalization.getInstance().getLabel(tran);
 			}
 		}
 		return super.getValueString(element, flags);

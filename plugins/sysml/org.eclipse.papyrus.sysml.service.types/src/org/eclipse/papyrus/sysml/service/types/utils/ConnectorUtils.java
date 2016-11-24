@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.utils;
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -257,7 +258,7 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 	 *         the property name with name delimiter if it is required
 	 */
 	public static final String getNameWithQuotes(final NamedElement property) {
-		final String partName = property.getName();
+		final String partName = UMLLabelInternationalization.getInstance().getLabel(property);
 		final StringBuffer partNameBuffer = new StringBuffer();
 		final Pattern pattern = Pattern.compile(ConnectorUtils.HAS_NO_WORD_CHAR_REGEX);
 		final Matcher matcher = pattern.matcher(partName);

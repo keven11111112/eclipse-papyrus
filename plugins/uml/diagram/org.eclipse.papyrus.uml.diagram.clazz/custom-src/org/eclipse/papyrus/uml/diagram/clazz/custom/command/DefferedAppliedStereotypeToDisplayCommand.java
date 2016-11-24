@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Fadoi LAKHAL  Fadoi.Lakhal@cea.fr - Initial API and implementation
+ *   Fadoi LAKHAL  Fadoi.Lakhal@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
@@ -23,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -80,7 +82,7 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 		Iterator<?> listStereotype = element.getAppliedStereotypes().iterator();
 		while (listStereotype.hasNext()) {
 			Stereotype stereotypec = (Stereotype) listStereotype.next();
-			String stereotype_string = stereotypec.getName();
+			String stereotype_string = UMLLabelInternationalization.getInstance().getKeyword(stereotypec);
 			stereotypeList = stereotypeList + stereotype_string;
 		}
 		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(view);

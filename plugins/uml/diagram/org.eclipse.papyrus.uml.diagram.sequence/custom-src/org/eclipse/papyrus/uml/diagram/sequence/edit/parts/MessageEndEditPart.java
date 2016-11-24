@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,9 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 502155 
+ *   Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 502155
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -91,6 +93,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolic
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Message;
@@ -251,7 +254,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		fig.setForegroundColor(ColorConstants.white);
 		Label tooltip = new Label();
 		if (messageEnd != null) {
-			tooltip.setText(messageEnd.getName());
+			tooltip.setText(UMLLabelInternationalization.getInstance().getLabel(messageEnd));
 		}
 		fig.setToolTip(tooltip);
 		fig.setOpaque(false);

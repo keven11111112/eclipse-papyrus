@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomConsiderIgnoreFragmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.NamedElement;
@@ -136,7 +138,7 @@ public class CustomConsiderIgnoreFragmentEditPart extends CustomCombinedFragment
 		if (messages != null && messages.size() > 0) {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < messages.size(); i++) {
-				String name = messages.get(i).getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(messages.get(i));
 				if (name != null) {
 					sb.append(name).append(",");
 				}

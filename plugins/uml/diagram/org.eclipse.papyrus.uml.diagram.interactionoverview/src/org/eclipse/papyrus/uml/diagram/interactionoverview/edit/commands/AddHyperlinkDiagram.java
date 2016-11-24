@@ -7,6 +7,9 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands;
 
@@ -23,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.helper.EditorHyperLinkHelper;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.object.HyperLinkEditor;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
 
 public class AddHyperlinkDiagram extends AbstractTransactionalCommand {
@@ -47,7 +51,7 @@ public class AddHyperlinkDiagram extends AbstractTransactionalCommand {
 		HyperLinkEditor hyperLinkEditor = new HyperLinkEditor();
 		hyperLinkEditor.setObject(diagram);
 		hyperLinkEditor.setIsDefault(true);
-		hyperLinkEditor.setTooltipText(diagram.getName());
+		hyperLinkEditor.setTooltipText(LabelInternationalization.getInstance().getDiagramLabel(diagram));
 
 		EditorHyperLinkHelper helper = new EditorHyperLinkHelper();
 		RecordingCommand command = helper.getAddHyperLinkCommand(getEditingDomain(), callBehaviorView, hyperLinkEditor);

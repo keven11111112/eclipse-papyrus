@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
@@ -21,6 +22,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
@@ -241,7 +243,7 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(ONE_SPACE);
-			final String name = namedElement.getName();
+			final String name = UMLLabelInternationalization.getInstance().getLabel(namedElement);
 			buffer.append(name != null ? name : EMPTY);
 		}
 

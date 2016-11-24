@@ -10,6 +10,7 @@
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *  Based on edit policy view from patrick.tessier@cea.fr
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.gmf.editpartview.view;
 
@@ -19,6 +20,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableColorProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
@@ -63,7 +65,7 @@ public class EditPartLabelProvider implements ITableLabelProvider, ITableColorPr
 				return editPart.getClass().getSimpleName();
 			case 1:
 				if (model instanceof NamedElement) {
-					return ((NamedElement) model).getName();
+					return UMLLabelInternationalization.getInstance().getLabel((NamedElement) model);
 				}
 				return "not a named element";
 			case 2:

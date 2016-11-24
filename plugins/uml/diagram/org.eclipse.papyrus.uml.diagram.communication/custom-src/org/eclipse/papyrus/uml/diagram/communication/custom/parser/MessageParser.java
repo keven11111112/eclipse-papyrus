@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *   Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.parser;
@@ -20,6 +21,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.diagram.communication.custom.messages.Messages;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Message;
 
 /**
@@ -77,9 +79,9 @@ public class MessageParser implements IParser {
 				// message.getEAnnotations().get(0).getDetails().get(0).getValue()
 				// + ":" + message.getName();
 				// else
-				result = message.getName();
+				result = UMLLabelInternationalization.getInstance().getLabel(message);
 			} else {
-				result = message.getName();
+				result = UMLLabelInternationalization.getInstance().getLabel(message);
 			}
 			// result = "1:" + result;
 			return result;

@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.Arrays;
@@ -9,6 +22,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -117,14 +131,14 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	protected void appendName(Lifeline lifeline, Collection<String> displayValue, StringBuilder sb) {
 		ConnectableElement element = lifeline.getRepresents();
-		String lifelineName = lifeline.getName();
+		String lifelineName = UMLLabelInternationalization.getInstance().getLabel(lifeline);
 		if (element == null || displayValue.contains(SHOW_LIFELINE_NAME)) {
 			appendString(sb, lifelineName, UNAMED);
 			return;
 		} else {
 			// represents is not null
 			if (displayValue.contains(SHOW_REPRESENT_NAME)) {
-				appendString(sb, element.getName(), UNAMED);
+				appendString(sb,UMLLabelInternationalization.getInstance().getLabel( element), UNAMED);
 				boolean displaySelector = displayValue.contains(SHOW_REPRESENT_SELECTOR);
 				if (lifeline.getRepresents() == null || displayValue.contains(LifelineLabelHelper.SHOW_LIFELINE_NAME)) {
 					displaySelector = false;
@@ -133,11 +147,11 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 					ValueSpecification selector = lifeline.getSelector();
 					// Add the selector if it is a LiteralSpecification
 					if(selector instanceof LiteralSpecification) {
-						sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector)).append("]");
+						sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector, true)).append("]");
 					}
 					// Add the selector if it is an Expression
 					if(selector instanceof Expression || selector instanceof OpaqueExpression || selector instanceof TimeExpression) {
-						String specificationValue = ValueSpecificationUtil.getSpecificationValue(selector);
+						String specificationValue = ValueSpecificationUtil.getSpecificationValue(selector, true);
 						if(specificationValue != null && specificationValue.length() > 0) {
 							sb.append("[").append(specificationValue).append("]");
 						}
@@ -163,7 +177,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 					sb.append(":").append(UNDEFINED);
 				}
 			} else {
-				appendString(sb.append(":"), type.getName(), UNAMED);
+				appendString(sb.append(":"), UMLLabelInternationalization.getInstance().getLabel(type), UNAMED);
 			}
 		}
 	}

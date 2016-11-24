@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -83,7 +84,7 @@ public class EdgeGuardParser extends MessageFormatParser implements ISemanticPar
 
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
-		String value = getValueString(adapter, flags);
+		String value = getValueString(adapter, flags, false);
 		if (value != null) {
 			return value;
 		}
@@ -117,7 +118,7 @@ public class EdgeGuardParser extends MessageFormatParser implements ISemanticPar
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		String label = getValueString(element, flags);
+		String label = getValueString(element, flags, true);
 		if (label == null || label.length() == 0) {
 			label = " ";
 		} else {
@@ -129,13 +130,13 @@ public class EdgeGuardParser extends MessageFormatParser implements ISemanticPar
 	/**
 	 * Get the unformatted registered string value which shall be displayed
 	 */
-	private String getValueString(IAdaptable element, int flags) {
+	private String getValueString(IAdaptable element, int flags, final boolean useInternationalizayion) {
 		Object obj = element.getAdapter(EObject.class);
 		if (obj instanceof ActivityEdge) {
 			ActivityEdge edge = (ActivityEdge) obj;
 			ValueSpecification valueSpec = edge.getGuard();
 			if (valueSpec != null) {
-				String value = ValueSpecificationUtil.getSpecificationValue(valueSpec);
+				String value = ValueSpecificationUtil.getSpecificationValue(valueSpec, useInternationalizayion);
 				if (value != null) {
 					return value;
 				}

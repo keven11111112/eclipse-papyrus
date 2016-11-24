@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
@@ -33,7 +34,9 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -62,7 +65,7 @@ public class PropertyParser implements IParser {
 		EObject e = element.getAdapter(EObject.class);
 		if (e != null) {
 			final Property property = (Property) e;
-			return property.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(property);
 		}
 		return "";
 	}
@@ -94,7 +97,11 @@ public class PropertyParser implements IParser {
 
 							@Override
 							protected void doExecute() {
-								property.setName(result);
+								if (InternationalizationPreferencesUtils.getInternationalizationPreference(property) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(property)) {
+									UMLLabelInternationalization.getInstance().setLabel(property, result, null);
+								}else{
+									property.setName(result);
+								}
 							}
 						};
 						getEditingDomain().getCommandStack().execute(rc);

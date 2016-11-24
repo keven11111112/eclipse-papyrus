@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions;
@@ -21,6 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.internal.UmlCollaborationUseActivator;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Collaboration;
@@ -148,7 +153,6 @@ public class CollaborationUseEditor extends DefaultXtextDirectEditorConfiguratio
 	 */
 	protected List<SetRequest> getRequests() {
 		List<SetRequest> requests = new ArrayList<SetRequest>();
-		requests.add(new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Name(), newName));
 		requests.add(new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Visibility(), newVisibility));
 		requests.add(new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getCollaborationUse_Type(), newType));
 		return requests;
@@ -165,6 +169,17 @@ public class CollaborationUseEditor extends DefaultXtextDirectEditorConfiguratio
 		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(collaborationUse);
 		if (provider != null) {
 
+			// Manage the name or the label set
+			ICommand setNameCommand = null;
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(collaborationUse) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(collaborationUse)){
+				final ModelSet modelSet = (ModelSet)collaborationUse.eResource().getResourceSet();
+				setNameCommand = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), collaborationUse, newName, null));
+			}else{
+				final SetRequest setNameRequest = new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
+				setNameCommand = provider.getEditCommand(setNameRequest);
+			}
+			cc.add(setNameCommand);
+			
 			ICommand editCommand = null;
 			for (SetRequest current : getRequests()) {
 				editCommand = provider.getEditCommand(current);

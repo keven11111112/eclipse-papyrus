@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPartTN;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.State;
 
 /*****************************************************************************
@@ -93,7 +95,7 @@ public class CustomStateNameEditPartTN extends StateNameEditPartTN {
 
 
 		if (state.isSubmachineState()) {
-			stateFigure.setSubmachineStateName(state.getName() + " : " + state.getSubmachine().getQualifiedName());
+			stateFigure.setSubmachineStateName(UMLLabelInternationalization.getInstance().getLabel(state) + " : " + state.getSubmachine().getQualifiedName());
 			stateFigure.setIsSubmachineState(true);
 		} else {
 			stateFigure.setIsSubmachineState(false);

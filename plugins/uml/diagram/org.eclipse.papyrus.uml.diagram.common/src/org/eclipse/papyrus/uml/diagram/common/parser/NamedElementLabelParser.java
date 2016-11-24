@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -31,11 +31,15 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -55,7 +59,7 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 		if ((eObject != null) && (eObject instanceof NamedElement)) {
 			NamedElement semElement = (NamedElement) eObject;
 			if (semElement.isSetName()) {
-				editString = semElement.getName();
+				editString = UMLLabelInternationalization.getInstance().getLabel(semElement);
 			}
 		}
 		return editString;
@@ -83,7 +87,12 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 		}
 
 		try {
-			command = ElementEditServiceUtils.getEditServiceProvider().getEditService(objectToEdit).getEditCommand(new SetRequest(objectToEdit, UMLPackage.eINSTANCE.getNamedElement_Name(), newString));
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(objectToEdit) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement)objectToEdit)){
+				final ModelSet modelSet = (ModelSet)objectToEdit.eResource().getResourceSet();
+				command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), (NamedElement)objectToEdit, newString, null));
+			}else{
+				command = ElementEditServiceUtils.getEditServiceProvider().getEditService(objectToEdit).getEditCommand(new SetRequest(objectToEdit, UMLPackage.eINSTANCE.getNamedElement_Name(), newString));
+			}
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
@@ -100,7 +109,7 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 		EObject eObject = EMFHelper.getEObject(element);
 
 		if (eObject instanceof NamedElement) {
-			return ((NamedElement) eObject).getName();
+			return UMLLabelInternationalization.getInstance().getLabel(((NamedElement) eObject));
 		}
 
 		return result;

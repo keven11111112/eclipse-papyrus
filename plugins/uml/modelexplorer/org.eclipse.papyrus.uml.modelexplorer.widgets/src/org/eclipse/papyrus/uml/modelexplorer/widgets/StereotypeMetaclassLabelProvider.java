@@ -8,11 +8,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.widgets;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.views.modelexplorer.widgets.MetaclassLabelProvider;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -25,7 +27,7 @@ public class StereotypeMetaclassLabelProvider extends MetaclassLabelProvider {
 	@Override
 	public String getText(Object element) {
 		if (element instanceof Stereotype) {
-			return ((Stereotype) element).getName();
+			return UMLLabelInternationalization.getInstance().getKeyword(((Stereotype) element));
 		}
 		return super.getText(element);
 	}

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -82,8 +84,9 @@ public class TimeObservationParser extends MessageFormatParser implements ISeman
 		Object adapter = element.getAdapter(EObject.class);
 		if (adapter instanceof TimeObservation) {
 			TimeObservation observation = (TimeObservation) adapter;
-			if (observation.getName() != null) {
-				return String.format(FORMAT, observation.getName());
+			final String observationLabel = UMLLabelInternationalization.getInstance().getLabel(observation);
+			if (observationLabel != null) {
+				return String.format(FORMAT, observationLabel);
 			}
 		}
 		return result.toString();

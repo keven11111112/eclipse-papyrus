@@ -10,6 +10,7 @@
  * Contributors:
  *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
  *  Christian W. Damus - bug 473183
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test.canonical;
 
@@ -27,6 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;

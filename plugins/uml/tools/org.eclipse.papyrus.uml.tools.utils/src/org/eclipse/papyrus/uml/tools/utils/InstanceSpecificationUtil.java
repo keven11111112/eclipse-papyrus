@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
@@ -37,7 +39,11 @@ public class InstanceSpecificationUtil {
 
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
-			buffer.append(NamedElementUtil.getName(instance));
+			if(null != instance.getName()){
+				buffer.append(UMLLabelInternationalization.getInstance().getLabel(instance));
+			}else{
+				buffer.append((NamedElementUtil.getDefaultNameWithIncrement(instance)));
+			}
 		}
 
 		// classifier

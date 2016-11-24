@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtil
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -101,7 +102,7 @@ public class StereotypeDisplayPropertyHeaderLabelProvider extends EMFFeatureHead
 				if (alias != null && !alias.isEmpty()) {
 					returnedValue = alias;
 				} else {
-					returnedValue = prop.getName();// getLabelProviderService(configRegistry).getLabelProvider(prop).getText(prop);
+					returnedValue = UMLLabelInternationalization.getInstance().getLabel(prop);// getLabelProviderService(configRegistry).getLabelProvider(prop).getText(prop);
 				}
 				if (conf != null) {
 					if (alias != null && !alias.equals("")) { //$NON-NLS-1$

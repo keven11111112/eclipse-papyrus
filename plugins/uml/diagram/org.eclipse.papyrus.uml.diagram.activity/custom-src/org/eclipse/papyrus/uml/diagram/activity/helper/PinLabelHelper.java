@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.helper;
 
 import java.util.Collection;
@@ -10,6 +23,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
 import org.eclipse.uml2.uml.Element;
@@ -65,12 +79,13 @@ public class PinLabelHelper extends StereotypedElementLabelHelper {
 		StringBuffer buffer = new StringBuffer();
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(namedElement.getName()== null ? "" : namedElement.getName());
+			String name = UMLLabelInternationalization.getInstance().getLabel(namedElement);
+			buffer.append(null == name ? "" : name);
 		}
 		if (namedElement instanceof TypedElement) {
 			if (maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 				if (((TypedElement) namedElement).getType() != null) {
-					buffer.append(": " + ((TypedElement) namedElement).getType().getName());
+					buffer.append(": " + UMLLabelInternationalization.getInstance().getLabel(((TypedElement) namedElement).getType()));
 				} else {
 					buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 				}

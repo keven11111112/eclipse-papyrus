@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *   Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -28,6 +29,10 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -71,7 +76,7 @@ public class PreConditionConstraintLabelParser implements IParser {
 		if (constraint == null) {
 			return "<NULL CONSTRAINT>"; //$NON-NLS-1$
 		}
-		return constraint.getName();
+		return UMLLabelInternationalization.getInstance().getLabel(constraint);
 	}
 
 	/**
@@ -87,9 +92,16 @@ public class PreConditionConstraintLabelParser implements IParser {
 		if (editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Name"); //$NON-NLS-1$
-		SetRequest request = new SetRequest(constraint, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
-		command.compose(new SetValueCommand(request));
+		
+		ICommand command = null;
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(constraint) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(constraint)) {
+			final ModelSet modelSet = (ModelSet) constraint.eResource().getResourceSet();
+			command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), constraint, newString, null));
+		} else {
+			command = new CompositeTransactionalCommand(editingDomain, "Set Name"); //$NON-NLS-1$
+			SetRequest request = new SetRequest(constraint, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
+			command.compose(new SetValueCommand(request));
+		}
 		return command;
 	}
 
@@ -102,7 +114,7 @@ public class PreConditionConstraintLabelParser implements IParser {
 		if (constraint == null) {
 			return "<NULL CONSTRAINT>"; //$NON-NLS-1$
 		}
-		return CHEVRON + constraint.getName();
+		return CHEVRON + UMLLabelInternationalization.getInstance().getLabel(constraint);
 	}
 
 	/**

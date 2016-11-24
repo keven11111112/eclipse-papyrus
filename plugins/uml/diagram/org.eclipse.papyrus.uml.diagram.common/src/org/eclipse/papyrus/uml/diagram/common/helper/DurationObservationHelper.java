@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -79,7 +81,7 @@ public class DurationObservationHelper {
 	 * @return string
 	 */
 	public static String getLabelString(DurationObservation observation) {
-		return String.format(DURATION_OBSERVATION_LABEL_FORMAT, observation.getName());
+		return String.format(DURATION_OBSERVATION_LABEL_FORMAT, UMLLabelInternationalization.getInstance().getLabel(observation));
 	}
 
 	/**

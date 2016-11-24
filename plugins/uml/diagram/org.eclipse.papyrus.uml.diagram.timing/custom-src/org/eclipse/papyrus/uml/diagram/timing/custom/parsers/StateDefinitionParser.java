@@ -7,6 +7,10 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.Fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.parsers;
 
@@ -30,18 +34,19 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.utils.LifelineUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.StateDefinitionUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.ViewUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineEditPartCN;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.StateInvariant;
 
 /** Used to get and set the name of a StateDefinition when editing a StateDefinition's label */
 public class StateDefinitionParser implements IParser {
-	
-	public static final String DEFAULT_EDIT_VALUE = ""; //$NON-NLS
-	
+
+	public static final String DEFAULT_EDIT_VALUE = ""; // $NON-NLS
+
 	@Override
 	public String getEditString(final IAdaptable adaptable, final int flags) {
-		StateInvariant stateInvariant =  (StateInvariant) adaptable.getAdapter(EObject.class);
-		return stateInvariant != null ? stateInvariant.getName() : DEFAULT_EDIT_VALUE;
+		StateInvariant stateInvariant = (StateInvariant) adaptable.getAdapter(EObject.class);
+		return stateInvariant != null ? UMLLabelInternationalization.getInstance().getLabel(stateInvariant) : DEFAULT_EDIT_VALUE;
 	}
 
 	@Override
@@ -64,6 +69,10 @@ public class StateDefinitionParser implements IParser {
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+
+				// TODO : A bug exist for the label state definition modification
+				// The label modification for the state definition must be managed by the StateDefinitionUtils
+
 				StateDefinitionUtils.setStateDefinitionName(stateDefinitionView, newString);
 				LifelineUtils.updateFragmentNames(lifeline, lifelineView);
 				return CommandResult.newOKCommandResult();
@@ -73,8 +82,8 @@ public class StateDefinitionParser implements IParser {
 
 	@Override
 	public String getPrintString(final IAdaptable adaptable, final int flags) {
-		StateInvariant stateInvariant =  (StateInvariant) adaptable.getAdapter(EObject.class);
-		String name = stateInvariant != null ? stateInvariant.getName() : null;
+		StateInvariant stateInvariant = (StateInvariant) adaptable.getAdapter(EObject.class);
+		String name = stateInvariant != null ? UMLLabelInternationalization.getInstance().getLabel(stateInvariant) : null;
 		if (name == null || name.length() == 0) {
 			return Messages.StateDefinitionParser_Unnamed;
 		}

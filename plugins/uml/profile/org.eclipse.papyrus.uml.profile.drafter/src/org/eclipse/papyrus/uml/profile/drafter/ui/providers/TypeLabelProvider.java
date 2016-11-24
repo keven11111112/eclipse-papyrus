@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
@@ -16,6 +17,7 @@ package org.eclipse.papyrus.uml.profile.drafter.ui.providers;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Type;
 
 
@@ -30,7 +32,7 @@ public class TypeLabelProvider extends LabelProvider {
 	@Override
 	public String getText(Object element) {
 		if(element instanceof Type) {
-			return ((Type)element).getName();
+			return UMLLabelInternationalization.getInstance().getLabel((Type)element);
 		}
 		
 		return super.getText(element);

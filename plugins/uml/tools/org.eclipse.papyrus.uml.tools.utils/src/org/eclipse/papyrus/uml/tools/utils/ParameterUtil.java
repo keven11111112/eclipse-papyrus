@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Parameter;
 
 /**
@@ -99,12 +101,12 @@ public class ParameterUtil {
 		// name
 		buffer.append(" ");
 		if (parameter.getName() != null) {
-			buffer.append(parameter.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(parameter));
 		}
 
 		// type
 		if (parameter.getType() != null) {
-			buffer.append(": " + parameter.getType().getName());
+			buffer.append(": " + UMLLabelInternationalization.getInstance().getLabel(parameter.getType()));
 		} else {
 			buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 		}
@@ -152,13 +154,13 @@ public class ParameterUtil {
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_PARAMETER_NAME) || maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(parameter.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(parameter));
 		}
 
 		if (maskValues.contains(ICustomAppearance.DISP_PARAMETER_TYPE) || maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if (parameter.getType() != null) {
-				buffer.append(": " + parameter.getType().getName());
+				buffer.append(": " + UMLLabelInternationalization.getInstance().getLabel(parameter.getType()));
 			} else {
 				buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 			}

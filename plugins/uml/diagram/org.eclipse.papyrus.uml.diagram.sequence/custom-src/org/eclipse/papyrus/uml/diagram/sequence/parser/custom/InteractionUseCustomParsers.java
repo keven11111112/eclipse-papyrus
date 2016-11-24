@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
@@ -85,9 +87,9 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 			InteractionUse interactionUse = (InteractionUse) obj;
 			Interaction interaction = interactionUse.getRefersTo();
 			if (interaction != null) {
-				String interactionName = interaction.getName();
+				String interactionName = UMLLabelInternationalization.getInstance().getLabel(interaction);
 				if (interactionName != null) {
-					sb.append(interaction.getName());
+					sb.append(interactionName);
 				}
 			}
 		}

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  /*****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.query;
 
@@ -18,6 +19,7 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 
 /** Create a basic label based on element name */
@@ -35,7 +37,7 @@ public class GetLabelQuery implements IJavaQuery2<NamedElement, String> {
 
 		String label = UNNAMED;
 		if (source.isSetName() && (!"".equals(source.getName().trim()))) {
-			label = source.getName();
+			label = UMLLabelInternationalization.getInstance().getLabel(source);
 		}
 		return label;
 	}

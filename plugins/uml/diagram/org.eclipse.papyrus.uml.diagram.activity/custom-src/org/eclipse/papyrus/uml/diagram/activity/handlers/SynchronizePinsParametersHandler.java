@@ -11,6 +11,7 @@
  *   Arthur Daussy (Atos) - Initial API and implementation
  *   Arthur Daussy - 371712 : [Activitydiagram] Papyrus should provide a way to manually resynchronize pins and parameters on Call Actions
  *   Olivier Mélois (Atos) : olivier.melois@atos.net - 371712
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.handlers;
@@ -65,6 +66,7 @@ import org.eclipse.papyrus.uml.diagram.activity.helper.IPinToParameterLinkComman
 import org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchronizer;
 import org.eclipse.papyrus.uml.diagram.activity.helper.datastructure.LinkPinToParameter;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLMarkerNavigationProvider;
+import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -378,7 +380,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 				for (ActivityEdge activityEdge : dialog.getEgdesToDelete()) {
 					// Create a marker for all deleted edges
 					if (!newHashSet.isEmpty()) {
-						UMLItemProviderAdapterFactory umlAdapterFactory = new UMLItemProviderAdapterFactory();
+						InternationalizationUMLItemProviderAdapterFactory umlAdapterFactory = new InternationalizationUMLItemProviderAdapterFactory();
 						IItemLabelProvider edgeLabelProvider = (IItemLabelProvider) umlAdapterFactory.adapt(activityEdge, IItemLabelProvider.class);
 						IItemLabelProvider callActionLabelProvider = (IItemLabelProvider) umlAdapterFactory.adapt(invocationAction, IItemLabelProvider.class);
 						UMLMarkerNavigationProvider.addMarker(target, activityEdge.eResource().getURIFragment(activityEdge), EMFCoreUtil.getQualifiedName(invocationAction, true), "The edge " + edgeLabelProvider.getText(activityEdge)
@@ -635,7 +637,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		}
 
 		private String getEdgeListString() {
-			UMLItemProviderAdapterFactory t = new UMLItemProviderAdapterFactory();
+			InternationalizationUMLItemProviderAdapterFactory t = new InternationalizationUMLItemProviderAdapterFactory();
 			IItemLabelProvider provider = (IItemLabelProvider) t.adapt(callAction, IItemLabelProvider.class);
 			StringBuilder builder = new StringBuilder("If you synchronize " + provider.getText(callAction) + " the following edges will be deleted : \n ");//$NON-NLS-1$ //$NON-NLS-2$
 			for (ActivityEdge e : egdes) {

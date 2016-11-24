@@ -9,6 +9,7 @@
  *     CEA List - initial API and implementation
  *     Christian W. Damus (CEA) - bug 422257
  *     Dr. David H. Akehurst - enable programmatic registration
+ *     Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *******************************************************************************/
 package org.eclipse.papyrus.uml.extensionpoints.library;
 
@@ -23,6 +24,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.extensionpoints.Activator;
 import org.eclipse.papyrus.uml.extensionpoints.Registry;
 import org.eclipse.papyrus.uml.extensionpoints.standard.ExtensionLabelProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.Element;
@@ -99,7 +101,7 @@ public class RegisteredLibrarySelectionDialog extends ElementListSelectionDialog
 
 		while (importedIt.hasNext()) {
 			PackageImport currentImport = importedIt.next();
-			String currentName = currentImport.getImportedPackage().getName();
+			String currentName = UMLLabelInternationalization.getInstance().getLabel(currentImport.getImportedPackage());
 			Libraries.add(currentName);
 		}
 

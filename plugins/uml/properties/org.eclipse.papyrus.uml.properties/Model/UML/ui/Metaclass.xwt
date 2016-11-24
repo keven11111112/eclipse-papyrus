@@ -7,6 +7,7 @@
 	</Composite.layout>
 	<ppe:StringEditor property="UML:NamedElement:name"
 		input="{Binding}"></ppe:StringEditor>
+	<ppe:StringEditor input="{Binding}" property="UML:NamedElement:label"></ppe:StringEditor>
 	<ppe:StringEditor property="UML:NamedElement:qualifiedName"
 		input="{Binding}"></ppe:StringEditor>
 </Composite>

@@ -10,6 +10,7 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 426732
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -23,6 +24,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -87,13 +90,6 @@ public class OccurrenceSpecificationHelper {
 				newEnd.setEnclosingOperand((InteractionOperand) eContainer);
 			}
 		}
-		if (newEnd.getName() == null) {
-			if (isStart) {
-				newEnd.setName(execution.getName() + "Start");
-			} else {
-				newEnd.setName(execution.getName() + "Finish");
-			}
-		}
 		copyInfo(oldEnd, newEnd);
 		if (newEnd instanceof ExecutionOccurrenceSpecification) {
 			((ExecutionOccurrenceSpecification) newEnd).setExecution(execution);
@@ -102,6 +98,19 @@ public class OccurrenceSpecificationHelper {
 			execution.setStart(newEnd);
 		} else {
 			execution.setFinish(newEnd);
+		}
+		if (newEnd.getName() == null) {
+			if (isStart) {
+				newEnd.setName(execution.getName() + "Start");
+				if(InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)){
+					UMLLabelInternationalization.getInstance().setLabel(newEnd, UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution) + "Start", null);
+				}
+			} else {
+				newEnd.setName(execution.getName() + "Finish");
+				if(InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)){
+					UMLLabelInternationalization.getInstance().setLabel(newEnd, UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution) + "Finish", null);
+				}
+			}
 		}
 		if (canBeRemoved(oldEnd, newEnd, isStart)) {
 			// "coveredBy" is bidirectional so must be cleaned prior to deletion of element itself

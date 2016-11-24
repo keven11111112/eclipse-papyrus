@@ -9,7 +9,9 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Adapted from sequence diagram
+ *   Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Adapted from sequence diagram
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.parser;
 
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Element;
@@ -106,26 +109,26 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.uml.diagram.commu
 
 			if (connectableElement != null) {
 				// Add ConnectableElement Name
-				String connectableElementName = connectableElement.getName();
+				String connectableElementName = UMLLabelInternationalization.getInstance().getLabel(connectableElement);
 				if (connectableElementName != null) {
 					sb.append(connectableElementName);
 				}
 
 				// Add the selector if it is a LiteralSpecification
 				if (selector instanceof LiteralSpecification) {
-					sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector)).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
+					sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector, true)).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 
 				// Add the type name
 				Type type = connectableElement.getType();
 				if (type != null && type.getName() != null && type.getName().length() > 0) {
-					sb.append(" : ").append(type.getName()); //$NON-NLS-1$
+					sb.append(" : ").append(UMLLabelInternationalization.getInstance().getLabel(type)); //$NON-NLS-1$
 				}
 			}
 
 			// Add the selector if it is an Expression
 			if (selector instanceof Expression || selector instanceof OpaqueExpression || selector instanceof TimeExpression) {
-				String specificationValue = ValueSpecificationUtil.getSpecificationValue(selector);
+				String specificationValue = ValueSpecificationUtil.getSpecificationValue(selector, true);
 				if (specificationValue != null && specificationValue.length() > 0) {
 					sb.append("\n").append(specificationValue); //$NON-NLS-1$
 				}
@@ -136,7 +139,7 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.uml.diagram.commu
 			if (partDecomposition != null) {
 				Interaction refersTo = partDecomposition.getRefersTo();
 				if (refersTo != null) {
-					sb.append("\nref ").append(refersTo.getName()); //$NON-NLS-1$
+					sb.append("\nref ").append(UMLLabelInternationalization.getInstance().getLabel(refersTo)); //$NON-NLS-1$
 				}
 			}
 
@@ -145,7 +148,7 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.uml.diagram.commu
 			// lifeline
 			// This case occurs when creating the lifeline for example
 			if (sb.length() == 0) {
-				sb.append(lifeline.getName());
+				sb.append(UMLLabelInternationalization.getInstance().getLabel(lifeline));
 			}
 		}
 

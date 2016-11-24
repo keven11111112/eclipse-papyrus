@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -27,6 +28,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -75,7 +77,7 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
-		String value = getValueString(adapter, flags);
+		String value = getValueString(adapter, flags, false);
 		if (value != null) {
 			return value;
 		}
@@ -106,7 +108,7 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		String label = getValueString(element, flags);
+		String label = getValueString(element, flags, true);
 		if (label == null || label.length() == 0) {
 			label = "";
 		} else {
@@ -126,12 +128,16 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	/**
 	 * Get the unformatted registered string value which shall be displayed
 	 */
-	private String getValueString(IAdaptable element, int flags) {
+	private String getValueString(final IAdaptable element, final int flags, final boolean useInternationalization) {
 		Object obj = element.getAdapter(EObject.class);
 		if (getReferenceFeature().getContainerClass().isInstance(obj)) {
 			Object behavior = ((EObject) obj).eGet(getReferenceFeature());
 			if (behavior instanceof Behavior) {
-				return ((Behavior) behavior).getName();
+				if(useInternationalization){
+					return UMLLabelInternationalization.getInstance().getLabel((Behavior)behavior);
+				}else{
+					return ((Behavior) behavior).getName();
+				}
 			}
 		}
 		return "";

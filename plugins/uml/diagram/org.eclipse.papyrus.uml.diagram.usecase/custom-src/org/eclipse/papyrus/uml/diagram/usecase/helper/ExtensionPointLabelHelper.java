@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.Fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.helper;
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -87,7 +89,7 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 	protected String elementLabel(GraphicalEditPart editPart) {
 		NamedElement element = getUMLElement(editPart);
 		if (element != null) {
-			return getUMLElement(editPart).getName();
+			return UMLLabelInternationalization.getInstance().getLabel(getUMLElement(editPart));
 		}
 		return null;
 	}

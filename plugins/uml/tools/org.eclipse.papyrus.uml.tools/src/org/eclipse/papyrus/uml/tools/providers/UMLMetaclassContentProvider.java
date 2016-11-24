@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.infra.widgets.providers.AbstractFilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -57,11 +59,11 @@ public class UMLMetaclassContentProvider extends AbstractFilteredContentProvider
 			public int compare(Class firstClass, Class secondClass) {
 
 				// Use default lexicographically sorter of String based on Class name
-				String firstName = firstClass.getName();
+				String firstName = UMLLabelInternationalization.getInstance().getLabel(firstClass);
 				if (firstName == null) {
 					return 0;
 				}
-				return firstName.compareTo(secondClass.getName());
+				return firstName.compareTo(UMLLabelInternationalization.getInstance().getLabel(secondClass));
 
 			}
 		});

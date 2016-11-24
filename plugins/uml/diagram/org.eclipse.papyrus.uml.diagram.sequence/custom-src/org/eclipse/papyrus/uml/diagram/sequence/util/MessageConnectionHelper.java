@@ -9,11 +9,13 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -132,7 +134,7 @@ public class MessageConnectionHelper {
 			buf.append(source.eClass().getName());
 			if (source instanceof NamedElement) {
 				buf.append("(");
-				buf.append(((NamedElement) source).getName());
+				buf.append(UMLLabelInternationalization.getInstance().getLabel(((NamedElement) source)));
 				buf.append(")");
 			}
 		} else {
@@ -143,7 +145,7 @@ public class MessageConnectionHelper {
 			buf.append(target.eClass().getName());
 			if (target instanceof NamedElement) {
 				buf.append("(");
-				buf.append(((NamedElement) target).getName());
+				buf.append(UMLLabelInternationalization.getInstance().getLabel(((NamedElement) target)));
 				buf.append(")");
 			}
 		} else {

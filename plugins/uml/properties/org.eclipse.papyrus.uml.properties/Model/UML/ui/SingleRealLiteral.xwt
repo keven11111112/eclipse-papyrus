@@ -7,5 +7,6 @@
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
 	<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+	<ppe:StringEditor input="{Binding}" property="UML:NamedElement:label"></ppe:StringEditor>
 	<ppe:DoubleEditor input="{Binding}" property="UML:LiteralReal:value"></ppe:DoubleEditor>
 </Composite>

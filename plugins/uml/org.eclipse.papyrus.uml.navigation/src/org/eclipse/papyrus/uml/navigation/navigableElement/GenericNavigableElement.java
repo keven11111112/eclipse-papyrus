@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Shuai Li (CEA LIST) shuai.li@cea.fr - Initial API and implementation
+ *   Shuai Li (CEA LIST) shuai.li@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.navigation.navigableElement;
 
@@ -18,6 +19,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.papyrus.infra.services.navigation.service.ExtendedNavigableElement;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -55,7 +57,7 @@ public class GenericNavigableElement implements ExtendedNavigableElement {
 			if (((NamedElement) element).getName() == null || ((NamedElement) element).getName().isEmpty()) {
 				return " (Unnamed)"; // Often happens for Associations, as their name is derived in the UI
 			} else {
-				return " (" + ((NamedElement) element).getName() + ")";
+				return " (" + UMLLabelInternationalization.getInstance().getLabel((NamedElement) element) + ")";
 			}
 		} else {
 			return " (Unnamed)";

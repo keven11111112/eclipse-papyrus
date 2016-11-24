@@ -17,6 +17,7 @@
 				<ppel:PropertiesLayout></ppel:PropertiesLayout>
 			</Composite.layout>
 			<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+			<ppe:StringEditor input="{Binding}" property="UML:NamedElement:label"></ppe:StringEditor>
 			<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
 			<ppe:ReferenceDialog input="{Binding}"
 				property="UML:Constraint:context"></ppe:ReferenceDialog>

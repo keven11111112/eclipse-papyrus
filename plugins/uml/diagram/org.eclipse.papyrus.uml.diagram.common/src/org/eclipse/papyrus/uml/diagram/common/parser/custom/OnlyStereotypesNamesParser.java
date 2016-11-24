@@ -10,6 +10,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -49,7 +50,7 @@ public class OnlyStereotypesNamesParser implements IParser {
 			String pString = "" + ((char) 171);
 
 			for (java.util.Iterator<Stereotype> it = stereotypes.iterator(); it.hasNext();) {
-				pString += it.next().getName();
+				pString += UMLLabelInternationalization.getInstance().getKeyword(it.next());
 
 				if (it.hasNext()) {
 					pString += ", ";

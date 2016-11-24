@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.tree;
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
@@ -168,7 +170,7 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 
 		if (object instanceof AppliedStereotypeTreeObject) {
 			Stereotype st = ((AppliedStereotypeTreeObject) object).getStereotype();
-			String stName = st.getName();
+			String stName = UMLLabelInternationalization.getInstance().getKeyword(st);
 			String profileName = st.getProfile().getQualifiedName();
 			String label = stName + TAB + "(from " + profileName + ")";
 			return label;
@@ -373,8 +375,8 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 	 */
 	private String getPropertyShortLabel(Property property) {
 		Type type = property.getType();
-		String typeName = type.getName();
-		String name = property.getName();
+		String typeName = UMLLabelInternationalization.getInstance().getLabel(type);
+		String name = UMLLabelInternationalization.getInstance().getLabel(property);
 		return name + ": " + typeName + " " + MultiplicityElementUtil.formatMultiplicity(property);
 	}
 
@@ -477,7 +479,7 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 		}
 
 		if (eLiteral != null) {
-			return eLiteral.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(eLiteral);
 		} else {
 			return "undefined";
 		}

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.helper;
@@ -16,6 +17,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -44,7 +46,7 @@ public class NestedStereotypeLabelHelper extends StereotypedElementLabelHelper {
 	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
 		NamedElement namedElement = getUMLElement(editPart);
-		return namedElement == null ? "" : namedElement.getName();
+		return namedElement == null ? "" : UMLLabelInternationalization.getInstance().getLabel(namedElement);
 	}
 
 	/**

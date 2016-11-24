@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.Collection;
@@ -5,6 +18,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
@@ -37,7 +51,7 @@ public class OperationUtil {
 		// name
 		if (displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME)) {
 			buffer.append(" ");
-			String name = StringHelper.trimToEmpty(parameter.getName());
+			String name = StringHelper.trimToEmpty(UMLLabelInternationalization.getInstance().getLabel(parameter));
 			if (name.trim().length() > 0) {
 				showEqualMark = true;
 			}
@@ -46,7 +60,7 @@ public class OperationUtil {
 		if (displayValue.contains(ICustomAppearance.DISP_PARAMETER_TYPE)) {
 			// type
 			if (parameter.getType() != null) {
-				buffer.append(": " + StringHelper.trimToEmpty(parameter.getType().getName()));
+				buffer.append(": " + StringHelper.trimToEmpty(UMLLabelInternationalization.getInstance().getLabel(parameter.getType())));
 			} else {
 				buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 			}
@@ -92,7 +106,7 @@ public class OperationUtil {
 		try {
 			EList<ValueSpecification> arguments = e.getArguments();
 			if (arguments.size() > paramIndex) {
-				return ValueSpecificationUtil.getSpecificationValue(arguments.get(paramIndex));
+				return ValueSpecificationUtil.getSpecificationValue(arguments.get(paramIndex), true);
 			}
 		} catch (Exception e1) {
 		}
@@ -109,7 +123,7 @@ public class OperationUtil {
 		// name
 		if (displayValue.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(StringHelper.trimToEmpty(operation.getName()));
+			buffer.append(StringHelper.trimToEmpty(UMLLabelInternationalization.getInstance().getLabel(operation)));
 		}
 		//
 		// parameters : '(' parameter-list ')'
@@ -173,7 +187,7 @@ public class OperationUtil {
 				buffer.append(", ");
 			}
 			buffer.append("redefines ");
-			buffer.append(currentOperation.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(currentOperation));
 			needsComma = true;
 		}
 		// has the operation a constraint ?

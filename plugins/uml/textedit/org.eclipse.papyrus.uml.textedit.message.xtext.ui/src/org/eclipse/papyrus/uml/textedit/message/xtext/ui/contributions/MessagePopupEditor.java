@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.message.xtext.ui.contributions;
@@ -23,6 +24,8 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.message.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
@@ -90,7 +93,7 @@ public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 	public String getTextToEdit(Object editedObject) {
 
 		if (editedObject instanceof Message) {
-			String texttoedit = ((Message) editedObject).getName().trim();
+			String texttoedit = UMLLabelInternationalization.getInstance().getLabel(((Message) editedObject)).trim();
 
 			Interaction interaction = ((Message) editedObject).getInteraction();
 
@@ -124,7 +127,11 @@ public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
-			this.message.setName(newSequenceTermList + ':' + newName);
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(message) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(message)){
+				UMLLabelInternationalization.getInstance().setLabel(message, newName, null);
+			}else{
+				this.message.setName(newSequenceTermList + ':' + newName);
+			}
 			return CommandResult.newOKCommandResult(message);
 		}
 

@@ -7,13 +7,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
+ *      Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.part;
 
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockLabelNameEditPart;
 
 public class CustomBlockLabelNameEditPart extends BlockLabelNameEditPart {
@@ -27,7 +29,7 @@ public class CustomBlockLabelNameEditPart extends BlockLabelNameEditPart {
 	 */
 	@Override
 	protected String getLabelText() {
-		String diagramName = getDiagramView().getName();
+		String diagramName = LabelInternationalization.getInstance().getDiagramLabel(getDiagramView());
 		return super.getLabelText() + " [" + diagramName + "]";
 	}
 }

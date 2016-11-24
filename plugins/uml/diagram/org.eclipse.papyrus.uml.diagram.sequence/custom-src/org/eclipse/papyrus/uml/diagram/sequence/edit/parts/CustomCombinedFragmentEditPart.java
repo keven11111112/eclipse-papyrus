@@ -10,6 +10,7 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440230 : Label Margin
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -81,13 +82,16 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
@@ -105,6 +109,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperatorKindCompatibleMapping;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -116,6 +121,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -570,7 +576,7 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 		Object element = resolveSemanticElement();
 		if (element instanceof CombinedFragment) {
 			CombinedFragment combinedFragment = (CombinedFragment) element;
-			String name = combinedFragment.getName();
+			String name = UMLLabelInternationalization.getInstance().getLabel(combinedFragment);
 			int depth = AppearanceHelper.getQualifiedNameDepth(this.getNotationView());
 			if (depth == 0) { // full qualified
 				name = combinedFragment.getQualifiedName();
@@ -767,7 +773,7 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 			Object adapter = element.getAdapter(EObject.class);
 			if (adapter instanceof CombinedFragment) {
 				CombinedFragment cf = (CombinedFragment) adapter;
-				return cf.getName();
+				return UMLLabelInternationalization.getInstance().getLabel(cf);
 			}
 			return "";
 		}
@@ -784,8 +790,16 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 			if (editingDomain == null || !(element instanceof CombinedFragment)) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			SetRequest request = new SetRequest(element, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
-			return new SetValueCommand(request);
+			
+			ICommand command = null;
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
+				final ModelSet modelSet = (ModelSet) element.eResource().getResourceSet();
+				command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), (NamedElement) element, newString, null));
+			} else {
+				SetRequest request = new SetRequest(element, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
+				command = new SetValueCommand(request);
+			}
+			return command;
 		}
 
 		@Override
@@ -793,7 +807,7 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 			Object adapter = element.getAdapter(EObject.class);
 			if (adapter instanceof CombinedFragment) {
 				CombinedFragment cf = (CombinedFragment) adapter;
-				return cf.getName();
+				return UMLLabelInternationalization.getInstance().getLabel(cf);
 			}
 			return "";
 		}

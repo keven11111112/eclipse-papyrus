@@ -1,9 +1,23 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
@@ -34,7 +48,7 @@ public class SignalUtil {
 		// name
 		if (displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME)) {
 			buffer.append(" ");
-			String name = StringHelper.trimToEmpty(property.getName());
+			String name = StringHelper.trimToEmpty(UMLLabelInternationalization.getInstance().getLabel(property));
 			if (name.trim().length() > 0) {
 				showEqualMark = true;
 			}
@@ -68,7 +82,7 @@ public class SignalUtil {
 				if (showEqualMark) {
 					buffer.append(" = ");
 				}
-				buffer.append(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue()));
+				buffer.append(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue(), true));
 			}
 		}
 		if (displayValue.contains(ICustomAppearance.DISP_MODIFIERS)) {
@@ -94,7 +108,7 @@ public class SignalUtil {
 			int index = signal.getOwnedAttributes().indexOf(property);
 			EList<ValueSpecification> arguments = e.getArguments();
 			if (arguments.size() > index) {
-				return ValueSpecificationUtil.getSpecificationValue(arguments.get(index));
+				return ValueSpecificationUtil.getSpecificationValue(arguments.get(index), true);
 			}
 		} catch (Exception e1) {
 		}
@@ -121,7 +135,7 @@ public class SignalUtil {
 		// name
 		if (displayValue.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(StringHelper.trimToEmpty(signal.getName()));
+			buffer.append(StringHelper.trimToEmpty(UMLLabelInternationalization.getInstance().getLabel(signal)));
 		}
 		//
 		// parameters : '(' parameter-list ')'

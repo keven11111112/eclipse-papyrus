@@ -48,5 +48,6 @@
 		<module>textedit</module>
 		<module>tools</module>
 		<module>xtext</module>
+		<module>internationalization</module>
 	</modules>
 </project>

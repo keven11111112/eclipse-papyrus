@@ -117,9 +117,13 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.uml.xtext.integration.feature"
          version="0.0.0"/>
-  
-   <includes 
-         id="org.eclipse.papyrus.infra.internationalization.feature" 
+
+   <includes
+         id="org.eclipse.papyrus.infra.internationalization.feature"
+         version="0.0.0"/>
+
+     <includes
+         id="org.eclipse.papyrus.uml.internationalization.feature"
          version="0.0.0"/>
 
    <includes

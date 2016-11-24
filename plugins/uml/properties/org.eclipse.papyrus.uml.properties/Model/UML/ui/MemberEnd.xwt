@@ -12,6 +12,7 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:label"></ppe:StringEditor>
 		<ppe:EnumCombo input="{Binding}" property="MemberEnd:owner"></ppe:EnumCombo>
 		<ppe:BooleanRadio input="{Binding}" property="MemberEnd:navigable"></ppe:BooleanRadio>
 		<ppe:EnumCombo input="{Binding}" property="UML:Property:aggregation"></ppe:EnumCombo>

@@ -7,7 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *   Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.service.palette;
 
@@ -39,6 +41,7 @@ import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusCons
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -346,7 +349,7 @@ public class DisplayAppliedStereotypePropertiesInCompartmentPostAction extends G
 		StringBuilder buffer = new StringBuilder();
 		buffer.append(stereotype.getQualifiedName());
 		buffer.append(".");
-		buffer.append(property.getName());
+		buffer.append(UMLLabelInternationalization.getInstance().getLabel(property));
 		return buffer.toString();
 	}
 

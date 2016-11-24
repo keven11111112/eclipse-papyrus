@@ -10,6 +10,7 @@
  *	 R�gis CHEVREL: chevrel.regis <at> gmail.com
  *	 CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 392301
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric;
@@ -23,6 +24,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.ParametricDiagramEditor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
@@ -70,7 +72,7 @@ public class ParametricDiagramForMultiEditor extends ParametricDiagramEditor {
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
-		setPartName(getDiagram().getName());
+		setPartName(LabelInternationalization.getInstance().getDiagramLabel(getDiagram()));
 		titleImage = DIAG_IMG_DESC.createImage();
 		setTitleImage(titleImage);
 	}

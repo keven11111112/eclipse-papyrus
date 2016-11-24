@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA List and Others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.drafter.ui.dialog;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -5,6 +18,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -146,7 +160,7 @@ public class TaggedValuesEditorWidget {
 		public String getText(Object element) {
 			
 			Property property = (Property)element;
-			return property.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(property);
 		}
 	}
 	
@@ -163,7 +177,7 @@ public class TaggedValuesEditorWidget {
 			Object value = selectedElement.getValue((Stereotype)property.getOwner(), property.getName());
 			
 			if(value instanceof NamedElement) {
-				return ((NamedElement)value).getName();
+				return UMLLabelInternationalization.getInstance().getLabel(((NamedElement)value));
 			}
 			// TODO
 			// collections and arrays

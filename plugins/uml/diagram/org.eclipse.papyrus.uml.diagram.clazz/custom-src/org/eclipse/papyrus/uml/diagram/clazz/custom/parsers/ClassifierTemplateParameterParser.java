@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
@@ -20,6 +21,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameter;
@@ -52,13 +54,13 @@ public class ClassifierTemplateParameterParser implements IParser {
 			String out = "";
 			if (templateParam.getOwnedParameteredElement() instanceof Classifier) {
 				Classifier namedElement = (Classifier) templateParam.getOwnedParameteredElement();
-				out = out + namedElement.getName() + ": " + namedElement.eClass().getName();
+				out = out + UMLLabelInternationalization.getInstance().getLabel(namedElement) + ": " + namedElement.eClass().getName();
 			}
 			if (templateParam instanceof ClassifierTemplateParameter) {
 				if (!((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().isEmpty()) {
 					out = out + ">";
 					for (int i = 0; i < ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().size(); i++) {
-						out = out + ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().get(i).getName();
+						out = out + UMLLabelInternationalization.getInstance().getLabel(((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().get(i));
 						if (i < ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().size() - 1) {
 							out = out + ", ";
 						}

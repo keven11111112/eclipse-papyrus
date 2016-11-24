@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.parsers;
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -46,13 +48,13 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 
 			// manage name
 			if (connector.isSetName()) {
-				result = connector.getName();
+				result = UMLLabelInternationalization.getInstance().getLabel(connector);
 			}
 
 			// manage type
 			String type = "";
 			if ((connector.getType() != null) && (connector.getType().isSetName())) {
-				type = connector.getType().getName();
+				type = UMLLabelInternationalization.getInstance().getLabel(connector.getType());
 				result = String.format(TYPE_FORMAT, result, type);
 			}
 

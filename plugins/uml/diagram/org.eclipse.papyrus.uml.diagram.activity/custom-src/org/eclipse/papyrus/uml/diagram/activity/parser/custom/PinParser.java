@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.State;
@@ -88,7 +90,7 @@ public class PinParser extends MessageFormatParser implements ISemanticParser {
 		Object obj = element.getAdapter(EObject.class);
 		if (obj instanceof Pin) {
 			Pin pin = (Pin) obj;
-			String name = pin.getName();
+			String name = UMLLabelInternationalization.getInstance().getLabel(pin);
 			if (name == null) {
 				name = "";
 			}
@@ -98,7 +100,7 @@ public class PinParser extends MessageFormatParser implements ISemanticParser {
 				StringBuffer stateLabel = new StringBuffer();
 				for (State state : pin.getInStates()) {
 					if (state != null) {
-						String stateName = state.getName();
+						String stateName = UMLLabelInternationalization.getInstance().getLabel(state);
 						if (stateName == null) {
 							stateName = "";
 						}

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
@@ -16,6 +17,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.ConnectionPointReferenceFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Pseudostate;
 
@@ -44,7 +46,7 @@ public class CustomConnectionPointReferenceNameEditPart extends ConnectionPointR
 				} else {
 					first = false;
 				}
-				label += p.getName();
+				label += UMLLabelInternationalization.getInstance().getLabel(p);
 			}
 		} else if (!ref.getExits().isEmpty()) {
 			boolean first = true;
@@ -54,7 +56,7 @@ public class CustomConnectionPointReferenceNameEditPart extends ConnectionPointR
 				} else {
 					first = false;
 				}
-				label += p.getName();
+				label += UMLLabelInternationalization.getInstance().getLabel(p);
 			}
 		}
 		return label;

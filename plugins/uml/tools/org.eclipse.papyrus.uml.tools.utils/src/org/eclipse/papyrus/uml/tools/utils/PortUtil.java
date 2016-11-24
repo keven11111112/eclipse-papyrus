@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
@@ -47,7 +49,7 @@ public class PortUtil extends PropertyUtil {
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(property.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(property));
 		}
 
 		if (maskValues.contains(ICustomAppearance.DISP_TYPE)) {
@@ -62,7 +64,7 @@ public class PortUtil extends PropertyUtil {
 			}
 			// type
 			if (property.getType() != null) {
-				buffer.append(property.getType().getName());
+				buffer.append(UMLLabelInternationalization.getInstance().getLabel(property.getType()));
 			} else {
 				buffer.append(TypeUtil.UNDEFINED_TYPE_NAME);
 			}
@@ -78,7 +80,7 @@ public class PortUtil extends PropertyUtil {
 			// default value
 			if (property.getDefaultValue() != null) {
 				buffer.append(" = ");
-				buffer.append(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue()));
+				buffer.append(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue(), true));
 			}
 		}
 

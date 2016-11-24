@@ -7,8 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
- *   Sébastien REVOL (CEA LIST) - Initial API and implementation
+ *   Jï¿½rï¿½mie TATIBOUET (CEA LIST) - Initial API and implementation
+ *   Sï¿½bastien REVOL (CEA LIST) - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -17,6 +18,8 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.OutputPin;
@@ -77,15 +80,21 @@ public class CallOperationActionPinUpdater extends AbstractCallActionPinUpdater<
 				if (parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL
 						|| parameter.getDirection() == ParameterDirectionKind.IN_LITERAL) {
 					InputPin derivedPin = UMLFactory.eINSTANCE.createInputPin();
+					derivedInputPins.add(derivedPin);
 					derivedPin.setType(parameter.getType());
 					derivedPin.setLower(parameter.getLower());
 					derivedPin.setUpper(parameter.getUpper());
 					if (parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL) {
 						derivedPin.setName("[in] " + parameter.getName());
+						if (InternationalizationPreferencesUtils.getInternationalizationPreference(parameter) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter)) {
+							UMLLabelInternationalization.getInstance().setLabel(derivedPin, "[in] " + UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter), null);
+						}
 					} else {
 						derivedPin.setName(parameter.getName());
+						if (InternationalizationPreferencesUtils.getInternationalizationPreference(parameter) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter)) {
+							UMLLabelInternationalization.getInstance().setLabel(derivedPin, UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter), null);
+						}
 					}
-					derivedInputPins.add(derivedPin);
 				}
 			}
 		}
@@ -107,15 +116,21 @@ public class CallOperationActionPinUpdater extends AbstractCallActionPinUpdater<
 						|| parameter.getDirection() == ParameterDirectionKind.RETURN_LITERAL
 						|| parameter.getDirection() == ParameterDirectionKind.OUT_LITERAL) {
 					OutputPin derivedPin = UMLFactory.eINSTANCE.createOutputPin();
+					derivedOutputPins.add(derivedPin);
 					derivedPin.setType(parameter.getType());
 					derivedPin.setLower(parameter.getLower());
 					derivedPin.setUpper(parameter.getUpper());
 					if (parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL) {
 						derivedPin.setName("[out] " + parameter.getName());
+						if (InternationalizationPreferencesUtils.getInternationalizationPreference(parameter) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter)) {
+							UMLLabelInternationalization.getInstance().setLabel(derivedPin, "[out] " + UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter), null);
+						}
 					} else {
 						derivedPin.setName(parameter.getName());
+						if (InternationalizationPreferencesUtils.getInternationalizationPreference(parameter) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter)) {
+							UMLLabelInternationalization.getInstance().setLabel(derivedPin, UMLLabelInternationalization.getInstance().getLabelWithoutUML(parameter), null);
+						}
 					}
-					derivedOutputPins.add(derivedPin);
 				}
 			}
 		}

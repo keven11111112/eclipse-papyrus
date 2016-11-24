@@ -61,7 +61,9 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide;bundle-v
  org.eclipse.gmf.tooling.runtime;visibility:=reexport,
  org.eclipse.gef,
  org.eclipse.papyrus.extensionpoints.editors,
- org.eclipse.papyrus.infra.services.edit
+ org.eclipse.papyrus.infra.services.edit,
+ org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 3.0.0.qualifier

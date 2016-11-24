@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.ui.dialogs;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.infra.widgets.validator.IntegerInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.RealInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalInputValidator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.common.util.UML2Util;
@@ -307,13 +309,13 @@ public class PropertyEditors {
 		if (property.getLower() > 0) {
 			listOfChoice = new String[literals.size()];
 			for (int i = 0; i < listOfChoice.length; i++) {
-				listOfChoice[i] = literals.get(i).getName();
+				listOfChoice[i] = UMLLabelInternationalization.getInstance().getLabel(literals.get(i));
 			}
 		} else {
 			listOfChoice = new String[literals.size() + 1];
 			listOfChoice[0] = ""; //$NON-NLS-1$
 			for (int i = 1; i < listOfChoice.length; i++) {
-				listOfChoice[i] = literals.get(i - 1).getName();
+				listOfChoice[i] = UMLLabelInternationalization.getInstance().getLabel(literals.get(i - 1));
 			}
 		}
 

@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.dialogs;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.AlphabeticalViewerSorter;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ChooseSetAssistedDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.IChooseDialog;
@@ -143,7 +145,7 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 		Iterator<Stereotype> it = possibleElementList.getElements().iterator();
 		while (it.hasNext()) {
 			Stereotype element = it.next();
-			if (name.equalsIgnoreCase(element.getName()) || name.equalsIgnoreCase(element.getQualifiedName())) {
+			if (name.equalsIgnoreCase(UMLLabelInternationalization.getInstance().getKeyword(element)) || name.equalsIgnoreCase(element.getQualifiedName())) {
 				stereotype = element;
 			}
 		}
@@ -171,7 +173,7 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 		Iterator<Stereotype> it = possibleElementList.getElements().iterator();
 		while (it.hasNext()) {
 			Stereotype element = it.next();
-			if (text.equalsIgnoreCase(element.getName()) || text.equalsIgnoreCase(element.getQualifiedName())) {
+			if (text.equalsIgnoreCase(UMLLabelInternationalization.getInstance().getKeyword(element)) || text.equalsIgnoreCase(element.getQualifiedName())) {
 				return true;
 			}
 		}
@@ -209,7 +211,7 @@ public class ChooseSetStereotypeDialog extends ChooseSetAssistedDialog implement
 				Iterator it = possibleElementList.getElements().iterator();
 				while (it.hasNext()) {
 					final Stereotype stereotype = (Stereotype) it.next();
-					final String simpleName = stereotype.getName();
+					final String simpleName = UMLLabelInternationalization.getInstance().getKeyword(stereotype);
 					final String qualifiedName = stereotype.getQualifiedName();
 
 					if (position < simpleName.length() && contents.substring(0, position).equalsIgnoreCase(simpleName.substring(0, position))) {

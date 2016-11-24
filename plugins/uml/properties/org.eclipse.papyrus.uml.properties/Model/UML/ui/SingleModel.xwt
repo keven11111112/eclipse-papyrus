@@ -11,6 +11,7 @@
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:label"></ppe:StringEditor>
 		<ppe:StringEditor property="UML:Package:URI" input="{Binding}"></ppe:StringEditor>
 	</Composite>
 	<Composite>

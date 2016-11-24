@@ -11,6 +11,7 @@
  *  Cedric Dumoulin cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - Adapted from composite structure diagram
  *  Christian W. Damus (CEA) - bug 392301
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
@@ -25,6 +26,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
@@ -109,7 +111,7 @@ public class UmlCommunicationDiagramForMultiEditor extends UMLDiagramEditor {
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		// Set name after calling super.init()
-		setPartName(getDiagram().getName());
+		setPartName(LabelInternationalization.getInstance().getDiagramLabel(getDiagram()));
 		titleImage = DIAG_IMG_DESC.createImage();
 		setTitleImage(titleImage);
 	}

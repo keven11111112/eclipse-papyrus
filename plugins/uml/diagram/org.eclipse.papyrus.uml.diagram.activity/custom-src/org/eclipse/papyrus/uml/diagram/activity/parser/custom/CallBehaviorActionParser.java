@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.Element;
@@ -86,11 +88,11 @@ public class CallBehaviorActionParser extends MessageFormatParser implements ISe
 			CallBehaviorAction action = (CallBehaviorAction) obj;
 			String actionName = "";
 			if (action.getName() != null) {
-				actionName = action.getName();
+				actionName = UMLLabelInternationalization.getInstance().getLabel(action);
 			}
 			String behaviorName = "";
 			if (action.getBehavior() != null && action.getBehavior().getName() != null) {
-				behaviorName = action.getBehavior().getName();
+				behaviorName = UMLLabelInternationalization.getInstance().getLabel(action.getBehavior());
 			}
 			// display behavior name alone if name is not specified differently
 			if ("".equals(actionName) || actionName.equals(behaviorName)) {

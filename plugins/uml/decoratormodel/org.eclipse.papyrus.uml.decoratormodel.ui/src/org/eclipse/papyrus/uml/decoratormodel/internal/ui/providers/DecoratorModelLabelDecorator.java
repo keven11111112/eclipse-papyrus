@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.uml2.uml.Package;
@@ -163,7 +165,7 @@ public class DecoratorModelLabelDecorator extends BaseLabelProvider implements I
 					suffix.append(", "); //$NON-NLS-1$
 				}
 
-				String modelName = next.getName();
+				String modelName = UMLLabelInternationalization.getInstance().getLabel(next);
 				if (modelName == null) {
 					modelName = next.eResource().getURI().trimFileExtension().lastSegment();
 				}

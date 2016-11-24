@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Iterator;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
@@ -36,16 +38,16 @@ public class TypeUtil {
 	 */
 	public static String getInfoString(Type type) {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(type.getName());
+		buffer.append(UMLLabelInternationalization.getInstance().getLabel(type));
 		buffer.append(" - ");
 		String tmp = "";
 		Iterator<Namespace> it = type.allNamespaces().iterator();
 		while (it.hasNext()) {
 			Namespace namespace = it.next();
 			if (it.hasNext()) {
-				tmp = NamedElement.SEPARATOR + namespace.getName() + tmp;
+				tmp = NamedElement.SEPARATOR + UMLLabelInternationalization.getInstance().getLabel(namespace) + tmp;
 			} else {
-				tmp = namespace.getName() + tmp;
+				tmp = UMLLabelInternationalization.getInstance().getLabel(namespace) + tmp;
 			}
 		}
 		buffer.append(tmp);

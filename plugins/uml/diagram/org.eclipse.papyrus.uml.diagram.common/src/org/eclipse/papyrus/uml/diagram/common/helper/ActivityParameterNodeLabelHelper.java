@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -20,6 +21,7 @@ import java.util.Map;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.NamedElement;
@@ -112,7 +114,7 @@ public class ActivityParameterNodeLabelHelper extends StereotypedElementLabelHel
 		if (values.contains(ICustomAppearance.DISP_STATE)) {
 			StringBuffer stateLabel = new StringBuffer();
 			for (State state : node.getInStates()) {
-				String stateName = state.getName();
+				String stateName = UMLLabelInternationalization.getInstance().getLabel(state);
 				if (stateName != null && stateName.length() > 0) {
 					if (stateLabel.length() > 0) {
 						stateLabel.append(STATE_SEPARATOR);
@@ -134,7 +136,7 @@ public class ActivityParameterNodeLabelHelper extends StereotypedElementLabelHel
 		if (element == null) {
 			return;
 		}
-		String name = element.getName();
+		final String name = UMLLabelInternationalization.getInstance().getLabel(element);
 		if (name != null && name.length() > 0) {
 			if (builder.length() > 0) {
 				builder.append(SEPARATOR);

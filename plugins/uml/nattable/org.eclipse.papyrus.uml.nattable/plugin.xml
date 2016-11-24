@@ -212,6 +212,11 @@
             manager="org.eclipse.papyrus.uml.nattable.manager.cell.StereotypePropertyCellManager"
             order="500">
       </cellManager>
+      <cellManager
+            id="org.eclipse.papyrus.infra.emf.nattable.cell.operation.manager"
+            manager="org.eclipse.papyrus.uml.nattable.manager.cell.UMLOperationValueCellManager"
+            order="1150">
+      </cellManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.tester">

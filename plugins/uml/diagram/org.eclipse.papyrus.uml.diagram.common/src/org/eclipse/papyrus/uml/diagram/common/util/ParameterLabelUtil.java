@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.util;
@@ -17,6 +17,7 @@ import java.util.Collection;
 
 import org.eclipse.papyrus.uml.diagram.common.parser.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.parser.IMaskManagedSemanticParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Parameter;
@@ -78,7 +79,7 @@ public class ParameterLabelUtil {
 
 			// manage name
 			if ((displayValue.contains(ICustomAppearance.DISP_NAME) || displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME)) && (parameter.isSetName())) {
-				String name = parameter.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(parameter);
 				result = String.format(NAME_FORMAT, result, name);
 			}
 
@@ -86,7 +87,7 @@ public class ParameterLabelUtil {
 			if (displayValue.contains(ICustomAppearance.DISP_TYPE) || displayValue.contains(ICustomAppearance.DISP_PARAMETER_TYPE)) {
 				String type = "<Undefined>";
 				if (parameter.getType() != null) {
-					type = parameter.getType().getName();
+					type = UMLLabelInternationalization.getInstance().getLabel(parameter.getType());
 				}
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.
@@ -96,8 +97,8 @@ public class ParameterLabelUtil {
 			}
 
 			// manage multiplicity
-			String lower = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getLowerValue()) : "1";
-			String upper = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getUpperValue()) : "1";
+			String lower = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getLowerValue(), true) : "1";
+			String upper = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getUpperValue(), true) : "1";
 			if ((displayValue.contains(ICustomAppearance.DISP_PARAMETER_MULTIPLICITY) || displayValue.contains(ICustomAppearance.DISP_MULTIPLICITY)) && !("1".equals(lower) && "1".equals(upper))) {
 				result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
 			}
@@ -105,7 +106,7 @@ public class ParameterLabelUtil {
 			// manage default value
 			if ((displayValue.contains(ICustomAppearance.DISP_PARAMETER_DEFAULT) || displayValue.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) && ((parameter.getDefaultValue() != null))) {
 				ValueSpecification valueSpecification = parameter.getDefaultValue();
-				result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
+				result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification), true);
 			}
 
 			// manage modifier

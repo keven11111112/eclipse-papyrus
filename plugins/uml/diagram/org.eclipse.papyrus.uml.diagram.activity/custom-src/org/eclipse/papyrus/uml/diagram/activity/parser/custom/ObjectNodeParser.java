@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.State;
@@ -101,10 +103,10 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 		Object adapter = element.getAdapter(EObject.class);
 		if (adapter instanceof ObjectNode) {
 			ObjectNode objectNode = (ObjectNode) adapter;
-			String name = objectNode.getName();
+			String name = UMLLabelInternationalization.getInstance().getLabel(objectNode);
 			// manage type
 			if (objectNode.getType() != null) {
-				String type = objectNode.getType().getName();
+				String type = UMLLabelInternationalization.getInstance().getLabel(objectNode.getType());
 				result.append(String.format(TYPED_PARAMETER_FORMAT, name, type));
 			} else {
 				result.append(String.format(UNTYPED_PARAMETER_FORMAT, name));
@@ -112,7 +114,7 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 			// manage states
 			StringBuffer stateLabel = new StringBuffer();
 			for (State state : objectNode.getInStates()) {
-				String stateName = state.getName();
+				String stateName = UMLLabelInternationalization.getInstance().getLabel(state);
 				if (stateName == null) {
 					stateName = "";
 				}

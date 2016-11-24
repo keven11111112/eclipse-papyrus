@@ -10,12 +10,14 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.dialogs;
 
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Stereotype;
@@ -46,7 +48,7 @@ public class StereotypeLabelProvider extends LabelProvider implements ITableLabe
 		if (!(stereotype instanceof Stereotype)) {
 			return "not a stereotype";
 		} else {
-			return ((Stereotype) stereotype).getName();
+			return UMLLabelInternationalization.getInstance().getKeyword((Stereotype) stereotype);
 		}
 	}
 

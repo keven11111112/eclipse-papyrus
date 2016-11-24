@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.uml.decoratormodel.internal.resource.DecoratorModelIn
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.DecoratorModelIndexEvent;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.IDecoratorModelIndexListener;
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.Package;
@@ -98,7 +100,7 @@ public class DecoratorModelLabelProvider extends DelegatingStyledLabelProvider i
 		if (model == null) {
 			modelName = getModelNames().get(resource.getURI());
 		} else {
-			modelName = model.getName();
+			modelName = UMLLabelInternationalization.getInstance().getLabel(model);
 		}
 
 		return getStyledText(modelName, resource.getURI());

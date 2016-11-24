@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common;
@@ -33,10 +33,10 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
+import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
 //import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
 //import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
@@ -285,7 +285,7 @@ public class Activator extends AbstractUIPlugin {
 		// factories.add(new PortandflowsItemProviderAdapterFactory());
 		// factories.add(new RequirementsItemProviderAdapterFactory());
 		// Add UML adapter
-		factories.add(new UMLItemProviderAdapterFactory());
+		factories.add(new InternationalizationUMLItemProviderAdapterFactory());
 
 		// Other adapters
 		factories.add(new EcoreItemProviderAdapterFactory());

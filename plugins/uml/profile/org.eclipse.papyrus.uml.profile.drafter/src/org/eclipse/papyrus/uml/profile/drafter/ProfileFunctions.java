@@ -9,11 +9,13 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.drafter;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Stereotype;
@@ -55,7 +57,7 @@ public class ProfileFunctions {
 	public class ProfileApplicationProfileName implements Function<ProfileApplication, String> {
 		
 		public String apply(ProfileApplication input) {
-			return input.getAppliedProfile().getName();
+			return UMLLabelInternationalization.getInstance().getLabel(input.getAppliedProfile());
 		};
 	}
 	
@@ -77,7 +79,7 @@ public class ProfileFunctions {
 	public class StereotypeName implements Function<Stereotype, String> {
 		
 		public String apply(Stereotype input) {
-			return input.getName();
+			return UMLLabelInternationalization.getInstance().getKeyword(input);
 		};
 	}
 	/**

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
@@ -34,6 +35,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 
@@ -92,7 +95,7 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 		Object obj = element.getAdapter(Behavior.class);
 		if (obj instanceof Behavior) {
 			final Behavior behavior = ((Behavior) obj);
-			return behavior.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(behavior);
 		}
 		return EMPTY_STRING;
 	}
@@ -121,7 +124,11 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 			AbstractTransactionalCommand cmd = new AbstractTransactionalCommand((TransactionalEditingDomain) editingDomain, "Set new name in " + behavior.getName(), null) {
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					behavior.setName(newStringResult);
+					if (InternationalizationPreferencesUtils.getInternationalizationPreference(behavior) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(behavior)) {
+						UMLLabelInternationalization.getInstance().setLabel(behavior, newStringResult, null);
+					}else{
+						behavior.setName(newStringResult);
+					}
 					return CommandResult.newOKCommandResult();
 				}
 			};
@@ -165,7 +172,7 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 				result.append(kind);
 				addExtraSpace(result, kind);
 				// Append behavior name
-				result.append(behavior.getName());
+				result.append(UMLLabelInternationalization.getInstance().getLabel(behavior));
 			}
 			return result.toString();
 		}

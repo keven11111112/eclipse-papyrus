@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.provider;
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrap
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.swt.graphics.Image;
@@ -110,7 +112,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 			if (alias != null && !alias.isEmpty()) {
 				returnedValue = alias;
 			} else {
-				returnedValue = prop.getName();// getLabelProviderService(configRegistry).getLabelProvider(prop).getText(prop);
+				returnedValue = UMLLabelInternationalization.getInstance().getLabel(prop);// getLabelProviderService(configRegistry).getLabelProvider(prop).getText(prop);
 			}
 			if (conf != null) {
 				if (alias != null && !alias.equals("")) { //$NON-NLS-1$

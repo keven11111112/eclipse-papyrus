@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -25,6 +25,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -64,7 +65,7 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 
 			// manage name
 			if (maskValues.contains(ICustomAppearance.DISP_NAME) && reception.isSetName()) {
-				String name = reception.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(reception);
 				result = String.format(NAME_FORMAT, result, name);
 			}
 
@@ -72,7 +73,7 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 			if (maskValues.contains(ILabelPreferenceConstants.DISP_SIGNAL)) {
 				String type = "<Undefined>";
 				if (reception.getSignal() != null) {
-					type = reception.getSignal().getName();
+					type = UMLLabelInternationalization.getInstance().getLabel(reception.getSignal());
 				}
 				result = String.format(TYPE_FORMAT, result, type);
 			}

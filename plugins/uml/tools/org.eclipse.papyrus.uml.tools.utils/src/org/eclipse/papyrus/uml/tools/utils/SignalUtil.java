@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Atos Origin - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
 
@@ -43,7 +45,7 @@ public class SignalUtil {
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(signal.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(signal));
 		}
 
 		//

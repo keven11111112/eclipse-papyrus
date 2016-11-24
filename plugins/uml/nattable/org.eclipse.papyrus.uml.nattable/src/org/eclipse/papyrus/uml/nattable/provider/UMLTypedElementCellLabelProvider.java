@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE - Initial API and implementation & Bug 458260
+ *   Nicolas FAUVERGUE - Initial API and implementation & Bug 458260 & Bug 496905
  *   
  *****************************************************************************/
 
@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.nattable.provider;
 
 import org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.TypedElement;
 
 /**
@@ -33,7 +34,7 @@ public class UMLTypedElementCellLabelProvider extends GenericCellLabelProvider{
 	@Override
 	protected String getElementText(LabelProviderService service, Object value){
 		if(value instanceof TypedElement){
-			return ((TypedElement) value).getName();
+			return UMLLabelInternationalization.getInstance().getLabel((TypedElement) value);
 		}
 		return super.getElementText(service, value);
 	}

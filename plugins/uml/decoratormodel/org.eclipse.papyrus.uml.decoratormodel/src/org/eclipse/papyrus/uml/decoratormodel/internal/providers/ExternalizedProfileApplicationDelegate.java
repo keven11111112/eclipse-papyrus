@@ -15,6 +15,7 @@
  *   Christian W. Damus - 444588, 399859, 451557
  *   Christian W. Damus - bug 458197
  *   Christian W. Damus - bug 481302
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.helper.IProfileApplicationDelegate;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -157,7 +159,7 @@ public class ExternalizedProfileApplicationDelegate implements IProfileApplicati
 			Profile profile = ExternalizedProfileApplicationDelegate.this.getAppliedProfile(profileApplication);
 			EPackage definition = profile.getDefinition();
 
-			monitor = SubMonitor.convert(monitor, NLS.bind("Re-applying profile \"{0}\" to package \"{1}\"", profile.getName(), package_.getName()), IProgressMonitor.UNKNOWN);
+			monitor = SubMonitor.convert(monitor, NLS.bind("Re-applying profile \"{0}\" to package \"{1}\"", UMLLabelInternationalization.getInstance().getLabel(profile), UMLLabelInternationalization.getInstance().getLabel(package_)), IProgressMonitor.UNKNOWN);
 
 			Collection<EObject> originals = Lists.newArrayList();
 			StereotypeApplicationCopier copier = new PrivateStereotypeCopier(profile);

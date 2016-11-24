@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartme
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -75,7 +77,7 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 				//View label = helper.getStereotypeLabel((View) compartment.eContainer(), stereotype);
 				//change when the file is reopened the label is not created
 				//this editpart must not depends on a node that is not its parent.
-				name = StereotypeDisplayConstant.QUOTE_LEFT + stereotype.getName() + StereotypeDisplayConstant.QUOTE_RIGHT;
+				name = StereotypeDisplayConstant.QUOTE_LEFT + UMLLabelInternationalization.getInstance().getKeyword(stereotype) + StereotypeDisplayConstant.QUOTE_RIGHT;
 			}
 		}
 		return name;

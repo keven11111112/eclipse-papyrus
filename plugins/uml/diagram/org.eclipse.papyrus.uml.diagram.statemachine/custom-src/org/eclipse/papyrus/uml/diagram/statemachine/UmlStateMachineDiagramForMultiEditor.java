@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.uml.diagram.statemachine;
 
@@ -22,6 +23,7 @@ import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.util.FixNestedStateAndRegionOnOpening;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditor;
@@ -90,7 +92,7 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
-		setPartName(getDiagram().getName());
+		setPartName(LabelInternationalization.getInstance().getDiagramLabel(getDiagram()));
 		titleImage = DIAG_IMG_DESC.createImage();
 		setTitleImage(titleImage);
 	}

@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -28,11 +28,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Constraint;
@@ -71,7 +75,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 			// edit name
 			if ((maskValues.contains(ICustomAppearance.DISP_NAME))) {
 				if (semElement.isSetName()) {
-					editString = semElement.getName();
+					editString = UMLLabelInternationalization.getInstance().getLabel(semElement);
 				}
 
 				// (try to) edit constraint specification
@@ -107,7 +111,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 
 			// manage name
 			if ((maskValues.contains(ICustomAppearance.DISP_NAME)) && (semElement.isSetName())) {
-				String name = semElement.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(semElement);
 				result = String.format(NAME_FORMAT, name);
 			}
 
@@ -115,7 +119,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 			if ((maskValues.contains(ILabelPreferenceConstants.DISP_SPECIFICATION))) {
 				String spec = "<Undefined>";
 				if (semElement.getSpecification() != null) {
-					spec = ValueSpecificationUtil.getSpecificationValue(semElement.getSpecification());
+					spec = ValueSpecificationUtil.getSpecificationValue(semElement.getSpecification(), true);
 					if (spec == null || "".equals(spec)) {
 						spec = "<Undefined>";
 					}
@@ -144,8 +148,13 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 
 		// prepare set name request
 		if ((maskValues.contains(ICustomAppearance.DISP_NAME))) {
-			updateRequest = new SetRequest(constraint, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
-			updateRequest.setLabel("Update Constraint Label");
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(constraint) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(constraint)){
+				final ModelSet modelSet = (ModelSet)constraint.eResource().getResourceSet();
+				command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), constraint, newString, null));
+			}else{
+				updateRequest = new SetRequest(constraint, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
+				updateRequest.setLabel("Update Constraint Label");
+			}
 
 			// prepare set specification request
 		} else if ((maskValues.contains(ILabelPreferenceConstants.DISP_SPECIFICATION))) {

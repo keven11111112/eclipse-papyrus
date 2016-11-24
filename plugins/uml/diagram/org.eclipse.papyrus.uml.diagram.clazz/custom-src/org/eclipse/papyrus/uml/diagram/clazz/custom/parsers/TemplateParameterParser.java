@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
@@ -25,6 +26,10 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
@@ -68,8 +73,13 @@ public class TemplateParameterParser implements IParser {
 			if (templateParam.getParameteredElement() instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement) templateParam.getParameteredElement();
 				String name = newString.substring(0, newString.indexOf(":"));
-				SetRequest request = new SetRequest(namedElement, UMLPackage.eINSTANCE.getNamedElement_Name(), name.trim());
-				command = new SetValueCommand(request);
+				if(InternationalizationPreferencesUtils.getInternationalizationPreference(namedElement) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(namedElement)){
+					final ModelSet modelSet = (ModelSet)namedElement.eResource().getResourceSet();
+					command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), namedElement, name.trim(), null));
+				}else{
+					SetRequest request = new SetRequest(namedElement, UMLPackage.eINSTANCE.getNamedElement_Name(), name.trim());
+					command = new SetValueCommand(request);
+				}
 			}
 		}
 		return command;
@@ -86,7 +96,7 @@ public class TemplateParameterParser implements IParser {
 			String out = "";
 			if (templateParam.getParameteredElement() instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement) templateParam.getParameteredElement();
-				out = namedElement.getName() + ": " + namedElement.eClass().getName();
+				out = UMLLabelInternationalization.getInstance().getLabel(namedElement) + ": " + namedElement.eClass().getName();
 			}
 			if (templateParam instanceof OperationTemplateParameter) {
 				if (templateParam.getParameteredElement() != null) {
@@ -97,7 +107,7 @@ public class TemplateParameterParser implements IParser {
 				if (!((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().isEmpty()) {
 					out = out + ">";
 					for (int i = 0; i < ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().size(); i++) {
-						out = out + ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().get(i).getName();
+						out = out + UMLLabelInternationalization.getInstance().getLabel(((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().get(i));
 						if (i < ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().size() - 1) {
 							out = out + ", ";
 						}
@@ -107,7 +117,7 @@ public class TemplateParameterParser implements IParser {
 			if (templateParam.getDefault() instanceof Operation) {
 				out = out + "=" + displayOperation((Operation) templateParam.getDefault());
 			} else if (templateParam.getDefault() instanceof NamedElement) {
-				out = out + "=" + ((NamedElement) templateParam.getDefault()).getName();
+				out = out + "=" + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) templateParam.getDefault()));
 			}
 			return out;
 		}
@@ -115,11 +125,11 @@ public class TemplateParameterParser implements IParser {
 	}
 
 	protected String displayOperation(Operation op) {
-		String out = op.getName() + "(";
+		String out = UMLLabelInternationalization.getInstance().getLabel(op) + "(";
 		Iterator<Parameter> iter = op.getOwnedParameters().iterator();
 		while (iter.hasNext()) {
 			Parameter param = iter.next();
-			out = out + param.getName();
+			out = out + UMLLabelInternationalization.getInstance().getLabel(param);
 			if (!param.equals(op.getOwnedParameters().get(op.getOwnedParameters().size() - 1))) {
 				out = out + ", ";
 			}

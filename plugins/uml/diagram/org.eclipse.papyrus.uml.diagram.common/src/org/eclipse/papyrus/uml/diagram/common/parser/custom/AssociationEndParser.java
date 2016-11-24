@@ -7,13 +7,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Thibault Landre (Atos Origin) - Initial API and implementation
+ *   Thibault Landre (Atos Origin) - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  ****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser.custom;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
@@ -83,7 +85,7 @@ public class AssociationEndParser extends AbstractAssociationEndParser {
 			displayedString.append(PropertyUtil.getDerived(property));
 			// name
 			if (property.getName() != null) {
-				displayedString.append(property.getName());
+				displayedString.append(UMLLabelInternationalization.getInstance().getLabel(property));
 			}
 
 			// modifiers

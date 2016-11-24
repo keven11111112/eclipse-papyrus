@@ -11,6 +11,7 @@
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Ansgar Radermacher (CEA LIST) Ansgar.Radermacher@cea.fr - modification, clean-up
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementLabelProvider;
@@ -201,7 +203,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		if (property.isMultivalued() || (currentPropertyValues.size() < upper)) {
 			ValueTreeObject.createInstance(pTO, null).editMe();
 		} else {
-			Message.warning("Upper multiplicity of " + property.getName() + " is " + property.getUpper());
+			Message.warning("Upper multiplicity of " + UMLLabelInternationalization.getInstance().getLabel(property) + " is " + property.getUpper());
 		}
 		// Update value tree objects
 		pTO.reInitChilds();

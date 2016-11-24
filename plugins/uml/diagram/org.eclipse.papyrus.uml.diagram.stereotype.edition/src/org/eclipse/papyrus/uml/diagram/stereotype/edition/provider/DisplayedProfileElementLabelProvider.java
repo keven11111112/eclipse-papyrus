@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.provider;
@@ -24,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.Message;
@@ -178,7 +180,7 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 
 		if (object instanceof AppliedStereotypeTreeObject) {
 			Stereotype st = ((AppliedStereotypeTreeObject) object).getStereotype();
-			String stName = st.getName();
+			String stName = UMLLabelInternationalization.getInstance().getKeyword(st);
 			String profileName = st.getProfile().getQualifiedName();
 			String label = stName + TAB + "(from " + profileName + ")";
 			return label;
@@ -390,8 +392,8 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 
 		Type type = property.getType();
 
-		String typeName = type.getName();
-		String name = property.getName();
+		String typeName = UMLLabelInternationalization.getInstance().getLabel(type);
+		String name = UMLLabelInternationalization.getInstance().getLabel(property);
 
 		if (upper != -1) {
 			label = name + ": " + typeName + " " + "[" + lower + ".." + upper + "]";
@@ -501,7 +503,7 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 		}
 
 		if (eLiteral != null) {
-			return eLiteral.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(eLiteral);
 		} else {
 			return "undefined";
 		}

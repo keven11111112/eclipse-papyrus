@@ -9,11 +9,13 @@
  *
  * Contributors:
  *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.utils;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ExtensionPoint;
 
 /**
@@ -30,7 +32,7 @@ public class ExtensionPointUtil {
 	// @unused
 	public static String getExplanation(ExtensionPoint extensionPoint) {
 		String explanation = "";
-		final String name = ((extensionPoint.getName() != null) ? extensionPoint.getName() : "");
+		final String name = ((extensionPoint.getName() != null) ? UMLLabelInternationalization.getInstance().getLabel(extensionPoint) : "");
 		int startIndexOfExplanation = name.lastIndexOf(":");
 		if ((startIndexOfExplanation > 0) && (startIndexOfExplanation != name.length())) {
 			explanation = name.substring(startIndexOfExplanation + 1).trim();

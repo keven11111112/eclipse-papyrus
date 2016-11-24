@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.infra.widgets.providers.DelegatingStyledLabelProvider
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.messages.Messages;
 import org.eclipse.papyrus.uml.extensionpoints.Registry;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.Package;
@@ -81,12 +83,12 @@ public class ProfileResourceLabelProvider extends DelegatingStyledLabelProvider 
 			result = getStyledText(uri);
 		} else if (uri.isPlatformResource()) {
 			result = new StyledString();
-			result.append(model.getName());
+			result.append(UMLLabelInternationalization.getInstance().getLabel(model));
 
 			String qualifier = uri.isPlatformResource() ? uri.toPlatformString(true) : uri.toString();
 			result.append(" - " + qualifier, StyledString.QUALIFIER_STYLER); //$NON-NLS-1$
 		} else {
-			result = getStyledText(model.getName(), resource.getURI());
+			result = getStyledText(UMLLabelInternationalization.getInstance().getLabel(model), resource.getURI());
 		}
 
 		return result;

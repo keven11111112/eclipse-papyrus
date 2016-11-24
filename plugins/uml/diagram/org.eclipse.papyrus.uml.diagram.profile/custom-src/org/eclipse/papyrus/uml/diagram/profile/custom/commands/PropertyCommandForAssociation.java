@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *   Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.commands;
@@ -21,8 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ClassPropertyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.providers.ElementInitializers;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -61,6 +64,9 @@ public class PropertyCommandForAssociation extends ClassPropertyCreateCommand {
 		ElementInitializers.getInstance().init_Property_ClassAttributeLabel(newElement);
 		if (type != null && type instanceof Type) {
 			newElement.setName(((Type) type).getName());
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference((Type) type) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((Type) type)) {
+				UMLLabelInternationalization.getInstance().setLabel((Type) type, UMLLabelInternationalization.getInstance().getLabelWithoutUML((Type) type), null);
+			}
 		}
 		return newElement;
 	}

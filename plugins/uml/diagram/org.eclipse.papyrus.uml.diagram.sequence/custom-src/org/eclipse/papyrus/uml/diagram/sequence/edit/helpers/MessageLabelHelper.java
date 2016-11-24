@@ -1,4 +1,17 @@
-package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
+ *****************************************************************************/
+ package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,6 +28,7 @@ import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SignalUtil;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.TypedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
@@ -92,7 +106,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 		} else if (signature instanceof Signal) {
 			return SignalUtil.getCustomLabel(e, (Signal) signature, displayValue);
 		} else if (signature != null) {
-			return signature.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(signature);
 		}
 		// signature is null
 		return getMessageLabel(e, displayValue);
@@ -100,7 +114,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 
 	private String getMessageLabel(Message message, Collection<String> displayValue) {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(message.getName());
+		buffer.append(UMLLabelInternationalization.getInstance().getLabel(message));
 		// parameters : '(' parameter-list ')'
 		EList<ValueSpecification> arguments = message.getArguments();
 		if (arguments.size() > 0 && (displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME) || displayValue.contains(ICustomAppearance.DISP_DERIVE))) {
@@ -121,7 +135,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 				// name
 				if (displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME)) {
 					buffer.append(" ");
-					String name = StringHelper.trimToEmpty(arg.getName());
+					String name = StringHelper.trimToEmpty(UMLLabelInternationalization.getInstance().getLabel(arg));
 					buffer.append(name);
 					if (name.trim().length() > 0) {
 						showEqualMark = true;
@@ -129,7 +143,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 				}
 				// value
 				if (displayValue.contains(ICustomAppearance.DISP_DERIVE)) {
-					String value = ValueSpecificationUtil.getSpecificationValue(arg);
+					String value = ValueSpecificationUtil.getSpecificationValue(arg, true);
 					if (value != null) {
 						if (showEqualMark) {
 							buffer.append(" = ");

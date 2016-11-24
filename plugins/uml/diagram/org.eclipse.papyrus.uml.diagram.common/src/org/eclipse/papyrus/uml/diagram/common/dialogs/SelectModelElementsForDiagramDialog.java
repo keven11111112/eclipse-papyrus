@@ -6,7 +6,9 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors: Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
+ * Contributors:
+ *   Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  ******************************************************************************/
 
@@ -21,6 +23,7 @@ import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -95,7 +98,7 @@ public class SelectModelElementsForDiagramDialog extends WizardPage {
 			String label = "";
 			label += "<" + input.eClass().getName() + "> ";
 			if (input instanceof NamedElement) {
-				label += ((NamedElement) input).getName() + " ";
+				label += UMLLabelInternationalization.getInstance().getLabel(((NamedElement) input)) + " ";
 			}
 			label += " is the root element";
 			rootElementLabel.setText(label);

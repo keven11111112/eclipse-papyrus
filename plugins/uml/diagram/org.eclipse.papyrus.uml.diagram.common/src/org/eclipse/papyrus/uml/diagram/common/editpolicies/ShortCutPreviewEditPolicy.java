@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -23,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.render.util.DiagramRenderUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
@@ -37,19 +39,19 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 	private final double SCALE_FACTOR = 0.5;
 	private int CUSTOM_ITEM_WIDTH;
 	private int CUSTOM_ITEM_HEIGHT;
-	
+
 	private Diagram diagram;
 	private Image previewImage;
 	private Image scaledPreviewImage;
 	private int maxHeight;
 	private int maxWidth;
-	
+
 	public ShortCutPreviewEditPolicy() {
 		super();
 		maxHeight = 0;
 		maxWidth = 0;
 	}
-	
+
 	@Override
 	public void activate() {
 		super.activate();
@@ -60,32 +62,32 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 			}
 		}
 	}
-	
+
 	@Override
 	public void deactivate() {
 		super.deactivate();
 		if (previewImage != null) {
 			previewImage.dispose();
 		}
-		
+
 		if (scaledPreviewImage != null) {
 			scaledPreviewImage.dispose();
 		}
 	}
-	
+
 	@Override
 	protected void showDiagramAssistant(Point referencePoint) {
 		if (diagram != null) {
 			if (previewImage == null) {
 				try {
 					previewImage = DiagramRenderUtil.renderToSWTImage(diagram);
-				} catch(Exception e) {
+				} catch (Exception e) {
 					Activator.log.error(e);
 				}
 			} else {
 				int optimalWidth = (int) (this.getHost().getRoot().getViewer().getControl().getBounds().width * SCALE_FACTOR);
 				int optimalHeight = (int) (this.getHost().getRoot().getViewer().getControl().getBounds().height * SCALE_FACTOR);
-				
+
 				if (scaledPreviewImage == null || optimalWidth != maxWidth || optimalHeight != maxHeight) {
 					maxHeight = (int) optimalHeight;
 					maxWidth = (int) optimalWidth;
@@ -94,15 +96,15 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 					}
 					scaledPreviewImage = resize(previewImage, maxHeight, maxWidth);
 				}
-						
+
 				CUSTOM_ITEM_WIDTH = scaledPreviewImage.getBounds().width;
 				CUSTOM_ITEM_HEIGHT = scaledPreviewImage.getBounds().height;
-				
+
 				super.showDiagramAssistant(referencePoint);
 			}
 		}
 	}
-	
+
 	/**
 	 * initialize the popup bars from the list of action descriptors.
 	 */
@@ -146,21 +148,21 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 			b.addMouseListener(this.myMouseKeyListener);
 		}
 	}
-	
+
 	@Override
 	protected void appendPopupBarDescriptors() {
-		addPopupBarDescriptor(null, scaledPreviewImage, null, "Preview of " + diagram.getName()); // IElementType, Image, DragTracker, String
+		addPopupBarDescriptor(null, scaledPreviewImage, null, "Preview of " + LabelInternationalization.getInstance().getDiagramLabel(diagram)); // IElementType, Image, DragTracker, String
 	}
-	
+
 	private Image resize(Image image, int maxWidth, int maxHeight) {
 		double widthD = image.getBounds().width;
 		double heightD = image.getBounds().height;
 		double maxWidthD = maxWidth;
 		double maxHeightD = maxHeight;
-		
+
 		if (widthD > maxWidthD || heightD > maxHeightD) {
 			Double scale = 1.0;
-			
+
 			if (widthD > maxWidthD && heightD > maxHeightD) {
 				if (widthD >= heightD) {
 					scale = maxWidthD / widthD;
@@ -174,7 +176,7 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 					scale = maxHeightD / heightD;
 				}
 			}
-				
+
 			int scaledWidth = (int) (widthD * scale);
 			int scaledHeight = (int) (heightD * scale);
 
@@ -192,7 +194,7 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 			return image;
 		}
 	}
-	
+
 	/**
 	 * The preview image handler
 	 *
@@ -201,7 +203,7 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 		public PreviewPopupBarLabelHandle(Image theImage) {
 			super(null, theImage);
 		}
-		
+
 		/**
 		 * @see org.eclipse.draw2d.IFigure#handleMouseEntered(org.eclipse.draw2d.MouseEvent)
 		 *      flip myMouseOver bit and repaint

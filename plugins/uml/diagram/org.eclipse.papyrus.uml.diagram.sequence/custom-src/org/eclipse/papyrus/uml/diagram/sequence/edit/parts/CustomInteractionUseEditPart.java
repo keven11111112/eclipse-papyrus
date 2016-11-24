@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -38,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
@@ -50,6 +52,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionUseUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Gate;
@@ -235,6 +238,9 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 					Gate newActualGate = (Gate) EcoreUtil.create(UMLPackage.Literals.GATE);
 					newActualGate.setName(formalGate.getName());
 					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate), true);
+					if (InternationalizationPreferencesUtils.getInternationalizationPreference(formalGate) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(formalGate)) {
+						UMLLabelInternationalization.getInstance().setLabel(newActualGate, UMLLabelInternationalization.getInstance().getLabelWithoutUML(formalGate), null);
+					}
 					notifier.listenObject(formalGate);
 					notifier.listenObject(newActualGate);
 				}

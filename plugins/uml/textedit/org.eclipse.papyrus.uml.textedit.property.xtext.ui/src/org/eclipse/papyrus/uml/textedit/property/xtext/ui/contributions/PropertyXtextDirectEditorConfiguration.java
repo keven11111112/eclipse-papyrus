@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  FAUVERGUE Nicolas (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 465198
+ *  FAUVERGUE Nicolas (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 465198, 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions;
@@ -24,9 +24,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.alf.naming.ALFIDConverter;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal.UmlPropertyActivator;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.BooleanLiterals;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.ModifierSpecification;
@@ -287,8 +291,14 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 		ICommand setIsDerivedCommand = provider.getEditCommand(setIsDerivedRequest);
 		updateCommand.add(setIsDerivedCommand);
 
-		SetRequest setNameRequest = new SetRequest(property, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
-		ICommand setNameCommand = provider.getEditCommand(setNameRequest);
+		ICommand setNameCommand = null;
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(property) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(property)) {
+			final ModelSet modelSet = (ModelSet) property.eResource().getResourceSet();
+			setNameCommand = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), property, newName, null));
+		} else {
+			final SetRequest setNameRequest = new SetRequest(property, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
+			setNameCommand = provider.getEditCommand(setNameRequest);
+		}
 		updateCommand.add(setNameCommand);
 
 		return updateCommand;

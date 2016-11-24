@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -63,7 +64,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 
 			// manage name
 			if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
-				String name = clazz.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(clazz);
 				result = String.format(NAME_FORMAT, name);
 			}
 

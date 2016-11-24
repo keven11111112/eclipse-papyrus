@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -19,6 +20,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -49,7 +51,7 @@ public class OperationUtil {
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(operation.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(operation));
 		}
 
 		//
@@ -195,7 +197,7 @@ public class OperationUtil {
 				buffer.append(", ");
 			}
 			buffer.append("redefines ");
-			buffer.append(currentOperation.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(currentOperation));
 			needsComma = true;
 		}
 

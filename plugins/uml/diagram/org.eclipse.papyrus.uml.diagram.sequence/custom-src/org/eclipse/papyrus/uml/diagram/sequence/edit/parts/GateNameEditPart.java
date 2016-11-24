@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.Collections;
@@ -35,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEd
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
@@ -235,7 +249,7 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 				if (direction != null) {
 					StringBuffer buf = new StringBuffer();
 					buf.append(direction.getName() + "_");
-					buf.append(message.getName());
+					buf.append(UMLLabelInternationalization.getInstance().getLabel(message));
 					return new String(buf);
 				}
 			}

@@ -5,8 +5,10 @@
  * Eclipse Public License v1.0 which accompanies this distribution, and is
  * available at http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
- * 				 Javier Muñoz (Prodevelop) – Added ISemanticParser implementation
+ * Contributors:
+ *   Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
+ *   Javier Muñoz (Prodevelop) – Added ISemanticParser implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  ******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -22,6 +24,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -112,7 +115,7 @@ public class TagsAdderParser implements ISemanticParser {
 		List<Stereotype> stereotypes = element.getAppliedStereotypes();
 
 		for (Stereotype st : stereotypes) {
-			String name = st.getName();
+			String name = UMLLabelInternationalization.getInstance().getKeyword(st);
 			if (name != null) {
 				stereotypesNames.add(name);
 			} else {

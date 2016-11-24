@@ -9,6 +9,7 @@
  * Contributors:
  *    Michael Golubev (Borland) - initial API and implementation
  *    Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
+ *    Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *    
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser.stereotype;
@@ -28,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.diagram.common.parser.assist.FixedSetCompletionProcessor;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Stereotype;
@@ -92,7 +94,7 @@ public class AppliedStereotypeParser implements ISemanticParser {
 			if (result.length() > 0) {
 				result.append(", "); //$NON-NLS-1$
 			}
-			result.append(next.getName());
+			result.append(UMLLabelInternationalization.getInstance().getKeyword(next));
 		}
 		return result.toString();
 	}

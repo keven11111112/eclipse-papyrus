@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
@@ -19,6 +20,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 
@@ -177,7 +179,7 @@ public class PropertyUtil {
 
 		// type
 		if (property.getType() != null) {
-			buffer.append(" : " + getNonNullString(property.getType().getName()));
+			buffer.append(" : " + getNonNullString(UMLLabelInternationalization.getInstance().getLabel(property.getType())));
 		} else {
 			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
 		}
@@ -202,7 +204,7 @@ public class PropertyUtil {
 
 	public static String getName(Property property) {
 		if (property.getName() != null) {
-			return property.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(property);
 		} else {
 			return (NamedElementUtil.getDefaultNameWithIncrement(property));
 		}
@@ -238,13 +240,13 @@ public class PropertyUtil {
 		// name
 		if (style.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(getNonNullString(property.getName()));
+			buffer.append(getNonNullString(UMLLabelInternationalization.getInstance().getLabel(property)));
 		}
 
 		if (style.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if (property.getType() != null) {
-				buffer.append(": " + getNonNullString(property.getType().getName()));
+				buffer.append(": " + getNonNullString(UMLLabelInternationalization.getInstance().getLabel(property.getType())));
 			} else {
 				buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 			}
@@ -263,7 +265,7 @@ public class PropertyUtil {
 			// default value
 			if (property.getDefaultValue() != null) {
 				buffer.append(" = ");
-				buffer.append(getNonNullString(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue())));
+				buffer.append(getNonNullString(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue(), true)));
 			}
 		}
 
@@ -319,13 +321,13 @@ public class PropertyUtil {
 		// is the property redefining another property ?
 		for (Property current : property.getRedefinedProperties()) {
 			needsComma = updateModifiersString(buffer, needsComma, NL, "redefines ");
-			buffer.append(current.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(current));
 		}
 
 		// is the property subsetting another property ?
 		for (Property current : property.getSubsettedProperties()) {
 			needsComma = updateModifiersString(buffer, needsComma, NL, "subsets ");
-			buffer.append(current.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(current));
 		}
 
 		if (!buffer.toString().equals("")) {

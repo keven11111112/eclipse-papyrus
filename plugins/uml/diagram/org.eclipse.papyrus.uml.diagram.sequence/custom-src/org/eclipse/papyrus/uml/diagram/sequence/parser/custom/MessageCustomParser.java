@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.parser.custom;
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.OperationUtil;
 import org.eclipse.papyrus.uml.tools.utils.SignalUtil;
@@ -68,11 +70,11 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 			} else if (signature instanceof Signal) {
 				result = SignalUtil.getCustomLabel((Signal) signature, Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_TYPE));
 			} else if (signature != null) {
-				result = signature.getName();
+				result = UMLLabelInternationalization.getInstance().getLabel(signature);
 			}
 			// If the String is empty, we add the name of the message
 			if (result == null || result.equals("")) {
-				result = message.getName();
+				result = UMLLabelInternationalization.getInstance().getLabel(message);
 			}
 		}
 		return result;

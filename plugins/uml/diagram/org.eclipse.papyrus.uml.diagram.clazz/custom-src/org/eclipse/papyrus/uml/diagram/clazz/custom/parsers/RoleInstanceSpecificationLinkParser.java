@@ -10,6 +10,8 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC)  gabriel.pascual@all4tec.net -  bug 382954
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 
@@ -19,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
@@ -69,6 +72,6 @@ public class RoleInstanceSpecificationLinkParser implements IParser {
 
 	private String getNamedNodeType(IAdaptable element) {
 		InstanceSpecification instanceSpecification = (InstanceSpecification) element.getAdapter(EObject.class);
-		return instanceSpecification.getName();
+		return UMLLabelInternationalization.getInstance().getLabel(instanceSpecification);
 	}
 }

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
@@ -16,6 +17,7 @@ package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.Expression;
@@ -49,6 +51,16 @@ public class ValueSpecificationUtil {
 	 * @param specification
 	 */
 	public static String getSpecificationValue(ValueSpecification specification) {
+		return getSpecificationValue(specification, false);
+	}
+	
+	/**
+	 * Get a string representing of a ValueSpecification
+	 *
+	 * @param specification The Value specification.
+	 * @param useInternationalization Boolean to determinate if the internationalization must be used for the string representation.
+	 */
+	public static String getSpecificationValue(final ValueSpecification specification, final boolean useInternationalization) {
 		String value = ""; //$NON-NLS-1$
 		if (specification != null && specification.eClass() != null) {
 			switch (specification.eClass().getClassifierID()) {
@@ -75,7 +87,11 @@ public class ValueSpecificationUtil {
 				break;
 			case UMLPackage.INSTANCE_VALUE:
 				if (((InstanceValue) specification).getInstance() != null) {
-					value = ((InstanceValue) specification).getInstance().getName();
+					if(useInternationalization){
+						value = UMLLabelInternationalization.getInstance().getLabel(((InstanceValue) specification).getInstance());
+					}else{
+						value = ((InstanceValue) specification).getInstance().getName();
+					}
 				}
 				break;
 			case UMLPackage.EXPRESSION:
@@ -104,7 +120,11 @@ public class ValueSpecificationUtil {
 				if (durationExpr.getExpr() != null) {
 					value = getSpecificationValue(durationExpr.getExpr());
 				} else if (durationExpr.getObservations().size() > 0) {
-					value = durationExpr.getObservations().get(0).getName();
+					if(useInternationalization){
+						value = UMLLabelInternationalization.getInstance().getLabel(durationExpr.getObservations().get(0));
+					}else{
+						value = durationExpr.getObservations().get(0).getName();
+					}
 				}
 				break;
 			case UMLPackage.TIME_EXPRESSION:
@@ -112,7 +132,11 @@ public class ValueSpecificationUtil {
 				if (timeExpr.getExpr() != null) {
 					value = getSpecificationValue(timeExpr.getExpr());
 				} else if (timeExpr.getObservations().size() > 0) {
-					value = timeExpr.getObservations().get(0).getName();
+					if(useInternationalization){
+						value = UMLLabelInternationalization.getInstance().getLabel(timeExpr.getObservations().get(0));
+					}else{
+						value = timeExpr.getObservations().get(0).getName();
+					}
 				}
 				break;
 			case UMLPackage.INTERVAL:
@@ -148,7 +172,7 @@ public class ValueSpecificationUtil {
 		if (specification != null) {
 			ValueSpecification spe = specification.getSpecification();
 			if (spe != null) {
-				value = getSpecificationValue(spe);
+				value = getSpecificationValue(spe, true);
 			}
 		}
 		return value;

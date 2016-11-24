@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.registry;
 
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory;
 import org.eclipse.papyrus.sysml.modelelements.provider.ModelelementsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.portandflows.provider.PortandflowsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.requirements.provider.RequirementsItemProviderAdapterFactory;
+import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.providers.AbstractionItemProvider;
 import org.eclipse.uml2.uml.edit.providers.ActivityEdgeItemProvider;
@@ -53,7 +55,6 @@ import org.eclipse.uml2.uml.edit.providers.ParameterItemProvider;
 import org.eclipse.uml2.uml.edit.providers.ParameterSetItemProvider;
 import org.eclipse.uml2.uml.edit.providers.PortItemProvider;
 import org.eclipse.uml2.uml.edit.providers.PropertyItemProvider;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 /**
  * Get a registry of all SysML Adapter Factory classified by the UML class their
@@ -143,7 +144,7 @@ public class SysmlRegistryAdapterFactoryRegistry {
 	 *
 	 * @generated
 	 */
-	private UMLItemProviderAdapterFactory defaultAdapterFactory = new UMLItemProviderAdapterFactory();
+	private InternationalizationUMLItemProviderAdapterFactory defaultAdapterFactory = new InternationalizationUMLItemProviderAdapterFactory();
 
 	/**
 	 * Constructor + initialize

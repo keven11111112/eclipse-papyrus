@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.utils.ParameterLabelUtil;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -101,7 +102,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 
 			// manage name and parameters
 			if ((maskValues.contains(ICustomAppearance.DISP_NAME)) && (operation.isSetName())) {
-				String name = operation.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(operation);
 
 				StringBuffer params = new StringBuffer();
 				for (Parameter parameter : operation.getOwnedParameters()) {
@@ -118,7 +119,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 			if ((maskValues.contains(ICustomAppearance.DISP_TYPE))) {
 				String type = "<Undefined>";
 				if (operation.getType() != null) {
-					type = operation.getType().getName();
+					type = UMLLabelInternationalization.getInstance().getLabel(operation.getType());
 				}
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contributions;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ParameterUtil;
@@ -58,7 +60,7 @@ public class UMLParameterEditorUtil extends ParameterUtil {
 		// name
 		buffer.append(" "); //$NON-NLS-1$
 		if (parameter.getName() != null) {
-			buffer.append(parameter.getName());
+			buffer.append(UMLLabelInternationalization.getInstance().getLabel(parameter));
 		}
 
 		// type

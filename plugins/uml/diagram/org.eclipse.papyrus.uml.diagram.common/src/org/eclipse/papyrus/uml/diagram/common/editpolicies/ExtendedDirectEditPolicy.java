@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.uml.diagram.common.directedit.FigureControler;
 import org.eclipse.papyrus.uml.diagram.common.directedit.ILabelControler;
 import org.eclipse.papyrus.uml.diagram.common.directedit.PropertyAccessor;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
@@ -222,7 +224,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 					if (isElementImport()) {
 						return getElementImport().getAlias();
 					} else if (getUMLElement() instanceof NamedElement) {
-						return ((NamedElement) getUMLElement()).getName();
+						return UMLLabelInternationalization.getInstance().getLabel(((NamedElement) getUMLElement()));
 					}
 					return "";
 

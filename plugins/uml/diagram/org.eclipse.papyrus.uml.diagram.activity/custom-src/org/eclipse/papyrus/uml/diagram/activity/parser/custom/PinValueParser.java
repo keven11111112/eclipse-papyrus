@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -30,6 +31,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.common.commands.SetValueSpecificationValueCommand;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActionInputPin;
@@ -147,7 +149,7 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 			ValuePin pin = (ValuePin) obj;
 			ValueSpecification valueSpec = pin.getValue();
 			if (valueSpec != null) {
-				String value = ValueSpecificationUtil.getSpecificationValue(valueSpec);
+				String value = ValueSpecificationUtil.getSpecificationValue(valueSpec, true);
 				if (value != null) {
 					valueLabel = value;
 				}
@@ -158,7 +160,7 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 			if (action instanceof ReadVariableAction) {
 				Variable variable = ((ReadVariableAction) action).getVariable();
 				if (variable != null) {
-					String value = variable.getName();
+					String value = UMLLabelInternationalization.getInstance().getLabel(variable);
 					if (value != null) {
 						valueLabel = value;
 					}

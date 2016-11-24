@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 
@@ -25,6 +27,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
@@ -82,10 +85,10 @@ public class TemplateBindingParser implements IParser {
 			while (bindIter.hasNext()) {
 				TemplateParameterSubstitution substitution = bindIter.next();
 				if (substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
-					out = out + ((NamedElement) substitution.getFormal().getParameteredElement()).getName();
+					out = out + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getFormal().getParameteredElement()));
 				}
 				if (substitution.getActual() instanceof NamedElement) {
-					out = out + " -> " + ((NamedElement) substitution.getActual()).getName() + "\n";
+					out = out + " -> " + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getActual())) + "\n";
 				}
 			}
 		}

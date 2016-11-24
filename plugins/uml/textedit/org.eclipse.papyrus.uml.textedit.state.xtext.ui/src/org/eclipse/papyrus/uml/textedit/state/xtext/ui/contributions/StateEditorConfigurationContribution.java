@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.state.xtext.ui.contributions;
@@ -25,6 +26,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.state.xtext.ui.contentassist.UmlStateProposalProvider;
 import org.eclipse.papyrus.uml.textedit.state.xtext.ui.internal.UmlStateActivator;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
@@ -150,7 +153,11 @@ public class StateEditorConfigurationContribution extends DefaultXtextDirectEdit
 			String textToEdit = EMPTY;
 
 			// name
-			textToEdit = textToEdit + state.getName();
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(state) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(state)){
+				textToEdit = textToEdit + UMLLabelInternationalization.getInstance().getLabel(state);
+			}else{
+				textToEdit = textToEdit + state.getName();
+			}
 
 			if (state.isSubmachineState()) {
 				textToEdit += " : " + UmlStateProposalProvider.getSubmachineLabel(state.getSubmachine());
@@ -208,7 +215,11 @@ public class StateEditorConfigurationContribution extends DefaultXtextDirectEdit
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 
-			state.setName(newStateName);
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(state) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(state)){
+				UMLLabelInternationalization.getInstance().setLabel(state, newStateName, null);
+			}else{
+				state.setName(newStateName);
+			}
 			state.setSubmachine(newSubmachine);
 			state.setEntry(updateOrCreateBehavior(BehaviorRole_Local.ENTRY, newEntryKind, newEntryName));
 			state.setDoActivity(updateOrCreateBehavior(BehaviorRole_Local.DO, newDoKind, newDoName));

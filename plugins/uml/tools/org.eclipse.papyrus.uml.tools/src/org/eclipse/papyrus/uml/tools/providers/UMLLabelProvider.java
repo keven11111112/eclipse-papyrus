@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 425270
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
@@ -17,10 +18,12 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
@@ -36,7 +39,6 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
-import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.OperationTemplateParameter;
@@ -51,7 +53,6 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
-import org.eclipse.uml2.uml.edit.providers.MultiplicityElementItemProvider;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -157,12 +158,12 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			appendString(text, "/"); //$NON-NLS-1$
 		}
 
-		final String label = property.getLabel(shouldTranslate());
+		final String label = UMLLabelInternationalization.getInstance().getLabel(property, shouldTranslate());
 
 		if (!UML2Util.isEmpty(label)) {
 			appendString(text, label);
 		} else if (property.getAssociation() != null && type != null) {
-			final String typeName = type.getName();
+			final String typeName = UMLLabelInternationalization.getInstance().getLabel(type, shouldTranslate());
 
 			if (!UML2Util.isEmpty(typeName)) {
 				if(property instanceof ExtensionEnd){
@@ -307,14 +308,16 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 
 				if (value != null) {
 					if (((NamedElement) element).isSetName() && null != ((NamedElement) element).getName()) {
-						return ((NamedElement) element).getName() + "=" + value; //$NON-NLS-1$
+						return UMLLabelInternationalization.getInstance().getLabel(((NamedElement) element), shouldTranslate()) + "=" + value; //$NON-NLS-1$
 					} else {
+						// TODO: Maybe use labelInternationalization? But how qualifiedName must be set?
 						return value;
 					}
 				} else {
 					if (((NamedElement) element).isSetName() && null != ((NamedElement) element).getName()) {
-						return ((NamedElement) element).getName();
+						return UMLLabelInternationalization.getInstance().getLabel(((NamedElement) element), shouldTranslate());
 					} else {
+						// TODO: Maybe use labelInternationalization? But how qualifiedName must be set?
 						return ""; //$NON-NLS-1$
 					}
 				}
@@ -339,7 +342,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			String out = "";
 			if (templateParam.getParameteredElement() instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement) templateParam.getParameteredElement();
-				out = namedElement.getName() + ": " + namedElement.eClass().getName();
+				out = UMLLabelInternationalization.getInstance().getLabel(namedElement, shouldTranslate()) + ": " + namedElement.eClass().getName();
 			}
 
 			if (templateParam instanceof OperationTemplateParameter) {
@@ -351,7 +354,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 				if (!((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().isEmpty()) {
 					out = out + ">";
 					for (int i = 0; i < ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().size(); i++) {
-						out = out + ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().get(i).getName();
+						out = out + UMLLabelInternationalization.getInstance().getLabel(((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().get(i), shouldTranslate());
 						if (i < ((ClassifierTemplateParameter) templateParam).getConstrainingClassifiers().size() - 1) {
 							out = out + ", ";
 						}
@@ -362,7 +365,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			if (templateParam.getDefault() instanceof Operation) {
 				out = out + "=" + displayOperation((Operation) templateParam.getDefault());
 			} else if (templateParam.getDefault() instanceof NamedElement) {
-				out = out + "=" + ((NamedElement) templateParam.getDefault()).getName();
+				out = out + "=" + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) templateParam.getDefault()), shouldTranslate());
 			}
 			return out;
 		}
@@ -374,10 +377,10 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			String out = "";
 			TemplateParameterSubstitution substitution = (TemplateParameterSubstitution) element;
 			if (substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
-				out = out + ((NamedElement) substitution.getFormal().getParameteredElement()).getName();
+				out = out + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getFormal().getParameteredElement()), shouldTranslate());
 			}
 			if (substitution.getActual() instanceof NamedElement) {
-				out = out + " -> " + ((NamedElement) substitution.getActual()).getName() + "\n";
+				out = out + " -> " + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getActual()), shouldTranslate()) + "\n";
 			}
 			return out;
 		}
@@ -471,11 +474,11 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 * @return the label
 	 */
 	protected String displayOperation(Operation op) {
-		String out = op.getName() + "(";
+		String out = UMLLabelInternationalization.getInstance().getLabel(op, shouldTranslate()) + "(";
 		Iterator<Parameter> iter = op.getOwnedParameters().iterator();
 		while (iter.hasNext()) {
 			Parameter param = iter.next();
-			out = out + param.getName();
+			out = out + UMLLabelInternationalization.getInstance().getLabel(param, shouldTranslate());
 			if (!param.equals(op.getOwnedParameters().get(op.getOwnedParameters().size() - 1))) {
 				out = out + ", ";
 			}

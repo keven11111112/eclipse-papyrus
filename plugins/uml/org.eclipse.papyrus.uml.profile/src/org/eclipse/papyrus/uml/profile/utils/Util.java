@@ -11,6 +11,7 @@
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - add getNearestProfileApplication
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.utils;
 
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.tools.profile.definition.IPapyrusVersionConstants;
@@ -134,7 +136,7 @@ public class Util {
 				if (object instanceof Comment) {
 					cName = cComLabel;
 				} else if (cNE != null) {
-					cName = cNE.getName();
+					cName = UMLLabelInternationalization.getInstance().getLabel(cNE);
 				}
 			} else {
 				if (object instanceof Comment) {

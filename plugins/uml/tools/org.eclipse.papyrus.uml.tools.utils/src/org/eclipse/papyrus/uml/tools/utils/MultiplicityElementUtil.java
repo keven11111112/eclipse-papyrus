@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -215,7 +216,7 @@ public class MultiplicityElementUtil {
 	 * @return The string representing the value specification
 	 */
 	private static String getStringSpecificationValue(final ValueSpecification valueSpecification, final boolean isEdition) {
-		String boundStr = ValueSpecificationUtil.getSpecificationValue(valueSpecification);
+		String boundStr = ValueSpecificationUtil.getSpecificationValue(valueSpecification, true);
 		if (isEdition && valueSpecification instanceof LiteralString) {
 			final StringBuffer buffer = new StringBuffer();
 			buffer.append(QUOTE);

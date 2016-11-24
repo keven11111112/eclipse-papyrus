@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 425270
  *  Christian W. Damus - bug 469464
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.tools;
@@ -25,6 +26,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.graphics.Image;
@@ -99,7 +101,9 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	protected ComposedAdapterFactory createAdapterFactory() {
-		return new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		final ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		composedAdapterFactory.insertAdapterFactory(new InternationalizationUMLItemProviderAdapterFactory());
+		return composedAdapterFactory;
 	}
 
 	public AdapterFactory getItemProviderAdapterFactory() {

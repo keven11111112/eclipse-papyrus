@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
 import org.eclipse.uml2.uml.CollaborationUse;
@@ -70,7 +72,7 @@ public class UMLCollaborationUseEditorUtil {
 	 */
 	public static String getName(CollaborationUse collaborationUse) {
 		if (collaborationUse.getName() != null) {
-			return collaborationUse.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(collaborationUse);
 		} else {
 			return (NamedElementUtil.getDefaultNameWithIncrement(collaborationUse));
 		}

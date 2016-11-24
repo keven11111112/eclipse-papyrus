@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.parser.custom;
@@ -106,9 +107,9 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 		if (adapter instanceof TimeConstraint) {
 			TimeConstraint constraint = (TimeConstraint) adapter;
 			ValueSpecification spec = constraint.getSpecification();
-			return String.format(FORMAT, ValueSpecificationUtil.getSpecificationValue(spec));
+			return String.format(FORMAT, ValueSpecificationUtil.getSpecificationValue(spec, true));
 		} else if (adapter instanceof DurationConstraint) {
-			String value = getDurationConstraint((DurationConstraint) adapter);
+			String value = getDurationConstraint((DurationConstraint) adapter, true);
 			return String.format(FORMAT, value);
 		} else if (adapter instanceof Message) {
 			StringBuffer result = new StringBuffer();
@@ -121,7 +122,7 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 					result.append(LINE_BREAK);
 				}
 				ValueSpecification spec = constraint.getSpecification();
-				result.append(String.format(FORMAT, ValueSpecificationUtil.getSpecificationValue(spec)));
+				result.append(String.format(FORMAT, ValueSpecificationUtil.getSpecificationValue(spec, true)));
 			}
 			return result.toString();
 		}
@@ -179,22 +180,22 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 	public String getEditString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		if (element instanceof DurationConstraint) {
-			return getDurationConstraint((DurationConstraint) element);
+			return getDurationConstraint((DurationConstraint) element, false);
 		}
 		return super.getEditString(adapter, flags);
 	}
 
-	protected String getDurationConstraint(DurationConstraint constraint) {
+	protected String getDurationConstraint(DurationConstraint constraint, final boolean useInternationalization) {
 		ValueSpecification spec = constraint.getSpecification();
 		if (spec instanceof Interval) {
 			Interval interval = (Interval) spec;
-			String min = ValueSpecificationUtil.getSpecificationValue(interval.getMin());
-			String max = ValueSpecificationUtil.getSpecificationValue(interval.getMax());
+			String min = ValueSpecificationUtil.getSpecificationValue(interval.getMin(), useInternationalization);
+			String max = ValueSpecificationUtil.getSpecificationValue(interval.getMax(), useInternationalization);
 			if (min.equals(max)) {
 				return min;
 			}
 		}
-		String value = ValueSpecificationUtil.getSpecificationValue(spec);
+		String value = ValueSpecificationUtil.getSpecificationValue(spec, useInternationalization);
 		return value;
 	}
 

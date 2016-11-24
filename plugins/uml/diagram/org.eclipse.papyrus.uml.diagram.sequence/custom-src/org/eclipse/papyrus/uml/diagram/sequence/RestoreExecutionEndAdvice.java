@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence;
@@ -25,7 +26,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -184,9 +187,15 @@ public class RestoreExecutionEndAdvice extends AbstractEditHelperAdvice {
 			if (isStart) {
 				newEnd.setName(execution.getName() + "Start");
 				execution.setStart(newEnd);
+				if (InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)) {
+					UMLLabelInternationalization.getInstance().setLabel(newEnd, UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution) + "Start", null);
+				}
 			} else {
 				newEnd.setName(execution.getName() + "Finish");
 				execution.setFinish(newEnd);
+				if (InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)) {
+					UMLLabelInternationalization.getInstance().setLabel(newEnd, UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution) + "Finish", null);
+				}
 			}
 			// Index support.
 			if (index != -1 && fragments != null && index >= 0 && index < fragments.size() && fragments.indexOf(newEnd) != index) {

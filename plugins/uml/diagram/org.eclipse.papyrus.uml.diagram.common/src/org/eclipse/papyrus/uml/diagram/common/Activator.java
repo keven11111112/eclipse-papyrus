@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 410346
  *  Christian W. Damus - bug 485220
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.AlternativeUMLItemProvid
 import org.eclipse.papyrus.uml.diagram.common.util.ColorManager;
 import org.eclipse.papyrus.uml.diagram.common.util.FontManager;
 import org.eclipse.papyrus.uml.diagram.internal.common.services.UMLGraphicalDeletionHelper;
+import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.graphics.Image;
@@ -51,7 +53,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.VisibilityKind;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
@@ -653,7 +654,6 @@ public class Activator extends AbstractUIPlugin {
 		// custom icons for diagram elements
 		factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
 
-		factories.add(new UMLItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());

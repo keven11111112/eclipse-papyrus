@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.TypedElement;
 
 /**
@@ -21,6 +23,6 @@ import org.eclipse.uml2.uml.TypedElement;
 public class TypedElementUtil {
 
 	public static String getTypeAsString(TypedElement element) {
-		return (element.getType() != null) ? element.getType().getName() : "<Undefined>";
+		return (element.getType() != null) ? UMLLabelInternationalization.getInstance().getLabel(element.getType()) : "<Undefined>";
 	}
 }

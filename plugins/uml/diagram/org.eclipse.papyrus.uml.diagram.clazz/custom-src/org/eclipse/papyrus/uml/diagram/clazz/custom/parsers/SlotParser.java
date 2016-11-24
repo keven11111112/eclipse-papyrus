@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
@@ -25,6 +26,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
@@ -92,9 +94,9 @@ public class SlotParser implements IParser {
 				return "<UNDEFINED>";
 			}
 			StructuralFeature feature = slot.getDefiningFeature();
-			String result = slot.getDefiningFeature().getName();
+			String result = UMLLabelInternationalization.getInstance().getLabel(slot.getDefiningFeature());
 			if (feature.getType() != null) {
-				result += " : " + feature.getType().getName();
+				result += " : " + UMLLabelInternationalization.getInstance().getLabel(feature.getType());
 			}
 			if (slot.getValues().isEmpty()) {
 				return result;
@@ -104,7 +106,7 @@ public class SlotParser implements IParser {
 				while (iter.hasNext()) {
 					ValueSpecification currentSpecification = iter.next();
 					if (currentSpecification instanceof InstanceValue && ((InstanceValue) currentSpecification).getInstance() != null) {
-						result = result + ((InstanceValue) currentSpecification).getInstance().getName() + ", ";
+						result = result + UMLLabelInternationalization.getInstance().getLabel(((InstanceValue) currentSpecification).getInstance()) + ", ";
 					} else {
 						result = result + currentSpecification.stringValue() + ", ";
 					}

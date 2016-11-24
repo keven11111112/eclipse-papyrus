@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.groups.core.ui.utils;
@@ -18,10 +19,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 /**
  * Provides usefull utility methods for ICompositeCreator instances
@@ -97,7 +98,7 @@ public class CreatorUtils {
 	 */
 	public static ILabelProvider getCustomLabelProvider() {
 		if (adapterFactory == null) {
-			adapterFactory = new AdapterFactoryLabelProvider(new UMLItemProviderAdapterFactory()) {
+			adapterFactory = new AdapterFactoryLabelProvider(new InternationalizationUMLItemProviderAdapterFactory()) {
 
 				/**
 				 * Override label provider for EClass

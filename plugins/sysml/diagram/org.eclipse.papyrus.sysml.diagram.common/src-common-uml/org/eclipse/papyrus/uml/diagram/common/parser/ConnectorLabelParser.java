@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -62,7 +63,7 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 
 			// manage name
 			if (maskValues.contains(ICustomAppearance.DISP_NAME) && (connector.isSetName())) {
-				String name = connector.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(connector);
 				result = String.format(NAME_FORMAT, name);
 			}
 
@@ -70,7 +71,7 @@ public class ConnectorLabelParser extends NamedElementLabelParser {
 			if (maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 				String type = "<Undefined>";
 				if (connector.getType() != null) {
-					type = connector.getType().getName();
+					type = UMLLabelInternationalization.getInstance().getLabel(connector.getType());
 				}
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.

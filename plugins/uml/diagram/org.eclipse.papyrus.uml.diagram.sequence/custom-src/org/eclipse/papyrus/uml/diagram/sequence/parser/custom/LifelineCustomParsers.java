@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Element;
@@ -87,18 +89,18 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 			ValueSpecification selector = lifeline.getSelector();
 			if (connectableElement != null) {
 				// Add ConnectableElement Name
-				String connectableElementName = connectableElement.getName();
+				String connectableElementName = UMLLabelInternationalization.getInstance().getLabel(connectableElement);
 				if (connectableElementName != null) {
 					sb.append(connectableElementName);
 				}
 				// Add the selector if it is a LiteralSpecification
 				if (selector instanceof LiteralSpecification) {
-					sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector)).append("]");
+					sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector, true)).append("]");
 				}
 				// Add the type name
 				Type type = connectableElement.getType();
-				if (type != null && type.getName() != null && type.getName().length() > 0) {
-					sb.append(" : ").append(type.getName());
+				if (type != null && type.getName() != null && UMLLabelInternationalization.getInstance().getLabel(type).length() > 0) {
+					sb.append(" : ").append(UMLLabelInternationalization.getInstance().getLabel(type));
 				}
 			}
 			// Add the selector if it is an Expression
@@ -113,14 +115,14 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 			if (partDecomposition != null) {
 				Interaction refersTo = partDecomposition.getRefersTo();
 				if (refersTo != null) {
-					sb.append("\nref ").append(refersTo.getName());
+					sb.append("\nref ").append(UMLLabelInternationalization.getInstance().getLabel(refersTo));
 				}
 			}
 			// LifelineIndent cannot be empty so if the stringBuffer is empty we add the name of the
 			// lifeline
 			// This case occurs when creating the lifeline for example
 			if (sb.length() == 0) {
-				sb.append(lifeline.getName());
+				sb.append(UMLLabelInternationalization.getInstance().getLabel(lifeline));
 			}
 		}
 		return sb.toString();

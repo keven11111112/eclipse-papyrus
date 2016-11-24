@@ -7,8 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
- *   Sébastien REVOL (CEA LIST) - Initial API and implementation
+ *   Jï¿½rï¿½mie TATIBOUET (CEA LIST) - Initial API and implementation
+ *   Sï¿½bastien REVOL (CEA LIST) - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -19,7 +20,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Display;
@@ -153,11 +156,14 @@ public class SendSignalActionPinUpdater extends AbstractInvocationActionPinUpdat
 		if (node.getSignal() != null) {
 			for (Property property : node.getSignal().getAllAttributes()) {
 				InputPin derivedPin = UMLFactory.eINSTANCE.createInputPin();
+				derivedInputPins.add(derivedPin);
 				derivedPin.setLower(property.getLower());
 				derivedPin.setUpper(property.getUpper());
 				derivedPin.setType(property.getType());
 				derivedPin.setName(property.getName());
-				derivedInputPins.add(derivedPin);
+				if (InternationalizationPreferencesUtils.getInternationalizationPreference(property) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(property)) {
+					UMLLabelInternationalization.getInstance().setLabel(derivedPin, UMLLabelInternationalization.getInstance().getLabelWithoutUML(property), null);
+				}
 			}
 		}
 		return derivedInputPins;

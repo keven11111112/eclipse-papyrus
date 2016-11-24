@@ -6,7 +6,9 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors: Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
+ * Contributors:
+ *   Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  ******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.providers;
@@ -17,10 +19,12 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.common.preferences.UMLPreferencesConstants;
+import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
+import org.eclipse.papyrus.uml.internationalization.edit.utils.InternationalizationElementItemProviderUtils;
 import org.eclipse.uml2.uml.edit.providers.*;
 import org.osgi.framework.Bundle;
 
-public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAdapterFactory {
+public class AlternativeUMLItemProviderAdapterFactory extends InternationalizationUMLItemProviderAdapterFactory {
 
 	public AlternativeUMLItemProviderAdapterFactory(IPreferenceStore preferenceStore) {
 		myPreferenceStore = preferenceStore;
@@ -37,6 +41,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Comment.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -55,6 +69,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return dependencyItemProvider;
@@ -71,6 +95,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/TemplateParameter.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -89,6 +123,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return templateSignatureItemProvider;
@@ -105,6 +149,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/TemplateBinding.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -123,6 +177,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return templateParameterSubstitutionItemProvider;
@@ -139,6 +203,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ElementImport.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -157,6 +231,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return packageImportItemProvider;
@@ -173,6 +257,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Package.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -191,6 +285,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return packageMergeItemProvider;
@@ -207,6 +311,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ProfileApplication.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -225,6 +339,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return profileItemProvider;
@@ -241,6 +365,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Stereotype.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -259,6 +393,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return imageItemProvider;
@@ -275,6 +419,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Class.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -293,6 +447,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return generalizationItemProvider;
@@ -309,6 +473,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/GeneralizationSet.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -327,6 +501,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return useCaseItemProvider;
@@ -343,6 +527,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Include.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -361,6 +555,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return extendItemProvider;
@@ -377,6 +581,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Constraint.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -395,6 +609,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return extensionPointItemProvider;
@@ -411,6 +635,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Substitution.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -429,6 +663,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return realizationItemProvider;
@@ -445,6 +689,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Abstraction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -463,6 +717,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return opaqueExpressionItemProvider;
@@ -479,6 +743,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Parameter.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -497,6 +771,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return connectorEndItemProvider;
@@ -513,6 +797,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Property.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -531,6 +825,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return deploymentItemProvider;
@@ -547,6 +851,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/DeploymentSpecification.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -565,6 +879,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return artifactItemProvider;
@@ -581,6 +905,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Manifestation.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -599,6 +933,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return operationItemProvider;
@@ -615,6 +959,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ParameterSet.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -633,6 +987,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return dataTypeItemProvider;
@@ -649,6 +1013,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Interface.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -667,6 +1041,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return receptionItemProvider;
@@ -683,6 +1067,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Signal.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -701,6 +1095,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return protocolStateMachineItemProvider;
@@ -717,6 +1121,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/StateMachine.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -735,6 +1149,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return regionItemProvider;
@@ -751,6 +1175,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Transition.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -769,6 +1203,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return triggerItemProvider;
@@ -785,6 +1229,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Port.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -803,6 +1257,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return stateItemProvider;
@@ -819,6 +1283,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ConnectionPointReference.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -837,6 +1311,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return pseudostateItemProvider;
@@ -853,6 +1337,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ProtocolConformance.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -871,6 +1365,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return operationTemplateParameterItemProvider;
@@ -887,6 +1391,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Association.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -905,6 +1419,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return connectableElementTemplateParameterItemProvider;
@@ -921,6 +1445,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CollaborationUse.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -939,6 +1473,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return collaborationItemProvider;
@@ -955,6 +1499,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Connector.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -973,6 +1527,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return redefinableTemplateSignatureItemProvider;
@@ -989,6 +1553,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ClassifierTemplateParameter.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1007,6 +1581,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return interfaceRealizationItemProvider;
@@ -1023,6 +1607,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Extension.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1041,6 +1635,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return extensionEndItemProvider;
@@ -1057,6 +1661,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/StringExpression.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1075,6 +1689,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return expressionItemProvider;
@@ -1091,6 +1715,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/LiteralInteger.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1109,6 +1743,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return literalStringItemProvider;
@@ -1125,6 +1769,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/LiteralBoolean.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1143,6 +1797,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return literalNullItemProvider;
@@ -1159,6 +1823,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Slot.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1177,6 +1851,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return instanceSpecificationItemProvider;
@@ -1193,6 +1877,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Enumeration.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1211,6 +1905,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return enumerationLiteralItemProvider;
@@ -1227,6 +1931,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/PrimitiveType.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1245,6 +1959,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return instanceValueItemProvider;
@@ -1261,6 +1985,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/LiteralUnlimitedNatural.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1279,6 +2013,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return opaqueBehaviorItemProvider;
@@ -1295,6 +2039,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/FunctionBehavior.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1313,6 +2067,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return actorItemProvider;
@@ -1329,6 +2093,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Usage.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1347,6 +2121,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return messageItemProvider;
@@ -1363,6 +2147,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Interaction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1381,6 +2175,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return lifelineItemProvider;
@@ -1397,6 +2201,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/PartDecomposition.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1415,6 +2229,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return interactionUseItemProvider;
@@ -1431,6 +2255,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Gate.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1449,6 +2283,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return activityItemProvider;
@@ -1465,6 +2309,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ActivityPartition.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1483,6 +2337,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return structuredActivityNodeItemProvider;
@@ -1499,6 +2363,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Variable.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1517,6 +2391,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return interruptibleActivityRegionItemProvider;
@@ -1534,6 +2418,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return exceptionHandlerItemProvider;
@@ -1550,6 +2444,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/OutputPin.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1570,6 +2474,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return inputPinItemProvider;
@@ -1586,6 +2500,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/GeneralOrdering.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1604,6 +2528,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return occurrenceSpecificationItemProvider;
@@ -1620,6 +2554,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/InteractionOperand.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1638,6 +2582,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return interactionConstraintItemProvider;
@@ -1654,6 +2608,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ExecutionOccurrenceSpecification.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1675,6 +2639,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return stateInvariantItemProvider;
@@ -1692,6 +2666,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return actionExecutionSpecificationItemProvider;
@@ -1708,6 +2692,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/BehaviorExecutionSpecification.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1730,6 +2724,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return messageOccurrenceSpecificationItemProvider;
@@ -1748,6 +2752,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return combinedFragmentItemProvider;
@@ -1764,6 +2778,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Continuation.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1782,6 +2806,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return considerIgnoreFragmentItemProvider;
@@ -1798,6 +2832,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CallEvent.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1816,6 +2860,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return changeEventItemProvider;
@@ -1832,6 +2886,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/SignalEvent.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1850,6 +2914,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return anyReceiveEventItemProvider;
@@ -1866,6 +2940,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CreateObjectAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1884,6 +2968,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return destroyObjectActionItemProvider;
@@ -1900,6 +2994,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/TestIdentityAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1918,6 +3022,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return readSelfActionItemProvider;
@@ -1934,6 +3048,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReadStructuralFeatureAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1952,6 +3076,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return clearStructuralFeatureActionItemProvider;
@@ -1968,6 +3102,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/RemoveStructuralFeatureValueAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -1986,6 +3130,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return addStructuralFeatureValueActionItemProvider;
@@ -2002,6 +3156,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/LinkEndData.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2020,6 +3184,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return qualifierValueItemProvider;
@@ -2036,6 +3210,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReadLinkAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2054,6 +3238,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return linkEndCreationDataItemProvider;
@@ -2070,6 +3264,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CreateLinkAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2088,6 +3292,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return destroyLinkActionItemProvider;
@@ -2104,6 +3318,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/LinkEndDestructionData.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2122,6 +3346,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return clearAssociationActionItemProvider;
@@ -2138,6 +3372,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/BroadcastSignalAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2156,6 +3400,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return sendObjectActionItemProvider;
@@ -2172,6 +3426,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ValueSpecificationAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2190,6 +3454,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return timeExpressionItemProvider;
@@ -2206,6 +3480,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Duration.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2224,6 +3508,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return valuePinItemProvider;
@@ -2240,6 +3534,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/DurationInterval.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2258,6 +3562,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return intervalItemProvider;
@@ -2274,6 +3588,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/TimeConstraint.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2292,6 +3616,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return intervalConstraintItemProvider;
@@ -2308,6 +3642,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/TimeInterval.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2326,6 +3670,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return durationConstraintItemProvider;
@@ -2342,6 +3696,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/TimeObservation.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2360,6 +3724,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return durationObservationItemProvider;
@@ -2376,6 +3750,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/OpaqueAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2394,6 +3778,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return sendSignalActionItemProvider;
@@ -2410,6 +3804,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CallOperationAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2428,6 +3832,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return callBehaviorActionItemProvider;
@@ -2444,6 +3858,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/InformationItem.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2462,6 +3886,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return informationFlowItemProvider;
@@ -2478,6 +3912,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Model.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2496,6 +3940,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return readVariableActionItemProvider;
@@ -2512,6 +3966,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ClearVariableAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2530,6 +3994,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return addVariableValueActionItemProvider;
@@ -2546,6 +4020,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/RemoveVariableValueAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2564,6 +4048,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return raiseExceptionActionItemProvider;
@@ -2580,6 +4074,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ActionInputPin.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2598,6 +4102,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return readExtentActionItemProvider;
@@ -2614,6 +4128,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReclassifyObjectAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2632,6 +4156,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return readIsClassifiedObjectActionItemProvider;
@@ -2648,6 +4182,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/StartClassifierBehaviorAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2666,6 +4210,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return readLinkObjectEndActionItemProvider;
@@ -2682,6 +4236,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReadLinkObjectEndQualifierAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2700,6 +4264,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return createLinkObjectActionItemProvider;
@@ -2716,6 +4290,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/AcceptEventAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2734,6 +4318,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return acceptCallActionItemProvider;
@@ -2750,6 +4344,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReplyAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2768,6 +4372,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return unmarshallActionItemProvider;
@@ -2784,6 +4398,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ReduceAction.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2802,6 +4426,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return controlFlowItemProvider;
@@ -2818,6 +4452,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/InitialNode.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2836,6 +4480,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return activityParameterNodeItemProvider;
@@ -2852,6 +4506,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ForkNode.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2870,6 +4534,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return flowFinalNodeItemProvider;
@@ -2886,6 +4560,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CentralBufferNode.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2904,6 +4588,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return mergeNodeItemProvider;
@@ -2920,6 +4614,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/DecisionNode.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2938,6 +4642,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return activityFinalNodeItemProvider;
@@ -2954,6 +4668,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/JoinNode.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -2972,6 +4696,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return dataStoreNodeItemProvider;
@@ -2988,6 +4722,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ObjectFlow.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3006,6 +4750,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return sequenceNodeItemProvider;
@@ -3022,6 +4776,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ConditionalNode.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3040,6 +4804,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return clauseItemProvider;
@@ -3056,6 +4830,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/LoopNode.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3074,6 +4858,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return expansionNodeItemProvider;
@@ -3090,6 +4884,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/ExpansionRegion.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3108,6 +4912,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return componentRealizationItemProvider;
@@ -3124,6 +4938,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Component.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3142,6 +4966,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return nodeItemProvider;
@@ -3158,6 +4992,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/Device.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3176,6 +5020,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return executionEnvironmentItemProvider;
@@ -3192,6 +5046,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/CommunicationPath.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3210,6 +5074,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return finalStateItemProvider;
@@ -3226,6 +5100,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/TimeEvent.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}
@@ -3244,6 +5128,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 					}
 					return super.getImage(object);
 				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
 			};
 		}
 		return protocolTransitionItemProvider;
@@ -3260,6 +5154,16 @@ public class AlternativeUMLItemProviderAdapterFactory extends UMLItemProviderAda
 						return overlayImage(object, FileLocator.find(UML_BUNDLE, new Path("icons/obj16/AssociationClass.gif"), null)); //$NON-NLS-1$
 					}
 					return super.getImage(object);
+				}
+				
+				@Override
+				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
+				}
+
+				@Override
+				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
+					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
 			};
 		}

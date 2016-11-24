@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.providers;
@@ -42,6 +42,7 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
@@ -130,7 +131,7 @@ public class BasicEditPartProvider extends AbstractEditPartProvider {
 
 					protected void handleNotificationEvent(Notification event) {
 						if( resolveSemanticElement()!=null){
-							primaryShape.setName(((NamedElement)getNotationView().getElement()).getName());}
+							primaryShape.setName(UMLLabelInternationalization.getInstance().getLabel(((NamedElement)getNotationView().getElement())));}
 						super.handleNotificationEvent(event);
 
 					}				
@@ -185,7 +186,7 @@ public class BasicEditPartProvider extends AbstractEditPartProvider {
 
 							getPrimaryShape().getAppliedStereotypeLabel().setBorder(new LineBorder(new Color(Display.getDefault(), new RGB(0, 255, 0))));
 							getPrimaryShape().getNameLabel().setBorder(new LineBorder(new Color(Display.getDefault(), new RGB(255, 0, 0))));
-							getPrimaryShape().getNameLabel().setText(((NamedElement)getNotationView().getElement()).getName());}
+							getPrimaryShape().getNameLabel().setText(UMLLabelInternationalization.getInstance().getLabel((NamedElement)getNotationView().getElement()));}
 						super.handleNotificationEvent(event);
 
 					}

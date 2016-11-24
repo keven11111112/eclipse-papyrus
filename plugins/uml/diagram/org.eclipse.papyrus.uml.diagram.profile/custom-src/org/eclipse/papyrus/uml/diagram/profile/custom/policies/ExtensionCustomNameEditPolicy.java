@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
@@ -29,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.service.types.ui.util.ExtensionHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
@@ -82,7 +84,7 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 		if (hostSemanticElement instanceof Extension) {
 			Stereotype stereotype = ((Extension) hostSemanticElement).getStereotype();
 			getDiagramEventBroker().addNotificationListener(stereotype, this);
-			this.systemExtensionName = ((Extension) hostSemanticElement).getName();
+			this.systemExtensionName = UMLLabelInternationalization.getInstance().getLabel(((Extension) hostSemanticElement));
 		}
 	}
 
@@ -143,12 +145,12 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 										CompositeCommand cc = new CompositeCommand("Change Extension Name"); //$NON-NLS-1$
 										Extension ext = ((Extension) hostSemanticElement);
 										Stereotype ste = ((Extension) hostSemanticElement).getStereotype();
-										String newExtEndName = ExtensionHelper.EXTENSION + ste.getName();
+										String newExtEndName = ExtensionHelper.EXTENSION + UMLLabelInternationalization.getInstance().getLabel(ste);
 
 										// Command to change the Extension's name
 										// only if the user doesn't have modify its name
 										String newExtensionName = ExtensionHelper.getExtensionName((Element) hostSemanticElement, ((Extension) hostSemanticElement).getStereotype(), ((Extension) hostSemanticElement).getMetaclass());
-										if (systemExtensionName.equals(((Extension) hostSemanticElement).getName())) {
+										if (systemExtensionName.equals(UMLLabelInternationalization.getInstance().getLabel(((Extension) hostSemanticElement)))) {
 											SetRequest setRequestExt = new SetRequest(domain, ext, UMLPackage.eINSTANCE.getNamedElement_Name(), newExtensionName);
 											org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(ext);
 											if (provider != null) {

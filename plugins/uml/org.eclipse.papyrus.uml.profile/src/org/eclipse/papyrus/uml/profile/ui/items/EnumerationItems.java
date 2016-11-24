@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.ui.items;
@@ -17,6 +18,7 @@ package org.eclipse.papyrus.uml.profile.ui.items;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.profile.utils.Util;
 import org.eclipse.swt.SWT;
@@ -97,7 +99,7 @@ public class EnumerationItems {
 		if (eLiteral != null) {
 			// Prepare Item label
 			TableItem propValueItem = new TableItem(table, SWT.NONE);
-			propValueItem.setText(eLiteral.getName());
+			propValueItem.setText(UMLLabelInternationalization.getInstance().getLabel(eLiteral));
 			propValueItem.setData(eLiteral);
 		}
 	}

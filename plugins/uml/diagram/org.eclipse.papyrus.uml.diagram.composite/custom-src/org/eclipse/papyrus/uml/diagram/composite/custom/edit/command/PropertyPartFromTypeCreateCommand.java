@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.command;
@@ -21,7 +22,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
@@ -73,21 +76,37 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		StructuredClassifier owner = (StructuredClassifier) getElementToEdit();
 		owner.getOwnedAttributes().add(newElement);
 		newElement.setType(type);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		semanticAdapter.setElement(newElement);
 
 		String typeName = type.getName();
 		String elementName = (typeName.length() == 0) ? "none" : //$NON-NLS-1$
 				typeName.substring(0, 1).toLowerCase() + typeName.substring(1);
+		
+		String typeLabel = "";
+		String elementLabel = "";
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(type) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(type)) {
+			typeLabel = UMLLabelInternationalization.getInstance().getLabelWithoutUML(type);
+			elementLabel = (typeLabel.length() == 0) ? "none" : //$NON-NLS-1$
+				typeLabel.substring(0, 1).toLowerCase() + typeLabel.substring(1);
+		}
+		
 		int i = 0;
 		String initialElementName = elementName;
+		String initialElementLabel = elementLabel;
 		// assure that name is unique.
 		while (owner.getAttribute(elementName, null) != null) {
 			elementName = initialElementName + String.valueOf(i);
+			if(!elementLabel.isEmpty()){
+				elementLabel = initialElementLabel + String.valueOf(i);
+			}
 			i++;
 		}
 		newElement.setName(elementName);
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		if(!elementName.isEmpty()){
+			UMLLabelInternationalization.getInstance().setLabel(newElement, elementName, null);
+		}
 
-		semanticAdapter.setElement(newElement);
 		return CommandResult.newOKCommandResult(semanticAdapter);
 	}
 }

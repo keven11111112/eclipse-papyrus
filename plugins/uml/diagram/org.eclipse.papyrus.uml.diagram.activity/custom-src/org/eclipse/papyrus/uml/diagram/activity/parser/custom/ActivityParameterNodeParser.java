@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *   Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.activity.parsers.MessageFormatParser;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.State;
@@ -102,17 +104,17 @@ public class ActivityParameterNodeParser extends MessageFormatParser implements 
 		Object adapter = element.getAdapter(EObject.class);
 		if (adapter instanceof ActivityParameterNode) {
 			parameterNode = (ActivityParameterNode) adapter;
-			String name = parameterNode.getName();
+			String name = UMLLabelInternationalization.getInstance().getLabel(parameterNode);
 			result = String.format(UNTYPED_PARAMETER_FORMAT, name);
 			// manage type
 			if (parameterNode.getType() != null) {
-				String type = parameterNode.getType().getName();
+				String type = UMLLabelInternationalization.getInstance().getLabel(parameterNode.getType());
 				result = String.format(TYPED_PARAMETER_FORMAT, name, type);
 			}
 			// manage states
 			StringBuffer stateLabel = new StringBuffer();
 			for (State state : parameterNode.getInStates()) {
-				String stateName = state.getName();
+				String stateName = UMLLabelInternationalization.getInstance().getLabel(state);
 				if (stateName == null) {
 					stateName = "";
 				}

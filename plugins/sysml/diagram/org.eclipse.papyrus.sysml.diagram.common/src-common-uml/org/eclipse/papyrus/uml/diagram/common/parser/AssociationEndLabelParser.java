@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLMultiplicityElementUtil;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Association;
@@ -87,7 +88,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 
 			// manage name
 			if (maskValues.contains(ICustomAppearance.DISP_NAME) && property.isSetName()) {
-				String name = property.getName();
+				String name = UMLLabelInternationalization.getInstance().getLabel(property);
 
 				// If property is owned by Association (non navigable) only show the name when explicitly asked.
 
@@ -101,7 +102,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			if (maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 				String type = "<Undefined>";
 				if (property.getType() != null) {
-					type = property.getType().getName();
+					type = UMLLabelInternationalization.getInstance().getLabel(property.getType());
 				}
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.
@@ -124,7 +125,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			// manage default value
 			if (maskValues.contains(ICustomAppearance.DISP_DEFAULT_VALUE) && property.getDefaultValue() != null) {
 				ValueSpecification valueSpecification = property.getDefaultValue();
-				result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
+				result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification, true));
 			}
 
 			// manage modifier
@@ -145,7 +146,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 				EList<Property> redefinedProperties = property.getRedefinedProperties();
 				if (redefinedProperties != null && !redefinedProperties.isEmpty()) {
 					for (Property p : redefinedProperties) {
-						sb.append(sb.length() == 0 ? p.getName() : ", redefines " + p.getName());
+						sb.append(sb.length() == 0 ? UMLLabelInternationalization.getInstance().getLabel(p) : ", redefines " + UMLLabelInternationalization.getInstance().getLabel(p));
 					}
 				}
 				if (sb.length() != 0) {
