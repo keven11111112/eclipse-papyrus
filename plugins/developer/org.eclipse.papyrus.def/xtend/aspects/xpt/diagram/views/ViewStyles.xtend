@@ -36,7 +36,7 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
 		«IF labelOffsetX(viewmap, 0) != 0 || labelOffsetY(viewmap, 0) != 0»
 			«offset(it,viewVar, labelOffsetX(viewmap, 0), labelOffsetY(viewmap, 0))»
 		«ELSE»
-			«offset(it,viewVar, 0, 5)»
+			«offset(it,viewVar, 0, 15)»
 		«ENDIF»
 	'''
 
