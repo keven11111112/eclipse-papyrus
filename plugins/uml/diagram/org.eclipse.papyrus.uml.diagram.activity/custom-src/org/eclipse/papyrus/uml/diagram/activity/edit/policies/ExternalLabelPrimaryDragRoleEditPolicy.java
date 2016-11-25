@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
  * This policy provides the selection handles, feedback and move command for
@@ -47,29 +48,28 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		mh.setBorder(null);
 		return Collections.singletonList(mh);
 	}
-
+	
+	
+	/* 
+	 * generic getMove Command from
+	 * org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalLabelPrimaryDragRoleEditPolicy
+	 * 
+	 */
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
 		LabelEditPart editPart = (LabelEditPart) getHost();
-
 		// FeedBack - Port + Delta
-		Rectangle updatedRect = new Rectangle();
+		Rectangle updatedRect;
 		PrecisionRectangle initialRect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		updatedRect = initialRect.getTranslated(getHostFigure().getParent().getBounds().getLocation().getNegated());
-		updatedRect = updatedRect.getTranslated(request.getMoveDelta());
 
-		// translate the feedback figure
-		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-		getHostFigure().translateToAbsolute(rect);
-		rect.translate(request.getMoveDelta());
-		rect.resize(request.getSizeDelta());
-		getHostFigure().translateToRelative(rect);
+		// take into account the zoom
+		double zoomLevel = DiagramEditPartsUtil.getDiagramZoomLevel(editPart);
+		updatedRect = updatedRect.getTranslated(request.getMoveDelta().scale(1 / zoomLevel));
 
 		// translate according to the text alignments
 		if (editPart instanceof PapyrusLabelEditPart) {
 			switch (((PapyrusLabelEditPart) editPart).getTextAlignment()) {
-			case PositionConstants.LEFT:
-				break;
 			case PositionConstants.CENTER:
 				updatedRect.translate(getHostFigure().getBounds().width / 2, 0);
 				break;
@@ -80,7 +80,7 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 				break;
 			}
 		}
-
+		
 		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View) editPart.getModel()), updatedRect);
 		return new ICommandProxy(moveCommand);
 	}
