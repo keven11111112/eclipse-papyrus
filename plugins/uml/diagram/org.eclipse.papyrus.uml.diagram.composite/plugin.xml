@@ -46,7 +46,7 @@
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.CompositeStructure"
             name="CompositeStructure Diagram"
             category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
-            class="org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CustomDiagramPreferencePage">
+            class="org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramGeneralPreferencePage">
       </page>
       
       <page
