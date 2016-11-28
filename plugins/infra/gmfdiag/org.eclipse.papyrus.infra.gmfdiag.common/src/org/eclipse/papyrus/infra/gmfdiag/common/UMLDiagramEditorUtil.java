@@ -19,14 +19,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
-/**
- * @generated
- */
 public class UMLDiagramEditorUtil {
 
-	/**
-	 * @generated
-	 */
 	public static Map getSaveOptions() {
 		Map saveOptions = new HashMap();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$

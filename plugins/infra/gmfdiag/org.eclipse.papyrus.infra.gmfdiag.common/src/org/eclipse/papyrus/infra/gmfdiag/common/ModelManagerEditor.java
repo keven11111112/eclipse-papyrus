@@ -105,7 +105,6 @@ public class ModelManagerEditor {
 
 		@Override
 		public boolean isAdapterForType(Object type) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
@@ -322,16 +321,7 @@ public class ModelManagerEditor {
 	protected void updateState(IEditorInput input) {
 		IDocumentProvider provider = getDocumentProvider();
 		try {
-
 			provider.updateStateCache(input);
-
-			// if (getDiagramEditPart() != null) {
-			// if(isEditable())
-			// getDiagramEditPart().enableEditMode();
-			// else
-			// getDiagramEditPart().disableEditMode();
-			// }
-
 		} catch (CoreException x) {
 			Bundle bundle = Platform.getBundle(PlatformUI.PLUGIN_ID);
 			ILog log = Platform.getLog(bundle);
@@ -370,25 +360,12 @@ public class ModelManagerEditor {
 			return;
 		}
 
-		// if (getDiagramEditPart() != null) {
-		// if(isEditable())
-		// getDiagramEditPart().enableEditMode();
-		// else
-		// getDiagramEditPart().disableEditMode();
-		// }
-
 	}
 
-	/**
-	 * @generated
-	 */
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
 
-	/**
-	 * @generated
-	 */
 	public void doSaveAs() {
 		performSaveAs(new NullProgressMonitor());
 	}
@@ -410,11 +387,9 @@ public class ModelManagerEditor {
 		}
 
 		try {
-
 			provider.aboutToChange(getEditorInput());
 			IEditorInput input = getEditorInput();
 			provider.saveDocument(progressMonitor, input, getDocumentProvider().getDocument(input), overwrite);
-			// editorSaved();
 
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
@@ -426,9 +401,7 @@ public class ModelManagerEditor {
 		}
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
@@ -478,8 +451,6 @@ public class ModelManagerEditor {
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			// getDocumentProvider(newInput).saveDocument(progressMonitor, newInput,
-			// getDocumentProvider().getDocument(getEditorInput()), true);
 			getDocumentProvider().saveDocument(progressMonitor, newInput,
 					getDocumentProvider().getDocument(getEditorInput()), true);
 			success = true;

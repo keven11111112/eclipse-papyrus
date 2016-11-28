@@ -98,7 +98,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 				}
 
 				String graphicalType = newView.getType();
-				Activator.log.trace(Activator.EXPANSION_TRACE,""+this.getClass().getName()+" view appears with the type "+graphicalType);
+				Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" view appears with the type "+graphicalType); //$NON-NLS-1$
 
 				if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType)!=null){
 					return true;
@@ -124,7 +124,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 
 
 		String graphicalType = view.getType();
-		Activator.log.trace(Activator.EXPANSION_TRACE,""+ this.getClass().getName()+" view appears with the type "+graphicalType);
+		Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" view appears with the type "+graphicalType);//$NON-NLS-1$
 		EObject eObject= diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType);
 		Class editpartClass=null;
 		String editpartQualifiedName=null;
@@ -145,9 +145,9 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 		}
 		IGraphicalEditPart graphicEditPart = createNewGraphicEditPart(editpartClass, new Object[] {view});
 		if( graphicEditPart==null){
-			String errorMessage= "The model expand does not reference an edit part for the element "+graphicalType;
+			String errorMessage= "The model expand does not reference an edit part for the element "+graphicalType; //$NON-NLS-1$
 			if( editpartQualifiedName!=null){
-				errorMessage= "The editpart provide does not succed to find "+editpartQualifiedName+" class for the element "+graphicalType;
+				errorMessage= "The editpart provide does not succed to find "+editpartQualifiedName+" class for the element "+graphicalType;//$NON-NLS-1$ //$NON-NLS-2$
 			}
 			org.eclipse.papyrus.infra.gmfdiag.common.Activator.log.error(errorMessage, new NullPointerException(errorMessage));
 		}

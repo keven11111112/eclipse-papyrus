@@ -18,7 +18,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
- * @author PT202707
  *
  */
 public class CustomRepresentationKindImpl extends org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.RepresentationKindImpl {

@@ -58,7 +58,6 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 *
-	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -223,7 +222,6 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * Returns editing domain from the host edit part.
 	 *
-	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();

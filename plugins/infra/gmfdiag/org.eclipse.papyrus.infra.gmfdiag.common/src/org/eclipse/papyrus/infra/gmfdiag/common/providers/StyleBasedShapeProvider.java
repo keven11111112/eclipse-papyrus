@@ -79,14 +79,14 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 		}
 		SVGDocument svg = getSVGDocument(view, svgFile);
 		if (svg == null) {
-			Activator.log.warn("Invalid SVG File path: " + svgFile);
+			Activator.log.warn("Invalid SVG File path: " + svgFile); //$NON-NLS-1$
 			return null;
 		}
 		RenderedImage img = null;
 		try {
 			img = renderSVGDocument(view, svg);
 		} catch (IOException e) {
-			Activator.log.error("Failed to render the svg file: " + svgFile, e);
+			Activator.log.error("Failed to render the svg file: " + svgFile, e); //$NON-NLS-1$
 		}
 		listSingletonRendered.set(0, img);
 		return listSingletonRendered;

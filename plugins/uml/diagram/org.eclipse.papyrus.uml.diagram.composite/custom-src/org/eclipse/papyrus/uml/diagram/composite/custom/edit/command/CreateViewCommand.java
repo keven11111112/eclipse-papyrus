@@ -21,12 +21,13 @@ import org.eclipse.gmf.runtime.notation.View;
 
 public class CreateViewCommand extends CreateCommand {
 
+	public CreateViewCommand(TransactionalEditingDomain editingDomain, ViewDescriptor viewDescriptor, View containerView) {
+		super(editingDomain, viewDescriptor, containerView);
+	}	
+	
 	@Override
 	public boolean canExecute() {
 		return true;
 	}
 
-	public CreateViewCommand(TransactionalEditingDomain editingDomain, ViewDescriptor viewDescriptor, View containerView) {
-		super(editingDomain, viewDescriptor, containerView);
-	}
 }

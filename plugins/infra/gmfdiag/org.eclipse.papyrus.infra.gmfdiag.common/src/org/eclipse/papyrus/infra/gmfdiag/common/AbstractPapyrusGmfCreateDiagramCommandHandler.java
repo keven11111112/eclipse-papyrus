@@ -48,7 +48,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
@@ -127,7 +127,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		private CommandResult createDiagram() throws ServiceException {
 			Resource notationResource = getNotationResource(modelSet, owner, element);
 			if (notationResource == null) {
-				return CommandResult.newErrorCommandResult("Cannot create a diagram on the selected element (ReadOnly?)");
+				return CommandResult.newErrorCommandResult("Cannot create a diagram on the selected element (ReadOnly?)"); //$NON-NLS-1$
 			}
 			Resource diResource = DiModelUtils.getDiResource(modelSet);
 
@@ -452,7 +452,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				} catch (ServiceException e) {
 					Activator.log.error(e);
 				}
-				return CommandResult.newErrorCommandResult("Error during diagram creation");
+				return CommandResult.newErrorCommandResult("Error during diagram creation"); //$NON-NLS-1$
 			}
 
 			@Override

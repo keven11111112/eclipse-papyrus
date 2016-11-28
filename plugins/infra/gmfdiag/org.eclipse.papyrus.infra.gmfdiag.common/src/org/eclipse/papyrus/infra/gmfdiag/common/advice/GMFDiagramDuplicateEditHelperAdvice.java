@@ -133,7 +133,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 		}
 		Object elementToBeDuplicated = elementsToBeDuplicated.get(0);
 		if (elementToBeDuplicated instanceof EObject) {
-			return ((EObject) elementToBeDuplicated);
+			return (EObject) elementToBeDuplicated;
 		}
 		return null;
 	}

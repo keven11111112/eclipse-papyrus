@@ -27,9 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN;
 
-/**
- * @generated
- */
 @SuppressWarnings("restriction")
 public class CustomConstraintEditPartCN extends ConstraintEditPartCN {
 

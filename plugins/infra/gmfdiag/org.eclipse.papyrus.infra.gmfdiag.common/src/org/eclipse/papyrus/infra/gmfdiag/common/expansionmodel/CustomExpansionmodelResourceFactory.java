@@ -25,7 +25,6 @@ public class CustomExpansionmodelResourceFactory extends ExpansionmodelResourceF
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @generated
 	 */
 	public CustomExpansionmodelResourceFactory() {
 		super();
@@ -36,7 +35,6 @@ public class CustomExpansionmodelResourceFactory extends ExpansionmodelResourceF
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @generated
 	 */
 	@Override
 	public Resource createResource(URI uri) {

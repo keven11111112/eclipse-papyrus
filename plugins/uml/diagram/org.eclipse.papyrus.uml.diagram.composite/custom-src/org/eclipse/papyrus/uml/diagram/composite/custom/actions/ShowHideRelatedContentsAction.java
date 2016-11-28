@@ -24,9 +24,7 @@ import org.eclipse.uml2.uml.Property;
 public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 
 	/**
-	 *
 	 * Constructor.
-	 *
 	 */
 	public ShowHideRelatedContentsAction() {
 		super(Messages.ShowHideRelatedContentsAction_Title, Messages.ShowHideRelatedContentsAction_Message, ShowHideRelatedContentsEditPolicy.SHOW_HIDE_RELATED_CONTENTS_POLICY);
@@ -49,49 +47,5 @@ public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 				}
 			}
 		}
-		// setEditorLabelProvider(new EditorLabelProvider());
-		// this.representations = new ArrayList<AbstractShowHideAction.EditPartRepresentation>();
-
-		// for(EditPart current : this.selectedElements) {
-		// //the selected elements which aren't Classifier are ignored
-		// EObject element = ((View)current.getModel()).getElement();
-		// if(element instanceof Property) {
-		// Type type = ((Property)element).getType();
-		// if(type instanceof Classifier) {
-		// this.representations.add(new CustomEditPartRepresentation(current, (Classifier)type));
-		// }
-		// }
-		// }
-		// this.setEditorLabelProvider(new CustomEditorLabelProvider());
-		// this.setContentProvider(new CustomContentProvider());
-
 	}
-
-	// protected class CustomContentProvider extends ShowHideContentsAction.ContentProvider {
-	//
-	// /**
-	// *
-	// * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
-	// *
-	// * @param element
-	// * @return
-	// */
-	// @Override
-	// public Object getParent(Object element) {
-	// if(!(element instanceof EditPartRepresentation)) {
-	// EditPartRepresentation rep = findEditPartRepresentation(element);
-	// if(rep != null) {
-	// //element can be owned by the class (rep), or by a superclass (ClassifierRepresentation)
-	// List<ClassifierRepresentation> classes = ((CustomEditPartRepresentation)rep).getSuperClasses();
-	// for(ClassifierRepresentation classifierRepresentation : classes) {
-	// if(classifierRepresentation.getRepresentedClassifier().getOwnedMembers().contains(element)) {
-	// return classifierRepresentation;
-	// }
-	// }
-	// }
-	// return rep;
-	// }
-	// return null;
-	// }
-	// }
 }

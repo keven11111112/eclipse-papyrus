@@ -31,6 +31,11 @@ public class SetTypeWithDialogCommand extends SetValueCommand {
 
 	protected SetRequest request;
 
+	public SetTypeWithDialogCommand(SetRequest request) {
+		super(request);
+		this.request = request;
+	}	
+	
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -50,18 +55,10 @@ public class SetTypeWithDialogCommand extends SetValueCommand {
 				result = CommandResult.newOKCommandResult();
 				break;
 			}
-			;
-
 		} else {
 			result = super.doExecuteWithResult(monitor, info);
 		}
-
 		return result;
-	}
-
-	public SetTypeWithDialogCommand(SetRequest request) {
-		super(request);
-		this.request = request;
 	}
 
 }

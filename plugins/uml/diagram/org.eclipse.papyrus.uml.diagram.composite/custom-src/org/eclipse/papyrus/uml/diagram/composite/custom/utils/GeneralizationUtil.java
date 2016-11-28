@@ -78,7 +78,7 @@ public class GeneralizationUtil {
 	 */
 	protected boolean existsAnotherInheritanceWay(Element inheritedElement, Generalization forbiddenPath, NamedElement el, Set<Element> ignoredGeneralizations) {
 
-		Set<Generalization> generalizations = new HashSet<Generalization>();
+		Set<Generalization> generalizations = new HashSet<>();
 
 		Classifier _classifier = null;
 		if (el instanceof Property) {

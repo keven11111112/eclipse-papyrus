@@ -131,8 +131,8 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 			// look amidst all edit part if the semantic is contained in the list
 			Iterator<?> iter = graphicalViewer.getEditPartRegistry().values().iterator();
 			IGraphicalEditPart researchedEditPart = null;
-			List<?> clonedList = new ArrayList<Object>(elementList);
-			List<IGraphicalEditPart> partSelection = new ArrayList<IGraphicalEditPart>();
+			List<?> clonedList = new ArrayList<>(elementList);
+			List<IGraphicalEditPart> partSelection = new ArrayList<>();
 
 			while (iter.hasNext() && !clonedList.isEmpty()) {
 				Object currentEditPart = iter.next();

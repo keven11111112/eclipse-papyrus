@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -67,7 +66,7 @@ public class ChildrenListRepresentation {
 			idListToAdd.add(hint);
 			if( IDMap.get(hint)==null){
 				IDMap.put(hint, representation);
-				ArrayList<String> subRepresentationIDs= new ArrayList<String>();
+				ArrayList<String> subRepresentationIDs= new ArrayList<>();
 				//compartments
 				for (InducedRepresentation compartments : ((Representation)representation).getInducedRepresentations()) {
 					createStructure(compartments, subRepresentationIDs);
@@ -98,8 +97,8 @@ public class ChildrenListRepresentation {
 
 	protected void initStructure(){
 
-		//init the structure by go accross the the model.
-		ArrayList<String> childreen= new ArrayList<String>();
+		//init the structure by go across the the model.
+		ArrayList<String> childreen= new ArrayList<>();
 		for ( org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation currentR : useContext.getRepresentations()) {
 			//Check shapes
 			createStructure(currentR, childreen);

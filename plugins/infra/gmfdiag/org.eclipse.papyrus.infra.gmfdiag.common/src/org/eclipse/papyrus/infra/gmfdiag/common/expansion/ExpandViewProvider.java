@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation;
@@ -27,7 +26,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
@@ -105,7 +103,7 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 		else{
 			containerType	= operation.getContainerView().getType();
 		}
-		Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" try to create view in the container "+containerType+ " the view "+ operation.getSemanticHint());
+		Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" try to create view in the container "+containerType+ " the view "+ operation.getSemanticHint()); //$NON-NLS-1$ //$NON-NLS-2$
 		//get the list of childreen Id from a parent ID
 		List<String> possibleChildreenIDs=diagramExpansionRegistry.mapChildreen.get(currentDiagramType).parentChildrenRelation.get(containerType);
 		if(possibleChildreenIDs==null){

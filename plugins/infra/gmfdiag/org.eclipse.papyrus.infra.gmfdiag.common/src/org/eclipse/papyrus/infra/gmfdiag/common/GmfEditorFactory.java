@@ -170,22 +170,18 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 			// Try to get it.
 
 			// Get ServiceRegistry
-			// ServicesRegistry serviceRegistry = getServicesRegistry();
 			ActionBarContributorRegistry registry;
 			try {
 				registry = servicesRegistry.getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
-				// Service not found
-				// TODO Log the error
-				e.printStackTrace();
+				Activator.log.error(e);
 				return null;
 			}
 
 			try {
 				return registry.getActionBarContributor(actionBarId);
 			} catch (BackboneException e) {
-				// TODO Log the error and throw an exception instead
-				e.printStackTrace();
+				Activator.log.error(e);
 				return null;
 			}
 		}
