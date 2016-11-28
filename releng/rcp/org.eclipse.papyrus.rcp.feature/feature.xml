@@ -68,7 +68,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <!--<import feature="org.eclipse.emf.ecp.sdk.feature"/>-->
       <!--<import feature="org.eclipse.emf.emfstore.sdk.feature"/>-->
       
-      <import feature="org.eclipse.epp.logging.aeri.feature"/>
+      <!--<import feature="org.eclipse.epp.logging.aeri.feature"/>-->
       <import feature="org.eclipse.papyrus.sdk.feature.source"/>
    </requires>
 
