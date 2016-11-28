@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 430880
  *  Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -111,6 +112,7 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
+import org.eclipse.papyrus.infra.nattable.listener.NatTableDragSourceListener;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -156,6 +158,7 @@ import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -826,10 +829,27 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		target.setTransfer(types);
 		final NatTableDropListener dropListener = createDropListener();
 		target.addDropListener(dropListener);
+
+		// Add drag support
+		natTable.addDragSupport(operations, types, createDragListener());
 	}
 
+	/**
+	 * Instantiate a new {@link NatTableDropListener}.
+	 * 
+	 * @return The Drop Listener.
+	 */
 	protected NatTableDropListener createDropListener() {
 		return new NatTableDropListener(this, this.selectionExtractor);
+	}
+
+	/**
+	 * Instantiate a new {@link DragSourceListener}.
+	 * 
+	 * @return The Drag Listener.
+	 */
+	protected DragSourceListener createDragListener() {
+		return new NatTableDragSourceListener(this, natTable, table);
 	}
 
 	/**
@@ -2153,6 +2173,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 		a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
 	 * @since 2.0
 	 */
+	@Override
 	public final TableStructuredSelection getSelectionInTable() {
 		if (null != this.selectionProvider) {
 			ISelection selection = this.selectionProvider.getSelection();

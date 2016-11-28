@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -91,12 +93,14 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd);
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
-	
+
 	/**
 	 * Get the command to add row elements at the index in parameter.
 	 * 
-	 * @param objectsToAdd The row elements to add.
-	 * @param index The index where add the elements.
+	 * @param objectsToAdd
+	 *            The row elements to add.
+	 * @param index
+	 *            The index where add the elements.
 	 * @return The command.
 	 */
 	public Command getAddRowElementCommand(final Collection<Object> objectsToAdd, final int index);
@@ -104,8 +108,10 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	/**
 	 * Get the command to add column elements at the index in parameter.
 	 * 
-	 * @param objectsToAdd The column elements to add.
-	 * @param index The index where add the elements.
+	 * @param objectsToAdd
+	 *            The column elements to add.
+	 * @param index
+	 *            The index where add the elements.
 	 * @return The command.
 	 */
 	public Command getAddColumnElementCommand(final Collection<Object> objectsToAdd, final int index);
@@ -127,7 +133,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	public void selectAll();
 
 	public void exportToXLS();
-	
+
 	/**
 	 * This allows to export the table contents into a file.
 	 * 
@@ -169,7 +175,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	/**
 	 *
 	 * @return
-	 *         the "real"{@link AbstractAxisProvider}, that's to say that this method use the property {@link Table#isInvertAxis()} to return the real
+	 * 		the "real"{@link AbstractAxisProvider}, that's to say that this method use the property {@link Table#isInvertAxis()} to return the real
 	 *         vertical axis
 	 */
 	public AbstractAxisProvider getVerticalAxisProvider();
@@ -177,7 +183,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	/**
 	 *
 	 * @return
-	 *         the "real"{@link AbstractAxisProvider}, that's to say that this method use the property {@link Table#isInvertAxis()} to return the real
+	 * 		the "real"{@link AbstractAxisProvider}, that's to say that this method use the property {@link Table#isInvertAxis()} to return the real
 	 *         horizontal axis
 	 */
 	public AbstractAxisProvider getHorizontalAxisProvider();
@@ -212,14 +218,14 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	/**
 	 *
 	 * @return
-	 *         the row axis manager, managing the axis inversion
+	 * 		the row axis manager, managing the axis inversion
 	 */
 	public IAxisManager getRowAxisManager();
 
 	/**
 	 *
 	 * @return
-	 *         the local preference store for the table instance or <code>null</code>
+	 * 		the local preference store for the table instance or <code>null</code>
 	 */
 	public PreferenceStore getTablePreferenceStore();
 
@@ -229,4 +235,11 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	 *            the table preference store
 	 */
 	public void setWorkspacePreferenceStore(final PreferenceStore store);
+
+	/**
+	 * @return the selection in table.
+	 * 
+	 * @since 3.0
+	 */
+	public TableStructuredSelection getSelectionInTable();
 }

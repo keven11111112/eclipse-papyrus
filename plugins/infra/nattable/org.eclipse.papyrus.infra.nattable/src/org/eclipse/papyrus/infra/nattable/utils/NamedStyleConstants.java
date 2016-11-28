@@ -30,26 +30,26 @@ public class NamedStyleConstants {
 	 * The following constants are used during the initialization and retrieval of the Axis and Header dimensions in the tables
 	 */
 
-	public static final String ROW_INDEX_WIDTH = "rowIndexWidth"; //$NON-NLS-1$1
+	public static final String ROW_INDEX_WIDTH = "rowIndexWidth"; //$NON-NLS-1$
 
 	public static final String ROW_LABEL_WIDTH = "rowLabelWidth"; //$NON-NLS-1$
-	
+
 	/**
 	 * The prefix of the name style to calculate the width of each row header.
 	 * This prefix is followed by the position of the column to edit width.
 	 */
 	public static final String ROW_LABEL_POSITION_PREFIX_WIDTH = "rowPosition"; //$NON-NLS-1$
-	
+
 	/**
 	 * The suffix of the name style to calculate the width of each row header
 	 */
 	public static final String ROW_LABEL_POSITION_SUFFIX_WIDTH = "LabelWidth"; //$NON-NLS-1$
-	
+
 	/**
 	 * The named style id for the slider composite width.
 	 */
 	public static final String ROW_HEADER_WIDTH = "rowHeaderWidth"; //$NON-NLS-1$
-	
+
 
 	public static final String COLUMN_INDEX_HEIGHT = "columnIndexHeight"; //$NON-NLS-1$
 
@@ -64,7 +64,7 @@ public class NamedStyleConstants {
 	 * The following constants are used during the initialization and retrieval of the merge options in the tables
 	 */
 
-	//	public static final String TABLEMERGE = "tableMerge"; //$NON-NLS-1$
+	// public static final String TABLEMERGE = "tableMerge"; //$NON-NLS-1$
 
 	public static final String MERGE_ROWS = "mergeRows"; //$NON-NLS-1$
 
@@ -79,7 +79,7 @@ public class NamedStyleConstants {
 	public static final String MERGE_IN_SELECTED_COLUMNS = "mergeInSelectedColumns"; //$NON-NLS-1$
 
 	// the merge of all the elements in the table is not yet supported
-	//	public static final String MERGE_TABLE = "mergeTable"; //$NON-NLS-1$
+	// public static final String MERGE_TABLE = "mergeTable"; //$NON-NLS-1$
 
 
 	public static final String HIDDEN_CATEGORY_FOR_DEPTH = "hiddenCategoriesByDepth"; //$NON-NLS-1$
@@ -98,7 +98,7 @@ public class NamedStyleConstants {
 
 	/**
 	 * key used to save a filter configuration id state when the system use a filter choosen by the user
-	 * It is only used as name for a {@link StringValueStyle}, we use a specific key in order to not destroyed it when we unapply filter on a column where filter has been defined by the user
+	 * It is only used as name for a {@link StringValueStyle}, we use a specific key in order to not destroyed it when we unapply filter on a column where filter has been definied by the user
 	 * 
 	 * 
 	 */
@@ -107,8 +107,8 @@ public class NamedStyleConstants {
 	/**
 	 * This is for boolean value style {@link BooleanValueStyle}. This is used to expand all the rows in a tree table during the opening of the table.
 	 */
-	public static final String EXPAND_ALL =  "expandAll"; //$NON-NLS-1$
-	
+	public static final String EXPAND_ALL = "expandAll"; //$NON-NLS-1$
+
 	/**
 	 * This allows to manage the fill columns size to take all the container space.
 	 * 
@@ -116,7 +116,7 @@ public class NamedStyleConstants {
 	 */
 	@Deprecated
 	public static final String FILL_COLUMNS_SIZE = "fillColumnsSize"; //$NON-NLS-1$
-	
+
 	/**
 	 * This allows to determinate if the columns width must be managed as percentage.
 	 * This named style is not compatible with 'fillColumnsSize'.
@@ -124,7 +124,7 @@ public class NamedStyleConstants {
 	 * @since 3.0
 	 */
 	public static final String COLUMNS_WIDTH_AS_PERCENTAGE = "columnsWidthAsPercentage"; //$NON-NLS-1$
-	
+
 	/**
 	 * This allows to determinate if the columns width must be saved or not.
 	 * This named style is not compatible with 'fillColumnsSize'.
@@ -132,4 +132,11 @@ public class NamedStyleConstants {
 	 * @since 3.0
 	 */
 	public static final String SAVE_COLUMNS_WIDTH = "saveColumnsWidth"; //$NON-NLS-1$
+
+	/**
+	 * Enable the drag behavior regions from the natTable to an other widget/editor (diagram, table, ...) which can accept it.
+	 * 
+	 * @since 3.0
+	 */
+	public static final String DRAG_REGIONS = "dragRegions"; //$NON-NLS-1$
 }
