@@ -35,6 +35,8 @@
 		<module>org.eclipse.papyrus.views.properties.doc</module>
 		<module>org.eclipse.papyrus.views.references.doc</module>
 		<module>org.eclipse.papyrus.views.documentation.doc</module>
+		
+		<module>org.eclipse.papyrus.doctemplate.doc</module>
 	</modules>
 	
 </project>
