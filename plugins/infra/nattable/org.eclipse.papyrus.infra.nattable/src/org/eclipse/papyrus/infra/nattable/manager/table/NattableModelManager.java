@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618, 504077
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *
@@ -97,11 +97,13 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
@@ -110,6 +112,7 @@ import org.eclipse.papyrus.infra.nattable.sort.PapyrusCompositeGlazedListSortMod
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CellMapKey;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
@@ -771,7 +774,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public void resizeAxis() {
-		initTableAxis();
+		// If the columns width is managed by percentage, the table axis don't have to be recalculated
+		if (!isColumnWidthAsPercentage()) {
+			initTableAxis();
+		}
 		refreshNatTable();
 	}
 

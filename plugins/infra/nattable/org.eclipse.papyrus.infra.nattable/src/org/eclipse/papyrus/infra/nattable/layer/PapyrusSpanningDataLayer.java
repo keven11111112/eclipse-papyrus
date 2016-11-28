@@ -9,19 +9,17 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Camille Letavernier - CEA LIST - Bug 464168 - Use the Context's EditingDomain
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.layer;
 
-import java.util.List;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.data.ISpanningDataProvider;
 import org.eclipse.nebula.widgets.nattable.layer.SpanningDataLayer;
-import org.eclipse.nebula.widgets.nattable.util.ArrayUtil;
+import org.eclipse.nebula.widgets.nattable.resize.event.ColumnResizeEvent;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
@@ -97,5 +95,22 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 			}
 		};
 		this.contextDomain.getCommandStack().execute(recordUpdate);
+	}
+
+	/**
+	 * This allows to set the column width with a percentage.
+	 *
+	 * @param columnPosition
+	 *            The column position to modify.
+	 * @param width
+	 *            The width as percentage.
+	 * @param fireEvent
+	 *            Boolean to determinate if layer event must be fire.
+	 */
+	public void setColumnWidthPercentageByPosition(int columnPosition, int width, boolean fireEvent) {
+		this.columnWidthConfig.setPercentage(columnPosition, width);
+		if (fireEvent){
+			fireLayerEvent(new ColumnResizeEvent(this, columnPosition));
+		}
 	}
 }
