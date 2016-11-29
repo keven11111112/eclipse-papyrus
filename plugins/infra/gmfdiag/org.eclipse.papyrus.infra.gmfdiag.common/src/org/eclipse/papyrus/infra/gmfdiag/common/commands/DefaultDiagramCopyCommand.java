@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 508404
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
@@ -26,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.core.internal.clipboard.CopierFactory;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PastePreferencesPage;
 
@@ -54,7 +56,7 @@ public class DefaultDiagramCopyCommand extends AbstractOverrideableCommand imple
 		super(domain);
 		objectsToPutInClipboard = new ArrayList<Object>();
 		Boolean keepReferences = Activator.getInstance().getPreferenceStore().getBoolean(PastePreferencesPage.KEEP_EXTERNAL_REFERENCES);
-		EcoreUtil.Copier copier = new EcoreUtil.Copier(Boolean.TRUE, keepReferences);
+		EcoreUtil.Copier copier = new CopierFactory(domain.getResourceSet(), keepReferences).get();
 		List<EObject> objectToCopy = new ArrayList<EObject>();
 
 		if (pObjectsToPutInClipboard != null) {
@@ -78,7 +80,7 @@ public class DefaultDiagramCopyCommand extends AbstractOverrideableCommand imple
 		if (pObjectsToPutInClipboard != null && !pObjectsToPutInClipboard.isEmpty()) {
 			IGraphicalEditPart next = pObjectsToPutInClipboard.iterator().next();
 			Diagram diagram = next.getNotationView().getDiagram();
-			if(diagram != null){
+			if (diagram != null) {
 				papyrusClipboard.setContainerType(diagram.getType());
 			}
 		}

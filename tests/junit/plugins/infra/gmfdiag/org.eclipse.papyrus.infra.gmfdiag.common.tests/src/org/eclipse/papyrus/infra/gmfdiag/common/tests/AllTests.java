@@ -8,11 +8,15 @@
  *
  * Contributors:
  *  Christian W. Damus (CEA) - initial API and implementation
- *  Christian W. Damus - bugs 465416, 474467, 507618
+ *  Christian W. Damus - bugs 465416, 474467, 507618, 508404
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.CreateEditBasedElementCommandTest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.DefaultCopyCommandTest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.DefaultDiagramCopyCommandTest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.DefaultDiagramPasteCommandTest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.DefaultPasteCommandTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.tests.NotationLabelProviderTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.tests.SyncTests;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafeTest;
@@ -39,6 +43,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		SyncTests.class,
 		NotationLabelProviderTest.class,
 		CreateEditBasedElementCommandTest.class,
+		DefaultCopyCommandTest.class,
+		DefaultPasteCommandTest.class,
+		DefaultDiagramCopyCommandTest.class,
+		DefaultDiagramPasteCommandTest.class,
 })
 public class AllTests {
 

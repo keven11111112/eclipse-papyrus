@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 508404
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
@@ -46,6 +47,7 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.core.internal.clipboard.CopierFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.swt.widgets.Control;
@@ -92,7 +94,7 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 		this.container = (View) targetEditPart.getModel();
 		this.targetEditPart = targetEditPart;
 
-		EcoreUtil.Copier copier = new EcoreUtil.Copier();
+		EcoreUtil.Copier copier = new CopierFactory(editingDomain.getResourceSet()).get();
 
 		List<EObject> rootElementInClipboard = EcoreUtil.filterDescendants(filterEObject(papyrusClipboard));
 		copier.copyAll(rootElementInClipboard);
