@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.dnd.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -27,8 +28,10 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts.ResizablePortEditPart;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -58,19 +61,24 @@ public class PortToTypesPortDropStrategy extends TransactionalDropStrategy {
 		if (targetEditPart instanceof ResizablePortEditPart) {
 			ResizablePortEditPart graphicalEditPart = (ResizablePortEditPart) targetEditPart;
 			List<EObject> sourceElements = getSourceEObjects(request);
-			if (sourceElements.size() == 0) {
+			if (sourceElements.isEmpty()) {
 				return null;
 			}
-			final List<EObject> valuesToAdd = new ArrayList<EObject>(sourceElements.size());
+			final List<EObject> valuesToAdd = new ArrayList<>(sourceElements.size());
 			Element target = (Element) graphicalEditPart.resolveSemanticElement();
 			if (target instanceof Port && ((Port) target).getType() != null) {
 				Port targetPort = (Port) target;
 				Type targetType = targetPort.getType();
-				for (EObject sourceElement : sourceElements) {
-					if ((sourceElement instanceof Port) && sourceElement.eContainer().equals(targetType)) {
-						addCommandDrop(graphicalEditPart, cc, valuesToAdd, sourceElement);
+				if (targetType instanceof Classifier){
+					Classifier targetClassifier = (Classifier) targetType;
+					EList<Property> targetAllAttributes = targetClassifier.getAllAttributes();
+					for (EObject sourceElement : sourceElements) {
+						if ((sourceElement instanceof Port) && targetAllAttributes.contains(sourceElement)) {
+							addCommandDrop(graphicalEditPart, cc, valuesToAdd, sourceElement);
+						}
 					}
 				}
+
 			}
 		}
 		return cc.canExecute() ? new ICommandProxy(cc.reduce()) : null;

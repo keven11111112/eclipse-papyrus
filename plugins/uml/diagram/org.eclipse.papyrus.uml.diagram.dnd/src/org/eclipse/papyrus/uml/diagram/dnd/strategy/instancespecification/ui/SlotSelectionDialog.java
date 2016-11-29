@@ -112,10 +112,12 @@ public class SlotSelectionDialog extends SelectionDialog {
 
 				checkbox.addSelectionListener(new SelectionListener() {
 
+					@Override
 					public void widgetSelected(SelectionEvent e) {
 						properties.put(property, checkbox.getSelection());
 					}
 
+					@Override
 					public void widgetDefaultSelected(SelectionEvent e) {
 						// Nothing
 					}
@@ -147,7 +149,7 @@ public class SlotSelectionDialog extends SelectionDialog {
 
 	@Override
 	protected void okPressed() {
-		List<Property> result = new LinkedList<Property>();
+		List<Property> result = new LinkedList<>();
 		for (Map.Entry<Property, Boolean> entry : properties.entrySet()) {
 			if (entry.getValue()) {
 				result.add(entry.getKey());

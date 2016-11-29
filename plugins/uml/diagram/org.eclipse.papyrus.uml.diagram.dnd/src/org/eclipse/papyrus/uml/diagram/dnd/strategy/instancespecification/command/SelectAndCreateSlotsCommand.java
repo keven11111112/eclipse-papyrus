@@ -139,7 +139,7 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 			if (newSlot != null) {
 				updateSlotProperties(newSlot, property);
 			} else {
-				return CommandResult.newErrorCommandResult("Could not create the slot for property " + property.getName());
+				return CommandResult.newErrorCommandResult("Could not create the slot for property " + property.getName());//$NON-NLS-1$
 			}
 
 			// Initialize properties: feature & name & default value
@@ -166,7 +166,7 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 	}
 
 	protected Property[] getAllProperties() {
-		Set<Property> allProperties = new HashSet<Property>();
+		Set<Property> allProperties = new HashSet<>();
 		for (Classifier classifier : classifiers) {
 			allProperties.addAll(classifier.getAllAttributes());
 		}

@@ -33,16 +33,19 @@ public class ClassifierPropertiesContentProvider implements ITreeContentProvider
 
 	private Collection<Classifier> input;
 
+	@Override
 	public void dispose() {
 		viewer = null;
 		input = null;
 	}
 
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		this.viewer = viewer;
 		this.input = (Collection<Classifier>) newInput;
 	}
 
+	@Override
 	public Object[] getElements(Object inputElement) {
 		Collection<Classifier> result = new LinkedHashSet<Classifier>();
 
@@ -53,6 +56,7 @@ public class ClassifierPropertiesContentProvider implements ITreeContentProvider
 		return result.toArray();
 	}
 
+	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof Classifier) {
 			Classifier element = (Classifier) parentElement;
@@ -117,13 +121,15 @@ public class ClassifierPropertiesContentProvider implements ITreeContentProvider
 		result.add(classifier);
 	}
 
+	@Override
 	public Object getParent(Object element) {
 		if (element instanceof Property) {
 			return ((Property) element).getOwner();
 		}
 		return null;
 	}
-
+	
+	@Override
 	public boolean hasChildren(Object element) {
 		if (element instanceof Classifier) {
 			return !((Classifier) element).getAllAttributes().isEmpty();
