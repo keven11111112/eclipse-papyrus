@@ -49,7 +49,7 @@ public class RealmRunner extends ClassificationRunner {
 		super(klass);
 
 		realmField = Stream.iterate(klass, Class::getSuperclass)
-				.flatMap(c -> Stream.of(c.getDeclaredFields()))
+				.flatMap(c -> Stream.<Field> of(c.getDeclaredFields()))
 				.filter(f -> Modifier.isStatic(f.getModifiers()))
 				.filter(f -> f.getType() == Realm.class)
 				.findAny().get();
