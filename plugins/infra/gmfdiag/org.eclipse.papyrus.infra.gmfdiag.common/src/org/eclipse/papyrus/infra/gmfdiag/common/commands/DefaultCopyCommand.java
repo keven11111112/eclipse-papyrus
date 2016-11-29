@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 502461
+ *  Christian W. Damus - bugs 502461, 508404
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
@@ -50,7 +50,7 @@ public class DefaultCopyCommand extends AbstractOverrideableCommand implements N
 		super(domain);
 		objectsToPutInClipboard = new ArrayList<Object>();
 		boolean keepReferences = Activator.getInstance().getPreferenceStore().getBoolean(PastePreferencesPage.KEEP_EXTERNAL_REFERENCES);
-		EcoreUtil.Copier copier = ICopierFactory.getInstance(keepReferences).get();
+		EcoreUtil.Copier copier = ICopierFactory.getInstance(domain.getResourceSet(), keepReferences).get();
 		copier.copyAll(pObjectsToPutInClipboard);
 		copier.copyReferences();
 		papyrusClipboard.addAllInternalCopyInClipboard(copier);

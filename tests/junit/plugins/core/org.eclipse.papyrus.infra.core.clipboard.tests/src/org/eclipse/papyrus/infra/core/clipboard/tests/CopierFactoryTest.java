@@ -62,7 +62,7 @@ public class CopierFactoryTest {
 	public void defaultCopierFactory() {
 		EClass original = createTestModel();
 
-		EcoreUtil.Copier copier = ICopierFactory.getInstance().get();
+		EcoreUtil.Copier copier = ICopierFactory.getInstance(null).get();
 		EClass copy = copy(original, copier);
 
 		// Check that we have the copy we expect
@@ -87,7 +87,7 @@ public class CopierFactoryTest {
 	public void oneOffCopierFactory() {
 		EClass original = createTestModel();
 
-		EcoreUtil.Copier copier = ICopierFactory.getInstance(false).get();
+		EcoreUtil.Copier copier = ICopierFactory.getInstance(null, false).get();
 		EClass copy = copy(original, copier);
 
 		// Check that we have the copy we expect

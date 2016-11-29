@@ -13,39 +13,46 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.common.commands.tests;
 
-import static org.hamcrest.CoreMatchers.is;
+import static java.util.Collections.singletonList;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultCopyCommand;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.junit.utils.rules.ServiceRegistryModelSetFixture;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * Tests for the {@link CreateEditBasedElementCommand} class.
+ * Tests for the {@link DefaultCopyCommand} class.
  */
 @PluginResource("models/ExpansionModelTest.di")
-public class CreateEditBasedElementCommandTest {
+public class DefaultCopyCommandTest {
 
 	private final ModelSetFixture model = new ServiceRegistryModelSetFixture();
 
 	@Rule
 	public final CustomUMLFactoryFixture fixture = new CustomUMLFactoryFixture(model);
 
+	@Rule
+	public final PapyrusClipboardFixture clipboard = new PapyrusClipboardFixture();
+
 	@Test
-	public void createElement() {
-		CreateElementRequest request = new CreateElementRequest(model.getModel(), UMLElementTypes.CLASS);
-		CreateEditBasedElementCommand command = new CreateEditBasedElementCommand(request);
-		assertThat(command.canExecute(), is(true));
+	public void copyElement() {
+		org.eclipse.uml2.uml.Class myClass = (org.eclipse.uml2.uml.Class) model.getModel().getOwnedType("MyClass");
 
-		model.execute(command);
+		fixture.reset();
 
-		// A new class is always given a default name by edit advice
-		fixture.assertInvocation("setName");
+		new DefaultCopyCommand(model.getEditingDomain(), clipboard, singletonList(myClass)).dispose();
+
+		// The copied class has its name set via a structural feature setting
+		fixture.assertInvocation("eSetting");
+
+		assertThat(clipboard.getCopyFromSource(myClass), instanceOf(org.eclipse.uml2.uml.Class.class));
+		org.eclipse.uml2.uml.Class copy = (org.eclipse.uml2.uml.Class) clipboard.getCopyFromSource(myClass);
+		assertThat(copy.getName(), containsString(myClass.getName()));
 	}
 
 }

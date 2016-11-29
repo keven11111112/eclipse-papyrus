@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 502461
+ *  Christian W. Damus - bugs 502461, 508404
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
@@ -71,7 +71,7 @@ public class DefaultPasteCommand extends AbstractCommand {
 			List<EObject> rootElementToPaste = EcoreUtil.filterDescendants(eobjectsTopaste);
 
 			// Copy all eObjects (inspired from PasteFromClipboardCommand)
-			EcoreUtil.Copier copier = ICopierFactory.getInstance().get();
+			EcoreUtil.Copier copier = ICopierFactory.getInstance(domain.getResourceSet()).get();
 			copier.copyAll(rootElementToPaste);
 			copier.copyReferences();
 			Map<EObject, EObject> duplicatedObjects = new HashMap<EObject, EObject>();

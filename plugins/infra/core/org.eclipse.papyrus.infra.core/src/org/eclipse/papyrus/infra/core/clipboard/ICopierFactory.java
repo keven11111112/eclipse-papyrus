@@ -16,8 +16,10 @@ package org.eclipse.papyrus.infra.core.clipboard;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.papyrus.infra.core.internal.clipboard.CopierFactory;
@@ -38,23 +40,29 @@ public interface ICopierFactory extends Supplier<EcoreUtil.Copier> {
 	 * Obtains a copier factory suitable for most copy/paste operations.
 	 * The result is configured from the extension point.
 	 * 
+	 * @param resourceSet
+	 *            a resource set context in which to look for registered
+	 *            {@link EFactory} instances for creation of new objects
 	 * @return a copier factory
 	 */
-	static ICopierFactory getInstance() {
-		return CopierFactory.DEFAULT;
+	static ICopierFactory getInstance(ResourceSet resourceSet) {
+		return getInstance(resourceSet, true);
 	}
 
 	/**
 	 * Obtains a copier factory with the option of not using original references.
 	 * The result is configured from the extension point.
 	 * 
+	 * @param resourceSet
+	 *            a resource set context in which to look for registered
+	 *            {@link EFactory} instances for creation of new objects
 	 * @param useOriginalReferences
 	 *            whether non-copied references should be used while copying
 	 * 
 	 * @return a copier factory
 	 */
-	static ICopierFactory getInstance(boolean useOriginalReferences) {
-		return new CopierFactory(useOriginalReferences);
+	static ICopierFactory getInstance(ResourceSet resourceSet, boolean useOriginalReferences) {
+		return new CopierFactory(resourceSet, useOriginalReferences);
 	}
 
 	//

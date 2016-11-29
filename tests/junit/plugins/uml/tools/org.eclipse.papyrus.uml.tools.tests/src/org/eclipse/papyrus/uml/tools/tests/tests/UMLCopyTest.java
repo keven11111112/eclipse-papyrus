@@ -60,7 +60,7 @@ public class UMLCopyTest {
 
 	@Test
 	public void copyingInterfaceRealizationDoesNotCorruptTheModel() {
-		EcoreUtil.Copier copier = ICopierFactory.getInstance().get();
+		EcoreUtil.Copier copier = ICopierFactory.getInstance(rset).get();
 
 		copier.copyAll(Arrays.asList(foo, bar));
 		copier.copyReferences();
