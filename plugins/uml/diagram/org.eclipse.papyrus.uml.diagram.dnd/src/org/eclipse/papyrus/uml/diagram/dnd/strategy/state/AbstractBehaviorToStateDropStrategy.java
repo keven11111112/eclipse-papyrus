@@ -37,25 +37,30 @@ import org.eclipse.uml2.uml.State;
 // and link the FunctionBehavior#specification to the operation)
 public abstract class AbstractBehaviorToStateDropStrategy extends TransactionalDropStrategy {
 
+	@Override
 	public String getLabel() {
 		String featureName = getFeatureToEdit().getName();
 		return "Behavior -> State : sets the \"" + featureName + "\" property";
 	}
 
+	@Override
 	public String getDescription() {
 		String featureName = getFeatureToEdit().getName();
 		return "When a Behavior is dropped on a State, sets the behavior as the state's \"" + featureName + "\" property";
 	}
 
+	@Override
 	public Image getImage() {
 		return null;
 	}
 
+	@Override
 	public String getID() {
 		String featureName = getFeatureToEdit().getName();
 		return "org.eclipse.papyrus.behaviorToState." + featureName;
 	}
 
+	@Override
 	public int getPriority() {
 		return 50;
 	}

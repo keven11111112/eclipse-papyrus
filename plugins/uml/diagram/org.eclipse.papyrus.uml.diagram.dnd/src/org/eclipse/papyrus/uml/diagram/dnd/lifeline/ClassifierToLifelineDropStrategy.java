@@ -38,19 +38,23 @@ import org.eclipse.uml2.uml.Type;
  */
 public class ClassifierToLifelineDropStrategy extends TransactionalDropStrategy {
 
+	@Override
 	public String getLabel() {
 		return "Type a Lifeline";
 	}
 
+	@Override
 	public String getDescription() {
 		return "Drop a classifier on a Lifeline to type it. This will create a new Property in the interaction, typed by the dropped classifier. The Lifeline will represent this property."
 				+ "It is also possible to drop directly an already existing Property to the lifeline.";
 	}
 
+	@Override
 	public Image getImage() {
 		return null;
 	}
 
+	@Override
 	public String getID() {
 		return Activator.PLUGIN_ID + ".lifeline.represents";
 	}

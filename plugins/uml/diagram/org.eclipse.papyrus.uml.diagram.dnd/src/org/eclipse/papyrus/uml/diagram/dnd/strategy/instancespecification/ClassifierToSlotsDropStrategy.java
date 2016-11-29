@@ -51,22 +51,27 @@ public class ClassifierToSlotsDropStrategy extends TransactionalDropStrategy {
 
 	private static final EStructuralFeature feature = UMLPackage.eINSTANCE.getInstanceSpecification_Classifier();
 
+	@Override
 	public String getLabel() {
 		return "Type instance specification";
 	}
 
+	@Override
 	public String getID() {
-		return Activator.PLUGIN_ID + ".instanceSpecification";
+		return Activator.PLUGIN_ID + ".instanceSpecification"; //$NON-NLS-1$
 	}
 
+	@Override
 	public String getDescription() {
 		return "Sets the dropped classifiers as classifiers for the target InstanceSpecification. Slots corresponding to the classifiers' properties are also created.";
 	}
 
+	@Override
 	public Image getImage() {
 		return null;
 	}
 
+	@Override
 	public int getPriority() {
 		return 0;
 	}
@@ -86,7 +91,7 @@ public class ClassifierToSlotsDropStrategy extends TransactionalDropStrategy {
 		EObject semanticElement = getTargetSemanticElement(targetEditPart);
 
 		List<EObject> sourceElements = getSourceEObjects(request);
-		List<Classifier> valuesToAdd = new ArrayList<Classifier>(sourceElements.size());
+		List<Classifier> valuesToAdd = new ArrayList<>(sourceElements.size());
 		for (EObject sourceElement : sourceElements) {
 			if (!(sourceElement instanceof Classifier)) {
 				return null;
@@ -100,7 +105,7 @@ public class ClassifierToSlotsDropStrategy extends TransactionalDropStrategy {
 
 		List<Classifier> currentValues = (List<Classifier>) semanticElement.eGet(feature);
 
-		List<Classifier> values = new LinkedList<Classifier>();
+		List<Classifier> values = new LinkedList<>();
 		values.addAll(currentValues);
 		values.addAll(valuesToAdd);
 

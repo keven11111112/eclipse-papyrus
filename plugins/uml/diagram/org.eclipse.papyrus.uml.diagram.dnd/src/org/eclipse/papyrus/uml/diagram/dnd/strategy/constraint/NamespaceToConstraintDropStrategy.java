@@ -39,10 +39,12 @@ public class NamespaceToConstraintDropStrategy extends TransactionalDropStrategy
 
 	protected static final EStructuralFeature constraintContext_feature = UMLPackage.eINSTANCE.getConstraint_Context();
 
+	@Override
 	public String getLabel() {
 		return "Set constraint context";
 	}
 
+	@Override
 	public String getID() {
 		return Activator.PLUGIN_ID + ".constraintContext"; //$NON-NLS-1$
 	}
@@ -55,14 +57,17 @@ public class NamespaceToConstraintDropStrategy extends TransactionalDropStrategy
 		return "Sets the dropped namespace as context of the target constraint.";
 	}
 
+	@Override
 	public String getDescription() {
 		return getCategoryLabel();
 	}
 
+	@Override
 	public Image getImage() {
 		return null;
 	}
 
+	@Override
 	public int getPriority() {
 		return 0;
 	}

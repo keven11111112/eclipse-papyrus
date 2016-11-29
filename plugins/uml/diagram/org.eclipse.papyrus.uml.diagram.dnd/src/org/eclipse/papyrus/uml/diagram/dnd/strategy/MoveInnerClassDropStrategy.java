@@ -64,6 +64,7 @@ public class MoveInnerClassDropStrategy extends MoveDropStrategy {
 		return "Reparent";
 	}
 
+	@Override
 	public String getID() {
 		return Activator.PLUGIN_ID + ".move.innerClass";
 	}
@@ -87,6 +88,7 @@ public class MoveInnerClassDropStrategy extends MoveDropStrategy {
 		return null;
 	}
 
+	@Override
 	public int getPriority() {
 		return 101;
 	}
@@ -219,7 +221,6 @@ public class MoveInnerClassDropStrategy extends MoveDropStrategy {
 	}
 
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

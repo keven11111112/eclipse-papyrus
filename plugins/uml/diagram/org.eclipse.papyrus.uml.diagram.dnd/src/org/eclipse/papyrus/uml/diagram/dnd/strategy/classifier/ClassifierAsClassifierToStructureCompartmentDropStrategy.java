@@ -39,22 +39,27 @@ import org.eclipse.uml2.uml.Type;
  */
 public class ClassifierAsClassifierToStructureCompartmentDropStrategy extends TransactionalDropStrategy {
 
+	@Override
 	public String getLabel() {
 		return "Classifier into structure compartment"; //$NON-NLS-1$
 	}
 
+	@Override
 	public String getID() {
 		return Activator.PLUGIN_ID + ".ClassifierToStructureCompDrop"; //$NON-NLS-1$
 	}
 
+	@Override
 	public String getDescription() {
 		return "Drops a classifier into the structure compartment of a class."; //$NON-NLS-1$
 	}
 
+	@Override
 	public Image getImage() {
 		return null;
 	}
 
+	@Override
 	public int getPriority() {
 		return 0;
 	}
