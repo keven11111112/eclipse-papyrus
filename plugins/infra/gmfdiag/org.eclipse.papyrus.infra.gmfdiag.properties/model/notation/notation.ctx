@@ -181,7 +181,7 @@
       <widget href="ui/SingleRulersAndGrid.xwt#/"/>
     </sections>
   </tabs>
-  <tabs xmi:id="_Lf8dHpLDEeWbp4A9_-WIrQ" label="General" id="general" category="org.eclipse.papyrus" priority="75">
+  <tabs xmi:id="_Lf8dHpLDEeWbp4A9_-WIrQ" label="General" id="general" category="org.eclipse.papyrus" priority="60">
     <sections xmi:id="_Lf8dH5LDEeWbp4A9_-WIrQ" name="Single Diagram" sectionFile="ui/SingleDiagram.xwt">
       <widget href="ui/SingleDiagram.xwt#/"/>
     </sections>
