@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Dev" sequenceNumber="1480523579">
+<target name="Papyrus Dev" sequenceNumber="1480533868">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -126,10 +126,10 @@
       <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.6.0.v20161019-0656"/>
       <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.6.0.v20161019-0656"/>
       <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.6.0.v20161111-1110"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.6.0.v20161123-0955"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.6.0.v20161128-0924"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.6.0.v20161128-0928"/>
       <unit id="org.eclipse.oomph.preferences.feature.group" version="1.6.0.v20161019-0656"/>
-      <repository id="oomph" location="http://download.eclipse.org/oomph/drops/milestone/S20161123-105636-1.6.0-M5"/>
+      <repository id="oomph" location="http://download.eclipse.org/oomph/drops/milestone/S20161130-023100-1.6.0-M6"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
