@@ -19,6 +19,7 @@
 		<module>org.eclipse.papyrus.infra.internationalization.ui</module>
 		<module>org.eclipse.papyrus.infra.internationalization.controlmode</module>
 		<module>org.eclipse.papyrus.infra.internationalization.common</module>
+		<module>org.eclipse.papyrus.infra.internationalization.readonly</module>
 		<module>org.eclipse.papyrus.infra.editor.welcome.internationalization</module>
 	</modules>
 

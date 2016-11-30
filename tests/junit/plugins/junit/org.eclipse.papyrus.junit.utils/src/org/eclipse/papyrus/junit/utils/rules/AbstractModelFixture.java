@@ -60,7 +60,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
-import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -446,7 +445,6 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 			result.put(basePath.addFileExtension(DiModel.DI_FILE_EXTENSION), true);
 			result.put(basePath.addFileExtension(UmlModel.UML_FILE_EXTENSION), true);
 			result.put(basePath.addFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
-			result.put(basePath.addFileExtension(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION), true);
 		}
 
 		return result;
@@ -492,7 +490,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 		if (result == null) {
 			String extension = modelURI.fileExtension();
-			if (DiModel.DI_FILE_EXTENSION.equals(extension) || UmlModel.UML_FILE_EXTENSION.equals(extension) || NotationModel.NOTATION_FILE_EXTENSION.equals(extension) || PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION.equals(extension)) {
+			if (DiModel.DI_FILE_EXTENSION.equals(extension) || UmlModel.UML_FILE_EXTENSION.equals(extension) || NotationModel.NOTATION_FILE_EXTENSION.equals(extension)) {
 				// Default load behaviour
 				result = resourceSet.createResource(modelURI);
 			} else {
