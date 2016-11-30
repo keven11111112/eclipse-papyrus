@@ -10,7 +10,8 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Sebastien Gabel (Esterel Technologies) - Fix access to the diagram edit part when called outside of the diagram
- *  Vincent Lorenzo (CEA LIST) - Bug 520807
+ *  Vincent Lorenzo (CEA LIST) - Bug 520807, 506074
+ *  Benoit Maggi (CEA LIST) - Bug 506074
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.menu.actions;
 
@@ -22,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -64,6 +66,7 @@ import org.eclipse.papyrus.uml.diagram.menu.messages.Messages;
  * </ul>
  *
  */
+@SuppressWarnings("restriction")
 public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 
 	/**
@@ -162,8 +165,9 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 	 * Returns the selected connections for the actions
 	 *
 	 * @return
-	 *         the selected connections for the actions
+	 * 		the selected connections for the actions
 	 */
+	@SuppressWarnings("unchecked")
 	protected List<ConnectionEditPart> getConnections() {
 		List<ConnectionEditPart> connections = new ArrayList<ConnectionEditPart>();
 		for (IGraphicalEditPart current : getSelection()) {
@@ -266,7 +270,7 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 		 * Returns the command for this action
 		 *
 		 * @return
-		 *         the command for this action
+		 * 		the command for this action
 		 */
 		protected Command getActionCommand() {
 			CompoundCommand cmd = new CompoundCommand("Manage Conection Labels "); //$NON-NLS-1$
@@ -300,14 +304,16 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 						// do nothing
 					} else {
 						ShowHideLabelsRequest request = new ShowHideLabelsRequest(newStatus, view);
-						// EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, getConnections().get(0));
-						EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, getSelection().get(0));
-
-						// EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, diagramEP);
-						// Command command = ep.getParent().getCommand(request);
-						Command command = ep.getParent().getCommand(request);
-						if (command != null) {
-							cmd.add(command);
+						EObject parentView = view.eContainer();
+						EditPart parentEditPart = null;
+						if (parentView instanceof View && ((View)parentView).getElement()==view.getElement()) {
+								parentEditPart = DiagramEditPartsUtil.getEditPartFromView((View) parentView, getSelection().get(0));
+						}
+						if (null != parentEditPart) {
+							Command command = parentEditPart.getCommand(request);
+							if (command != null) {
+								cmd.add(command);
+							}
 						}
 					}
 				}
@@ -321,7 +327,7 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 		 * Returns the initial selection
 		 *
 		 * @return
-		 *         the initial selection : the view that are currently displayed
+		 * 		the initial selection : the view that are currently displayed
 		 */
 		public List<View> getInitialSelection() {
 			List<View> selection = new ArrayList<View>();

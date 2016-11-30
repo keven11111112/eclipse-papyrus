@@ -680,7 +680,7 @@
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.show.all"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/showconnector.gif"
             id="org.eclipse.papyrus.menu.showhide.toolbar.all.connector.label"
-            label="&amp;All Connector Labels"
+            label="Show All Labels"
             style="push"
             tooltip="Display all labels on the selected connectors">
       </command>
@@ -688,7 +688,7 @@
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.hide.all"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/hideconnector.gif"
             id="org.eclipse.papyrus.menu.showhide.toolbar.no.connector.label"
-            label="N&amp;o Connector Labels"
+            label="Hide All Labels"
             style="push"
             tooltip="Hide all labels on the selected Connections">
       </command>
@@ -696,7 +696,7 @@
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.manager"
             icon="icons/manage_connector_label.gif"
             id="org.eclipse.papyrus.menu.showhide.toolbar.manage.connector.label"
-            label="&amp;Manage Connector Labels"
+            label="Show/Hide Labels"
             style="push"
             tooltip="Manage the labels to display for the selected connections">
       </command>
@@ -1405,7 +1405,7 @@
                commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.show.all"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/showconnector.gif"
                id="org.eclipse.papyrus.uml.diagram.ui.menu.filtersMenu.all.connector.label"
-               label="&amp;All Connector Labels"
+               label="Show All Labels"
                style="push"
                tooltip="Display all labels on the selected connectors">
          </command>
@@ -1413,7 +1413,7 @@
                commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.hide.all"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/hideconnector.gif"
                id="org.eclipse.papyrus.uml.diagram.ui.menu.filtersMenu.no.connector.label"
-               label="N&amp;o Connector Labels"
+               label="Hide All Labels"
                style="push"
                tooltip="Hide all labels on the selected Connections">
          </command>
@@ -1421,7 +1421,7 @@
                commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.manager"
                icon="icons/manage_connector_label.gif"
                id="org.eclipse.papyrus.uml.diagram.ui.menu.filtersMenu.manage.connector.label"
-               label="&amp;Manage Connector Labels"
+               label="Show/Hide Labels"
                style="push"
                tooltip="Manage the labels to display for the selected connections">
          </command>
@@ -2162,7 +2162,7 @@
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.show.all"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/showconnector.gif"
             id="org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters.all.connector.label"
-            label="&amp;All Connector Labels"
+            label="Show All Labels"
             style="push"
             tooltip="Display all labels on the selected connectors">
       </command>
@@ -2170,7 +2170,7 @@
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.hide.all"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/hideconnector.gif"
             id="org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters.no.connector.label"
-            label="N&amp;o Connector Labels"
+            label="Hide All Labels"
             style="push"
             tooltip="Hide all labels on the selected Connections">
       </command>
@@ -2178,7 +2178,7 @@
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.link.label.manager"
             icon="icons/manage_connector_label.gif"
             id="org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters.manage.connector.label"
-            label="&amp;Manage Connector Labels"
+            label="Show/Hide Labels"
             style="push"
             tooltip="Manage the labels to display for the selected connections">
       </command>
