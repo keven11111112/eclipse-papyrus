@@ -46,7 +46,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.2RC2-201611161100/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.2RC3-201611241400/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -143,4 +143,4 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.21.0/v20160929-2030"
+location mylyn "http://download.eclipse.org/mylyn/drops/3.21.1/v20161129-2023"

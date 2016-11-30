@@ -82,7 +82,7 @@ location elk "http://download.eclipse.org/elk/updates/releases/0.1.0/" {
 
 //updateFrom("Graphiti",0)
 
-location graphiti "http://download.eclipse.org/graphiti/updates/maintenance/S-0.13.1Neon.1RC2-201608301309/" //
+location graphiti "http://download.eclipse.org/graphiti/updates/maintenance/S-0.13.2Neon.2RC3-201611290820/" //
 
 //updateFrom("Sphinx",0)
 

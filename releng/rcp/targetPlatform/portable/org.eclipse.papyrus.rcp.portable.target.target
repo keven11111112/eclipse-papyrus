@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1479890415">
+<target name="Papyrus RCP" sequenceNumber="1480494271">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160606-1156"/>
@@ -128,7 +128,7 @@
       <repository id="elk" location="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/maintenance/S-0.13.1Neon.1RC2-201608301309/"/>
+      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/maintenance/S-0.13.2Neon.2RC3-201611290820/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="http://download.eclipse.org/sphinx/updates/0.10.x"/>
@@ -144,8 +144,8 @@
       <unit id="org.eclipse.mylyn.bugzilla_feature.feature.group" version="3.21.0.v20160909-1813"/>
       <unit id="org.eclipse.mylyn.context_feature.feature.group" version="3.21.0.v20160815-2336"/>
       <unit id="org.eclipse.mylyn_feature.feature.group" version="3.21.0.v20160914-0252"/>
-      <unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="2.10.0.v20160912-2336"/>
-      <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.21.0/v20160929-2030"/>
+      <unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="2.10.1.v20161129-1925"/>
+      <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.21.1/v20161129-2023"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.2.1.201608311750"/>
@@ -169,11 +169,11 @@
       <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20161116-1100"/>
-      <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20161116-1421"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20161124-1400"/>
+      <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20161122-1740"/>
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160503-0947"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.2.v20161116-1421"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.2RC2-201611161100/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.2.v20161124-1529"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.2RC3-201611241400/"/>
     </location>
   </locations>
 </target>
