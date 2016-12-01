@@ -16,6 +16,8 @@
    <license url="%licenseURL">
       %license
    </license>
+   
+   <!--Nattable-->
 
    <plugin
          id="org.eclipse.papyrus.customization.nattableconfiguration"
@@ -23,12 +25,15 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+         
+   <!--Palette-->
 
    <plugin
          id="org.eclipse.papyrus.customization.palette"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.customization.paletteconfiguration"
@@ -36,6 +41,15 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+         
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.paletteconfiguration.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+  <!--Properties-->
 
    <plugin
          id="org.eclipse.papyrus.customization.properties"
@@ -55,6 +69,8 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+         
+  <!--Expansion-->
 
    <plugin
          id="org.eclipse.papyrus.infra.gmfdiag.expansion.edit"
@@ -64,6 +80,32 @@
 
    <plugin
          id="org.eclipse.papyrus.infra.gmfdiag.expansion.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+   <!--EMF properties-->      
+         
+   <plugin
+         id="org.eclipse.papyrus.infra.emf.types.ui.properties"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>      
+         
+         
+    <plugin
+         id="org.eclipse.gmf.runtime.emf.ui.properties"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+	<!--UML properties-->
+
+   <plugin
+         id="org.eclipse.papyrus.uml.types.ui.properties"
          download-size="0"
          install-size="0"
          version="0.0.0"
