@@ -59,19 +59,15 @@ public class TableLabelProvider extends ViewPrototypeLabelProvider implements IF
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider#getText(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototypeLabelProvider#getName(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
-	public String getText(Object element) {
-		String result = null;
-		
-		// return the internationalization of the table if this is the case
-		EObject eObject = EMFHelper.getEObject(element);
-		if (eObject instanceof Table) {
-			result = LabelInternationalization.getInstance().getTableLabel((Table) eObject);
+	protected String getName(final EObject object) {
+		String value = null;
+		if(object instanceof Table){
+			value = LabelInternationalization.getInstance().getTableLabel((Table)object);
 		}
-		
-		return null != result ? result : super.getText(element);
+		return null != value ? value : super.getName(object);
 	}
 
 	@Override
