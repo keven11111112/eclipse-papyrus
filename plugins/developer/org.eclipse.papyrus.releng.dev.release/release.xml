@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <release>
-	<feature name="org.eclipse.papyrus.dev.feature" version="2.0.1">
+	<feature name="org.eclipse.papyrus.dev.feature" version="2.0.2">
 		<feature name="org.eclipse.papyrus.junit.feature" version="2.0.1"/>
 		<plugin name="org.eclipse.papyrus.codegen" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.def" version="1.2.0"/>

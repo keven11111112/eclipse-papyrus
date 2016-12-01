@@ -224,7 +224,7 @@
 		<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="1.2.0"/>
 		<plugin name="org.eclipse.nebula.widgets.richtext" version="1.0.0"/>
 	</feature>
-	<feature name="org.eclipse.papyrus.sdk.feature" version="2.0.1">
+	<feature name="org.eclipse.papyrus.sdk.feature" version="2.0.2">
 		<feature name="org.eclipse.papyrus.customization.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.editor.feature" version="1.2.0"/>
 		<feature name="org.eclipse.papyrus.infra.core.feature" version="2.0.1"/>
@@ -329,7 +329,7 @@
 		<plugin name="org.eclipse.papyrus.uml.diagram.paletteconfiguration" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.profile" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.diagram.statemachine" version="2.0.0"/>
+		<plugin name="org.eclipse.papyrus.uml.diagram.statemachine" version="2.0.100"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.usecase" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.wizards" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.communication" version="2.0.0"/>
@@ -692,7 +692,7 @@
 	<plugin name="org.eclipse.papyrus.uml.diagram.profile" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.profile.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.sequence" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.diagram.statemachine" version="2.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.diagram.statemachine" version="2.0.100"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.stereotype.edition" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.symbols" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.symbols.properties" version="1.2.0"/>
