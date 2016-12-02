@@ -142,6 +142,7 @@ import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.PapyrusTableSizeCalculation;
+import org.eclipse.papyrus.infra.nattable.utils.PercentageCalculationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
@@ -1617,8 +1618,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		}
 
 		// For the axis without 'axisWidth' named style and with the columns width percentage management, set the correct percentage
+		int numberIndex = 0;
 		for (int index : notManagedIndexAxisWidth) {
-			tableBodyLayer.setColumnWidthPercentageByPosition(index, Math.round(remainingPercentage / notManagedIndexAxisWidth.size()));
+			tableBodyLayer.setColumnWidthPercentageByPosition(index, PercentageCalculationUtils.calculatePercentageToSet(numberIndex, remainingPercentage, notManagedIndexAxisWidth.size()));
+			numberIndex++;
 		}
 
 		// this method is used to resize by default. In the actual state, only the rows, representing the table's core elements, are missing from the notation file
