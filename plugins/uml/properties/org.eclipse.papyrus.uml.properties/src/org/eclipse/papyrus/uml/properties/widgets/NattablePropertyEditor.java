@@ -98,7 +98,7 @@ import org.eclipse.swt.widgets.Group;
 public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	/**
-	 * the save option to uses
+	 * The save options to use.
 	 */
 	private static final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 
@@ -107,13 +107,14 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
 		saveOptions.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, true);
 	}
+	
 	/**
-	 * the folders in which we wil save the table configured by the user.
+	 * The folders in which we will save the table configured by the user.
 	 */
 	private static final String TABLES_PREFERENCES_FOLDER_NAME = "tables";//$NON-NLS-1$
 
 	/**
-	 * The file in which the table will be saved
+	 * The file in which the table will be saved.
 	 * 
 	 * It doesn't work using .notation as extension file. In this case, the commands are not executed, because it is read-only, but why ?
 	 */
@@ -690,16 +691,18 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
+	 * Create URI for the table configuration.
 	 * 
-	 * @param sourceElement
-	 *            the source Element
-	 * @param tableConfiguration
-	 *            the tableConfiguration
-	 * @return
-	 * 		the URI to use to save and load the table
+	 * @param sourceElement The source Element
+	 * @param tableConfiguration The tableConfiguration
+	 * @return The URI to use to save and load the table
 	 * @since 2.0
 	 */
 	protected URI createTableURI(final EObject sourceElement, final TableConfiguration tableConfiguration) {
+		// If the source element is an EClass, the table configuration file name
+		// will be suffixed by the name of its eClass
+		setRegisterTableConfigurationByEClass(null != sourceElement && sourceElement.eClass() instanceof EClass);
+		
 		IPath preferencePath = Activator.getDefault().getStateLocation();
 		// we create a folder to save the tables used by the property view and we start to create the name of the model owning the table
 		preferencePath = preferencePath.append(TABLES_PREFERENCES_FOLDER_NAME).append(tableConfiguration.getType());
