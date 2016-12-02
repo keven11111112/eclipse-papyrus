@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1480533868">
+<target name="Papyrus Extra Tests" sequenceNumber="1480670514">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="1.0.100.20161116-2325"/>
-      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group" version="1.0.100.20161116-2325"/>
-      <unit id="org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group" version="1.0.100.20161116-2325"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="1.0.100.20161119-1610"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group" version="1.0.100.20161119-1610"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group" version="1.0.100.20161119-1610"/>
       <repository id="cbiAggregator" location="http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
