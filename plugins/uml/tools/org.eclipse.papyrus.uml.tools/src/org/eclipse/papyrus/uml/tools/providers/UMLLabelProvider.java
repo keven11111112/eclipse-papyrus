@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,16 +10,22 @@
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 425270
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Christian W. Damus - bug 508629
  *
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.INotifyChangedListener;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
@@ -66,7 +72,45 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	/** icon for metaclass */
 	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$
 
-	private IItemLabelProvider labelProvider = new DelegatingItemLabelProvider(DelegatingItemLabelProvider.SHOW_LABEL | DelegatingItemLabelProvider.SHOW_METACLASS);
+	private DelegatingItemLabelProvider labelProvider = new DelegatingItemLabelProvider(DelegatingItemLabelProvider.SHOW_LABEL | DelegatingItemLabelProvider.SHOW_METACLASS);
+
+	private final CopyOnWriteArrayList<ILabelProviderListener> listeners = new CopyOnWriteArrayList<>();
+	private final INotifyChangedListener forwardingListener = this::notifyChanged;
+
+	/**
+	 * Initializes me.
+	 */
+	public UMLLabelProvider() {
+		super();
+
+		labelProvider.addListener(forwardingListener);
+	}
+
+	@Override
+	public void dispose() {
+		try {
+			labelProvider.removeListener(forwardingListener);
+			labelProvider.dispose();
+		} finally {
+			super.dispose();
+		}
+	}
+
+	private void notifyChanged(Notification msg) {
+		if (msg instanceof ViewerNotification) {
+			ViewerNotification vnot = (ViewerNotification) msg;
+			if (vnot.isLabelUpdate() && !listeners.isEmpty()) {
+				LabelProviderChangedEvent event = new LabelProviderChangedEvent(this, vnot.getElement());
+				listeners.forEach(l -> {
+					try {
+						l.labelProviderChanged(event);
+					} catch (Exception e) {
+						Activator.log.error("Uncaught exception in label provider listener", e); //$NON-NLS-1$
+					}
+				});
+			}
+		}
+	}
 
 	/**
 	 *
@@ -74,7 +118,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 *
 	 * @param element
 	 * @return
-	 * 		<ul>
+	 *         <ul>
 	 *         <li>if stereotypes are applied on the elements : return the image corresponding to the first applied stereotype</li>
 	 *         <li>if the element is a {@link DecorationNode}, returns the image corresponding to a compartment</li>
 	 *         <li><code>null</code> if no image was found</li>
@@ -142,14 +186,17 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			return getText(eObject);
 		}
 		
-		if(eObject instanceof Property){
+		if (eObject instanceof Property) {
+			// Ensure that the item provider is attached to send label updates
+			labelProvider.getText(element);
+
 			return getText((Property) eObject);
 		}
 
 		return super.getText(element);
 	}
 
-	protected String getText(final Property property){
+	protected String getText(final Property property) {
 		final StringBuffer text = new StringBuffer();
 
 		final Type type = property.getType();
@@ -166,9 +213,9 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			final String typeName = UMLLabelInternationalization.getInstance().getLabel(type, shouldTranslate());
 
 			if (!UML2Util.isEmpty(typeName)) {
-				if(property instanceof ExtensionEnd){
+				if (property instanceof ExtensionEnd) {
 					appendString(text, "extension_" + typeName);
-				}else{
+				} else {
 					appendString(text, Character.toLowerCase(typeName.charAt(0))
 						+ typeName.substring(1));
 				}
@@ -186,7 +233,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		if (property.eIsSet(UMLPackage.Literals.MULTIPLICITY_ELEMENT__LOWER)
 			|| property.eIsSet(UMLPackage.Literals.MULTIPLICITY_ELEMENT__UPPER)) {
 			final String multiplicityAsString = MultiplicityElementUtil.getMultiplicityAsString(property);
-			if(!multiplicityAsString.isEmpty()){
+			if (!multiplicityAsString.isEmpty()) {
 				text.append(multiplicityAsString);
 			}
 		}
@@ -248,7 +295,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	 *
 	 * @param element
 	 * @return
-	 * 		<ul>
+	 *         <ul>
 	 *         <li>if element is a {@link NamedElement}, we return its name</li>
 	 *         <li>else if element is a {@link Element}, we return its type + a index</li>
 	 *         <li>else return Messages#EditorLabelProvider_No_name</li>
@@ -261,6 +308,9 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		if (element == null) {
 			return "<Undefined>";
 		}
+
+		// Ensure that the item provider is attached to send label updates
+		final String defaultLabel = labelProvider.getText(element);
 
 		if (element instanceof org.eclipse.uml2.uml.Image) {
 			// imageName
@@ -285,11 +335,11 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 
 			return imageName + " : " + location; //$NON-NLS-1$
 		} else if (element instanceof PackageImport) {
-			return labelProvider.getText(element);
+			return defaultLabel;
 		} else if (element instanceof ElementImport) {
-			return labelProvider.getText(element);
+			return defaultLabel;
 		} else if (element instanceof PackageMerge) {
-			return labelProvider.getText(element);
+			return defaultLabel;
 		} else if (element instanceof NamedElement) {
 			if (element instanceof ValueSpecification) { // Format : [name=]value
 				String value = null;
@@ -322,13 +372,13 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 					}
 				}
 			} else {
-				return labelProvider.getText(element);
+				return defaultLabel;
 			}
 		} else if (element instanceof Comment) {
 			Comment comment = (Comment) element;
 			return getText(comment);
 		} else if (element instanceof PackageMerge) {
-			return labelProvider.getText(element);
+			return defaultLabel;
 		}
 		// TODO: Temporary solution for template parameters
 		// Note: In the class diagram, for template parameters,
@@ -386,7 +436,7 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 		}
 		// END TODO
 		else if (element instanceof Element) {
-			return labelProvider.getText(element);
+			return defaultLabel;
 		}
 
 		return super.getText(element);
@@ -496,5 +546,19 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	@Override
 	protected String getQualifiedText(EObject object) {
 		return (object instanceof NamedElement) ? ((NamedElement) object).getQualifiedName() : super.getQualifiedText(object);
+	}
+
+	@Override
+	public void addListener(ILabelProviderListener listener) {
+		listeners.addIfAbsent(listener);
+
+		super.addListener(listener);
+	}
+
+	@Override
+	public void removeListener(ILabelProviderListener listener) {
+		super.removeListener(listener);
+
+		listeners.remove(listener);
 	}
 }

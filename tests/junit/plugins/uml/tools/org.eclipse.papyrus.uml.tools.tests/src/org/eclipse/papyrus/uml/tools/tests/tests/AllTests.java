@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440108
- *  Christian W. Damus - bugs 458197, 468030, 485220, 502461
+ *  Christian W. Damus - bugs 458197, 468030, 485220, 502461, 508629
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
@@ -34,6 +34,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		UMLLanguageProvidersTest.class,
 		IconsStereotypesTest.class,
 		CustomizableDelegatingItemLabelProviderTest.class,
+		DelegatingItemLabelProviderTest.class,
 		UMLCopyTest.class,
 })
 public class AllTests {
