@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 508629
  *
  *****************************************************************************/
 
@@ -17,8 +18,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.tools.Activator;
@@ -35,7 +41,7 @@ import org.eclipse.uml2.uml.util.UMLSwitch;
  * If the adapter factory needs to be disposed (which is usually the case for item-provider factories), then
  * this is the responsibility of the client that creates the delegating label provider.
  */
-public class DelegatingItemLabelProvider implements IItemLabelProvider {
+public class DelegatingItemLabelProvider implements IItemLabelProvider, IChangeNotifier, IDisposable {
 
 	public static final int SHOW_LABEL = 0x1;
 
@@ -67,6 +73,9 @@ public class DelegatingItemLabelProvider implements IItemLabelProvider {
 
 	private final int style;
 
+	private final ChangeNotifier changeNotifier = new ChangeNotifier();
+	private INotifyChangedListener changeForwarder;
+
 	/**
 	 * Initializes me with my delegate factory and a bit-mask of which label components to allow.
 	 *
@@ -80,6 +89,11 @@ public class DelegatingItemLabelProvider implements IItemLabelProvider {
 
 		this.itemAdapterFactory = itemAdapterFactory;
 		this.style = style;
+
+		if (itemAdapterFactory instanceof IChangeNotifier) {
+			changeForwarder = this::fireNotifyChanged;
+			((IChangeNotifier) itemAdapterFactory).addListener(changeForwarder);
+		}
 	}
 
 	/**
@@ -111,6 +125,15 @@ public class DelegatingItemLabelProvider implements IItemLabelProvider {
 		this(Activator.getDefault().getItemProviderAdapterFactory());
 	}
 
+	@Override
+	public void dispose() {
+		if (changeForwarder != null) {
+			((IChangeNotifier) itemAdapterFactory).removeListener(changeForwarder);
+			changeForwarder = null;
+		}
+	}
+
+	@Override
 	public String getText(Object object) {
 		EObject element = EMFHelper.getEObject(object);
 		if (element == null) {
@@ -156,6 +179,7 @@ public class DelegatingItemLabelProvider implements IItemLabelProvider {
 		return result;
 	}
 
+	@Override
 	public Object getImage(Object object) {
 		EObject element = EMFHelper.getEObject(object);
 		if (element == null) {
@@ -217,5 +241,20 @@ public class DelegatingItemLabelProvider implements IItemLabelProvider {
 				return true;
 			}
 		};
+	}
+
+	@Override
+	public void addListener(INotifyChangedListener notifyChangedListener) {
+		changeNotifier.addListener(notifyChangedListener);
+	}
+
+	@Override
+	public void removeListener(INotifyChangedListener notifyChangedListener) {
+		changeNotifier.removeListener(notifyChangedListener);
+	}
+
+	@Override
+	public void fireNotifyChanged(Notification notification) {
+		changeNotifier.fireNotifyChanged(notification);
 	}
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2013 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,15 +9,15 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Workspace-independent model validation view (CDO)
+ *  Christian W. Damus - bug 508629
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.labelprovider.service;
 
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.IFontProvider;
@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.papyrus.infra.services.labelprovider.Activator;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
@@ -40,14 +41,14 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener, IColorProvider, IFontProvider {
 
-	private final Set<ILabelProviderListener> listeners;
+	private final CopyOnWriteArrayList<ILabelProviderListener> listeners;
 
 	private final SortedMap<Integer, List<IFilteredLabelProvider>> providers;
 
 	private final ILabelProvider defaultProvider;
 
 	public ExtensibleLabelProvider() {
-		listeners = new LinkedHashSet<ILabelProviderListener>();
+		listeners = new CopyOnWriteArrayList<ILabelProviderListener>();
 		providers = new TreeMap<Integer, List<IFilteredLabelProvider>>();
 
 		defaultProvider = new LabelProvider();
@@ -55,7 +56,7 @@ public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelP
 
 	@Override
 	public void addListener(ILabelProviderListener listener) {
-		listeners.add(listener);
+		listeners.addIfAbsent(listener);
 	}
 
 	@Override
@@ -184,8 +185,15 @@ public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelP
 	 */
 	@Override
 	public void labelProviderChanged(LabelProviderChangedEvent event) {
-		for (ILabelProviderListener listener : listeners) {
-			listener.labelProviderChanged(event);
+		if (!listeners.isEmpty()) {
+			LabelProviderChangedEvent myEvent = new LabelProviderChangedEvent(this, event.getElements());
+			for (ILabelProviderListener listener : listeners) {
+				try {
+					listener.labelProviderChanged(myEvent);
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in label provider listener", e); //$NON-NLS-1$
+				}
+			}
 		}
 	}
 }

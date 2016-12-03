@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440108
- *  Christian W. Damus - bugs 458197, 468030, 485220
+ *  Christian W. Damus - bugs 458197, 468030, 485220, 508629
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
@@ -25,7 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ ContentProviderTest.class, UMLStereotypePropertyContentProviderTest.class, DependencyManagementTest.class,
 		NamedElementValidatorTest.class, StereotypeElementListenerTest.class, ProfileApplicationListenerTest.class, UMLReferenceConverterTest.class, UMLReferenceConverterCompletionTest.class,
 		UMLLanguageProvidersTest.class, IconsStereotypesTest.class,
-
+		DelegatingItemLabelProviderTest.class,
 })
 public class AllTests {
 	// Test suite

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,16 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 508629
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.labelprovider.tests;
+
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -65,11 +73,11 @@ public class LabelProviderServiceTest extends AbstractPapyrusTest {
 		LabelProviderService service = registry.getService(LabelProviderService.class);
 		ILabelProvider generalProvider = service.getLabelProvider();
 
-		//getLabelProvider() and getLabelProvider(DEFAULT_LABEL_PROVIDER) should always return the same label provider
+		// getLabelProvider() and getLabelProvider(DEFAULT_LABEL_PROVIDER) should always return the same label provider
 		Assert.assertNotNull(generalProvider);
 		Assert.assertEquals(generalProvider, service.getLabelProvider(LabelProviderService.DEFAULT_LABEL_PROVIDER));
 
-		//We don't know what the default labelProvider will return, but it shouldn't return the providers from EMF_CONTEXT nor UML_CONTEXT
+		// We don't know what the default labelProvider will return, but it shouldn't return the providers from EMF_CONTEXT nor UML_CONTEXT
 		Assert.assertNotSame("The default label provider should not return Test EMF values", EXPECTED_EMF_VALUE, generalProvider.getText(null));
 
 		Comment comment = createTestComment();
@@ -85,7 +93,7 @@ public class LabelProviderServiceTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testEMFLabelProvider() throws ServiceException {
-		//This test may fail if a new contribution with a higher priority is defined in Papyrus. Test contributions are defined with priorities 5 and 10
+		// This test may fail if a new contribution with a higher priority is defined in Papyrus. Test contributions are defined with priorities 5 and 10
 
 		LabelProviderService service = registry.getService(LabelProviderService.class);
 		ILabelProvider emfProvider = service.getLabelProvider(TEST_EMF_CONTEXT);
@@ -99,7 +107,7 @@ public class LabelProviderServiceTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testUMLLabelProvider() throws ServiceException {
-		//This test may fail if a new contribution with a higher priority is defined in Papyrus. Test contributions are defined with priorities 5 and 10
+		// This test may fail if a new contribution with a higher priority is defined in Papyrus. Test contributions are defined with priorities 5 and 10
 
 		LabelProviderService service = registry.getService(LabelProviderService.class);
 		ILabelProvider umlProvider = service.getLabelProvider(TEST_UML_CONTEXT);
@@ -110,11 +118,34 @@ public class LabelProviderServiceTest extends AbstractPapyrusTest {
 	}
 
 	@Test
+	public void testUMLLabelProviderChangeEvents() throws ServiceException {
+		LabelProviderService service = registry.getService(LabelProviderService.class);
+		// We are not testing the provider registration/priority mechanism, but
+		// the UMLLabelProvider, itself
+		ILabelProvider umlProvider = service.getLabelProvider();
+
+		Comment comment = createTestComment();
+		umlProvider.getText(comment);
+
+		List<Object> updates = new ArrayList<>();
+
+		umlProvider.addListener(event -> {
+			if (event.getSource() == umlProvider) {
+				updates.addAll(Arrays.asList(event.getElements()));
+			}
+		});
+
+		comment.setBody("Hello, world.");
+
+		assertThat("No notification received", updates, hasItem(comment));
+	}
+
+	@Test
 	public void testInvalidContext() throws ServiceException {
 		LabelProviderService service = registry.getService(LabelProviderService.class);
 		ILabelProvider invalidContextProvider = service.getLabelProvider(TEST_INVALID_CONTEXT);
 
-		//The label provider instance is not guaranteed to be equal. We should test and compare a set of values
+		// The label provider instance is not guaranteed to be equal. We should test and compare a set of values
 		Assert.assertEquals(invalidContextProvider, service.getLabelProvider());
 	}
 
