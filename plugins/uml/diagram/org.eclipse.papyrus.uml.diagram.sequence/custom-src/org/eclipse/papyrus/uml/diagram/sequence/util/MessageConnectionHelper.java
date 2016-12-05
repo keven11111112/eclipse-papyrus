@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.StateInvariant;
 
 /**
  * Helper class for determine the message connections. Both for connecting and reconnecting.
@@ -171,6 +172,10 @@ public class MessageConnectionHelper {
 			}
 			return ownMessage == message;
 		}
+		// Not available for StateInvariant.
+		if (source instanceof StateInvariant || target instanceof StateInvariant) {
+			return false;
+		}		
 		return true;
 	}
 
@@ -186,6 +191,10 @@ public class MessageConnectionHelper {
 			if (target == source) {
 				return false;
 			}
+		}
+		// Not available for StateInvariant.
+		if (source instanceof StateInvariant) {
+			return false;
 		}
 		return true;
 	}
@@ -218,12 +227,20 @@ public class MessageConnectionHelper {
 			}
 			return ownMessage == message;
 		}
+		// Not available for StateInvariant.
+		if (source instanceof StateInvariant) {
+			return false;
+		}
 		return true;
 	}
 
 	public static boolean canExistFoundMessage(Message message, Element target) {
 		if (target instanceof Gate) {
 			return message == null ? ((Gate) target).getMessage() == null : message == ((Gate) target).getMessage();
+		}
+		// Not available for StateInvariant.
+		if (target instanceof StateInvariant) {
+			return false;
 		}
 		return true;
 	}
@@ -234,6 +251,10 @@ public class MessageConnectionHelper {
 		}
 		// Only available for ExecutionSpecification and Lifeline.
 		if (target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline || target instanceof InteractionFragment || target instanceof MessageEnd)) {
+			return false;
+		}
+		// Not available for StateInvariant.
+		if (source instanceof StateInvariant || target instanceof StateInvariant) {
 			return false;
 		}
 		if (source instanceof Gate) {
