@@ -61,7 +61,9 @@ public class AddToResourceCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		this.resource.getContents().add(this.toAdd);
+		if(!getEditingDomain().isReadOnly(resource)){
+			this.resource.getContents().add(this.toAdd);
+		}
 		return CommandResult.newOKCommandResult();
 	}
 }
