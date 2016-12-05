@@ -32,6 +32,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomainEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomainListener;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.pde.internal.ui.util.LocaleUtil;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -133,7 +134,7 @@ public class ControlledResourceTracker extends AdapterImpl implements Transactio
 		URI result = initialURI;
 
 		// If this is a properties file, check if a locale is available at the end of the URI
-		if (uri.fileExtension().equals("properties")) { //$NON-NLS-1$
+		if (null != uri && null != uri.fileExtension() && uri.fileExtension().equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION)) { //$NON-NLS-1$
 			// Get the last segment
 			final String lastSegment = initialURI.lastSegment();
 			// Try to remove existing localization
