@@ -1,10 +1,5 @@
 target "Papyrus Main" with requirements source
 
-//manualUpdate
-
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
-
-}
 
 //updateFrom("QVT Operational",0)
 
@@ -28,7 +23,6 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 //manualUpdate
 
 location nebula "http://download.eclipse.org/nebula/releases/1.1.0/" {
-	org.eclipse.nebula.widgets.tablecombo.feature.feature.group
 	org.eclipse.nebula.widgets.richtext.feature.feature.group
 }
 
@@ -88,29 +82,22 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
-//updateFrom("EMF Query",0) 
-
-location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases" {
-	org.eclipse.emf.query.sdk.feature.group
-}
-
 //updateFrom("WebTools",0) 
 
 location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M3-20161031000121/repository/" {
-	org.eclipse.wst.xml_sdk.feature.feature.group
 	org.eclipse.wst.xml_ui.feature.feature.group
-}
-
-//updateFrom("EMF VALIDATION",0)
-
-location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases" {
-	org.eclipse.emf.validation.sdk.feature.group
 }
 
 //updateFrom("Subversive",0) 
 
 location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-site/" {
 	org.eclipse.team.svn.feature.group
+}
+
+//updateFrom("EMF VALIDATION",0)
+
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases" {
+	org.eclipse.emf.validation.sdk.feature.group
 }
 
 //updateFrom("GMF Notation",0)
@@ -123,6 +110,12 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestones/" {
 	org.eclipse.emf.sdk.feature.group
+}
+
+//updateFrom("EMF Query",0) 
+
+location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases" {
+	org.eclipse.emf.query.sdk.feature.group
 }
 
 //updateFrom("GMF Tooling",0) 

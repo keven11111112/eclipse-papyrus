@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra" sequenceNumber="1480669996">
+<target name="Papyrus Extra" sequenceNumber="1480948337">
   <locations>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
-    </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20161102-0315"/>
       <repository id="qvto" location="file:/home/data/httpd/download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201611020315"/>
@@ -20,7 +17,6 @@
       <repository id="xpand" location="file:/home/data/httpd/download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.nebula.widgets.tablecombo.feature.feature.group" version="1.0.0.201609231530"/>
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.0.0.201609231530"/>
       <repository id="nebula" location="file:/home/data/httpd/download.eclipse.org/nebula/releases/1.1.0/"/>
     </location>
@@ -65,21 +61,16 @@
       <repository id="mwe" location="file:/home/data/httpd/download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.query.sdk.feature.group" version="1.10.0.201606071631"/>
-      <repository id="emfQuery" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/query/updates/releases"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.9.0.v201608061824"/>
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.0.v201608061824"/>
       <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M3-20161031000121/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.10.0.201606071713"/>
-      <repository id="emfValidation" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/validation/updates/releases"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.team.svn.feature.group" version="4.0.3.I20161129-1700"/>
       <repository id="subversive" location="file:/home/data/httpd/download.eclipse.org/technology/subversive/4.0/neon-site/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.10.0.201606071713"/>
+      <repository id="emfValidation" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/validation/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="1.10.0.201606071631"/>
@@ -88,6 +79,10 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.sdk.feature.group" version="2.13.0.v20161031-0512"/>
       <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/updates/2.13milestones/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.query.sdk.feature.group" version="1.10.0.201606071631"/>
+      <repository id="emfQuery" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/query/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.tooling.feature.group" version="3.3.1.201509291144"/>
