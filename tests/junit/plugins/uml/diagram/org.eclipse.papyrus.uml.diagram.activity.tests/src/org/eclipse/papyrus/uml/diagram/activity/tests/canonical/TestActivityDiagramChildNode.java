@@ -274,7 +274,7 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	public void testToManageCreateObjectAction() {
 		// Change for Bug 438560: 1 pin was created by the Live validation actions. These validation actions are not live anymore.
 		// FIXME: Implement a specific Palette post-action to create the pins automatically (Independently of the validation rules)
-		testToManageNode(UMLElementTypes.CreateObjectAction_Shape, UMLPackage.eINSTANCE.getCreateObjectAction(), UMLElementTypes.StructuredActivityNode_Shape, true, 0);
+		testToManageNode(UMLElementTypes.CreateObjectAction_Shape, UMLPackage.eINSTANCE.getCreateObjectAction(), UMLElementTypes.StructuredActivityNode_Shape, true, 1);
 	}
 
 	/**

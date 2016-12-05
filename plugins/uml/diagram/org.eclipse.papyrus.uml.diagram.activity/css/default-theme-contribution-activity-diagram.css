@@ -3,6 +3,7 @@ AcceptCallAction,
 AddStructuralFeatureValueAction,
 CallBehaviorAction, 
 CallOperationAction, 
+CreateObjectAction,
 ReadStructuralFeatureAction,
 SendSignalAction {
 	canonical: true;

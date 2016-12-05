@@ -18,6 +18,9 @@
   <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_PMdzALh0EeaTuqn7bG89MA" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.AddStructuralFeatureValueActionEditHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.AddStructuralFeatureValueActionEditHelperAdvice">
     <target xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../../org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bJtx0EeWVxMf7SXAfhg"/>
   </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_xOprsLr1Eea7s8P-mR1w7Q" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CreateObjectActionEditHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CreateObjectActionEditHelperAdvice">
+    <target xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../../org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cI9x0EeWVxMf7SXAfhg"/>
+  </adviceBindingsConfigurations>
   <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_qc9DEKzLEeaKg_9XdFC-Jg" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.TriggerEditHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.TriggerEditHelperAdvice">
     <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdLCt1YCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
