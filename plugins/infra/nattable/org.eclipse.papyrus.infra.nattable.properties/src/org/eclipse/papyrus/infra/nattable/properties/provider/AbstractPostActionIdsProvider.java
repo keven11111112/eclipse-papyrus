@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.properties.provider;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
@@ -71,8 +72,11 @@ public abstract class AbstractPostActionIdsProvider implements IStaticContentPro
 	public Object[] getElements(Object inputElement) {
 		final PasteEObjectConfiguration conf = (PasteEObjectConfiguration) AxisConfigurationUtils.getIAxisConfigurationUsedInTable(this.tableManager.getTable(), NattableaxisconfigurationPackage.eINSTANCE.getPasteEObjectConfiguration(), isEditingColumn);
 		if (conf != null && conf.getPastedElementId() != null) {
-			final EClass eClass = ElementTypeRegistry.getInstance().getType(conf.getPastedElementId()).getEClass();
-			return PastePostActionRegistry.INSTANCE.getAvailablePostActionIds(this.tableManager, eClass).toArray();
+			final IElementType elementType = ElementTypeRegistry.getInstance().getType(conf.getPastedElementId());
+			if(null != elementType){
+				final EClass eClass = elementType.getEClass();
+				return PastePostActionRegistry.INSTANCE.getAvailablePostActionIds(this.tableManager, eClass).toArray();
+			}
 		}
 		return new Object[0];
 	}
