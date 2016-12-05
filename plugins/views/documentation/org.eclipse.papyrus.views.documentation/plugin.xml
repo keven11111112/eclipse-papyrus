@@ -85,5 +85,11 @@
             name="Documentation View">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.propertiesView">
+      <excludeSources
+            id="org.eclipse.papyrus.views.documentation.DocumentationView">
+      </excludeSources>
+   </extension>
 
 </plugin>
