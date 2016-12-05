@@ -56,6 +56,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerColumn;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
@@ -131,6 +132,7 @@ import org.eclipse.ui.navigator.CommonViewerSorter;
 import org.eclipse.ui.navigator.IExtensionActivationListener;
 import org.eclipse.ui.navigator.ILinkHelper;
 import org.eclipse.ui.navigator.INavigatorContentService;
+import org.eclipse.ui.navigator.INavigatorFilterService;
 import org.eclipse.ui.navigator.LinkHelperService;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -148,6 +150,9 @@ import com.google.common.collect.Lists;
  *
  */
 public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement, IEditingDomainProvider, IPageLifeCycleEventsListener {
+
+	/** The Id of the declared search field filter. */
+	private static final String SEARCH_FILTER_ID = "org.eclipse.papyrus.views.modelexplorer.filter";//$NON-NLS-1$
 
 	private SharedModelExplorerState sharedState;
 
@@ -643,8 +648,22 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		filterComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 
 		// Set the viewerFilter
-		viewerFilter = new PatternViewerFilter();
-		getCommonViewer().setFilters(viewerFilter);
+		INavigatorFilterService filterService = getCommonViewer().getNavigatorContentService().getFilterService();
+		if (!filterService.isActive(SEARCH_FILTER_ID)) {
+			String[] filterId = { SEARCH_FILTER_ID };
+			filterService.activateFilterIdsAndUpdateViewer(filterId);
+		}
+		ViewerFilter[] visibleFilters = filterService.getVisibleFilters(true);
+		for (int i = 0; i < visibleFilters.length; i++) {
+			if (visibleFilters[i] instanceof PatternViewerFilter) {
+				viewerFilter = (PatternViewerFilter) visibleFilters[i];
+				break;
+			}
+		}
+		if (null == viewerFilter) {
+			viewerFilter = new PatternViewerFilter();
+		}
+
 		viewerFilter.setPattern("*");//$NON-NLS-1$
 
 		// Create the filter composite
