@@ -56,6 +56,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueS
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
+import org.eclipse.papyrus.infra.nattable.utils.PercentageCalculationUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
@@ -997,7 +998,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 							if (null != value) {
 								if (isUsedPercentage) {
 									// Set the percentage with the correct function
-									((PapyrusSpanningDataLayer)tableBodyLayer).setColumnWidthPercentageByPosition(index, value.getIntValue());
+									((PapyrusSpanningDataLayer) tableBodyLayer).setColumnWidthPercentageByPosition(index, value.getIntValue());
 									remainingPercentage -= value.getIntValue();
 								} else {
 									// we set the size of the axis in the graphical representation
@@ -1015,8 +1016,10 @@ public abstract class AbstractAxisManager implements IAxisManager {
 				}
 
 				// For the axis without 'axisWidth' named style and with the columns width percentage management, set the correct percentage
+				int numberIndex = 0;
 				for (int index : notManagedIndexAxisWidth) {
-					((PapyrusSpanningDataLayer)tableBodyLayer).setColumnWidthPercentageByPosition(index, Math.round(remainingPercentage / notManagedIndexAxisWidth.size()), false);
+					((PapyrusSpanningDataLayer) tableBodyLayer).setColumnWidthPercentageByPosition(index, PercentageCalculationUtils.calculatePercentageToSet(numberIndex, remainingPercentage, notManagedIndexAxisWidth.size()), false);
+					numberIndex++;
 				}
 			}
 		}
