@@ -25,8 +25,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * This page allows to edit the name of the Papyrus Table configuration to create
- * 
+ * This page allows to edit the name of the Papyrus Table configuration to create.
  */
 public class NattableConfigurationFileCreationPage extends EditGenericNattableConfigurationFieldsNattableWizardPage {
 	/**
@@ -46,9 +45,10 @@ public class NattableConfigurationFileCreationPage extends EditGenericNattableCo
 	};
 
 	/**
-	 * Constructor.
+	 * Default constructor.
 	 *
 	 * @param helper
+	 *            The table configuration helper
 	 */
 	public NattableConfigurationFileCreationPage(TableConfigurationHelper helper) {
 		super(helper);
@@ -65,7 +65,7 @@ public class NattableConfigurationFileCreationPage extends EditGenericNattableCo
 		final GridLayout gridLayout = new GridLayout(1, false);
 		container.setLayout(gridLayout);
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		
+
 		final Group group = createGroup(container, Messages.NattableConfigurationProjectCreationPage_nattableConfigurationFileNameLabel);
 		nattableConfigurationFileName = new Text(group, SWT.BORDER);
 		nattableConfigurationFileName.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -75,13 +75,13 @@ public class NattableConfigurationFileCreationPage extends EditGenericNattableCo
 	}
 
 	/**
-	 * Creates the group.
+	 * Create a new group with the given name.
 	 *
 	 * @param parent
-	 *            the parent
+	 *            The parent composite
 	 * @param name
-	 *            the name
-	 * @return the group
+	 *            The name of the group
+	 * @return The created group
 	 */
 	private static Group createGroup(final Composite parent, final String name) {
 		final Group group = new Group(parent, SWT.NONE);
@@ -90,7 +90,7 @@ public class NattableConfigurationFileCreationPage extends EditGenericNattableCo
 		layout.marginHeight = 5;
 		layout.marginWidth = 5;
 		group.setLayout(layout);
-		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		group.setLayoutData(data);
 		return group;
 	}
@@ -98,7 +98,7 @@ public class NattableConfigurationFileCreationPage extends EditGenericNattableCo
 	/**
 	 * @see org.eclipse.papyrus.customization.nattableconfiguration.pages.EditGenericNattableConfigurationFieldsNattableWizardPage#isPageComplete()
 	 *
-	 * @return
+	 * @return <code>true</code> if the page is complete, <code>false</false> otherwise
 	 */
 	@Override
 	public boolean isPageComplete() {
@@ -111,7 +111,10 @@ public class NattableConfigurationFileCreationPage extends EditGenericNattableCo
 
 		return super.isPageComplete();
 	}
-	
+
+	/**
+	 * @return The nattable configuration file name
+	 */
 	public String getNattableConfigurationFileName() {
 		return nattableConfigurationFileName.getText();
 	}
