@@ -92,13 +92,6 @@ public class ConnectorEditHelper extends ElementEditHelper {
 				return false;
 			}
 
-			// Cannot connect two Port owned by the same view
-			if((sourceView.getElement() instanceof Port) && (targetView.getElement() instanceof Port)) {
-				if(ViewUtil.getContainerView(sourceView) == ViewUtil.getContainerView(targetView)) {
-					return false;
-				}
-			}
-
 			// Cannot connect a Part to one of its (possibly indirect) containment, must connect to one of its Port.
 			if(getStructureContainers(sourceView).contains(targetView) || getStructureContainers(targetView).contains(sourceView)) {
 				return false;
