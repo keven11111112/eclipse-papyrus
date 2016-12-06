@@ -62,6 +62,19 @@ import xpt.Common
 	«««	END: PapyrusGenCode
 	'''
 
+	def refreshBounds(GenExternalNodeLabel it) '''
+		«««	BEGIN: PapyrusGenCode
+		public void refreshBounds() {
+			int x = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X())).intValue();
+			int y = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+			int width = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			getBorderItemLocator().setConstraint(new org.eclipse.draw2d.geometry.Rectangle(x, y, width, height));
+			getBorderItemLocator().relocate(getFigure());
+		}
+    «««	END: PapyrusGenCode
+	'''
+
 	//BEGIN: PapyrusGenCode
 	//definition of the inheritance 
 	def specifyInheritance(ExtendedGenView it) '''«superOwnedEditPart»'''
