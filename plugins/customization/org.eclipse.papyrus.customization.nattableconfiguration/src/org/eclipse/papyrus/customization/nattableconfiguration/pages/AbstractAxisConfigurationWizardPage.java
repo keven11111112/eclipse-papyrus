@@ -309,7 +309,9 @@ public abstract class AbstractAxisConfigurationWizardPage extends AbstractTableC
 
 		// Define the titles and bounds of each columns
 		final int[] bounds = { 200, 125, 125, 125, 125, 125, 125 };
-		final String[] titles = { Messages.AbstractAxisConfigurationWizardPage_labelProviderConfigurationColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayIconColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayLabelColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayNameColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayTypeColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayMultiplicityColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayIsDerivedColumnLabel };
+		final String[] titles = { Messages.AbstractAxisConfigurationWizardPage_labelProviderConfigurationColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayIconColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayLabelColumnLabel,
+				Messages.AbstractAxisConfigurationWizardPage_displayNameColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayTypeColumnLabel, Messages.AbstractAxisConfigurationWizardPage_displayMultiplicityColumnLabel,
+				Messages.AbstractAxisConfigurationWizardPage_displayIsDerivedColumnLabel };
 
 		// Create the first column for the axis manager id
 		final TableViewerColumn labelProviderConfigurationColumn = createTableViewerColumn(tableViewer, titles[0], bounds[0]);
@@ -698,11 +700,13 @@ public abstract class AbstractAxisConfigurationWizardPage extends AbstractTableC
 	/**
 	 * Create the list of axis manager identifiers (managing the simple axis manager name and the others with the full identifier).
 	 * 
-	 * @param knownAxis
+	 * @param requiredProposedAxisManagers
+	 *            The required axis managers.
+	 * @param knownAxisCollection
 	 *            The axis managers registered in the plugins extension.
 	 * @return The list of axis manager identifiers.
 	 */
-	protected List<String> createAxisManagerIdItems(final List<String> requiredProposedAxisManagers, final Collection<String> knownAxis) {
+	protected List<String> createAxisManagerIdItems(final List<String> requiredProposedAxisManagers, final Collection<String> knownAxisCollection) {
 		final List<String> input = new ArrayList<String>();
 
 		// Add the simple axis manager identifier
@@ -711,9 +715,26 @@ public abstract class AbstractAxisConfigurationWizardPage extends AbstractTableC
 		}
 
 		// Add the axis manager identifiers from the registered axis managers
-		for (final String knowAxis : knownAxis) {
-			if (!input.contains(knowAxis)) {
-				input.add(knowAxis);
+		for (final String knownAxis : knownAxisCollection) {
+
+			// The known axis will be added only if
+			// - the input list does not contain the known axis
+			// - and there is no added axis which contains the known axis
+			// For example if "EMF Feature (org.eclipse.papyrus.infra.emf.nattable.feature.axis.manager)" is already in the input list,
+			// "org.eclipse.papyrus.infra.emf.nattable.feature.axis.manager" will not be added
+			if (!input.contains(knownAxis)) {
+				boolean isKnownAxisAdded = false;
+
+				for (final String addedAxis : input) {
+					if (addedAxis.contains(knownAxis)) {
+						isKnownAxisAdded = true;
+						break;
+					}
+				}
+
+				if (!isKnownAxisAdded) {
+					input.add(knownAxis);
+				}
 			}
 		}
 

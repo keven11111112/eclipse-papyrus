@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.i
 public class NameSimplifier {
 
 	/**
-	 * To simplify the user choice, some axis managers identifier must be converted to simple name.
+	 * Map the axis manager id (as key) to its name (as value).
 	 */
 	public static final Map<String, String> axisManagerNames = new HashMap<String, String>();
 
@@ -55,14 +55,14 @@ public class NameSimplifier {
 	 * Initialize the previous map.
 	 */
 	static {
-		axisManagerNames.put("org.eclipse.papyrus.infra.emf.nattable.feature.axis.manager", "EMF Feature"); //$NON-NLS-1$ //$NON-NLS-2$
-		axisManagerNames.put("org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager", "EMF Operation"); //$NON-NLS-1$ //$NON-NLS-2$
-		axisManagerNames.put("org.eclipse.papyrus.uml.nattable.element.axis.manager", "UML Element"); //$NON-NLS-1$ //$NON-NLS-2$
-		axisManagerNames.put("org.eclipse.papyrus.uml.nattable.feature.axis.manager", "UML Feature"); //$NON-NLS-1$ //$NON-NLS-2$
-		axisManagerNames.put("org.eclipse.papyrus.uml.nattable.operation.axis.manager", "UML Operation"); //$NON-NLS-1$ //$NON-NLS-2$
-		axisManagerNames.put("org.eclipse.papyrus.infra.uml.nattable.class.tree.axis.manager", "UML Tree Axis"); //$NON-NLS-1$ //$NON-NLS-2$
-		axisManagerNames.put("org.eclipse.papyrus.sysml.nattable.requirement.axis.manager", "SysML Requirement"); //$NON-NLS-1$ //$NON-NLS-2$
-		axisManagerNames.put("org.eclipse.papyrus.sysml.nattable.allocate.axis.manager", "SysML Allocation"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.infra.emf.nattable.feature.axis.manager", "EMF Feature (org.eclipse.papyrus.infra.emf.nattable.feature.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager", "EMF Operation (org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.uml.nattable.element.axis.manager", "UML Element (org.eclipse.papyrus.uml.nattable.element.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.uml.nattable.feature.axis.manager", "UML Feature (org.eclipse.papyrus.uml.nattable.feature.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.uml.nattable.operation.axis.manager", "UML Operation (org.eclipse.papyrus.uml.nattable.operation.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.infra.uml.nattable.class.tree.axis.manager", "UML Tree Axis (org.eclipse.papyrus.infra.uml.nattable.class.tree.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.sysml.nattable.requirement.axis.manager", "SysML Requirement (org.eclipse.papyrus.sysml.nattable.requirement.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
+		axisManagerNames.put("org.eclipse.papyrus.sysml.nattable.allocate.axis.manager", "SysML Allocation (org.eclipse.papyrus.sysml.nattable.allocate.axis.manager)"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		labelProviderConfigurationByAxisManager.put("org.eclipse.papyrus.infra.emf.nattable.feature.axis.manager", FeatureLabelProviderConfigurationImpl.class.getSimpleName()); //$NON-NLS-1$
 		labelProviderConfigurationByAxisManager.put("org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager", OperationLabelProviderConfigurationImpl.class.getSimpleName()); //$NON-NLS-1$

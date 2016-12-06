@@ -489,14 +489,11 @@ public class RowConfigurationWizardPage extends AbstractAxisConfigurationWizardP
 				final StringBuilder value = new StringBuilder();
 				if (element instanceof AxisManagerRepresentation) {
 					final String axisManagerId = ((AxisManagerRepresentation) element).getAxisManagerId();
-					boolean existSimpleName = NameSimplifier.axisManagerNames.containsKey(axisManagerId);
-					if(existSimpleName){
+					boolean axisManagerFound = NameSimplifier.axisManagerNames.containsKey(axisManagerId);
+					if (axisManagerFound) {
 						value.append(NameSimplifier.axisManagerNames.get(axisManagerId));
-						value.append(" ("); //$NON-NLS-1$
-					}
-					value.append(null != axisManagerId ? axisManagerId : ""); //$NON-NLS-1$
-					if(existSimpleName){
-						value.append(")"); //$NON-NLS-1$
+					} else {
+						value.append(null != axisManagerId ? axisManagerId : ""); //$NON-NLS-1$
 					}
 				}
 				return value.toString();
@@ -512,7 +509,7 @@ public class RowConfigurationWizardPage extends AbstractAxisConfigurationWizardP
 					// set the new value
 					if (NameSimplifier.axisManagerNames.containsValue(value)) {
 						for (final Entry<String, String> entry : NameSimplifier.axisManagerNames.entrySet()) {
-							if (((String)value).contains(entry.getValue()) && ((String)value).contains(entry.getKey())) {
+							if (((String) value).contains(entry.getValue()) && ((String) value).contains(entry.getKey())) {
 								((AxisManagerRepresentation) element).setAxisManagerId(entry.getKey());
 							}
 						}
@@ -551,10 +548,10 @@ public class RowConfigurationWizardPage extends AbstractAxisConfigurationWizardP
 			@Override
 			public String getText(final Object element) {
 				String result = ""; //$NON-NLS-1$
-				if(element instanceof AxisManagerRepresentation){
-					if(NameSimplifier.labelProviderContextNames.containsKey(((AxisManagerRepresentation) element).getLabelProviderContext())){
+				if (element instanceof AxisManagerRepresentation) {
+					if (NameSimplifier.labelProviderContextNames.containsKey(((AxisManagerRepresentation) element).getLabelProviderContext())) {
 						result = NameSimplifier.labelProviderContextNames.get(((AxisManagerRepresentation) element).getLabelProviderContext());
-					}else{
+					} else {
 						result = ((AxisManagerRepresentation) element).getLabelProviderContext();
 					}
 				}
