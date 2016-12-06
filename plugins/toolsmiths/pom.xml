@@ -14,7 +14,6 @@
 	<description>Tools for Papyrus DSML ToolSmiths, including UI customization model editors.</description>
 
 	<modules>
-		<module>../customization/org.eclipse.papyrus.customization.nattableconfiguration</module>
 		<module>../customization/org.eclipse.papyrus.customization.palette</module>
 		<module>../customization/org.eclipse.papyrus.customization.paletteconfiguration</module>
 		<module>../customization/org.eclipse.papyrus.customization.properties</module>

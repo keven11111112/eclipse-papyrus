@@ -21,6 +21,7 @@
 		<module>org.eclipse.papyrus.infra.nattable.model.edit</module>
 		<module>org.eclipse.papyrus.infra.nattable.model.editor</module>
 		<module>org.eclipse.papyrus.infra.nattable.modelexplorer</module>
+		<module>org.eclipse.papyrus.customization.nattableconfiguration</module>
 		<module>org.eclipse.papyrus.infra.nattable.properties</module>
 		<module>org.eclipse.papyrus.infra.nattable.views.config</module>
 		<module>org.eclipse.papyrus.infra.nattable.views.editor</module>
