@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.PortPositionEnum;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 /**
  *
@@ -72,7 +71,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 	/** the figure */
 	private IFigure figure;
-	
+
 	public int getBorderItemOffset() {
 		return borderItemOffset;
 	}
@@ -96,8 +95,8 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 */
 	public void setPosition(final PortPositionEnum position) {
 		this.position = position;
-	}	
-	
+	}
+
 	/**
 	 * get the parent figure
 	 *
@@ -128,10 +127,10 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 */
 	public Rectangle getConstraint() {
 		return constraint;
-	}	
+	}
 
 	/**
-	 * Constructor 
+	 * Constructor
 	 *
 	 * @param parentFigure
 	 *            the parent figure
@@ -146,14 +145,15 @@ public class PortPositionLocator implements IBorderItemLocator {
 	}
 
 	/**
-	 * Constructor 
+	 * Constructor
+	 * 
 	 * @param parentFigure
 	 *            the parent figure
 	 */
 	public PortPositionLocator(final IFigure parentFigure) {
 		this.parentFigure = parentFigure;
-	}	
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 *
@@ -174,10 +174,9 @@ public class PortPositionLocator implements IBorderItemLocator {
 	public Rectangle getPreferredLocation(final Rectangle proposedLocation) {
 		// If it's a SVGNodePlate get the anchor to get the position
 		if (parentFigure instanceof SVGNodePlateFigure &&
-				((SVGNodePlateFigure) parentFigure).getConnectionAnchor(NodeFigure.szAnchor) instanceof SlidableRoundedRectangleAnchor) { 
-			return getSVGPreferredLocation(proposedLocation,(SVGNodePlateFigure) parentFigure, (SlidableRoundedRectangleAnchor) ((SVGNodePlateFigure) parentFigure).getConnectionAnchor((NodeFigure.szAnchor)) );
-		}
-		else {
+				((SVGNodePlateFigure) parentFigure).getConnectionAnchor(NodeFigure.szAnchor) instanceof SlidableRoundedRectangleAnchor) {
+			return getSVGPreferredLocation(proposedLocation, (SVGNodePlateFigure) parentFigure, (SlidableRoundedRectangleAnchor) ((SVGNodePlateFigure) parentFigure).getConnectionAnchor((NodeFigure.szAnchor)));
+		} else {
 			return getPreferedLocationOldWay(proposedLocation);
 		}
 	}
@@ -186,22 +185,23 @@ public class PortPositionLocator implements IBorderItemLocator {
 	/**
 	 * 
 	 * Get the svg preferred position by letting the connection anchor calculate the position.
+	 * 
 	 * @param proposedLocation
 	 * @param svgNodePlateFigure
 	 * @param slidableRoundedRectangleAnchor
 	 * @return
 	 */
-	private Rectangle getSVGPreferredLocation(final Rectangle proposedLocation,SVGNodePlateFigure svgNodePlateFigure,SlidableRoundedRectangleAnchor slidableRoundedRectangleAnchor) {
+	private Rectangle getSVGPreferredLocation(final Rectangle proposedLocation, SVGNodePlateFigure svgNodePlateFigure, SlidableRoundedRectangleAnchor slidableRoundedRectangleAnchor) {
 		Rectangle parentRec = getParentFigure().getBounds().getCopy();
 		// get the offset depending of the position of the port (inside, outside or onLine)
-		Dimension proposedOffset = getPortOffset(proposedLocation.getSize());	
+		Dimension proposedOffset = getPortOffset(proposedLocation.getSize());
 		Rectangle realLocation = new Rectangle(proposedLocation);
 		// Initialize port location with proposed location
 		// and resolve the bounds of it graphical parent
-		
+
 		// Translate it to have the mouse at the center of the port
 		realLocation.translate(realLocation.width / 2, realLocation.height / 2);
-		
+
 		// Translate location to absolute before calculating the location point (this is required, since getLocation
 		// from connectionAnchor work on absolute coordinates: see getPolygonPoints in GMF's BaseSlidableAnchor
 		// Use a precise rectangle to reduce precision loss during scaling
@@ -210,11 +210,11 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 		// Set the offset
 		slidableRoundedRectangleAnchor.setOffset(proposedOffset);
-		
+
 		// Yet, we get scaling issues, since the getLocation function only expects/returns a point and not the precise variant
 		Point location = new Point((int) Math.round(preciseLocation.preciseX()), (int) Math.round(preciseLocation.preciseY()));
 		Point locationForPort = slidableRoundedRectangleAnchor.getLocation(location);
-		
+
 		// Reset the offset
 		slidableRoundedRectangleAnchor.setOffset(new Dimension());
 
@@ -229,19 +229,16 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 		// despite of rounding above, it is possible that the conversion to absolute (and back) shifts the desired
 		// position by one pixel. Handle this specific case (in case of rectangles)
-		if (realLocation.x == parentRec.x-1) {
+		if (realLocation.x == parentRec.x - 1) {
 			realLocation.x = parentRec.x;
-		}
-		else if (realLocation.y == parentRec.y-1) {
+		} else if (realLocation.y == parentRec.y - 1) {
 			realLocation.y = parentRec.y;
-		}
-		else if (realLocation.x == parentRec.x + parentRec.width - 1) {
+		} else if (realLocation.x == parentRec.x + parentRec.width - 1) {
 			realLocation.x = parentRec.x + parentRec.width;
-		}
-		else if (realLocation.y == parentRec.y + parentRec.height - 1) {
+		} else if (realLocation.y == parentRec.y + parentRec.height - 1) {
 			realLocation.y = parentRec.y + parentRec.height - 1;
 		}
-		
+
 		// re-translate back from port center to top-left coordinates
 		realLocation.translate(-realLocation.width / 2, -realLocation.height / 2);
 		return realLocation;
@@ -362,7 +359,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 
 	/**
-	 *  Gets the current side of parent.
+	 * Gets the current side of parent.
 	 *
 	 * @return the current side of parent
 	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator#getCurrentSideOfParent()
@@ -397,10 +394,6 @@ public class PortPositionLocator implements IBorderItemLocator {
 		Rectangle internalRectangle = basisRectangle.getShrinked(new Insets(skink_height, skink_width, skink_height, skink_width));
 		// let draw2D to compute position
 		int position = internalRectangle.getPosition(constraint.getTopLeft());
-		// use to Debug
-		if (PositionConstants.NONE == position){
-			Activator.log.warn("Unknown current side( basisRectangle " +basisRectangle+" internalRectangle"+internalRectangle+ " constraint"+constraint+ " "+position+")"); //$NON-NLS-1$ 
-		}
 		return position;
 	}
 
@@ -428,7 +421,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 		// Refresh nodeShape bounds in case of resize
 		RoundedRectangleNodePlateFigure nodePlateFigure = FigureUtils.findChildFigureInstance(figure, RoundedRectangleNodePlateFigure.class);
-		if (nodePlateFigure != null){
+		if (nodePlateFigure != null) {
 			if (figure instanceof RoundedRectangleNodePlateFigure) {
 				for (Object child : nodePlateFigure.getChildren()) {
 					if (child instanceof IFigure) {
@@ -437,7 +430,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 				}
 			}
 			// to force the refresh, invalidate coordinates of the parent if refresh him + all children
-			nodePlateFigure.invalidate();			
+			nodePlateFigure.invalidate();
 		}
 	}
 }
