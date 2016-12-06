@@ -303,11 +303,10 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 		if (isFilterRefreshing.compareAndSet(false, true)) {
 			filterStrategy.applyFilter(filterIndexToObjectMap);
 			columnHeaderLayer.fireLayerEvent(new FilterAppliedEvent(columnHeaderLayer));
-			isFilterRefreshing.set(false);
+			// Bug 502559: Remove the filtering refresh to false because it is not 
+			// a filter strategy re-construction but only an update
 		}
 	}
-
-
 
 	/**
 	 *
@@ -361,6 +360,8 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 					display.asyncExec(schedule);
 				}
 			}
+			
+			isFilterRefreshing.set(true);
 		}
 	}
 

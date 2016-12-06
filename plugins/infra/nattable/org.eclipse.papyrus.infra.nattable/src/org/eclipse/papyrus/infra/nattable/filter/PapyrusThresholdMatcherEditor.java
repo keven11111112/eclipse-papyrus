@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 502559
  *
  *****************************************************************************/
 
@@ -57,6 +58,20 @@ public class PapyrusThresholdMatcherEditor<E, T> extends AbstractMatcherEditor<E
 	private MatchOperation operation;
 	private T threshold;
 	private FunctionList.Function<E, T> function;
+
+	/**
+	 * The column index of filter.
+	 * 
+	 * @since 3.0
+	 */
+	private int columnIndex;
+
+	/**
+	 * The object to match.
+	 * 
+	 * @since 3.0
+	 */
+	private Object objectToMatch;
 
 	/**
 	 * Construct an instance that will require elements to be greater than the
@@ -131,20 +146,59 @@ public class PapyrusThresholdMatcherEditor<E, T> extends AbstractMatcherEditor<E
 	 *            threshold.
 	 */
 	public PapyrusThresholdMatcherEditor(T threshold, MatchOperation operation, Comparator<T> comparator, FunctionList.Function<E, T> function) {
-		if (operation == null)
-			operation = GREATER_THAN;
-		if (comparator == null)
-			comparator = (Comparator<T>) GlazedLists.comparableComparator();
-		if (function == null)
-			function = (FunctionList.Function<E, T>) GlazedListsImpl.identityFunction();
+		this(threshold, operation, comparator, function, -1, null);
+	}
 
-		this.operation = operation;
-		this.comparator = comparator;
+	/**
+	 * Construct an instance.
+	 *
+	 * @param threshold
+	 *            the initial threshold, or null if none.
+	 * @param operation
+	 *            the operation to determine what relation list elements
+	 *            should have to the threshold in order to match (i.e., be visible).
+	 *            Specifying null will use {@link #GREATER_THAN}.
+	 * @param comparator
+	 *            determines how objects compare with the threshold value.
+	 *            If null, the threshold object and list elements must implement {@link Comparable}.
+	 * @param function
+	 *            an optional Function which produces a value fit to be
+	 *            compared against the threshold. This argument is optional, and if
+	 *            it is <tt>null</tt>, the raw values will compared against the
+	 *            threshold.
+	 * @param columnIndex
+	 *            The column index of the filter to apply.
+	 * @param objectToMatch
+	 *            The object to match.
+	 * 
+	 * @since 3.0
+	 */
+	public PapyrusThresholdMatcherEditor(final T threshold, final MatchOperation operation, final Comparator<T> comparator, final FunctionList.Function<E, T> function, final int columnIndex, final Object objectToMatch) {
+		MatchOperation modifiedOperation = operation;
+		if (null == modifiedOperation) {
+			modifiedOperation = GREATER_THAN;
+		}
+
+		Comparator<T> modifiedComparator = comparator;
+		if (null == modifiedComparator) {
+			modifiedComparator = (Comparator<T>) GlazedLists.comparableComparator();
+		}
+
+		FunctionList.Function<E, T> modifiedFunction = function;
+		if (null == modifiedFunction) {
+			modifiedFunction = (FunctionList.Function<E, T>) GlazedListsImpl.identityFunction();
+		}
+
+		this.operation = modifiedOperation;
+		this.comparator = modifiedComparator;
 		this.threshold = threshold;
-		this.function = function;
+		this.function = modifiedFunction;
+
+		this.columnIndex = columnIndex;
+		this.objectToMatch = objectToMatch;
 
 		// if this is our first matcher, it's automatically a constrain
-		currentMatcher = operation.instance(comparator, threshold, function);
+		currentMatcher = modifiedOperation.instance(modifiedComparator, threshold, modifiedFunction);
 		fireChanged(currentMatcher);
 	}
 
@@ -165,6 +219,28 @@ public class PapyrusThresholdMatcherEditor<E, T> extends AbstractMatcherEditor<E
 	 */
 	public T getThreshold() {
 		return threshold;
+	}
+
+	/**
+	 * Get the column index.
+	 * 
+	 * @return The column index.
+	 * 
+	 * @since 3.0
+	 */
+	public int getColumnIndex() {
+		return columnIndex;
+	}
+
+	/**
+	 * Get the object to match.
+	 * 
+	 * @return The object to match.
+	 * 
+	 * @since 3.0
+	 */
+	public Object getObjectToMatch() {
+		return objectToMatch;
 	}
 
 	/**

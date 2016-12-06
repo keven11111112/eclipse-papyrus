@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 502559
  *   
  *****************************************************************************/
 
@@ -44,10 +45,14 @@ public class RegexFindEditor extends AbstractPapyrusMatcherEditor {
 	/**
 	 * Constructor.
 	 *
-	 * @param columnAccesor
+	 * @param columnAccessor
+	 *            The accessor to use to get cell value.
 	 * @param columnIndex
+	 *            The index of the column on which we are working.
 	 * @param matchOn
+	 *            The object looked for by the filter, it must not be a collection.
 	 * @param configRegistry
+	 *            The config registry used by the nattable widget.
 	 */
 	public RegexFindEditor(IColumnAccessor<Object> columnAccesor, int columnIndex, Object matchOn, IConfigRegistry configRegistry) {
 		super(columnAccesor, columnIndex, matchOn, configRegistry);
@@ -55,45 +60,76 @@ public class RegexFindEditor extends AbstractPapyrusMatcherEditor {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.filter.AbstractPapyrusMatcherEditor#createMatcher(org.eclipse.nebula.widgets.nattable.data.IColumnAccessor, int, java.lang.Object, org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
-	 *
-	 * @param columnAccesor
-	 * @param columnIndex
-	 * @param matchOn
-	 * @param configRegistry
-	 * @return
 	 */
 	@Override
-	protected Matcher<Object> createMatcher(IColumnAccessor<Object> columnAccesor, final int columnIndex, final Object matchOn, final IConfigRegistry configRegistry) {
+	protected Matcher<Object> createMatcher(final IColumnAccessor<Object> columnAccesor, final int columnIndex, final Object matchOn, final IConfigRegistry configRegistry) {
 		Assert.isTrue(matchOn instanceof String);
-		return new Matcher<Object>() {
+		return new RegexFindMatcher(columnAccesor, columnIndex, matchOn, configRegistry);
+	}
+	
+	/**
+	 * The regex find matcher.
+	 * 
+	 * @since 3.0
+	 */
+	public class RegexFindMatcher extends AbstractSinglePapyrusMatcher<Object>{
 
-			@Override
-			public boolean matches(Object item) {
-				if (matchOn == null || ((String) matchOn).isEmpty()) {
-					return true;
-				}
+		/**
+		 * The needed config registry.
+		 */
+		protected IConfigRegistry configRegistry;
+		
+		/**
+		 * Constructor.
+		 *
+		 * @param columnAccessor
+		 *            The accessor to use to get cell value.
+		 * @param columnIndex
+		 *            The index of the column on which we are working.
+		 * @param matchOn
+		 *            The object looked for by the filter, it must not be a collection.
+		 * @param configRegistry
+		 *            The config registry used by the nattable widget.
+		 */
+		public RegexFindMatcher(final IColumnAccessor<Object> columnAccessor, final int columnIndex, final Object matchOn, final IConfigRegistry configRegistry) {
+			super(columnAccessor, columnIndex, matchOn, configRegistry);
+			this.configRegistry = configRegistry;
+		}
 
-				Pattern pattern;
-				try {
-					pattern = Pattern.compile((String) matchOn);
-				} catch (Exception e) {
-					// when the entered regex is not valid, we don't filter the rows
-					return true;
-				}
-
-				INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-				int index = manager.getRowElementsList().indexOf(item);
-				BodyLayerStack stack = manager.getBodyLayerStack();
-				ILayerCell cell = stack.getCellByPosition(columnIndex, index);
-				Object value = CellManagerFactory.INSTANCE.getCrossValue(manager.getColumnElement(columnIndex), item, manager);
-				final IDisplayConverter displayConverter = configRegistry.getConfigAttribute(FILTER_DISPLAY_CONVERTER, NORMAL, FILTER_ROW_COLUMN_LABEL_PREFIX + columnIndex);
-				Object res = displayConverter.canonicalToDisplayValue(cell, configRegistry, value);
-				String str = (String) res;
-
-				java.util.regex.Matcher m = pattern.matcher(str);
-				return m.find();
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see ca.odell.glazedlists.matchers.Matcher#matches(java.lang.Object)
+		 */
+		@Override
+		public boolean matches(final Object item) {
+			if (null == getObjectToMatch() || ((String) getObjectToMatch()).isEmpty()) {
+				return true;
 			}
-		};
+
+			Pattern pattern;
+			try {
+				pattern = Pattern.compile((String) getObjectToMatch());
+			} catch (Exception e) {
+				// when the entered regex is not valid, we don't filter the rows
+				return true;
+			}
+
+			final INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			final int index = manager.getRowElementsList().indexOf(item);
+			final BodyLayerStack stack = manager.getBodyLayerStack();
+			final ILayerCell cell = stack.getCellByPosition(getColumnIndex(), index);
+			final Object value = CellManagerFactory.INSTANCE.getCrossValue(manager.getColumnElement(getColumnIndex()), item, manager);
+			final IDisplayConverter displayConverter = configRegistry.getConfigAttribute(FILTER_DISPLAY_CONVERTER, NORMAL, FILTER_ROW_COLUMN_LABEL_PREFIX + getColumnIndex());
+			final Object res = displayConverter.canonicalToDisplayValue(cell, configRegistry, value);
+			final String str = (String) res;
+
+			final java.util.regex.Matcher m = pattern.matcher(str);
+			return m.find();
+		}
+		
 	}
 }

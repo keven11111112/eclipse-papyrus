@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 502559
  *   
  *****************************************************************************/
 
@@ -80,8 +81,10 @@ public abstract class AbstractSinglePapyrusMatcher<E> implements Matcher<E> {
 
 	/**
 	 * @return the wantedObject
+	 * 
+	 * @since 3.0
 	 */
-	protected final Object getObjectToMatch() {
+	public final Object getObjectToMatch() {
 		return matchOn;
 	}
 
@@ -94,8 +97,10 @@ public abstract class AbstractSinglePapyrusMatcher<E> implements Matcher<E> {
 
 	/**
 	 * @return the columnIndex
+	 * 
+	 * @since 3.0
 	 */
-	protected final int getColumnIndex() {
+	public final int getColumnIndex() {
 		return columnIndex;
 	}
 

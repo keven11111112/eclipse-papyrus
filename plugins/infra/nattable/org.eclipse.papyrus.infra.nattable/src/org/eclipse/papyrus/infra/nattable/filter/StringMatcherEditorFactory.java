@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 502559
  *   
  *****************************************************************************/
 
@@ -34,18 +35,21 @@ import org.eclipse.nebula.widgets.nattable.filterrow.ParseResult;
 import org.eclipse.nebula.widgets.nattable.filterrow.ParseResult.MatchType;
 import org.eclipse.nebula.widgets.nattable.filterrow.TextMatchingMode;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.nebula.widgets.nattable.layer.cell.LayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
 import ca.odell.glazedlists.BasicEventList;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FunctionList;
 import ca.odell.glazedlists.FunctionList.Function;
+import ca.odell.glazedlists.TextFilterable;
 import ca.odell.glazedlists.TextFilterator;
 import ca.odell.glazedlists.matchers.CompositeMatcherEditor;
 import ca.odell.glazedlists.matchers.MatcherEditor;
@@ -127,14 +131,13 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 			List<ParseResult> parseResults = FilterRowUtils.parse(filterText, textDelimiter, textMatchingMode);
 
 
-			for (ParseResult parseResult : parseResults)
-			{
+			for (ParseResult parseResult : parseResults) {
 				MatchType matchOperation = parseResult.getMatchOperation();
 				if (matchOperation == MatchType.NONE) {
-					stringMatcherEditors.add(getTextMatcherEditor(columnIndex, textMatchingMode, displayConverter, parseResult.getValueToMatch(), columnAccessor, configRegistry));
+					stringMatcherEditors.add(getTextMatcherEditor(columnIndex, papyrusTextMatchingMode, textMatchingMode, displayConverter, parseResult.getValueToMatch(), columnAccessor, configRegistry));
 				} else {
 					Object threshold = displayConverter.displayToCanonicalValue(parseResult.getValueToMatch());
-					matcherEditors.add(getThresholdMatcherEditor(columnIndex, threshold, comparator, columnValueProvider, matchOperation, configRegistry));
+					matcherEditors.add(getThresholdMatcherEditor(columnIndex, threshold, wantedValue, comparator, columnValueProvider, matchOperation, configRegistry));
 				}
 			}
 		}
@@ -159,7 +162,7 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 	 * @param columnLabel
 	 *            the label of the column
 	 * @return
-	 *         the matching mode to use, according to the table configuration and the wanted value
+	 * 		the matching mode to use, according to the table configuration and the wanted value
 	 */
 	protected PapyrusTextMatchingMode getTextMatchingMode(String wantedValue, IConfigRegistry configRegistry, String columnLabel) {
 		PapyrusTextMatchingMode papyrusMatchingMode = configRegistry.getConfigAttribute(NattableConfigAttributes.STRING_FILTER_MATCHING_MODE, NORMAL, columnLabel);
@@ -247,13 +250,42 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 	 *            of the column for which the matcher editor is being set up
 	 * @param configRegistry
 	 *            the config registry used by the nattable widget
+	 * @deprecated since 3.0
 	 */
+	@Deprecated
 	protected PapyrusThresholdMatcherEditor<T, Object> getThresholdMatcherEditor(Integer columnIndex, Object threshold, Comparator<Object> comparator, Function<T, Object> columnValueProvider, MatchType matchOperation, IConfigRegistry configRegistry) {
 		PapyrusThresholdMatcherEditor<T, Object> thresholdMatcherEditor = new PapyrusThresholdMatcherEditor<T, Object>(
 				threshold,
 				null,
 				comparator,
 				columnValueProvider) {
+
+		};
+
+		FilterRowUtils.setMatchOperation(thresholdMatcherEditor, matchOperation);
+		return thresholdMatcherEditor;
+	}
+
+	/**
+	 * Set up a threshold matcher for tokens like '&gt;20', '&lt;=10' etc.
+	 * 
+	 * @param columnIndex
+	 *            of the column for which the matcher editor is being set up
+	 * @param configRegistry
+	 *            the config registry used by the nattable widget
+	 * @param objectToMatch
+	 *            The object to match.
+	 * @since 3.0
+	 */
+	protected PapyrusThresholdMatcherEditor<T, Object> getThresholdMatcherEditor(final Integer columnIndex, final Object threshold, final Object objectToMatch, Comparator<Object> comparator, final Function<T, Object> columnValueProvider,
+			final MatchType matchOperation, final IConfigRegistry configRegistry) {
+		PapyrusThresholdMatcherEditor<T, Object> thresholdMatcherEditor = new PapyrusThresholdMatcherEditor<T, Object>(
+				threshold,
+				null,
+				comparator,
+				columnValueProvider,
+				columnIndex,
+				objectToMatch) {
 
 		};
 
@@ -282,9 +314,30 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 	 *            text entered by the user in the filter row
 	 * @param configRegistry
 	 *            the config registry used by the nattable widget
+	 * @deprecated since 3.0
 	 */
+	@Deprecated
 	protected TextMatcherEditor<T> getTextMatcherEditor(Integer columnIndex, TextMatchingMode textMatchingMode, IDisplayConverter converter, String filterText, final IColumnAccessor<T> columnAccessor, IConfigRegistry configRegistry) {
-		TextMatcherEditor<T> textMatcherEditor = new TextMatcherEditor<T>(getTextFilterator(columnIndex, converter, columnAccessor, configRegistry));
+		final PapyrusTextMatcherEditor<T> textMatcherEditor = new PapyrusTextMatcherEditor<T>(getTextFilterator(columnIndex, converter, columnAccessor, configRegistry), columnIndex, filterText, PapyrusTextMatchingMode.REGEX_FIND);
+		textMatcherEditor.setFilterText(new String[] { filterText });
+		textMatcherEditor.setMode(getGlazedListsTextMatcherEditorMode(textMatchingMode));
+		return textMatcherEditor;
+	}
+
+	/**
+	 * Sets up a text matcher editor for String tokens
+	 * 
+	 * @param columnIndex
+	 *            of the column for which the matcher editor is being set up
+	 * @param filterText
+	 *            text entered by the user in the filter row
+	 * @param configRegistry
+	 *            the config registry used by the nattable widget
+	 * @since 3.0
+	 */
+	protected TextMatcherEditor<T> getTextMatcherEditor(final Integer columnIndex, final PapyrusTextMatchingMode papyrusTextMatchingMode, final TextMatchingMode textMatchingMode, final IDisplayConverter converter, final String filterText,
+			final IColumnAccessor<T> columnAccessor, final IConfigRegistry configRegistry) {
+		final PapyrusTextMatcherEditor<T> textMatcherEditor = new PapyrusTextMatcherEditor<T>(getTextFilterator(columnIndex, converter, columnAccessor, configRegistry), columnIndex, filterText, papyrusTextMatchingMode);
 		textMatcherEditor.setFilterText(new String[] { filterText });
 		textMatcherEditor.setMode(getGlazedListsTextMatcherEditorMode(textMatchingMode));
 		return textMatcherEditor;
@@ -300,20 +353,27 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 			@Override
 			public void getFilterStrings(List<String> objectAsListOfStrings, T rowObject) {
 				Object representedObject = AxisUtils.getRepresentedElement(rowObject);
-				if(representedObject instanceof TreeFillingConfiguration){
-					return ;
+				if (representedObject instanceof TreeFillingConfiguration) {
+					return;
 				}
 				INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 				int index = manager.getRowElementsList().indexOf(rowObject);
 				BodyLayerStack stack = manager.getBodyLayerStack();
 				ILayerCell cell = stack.getBodyDataLayer().getCellByPosition(columnIndex, index);
-				if(cell==null){
-					//we probably have a problem
-					return;
-				}
+				
 				Object value = CellManagerFactory.INSTANCE.getCrossValue(manager.getColumnElement(columnIndex), rowObject, manager);
+				
+				// The cell must be not displayed because the filter can be relaxed (less constrained)
+				if(null == cell){
+					cell = new LabelProviderCellContextElementWrapper();
+					((LabelProviderCellContextElementWrapper)cell).setConfigRegistry(configRegistry);
+					((LabelProviderCellContextElementWrapper)cell).setCell(new LayerCell(stack.getBodyDataLayer(), columnIndex, index));
+				}
+				
+				// The cell must be not displayed because the filter can be relaxed (less constrained)
 				final IDisplayConverter displayConverter = configRegistry.getConfigAttribute(FILTER_DISPLAY_CONVERTER, NORMAL, FILTER_ROW_COLUMN_LABEL_PREFIX + columnIndex);
 				Object res = displayConverter.canonicalToDisplayValue(cell, configRegistry, value);
+			
 				if (res instanceof String) {
 					objectAsListOfStrings.add((String) res);
 				} else if (res instanceof Collection<?>) {
@@ -341,5 +401,78 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 		default:
 			return TextMatcherEditor.CONTAINS;
 		}
+	}
+
+	/**
+	 * The text matcher editor for Papyrus.
+	 *
+	 * @param <E>
+	 *            Type of filtered object.
+	 */
+	public class PapyrusTextMatcherEditor<E> extends TextMatcherEditor<E> {
+
+		/**
+		 * The column index of filter.
+		 */
+		private int columnIndex;
+
+		/**
+		 * The object to match.
+		 */
+		private Object objectToMatch;
+
+		/**
+		 * The papyrus mode as string.
+		 */
+		private String papyrusMode;
+
+		/**
+		 * Constructor.
+		 *
+		 * @param filterator
+		 *            The object that will extract filter Strings from each
+		 *            object in the <code>source</code>; <code>null</code> indicates the
+		 *            list elements implement {@link TextFilterable}.
+		 * @param columnIndex
+		 *            The column index.
+		 * @param matchOn
+		 *            The object to match.
+		 * @param papyrusTextMatchingMode
+		 *            The papyrus matching mode.
+		 */
+		public PapyrusTextMatcherEditor(final TextFilterator<? super E> filterator, final int columnIndex, final Object matchOn, final PapyrusTextMatchingMode papyrusTextMatchingMode) {
+			super(filterator);
+			this.columnIndex = columnIndex;
+			this.objectToMatch = matchOn;
+			this.papyrusMode = papyrusTextMatchingMode.getMode();
+		}
+
+		/**
+		 * Get the column index.
+		 * 
+		 * @return The column index.
+		 */
+		public int getColumnIndex() {
+			return columnIndex;
+		}
+
+		/**
+		 * Get the object to match.
+		 * 
+		 * @return The object to match.
+		 */
+		public Object getObjectToMatch() {
+			return objectToMatch;
+		}
+
+		/**
+		 * Get the papyrus mode as String.
+		 * 
+		 * @return The papyrus mode as String.
+		 */
+		public String getPapyrusMode() {
+			return papyrusMode;
+		}
+
 	}
 }

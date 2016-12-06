@@ -7,14 +7,17 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 502559
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.filter;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -29,6 +32,8 @@ import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.filter.RegexFindEditor.RegexFindMatcher;
+import org.eclipse.papyrus.infra.nattable.filter.StringMatcherEditorFactory.PapyrusTextMatcherEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
@@ -97,7 +102,7 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 	/**
 	 * 
 	 * @return
-	 *         the table manager
+	 * 		the table manager
 	 * 
 	 */
 	private INattableModelManager getTableManager() {
@@ -188,17 +193,18 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 
 	/**
 	 * Create GlazedLists matcher editors and apply them to facilitate filtering.
+	 * {@inheritDoc}
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void applyFilter(Map<Integer, Object> filterIndexToObjectMap) {
+	public void applyFilter(final Map<Integer, Object> filterIndexToObjectMap) {
 		// find the lock and the matcher to use, it depends on the table invert axis state
 		ReadWriteLock filterLock = getReadWriteLockToUse();
 		CompositeMatcherEditor<Object> matcherEditor = getMatcherEditorToUse();
 		// wait until all listeners had the chance to handle the clear event
 		try {
 			filterLock.writeLock().lock();
-			matcherEditor.getMatcherEditors().clear();
+			clearMarcherEditors(matcherEditor, filterIndexToObjectMap);
 		} finally {
 			filterLock.writeLock().unlock();
 		}
@@ -222,14 +228,16 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 				if (matcherCreator != null) {
 					if (value instanceof Collection<?>) {
 						Collection<?> coll = (Collection<?>) value;
-						Iterator<?> iter = coll.iterator();
-						CompositeMatcherEditor<Object> composite = new CompositeMatcherEditor<Object>();
-						composite.setMode(CompositeMatcherEditor.OR);
-						while (iter.hasNext()) {
-							Object next = iter.next();
-							composite.getMatcherEditors().addAll(matcherCreator.instantiateMatcherEditors(columnAccessor, columnIndex, next, configRegistry));
+						if(!coll.isEmpty()){
+							Iterator<?> iter = coll.iterator();
+							CompositeMatcherEditor<Object> composite = new CompositeMatcherEditor<Object>();
+							composite.setMode(CompositeMatcherEditor.OR);
+							while (iter.hasNext()) {
+								Object next = iter.next();
+								composite.getMatcherEditors().addAll(matcherCreator.instantiateMatcherEditors(columnAccessor, columnIndex, next, configRegistry));
+							}
+							matcherEditors.add(composite);
 						}
-						matcherEditors.add(composite);
 					} else {
 						matcherEditors.addAll(matcherCreator.instantiateMatcherEditors(columnAccessor, columnIndex, value, configRegistry));
 					}
@@ -240,16 +248,139 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 			}
 
 			// wait until all listeners had the chance to handle the clear event
-			try {
-				filterLock.writeLock().lock();
-				matcherEditor.getMatcherEditors().addAll(matcherEditors);
-			} finally {
-				filterLock.writeLock().unlock();
+			if (!matcherEditors.isEmpty()) {
+				try {
+					filterLock.writeLock().lock();
+					matcherEditor.setMode(CompositeMatcherEditor.AND);
+					matcherEditor.getMatcherEditors().addAll(matcherEditors);
+				} finally {
+					filterLock.writeLock().unlock();
+				}
 			}
 
 		} catch (Exception e) {
 			Activator.log.error("Error on applying a filter", e); //$NON-NLS-1$
 		}
+	}
+
+	/**
+	 * This allows to clear the needed editor which are not compliant with the map of filters by columns.
+	 * 
+	 * @param rootMatcherEditor
+	 *            The existing matcher editors.
+	 * @param filterIndexToObjectMap
+	 *            The map of filters by columns.
+	 */
+	protected void clearMarcherEditors(final CompositeMatcherEditor<Object> rootMatcherEditor, final Map<Integer, Object> filterIndexToObjectMap) {
+		final Iterator<MatcherEditor<Object>> subMatchersEditor = rootMatcherEditor.getMatcherEditors().iterator();
+		while (subMatchersEditor.hasNext()) {
+			final MatcherEditor<Object> subMatcherEditor = subMatchersEditor.next();
+
+			// If this is a composite matcher editor, check its content
+			if (subMatcherEditor instanceof CompositeMatcherEditor) {
+				if (!isCompositeSubMatcherExist((CompositeMatcherEditor<Object>) subMatcherEditor, filterIndexToObjectMap)) {
+					// If the composite is not corresponding with the filter map, remove it
+					subMatchersEditor.remove();
+				}
+
+				// If this is a papyrus matcher, check its column and its object to match
+			} else if (subMatcherEditor.getMatcher() instanceof AbstractSinglePapyrusMatcher) {
+				int columnIndex = ((AbstractSinglePapyrusMatcher<Object>) subMatcherEditor.getMatcher()).getColumnIndex();
+
+				// The column does not exist anymore in the filter map, remove the matcher
+				if (!filterIndexToObjectMap.containsKey(columnIndex)) {
+					subMatchersEditor.remove();
+				} else {
+					// The column exist, check the object to match
+					final Object objectToMatch = ((AbstractSinglePapyrusMatcher<Object>) subMatcherEditor.getMatcher()).getObjectToMatch();
+					final Object value = filterIndexToObjectMap.get(columnIndex);
+
+					// If the object to match is equals, remove the matcher, else remove the filter from the filters map
+					if (!objectToMatch.equals(value)) {
+						subMatchersEditor.remove();
+					} else {
+						filterIndexToObjectMap.remove(columnIndex);
+					}
+				}
+
+				// In other case, remove the filter, it must be recalculated
+			} else {
+				subMatchersEditor.remove();
+			}
+
+			// If the composite does not contain any matcher editor, remove it
+			if (((CompositeMatcherEditor<Object>) subMatcherEditor).getMatcherEditors().isEmpty()) {
+				subMatchersEditor.remove();
+			}
+		}
+	}
+
+	/**
+	 * Check if the composite matcher editor exist in the filters map.
+	 * 
+	 * @param subCompositeMatcher
+	 *            The composite matcher editor.
+	 * @param filterIndexToObjectMap
+	 *            The filters map.
+	 * @return <code>true</code> if the composite matcher editor already exist and is the same than in the filters map, <code>false</code> otherwise.
+	 */
+	@SuppressWarnings("rawtypes")
+	protected boolean isCompositeSubMatcherExist(final CompositeMatcherEditor<Object> subCompositeMatcher, final Map<Integer, Object> filterIndexToObjectMap) {
+		boolean result = false;
+		int columnIndex = -1;
+		List<Object> objectsToMatch = new ArrayList<Object>();
+		String matchingMode = ""; ////$NON-NLS-1$
+
+		// Loop on matcher editors
+		final Iterator<MatcherEditor<Object>> matchersEditor = subCompositeMatcher.getMatcherEditors().iterator();
+		while (matchersEditor.hasNext()) {
+			final MatcherEditor<Object> matcherEditor = matchersEditor.next();
+
+			// Check if this is a papyrus matcher
+			if (matcherEditor.getMatcher() instanceof AbstractSinglePapyrusMatcher) {
+				// Get the first column index, the following must be the same
+				if (-1 == columnIndex) {
+					columnIndex = ((AbstractSinglePapyrusMatcher<Object>) matcherEditor.getMatcher()).getColumnIndex();
+				}
+				objectsToMatch.add(((AbstractSinglePapyrusMatcher<Object>) matcherEditor.getMatcher()).getObjectToMatch());
+
+				// If this is a RegexFindMatcher, the object to match must contains 'regex:' more than objects to match
+				if (matcherEditor.getMatcher() instanceof RegexFindMatcher) {
+					matchingMode = PapyrusTextMatchingMode.REGEX_FIND.getMode();
+				}
+			}
+
+			if (matcherEditor instanceof PapyrusTextMatcherEditor) {
+				if (-1 == columnIndex) {
+					columnIndex = ((PapyrusTextMatcherEditor) matcherEditor).getColumnIndex();
+				}
+				objectsToMatch.add(((PapyrusTextMatcherEditor) matcherEditor).getObjectToMatch());
+
+				matchingMode = ((PapyrusTextMatcherEditor) matcherEditor).getPapyrusMode();
+			}
+			
+			if (matcherEditor instanceof PapyrusThresholdMatcherEditor) {
+				if (-1 == columnIndex) {
+					columnIndex = ((PapyrusThresholdMatcherEditor) matcherEditor).getColumnIndex();
+				}
+				objectsToMatch.add(((PapyrusThresholdMatcherEditor) matcherEditor).getObjectToMatch());
+			}
+		}
+
+		// Check if the column if existing
+		if (-1 != columnIndex && filterIndexToObjectMap.containsKey(columnIndex)) {
+			final Object value = filterIndexToObjectMap.get(columnIndex);
+
+			// Check if the value in filters map is corresponding to the matcher editors.
+			if ((value instanceof Collection && ((Collection<?>) value).containsAll(objectsToMatch) && objectsToMatch.containsAll((Collection<?>) value))
+					|| (1 == objectsToMatch.size() && (value.equals(matchingMode + objectsToMatch.get(0)) || value.equals(objectsToMatch.get(0))))) {
+				// In this case, remove the filter from the filters map.
+				filterIndexToObjectMap.remove(columnIndex);
+				result = true;
+			}
+		}
+
+		return result;
 	}
 
 	protected FilterList<?> getRowFilterList() {
