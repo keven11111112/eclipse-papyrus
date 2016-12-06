@@ -111,7 +111,6 @@ import org.eclipse.papyrus.infra.nattable.sort.PapyrusCompositeGlazedListSortMod
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CellMapKey;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
@@ -212,8 +211,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	private final AdapterImpl changeAxisProviderHistory;
 
-	
-	private IFocusService focusService; 
+
+	private IFocusService focusService;
 
 	/**
 	 * the listener on the table cells
@@ -510,21 +509,21 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 		this.focusListener = this;
 		nattable.addFocusListener(this.focusListener);
-		
-		//registering to focusService allows to declare properties tester on "activeFocusControl" and "activeFocusControlId" variables
+
+		// registering to focusService allows to declare properties tester on "activeFocusControl" and "activeFocusControlId" variables
 		focusService = (IFocusService) PlatformUI.getWorkbench().getService(IFocusService.class);
-		if (focusService!=null){
-			String id=null;
-			if (getTable().getTableConfiguration()!= null){
-				id =  getTable().getTableConfiguration().getType();
+		if (focusService != null) {
+			String id = null;
+			if (getTable().getTableConfiguration() != null) {
+				id = getTable().getTableConfiguration().getType();
 			}
-			if (id == null){	
+			if (id == null) {
 				id = getTableName();
 			}
-			focusService.addFocusTracker(nattable,id);
+			focusService.addFocusTracker(nattable, id);
 		}
-		
-		
+
+
 		this.layerListener = new ILayerListener() {
 
 			@Override
@@ -896,11 +895,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		}
 
-		if (focusService != null && this.natTable!=null){
+		if (focusService != null && this.natTable != null) {
 			focusService.removeFocusTracker(this.natTable);
 			focusService = null;
 		}
-		
+
 		removeListeners();
 		super.dispose();
 	}
@@ -1808,51 +1807,58 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 			@Override
 			protected IStatus run(final IProgressMonitor monitor) {
-				if (notification == null) {
-					cellsMap.clear();
-					for (final Cell current : getTable().getCells()) {
-						final CellMapKey key = createCellMapKeyWaitingCellAxis(current);
-						cellsMap.put(key, current);
-					}
-				} else {
-					final int eventType = notification.getEventType();
-					if (eventType == Notification.ADD) {
-						final Object object = notification.getNewValue();
-						if (object instanceof Cell) {
-							final Cell cell = (Cell) object;
-							final CellMapKey key = createCellMapKeyWaitingCellAxis(cell);
-							cellsMap.put(key, cell);
-						}
-					} else if (eventType == Notification.ADD_MANY) {
-						final Object coll = notification.getNewValue();
+				// Check the existence of the cellsMap
+				if (null != cellsMap) {
+					if (notification == null) {
+						cellsMap.clear();
 
-						if (coll instanceof Collection<?>) {
-							final Iterator<?> iter = ((Collection<?>) coll).iterator();
-							while (iter.hasNext()) {
-								final Object object = iter.next();
-								if (object instanceof Cell) {
-									final Cell cell = (Cell) object;
-									final CellMapKey key = createCellMapKeyWaitingCellAxis(cell);
-									cellsMap.put(key, cell);
-								}
+						// Check the existence of the table and its cells
+						if (null != getTable() && null != getTable().getCells()) {
+							for (final Cell current : getTable().getCells()) {
+								final CellMapKey key = createCellMapKeyWaitingCellAxis(current);
+								cellsMap.put(key, current);
 							}
 						}
-					} else if (eventType == Notification.REMOVE) {
-						final Object oldCell = notification.getOldValue();
-						if (oldCell instanceof Cell) {
-							final CellMapKey key = cellsMap.inverse().get(oldCell);
-							cellsMap.remove(key);
-						}
-					} else if (eventType == Notification.REMOVE_MANY) {
-						final Object coll = notification.getOldValue();
+					} else {
+						final int eventType = notification.getEventType();
+						if (eventType == Notification.ADD) {
+							final Object object = notification.getNewValue();
+							if (object instanceof Cell) {
+								final Cell cell = (Cell) object;
+								final CellMapKey key = createCellMapKeyWaitingCellAxis(cell);
+								cellsMap.put(key, cell);
+							}
+						} else if (eventType == Notification.ADD_MANY) {
+							final Object coll = notification.getNewValue();
 
-						if (coll instanceof Collection<?>) {
-							final Iterator<?> iter = ((Collection<?>) coll).iterator();
-							while (iter.hasNext()) {
-								final Object object = iter.next();
-								if (object instanceof Cell) {
-									final CellMapKey key = cellsMap.inverse().get(object);
-									cellsMap.remove(key);
+							if (coll instanceof Collection<?>) {
+								final Iterator<?> iter = ((Collection<?>) coll).iterator();
+								while (iter.hasNext()) {
+									final Object object = iter.next();
+									if (object instanceof Cell) {
+										final Cell cell = (Cell) object;
+										final CellMapKey key = createCellMapKeyWaitingCellAxis(cell);
+										cellsMap.put(key, cell);
+									}
+								}
+							}
+						} else if (eventType == Notification.REMOVE) {
+							final Object oldCell = notification.getOldValue();
+							if (oldCell instanceof Cell) {
+								final CellMapKey key = cellsMap.inverse().get(oldCell);
+								cellsMap.remove(key);
+							}
+						} else if (eventType == Notification.REMOVE_MANY) {
+							final Object coll = notification.getOldValue();
+
+							if (coll instanceof Collection<?>) {
+								final Iterator<?> iter = ((Collection<?>) coll).iterator();
+								while (iter.hasNext()) {
+									final Object object = iter.next();
+									if (object instanceof Cell) {
+										final CellMapKey key = cellsMap.inverse().get(object);
+										cellsMap.remove(key);
+									}
 								}
 							}
 						}
