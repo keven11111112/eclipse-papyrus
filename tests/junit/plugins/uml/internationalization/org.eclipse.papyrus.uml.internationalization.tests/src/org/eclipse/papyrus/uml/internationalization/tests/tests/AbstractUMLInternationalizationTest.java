@@ -13,13 +13,9 @@
 
 package org.eclipse.papyrus.uml.internationalization.tests.tests;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.internationalization.tests.Activator;
+import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Interface;
@@ -83,7 +79,7 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 	protected Enumeration modelEnumeration;
 
 	/** The label provider. */
-	protected ILabelProvider labelProvider;
+	protected DecoratingLabelProviderWTooltips labelProvider;
 
 	/**
 	 * Constructor.
@@ -105,12 +101,14 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 		model = getRootUMLModel();
 		Assert.assertNotNull("The model cannot be null", model);
 
-		try {
-			labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, (EObject) model)
-					.getLabelProvider();
-		} catch (final ServiceException ex) {
-			Activator.log.error(ex);
-		}
+		labelProvider = (DecoratingLabelProviderWTooltips) getModelExplorerView().getCommonViewer().getLabelProvider();
+		
+//		try {
+//			labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, (EObject) model)
+//					.getLabelProvider();
+//		} catch (final ServiceException ex) {
+//			Activator.log.error(ex);
+//		}
 
 		modelClass = (Class) model.getOwnedMember(CLASS_NAME);
 		Assert.assertNotNull("The class cannot be null", modelClass);

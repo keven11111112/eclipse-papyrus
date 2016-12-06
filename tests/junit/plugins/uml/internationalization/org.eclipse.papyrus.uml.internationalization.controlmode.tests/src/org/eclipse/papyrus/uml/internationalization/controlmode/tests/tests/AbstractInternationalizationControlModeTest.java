@@ -89,10 +89,10 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	public void checkNoLabels() throws Exception {
 		super.checkNoLabels();
 
-		Assert.assertEquals("The root element label is not the expected one.", "ClassDiagram",
+		Assert.assertEquals("The root element label is not the expected one.", "Diagram ClassDiagram",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The class label is not the expected one.", "GenericTable0", labelProvider.getText(table));
+		Assert.assertEquals("The class label is not the expected one.", "Table GenericTable0", labelProvider.getText(table));
 	}
 
 	/**
@@ -104,10 +104,10 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	public void checkFrenchLabels() throws Exception {
 		super.checkFrenchLabels();
 
-		Assert.assertEquals("The root element label is not the expected one.", "MonDiagrammeDeClasse",
+		Assert.assertEquals("The root element label is not the expected one.", "Diagram MonDiagrammeDeClasse",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The class label is not the expected one.", "MaTableGenerique",
+		Assert.assertEquals("The class label is not the expected one.", "Table MaTableGenerique",
 				labelProvider.getText(table));
 	}
 
@@ -120,10 +120,10 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	public void checkEnglishLabels() throws Exception {
 		super.checkEnglishLabels();
 
-		Assert.assertEquals("The root element label is not the expected one.", "MyClassDiagram",
+		Assert.assertEquals("The root element label is not the expected one.", "Diagram MyClassDiagram",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The class label is not the expected one.", "MyGenericTable", labelProvider.getText(table));
+		Assert.assertEquals("The class label is not the expected one.", "Table MyGenericTable", labelProvider.getText(table));
 	}
 
 	/**
