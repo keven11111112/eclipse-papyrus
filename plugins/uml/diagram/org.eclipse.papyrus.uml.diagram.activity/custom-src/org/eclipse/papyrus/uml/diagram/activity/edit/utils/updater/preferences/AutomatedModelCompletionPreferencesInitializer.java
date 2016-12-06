@@ -46,6 +46,7 @@ public class AutomatedModelCompletionPreferencesInitializer extends AbstractPref
 		IPreferenceStore store = getPreferenceStore();
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.ACCEPT_CALL_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.ACCEPTE_EVENT_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
+		store.setDefault(IAutomatedModelCompletionPreferencesConstants.ADD_STRUCTURAL_FEATURE_VALUE_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
 	}
 

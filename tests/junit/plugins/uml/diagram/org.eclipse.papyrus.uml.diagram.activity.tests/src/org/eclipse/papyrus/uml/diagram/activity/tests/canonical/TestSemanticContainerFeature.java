@@ -707,6 +707,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testInputPinAsObjectInAddStructuralFeatureValueAction() {
+		// Pins of AddStructuralFeatureValueAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.ADD_STRUCTURAL_FEATURE_VALUE_ACTION_ACCELERATOR, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID, actionEP);
 
@@ -716,6 +721,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testActionPinAsObjectInAddStructuralFeatureValueAction() {
+		// Pins of AddStructuralFeatureValueAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.ADD_STRUCTURAL_FEATURE_VALUE_ACTION_ACCELERATOR, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID, actionEP);
 
@@ -725,6 +735,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testValuePinAsObjectInAddStructuralFeatureValueAction() {
+		// Pins of AddStructuralFeatureValueAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.ADD_STRUCTURAL_FEATURE_VALUE_ACTION_ACCELERATOR, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID, actionEP);
 

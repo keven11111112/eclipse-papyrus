@@ -24,5 +24,7 @@ public interface IAutomatedModelCompletionPreferencesConstants {
 
 	final public String ACCEPTE_EVENT_ACTION_ACCELERATOR = "org.eclipse.papyrus.uml.diagram.activity.preferences.acceptEventAction";
 
+	final public String ADD_STRUCTURAL_FEATURE_VALUE_ACTION_ACCELERATOR = "org.eclipse.papyrus.uml.diagram.activity.preferences.addStructuralFeatureValueAction";
+
 	final public String READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR = "org.eclipse.papyrus.uml.diagram.activity.preferences.readStructuralFeatureAction";
 }
