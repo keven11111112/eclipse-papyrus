@@ -56,6 +56,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -126,7 +127,6 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 				}
 			}
 		}
-		// this.setEditorLabelProvider(new CustomEditorLabelProvider());
 		this.setContentProvider(new ContentProvider());
 	}
 
@@ -135,7 +135,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 */
 	@Override
 	protected List<Object> getInput() {
-		List<Object> list = new ArrayList<Object>();
+		List<Object> list = new ArrayList<>();
 		list.addAll(representations);
 		return list;
 	}
@@ -165,7 +165,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 					completeCmd.add(cmd);
 				}
 			} else {
-				Activator.log.error("the edit part for this representation " + current + " should not be null", null);
+				Activator.log.error("the edit part for this representation " + current + " should not be null", null);//$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 
@@ -265,7 +265,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 *         a CompartmentEditPart, we return its containing EditPart
 	 */
 	protected List<EditPart> getChildrenEditPart(EditPart ep) {
-		List<EditPart> children = new ArrayList<EditPart>();
+		List<EditPart> children = new ArrayList<>();
 		List<?> tmp = ep.getChildren();
 		for (Object current : tmp) {
 			// we don't want the compartment used for the name
@@ -316,11 +316,11 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	protected void buildShowHideElementsList(Object[] results) {
 		super.buildShowHideElementsList(results);
 
-		List<Object> result = new ArrayList<Object>();
+		List<Object> result = new ArrayList<>();
 
 		// we remove the EditPartRepresentation from the result
 		for (int i = 0; i < results.length; i++) {
-			if ((results[i] instanceof RootEditPartRepresentation || results[i] instanceof CompartmentEditPartRepresentation)) {
+			if (results[i] instanceof RootEditPartRepresentation || results[i] instanceof CompartmentEditPartRepresentation) {
 				continue;
 			} else {
 				result.add(results[i]);
@@ -639,7 +639,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, null, ViewUtil.APPEND, false, getRepresentedEditPart().getDiagramPreferencesHint());
 
 			CreateCommand cmd = new CreateCommand(domain, viewDescriptor, getRepresentedEditPart().getNotationView());
-			return (cmd.canExecute());
+			return cmd.canExecute();
 		}
 	}
 
@@ -748,14 +748,14 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		 */
 		@Override
 		protected List<Element> collectMembers() {
-			List<Element> res = new ArrayList<Element>();
+			List<Element> res = new ArrayList<>();
 			EObject semanticElement = getSemanticElement();
 			if (semanticElement instanceof Port) {
 				Port port = (Port) semanticElement;
 				Type type = port.getType();
-				if (type != null){
-					EList<Element> allOwnedElements = type.allOwnedElements();
-					for (Element element : allOwnedElements) {
+				if (type != null && type instanceof Classifier){
+					EList<Property> allAttributes = ((Classifier) type).getAllAttributes();
+					for (Element element : allAttributes) {
 						if (element instanceof Port) {
 							res.add(element);
 						}
@@ -774,7 +774,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			TransactionalEditingDomain domain = getParentRepresentation().getRepresentedEditPart().getEditingDomain();
 			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, "Port_Shape", ViewUtil.APPEND, false, getParentRepresentation().getRepresentedEditPart().getDiagramPreferencesHint());
 			CreateCommand cmd = new CreateCommand(domain, viewDescriptor, getParentRepresentation().getRepresentedEditPart().getNotationView());
-			return (cmd.canExecute());
+			return cmd.canExecute();
 		}		
 		
 	}	
