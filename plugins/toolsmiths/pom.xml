@@ -19,7 +19,5 @@
 		<module>../customization/org.eclipse.papyrus.customization.properties</module>
 		<module>../customization/org.eclipse.papyrus.customization.properties.generation</module>
 		<module>../customization/org.eclipse.papyrus.customization.properties.model.xwt</module>
-		<module>../customization/org.eclipse.papyrus.infra.gmfdiag.expansion.edit</module>
-		<module>../customization/org.eclipse.papyrus.infra.gmfdiag.expansion.editor</module>
 	</modules>
 </project>

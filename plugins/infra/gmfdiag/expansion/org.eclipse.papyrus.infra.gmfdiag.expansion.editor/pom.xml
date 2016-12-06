@@ -4,11 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.eclipse.papyrus</groupId>
-		<artifactId>org.eclipse.papyrus.toolsmiths</artifactId>
+		<artifactId>org.eclipse.papyrus.infra.gmfdiag-expansion</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../../toolsmiths/pom.xml</relativePath>
 	</parent>
-	<artifactId>org.eclipse.papyrus.infra.gmfdiag.expansion.edit</artifactId>
+	<artifactId>org.eclipse.papyrus.infra.gmfdiag.expansion.editor</artifactId>
 	<version>2.0.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 </project>

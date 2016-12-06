@@ -34,5 +34,6 @@
 		<module>org.eclipse.papyrus.infra.gmfdiag.widgets</module>
 		<module>assistant</module>
 		<module>css</module>
+		<module>expansion</module>
 	</modules>
 </project>
