@@ -21,6 +21,7 @@ import org.eclipse.papyrus.views.modelexplorer.tests.AbstractHandlerTest;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -41,6 +42,7 @@ public class RenameHandlerTest extends AbstractHandlerTest {
 		super(commandId, Activator.getDefault().getBundle());
 	}
 
+	@Ignore("Ignored as the rename is now done using F2 with direct editors => Bug 497289")
 	@Test
 	public void renameUMLUnnamedElementTest() {
 		List<Comment> comments = ((Model) getRootOfTheModel()).getOwnedComments();
@@ -54,6 +56,7 @@ public class RenameHandlerTest extends AbstractHandlerTest {
 		}
 	}
 
+	@Ignore("Ignored as the rename is now done using F2 with direct editors => Bug 497289")
 	@Test
 	public void renameUMLNamedElementTest() {
 		selectElementInTheModelexplorer(getRootOfTheModel());
