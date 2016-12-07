@@ -880,7 +880,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		}
 
 		// If the key does not exist, create an entry
-		if (null == resultCommand) {
+		if (null == resultCommand && null != value && !value.isEmpty()) {
 			final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
 					.createInternationalizationEntry();
 			entry.setKey(key);
@@ -989,7 +989,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		}
 
 		// If the key does not exist, create an entry
-		if (!hasFound) {
+		if (!hasFound && null != value && !value.isEmpty()) {
 			final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
 					.createInternationalizationEntry();
 			entry.setKey(key);
