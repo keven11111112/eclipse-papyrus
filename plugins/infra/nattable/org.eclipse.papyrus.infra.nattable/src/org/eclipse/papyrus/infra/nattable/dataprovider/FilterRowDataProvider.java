@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Original authors and others - initial API and implementation
+ *     Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 502559
  ******************************************************************************/
 package org.eclipse.papyrus.infra.nattable.dataprovider;
 
@@ -303,8 +304,7 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 		if (isFilterRefreshing.compareAndSet(false, true)) {
 			filterStrategy.applyFilter(filterIndexToObjectMap);
 			columnHeaderLayer.fireLayerEvent(new FilterAppliedEvent(columnHeaderLayer));
-			// Bug 502559: Remove the filtering refresh to false because it is not 
-			// a filter strategy re-construction but only an update
+			isFilterRefreshing.set(false);
 		}
 	}
 
@@ -360,8 +360,6 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 					display.asyncExec(schedule);
 				}
 			}
-			
-			isFilterRefreshing.set(true);
 		}
 	}
 

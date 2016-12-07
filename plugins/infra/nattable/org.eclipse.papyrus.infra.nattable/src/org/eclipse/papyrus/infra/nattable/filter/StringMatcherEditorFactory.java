@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 502559
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 502559
  *   
  *****************************************************************************/
 
@@ -137,7 +137,7 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 					stringMatcherEditors.add(getTextMatcherEditor(columnIndex, papyrusTextMatchingMode, textMatchingMode, displayConverter, parseResult.getValueToMatch(), columnAccessor, configRegistry));
 				} else {
 					Object threshold = displayConverter.displayToCanonicalValue(parseResult.getValueToMatch());
-					matcherEditors.add(getThresholdMatcherEditor(columnIndex, threshold, wantedValue, comparator, columnValueProvider, matchOperation, configRegistry));
+					stringMatcherEditors.add(getThresholdMatcherEditor(columnIndex, threshold, wantedValue, comparator, columnValueProvider, matchOperation, configRegistry));
 				}
 			}
 		}

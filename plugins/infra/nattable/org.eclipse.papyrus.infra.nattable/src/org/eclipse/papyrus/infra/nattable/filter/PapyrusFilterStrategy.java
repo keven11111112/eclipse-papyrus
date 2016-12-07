@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 502559
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@acea.fr - Bug 502559
  *   
  *****************************************************************************/
 
@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.filter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -201,15 +202,16 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 		// find the lock and the matcher to use, it depends on the table invert axis state
 		ReadWriteLock filterLock = getReadWriteLockToUse();
 		CompositeMatcherEditor<Object> matcherEditor = getMatcherEditorToUse();
+		Map<Integer, Object> copyOfFilterIndexToObjectMap = new HashMap<Integer, Object>(filterIndexToObjectMap);
 		// wait until all listeners had the chance to handle the clear event
 		try {
 			filterLock.writeLock().lock();
-			clearMarcherEditors(matcherEditor, filterIndexToObjectMap);
+			clearMarcherEditors(matcherEditor, copyOfFilterIndexToObjectMap);
 		} finally {
 			filterLock.writeLock().unlock();
 		}
 
-		if (filterIndexToObjectMap.isEmpty()) {
+		if (copyOfFilterIndexToObjectMap.isEmpty()) {
 			return;
 		}
 
@@ -217,7 +219,7 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 			EventList<MatcherEditor<Object>> matcherEditors = new BasicEventList<MatcherEditor<Object>>();
 			NatTable natTable = (NatTable) this.manager.getAdapter(NatTable.class);
 			IConfigRegistry configRegistry = natTable.getConfigRegistry();
-			for (Entry<Integer, Object> mapEntry : filterIndexToObjectMap.entrySet()) {
+			for (Entry<Integer, Object> mapEntry : copyOfFilterIndexToObjectMap.entrySet()) {
 				final Integer columnIndex = mapEntry.getKey();
 				final Object value = mapEntry.getValue();
 				StringBuilder configLabel = new StringBuilder(FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX);
