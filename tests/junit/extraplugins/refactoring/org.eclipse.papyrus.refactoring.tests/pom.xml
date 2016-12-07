@@ -11,6 +11,6 @@
 		<groupId>org.eclipse.papyrus</groupId>
 		<artifactId>org.eclipse.papyrus.extra.tests.releng</artifactId>
 		<version>1.2.0-SNAPSHOT</version>
-		<relativePath>../../../../../releng/extra-tests</relativePath>
+		<relativePath>../../../../../releng/extra-tests/pom.xml</relativePath>
 	</parent>
 </project>
