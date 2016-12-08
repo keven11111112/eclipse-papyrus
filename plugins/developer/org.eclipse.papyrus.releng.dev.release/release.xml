@@ -22,7 +22,7 @@
 		<plugin name="org.eclipse.papyrus.tests.framework.editor" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.dev.types" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.developer.profile" version="1.2.0"/>
-		<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.0"/>
+		<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.100"/>
 		<plugin name="org.eclipse.cbi.p2repo.aggregator.legacy" version="1.0.0"/>
 		<plugin name="org.eclipse.cbi.p2repo.util" version="1.0.0"/>
 		<plugin name="org.eclipse.cbi.p2repo.cli" version="1.0.0"/>
@@ -36,7 +36,7 @@
 		<plugin name="org.eclipse.papyrus.tests.framework.annotations" version="1.2.0"/>
 		<plugin name="org.eclipse.upr.utp" version="0.9.0"/>
 	</feature>
-	<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.0"/>
+	<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.100"/>
 	<plugin name="org.eclipse.cbi.p2repo.aggregator.legacy" version="1.0.0"/>
 	<plugin name="org.eclipse.cbi.p2repo.cli" version="1.0.0"/>
 	<plugin name="org.eclipse.cbi.p2repo.p2" version="1.0.0"/>
