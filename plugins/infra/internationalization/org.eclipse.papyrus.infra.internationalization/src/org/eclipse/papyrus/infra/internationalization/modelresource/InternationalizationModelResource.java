@@ -268,7 +268,11 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		IContainer parentFolder = null;
 		if (folderURI.isPlatformResource()) {
 			final String uriPlatformString = folderURI.toPlatformString(true);
-			parentFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(uriPlatformString));
+			try{
+				parentFolder = ResourcesPlugin.getWorkspace().getRoot().getProject(uriPlatformString);
+			}catch(Exception exception){
+				parentFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(uriPlatformString));
+			}
 		}
 
 		if (null != parentFolder) {
