@@ -25,10 +25,11 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
-import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -264,18 +265,18 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		final URI folderURI = uriWithoutExtension.trimSegments(1);
 
 		// Calculate the project folder
-		IProject projectFolder = null;
+		IContainer parentFolder = null;
 		if (folderURI.isPlatformResource()) {
 			final String uriPlatformString = folderURI.toPlatformString(true);
-			projectFolder = ResourcesPlugin.getWorkspace().getRoot().getProject(uriPlatformString.substring(1));
+			parentFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(uriPlatformString));
 		}
 
-		if (null != projectFolder) {
+		if (null != parentFolder) {
 			final String extension = "." + getModelFileExtension(); //$NON-NLS-1$
 			try {
 				// Loop on project resources to check about other properties
 				// file
-				for (final IResource resourceEntry : projectFolder.members()) {
+				for (final IResource resourceEntry : parentFolder.members()) {
 					// Check if the file starts with the name of the model and
 					// finish with properties
 					if (resourceEntry.getName().startsWith(modelName) && resourceEntry.getName().endsWith(extension)) { // $NON-NLS-1$
