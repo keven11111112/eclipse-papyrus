@@ -1,0 +1,50 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.VersioningBlackboxes;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+
+/**
+* This file provides useful method for Rhapsody elements
+*/
+library RhapsodyToPapyrusUtils;
+
+/**
+*
+* This helper create an EAnnotation from the IProject to know that it comes from a Rhapsody Model, and save as details these informations:
+* <ul>
+* <li>Rhapsody project name</li>
+* <li>Rhapsody version</li>
+* <li>Papyrus Rhapsody import bundle version</li>
+* </ul>
+*/
+helper rhapsodymetamodel::IProject::createEAnnotationForVersioning():ecore::EAnnotation{
+	var versionning:EAnnotation:=object EAnnotation{
+		source:=getEAnnotationSourceNameForVersioning();
+		details+= object EStringToStringMapEntry{
+			key:=getKeyForRhapsodyModelName();
+			value:=self.name;
+		};
+		details+= object EStringToStringMapEntry{
+			key:=getKeyForRhapsodyVersion();
+			value:=self.version;
+		};
+		details+= object EStringToStringMapEntry{
+			key:=getKeyForPapyrusImportBundleVersion();
+			value:=getImportBundleRhapsodyVersion();
+		};
+	};
+	return versionning;
+}
+

@@ -1,0 +1,430 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.NestedConnectorEndBlackboxes;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.uml.UMLRhapsodySemanticHelper;
+import Rhapsody2PapyrusSemanticElements;
+import RhapsodyToPapyrus;
+import RhapsodyUtils;
+import SysMLRhapsodyUtils;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+
+
+/**
+*
+* WARNING : ISysMLPort is a part of Rhapsody metamodel and doesn't come from the SysML Rhapsody Profile
+*
+*/
+transformation SysML11Profile(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+
+{
+	main() {
+			if (isRhapsodySysMLProfileApplied() and sysml11<>null ) {
+				log("Start SysML Profiles and Stereotypes Application");
+				//if yes apply it to the output model
+				var model: Model := outModel.rootObjects()[uml::Model]->any(true);
+			
+				// apply sysml 1.1 profile with all sub profiles
+				var sysml11Profiles : Set(Profile) := Sysml11Profile.objectsOfType(Profile);
+	
+				sysml11Profiles->forEach(profile) {
+					model.applyProfile(profile);
+				};
+			
+				//transform the Rhapsody SysML applied sterotype to Papyrus SysML applied sterotype
+				//inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].map toSysML11PapyrusProfile();
+				
+				inModel.rootObjects()[IProject].Subsystems.map toSysML11PapyrusProfile();
+				log("End SysML Profiles and Stereotypes Application");
+			};
+	};
+}
+
+/**
+*
+* This method cross all contents and applied SysML stereotypes when required
+*/
+mapping DefaultSubsystemType::toSysML11PapyrusProfile() when{self.oclIsTypeOf(ISubsystem)}{
+	var allContents:=getAllUMLSemanticElementAsList(self.oclAsType(EObject))->asSequence();
+	
+	//1. we apply all required SysML
+	allContents->forEach(current){
+		current.oclAsType(EObject).map applyRequiredStereotypes();
+	};
+	
+	//2. we do additional stuff : when some property of stereotypes must be set, referencing others stereotypes applications!
+	allContents->selectByType(IType)->forEach(iType){
+		iType.manageUnitStereotype();
+	};
+	
+	allContents->selectByType(IType)->forEach(iType){
+		iType.manageValueTypeStereotype();
+	};
+	
+	//3. we apply stereotype NestedConnectorEnd when required
+	var allConnectorEnd:Sequence(uml::ConnectorEnd):=getAllConnectorEnds(outModel.rootObjects()->selectByKind(Package)->any(true).oclAsType(Element));
+	allConnectorEnd->forEach(connectorEnd){
+		var path:Sequence(uml::Property)=getNestedConnectorEndPropertyPath(connectorEnd);
+		if(path->size()>0){
+			var stereotype:uml::Stereotype:=getSysML11Stereotype("NestedConnectorEnd");
+			connectorEnd.applyStereotype(stereotype);
+			var appliedStereotype:uml::Stereotype:=connectorEnd.getAppliedStereotype(stereotype.getQualifiedName());
+			connectorEnd.setValue(appliedStereotype, "propertyPath", path);		
+		};
+	};
+}
+
+/**
+*
+* This mapping allows to apply required stereotypes on the managed elements
+*/
+mapping EObject::applyRequiredStereotypes() disjuncts
+	EObject::iClassApplyStereotypes,
+	EObject::iPartApplyStereotypes,
+	EObject::iSysMLPortApplyStereotype,
+	EObject::iAttributeApplyStereotype,
+	EObject::iTypeApplyStereotypes,
+	EObject::iInformationFlowApplyStereotypes
+{}
+
+/**
+* Apply required stereotype on UML element created from Rhapsody IClass
+*/
+mapping EObject::iClassApplyStereotypes() when {self.oclIsTypeOf(IClass) and not self.oclAsType(IClass).Stereotypes->isEmpty()}{
+	var localIClass:IClass:=self.oclAsType(IClass);
+	//1. we reapply all stereotypes applied on the rhapsody IClass
+	var stereotypes:Set(IUnit):=localIClass.Stereotypes;
+	stereotypes->forEach(stereotype){
+		if (stereotype.oclIsTypeOf(IStereotype)){
+			// map it to the papyrus sysml11 profile
+			var papySysML11Ste:uml::Stereotype := stereotype[IStereotype].map toPapyrusSysML11Stereotype()->any(true);
+			var umlElement:uml::Element:=localIClass.resolveIn(IClass::toUMLElement, uml::Element)![uml::Element];
+			if(umlElement<>null and not(papySysML11Ste.oclIsUndefined()) and umlElement.isStereotypeApplicable(papySysML11Ste)){
+	    		umlElement.applyStereotype(papySysML11Ste);
+		    };
+		}
+    };
+    
+    //2. required ? 
+    var nestedClassesForPart:Sequence(IClass):=localIClass.Associations[IPart]->select(current | current.implicitClass<>null).implicitClass.oclAsSet();
+    nestedClassesForPart->forEach(current){
+    	current.resolveone().oclAsType(uml::Element).applyStereotype(getSysML11Stereotype("Block"));
+    	current.resolveone().oclAsType(uml::Element).applyStereotype(getSysML11Stereotype("PropertySpecificType"));
+    };
+}
+
+/**
+* Apply required stereotype on UML element created from Rhapsody IPart
+*/
+mapping EObject::iPartApplyStereotypes() when {self.oclIsTypeOf(IPart) and not self.oclAsType(IPart).Stereotypes->isEmpty()}{
+	var localIPart:IPart:=self.oclAsType(IPart);
+	var umlElement:Element:=localIPart.resolveoneIn(umlrhapsody::IPart::iPartToUMLElement);
+	localIPart.Stereotypes[IStereotype]->forEach(iStereotype){
+		applySysMLStereotype(iStereotype,umlElement);
+    }
+}
+
+/**
+*
+* Apply after several checks the SysML 1.1 stereotype to the UML element. We check:
+*<ul> 
+*<li>rpyStereotype<>null </li>
+*<li>umlElement<>null </li>
+*<li>SysML 1.1 Stereotype<>null</li>
+*<li>umlElement.isStereotypeApplicable()(</li>
+*</ul>
+*/
+//TODO : use me in all location
+query applySysMLStereotype(rpyStereotype:IStereotype, umlElement:Element):EObject{
+	if(umlElement<>null){
+		var umlStereotype:Stereotype:=rpyStereotype.map toPapyrusSysML11Stereotype();
+		if(umlStereotype<>null){
+			if(umlElement.isStereotypeApplicable(umlStereotype)){
+				return umlElement.applyStereotype(umlStereotype);
+			}
+		};
+	};
+	return null;
+};
+
+/**
+* Apply required stereotype on UML element created from Rhapsody ISysMLPort
+*/
+mapping EObject::iSysMLPortApplyStereotype() when {self.oclIsTypeOf(ISysMLPort) and not self.oclAsType(ISysMLPort).Stereotypes->isEmpty()}{
+	var res:uml::Element:=self.resolveoneIn(umlrhapsody::IRelation::iRelationToUMLElement);
+    if(res<>null){
+    	var isysmlPort:umlrhapsody::ISysMLPort:=self.oclAsType(ISysMLPort);
+    	isysmlPort.Stereotypes->forEach(istereotype){
+    		isysmlPort.map applyIStereotypeToUMLElement(res, istereotype.oclAsType(IStereotype));
+    	}	
+    }
+}
+
+/**
+* Apply required stereotype on UML element created from Rhapsody IAttribute
+*/
+mapping EObject::iAttributeApplyStereotype() when {self.oclIsTypeOf(IAttribute) and not self.oclAsType(IAttribute).Stereotypes->isEmpty()}{
+	var tmpAttribute:IAttribute:=self.oclAsType(IAttribute);
+	tmpAttribute.Stereotypes->forEach(stereotype){
+		if (stereotype.oclIsTypeOf(IStereotype)){
+			var papySysML11Ste:uml::Stereotype := stereotype[IStereotype].map toPapyrusSysML11Stereotype()->any(true);
+			var umlElement:uml::Element:=tmpAttribute.resolveIn(IVariable::iVariableToUMLElement, uml::Property)![uml::Property];
+			if(not(papySysML11Ste.oclIsUndefined()) and umlElement.isStereotypeApplicable(papySysML11Ste)){
+		    	umlElement.applyStereotype(papySysML11Ste);
+		    };
+		    
+		    if(stereotype.oclAsType(IStereotype).name="flowProperty"){
+		    	//it seems that the value of the property for a stereotype are not owned by the stereotype application in Rhapsody, but in a tag
+		    	var allValueSpec:=tmpAttribute.Tags->select(t | t.name="direction")->select( t2 | t2.typeOf.oclAsType(IType).name.toLower()="flowdirection")->any(true).ValueSpecifications;
+		    	var directionValue:String:=allValueSpec->select(v | v.oclIsKindOf(ILiteralSpecification))->any(true).oclAsType(ILiteralSpecification).value;
+		    	if(directionValue.oclIsUndefined()){
+		    		//it seems there are 2 ways to define it!
+		    		allValueSpec:=tmpAttribute.Tags->select(t | t.name="direction")->select( t2 | t2.typeOf.oclAsType(IType).name="RhpString")->any(true).ValueSpecifications;
+		    		directionValue:=allValueSpec->select(v | v.oclIsKindOf(ILiteralSpecification))->any(true).oclAsType(ILiteralSpecification).value;
+		    	};
+		    	//SysML : we set the value direction!
+		    	umlElement.setValue(umlElement.getAppliedStereotype(papySysML11Ste.getQualifiedName()), "direction", getSysML11FlowDirection(directionValue));
+		    }		    
+		}
+    }
+}
+
+/**
+* Apply required stereotype on UML element created from Rhapsody IType
+*/
+mapping EObject::iTypeApplyStereotypes() when {self.oclIsTypeOf(IType) and not self.oclAsType(IType).Stereotypes->isEmpty()}{
+	var localIType:IType:=self.oclAsType(IType);
+	
+	
+	//there are several ways to map IType!!!
+	var umlInstanceSpec:uml::InstanceSpecification:=localIType.resolveIn(IType::toUMLInstanceSpecification, InstanceSpecification)![InstanceSpecification];
+	var umlDatatType:uml::DataType:=localIType.resolveIn(IType::toUMLDatatype, DataType)![DataType];
+	var umlClass:uml::Class:=localIType.resolveIn(IType::iTypeToUMLClass, Class)![Class];
+	
+	//TODO umlDataType and umlClass are probably useless now, waiting for JUnit tests to remove them from this method
+	var umlType:uml::Type:=localIType.resolveIn(IType::iTypeToUMLElement, Type)![Type];
+    localIType.Stereotypes[IStereotype]->select(currentSte | currentSte.name<>"DataType")->forEach(stereotype){//datatype stereotype doesn't exists in SysML 1.1	 
+	    var papySysML11Ste:uml::Stereotype := stereotype[IStereotype].map toPapyrusSysML11Stereotype()->any(true);
+		if(papySysML11Ste<>null){
+			if(umlInstanceSpec<>null and umlInstanceSpec.isStereotypeApplicable(papySysML11Ste)){
+		    	umlInstanceSpec.applyStereotype(papySysML11Ste);		    			
+		    }elif(umlDatatType<>null and umlDatatType.isStereotypeApplicable(papySysML11Ste)){
+		    	umlDatatType.applyStereotype(papySysML11Ste);
+		    }elif(umlClass<>null and umlClass.isStereotypeApplicable(papySysML11Ste)){
+		    	umlClass.applyStereotype(papySysML11Ste);
+		    }elif(umlType<>null and umlType.isStereotypeApplicable(papySysML11Ste)){
+		    	umlType.applyStereotype(papySysML11Ste);
+		    };
+		};
+	};
+	//in all cases, if the IType has been map on a Class, we apply the Block stereotype
+	if(umlClass<>null){
+		var blockSte = getSysML11Stereotype("Block");
+		if(umlClass.isStereotypeApplicable(blockSte)){
+			umlClass.applyStereotype(blockSte);
+		}
+	}
+	
+}
+
+/**
+* Helper used to set fields of SysML Unit stereotype
+*/
+helper umlrhapsody::IType::manageUnitStereotype(){
+	//if the Rhapsody stereotype is Unit, we set the field dimension
+	var rpyUnit:IStereotype:=self.Stereotypes->selectByKind(IStereotype)->select(ste | ste.name="Unit")->any(true);
+	var umlInstanceSpec:uml::InstanceSpecification:=self.resolveIn(IType::toUMLInstanceSpecification, InstanceSpecification)![InstanceSpecification];
+	if(umlInstanceSpec<>null){
+		var tt=self.Tags->select(t | t.name="dimension")->any(true);
+		if(tt<>null){
+			var iinstancespec:umlrhapsody::IInstanceValue=tt.oclAsType(umlrhapsody::ITag).ValueSpecifications -> select(curr | curr.oclIsKindOf(umlrhapsody::IInstanceValue))->any(true).oclAsType(IInstanceValue);
+			if(iinstancespec<>null){
+				var val = iinstancespec.value;
+	   			var res:uml::InstanceSpecification = val.resolveoneIn(IType::toUMLInstanceSpecification);
+				var dimensionAppliedSte:uml::Stereotype=res.getAppliedStereotype("SysML::Blocks::Dimension");
+				var dimensionSteAppl:ecore::EObject=res.getStereotypeApplication(dimensionAppliedSte);
+		    			
+				var unitAppliedSte:uml::Stereotype=umlInstanceSpec.getAppliedStereotype("SysML::Blocks::Unit");
+				umlInstanceSpec.setValue(unitAppliedSte,"dimension",dimensionSteAppl);
+			}
+		};
+	};
+}
+
+
+/**
+* Helper used to set fields of SysML ValueType stereotype
+*/
+helper umlrhapsody::IType::manageValueTypeStereotype(){
+//if the Rhapsody stereotype is Unit, we set the field dimension and unit //TODO : update this comment with the good stereotype name
+	var rpyValueType:IStereotype:=self.Stereotypes->selectByKind(IStereotype)->select(ste | ste.name="ValueType")->any(true);
+	if(rpyValueType<>null){
+		var type:uml::Type:=self.resolveIn(IType::iTypeToUMLElement, Type)![Type];
+		if(type<>null){
+		    	var tt=self.Tags->select(t | t.name="dimension")->any(true);
+		    	var iinstancespec:umlrhapsody::IInstanceValue=tt.oclAsType(umlrhapsody::ITag).ValueSpecifications -> select(curr | curr.oclIsKindOf(umlrhapsody::IInstanceValue))->any(true).oclAsType(IInstanceValue);
+		    	var val = iinstancespec.value;
+	    			
+		    	var res:uml::InstanceSpecification = val.resolveoneIn(IType::toUMLInstanceSpecification);
+		    	if(res<>null){
+
+	    			var dimensionAppliedSte:uml::Stereotype=res.getAppliedStereotype("SysML::Blocks::Dimension");
+	    			if(dimensionAppliedSte<>null){
+		    			var dimensionSteAppl:ecore::EObject=res.getStereotypeApplication(dimensionAppliedSte);
+				    			
+		    			var valueTypeAppliedSte:uml::Stereotype=type.getAppliedStereotype("SysML::Blocks::ValueType");
+		    			if(valueTypeAppliedSte<>null){
+			    			type.setValue(valueTypeAppliedSte,"dimension",dimensionSteAppl);
+			
+							var tt2=self.Tags->select(t | t.name="unit")->any(true);
+			    			var iinstancespec2:umlrhapsody::IInstanceValue=tt2.oclAsType(umlrhapsody::ITag).ValueSpecifications -> select(curr | curr.oclIsKindOf(umlrhapsody::IInstanceValue))->any(true).oclAsType(IInstanceValue);
+			    			var val2 = iinstancespec2.value;
+				    				
+			    			var res2:uml::InstanceSpecification = val2.resolveoneIn(IType::toUMLInstanceSpecification);
+							if(res2<>null){
+			    				var dimensionAppliedSte2:uml::Stereotype=res2.getAppliedStereotype("SysML::Blocks::Unit");
+			    				var dimensionSteAppl2:ecore::EObject=res2.getStereotypeApplication(dimensionAppliedSte2);
+			    				if(dimensionAppliedSte2<>null and dimensionSteAppl2<>null){
+			    					type.setValue(valueTypeAppliedSte,"unit",dimensionSteAppl2);
+			    				}
+		    				}
+	    				}
+    				}
+    			}  	
+		}   
+	};		
+}
+
+/**
+* Apply required stereotype on UML element created from Rhapsody IType
+*/
+mapping EObject::iInformationFlowApplyStereotypes() when {self.oclIsTypeOf(IInformationFlow) and not self.oclAsType(IInformationFlow).Stereotypes->isEmpty()}{
+	var localIInformationFlow:IInformationFlow:=self.oclAsType(IInformationFlow);
+	localIInformationFlow.Stereotypes[IStereotype]->forEach(iStereotype){
+    	localIInformationFlow.resolveoneIn(umlrhapsody::IInformationFlow::iInformationFlowToUMLElement).applyStereotype(getSysML11Stereotype(iStereotype.name));
+    }
+}
+
+/**
+*
+* This mapping is used to apply a Rhapsody IStereotype applied on a IRelation as a uml Stereotype on a Element 
+*
+* Mapping is used to be able to make disjuncts!
+*
+*/
+mapping umlrhapsody::IRelation::applyIStereotypeToUMLElement(element:uml::Element, istereotype:umlrhapsody::IStereotype):ecore::EObject disjuncts 
+	umlrhapsody::IRelation::applySysML11FlowPortToUMLElement
+{}
+
+/**
+* Map a irelation onto a stereotype application
+* Mapping is used instead of query to be able to call disjunct
+* 
+*/
+mapping umlrhapsody::IRelation::applySysML11FlowPortToUMLElement(element:uml::Element, istereotype:umlrhapsody::IStereotype):ecore::EObject when {element.oclIsKindOf(uml::Port) and istereotype<>null and istereotype.isARhapsodySysMLStereotype() and istereotype.name="flowPort" and self.oclIsKindOf(umlrhapsody::ISysMLPort) and getSysML11Stereotype(istereotype.name)<>null}{
+	init {
+		var steToApply:Stereotype:=istereotype.map toPapyrusSysML11Stereotype(); //<> null already checked in the when condition
+		result:=element.applyStereotype(steToApply);
+		var realAppliedStereotype:Stereotype:=element.getAppliedStereotype(steToApply.getQualifiedName());
+		element.setValue(realAppliedStereotype, "direction", getSysML11FlowDirection(self.oclAsType(ISysMLPort).direction));		
+		element.setValue(realAppliedStereotype, "isConjugated", self.oclAsType(ISysMLPort).isConjugated());
+	}
+}
+
+/**
+*
+* This method convert the rhaspody flow direction into the SysML  FlowDirection 
+*/ 
+query getSysML11FlowDirection(rpyDirection:String) : String{
+	var direction:  String :="inout";
+	direction:= switch  {
+		case (rpyDirection="In") "in";
+		case (rpyDirection="Out") "out";
+		case (rpyDirection="InOut") "inout"; 
+		case (rpyDirection="Bidirectional") "inout";
+	};
+	return direction;
+}
+
+
+/**
+* Map a Rhapsody SysML Stereotype on a (Papyrus) SysML Stereotype when this one exists
+* 
+*/
+mapping IStereotype::toPapyrusSysML11Stereotype() : uml::Stereotype when {self.name<>null and self.isARhapsodySysMLStereotype() and getSysML11Stereotype(self.name)<>null}{
+	init{
+		result := getSysML11Stereotype(self.name);
+	}
+}
+
+/**
+*
+* Return the SysML 1.1 Stereotype for the given string or null if not found
+*/
+query getSysML11Stereotype(s:String ) :uml::Stereotype { //TODO : replace all calls to me by the mapping!
+	var stereotype: uml::Stereotype = null;
+	stereotype:= switch  {
+		case (s="flowSpecification") Sysml11Profile.objectsOfType(Stereotype)![name = "FlowSpecification"];
+		case (s="flowProperty") Sysml11Profile.objectsOfType(Stereotype)![name = "FlowProperty"];
+		case (s="flowPort") Sysml11Profile.objectsOfType(Stereotype)![name = "FlowPort"];
+		
+		//all case where the Rhapsody SysML Stereotype name is the same than the Papyrus SysML Name
+		case (true) Sysml11Profile.objectsOfType(Stereotype)![name = s];
+		
+	};
+	return stereotype;
+}
+
+
+/**
+*
+* Return true if the Rhapsody SysML Profile is applied on the Rhapsody model
+*/
+query isRhapsodySysMLProfileApplied():Boolean {
+	var ret:Boolean = false;
+	var isProfiledModel:Boolean:=inModel.objectsOfType(IStereotype)->size()>0;
+	if (isProfiledModel) {
+		inModel.objectsOfType(IStereotype)->forEach(stereotype){
+			if(stereotype.isARhapsodySysMLStereotype()){	
+				ret:= true;
+				break;
+			}
+		}
+	};
+	return ret;
+}
+
+/**
+* Return true if the IStereotype comes from the SysML Rhapsody profile (or must be mapped in a SysML Profile in Papyrus)
+*
+*/
+query umlrhapsody::IStereotype::isARhapsodySysMLStereotype():Boolean{
+	var ret:Boolean:=false;
+	var profileresource:EResource:=self[EObject].eResource()![EResource];
+	if(profileresource<>null){
+		ret:=profileresource.toString().endsWith("SysML.umlrhapsody'")
+	};
+	if(not ret){
+		var steName:String:=self.name;
+		ret:=profileresource.toString().endsWith("PredefinedTypes.umlrhapsody'") and steName.equalsIgnoreCase("flowPort"); 
+	};
+	return ret;	
+}
+
+

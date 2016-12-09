@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    copyrightText="  Copyright (c) 2016 CEA LIST and others.&#xD;&#xA;  &#xD;&#xA;  All rights reserved. This program and the accompanying materials&#xD;&#xA;  are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;  which accompanies this distribution, and is available at&#xD;&#xA;  http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA;  Contributors:&#xD;&#xA;    CEA LIST - Initial API and implementation&#xD;&#xA;"
+    modelDirectory="/org.eclipse.papyrus.migration.rhapsody.geometry/src-gen" editDirectory="/org.eclipse.papyrus.migration.rhapsody.geometry.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.migration.rhapsody.geometry.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.migration.rhapsody.geometry" modelName="RhapsodyGeometry"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.uml2.uml.ecore.importer" suppressNotification="true" complianceLevel="8.0"
+    copyrightFields="false" language="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true" oSGiCompatible="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="NON_API_INVARIANTS" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+  </genAnnotations>
+  <foreignModel>RhapsodyGeometry.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="RhpGeometry" basePackage="org.eclipse.papyrus.migration.rhapsody.geometry"
+      disposableProviderFactory="true" ecorePackage="rhapsodygeometry.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="rhapsodygeometry.ecore#//EdgePosition">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="rhapsodygeometry.ecore#//EdgePosition/NORTH"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="rhapsodygeometry.ecore#//EdgePosition/SOUTH"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="rhapsodygeometry.ecore#//EdgePosition/EAST"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="rhapsodygeometry.ecore#//EdgePosition/WEST"/>
+    </genEnums>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rhapsodygeometry.ecore#//TransformMatrix">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//TransformMatrix/a"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//TransformMatrix/b"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//TransformMatrix/c"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//TransformMatrix/d"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//TransformMatrix/e"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//TransformMatrix/f"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//TransformMatrix/add">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="rhapsodygeometry.ecore#//TransformMatrix/add/matrix"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//TransformMatrix/minus"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//TransformMatrix/minus.1">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="rhapsodygeometry.ecore#//TransformMatrix/minus.1/matrix"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//TransformMatrix/multiply">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="rhapsodygeometry.ecore#//TransformMatrix/multiply/point"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//TransformMatrix/multiply.1">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="rhapsodygeometry.ecore#//TransformMatrix/multiply.1/matrix"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rhapsodygeometry.ecore#//Point">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//Point/X"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//Point/Y"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//Point/minus"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//Point/minus.1">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="rhapsodygeometry.ecore#//Point/minus.1/point"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="rhapsodygeometry.ecore#//Point/add">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="rhapsodygeometry.ecore#//Point/add/point"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rhapsodygeometry.ecore#//RhapsodyShape">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//RhapsodyShape/transform"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//RhapsodyShape/rectangle"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//RhapsodyShape/parent"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//RhapsodyShape/rhapsodyMetamodelObject"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//RhapsodyShape/parentRelativePosition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//RhapsodyShape/height"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//RhapsodyShape/width"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//RhapsodyShape/absolutePosition"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rhapsodygeometry.ecore#//Rectangle">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//Rectangle/topLeft"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//Rectangle/topRight"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//Rectangle/bottomLeft"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//Rectangle/bottomRight"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rhapsodygeometry.ecore#//Polygon">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference rhapsodygeometry.ecore#//Polygon/points"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="rhapsodygeometry.ecore#//RhapsodyPort">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute rhapsodygeometry.ecore#//RhapsodyPort/parentEdge"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

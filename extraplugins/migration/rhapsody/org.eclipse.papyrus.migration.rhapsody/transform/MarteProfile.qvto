@@ -1,0 +1,161 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.NestedConnectorEndBlackboxes;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
+import Rhapsody2PapyrusSemanticElements;
+import RhapsodyToPapyrus;
+import RhapsodyUtils;
+import SysMLRhapsodyUtils;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype marte "strict" uses 'http://www.eclipse.org/papyrus/MARTE/1';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+
+
+/**
+*
+* This transfo apply the Marte profile and required stereotype to the model
+*
+*/
+/**TODO : the dependency on Marte was refused at this time, that's why the plugin doesn't have dependency on it, and this transformation doesn't compile. 
+*
+* Nevertheless, to avoid to lose this work, I keep this file in the plugin
+*/
+transformation MarteProfile(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in marteProfile:marte, in primitives:UMLPrimitivesTypes)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+
+{
+//TODO : remove this field
+	property retunitStero =  marteProfile.objectsOfType(Profile)![name = "HLAM"].ownedStereotype![name = "RtUnit"];
+	
+	main() {
+			if (isRhapsodyMarteAppliedProfile() and marteProfile<>null ) {
+				//if yes apply it to the output model
+				var model: Model := outModel.rootObjects()[uml::Model]->any(true);
+				
+				// apply marte profile with all sub profiles
+				var marteProfiles : Set(Profile) := marteProfile.objectsOfType(Profile);
+	
+				marteProfiles->forEach(profile){
+					model.applyProfile(profile);
+				};
+	
+	
+				//transform the Rhapsody MARTE applied sterotype to Papyrus MARTE applied sterotype
+				inModel.rootObjects()[IProject].Subsystems.map toMartePapyrusProfile();
+		
+				// change one sterotype tagged value
+				//var sterotypedClass:uml::Class=outModel.objectsOfType(uml::Class)->select(c|not (c.getAppliedStereotypes()->isEmpty()))->any(true);
+				//sterotypedClass.setValue(sterotypedClass.getAppliedStereotypes()![Stereotype], "isMain", true);
+	
+			};
+	};
+}
+
+
+mapping DefaultSubsystemType::toMartePapyrusProfile(){
+
+self.allSubobjectsOfKind(IClass)->forEach(classe)
+{
+	if ( not(classe[IClass].Stereotypes.oclIsUndefined()->any(true)))
+	{
+		var stereotypes:Set(IUnit):=classe[IClass].Stereotypes->asSet();
+		stereotypes->forEach(stereotype)
+		{
+		if (stereotype.oclIsTypeOf(IStereotype))
+		{
+			// map it to the papyrus marte profile
+			var papyMarteSter:uml::Stereotype := stereotype[IStereotype].map toPapyrusMarteStereotype()->any(true);
+			var umlClass:uml::Class:=classe.resolveIn(IClass::toClasses, Class)![Class];
+			if(not(papyMarteSter.oclIsUndefined())){
+		    	umlClass.applyStereotype(papyMarteSter);
+		    
+		    //
+		    	umlClass.setValue(umlClass.getAppliedStereotypes()![Stereotype], "isMain", true);
+			}
+		}
+        }
+    }
+	
+};
+}
+
+
+/**
+*
+* Return the UML Stereotype to apply for the Rahspdoy stereotype or null when not found
+*/
+//TODO : remove me
+mapping umlrhapsody::IStereotype::iStereotypeToUMLStereotype():uml::Stereotype disjuncts 
+//	 umlrhapsody::IStereotype::toPapyrusSysML11Stereotype,
+	 umlrhapsody::IStereotype::toPapyrusMarteStereotype
+{}
+
+
+/**
+*
+* Map a Rhapsody MARTE Stereotype on a (Papyrus) MARTE Stereotype when this one exists
+*/
+mapping IStereotype::toPapyrusMarteStereotype() :uml::Stereotype when {self.name<>null and self.isARhapsodyMARTEStereotype() and getMarteStereotype(self.name)<>null}{
+	init{
+		result :=getMarteStereotype(self.name);
+	}
+}
+
+/**
+* Return the MARTE Stereotype for the given string or null if not found
+*
+*/
+query getMarteStereotype(s:String ) :uml::Stereotype {
+	var stereotype: uml::Stereotype = null;
+	stereotype:= switch  {
+		case (s="RtUnit") marteProfile.objectsOfType(Stereotype)![name = "RtUnit"];
+		case (s="PpUnit") marteProfile.objectsOfType(Stereotype)![name = "PpUnit"];
+	};
+	return stereotype;
+	
+}
+
+
+/**
+* Return true if the Rhapsody Marte Profile is applied on the Rhapsody model
+*
+*/
+query isRhapsodyMarteAppliedProfile() :Boolean {
+	var ret:Boolean = false;
+	var isProfiledModel:Boolean:=inModel.objectsOfType(IStereotype)->size()>0;
+	if (isProfiledModel) {
+		inModel.objectsOfType(IStereotype)->forEach(stereotype){
+			if(stereotype.isARhapsodyMARTEStereotype()){	
+				ret:= true;
+				break;
+			}
+		}
+	};
+	return ret;
+}
+
+/**
+* Return true if the IStereotype comes from the MARTE Rhapsody profile
+*
+*/
+query umlrhapsody::IStereotype::isARhapsodyMARTEStereotype():Boolean{
+	var ret:Boolean:=false;
+	var profileresource:EResource:=self[EObject].eResource()![EResource];
+	if(profileresource<>null){
+		ret:=profileresource.toString().endsWith("MARTE.umlrhapsody'")
+	};
+	return ret;	
+}

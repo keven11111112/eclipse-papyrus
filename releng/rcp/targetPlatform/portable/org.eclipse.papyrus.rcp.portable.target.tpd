@@ -16,7 +16,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20161130-0517" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20161207-0442" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group

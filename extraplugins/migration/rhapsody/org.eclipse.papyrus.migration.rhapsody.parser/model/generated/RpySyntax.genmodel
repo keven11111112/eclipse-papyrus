@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.migration.rhapsody.parser/src-gen"
+    editDirectory="/org.eclipse.papyrus.migration.rhapsody.parser.edit/src" editorDirectory="/org.eclipse.papyrus.migration.rhapsody.parser.editor/src"
+    modelPluginID="org.eclipse.papyrus.migration.rhapsody.parser" forceOverwrite="true"
+    modelName="RpySyntax" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    editPluginID="org.eclipse.papyrus.migration.rhapsody.parser.edit" editorPluginID="org.eclipse.papyrus.migration.rhapsody.parser.editor"
+    runtimeVersion="2.12">
+  <foreignModel>RpySyntax.ecore</foreignModel>
+  <genPackages prefix="RpySyntax" basePackage="org.eclipse.papyrus.migration.rhapsody.parser"
+      disposableProviderFactory="true" fileExtensions="cmp,sbs,dat,omd,msc,rpy,clb,ucd,cls,ctd,pld,std"
+      ecorePackage="RpySyntax.ecore#/">
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyFile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RpySyntax.ecore#//RpyFile/version"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RpySyntax.ecore#//RpyFile/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyContent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RpySyntax.ecore#//RpyContent/name"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RpySyntax.ecore#//RpyNode/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyFeature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RpySyntax.ecore#//RpyFeature/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyFeatureValue"/>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyNodeList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RpySyntax.ecore#//RpyNodeList/values"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//SimpleValueList">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RpySyntax.ecore#//SimpleValueList/isOldID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RpySyntax.ecore#//SimpleValueList/isGUID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RpySyntax.ecore#//SimpleValueList/valueElements"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpySimpleValueElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RpySyntax.ecore#//RpySimpleValueElement/values"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyStringMap">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RpySyntax.ecore#//RpyStringMap/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="RpySyntax.ecore#//RpyStringMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RpySyntax.ecore#//RpyStringMapEntry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RpySyntax.ecore#//RpyStringMapEntry/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

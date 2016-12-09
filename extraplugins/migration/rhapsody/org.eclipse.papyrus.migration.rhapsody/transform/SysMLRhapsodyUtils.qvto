@@ -1,0 +1,140 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import RhapsodyUtils;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+
+
+/**
+*
+* This file provides useful method to manage SysML Rhapsody Model
+*/
+library SysMLRhapsodyUtils;
+
+
+/**
+* Return true if the IDiagram is a SysML Parametric Diagram
+*/
+query rhapsodymetamodel::IDiagram::isSysMLParametricDiagram():Boolean{
+	return self.isRhapsodyClassChart() and self.isStereotypedWith("Parametric Diagram");
+}
+
+/**
+* Return true if the IDiagram represents a SysML Block Definition Diagram
+*/
+query rhapsodymetamodel::IDiagram::isSysMLBlockDefinitionDiagram():Boolean{
+	return self.isRhapsodyClassChart() and self.isStereotypedWith("Block Definition Diagram");
+}
+
+/**
+* Return true if the IDiagram represents a SysML Internal Block Diagram
+*/
+query rhapsodymetamodel::IDiagram::isSysMLInternalBlockDiagram():Boolean{
+	return self.oclIsTypeOf(rhapsodymetamodel::IStructureDiagram) and self.isRhapsodyClassChart() and  self.isStereotypedWith("Internal Block Diagram");
+}
+
+
+/**
+* Return true if the IType is stereotyped with the SysML Rhapsody flowSpecification
+*/
+query umlrhapsody::IClass::isSysMLFlowSpecification(): Boolean{
+	return self.isStereotypedWith("flowSpecification");
+}
+
+//TODO :duplciated code for IType and IClass
+/**
+* Return true if the IType is stereotyped with the SysML Rhapsody flowSpecification
+*/
+query umlrhapsody::IType::isSysMLFlowSpecification(): Boolean{
+	return self.isStereotypedWith("flowSpecification");
+}
+
+/**
+* Return true if the IType is stereotyped with the SysML Rhapsody ValueType
+*/
+query umlrhapsody::IType::isSysMLValueType():Boolean {
+	return self.isStereotypedWith("ValueType");
+}
+
+/**
+* Return true if the IType is stereotyped with the SysML Rhapsody ConstraintProperty
+*/
+query umlrhapsody::IPart::isSysMLConstraintProperty():Boolean {
+	return self.isStereotypedWith("ConstraintProperty");
+}
+
+/**
+* Return true if the IType is stereotyped with the SysML Rhapsody ConstraintBlock
+*
+*/
+query umlrhapsody::IClass::isSysMLConstraintBlock(): Boolean{
+	return self.isStereotypedWith("ConstraintBlock");
+}
+
+/**
+* Return true if the IType is stereotyped with the SysML Rhapsody Dimension
+*/
+query umlrhapsody::IType::isSysMLDimension(): Boolean {
+	return self.isStereotypedWith("Dimension");
+}
+
+/**
+*Return true if the IType is stereotyped with the SysML Rhapsody  Unit
+*/
+query umlrhapsody::IType::isSysMLUnit(): Boolean {
+	return self.isStereotypedWith("Unit");
+}
+
+/**
+*  Return true if the IType is stereotyped with the SysML Rhapsody DataType (this stereotype doesn't exist in SysML implementation used by Papyrus')
+*/
+query umlrhapsody::IType::isRhapsodyDataType(): Boolean {
+	return self.isStereotypedWith("DataType");
+}
+
+
+
+/**
+* Return true if the IStereotype comes from the SysML Rhapsody profile (or must be mapped in a SysML Profile in Papyrus)
+*
+*/
+query IStereotype::isARhapsodySysMLStereotype():Boolean{
+	var ret:Boolean:=false;
+	var profileresource:EResource:=self.getResource();
+	if(profileresource<>null){
+		ret:=profileresource.toString().endsWith("SysML.umlrhapsody'")
+	};
+	if(not ret){
+		var steName:String:=self.name;
+		ret:=profileresource.toString().endsWith("PredefinedTypes.umlrhapsody'") and steName.equalsIgnoreCase("flowPort"); 
+	};
+	return ret;	
+}
+
+/**
+* @param set: a set of EObject
+*    return true if one of this EObject is a Rhapsody SysML Stereotype
+*/
+helper isContainingSysMLRhapsodyStereotypeReference(set:Set(EObject)):Boolean{
+	var ret:Boolean:=false;
+	set->selectByType(IStereotype)->forEach(current){
+		if(current.isARhapsodySysMLStereotype()){
+			ret:=true;
+			break;
+		}
+	};
+	return ret;
+}
+

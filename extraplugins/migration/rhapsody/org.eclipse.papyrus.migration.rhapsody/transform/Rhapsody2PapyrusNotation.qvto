@@ -1,0 +1,936 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import Rhapsody2PapyrusSemanticElements;
+import RhapsodyToPapyrus;
+import SysML11Diagrams;
+import SysML11Profile;
+import RhapsodyToPapyrusDiagamCommon;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype notation "strict" uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+
+modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+
+//TODO : required to access to Float object, should probably be fixed and removed
+modeltype sash "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/sashdi';
+
+modeltype vpstyle "strict" uses 'http://www.eclipse.org/papyrus/infra/viewpoints/policy/style';
+modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+
+
+transformation Rhapsody2PapyrusNotation(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml ,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes),
+SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes),
+SysML11Profile(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
+//access transformation RhapsodyUtils
+
+	
+{
+	main() {
+		//we do the semantic transformation for UML
+		var rhap2uml := new Rhapsody2PapyrusSemanticElements(semantics, model, ancyCprimitiveTypes, primitives);
+		rhap2uml.transform();
+		
+		//we apply the sysml transformation when required
+		if(sysml11<>null){
+			var sysmlProfile:=new SysML11Profile(semantics,  model, ancyCprimitiveTypes, Sysml11Profile, primitives);
+			sysmlProfile.transform();
+		};
+		
+		
+		//the import for UML Diagram is commented, because they are not yet finished neither tested
+		//We do the diagram transformation for UML2
+//		var diagrams:Set(IDiagram):= semantics.objects()[IDiagram];
+//		diagrams->map iDiagramToPapyrusDiagram();
+//		graphics.objectsOfType(Shape)->select(type = '6000').map fixLayout();
+		
+		//We do the SysML transformation to get SysML 1.1 diagram
+		var iDiagramToSysML11 := new SysML11Diagrams(semantics, graphics, model, ancyCprimitiveTypes, Sysml11Profile, primitives);
+		iDiagramToSysML11.transform();
+	}
+}
+
+mapping rhapsodymetamodel::IDiagram::iDiagramToPapyrusDiagram():Diagram disjuncts
+	rhapsodymetamodel::IDiagram::iDiagramToUMLClassDiagram,
+	rhapsodymetamodel::IDiagram::iDiagramToStateMachineDiagram
+{}
+
+
+mapping rhapsodymetamodel::IDiagram::iDiagramToUMLClassDiagram():Diagram when{self.isUserModelDiagram() and self.isUMLPureClassDiagram()}{
+	name:=self.name;
+	measurementUnit:= MeasurementUnit::Pixel;
+	
+	//TODO : we must cross all possible SubSystem an dnot only the default one!
+	//TODO : don't call default subsystem but semantics.rootObjects()[IProject].Subsystems'
+	var Subsystem: ISubsystem:= semantics.rootObjects()[IProject].defaultSubsystem![ISubsystem]; //TODO : could probably be replaced by the owner of the IDiagram (like done for StateMachine)
+	
+	type:= 'PapyrusUMLClassDiagram';
+	children:= self[IDiagram].graphicChart.graphElements[CGIClass].map toPapyrusNode();
+	element:= Subsystem.oclAsType(DefaultSubsystemType).resolveIn (umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage, uml::Package)![EObject];
+	children:= self[IDiagram].graphicChart.graphElements[CGIClass].map toPapyrusNode();
+	edges:= self[IDiagram].graphicChart.graphElements[CGIInheritance].map toPapyrusGeneralizationLink();
+	edges+= self[IDiagram].graphicChart.graphElements[CGIAssociationEnd].map toPapyrusAssociation();
+	result.map toInnerClassDiagram();
+}
+
+mapping rhapsodymetamodel::IDiagram::iDiagramToStateMachineDiagram():Diagram when{self.isUserModelDiagram() and self.isUMLPureStateMachineDiagram()}{
+	name:=self.name;
+	measurementUnit:= MeasurementUnit::Pixel;
+	
+	var stateChart:CGIStateChart:= self[IDiagram].graphicChart![GraphicChartType].oclAsType(CGIStateChart);
+	type:= 'PapyrusUMLStateMachineDiagram';
+	element:= self[EObject].eContainer().resolveIn ( umlrhapsody::IStateChart::toStateMachine, uml::StateMachine)![EObject];
+	
+		// build the state machine shape with its region and its pseudo state
+	children:= stateChart.map toPapyrusStateMachine();
+	edges:= stateChart.graphElements[CGITrans]->select(t|t.m_type![String].equalsIgnoreCase("29")).map toPapyrusInitialTransition(stateChart);
+	edges+= stateChart.graphElements[CGITrans]->select(t|t.m_type![String].equalsIgnoreCase("28")).map toPapyrusTransition(stateChart);
+	result.map toInnerStateMachineDiagram();
+}
+
+
+
+
+mapping inout Shape::fixLayout() 
+{
+
+var bounds := if self.layoutConstraint.oclIsUndefined() then object Bounds{} else self.layoutConstraint.oclAsType(Bounds) endif;
+	self.layoutConstraint := bounds;
+	
+	
+}
+
+
+
+
+
+mapping umlrhapsody::CGIStateChart::toPapyrusStateMachine(): Shape
+{
+	result.element:=self.m_pModelObject.resolveIn ( umlrhapsody::IStateChart::toStateMachine, uml::StateMachine)![EObject];
+	result.type := self.getNodesType();
+	
+	// name deocration Node
+	result.children:= object notation::DecorationNode {
+
+		type:= "2001"; // name decoration Node
+		layoutConstraint:= object Bounds {
+		width:=800; // default 
+		height:=20;
+	}
+	};
+	// structure decoration Node that contains Region
+	result.children+= object notation::BasicCompartment {
+
+		type:= "2002"; // name decoration Node
+		children:= self.map getRegionShape();
+		layoutConstraint:= object Bounds {
+		y:=20;
+		width:=800; // default 
+		height:=400;
+	}
+	};
+	result.layoutConstraint:= object Bounds {
+		x:=30;
+		y:=30;
+		width:=800;
+		height:=400;
+	}
+}
+
+mapping umlrhapsody::CGIStateChart::getRegionShape(): Shape
+{
+init {
+var statemachine:StateMachine:= self.m_pModelObject.resolveIn ( umlrhapsody::IStateChart::toStateMachine, uml::StateMachine)![StateMachine];
+result:= object Shape
+{
+element:= statemachine[StateMachine].region![EObject];
+type:= "3000";
+eAnnotations := object EAnnotation {
+			source := "RegionAnnotationKey";
+			details := object EStringToStringMapEntry{
+				key := "RegionZoneKey";
+				value := 'B';
+			}
+		};
+children+= object notation::BasicCompartment {
+
+		type:= "3002"; // name decoration Node
+		children:= self[CGIStateChart].graphElements[CGIState].map toPapyrusPseudoStateNode(self);
+		children+= self[CGIStateChart].graphElements[CGIState]->select(s|s.m_pParent=self.m_pRoot).map toPapyrusFirstInnerStateNode(self);
+		layoutConstraint:= object Bounds {};
+	};
+layoutConstraint:= object Bounds {
+		width:=800; 
+		height:=380;
+		};
+};
+}
+}
+
+
+mapping umlrhapsody::CGIState::getSateRegionShape(statechart:CGIStateChart): Shape
+{
+init {
+var state:State:= self.m_pModelObject.resolveIn ( umlrhapsody::IState::toCompositeStates, uml::State)![State];
+result:= object Shape
+{
+element:= state.region![EObject];
+type:= "3000";
+eAnnotations := object EAnnotation {
+			source := "RegionAnnotationKey";
+			details := object EStringToStringMapEntry{
+				key := "RegionZoneKey";
+				value := 'B';
+			}
+		};
+children+= object notation::BasicCompartment {
+
+		type:= "3002"; // name decoration Node
+		children:= self.map toPapyrusInnerPseudoStateNode();
+		var allsubStates:Set(CGIState):=statechart[CGIStateChart].graphElements[CGIState]->select(s|s.m_pParent=self)->asSet();
+		//log ("all sub states"+allsubStates->size().toString());
+		children+= allsubStates.map toPapyrusFirstInnerStateNode(statechart);
+		layoutConstraint:= object Bounds {};
+	};
+layoutConstraint:= object Bounds {
+		width:=800; 
+		height:=380;
+		};
+};
+}
+}
+mapping umlrhapsody::CGIState::toPapyrusPseudoStateNode(statechart:CGIStateChart) : Shape  when { self=statechart.m_pRoot}
+{
+	
+	var pseudostate:EObject :=statechart.m_pModelObject.resolveIn(umlrhapsody::IStateChart::toStateMachine, uml::StateMachine)![StateMachine].region.subvertex->select(s|s.oclIsKindOf(Pseudostate))![EObject]; 
+	
+	
+	result.element := pseudostate; 
+	result.type := self.getNodeType();
+	result.children:= self.map toDecorationNode();
+	result.children+= object DecorationNode
+	{
+		type:="8002";
+		layoutConstraint:= object Location { x:=25; y:=-10;
+		};
+	};
+	
+	result.layoutConstraint:= self.map toLayoutConstraint();
+	
+	
+}
+
+mapping umlrhapsody::CGIState::toPapyrusInnerPseudoStateNode() : Shape  //when { self=statechart.m_pRoot}
+{
+	var region:Region :=self.m_pModelObject.resolveIn ( umlrhapsody::IState::toCompositeStates, uml::State)![State].region->any(true);
+	
+	var pseudostate:EObject :=region.subvertex->select (s|s[Vertex].oclIsKindOf(Pseudostate)->any(true))![EObject]; 
+	
+	
+	result.element := pseudostate; 
+	result.type := '8000';
+	result.children:= object DecorationNode
+	{
+		type:="8001";
+		layoutConstraint:= object Location { };
+	};
+	result.children+= object DecorationNode
+	{
+		type:="8002";
+		layoutConstraint:= object Location { };
+	};
+	
+	result.layoutConstraint:= object Bounds { };
+	
+	
+}
+ mapping umlrhapsody::CGIState::toPapyrusFirstInnerStateNode(statechart:CGIStateChart) : Shape // when { not (self.m_name.oclIsUndefined()) and self.m_pParent.m_name.toString().equalsIgnoreCase(statechart.m_pRoot.m_name.toString());}
+ when { not (self.m_name.oclIsUndefined()) and not (self.m_pParent.oclIsUndefined());}{
+	
+	var state:EObject :=self.m_pModelObject.resolveIn(umlrhapsody::IState::toStates, uml::State)![EObject]; 
+	
+	// create region for composite states
+	if (state.oclIsUndefined() or state=null)
+	{
+	state :=self.m_pModelObject.resolveIn(umlrhapsody::IState::toCompositeStates, uml::State)![EObject]; 
+	result.element := state; 
+	result.type := self.getNodeType();
+	result.children:= self.map toDecorationNode();
+	result.children+= object BasicCompartment
+	{
+		type:="6002";
+		layoutConstraint:= object Bounds {};
+		eAnnotations := object EAnnotation {
+			source := "PapyrusCSSForceValue";
+			details := object EStringToStringMapEntry{
+				key := "visible";
+				value := 'true';
+			}
+		};
+		children+= self.map getSateRegionShape(statechart);
+	};
+	
+	
+	result.children+= object DecorationNode
+	{
+		type:="19003";
+		layoutConstraint:= object Bounds {};
+	};
+	if not (self.m_transform->oclIsUndefined()) then
+	{
+	result.layoutConstraint:= self.map toLayoutConstraint();
+	}endif;
+	
+	}
+	
+	else
+	{
+	
+	result.element := state; 
+	result.type := self.getNodeType();
+	result.children:= self.map toDecorationNode();
+	result.children+= object BasicCompartment
+	{
+		type:="6002";
+		layoutConstraint:= object Bounds {};
+	};
+	
+	
+	result.children+= object DecorationNode
+	{
+		type:="19003";
+		layoutConstraint:= object Bounds {};
+	};
+	if not (self.m_transform->oclIsUndefined()) then
+	{
+	result.layoutConstraint:= self.map toLayoutConstraint();
+	}endif;
+	}
+}
+
+mapping umlrhapsody::CGIAssociationEnd::toPapyrusAssociation() : Connector 
+{
+
+	var sourceNode:CGIClass:=self.m_pSource![CGIClass];
+	var targetNode:CGIClass:=self.m_pTarget![CGIClass];
+	
+	var source_mtransform:List(String):= sourceNode.m_transform->asList();
+	var source_mpolygon:List(String):= sourceNode.m_polygon->asList();
+	var target_mtransform:List(String):= targetNode.m_transform->asList();
+	var target_mpolygon:List(String):= targetNode.m_polygon->asList();
+	var source_Port:List(String):= self.m_SourcePort->asList();
+	var target_Port:List(String):= self.m_TargetPort->asList();
+	var sourceAnchorId: String:= getAnchorId(source_mpolygon, source_mtransform,source_Port);
+	var targetAnchorId: String:= getAnchorId(target_mpolygon, target_mtransform,target_Port);
+	
+	var association:EObject:=self.m_pModelObject.resolveIn(umlrhapsody::IAssociationEnd::toAssociationswithProp, uml::Association)![EObject];
+	if (association!=null)
+	{
+	result.element:=association;
+	}
+	else
+	{
+	result.element := self.m_pModelObject.resolveIn(umlrhapsody::IAssociationEnd::toAssociationswithoutProp, uml::Association)![EObject]; 
+	};
+	
+	result.type := self.getEdgeType();
+	result.source:= sourceNode.resolveIn(umlrhapsody::CGIClass::toPapyrusNode, Shape)![View];
+	result.target:= targetNode.resolveIn(umlrhapsody::CGIClass::toPapyrusNode, Shape)![View];
+	result.children->forEach(element){
+		element.type:='6007'
+	};
+	result.sourceAnchor := object IdentityAnchor{
+	id:=sourceAnchorId;
+	};
+	result.targetAnchor := object IdentityAnchor{
+	id := targetAnchorId;
+	};
+	result.bendpoints:= object RelativeBendpoints{
+		
+	};
+	// add DecorationNode
+	result.children := self.getDecorationNodes();
+	
+}
+
+
+mapping umlrhapsody::CGIInheritance::toPapyrusGeneralizationLink() : Connector 
+{
+
+	var sourceNode:CGIClass:=self.m_pSource![CGIClass];
+	var targetNode:CGIClass:=self.m_pTarget![CGIClass];
+	var ielement:IModelElement:=self.m_pModelObject;
+	var source_mtransform:List(String):= sourceNode.m_transform->asList();
+	var source_mpolygon:List(String):= sourceNode.m_polygon->asList();
+	var target_mtransform:List(String):= targetNode.m_transform->asList();
+	var target_mpolygon:List(String):= targetNode.m_polygon->asList();
+	var source_Port:List(String):= self.m_SourcePort->asList();
+	var target_Port:List(String):= self.m_TargetPort->asList();
+	var sourceAnchorId: String:= getAnchorId(source_mpolygon, source_mtransform,source_Port);
+	var targetAnchorId: String:= getAnchorId(target_mpolygon, target_mtransform,target_Port);
+	
+	
+	result.element := self.m_pModelObject.resolveIn(umlrhapsody::IGeneralization::toPapyrusGeneralization, uml::Generalization)![EObject]; 
+	result.type := self.getEdgeType();
+	result.source:= sourceNode.resolveIn(umlrhapsody::CGIClass::toPapyrusNode, Shape)![View];
+	result.target:= targetNode.resolveIn(umlrhapsody::CGIClass::toPapyrusNode, Shape)![View];
+	result.children->forEach(element){
+		element.type:='6007'
+	};
+	result.sourceAnchor := object IdentityAnchor{
+	id:=sourceAnchorId;
+	};
+	result.targetAnchor := object IdentityAnchor{
+	id := targetAnchorId;
+	};
+	result.bendpoints:= object RelativeBendpoints{
+		
+	};
+	
+	
+}
+
+query umlrhapsody::CGITrans::InnerTransition(): Boolean
+{
+	var sourceNode:CGIState:=self.m_pSource![CGIState];
+	var targetNode:CGIState:=self.m_pTarget![CGIState];
+	var sourcedefined:Boolean:=sourceNode.resolveIn(umlrhapsody::CGIState::toPapyrusFirstInnerStateNode, Shape)![View].oclIsUndefined();
+	var targetdefined:Boolean:=targetNode.resolveIn(umlrhapsody::CGIState::toPapyrusFirstInnerStateNode, Shape)![View].oclIsUndefined();
+	
+	return sourcedefined and targetdefined ;
+}
+
+
+mapping umlrhapsody::CGITrans::toPapyrusTransition(statechart :CGIStateChart) : Connector  
+{
+
+	var sourceNode:CGIState:=self.m_pSource![CGIState];
+	var targetNode:CGIState:=self.m_pTarget![CGIState];
+	var source_mtransform:List(String):= sourceNode.m_transform->asList();
+	var source_mpolygon:List(String):= sourceNode.m_polygon->asList();
+	var target_mtransform:List(String):= targetNode.m_transform->asList();
+	var target_mpolygon:List(String):= targetNode.m_polygon->asList();
+	var source_Port:List(String):= self.m_SourcePort->asList();
+	var target_Port:List(String):= self.m_TargetPort->asList();
+	var sourceAnchorId: String:= getAnchorId(source_mpolygon, source_mtransform,source_Port);
+	var targetAnchorId: String:= getAnchorId(target_mpolygon, target_mtransform,target_Port);
+	
+	
+	result.element := self.m_pModelObject.resolveIn(umlrhapsody::ITransition::toTransitions, uml::Transition)![EObject]; 
+	result.type := self.getEdgeType();
+	result.source:= sourceNode.resolveIn(umlrhapsody::CGIState::toPapyrusFirstInnerStateNode, Shape)![View];
+	result.target:= targetNode.resolveIn(umlrhapsody::CGIState::toPapyrusFirstInnerStateNode, Shape)![View];
+	
+	result.styles:= object FontStyle {};
+	result.routing:= Routing::Rectilinear;
+	result.avoidObstructions := true;
+	result.closestDistance := true;
+	result.jumpLinkType := JumpLinkType::Semicircle;
+	result.sourceAnchor := object IdentityAnchor{
+	id:=sourceAnchorId;
+	};
+	result.targetAnchor := object IdentityAnchor{
+	id := targetAnchorId;
+	};
+	result.bendpoints:= object RelativeBendpoints{
+		
+	};
+	
+	// add DecorationNode
+	result.children := self.getDecorationTransNodes();
+}
+
+mapping umlrhapsody::CGITrans::toPapyrusInitialTransition(statechart :CGIStateChart) : Connector // when { self.m_pSource=statechart.m_pRoot}
+{
+
+	var sourceNode:CGIState:=self.m_pSource![CGIState];
+	var targetNode:CGIState:=self.m_pTarget![CGIState];
+	var source_mtransform:List(String):= List{"1","1","1","1","1","1"}; // root has no transform attribute
+	var source_mpolygon:List(String):= sourceNode.m_polygon->asList();
+	var target_mtransform:List(String):= targetNode.m_transform->asList();
+	var target_mpolygon:List(String):= targetNode.m_polygon->asList();
+	var source_Port:List(String):= self.m_SourcePort->asList();
+	var target_Port:List(String):= self.m_TargetPort->asList();
+	var sourceAnchorId: String:= getAnchorId(source_mpolygon, source_mtransform,source_Port);
+	var targetAnchorId: String:= getAnchorId(target_mpolygon, target_mtransform,target_Port);
+	
+	
+	result.element := self.m_pModelObject.resolveIn(umlrhapsody::IDefaultDrvdTrans::toInitialTransition,uml::Transition)![EObject]; 
+	result.type := self.getEdgeType();
+	var source:View := sourceNode.resolveIn(umlrhapsody::CGIState::toPapyrusPseudoStateNode, Shape)![View];
+	if (source.oclIsUndefined() or source=null)
+	{
+		source := sourceNode.resolveIn(umlrhapsody::CGIState::toPapyrusInnerPseudoStateNode, Shape)![View];
+	}endif;
+	result.source:= source;
+	
+	result.target:= targetNode.resolveIn(umlrhapsody::CGIState::toPapyrusFirstInnerStateNode, Shape)![View];
+	
+	
+	result.styles:= object FontStyle {};
+	result.routing:= Routing::Rectilinear;
+	//result.avoidObstructions := true;
+	result.closestDistance := true;
+	result.jumpLinkType := JumpLinkType::Semicircle;
+	result.sourceAnchor := object IdentityAnchor{
+	id:=sourceAnchorId;
+	};
+	result.targetAnchor := object IdentityAnchor{
+	id := targetAnchorId;
+	};
+	result.bendpoints:= object RelativeBendpoints{
+		
+	};
+	// add DecorationNode
+	result.children := self.getDecorationTransNodes();
+	
+}
+
+query umlrhapsody::CGITrans::getDecorationTransNodes(): Set(DecorationNode)
+{
+	var decorationNodes:Set(DecorationNode);
+	
+
+		
+	//if (not (self.m_type![String].equalsIgnoreCase("29"))) // do not display the name of initial transition
+	//{
+		decorationNodes+= object DecorationNode{
+		type:= "7001";
+		layoutConstraint:= object Location{
+			//y:= -20; // default papyrus value, can not find Rhapsody value
+		};
+		};
+	//};
+		
+		decorationNodes+= object DecorationNode{
+		type:= "7002";
+		layoutConstraint:= object Location{
+			//y:= 20; // default papyrus value, can not find Rhapsody value
+		};
+		};
+		
+		decorationNodes+= object DecorationNode{
+		type:= "7003";
+		layoutConstraint:= object Location{
+			//y:= 20; // default papyrus value, can not find Rhapsody value
+		};
+		};
+		
+	
+		
+		
+		
+	
+	return decorationNodes;
+}
+
+query umlrhapsody::CGIAssociationEnd::getDecorationNodes(): Set(DecorationNode)
+{
+	var decorationNodes:Set(DecorationNode);
+	
+	if (self[CGIAssociationEnd].m_bShowLinkName![String].equalsIgnoreCase("1"))
+	{
+		decorationNodes+= object DecorationNode{
+		type:= "6001";
+		layoutConstraint:= object Location{
+			y:= -20; // default papyrus value, can not find Rhapsody value
+		};
+		};
+		
+		decorationNodes+= object DecorationNode{
+		type:= "6002";
+		layoutConstraint:= object Location{
+			y:= 20; // default papyrus value, can not find Rhapsody value
+		};
+		};
+		
+		
+	};
+	if (self[CGIAssociationEnd].m_bShowTargetMultiplicity![String].equalsIgnoreCase("1"))
+	{
+		decorationNodes+= object DecorationNode{
+		type:= "6034";
+		layoutConstraint:= object Location{
+		//y:=-20;
+			y:= self.m_targetMultiplicity.m_nVerticalSpacing.asInteger();
+			x:= self.m_targetMultiplicity.m_nHorizontalSpacing.asInteger();
+		};
+		};
+	};
+	if (self[CGIAssociationEnd].m_bShowSourceMultiplicity![String].equalsIgnoreCase("1"))
+	{
+		decorationNodes+= object DecorationNode{
+		type:= "6033";
+		layoutConstraint:= object Location{
+		//y:=20;
+			x:= self.m_sourceMultiplicity.m_nHorizontalSpacing.asInteger();
+			y:= self.m_sourceMultiplicity.m_nVerticalSpacing.asInteger();
+		};
+		};
+	};
+	
+	if (self[CGIAssociationEnd].m_bShowTargetRole![String].equalsIgnoreCase("1"))
+	{
+		decorationNodes+= object DecorationNode{
+		type:= "6005";
+		layoutConstraint:= object Location{
+		//y:=-20;
+			x:= self.m_targetRole.m_nHorizontalSpacing.asInteger();
+			y:= self.m_targetRole.m_nVerticalSpacing.asInteger();
+		};
+		};
+	};
+	if (self[CGIAssociationEnd].m_bShowSourceRole![String].equalsIgnoreCase("1"))
+	{
+		decorationNodes+= object DecorationNode{
+		type:= "6003";
+		layoutConstraint:= object Location{
+		//y:=20;
+			x:= self.m_sourceRole.m_nHorizontalSpacing.asInteger();
+			y:= self.m_sourceRole.m_nVerticalSpacing.asInteger();
+		};
+		};
+	};
+	return decorationNodes;
+}
+ mapping umlrhapsody::CGIClass::toPapyrusNode() : Shape  when { not (self.m_pParent.oclIsUndefined())}
+{
+	
+	result.element := self.m_pModelObject.resolveIn(umlrhapsody::IClass::toClasses, uml::Class)![EObject]; 
+	result.type := self.getNodeType();
+	result.children:= self.map toDecorationNode();
+	result.children+= self.Compartments[CGICompartment].map toBasicCompartment();
+	if not (self.m_transform->oclIsUndefined()) then
+	{
+	//result.layoutConstraint:= self.m_transform->asSequence()->map toLayoutConstraints();
+	result.layoutConstraint:= self.map toLayoutConstraint();
+	}endif;
+	
+}
+
+mapping Sequence(String)::toLayoutConstraints() : Bounds
+{
+if (self->size()>5)
+{
+	var num:String :=self->at(4);
+	var num2:String :=self->at(1);
+	result.x:=self->at(5).asInteger();
+	result.y:=self->at(6).asInteger();
+	
+	var h:Real:=num.asFloat()*1233;
+	var w:Real:=num2.asFloat()*1058;
+	result.height:=h.round().oclAsType(Integer);
+	result.width:=w.round().oclAsType(Integer);
+}
+
+}
+
+mapping GraphElementsType::toLayoutConstraint() : Bounds
+{
+
+if (self.oclIsTypeOf(CGIState) )
+{
+if (not (self[CGIState].m_transform.oclIsUndefined()->any(true)) and self[CGIState].m_transform->size()>5)
+{
+	var x:String :=self![CGIState].m_transform->at(5);
+	var y:String :=self![CGIState].m_transform->at(6);
+
+if (x.asInteger().oclIsUndefined() or x.asInteger().oclIsInvalid())
+{
+	result.x:=x.asFloat().round();
+
+}
+else 
+{	
+	result.x:=x.asInteger();
+	
+};
+if (y.asInteger().oclIsUndefined() or y.asInteger().oclIsInvalid())
+{
+	
+	result.y:=y.asFloat().round();
+}
+else 
+{	
+	
+	result.y:=y.asInteger();
+};
+	var mtransform:List(String):= self![CGIState].m_transform->asList();
+	var mpolygon:List(String):= self![CGIState].m_polygon->asList();
+	result.height:=getStateHeight(mpolygon, mtransform).oclAsType(Integer);
+	result.width:=getStateWidth(mpolygon, mtransform).oclAsType(Integer);
+
+if ( not (self[CGIState].m_pParent.oclIsUndefined()->any(true)))
+{
+if (not (self[CGIState].m_pParent![CGIState].m_transform.oclIsUndefined()->any(true)) and self[CGIState].m_pParent![CGIState].m_transform->size()>5)
+{
+var xratio:String :=self[CGIState].m_pParent![CGIState].m_transform->at(1);
+var yratio:String :=self![CGIState].m_transform->at(4);
+var xration:Float :=xratio.asFloat();
+var yration:Float :=yratio.asFloat();
+result.x:=(result.x * xration).round();
+result.y:=(result.y * yration).round();
+result.width:=(result.width * xration).round();
+result.height:=(result.height *yration).round();
+}
+}
+}
+elif (self[CGIState].m_type![String].equalsIgnoreCase("5"))
+{
+// do not specify the location for pseudo state
+	//result.x:=18;
+	//result.y:=9;
+}
+}
+else if ( self.oclIsTypeOf(CGIClass))
+{
+if ( (not (self[CGIClass].m_transform.oclIsUndefined()->any(true)) and self[CGIClass].m_transform->size()>5))
+{
+var x:String :=self![CGIClass].m_transform->at(5);
+var y:String :=self![CGIClass].m_transform->at(6);
+var astypeX:Integer := x.oclAsType(Integer);
+var astypeY:Integer := y.oclAsType(Integer);
+if (x.asInteger().oclIsUndefined() or x.asInteger().oclIsInvalid())
+{
+	result.x:=x.asFloat().round();
+
+}
+else 
+{	
+	result.x:=x.asInteger();
+	
+};
+if (y.asInteger().oclIsUndefined() or y.asInteger().oclIsInvalid())
+{
+	
+	result.y:=y.asFloat().round();
+}
+else 
+{	
+	
+	result.y:=y.asInteger();
+};
+	var mtransform:List(String):= self![CGIClass].m_transform->asList();
+	var mpolygon:List(String):= self![CGIClass].m_polygon->asList();
+	result.height:=getStateHeight(mpolygon, mtransform).oclAsType(Integer);
+	result.width:=getStateWidth(mpolygon, mtransform).oclAsType(Integer);
+}
+	
+}
+}
+
+mapping umlrhapsody::GraphElementsType::toDecorationNode(): notation::DecorationNode {
+
+
+type:= 
+		if self.oclIsTypeOf(CGIClass) then '5029' 
+		elif (self.oclIsTypeOf(CGIState) and self[CGIState].m_type![String].equalsIgnoreCase("8")) then '6001' 
+		elif (self.oclIsTypeOf(CGIState) and self[CGIState].m_type![String].equalsIgnoreCase("5")) then '8001'
+		endif;
+		if  (self.oclIsTypeOf(CGIState) )
+		{
+			if  (self[CGIState].m_type![String].equalsIgnoreCase("8"))
+			
+				layoutConstraint:= object Bounds
+				{
+					//	width:=63;
+				}
+			elif (self[CGIState].m_type![String].equalsIgnoreCase("5"))
+			{
+			// for the pseudo state
+				layoutConstraint:= object Location
+				{
+						//x:=25;
+						//y:=3;
+				}
+			}
+		}
+}
+
+
+
+mapping umlrhapsody::CGICompartment::toBasicCompartment(): notation::BasicCompartment  {
+	type:= self.getDecorationType();
+	result.styles := object TitleStyle{};
+	result.styles += object SortingStyle{};
+	result.styles += object FilteringStyle{};
+	
+	result.layoutConstraint :=self.map toLayoutConstraints();
+}
+
+mapping umlrhapsody::CGICompartment::toLayoutConstraints(): Bounds {
+	
+}
+mapping inout Diagram::toInnerClassDiagram() : PapyrusViewStyle{
+	
+	self.styles += object  StringValueStyle {name:="diagram_compatibility_version"; stringValue:="1.1.0";};
+	self.styles += object  DiagramStyle {};
+	result.owner := self.element;
+//	result._configuration := getInnerClassDiagramView();
+	self.styles += result;
+  
+}
+
+mapping inout Diagram::toInnerStateMachineDiagram() : PapyrusViewStyle{
+	
+	self.styles += object  StringValueStyle {
+	name:="diagram_compatibility_version"; stringValue:="1.1.0";
+	};
+	self.styles += object  DiagramStyle {};
+	result.owner := self.element.eContainer();
+//	result._configuration := getInnerStateMachineDiagramView();
+	self.styles += result;
+	
+	
+  
+}
+
+//query getInnerClassDiagramView() : PapyrusDiagram {
+	//return getEObjectProperty('InnerClassDiagramView').oclAsType(PapyrusDiagram);
+//}
+
+//query getInnerStateMachineDiagramView() : PapyrusDiagram {
+//	return getEObjectProperty('InnerStateMachineDiagramView').oclAsType(PapyrusDiagram);
+//}
+
+query CGICompartment::getDecorationType() : String{
+	var res := self.doGetDecorationType();
+	
+	return res;	
+}
+
+query CGICompartment::doGetDecorationType() : String{
+return switch {
+				
+	case (self.m_name = 'Attribute') '7017';
+	case (self.m_name = 'Operation') '7018';
+				
+}
+}
+
+query GraphElementsType::getEdgeType() : String {
+	return  switch {
+		case (self.oclIsTypeOf(CGIAssociationEnd))  '4001';
+		case (self.oclIsTypeOf(CGIInheritance))  '4002';
+		case (self.oclIsTypeOf(CGITrans))  '7000';
+		
+	}
+}
+
+
+
+
+
+
+/**
+* Returns the width for the element
+*/
+
+query umlrhapsody::CGIDiagramFrame::get_Width():Integer{
+	var mpolygon:List(String):= self![CGIDiagramFrame].m_polygon->asList();
+	var mtransform:List(String):= self![CGIDiagramFrame].m_transform->asList();
+	return getWidth(mpolygon,mtransform);
+}
+
+/**
+* Returns the heigth for the element
+*/
+query umlrhapsody::CGIDiagramFrame::get_Height():Integer{
+	var mpolygon:List(String):= self![CGIDiagramFrame].m_polygon->asList();
+	var mtransform:List(String):= self![CGIDiagramFrame].m_transform->asList();
+	return getHeight(mpolygon,mtransform);
+}
+
+
+/**
+* returns the X position
+*/
+query umlrhapsody::CGIDiagramFrame::get_X_Position():Integer{
+	return self![CGIDiagramFrame].m_transform->at(5).get_int_from_String();
+}
+
+/**
+* returns the Y position
+*/
+query umlrhapsody::CGIDiagramFrame::get_Y_Position():Integer{
+		return self![CGIDiagramFrame].m_transform->at(6).get_int_from_String();
+}
+
+
+/**
+* Returns the width for the element
+*/
+
+query umlrhapsody::CGIPortConnector::get_Width():Integer{
+	var mpolygon:List(String):= self![CGIPortConnector].m_position->asList();//m_position instead of Polygon ? 
+	var mtransform:List(String):= self![CGIPortConnector].m_transform->asList();
+	return getWidth(mpolygon,mtransform);
+}
+
+/**
+* Returns the heigth for the element
+*/
+query umlrhapsody::CGIPortConnector::get_Height():Integer{
+	var mpolygon:List(String):= self![CGIPortConnector].m_position->asList();//m_position instead of Polygon ? 
+	var mtransform:List(String):= self![CGIPortConnector].m_transform->asList();
+	return getHeight(mpolygon,mtransform);
+}
+
+
+/**
+* returns the X position
+*/
+query umlrhapsody::CGIPortConnector::get_X_Position(inout parentRootShape:Shape):Integer{
+//	var tutu:=getPortX(self);
+//	return self![CGIPortConnector].m_transform->at(7).get_int_from_String();
+//	var parent:GraphElementsType := self.m_pParent.oclAsType(GraphElementsType);
+//	if(parent.oclIsKindOf(CGIDiagramFrame)){
+//		return getPortX(self,parentRootShape);
+//	};
+//	if(parent.oclIsKindOf(GraphElementsType)){
+//		var mappingRes:Shape := parent.map graphElementsTypeToIBDShape(parentRootShape);
+//		if(not (mappingRes.oclIsInvalid())){
+//			return getPortX(self, mappingRes);
+//		}
+//		else{
+//			log("no parent shape found for " + self.toString());
+//		}
+//	};
+	return -10;
+}
+
+/**
+* returns the Y position
+*/
+query umlrhapsody::CGIPortConnector::get_Y_Position(inout parentRootShape:Shape):Integer{
+		//return self![CGIPortConnector].m_transform->at(8).get_int_from_String();
+//	return getPortY(self);
+//	var parent:GraphElementsType := self.m_pParent.oclAsType(GraphElementsType);
+//	if(parent.oclIsKindOf(CGIDiagramFrame)){
+//		return getPortY(self,parentRootShape);
+//	};
+//	if(parent.oclIsKindOf(GraphElementsType)){
+//		var mappingRes:Shape := parent.map graphElementsTypeToIBDShape(parentRootShape);
+//		if(not (mappingRes.oclIsInvalid())){
+//			return getPortY(self, mappingRes);
+//		}else{
+//			log("no parent shape found for " + self.toString());
+//		}
+//	};
+	return -10;
+}
+

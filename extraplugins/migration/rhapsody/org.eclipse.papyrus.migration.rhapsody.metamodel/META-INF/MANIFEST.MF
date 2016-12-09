@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.migration.rhapsody.metamodel;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel,
+ org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl,
+ org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.util
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=greedy,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport
+Bundle-ActivationPolicy: lazy

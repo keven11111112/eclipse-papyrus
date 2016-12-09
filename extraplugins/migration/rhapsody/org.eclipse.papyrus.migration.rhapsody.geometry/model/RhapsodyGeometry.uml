@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_WUNX8JFHEeaU3PnuDDmqGg" name="RhapsodyGeometry">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_kCMYoJFMEeaU3PnuDDmqGg" annotatedElement="_NFyHQJFMEeaU3PnuDDmqGg">
+      <body>Refer to https://www.w3.org/TR/SVG11/coords.html#EstablishingANewUserSpace for the meaning of each matrix member</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_jMoFwJFQEeaU3PnuDDmqGg" annotatedElement="_g-uyMJFNEeaU3PnuDDmqGg">
+      <body>All the values are expressed in the root coordinate system (transformation matrixes are applied)</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_E1TaoJFTEeaU3PnuDDmqGg" annotatedElement="_JVO_EJFSEeaU3PnuDDmqGg">
+      <body>Should be a model element from Rhapsody generated metamodel, with a transform and polygon attribute</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_ilshQJFTEeaU3PnuDDmqGg" annotatedElement="_g-uyMJFNEeaU3PnuDDmqGg">
+      <body>The only attribute to set is the rhapsodyMetamodelObject. All the other attributes will be derived from it if possible</body>
+    </ownedComment>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_WhYRQJFHEeaU3PnuDDmqGg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_GZfcIJFREeaU3PnuDDmqGg">
+      <importedPackage xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_viPtsJFHEeaU3PnuDDmqGg" name="Point">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_mJSIUJFJEeaU3PnuDDmqGg" name="X" aggregation="composite">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wxp1MJFJEeaU3PnuDDmqGg" name="Y" aggregation="composite">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_3dRjMJFKEeaU3PnuDDmqGg" name="minus">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_-bc2QJFKEeaU3PnuDDmqGg" name="ret" type="_viPtsJFHEeaU3PnuDDmqGg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_EZhXMJFLEeaU3PnuDDmqGg" name="minus">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_EZhXMZFLEeaU3PnuDDmqGg" name="ret" type="_viPtsJFHEeaU3PnuDDmqGg" direction="return"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_JXHSkJFLEeaU3PnuDDmqGg" name="point" type="_viPtsJFHEeaU3PnuDDmqGg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Q1-34JFLEeaU3PnuDDmqGg" name="add">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Q1-34ZFLEeaU3PnuDDmqGg" name="ret" type="_viPtsJFHEeaU3PnuDDmqGg" direction="return"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Q1-34pFLEeaU3PnuDDmqGg" name="point" type="_viPtsJFHEeaU3PnuDDmqGg"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7dY_IJFJEeaU3PnuDDmqGg" name="Polygon">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_E4_W4pFKEeaU3PnuDDmqGg" name="points" type="_viPtsJFHEeaU3PnuDDmqGg" aggregation="composite" association="_E4-v0JFKEeaU3PnuDDmqGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JV9RcJFKEeaU3PnuDDmqGg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JWGbYJFKEeaU3PnuDDmqGg" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_E4-v0JFKEeaU3PnuDDmqGg" memberEnd="_E4_W4pFKEeaU3PnuDDmqGg _E5AlAJFKEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_E4_W4JFKEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_E4_W4ZFKEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_E5AlAJFKEeaU3PnuDDmqGg" name="polygon" type="_7dY_IJFJEeaU3PnuDDmqGg" association="_E4-v0JFKEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Qd0sAJFKEeaU3PnuDDmqGg" name="Rectangle">
+      <generalization xmi:type="uml:Generalization" xmi:id="_TzsboJFKEeaU3PnuDDmqGg" general="_7dY_IJFJEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_WXf1I5FKEeaU3PnuDDmqGg" name="topLeft" type="_viPtsJFHEeaU3PnuDDmqGg" isDerived="true" association="_WXf1IJFKEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Zwme8pFKEeaU3PnuDDmqGg" name="topRight" type="_viPtsJFHEeaU3PnuDDmqGg" isDerived="true" association="_Zwl34JFKEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_fea9YpFKEeaU3PnuDDmqGg" name="bottomLeft" type="_viPtsJFHEeaU3PnuDDmqGg" isDerived="true" association="_feZIMJFKEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_r6D-spFKEeaU3PnuDDmqGg" name="bottomRight" type="_viPtsJFHEeaU3PnuDDmqGg" isDerived="true" association="_r6DXoJFKEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_WXf1IJFKEeaU3PnuDDmqGg" memberEnd="_WXf1I5FKEeaU3PnuDDmqGg _WXgcMJFKEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WXf1IZFKEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WXf1IpFKEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_WXgcMJFKEeaU3PnuDDmqGg" name="rectangle" type="_Qd0sAJFKEeaU3PnuDDmqGg" association="_WXf1IJFKEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Zwl34JFKEeaU3PnuDDmqGg" memberEnd="_Zwme8pFKEeaU3PnuDDmqGg _Zwme85FKEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Zwme8JFKEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Zwme8ZFKEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_Zwme85FKEeaU3PnuDDmqGg" name="rectangle" type="_Qd0sAJFKEeaU3PnuDDmqGg" association="_Zwl34JFKEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_feZIMJFKEeaU3PnuDDmqGg" memberEnd="_fea9YpFKEeaU3PnuDDmqGg _fea9Y5FKEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fea9YJFKEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fea9YZFKEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_fea9Y5FKEeaU3PnuDDmqGg" name="rectangle" type="_Qd0sAJFKEeaU3PnuDDmqGg" association="_feZIMJFKEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_r6DXoJFKEeaU3PnuDDmqGg" memberEnd="_r6D-spFKEeaU3PnuDDmqGg _r6D-s5FKEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_r6D-sJFKEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_r6D-sZFKEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_r6D-s5FKEeaU3PnuDDmqGg" name="rectangle" type="_Qd0sAJFKEeaU3PnuDDmqGg" association="_r6DXoJFKEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_1Pm8UJFLEeaU3PnuDDmqGg" name="EdgePosition">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_7kvSYJFLEeaU3PnuDDmqGg" name="NORTH"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_80GBcJFLEeaU3PnuDDmqGg" name="SOUTH"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_91VcAJFLEeaU3PnuDDmqGg" name="EAST"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="__M2BgJFLEeaU3PnuDDmqGg" name="WEST"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EUKgoJFMEeaU3PnuDDmqGg" name="RhapsodyPort">
+      <generalization xmi:type="uml:Generalization" xmi:id="_GtdTQJFMEeaU3PnuDDmqGg" general="_g-uyMJFNEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_r8FbIJFOEeaU3PnuDDmqGg" name="parentEdge" type="_1Pm8UJFLEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NFyHQJFMEeaU3PnuDDmqGg" name="TransformMatrix">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_RG5zUJFMEeaU3PnuDDmqGg" name="a">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rbCOcJFMEeaU3PnuDDmqGg" name="b">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rvVqgJFMEeaU3PnuDDmqGg" name="c">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_r5x_8JFMEeaU3PnuDDmqGg" name="d">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_tx9CgJFMEeaU3PnuDDmqGg" name="e">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vZZhcJFMEeaU3PnuDDmqGg" name="f">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDoubleObject"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7YDEwJFMEeaU3PnuDDmqGg" name="add">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7YDEwZFMEeaU3PnuDDmqGg" name="ret" type="_NFyHQJFMEeaU3PnuDDmqGg" direction="return"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7YDEwpFMEeaU3PnuDDmqGg" name="matrix" type="_NFyHQJFMEeaU3PnuDDmqGg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7YES4JFMEeaU3PnuDDmqGg" name="minus">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7YES4ZFMEeaU3PnuDDmqGg" name="ret" type="_NFyHQJFMEeaU3PnuDDmqGg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7YFhAJFMEeaU3PnuDDmqGg" name="minus">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7YFhAZFMEeaU3PnuDDmqGg" name="ret" type="_NFyHQJFMEeaU3PnuDDmqGg" direction="return"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_7YFhApFMEeaU3PnuDDmqGg" name="matrix" type="_NFyHQJFMEeaU3PnuDDmqGg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_GDq58JFNEeaU3PnuDDmqGg" name="multiply">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GDq58ZFNEeaU3PnuDDmqGg" name="ret" type="_viPtsJFHEeaU3PnuDDmqGg" direction="return"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GDq58pFNEeaU3PnuDDmqGg" name="point" type="_viPtsJFHEeaU3PnuDDmqGg"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_GNCRUJFNEeaU3PnuDDmqGg" name="multiply">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GNCRUZFNEeaU3PnuDDmqGg" name="ret" type="_NFyHQJFMEeaU3PnuDDmqGg" direction="return"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GNCRUpFNEeaU3PnuDDmqGg" name="matrix" type="_NFyHQJFMEeaU3PnuDDmqGg"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_g-uyMJFNEeaU3PnuDDmqGg" name="RhapsodyShape">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_pghNEZFNEeaU3PnuDDmqGg" name="transform" type="_NFyHQJFMEeaU3PnuDDmqGg" aggregation="composite" association="_pggmAJFNEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_x_dIQJFNEeaU3PnuDDmqGg" name="rectangle" type="_Qd0sAJFKEeaU3PnuDDmqGg" aggregation="composite" association="_x_chMJFNEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_CFND0pFOEeaU3PnuDDmqGg" name="parent" type="_g-uyMJFNEeaU3PnuDDmqGg" association="_CFLOoJFOEeaU3PnuDDmqGg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LBg3gJFOEeaU3PnuDDmqGg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LBr2oJFOEeaU3PnuDDmqGg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_MsMT0ZFSEeaU3PnuDDmqGg" name="rhapsodyMetamodelObject" type="_JVO_EJFSEeaU3PnuDDmqGg" association="_MsLFsJFSEeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_dgHqkJF_EeaU3PnuDDmqGg" name="parentRelativePosition" type="_viPtsJFHEeaU3PnuDDmqGg" aggregation="composite" association="_dgF1YJF_EeaU3PnuDDmqGg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5muI4JF_EeaU3PnuDDmqGg" name="height">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8_bKEJF_EeaU3PnuDDmqGg" name="width">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_e0bs8JGREeaU3PnuDDmqGg" name="absolutePosition" type="_viPtsJFHEeaU3PnuDDmqGg" aggregation="composite" association="_e0Z3wJGREeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pggmAJFNEeaU3PnuDDmqGg" memberEnd="_pghNEZFNEeaU3PnuDDmqGg _pgibMJFNEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pggmAZFNEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pghNEJFNEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_pgibMJFNEeaU3PnuDDmqGg" name="rhapsodyshape" type="_g-uyMJFNEeaU3PnuDDmqGg" association="_pggmAJFNEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_x_chMJFNEeaU3PnuDDmqGg" memberEnd="_x_dIQJFNEeaU3PnuDDmqGg _x_dIQZFNEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_x_chMZFNEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x_chMpFNEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_x_dIQZFNEeaU3PnuDDmqGg" name="rhapsodyshape" type="_g-uyMJFNEeaU3PnuDDmqGg" association="_x_chMJFNEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CFLOoJFOEeaU3PnuDDmqGg" memberEnd="_CFND0pFOEeaU3PnuDDmqGg _CFNq4JFOEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CFND0JFOEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CFND0ZFOEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CFNq4JFOEeaU3PnuDDmqGg" name="rhapsodyshape" type="_g-uyMJFNEeaU3PnuDDmqGg" association="_CFLOoJFOEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_MsLFsJFSEeaU3PnuDDmqGg" name="rhapsodyMetamodelObject" memberEnd="_MsMT0ZFSEeaU3PnuDDmqGg _MsMT0pFSEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MsLswJFSEeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MsMT0JFSEeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_MsMT0pFSEeaU3PnuDDmqGg" name="rhapsodyshape" type="_g-uyMJFNEeaU3PnuDDmqGg" association="_MsLFsJFSEeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_dgF1YJF_EeaU3PnuDDmqGg" memberEnd="_dgHqkJF_EeaU3PnuDDmqGg _dgHqkZF_EeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dgHDgJF_EeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dgHDgZF_EeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_dgHqkZF_EeaU3PnuDDmqGg" name="rhapsodyshape" type="_g-uyMJFNEeaU3PnuDDmqGg" association="_dgF1YJF_EeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_e0Z3wJGREeaU3PnuDDmqGg" memberEnd="_e0bs8JGREeaU3PnuDDmqGg _e0bs8ZGREeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_e0bF4JGREeaU3PnuDDmqGg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_e0bF4ZGREeaU3PnuDDmqGg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_e0bs8ZGREeaU3PnuDDmqGg" name="rhapsodyshape" type="_g-uyMJFNEeaU3PnuDDmqGg" association="_e0Z3wJGREeaU3PnuDDmqGg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_WfI1kJFHEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WfMf8JFHEeaU3PnuDDmqGg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_xmicgJFOEeaU3PnuDDmqGg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xmjDkJFOEeaU3PnuDDmqGg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <uml:Model xmi:id="_uRqrEJFREeaU3PnuDDmqGg" name="Ecore">
+    <packagedElement xmi:type="uml:Class" xmi:id="_JVO_EJFSEeaU3PnuDDmqGg" name="EObject"/>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_a7z1MJFHEeaU3PnuDDmqGg" base_Package="_WUNX8JFHEeaU3PnuDDmqGg" packageName="rhapsodygeometry" nsPrefix="rhpgeom" nsURI="http://www.eclipse.org/papyrus/rhpgeometry/1.0.0" basePackage="org.eclipse.papyrus.migration.rhapsody" prefix="RhpGeometry"/>
+  <Ecore:EReference xmi:id="_qOeKIJFLEeaU3PnuDDmqGg" isUnsettable="true" base_Property="_WXf1I5FKEeaU3PnuDDmqGg"/>
+  <Ecore:EReference xmi:id="_tuzdUJFLEeaU3PnuDDmqGg" isUnsettable="true" base_Property="_Zwme8pFKEeaU3PnuDDmqGg"/>
+  <Ecore:EReference xmi:id="_wSuLkJFLEeaU3PnuDDmqGg" isUnsettable="true" base_Property="_fea9YpFKEeaU3PnuDDmqGg"/>
+  <Ecore:EReference xmi:id="_ySSPkJFLEeaU3PnuDDmqGg" isUnsettable="true" base_Property="_r6D-spFKEeaU3PnuDDmqGg"/>
+  <Ecore:EPackage xmi:id="_wkHO0JFREeaU3PnuDDmqGg" base_Package="_uRqrEJFREeaU3PnuDDmqGg" nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
+</xmi:XMI>

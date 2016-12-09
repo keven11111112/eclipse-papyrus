@@ -1,0 +1,912 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import Rhapsody2PapyrusSemanticElements;
+import RhapsodyUtils;
+import SysMLRhapsodyUtils;
+import RhapsodyToPapyrusDiagamCommon;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype notation "strict" uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype sash "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/sashdi';
+modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+
+
+
+transformation SysML11BlockDefinitionDiagram(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml ,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes) 
+access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes) 
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+{
+	//TODO : maybe we should have a transform method here
+}
+
+mapping rhapsodymetamodel::IDiagram::iDiagramToSysML11BlockDefinitionDiagram(rpyProject:IProject):Diagram when{self.isUserModelDiagram() and self.isSysMLBlockDefinitionDiagram()}{
+	//1. creating the diagram object
+	init {
+		//we are looking for the owner of the diagram
+		
+		//TODO : check the owner part!
+		//TODO : don't use the default subsystem
+		var subsystem: ISubsystem:= semantics.rootObjects()[IProject].defaultSubsystem![ISubsystem]; //TODO : could probably be replaced by the owner of the IDiagram (like done for StateMachine)
+		var owner:EObject:= subsystem.oclAsType(DefaultSubsystemType).resolveIn (umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage, uml::Package)![EObject];
+		
+		var iDiagramOwner:ecore::EObject:=self[EObject].eContainer()![EObject];
+		if(iDiagramOwner.oclIsKindOf(umlrhapsody::IClass)){
+			owner:= iDiagramOwner.resolveIn(umlrhapsody::IClass::toUMLElement, uml::Element)![EObject];
+		};
+		//TODO : check owner and owner!
+		result:=self.map createAndInitDiagram(rpyProject,getPapyrusDiagramType(), owner, owner);
+	}	
+	
+	children:= self[IDiagram].graphicChart.graphElements[GraphElementsType].map toSysML11BlockDefinitionDiagramShape();
+	edges:=self[IDiagram].graphicChart.graphElements[GraphElementsType].map toSysML11BlockDefinitionDiagramEdge();
+	
+}
+
+/**
+* Returns the type of the diagram to create
+*/
+query getPapyrusDiagramType():String{
+	return 'BlockDefinition';
+};
+
+//TODO : use disjuncts here
+ mapping umlrhapsody::CGIGenericElement::toSysML11BlockDefinitionDiagramElements() : Shape  when { not (self.m_pParent.oclIsUndefined())}
+{
+	var res = self.m_pModelObject;
+ 
+	result.element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	if(res.oclIsKindOf(IType)){
+		var type:IType:=res.oclAsType(IType);
+		if (type.isUMLDataType()){	  //TODO : use disjonct for this method
+					result.type:="shape_uml_datatype_as_classifier";
+					var decorationNode:notation::DecorationNode:= object DecorationNode{
+						
+					};
+					decorationNode.type:="label_uml_namedelement_name";
+					result.children+=decorationNode;
+						var cptAslist:notation::ListCompartment= object ListCompartment{
+							styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_uml_property_as_list";
+					result.children+=cptAslist;
+				}else if(type.isUMLInstanceSpecification()){
+					result.type:="InstanceSpecification_Shape";
+				}else if(type.isUMLEnumeration()){
+					result.type:="shape_uml_enumeration_as_classifier";
+				}else if(type.isUMLClass()){
+					result.type:="shape_sysml_block_as_classifier";
+					var decorationNode:notation::DecorationNode:= object DecorationNode{
+						
+					};
+					decorationNode.type:="label_uml_namedelement_name";
+					result.children+=decorationNode;
+					var cptAslist:notation::ListCompartment= object ListCompartment{
+							styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_sysml_property_as_list";
+					result.children+=cptAslist;
+					
+					cptAslist:= object ListCompartment{
+							styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_sysml_reference_as_list";
+					result.children+=cptAslist;
+					
+					cptAslist:= object ListCompartment{
+							styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_uml_port_as_list";
+					result.children+=cptAslist;
+					
+					cptAslist:= object ListCompartment{
+						styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_sysml_flowport_as_list";
+					result.children+=cptAslist;
+					
+					cptAslist:= object ListCompartment{
+							styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_uml_operation_as_list";
+					result.children+=cptAslist;
+					
+					cptAslist:= object ListCompartment{
+							styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_sysml_constraint_as_list";
+					result.children+=cptAslist;
+					
+					cptAslist:= object ListCompartment{
+							styles := object DrawerStyle{};
+							styles += object TitleStyle{};
+							styles += object SortingStyle{};
+							styles += object FilteringStyle{};
+					};
+					cptAslist.type:="compartment_sysml_value_as_list";
+					result.children+=cptAslist;
+					
+				};
+	};
+	//result.type := self.getNodeType();
+	result.children+= self.map toDecorationNode();
+	result.children+= self.Compartments[CGICompartment].map toBasicCompartment();
+	if not (self.m_transform->oclIsUndefined()) then
+	{
+	result.layoutConstraint:= self.m_transform->asSequence()->map toLayoutConstraints();
+	result.layoutConstraint:= self.map toLayoutConstraint();
+	}endif;
+	
+}
+mapping GraphElementsType::toLayoutConstraint() : Bounds
+{
+
+if (self.oclIsTypeOf(CGIState) )
+{
+if (not (self[CGIState].m_transform.oclIsUndefined()->any(true)) and self[CGIState].m_transform->size()>5)
+{
+	var x:String :=self![CGIState].m_transform->at(5);
+	var y:String :=self![CGIState].m_transform->at(6);
+
+if (x.asInteger().oclIsUndefined() or x.asInteger().oclIsInvalid())
+{
+	result.x:=x.asFloat().round();
+
+}
+else 
+{	
+	result.x:=x.asInteger();
+	
+};
+if (y.asInteger().oclIsUndefined() or y.asInteger().oclIsInvalid())
+{
+	
+	result.y:=y.asFloat().round();
+}
+else 
+{	
+	
+	result.y:=y.asInteger();
+};
+	var mtransform:List(String):= self![CGIState].m_transform->asList();
+	var mpolygon:List(String):= self![CGIState].m_polygon->asList();
+	result.height:=getStateHeight(mpolygon, mtransform).oclAsType(Integer);
+	result.width:=getStateWidth(mpolygon, mtransform).oclAsType(Integer);
+
+if ( not (self[CGIState].m_pParent.oclIsUndefined()->any(true)))
+{
+if (not (self[CGIState].m_pParent![CGIState].m_transform.oclIsUndefined()->any(true)) and self[CGIState].m_pParent![CGIState].m_transform->size()>5)
+{
+var xratio:String :=self[CGIState].m_pParent![CGIState].m_transform->at(1);
+var yratio:String :=self![CGIState].m_transform->at(4);
+var xration:Float :=xratio.asFloat();
+var yration:Float :=yratio.asFloat();
+result.x:=(result.x * xration).round();
+result.y:=(result.y * yration).round();
+result.width:=(result.width * xration).round();
+result.height:=(result.height *yration).round();
+}
+}
+}
+elif (self[CGIState].m_type![String].equalsIgnoreCase("5"))
+{
+// do not specify the location for pseudo state
+	//result.x:=18;
+	//result.y:=9;
+}
+}
+else if ( self.oclIsTypeOf(CGIClass))
+{
+if ( (not (self[CGIClass].m_transform.oclIsUndefined()->any(true)) and self[CGIClass].m_transform->size()>5))
+{
+var x:String :=self![CGIClass].m_transform->at(5);
+var y:String :=self![CGIClass].m_transform->at(6);
+var astypeX:Integer := x.oclAsType(Integer);
+var astypeY:Integer := y.oclAsType(Integer);
+if (x.asInteger().oclIsUndefined() or x.asInteger().oclIsInvalid())
+{
+	result.x:=x.asFloat().round();
+
+}
+else 
+{	
+	result.x:=x.asInteger();
+	
+};
+if (y.asInteger().oclIsUndefined() or y.asInteger().oclIsInvalid())
+{
+	
+	result.y:=y.asFloat().round();
+}
+else 
+{	
+	
+	result.y:=y.asInteger();
+};
+	var mtransform:List(String):= self![CGIClass].m_transform->asList();
+	var mpolygon:List(String):= self![CGIClass].m_polygon->asList();
+	result.height:=getStateHeight(mpolygon, mtransform).oclAsType(Integer);
+	result.width:=getStateWidth(mpolygon, mtransform).oclAsType(Integer);
+}
+	
+}
+}
+
+//TODO--------------------------------------- rewrite me!
+
+mapping Sequence(String)::toLayoutConstraints() : Bounds
+{
+if (self->size()>5)
+{
+	var num:String :=self->at(4);
+	var num2:String :=self->at(1);
+	result.x:=self->at(5).asInteger();
+	result.y:=self->at(6).asInteger();
+	
+	var h:Real:=num.asFloat()*1233;
+	var w:Real:=num2.asFloat()*1058;
+	result.height:=h.round().oclAsType(Integer);
+	result.width:=w.round().oclAsType(Integer);
+}
+
+}
+
+mapping umlrhapsody::GraphElementsType::toDecorationNode(): notation::DecorationNode {
+
+
+type:= 
+		if self.oclIsTypeOf(CGIClass) then '5029' 
+		elif (self.oclIsTypeOf(CGIState) and self[CGIState].m_type![String].equalsIgnoreCase("8")) then '6001' 
+		elif (self.oclIsTypeOf(CGIState) and self[CGIState].m_type![String].equalsIgnoreCase("5")) then '8001'
+		endif;
+		if  (self.oclIsTypeOf(CGIState) )
+		{
+			if  (self[CGIState].m_type![String].equalsIgnoreCase("8"))
+			
+				layoutConstraint:= object Bounds
+				{
+					//	width:=63;
+				}
+			elif (self[CGIState].m_type![String].equalsIgnoreCase("5"))
+			{
+			// for the pseudo state
+				layoutConstraint:= object Location
+				{
+						//x:=25;
+						//y:=3;
+				}
+			}
+		}
+}
+
+
+
+mapping umlrhapsody::CGICompartment::toBasicCompartment(): notation::BasicCompartment  {
+	type:= self.getDecorationType();
+	result.styles := object TitleStyle{};
+	result.styles += object SortingStyle{};
+	result.styles += object FilteringStyle{};
+	
+	result.layoutConstraint :=self.map toLayoutConstraints();
+}
+
+mapping umlrhapsody::CGICompartment::toLayoutConstraints(): Bounds {
+	
+}
+query CGICompartment::getDecorationType() : String{
+	var res := self.doGetDecorationType();
+	
+	return res;	
+}
+
+query CGICompartment::doGetDecorationType() : String{
+return switch {
+				
+	case (self.m_name = 'Attribute') '7017';
+	case (self.m_name = 'Operation') '7018';
+				
+}
+}
+//TODO : end of rewrite me
+
+//	disjuncts 
+//	umlrhapsody::CGIGenericElement::toSysML11BDDDataTypeShape, //TODO split with value type
+//	umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape,
+//	umlrhapsody::CGIGenericElement::toSysML11BDDDimensionShape,
+//	umlrhapsody::CGIGenericElement::toSysML11BDDEnumerationShape,
+//	umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape{} 
+
+/**
+*
+* This mapping allows to create all views in a Papyrus SysML 1.1 BDD according to the Rhapsody Model
+*/
+mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramShape() : Shape 
+	disjuncts 
+	umlrhapsody::CGIGenericElement::toSysML11BDDDataTypeShape, //TODO split with value type
+	umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape,
+	umlrhapsody::CGIGenericElement::toSysML11BDDDimensionShape,
+	umlrhapsody::CGIGenericElement::toSysML11BDDEnumerationShape,
+	umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape,
+	umlrhapsody::CGIClass::toSysML11BDDBlockShape,
+	umlrhapsody::CGIClass::toSysML11BDDConstraintBlockShape,
+	umlrhapsody::CGIClass::toSysML11BDDFlowSpecificationShape
+	{}
+	
+mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramEdge() : Edge 
+	disjuncts 
+	umlrhapsody::CGIAssociationEnd::toSysML11BDDAssociationEdge
+	{}
+//mapping umlrhapsody::CGIAssociationEnd::toSysML11BDDCGIAssociationLink() : Edge {
+//	var source:=self.m_pSource;
+//	var t:=self.m_pTarget;
+//	
+//}
+/**
+* This mapping creates the Block Shape with its compartment and their children
+*/	
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLClass()}{
+	type:="shape_sysml_block_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_block_name"};
+	children+=decorationNode;
+	var sysmlPropertyCompartment:=self.map toListCompartment("compartment_sysml_property_as_list", "Attribute");
+	sysmlPropertyCompartment.children+=self.map toSysML11BDDBlockPropertyNode();//TODO : add check to distinghuish properties, from port, part, reference,  ...
+	//TODO : do the mapping ofr all others children
+	var sysmlPartCompartment:=self.map toListCompartment("compartment_sysml_part_as_list", null);
+	var sysmlReferenceCompartment:=self.map toListCompartment("compartment_sysml_reference_as_list", null);
+	var umlPortCompartment:=self.map toListCompartment("compartment_uml_port_as_list", null);
+	var sysmlFlowportCompartment:=self.map toListCompartment("compartment_sysml_flowport_as_list", null);
+	var umlOperationCompartment:=self.map toListCompartment("compartment_uml_operation_as_list", null);
+	var sysmlContraintCompartment:=self.map toListCompartment("compartment_sysml_constraint_as_list", null);
+	var sysmlValueCompartment:=self.map toListCompartment("compartment_sysml_value_as_list", null);
+	children+= sysmlPropertyCompartment;
+	children+= sysmlPartCompartment;
+	children+= sysmlReferenceCompartment;
+	children+= umlPortCompartment;
+	children+= sysmlFlowportCompartment;
+	children+= umlOperationCompartment;
+	children+= sysmlContraintCompartment;
+	children+= sysmlValueCompartment;
+	
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+
+//TODO merge me with the previous one
+/**
+* This mapping creates the Block Shape with its compartment and their children
+*/	
+mapping umlrhapsody::CGIClass::toSysML11BDDBlockShape() : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and  self.m_pModelObject.oclIsTypeOf(IClass) and not (self.m_pModelObject.oclAsType(IClass).isSysMLFlowSpecification() or self.m_pModelObject.oclAsType(IClass).isSysMLConstraintBlock()) }{
+	var res:Boolean= self.m_pModelObject.oclIsTypeOf(IClass);
+
+	type:="shape_sysml_block_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_block_name"};
+	children+=decorationNode;
+	var sysmlPropertyCompartment:=self.map toListCompartment("compartment_sysml_property_as_list", "Attribute");
+	sysmlPropertyCompartment.children+=self.map toSysML11BDDBlockPropertyNode();//TODO : add check to distinghuish properties, from port, part, reference,  ...
+	//TODO : do the mapping ofr all others children
+	var sysmlPartCompartment:=self.map toListCompartment("compartment_sysml_part_as_list", null);
+	var sysmlReferenceCompartment:=self.map toListCompartment("compartment_sysml_reference_as_list", null);
+	var umlPortCompartment:=self.map toListCompartment("compartment_uml_port_as_list", null);
+	var sysmlFlowportCompartment:=self.map toListCompartment("compartment_sysml_flowport_as_list", null);
+	var umlOperationCompartment:=self.map toListCompartment("compartment_uml_operation_as_list", "Operation");
+	var sysmlContraintCompartment:=self.map toListCompartment("compartment_sysml_constraint_as_list", null);
+	var sysmlValueCompartment:=self.map toListCompartment("compartment_sysml_value_as_list", null);
+	children+= sysmlPropertyCompartment;
+	children+= sysmlPartCompartment;
+	children+= sysmlReferenceCompartment;
+	children+= umlPortCompartment;
+	children+= sysmlFlowportCompartment;
+	children+= umlOperationCompartment;
+	children+= sysmlContraintCompartment;
+	children+= sysmlValueCompartment;
+	
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+
+/**
+* This mapping creates the Block Shape with its compartment and their children
+*/	
+//TODO : merge me with previous one ?
+mapping umlrhapsody::CGIClass::toSysML11BDDConstraintBlockShape() : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLConstraintBlock()}{
+
+// <children xmi:type="notation:Shape" xmi:id="_Mr2uIIlmEeaNf9-vLHMoKw" type="shape_sysml_flowspecification_as_classifier">
+//    <children xmi:type="notation:DecorationNode" xmi:id="_Mr3VMIlmEeaNf9-vLHMoKw" type="label_sysml_flowspecification_name"/>
+//    <children xmi:type="notation:ListCompartment" xmi:id="_Mr3VMYlmEeaNf9-vLHMoKw" type="compartment_sysml_flowproperty_as_list">
+//      <styles xmi:type="notation:DrawerStyle" xmi:id="_Mr3VMolmEeaNf9-vLHMoKw"/>
+//      <styles xmi:type="notation:TitleStyle" xmi:id="_Mr3VM4lmEeaNf9-vLHMoKw"/>
+//      <styles xmi:type="notation:SortingStyle" xmi:id="_Mr3VNIlmEeaNf9-vLHMoKw"/>
+//      <styles xmi:type="notation:FilteringStyle" xmi:id="_Mr3VNYlmEeaNf9-vLHMoKw"/>
+//    </children>
+//    <element xmi:type="uml:Interface" href="model.uml#_MpVloIlmEeaNf9-vLHMoKw"/>
+//    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Mr2uIYlmEeaNf9-vLHMoKw" x="89" y="90" width="327" height="226"/>
+//  </children>
+
+	//TODO : I probably forgot several compartment for this usecase!
+	type:="shape_sysml_constraintblock_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_constraintblock_name"};
+	children+=decorationNode;
+	var sysmlParameterCompartment:=self.map toListCompartment("compartment_sysml_parameter_as_list", "ConstraintParameter");
+	sysmlParameterCompartment.children+=self.map toSysML11BDDConstraintParameterNode("ConstraintParameter");//TODO : add check to distinghuish properties, from port, part, reference,  ...
+	var sysmlPropertyCompartment:=self.map toListCompartment("compartment_sysml_constraint_as_list", "Constraint");
+//	sysmlPropertyCompartment.children+=self.map toSysML11BDDBlockPropertyNode();//TODO : add check to distinghuish properties, from port, part, reference,  ...
+	//TODO : do the mapping ofr all others children
+//	var sysmlPartCompartment:=self.map toListCompartment("compartment_sysml_part_as_list", null);
+//	var sysmlReferenceCompartment:=self.map toListCompartment("compartment_sysml_reference_as_list", null);
+//	var umlPortCompartment:=self.map toListCompartment("compartment_uml_port_as_list", null);
+//	var sysmlFlowportCompartment:=self.map toListCompartment("compartment_sysml_flowport_as_list", null);
+//	var umlOperationCompartment:=self.map toListCompartment("compartment_uml_operation_as_list", null);
+//	var sysmlContraintCompartment:=self.map toListCompartment("compartment_sysml_constraint_as_list", null);
+//	var sysmlValueCompartment:=self.map toListCompartment("compartment_sysml_value_as_list", null);
+	children+= sysmlParameterCompartment;
+	children+= sysmlPropertyCompartment;
+//	children+= sysmlPartCompartment;
+//	children+= sysmlReferenceCompartment;
+//	children+= umlPortCompartment;
+//	children+= sysmlFlowportCompartment;
+//	children+= umlOperationCompartment;
+//	children+= sysmlContraintCompartment;
+//	children+= sysmlValueCompartment;
+	
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+
+
+/**
+* This mapping creates the Block Shape with its compartment and their children
+*/	
+//TODO : merge me with previous one ?
+mapping umlrhapsody::CGIClass::toSysML11BDDFlowSpecificationShape() : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLFlowSpecification()}{
+
+// <children xmi:type="notation:Shape" xmi:id="_Mr2uIIlmEeaNf9-vLHMoKw" type="shape_sysml_flowspecification_as_classifier">
+//    <children xmi:type="notation:DecorationNode" xmi:id="_Mr3VMIlmEeaNf9-vLHMoKw" type="label_sysml_flowspecification_name"/>
+//    <children xmi:type="notation:ListCompartment" xmi:id="_Mr3VMYlmEeaNf9-vLHMoKw" type="compartment_sysml_flowproperty_as_list">
+//      <styles xmi:type="notation:DrawerStyle" xmi:id="_Mr3VMolmEeaNf9-vLHMoKw"/>
+//      <styles xmi:type="notation:TitleStyle" xmi:id="_Mr3VM4lmEeaNf9-vLHMoKw"/>
+//      <styles xmi:type="notation:SortingStyle" xmi:id="_Mr3VNIlmEeaNf9-vLHMoKw"/>
+//      <styles xmi:type="notation:FilteringStyle" xmi:id="_Mr3VNYlmEeaNf9-vLHMoKw"/>
+//    </children>
+//    <element xmi:type="uml:Interface" href="model.uml#_MpVloIlmEeaNf9-vLHMoKw"/>
+//    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Mr2uIYlmEeaNf9-vLHMoKw" x="89" y="90" width="327" height="226"/>
+//  </children>
+	type:="shape_sysml_flowspecification_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_flowspecification_name"};
+	children+=decorationNode;
+	var sysmlPropertyCompartment:=self.map toListCompartment("compartment_sysml_flowproperty_as_list", "FlowProperty");
+	sysmlPropertyCompartment.children+=self.map toSysML11BDDFlowPropertyNode("FlowProperty");//TODO : add check to distinghuish properties, from port, part, reference,  ...
+	//TODO : do the mapping ofr all others children
+//	var sysmlPartCompartment:=self.map toListCompartment("compartment_sysml_part_as_list", null);
+//	var sysmlReferenceCompartment:=self.map toListCompartment("compartment_sysml_reference_as_list", null);
+//	var umlPortCompartment:=self.map toListCompartment("compartment_uml_port_as_list", null);
+//	var sysmlFlowportCompartment:=self.map toListCompartment("compartment_sysml_flowport_as_list", null);
+//	var umlOperationCompartment:=self.map toListCompartment("compartment_uml_operation_as_list", null);
+//	var sysmlContraintCompartment:=self.map toListCompartment("compartment_sysml_constraint_as_list", null);
+//	var sysmlValueCompartment:=self.map toListCompartment("compartment_sysml_value_as_list", null);
+	children+= sysmlPropertyCompartment;
+//	children+= sysmlPartCompartment;
+//	children+= sysmlReferenceCompartment;
+//	children+= umlPortCompartment;
+//	children+= sysmlFlowportCompartment;
+//	children+= umlOperationCompartment;
+//	children+= sysmlContraintCompartment;
+//	children+= sysmlValueCompartment;
+	
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLInstanceSpecification() and self.m_pModelObject.oclAsType(IType).isSysMLUnit()}{
+	type:="shape_sysml_unit_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_unit_name"};
+	children+=decorationNode;
+	//TODO : add compartment as hidden
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDDimensionShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLInstanceSpecification() and self.m_pModelObject.oclAsType(IType).isSysMLDimension()}{
+	type:="shape_sysml_dimension_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_dimension_name"};
+	children+=decorationNode;
+	//TODO : add compartment as hidden
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+
+//TODO : check compartment of all created elements
+//TODO : create comment link and other stuff to dispay stereotype in diagram
+/**
+* map the Rhapsody enumeration representation to the Papyrus Enumeration
+*/
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDEnumerationShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLEnumeration()}{
+	type:="shape_uml_enumeration_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_uml_namedelement_name"};
+	children+=decorationNode;
+	var enumLiteralCompartment:=self.map toListCompartment("compartment_uml_enumerationliteral_as_list", "EnumerationLiteral");
+	enumLiteralCompartment.children+=self.map toSysML11BDDEnumerationLiteralNode();
+	children+=enumLiteralCompartment;
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDDataTypeShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLDataType()}{
+	type:="shape_uml_datatype_as_classifier";
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_uml_namedelement_name"};
+	children+=decorationNode;
+	var propertyCompartment:=self.map toListCompartment("compartment_uml_property_as_list", null);
+	var operationCompartment:=self.map toListCompartment("compartment_uml_operation_as_list", null);
+	children+=propertyCompartment;
+	children+=operationCompartment;
+    layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
+
+/**
+* Create all View to represent wanted the EnumerationLiteral
+*/
+mapping CGIGenericElement::toSysML11BDDEnumerationLiteralNode() : OrderedSet(Node){
+init{
+	var isExplicit:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("Explicit");
+	var isAll:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("All");
+	var isPublic:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("Public"); //IEnumrationLiteral can't be set as public or others
+	if(isAll or isPublic){
+		//in this case nothing is serialized in rhapsody file, so we create all view from the literal views
+		//we can't use a mapping method because when EnumerationLiteral are represented several time on the same diagram,we will call the same mapping for the same element
+		//and in this case, QVTO call the mapping only the first time and return directly the result the next time without creating new object!
+		self.m_pModelObject.oclAsType(IType).Literals->forEach(lit){
+				result+= lit.oclAsType(IEnumerationLiteral).toSysML11BDDEnumerationLiteralNode();
+		};
+	}elif(isExplicit){
+			self.Compartments[CGICompartment].Items->forEach(lit){
+					result+= lit.oclAsType(IEnumerationLiteral).toSysML11BDDEnumerationLiteralNode();
+			};
+		};	
+	}
+}
+
+/**
+* Create all View to represent wanted the SysML Properties
+*/
+mapping CGIGenericElement::toSysML11BDDBlockPropertyNode() : OrderedSet(Node){
+init{
+	var isExplicit:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("Explicit");
+	var isAll:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("All");
+	var isPublic:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("Public"); //IEnumrationLiteral can't be set as public or others
+	if(isAll or isPublic){ //TODO checlk in Rhapsody that for block : isAll or Public is equals? !
+		//in this case nothing is serialized in rhapsody file, so we create all view from the literal views
+		//we can't use a mapping method because when EnumerationLiteral are represented several time on the same diagram,we will call the same mapping for the same element
+		//and in this case, QVTO call the mapping only the first time and return directly the result the next time without creating new object!
+		self.m_pModelObject.oclAsType(IType).Attrs->forEach(attr){
+				result+= attr.oclAsType(IAttribute).toSysML11BDDBlockPropertyNode();
+		};
+	}elif(isExplicit){
+			self.Compartments[CGICompartment].Items->forEach(attr){
+					result+= attr.oclAsType(IAttribute).toSysML11BDDBlockPropertyNode();
+			};
+		};	
+	}
+}
+
+
+
+/**
+* Create all View to represent wanted the SysML Properties
+*/
+//TODO : merge me with the previous one
+mapping CGIClass::toSysML11BDDBlockPropertyNode() : OrderedSet(Node){ //TODO : the CGI comparmtent must probably be a parameter!
+init{
+	var isExplicit:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("Explicit");
+	var isAll:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("All");
+	var isPublic:boolean:=self.Compartments[CGICompartment].m_displayOption->includes("Public"); //IEnumrationLiteral can't be set as public or others
+	if(isAll or isPublic){ //TODO checlk in Rhapsody that for block : isAll or Public is equals? !
+		//in this case nothing is serialized in rhapsody file, so we create all view from the literal views
+		//we can't use a mapping method because when EnumerationLiteral are represented several time on the same diagram,we will call the same mapping for the same element
+		//and in this case, QVTO call the mapping only the first time and return directly the result the next time without creating new object!
+		self.m_pModelObject.oclAsType(IType).Attrs->forEach(attr){
+				result+= attr.oclAsType(IAttribute).toSysML11BDDBlockPropertyNode();
+		};
+	}elif(isExplicit){
+			self.Compartments[CGICompartment].Items->forEach(attr){
+					result+= attr.oclAsType(IAttribute).toSysML11BDDBlockPropertyNode();
+			};
+		};	
+	}
+}
+
+/**
+* This query create the Node View for a given SysML Property
+*/
+query umlrhapsody::IAttribute::toSysML11BDDBlockPropertyNode() : Node{
+	return object Node{
+		element:=self.resolveoneIn(umlrhapsody::IVariable::iVariableToUMLElement).oclAsType(EObject);
+		type:="shape_uml_property_as_label";
+		styles:= object ShapeStyle{};
+		layoutConstraint:= object Location{};
+	};
+}
+
+/**
+* This query create the Node View for a given SysML Property
+*/
+//TODO : merge me with previous one
+query umlrhapsody::IRelation::toSysML11BDDBlockConstraintNode() : Node{
+	return object Node{
+		element:=self.resolveoneIn(umlrhapsody::IRelation::iRelationToUMLElement).oclAsType(EObject);
+		type:="shape_uml_property_as_label";
+		styles:= object ShapeStyle{};
+		layoutConstraint:= object Location{};
+	};
+}
+
+//TODO : merge me with previous one
+query umlrhapsody::IAttribute::toSysML11BDDFlowPorpertyNode() : Node{
+	return object Node{
+		element:=self.resolveoneIn(umlrhapsody::IVariable::iVariableToUMLElement).oclAsType(EObject);
+		type:="shape_sysml_flowproperty_as_label";
+		styles:= object ShapeStyle{};
+		layoutConstraint:= object Location{};
+	};
+}
+
+mapping CGIClass::toSysML11BDDFlowPropertyNode(rpyCptName:String) : OrderedSet(Node) when {self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLFlowSpecification()}{
+init{
+	//TODO add a check for <>null for this compartment
+	var rpyCpt:CGICompartment :=self.Compartments->selectByKind(CGICompartment)->selectOne(cpt | cpt.m_name=rpyCptName);
+	
+	var isExplicit:boolean:=rpyCpt.m_displayOption->includes("Explicit");
+	var isAll:boolean:=rpyCpt.m_displayOption->includes("All");
+	var isPublic:boolean:=rpyCpt.m_displayOption->includes("Public");
+	if(isAll or isPublic){ //TODO checlk in Rhapsody that for block : isAll or Public is equals? !
+		//in this case nothing is serialized in rhapsody file, so we create all view from the literal views
+		//we can't use a mapping method because when EnumerationLiteral are represented several time on the same diagram,we will call the same mapping for the same element
+		//and in this case, QVTO call the mapping only the first time and return directly the result the next time without creating new object!
+		self.m_pModelObject.oclAsType(IClass).Attrs->selectByType(IAttribute)->forEach(attr){
+//    		var res:uml::Element:=relation.resolveoneIn(umlrhapsody::IRelation::iRelationToUMLElement);
+//    		if(res.oclAsType(uml::Property)){
+	
+		//TODO : check it is a flow property in RPY
+    			result+= attr.toSysML11BDDFlowPorpertyNode();
+    		}
+//    		if(res.getAppliedStereotype(getSysML11Stereotype("ConstraintParameter").getQualifiedName())){//TODO : need to be checked
+    			
+//    		}
+//    		if(relation.oclIsKindOf(ISysMLPort) and res<>null){
+//    			var isysmlPort:umlrhapsody::ISysMLPort:=relation.oclAsType(ISysMLPort);
+//    			isysmlPort.Stereotypes->forEach(istereotype){
+//    			relation.map applyIStereotypeToUMLElement(res, istereotype.oclAsType(IStereotype));
+//    		}	
+			
+//    	}C
+//    };
+//				result+= attr.oclAsType(ISysMLPort).toSysML11BDDBlockPropertyNode();
+//		};
+	}elif(isExplicit){
+
+		//TODO : ISySML Port is not yet an Item in the metamodel	
+//			self.Compartments[CGICompartment].Items->forEach(attr){
+//					result+= attr.oclAsType(IAttribute).toSysML11BDDBlockPropertyNode();
+//			};
+		};	
+	}
+}
+
+mapping CGIClass::toSysML11BDDConstraintParameterNode(rpyCptName:String) : OrderedSet(Node) when {self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLConstraintBlock()}{
+init{
+	var rpyCpt:CGICompartment :=self.Compartments->selectByKind(CGICompartment)->selectOne(cpt | cpt.m_name=rpyCptName);
+
+	var isExplicit:boolean:=rpyCpt.m_displayOption->includes("Explicit");
+	var isAll:boolean:=rpyCpt.m_displayOption->includes("All");
+	var isPublic:boolean:=rpyCpt.m_displayOption->includes("Public");
+	if(isAll or isPublic){ //TODO checlk in Rhapsody that for block : isAll or Public is equals? !
+		//in this case nothing is serialized in rhapsody file, so we create all view from the literal views
+		//we can't use a mapping method because when EnumerationLiteral are represented several time on the same diagram,we will call the same mapping for the same element
+		//and in this case, QVTO call the mapping only the first time and return directly the result the next time without creating new object!
+		self.m_pModelObject.oclAsType(IClass).Ports->forEach(relation){
+//    		var res:uml::Element:=relation.resolveoneIn(umlrhapsody::IRelation::iRelationToUMLElement);
+//    		if(res.oclAsType(uml::Property)){
+    			result+= relation.toSysML11BDDBlockConstraintNode();
+    		}
+//    		if(res.getAppliedStereotype(getSysML11Stereotype("ConstraintParameter").getQualifiedName())){//TODO : need to be checked
+    			
+//    		}
+//    		if(relation.oclIsKindOf(ISysMLPort) and res<>null){
+//    			var isysmlPort:umlrhapsody::ISysMLPort:=relation.oclAsType(ISysMLPort);
+//    			isysmlPort.Stereotypes->forEach(istereotype){
+//    			relation.map applyIStereotypeToUMLElement(res, istereotype.oclAsType(IStereotype));
+//    		}	
+			
+//    	}C
+//    };
+//				result+= attr.oclAsType(ISysMLPort).toSysML11BDDBlockPropertyNode();
+//		};
+	}elif(isExplicit){
+
+		//TODO : ISySML Port is not yet an Item in the metamodel	
+//			self.Compartments[CGICompartment].Items->forEach(attr){
+//					result+= attr.oclAsType(IAttribute).toSysML11BDDBlockPropertyNode();
+//			};
+		};	
+	}
+}
+
+/**
+* This query create the Node View for a given IEnumerationLiteral
+*/
+query umlrhapsody::IEnumerationLiteral::toSysML11BDDEnumerationLiteralNode() : Node{
+	return object Node{
+		element:=self.resolveoneIn(umlrhapsody::IEnumerationLiteral::toUMLEnumerationLiteral).oclAsType(EObject);
+		type:="shape_uml_enumerationliteral_as_label";
+		styles:= object ShapeStyle{};
+		layoutConstraint:= object Location{};
+	};
+}
+
+mapping umlrhapsody::CGIAssociationEnd::toSysML11BDDAssociationEdge() : Connector 
+{
+//TODO : utilise rla classe RhapsodyNode pour les anchors!
+	var sourceNode:CGIClass:=self.m_pSource![CGIClass];
+	var targetNode:CGIClass:=self.m_pTarget![CGIClass];
+	
+	var source_mtransform:List(String):= sourceNode.m_transform->asList();
+	var source_mpolygon:List(String):= sourceNode.m_polygon->asList();
+	var target_mtransform:List(String):= targetNode.m_transform->asList();
+	var target_mpolygon:List(String):= targetNode.m_polygon->asList();
+	var source_Port:List(String):= self.m_SourcePort->asList();
+	var target_Port:List(String):= self.m_TargetPort->asList();
+	
+
+	//we try the new way for anchor calculus
+//	var anchorsAndBendpoints:Sequence(String):=getAnchorsAndBendpoints(self, result);
+//	var sourceAnchorId:String:=anchorsAndBendpoints->asSequence()->at(1);
+//	var	targetAnchorId:String:=anchorsAndBendpoints->asSequence()->at(2);
+	addAnchorsAndBendpoints(self, result);
+	
+	var rpySemanticElement:=self.m_pModelObject;
+	
+	//looking for the uml Association
+	var association:Association:=null;
+	if(rpySemanticElement.oclIsTypeOf(IAssociationEnd)){
+		association:=self.m_pModelObject.resolveoneIn(umlrhapsody::IAssociationEnd::toAssociationswithProp, uml::Association);
+		if (association=null){
+			association := self.m_pModelObject.resolveoneIn(umlrhapsody::IAssociationEnd::toAssociationswithoutProp, uml::Association); 
+		};
+	}elif(rpySemanticElement.oclIsTypeOf(IPart)){
+		association:=self.m_pModelObject.resolveoneIn(umlrhapsody::IPart::iPartToUMLAssociation, uml::Association).oclAsType(Association);
+	};
+	
+//	//self.m_pModelObject.resolveIn(umlrhapsody::IAssociationEnd::toAssociationswithProp, uml::Association)![EObject];
+//	
+////	association:=self.m_pModelObject.resolveIn(umlrhapsody::IAssociationEnd::IAssociationEnd, uml::Association)![EObject];
+//	log("2. association found :=" + association.toString());
+//	if (association!=null)
+//	{
+////	result.element:=association;
+//	}
+//	else
+//	{
+//	result.element := self.m_pModelObject.resolveIn(umlrhapsody::IAssociationEnd::toAssociationswithoutProp, uml::Association)![EObject]; 
+//	};
+	
+	result.element:=association.oclAsType(EObject);
+	
+	result.type := "link_sysml_association";
+	result.source:= sourceNode.resolveIn(umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramShape, Shape)![View];
+	result.target:= targetNode.resolveIn(umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramShape, Shape)![View];
+	
+	//no idea about this code!
+//	result.children->forEach(element){
+//		element.type:='6007'
+//	};
+//	result.sourceAnchor := object IdentityAnchor{
+//		id:=sourceAnchorId;
+//	};
+//	result.targetAnchor := object IdentityAnchor{
+//		id := targetAnchorId;
+//	};
+	
+	
+//	result.bendpoints:= object RelativeBendpoints{
+////		points:= object RelativeBendpointList{
+////		
+////		}
+//	};
+	// add DecorationNode
+	//	result.children := self.getDecorationNodes();
+	
+	
+	//TODO : manage the place of each label of the association
+	var True:String:="1";
+	var False:String:="0";
+	var res:=self.m_bShowLinkName;
+	var showSourceRole:=self.m_bShowSourceRole;
+	var showTargetRole:=self.m_bShowTargetRole;
+	var showSourceMultiplicity:=self.m_bShowSourceMultiplicity;
+	var showTargetMultiplicity:=self.m_bShowTargetMultiplicity;
+	
+	result.children+= object DecorationNode{
+		type:="linklabel_uml_appliedstereotype";
+//		visible:=self.m_bShowLinkName=True;
+		layoutConstraint:= object Location{ y:=-30};
+	};
+	
+	//TODO : we could manage maskLabel style too
+	result.children+= object DecorationNode{
+		type:="linklabel_uml_namedelement_name";
+		visible:=self.m_bShowLinkName=True;
+		layoutConstraint:= object Location{y:=-10};
+	};
+
+	result.children+= object DecorationNode{
+		type:="linklabel_uml_association_source_role";
+		visible:=self.m_bShowSourceRole=True;
+		layoutConstraint:= object Location{y:=-10};
+	};
+	
+	result.children+= object DecorationNode{
+		type:="linklabel_uml_association_source_multiplicity";
+		visible:=self.m_bShowSourceMultiplicity=True;
+		layoutConstraint:= object Location{y:=10};
+	};
+	
+	result.children+= object DecorationNode{
+		type:="linklabel_uml_association_target_role";
+		visible:=self.m_bShowTargetRole=True;
+		layoutConstraint:= object Location{y:=-10};
+	};
+	
+	result.children+= object DecorationNode{
+		type:="linklabel_uml_association_target_multiplicity";
+		visible:=self.m_bShowTargetMultiplicity=True;
+		layoutConstraint:= object Location{y:=10};
+	};
+
+	result.styles+= object FontStyle{};
+	
+	result.styles+= object EObjectValueStyle{
+		name:="semantic_source_end";
+		eObjectValue:=association.memberEnd->asSequence()->at(1).oclAsType(EObject); //TODO
+	};
+	
+	result.styles+= object EObjectValueStyle{
+		name:="semantic_target_end";
+		eObjectValue:=association.memberEnd->asSequence()->at(2).oclAsType(EObject); //TODO
+	};
+	
+}
+
+

@@ -1,0 +1,301 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import Rhapsody2PapyrusSemanticElements;
+import RhapsodyUtils;
+import SysMLRhapsodyUtils;
+import RhapsodyToPapyrusDiagamCommon;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.diagrams.ParametricDiagramFixLayoutLocationBlackboxes;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype notation "strict" uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+
+
+/**
+* This transformation allows to import Rhapsody Parametric Diagram as Papyrus SysML 1.1 Parametric Diagram
+*
+*/
+transformation SysML11ParametricDiagram(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml ,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
+access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes) 
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+{
+	//nothing to do here
+}
+
+
+mapping rhapsodymetamodel::IDiagram::iDiagramToSysML11ParametricDiagram(rpyProject:IProject):Diagram when{self.isUserModelDiagram() and self.isSysMLParametricDiagram()}{
+	init{
+		var owner:EObject;
+			//2. setting the diagram owner
+		var iDiagramOwner:ecore::EObject:=self[EObject].eContainer()![EObject];
+		if(iDiagramOwner.oclIsKindOf(umlrhapsody::IClass)){
+			owner:= iDiagramOwner.resolveIn(umlrhapsody::IClass::toUMLElement, uml::Element)![EObject];
+		};
+
+		result:=self.map createAndInitDiagram(rpyProject,getPapyrusDiagramType(), owner, owner);
+	}
+	
+	//0. find some objects
+	var cgiClassChart:CGIClassChart:=self.graphicChart->oclAsSet().selectByType(CGIClassChart)->any(true);
+	
+	//0.a find the object root of the diagram
+	var cgiClass:GraphElementsType:=null;
+	if(cgiClassChart.m_pRoot.oclIsKindOf(CGIClass)){
+		cgiClass:=cgiClassChart.m_pRoot.oclAsType(GraphElementsType);
+	};
+	
+	var cgiDiagramFrame:CGIDiagramFrame:=cgiClassChart.graphElements->selectByType(CGIDiagramFrame)->any(true);
+		
+	//3. as it is an ParametricDiagram, we must represent the owner in the diagram. This is the Rhapsody Frame
+	var rootBlockShape:Shape= object Shape{
+		type:="shape_sysml_block_as_composite";
+		children+= object DecorationNode { type:="label_sysml_block_name"};
+		layoutConstraint:=object Bounds{x:=cgiDiagramFrame.get_X_Position(); y:=cgiDiagramFrame.get_Y_Position(); width:=cgiDiagramFrame.get_Width(); height:=cgiDiagramFrame.get_Height()};
+	};
+	
+	children+=rootBlockShape;
+
+	var basicCompartment:BasicCompartment:= object BasicCompartment { 
+			type:="compartment_sysml_structure";
+			styles+= object TitleStyle{};
+	};
+	rootBlockShape.children+=basicCompartment;
+	
+
+	//mapping object inside the container 
+	basicCompartment.children+=cgiClassChart.graphElements->select(a | a.isAllowedAsCompartmentChildren(basicCompartment)).map graphElementsTypeToPDShapes(cgiClassChart, cgiClass->asSequence());
+	
+	//mapping affixed child node
+	rootBlockShape.children+=cgiClassChart.graphElements->select(a | a.isAllowedAsAffixedChildNode(rootBlockShape)).map graphElementsTypeToPDShapes(cgiClassChart, cgiDiagramFrame->asSequence());
+	edges+=cgiClassChart.graphElements.map graphElementsTypeToPBEdges(cgiClassChart, cgiClass->asSequence());
+	
+	fixLayout(result);
+};
+
+/**
+* Returns the type of the diagram to create
+*/
+query getPapyrusDiagramType():String{
+	return 'Parametric';
+};
+
+/**
+* Returns true when the graph element can be used as an affixed child node in Papyrus Diagram
+*/
+query umlrhapsody::GraphElementsType::isAllowedAsAffixedChildNode(shape:Shape):Boolean{
+	return self.oclIsTypeOf(CGIPortConnector);
+}
+
+/**
+* Returns true when the graph element can be set as a children of a given compartment
+*/
+query umlrhapsody::GraphElementsType::isAllowedAsCompartmentChildren(cpt:BasicCompartment):Boolean{
+	return not self.oclIsTypeOf(CGIPortConnector);
+}
+
+/**
+* This mapping take GraphElementsType and returns Shape.
+* @param
+*		cgiClassChart : the class chart of the diagram, it is useful to find child to create for the created element
+* @param
+* 		rpyAllowedParent : the list of the allowed Rhapsody parent to manage the object.
+*		if the Rhapsody parent is not in this list, the object won't be mapped
+*	
+*/
+mapping rhapsodymetamodel::GraphElementsType::graphElementsTypeToPDShapes(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):Shape disjuncts
+	rhapsodymetamodel::CGIAnnotation::CGIAnnotationToCommentCN,
+	rhapsodymetamodel::CGIObjectInstance::CGIObjectInstanceToPDContraintProperty,
+	rhapsodymetamodel::CGIObjectInstance::CGIObjectInstanceToPDPart,
+	rhapsodymetamodel::CGIGenericElement::CGIGenericElementToPDBlockPropertyAsComposite, 
+	rhapsodymetamodel::CGIPortConnector::CGIPortConnectorToPorpertyAsAffixedChildNode
+{}
+
+
+/**
+* This mapping take GraphElementsType and returns Shape
+*/
+mapping rhapsodymetamodel::GraphElementsType::graphElementsTypeToPBEdges(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):Edge disjuncts
+	rhapsodymetamodel::CGIObjectLink::graphElementsTypeToPDConnector,
+	rhapsodymetamodel::CGIAnchor::graphElementsTypeToPDCommentLink
+{}
+
+/**
+* This method allows to map comment link
+*
+*/
+mapping rhapsodymetamodel::CGIAnchor::graphElementsTypeToPDCommentLink(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):Connector when {self.getLinkSourceView()<>null and self.getLinkTargetView()<>null}{
+	type:="Comment_AnnotatedElementEdge";
+	source:=self.getLinkSourceView();
+	target:=self.getLinkTargetView();
+	var sourceNode:M_pRootType:=self.m_pSource;
+	var targetNode:M_pRootType:=self.m_pTarget;
+	addAnchorsAndBendpoints(self,result);
+}
+
+/**
+*
+* This method allows to map the connector link
+*/
+mapping rhapsodymetamodel::CGIObjectLink::graphElementsTypeToPDConnector(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):Connector when {self.getLinkSourceView()<>null and self.getLinkTargetView()<>null}{
+	type:="link_uml_connector";
+	source:=self.getLinkSourceView();
+	target:=self.getLinkTargetView();
+	element:= self.m_pModelObject.resolveoneIn(umlrhapsody::IObjectLink::iObjectLinkToUMLElement).oclAsType(EObject);
+		
+	addAnchorsAndBendpoints(self,result);
+	
+	children+=object DecorationNode{
+		 type:="linklabel_uml_appliedstereotype";
+		 layoutConstraint:=object Location{
+		 	y:=-30; //TODO : a dummy value
+		 };
+	};
+	
+	
+	//managing the name label of the connector
+//	var nameText:CGIText:=self.m_rpn;
+	children+=object DecorationNode{
+		type:="linklabel_uml_connector_label";
+		layoutConstraint:=object Location{
+			y:=-10; //TODO : a dummy value 
+		};
+	};
+}
+
+//TODO : calling resolve method could not work in soem case : if we are mapping a link linked to another link not yet mapped -> we will not able to resolve it!
+//TODO : manage link linked to an other link (comment link for example)
+query umlrhapsody::CGIAnchor::getLinkSourceView():View{
+	var source:View:=self.m_pSource![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToPDShapes, Shape)![View];
+	if(source=null){
+//		source:=self.m_pSource![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToIBDEdges, Connector)![View];
+	};
+	return source;
+}
+
+query umlrhapsody::CGIAnchor::getLinkTargetView():View{
+	var target:View:=self.m_pTarget![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToPDShapes, Shape)![View];
+	if(target=null){
+//		target:=self.m_pTarget![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToIBDEdges, Connector)![View];
+	};
+	return target
+}
+
+query umlrhapsody::CGIObjectLink::getLinkSourceView():View{
+	var source:View:=self.m_pSource![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToPDShapes, Shape)![View];
+	if(source=null){
+//		source:=self.m_pSource![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToIBDEdges, Connector)![View];
+	};
+	return source;
+}
+
+query umlrhapsody::CGIObjectLink::getLinkTargetView():View{
+	var target:View:=self.m_pTarget![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToPDShapes, Shape)![View];
+	if(target=null){
+//		target:=self.m_pTarget![M_pRootType].resolveIn(umlrhapsody::GraphElementsType::graphElementsTypeToIBDEdges, Connector)![View];
+	};
+	return target
+}
+
+
+mapping rhapsodymetamodel::CGIPortConnector::CGIPortConnectorToPorpertyAsAffixedChildNode(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)): Shape when {rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
+	type:="shape_uml_property_as_affixed";
+
+	children+=object DecorationNode{
+		type:="affixedlabel_uml_port_label";
+		layoutConstraint:= object Location{
+			x:=-40; //TODO dummy value
+			y:=-40; //TODO dummy value
+		};
+	};
+	
+	children+=object DecorationNode{
+		type:="affixedlabel_uml_appliedstereotype";
+		layoutConstraint:= object Location{
+		};
+	};
+	
+	layoutConstraint:= object Bounds{
+		x:=getX(self);
+		y:=getY(self);
+		width:=20;
+		height:=20;
+	};
+	
+	element:=self.m_pModelObject.resolveoneIn(umlrhapsody::IRelation::iRelationToUMLElement).oclAsType(EObject);
+}
+
+mapping rhapsodymetamodel::CGIObjectInstance::CGIObjectInstanceToPDContraintProperty(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)): Shape when {self.m_pModelObject.oclIsKindOf(IPart) and self.m_pModelObject.oclAsType(IPart).isSysMLConstraintProperty() and self.m_pParent.oclIsTypeOf(CGIClass) and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{ 
+//we are not able to generate children of ContraintProperty
+	type:= "shape_sysml_constraintblockproperty_as_composite";
+	children+= object DecorationNode {type:="label_uml_property_label"};
+	element:=self.m_pModelObject.resolveone().oclAsType(EObject);
+	
+	//this part is not required for Rhapsody model!
+	//children+= object DecorationNode {
+	//type:="shape_uml_constraint_as_label";
+	//	//parent element should be a property typed by a constraint block. This constraint block contains a constraint! We map on it!
+	//	var t:uml::Type:=element.oclAsType(uml::TypedElement).type;
+	//	if(t<>null){
+	//		element:=t.ownedElement->selectByType(uml::Constraint)->any(true).oclAsType(EObject);
+	//	};
+	//		};
+	
+	layoutConstraint:= object Bounds{x:=getX(self); y:=getY(self); width:=getRectangleWidth(self); height:=getRectangleHeight(self);};
+	
+	//we add the affixed child node
+	children+= cgiClassChart.graphElements->select(a | a.isAllowedAsAffixedChildNode(result)).map graphElementsTypeToPDShapes(cgiClassChart, self->asSequence());
+}
+
+mapping rhapsodymetamodel::CGIObjectInstance::CGIObjectInstanceToPDPart(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):Shape when {self.oclIsTypeOf(CGIObjectInstance) and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
+	type:="shape_sysml_blockproperty_as_composite";
+	children+= object DecorationNode{
+		type:="label_uml_property_label";
+	};
+	var blockPropertyStructure:BasicCompartment:= object BasicCompartment {
+		type:="compartment_sysml_blockproperty_structure";
+		styles+=object TitleStyle{};
+	};
+	
+	children+=blockPropertyStructure;
+	layoutConstraint:= object Bounds{ 
+		x:=getX(self); 
+		y:=getY(self); 
+		width :=getRectangleWidth(self); 
+		height := getRectangleHeight(self)
+	};
+	element:=self.m_pModelObject.resolveone().oclAsType(EObject);
+
+	//we fill the compartment
+	blockPropertyStructure.children+= cgiClassChart.graphElements->selectByType(CGIGenericElement)->select(g | g.m_pParent=self).map graphElementsTypeToPDShapes(cgiClassChart, self->asSequence());
+}
+
+mapping rhapsodymetamodel::CGIGenericElement::CGIGenericElementToPDBlockPropertyAsComposite(cgiClassChart:CGIClassChart,rpyAllowedParent:Sequence(GraphElementsType)):Shape when {self.oclIsTypeOf(CGIGenericElement) and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
+	type:="shape_sysml_blockproperty_as_composite";
+	children+= object DecorationNode{
+		type:="label_uml_property_label";
+	};
+	children+= object BasicCompartment {
+		type:="compartment_sysml_blockproperty_structure";
+		styles+=object TitleStyle{};
+	};
+	layoutConstraint:= object Bounds{ 
+		x:=getX(self); 
+		y:=getY(self); 
+		width :=getRectangleWidth(self); 
+		height := getRectangleHeight(self)};
+	element:=self.m_pModelObject.resolveone().oclAsType(EObject);
+}

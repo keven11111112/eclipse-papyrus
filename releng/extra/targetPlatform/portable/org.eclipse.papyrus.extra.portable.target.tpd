@@ -42,6 +42,14 @@ location rmf "http://download.eclipse.org/rmf/updates/releases" {
 	org.eclipse.rmf.reqif10.pror.sdk.feature.feature.group
 }
 
+//manualUpdate
+
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
+	org.apache.commons.io
+	org.apache.commons.io.source
+}
+
+
 //updateFrom("Extended Editing Framework (EEF)",0) 
 
 location eef "http://download.eclipse.org/modeling/emft/eef/updates/releases/1.5/R201601141612/" {

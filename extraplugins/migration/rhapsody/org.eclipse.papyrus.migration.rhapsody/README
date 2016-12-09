@@ -1,0 +1,5 @@
+This plugin requires a dependency on Papyrus Designer CPP Library, 
+because it is on this library we map the CPP Type coming from Rhapsody.
+
+This plugins depends on SysML diagrams too to be able to open them after their creation
+This plugin depends on SysML profile too, to be able to execute the transformation

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+         point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
+      <unit
+            description="Calculate Anchor Id from Rhapsody GraphElements (transform, polygon and ports)"
+            name="Rhapsody2PapyrusNotationBlackboxes"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes">
+            <metamodel
+                  nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+            </metamodel>
+            <metamodel
+                  nsURI="http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0">
+            </metamodel>
+         </library>
+      </unit>
+      <unit
+            description="This blackbox allows to set the association after the execution of the transformation"
+            name="AssociationOwnerHelper"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes.uml">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.uml.AssociationOwnerHelper"
+               name="AssociationOwnerHelper">
+            <metamodel
+                  nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+            </metamodel>
+         </library>
+      </unit>
+      <unit
+            description="Blackbox to manage Nested Connector End stereotype value"
+            name="NestedConnectorEndBlackboxes"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.NestedConnectorEndBlackboxes"
+               name="NestedConnectorEndBlackboxes">
+            <metamodel
+                  nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+            </metamodel>
+         </library>
+      </unit>
+      <unit
+            description="This Blackbox provides methods to manipulate rhapsody semantic model"
+            name="UMLRhapsodySemanticHelper"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes.uml">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.uml.UMLRhapsodySemanticHelper"
+               name="UMLRhapsodySemanticHelper">
+            <metamodel
+                  nsURI="http://www.eclipse.org/emf/2002/Ecore">
+            </metamodel>
+            <metamodel
+                  nsURI="http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0">
+            </metamodel>
+         </library>
+      </unit>
+      <unit
+            description="This Blackbox provides methods to fix ParametricDiagram layout after its creation."
+            name="ParametricDiagramFixLayoutLocationBlackboxes"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.diagrams">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.diagrams.ParametricDiagramFixLayoutLocationBlackboxes"
+               name="ParametricDiagramFixLayoutLocationBlackboxes">
+               <metamodel
+                  nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+            </metamodel>
+         </library>
+      </unit>       
+      <unit
+            description="This Blackbox provides methods to fix SysML InternalBlockDiagram layout after its creation."
+            name="InternalBlockDiagramFixLayoutBlackboxes"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.diagrams">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.sysml11.diagrams.InternalBlockDiagramFixLayoutBlackboxes"
+               name="InternalBlockDiagramFixLayoutBlackboxes">
+            <metamodel
+                  nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+            </metamodel>
+         </library>
+      </unit>
+      <unit
+            description="This blackbox provides methods to save Rhapsody and Payrus versions in the imported models"
+            name="VersioningBlackboxes"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.VersioningBlackboxes"
+               name="VersioningBlackboxes">
+         </library>
+      </unit>
+   </extension>
+</plugin>

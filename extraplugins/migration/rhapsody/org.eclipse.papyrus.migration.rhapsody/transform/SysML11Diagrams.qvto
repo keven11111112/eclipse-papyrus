@@ -1,0 +1,62 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+ 
+import Rhapsody2PapyrusSemanticElements;
+import RhapsodyUtils;
+import SysMLRhapsodyUtils;
+import SysML11ParametricDiagram;
+import SysML11BlockDefinitionDiagram;
+import SysML11InternalBlockDiagram;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
+
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype notation "strict" uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+
+
+/**
+*
+* This transformation does the SysML 1.1 Diagram creation from a Rhapsody Model
+*
+*/
+transformation SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes) 
+access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes) 
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+{
+	main() {
+		if(sysml11<>null){
+			if(isContainingSysMLRhapsodyStereotypeReference(semantics.objectsOfKind(EObject))){
+				log("SysML Diagrams Mapping");
+				var diagrams:Set(IDiagram):= semantics.objects()[IDiagram];
+				var iProject:Set(IProject):=semantics.rootObjects()[IProject];
+				diagrams->map iDiagramToPapyrusSysML11Diagram(iProject->any(true));//we assume that there is only one IProject in the model
+				log("End of SysML Diagram Mapping");
+			}else{
+				log("There is not SysML Stereotype applied on the Rhapsody model.");
+			};
+		}
+	}
+}
+
+
+/**
+*
+* This method do the mapping between Rhapsody SysML Diagram and Papyrus SysML11 Diagram
+*/
+mapping rhapsodymetamodel::IDiagram::iDiagramToPapyrusSysML11Diagram(rpyProject:IProject):Diagram disjuncts
+	rhapsodymetamodel::IDiagram::iDiagramToSysML11BlockDefinitionDiagram,
+	rhapsodymetamodel::IDiagram::iDiagramToSysML11InternalBlockDiagram,
+	rhapsodymetamodel::IDiagram::iDiagramToSysML11ParametricDiagram
+{}

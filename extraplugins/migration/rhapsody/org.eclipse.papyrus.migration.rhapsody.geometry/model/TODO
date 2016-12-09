@@ -1,0 +1,7 @@
+Report position in UML model (north_east, north_west, south_east and south_west)
+rename edge position into position
+
+
+TODO set enum value like in PositionConstants.class
+Try to set Point on PrecisionPoint class? 
+Rectangle on PrecisionRectangle class ? 
