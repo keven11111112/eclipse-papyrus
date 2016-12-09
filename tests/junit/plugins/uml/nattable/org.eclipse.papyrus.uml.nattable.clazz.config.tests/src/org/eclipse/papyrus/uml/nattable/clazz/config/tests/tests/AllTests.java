@@ -42,6 +42,10 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.Crea
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_H1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleInteger_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningEndingPrefix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningPrefix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466EndingSuffix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringOnlyPrefix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringOnlySuffix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringPrefix_V1_V3_V1_Test;
@@ -206,13 +210,13 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		// Move elements
 		MoveElementsTreeTableTest.class,
-		
+
 		// Bug 467723: Change categories with hidden categories display
 		ChangeCategoryNotExpandedTest.class,
-		
+
 		// Delete row elements
 		DeleteRowElementTest.class,
-		
+
 		// Destroy column
 		DestroyColumnTest.class,
 
@@ -273,6 +277,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		FillHandleStringOnlyPrefix_V1_V3_V1_Test.class,
 		FillHandleStringSuffix_V1_V3_V1_Test.class,
 		FillHandleStringPrefix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466BeginningPrefix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466EndingSuffix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466BeginningEndingPrefix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test.class,
 
 		// Attached Mode
 		// Paste tests for single column

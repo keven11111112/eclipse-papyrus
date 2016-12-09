@@ -17,106 +17,135 @@ package org.eclipse.papyrus.infra.nattable.fillhandle.utils;
  * The papyrus fill handle utils.
  */
 public class PapyrusFillHandleUtils {
-	
+
 	/**
 	 * The negative char.
 	 */
 	private static String NEGATIVE_CHAR = "-"; //$NON-NLS-1$
-	
+
 	/**
 	 * Get the template string from a string (without beginning and ending number).
 	 * 
-	 * @param initialString The initial string.
+	 * @param initialString
+	 *            The initial string.
 	 * @return The modified string (without beginning and ending number).
 	 */
-	public static String getTemplateString(final String initialString){
+	public static String getTemplateString(final String initialString) {
 		return getTemplateWithoutEndingNumber(getTemplateWithoutBeginningNumber(initialString));
 	}
-	
+
 	/**
 	 * Get the template string from a string (without beginning number).
 	 * 
-	 * @param initialString The initial string.
+	 * @param initialString
+	 *            The initial string.
 	 * @return The modified string (without beginning number).
 	 */
-	public static String getTemplateWithoutBeginningNumber(final String initialString){
+	public static String getTemplateWithoutBeginningNumber(final String initialString) {
 		String result = initialString;
-		
+
 		// The number must be a negative number
-		try{
-			if(2 <= result.length() && NEGATIVE_CHAR.equals(result.substring(0, 1))){
+		try {
+			if (2 <= result.length() && NEGATIVE_CHAR.equals(result.substring(0, 1))) {
 				Integer.parseInt(result.substring(1, 2));
 				result = result.substring(2);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			// Continue
 		}
-		
+
 		// Try to remove beginning number
-		try{
-			while(!result.isEmpty()){
+		try {
+			while (!result.isEmpty()) {
 				final String firstChar = result.substring(0, 1);
 				Integer.parseInt(firstChar);
 				result = result.substring(1);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			// Continue
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Get the template string from a string (without ending number).
 	 * 
-	 * @param initialString The initial string.
+	 * @param initialString
+	 *            The initial string.
 	 * @return The modified string (without ending number).
 	 */
-	public static String getTemplateWithoutEndingNumber(final String initialString){
+	public static String getTemplateWithoutEndingNumber(final String initialString) {
 		String result = initialString;
-		
+
 		boolean hasNumber = false;
-		
+
 		// Try to remove ending number
-		try{
-			while(!result.isEmpty()){
-				final String lastChar = result.substring(result.length()-1);
+		try {
+			while (!result.isEmpty()) {
+				final String lastChar = result.substring(result.length() - 1);
 				Integer.parseInt(lastChar);
 				hasNumber = true;
-				result = result.substring(0, result.length()-1);
+				result = result.substring(0, result.length() - 1);
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			// Continue
 		}
-		
+
 		// If a number is found, check if this is not a negative number
-		if(hasNumber && NEGATIVE_CHAR.equals(result.substring(result.length()-1))){
-			result = result.substring(0, result.length()-1);
+		if (hasNumber && NEGATIVE_CHAR.equals(result.substring(result.length() - 1))) {
+			result = result.substring(0, result.length() - 1);
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
-	 * Check if a string is starting with the template string.
+	 * Check if a string is starting with the number string.
 	 * 
-	 * @param initialString The initial string to check.
-	 * @param templateString The template string.
-	 * @return <code>true</code> if the initial string starts with template string, <code>false</code> otherwise.
+	 * @param initialString
+	 *            The initial string to check
+	 * @param numberString
+	 *            The number string
+	 * @return <code>true</code> if the initial string starts with the number string, <code>false</code> otherwise
 	 */
-	public static boolean isBeginningByNumber(final String initialString, final String templateString){
-		return !templateString.isEmpty() && !initialString.startsWith(templateString);
+	public static boolean isBeginningByNumber(final String initialString, final String numberString) {
+		return !numberString.isEmpty() && initialString.startsWith(numberString);
 	}
-	
+
 	/**
-	 * Check if a string is ending with the template string.
+	 * Check if a string is ending with the number string.
 	 * 
-	 * @param initialString The initial string to check.
-	 * @param templateString The template string.
-	 * @return <code>true</code> if the initial string ends with template string, <code>false</code> otherwise.
+	 * @param initialString
+	 *            The initial string to check
+	 * @param numberString
+	 *            The number string
+	 * @return <code>true</code> if the initial string ends with the number string, <code>false</code> otherwise
 	 */
-	public static boolean isEndingBNumber(final String initialString, final String templateString){
-		return templateString.isEmpty() || !initialString.endsWith(templateString);
+	public static boolean isEndingByNumber(final String initialString, final String numberString) {
+		return !numberString.isEmpty() && initialString.endsWith(numberString);
 	}
-	
+
+	/**
+	 * Create the string format for zero leading number.
+	 * For instance, if the number of digits is equal to 5, the format string becomes %05d
+	 * which specifies an integer with a width of 5 printing leading zeroes.
+	 * 
+	 * @param numDigits
+	 *            The number of digits to display
+	 * @return The created string format
+	 */
+	public static String getZeroLeadingFormatString(final int numDigits, final int numValue) {
+
+		// If the number value is a negative integer, increase the number of digits by 1
+		// which is used for the minus sign
+		int currentNumDigits = numValue >= 0 ? numDigits : numDigits + 1;
+
+		// Meaning of the string format
+		// %% --> %
+		// 0 --> 0
+		// %d --> <value of numDigits>
+		// d --> d
+		return String.format("%%0%dd", currentNumDigits);
+	}
 }

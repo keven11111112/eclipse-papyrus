@@ -157,7 +157,7 @@ public class PapyrusFillHandleDragMode extends FillHandleDragMode {
 		boolean result = false;
 
 		createDoubleSeriesMenu = false;
-		String templateString = null;
+		String templateString = ""; //$NON-NLS-1$
 
 		if (null != this.clipboard && null != this.clipboard.getCopiedCells()) {
 			final ILayerCell[][] copiedCells = this.clipboard.getCopiedCells();
@@ -175,18 +175,19 @@ public class PapyrusFillHandleDragMode extends FillHandleDragMode {
 						type = cell.getDataValue().getClass();
 						if (String.class.isAssignableFrom(type)) {
 							final String stringValue = (String) cell.getDataValue();
-							final String currentTemplateString = PapyrusFillHandleUtils.getTemplateString(stringValue);
 
-							templateString = currentTemplateString;
+							final String templateStringWithoutBeginningNumber = PapyrusFillHandleUtils.getTemplateWithoutBeginningNumber(stringValue);
+							final String templateStringWithoutEndingNumber = PapyrusFillHandleUtils.getTemplateWithoutEndingNumber(stringValue);
 
-							final String number = stringValue.replace(currentTemplateString, "");
+							final String beginningNumberString = stringValue.replace(templateStringWithoutBeginningNumber, ""); //$NON-NLS-1$
+							final String endingNumberString = stringValue.replace(templateStringWithoutEndingNumber, ""); //$NON-NLS-1$
 
 							// Calculate if the 'increment' and 'decrement' menu must be displayed
 							// and calculate if the double series menu must be displayed
-							// (increment the beginning of the ending of a string)
-							if (!number.isEmpty()) {
-								final boolean isBeginningByNumber = PapyrusFillHandleUtils.isBeginningByNumber(stringValue, templateString);
-								final boolean isEndingByNumber = PapyrusFillHandleUtils.isEndingBNumber(stringValue, templateString);
+							// (increment/decrement the beginning or the ending of a string)
+							if (!beginningNumberString.isEmpty() || !endingNumberString.isEmpty()) {
+								final boolean isBeginningByNumber = PapyrusFillHandleUtils.isBeginningByNumber(stringValue, beginningNumberString);
+								final boolean isEndingByNumber = PapyrusFillHandleUtils.isEndingByNumber(stringValue, endingNumberString);
 
 								createDoubleSeriesMenu = isBeginningByNumber && isEndingByNumber;
 							} else {

@@ -107,25 +107,46 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 			if (value instanceof String && FillHandleOperation.SERIES.equals(command.operation)) {
 				final String stringValue = (String) value;
 				result = stringValue;
-				String templateString = PapyrusFillHandleUtils.getTemplateString(stringValue);
+				String templateString = ""; //$NON-NLS-1$
+				String numberString = ""; //$NON-NLS-1$
 
-				boolean isBeginningByNumber = PapyrusFillHandleUtils.isBeginningByNumber(stringValue, templateString);
-				boolean isEndingByNumber = PapyrusFillHandleUtils.isEndingBNumber(stringValue, templateString);
+				final String templateStringWithoutBeginningNumber = PapyrusFillHandleUtils.getTemplateWithoutBeginningNumber(stringValue);
+				final String templateStringWithoutEndingNumber = PapyrusFillHandleUtils.getTemplateWithoutEndingNumber(stringValue);
 
+				final String beginningNumberString = stringValue.replace(templateStringWithoutBeginningNumber, ""); //$NON-NLS-1$
+				final String endingNumberString = stringValue.replace(templateStringWithoutEndingNumber, ""); //$NON-NLS-1$
+
+				boolean isBeginningByNumber = PapyrusFillHandleUtils.isBeginningByNumber(stringValue, beginningNumberString);
+				boolean isEndingByNumber = PapyrusFillHandleUtils.isEndingByNumber(stringValue, endingNumberString);
+
+				// If string value is both prefixed and suffixed by numbers
 				if (isBeginningByNumber && isEndingByNumber) {
+					// Redefine its value based on the prefix of the command
 					isBeginningByNumber = ((PapyrusFillHandlePasteCommand) command).isPrefix();
 					isEndingByNumber = !isBeginningByNumber;
 					if (isBeginningByNumber) {
 						templateString = PapyrusFillHandleUtils.getTemplateWithoutBeginningNumber(stringValue);
+						numberString = beginningNumberString;
 					} else {
 						templateString = PapyrusFillHandleUtils.getTemplateWithoutEndingNumber(stringValue);
+						numberString = endingNumberString;
 					}
 				}
 
-				final String number = stringValue.replace(templateString, ""); //$NON-NLS-1$
+				// If string value is prefixed or suffixed, the template string and the number string are still empty
+				// Calculate them according to the prefix or the suffix
+				if (templateString.isEmpty() && numberString.isEmpty()) {
+					if (isBeginningByNumber) {
+						templateString = PapyrusFillHandleUtils.getTemplateWithoutBeginningNumber(stringValue);
+						numberString = beginningNumberString;
+					} else {
+						templateString = PapyrusFillHandleUtils.getTemplateWithoutEndingNumber(stringValue);
+						numberString = endingNumberString;
+					}
+				}
 
-				if (!number.isEmpty()) {
-					final int intValue = Integer.parseInt(number);
+				if (!numberString.isEmpty()) {
+					final int intValue = Integer.parseInt(numberString);
 
 					Object diff = 0;
 					if (MoveDirectionEnum.LEFT == command.direction || MoveDirectionEnum.RIGHT == command.direction) {
@@ -143,21 +164,24 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 							newValue = intValue - ((Integer) diff);
 						}
 
+						final String numDigitsFormat = PapyrusFillHandleUtils.getZeroLeadingFormatString(numberString.length(), newValue);
+						final String newValueString = String.format(numDigitsFormat, newValue);
+
 						if (isBeginningByNumber) {
-							result = newValue + templateString;
+							result = newValueString + templateString;
 						} else if (isEndingByNumber) {
-							result = templateString + newValue;
+							result = templateString + newValueString;
 						}
 					}
 				}
 			}
 		}
 		boolean isEditable = EditUtils.isCellEditable(
-                this.selectionLayer,
-                command.configRegistry,
-                new PositionCoordinate(this.selectionLayer,
-                		cell.getColumnIndex(),
-                		cell.getRowIndex()));
+				this.selectionLayer,
+				command.configRegistry,
+				new PositionCoordinate(this.selectionLayer,
+						cell.getColumnIndex(),
+						cell.getRowIndex()));
 		return !isEditable || null != result ? result : super.getPasteValue(cell, command, toColumn, toRow);
 	}
 
