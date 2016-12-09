@@ -249,7 +249,7 @@ mapping LineStyle::toLineStyle() : LineStyle {
 }
 
 mapping RoutingStyle::toRoutingstyle() : RoutingStyle {
-	result.roundedBendpointsRadius := self.roundedBendpointsRadius;
+	result.roundedBendpointsRadius := 0; // see Bug 506718 : do not transform roundedBendpoint :cause corrupted connection in Papyrus
 	result.routing := self.routing;
 	result.smoothness := self.smoothness;
 	result.avoidObstructions := self.avoidObstructions;
