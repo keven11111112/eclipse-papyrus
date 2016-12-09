@@ -4,7 +4,11 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="target/site/generated-eclipse-help/nattable-main-toc.xml"
+            file="target/site/generated-eclipse-help/nattable-userDoc-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/site/generated-eclipse-help/nattable-devDoc-main-toc.xml"
             primary="false">
       </toc>
       <toc
@@ -13,6 +17,10 @@
       </toc>
       <toc
             file="target/site/generated-eclipse-help/tablemetamodeldocumentation-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/site/generated-eclipse-help/tableDevDoc-toc.xml"
             primary="false">
       </toc>
    </extension>

@@ -398,6 +398,34 @@ if the user changed the configuration
 |-
 |}
 
+== Fill cells ==
+
+The fill action is available in tables and can be used by clicking on the right bottom corner and drop until release. <br/>
+
+This action is available for 2 types:
+*numbers
+*string
+
+===Fill number values===
+It is possible to '''copy''' the initial value.
+[[File:images/FillCopyNumber.png|frame|none|Fill Copy Number]]
+
+When the initial selection before the fill is a single cell, it is possible to '''increment''' or '''decrement''' values from the initial value by adding or removing 1 to the initial value.
+[[File:images/FillIncrementNumberOneCellSelected.png|frame|none|Fill Increment Number when one selected cell]] <br/>
+
+When two cells are selected before filling the selection, it is possible to '''increment''' or '''decrement''' values from the initial value by adding or removing the initial values difference.
+[[File:images/FillIncrementNumberTwoCellsSelected.png|frame|none|Fill Increment Number when two selected cells]]
+
+===Fill string values===
+As number fill action, it is possible to '''copy''' the initial value.
+[[File:images/FillCopyString.png|frame|none|Fill Copy String]]
+
+When an integer is available at the beginning or at the ending of the value, it is possible to '''increment''' or '''decrement''' integer '''prefix''' or '''suffix''' values depending of the integer position.
+[[File:images/FillIncrementPrefixString.png|frame|none|Fill Increment prefix String]] <br/>
+[[File:images/FillIncrementSuffixString.png|frame|none|Fill Increment suffix String]] <br/>
+
+The filled integer values are calculated by the same way than the fill numbers.
+
 ==Tree Table Features==
 The feature of the tree table are mostly the same than for the flat table.
 
@@ -516,7 +544,7 @@ By default, Papyrus provides 2 kinds of editors for filters:
 *a combo with checkboxes allowing multi selection, that we use for
 **enumeration
 **boolean
-[[File:images/ComboWithCheckboxExample.png ‎]]
+[[File:images/ComboWithCheckboxExample.png|frame|none]]
 *a string editor used to filter all others kinds of values.
 **string
 **references
@@ -690,34 +718,6 @@ When the user clicks on the left most part of the merged area, under the activit
 The tool will then automatically detect the possibility, or impossibility, of the edition and split the merge accordingly. <br/>
 Please note that the merge selection will not be changed and the selected axis will still carry their merge booleans as other values might still be equal and therefore the user might still want those merged. <br/>
 
-== Fill cells ==
-
-The fill action is available in tables and can be used by clicking on the right bottom corner and drop until release. <br/>
-
-This action is available for 2 types:
-*numbers
-*string
-
-===Fill number values===
-It is possible to '''copy''' the initial value.
- [[File:images/FillCopyNumber.png|none|frame|Fill Copy Number] <br/>
-
-When the initial selection before the fill is a single cell, it is possible to '''increment''' or '''decrement''' values from the initial value by adding or removing 1 to the initial value.
- [[File:images/FillIncrementNumberOneCellSelected.png|none|frame|Fill Increment Number when one selected cell] <br/>
-
-When two cells are selected before filling the selection, it is possible to '''increment''' or '''decrement''' values from the initial value by adding or removing the initial values difference.
- [[File:images/FillIncrementNumberTwoCellsSelected.png|none|frame|Fill Increment Number when two selected cells] <br/>
-
-===Fill string values===
-As number fill action, it is possible to '''copy''' the initial value.
- [[File:images/FillCopyString.png|none|frame|Fill Copy String] <br/>
-
-When an integer is available at the beginning or at the ending of the value, it is possible to '''increment''' or '''decrement''' integer '''prefix''' or '''suffix''' values depending of the integer position.
- [[File:images/FillIncrementPrefixString.png|none|frame|Fill Increment prefix String] <br/>
- [[File:images/FillIncrementSuffixString.png|none|frame|Fill Increment suffix String] <br/>
-
-The filled integer values are calculated by the same way than the fill numbers.
-
 =Existing Cell Editors=
 Several kind of cell editors are available in Papyrus Table. Currently, the user can't choose himself the cell editor to use for a cell/row/column.
 ==DialogCellEditor==
@@ -746,6 +746,9 @@ The tool will then automatically detect the possibility, or impossibility, of th
 Please note that the merge selection will not be changed and the selected axis will still carry their merge booleans as other values might still be equal and therefore the user might still want those merged. <br/>
 
 =Paste and insert=
+==Video==
+A video is available [[https://youtu.be/WGrr_LGy3sg  here]].
+
 ==Description==
 
 The paste and the insert work differently (create new objects or update existing ones) depending on the selection in the table as following:
@@ -847,7 +850,6 @@ In details:
 | style="text-align: center;" | [X, Z]
 | An error message will be displayed.
 |}
-
 
 ==How axis identifier comparison works==
 
@@ -1101,7 +1103,6 @@ And this copied text:
 
 The result is the following:
  [[File:images/PasteOneRowInColumnSelectionClipboardResult.jpg|none|frame]]
-
 
 =Import from file (CSV)=
 The import from file (CSV) works like [[#Paste with rows header|paste with rows header]] when the rows header are available in the CSV.
