@@ -480,7 +480,7 @@ Papyrus can be used to do
 * UML RT modeling, which is described in the section [[#6.3.3_RT_modeling]] when the UML RT profile is applied.
 * SysML modeling when the SysML profile is applied.
 * MARTE modeling when the MARTE profile is applied.
-* UML profiles, which is described in the section [[#7.10_UML_profiling|UMLprofiling]] .
+* UML profiles, which is described in the section [[#7.11_UML_profiling|UMLprofiling]] .
 
 In Papyrus, different UML profiles can be applied. When installing Papyrus, as described in section [[#3_Installation|Installation]] , also the UML, UML RT, SysML and MARTE profiles can be added. When creating a new Papyrus project, the type of Papyrus project is selected. Project types to chose from are SysML, Profile and UML.
 
@@ -496,8 +496,9 @@ When modeling in Papyrus, three types of resources are stored in the workspace.
 * '''.di''' file persists the status of the workbench, i.e. which diagrams and views are opened, etc.
 * '''.notation''' file persists the information about the diagrams in the model.
 * '''.uml''' file persists the UML model.
+* '''.properties''' file persists the UML labels.
 
-Note! In this case the model is contained in three files. When working in an industrial context, the model may need to be split up into several fragments in order for several designers to work concurrently with the same model. This is described in section [[#7.6_Papyrus_in_a_team_environment|Papyrus in a team environment]] .
+Note! In this case the model is contained in three files. When working in an industrial context, the model may need to be split up into several fragments in order for several designers to work concurrently with the same model. This is described in section [[#7.7_Papyrus_in_a_team_environment|Papyrus in a team environment]] .
 
 == 7.2 The Papyrus perspective ==
 
@@ -543,16 +544,16 @@ In this view the properties may be viewed and edited, e.g. rename the operation 
 
 === 7.2.6 Model Validation view ===
 
-From the context menu in the ''Model Explorer'' it is possible to validate the entire model or parts of it (for more details see section [[#7.7_Model_validation|Model validation]] . All warnings and errors appear in the ''Model Validation View'', which is a stacked view together with the ''Properties View'' and the ''Search View'' at the bottom of the workbench.
+From the context menu in the ''Model Explorer'' it is possible to validate the entire model or parts of it (for more details see section [[#7.8_Model_validation|Model validation]] . All warnings and errors appear in the ''Model Validation View'', which is a stacked view together with the ''Properties View'' and the ''Search View'' at the bottom of the workbench.
 
 <center>[[Image:images/ModelValidationView.bmp|center|thumb|500px|Figure 22: The Model Validation View]]</center>
 
 
-The model validation constraints are customizable and how to work with it is described in section [[#7.7_Model_validation|Model validation]] .
+The model validation constraints are customizable and how to work with it is described in section [[#7.8_Model_validation|Model validation]] .
 
 === 7.2.7 Search view ===
 
-It is possible to do searches on a selected resource in a specific project or in the entire workspace. When the search is finished, the result appears in the ''Search View''. Details about specifying searches is described in the [[#7.8_Searching|Searching]] section.
+It is possible to do searches on a selected resource in a specific project or in the entire workspace. When the search is finished, the result appears in the ''Search View''. Details about specifying searches is described in the [[#7.9_Searching|Searching]] section.
 
 <center>[[Image:images/SearchView.bmp|center|thumb|500px|Figure 23: The Search View]]</center>
 
@@ -908,59 +909,93 @@ The example (Figure 47) shows a ''state machine diagram'' that has an initial ps
 To create a ''state machine diagram'', right click on the owning class and select '''New Diagram &gt; Create a new State Machine Diagram''' from its context menu.
 
 
-== <div id="UMLRTmodeling">7.5 UML RT modeling</div> ==
+== <div id="UMLRTmodeling">7.5 Internationalize a model</div> ==
+The internationalization is the way to manage your model with a specific language by labels. Like Eclipse, the internationalization is managed by the 'properties' file which is defined depending on the language as following (with for example, english language in US country):
+* ''modelName''_en_US.properties
+* ''modelName''_en.properties
+* ''modelName''.properties
 
-When creating models UML is used. Since UML is general-purpose modeling language in the field of software engineering, it is possible to adapt UML to specific domains. This is done by creating and applying UML profiles. When using UML for RT modeling with Capsules and Protocols, the UML RT profile is applied. When a profile is applied we can say that Papyrus has been specialized. There is a specific use-case in Papyrus to develop UML profiles and when doing so a domain specific modeling language is defined. This use-case is described in section [[#7.10_UML_profiling |UML profiling]] in this user guide.
+This 'properties' file is managed directly by the Papyrus model and created (if not existing) when a label is modified.
 
-=== 7.5.1 Additional modeling elements ===
+=== 7.5.1 How to use internationalization in model ===
+The internationalization can be used by checking a Papyrus model preference. The language of the internationalization is initialized by the application language but can be modified as well.
 
-==== 7.5.1.1 Capsule class ====
+[[Image:images/InternationalizationPreferences.png|center|thumb|Figure 48: Internationalization preferences management]]
 
-==== 7.5.1.2 Protocol class ====
+=== 7.5.2 How to edit labels ===
+The internationalization of UML elements, diagrams and tables can be edited by the properties view with the 'Label' field:
 
-=== 7.5.2 Using C++ in a model ===
+[[Image:images/LabelEditionByProperties.png|center|thumb|Figure 49: 'Label' field in properties view]]
 
-=== 7.5.3 C++ service library ===
 
-==== 7.5.3.1 Sending messages ====
+If the internationalization preference is active and object to modify is internationalized, it can be modified directly by the direct editor too as following:
 
-=== 7.5.4 Transformation from model to code ===
+[[Image:images/LabelEditionByDirectEditor.png|center|thumb|Figure 50: Edit label by direct editor]]
 
-=== 7.5.5 Edit the generated code ===
+=== 7.5.3 How the labels are managed in properties file ===
+Each element which have a label must be written in the properties file like following:
+* If this is a diagram: '''_labelDiagram_'''''DiagramOwnerQualifiedName'''''_label_'''''DiagramName'' = ''DiagramLabel''
+* If this is a table: '''_labelTable_'''''TableOwnerQualifiedName'''''_label_'''''TableName'' = ''TableLabel''
+* If this is an UML NamedElement: '''_label_'''''NamedElementQualifiedName'' = ''NamedElementLabel''
 
-=== 7.5.6 Compiling and linking the generated code ===
+=== 7.5.4 Sub-models ===
+The sub-models are managed with the properties files.
+Indeed, when an object is created as sub-model, the key representing this object or its descendance in the properties files must be moved in sub-properties files corresponding to the object of the sub-model.
+During this sub-model creation, the qualified names of the keys, that are moved, change, the new qualified names are calculated from the root of the sub-model.
 
-=== 7.5.7 Using external libraries ===
+== <div id="UMLRTmodeling">7.6 UML RT modeling</div> ==
 
-=== 7.5.8 Running the system ===
+When creating models UML is used. Since UML is general-purpose modeling language in the field of software engineering, it is possible to adapt UML to specific domains. This is done by creating and applying UML profiles. When using UML for RT modeling with Capsules and Protocols, the UML RT profile is applied. When a profile is applied we can say that Papyrus has been specialized. There is a specific use-case in Papyrus to develop UML profiles and when doing so a domain specific modeling language is defined. This use-case is described in section [[#7.11_UML_profiling |UML profiling]] in this user guide.
 
-== <div id="Papyrusinateamenvironment">7.6 Papyrus in a team environment</div> ==
+=== 7.6.1 Additional modeling elements ===
 
-=== 7.6.1 Model fragmentation ===
+==== 7.6.1.1 Capsule class ====
 
-=== 7.6.2 Source configuration management ===
+==== 7.6.1.2 Protocol class ====
 
-=== 7.6.3 Compare and Merge ===
+=== 7.6.2 Using C++ in a model ===
 
-== <div id="Modelvalidation">7.7 Model validation</div> ==
+=== 7.6.3 C++ service library ===
 
-=== 7.7.1 Object Constrain Language (OCL) ===
+==== 7.6.3.1 Sending messages ====
 
-=== 7.7.2 Defining constraints using OCL ===
+=== 7.6.4 Transformation from model to code ===
 
-== <div id="Searching">7.8 Searching</div> ==
+=== 7.6.5 Edit the generated code ===
 
-== 7.9 Sample models ==
+=== 7.6.6 Compiling and linking the generated code ===
+
+=== 7.6.7 Using external libraries ===
+
+=== 7.6.8 Running the system ===
+
+== <div id="Papyrusinateamenvironment">7.7 Papyrus in a team environment</div> ==
+
+=== 7.7.1 Model fragmentation ===
+
+=== 7.7.2 Source configuration management ===
+
+=== 7.7.3 Compare and Merge ===
+
+== <div id="Modelvalidation">7.8 Model validation</div> ==
+
+=== 7.8.1 Object Constrain Language (OCL) ===
+
+=== 7.8.2 Defining constraints using OCL ===
+
+== <div id="Searching">7.9 Searching</div> ==
+
+== 7.10 Sample models ==
 
 In the Papyrus installation directory There are several sample models
 
-=== 7.9.1 Class model with inheritance ===
+=== 7.10.1 Class model with inheritance ===
 
-=== 7.9.2 Send and receive data ===
+=== 7.10.2 Send and receive data ===
 
-=== 7.9.3 Interprocess communication ===
+=== 7.10.3 Interprocess communication ===
 
-== <div id="UMLprofiling">7.10 UML profiling</div> ==
+== <div id="UMLprofiling">7.11 UML profiling</div> ==
 
 TBD include the information in the user guide "About UML profiling"
 

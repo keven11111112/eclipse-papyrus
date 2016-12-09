@@ -21,12 +21,5 @@
             fileExtension="internationalization">
       </model>
    </extension>
-   <extension
-         point="org.eclipse.help.toc">
-      <toc
-            file="target/site/generated-eclipse-help/internationalizationDev-toc.xml"
-            primary="false">
-      </toc>
-   </extension>
 
 </plugin>

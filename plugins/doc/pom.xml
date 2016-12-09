@@ -16,6 +16,7 @@
 		<module>org.eclipse.papyrus.infra.doc</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.common.doc</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.doc</module>
+		<module>org.eclipse.papyrus.infra.internationalization.doc</module>
 		<module>org.eclipse.papyrus.infra.nattable.doc</module>
 		<module>org.eclipse.papyrus.infra.newchild.doc</module>
 		<module>org.eclipse.papyrus.infra.services.controlmode.doc</module>
