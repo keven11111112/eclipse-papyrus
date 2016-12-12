@@ -455,58 +455,6 @@
       </Priority>
    </IconProvider>
 </extension>
-
-   <extension
-         point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
-      <viewProvider
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansion.ExpandViewProvider">
-         <Priority
-               name="Low">
-         </Priority>
-      </viewProvider>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated ExpandModel -->
-      <package
-            uri="http:///expansionmodel.ecore"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage"
-            genModel="model/ExpansionModel.genmodel"/>
-   </extension>
-
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated NOT  ExpandModel -->
-      <parser
-            type="expansionmodel"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.CustomExpansionmodelResourceFactory"/>
-   </extension>
-
-   <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-      <editpartProvider
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansion.ExpandEditPartProvider">
-         <Priority
-               name="Lowest">
-         </Priority>
-      </editpartProvider>
-   </extension>
-   <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-      <editpolicyProvider
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansion.InducedRepresentationPolicyProvider">
-         <Priority
-               name="Lowest">
-         </Priority>
-      </editpolicyProvider>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.factory_override">
-      <factory
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.CustomExpansionmodelFactoryImpl"
-            uri="http:///expansionmodel.ecore">
-      </factory>
-   </extension>
    
    <extension
          point="org.eclipse.papyrus.infra.sync.triggers">

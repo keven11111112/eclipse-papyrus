@@ -15,7 +15,7 @@
       <wizard
             id="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionmodelModelWizardID"
             name="%_UI_ExpansionmodelModelWizard_label"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionmodelModelWizard"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionmodelModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/ExpansionmodelModelFile.gif">
          <description>%_UI_ExpansionmodelModelWizard_description</description>
@@ -30,8 +30,35 @@
             name="%_UI_ExpansionmodelEditor_label"
             icon="icons/full/obj16/ExpansionmodelModelFile.gif"
             extensions="expansionmodel"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionmodelEditor"
-            contributorClass="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionmodelActionBarContributor">
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionmodelEditor"
+            contributorClass="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionmodelActionBarContributor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated Expansion -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelModelWizardID"
+            name="%_UI_ExpansionmodelModelWizard_label"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ExpansionmodelModelFile.gif">
+         <description>%_UI_ExpansionmodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Expansion -->
+      <editor
+            id="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelEditorID"
+            name="%_UI_ExpansionmodelEditor_label"
+            icon="icons/full/obj16/ExpansionmodelModelFile.gif"
+            extensions="expansionmodel"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelEditor"
+            contributorClass="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelActionBarContributor">
       </editor>
    </extension>
 </plugin>

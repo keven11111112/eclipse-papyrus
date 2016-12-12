@@ -11,7 +11,20 @@
       <!-- @generated ExpandModel -->
       <factory
             uri="http:///expansionmodel.ecore"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.provider.ExpansionmodelItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpansionmodelItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated Expansion -->
+      <factory
+            uri="http:///expansionmodel.ecore"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpansionmodelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

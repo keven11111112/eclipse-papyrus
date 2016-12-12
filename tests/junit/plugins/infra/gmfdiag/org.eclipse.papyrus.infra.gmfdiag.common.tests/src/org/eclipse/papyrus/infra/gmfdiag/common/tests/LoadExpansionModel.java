@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionSingleton;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Assert;

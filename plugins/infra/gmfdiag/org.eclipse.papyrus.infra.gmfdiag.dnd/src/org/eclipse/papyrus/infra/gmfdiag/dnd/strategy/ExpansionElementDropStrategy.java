@@ -34,12 +34,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansion.ChildrenListRepresentation;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.ChildrenListRepresentation;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionSingleton;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.graphics.Image;
 

@@ -1,7 +1,10 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.provider,
- org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider
-Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider,
+ org.eclipse.papyrus.infra.gmfdiag.expansion.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.gmfdiag.expansion;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.uml2.common.edit;bundle-version="[2.1.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
@@ -10,6 +13,6 @@ Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpandModelEditPlugin$Implementation
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.expansion.edit;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
