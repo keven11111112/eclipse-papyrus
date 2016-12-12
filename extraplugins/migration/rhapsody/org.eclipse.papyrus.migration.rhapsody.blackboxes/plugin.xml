@@ -81,12 +81,24 @@
          </library>
       </unit>
       <unit
-            description="This blackbox provides methods to save Rhapsody and Payrus versions in the imported models"
+            description="This Blackbox provides methods to save Rhapsody and Payrus versions in the imported models"
             name="VersioningBlackboxes"
             namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes">
          <library
                class="org.eclipse.papyrus.migration.rhapsody.blackboxes.VersioningBlackboxes"
                name="VersioningBlackboxes">
+         </library>
+      </unit>
+      <unit
+            description="This Blackboxes provides useful emf methods"
+            name="EcoreHelper"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes.ecore">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.ecore.EcoreHelper"
+               name="EcoreHelper">
+            <metamodel
+                  nsURI="http://www.eclipse.org/emf/2002/Ecore">
+            </metamodel>
          </library>
       </unit>
    </extension>

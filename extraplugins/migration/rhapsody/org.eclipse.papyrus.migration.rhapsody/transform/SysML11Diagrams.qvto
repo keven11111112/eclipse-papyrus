@@ -24,6 +24,7 @@ modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
 modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
 modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
 modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+modeltype properties "strict" uses 'http://www.eclipse.org/papyrus/internationalization/model';
 
 
 /**
@@ -31,7 +32,7 @@ modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Ty
 * This transformation does the SysML 1.1 Diagram creation from a Rhapsody Model
 *
 */
-transformation SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes) 
+transformation SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes, inout labels:properties) 
 access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes) 
 extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
 {
@@ -42,6 +43,21 @@ extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:um
 				var diagrams:Set(IDiagram):= semantics.objects()[IDiagram];
 				var iProject:Set(IProject):=semantics.rootObjects()[IProject];
 				diagrams->map iDiagramToPapyrusSysML11Diagram(iProject->any(true));//we assume that there is only one IProject in the model
+				
+				//managing internationalization (labels of SysML Rhaposdy Diagrams)
+				var internationalizationLibrary:InternationalizationLibrary:=labels.rootObjects()->selectByKind(InternationalizationLibrary)->any(true);
+				if(internationalizationLibrary.oclIsUndefined()){
+					internationalizationLibrary:= object InternationalizationLibrary@labels{}
+				};
+				diagrams->forEach(current){
+					var res:Diagram:= current.resolveoneIn(rhapsodymetamodel::IDiagram::iDiagramToPapyrusSysML11Diagram);
+					if(res<>null and not current.displayName.oclIsUndefined() and current.displayName.size()<>0){
+						internationalizationLibrary.entries+= object InternationalizationEntry{
+							key:=res;
+							value:=current.displayName;
+						}
+					}
+				};
 				log("End of SysML Diagram Mapping");
 			}else{
 				log("There is not SysML Stereotype applied on the Rhapsody model.");
@@ -55,7 +71,7 @@ extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:um
 *
 * This method do the mapping between Rhapsody SysML Diagram and Papyrus SysML11 Diagram
 */
-mapping rhapsodymetamodel::IDiagram::iDiagramToPapyrusSysML11Diagram(rpyProject:IProject):Diagram disjuncts
+mapping rhapsodymetamodel::IDiagram::iDiagramToPapyrusSysML11Diagram(rpyProject:IProject):Diagram@graphics disjuncts
 	rhapsodymetamodel::IDiagram::iDiagramToSysML11BlockDefinitionDiagram,
 	rhapsodymetamodel::IDiagram::iDiagramToSysML11InternalBlockDiagram,
 	rhapsodymetamodel::IDiagram::iDiagramToSysML11ParametricDiagram

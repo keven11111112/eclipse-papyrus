@@ -1,0 +1,379 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *****************************************************************************/
+
+import Rhapsody2PapyrusSemanticElements;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.ecore.EcoreHelper;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.uml.UMLRhapsodySemanticHelper;
+modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
+modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Types' ;
+modeltype properties "strict" uses 'http://www.eclipse.org/papyrus/internationalization/model';
+
+/**
+*
+* This transformation allows to import the label of elements defined in Rhapsody models
+*/
+
+transformation SemanticInternationalization(in inModel:umlrhapsody, in outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes, out labels:properties)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+{
+	
+	main() {
+		log("Start Semantic Internationalization Transformation");
+		outModel.rootObjects()[Element]->any(true).map	fillPropertyFile();
+		log("End Semantic Internationalization Transformation");	
+	};
+}
+
+/**
+*
+* Create the InternationalizationLibrary
+*/
+mapping Element::fillPropertyFile():properties::InternationalizationLibrary@labels{
+		init{
+			//required in the case where this transformation is not the first to work on the property file
+			result:=labels.rootObjects()->selectByKind(InternationalizationLibrary)->any(true);
+		}
+		var roots:Sequence(EObject):=outModel.rootObjects()[EObject]->asSequence();
+		var elements:Collection(EObject):=roots;
+		roots->forEach(current){
+			elements+=eAllContents(current.oclAsType(EObject));
+		};
+		result.entries+=elements.map manageLabel();
+}
+
+/**
+* Create the InternationalizationEntry for the given element when possible
+*/
+mapping ecore::EObject::manageLabel():properties::InternationalizationEntry disjuncts
+	EObject::manageLabelForNamedElement
+{}
+
+/**
+* Create the InternationalizationEntry for the given element when possible
+*/
+mapping ecore::EObject::manageLabelForNamedElement():properties::InternationalizationEntry 
+	when{self.oclIsKindOf(NamedElement) 
+	and self.oclAsType(NamedElement).getRhaposdyLabel()<>null
+	and self.oclAsType(NamedElement).getRhaposdyLabel().size()<>0}{
+		key:=self;
+		value:=self.oclAsType(NamedElement).getRhaposdyLabel();
+}
+
+/**
+* Returns the label of the Rhapsody elements when we found it, and returns null otherwiser
+*/
+helper NamedElement::getRhaposdyLabel():String{
+	var rpyElement:IModelElement:=null;
+
+	
+	//mapping umlrhapsody::IProject::iProjectToPapyrusModel() : uml::Model {	
+	rpyElement:=self.invresolveoneIn(IProject::iProjectToPapyrusModel);
+	
+	//mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml::Package when{self.oclIsKindOf(ISubsystem)}{	
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IProject::iProjectToPapyrusModel);
+	};
+	
+	//mapping EObject::generalMappingToUMLElement():uml::Element disjuncts
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(EObject::generalMappingToUMLElement)->selectByKind(IModelElement)->any(true);
+		//manage IActor, IComment and iDescription
+	};
+
+	//mapping EObject::iActorToUMLActor():uml::Actor when {self.oclIsTypeOf(umlrhapsody::IActor)}{
+	//already managed by generalMappingToUMLElement	
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(EObject::iActorToUMLActor)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	//mapping EObject::iCommentToUMLComment(): uml::Comment when {self.oclIsTypeOf(IComment)}{
+	//already managed by generalMappingToUMLElement	
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(EObject::iCommentToUMLComment)->selectByKind(IModelElement)->any(true);
+	//	};
+
+	//mapping EObject::iDescriptionToUMLComment(): uml::Comment when {self.oclIsTypeOf(IDescription)}{
+	//already managed by generalMappingToUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(EObject::iDescriptionToUMLComment)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	
+	//mapping umlrhapsody::IClass::toUMLElement() : uml::Element 
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IClass::toUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IClass::toUMLInterface() : uml::Interface when {self.oclIsTypeOf(IClass) and self.isInterface() /*self.isSysMLFlowSpecification()*/}{	
+	//already managed by toUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IClass::toUMLInterface)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	//mapping umlrhapsody::IType::iTypeToDefault():uml::Class{
+	//already managed by IType::iTypeToUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IType::iTypeToDefault)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	
+	//mapping umlrhapsody::IType::iTypeToUMLElement() : uml::Element 
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IType::iTypeToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	
+	//mapping umlrhapsody::IType::iTypeFromRhapsodyPredefinedTypesWithUMLPrimitivesTypes():uml::Type when {self.isTranslatableIntoUMLPrimitivesTypes()}{
+	//already managed by IType::iTypeToUMLElement
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IType::iTypeFromRhapsodyPredefinedTypesWithUMLPrimitivesTypes)->selectByKind(IModelElement)->any(true);
+	};
+	
+	
+	//mapping umlrhapsody::IAssociationEnd::toAssociationswithoutProp(): uml::Association
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationswithoutProp)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association {			
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationswithProp)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IAssociationEnd::toOwnedAssociationEnd(): uml::Property{
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IAssociationEnd::toOwnedAssociationEnd)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IType::toUMLDatatype() : uml::DataType when {self.isUMLDataType()}{
+	//already managed by IType::iTypeToUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IType::toUMLDatatypet)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	
+	//mapping umlrhapsody::IType::toUMLEnumeration() : uml::Enumeration when {self.isUMLEnumeration()}{
+	//already managed by IType::iTypeToUMLElement	
+	//if(rpyElement=null){
+	//	rpyElement:=self.invresolveoneIn(IType::toUMLEnumeration)->selectByKind(IModelElement)->any(true);
+	//};
+	
+	
+	//mapping umlrhapsody::IEnumerationLiteral::toUMLEnumerationLiteral() : uml::EnumerationLiteral {
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IEnumerationLiteral::toUMLEnumerationLiteral)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IType::toUMLInstanceSpecification() : uml::InstanceSpecification when {self.isUMLInstanceSpecification()}{
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IType::toUMLInstanceSpecification)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::IType::iTypeToUMLClass() : uml::Class when {self.isUMLClass()}{//stereotype Block is added later in the process
+	//already managed by IType::iTypeToUMLElement	
+	//if(rpyElement=null){
+	//	rpyElement:=self.invresolveoneIn(IType::iTypeToUMLClass)->selectByKind(IModelElement)->any(true);
+	//};
+	
+	//mapping umlrhapsody::IClass::toClasses(): uml::Class when {self.oclIsTypeOf(IClass) and not (self.isInterface())}{
+	//already managed by IClass::toUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IClass::toClasses)->selectByKind(IModelElement)->any(true);
+	//	};
+
+
+	//mapping umlrhapsody::IInformationFlow::iInformationFlowToUMLElement():uml::Element disjuncts 
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IInformationFlow::iInformationFlowToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	
+	//mapping umlrhapsody::IInformationFlow::iInformationFlowToUMLConnector():uml::Connector when{self.isUMLConnector() }
+	//already managed by IInformationFlow::iInformationFlowToUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IInformationFlow::iInformationFlowToUMLConnector)->selectByKind(IModelElement)->any(true);
+	//	};
+
+
+	//mapping umlrhapsody::IInformationFlow::iInformationFlowSourceToUMLConnectorEnd():uml::ConnectorEnd
+	//useless
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(EObject::generalMappingToUMLElement)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	//mapping umlrhapsody::IInformationFlow::iInformationFlowTargetToUMLConnectorEnd():uml::ConnectorEnd
+	//useless
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(EObject::generalMappingToUMLElement)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	
+	//mapping umlrhapsody::IObjectLink::iObjectLinkToUMLElement():uml::Element disjuncts
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IObjectLink::iObjectLinkToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IObjectLink::iObjectLinkToUMLConnector():uml::Connector when{self.isUMLConnector() } 
+	//already managed by  IObjectLink::iObjectLinkToUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IObjectLink::iObjectLinkToUMLConnector)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	//mapping umlrhapsody::IObjectLink::iObjectLinkSourceToUMLConnectorEnd():uml::ConnectorEnd
+	//useless
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IObjectLink::iObjectLinkSourceToUMLConnectorEnd)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	//mapping umlrhapsody::IObjectLink::iObjectLinkTargetToUMLConnectorEnd():uml::ConnectorEnd
+	//useless
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IObjectLink::iObjectLinkTargetToUMLConnectorEnd)->selectByKind(IModelElement)->any(true);
+	//	};
+	
+	//mapping umlrhapsody::IRelation::iRelationToUMLElement():uml::Element disjuncts 
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IRelation::iRelationToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	
+	//mapping umlrhapsody::IPart::iPartToUMLElement():uml::Element disjuncts
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IPart::iPartToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::IPart::iPartToUMLProperty():uml::Property when {self.oclIsTypeOf(IPart)}
+	//already managed by IPart::iPartToUMLElement
+	//if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(EObject::generalMappingToUMLElement)->selectByKind(IModelElement)->any(true);
+	//};
+
+	//mapping umlrhapsody::IPart::iPartToUMLAssociation():uml::Association when {true}
+	//not required
+	//if(rpyElement=null){
+	//	rpyElement:=self.invresolveoneIn(IPart::iPartToUMLAssociation)->selectByKind(IModelElement)->any(true);
+	//};
+	
+	//mapping umlrhapsody::IRelation::iRelationToUMLProperty(): uml::Property when {self.isRhapsodySysMLPortRepresentingUMLProperty()}
+	//already managed by IRelation::iRelationToUMLElement
+	//if(rpyElement=null){
+	//	rpyElement:=self.invresolveoneIn(IRelation::iRelationToUMLProperty)->selectByKind(IModelElement)->any(true);
+	//};
+
+	//mapping umlrhapsody::IRelation::iRelationToSysMLPort(): uml::Port when {self.isRhapsodySysMLPortRepresentingUMLPort()}
+	//already managed by IRelation::iRelationToUMLElement
+	//if(rpyElement=null){
+	//	rpyElement:=self.invresolveoneIn(IRelation::iRelationToSysMLPort)->selectByKind(IModelElement)->any(true);
+	//};
+
+
+	//mapping umlrhapsody::IStateChart::toStateMachine(): uml::StateMachine
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IStateChart::toStateMachine)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IDefaultDrvdTrans::toInitialTransition(pseudo:uml::Vertex): uml::Transition
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IDefaultDrvdTrans::toInitialTransition)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::IState::toCompositeStates(statechart:umlrhapsody::IStateChart): uml::State
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IState::toCompositeStates)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::IState::toStates(): uml::State
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IState::toStates)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::ITransition::toTransitions(): uml::Transition
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(ITransition::toTransitions)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IAction::toBehavior(): uml::OpaqueBehavior
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IAction::toBehavior)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IGuard::toGuard(): uml::Constraint
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IGuard::toGuard)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IInterfaceItemTrigger::toTrigger(): uml::Trigger
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IInterfaceItemTrigger::toTrigger)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IAssociationEnd::toAssociationsEnd(): uml::Property when{self.oclIsTypeOf(IAssociationEnd)}{
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationsEnd)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::IClass::fromClasse2Associations(): uml::Association
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IClass::fromClasse2Associations)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IGeneralization::toPapyrusGeneralization(): uml::Generalization
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IGeneralization::toPapyrusGeneralization)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IReception::toReceptions(): uml::Reception
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IReception::toReceptions)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::IPrimitiveOperation::toOperations(): uml::Operation
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IPrimitiveOperation::toOperations)->selectByKind(IModelElement)->any(true);
+	};
+
+	//mapping umlrhapsody::IVariable::iVariableToUMLElement():uml::Property disjuncts
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IVariable::iVariableToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IArgument::iArgumentToUMLElement(): uml::Property when {self.oclIsTypeOf(umlrhapsody::IArgument)}{
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IArgument::iArgumentToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {self.oclIsTypeOf(umlrhapsody::IAttribute)}{
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IAttribute::iAttributeToUMLElement)->selectByKind(IModelElement)->any(true);
+	};
+	
+	//mapping umlrhapsody::IType::iTypeFromRhapsodyToUML_ANSI_C_CPPType():uml::PrimitiveType when {self.isAManagedRhapsodyPredefinedTypes()}{
+	//already managed by IType::iTypeToUMLElement
+	//	if(rpyElement=null){
+	//		rpyElement:=self.invresolveoneIn(IType::iTypeFromRhapsodyToUML_ANSI_C_CPPType)->selectByKind(IModelElement)->any(true);
+	//	};
+
+	//mapping umlrhapsody::IEvent::toSignalEvents(): uml::SignalEvent
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IEvent::toSignalEvents)->selectByKind(IModelElement)->any(true);
+	};
+
+	if(rpyElement<>null and not rpyElement.displayName.oclIsUndefined()){
+		return rpyElement.displayName;
+	};
+	
+	return null;
+	
+}

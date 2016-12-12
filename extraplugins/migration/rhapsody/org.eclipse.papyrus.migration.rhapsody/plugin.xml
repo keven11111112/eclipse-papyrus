@@ -105,6 +105,10 @@
             file="transform/SysML11Profile.qvto"
             id="SysML11Profile">
       </transformation>
+      <transformation
+            file="transform/SemanticInternationalization.qvto"
+            id="SemanticInternationalizationInternationalization">
+      </transformation>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">

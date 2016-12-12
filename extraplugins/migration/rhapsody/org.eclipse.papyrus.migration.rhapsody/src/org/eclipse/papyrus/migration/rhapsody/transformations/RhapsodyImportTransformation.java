@@ -38,12 +38,16 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
+import org.eclipse.papyrus.infra.internationalization.resource.InternationalizationResource;
+import org.eclipse.papyrus.infra.internationalization.utils.InternationalizationResourceOptionsConstants;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.migration.common.MigrationParameters.ThreadConfig;
 import org.eclipse.papyrus.migration.common.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.common.transformation.AbstractImportTransformation;
 import org.eclipse.papyrus.migration.common.transformation.IDependencyAnalysisHelper;
 import org.eclipse.papyrus.migration.rhapsody.Activator;
+import org.eclipse.papyrus.uml.internationalization.utils.UMLInternationalizationKeyResolver;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
@@ -51,6 +55,11 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  *
  */
 public class RhapsodyImportTransformation extends AbstractImportTransformation {
+
+	/**
+	 * The file used to store the labels defined in the Rhaposdy Model
+	 */
+	private InternationalizationResource propertiesResource;
 
 	public RhapsodyImportTransformation(URI sourceURI, ThreadConfig config, IDependencyAnalysisHelper analysisHelper) {
 		super(sourceURI, config, analysisHelper);
@@ -206,6 +215,11 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 				}
 			}
 
+			final URI propertyURI = convertToPapyrus(sourceURI, PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION);
+			propertiesResource = createAndConfigureInternationalizationResource(propertyURI);
+			resourceSet.getResources().add(propertiesResource);
+			propertiesResource.getContents().addAll(getInOutInternationalizationModel().getContents());
+
 			XMIResource sashResource = new XMIResourceImpl(sashModelURI);
 			resourceSet.getResources().add(sashResource);
 			List<EObject> sashModelObjects = getOutSashModel().getContents();
@@ -214,6 +228,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 			configureResource(sashResource);
 			configureResource(notationResource);
 			configureResource((XMIResource) umlResource);
+			// configureResource((XMIResource)propertiesResource); //not required
 
 			// Handle orphaned elements: remove them and log a warning (Log temporarily disabled to avoid spamming the console)
 			List<EObject> notationRootElements = new LinkedList<>(notationResource.getContents());
@@ -245,6 +260,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 
 
 			Collection<Resource> resourcesToSave = handleFragments(umlResource, notationResource, sashResource);
+			resourcesToSave.add(propertiesResource);
 			// TODO : commented because it probably concerns only RSa
 			// for (Resource resource : resourcesToSave) {
 			// List<EObject> rootElements = new LinkedList<>(resource.getContents());
@@ -302,6 +318,22 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 
 		monitor.done();
 		return generationStatus;
+	}
+
+	/**
+	 * 
+	 * @param propertyURI
+	 *            the uri of the property file
+	 * @return
+	 * 		the Resource to use for internationlization
+	 */
+	protected InternationalizationResource createAndConfigureInternationalizationResource(final URI propertyURI) {
+		if (null == this.propertiesResource) {
+			this.propertiesResource = new InternationalizationResource(propertyURI);
+			this.propertiesResource.getDefaultSaveOptions().put(InternationalizationResourceOptionsConstants.SAVE_OPTION_SORT, Boolean.TRUE);
+			this.propertiesResource.getDefaultSaveOptions().put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER, UMLInternationalizationKeyResolver.getInstance());
+		}
+		return this.propertiesResource;
 	}
 
 
@@ -408,6 +440,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 		allExtents.add(getPrimitivesCUMLModel());
 		allExtents.add(getSysML1_1Profile());
 		allExtents.add(getInUMLPrimitivesTypes());
+		allExtents.add(getInOutInternationalizationModel());
 		return allExtents;
 	}
 
@@ -419,7 +452,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 		return umlPrimitivesTypes;
 	}
 
-	private ModelExtent inRhapsodyModel, primitivesCTypesModel, umlPrimitivesTypes;
+	private ModelExtent inRhapsodyModel, primitivesCTypesModel, umlPrimitivesTypes, labels;
 
 	public ModelExtent getInRhapsodyModel() {
 		if (inRhapsodyModel == null) {
@@ -437,7 +470,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 	}
 
 	public ModelExtent getPrimitivesCUMLModel() {
-//		URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml");
+		// URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml");
 		URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES_Rhapsody/AnsiCLibrary.uml");
 		Resource primitiveTypes = resourceSet.getResource(primitiveTypesURI, true);
 		primitivesCTypesModel = new BasicModelExtent(primitiveTypes.getContents());
@@ -445,6 +478,17 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 	}
 
 
+	/**
+	 * 
+	 * @return
+	 * 		the model extends to use to create the required file .property
+	 */
+	public ModelExtent getInOutInternationalizationModel() {
+		if (this.labels == null) {
+			this.labels = new BasicModelExtent();
+		}
+		return this.labels;
+	}
 
 
 	/**
