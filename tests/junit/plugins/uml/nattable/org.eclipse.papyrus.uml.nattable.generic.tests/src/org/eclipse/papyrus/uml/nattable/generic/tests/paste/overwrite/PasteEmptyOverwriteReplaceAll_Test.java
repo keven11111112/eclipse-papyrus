@@ -31,9 +31,9 @@ public class PasteEmptyOverwriteReplaceAll_Test extends AbstractPasteEmptyOverwr
 	}
 	
 	/**
-	 * @see org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.AbstractPasteEmptyOverwriteTest#manageParameters(java.util.Map)
-	 *
-	 * @param parameters
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.AbstractPasteOverwriteTest#manageParameters(java.util.Map)
 	 */
 	@Override
 	public void manageParameters(Map<Object, Object> parameters) {

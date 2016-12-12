@@ -47,7 +47,7 @@ public class PasteEmptyOverwriteWarningNotExisting_H1_H1_H1_MultiColumns_Test ex
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.AbstractPasteEmptyOverwriteTest#manageParameters(java.util.Map)
+	 * @see org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.AbstractPasteOverwriteTest#manageParameters(java.util.Map)
 	 */
 	@Override
 	public void manageParameters(final Map<Object, Object> parameters) {

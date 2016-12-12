@@ -80,6 +80,7 @@ public abstract class AbstractPasteOverwriteTest extends AbstractPasteInsertTest
 		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
 		// This parameters allows to set the text to paste instead of copy/paste it programmatically (this may be overwrite by other copy)
 		parameters.put(PasteInTableHandler.TEXT_TO_PASTE, str);
+		manageParameters(parameters);
 		flushDisplayEvents();
 		final Object res = PasteInsertUtil.paste(treeManager, treeManager.getSelectionInTable(), parameters);
 		Assert.assertTrue("The result must be a status", res instanceof IStatus); //$NON-NLS-1$
@@ -98,6 +99,16 @@ public abstract class AbstractPasteOverwriteTest extends AbstractPasteInsertTest
 			// we close the table, we re-open it and we check that is contains is correct!
 			testClose_Open();
 		}
+	}
+	
+	/**
+	 * This allows to add parameters if necessary
+	 * 
+	 * @param parameters
+	 *            The parameters for the command.
+	 */
+	public void manageParameters(final Map<Object, Object> parameters) {
+		// Do nothing
 	}
 	
 	/**

@@ -45,9 +45,9 @@ public class PasteEmptyOverwriteAddAll_Test extends AbstractPasteEmptyOverwriteT
 	}
 	
 	/**
-	 * @see org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.AbstractPasteEmptyOverwriteTest#manageParameters(java.util.Map)
-	 *
-	 * @param parameters
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.AbstractPasteOverwriteTest#manageParameters(java.util.Map)
 	 */
 	@Override
 	public void manageParameters(Map<Object, Object> parameters) {

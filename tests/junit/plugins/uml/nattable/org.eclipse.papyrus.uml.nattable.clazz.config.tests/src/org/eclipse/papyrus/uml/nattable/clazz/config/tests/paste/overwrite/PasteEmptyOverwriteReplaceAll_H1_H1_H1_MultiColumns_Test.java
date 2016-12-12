@@ -34,9 +34,9 @@ public class PasteEmptyOverwriteReplaceAll_H1_H1_H1_MultiColumns_Test extends Ab
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.nattable.generic.tests.insert.AbstractInsertTest#manageParameters(java.util.Map)
-	 *
-	 * @param parameters
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.AbstractPasteOverwriteTest#manageParameters(java.util.Map)
 	 */
 	@Override
 	public void manageParameters(Map<Object, Object> parameters) {
