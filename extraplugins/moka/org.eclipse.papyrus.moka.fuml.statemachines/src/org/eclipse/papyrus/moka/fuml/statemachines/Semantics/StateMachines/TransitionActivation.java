@@ -16,7 +16,6 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
 import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
 
-import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
@@ -288,7 +287,6 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		// 2 - Execute the effect (if one exists for that transition)
 		// 3 - Enter the target (depends on the kind of transition that is currently used)
 		this.exitSource(eventOccurrence);
-		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); 
 		this.tryExecuteEffect(eventOccurrence);
 		this.setStatus(TransitionMetadata.TRAVERSED);
 		logger.info(this.getNode().getName()+" => TRAVERSED");

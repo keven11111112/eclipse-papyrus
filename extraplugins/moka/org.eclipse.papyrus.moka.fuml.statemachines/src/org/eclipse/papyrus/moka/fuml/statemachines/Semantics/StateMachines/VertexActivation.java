@@ -18,7 +18,6 @@ import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
@@ -147,7 +146,6 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		this.setStatus(StateMetadata.ACTIVE);
 		this.tagOutgoingTransitions(TransitionMetadata.REACHED, false);
-		FUMLExecutionEngine.eInstance.getControlDelegate().control(this);
 	}
 	
 	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor){
