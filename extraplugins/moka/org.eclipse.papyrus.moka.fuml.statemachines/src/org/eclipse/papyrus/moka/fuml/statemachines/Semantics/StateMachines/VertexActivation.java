@@ -13,14 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
-import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
+import org.eclipse.papyrus.moka.fuml.statemachines.debug.Debug;
 import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.Vertex;
 
@@ -143,7 +142,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 				vertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			}
 		}
-		logger.info(this.getNode().getName()+" => ACTIVE");
+		Debug.log(this.getNode().getName()+" => ACTIVE");
 		this.setStatus(StateMetadata.ACTIVE);
 		this.tagOutgoingTransitions(TransitionMetadata.REACHED, false);
 	}
@@ -155,7 +154,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		// vertex and until the least common ancestor is reached all states are exited recursively.
 		this.tagIncomingTransitions(TransitionMetadata.NONE, false);
 		this.setStatus(StateMetadata.IDLE);
-		logger.info(this.getNode().getName()+" => IDLE");
+		Debug.log(this.getNode().getName()+" => IDLE");
 		RegionActivation owningRegionActivation = this.getOwningRegionActivation();
 		if(leastCommonAncestor != null && owningRegionActivation != null && leastCommonAncestor != owningRegionActivation){
 			VertexActivation vertexActivation = (VertexActivation) owningRegionActivation.getParent();

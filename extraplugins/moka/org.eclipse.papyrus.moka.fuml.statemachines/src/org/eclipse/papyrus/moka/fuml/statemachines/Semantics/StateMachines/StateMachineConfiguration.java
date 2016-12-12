@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
-import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
+import org.eclipse.papyrus.moka.fuml.statemachines.debug.Debug;
 
 public class StateMachineConfiguration {
 		
@@ -42,7 +42,9 @@ public class StateMachineConfiguration {
 		// Register the given state activation in the state-machine configuration.
 		// This occurs when the state activation is entered.
 		boolean added = this.rootConfiguration.addChild(stateActivation);
-		logger.info(this.toString());
+		if(added){
+			Debug.log(this.toString());
+		}
 		return added;
 	}
 	
@@ -52,7 +54,7 @@ public class StateMachineConfiguration {
 		// is successful the last action is to release possibly deferred events related
 		// to that state activation.
 		boolean removed = this.rootConfiguration.removeChild(stateActivation);
-		logger.info(this.toString());
+		Debug.log(this.toString());
 		if(removed){
 			stateActivation.releaseDeferredEvents();
 		}
