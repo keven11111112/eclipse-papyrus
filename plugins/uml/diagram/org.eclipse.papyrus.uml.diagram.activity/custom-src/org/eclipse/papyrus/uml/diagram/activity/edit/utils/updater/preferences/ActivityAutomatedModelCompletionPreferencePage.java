@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
+import org.eclipse.uml2.uml.TestIdentityAction;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 /**
@@ -77,6 +78,7 @@ public class ActivityAutomatedModelCompletionPreferencePage extends AbstractAuto
 		actionList.add(AddStructuralFeatureValueAction.class);
 		actionList.add(CreateObjectAction.class);
 		actionList.add(ReadStructuralFeatureAction.class);
+		actionList.add(TestIdentityAction.class);
 		actionList.add(ValueSpecificationAction.class);
 		return actionList;
 	}

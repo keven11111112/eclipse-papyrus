@@ -954,6 +954,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testInputPinAsFirstInTestIdentityAction() {
+		// Pins of TestIdentityAction should be create automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.TEST_IDENTITY_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID, actionEP);
 
@@ -963,6 +968,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testActionPinAsFirstInInsertAtTestIdentityAction() {
+		// Pins of TestIdentityAction should be create automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.TEST_IDENTITY_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID, actionEP);
 
@@ -972,6 +982,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testValuePinAsFirstInTestIdentityAction() {
+		// Pins of TestIdentityAction should be create automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.TEST_IDENTITY_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID, actionEP);
 
@@ -981,6 +996,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testInputPinAsSecondInTestIdentityAction() {
+		// Pins of TestIdentityAction should be create automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.TEST_IDENTITY_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID, actionEP);
 
@@ -990,6 +1010,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testActionPinAsSecondInTestIdentityAction() {
+		// Pins of TestIdentityAction should be create automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.TEST_IDENTITY_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID, actionEP);
 
@@ -999,6 +1024,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testValuePinAsSecondInTestIdentityAction() {
+		// Pins of TestIdentityAction should be create automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.TEST_IDENTITY_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID, actionEP);
 

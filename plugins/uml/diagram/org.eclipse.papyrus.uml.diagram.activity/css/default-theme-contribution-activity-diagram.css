@@ -6,6 +6,7 @@ CallOperationAction,
 CreateObjectAction,
 ReadStructuralFeatureAction,
 SendSignalAction,
+TestIdentityAction,
 ValueSpecificationAction {
 	canonical: true;
 }
