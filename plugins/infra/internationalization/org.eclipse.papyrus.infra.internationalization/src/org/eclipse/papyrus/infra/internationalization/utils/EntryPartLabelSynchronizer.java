@@ -142,7 +142,7 @@ public class EntryPartLabelSynchronizer {
 	 */
 	protected String getTableLabel(final Table table) {
 		String result = null;
-		if (InternationalizationPreferencesUtils.getInternationalizationPreference(table)) {
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(table.getOwner())) {
 			result = modelResource.getValueForEntryKey(table.eResource().getURI(), table);
 		}
 		return null != result ? result : table.getName();
@@ -159,7 +159,7 @@ public class EntryPartLabelSynchronizer {
 	 */
 	protected String getDiagramLabel(final Diagram diagram) {
 		String result = null;
-		if (InternationalizationPreferencesUtils.getInternationalizationPreference(diagram)) {
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(QualifiedNameUtils.getOwner(diagram))) {
 			result = modelResource.getValueForEntryKey(diagram.eResource().getURI(), diagram);
 		}
 		return null != result ? result : diagram.getName();

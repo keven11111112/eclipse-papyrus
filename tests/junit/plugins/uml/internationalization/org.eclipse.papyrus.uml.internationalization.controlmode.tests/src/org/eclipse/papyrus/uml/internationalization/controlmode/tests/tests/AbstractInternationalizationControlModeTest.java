@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetRelTypesForSREOnSourceOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInter
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
+import org.osgi.framework.Bundle;
 
 /**
  * The abstract class for the internationalization control mode tests.
@@ -77,7 +79,7 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	 */
 	@Override
 	protected void initTestModel() throws Exception {
-		initModel("testLabels", "internationalizationModel", Activator.getDefault().getBundle());
+		initModel("testLabels", "internationalizationModel", getBundle());
 	}
 
 	/**
@@ -124,6 +126,26 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 				labelProvider.getText(diagram));
 
 		Assert.assertEquals("The class label is not the expected one.", "Table MyGenericTable", labelProvider.getText(table));
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInternationalizationTest#getSourcePath()
+	 */
+	@Override
+	protected String getSourcePath() {
+		return "resources/controlmode";
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest#getBundle()
+	 */
+	@Override
+	protected Bundle getBundle() {
+		return Activator.getDefault().getBundle();
 	}
 
 	/**

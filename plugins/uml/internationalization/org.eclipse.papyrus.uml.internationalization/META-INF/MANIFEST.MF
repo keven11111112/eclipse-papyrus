@@ -20,4 +20,6 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="[1.7.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.uml.internationalization.Activator
-Export-Package: org.eclipse.papyrus.uml.internationalization.modelresource
+Export-Package: org.eclipse.papyrus.uml.internationalization,
+ org.eclipse.papyrus.uml.internationalization.modelresource,
+ org.eclipse.papyrus.uml.internationalization.utils

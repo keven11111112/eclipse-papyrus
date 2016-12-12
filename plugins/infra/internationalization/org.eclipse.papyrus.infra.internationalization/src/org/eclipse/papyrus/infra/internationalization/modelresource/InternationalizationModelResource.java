@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -15,14 +15,12 @@ package org.eclipse.papyrus.infra.internationalization.modelresource;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
@@ -39,8 +37,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -67,7 +64,11 @@ import org.eclipse.papyrus.infra.internationalization.common.editor.IInternation
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesConstants;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.common.utils.LocaleNameResolver;
+import org.eclipse.papyrus.infra.internationalization.helper.InternationalizationResourceHelper;
+import org.eclipse.papyrus.infra.internationalization.resource.InternationalizationResource;
 import org.eclipse.papyrus.infra.internationalization.utils.EntryPartLabelSynchronizer;
+import org.eclipse.papyrus.infra.internationalization.utils.InternationalizationKeyResolver;
+import org.eclipse.papyrus.infra.internationalization.utils.InternationalizationResourceOptionsConstants;
 import org.eclipse.papyrus.infra.internationalization.utils.PreferencePartLabelSynchronizer;
 import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.internationalization.utils.QualifiedNameUtils;
@@ -87,25 +88,10 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.internationalization.resource.InternationalizationModel"; //$NON-NLS-1$
 
 	/**
-	 * The '_labelDiagram_' prefix of each diagram entry.
+	 * This allows to manage the key (resolve the objects by their qualified
+	 * name, etc.).
 	 */
-	protected static final String LABEL_DIAGRAM_PREFIX_QN = "_labelDiagram_"; //$NON-NLS-1$
-
-	/**
-	 * The '_labelTable_' prefix of each table entry.
-	 */
-	protected static final String LABEL_TABLE_PREFIX_QN = "_labelTable_"; //$NON-NLS-1$
-
-	/**
-	 * The '_label_' prefix of each entry.
-	 */
-	public static final String LABEL_PREFIX = "_label_"; //$NON-NLS-1$
-
-	/**
-	 * The notation extension file (cannot use the
-	 * NotationModel.NOTATION_FILE_EXTENSION because of dependencies cycle).
-	 */
-	protected static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
+	protected InternationalizationKeyResolver keyResolver = null;
 
 	/**
 	 * The map of the loaded resource by the initial URI and by locale.
@@ -169,6 +155,27 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		});
 		deletedObjects = new HashSet<EObject>();
 		adapters = new HashMap<EObject, Adapter>();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModel#init(org.eclipse.papyrus.infra.core.resource.ModelSet)
+	 */
+	@Override
+	public void init(final ModelSet modelSet) {
+		super.init(modelSet);
+		InternationalizationResourceHelper.installUMLInternationalizationSupport(modelSet);
+		keyResolver = createKeyResolver();
+	}
+
+	/**
+	 * This allows to create the key resolver.
+	 * 
+	 * @return The created key resolver.
+	 */
+	protected InternationalizationKeyResolver createKeyResolver() {
+		return InternationalizationKeyResolver.getInstance();
 	}
 
 	/**
@@ -268,9 +275,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		IContainer parentFolder = null;
 		if (folderURI.isPlatformResource()) {
 			final String uriPlatformString = folderURI.toPlatformString(true);
-			try{
+			try {
 				parentFolder = ResourcesPlugin.getWorkspace().getRoot().getProject(uriPlatformString);
-			}catch(Exception exception){
+			} catch (Exception exception) {
 				parentFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(uriPlatformString));
 			}
 		}
@@ -364,6 +371,15 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				startSnippets();
 			}
 
+			// Load the resource if not already loaded
+			if (!resource.isLoaded()) {
+				try {
+					resource.load(null);
+				} catch (IOException e) {
+					Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
+				}
+			}
+
 			loadInternationalizationContent(uri, locale);
 		}
 
@@ -410,6 +426,14 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *            The locale to manage.
 	 */
 	protected void configureResource(final Resource resourceToConfigure, final Locale locale) {
+		if (resourceToConfigure instanceof InternationalizationResource) {
+			final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resourceToConfigure)
+					.getDefaultLoadOptions();
+			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
+					keyResolver);
+			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_LOCALE, locale);
+			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_URI, resourceURI);
+		}
 		super.configureResource(resourceToConfigure);
 		// Add the resource to the resource properties classified by their
 		// locale
@@ -420,8 +444,8 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	}
 
 	/**
-	 * This allows to load internationalization content of properties file into
-	 * the current resource.
+	 * This allows to through the internationalization library to manage
+	 * adapters for needed objects.
 	 * 
 	 * @param uri
 	 *            The URI of the properties file with the extension.
@@ -429,71 +453,16 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *            The locale to use.
 	 */
 	protected void loadInternationalizationContent(final URI uri, final Locale locale) {
-		final Resource resource = getResourceForURIAndLocale(uri, locale);
-
 		if (null != resource && resource.getContents().isEmpty()) {
-			final ResourceBundleAndURI resourceBundleAndURI = PropertiesFilesUtils
-					.getResourceBundle(uri.trimFileExtension().appendFileExtension(getModelFileExtension()), locale);
-			if (null != resourceBundleAndURI && null != resourceBundleAndURI.getResourceBundle()) {
-				// Create the internationalization library to set to the
-				// resource contents
-				final InternationalizationLibrary library = InternationalizationFactory.eINSTANCE
-						.createInternationalizationLibrary();
-				final Enumeration<String> keys = resourceBundleAndURI.getResourceBundle().getKeys();
+			final InternationalizationLibrary library = getModelRoot();
 
-				// Loop on existing keys
-				while (keys.hasMoreElements()) {
-					// Create an entry for each key
-					final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
-							.createInternationalizationEntry();
-					String key = (String) keys.nextElement();
-					if (key.startsWith(LABEL_DIAGRAM_PREFIX_QN)) {
-						final String keyWithoutPrefix = key.substring(LABEL_DIAGRAM_PREFIX_QN.length());
-						final String qualifiedName = keyWithoutPrefix.substring(0,
-								keyWithoutPrefix.indexOf(LABEL_PREFIX));
-						final String diagramName = keyWithoutPrefix
-								.substring(keyWithoutPrefix.indexOf(LABEL_PREFIX) + LABEL_PREFIX.length());
-
-						final Resource notationResource = modelSet.getResource(
-								uri.trimFileExtension().appendFileExtension(NOTATION_FILE_EXTENSION), true);
-
-						if (null != notationResource && null != notationResource.getContents()
-								&& !notationResource.getContents().isEmpty()) {
-							final Diagram foundDiagram = QualifiedNameUtils.getDiagram(notationResource, diagramName,
-									qualifiedName);
-							entry.setKey(foundDiagram);
-							addModifiedAdapter(foundDiagram, resource);
-						}
-
-					} else if (key.startsWith(LABEL_TABLE_PREFIX_QN)) {
-						final String keyWithoutPrefix = key.substring(LABEL_TABLE_PREFIX_QN.length());
-						final String qualifiedName = keyWithoutPrefix.substring(0,
-								keyWithoutPrefix.indexOf(LABEL_PREFIX));
-						final String tableName = keyWithoutPrefix
-								.substring(keyWithoutPrefix.indexOf(LABEL_PREFIX) + LABEL_PREFIX.length());
-
-						final Resource umlResource = modelSet.getResource(
-								uri.trimFileExtension().appendFileExtension(NOTATION_FILE_EXTENSION), true);
-
-						if (null != umlResource && null != umlResource.getContents()
-								&& !umlResource.getContents().isEmpty()) {
-							final Table foundTable = QualifiedNameUtils.getTable(umlResource, tableName, qualifiedName);
-							entry.setKey(foundTable);
-							addModifiedAdapter(foundTable, resource);
-						}
-					} else {
-						entry.setKey(key);
+			if (null != library) {
+				for (final InternationalizationEntry entry : library.getEntries()) {
+					if (entry.getKey() instanceof EObject) {
+						addModifiedAdapter((EObject) entry.getKey(), resource);
 					}
-					entry.setValue(resourceBundleAndURI.getResourceBundle().getString(key));
-					// Add the entry to the library
-					library.getEntries().add(entry);
 				}
-
-				final GMFtoEMFCommandWrapper command = new GMFtoEMFCommandWrapper(new AddToResourceCommand(
-						((ModelSet) resource.getResourceSet()).getTransactionalEditingDomain(), resource, library));
-				command.execute();
 			}
-			resource.setModified(false);
 		}
 	}
 
@@ -523,6 +492,14 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		// Create the resource needed
 		final Resource resultResource = modelSet.createResource(propertiesURI);
 		configureResource(resultResource, locale);
+		// Load the resource if not already loaded
+		if (!resultResource.isLoaded()) {
+			try {
+				resultResource.load(null);
+			} catch (IOException e) {
+				Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
+			}
+		}
 
 		// Create the internationalization library in the resource content
 		createInternationalizationContent(resultResource);
@@ -563,7 +540,6 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	@Override
 	public void saveModel() throws IOException {
 		// Save into the properties files
-
 		for (final Resource resource : getResources()) {
 			saveResource(resource);
 		}
@@ -578,32 +554,17 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *             The input output file exception.
 	 */
 	protected void saveResource(final Resource resource) throws IOException {
-		final ModelSet set = getModelManager();
-		if (null != resource && set.shouldSave(resource) && !resource.getContents().isEmpty()) {
-			// It is needed to manage the save of properties by a simple output
-			// stream because the resource bundle cannot be modified
-			final Properties properties = new Properties();
-
-			final InternationalizationLibrary library = (InternationalizationLibrary) resource.getContents().get(0);
-
-			// Add all the entries into properties (need this properties to save
-			// easier the properties file)
-			for (final InternationalizationEntry entry : library.getEntries()) {
-				if (!deletedObjects.contains(entry.getKey()) && !entry.getValue().isEmpty()) {
-					properties.setProperty(getKey(entry), entry.getValue());
-				}
+		Map<Object, Object> saveOptions = null;
+		if (resource instanceof XMLResource) {
+			saveOptions = ((XMLResource) resource).getDefaultSaveOptions();
+			if (resource instanceof InternationalizationResource) {
+				saveOptions.put(InternationalizationResourceOptionsConstants.SAVE_OPTION_DELETED_OBJECTS,
+						deletedObjects);
+				saveOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
+						keyResolver);
 			}
-
-			final Locale locale = getLocaleForResource(resource);
-
-			// Get the URI of properties file used (with locale or not)
-			final URI resourceURI = PropertiesFilesUtils.getResourceBundleURIFromResourceURI(resource.getURI(), locale);
-
-			// This allows to save the properties into the properties file
-			final URIConverter uriConverter = new ExtensibleURIConverterImpl();
-			properties.store(uriConverter.createOutputStream(resourceURI), null);
-			resource.setModified(false);
 		}
+		resource.save(saveOptions);
 	}
 
 	/**
@@ -671,36 +632,6 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			eObject.eAdapters().add(modifiedAdapter);
 			adapters.put(eObject, modifiedAdapter);
 		}
-	}
-
-	/**
-	 * This allows to get the entry key (can be override to get element string
-	 * identifier instead of string key).
-	 * 
-	 * @param entry
-	 *            The internationalization entry.
-	 * @return The key as String.
-	 */
-	protected String getKey(final InternationalizationEntry entry) {
-		final StringBuilder result = new StringBuilder();
-		if (entry.getKey() instanceof Diagram) {
-			result.append(LABEL_DIAGRAM_PREFIX_QN);
-			final Diagram diagram = (Diagram) entry.getKey();
-			final EObject diagramContainer = diagram.getElement();
-			result.append(QualifiedNameUtils.getQualifiedName(diagramContainer));
-			result.append(LABEL_PREFIX);
-			result.append(diagram.getName());
-		} else if (entry.getKey() instanceof Table) {
-			result.append(LABEL_TABLE_PREFIX_QN);
-			final Table table = (Table) entry.getKey();
-			final EObject tableContainer = table.getOwner();
-			result.append(QualifiedNameUtils.getQualifiedName(tableContainer));
-			result.append(LABEL_PREFIX);
-			result.append(table.getName());
-		} else {
-			result.append((String) entry.getKey());
-		}
-		return result.toString();
 	}
 
 	/**
@@ -780,7 +711,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	public String getValueForEntryKey(final URI uri, final EObject key) {
 		InternationalizationEntry entry = getEntryForKey(uri, key,
-				InternationalizationPreferencesUtils.getLocalePreference(key));
+				InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key)));
 		return null != entry ? entry.getValue() : null;
 	}
 
@@ -845,7 +776,11 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		Command resultCommand = null;
 
 		// Get the resource where add/modify the entry corresponding to the key
-		final Resource resource = getResourceForURIAndLocale(uri, locale);
+		Resource resource = getResourceForURIAndLocale(uri, locale);
+		if (null == resource) {
+			resource = getResourceForURIAndLocale(uri, new Locale("")); //$NON-NLS-1$
+		}
+
 		final InternationalizationLibrary library = getModelRoot(resource);
 
 		if (null != library) {
@@ -896,7 +831,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				// the library
 				resultCommand = new CompoundCommand("Create entry"); //$NON-NLS-1$
 				((CompoundCommand) resultCommand).append(new CreatePropertiesResourceCommand(uri, entry,
-						InternationalizationPreferencesUtils.getLocalePreference(key)));
+						InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key))));
 				Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
 				if (null != setNameValueCommand) {
 					((CompoundCommand) resultCommand).append(setNameValueCommand);
@@ -967,7 +902,8 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		Resource resource = getResourceForURIAndLocale(uri, locale);
 		if (null == resource) {
 			// If the resource does not exist, create it
-			resource = createResource(uri, InternationalizationPreferencesUtils.getLocalePreference(key));
+			resource = createResource(uri,
+					InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key)));
 		}
 
 		final InternationalizationLibrary library = getModelRoot(resource);
@@ -1200,6 +1136,23 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		}
 
 		return initialURI;
+	}
+
+	/**
+	 * Get the eObject or diagram/table owner if needed.
+	 * 
+	 * @param eObject
+	 *            The initial EObject.
+	 * @return The eObject or diagram/table owner.
+	 */
+	protected static EObject getParentEObject(final EObject eObject) {
+		EObject parentEObject = eObject;
+		if (eObject instanceof Table) {
+			parentEObject = ((Table) eObject).getOwner();
+		} else if (eObject instanceof Diagram) {
+			parentEObject = QualifiedNameUtils.getOwner((Diagram) eObject);
+		}
+		return parentEObject;
 	}
 
 	/**

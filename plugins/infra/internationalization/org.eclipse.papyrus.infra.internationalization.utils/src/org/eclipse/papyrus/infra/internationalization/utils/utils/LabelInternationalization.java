@@ -19,6 +19,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.infra.internationalization.utils.QualifiedNameUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
@@ -98,7 +99,7 @@ public class LabelInternationalization {
 	 */
 	public String getDiagramLabel(final Diagram diagram, final boolean localize) {
 		String result = null;
-		if (null != diagram.eResource() && InternationalizationPreferencesUtils.getInternationalizationPreference(diagram)) {
+		if (null != diagram.eResource() && getInternationalizationPreference(diagram)) {
 			result = getDiagramLabelWithoutName(diagram, localize);
 		}
 		return null != result ? result : diagram.getName();
@@ -117,6 +118,35 @@ public class LabelInternationalization {
 	 */
 	public void setDiagramLabel(final Diagram diagram, final String value, final Locale locale) {
 		LabelInternationalizationUtils.setLabel(diagram, value, locale);
+	}
+
+	/**
+	 * This allows to modify the internationalization preference value for the
+	 * diagram owner.
+	 * 
+	 * @param eObject
+	 *            The {@link EObject) corresponding (to get its resource).
+	 * @param value
+	 *            The new preference value.
+	 */
+	public void setInternationalizationPreference(final Diagram diagram, final boolean value) {
+		InternationalizationPreferencesUtils.setInternationalizationPreference(QualifiedNameUtils.getOwner(diagram),
+				value);
+	}
+
+	/**
+	 * This allows to get the internationalization preference value for the
+	 * diagram (but it is the diagram owner because the diagram is in the
+	 * notation file).
+	 * 
+	 * @param diagram
+	 *            The {@link Diagram) corresponding.
+	 * @return <code>true</code> if the preference value is set to true,
+	 *         <code>false</code> otherwise.
+	 */
+	public boolean getInternationalizationPreference(final Diagram diagram) {
+		return InternationalizationPreferencesUtils
+				.getInternationalizationPreference(QualifiedNameUtils.getOwner(diagram));
 	}
 
 	/**
@@ -186,7 +216,7 @@ public class LabelInternationalization {
 	 */
 	public String getTableLabel(final Table table, final boolean localize) {
 		String result = null;
-		if (null != table.eResource() && InternationalizationPreferencesUtils.getInternationalizationPreference(table)) {
+		if (null != table.eResource() && getInternationalizationPreference(table)) {
 			result = getTableLabelWithoutName(table, localize);
 		}
 		return null != result ? result : table.getName();
@@ -205,6 +235,33 @@ public class LabelInternationalization {
 	 */
 	public void setTableLabel(final Table table, final String value, final Locale locale) {
 		LabelInternationalizationUtils.setLabel(table, value, locale);
+	}
+
+	/**
+	 * This allows to modify the internationalization preference value for the
+	 * table owner.
+	 * 
+	 * @param eObject
+	 *            The {@link EObject) corresponding (to get its resource).
+	 * @param value
+	 *            The new preference value.
+	 */
+	public void setInternationalizationPreference(final Table table, final boolean value) {
+		InternationalizationPreferencesUtils.setInternationalizationPreference(table.getOwner(), value);
+	}
+
+	/**
+	 * This allows to get the internationalization preference value for the
+	 * table (but it is the table owner because the diagram is in the notation
+	 * file).
+	 * 
+	 * @param diagram
+	 *            The {@link Diagram) corresponding.
+	 * @return <code>true</code> if the preference value is set to true,
+	 *         <code>false</code> otherwise.
+	 */
+	public boolean getInternationalizationPreference(final Table table) {
+		return InternationalizationPreferencesUtils.getInternationalizationPreference(table.getOwner());
 	}
 
 	/**

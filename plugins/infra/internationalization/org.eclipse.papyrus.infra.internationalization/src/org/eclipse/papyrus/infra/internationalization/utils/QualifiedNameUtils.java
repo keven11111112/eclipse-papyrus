@@ -13,12 +13,16 @@
 
 package org.eclipse.papyrus.infra.internationalization.utils;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
 
 /**
  * The utils methods corresponding to the qualified name calculation for the
@@ -47,15 +51,17 @@ public class QualifiedNameUtils {
 
 		// Loop until no more parent to calculate qualified name
 		while (null != parent && !hasNotFoundName) {
-			hasNotFoundName = true;
-
-			// Get the name feature if existing
-			final EStructuralFeature feature = parent.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
-			if (null != feature) {
-				Object featureValue = parent.eGet(feature);
-				if (featureValue instanceof String) {
-					result = appendQualifiedName(result, (String) featureValue);
-					hasNotFoundName = false;
+			if (parent.eResource().getURI().equals(eObject.eResource().getURI())){
+				hasNotFoundName = true;
+	
+				// Get the name feature if existing
+				final EStructuralFeature feature = parent.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
+				if (null != feature) {
+					Object featureValue = parent.eGet(feature);
+					if (featureValue instanceof String) {
+						result = appendQualifiedName(result, (String) featureValue);
+						hasNotFoundName = false;
+					}
 				}
 			}
 
@@ -72,6 +78,40 @@ public class QualifiedNameUtils {
 		}
 
 		return result.toString();
+	}
+	
+	/**
+	 * Get the diagram owner.
+	 * 
+	 * @param diagram
+	 *            A diagram
+	 * @return The diagram owner
+	 */
+	public static EObject getOwner(final Diagram diagram) {
+		final PapyrusViewStyle pvs = getPapyrusViewStyle(diagram);
+		if (null != pvs) {
+			final EObject value = pvs.getOwner();
+			if (null != value) {
+				return value;
+			}
+		}
+		return diagram.getElement();
+	}
+	
+	/**
+	 * Returns the PapyrusViewStyle owned by this diagram (if any)
+	 *
+	 * @param diagram
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static final PapyrusViewStyle getPapyrusViewStyle(final Diagram diagram) {
+		for (final Style ownedStyle : (List<Style>) diagram.getStyles()) { // Access all styles directly to avoid CSS computation, and use instanceof (Rather than reflexive EMF)
+			if (ownedStyle instanceof PapyrusViewStyle) {
+				return (PapyrusViewStyle) ownedStyle;
+			}
+		}
+		return null;
 	}
 
 	/**

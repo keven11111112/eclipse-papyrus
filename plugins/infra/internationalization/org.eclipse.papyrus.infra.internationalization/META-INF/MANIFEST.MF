@@ -9,8 +9,10 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.papyrus.infra.internationalization,
  org.eclipse.papyrus.infra.internationalization.commands,
+ org.eclipse.papyrus.infra.internationalization.helper,
  org.eclipse.papyrus.infra.internationalization.modelresource,
  org.eclipse.papyrus.infra.internationalization.modelsnippet,
+ org.eclipse.papyrus.infra.internationalization.resource,
  org.eclipse.papyrus.infra.internationalization.util,
  org.eclipse.papyrus.infra.internationalization.utils
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
@@ -24,6 +26,7 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility
  org.eclipse.jface;bundle-version="[3.12.0,4.0.0)",
  org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.help;bundle-version="[3.7.0,4.0.0)",
- org.eclipse.papyrus.infra.doc;bundle-version="[1.2.0,2.0.0)"
+ org.eclipse.papyrus.infra.doc;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[1.2.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.infra.internationalization.Activator

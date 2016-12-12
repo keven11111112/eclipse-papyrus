@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
 import org.junit.Before;
+import org.osgi.framework.Bundle;
 
 /**
  * This allows to define the abstract class for the UML internationalization
@@ -102,13 +103,6 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 		Assert.assertNotNull("The model cannot be null", model);
 
 		labelProvider = (DecoratingLabelProviderWTooltips) getModelExplorerView().getCommonViewer().getLabelProvider();
-		
-//		try {
-//			labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, (EObject) model)
-//					.getLabelProvider();
-//		} catch (final ServiceException ex) {
-//			Activator.log.error(ex);
-//		}
 
 		modelClass = (Class) model.getOwnedMember(CLASS_NAME);
 		Assert.assertNotNull("The class cannot be null", modelClass);
@@ -146,7 +140,7 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 	 *             The caught exception.
 	 */
 	protected void initTestModel() throws Exception {
-		initModel("testLabels", "internationalizationModel", Activator.getDefault().getBundle());
+		initModel("testLabels", "internationalizationModel", getBundle());
 	}
 
 	/**
@@ -247,6 +241,16 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 				labelProvider.getText(modelEnumeration));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest#getBundle()
+	 */
+	@Override
+	protected Bundle getBundle() {
+		return Activator.getDefault().getBundle();
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 * 

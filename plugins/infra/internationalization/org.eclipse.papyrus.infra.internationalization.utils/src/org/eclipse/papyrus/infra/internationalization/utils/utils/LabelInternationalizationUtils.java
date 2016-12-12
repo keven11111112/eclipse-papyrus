@@ -22,6 +22,7 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -32,6 +33,8 @@ import org.eclipse.papyrus.infra.internationalization.InternationalizationEntry;
 import org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.modelresource.InternationalizationModelResource;
+import org.eclipse.papyrus.infra.internationalization.utils.QualifiedNameUtils;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
  * This allows to manage the utils methods for the internationalization.
@@ -80,14 +83,16 @@ public class LabelInternationalizationUtils {
 			final InternationalizationModelResource internationalizationResource = getInternationalizationModelResource(
 					eObject.eResource());
 
+			final EObject parentEObject = getParentEObject(eObject);
+
 			if (null != internationalizationResource) {
 
 				Locale localeToUse = locale;
 				if (null == localeToUse) {
-					localeToUse = InternationalizationPreferencesUtils.getLocalePreference(eObject);
+					localeToUse = InternationalizationPreferencesUtils.getLocalePreference(parentEObject);
 				}
 
-				internationalizationResource.setValue(eObject.eResource().getURI(), eObject, value, localeToUse);
+				internationalizationResource.setValue(parentEObject.eResource().getURI(), eObject, value, localeToUse);
 			}
 		} catch (final Exception e) {
 			// Do nothing
@@ -111,19 +116,22 @@ public class LabelInternationalizationUtils {
 	public static Command getSetLabelCommand(final EditingDomain domain, final EObject eObject, final String value,
 			final Locale locale) {
 		Command resultCommand = null;
+
+		final EObject parentEObject = getParentEObject(eObject);
+
 		try {
 			final InternationalizationModelResource internationalizationResource = getInternationalizationModelResource(
-					eObject.eResource());
+					parentEObject.eResource());
 
 			if (null != internationalizationResource) {
 
 				Locale localeToUse = locale;
 				if (null == localeToUse) {
-					localeToUse = InternationalizationPreferencesUtils.getLocalePreference(eObject);
+					localeToUse = InternationalizationPreferencesUtils.getLocalePreference(parentEObject);
 				}
 
-				resultCommand = internationalizationResource.getSetValueCommand(domain, eObject.eResource().getURI(),
-						eObject, value, localeToUse);
+				resultCommand = internationalizationResource.getSetValueCommand(domain,
+						parentEObject.eResource().getURI(), eObject, value, localeToUse);
 			}
 		} catch (final Exception e) {
 			// Do nothing
@@ -144,13 +152,15 @@ public class LabelInternationalizationUtils {
 	public static InternationalizationEntry getInternationalizationEntry(final EObject eObject, final Object key) {
 		InternationalizationEntry resultEntry = null;
 
+		final EObject parentEObject = getParentEObject(eObject);
+
 		try {
 			final InternationalizationModelResource internationalizationResource = getInternationalizationModelResource(
-					eObject.eResource());
+					parentEObject.eResource());
 
 			if (null != internationalizationResource) {
-				resultEntry = internationalizationResource.getEntryForKey(eObject.eResource().getURI(), key,
-						InternationalizationPreferencesUtils.getLocalePreference(eObject));
+				resultEntry = internationalizationResource.getEntryForKey(parentEObject.eResource().getURI(), key,
+						InternationalizationPreferencesUtils.getLocalePreference(parentEObject));
 			}
 		} catch (final Exception e) {
 			// Do nothing
@@ -175,18 +185,21 @@ public class LabelInternationalizationUtils {
 			final Locale locale) {
 		InternationalizationEntry resultEntry = null;
 
+		final EObject parentEObject = getParentEObject(eObject);
+
 		try {
 			final InternationalizationModelResource internationalizationResource = getInternationalizationModelResource(
-					eObject.eResource());
+					parentEObject.eResource());
 
 			if (null != internationalizationResource) {
 
 				Locale localeToUse = locale;
 				if (null == localeToUse) {
-					localeToUse = InternationalizationPreferencesUtils.getLocalePreference(eObject);
+					localeToUse = InternationalizationPreferencesUtils.getLocalePreference(parentEObject);
 				}
 
-				resultEntry = internationalizationResource.getEntryForKey(eObject.eResource().getURI(), key, locale);
+				resultEntry = internationalizationResource.getEntryForKey(parentEObject.eResource().getURI(), key,
+						locale);
 			}
 		} catch (final Exception e) {
 			// Do nothing
@@ -255,5 +268,22 @@ public class LabelInternationalizationUtils {
 		} catch (final Exception e) {
 			// Do nothing
 		}
+	}
+
+	/**
+	 * Get the eObject or diagram/table owner if needed.
+	 * 
+	 * @param eObject
+	 *            The initial EObject.
+	 * @return The eObject or diagram/table owner.
+	 */
+	protected static EObject getParentEObject(final EObject eObject) {
+		EObject parentEObject = eObject;
+		if (eObject instanceof Table) {
+			parentEObject = ((Table) eObject).getOwner();
+		} else if (eObject instanceof Diagram) {
+			parentEObject = QualifiedNameUtils.getOwner((Diagram) eObject);
+		}
+		return parentEObject;
 	}
 }

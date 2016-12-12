@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.internationalization.modelresource.InternationalizationPreferenceModel;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 
 import com.google.common.base.Optional;
 
@@ -74,7 +75,8 @@ public class InternationalizationPropertiesReadOnlyHandler extends AbstractReadO
 		for (URI uri : uris) {
 			if (InternationalizationPreferenceModel.INTERNATIONALIZATION_PREFERENCE_FILE_EXTENSION
 					.equals(uri.fileExtension())
-					|| InternationalizationPreferenceModel.NOTATION_FILE_EXTENSION.equals(uri.fileExtension())) {
+					|| InternationalizationPreferenceModel.NOTATION_FILE_EXTENSION.equals(uri.fileExtension())
+					|| (uri.isPlatform() && PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION.equals(uri.fileExtension()))) {
 				knownWritableCount++;
 			}
 		}
