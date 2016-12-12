@@ -147,7 +147,7 @@ public class IInstanceValueItemProvider extends IValueSpecificationItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IInstanceValue)object).getId();
+		String label = ((IInstanceValue)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IInstanceValue_type") : //$NON-NLS-1$
 			getString("_UI_IInstanceValue_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

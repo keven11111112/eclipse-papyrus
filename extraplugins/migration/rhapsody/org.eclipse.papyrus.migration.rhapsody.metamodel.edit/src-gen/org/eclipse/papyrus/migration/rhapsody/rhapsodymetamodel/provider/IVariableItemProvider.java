@@ -134,7 +134,7 @@ public class IVariableItemProvider extends IUnitItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IVariable)object).getIsOrdered();
+		String label = ((IVariable)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IVariable_type") : //$NON-NLS-1$
 			getString("_UI_IVariable_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

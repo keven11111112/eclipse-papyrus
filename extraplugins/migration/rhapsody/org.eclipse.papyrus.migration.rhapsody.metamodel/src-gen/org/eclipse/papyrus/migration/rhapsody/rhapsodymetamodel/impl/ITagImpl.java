@@ -58,7 +58,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITagImpl#getMetaClass <em>Meta Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITagImpl#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITagImpl#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITagImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -263,26 +262,6 @@ public class ITagImpl extends IVariableImpl implements ITag {
 	 * @ordered
 	 */
 	protected EList<String> codeUpdateCGTime;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -744,27 +723,6 @@ public class ITagImpl extends IVariableImpl implements ITag {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ITAG__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -821,8 +779,6 @@ public class ITagImpl extends IVariableImpl implements ITag {
 				return getDefaultValue();
 			case UMLRhapsodyPackage.ITAG__CODE_UPDATE_CG_TIME:
 				return getCodeUpdateCGTime();
-			case UMLRhapsodyPackage.ITAG__DISPLAY_NAME:
-				return getDisplayName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -881,9 +837,6 @@ public class ITagImpl extends IVariableImpl implements ITag {
 				getCodeUpdateCGTime().clear();
 				getCodeUpdateCGTime().addAll((Collection<? extends String>)newValue);
 				return;
-			case UMLRhapsodyPackage.ITAG__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -938,9 +891,6 @@ public class ITagImpl extends IVariableImpl implements ITag {
 			case UMLRhapsodyPackage.ITAG__CODE_UPDATE_CG_TIME:
 				getCodeUpdateCGTime().clear();
 				return;
-			case UMLRhapsodyPackage.ITAG__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -981,8 +931,6 @@ public class ITagImpl extends IVariableImpl implements ITag {
 				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
 			case UMLRhapsodyPackage.ITAG__CODE_UPDATE_CG_TIME:
 				return codeUpdateCGTime != null && !codeUpdateCGTime.isEmpty();
-			case UMLRhapsodyPackage.ITAG__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1013,8 +961,6 @@ public class ITagImpl extends IVariableImpl implements ITag {
 		result.append(defaultValue);
 		result.append(", codeUpdateCGTime: "); //$NON-NLS-1$
 		result.append(codeUpdateCGTime);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

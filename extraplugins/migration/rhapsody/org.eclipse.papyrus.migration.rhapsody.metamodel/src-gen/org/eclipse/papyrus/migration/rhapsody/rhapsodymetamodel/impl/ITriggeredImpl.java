@@ -28,9 +28,12 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IVariable;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ItemsType;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.M_pFormalMessageType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
 
 /**
@@ -41,9 +44,9 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITriggeredImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITriggeredImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITriggeredImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITriggeredImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITriggeredImpl#getArgs <em>Args</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITriggeredImpl#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITriggeredImpl#getAbstract <em>Abstract</em>}</li>
@@ -57,6 +60,26 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  * @generated
  */
 public class ITriggeredImpl extends OperationsTypeImpl implements ITriggered {
+	/**
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DISPLAY_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String displayName = DISPLAY_NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,26 +119,6 @@ public class ITriggeredImpl extends OperationsTypeImpl implements ITriggered {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
@@ -518,12 +521,12 @@ public class ITriggeredImpl extends OperationsTypeImpl implements ITriggered {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
+				return getDisplayName();
 			case UMLRhapsodyPackage.ITRIGGERED__ID:
 				return getId();
 			case UMLRhapsodyPackage.ITRIGGERED__NAME:
 				return getName();
-			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.ITRIGGERED__ARGS:
 				return getArgs();
 			case UMLRhapsodyPackage.ITRIGGERED__RETURN_TYPE:
@@ -554,14 +557,14 @@ public class ITriggeredImpl extends OperationsTypeImpl implements ITriggered {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
+				setDisplayName((String)newValue);
+				return;
 			case UMLRhapsodyPackage.ITRIGGERED__ID:
 				setId((String)newValue);
 				return;
 			case UMLRhapsodyPackage.ITRIGGERED__NAME:
 				setName((String)newValue);
-				return;
-			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.ITRIGGERED__ARGS:
 				getArgs().clear();
@@ -601,14 +604,14 @@ public class ITriggeredImpl extends OperationsTypeImpl implements ITriggered {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
+				return;
 			case UMLRhapsodyPackage.ITRIGGERED__ID:
 				setId(ID_EDEFAULT);
 				return;
 			case UMLRhapsodyPackage.ITRIGGERED__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
 			case UMLRhapsodyPackage.ITRIGGERED__ARGS:
 				getArgs().clear();
@@ -646,12 +649,12 @@ public class ITriggeredImpl extends OperationsTypeImpl implements ITriggered {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.ITRIGGERED__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case UMLRhapsodyPackage.ITRIGGERED__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.ITRIGGERED__ARGS:
 				return args != null && !args.isEmpty();
 			case UMLRhapsodyPackage.ITRIGGERED__RETURN_TYPE:
@@ -678,16 +681,68 @@ public class ITriggeredImpl extends OperationsTypeImpl implements ITriggered {
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == M_pFormalMessageType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ItemsType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IModelElement.class) {
+			switch (derivedFeatureID) {
+				case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME: return UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == M_pFormalMessageType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ItemsType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IModelElement.class) {
+			switch (baseFeatureID) {
+				case UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME: return UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: "); //$NON-NLS-1$
+		result.append(" (displayName: "); //$NON-NLS-1$
+		result.append(displayName);
+		result.append(", id: "); //$NON-NLS-1$
 		result.append(id);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", abstract: "); //$NON-NLS-1$
 		result.append(abstract_);
 		result.append(", final: "); //$NON-NLS-1$

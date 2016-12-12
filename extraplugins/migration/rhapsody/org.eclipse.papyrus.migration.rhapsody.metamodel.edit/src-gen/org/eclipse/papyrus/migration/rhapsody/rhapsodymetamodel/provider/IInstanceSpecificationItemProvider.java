@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IInstanceSpecification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IInstanceSpecification} object.
@@ -72,7 +73,10 @@ public class IInstanceSpecificationItemProvider extends IModelElementItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_IInstanceSpecification_type"); //$NON-NLS-1$
+		String label = ((IInstanceSpecification)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_IInstanceSpecification_type") : //$NON-NLS-1$
+			getString("_UI_IInstanceSpecification_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

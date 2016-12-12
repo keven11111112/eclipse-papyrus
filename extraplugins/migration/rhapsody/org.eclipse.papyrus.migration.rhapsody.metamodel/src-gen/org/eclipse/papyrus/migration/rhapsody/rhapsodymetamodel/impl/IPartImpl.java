@@ -39,6 +39,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClass;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDependency;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDescription;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPropertyContainer;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISlot;
@@ -73,13 +74,13 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getImplicitClass <em>Implicit Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getLastID <em>Last ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getOtherClass <em>Other Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getInverse <em>Inverse</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getTags <em>Tags</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getInitialCallAction <em>Initial Call Action</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getTheMainDiagram <em>The Main Diagram</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPartImpl#getSlots <em>Slots</em>}</li>
@@ -290,6 +291,26 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 	protected String multiplicity = MULTIPLICITY_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DISPLAY_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String displayName = DISPLAY_NAME_EDEFAULT;
+
+	/**
 	 * The cached value of the '{@link #getStereotypes() <em>Stereotypes</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -348,26 +369,6 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 	 * @ordered
 	 */
 	protected ICallAction initialCallAction;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCodeUpdateCGTime() <em>Code Update CG Time</em>}' attribute list.
@@ -1276,6 +1277,8 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 				return getLastID();
 			case UMLRhapsodyPackage.IPART__MULTIPLICITY:
 				return getMultiplicity();
+			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
+				return getDisplayName();
 			case UMLRhapsodyPackage.IPART__STEREOTYPES:
 				if (resolve) return getStereotypes();
 				return basicGetStereotypes();
@@ -1293,8 +1296,6 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 			case UMLRhapsodyPackage.IPART__INITIAL_CALL_ACTION:
 				if (resolve) return getInitialCallAction();
 				return basicGetInitialCallAction();
-			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IPART__CODE_UPDATE_CG_TIME:
 				return getCodeUpdateCGTime();
 			case UMLRhapsodyPackage.IPART__THE_MAIN_DIAGRAM:
@@ -1355,6 +1356,9 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 			case UMLRhapsodyPackage.IPART__MULTIPLICITY:
 				setMultiplicity((String)newValue);
 				return;
+			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
+				setDisplayName((String)newValue);
+				return;
 			case UMLRhapsodyPackage.IPART__STEREOTYPES:
 				setStereotypes((IUnit)newValue);
 				return;
@@ -1373,9 +1377,6 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 				return;
 			case UMLRhapsodyPackage.IPART__INITIAL_CALL_ACTION:
 				setInitialCallAction((ICallAction)newValue);
-				return;
-			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IPART__CODE_UPDATE_CG_TIME:
 				getCodeUpdateCGTime().clear();
@@ -1439,6 +1440,9 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 			case UMLRhapsodyPackage.IPART__MULTIPLICITY:
 				setMultiplicity(MULTIPLICITY_EDEFAULT);
 				return;
+			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
+				return;
 			case UMLRhapsodyPackage.IPART__STEREOTYPES:
 				setStereotypes((IUnit)null);
 				return;
@@ -1456,9 +1460,6 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 				return;
 			case UMLRhapsodyPackage.IPART__INITIAL_CALL_ACTION:
 				setInitialCallAction((ICallAction)null);
-				return;
-			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
 			case UMLRhapsodyPackage.IPART__CODE_UPDATE_CG_TIME:
 				getCodeUpdateCGTime().clear();
@@ -1508,6 +1509,8 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 				return LAST_ID_EDEFAULT == null ? lastID != null : !LAST_ID_EDEFAULT.equals(lastID);
 			case UMLRhapsodyPackage.IPART__MULTIPLICITY:
 				return MULTIPLICITY_EDEFAULT == null ? multiplicity != null : !MULTIPLICITY_EDEFAULT.equals(multiplicity);
+			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IPART__STEREOTYPES:
 				return stereotypes != null;
 			case UMLRhapsodyPackage.IPART__OTHER_CLASS:
@@ -1520,8 +1523,6 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 				return tags != null;
 			case UMLRhapsodyPackage.IPART__INITIAL_CALL_ACTION:
 				return initialCallAction != null;
-			case UMLRhapsodyPackage.IPART__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IPART__CODE_UPDATE_CG_TIME:
 				return codeUpdateCGTime != null && !codeUpdateCGTime.isEmpty();
 			case UMLRhapsodyPackage.IPART__THE_MAIN_DIAGRAM:
@@ -1613,6 +1614,12 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (derivedFeatureID) {
+				case UMLRhapsodyPackage.IPART__DISPLAY_NAME: return UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -1692,6 +1699,12 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 		}
 		if (baseClass == TargetType.class) {
 			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IModelElement.class) {
+			switch (baseFeatureID) {
+				case UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME: return UMLRhapsodyPackage.IPART__DISPLAY_NAME;
 				default: return -1;
 			}
 		}

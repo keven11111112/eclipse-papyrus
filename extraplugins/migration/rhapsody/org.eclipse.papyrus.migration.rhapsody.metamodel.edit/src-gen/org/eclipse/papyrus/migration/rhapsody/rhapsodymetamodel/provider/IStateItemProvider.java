@@ -63,7 +63,6 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 			addDefaultTransPropertyDescriptor(object);
 			addInheritsFromHandlePropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addTheMainDiagramPropertyDescriptor(object);
 			addSwimlanePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
@@ -173,28 +172,6 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 				 getString("_UI_IState_requiremenTracabilityHandle_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IState_requiremenTracabilityHandle_feature", "_UI_IState_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 UMLRhapsodyPackage.eINSTANCE.getIState_RequiremenTracabilityHandle(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IState_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IState_displayName_feature", "_UI_IState_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIState_DisplayName(),
 				 true,
 				 false,
 				 false,
@@ -345,7 +322,6 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 			case UMLRhapsodyPackage.ISTATE__STATE_TYPE:
 			case UMLRhapsodyPackage.ISTATE__DEFAULT_TRANS:
 			case UMLRhapsodyPackage.ISTATE__REQUIREMEN_TRACABILITY_HANDLE:
-			case UMLRhapsodyPackage.ISTATE__DISPLAY_NAME:
 			case UMLRhapsodyPackage.ISTATE__CODE_UPDATE_CG_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -400,6 +376,11 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -564,6 +545,11 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -639,12 +625,22 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -704,12 +700,22 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -755,6 +761,11 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -805,6 +816,11 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createITrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -886,9 +902,9 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 		boolean qualify =
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_ExitAction() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_NestedStateChart() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_Annotations() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_Dependencies() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_NestedStateChart();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_Dependencies();
 
 		if (qualify) {
 			return getString

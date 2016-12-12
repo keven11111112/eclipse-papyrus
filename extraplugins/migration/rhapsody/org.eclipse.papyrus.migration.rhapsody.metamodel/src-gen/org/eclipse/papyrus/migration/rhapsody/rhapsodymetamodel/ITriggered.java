@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getArgs <em>Args</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getAbstract <em>Abstract</em>}</li>
@@ -40,7 +39,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ITriggered extends OperationsType, M_pFormalMessageType, ItemsType {
+public interface ITriggered extends OperationsType, M_pFormalMessageType, ItemsType, IModelElement {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -92,32 +91,6 @@ public interface ITriggered extends OperationsType, M_pFormalMessageType, ItemsT
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Name</em>' attribute.
-	 * @see #setDisplayName(String)
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getITriggered_DisplayName()
-	 * @model
-	 * @generated
-	 */
-	String getDisplayName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
-	 * @see #getDisplayName()
-	 * @generated
-	 */
-	void setDisplayName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Args</b></em>' containment reference list.

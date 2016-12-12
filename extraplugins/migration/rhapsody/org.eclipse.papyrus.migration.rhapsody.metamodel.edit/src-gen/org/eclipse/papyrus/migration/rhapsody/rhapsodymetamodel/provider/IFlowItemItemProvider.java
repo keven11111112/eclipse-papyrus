@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IFlowItem;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IFlowItem} object.
@@ -72,7 +73,10 @@ public class IFlowItemItemProvider extends IClassifierItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_IFlowItem_type"); //$NON-NLS-1$
+		String label = ((IFlowItem)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_IFlowItem_type") : //$NON-NLS-1$
+			getString("_UI_IFlowItem_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

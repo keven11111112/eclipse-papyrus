@@ -120,7 +120,8 @@ public class IObjectModelDiagramItemProvider extends IDiagramItemProvider {
 
 		boolean qualify =
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_Annotations();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_Annotations() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_HyperLinks();
 
 		if (qualify) {
 			return getString

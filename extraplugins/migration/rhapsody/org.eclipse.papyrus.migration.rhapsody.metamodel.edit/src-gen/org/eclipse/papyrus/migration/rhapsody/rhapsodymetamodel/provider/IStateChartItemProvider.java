@@ -422,6 +422,7 @@ public class IStateChartItemProvider extends IClassItemProvider {
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getNestedStateChartType_Connectors() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIStateChart_States() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Dependencies() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_HyperLinks() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getNestedStateChartType_Transitions();
 
 		if (qualify) {

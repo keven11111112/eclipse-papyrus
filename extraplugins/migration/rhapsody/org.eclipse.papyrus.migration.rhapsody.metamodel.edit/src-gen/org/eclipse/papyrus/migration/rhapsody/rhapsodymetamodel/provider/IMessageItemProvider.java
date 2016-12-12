@@ -61,7 +61,6 @@ public class IMessageItemProvider extends IModelElementItemProvider {
 			addIdPropertyDescriptor(object);
 			addMyStatePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addM_szSequencePropertyDescriptor(object);
 			addM_szActualArgsPropertyDescriptor(object);
 			addM_szReturnValPropertyDescriptor(object);
@@ -138,28 +137,6 @@ public class IMessageItemProvider extends IModelElementItemProvider {
 				 getString("_UI_IMessage_name_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IMessage_name_feature", "_UI_IMessage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 UMLRhapsodyPackage.eINSTANCE.getIMessage_Name(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IMessage_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IMessage_displayName_feature", "_UI_IMessage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIMessage_DisplayName(),
 				 true,
 				 false,
 				 false,
@@ -549,7 +526,6 @@ public class IMessageItemProvider extends IModelElementItemProvider {
 			case UMLRhapsodyPackage.IMESSAGE__ID:
 			case UMLRhapsodyPackage.IMESSAGE__MY_STATE:
 			case UMLRhapsodyPackage.IMESSAGE__NAME:
-			case UMLRhapsodyPackage.IMESSAGE__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_SEQUENCE:
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_ACTUAL_ARGS:
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_RETURN_VAL:

@@ -31,7 +31,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getLinkType <em>Link Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getIsConfigurationFileHyperLink <em>Is Configuration File Hyper Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getLinkTarget <em>Link Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getObjectCreation <em>Object Creation</em>}</li>
@@ -240,32 +239,6 @@ public interface IMHyperLink extends HyperLinksType {
 	 * @generated
 	 */
 	void setLinkTarget(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Name</em>' attribute.
-	 * @see #setDisplayName(String)
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIMHyperLink_DisplayName()
-	 * @model
-	 * @generated
-	 */
-	String getDisplayName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
-	 * @see #getDisplayName()
-	 * @generated
-	 */
-	void setDisplayName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' containment reference.

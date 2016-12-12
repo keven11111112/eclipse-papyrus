@@ -68,7 +68,6 @@ public class IEventItemProvider extends IInterfaceItemItemProvider {
 			addModifiedTimeWeakPropertyDescriptor(object);
 			addSuperEventPropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -294,28 +293,6 @@ public class IEventItemProvider extends IInterfaceItemItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IEvent_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IEvent_displayName_feature", "_UI_IEvent_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIEvent_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -398,7 +375,6 @@ public class IEventItemProvider extends IInterfaceItemItemProvider {
 			case UMLRhapsodyPackage.IEVENT__VIRTUAL:
 			case UMLRhapsodyPackage.IEVENT__MODIFIED_TIME_WEAK:
 			case UMLRhapsodyPackage.IEVENT__REQUIREMEN_TRACABILITY_HANDLE:
-			case UMLRhapsodyPackage.IEVENT__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.IEVENT__ARGS:

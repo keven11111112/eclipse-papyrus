@@ -55,7 +55,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassifierRoleImpl#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassifierRoleImpl#getObjectCreation <em>Object Creation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassifierRoleImpl#getUmlDependencyID <em>Uml Dependency ID</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassifierRoleImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -250,26 +249,6 @@ public class IClassifierRoleImpl extends IModelElementImpl implements IClassifie
 	 * @ordered
 	 */
 	protected String umlDependencyID = UML_DEPENDENCY_ID_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -663,27 +642,6 @@ public class IClassifierRoleImpl extends IModelElementImpl implements IClassifie
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ICLASSIFIER_ROLE__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -732,8 +690,6 @@ public class IClassifierRoleImpl extends IModelElementImpl implements IClassifie
 				return getObjectCreation();
 			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__UML_DEPENDENCY_ID:
 				return getUmlDependencyID();
-			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__DISPLAY_NAME:
-				return getDisplayName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -788,9 +744,6 @@ public class IClassifierRoleImpl extends IModelElementImpl implements IClassifie
 			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__UML_DEPENDENCY_ID:
 				setUmlDependencyID((String)newValue);
 				return;
-			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -842,9 +795,6 @@ public class IClassifierRoleImpl extends IModelElementImpl implements IClassifie
 			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__UML_DEPENDENCY_ID:
 				setUmlDependencyID(UML_DEPENDENCY_ID_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -883,8 +833,6 @@ public class IClassifierRoleImpl extends IModelElementImpl implements IClassifie
 				return OBJECT_CREATION_EDEFAULT == null ? objectCreation != null : !OBJECT_CREATION_EDEFAULT.equals(objectCreation);
 			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__UML_DEPENDENCY_ID:
 				return UML_DEPENDENCY_ID_EDEFAULT == null ? umlDependencyID != null : !UML_DEPENDENCY_ID_EDEFAULT.equals(umlDependencyID);
-			case UMLRhapsodyPackage.ICLASSIFIER_ROLE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -915,8 +863,6 @@ public class IClassifierRoleImpl extends IModelElementImpl implements IClassifie
 		result.append(objectCreation);
 		result.append(", umlDependencyID: "); //$NON-NLS-1$
 		result.append(umlDependencyID);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

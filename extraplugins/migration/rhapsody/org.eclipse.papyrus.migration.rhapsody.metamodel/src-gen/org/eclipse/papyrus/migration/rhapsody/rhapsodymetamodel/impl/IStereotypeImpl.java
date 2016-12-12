@@ -64,7 +64,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStereotypeImpl#getInheritances <em>Inheritances</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStereotypeImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStereotypeImpl#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStereotypeImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStereotypeImpl#getObjectCreation <em>Object Creation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStereotypeImpl#getUmlDependencyID <em>Uml Dependency ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStereotypeImpl#getTheMainDiagram <em>The Main Diagram</em>}</li>
@@ -263,26 +262,6 @@ public class IStereotypeImpl extends IClassifierImpl implements IStereotype {
 	 * @ordered
 	 */
 	protected String requiremenTracabilityHandle = REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getObjectCreation() <em>Object Creation</em>}' attribute.
@@ -740,27 +719,6 @@ public class IStereotypeImpl extends IClassifierImpl implements IStereotype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ISTEREOTYPE__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getObjectCreation() {
 		return objectCreation;
 	}
@@ -963,8 +921,6 @@ public class IStereotypeImpl extends IClassifierImpl implements IStereotype {
 				return basicGetDependencies();
 			case UMLRhapsodyPackage.ISTEREOTYPE__REQUIREMEN_TRACABILITY_HANDLE:
 				return getRequiremenTracabilityHandle();
-			case UMLRhapsodyPackage.ISTEREOTYPE__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.ISTEREOTYPE__OBJECT_CREATION:
 				return getObjectCreation();
 			case UMLRhapsodyPackage.ISTEREOTYPE__UML_DEPENDENCY_ID:
@@ -1031,9 +987,6 @@ public class IStereotypeImpl extends IClassifierImpl implements IStereotype {
 			case UMLRhapsodyPackage.ISTEREOTYPE__REQUIREMEN_TRACABILITY_HANDLE:
 				setRequiremenTracabilityHandle((String)newValue);
 				return;
-			case UMLRhapsodyPackage.ISTEREOTYPE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 			case UMLRhapsodyPackage.ISTEREOTYPE__OBJECT_CREATION:
 				setObjectCreation((String)newValue);
 				return;
@@ -1097,9 +1050,6 @@ public class IStereotypeImpl extends IClassifierImpl implements IStereotype {
 			case UMLRhapsodyPackage.ISTEREOTYPE__REQUIREMEN_TRACABILITY_HANDLE:
 				setRequiremenTracabilityHandle(REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.ISTEREOTYPE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.ISTEREOTYPE__OBJECT_CREATION:
 				setObjectCreation(OBJECT_CREATION_EDEFAULT);
 				return;
@@ -1150,8 +1100,6 @@ public class IStereotypeImpl extends IClassifierImpl implements IStereotype {
 				return dependencies != null;
 			case UMLRhapsodyPackage.ISTEREOTYPE__REQUIREMEN_TRACABILITY_HANDLE:
 				return REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT == null ? requiremenTracabilityHandle != null : !REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT.equals(requiremenTracabilityHandle);
-			case UMLRhapsodyPackage.ISTEREOTYPE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.ISTEREOTYPE__OBJECT_CREATION:
 				return OBJECT_CREATION_EDEFAULT == null ? objectCreation != null : !OBJECT_CREATION_EDEFAULT.equals(objectCreation);
 			case UMLRhapsodyPackage.ISTEREOTYPE__UML_DEPENDENCY_ID:
@@ -1268,8 +1216,6 @@ public class IStereotypeImpl extends IClassifierImpl implements IStereotype {
 		result.append(lastID);
 		result.append(", requiremenTracabilityHandle: "); //$NON-NLS-1$
 		result.append(requiremenTracabilityHandle);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", objectCreation: "); //$NON-NLS-1$
 		result.append(objectCreation);
 		result.append(", umlDependencyID: "); //$NON-NLS-1$

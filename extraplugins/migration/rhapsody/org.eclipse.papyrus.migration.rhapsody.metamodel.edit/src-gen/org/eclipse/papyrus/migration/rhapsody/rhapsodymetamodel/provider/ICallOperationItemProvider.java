@@ -168,9 +168,9 @@ public class ICallOperationItemProvider extends IStateItemProvider {
 		boolean qualify =
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_ExitAction() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_NestedStateChart() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_Annotations() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_Dependencies() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_NestedStateChart();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIState_Dependencies();
 
 		if (qualify) {
 			return getString

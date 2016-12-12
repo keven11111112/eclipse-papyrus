@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IInternalHyperlink;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
 
 /**
@@ -98,7 +99,10 @@ public class IInternalHyperlinkItemProvider extends HyperLinksTypeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_IInternalHyperlink_type"); //$NON-NLS-1$
+		String label = ((IInternalHyperlink)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_IInternalHyperlink_type") : //$NON-NLS-1$
+			getString("_UI_IInternalHyperlink_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

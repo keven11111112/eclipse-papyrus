@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.INode;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.INode} object.
@@ -72,7 +73,10 @@ public class INodeItemProvider extends IClassifierItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_INode_type"); //$NON-NLS-1$
+		String label = ((INode)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_INode_type") : //$NON-NLS-1$
+			getString("_UI_INode_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

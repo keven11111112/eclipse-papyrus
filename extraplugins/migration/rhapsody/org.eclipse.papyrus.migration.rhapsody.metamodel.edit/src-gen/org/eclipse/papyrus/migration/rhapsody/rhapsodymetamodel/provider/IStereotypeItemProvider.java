@@ -66,7 +66,6 @@ public class IStereotypeItemProvider extends IClassifierItemProvider {
 			addNewTermPropertyDescriptor(object);
 			addLastIDPropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addObjectCreationPropertyDescriptor(object);
 			addUmlDependencyIDPropertyDescriptor(object);
 			addTheMainDiagramPropertyDescriptor(object);
@@ -251,28 +250,6 @@ public class IStereotypeItemProvider extends IClassifierItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IStereotype_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IStereotype_displayName_feature", "_UI_IStereotype_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIStereotype_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Object Creation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -419,7 +396,6 @@ public class IStereotypeItemProvider extends IClassifierItemProvider {
 			case UMLRhapsodyPackage.ISTEREOTYPE__NEW_TERM:
 			case UMLRhapsodyPackage.ISTEREOTYPE__LAST_ID:
 			case UMLRhapsodyPackage.ISTEREOTYPE__REQUIREMEN_TRACABILITY_HANDLE:
-			case UMLRhapsodyPackage.ISTEREOTYPE__DISPLAY_NAME:
 			case UMLRhapsodyPackage.ISTEREOTYPE__OBJECT_CREATION:
 			case UMLRhapsodyPackage.ISTEREOTYPE__UML_DEPENDENCY_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

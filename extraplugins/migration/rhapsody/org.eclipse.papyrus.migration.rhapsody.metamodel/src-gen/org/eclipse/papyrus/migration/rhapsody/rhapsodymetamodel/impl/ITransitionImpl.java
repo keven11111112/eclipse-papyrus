@@ -64,7 +64,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITransitionImpl#getInheritsFromHandle <em>Inherits From Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITransitionImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITransitionImpl#getStereotypes <em>Stereotypes</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ITransitionImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -299,26 +298,6 @@ public class ITransitionImpl extends IModelElementImpl implements ITransition {
 	 * @ordered
 	 */
 	protected IClassifier stereotypes;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -811,27 +790,6 @@ public class ITransitionImpl extends IModelElementImpl implements ITransition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ITRANSITION__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -891,8 +849,6 @@ public class ITransitionImpl extends IModelElementImpl implements ITransition {
 			case UMLRhapsodyPackage.ITRANSITION__STEREOTYPES:
 				if (resolve) return getStereotypes();
 				return basicGetStereotypes();
-			case UMLRhapsodyPackage.ITRANSITION__DISPLAY_NAME:
-				return getDisplayName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -957,9 +913,6 @@ public class ITransitionImpl extends IModelElementImpl implements ITransition {
 			case UMLRhapsodyPackage.ITRANSITION__STEREOTYPES:
 				setStereotypes((IClassifier)newValue);
 				return;
-			case UMLRhapsodyPackage.ITRANSITION__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1020,9 +973,6 @@ public class ITransitionImpl extends IModelElementImpl implements ITransition {
 			case UMLRhapsodyPackage.ITRANSITION__STEREOTYPES:
 				setStereotypes((IClassifier)null);
 				return;
-			case UMLRhapsodyPackage.ITRANSITION__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1067,8 +1017,6 @@ public class ITransitionImpl extends IModelElementImpl implements ITransition {
 				return dependencies != null && !dependencies.isEmpty();
 			case UMLRhapsodyPackage.ITRANSITION__STEREOTYPES:
 				return stereotypes != null;
-			case UMLRhapsodyPackage.ITRANSITION__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1185,8 +1133,6 @@ public class ITransitionImpl extends IModelElementImpl implements ITransition {
 		result.append(objectCreation);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

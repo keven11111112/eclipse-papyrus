@@ -64,7 +64,6 @@ public class IRequirementItemProvider extends IAnnotationItemProvider {
 			addLastIDPropertyDescriptor(object);
 			addModifiedTimeWeakPropertyDescriptor(object);
 			addReqIDPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addTheMainDiagramPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -203,28 +202,6 @@ public class IRequirementItemProvider extends IAnnotationItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IRequirement_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IRequirement_displayName_feature", "_UI_IRequirement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIRequirement_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the The Main Diagram feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,7 +301,6 @@ public class IRequirementItemProvider extends IAnnotationItemProvider {
 			case UMLRhapsodyPackage.IREQUIREMENT__LAST_ID:
 			case UMLRhapsodyPackage.IREQUIREMENT__MODIFIED_TIME_WEAK:
 			case UMLRhapsodyPackage.IREQUIREMENT__REQ_ID:
-			case UMLRhapsodyPackage.IREQUIREMENT__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.IREQUIREMENT__ANNOTATIONS:

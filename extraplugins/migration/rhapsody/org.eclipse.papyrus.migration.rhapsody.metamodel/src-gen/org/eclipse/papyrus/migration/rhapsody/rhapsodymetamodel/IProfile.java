@@ -32,7 +32,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProfile#getTypes <em>Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProfile#getMatrixLayouts <em>Matrix Layouts</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProfile#getLicense <em>License</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProfile#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIProfile()
@@ -223,31 +222,5 @@ public interface IProfile extends IPackage, OwnerHandleType, DependsOnType, Defa
 	 * @generated
 	 */
 	void setLicense(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Name</em>' attribute.
-	 * @see #setDisplayName(String)
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIProfile_DisplayName()
-	 * @model
-	 * @generated
-	 */
-	String getDisplayName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProfile#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
-	 * @see #getDisplayName()
-	 * @generated
-	 */
-	void setDisplayName(String value);
 
 } // IProfile

@@ -111,7 +111,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassImpl#getTemplateParameters <em>Template Parameters</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassImpl#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassImpl#getCmheader <em>Cmheader</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IClassImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -626,26 +625,6 @@ public class IClassImpl extends IClassifierImpl implements IClass {
 	 * @ordered
 	 */
 	protected String cmheader = CMHEADER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1465,27 +1444,6 @@ public class IClassImpl extends IClassifierImpl implements IClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ICLASS__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -1627,8 +1585,6 @@ public class IClassImpl extends IClassifierImpl implements IClass {
 				return getCodeUpdateCGTime();
 			case UMLRhapsodyPackage.ICLASS__CMHEADER:
 				return getCmheader();
-			case UMLRhapsodyPackage.ICLASS__DISPLAY_NAME:
-				return getDisplayName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1790,9 +1746,6 @@ public class IClassImpl extends IClassifierImpl implements IClass {
 			case UMLRhapsodyPackage.ICLASS__CMHEADER:
 				setCmheader((String)newValue);
 				return;
-			case UMLRhapsodyPackage.ICLASS__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1928,9 +1881,6 @@ public class IClassImpl extends IClassifierImpl implements IClass {
 			case UMLRhapsodyPackage.ICLASS__CMHEADER:
 				setCmheader(CMHEADER_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.ICLASS__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2025,8 +1975,6 @@ public class IClassImpl extends IClassifierImpl implements IClass {
 				return codeUpdateCGTime != null && !codeUpdateCGTime.isEmpty();
 			case UMLRhapsodyPackage.ICLASS__CMHEADER:
 				return CMHEADER_EDEFAULT == null ? cmheader != null : !CMHEADER_EDEFAULT.equals(cmheader);
-			case UMLRhapsodyPackage.ICLASS__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2193,8 +2141,6 @@ public class IClassImpl extends IClassifierImpl implements IClass {
 		result.append(codeUpdateCGTime);
 		result.append(", cmheader: "); //$NON-NLS-1$
 		result.append(cmheader);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

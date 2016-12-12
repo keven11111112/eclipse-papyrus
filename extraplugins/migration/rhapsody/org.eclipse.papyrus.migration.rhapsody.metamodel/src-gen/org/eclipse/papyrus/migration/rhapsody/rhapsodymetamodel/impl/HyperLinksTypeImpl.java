@@ -13,9 +13,6 @@
 package org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.HyperLinksType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
 
@@ -26,7 +23,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *
  * @generated
  */
-public abstract class HyperLinksTypeImpl extends MinimalEObjectImpl.Container implements HyperLinksType {
+public abstract class HyperLinksTypeImpl extends IModelElementImpl implements HyperLinksType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

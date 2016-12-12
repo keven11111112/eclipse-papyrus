@@ -8679,17 +8679,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIActivityGraph_DisplayName() {
-        return (EAttribute)getIActivityGraph().getEStructuralFeatures().get(20);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIActivityGraph_HyperLinks() {
-        return (EReference)getIActivityGraph().getEStructuralFeatures().get(21);
+        return (EReference)getIActivityGraph().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -8698,7 +8689,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIActivityGraph_Dependencies() {
-        return (EReference)getIActivityGraph().getEStructuralFeatures().get(22);
+        return (EReference)getIActivityGraph().getEStructuralFeatures().get(21);
 	}
 
 	/**
@@ -8707,7 +8698,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIActivityGraph_TheMainDiagram() {
-        return (EReference)getIActivityGraph().getEStructuralFeatures().get(23);
+        return (EReference)getIActivityGraph().getEStructuralFeatures().get(22);
 	}
 
 	/**
@@ -8716,7 +8707,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIActivityGraph_Associations() {
-        return (EReference)getIActivityGraph().getEStructuralFeatures().get(24);
+        return (EReference)getIActivityGraph().getEStructuralFeatures().get(23);
 	}
 
 	/**
@@ -8725,7 +8716,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIActivityGraph_Tags() {
-        return (EReference)getIActivityGraph().getEStructuralFeatures().get(25);
+        return (EReference)getIActivityGraph().getEStructuralFeatures().get(24);
 	}
 
 	/**
@@ -10317,15 +10308,6 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIClass_DisplayName() {
-        return (EAttribute)getIClass().getEStructuralFeatures().get(34);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getIClassHandle() {
 		if (iClassHandleEClass == null) {
 			iClassHandleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(UMLRhapsodyPackage.eNS_URI).getEClassifiers().get(88);
@@ -10547,15 +10529,6 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 */
 	public EAttribute getIClassifierRole_UmlDependencyID() {
         return (EAttribute)getIClassifierRole().getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIClassifierRole_DisplayName() {
-        return (EAttribute)getIClassifierRole().getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -12075,17 +12048,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIDependency_DisplayName() {
-        return (EAttribute)getIDependency().getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIDependency_Dependencies() {
-        return (EReference)getIDependency().getEStructuralFeatures().get(10);
+        return (EReference)getIDependency().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -12094,7 +12058,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIDependency_Description() {
-        return (EReference)getIDependency().getEStructuralFeatures().get(11);
+        return (EReference)getIDependency().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -12103,7 +12067,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIDependency_RequiremenTracabilityHandle() {
-        return (EAttribute)getIDependency().getEStructuralFeatures().get(12);
+        return (EAttribute)getIDependency().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -12112,7 +12076,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIDependency_CodeUpdateCGTime() {
-        return (EAttribute)getIDependency().getEStructuralFeatures().get(13);
+        return (EAttribute)getIDependency().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -12375,7 +12339,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIDiagram_DisplayName() {
+	public EAttribute getIDiagram_CodeUpdateCGTime() {
         return (EAttribute)getIDiagram().getEStructuralFeatures().get(5);
 	}
 
@@ -12384,17 +12348,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIDiagram_CodeUpdateCGTime() {
-        return (EAttribute)getIDiagram().getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIDiagram_HyperLinks() {
-        return (EReference)getIDiagram().getEStructuralFeatures().get(7);
+        return (EReference)getIDiagram().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -12692,15 +12647,6 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 */
 	public EReference getIEvent_Annotations() {
         return (EReference)getIEvent().getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIEvent_DisplayName() {
-        return (EAttribute)getIEvent().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -14544,17 +14490,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIMHyperLink_DisplayName() {
-        return (EAttribute)getIMHyperLink().getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIMHyperLink_Description() {
-        return (EReference)getIMHyperLink().getEStructuralFeatures().get(9);
+        return (EReference)getIMHyperLink().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -14563,7 +14500,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMHyperLink_RequiremenTracabilityHandle() {
-        return (EAttribute)getIMHyperLink().getEStructuralFeatures().get(10);
+        return (EAttribute)getIMHyperLink().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -14572,7 +14509,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMHyperLink_ObjectCreation() {
-        return (EAttribute)getIMHyperLink().getEStructuralFeatures().get(11);
+        return (EAttribute)getIMHyperLink().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -14581,7 +14518,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMHyperLink_UmlDependencyID() {
-        return (EAttribute)getIMHyperLink().getEStructuralFeatures().get(12);
+        return (EAttribute)getIMHyperLink().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -15009,7 +14946,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIMessage_DisplayName() {
+	public EAttribute getIMessage_M_szSequence() {
         return (EAttribute)getIMessage().getEStructuralFeatures().get(3);
 	}
 
@@ -15018,7 +14955,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIMessage_M_szSequence() {
+	public EAttribute getIMessage_M_szActualArgs() {
         return (EAttribute)getIMessage().getEStructuralFeatures().get(4);
 	}
 
@@ -15027,7 +14964,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIMessage_M_szActualArgs() {
+	public EAttribute getIMessage_M_szReturnVal() {
         return (EAttribute)getIMessage().getEStructuralFeatures().get(5);
 	}
 
@@ -15036,17 +14973,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIMessage_M_szReturnVal() {
-        return (EAttribute)getIMessage().getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIMessage_M_pReceiver() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(7);
+        return (EReference)getIMessage().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -15055,7 +14983,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_M_pSender() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(8);
+        return (EReference)getIMessage().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -15064,7 +14992,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_M_pFormalMessage() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(9);
+        return (EReference)getIMessage().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -15073,7 +15001,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMessage_M_eType() {
-        return (EAttribute)getIMessage().getEStructuralFeatures().get(10);
+        return (EAttribute)getIMessage().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -15082,7 +15010,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_M_pCommunicationConnection() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(11);
+        return (EReference)getIMessage().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -15091,7 +15019,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMessage_M_freeText() {
-        return (EAttribute)getIMessage().getEStructuralFeatures().get(12);
+        return (EAttribute)getIMessage().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -15100,7 +15028,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMessage_ModifiedTimeWeak() {
-        return (EAttribute)getIMessage().getEStructuralFeatures().get(13);
+        return (EAttribute)getIMessage().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -15109,7 +15037,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_Stereotypes() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(14);
+        return (EReference)getIMessage().getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -15118,7 +15046,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_Tags() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(15);
+        return (EReference)getIMessage().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -15127,7 +15055,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_Properties() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(16);
+        return (EReference)getIMessage().getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -15136,7 +15064,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_M_targetExec() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(17);
+        return (EReference)getIMessage().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -15145,7 +15073,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIMessage_M_srcExec() {
-        return (EReference)getIMessage().getEStructuralFeatures().get(18);
+        return (EReference)getIMessage().getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -15154,7 +15082,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMessage_ObjectCreation() {
-        return (EAttribute)getIMessage().getEStructuralFeatures().get(19);
+        return (EAttribute)getIMessage().getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -15163,7 +15091,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIMessage_UmlDependencyID() {
-        return (EAttribute)getIMessage().getEStructuralFeatures().get(20);
+        return (EAttribute)getIMessage().getEStructuralFeatures().get(19);
 	}
 
 	/**
@@ -15254,6 +15182,15 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 			iModelElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(UMLRhapsodyPackage.eNS_URI).getEClassifiers().get(157);
 		}
 		return iModelElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIModelElement_DisplayName() {
+        return (EAttribute)getIModelElement().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -15852,7 +15789,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIPart_DisplayName() {
+	public EAttribute getIPart_CodeUpdateCGTime() {
         return (EAttribute)getIPart().getEStructuralFeatures().get(6);
 	}
 
@@ -15861,17 +15798,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIPart_CodeUpdateCGTime() {
-        return (EAttribute)getIPart().getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIPart_TheMainDiagram() {
-        return (EReference)getIPart().getEStructuralFeatures().get(8);
+        return (EReference)getIPart().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -15880,7 +15808,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIPart_Slots() {
-        return (EReference)getIPart().getEStructuralFeatures().get(9);
+        return (EReference)getIPart().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -15889,7 +15817,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIPart_HyperLinks() {
-        return (EReference)getIPart().getEStructuralFeatures().get(10);
+        return (EReference)getIPart().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -16203,7 +16131,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIPrimitiveOperation_DisplayName() {
+	public EAttribute getIPrimitiveOperation_RequiremenTracabilityHandle() {
         return (EAttribute)getIPrimitiveOperation().getEStructuralFeatures().get(17);
 	}
 
@@ -16212,17 +16140,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIPrimitiveOperation_RequiremenTracabilityHandle() {
-        return (EAttribute)getIPrimitiveOperation().getEStructuralFeatures().get(18);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIPrimitiveOperation_Declaratives() {
-        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(19);
+        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -16231,7 +16150,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIPrimitiveOperation_ItsActivityGraph() {
-        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(20);
+        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(19);
 	}
 
 	/**
@@ -16240,7 +16159,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIPrimitiveOperation_EmbededFiles() {
-        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(21);
+        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -16249,7 +16168,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIPrimitiveOperation_CodeUpdateCGTime() {
-        return (EAttribute)getIPrimitiveOperation().getEStructuralFeatures().get(22);
+        return (EAttribute)getIPrimitiveOperation().getEStructuralFeatures().get(21);
 	}
 
 	/**
@@ -16258,7 +16177,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIPrimitiveOperation_TemplateParameters() {
-        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(23);
+        return (EReference)getIPrimitiveOperation().getEStructuralFeatures().get(22);
 	}
 
 	/**
@@ -16352,15 +16271,6 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 */
 	public EAttribute getIProfile_License() {
         return (EAttribute)getIProfile().getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getIProfile_DisplayName() {
-        return (EAttribute)getIProfile().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -16989,17 +16899,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIRequirement_DisplayName() {
-        return (EAttribute)getIRequirement().getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIRequirement_Dependencies() {
-        return (EReference)getIRequirement().getEStructuralFeatures().get(9);
+        return (EReference)getIRequirement().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -17008,7 +16909,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIRequirement_Anchors() {
-        return (EReference)getIRequirement().getEStructuralFeatures().get(10);
+        return (EReference)getIRequirement().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -17017,7 +16918,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIRequirement_HyperLinks() {
-        return (EReference)getIRequirement().getEStructuralFeatures().get(11);
+        return (EReference)getIRequirement().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -17026,7 +16927,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIRequirement_TheMainDiagram() {
-        return (EReference)getIRequirement().getEStructuralFeatures().get(12);
+        return (EReference)getIRequirement().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -17226,17 +17127,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIState_DisplayName() {
-        return (EAttribute)getIState().getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIState_Annotations() {
-        return (EReference)getIState().getEStructuralFeatures().get(9);
+        return (EReference)getIState().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -17245,7 +17137,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIState_Dependencies() {
-        return (EReference)getIState().getEStructuralFeatures().get(10);
+        return (EReference)getIState().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -17254,7 +17146,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIState_TheMainDiagram() {
-        return (EReference)getIState().getEStructuralFeatures().get(11);
+        return (EReference)getIState().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -17263,7 +17155,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIState_Swimlane() {
-        return (EReference)getIState().getEStructuralFeatures().get(12);
+        return (EReference)getIState().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -17272,7 +17164,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getIState_CodeUpdateCGTime() {
-        return (EAttribute)getIState().getEStructuralFeatures().get(13);
+        return (EAttribute)getIState().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -17526,7 +17418,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIStereotype_DisplayName() {
+	public EAttribute getIStereotype_ObjectCreation() {
         return (EAttribute)getIStereotype().getEStructuralFeatures().get(9);
 	}
 
@@ -17535,7 +17427,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIStereotype_ObjectCreation() {
+	public EAttribute getIStereotype_UmlDependencyID() {
         return (EAttribute)getIStereotype().getEStructuralFeatures().get(10);
 	}
 
@@ -17544,17 +17436,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIStereotype_UmlDependencyID() {
-        return (EAttribute)getIStereotype().getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIStereotype_TheMainDiagram() {
-        return (EReference)getIStereotype().getEStructuralFeatures().get(12);
+        return (EReference)getIStereotype().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -17563,7 +17446,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getIStereotype_Annotations() {
-        return (EReference)getIStereotype().getEStructuralFeatures().get(13);
+        return (EReference)getIStereotype().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -17919,15 +17802,6 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getISubsystem_DisplayName() {
-        return (EAttribute)getISubsystem().getEStructuralFeatures().get(36);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getISwimlane() {
 		if (iSwimlaneEClass == null) {
 			iSwimlaneEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(UMLRhapsodyPackage.eNS_URI).getEClassifiers().get(192);
@@ -18021,17 +17895,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getISwimlane_DisplayName() {
-        return (EAttribute)getISwimlane().getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getISwimlane_Stereotypes() {
-        return (EReference)getISwimlane().getEStructuralFeatures().get(10);
+        return (EReference)getISwimlane().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -18423,15 +18288,6 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getITag_DisplayName() {
-        return (EAttribute)getITag().getEStructuralFeatures().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getITemplateInst() {
 		if (iTemplateInstEClass == null) {
 			iTemplateInstEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(UMLRhapsodyPackage.eNS_URI).getEClassifiers().get(198);
@@ -18798,15 +18654,6 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getITransition_DisplayName() {
-        return (EAttribute)getITransition().getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getITrigger() {
 		if (iTriggerEClass == null) {
 			iTriggerEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(UMLRhapsodyPackage.eNS_URI).getEClassifiers().get(206);
@@ -18849,17 +18696,8 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getITriggered_DisplayName() {
-        return (EAttribute)getITriggered().getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getITriggered_Args() {
-        return (EReference)getITriggered().getEStructuralFeatures().get(3);
+        return (EReference)getITriggered().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -18868,7 +18706,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EReference getITriggered_ReturnType() {
-        return (EReference)getITriggered().getEStructuralFeatures().get(4);
+        return (EReference)getITriggered().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -18877,7 +18715,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getITriggered_Abstract() {
-        return (EAttribute)getITriggered().getEStructuralFeatures().get(5);
+        return (EAttribute)getITriggered().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -18886,7 +18724,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getITriggered_Final() {
-        return (EAttribute)getITriggered().getEStructuralFeatures().get(6);
+        return (EAttribute)getITriggered().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -18895,7 +18733,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getITriggered_Concurrency() {
-        return (EAttribute)getITriggered().getEStructuralFeatures().get(7);
+        return (EAttribute)getITriggered().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -18904,7 +18742,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getITriggered_Protection() {
-        return (EAttribute)getITriggered().getEStructuralFeatures().get(8);
+        return (EAttribute)getITriggered().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -18913,7 +18751,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getITriggered_ModifiedTimeWeak() {
-        return (EAttribute)getITriggered().getEStructuralFeatures().get(9);
+        return (EAttribute)getITriggered().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -18922,7 +18760,7 @@ public class UMLRhapsodyPackageImpl extends EPackageImpl implements UMLRhapsodyP
 	 * @generated
 	 */
 	public EAttribute getITriggered_MyState() {
-        return (EAttribute)getITriggered().getEStructuralFeatures().get(10);
+        return (EAttribute)getITriggered().getEStructuralFeatures().get(9);
 	}
 
 	/**

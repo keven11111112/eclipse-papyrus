@@ -67,9 +67,9 @@ public class IPartItemProvider extends AssociationsTypeItemProvider {
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
 			addLastIDPropertyDescriptor(object);
 			addMultiplicityPropertyDescriptor(object);
+			addDisplayNamePropertyDescriptor(object);
 			addOtherClassPropertyDescriptor(object);
 			addInversePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
 			addTheMainDiagramPropertyDescriptor(object);
 		}
@@ -329,9 +329,9 @@ public class IPartItemProvider extends AssociationsTypeItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IPart_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPart_displayName_feature", "_UI_IPart_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIPart_DisplayName(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
 				 true,
 				 false,
 				 false,

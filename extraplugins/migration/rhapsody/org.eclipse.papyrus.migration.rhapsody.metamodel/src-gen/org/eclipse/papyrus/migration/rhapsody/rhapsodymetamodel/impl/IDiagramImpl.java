@@ -70,7 +70,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDiagramImpl#getModifiedTimeWeak <em>Modified Time Weak</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDiagramImpl#getGraphicChart <em>Graphic Chart</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDiagramImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDiagramImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDiagramImpl#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDiagramImpl#getHyperLinks <em>Hyper Links</em>}</li>
  * </ul>
@@ -337,26 +336,6 @@ public class IDiagramImpl extends IUnitImpl implements IDiagram {
 	 * @ordered
 	 */
 	protected EList<IAnnotation> annotations;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCodeUpdateCGTime() <em>Code Update CG Time</em>}' attribute list.
@@ -927,27 +906,6 @@ public class IDiagramImpl extends IUnitImpl implements IDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IDIAGRAM__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<String> getCodeUpdateCGTime() {
 		if (codeUpdateCGTime == null) {
 			codeUpdateCGTime = new EDataTypeEList<String>(String.class, this, UMLRhapsodyPackage.IDIAGRAM__CODE_UPDATE_CG_TIME);
@@ -1037,8 +995,6 @@ public class IDiagramImpl extends IUnitImpl implements IDiagram {
 				return basicGetGraphicChart();
 			case UMLRhapsodyPackage.IDIAGRAM__ANNOTATIONS:
 				return getAnnotations();
-			case UMLRhapsodyPackage.IDIAGRAM__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IDIAGRAM__CODE_UPDATE_CG_TIME:
 				return getCodeUpdateCGTime();
 			case UMLRhapsodyPackage.IDIAGRAM__HYPER_LINKS:
@@ -1108,9 +1064,6 @@ public class IDiagramImpl extends IUnitImpl implements IDiagram {
 			case UMLRhapsodyPackage.IDIAGRAM__ANNOTATIONS:
 				getAnnotations().clear();
 				getAnnotations().addAll((Collection<? extends IAnnotation>)newValue);
-				return;
-			case UMLRhapsodyPackage.IDIAGRAM__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IDIAGRAM__CODE_UPDATE_CG_TIME:
 				getCodeUpdateCGTime().clear();
@@ -1183,9 +1136,6 @@ public class IDiagramImpl extends IUnitImpl implements IDiagram {
 			case UMLRhapsodyPackage.IDIAGRAM__ANNOTATIONS:
 				getAnnotations().clear();
 				return;
-			case UMLRhapsodyPackage.IDIAGRAM__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.IDIAGRAM__CODE_UPDATE_CG_TIME:
 				getCodeUpdateCGTime().clear();
 				return;
@@ -1238,8 +1188,6 @@ public class IDiagramImpl extends IUnitImpl implements IDiagram {
 				return graphicChart != null;
 			case UMLRhapsodyPackage.IDIAGRAM__ANNOTATIONS:
 				return annotations != null && !annotations.isEmpty();
-			case UMLRhapsodyPackage.IDIAGRAM__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IDIAGRAM__CODE_UPDATE_CG_TIME:
 				return codeUpdateCGTime != null && !codeUpdateCGTime.isEmpty();
 			case UMLRhapsodyPackage.IDIAGRAM__HYPER_LINKS:
@@ -1382,8 +1330,6 @@ public class IDiagramImpl extends IUnitImpl implements IDiagram {
 		result.append(cmheader);
 		result.append(", modifiedTimeWeak: "); //$NON-NLS-1$
 		result.append(modifiedTimeWeak);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", codeUpdateCGTime: "); //$NON-NLS-1$
 		result.append(codeUpdateCGTime);
 		result.append(')');

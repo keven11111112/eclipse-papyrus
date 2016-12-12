@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getTags <em>Tags</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getInitialCallAction <em>Initial Call Action</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getTheMainDiagram <em>The Main Diagram</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getSlots <em>Slots</em>}</li>
@@ -40,7 +39,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IPart extends AssociationsType, DependsOnType, M_subjectType, ValueType, M_hTargetType, M_pModelObjectType, ToLinkType, InverseType, ConveyedType, End2_Type, TargetType, FromLinkType, End1_Type {
+public interface IPart extends AssociationsType, DependsOnType, M_subjectType, ValueType, M_hTargetType, M_pModelObjectType, ToLinkType, InverseType, ConveyedType, End2_Type, TargetType, FromLinkType, End1_Type, IModelElement {
 	/**
 	 * Returns the value of the '<em><b>Stereotypes</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -186,32 +185,6 @@ public interface IPart extends AssociationsType, DependsOnType, M_subjectType, V
 	 * @generated
 	 */
 	void setInitialCallAction(ICallAction value);
-
-	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Name</em>' attribute.
-	 * @see #setDisplayName(String)
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIPart_DisplayName()
-	 * @model
-	 * @generated
-	 */
-	String getDisplayName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
-	 * @see #getDisplayName()
-	 * @generated
-	 */
-	void setDisplayName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Code Update CG Time</b></em>' attribute list.

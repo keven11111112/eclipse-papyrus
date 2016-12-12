@@ -410,6 +410,11 @@ public class IFileItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createIUnit()));
 
 		newChildDescriptors.add
@@ -570,6 +575,11 @@ public class IFileItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -645,12 +655,22 @@ public class IFileItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -710,12 +730,22 @@ public class IFileItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -761,6 +791,11 @@ public class IFileItemProvider extends IUnitItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -811,6 +846,11 @@ public class IFileItemProvider extends IUnitItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createITrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
 
 		newChildDescriptors.add
 			(createChildParameter

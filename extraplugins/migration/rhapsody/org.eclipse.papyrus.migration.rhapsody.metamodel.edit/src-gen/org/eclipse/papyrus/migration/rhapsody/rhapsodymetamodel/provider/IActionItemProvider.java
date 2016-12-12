@@ -216,7 +216,7 @@ public class IActionItemProvider extends IModelElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IAction)object).getId();
+		String label = ((IAction)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IAction_type") : //$NON-NLS-1$
 			getString("_UI_IAction_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

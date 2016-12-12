@@ -40,7 +40,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getMyReturnType <em>My Return Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getDeclaratives <em>Declaratives</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getItsActivityGraph <em>Its Activity Graph</em>}</li>
@@ -53,7 +52,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IPrimitiveOperation extends OperationsType, DependsOnType, M_subjectType, ValueType, M_pFormalMessageType, ItemsType, TargetType, M_pModelObjectType {
+public interface IPrimitiveOperation extends OperationsType, DependsOnType, M_subjectType, ValueType, M_pFormalMessageType, ItemsType, TargetType, M_pModelObjectType, IModelElement {
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -465,32 +464,6 @@ public interface IPrimitiveOperation extends OperationsType, DependsOnType, M_su
 	 * @generated
 	 */
 	void setDescription(IDescription value);
-
-	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Name</em>' attribute.
-	 * @see #setDisplayName(String)
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIPrimitiveOperation_DisplayName()
-	 * @model
-	 * @generated
-	 */
-	String getDisplayName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
-	 * @see #getDisplayName()
-	 * @generated
-	 */
-	void setDisplayName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Requiremen Tracability Handle</b></em>' attribute.

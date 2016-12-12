@@ -52,7 +52,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IRequirementImpl#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IRequirementImpl#getModifiedTimeWeak <em>Modified Time Weak</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IRequirementImpl#getReqID <em>Req ID</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IRequirementImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IRequirementImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IRequirementImpl#getAnchors <em>Anchors</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IRequirementImpl#getHyperLinks <em>Hyper Links</em>}</li>
@@ -191,26 +190,6 @@ public class IRequirementImpl extends IAnnotationImpl implements IRequirement {
 	 * @ordered
 	 */
 	protected String reqID = REQ_ID_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
@@ -443,27 +422,6 @@ public class IRequirementImpl extends IAnnotationImpl implements IRequirement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IREQUIREMENT__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<IDependency> getDependencies() {
 		if (dependencies == null) {
 			dependencies = new EObjectContainmentEList.Resolving<IDependency>(IDependency.class, this, UMLRhapsodyPackage.IREQUIREMENT__DEPENDENCIES);
@@ -578,8 +536,6 @@ public class IRequirementImpl extends IAnnotationImpl implements IRequirement {
 				return getModifiedTimeWeak();
 			case UMLRhapsodyPackage.IREQUIREMENT__REQ_ID:
 				return getReqID();
-			case UMLRhapsodyPackage.IREQUIREMENT__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IREQUIREMENT__DEPENDENCIES:
 				return getDependencies();
 			case UMLRhapsodyPackage.IREQUIREMENT__ANCHORS:
@@ -627,9 +583,6 @@ public class IRequirementImpl extends IAnnotationImpl implements IRequirement {
 				return;
 			case UMLRhapsodyPackage.IREQUIREMENT__REQ_ID:
 				setReqID((String)newValue);
-				return;
-			case UMLRhapsodyPackage.IREQUIREMENT__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IREQUIREMENT__DEPENDENCIES:
 				getDependencies().clear();
@@ -682,9 +635,6 @@ public class IRequirementImpl extends IAnnotationImpl implements IRequirement {
 			case UMLRhapsodyPackage.IREQUIREMENT__REQ_ID:
 				setReqID(REQ_ID_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.IREQUIREMENT__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.IREQUIREMENT__DEPENDENCIES:
 				getDependencies().clear();
 				return;
@@ -725,8 +675,6 @@ public class IRequirementImpl extends IAnnotationImpl implements IRequirement {
 				return modifiedTimeWeak != null && !modifiedTimeWeak.isEmpty();
 			case UMLRhapsodyPackage.IREQUIREMENT__REQ_ID:
 				return REQ_ID_EDEFAULT == null ? reqID != null : !REQ_ID_EDEFAULT.equals(reqID);
-			case UMLRhapsodyPackage.IREQUIREMENT__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IREQUIREMENT__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
 			case UMLRhapsodyPackage.IREQUIREMENT__ANCHORS:
@@ -761,8 +709,6 @@ public class IRequirementImpl extends IAnnotationImpl implements IRequirement {
 		result.append(modifiedTimeWeak);
 		result.append(", reqID: "); //$NON-NLS-1$
 		result.append(reqID);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

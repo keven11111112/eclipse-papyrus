@@ -275,7 +275,7 @@ public class IGeneralizationItemProvider extends IModelElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IGeneralization)object).getId();
+		String label = ((IGeneralization)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IGeneralization_type") : //$NON-NLS-1$
 			getString("_UI_IGeneralization_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

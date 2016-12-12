@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getModifiedTimeWeak <em>Modified Time Weak</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getGraphicChart <em>Graphic Chart</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getHyperLinks <em>Hyper Links</em>}</li>
  * </ul>
@@ -147,32 +146,6 @@ public interface IDiagram extends IUnit, TheMainDiagramType, DeclarativesType, D
 	 * @generated
 	 */
 	EList<IAnnotation> getAnnotations();
-
-	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Display Name</em>' attribute.
-	 * @see #setDisplayName(String)
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIDiagram_DisplayName()
-	 * @model
-	 * @generated
-	 */
-	String getDisplayName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Display Name</em>' attribute.
-	 * @see #getDisplayName()
-	 * @generated
-	 */
-	void setDisplayName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Code Update CG Time</b></em>' attribute list.

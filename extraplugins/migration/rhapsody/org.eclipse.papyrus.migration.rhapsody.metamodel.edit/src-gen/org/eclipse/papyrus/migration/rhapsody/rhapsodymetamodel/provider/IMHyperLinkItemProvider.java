@@ -65,7 +65,6 @@ public class IMHyperLinkItemProvider extends HyperLinksTypeItemProvider {
 			addLinkTypePropertyDescriptor(object);
 			addIsConfigurationFileHyperLinkPropertyDescriptor(object);
 			addLinkTargetPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
 			addObjectCreationPropertyDescriptor(object);
 			addUmlDependencyIDPropertyDescriptor(object);
@@ -228,28 +227,6 @@ public class IMHyperLinkItemProvider extends HyperLinksTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IMHyperLink_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IMHyperLink_displayName_feature", "_UI_IMHyperLink_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIMHyperLink_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Requiremen Tracability Handle feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -365,7 +342,7 @@ public class IMHyperLinkItemProvider extends HyperLinksTypeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IMHyperLink)object).getId();
+		String label = ((IMHyperLink)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IMHyperLink_type") : //$NON-NLS-1$
 			getString("_UI_IMHyperLink_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
@@ -390,7 +367,6 @@ public class IMHyperLinkItemProvider extends HyperLinksTypeItemProvider {
 			case UMLRhapsodyPackage.IM_HYPER_LINK__LINK_TYPE:
 			case UMLRhapsodyPackage.IM_HYPER_LINK__IS_CONFIGURATION_FILE_HYPER_LINK:
 			case UMLRhapsodyPackage.IM_HYPER_LINK__LINK_TARGET:
-			case UMLRhapsodyPackage.IM_HYPER_LINK__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IM_HYPER_LINK__REQUIREMEN_TRACABILITY_HANDLE:
 			case UMLRhapsodyPackage.IM_HYPER_LINK__OBJECT_CREATION:
 			case UMLRhapsodyPackage.IM_HYPER_LINK__UML_DEPENDENCY_ID:

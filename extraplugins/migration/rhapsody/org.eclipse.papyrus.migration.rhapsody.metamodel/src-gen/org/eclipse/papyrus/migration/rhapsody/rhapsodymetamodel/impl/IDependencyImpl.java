@@ -56,7 +56,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDependencyImpl#getDependsOn <em>Depends On</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDependencyImpl#getTags <em>Tags</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDependencyImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDependencyImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDependencyImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDependencyImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IDependencyImpl#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
@@ -225,26 +224,6 @@ public class IDependencyImpl extends IModelElementImpl implements IDependency {
 	 * @ordered
 	 */
 	protected IComment annotations;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference.
@@ -711,27 +690,6 @@ public class IDependencyImpl extends IModelElementImpl implements IDependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IDEPENDENCY__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IDependency getDependencies() {
 		if (dependencies != null && dependencies.eIsProxy()) {
 			InternalEObject oldDependencies = (InternalEObject)dependencies;
@@ -949,8 +907,6 @@ public class IDependencyImpl extends IModelElementImpl implements IDependency {
 			case UMLRhapsodyPackage.IDEPENDENCY__ANNOTATIONS:
 				if (resolve) return getAnnotations();
 				return basicGetAnnotations();
-			case UMLRhapsodyPackage.IDEPENDENCY__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IDEPENDENCY__DEPENDENCIES:
 				if (resolve) return getDependencies();
 				return basicGetDependencies();
@@ -1007,9 +963,6 @@ public class IDependencyImpl extends IModelElementImpl implements IDependency {
 				return;
 			case UMLRhapsodyPackage.IDEPENDENCY__ANNOTATIONS:
 				setAnnotations((IComment)newValue);
-				return;
-			case UMLRhapsodyPackage.IDEPENDENCY__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IDEPENDENCY__DEPENDENCIES:
 				setDependencies((IDependency)newValue);
@@ -1069,9 +1022,6 @@ public class IDependencyImpl extends IModelElementImpl implements IDependency {
 			case UMLRhapsodyPackage.IDEPENDENCY__ANNOTATIONS:
 				setAnnotations((IComment)null);
 				return;
-			case UMLRhapsodyPackage.IDEPENDENCY__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.IDEPENDENCY__DEPENDENCIES:
 				setDependencies((IDependency)null);
 				return;
@@ -1118,8 +1068,6 @@ public class IDependencyImpl extends IModelElementImpl implements IDependency {
 				return tags != null;
 			case UMLRhapsodyPackage.IDEPENDENCY__ANNOTATIONS:
 				return annotations != null;
-			case UMLRhapsodyPackage.IDEPENDENCY__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IDEPENDENCY__DEPENDENCIES:
 				return dependencies != null;
 			case UMLRhapsodyPackage.IDEPENDENCY__DESCRIPTION:
@@ -1208,8 +1156,6 @@ public class IDependencyImpl extends IModelElementImpl implements IDependency {
 		result.append(name);
 		result.append(", modifiedTimeWeak: "); //$NON-NLS-1$
 		result.append(modifiedTimeWeak);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", requiremenTracabilityHandle: "); //$NON-NLS-1$
 		result.append(requiremenTracabilityHandle);
 		result.append(", codeUpdateCGTime: "); //$NON-NLS-1$

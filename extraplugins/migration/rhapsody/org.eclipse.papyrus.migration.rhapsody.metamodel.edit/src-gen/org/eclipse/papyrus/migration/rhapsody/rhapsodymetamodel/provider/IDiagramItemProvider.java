@@ -70,7 +70,6 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 			addNamePropertyDescriptor(object);
 			addCmheaderPropertyDescriptor(object);
 			addModifiedTimeWeakPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -341,28 +340,6 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IDiagram_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IDiagram_displayName_feature", "_UI_IDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIDiagram_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Code Update CG Time feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -467,7 +444,6 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 			case UMLRhapsodyPackage.IDIAGRAM__NAME:
 			case UMLRhapsodyPackage.IDIAGRAM__CMHEADER:
 			case UMLRhapsodyPackage.IDIAGRAM__MODIFIED_TIME_WEAK:
-			case UMLRhapsodyPackage.IDIAGRAM__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IDIAGRAM__CODE_UPDATE_CG_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -533,6 +509,11 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -697,6 +678,11 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -772,12 +758,22 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -837,12 +833,22 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -888,6 +894,11 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -938,6 +949,11 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createITrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1008,7 +1024,8 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 
 		boolean qualify =
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_Annotations();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_Annotations() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIDiagram_HyperLinks();
 
 		if (qualify) {
 			return getString

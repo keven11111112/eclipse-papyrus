@@ -38,6 +38,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IComment;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDependency;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDescription;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMSC;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPropertyContainer;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITag;
@@ -66,6 +67,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getMyState <em>My State</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getLastID <em>Last ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getArgs <em>Args</em>}</li>
@@ -83,7 +85,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getMyReturnType <em>My Return Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getDeclaratives <em>Declaratives</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IPrimitiveOperationImpl#getItsActivityGraph <em>Its Activity Graph</em>}</li>
@@ -204,6 +205,26 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DISPLAY_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
@@ -444,26 +465,6 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 	 * @ordered
 	 */
 	protected IDescription description;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRequiremenTracabilityHandle() <em>Requiremen Tracability Handle</em>}' attribute.
@@ -1580,6 +1581,8 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 				return getMyState();
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__NAME:
 				return getName();
+			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
+				return getDisplayName();
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__PROPERTIES:
 				if (resolve) return getProperties();
 				return basicGetProperties();
@@ -1621,8 +1624,6 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DESCRIPTION:
 				if (resolve) return getDescription();
 				return basicGetDescription();
-			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__REQUIREMEN_TRACABILITY_HANDLE:
 				return getRequiremenTracabilityHandle();
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DECLARATIVES:
@@ -1669,6 +1670,9 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 				return;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__NAME:
 				setName((String)newValue);
+				return;
+			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
+				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__PROPERTIES:
 				setProperties((IPropertyContainer)newValue);
@@ -1724,9 +1728,6 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DESCRIPTION:
 				setDescription((IDescription)newValue);
 				return;
-			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__REQUIREMEN_TRACABILITY_HANDLE:
 				setRequiremenTracabilityHandle((String)newValue);
 				return;
@@ -1776,6 +1777,9 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 				return;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__PROPERTIES:
 				setProperties((IPropertyContainer)null);
@@ -1828,9 +1832,6 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DESCRIPTION:
 				setDescription((IDescription)null);
 				return;
-			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__REQUIREMEN_TRACABILITY_HANDLE:
 				setRequiremenTracabilityHandle(REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT);
 				return;
@@ -1873,6 +1874,8 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 				return MY_STATE_EDEFAULT == null ? myState != null : !MY_STATE_EDEFAULT.equals(myState);
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__PROPERTIES:
 				return properties != null;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__LAST_ID:
@@ -1907,8 +1910,6 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 				return myReturnType != null;
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DESCRIPTION:
 				return description != null;
-			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__REQUIREMEN_TRACABILITY_HANDLE:
 				return REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT == null ? requiremenTracabilityHandle != null : !REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT.equals(requiremenTracabilityHandle);
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DECLARATIVES:
@@ -1978,6 +1979,12 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (derivedFeatureID) {
+				case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME: return UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -2034,6 +2041,12 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (baseFeatureID) {
+				case UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME: return UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
@@ -2059,6 +2072,8 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 		result.append(myState);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
+		result.append(", displayName: "); //$NON-NLS-1$
+		result.append(displayName);
 		result.append(", lastID: "); //$NON-NLS-1$
 		result.append(lastID);
 		result.append(", abstract: "); //$NON-NLS-1$
@@ -2073,8 +2088,6 @@ public class IPrimitiveOperationImpl extends OperationsTypeImpl implements IPrim
 		result.append(static_);
 		result.append(", constant: "); //$NON-NLS-1$
 		result.append(constant);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", requiremenTracabilityHandle: "); //$NON-NLS-1$
 		result.append(requiremenTracabilityHandle);
 		result.append(", codeUpdateCGTime: "); //$NON-NLS-1$

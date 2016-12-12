@@ -65,7 +65,6 @@ public class IDependencyItemProvider extends IModelElementItemProvider {
 			addNamePropertyDescriptor(object);
 			addModifiedTimeWeakPropertyDescriptor(object);
 			addDependsOnPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
 		}
@@ -227,28 +226,6 @@ public class IDependencyItemProvider extends IModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IDependency_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IDependency_displayName_feature", "_UI_IDependency_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIDependency_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Requiremen Tracability Handle feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -371,7 +348,6 @@ public class IDependencyItemProvider extends IModelElementItemProvider {
 			case UMLRhapsodyPackage.IDEPENDENCY__MY_STATE:
 			case UMLRhapsodyPackage.IDEPENDENCY__NAME:
 			case UMLRhapsodyPackage.IDEPENDENCY__MODIFIED_TIME_WEAK:
-			case UMLRhapsodyPackage.IDEPENDENCY__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IDEPENDENCY__REQUIREMEN_TRACABILITY_HANDLE:
 			case UMLRhapsodyPackage.IDEPENDENCY__CODE_UPDATE_CG_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

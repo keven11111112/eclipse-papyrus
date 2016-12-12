@@ -68,7 +68,6 @@ public class ITagItemProvider extends IVariableItemProvider {
 			addMetaClassPropertyDescriptor(object);
 			addDefaultValuePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -294,28 +293,6 @@ public class ITagItemProvider extends IVariableItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ITag_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ITag_displayName_feature", "_UI_ITag_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getITag_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -394,7 +371,6 @@ public class ITagItemProvider extends IVariableItemProvider {
 			case UMLRhapsodyPackage.ITAG__META_CLASS:
 			case UMLRhapsodyPackage.ITAG__DEFAULT_VALUE:
 			case UMLRhapsodyPackage.ITAG__CODE_UPDATE_CG_TIME:
-			case UMLRhapsodyPackage.ITAG__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.ITAG__VALUE_SPECIFICATIONS:
@@ -447,6 +423,11 @@ public class ITagItemProvider extends IVariableItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -611,6 +592,11 @@ public class ITagItemProvider extends IVariableItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -686,12 +672,22 @@ public class ITagItemProvider extends IVariableItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -751,12 +747,22 @@ public class ITagItemProvider extends IVariableItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -802,6 +808,11 @@ public class ITagItemProvider extends IVariableItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -856,6 +867,11 @@ public class ITagItemProvider extends IVariableItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createIType()));
 
 		newChildDescriptors.add
@@ -897,7 +913,8 @@ public class ITagItemProvider extends IVariableItemProvider {
 
 		boolean qualify =
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIVariable_MyTypeOf() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getITag_HyperLinks();
 
 		if (qualify) {
 			return getString

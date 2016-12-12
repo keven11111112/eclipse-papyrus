@@ -391,6 +391,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createIUnit()));
 
 		newChildDescriptors.add
@@ -551,6 +556,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -626,12 +636,22 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -691,12 +711,22 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -742,6 +772,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -792,6 +827,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createITrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -841,6 +881,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createIUnit()));
 
 		newChildDescriptors.add
@@ -1001,6 +1046,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -1076,12 +1126,22 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1141,12 +1201,22 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1192,6 +1262,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1242,6 +1317,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createITrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1424,6 +1504,7 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIProject_CollaborationDiagrams() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIProject_ComponentDiagrams() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIProject_Dependencies() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIProject_HyperLinks() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIProject_PanelDiagrams() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIProject_Declaratives() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIProject_UCDiagrams();

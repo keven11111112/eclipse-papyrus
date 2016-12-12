@@ -58,6 +58,7 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDisplayNamePropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
 			addMyStatePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
@@ -75,7 +76,6 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			addCodeUpdateCGTimePropertyDescriptor(object);
 			addObjectCreationPropertyDescriptor(object);
 			addUmlDependencyIDPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -465,9 +465,9 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ISubsystem_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ISubsystem_displayName_feature", "_UI_ISubsystem_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getISubsystem_DisplayName(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
 				 true,
 				 false,
 				 false,
@@ -562,6 +562,7 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ISubsystem.class)) {
+			case UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME:
 			case UMLRhapsodyPackage.ISUBSYSTEM__ID:
 			case UMLRhapsodyPackage.ISUBSYSTEM__MY_STATE:
 			case UMLRhapsodyPackage.ISUBSYSTEM__NAME:
@@ -575,7 +576,6 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			case UMLRhapsodyPackage.ISUBSYSTEM__CODE_UPDATE_CG_TIME:
 			case UMLRhapsodyPackage.ISUBSYSTEM__OBJECT_CREATION:
 			case UMLRhapsodyPackage.ISUBSYSTEM__UML_DEPENDENCY_ID:
-			case UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.ISUBSYSTEM__CLASSES:
@@ -1717,6 +1717,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createIUnit()));
 
 		newChildDescriptors.add
@@ -1877,6 +1882,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -1952,12 +1962,22 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -2017,12 +2037,22 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -2068,6 +2098,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -2118,6 +2153,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createITrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -2184,7 +2224,8 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_ComponentFiles() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_MatrixLayouts() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_Tags() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_Dependencies();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_Dependencies() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_HyperLinks();
 
 		if (qualify) {
 			return getString

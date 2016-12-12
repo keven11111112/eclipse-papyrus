@@ -40,6 +40,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDependency;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDescription;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPropertyContainer;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISwimlane;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITag;
@@ -62,6 +63,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getMyState <em>My State</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getLastID <em>Last ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getWeakCGTime <em>Weak CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getStrongCGTime <em>Strong CG Time</em>}</li>
@@ -82,7 +84,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getObjectCreation <em>Object Creation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getUmlDependencyID <em>Uml Dependency ID</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getHyperLinks <em>Hyper Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IActivityGraphImpl#getTheMainDiagram <em>The Main Diagram</em>}</li>
@@ -162,6 +163,26 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DISPLAY_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLastID() <em>Last ID</em>}' attribute.
@@ -442,26 +463,6 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 	 * @ordered
 	 */
 	protected String umlDependencyID = UML_DEPENDENCY_ID_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getHyperLinks() <em>Hyper Links</em>}' containment reference.
@@ -1450,6 +1451,8 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				return getMyState();
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__NAME:
 				return getName();
+			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
+				return getDisplayName();
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__LAST_ID:
 				return getLastID();
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__WEAK_CG_TIME:
@@ -1496,8 +1499,6 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				return getObjectCreation();
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__UML_DEPENDENCY_ID:
 				return getUmlDependencyID();
-			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__HYPER_LINKS:
 				if (resolve) return getHyperLinks();
 				return basicGetHyperLinks();
@@ -1536,6 +1537,9 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				return;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__NAME:
 				setName((String)newValue);
+				return;
+			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
+				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__LAST_ID:
 				setLastID((String)newValue);
@@ -1603,9 +1607,6 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__UML_DEPENDENCY_ID:
 				setUmlDependencyID((String)newValue);
 				return;
-			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__HYPER_LINKS:
 				setHyperLinks((IMHyperLink)newValue);
 				return;
@@ -1646,6 +1647,9 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				return;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__LAST_ID:
 				setLastID(LAST_ID_EDEFAULT);
@@ -1707,9 +1711,6 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__UML_DEPENDENCY_ID:
 				setUmlDependencyID(UML_DEPENDENCY_ID_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__HYPER_LINKS:
 				setHyperLinks((IMHyperLink)null);
 				return;
@@ -1745,6 +1746,8 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				return MY_STATE_EDEFAULT == null ? myState != null : !MY_STATE_EDEFAULT.equals(myState);
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__LAST_ID:
 				return LAST_ID_EDEFAULT == null ? lastID != null : !LAST_ID_EDEFAULT.equals(lastID);
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__WEAK_CG_TIME:
@@ -1785,8 +1788,6 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				return OBJECT_CREATION_EDEFAULT == null ? objectCreation != null : !OBJECT_CREATION_EDEFAULT.equals(objectCreation);
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__UML_DEPENDENCY_ID:
 				return UML_DEPENDENCY_ID_EDEFAULT == null ? umlDependencyID != null : !UML_DEPENDENCY_ID_EDEFAULT.equals(umlDependencyID);
-			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__HYPER_LINKS:
 				return hyperLinks != null;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DEPENDENCIES:
@@ -1837,6 +1838,12 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (derivedFeatureID) {
+				case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME: return UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -1876,6 +1883,12 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (baseFeatureID) {
+				case UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME: return UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
@@ -1897,6 +1910,8 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 		result.append(myState);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
+		result.append(", displayName: "); //$NON-NLS-1$
+		result.append(displayName);
 		result.append(", lastID: "); //$NON-NLS-1$
 		result.append(lastID);
 		result.append(", weakCGTime: "); //$NON-NLS-1$
@@ -1919,8 +1934,6 @@ public class IActivityGraphImpl extends NestedStateChartTypeImpl implements IAct
 		result.append(objectCreation);
 		result.append(", umlDependencyID: "); //$NON-NLS-1$
 		result.append(umlDependencyID);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

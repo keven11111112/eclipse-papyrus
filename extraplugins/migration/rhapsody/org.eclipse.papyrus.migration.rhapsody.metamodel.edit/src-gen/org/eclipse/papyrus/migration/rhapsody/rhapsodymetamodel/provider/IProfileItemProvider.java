@@ -64,7 +64,6 @@ public class IProfileItemProvider extends IPackageItemProvider {
 			addEventsBaseIDPropertyDescriptor(object);
 			addConfigurationRelatedTimePropertyDescriptor(object);
 			addLicensePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -202,28 +201,6 @@ public class IProfileItemProvider extends IPackageItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IProfile_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IProfile_displayName_feature", "_UI_IProfile_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIProfile_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -300,7 +277,6 @@ public class IProfileItemProvider extends IPackageItemProvider {
 			case UMLRhapsodyPackage.IPROFILE__EVENTS_BASE_ID:
 			case UMLRhapsodyPackage.IPROFILE__CONFIGURATION_RELATED_TIME:
 			case UMLRhapsodyPackage.IPROFILE__LICENSE:
-			case UMLRhapsodyPackage.IPROFILE__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.IPROFILE__DECLARATIVES:

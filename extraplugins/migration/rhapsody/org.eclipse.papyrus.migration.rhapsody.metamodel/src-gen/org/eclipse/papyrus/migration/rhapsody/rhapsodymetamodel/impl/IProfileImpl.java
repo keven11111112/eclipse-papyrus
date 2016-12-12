@@ -59,7 +59,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IProfileImpl#getTypes <em>Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IProfileImpl#getMatrixLayouts <em>Matrix Layouts</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IProfileImpl#getLicense <em>License</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IProfileImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -194,26 +193,6 @@ public class IProfileImpl extends IPackageImpl implements IProfile {
 	 * @ordered
 	 */
 	protected String license = LICENSE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -469,27 +448,6 @@ public class IProfileImpl extends IPackageImpl implements IProfile {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IPROFILE__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -539,8 +497,6 @@ public class IProfileImpl extends IPackageImpl implements IProfile {
 				return basicGetMatrixLayouts();
 			case UMLRhapsodyPackage.IPROFILE__LICENSE:
 				return getLicense();
-			case UMLRhapsodyPackage.IPROFILE__DISPLAY_NAME:
-				return getDisplayName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -594,9 +550,6 @@ public class IProfileImpl extends IPackageImpl implements IProfile {
 			case UMLRhapsodyPackage.IPROFILE__LICENSE:
 				setLicense((String)newValue);
 				return;
-			case UMLRhapsodyPackage.IPROFILE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -642,9 +595,6 @@ public class IProfileImpl extends IPackageImpl implements IProfile {
 			case UMLRhapsodyPackage.IPROFILE__LICENSE:
 				setLicense(LICENSE_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.IPROFILE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -679,8 +629,6 @@ public class IProfileImpl extends IPackageImpl implements IProfile {
 				return matrixLayouts != null;
 			case UMLRhapsodyPackage.IPROFILE__LICENSE:
 				return LICENSE_EDEFAULT == null ? license != null : !LICENSE_EDEFAULT.equals(license);
-			case UMLRhapsodyPackage.IPROFILE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -769,8 +717,6 @@ public class IProfileImpl extends IPackageImpl implements IProfile {
 		result.append(configurationRelatedTime);
 		result.append(", license: "); //$NON-NLS-1$
 		result.append(license);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

@@ -65,7 +65,6 @@ public class ISwimlaneItemProvider extends IModelElementItemProvider {
 			addMyStatePropertyDescriptor(object);
 			addObjectCreationPropertyDescriptor(object);
 			addUmlDependencyIDPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -225,28 +224,6 @@ public class ISwimlaneItemProvider extends IModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ISwimlane_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ISwimlane_displayName_feature", "_UI_ISwimlane_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getISwimlane_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -322,7 +299,6 @@ public class ISwimlaneItemProvider extends IModelElementItemProvider {
 			case UMLRhapsodyPackage.ISWIMLANE__MY_STATE:
 			case UMLRhapsodyPackage.ISWIMLANE__OBJECT_CREATION:
 			case UMLRhapsodyPackage.ISWIMLANE__UML_DEPENDENCY_ID:
-			case UMLRhapsodyPackage.ISWIMLANE__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.ISWIMLANE__DESCRIPTION:

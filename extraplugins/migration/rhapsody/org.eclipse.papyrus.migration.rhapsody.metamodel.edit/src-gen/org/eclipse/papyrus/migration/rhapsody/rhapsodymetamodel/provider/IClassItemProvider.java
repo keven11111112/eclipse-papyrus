@@ -78,7 +78,6 @@ public class IClassItemProvider extends IClassifierItemProvider {
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
 			addCmheaderPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -524,28 +523,6 @@ public class IClassItemProvider extends IClassifierItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IClass_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IClass_displayName_feature", "_UI_IClass_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIClass_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -647,7 +624,6 @@ public class IClassItemProvider extends IClassifierItemProvider {
 			case UMLRhapsodyPackage.ICLASS__REQUIREMEN_TRACABILITY_HANDLE:
 			case UMLRhapsodyPackage.ICLASS__CODE_UPDATE_CG_TIME:
 			case UMLRhapsodyPackage.ICLASS__CMHEADER:
-			case UMLRhapsodyPackage.ICLASS__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.ICLASS__PROPERTIES:
@@ -1001,6 +977,11 @@ public class IClassItemProvider extends IClassifierItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIActivityGraph()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createIUnit()));
 
 		newChildDescriptors.add
@@ -1161,6 +1142,11 @@ public class IClassItemProvider extends IClassifierItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIExternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
 
 		newChildDescriptors.add
@@ -1236,12 +1222,22 @@ public class IClassItemProvider extends IClassifierItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInternalHyperlink()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createILink()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createILiteralSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIMHyperLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1301,12 +1297,22 @@ public class IClassItemProvider extends IClassifierItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPart()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPin()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createIPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIPrimitiveOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1352,6 +1358,11 @@ public class IClassItemProvider extends IClassifierItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createIStructureDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createISubsystem()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1402,6 +1413,11 @@ public class IClassItemProvider extends IClassifierItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createITrigger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createITriggered()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -2206,7 +2222,8 @@ public class IClassItemProvider extends IClassifierItemProvider {
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_TemplateParameters() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Operations() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_PrimitiveOperations() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Dependencies();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Dependencies() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_HyperLinks();
 
 		if (qualify) {
 			return getString

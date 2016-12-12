@@ -58,9 +58,9 @@ public class ITriggeredItemProvider extends OperationsTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDisplayNamePropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addReturnTypePropertyDescriptor(object);
 			addAbstractPropertyDescriptor(object);
 			addFinalPropertyDescriptor(object);
@@ -127,9 +127,9 @@ public class ITriggeredItemProvider extends OperationsTypeItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ITriggered_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ITriggered_displayName_feature", "_UI_ITriggered_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getITriggered_DisplayName(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
 				 true,
 				 false,
 				 false,
@@ -360,9 +360,9 @@ public class ITriggeredItemProvider extends OperationsTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ITriggered.class)) {
+			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
 			case UMLRhapsodyPackage.ITRIGGERED__ID:
 			case UMLRhapsodyPackage.ITRIGGERED__NAME:
-			case UMLRhapsodyPackage.ITRIGGERED__DISPLAY_NAME:
 			case UMLRhapsodyPackage.ITRIGGERED__ABSTRACT:
 			case UMLRhapsodyPackage.ITRIGGERED__FINAL:
 			case UMLRhapsodyPackage.ITRIGGERED__CONCURRENCY:

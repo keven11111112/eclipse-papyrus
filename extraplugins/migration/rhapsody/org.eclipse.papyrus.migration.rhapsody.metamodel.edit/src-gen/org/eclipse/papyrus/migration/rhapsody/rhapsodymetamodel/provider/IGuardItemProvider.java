@@ -193,7 +193,7 @@ public class IGuardItemProvider extends IModelElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IGuard)object).getId();
+		String label = ((IGuard)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IGuard_type") : //$NON-NLS-1$
 			getString("_UI_IGuard_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

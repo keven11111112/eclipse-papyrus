@@ -204,7 +204,7 @@ public class IAnnotationItemProvider extends IUnitItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IAnnotation)object).getRequiremenTracabilityHandle();
+		String label = ((IAnnotation)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_IAnnotation_type") : //$NON-NLS-1$
 			getString("_UI_IAnnotation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

@@ -576,6 +576,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 			case UMLRhapsodyPackage.HYPER_LINKS_TYPE: {
 				HyperLinksType hyperLinksType = (HyperLinksType)theEObject;
 				T result = caseHyperLinksType(hyperLinksType);
+				if (result == null) result = caseIModelElement(hyperLinksType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -633,6 +634,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueType(iActivityGraph);
 				if (result == null) result = caseTargetType(iActivityGraph);
 				if (result == null) result = caseM_pModelObjectType(iActivityGraph);
+				if (result == null) result = caseIModelElement(iActivityGraph);
 				if (result == null) result = caseItsStateChartType(iActivityGraph);
 				if (result == null) result = caseElementsType(iActivityGraph);
 				if (result == null) result = defaultCase(theEObject);
@@ -1102,6 +1104,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				IExternalHyperlink iExternalHyperlink = (IExternalHyperlink)theEObject;
 				T result = caseIExternalHyperlink(iExternalHyperlink);
 				if (result == null) result = caseHyperLinksType(iExternalHyperlink);
+				if (result == null) result = caseIModelElement(iExternalHyperlink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1288,6 +1291,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				IInternalHyperlink iInternalHyperlink = (IInternalHyperlink)theEObject;
 				T result = caseIInternalHyperlink(iInternalHyperlink);
 				if (result == null) result = caseHyperLinksType(iInternalHyperlink);
+				if (result == null) result = caseIModelElement(iInternalHyperlink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1328,6 +1332,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				IMHyperLink imHyperLink = (IMHyperLink)theEObject;
 				T result = caseIMHyperLink(imHyperLink);
 				if (result == null) result = caseHyperLinksType(imHyperLink);
+				if (result == null) result = caseIModelElement(imHyperLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1521,6 +1526,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseConveyedType(iPart);
 				if (result == null) result = caseEnd2_Type(iPart);
 				if (result == null) result = caseTargetType(iPart);
+				if (result == null) result = caseIModelElement(iPart);
 				if (result == null) result = caseInverseType(iPart);
 				if (result == null) result = caseElementsType(iPart);
 				if (result == null) result = caseFromLinkType(iPart);
@@ -1565,6 +1571,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseItemsType(iPrimitiveOperation);
 				if (result == null) result = caseTargetType(iPrimitiveOperation);
 				if (result == null) result = caseM_pModelObjectType(iPrimitiveOperation);
+				if (result == null) result = caseIModelElement(iPrimitiveOperation);
 				if (result == null) result = caseElementsType(iPrimitiveOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -1780,6 +1787,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseDeclarativesType(iSubsystem);
 				if (result == null) result = caseM_pModelObjectType(iSubsystem);
 				if (result == null) result = caseTargetType(iSubsystem);
+				if (result == null) result = caseIModelElement(iSubsystem);
 				if (result == null) result = caseDefaultSubsystemType(iSubsystem);
 				if (result == null) result = caseElementsType(iSubsystem);
 				if (result == null) result = defaultCase(theEObject);
@@ -1918,6 +1926,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseOperationsType(iTriggered);
 				if (result == null) result = caseM_pFormalMessageType(iTriggered);
 				if (result == null) result = caseItemsType(iTriggered);
+				if (result == null) result = caseIModelElement(iTriggered);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

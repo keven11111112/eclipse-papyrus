@@ -70,7 +70,6 @@ public class ITransitionItemProvider extends IModelElementItemProvider {
 			addNamePropertyDescriptor(object);
 			addItsSourcePropertyDescriptor(object);
 			addInheritsFromHandlePropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -340,28 +339,6 @@ public class ITransitionItemProvider extends IModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Display Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDisplayNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ITransition_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ITransition_displayName_feature", "_UI_ITransition_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getITransition_DisplayName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -441,7 +418,6 @@ public class ITransitionItemProvider extends IModelElementItemProvider {
 			case UMLRhapsodyPackage.ITRANSITION__MY_STATE:
 			case UMLRhapsodyPackage.ITRANSITION__OBJECT_CREATION:
 			case UMLRhapsodyPackage.ITRANSITION__NAME:
-			case UMLRhapsodyPackage.ITRANSITION__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.ITRANSITION__DESCRIPTION:

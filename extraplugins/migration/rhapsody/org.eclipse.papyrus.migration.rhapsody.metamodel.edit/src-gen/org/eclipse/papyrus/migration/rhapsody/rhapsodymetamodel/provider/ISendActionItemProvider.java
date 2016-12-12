@@ -158,7 +158,7 @@ public class ISendActionItemProvider extends IActionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ISendAction)object).getId();
+		String label = ((ISendAction)object).getDisplayName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ISendAction_type") : //$NON-NLS-1$
 			getString("_UI_ISendAction_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

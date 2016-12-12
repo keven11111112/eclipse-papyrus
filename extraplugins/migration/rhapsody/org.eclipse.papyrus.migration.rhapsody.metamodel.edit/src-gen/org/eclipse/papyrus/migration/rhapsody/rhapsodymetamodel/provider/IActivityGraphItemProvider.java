@@ -62,6 +62,7 @@ public class IActivityGraphItemProvider extends NestedStateChartTypeItemProvider
 			addIdPropertyDescriptor(object);
 			addMyStatePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addDisplayNamePropertyDescriptor(object);
 			addLastIDPropertyDescriptor(object);
 			addWeakCGTimePropertyDescriptor(object);
 			addStrongCGTimePropertyDescriptor(object);
@@ -75,7 +76,6 @@ public class IActivityGraphItemProvider extends NestedStateChartTypeItemProvider
 			addCodeUpdateCGTimePropertyDescriptor(object);
 			addObjectCreationPropertyDescriptor(object);
 			addUmlDependencyIDPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addTheMainDiagramPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -466,9 +466,9 @@ public class IActivityGraphItemProvider extends NestedStateChartTypeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IActivityGraph_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IActivityGraph_displayName_feature", "_UI_IActivityGraph_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIActivityGraph_DisplayName(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
 				 true,
 				 false,
 				 false,
@@ -581,6 +581,7 @@ public class IActivityGraphItemProvider extends NestedStateChartTypeItemProvider
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__ID:
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__MY_STATE:
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__NAME:
+			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__LAST_ID:
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__WEAK_CG_TIME:
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__STRONG_CG_TIME:
@@ -592,7 +593,6 @@ public class IActivityGraphItemProvider extends NestedStateChartTypeItemProvider
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__CODE_UPDATE_CG_TIME:
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__OBJECT_CREATION:
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__UML_DEPENDENCY_ID:
-			case UMLRhapsodyPackage.IACTIVITY_GRAPH__DISPLAY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UMLRhapsodyPackage.IACTIVITY_GRAPH__STATES:

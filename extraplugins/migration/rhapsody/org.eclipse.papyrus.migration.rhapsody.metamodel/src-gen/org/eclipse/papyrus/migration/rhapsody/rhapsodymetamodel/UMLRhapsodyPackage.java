@@ -10173,24 +10173,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int HYPER_LINKS_TYPE = 67;
 
 	/**
-	 * The number of structural features of the '<em>Hyper Links Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HYPER_LINKS_TYPE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Hyper Links Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HYPER_LINKS_TYPE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IModelElementImpl <em>IModel Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10201,13 +10183,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IMODEL_ELEMENT = 157;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMODEL_ELEMENT__DISPLAY_NAME = 0;
+
+	/**
 	 * The number of structural features of the '<em>IModel Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMODEL_ELEMENT_FEATURE_COUNT = 0;
+	int IMODEL_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>IModel Element</em>' class.
@@ -10219,6 +10210,33 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IMODEL_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HYPER_LINKS_TYPE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Hyper Links Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HYPER_LINKS_TYPE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Hyper Links Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HYPER_LINKS_TYPE_OPERATION_COUNT = IMODEL_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateVertexImpl <em>IState Vertex</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10227,6 +10245,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISTATE_VERTEX = 188;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTATE_VERTEX__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -10327,6 +10354,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISTATE = 185;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTATE__DISPLAY_NAME = ISTATE_VERTEX__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -10473,22 +10509,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISTATE__REQUIREMEN_TRACABILITY_HANDLE = ISTATE_VERTEX_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISTATE__DISPLAY_NAME = ISTATE_VERTEX_FEATURE_COUNT + 8;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISTATE__ANNOTATIONS = ISTATE_VERTEX_FEATURE_COUNT + 9;
+	int ISTATE__ANNOTATIONS = ISTATE_VERTEX_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference.
@@ -10497,7 +10524,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTATE__DEPENDENCIES = ISTATE_VERTEX_FEATURE_COUNT + 10;
+	int ISTATE__DEPENDENCIES = ISTATE_VERTEX_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>The Main Diagram</b></em>' reference.
@@ -10506,7 +10533,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTATE__THE_MAIN_DIAGRAM = ISTATE_VERTEX_FEATURE_COUNT + 11;
+	int ISTATE__THE_MAIN_DIAGRAM = ISTATE_VERTEX_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Swimlane</b></em>' reference.
@@ -10515,7 +10542,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTATE__SWIMLANE = ISTATE_VERTEX_FEATURE_COUNT + 12;
+	int ISTATE__SWIMLANE = ISTATE_VERTEX_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -10524,7 +10551,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTATE__CODE_UPDATE_CG_TIME = ISTATE_VERTEX_FEATURE_COUNT + 13;
+	int ISTATE__CODE_UPDATE_CG_TIME = ISTATE_VERTEX_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>IState</em>' class.
@@ -10533,7 +10560,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTATE_FEATURE_COUNT = ISTATE_VERTEX_FEATURE_COUNT + 14;
+	int ISTATE_FEATURE_COUNT = ISTATE_VERTEX_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of operations of the '<em>IState</em>' class.
@@ -10553,6 +10580,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IACCEPT_EVENT_ACTION = 68;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IACCEPT_EVENT_ACTION__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -10699,15 +10735,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IACCEPT_EVENT_ACTION__REQUIREMEN_TRACABILITY_HANDLE = ISTATE__REQUIREMEN_TRACABILITY_HANDLE;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IACCEPT_EVENT_ACTION__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10788,6 +10815,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IACCEPT_TIME_EVENT = 69;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IACCEPT_TIME_EVENT__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -10934,15 +10970,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IACCEPT_TIME_EVENT__REQUIREMEN_TRACABILITY_HANDLE = ISTATE__REQUIREMEN_TRACABILITY_HANDLE;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IACCEPT_TIME_EVENT__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11014,6 +11041,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IACTION = 70;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IACTION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -11344,13 +11380,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IACTIVITY_GRAPH__NAME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IACTIVITY_GRAPH__DISPLAY_NAME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Last ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__LAST_ID = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 4;
+	int IACTIVITY_GRAPH__LAST_ID = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Weak CG Time</b></em>' attribute list.
@@ -11359,7 +11404,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__WEAK_CG_TIME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 5;
+	int IACTIVITY_GRAPH__WEAK_CG_TIME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Strong CG Time</b></em>' attribute list.
@@ -11368,7 +11413,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__STRONG_CG_TIME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 6;
+	int IACTIVITY_GRAPH__STRONG_CG_TIME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
@@ -11377,7 +11422,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__MULTIPLICITY = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 7;
+	int IACTIVITY_GRAPH__MULTIPLICITY = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Its State Chart</b></em>' reference list.
@@ -11386,7 +11431,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__ITS_STATE_CHART = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 8;
+	int IACTIVITY_GRAPH__ITS_STATE_CHART = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Class Modifier</b></em>' attribute.
@@ -11395,7 +11440,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__CLASS_MODIFIER = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 9;
+	int IACTIVITY_GRAPH__CLASS_MODIFIER = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -11404,7 +11449,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__STATES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 10;
+	int IACTIVITY_GRAPH__STATES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Base Version</b></em>' attribute.
@@ -11413,7 +11458,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__BASE_VERSION = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 11;
+	int IACTIVITY_GRAPH__BASE_VERSION = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Diagram</b></em>' reference.
@@ -11422,7 +11467,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__DIAGRAM = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 12;
+	int IACTIVITY_GRAPH__DIAGRAM = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Views</b></em>' containment reference.
@@ -11431,7 +11476,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__VIEWS = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 13;
+	int IACTIVITY_GRAPH__VIEWS = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -11440,7 +11485,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__PROPERTIES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 14;
+	int IACTIVITY_GRAPH__PROPERTIES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -11449,7 +11494,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__REQUIREMEN_TRACABILITY_HANDLE = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 15;
+	int IACTIVITY_GRAPH__REQUIREMEN_TRACABILITY_HANDLE = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -11458,7 +11503,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__DESCRIPTION = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 16;
+	int IACTIVITY_GRAPH__DESCRIPTION = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Swimlanes</b></em>' containment reference list.
@@ -11467,7 +11512,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__SWIMLANES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 17;
+	int IACTIVITY_GRAPH__SWIMLANES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
@@ -11476,7 +11521,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__STEREOTYPES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 18;
+	int IACTIVITY_GRAPH__STEREOTYPES = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Analysis Mode</b></em>' attribute.
@@ -11485,7 +11530,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__ANALYSIS_MODE = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 19;
+	int IACTIVITY_GRAPH__ANALYSIS_MODE = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference.
@@ -11494,7 +11539,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__ANNOTATIONS = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 20;
+	int IACTIVITY_GRAPH__ANNOTATIONS = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -11503,7 +11548,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__CODE_UPDATE_CG_TIME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 21;
+	int IACTIVITY_GRAPH__CODE_UPDATE_CG_TIME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -11512,7 +11557,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__OBJECT_CREATION = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 22;
+	int IACTIVITY_GRAPH__OBJECT_CREATION = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -11521,16 +11566,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IACTIVITY_GRAPH__UML_DEPENDENCY_ID = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 23;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IACTIVITY_GRAPH__DISPLAY_NAME = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 24;
+	int IACTIVITY_GRAPH__UML_DEPENDENCY_ID = NESTED_STATE_CHART_TYPE_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference.
@@ -11606,6 +11642,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IUNIT = 210;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IUNIT__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IUnit</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11634,6 +11679,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICLASSIFIER = 90;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICLASSIFIER__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IClassifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11660,6 +11714,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IACTOR = 73;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IACTOR__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -12025,6 +12088,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IANNOTATION = 75;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IANNOTATION__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12107,6 +12179,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IVARIABLE = 215;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IVARIABLE__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12151,6 +12232,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IARGUMENT = 76;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IARGUMENT__DISPLAY_NAME = IVARIABLE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -12314,6 +12404,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ICLASS = 87;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICLASS__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -12685,22 +12784,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICLASS__CMHEADER = ICLASSIFIER_FEATURE_COUNT + 40;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ICLASS__DISPLAY_NAME = ICLASSIFIER_FEATURE_COUNT + 41;
-
-	/**
 	 * The number of structural features of the '<em>IClass</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ICLASS_FEATURE_COUNT = ICLASSIFIER_FEATURE_COUNT + 42;
+	int ICLASS_FEATURE_COUNT = ICLASSIFIER_FEATURE_COUNT + 41;
 
 	/**
 	 * The number of operations of the '<em>IClass</em>' class.
@@ -12720,6 +12810,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IASSOCIATION_CLASS = 77;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IASSOCIATION_CLASS__DISPLAY_NAME = ICLASS__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -13091,15 +13190,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IASSOCIATION_CLASS__CMHEADER = ICLASS__CMHEADER;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IASSOCIATION_CLASS__DISPLAY_NAME = ICLASS__DISPLAY_NAME;
-
-	/**
 	 * The number of structural features of the '<em>IAssociation Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13418,6 +13508,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IASSOCIATION_ROLE = 80;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IASSOCIATION_ROLE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13552,6 +13651,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IATTRIBUTE = 81;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IATTRIBUTE__DISPLAY_NAME = IVARIABLE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -14190,6 +14298,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICALL_OPERATION = 86;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICALL_OPERATION__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14332,15 +14449,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int ICALL_OPERATION__REQUIREMEN_TRACABILITY_HANDLE = ISTATE__REQUIREMEN_TRACABILITY_HANDLE;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ICALL_OPERATION__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -14681,6 +14789,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICLASSIFIER_ROLE = 91;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICLASSIFIER_ROLE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14798,22 +14915,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICLASSIFIER_ROLE__UML_DEPENDENCY_ID = IMODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ICLASSIFIER_ROLE__DISPLAY_NAME = IMODEL_ELEMENT_FEATURE_COUNT + 13;
-
-	/**
 	 * The number of structural features of the '<em>IClassifier Role</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ICLASSIFIER_ROLE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 14;
+	int ICLASSIFIER_ROLE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of operations of the '<em>IClassifier Role</em>' class.
@@ -15251,6 +15359,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICOLLABORATION = 94;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOLLABORATION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15385,6 +15502,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IDIAGRAM = 113;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDIAGRAM__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -15540,22 +15666,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IDIAGRAM__ANNOTATIONS = IUNIT_FEATURE_COUNT + 16;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDIAGRAM__DISPLAY_NAME = IUNIT_FEATURE_COUNT + 17;
-
-	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IDIAGRAM__CODE_UPDATE_CG_TIME = IUNIT_FEATURE_COUNT + 18;
+	int IDIAGRAM__CODE_UPDATE_CG_TIME = IUNIT_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference list.
@@ -15564,7 +15681,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IDIAGRAM__HYPER_LINKS = IUNIT_FEATURE_COUNT + 19;
+	int IDIAGRAM__HYPER_LINKS = IUNIT_FEATURE_COUNT + 18;
 
 	/**
 	 * The number of structural features of the '<em>IDiagram</em>' class.
@@ -15573,7 +15690,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IDIAGRAM_FEATURE_COUNT = IUNIT_FEATURE_COUNT + 20;
+	int IDIAGRAM_FEATURE_COUNT = IUNIT_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of operations of the '<em>IDiagram</em>' class.
@@ -15593,6 +15710,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ICOLLABORATION_DIAGRAM = 95;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOLLABORATION_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -15746,15 +15872,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int ICOLLABORATION_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ICOLLABORATION_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -15967,6 +16084,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICOMMENT = 98;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMMENT__DISPLAY_NAME = IANNOTATION__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16155,6 +16281,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ICOMPONENT = 99;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMPONENT__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Weak CG Time</b></em>' attribute list.
@@ -16464,6 +16599,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICOMPONENT_DIAGRAM = 100;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMPONENT_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16617,15 +16761,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICOMPONENT_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ICOMPONENT_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16672,6 +16807,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICOMPONENT_INSTANCE = 101;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICOMPONENT_INSTANCE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IComponent Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16700,6 +16844,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICONFIGURATION = 102;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONFIGURATION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IConfiguration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16726,6 +16879,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ICONNECTOR = 103;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONNECTOR__DISPLAY_NAME = ISTATE_VERTEX__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -16844,6 +17006,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ICONSTRAINT = 104;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONSTRAINT__DISPLAY_NAME = IANNOTATION__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -17254,6 +17425,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IVALUE_SPECIFICATION = 214;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IVALUE_SPECIFICATION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IValue Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17282,6 +17462,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ICONTEXT_SPECIFICATION = 106;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONTEXT_SPECIFICATION__DISPLAY_NAME = IVALUE_SPECIFICATION__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IContext Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17308,6 +17497,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ICONTROLLED_FILE = 107;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICONTROLLED_FILE__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
 
 	/**
 	 * The number of structural features of the '<em>IControlled File</em>' class.
@@ -17528,6 +17726,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IDEPENDENCY = 109;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDEPENDENCY__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17627,22 +17834,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IDEPENDENCY__ANNOTATIONS = IMODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDEPENDENCY__DISPLAY_NAME = IMODEL_ELEMENT_FEATURE_COUNT + 11;
-
-	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IDEPENDENCY__DEPENDENCIES = IMODEL_ELEMENT_FEATURE_COUNT + 12;
+	int IDEPENDENCY__DEPENDENCIES = IMODEL_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -17651,7 +17849,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IDEPENDENCY__DESCRIPTION = IMODEL_ELEMENT_FEATURE_COUNT + 13;
+	int IDEPENDENCY__DESCRIPTION = IMODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -17660,7 +17858,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IDEPENDENCY__REQUIREMEN_TRACABILITY_HANDLE = IMODEL_ELEMENT_FEATURE_COUNT + 14;
+	int IDEPENDENCY__REQUIREMEN_TRACABILITY_HANDLE = IMODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -17669,7 +17867,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IDEPENDENCY__CODE_UPDATE_CG_TIME = IMODEL_ELEMENT_FEATURE_COUNT + 15;
+	int IDEPENDENCY__CODE_UPDATE_CG_TIME = IMODEL_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>IDependency</em>' class.
@@ -17678,7 +17876,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IDEPENDENCY_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 16;
+	int IDEPENDENCY_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>IDependency</em>' class.
@@ -17698,6 +17896,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IDEPLOYMENT_DIAGRAM = 110;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDEPLOYMENT_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -17851,15 +18058,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDEPLOYMENT_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDEPLOYMENT_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -18244,6 +18442,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IENUMERATION_LITERAL = 115;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IENUMERATION_LITERAL__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18344,6 +18551,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IINTERFACE_ITEM = 142;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINTERFACE_ITEM__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IInterface Item</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18370,6 +18586,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IEVENT = 116;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEVENT__DISPLAY_NAME = IINTERFACE_ITEM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -18525,22 +18750,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IEVENT__ANNOTATIONS = IINTERFACE_ITEM_FEATURE_COUNT + 16;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IEVENT__DISPLAY_NAME = IINTERFACE_ITEM_FEATURE_COUNT + 17;
-
-	/**
 	 * The number of structural features of the '<em>IEvent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IEVENT_FEATURE_COUNT = IINTERFACE_ITEM_FEATURE_COUNT + 18;
+	int IEVENT_FEATURE_COUNT = IINTERFACE_ITEM_FEATURE_COUNT + 17;
 
 	/**
 	 * The number of operations of the '<em>IEvent</em>' class.
@@ -18644,6 +18860,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IEVENT_RECEPTION = 118;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEVENT_RECEPTION__DISPLAY_NAME = IINTERFACE_ITEM__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IEvent Reception</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18670,6 +18895,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IEXECUTION_OCCURRENCE = 119;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEXECUTION_OCCURRENCE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -18736,6 +18970,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IEXTERNAL_HYPERLINK = 120;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IEXTERNAL_HYPERLINK__DISPLAY_NAME = HYPER_LINKS_TYPE__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Target</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18771,6 +19014,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IFILE = 121;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFILE__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -18916,6 +19168,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IFILE_FRAGMENT = 122;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFILE_FRAGMENT__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -19090,6 +19351,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IFLOW = 123;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFLOW__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IFlow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19116,6 +19386,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IFLOW_ITEM = 124;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFLOW_ITEM__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
 
 	/**
 	 * The number of structural features of the '<em>IFlow Item</em>' class.
@@ -19419,6 +19698,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IGENERALIZATION = 128;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGENERALIZATION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19544,6 +19832,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IGUARD = 129;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUARD__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -19810,6 +20107,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IHYPER_LINK = 132;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IHYPER_LINK__DISPLAY_NAME = IDEPENDENCY__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19907,15 +20213,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int IHYPER_LINK__ANNOTATIONS = IDEPENDENCY__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IHYPER_LINK__DISPLAY_NAME = IDEPENDENCY__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference.
@@ -20308,6 +20605,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IRELATION = 180;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRELATION__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IRelation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20334,6 +20640,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IINSTANCE = 135;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINSTANCE__DISPLAY_NAME = IRELATION__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -20409,6 +20724,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IINSTANCE_SLOT = 136;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINSTANCE_SLOT__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IInstance Slot</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20437,6 +20761,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IINSTANCE_SPECIFICATION = 137;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINSTANCE_SPECIFICATION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IInstance Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20463,6 +20796,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IINSTANCE_VALUE = 138;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINSTANCE_VALUE__DISPLAY_NAME = IVALUE_SPECIFICATION__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -20518,6 +20860,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IINTERACTION_OCCURRENCE = 139;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINTERACTION_OCCURRENCE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -20618,6 +20969,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IINTERACTION_OPERAND = 140;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINTERACTION_OPERAND__DISPLAY_NAME = ICOLLABORATION__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -20781,6 +21141,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IINTERACTION_OPERATOR = 141;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINTERACTION_OPERATOR__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The number of structural features of the '<em>IInteraction Operator</em>' class.
@@ -21011,6 +21380,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IINTERNAL_HYPERLINK = 144;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINTERNAL_HYPERLINK__DISPLAY_NAME = HYPER_LINKS_TYPE__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21194,6 +21572,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ILINK = 146;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ILINK__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21367,6 +21754,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ILITERAL_SPECIFICATION = 148;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ILITERAL_SPECIFICATION__DISPLAY_NAME = IVALUE_SPECIFICATION__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21449,6 +21845,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IM_HYPER_LINK = 149;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IM_HYPER_LINK__DISPLAY_NAME = HYPER_LINKS_TYPE__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21521,22 +21926,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IM_HYPER_LINK__LINK_TARGET = HYPER_LINKS_TYPE_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IM_HYPER_LINK__DISPLAY_NAME = HYPER_LINKS_TYPE_FEATURE_COUNT + 8;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IM_HYPER_LINK__DESCRIPTION = HYPER_LINKS_TYPE_FEATURE_COUNT + 9;
+	int IM_HYPER_LINK__DESCRIPTION = HYPER_LINKS_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -21545,7 +21941,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IM_HYPER_LINK__REQUIREMEN_TRACABILITY_HANDLE = HYPER_LINKS_TYPE_FEATURE_COUNT + 10;
+	int IM_HYPER_LINK__REQUIREMEN_TRACABILITY_HANDLE = HYPER_LINKS_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -21554,7 +21950,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IM_HYPER_LINK__OBJECT_CREATION = HYPER_LINKS_TYPE_FEATURE_COUNT + 11;
+	int IM_HYPER_LINK__OBJECT_CREATION = HYPER_LINKS_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -21563,7 +21959,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IM_HYPER_LINK__UML_DEPENDENCY_ID = HYPER_LINKS_TYPE_FEATURE_COUNT + 12;
+	int IM_HYPER_LINK__UML_DEPENDENCY_ID = HYPER_LINKS_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>IM Hyper Link</em>' class.
@@ -21572,7 +21968,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IM_HYPER_LINK_FEATURE_COUNT = HYPER_LINKS_TYPE_FEATURE_COUNT + 13;
+	int IM_HYPER_LINK_FEATURE_COUNT = HYPER_LINKS_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>IM Hyper Link</em>' class.
@@ -21939,6 +22335,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IMATRIX_LAYOUT = 152;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMATRIX_LAYOUT__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22039,6 +22444,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IMATRIX_VIEW = 153;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMATRIX_VIEW__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IMatrix View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22065,6 +22479,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IMESSAGE = 154;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMESSAGE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -22094,22 +22517,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IMESSAGE__NAME = IMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMESSAGE__DISPLAY_NAME = IMODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Msz Sequence</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MSZ_SEQUENCE = IMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int IMESSAGE__MSZ_SEQUENCE = IMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Msz Actual Args</b></em>' attribute.
@@ -22118,7 +22532,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MSZ_ACTUAL_ARGS = IMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int IMESSAGE__MSZ_ACTUAL_ARGS = IMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Msz Return Val</b></em>' attribute.
@@ -22127,7 +22541,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MSZ_RETURN_VAL = IMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int IMESSAGE__MSZ_RETURN_VAL = IMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>MpReceiver</b></em>' reference.
@@ -22136,7 +22550,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MPRECEIVER = IMODEL_ELEMENT_FEATURE_COUNT + 7;
+	int IMESSAGE__MPRECEIVER = IMODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>MpSender</b></em>' reference.
@@ -22145,7 +22559,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MPSENDER = IMODEL_ELEMENT_FEATURE_COUNT + 8;
+	int IMESSAGE__MPSENDER = IMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>MpFormal Message</b></em>' reference.
@@ -22154,7 +22568,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MPFORMAL_MESSAGE = IMODEL_ELEMENT_FEATURE_COUNT + 9;
+	int IMESSAGE__MPFORMAL_MESSAGE = IMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>MeType</b></em>' attribute.
@@ -22163,7 +22577,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__METYPE = IMODEL_ELEMENT_FEATURE_COUNT + 10;
+	int IMESSAGE__METYPE = IMODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>MpCommunication Connection</b></em>' reference.
@@ -22172,7 +22586,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MPCOMMUNICATION_CONNECTION = IMODEL_ELEMENT_FEATURE_COUNT + 11;
+	int IMESSAGE__MPCOMMUNICATION_CONNECTION = IMODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Mfree Text</b></em>' attribute.
@@ -22181,7 +22595,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MFREE_TEXT = IMODEL_ELEMENT_FEATURE_COUNT + 12;
+	int IMESSAGE__MFREE_TEXT = IMODEL_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute.
@@ -22190,7 +22604,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MODIFIED_TIME_WEAK = IMODEL_ELEMENT_FEATURE_COUNT + 13;
+	int IMESSAGE__MODIFIED_TIME_WEAK = IMODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
@@ -22199,7 +22613,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__STEREOTYPES = IMODEL_ELEMENT_FEATURE_COUNT + 14;
+	int IMESSAGE__STEREOTYPES = IMODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference list.
@@ -22208,7 +22622,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__TAGS = IMODEL_ELEMENT_FEATURE_COUNT + 15;
+	int IMESSAGE__TAGS = IMODEL_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -22217,7 +22631,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__PROPERTIES = IMODEL_ELEMENT_FEATURE_COUNT + 16;
+	int IMESSAGE__PROPERTIES = IMODEL_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Mtarget Exec</b></em>' reference.
@@ -22226,7 +22640,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MTARGET_EXEC = IMODEL_ELEMENT_FEATURE_COUNT + 17;
+	int IMESSAGE__MTARGET_EXEC = IMODEL_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Msrc Exec</b></em>' reference.
@@ -22235,7 +22649,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__MSRC_EXEC = IMODEL_ELEMENT_FEATURE_COUNT + 18;
+	int IMESSAGE__MSRC_EXEC = IMODEL_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -22244,7 +22658,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__OBJECT_CREATION = IMODEL_ELEMENT_FEATURE_COUNT + 19;
+	int IMESSAGE__OBJECT_CREATION = IMODEL_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -22253,7 +22667,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE__UML_DEPENDENCY_ID = IMODEL_ELEMENT_FEATURE_COUNT + 20;
+	int IMESSAGE__UML_DEPENDENCY_ID = IMODEL_ELEMENT_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of structural features of the '<em>IMessage</em>' class.
@@ -22262,7 +22676,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMESSAGE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 21;
+	int IMESSAGE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 20;
 
 	/**
 	 * The number of operations of the '<em>IMessage</em>' class.
@@ -22282,6 +22696,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IMESSAGE_POINT = 155;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMESSAGE_POINT__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The number of structural features of the '<em>IMessage Point</em>' class.
@@ -22392,6 +22815,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IMODULE = 158;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMODULE__DISPLAY_NAME = IINSTANCE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -22592,6 +23024,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int INODE = 160;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INODE__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
 
 	/**
 	 * The number of structural features of the '<em>INode</em>' class.
@@ -22922,6 +23363,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IOBJECT_MODEL_DIAGRAM = 163;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IOBJECT_MODEL_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23075,15 +23525,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IOBJECT_MODEL_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IOBJECT_MODEL_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23128,6 +23569,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IOBJECT_NODE = 164;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IOBJECT_NODE__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -23274,15 +23724,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IOBJECT_NODE__REQUIREMEN_TRACABILITY_HANDLE = ISTATE__REQUIREMEN_TRACABILITY_HANDLE;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IOBJECT_NODE__DISPLAY_NAME = ISTATE__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23383,6 +23824,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IOPERATION = 165;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IOPERATION__DISPLAY_NAME = IINTERFACE_ITEM__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>IOperation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23409,6 +23859,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IPACKAGE = 166;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPACKAGE__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -23545,6 +24004,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IPANEL_DIAGRAM = 167;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPANEL_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -23698,15 +24166,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int IPANEL_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPANEL_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -23863,13 +24322,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IPART__MULTIPLICITY = ASSOCIATIONS_TYPE_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPART__DISPLAY_NAME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 12;
+
+	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPART__STEREOTYPES = ASSOCIATIONS_TYPE_FEATURE_COUNT + 12;
+	int IPART__STEREOTYPES = ASSOCIATIONS_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Other Class</b></em>' reference.
@@ -23878,7 +24346,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPART__OTHER_CLASS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 13;
+	int IPART__OTHER_CLASS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Inverse</b></em>' reference.
@@ -23887,7 +24355,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPART__INVERSE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 14;
+	int IPART__INVERSE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -23896,7 +24364,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPART__DEPENDENCIES = ASSOCIATIONS_TYPE_FEATURE_COUNT + 15;
+	int IPART__DEPENDENCIES = ASSOCIATIONS_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference.
@@ -23905,7 +24373,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPART__TAGS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 16;
+	int IPART__TAGS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Initial Call Action</b></em>' containment reference.
@@ -23914,16 +24382,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPART__INITIAL_CALL_ACTION = ASSOCIATIONS_TYPE_FEATURE_COUNT + 17;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPART__DISPLAY_NAME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 18;
+	int IPART__INITIAL_CALL_ACTION = ASSOCIATIONS_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -23988,6 +24447,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IPIN = 169;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPIN__DISPLAY_NAME = ICONNECTOR__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -24133,6 +24601,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IPORT = 170;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPORT__DISPLAY_NAME = IINSTANCE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -24406,13 +24883,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IPRIMITIVE_OPERATION__NAME = OPERATIONS_TYPE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPRIMITIVE_OPERATION__DISPLAY_NAME = OPERATIONS_TYPE_FEATURE_COUNT + 6;
+
+	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__PROPERTIES = OPERATIONS_TYPE_FEATURE_COUNT + 6;
+	int IPRIMITIVE_OPERATION__PROPERTIES = OPERATIONS_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Last ID</b></em>' attribute.
@@ -24421,7 +24907,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__LAST_ID = OPERATIONS_TYPE_FEATURE_COUNT + 7;
+	int IPRIMITIVE_OPERATION__LAST_ID = OPERATIONS_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -24430,7 +24916,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__ARGS = OPERATIONS_TYPE_FEATURE_COUNT + 8;
+	int IPRIMITIVE_OPERATION__ARGS = OPERATIONS_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Return Type</b></em>' reference.
@@ -24439,7 +24925,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__RETURN_TYPE = OPERATIONS_TYPE_FEATURE_COUNT + 9;
+	int IPRIMITIVE_OPERATION__RETURN_TYPE = OPERATIONS_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -24448,7 +24934,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__ABSTRACT = OPERATIONS_TYPE_FEATURE_COUNT + 10;
+	int IPRIMITIVE_OPERATION__ABSTRACT = OPERATIONS_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Final</b></em>' attribute.
@@ -24457,7 +24943,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__FINAL = OPERATIONS_TYPE_FEATURE_COUNT + 11;
+	int IPRIMITIVE_OPERATION__FINAL = OPERATIONS_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Concurrency</b></em>' attribute.
@@ -24466,7 +24952,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__CONCURRENCY = OPERATIONS_TYPE_FEATURE_COUNT + 12;
+	int IPRIMITIVE_OPERATION__CONCURRENCY = OPERATIONS_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Protection</b></em>' attribute.
@@ -24475,7 +24961,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__PROTECTION = OPERATIONS_TYPE_FEATURE_COUNT + 13;
+	int IPRIMITIVE_OPERATION__PROTECTION = OPERATIONS_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
@@ -24484,7 +24970,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__STATIC = OPERATIONS_TYPE_FEATURE_COUNT + 14;
+	int IPRIMITIVE_OPERATION__STATIC = OPERATIONS_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Constant</b></em>' attribute.
@@ -24493,7 +24979,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__CONSTANT = OPERATIONS_TYPE_FEATURE_COUNT + 15;
+	int IPRIMITIVE_OPERATION__CONSTANT = OPERATIONS_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Its Body</b></em>' containment reference.
@@ -24502,7 +24988,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__ITS_BODY = OPERATIONS_TYPE_FEATURE_COUNT + 16;
+	int IPRIMITIVE_OPERATION__ITS_BODY = OPERATIONS_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference list.
@@ -24511,7 +24997,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__TAGS = OPERATIONS_TYPE_FEATURE_COUNT + 17;
+	int IPRIMITIVE_OPERATION__TAGS = OPERATIONS_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference.
@@ -24520,7 +25006,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__ANNOTATIONS = OPERATIONS_TYPE_FEATURE_COUNT + 18;
+	int IPRIMITIVE_OPERATION__ANNOTATIONS = OPERATIONS_TYPE_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -24529,7 +25015,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__DEPENDENCIES = OPERATIONS_TYPE_FEATURE_COUNT + 19;
+	int IPRIMITIVE_OPERATION__DEPENDENCIES = OPERATIONS_TYPE_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
@@ -24538,7 +25024,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__STEREOTYPES = OPERATIONS_TYPE_FEATURE_COUNT + 20;
+	int IPRIMITIVE_OPERATION__STEREOTYPES = OPERATIONS_TYPE_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>My Return Type</b></em>' containment reference.
@@ -24547,7 +25033,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__MY_RETURN_TYPE = OPERATIONS_TYPE_FEATURE_COUNT + 21;
+	int IPRIMITIVE_OPERATION__MY_RETURN_TYPE = OPERATIONS_TYPE_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -24556,16 +25042,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IPRIMITIVE_OPERATION__DESCRIPTION = OPERATIONS_TYPE_FEATURE_COUNT + 22;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPRIMITIVE_OPERATION__DISPLAY_NAME = OPERATIONS_TYPE_FEATURE_COUNT + 23;
+	int IPRIMITIVE_OPERATION__DESCRIPTION = OPERATIONS_TYPE_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -24648,6 +25125,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IPROFILE = 172;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROFILE__DISPLAY_NAME = IPACKAGE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -24857,22 +25343,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IPROFILE__LICENSE = IPACKAGE_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IPROFILE__DISPLAY_NAME = IPACKAGE_FEATURE_COUNT + 11;
-
-	/**
 	 * The number of structural features of the '<em>IProfile</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IPROFILE_FEATURE_COUNT = IPACKAGE_FEATURE_COUNT + 12;
+	int IPROFILE_FEATURE_COUNT = IPACKAGE_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>IProfile</em>' class.
@@ -24892,6 +25369,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int IPROJECT = 173;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IPROJECT__DISPLAY_NAME = IPACKAGE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -25676,6 +26162,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IREQUIREMENT = 181;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__DISPLAY_NAME = IANNOTATION__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25802,22 +26297,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IREQUIREMENT__REQ_ID = IANNOTATION_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IREQUIREMENT__DISPLAY_NAME = IANNOTATION_FEATURE_COUNT + 8;
-
-	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IREQUIREMENT__DEPENDENCIES = IANNOTATION_FEATURE_COUNT + 9;
+	int IREQUIREMENT__DEPENDENCIES = IANNOTATION_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Anchors</b></em>' containment reference list.
@@ -25826,7 +26312,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IREQUIREMENT__ANCHORS = IANNOTATION_FEATURE_COUNT + 10;
+	int IREQUIREMENT__ANCHORS = IANNOTATION_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference list.
@@ -25835,7 +26321,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IREQUIREMENT__HYPER_LINKS = IANNOTATION_FEATURE_COUNT + 11;
+	int IREQUIREMENT__HYPER_LINKS = IANNOTATION_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>The Main Diagram</b></em>' reference.
@@ -25844,7 +26330,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IREQUIREMENT__THE_MAIN_DIAGRAM = IANNOTATION_FEATURE_COUNT + 12;
+	int IREQUIREMENT__THE_MAIN_DIAGRAM = IANNOTATION_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>IRequirement</em>' class.
@@ -25853,7 +26339,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IREQUIREMENT_FEATURE_COUNT = IANNOTATION_FEATURE_COUNT + 13;
+	int IREQUIREMENT_FEATURE_COUNT = IANNOTATION_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>IRequirement</em>' class.
@@ -25873,6 +26359,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISEND_ACTION = 182;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISEND_ACTION__DISPLAY_NAME = IACTION__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -25991,6 +26486,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISEQUENCE_DIAGRAM = 183;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISEQUENCE_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -26146,15 +26650,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISEQUENCE_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISEQUENCE_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26263,6 +26758,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISTATE_CHART = 186;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTATE_CHART__DISPLAY_NAME = ICLASS__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -26634,15 +27138,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISTATE_CHART__CMHEADER = ICLASS__CMHEADER;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISTATE_CHART__DISPLAY_NAME = ICLASS__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Def Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26768,6 +27263,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISTATE_CHART_DIAGRAM = 187;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTATE_CHART_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -26923,15 +27427,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISTATE_CHART_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISTATE_CHART_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26976,6 +27471,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISTEREOTYPE = 189;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTEREOTYPE__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -27095,22 +27599,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISTEREOTYPE__REQUIREMEN_TRACABILITY_HANDLE = ICLASSIFIER_FEATURE_COUNT + 12;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISTEREOTYPE__DISPLAY_NAME = ICLASSIFIER_FEATURE_COUNT + 13;
-
-	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISTEREOTYPE__OBJECT_CREATION = ICLASSIFIER_FEATURE_COUNT + 14;
+	int ISTEREOTYPE__OBJECT_CREATION = ICLASSIFIER_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -27119,7 +27614,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTEREOTYPE__UML_DEPENDENCY_ID = ICLASSIFIER_FEATURE_COUNT + 15;
+	int ISTEREOTYPE__UML_DEPENDENCY_ID = ICLASSIFIER_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>The Main Diagram</b></em>' reference.
@@ -27128,7 +27623,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTEREOTYPE__THE_MAIN_DIAGRAM = ICLASSIFIER_FEATURE_COUNT + 16;
+	int ISTEREOTYPE__THE_MAIN_DIAGRAM = ICLASSIFIER_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference.
@@ -27137,7 +27632,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTEREOTYPE__ANNOTATIONS = ICLASSIFIER_FEATURE_COUNT + 17;
+	int ISTEREOTYPE__ANNOTATIONS = ICLASSIFIER_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of structural features of the '<em>IStereotype</em>' class.
@@ -27146,7 +27641,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTEREOTYPE_FEATURE_COUNT = ICLASSIFIER_FEATURE_COUNT + 18;
+	int ISTEREOTYPE_FEATURE_COUNT = ICLASSIFIER_FEATURE_COUNT + 17;
 
 	/**
 	 * The number of operations of the '<em>IStereotype</em>' class.
@@ -27166,6 +27661,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISTRUCTURE_DIAGRAM = 190;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISTRUCTURE_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -27321,15 +27825,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISTRUCTURE_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISTRUCTURE_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27440,13 +27935,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISUBSYSTEM__STRONG_CG_TIME = OWNER_HANDLE_TYPE__STRONG_CG_TIME;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISUBSYSTEM__DISPLAY_NAME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 0;
+	int ISUBSYSTEM__ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>My State</b></em>' attribute.
@@ -27455,7 +27959,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MY_STATE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 1;
+	int ISUBSYSTEM__MY_STATE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -27464,7 +27968,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__NAME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 2;
+	int ISUBSYSTEM__NAME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -27473,7 +27977,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MODIFIED_TIME_WEAK = OWNER_HANDLE_TYPE_FEATURE_COUNT + 3;
+	int ISUBSYSTEM__MODIFIED_TIME_WEAK = OWNER_HANDLE_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Default Composite</b></em>' reference.
@@ -27482,7 +27986,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DEFAULT_COMPOSITE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 4;
+	int ISUBSYSTEM__DEFAULT_COMPOSITE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Events Base ID</b></em>' attribute.
@@ -27491,7 +27995,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__EVENTS_BASE_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 5;
+	int ISUBSYSTEM__EVENTS_BASE_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -27500,7 +28004,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CLASSES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 6;
+	int ISUBSYSTEM__CLASSES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Configuration Related Time</b></em>' attribute list.
@@ -27509,7 +28013,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CONFIGURATION_RELATED_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 7;
+	int ISUBSYSTEM__CONFIGURATION_RELATED_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -27518,7 +28022,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__PROPERTIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 8;
+	int ISUBSYSTEM__PROPERTIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Last ID</b></em>' attribute.
@@ -27527,7 +28031,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__LAST_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 9;
+	int ISUBSYSTEM__LAST_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Cmheader</b></em>' attribute.
@@ -27536,7 +28040,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CMHEADER = OWNER_HANDLE_TYPE_FEATURE_COUNT + 10;
+	int ISUBSYSTEM__CMHEADER = OWNER_HANDLE_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Declaratives</b></em>' containment reference list.
@@ -27545,7 +28049,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DECLARATIVES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 11;
+	int ISUBSYSTEM__DECLARATIVES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -27554,7 +28058,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 12;
+	int ISUBSYSTEM__TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
@@ -27563,7 +28067,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__STEREOTYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 13;
+	int ISUBSYSTEM__STEREOTYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Predefined Types</b></em>' attribute.
@@ -27572,7 +28076,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__PREDEFINED_TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 14;
+	int ISUBSYSTEM__PREDEFINED_TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
@@ -27581,7 +28085,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__EVENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 15;
+	int ISUBSYSTEM__EVENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -27590,7 +28094,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ANNOTATIONS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 16;
+	int ISUBSYSTEM__ANNOTATIONS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Use Cases</b></em>' containment reference list.
@@ -27599,7 +28103,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__USE_CASES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 17;
+	int ISUBSYSTEM__USE_CASES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Actors</b></em>' containment reference list.
@@ -27608,7 +28112,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ACTORS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 18;
+	int ISUBSYSTEM__ACTORS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -27617,7 +28121,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DESCRIPTION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 19;
+	int ISUBSYSTEM__DESCRIPTION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference list.
@@ -27626,7 +28130,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TAGS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 20;
+	int ISUBSYSTEM__TAGS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Association Elements</b></em>' reference list.
@@ -27635,7 +28139,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ASSOCIATION_ELEMENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 21;
+	int ISUBSYSTEM__ASSOCIATION_ELEMENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -27644,7 +28148,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DEPENDENCIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 22;
+	int ISUBSYSTEM__DEPENDENCIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Owner Handle</b></em>' reference.
@@ -27653,7 +28157,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__OWNER_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 23;
+	int ISUBSYSTEM__OWNER_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>The Main Diagram</b></em>' reference.
@@ -27662,7 +28166,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__THE_MAIN_DIAGRAM = OWNER_HANDLE_TYPE_FEATURE_COUNT + 24;
+	int ISUBSYSTEM__THE_MAIN_DIAGRAM = OWNER_HANDLE_TYPE_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference.
@@ -27671,7 +28175,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__HYPER_LINKS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 25;
+	int ISUBSYSTEM__HYPER_LINKS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 26;
 
 	/**
 	 * The feature id for the '<em><b>Table Layouts</b></em>' containment reference list.
@@ -27680,7 +28184,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TABLE_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 26;
+	int ISUBSYSTEM__TABLE_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 27;
 
 	/**
 	 * The feature id for the '<em><b>Matrix Layouts</b></em>' containment reference list.
@@ -27689,7 +28193,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MATRIX_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 27;
+	int ISUBSYSTEM__MATRIX_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 28;
 
 	/**
 	 * The feature id for the '<em><b>Table Instances</b></em>' containment reference list.
@@ -27698,7 +28202,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TABLE_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 28;
+	int ISUBSYSTEM__TABLE_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 29;
 
 	/**
 	 * The feature id for the '<em><b>Matrix Instances</b></em>' containment reference list.
@@ -27707,7 +28211,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MATRIX_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 29;
+	int ISUBSYSTEM__MATRIX_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 30;
 
 	/**
 	 * The feature id for the '<em><b>Embeded Files</b></em>' containment reference list.
@@ -27716,7 +28220,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__EMBEDED_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 30;
+	int ISUBSYSTEM__EMBEDED_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 31;
 
 	/**
 	 * The feature id for the '<em><b>Component Files</b></em>' containment reference list.
@@ -27725,7 +28229,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__COMPONENT_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 31;
+	int ISUBSYSTEM__COMPONENT_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 32;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -27734,7 +28238,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__REQUIREMEN_TRACABILITY_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 32;
+	int ISUBSYSTEM__REQUIREMEN_TRACABILITY_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -27743,7 +28247,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CODE_UPDATE_CG_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 33;
+	int ISUBSYSTEM__CODE_UPDATE_CG_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 34;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -27752,7 +28256,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__OBJECT_CREATION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 34;
+	int ISUBSYSTEM__OBJECT_CREATION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 35;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -27761,16 +28265,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__UML_DEPENDENCY_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 35;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISUBSYSTEM__DISPLAY_NAME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 36;
+	int ISUBSYSTEM__UML_DEPENDENCY_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 36;
 
 	/**
 	 * The number of structural features of the '<em>ISubsystem</em>' class.
@@ -27799,6 +28294,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISWIMLANE = 192;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISWIMLANE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -27882,22 +28386,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISWIMLANE__SWIMLANES = IMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISWIMLANE__DISPLAY_NAME = IMODEL_ELEMENT_FEATURE_COUNT + 9;
-
-	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISWIMLANE__STEREOTYPES = IMODEL_ELEMENT_FEATURE_COUNT + 10;
+	int ISWIMLANE__STEREOTYPES = IMODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>ISwimlane</em>' class.
@@ -27906,7 +28401,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISWIMLANE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 11;
+	int ISWIMLANE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>ISwimlane</em>' class.
@@ -27926,6 +28421,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ISYS_ML_PORT = 193;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISYS_ML_PORT__DISPLAY_NAME = IINSTANCE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -28219,6 +28723,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITABLE_LAYOUT = 195;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITABLE_LAYOUT__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28337,6 +28850,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITABLE_VIEW = 196;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITABLE_VIEW__DISPLAY_NAME = IUNIT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>ITable View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28363,6 +28885,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ITAG = 197;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITAG__DISPLAY_NAME = IVARIABLE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -28509,22 +29040,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITAG__CODE_UPDATE_CG_TIME = IVARIABLE_FEATURE_COUNT + 13;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITAG__DISPLAY_NAME = IVARIABLE_FEATURE_COUNT + 14;
-
-	/**
 	 * The number of structural features of the '<em>ITag</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITAG_FEATURE_COUNT = IVARIABLE_FEATURE_COUNT + 15;
+	int ITAG_FEATURE_COUNT = IVARIABLE_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of operations of the '<em>ITag</em>' class.
@@ -28692,6 +29214,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITEMPLATE_INSTANTIATION = 200;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEMPLATE_INSTANTIATION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>ITemplate Instantiation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28720,6 +29251,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITEMPLATE_INSTANTIATION_PARAMETER = 201;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEMPLATE_INSTANTIATION_PARAMETER__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The number of structural features of the '<em>ITemplate Instantiation Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28746,6 +29286,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ITEMPLATE_PARAMETER = 202;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEMPLATE_PARAMETER__DISPLAY_NAME = IVARIABLE__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -29057,6 +29606,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITRANSITION = 205;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITRANSITION__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29201,22 +29759,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITRANSITION__STEREOTYPES = IMODEL_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITRANSITION__DISPLAY_NAME = IMODEL_ELEMENT_FEATURE_COUNT + 16;
-
-	/**
 	 * The number of structural features of the '<em>ITransition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITRANSITION_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 17;
+	int ITRANSITION_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of operations of the '<em>ITransition</em>' class.
@@ -29236,6 +29785,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ITRIGGER = 206;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITRIGGER__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
 
 	/**
 	 * The number of structural features of the '<em>ITrigger</em>' class.
@@ -29275,13 +29833,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ITRIGGERED__VIRTUAL = OPERATIONS_TYPE__VIRTUAL;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITRIGGERED__DISPLAY_NAME = OPERATIONS_TYPE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITRIGGERED__ID = OPERATIONS_TYPE_FEATURE_COUNT + 0;
+	int ITRIGGERED__ID = OPERATIONS_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -29290,16 +29857,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITRIGGERED__NAME = OPERATIONS_TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITRIGGERED__DISPLAY_NAME = OPERATIONS_TYPE_FEATURE_COUNT + 2;
+	int ITRIGGERED__NAME = OPERATIONS_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -29400,6 +29958,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int ITYPE = 208;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITYPE__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -29945,6 +30512,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IUSE_CASE = 211;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IUSE_CASE__DISPLAY_NAME = ICLASSIFIER__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30261,6 +30837,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IUSE_CASE_DIAGRAM = 212;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IUSE_CASE_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30412,15 +30997,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int IUSE_CASE_DIAGRAM__ANNOTATIONS = IDIAGRAM__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IUSE_CASE_DIAGRAM__DISPLAY_NAME = IDIAGRAM__DISPLAY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -39100,17 +39676,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EAttribute getIActivityGraph_UmlDependencyID();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IActivityGraph#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IActivityGraph#getDisplayName()
-	 * @see #getIActivityGraph()
-	 * @generated
-	 */
-	EAttribute getIActivityGraph_DisplayName();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IActivityGraph#getHyperLinks <em>Hyper Links</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41032,17 +41597,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EAttribute getIClass_Cmheader();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClass#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClass#getDisplayName()
-	 * @see #getIClass()
-	 * @generated
-	 */
-	EAttribute getIClass_DisplayName();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClassHandle <em>IClass Handle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41301,17 +41855,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIClassifierRole_UmlDependencyID();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClassifierRole#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClassifierRole#getDisplayName()
-	 * @see #getIClassifierRole()
-	 * @generated
-	 */
-	EAttribute getIClassifierRole_DisplayName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ICodeGenConfigInfo <em>ICode Gen Config Info</em>}'.
@@ -43078,17 +43621,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EReference getIDependency_Annotations();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDependency#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDependency#getDisplayName()
-	 * @see #getIDependency()
-	 * @generated
-	 */
-	EAttribute getIDependency_DisplayName();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDependency#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43424,17 +43956,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIDiagram_Annotations();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getDisplayName()
-	 * @see #getIDiagram()
-	 * @generated
-	 */
-	EAttribute getIDiagram_DisplayName();
 
 	/**
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDiagram#getCodeUpdateCGTime <em>Code Update CG Time</em>}'.
@@ -43806,17 +44327,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIEvent_Annotations();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IEvent#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IEvent#getDisplayName()
-	 * @see #getIEvent()
-	 * @generated
-	 */
-	EAttribute getIEvent_DisplayName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IEventHandle <em>IEvent Handle</em>}'.
@@ -45909,17 +46419,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EAttribute getIMHyperLink_LinkTarget();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getDisplayName()
-	 * @see #getIMHyperLink()
-	 * @generated
-	 */
-	EAttribute getIMHyperLink_DisplayName();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMHyperLink#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46454,17 +46953,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EAttribute getIMessage_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMessage#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMessage#getDisplayName()
-	 * @see #getIMessage()
-	 * @generated
-	 */
-	EAttribute getIMessage_DisplayName();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMessage#getM_szSequence <em>Msz Sequence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46746,6 +47234,17 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIModelElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement#getDisplayName <em>Display Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Display Name</em>'.
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement#getDisplayName()
+	 * @see #getIModelElement()
+	 * @generated
+	 */
+	EAttribute getIModelElement_DisplayName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModule <em>IModule</em>}'.
@@ -47419,17 +47918,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EReference getIPart_InitialCallAction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getDisplayName()
-	 * @see #getIPart()
-	 * @generated
-	 */
-	EAttribute getIPart_DisplayName();
-
-	/**
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPart#getCodeUpdateCGTime <em>Code Update CG Time</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47834,17 +48322,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EReference getIPrimitiveOperation_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getDisplayName()
-	 * @see #getIPrimitiveOperation()
-	 * @generated
-	 */
-	EAttribute getIPrimitiveOperation_DisplayName();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPrimitiveOperation#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48018,17 +48495,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIProfile_License();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProfile#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProfile#getDisplayName()
-	 * @see #getIProfile()
-	 * @generated
-	 */
-	EAttribute getIProfile_DisplayName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProject <em>IProject</em>}'.
@@ -48748,17 +49214,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EAttribute getIRequirement_ReqID();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IRequirement#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IRequirement#getDisplayName()
-	 * @see #getIRequirement()
-	 * @generated
-	 */
-	EAttribute getIRequirement_DisplayName();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IRequirement#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49017,17 +49472,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIState_RequiremenTracabilityHandle();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IState#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IState#getDisplayName()
-	 * @see #getIState()
-	 * @generated
-	 */
-	EAttribute getIState_DisplayName();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IState#getAnnotations <em>Annotations</em>}'.
@@ -49365,17 +49809,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIStereotype_RequiremenTracabilityHandle();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IStereotype#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IStereotype#getDisplayName()
-	 * @see #getIStereotype()
-	 * @generated
-	 */
-	EAttribute getIStereotype_DisplayName();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IStereotype#getObjectCreation <em>Object Creation</em>}'.
@@ -49838,17 +50271,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EAttribute getISubsystem_UmlDependencyID();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getDisplayName()
-	 * @see #getISubsystem()
-	 * @generated
-	 */
-	EAttribute getISubsystem_DisplayName();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISwimlane <em>ISwimlane</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49956,17 +50378,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getISwimlane_Swimlanes();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISwimlane#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISwimlane#getDisplayName()
-	 * @see #getISwimlane()
-	 * @generated
-	 */
-	EAttribute getISwimlane_DisplayName();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISwimlane#getStereotypes <em>Stereotypes</em>}'.
@@ -50426,17 +50837,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EAttribute getITag_CodeUpdateCGTime();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITag#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITag#getDisplayName()
-	 * @see #getITag()
-	 * @generated
-	 */
-	EAttribute getITag_DisplayName();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITemplateInst <em>ITemplate Inst</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50847,17 +51247,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EReference getITransition_Stereotypes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITransition#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITransition#getDisplayName()
-	 * @see #getITransition()
-	 * @generated
-	 */
-	EAttribute getITransition_DisplayName();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITrigger <em>ITrigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50898,17 +51287,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getITriggered_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getDisplayName <em>Display Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Display Name</em>'.
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getDisplayName()
-	 * @see #getITriggered()
-	 * @generated
-	 */
-	EAttribute getITriggered_DisplayName();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITriggered#getArgs <em>Args</em>}'.

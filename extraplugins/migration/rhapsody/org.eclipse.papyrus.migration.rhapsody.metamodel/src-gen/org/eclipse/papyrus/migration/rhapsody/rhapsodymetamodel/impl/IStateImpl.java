@@ -56,7 +56,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateImpl#getExitAction <em>Exit Action</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateImpl#getNestedStateChart <em>Nested State Chart</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateImpl#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IStateImpl#getTheMainDiagram <em>The Main Diagram</em>}</li>
@@ -166,26 +165,6 @@ public class IStateImpl extends IStateVertexImpl implements IState {
 	 * @ordered
 	 */
 	protected String requiremenTracabilityHandle = REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
@@ -615,27 +594,6 @@ public class IStateImpl extends IStateVertexImpl implements IState {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ISTATE__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<IAnnotation> getAnnotations() {
 		if (annotations == null) {
 			annotations = new EObjectContainmentEList.Resolving<IAnnotation>(IAnnotation.class, this, UMLRhapsodyPackage.ISTATE__ANNOTATIONS);
@@ -849,8 +807,6 @@ public class IStateImpl extends IStateVertexImpl implements IState {
 				return basicGetNestedStateChart();
 			case UMLRhapsodyPackage.ISTATE__REQUIREMEN_TRACABILITY_HANDLE:
 				return getRequiremenTracabilityHandle();
-			case UMLRhapsodyPackage.ISTATE__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.ISTATE__ANNOTATIONS:
 				return getAnnotations();
 			case UMLRhapsodyPackage.ISTATE__DEPENDENCIES:
@@ -900,9 +856,6 @@ public class IStateImpl extends IStateVertexImpl implements IState {
 				return;
 			case UMLRhapsodyPackage.ISTATE__REQUIREMEN_TRACABILITY_HANDLE:
 				setRequiremenTracabilityHandle((String)newValue);
-				return;
-			case UMLRhapsodyPackage.ISTATE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.ISTATE__ANNOTATIONS:
 				getAnnotations().clear();
@@ -957,9 +910,6 @@ public class IStateImpl extends IStateVertexImpl implements IState {
 			case UMLRhapsodyPackage.ISTATE__REQUIREMEN_TRACABILITY_HANDLE:
 				setRequiremenTracabilityHandle(REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.ISTATE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.ISTATE__ANNOTATIONS:
 				getAnnotations().clear();
 				return;
@@ -1003,8 +953,6 @@ public class IStateImpl extends IStateVertexImpl implements IState {
 				return nestedStateChart != null;
 			case UMLRhapsodyPackage.ISTATE__REQUIREMEN_TRACABILITY_HANDLE:
 				return REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT == null ? requiremenTracabilityHandle != null : !REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT.equals(requiremenTracabilityHandle);
-			case UMLRhapsodyPackage.ISTATE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.ISTATE__ANNOTATIONS:
 				return annotations != null && !annotations.isEmpty();
 			case UMLRhapsodyPackage.ISTATE__DEPENDENCIES:
@@ -1033,8 +981,6 @@ public class IStateImpl extends IStateVertexImpl implements IState {
 		result.append(stateType);
 		result.append(", requiremenTracabilityHandle: "); //$NON-NLS-1$
 		result.append(requiremenTracabilityHandle);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", codeUpdateCGTime: "); //$NON-NLS-1$
 		result.append(codeUpdateCGTime);
 		result.append(')');

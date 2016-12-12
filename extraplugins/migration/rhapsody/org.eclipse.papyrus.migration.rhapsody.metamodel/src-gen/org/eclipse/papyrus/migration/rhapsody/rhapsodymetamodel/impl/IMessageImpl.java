@@ -47,7 +47,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMessageImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMessageImpl#getMyState <em>My State</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMessageImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMessageImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMessageImpl#getM_szSequence <em>Msz Sequence</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMessageImpl#getM_szActualArgs <em>Msz Actual Args</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMessageImpl#getM_szReturnVal <em>Msz Return Val</em>}</li>
@@ -129,26 +128,6 @@ public class IMessageImpl extends IModelElementImpl implements IMessage {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getM_szSequence() <em>Msz Sequence</em>}' attribute.
@@ -480,27 +459,6 @@ public class IMessageImpl extends IModelElementImpl implements IMessage {
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IMESSAGE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IMESSAGE__DISPLAY_NAME, oldDisplayName, displayName));
 	}
 
 	/**
@@ -1045,8 +1003,6 @@ public class IMessageImpl extends IModelElementImpl implements IMessage {
 				return getMyState();
 			case UMLRhapsodyPackage.IMESSAGE__NAME:
 				return getName();
-			case UMLRhapsodyPackage.IMESSAGE__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_SEQUENCE:
 				return getM_szSequence();
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_ACTUAL_ARGS:
@@ -1110,9 +1066,6 @@ public class IMessageImpl extends IModelElementImpl implements IMessage {
 				return;
 			case UMLRhapsodyPackage.IMESSAGE__NAME:
 				setName((String)newValue);
-				return;
-			case UMLRhapsodyPackage.IMESSAGE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_SEQUENCE:
 				setM_szSequence((String)newValue);
@@ -1187,9 +1140,6 @@ public class IMessageImpl extends IModelElementImpl implements IMessage {
 			case UMLRhapsodyPackage.IMESSAGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.IMESSAGE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_SEQUENCE:
 				setM_szSequence(MSZ_SEQUENCE_EDEFAULT);
 				return;
@@ -1259,8 +1209,6 @@ public class IMessageImpl extends IModelElementImpl implements IMessage {
 				return MY_STATE_EDEFAULT == null ? myState != null : !MY_STATE_EDEFAULT.equals(myState);
 			case UMLRhapsodyPackage.IMESSAGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case UMLRhapsodyPackage.IMESSAGE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_SEQUENCE:
 				return MSZ_SEQUENCE_EDEFAULT == null ? m_szSequence != null : !MSZ_SEQUENCE_EDEFAULT.equals(m_szSequence);
 			case UMLRhapsodyPackage.IMESSAGE__MSZ_ACTUAL_ARGS:
@@ -1315,8 +1263,6 @@ public class IMessageImpl extends IModelElementImpl implements IMessage {
 		result.append(myState);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", m_szSequence: "); //$NON-NLS-1$
 		result.append(m_szSequence);
 		result.append(", m_szActualArgs: "); //$NON-NLS-1$

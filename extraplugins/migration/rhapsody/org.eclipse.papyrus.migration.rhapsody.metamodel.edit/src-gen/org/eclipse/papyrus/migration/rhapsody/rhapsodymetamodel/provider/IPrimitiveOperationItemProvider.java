@@ -64,6 +64,7 @@ public class IPrimitiveOperationItemProvider extends OperationsTypeItemProvider 
 			addIdPropertyDescriptor(object);
 			addMyStatePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addDisplayNamePropertyDescriptor(object);
 			addLastIDPropertyDescriptor(object);
 			addReturnTypePropertyDescriptor(object);
 			addAbstractPropertyDescriptor(object);
@@ -72,7 +73,6 @@ public class IPrimitiveOperationItemProvider extends OperationsTypeItemProvider 
 			addProtectionPropertyDescriptor(object);
 			addStaticPropertyDescriptor(object);
 			addConstantPropertyDescriptor(object);
-			addDisplayNamePropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
 		}
@@ -398,9 +398,9 @@ public class IPrimitiveOperationItemProvider extends OperationsTypeItemProvider 
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_IPrimitiveOperation_displayName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IPrimitiveOperation_displayName_feature", "_UI_IPrimitiveOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 UMLRhapsodyPackage.eINSTANCE.getIPrimitiveOperation_DisplayName(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
 				 true,
 				 false,
 				 false,
@@ -539,6 +539,7 @@ public class IPrimitiveOperationItemProvider extends OperationsTypeItemProvider 
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__ID:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__MY_STATE:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__NAME:
+			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__LAST_ID:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__ABSTRACT:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__FINAL:
@@ -546,7 +547,6 @@ public class IPrimitiveOperationItemProvider extends OperationsTypeItemProvider 
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__PROTECTION:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__STATIC:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__CONSTANT:
-			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__REQUIREMEN_TRACABILITY_HANDLE:
 			case UMLRhapsodyPackage.IPRIMITIVE_OPERATION__CODE_UPDATE_CG_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

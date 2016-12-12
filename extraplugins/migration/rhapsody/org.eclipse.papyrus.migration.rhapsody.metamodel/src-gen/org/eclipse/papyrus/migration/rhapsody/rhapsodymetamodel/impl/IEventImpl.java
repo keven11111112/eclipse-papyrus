@@ -69,7 +69,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IEventImpl#getSuperEvent <em>Super Event</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IEventImpl#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IEventImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IEventImpl#getDisplayName <em>Display Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -324,26 +323,6 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 	 * @ordered
 	 */
 	protected IConstraint annotations;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -887,27 +866,6 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IEVENT__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -974,8 +932,6 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 			case UMLRhapsodyPackage.IEVENT__ANNOTATIONS:
 				if (resolve) return getAnnotations();
 				return basicGetAnnotations();
-			case UMLRhapsodyPackage.IEVENT__DISPLAY_NAME:
-				return getDisplayName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1044,9 +1000,6 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 			case UMLRhapsodyPackage.IEVENT__ANNOTATIONS:
 				setAnnotations((IConstraint)newValue);
 				return;
-			case UMLRhapsodyPackage.IEVENT__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1110,9 +1063,6 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 			case UMLRhapsodyPackage.IEVENT__ANNOTATIONS:
 				setAnnotations((IConstraint)null);
 				return;
-			case UMLRhapsodyPackage.IEVENT__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1159,8 +1109,6 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 				return REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT == null ? requiremenTracabilityHandle != null : !REQUIREMEN_TRACABILITY_HANDLE_EDEFAULT.equals(requiremenTracabilityHandle);
 			case UMLRhapsodyPackage.IEVENT__ANNOTATIONS:
 				return annotations != null;
-			case UMLRhapsodyPackage.IEVENT__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1259,8 +1207,6 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 		result.append(modifiedTimeWeak);
 		result.append(", requiremenTracabilityHandle: "); //$NON-NLS-1$
 		result.append(requiremenTracabilityHandle);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

@@ -51,7 +51,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISwimlaneImpl#getObjectCreation <em>Object Creation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISwimlaneImpl#getUmlDependencyID <em>Uml Dependency ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISwimlaneImpl#getSwimlanes <em>Swimlanes</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISwimlaneImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISwimlaneImpl#getStereotypes <em>Stereotypes</em>}</li>
  * </ul>
  *
@@ -197,26 +196,6 @@ public class ISwimlaneImpl extends IModelElementImpl implements ISwimlane {
 	 * @ordered
 	 */
 	protected EList<ISwimlane> swimlanes;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getStereotypes() <em>Stereotypes</em>}' reference.
@@ -485,27 +464,6 @@ public class ISwimlaneImpl extends IModelElementImpl implements ISwimlane {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ISWIMLANE__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IStereotype getStereotypes() {
 		if (stereotypes != null && stereotypes.eIsProxy()) {
 			InternalEObject oldStereotypes = (InternalEObject)stereotypes;
@@ -583,8 +541,6 @@ public class ISwimlaneImpl extends IModelElementImpl implements ISwimlane {
 				return getUmlDependencyID();
 			case UMLRhapsodyPackage.ISWIMLANE__SWIMLANES:
 				return getSwimlanes();
-			case UMLRhapsodyPackage.ISWIMLANE__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.ISWIMLANE__STEREOTYPES:
 				if (resolve) return getStereotypes();
 				return basicGetStereotypes();
@@ -630,9 +586,6 @@ public class ISwimlaneImpl extends IModelElementImpl implements ISwimlane {
 				getSwimlanes().clear();
 				getSwimlanes().addAll((Collection<? extends ISwimlane>)newValue);
 				return;
-			case UMLRhapsodyPackage.ISWIMLANE__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 			case UMLRhapsodyPackage.ISWIMLANE__STEREOTYPES:
 				setStereotypes((IStereotype)newValue);
 				return;
@@ -675,9 +628,6 @@ public class ISwimlaneImpl extends IModelElementImpl implements ISwimlane {
 			case UMLRhapsodyPackage.ISWIMLANE__SWIMLANES:
 				getSwimlanes().clear();
 				return;
-			case UMLRhapsodyPackage.ISWIMLANE__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.ISWIMLANE__STEREOTYPES:
 				setStereotypes((IStereotype)null);
 				return;
@@ -711,8 +661,6 @@ public class ISwimlaneImpl extends IModelElementImpl implements ISwimlane {
 				return UML_DEPENDENCY_ID_EDEFAULT == null ? umlDependencyID != null : !UML_DEPENDENCY_ID_EDEFAULT.equals(umlDependencyID);
 			case UMLRhapsodyPackage.ISWIMLANE__SWIMLANES:
 				return swimlanes != null && !swimlanes.isEmpty();
-			case UMLRhapsodyPackage.ISWIMLANE__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.ISWIMLANE__STEREOTYPES:
 				return stereotypes != null;
 		}
@@ -741,8 +689,6 @@ public class ISwimlaneImpl extends IModelElementImpl implements ISwimlane {
 		result.append(objectCreation);
 		result.append(", umlDependencyID: "); //$NON-NLS-1$
 		result.append(umlDependencyID);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(')');
 		return result.toString();
 	}

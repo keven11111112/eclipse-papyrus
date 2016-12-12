@@ -48,7 +48,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMHyperLinkImpl#getLinkType <em>Link Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMHyperLinkImpl#getIsConfigurationFileHyperLink <em>Is Configuration File Hyper Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMHyperLinkImpl#getLinkTarget <em>Link Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMHyperLinkImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMHyperLinkImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMHyperLinkImpl#getRequiremenTracabilityHandle <em>Requiremen Tracability Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IMHyperLinkImpl#getObjectCreation <em>Object Creation</em>}</li>
@@ -187,26 +186,6 @@ public class IMHyperLinkImpl extends HyperLinksTypeImpl implements IMHyperLink {
 	 * @ordered
 	 */
 	protected String linkTarget = LINK_TARGET_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' containment reference.
@@ -523,27 +502,6 @@ public class IMHyperLinkImpl extends HyperLinksTypeImpl implements IMHyperLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IM_HYPER_LINK__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IDescription getDescription() {
 		if (description != null && description.eIsProxy()) {
 			InternalEObject oldDescription = (InternalEObject)description;
@@ -710,8 +668,6 @@ public class IMHyperLinkImpl extends HyperLinksTypeImpl implements IMHyperLink {
 				return getIsConfigurationFileHyperLink();
 			case UMLRhapsodyPackage.IM_HYPER_LINK__LINK_TARGET:
 				return getLinkTarget();
-			case UMLRhapsodyPackage.IM_HYPER_LINK__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.IM_HYPER_LINK__DESCRIPTION:
 				if (resolve) return getDescription();
 				return basicGetDescription();
@@ -758,9 +714,6 @@ public class IMHyperLinkImpl extends HyperLinksTypeImpl implements IMHyperLink {
 				return;
 			case UMLRhapsodyPackage.IM_HYPER_LINK__LINK_TARGET:
 				setLinkTarget((String)newValue);
-				return;
-			case UMLRhapsodyPackage.IM_HYPER_LINK__DISPLAY_NAME:
-				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IM_HYPER_LINK__DESCRIPTION:
 				setDescription((IDescription)newValue);
@@ -810,9 +763,6 @@ public class IMHyperLinkImpl extends HyperLinksTypeImpl implements IMHyperLink {
 			case UMLRhapsodyPackage.IM_HYPER_LINK__LINK_TARGET:
 				setLinkTarget(LINK_TARGET_EDEFAULT);
 				return;
-			case UMLRhapsodyPackage.IM_HYPER_LINK__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.IM_HYPER_LINK__DESCRIPTION:
 				setDescription((IDescription)null);
 				return;
@@ -853,8 +803,6 @@ public class IMHyperLinkImpl extends HyperLinksTypeImpl implements IMHyperLink {
 				return IS_CONFIGURATION_FILE_HYPER_LINK_EDEFAULT == null ? isConfigurationFileHyperLink != null : !IS_CONFIGURATION_FILE_HYPER_LINK_EDEFAULT.equals(isConfigurationFileHyperLink);
 			case UMLRhapsodyPackage.IM_HYPER_LINK__LINK_TARGET:
 				return LINK_TARGET_EDEFAULT == null ? linkTarget != null : !LINK_TARGET_EDEFAULT.equals(linkTarget);
-			case UMLRhapsodyPackage.IM_HYPER_LINK__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IM_HYPER_LINK__DESCRIPTION:
 				return description != null;
 			case UMLRhapsodyPackage.IM_HYPER_LINK__REQUIREMEN_TRACABILITY_HANDLE:
@@ -889,8 +837,6 @@ public class IMHyperLinkImpl extends HyperLinksTypeImpl implements IMHyperLink {
 		result.append(isConfigurationFileHyperLink);
 		result.append(", linkTarget: "); //$NON-NLS-1$
 		result.append(linkTarget);
-		result.append(", displayName: "); //$NON-NLS-1$
-		result.append(displayName);
 		result.append(", requiremenTracabilityHandle: "); //$NON-NLS-1$
 		result.append(requiremenTracabilityHandle);
 		result.append(", objectCreation: "); //$NON-NLS-1$
