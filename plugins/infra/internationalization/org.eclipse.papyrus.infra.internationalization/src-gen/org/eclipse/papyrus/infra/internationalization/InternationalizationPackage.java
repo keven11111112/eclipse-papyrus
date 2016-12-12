@@ -77,7 +77,7 @@ public interface InternationalizationPackage extends EPackage {
 	int INTERNATIONALIZATION_LIBRARY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Entries</b></em>' reference list.
+	 * The feature id for the '<em><b>Entries</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -160,10 +160,10 @@ public interface InternationalizationPackage extends EPackage {
 	EClass getInternationalizationLibrary();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.internationalization.InternationalizationLibrary#getEntries <em>Entries</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.internationalization.InternationalizationLibrary#getEntries <em>Entries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Entries</em>'.
+	 * @return the meta object for the containment reference list '<em>Entries</em>'.
 	 * @see org.eclipse.papyrus.infra.internationalization.InternationalizationLibrary#getEntries()
 	 * @see #getInternationalizationLibrary()
 	 * @generated
@@ -236,7 +236,7 @@ public interface InternationalizationPackage extends EPackage {
 		EClass INTERNATIONALIZATION_LIBRARY = eINSTANCE.getInternationalizationLibrary();
 
 		/**
-		 * The meta object literal for the '<em><b>Entries</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Entries</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

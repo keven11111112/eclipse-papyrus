@@ -139,10 +139,10 @@ public class InternationalizationEntryImpl extends MinimalEObjectImpl.Container 
 	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
-//		if (eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					InternationalizationPackage.INTERNATIONALIZATION_ENTRY__VALUE, oldValue, value));
-//		}
+		}
 	}
 
 	/**

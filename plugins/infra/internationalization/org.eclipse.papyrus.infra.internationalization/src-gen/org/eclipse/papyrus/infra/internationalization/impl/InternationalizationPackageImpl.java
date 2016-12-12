@@ -234,7 +234,7 @@ public class InternationalizationPackageImpl extends EPackageImpl implements Int
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInternationalizationLibrary_Entries(), this.getInternationalizationEntry(), null, "entries", //$NON-NLS-1$
 				null, 0, -1, InternationalizationLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(internationalizationEntryEClass, InternationalizationEntry.class, "InternationalizationEntry", //$NON-NLS-1$
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

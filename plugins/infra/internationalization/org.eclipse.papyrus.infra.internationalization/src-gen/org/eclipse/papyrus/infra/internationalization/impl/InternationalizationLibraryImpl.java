@@ -13,14 +13,16 @@ package org.eclipse.papyrus.infra.internationalization.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationEntry;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationLibrary;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationPackage;
@@ -41,7 +43,7 @@ import org.eclipse.papyrus.infra.internationalization.InternationalizationPackag
 public class InternationalizationLibraryImpl extends MinimalEObjectImpl.Container
 		implements InternationalizationLibrary {
 	/**
-	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' reference list.
+	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEntries()
@@ -77,10 +79,24 @@ public class InternationalizationLibraryImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public EList<InternationalizationEntry> getEntries() {
 		if (entries == null) {
-			entries = new EObjectResolvingEList<>(InternationalizationEntry.class, this,
+			entries = new EObjectContainmentEList<>(InternationalizationEntry.class, this,
 					InternationalizationPackage.INTERNATIONALIZATION_LIBRARY__ENTRIES);
 		}
 		return entries;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case InternationalizationPackage.INTERNATIONALIZATION_LIBRARY__ENTRIES:
+			return ((InternalEList<?>) getEntries()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

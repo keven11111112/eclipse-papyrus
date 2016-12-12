@@ -4,7 +4,7 @@
     nsPrefix="internationalization">
   <eClassifiers xsi:type="ecore:EClass" name="InternationalizationLibrary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
-        eType="#//InternationalizationEntry"/>
+        eType="#//InternationalizationEntry" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InternationalizationEntry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
