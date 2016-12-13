@@ -20,24 +20,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Resource;
-
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.papyrus.migration.rhapsody.Activator;
 import org.eclipse.papyrus.migration.rhapsody.importer.utils.RhapsodyFileUtils;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * This class allows us to convert easily the rpy file into the Papyrus EMF Rhapsody metamodel.
@@ -56,7 +47,7 @@ public class SelectedRhapsodyFilesImporter {
 	// TODO : warning, it is used by JUnit tests too!
 	// TODO : not common with RSA import
 	// TODO : must be removed
-	public static final String OUTPUT_FOLDER = "output";
+	public static final String OUTPUT_FOLDER = "output"; //$NON-NLS-1$
 
 	/**
 	 * 

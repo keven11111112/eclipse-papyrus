@@ -16,6 +16,7 @@ package org.eclipse.papyrus.migration.rhapsody.wizard;
 import org.eclipse.papyrus.migration.common.MigrationParameters.ThreadConfig;
 import org.eclipse.papyrus.migration.common.transformation.AbstractImportTransformationLauncher;
 import org.eclipse.papyrus.migration.common.wizard.AbstractTransformationWizard;
+import org.eclipse.papyrus.migration.rhapsody.messages.Messages;
 import org.eclipse.papyrus.migration.rhapsody.transformations.RhapsodyImportTransformationLauncher;
 import org.eclipse.swt.widgets.Control;
 
@@ -27,7 +28,7 @@ import org.eclipse.swt.widgets.Control;
 public class TransformationRhapsodyWizard extends AbstractTransformationWizard {
 
 	public TransformationRhapsodyWizard() {
-		super("Rhapsody Transformation Wizard", new RhapsodyDialogData());
+		super(Messages.TransformationRhapsodyWizard_WizardTitle, new RhapsodyDialogData());
 	}
 
 	/**

@@ -22,15 +22,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.papyrus.migration.rhapsody.Activator;
 import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.RpyFeature;
 import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.RpyFeatureValue;
@@ -41,7 +37,6 @@ import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.RpyStringMap;
 import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.RpyStringMapEntry;
 import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.SimpleValueList;
 import org.eclipse.papyrus.migration.rhapsody.utils.RhapsodyShareFolderUtils;
-import org.eclipse.papyrus.views.properties.storage.IContextStorageProvider.Null;
 
 /**
  * @author sr246418

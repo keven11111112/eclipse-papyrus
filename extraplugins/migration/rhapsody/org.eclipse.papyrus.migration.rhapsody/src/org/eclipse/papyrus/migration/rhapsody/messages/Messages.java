@@ -33,6 +33,7 @@ public class Messages extends NLS {
 	public static String ImportRhapsodyPreferencesPage_SelectTheLocation_DialogMessage;
 	public static String ImportRhapsodyPreferencesPage_SelectTheShareRhapsodyFolder;
 	public static String ImportRhapsodyPreferencesPage_Worskspace;
+	public static String TransformationRhapsodyWizard_WizardTitle;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

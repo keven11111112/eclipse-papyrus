@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticElementAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Transition;
 
 
 public class DiagramCreateUtils {
