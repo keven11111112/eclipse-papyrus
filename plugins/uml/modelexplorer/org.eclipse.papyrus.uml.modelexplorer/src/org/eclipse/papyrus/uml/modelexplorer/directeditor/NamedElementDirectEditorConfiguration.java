@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.modelexplorer.directeditor;
 
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.AbstractBasicDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -27,11 +29,33 @@ public class NamedElementDirectEditorConfiguration extends AbstractBasicDirectEd
 	 */
 	@Override
 	public String getTextToEdit(final Object objectToEdit) {
+		String result = null;
 		if (objectToEdit instanceof NamedElement) {
-			return ((NamedElement) objectToEdit).getName();
+			final String namedElementLabel = UMLLabelInternationalization.getInstance().getLabel((NamedElement) objectToEdit);
+			if (null != namedElementLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(((NamedElement) objectToEdit))) {
+				result = namedElementLabel;
+			} else {
+				result = ((NamedElement) objectToEdit).getName();
+			}
 		}
 
-		return super.getTextToEdit(objectToEdit);
+		return null != result ? result : super.getTextToEdit(objectToEdit);
+	}
+
+	/**
+	 * This allows to determinate if the label is set and can be modified.
+	 * 
+	 * @param objectToEdit
+	 *            The object to edit.
+	 * @return <code>true</code> if this is a label modification, <code>false</code> otherwise.
+	 */
+	public boolean isLabelSet(final Object objectToEdit) {
+		boolean result = false;
+		if (objectToEdit instanceof NamedElement) {
+			final String namedElementLabel = UMLLabelInternationalization.getInstance().getLabel((NamedElement) objectToEdit);
+			result = null != namedElementLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(((NamedElement) objectToEdit));
+		}
+		return result;
 	}
 
 	/**
@@ -39,6 +63,6 @@ public class NamedElementDirectEditorConfiguration extends AbstractBasicDirectEd
 	 */
 	@Override
 	public IParser createDirectEditorParser() {
-		return new NamedElementDirectEditorParser(getTextToEdit(objectToEdit));
+		return new NamedElementDirectEditorParser(getTextToEdit(objectToEdit), isLabelSet(objectToEdit));
 	}
 }

@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
@@ -39,11 +40,31 @@ public class TableDirectEditorParser implements IParser {
 	private String textToEdit;
 
 	/**
+	 * Determinates if this is a label modification.
+	 */
+	private boolean labelModification;
+
+	/**
 	 * Constructor.
 	 *
+	 * @param textToEdit
+	 *            The text to edit.
 	 */
 	public TableDirectEditorParser(final String textToEdit) {
+		this(textToEdit, false);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param textToEdit
+	 *            The text to edit.
+	 * @param labelModification
+	 *            Determinates if this is a label modification.
+	 */
+	public TableDirectEditorParser(final String textToEdit, final boolean labelModification) {
 		this.textToEdit = textToEdit;
+		this.labelModification = labelModification;
 	}
 
 	/**
@@ -80,7 +101,11 @@ public class TableDirectEditorParser implements IParser {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				if (eObjectElement instanceof Table) {
 					if (null != newString && !newString.isEmpty()) {
-						((Table) eObjectElement).setName(newString);
+						if (labelModification) {
+							LabelInternationalization.getInstance().setTableLabel(((Table) eObjectElement), newString, null);
+						} else {
+							((Table) eObjectElement).setName(newString);
+						}
 						return CommandResult.newOKCommandResult();
 					}
 				}

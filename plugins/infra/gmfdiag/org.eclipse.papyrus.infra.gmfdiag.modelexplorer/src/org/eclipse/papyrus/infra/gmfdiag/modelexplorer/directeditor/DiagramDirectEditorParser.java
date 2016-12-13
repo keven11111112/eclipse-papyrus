@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 
 /**
  * Specific Parser for the Diagram.
@@ -39,10 +40,31 @@ public class DiagramDirectEditorParser implements IParser {
 	private String textToEdit;
 
 	/**
+	 * Determinates if this is a label modification.
+	 */
+	private boolean labelModification;
+
+	/**
 	 * Constructor.
+	 *
+	 * @param textToEdit
+	 *            The text to edit.
 	 */
 	public DiagramDirectEditorParser(final String textToEdit) {
+		this(textToEdit, false);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param textToEdit
+	 *            The text to edit.
+	 * @param labelModification
+	 *            Determinates if this is a label modification.
+	 */
+	public DiagramDirectEditorParser(final String textToEdit, final boolean labelModification) {
 		this.textToEdit = textToEdit;
+		this.labelModification = labelModification;
 	}
 
 	/**
@@ -70,7 +92,11 @@ public class DiagramDirectEditorParser implements IParser {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				if (eObjectElement instanceof Diagram) {
 					if (null != newString && !newString.isEmpty()) {
-						((Diagram) eObjectElement).setName(newString);
+						if (labelModification) {
+							LabelInternationalization.getInstance().setDiagramLabel(((Diagram) eObjectElement), newString, null);
+						} else {
+							((Diagram) eObjectElement).setName(newString);
+						}
 						return CommandResult.newOKCommandResult();
 					}
 				}

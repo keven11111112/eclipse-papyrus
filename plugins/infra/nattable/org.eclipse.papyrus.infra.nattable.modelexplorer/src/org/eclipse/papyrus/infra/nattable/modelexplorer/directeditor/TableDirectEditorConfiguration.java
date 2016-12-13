@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.nattable.modelexplorer.directeditor;
 
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.AbstractBasicDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
@@ -27,11 +29,33 @@ public class TableDirectEditorConfiguration extends AbstractBasicDirectEditorCon
 	 */
 	@Override
 	public String getTextToEdit(final Object objectToEdit) {
+		String result = null;
 		if (objectToEdit instanceof Table) {
-			return ((Table) objectToEdit).getName();
+			final String tableLabel = LabelInternationalization.getInstance().getTableLabelWithoutName(((Table) objectToEdit));
+			if (null != tableLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(((Table) objectToEdit))) {
+				result = tableLabel;
+			} else {
+				result = ((Table) objectToEdit).getName();
+			}
 		}
 
-		return super.getTextToEdit(objectToEdit);
+		return null != result ? result : super.getTextToEdit(objectToEdit);
+	}
+
+	/**
+	 * This allows to determinate if the label is set and can be modified.
+	 * 
+	 * @param objectToEdit
+	 *            The object to edit.
+	 * @return <code>true</code> if this is a label modification, <code>false</code> otherwise.
+	 */
+	public boolean isLabelSet(final Object objectToEdit) {
+		boolean result = false;
+		if (objectToEdit instanceof Table) {
+			final String tableLabel = LabelInternationalization.getInstance().getTableLabelWithoutName(((Table) objectToEdit));
+			result = null != tableLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(((Table) objectToEdit));
+		}
+		return result;
 	}
 
 	/**
@@ -39,6 +63,6 @@ public class TableDirectEditorConfiguration extends AbstractBasicDirectEditorCon
 	 */
 	@Override
 	public IParser createDirectEditorParser() {
-		return new TableDirectEditorParser(getTextToEdit(objectToEdit));
+		return new TableDirectEditorParser(getTextToEdit(objectToEdit), isLabelSet(objectToEdit));
 	}
 }

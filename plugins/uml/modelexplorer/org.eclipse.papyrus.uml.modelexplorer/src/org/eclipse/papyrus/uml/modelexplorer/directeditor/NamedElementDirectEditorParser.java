@@ -21,8 +21,11 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -37,11 +40,31 @@ public class NamedElementDirectEditorParser implements IParser {
 	private String textToEdit;
 
 	/**
+	 * Determinates if this is a label modification.
+	 */
+	private boolean labelModification;
+
+	/**
 	 * Constructor.
 	 *
+	 * @param textToEdit
+	 *            The text to edit.
 	 */
 	public NamedElementDirectEditorParser(final String textToEdit) {
+		this(textToEdit, false);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param textToEdit
+	 *            The text to edit.
+	 * @param labelModification
+	 *            Determinates if this is a label modification.
+	 */
+	public NamedElementDirectEditorParser(final String textToEdit, final boolean labelModification) {
 		this.textToEdit = textToEdit;
+		this.labelModification = labelModification;
 	}
 
 	/**
@@ -63,12 +86,17 @@ public class NamedElementDirectEditorParser implements IParser {
 
 		if (eObjectElement instanceof NamedElement) {
 			if (null != newString && !newString.isEmpty()) {
-				SetRequest setRequest = new SetRequest(eObjectElement, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
+				if (labelModification) {
+					compositeCommand.add(
+							new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(((ModelSet) eObjectElement.eResource().getResourceSet()).getTransactionalEditingDomain(), (NamedElement) eObjectElement, newString, null)));
+				} else {
+					SetRequest setRequest = new SetRequest(eObjectElement, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
 
-				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(eObjectElement);
-				ICommand editCommand = provider.getEditCommand(setRequest);
+					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(eObjectElement);
+					ICommand editCommand = provider.getEditCommand(setRequest);
 
-				compositeCommand.add(editCommand);
+					compositeCommand.add(editCommand);
+				}
 			}
 		}
 
