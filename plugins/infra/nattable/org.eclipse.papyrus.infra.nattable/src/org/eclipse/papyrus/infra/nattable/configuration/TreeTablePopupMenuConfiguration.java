@@ -17,6 +17,7 @@ import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
+import org.eclipse.papyrus.infra.nattable.matcher.DefaultMouseEventMatcher;
 import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
 import org.eclipse.papyrus.infra.nattable.menu.TreePapyrusBodyPopupMenuAction;
 import org.eclipse.papyrus.infra.nattable.menu.TreeRowPapyrusHeaderPopupMenuAction;
@@ -56,6 +57,11 @@ public class TreeTablePopupMenuConfiguration extends TablePopupMenuConfiguration
 	 */
 	@Override
 	protected void registerBodyPopupMenu(UiBindingRegistry uiBindingRegistry) {
-		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.BODY, MouseEventMatcher.RIGHT_BUTTON), new TreePapyrusBodyPopupMenuAction(MenuConstants.BODY_POPUP_MENU_ID, this.natTable));
+		TreePapyrusBodyPopupMenuAction treeBodyPopupMenuAction = new TreePapyrusBodyPopupMenuAction(MenuConstants.BODY_POPUP_MENU_ID, this.natTable);
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.BODY, MouseEventMatcher.RIGHT_BUTTON), treeBodyPopupMenuAction);
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.CORNER, MouseEventMatcher.RIGHT_BUTTON), treeBodyPopupMenuAction);
+
+		// Manage the default menu (for no region selected)
+		uiBindingRegistry.registerMouseDownBinding(new DefaultMouseEventMatcher(SWT.NONE, MouseEventMatcher.RIGHT_BUTTON), treeBodyPopupMenuAction);
 	}
 }
