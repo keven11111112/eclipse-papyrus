@@ -20,6 +20,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -30,6 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
@@ -37,11 +39,13 @@ import org.eclipse.papyrus.sysml.service.types.command.SetNestedPathCommand;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
+import org.eclipse.papyrus.uml.tools.commands.UnapplyStereotypeCommand;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -150,7 +154,6 @@ public class ConnectorEditHelperAdvice extends AbstractEditHelperAdvice {
 			View oppositeEndView = null;
 
 			// graphical case : verify encapsulation and get the new path
-			StructuredClassifier newOwner;
 			if (reorientedEdgeView != null) {
 
 				oppositeEndView = (reorientDirection == ReorientRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
@@ -161,7 +164,6 @@ public class ConnectorEditHelperAdvice extends AbstractEditHelperAdvice {
 					if (utils.isCrossingEncapsulation(newEndView, oppositeEndView) || utils.isCrossingEncapsulation(oppositeEndView, newEndView)) {
 						return UnexecutableCommand.INSTANCE;
 					}
-					// newOwner = utils.deduceContainer(newEndView, oppositeEndView);
 					tmpNestedPath = utils.getNestedPropertyPath(newEndView, oppositeEndView);
 				}
 			} else {
@@ -190,19 +192,33 @@ public class ConnectorEditHelperAdvice extends AbstractEditHelperAdvice {
 			oppositeFullNestedPath.add(oppositeEnd.getRole());
 			newFullNestedPath.add(newRole);
 
-			// TODO : we should recalculate a new owner according to the new nested path, then update these nested path according to the new owner
-			// we don't do it now, because we have some troubles with connector
-			// final EncapsulatedClassifier newOwner = deduceNewConnectorOwner(oppositeFullNestedPath, newFullNestedPath);
-
 			int tmpNestedPathDirection = (reorientDirection == ReorientRequest.REORIENT_SOURCE) ? SetNestedPathCommand.NESTED_SOURCE : SetNestedPathCommand.NESTED_TARGET;
-			defaultCommand = CompositeCommand.compose(defaultCommand, new SetNestedPathCommand("Set connector nested source path", request.getRelationship(), request, tmpNestedPath, tmpNestedPathDirection));
+			if (tmpNestedPath == null || tmpNestedPath.isEmpty()) { // in case of no NestedConnectorEnd property path remove existing NestedConnectorEnd
+				ConnectorEnd connectorEnd0 = ((Connector) request.getRelationship()).getEnds().get(0);
+				Stereotype stereotype0 = connectorEnd0.getAppliedStereotype("SysML::Blocks::NestedConnectorEnd");//$NON-NLS-1$
+				if (stereotype0 != null) {
+					UnapplyStereotypeCommand unapplyStereotypeCommand0 = new UnapplyStereotypeCommand(connectorEnd0, stereotype0, request.getEditingDomain());
+					defaultCommand = CompositeCommand.compose(defaultCommand, EMFtoGMFCommandWrapper.wrap(unapplyStereotypeCommand0));
+				}					
+				ConnectorEnd connectorEnd1 = ((Connector) request.getRelationship()).getEnds().get(1);
+				Stereotype stereotype1 = connectorEnd1.getAppliedStereotype("SysML::Blocks::NestedConnectorEnd");//$NON-NLS-1$
+				if (stereotype1 != null) {
+					UnapplyStereotypeCommand unapplyStereotypeCommand1 = new UnapplyStereotypeCommand(connectorEnd1, stereotype1, request.getEditingDomain());
+					defaultCommand = CompositeCommand.compose(defaultCommand, EMFtoGMFCommandWrapper.wrap(unapplyStereotypeCommand1));
+				}
+
+			} else {
+				defaultCommand = CompositeCommand.compose(defaultCommand, new SetNestedPathCommand("Set connector nested source path", request.getRelationship(), request, tmpNestedPath, tmpNestedPathDirection));
+			}
 		}
 
 		return defaultCommand;
 	}
 
 
-
+	// TODO : we should recalculate a new owner according to the new nested path, then update these nested path according to the new owner
+	// we don't do it now, because we have some troubles with connector
+	// final EncapsulatedClassifier newOwner = deduceNewConnectorOwner(oppositeFullNestedPath, newFullNestedPath);
 	// /**
 	// * @param fullNestedPathWithrole1
 	// * @param fullNestedPathWithRole2

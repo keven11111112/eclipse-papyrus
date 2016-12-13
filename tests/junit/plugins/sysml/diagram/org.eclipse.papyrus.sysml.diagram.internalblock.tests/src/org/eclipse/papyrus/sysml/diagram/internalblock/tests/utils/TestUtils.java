@@ -113,8 +113,6 @@ public class TestUtils {
 			} else {
 				// Ok the command can be executed.
 				defaultExecutionTest(command);
-				// Test the results then
-				// fail("Result tests not implemented.");
 			}
 		}
 	}
@@ -144,8 +142,6 @@ public class TestUtils {
 			} else {
 				// Ok the command can be executed.
 				defaultExecutionTest(command);
-				// Test the results then
-				// fail("Result tests not implemented.");
 			}
 		}
 	}
@@ -179,8 +175,6 @@ public class TestUtils {
 			} else {
 				// Ok the command can be executed.
 				defaultExecutionTest(command);
-				// Test the results then
-				// fail("Result tests not implemented.");
 			}
 		}
 	}
@@ -212,8 +206,6 @@ public class TestUtils {
 					if (expectedCommandNames.get(0).equals(command.getLabel())) {
 						// Ok the command can be executed.
 						defaultExecutionTest(command);
-						// Test the results then
-						// fail("Result tests not implemented.");
 						EditorUtils.getCommandStack().undo();
 					} else {
 						fail("The expected kind of command was {" + expectedCommandNames.get(0) + "}, but was {" + command.getLabel() + "}");
@@ -250,9 +242,6 @@ public class TestUtils {
 							defaultExecutionTest(subCommand);
 							// Add one more undo to go back in initial state before testing next command
 							EditorUtils.getCommandStack().undo();
-							;
-							// Test the results then
-							// fail("Result tests not implemented.");
 						} else {
 							fail("The expected kind of command was {" + expectedCommandNames.get(i) + "}.");
 						}
@@ -293,8 +282,6 @@ public class TestUtils {
 				if (execute) {
 					defaultExecutionTest(command);
 				}
-				// Test the results then
-				// fail("Result tests not implemented.");
 			}
 		}
 	}
@@ -393,8 +380,6 @@ public class TestUtils {
 								fail("No edge seem to have been created.");
 							}
 						}
-						// Test the results then
-						// fail("Result tests not implemented.");
 					}
 				}
 			}
@@ -424,9 +409,6 @@ public class TestUtils {
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied on source.", sourceNestedConnectorEnd);
 			Assert.assertEquals("Nested property path is incorrect for source", nestedSourcePath, sourceNestedConnectorEnd.getPropertyPath());
-			// if(!sourceNestedConnectorEnd.getPropertyPath().equals(nestedSourcePath)) {
-			// fail("The nested property path is incorrect for source.");
-			// }
 		}
 		// Test target connector end
 		NestedConnectorEnd targetNestedConnectorEnd = UMLUtil.getStereotypeApplication(connector.getEnds().get(1), NestedConnectorEnd.class);
@@ -435,9 +417,6 @@ public class TestUtils {
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied on target.", targetNestedConnectorEnd);
 			Assert.assertEquals("Nested property path is incorrect for target", nestedTargetPath, targetNestedConnectorEnd.getPropertyPath());
-			// if(!targetNestedConnectorEnd.getPropertyPath().equals(nestedTargetPath)) {
-			// fail("The nested property path is incorrect for target.");
-			// }
 		}
 	}
 
@@ -477,7 +456,7 @@ public class TestUtils {
 		reorientRelationship((Connector) relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed);
 	}
 
-	public static void reorientRelationship(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed) throws Exception {
+	public static void reorientRelationship(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed) throws Exception  {
 		// Prepare request and add
 		String reconnectDirection = (ReorientRelationshipRequest.REORIENT_SOURCE == reorientDirection) ? RequestConstants.REQ_RECONNECT_SOURCE : RequestConstants.REQ_RECONNECT_TARGET;
 		ReconnectRequest reconnectRequest = new ReconnectRequest(relationshipView);
@@ -500,7 +479,6 @@ public class TestUtils {
 			} else {
 				defaultExecutionTest(reorientCommand);
 				// Test the results then
-				// fail("Result tests not implemented.");
 			}
 		}
 	}
@@ -533,7 +511,8 @@ public class TestUtils {
 		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) relationshipView.getElement();
 		ConnectorEnd modifiedConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(0) : connector.getEnds().get(1);
 		NestedConnectorEnd nestedConnectorEnd = UMLUtil.getStereotypeApplication(modifiedConnectorEnd, NestedConnectorEnd.class);
-		if (nestedPath.isEmpty()) {
+		if (nestedPath.isEmpty()) { 
+			// if the expected path is empty then no stereotypes should be applied (nestedConnectorEnd with empty property path is forbidden)
 			Assert.assertNull("No nested connector end stereotype should be applied.", nestedConnectorEnd);
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied.", nestedConnectorEnd);
@@ -562,25 +541,13 @@ public class TestUtils {
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) { // re-orient source
 			// Test source connector end
 			Assert.assertEquals("The partWithPort is incorrect for source (re-oriented).", expectedSourcePartWithPort, modifiedConnectorEnd.getPartWithPort());
-			// if(modifiedConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
-			// fail("The partWithPort is incorrect for source (re-oriented).");
-			// }
 			// Test target connector end
 			Assert.assertEquals("The partWithPort is incorrect for target (opposite end).", expectedTargetPartWithPort, oppositeConnectorEnd.getPartWithPort());
-			// if(oppositeConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
-			// fail("The partWithPort is incorrect for target (opposite end).");
-			// }
 		} else { // re-orient target
 			// Test source connector end
 			Assert.assertEquals("The partWithPort is incorrect for target (re-oriented).", expectedTargetPartWithPort, modifiedConnectorEnd.getPartWithPort());
-			// if(modifiedConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
-			// fail("The partWithPort is incorrect for target .");
-			// }
 			// Test target connector end
 			Assert.assertEquals("The partWithPort is incorrect for source (opposite end).", expectedSourcePartWithPort, oppositeConnectorEnd.getPartWithPort());
-			// if(oppositeConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
-			// fail("The partWithPort is incorrect for source (opposite end).");
-			// }
 		}
 	}
 
