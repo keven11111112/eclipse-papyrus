@@ -12,7 +12,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20161101-0352" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20161214-0307" {
 	org.eclipse.net4j.feature.group
 	org.eclipse.emf.cdo.server.feature.group
 	org.eclipse.emf.cdo.dawn.feature.group

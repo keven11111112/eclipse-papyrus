@@ -10,7 +10,7 @@ location egit "http://download.eclipse.org/egit/updates-4.4.1" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 }
 
@@ -40,13 +40,13 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestone
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20161101-0352" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20161214-0307" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/" {
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
 }

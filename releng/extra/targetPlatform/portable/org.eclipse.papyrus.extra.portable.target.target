@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra" sequenceNumber="1481295495">
+<target name="Papyrus Extra" sequenceNumber="1481732010">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20161102-0315"/>
-      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201611020315"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20161213-0121"/>
+      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201612130121"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.10.0.201606071900"/>
@@ -29,13 +29,13 @@
       <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.7.0.v20161027-1055"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.7.0.v20161208-1309"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.2.200.v20160820-1329"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.3.0.v20161027-1743"/>
-      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201610310821"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.3.0.v20161212-1232"/>
+      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201612121035"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="1.2.0.v20160502-1019"/>
@@ -62,7 +62,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.0.v201608061824"/>
-      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M3-20161031000121/repository/"/>
+      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M4-20161213000057/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.team.svn.feature.group" version="4.0.3.I20161129-1700"/>
@@ -100,12 +100,12 @@
       <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201611040610"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.net4j.feature.group" version="4.6.0.v20161018-1820"/>
-      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.6.0.v20161101-0742"/>
+      <unit id="org.eclipse.net4j.feature.group" version="4.6.0.v20161213-1050"/>
+      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.6.0.v20161214-0806"/>
       <unit id="org.eclipse.emf.cdo.dawn.feature.group" version="2.1.400.v20161018-1819"/>
-      <unit id="org.eclipse.emf.cdo.feature.group" version="4.6.0.v20161101-0751"/>
+      <unit id="org.eclipse.emf.cdo.feature.group" version="4.6.0.v20161214-0806"/>
       <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.100.v20161018-1819"/>
-      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20161101-0352"/>
+      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20161214-0307"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.acceleo.runtime.source.feature.group" version="3.7.0.201610150614"/>
