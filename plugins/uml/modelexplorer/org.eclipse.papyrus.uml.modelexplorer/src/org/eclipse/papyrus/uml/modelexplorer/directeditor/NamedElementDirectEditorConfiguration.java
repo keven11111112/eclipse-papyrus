@@ -31,7 +31,7 @@ public class NamedElementDirectEditorConfiguration extends AbstractBasicDirectEd
 	public String getTextToEdit(final Object objectToEdit) {
 		String result = null;
 		if (objectToEdit instanceof NamedElement) {
-			final String namedElementLabel = UMLLabelInternationalization.getInstance().getLabel((NamedElement) objectToEdit);
+			final String namedElementLabel = UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) objectToEdit);
 			if (null != namedElementLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(((NamedElement) objectToEdit))) {
 				result = namedElementLabel;
 			} else {
@@ -52,7 +52,7 @@ public class NamedElementDirectEditorConfiguration extends AbstractBasicDirectEd
 	public boolean isLabelSet(final Object objectToEdit) {
 		boolean result = false;
 		if (objectToEdit instanceof NamedElement) {
-			final String namedElementLabel = UMLLabelInternationalization.getInstance().getLabel((NamedElement) objectToEdit);
+			final String namedElementLabel = UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) objectToEdit);
 			result = null != namedElementLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(((NamedElement) objectToEdit));
 		}
 		return result;
