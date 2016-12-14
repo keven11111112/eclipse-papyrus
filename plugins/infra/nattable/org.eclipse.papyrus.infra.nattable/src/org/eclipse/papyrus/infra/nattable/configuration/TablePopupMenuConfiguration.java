@@ -18,6 +18,7 @@ import org.eclipse.nebula.widgets.nattable.config.AbstractUiBindingConfiguration
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
+import org.eclipse.papyrus.infra.nattable.matcher.DefaultMouseEventMatcher;
 import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
 import org.eclipse.papyrus.infra.nattable.menu.PapyrusBodyPopupMenuAction;
 import org.eclipse.papyrus.infra.nattable.menu.PapyrusHeaderPopupMenuAction;
@@ -80,6 +81,10 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	protected void registerBodyPopupMenu(final UiBindingRegistry uiBindingRegistry) {
 		bodyPopupMenuAction = new PapyrusBodyPopupMenuAction(MenuConstants.BODY_POPUP_MENU_ID, this.natTable);
 		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.BODY, MouseEventMatcher.RIGHT_BUTTON), bodyPopupMenuAction);
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.CORNER, MouseEventMatcher.RIGHT_BUTTON), bodyPopupMenuAction);
+
+		// Manage the default menu (for no region selected)
+		uiBindingRegistry.registerMouseDownBinding(new DefaultMouseEventMatcher(SWT.NONE, MouseEventMatcher.RIGHT_BUTTON), bodyPopupMenuAction);
 	}
 
 	/**
