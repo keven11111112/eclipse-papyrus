@@ -27,6 +27,9 @@ public class Messages extends NLS {
 	public static String ImportRhapsodyPreferencesPage_Locatio;
 	public static String RhapsodyShareFolderUtils_PapyrusRhapsodyImporter_DialogMessage;
 	public static String RhapsodyShareFolderUtils_PapyrusRhapsodyImporter_DialogTitle;
+	public static String RhapsodyShareFolderUtils_Retry;
+	public static String RhapsodyShareFolderUtils_TheGivenFolderIsNotNamed;
+	public static String RhapsodyShareFolderUtils_TheGivenPathIsNotTheGoodOne;
 	public static String ImportRhapsodyPreferencesPage_SelectTheLocation_DialogMessage;
 	public static String ImportRhapsodyPreferencesPage_SelectTheShareRhapsodyFolder;
 	public static String ImportRhapsodyPreferencesPage_Worskspace;

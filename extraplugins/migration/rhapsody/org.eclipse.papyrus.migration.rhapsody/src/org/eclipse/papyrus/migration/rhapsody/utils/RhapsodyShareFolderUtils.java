@@ -21,10 +21,10 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.migration.rhapsody.Activator;
-import org.eclipse.papyrus.migration.rhapsody.importer.utils.RpyProjectHandler;
 import org.eclipse.papyrus.migration.rhapsody.messages.Messages;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
@@ -41,7 +41,7 @@ public class RhapsodyShareFolderUtils {
 
 	private static final String SELECT_FOLDER_MESSAGE = Messages.RhapsodyShareFolderUtils_PapyrusRhapsodyImporter_DialogMessage;
 
-	private static final String MESSAGE = "The given path is not the good one. Retry (Yes)/ Cancel (No)";
+	private static final String MESSAGE = Messages.RhapsodyShareFolderUtils_TheGivenPathIsNotTheGoodOne;
 
 	/** The name of the tested files and folders allowing to decide if the given path is the Rhapsody Share folder */
 	private static final String SHARE = "Share";//$NON-NLS-1$
@@ -78,7 +78,7 @@ public class RhapsodyShareFolderUtils {
 	 */
 	public static final void registerRhapsodySharedFolderFromEclipseInitIfRequired() {
 		final ScopedPreferenceStore prefStore = (ScopedPreferenceStore) Activator.getDefault().getPreferenceStore();
-		prefStore.setDefault(RHAPSODY_HOME_VARIABLE_NAME, "");
+		prefStore.setDefault(RHAPSODY_HOME_VARIABLE_NAME, ""); //$NON-NLS-1$
 		final String prefValue = prefStore.getString(RHAPSODY_HOME_VARIABLE_NAME);
 		if (null == prefValue || prefValue.isEmpty()) {
 			final String propertyValue = System.getProperty(RHAPSODY_HOME_VARIABLE_NAME);
@@ -100,7 +100,7 @@ public class RhapsodyShareFolderUtils {
 	public static final boolean checkRhapsodyShareFolderAndAskForItWhenRequired() {
 		boolean finalResult = null != RhapsodyShareFolderUtils.getRhapsodyShareFolder();
 		if (!finalResult) {
-			final String result = browseFileSystemForRhapsodyShareFolder(Display.getDefault().getActiveShell(), "");
+			final String result = browseFileSystemForRhapsodyShareFolder(Display.getDefault().getActiveShell(), ""); //$NON-NLS-1$
 			if (null != result && !result.isEmpty()) {
 				boolean isOk = isARhapsodySharedFolder(result).isOK();
 				if (isOk) {
@@ -109,8 +109,9 @@ public class RhapsodyShareFolderUtils {
 				}
 			}
 			if (!finalResult) {
-				boolean res = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), SELECT_FOLDER_TITLE, MESSAGE);
-				if (res) {
+				final MessageDialog dialog = new MessageDialog(Display.getDefault().getActiveShell(), SELECT_FOLDER_TITLE, null, MESSAGE, MessageDialog.QUESTION, 0, new String[] { Messages.RhapsodyShareFolderUtils_Retry, IDialogConstants.CANCEL_LABEL });
+				int res = dialog.open();
+				if (IDialogConstants.OK_ID==res) {
 					finalResult = checkRhapsodyShareFolderAndAskForItWhenRequired();
 				}
 			}
@@ -195,7 +196,7 @@ public class RhapsodyShareFolderUtils {
 				status = createFolderErrorStatusFor(path, false);
 			}
 		} else {
-			status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind("The given folder is not named \"{0}\".", SHARE));
+			status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind(Messages.RhapsodyShareFolderUtils_TheGivenFolderIsNotNamed, SHARE));
 		}
 		return status;
 	}
