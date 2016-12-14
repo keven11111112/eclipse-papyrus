@@ -1,0 +1,125 @@
+=Rhapsody Migration Developer (Extra)=
+==Which Rhapsody version models are supported?==
+The migration tool has been developed with IBM Rhapsody 8.0.3. Nevertheless, it should work with previous and next versions.
+
+==What is required to develop Papyrus Rhapsody migration tools?==
+This feature requires IBM Rhapsody installed your the computer. Please, see User doc for further information.
+
+You can define the Rhapsody Share folder to use in the '''eclipse.ini''' file, using the key -DRhapsodyHome to define the path of the required folder, as done here:
+
+<code>--launcher.appendVmargs</code>
+
+<code>-DRhapsodyHome=C:\\Program Files (x86)\\IBM\\Rational\\Rhapsody\\8.1.3\\Share</code>
+
+Of course, you can define it as VM args of your runtime environment too, but here, you need to quote the path: 
+
+<code> -DRhapsodyHome="C:\\Program Files (x86)\\IBM\\Rational\\Rhapsody\\8.1.3\\Share" </code>
+
+==Which are the Papyrus Rhapsody Plugins?==
+All Papyrus Rhapsody user plugins are stored in the Papyrus git at this location : '''extraplugins/migration/rhapsody'''
+*'''org.eclipse.papyrus.migration.rhapsody.metamodel''', 
+*'''org.eclipse.papyrus.migration.rhapsody.metamodel.edit''',
+*'''org.eclipse.papyrus.migration.rhapsody.metamodel.editor''': 
+**these plugins provide an EMF metamodel, describing the Rhapsody metamodel. The models created with this metamodel used the file extension ''*.umlrhapsody''. The  QVTo transformations are applied on these files to create the Papyrus UML models.
+**This metamodel has been initially created using the Rhapsody java API, then completed using all examples provided by Rhapsody. This update has been done using the plugin '''org.eclipse.papyrus.migration.rhapsody.dev.api.discovery''', located in the subfolder '''developer'''
+
+*'''org.eclipse.papyrus.migration.rhapsody.blackboxes''':
+** This plugin provides some usefull blackboxes (java code). They are called by the QVTo transformations.
+** These blackboxes are not embedded in the same plugin than the QVTo transformations to avoid compilation errors at the developer level and ease the development itself.
+
+*'''org.eclipse.papyrus.migration.rhapsody.geometry''':
+**This plugin provides objects to represent Rhapsody graphical elements and manipulate them easily to get their size and their location. 
+
+*'''org.eclipse.papyrus.migration.rhapsody.parser''',
+*'''org.eclipse.papyrus.migration.rhapsody.parser.ui''':
+** These plugins are used to parse the Rhapsody files (''*.rpy'' and others)
+
+*'''org.eclipse.papyrus.migration.rhapsody.dev.api.discovery''':
+**It is a developer plugin
+**This plugin is not delivered, but it is build (a pom.xml file is provided)
+**This plugin allows to update Rhapsody EMF metamodel when we meet models inconsistent with the current one.
+
+*'''org.eclipse.papyrus.migration.rhapsody.importer''': 
+
+*'''org.eclipse.papyrus.migration.rhapsody''':
+**This plugin uses the other plugin described previously. It provides the API to convert a ''*.rpy'' into a Papyrus model (''*.uml'', ''*.notation'', ''*.di'' and ''*.properties'' files). 
+
+In addition, there is the plugin '''org.eclipse.papyrus.migration.common''' created to merge code useful for rsa migration and rhapsody migration.
+
+JUnit tests are provided too. They use EMF-Compare to check that the imported models continues to be equals to the expected one. These tests are located on the Papyrus git repository in '''tests/junit/extraplugins/migration/rhapsody'''.
+
+==How does the migration process work?==
+The migration process is done in 3 steps:
+#the ''*rpy'' file is parsed by the XText parser (plugin '''org.eclipse.papyrus.migration.rhapsody.parser''') and converted into a first simple model using a first EMF metamodel,  '''RpySyntax''', provided by this plugin, then
+#this first model is converted into  a set of ''*.umlrhapsody'' by the class '''org.eclipse.papyrus.migration.rhapsody.importer.UMLRhapsodyImporter'''. There is a ''*.umlrhapsody'' file for the intial selected ''*rpy'' file, and one other for each dependency of the Rhapsody model (SysML, PredefinedTypes, ...)/
+#the ''*.umlrhapsody'' files are converted into a Papyrus model.
+
+==What is the purpose of the UMLRhapsody metamodel?==
+This metamodel has been created to represent the Rhapsody file as an EMF model. All existing concepts (that we already met) in Rhapsody are represented by this metamodel. As it is a deduced metamodel, it would continue to evolve. It is possible than for a given object you found a property in this metamodel which doesn't exist in pure Rhapsody. In this case this property comes from a hand change done by a developer to ease the QVTo transformation writting process. It is not emabarrassing to use a wrong EMF rhapsody metamodel to go from Rhapsody to Papyrus, because in this case, it will be more permissive. Nevertheless, it will be a problem to use it to transform a Papyrus model into a Rhapsody model.
+
+It seems that the object '''IModelElement''' is the common ancestor to Rhapsody semantic element.
+Be careful with these object : 
+*in Rhapsody the '''Diagram''' concept is a semantic element (and not a graphical element). Diagram can be stereotyped
+*ISysMLPort is not a stereotype but a metamodel element for Rhapsody.
+
+==QVTo Informations==
+The QVTo files are stored in the plugin '''org.eclipse.papyrus.migration.rhapsody'''.
+===Transformation files===
+*Transformation file have a kind of constructor preceded by the transform keyword and contains a method main. They are registered with the extension point '''org.eclipse.m2m.qvt.oml.runtime.qvtTransformation''' as transformation.
+*Library file have a name preceded by the keyword library. They must be registered with the extension point '''org.eclipse.m2m.qvt.oml.runtime.qvtTransformation''', as transformation or as library.
+
+
+===How are chained the QVTo transformations===
+*All transformations must be called in the same context. That's why there is a kind of 'master' transformation calling the others. It is not possible to call them separately, because calling them separately we won't be able to find the result of a previous mapping using <code>resolve/invresolve</code> function.
+*Here, this is the transformation <code>Rhapsody2PapyrusNotation</code> which call the others following this order: 
+*<code>Rhapsody2PapyrusSemanticElements</code>, 
+*then calls <code>SemanticInternationalization</code>
+*then calls <code>SysML11Profile</code>,
+*then calls <code>SysML11Diagrams</code> which calls the qvto transformations for 
+**<code>InternalBlockDiagram</code>, 
+**<code>BlockDefinitionDiagram</code> and 
+**<code>ParametricDiagram</code>, 
+**and, in addition, it completes the ''*.properties'' file with the label of the diagram when they exist. 
+
+===Inheritance===
+It seems possible, but not yet used.
+
+===How to debug QVTo transformation===
+It is possible to use breakpoint to debug QVTo transformation, but in this case you must use the Operatinal QVT Interpreter provided as Debug tool of Eclipse.
+[[Image:images/dev/QVTo_debugging.png|frame|none|QVTo Rhapsody Share Folder definition in preference page]]
+
+===QVTo Tricks===
+Here, we describe the main QVTo keyword to know:
+*<code>mapping</code> it allows to declare a mapping method between two objects. It can have parameter. The resulting object is created before the first line of the mapping. If you want avoid to create a new object, you can look it for the object to return using the <code>init{your code}</code> block. Calling a given mapping for a given object will create a new object the first time and will return it other time. No new object will be created calling a given mapping several time with the same parameters.
+*<code>init{your code}</code> it allows to assign the result without creating an object. If at the end of this block, the result is <code>null</null>, the object will be created.
+*<code>disjuncts</code> it allows to declare a method dispatching an action to one of the others declared method.
+*<code>when</code> it allows to define a condition to allow the mapping (always used by a mapping called by a disjuncts mapping)
+*<code>result</code> keyword defining the result of a mapping
+*<code>init</code> to start a mapping, it allows to initializing the result without create an element
+*<code>@</code> allows to define the file owning the object when the transformation has several output files.
+
+QVTo/OCL are not able to cast UML Element or Rhapsody Element in an other object inherited from an other metamodel implicitly. So to convert a <code>uml.Element</code> into <code>ecore.EObject</code> you need to write the cast, otherwise it won't compile. So you can write : <code>Element.oclAsType(EObject)</code> or <code>Element![EObject]</code> to do that.
+
+To ease transformation writing, we advice to use <code>disjuncts</code> each time it is possible to create common method. To our mind, the best common method will be declared as this example: <code>umlrhapsody::IModelElement::commonMethod:uml:Element disjuncts</code>...
+This pattern ease the call to <code>resolve/invresolve</code> function to retrieve an object previously created ignoring the real mapping method used. 
+As an object is created only one time, you can also replace the <code>resolve/invesolve</code> functions, calling the mapping directly.
+
+<code>resolveOne/invresolveOne</code> could seems interesting, but often an object can be used as entry of several mapping. For example, we use <code>IObjectLink</code> to create the UML Connector and its two ConnectorEnds. 
+
+==General Tricks==
+*When the ''*rpy'' didn't change, to test your code quicker, you can select the file ''*.umlrhapsody'' directly to import it as Papyrus model. 
+
+==Java code==
+The plugin '''org.eclipse.papyrus.migration.common''' is a refactoring of the code provided for RSA migration tool. A part of the embedded code initially written for RSA migration tool is now embedded in this plugin used by Rhapsody migration tool, but not yet used.
+
+The QVTo transformation is launched by the class <code>org.eclipse.papyrus.migration.rhapsody.transformations.RhapsodyImportTransformationLauncher</code>.
+The creation of the ''*.umlrhapsody'' file is done by the class <code>org.eclipse.papyrus.migration.rhapsody.importer.SelectedRhapsodyFilesImporter</code>.
+
+==Versioning==
+To ease future fixes for generated corrupted models, an '''EMF EAnnotation''' is added during the transformation to the root of the UML model and to all created diagrams. This EAnnotation contains:
+*the version of the Papyrus Rhapsody Migration Tool,
+*the version of the Rhapsody software used to create the model, and 
+*the name of the Rhapsody model. 
+
+This work is done by the QVTo library <code>RhapsodyToPapyrusUtils</code>, with the helper method <code>createEAnnotationForVersioning</code>.
+

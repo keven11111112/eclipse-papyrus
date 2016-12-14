@@ -23,6 +23,7 @@
 		<module>org.eclipse.papyrus.infra.viewpoints.doc</module>
 		<module>org.eclipse.papyrus.infra.types.doc</module>
 		<module>org.eclipse.papyrus.layers.documentation</module>
+		<module>org.eclipse.papyrus.migration.rhapsody.doc</module>
 		<module>org.eclipse.papyrus.req.reqif.doc</module>
 		<module>org.eclipse.papyrus.uml.decoratormodel.doc</module>
 		<module>org.eclipse.papyrus.uml.diagram.common.doc</module>

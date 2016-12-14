@@ -1,0 +1,235 @@
+=Rhapsody Migration (Extra)=
+==Which Rhapsody version models are supported?==
+The migration tool has been developed with IBM Rhapsody 8.0.3. Nevertheless, it should work with previous and next versions.
+
+==Requirements==
+*This feature needs to access to a Rhapsody folder called "Share". So to use it, you need to have installed the Software IBM Rhapsody on your computer (or at least to copy this folder on your  system)
+*Define the path for this folder
+**Depending on the Rhapsody version, the folder could be located into the Rhapsody folder installation in '''ProgramFiles''' or into the hidden folder '''ProgramData'''. We alreay met this kind of installation:
+*'''C:\ProgramData\IBM\Rational\Rhapsody\8.1.5\Share'''
+*'''C:\\Program Files (x86)\\IBM\\Rational\\Rhapsody\\8.1.3\\Share'''
+
+There are 3 ways to define it:
+*with the <code>eclipse.ini</code> file, add these kind of lines:
+<code> --launcher.appendVmargs </code><br>
+<code>-DRhapsodyHome=C:\\Program Files (x86)\\IBM\\Rational\\Rhapsody\\8.1.3\\Share</code>
+*with the Eclipse Preferences Dialog [[Image:images/user/RhapsodyPreferencePage.png|frame|none|Rhapsody Share Folder definition in preference page]]
+*launching the first Rhapsody Import, a dialog will be opened to define it
+
+There is a fourth way for developer, this information can be set in the VM args of the runtime, with this line
+<code>-DRhapsodyHome="C:\\Program Files (x86)\\IBM\\Rational\\Rhapsody\\8.1.3\\Share"</code>  (here quote are required)
+
+==Features==
+Currently, the Papyrus Rhapsody Migration Tools has been developed for Rhapsody SysML models. It doesn't yet cover the whole Rhapsody elements in its transformation.
+
+===UML Mapping===
+Papyrus migration tools allows to import Rhapsody models as UML Model. Some Rhapsody elements can be mapped on different UML elements depending on their context, the stereotypes applied on them, the value of a given feature and so on. Here, this table give you the supported Rhapsody Semantic Object and their possible mapping used to create the UML model.
+
+{| class="wikitable" border="1"
+! style="text-align: center; font-weight: bold;" | Rhapsody Element
+! style="text-align: center; font-weight: bold;" | UML Element
+|-
+| DefaultSubsystemType
+| Package
+|-
+| IAction
+| OpaqueBehavior
+|-
+| IActor
+| Actor
+|-
+| IArgument
+| Property
+|-
+| IArgument
+| Parameter
+|-
+| IAssociationEnd
+| Association
+|-
+| IAssociationEnd
+| Property
+|-
+| IAttribute
+| Property
+|-
+| IClass
+| Interface
+|-
+| IClass
+| Class
+|-
+| IComment
+| Comment
+|-
+| IDefaultDrvdTrans
+| Vertex
+|-
+| IDescription
+| Comment
+|-
+| IEnumerationLiteral
+| EnumerationLiteral
+|-
+| IEvent
+| SignalEvent
+|-
+| IEvent
+| Signal
+|-
+| IGeneralization
+| Generalization
+|-
+| IGuard
+| Constraint
+|-
+| IInformationFlow
+| Connector
+|-
+| IInterfaceItemTrigger
+| Trigger
+|-
+| IObjectLink
+| Connector
+|-
+| IObjectLink
+| ConnectorEnd
+|-
+| IPart
+| Property
+|-
+| IPart
+| Association
+|-
+| IPrimitiveOperation
+| Operation
+|-
+| IProject
+| Model
+|-
+| IReception
+| Reception
+|-
+| IRelation
+| Property
+|-
+| IRelation
+| Port
+|-
+| IState
+| State
+|-
+| IStateChart
+| StateMachine
+|-
+| ITransition
+| Transition
+|-
+| IType
+| UML Primitives Types
+|-
+| IType
+| DataType
+|-
+| IType
+| Enumeration
+|-
+| IType
+| InstanceSpecification
+|-
+| IType
+| Class
+|-
+| IType
+| UML Predefined Types defined in Papyrus
+|-
+| IVariable
+| Designer
+|}
+
+===SysML Mapping===
+The Rhapsody SysML Stereotypes are mapped with SysML 1.1 stereotypes provided by Papyrus.
+The following stereotypes are supported (not complete list).
+{| class="wikitable" border="1"
+! style="text-align: center; font-weight: bold;" | SysML 1.1 Stereotype
+|-
+| BindingConnector
+|-
+| Block
+|-
+| ConstraintBlock
+|-
+| ConstraintProperty
+|-
+| Dimension
+|-
+| FlowPort
+|-
+| FlowPort
+|-
+| FlowProperty
+|-
+| FlowSpecification
+|-
+| NestedConnectorEnd
+|-
+| Unit
+|-
+| ValueType
+|}
+
+===Properties's Type Mapping===
+Several mapping are possible depending on the case, here the list, by order, of these mappings:
+*the type is defined in the Rhapsody model too, we map it with the corresponding UML element created by the transformation.
+*the type is a primitive type which can be mapped on a type defined in the UML Primitives Types library, so we reference it.
+*the type can be mapped with a C++ type defined in the Papyrus Designer library, so we referenced it
+*the type can't be mapped on an existing element, in this case, we create a Class, with the name of the type. This class will be stored at the root of the UML Model file, and a message will be displayed in the '''Log''' during the mapping process.
+
+===Diagram Mapping===
+*Papyrus Rhapsody Migration Tools allows to import Rhapsody SysML Diagrams as Papyrus SysML 1.1 Diagrams. The supported diagrams are:
+**Internal Block Diagram
+**Block Definition Diagram
+**Parametric Diagram
+
+*The tool creates the diagrams and the elements represented in them when Papyrus Diagram support it. The tool tries to respect the location of the nodes, anchors, ports, and links.
+
+===Internationalization===
+If you defined Label in addition of the name for your objects in the Rhapsody model, Papyrus migrate them too in a property file. You will be able to switch between displaying name and label with the Internationalization feature provided by Papyrus.
+
+==How to launch the import of a Rhapsody Model==
+Firstly, of course, you need to have a Rhapsody SysML Model, like this one: 
+[[Image:images/user/InitialRhapsodyModel.png|frame|none]]
+
+
+Import the full Rhapsody model in our Eclipse Workspace as shown in the image.
+
+[[Image:images/user/RhapsodyImport_Step1.png|frame|none]]
+
+
+Go to the menu '''Import Wizard > Papyrus > Papyrus SysML Models''', then '''Next'''.
+
+[[Image:images/user/RhapsodyImport_Step2.png|frame|none]]
+
+
+
+Here, you select a file, a folder or a set of folder to import one or several Rhapsody models in the same time, then '''Next'''.
+
+[[Image:images/user/RhapsodyImport_Step3.png|frame|none]]
+
+You select the '''*rpy''' files to import. You can set the number of threads to use (useful to import several models in the same time), then '''Finish'''. It runs the transformation.
+
+[[Image:images/user/RhapsodyImport_Step4.png|frame|none]]
+
+And now you get the imported model, in a subfolder called ''output/yourRhapsodyProjectName''.
+In this folder you will found: 
+In it, you will find the Papyrus model, with these files:
+*'''<projectName>'''''.uml'': the uml model
+*'''<projectName>'''''.notation'': the diagrams 
+*'''<projectName>'''''.di''
+*'''<projectName>'''''.properties'': it contains the labels defined for your object in Rhapsody
+*'''<projectName>'''''.umlrhapsody'': these files are the result of an intermediate transformation. Your file and all its Rhapsody dependencies have been migrated into an intermediate format, before being convert into a Papyrus Model.
+
+[[Image:images/user/RhapsodyImportResult.png|frame|none]]
+
+
+If you are in the Project Explorer, a shortest method allows you to import a selected ''*.rpy'' file, doing '''Right-Click > Import SysML Rhapsody Model'''.
