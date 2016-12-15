@@ -78,7 +78,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -142,7 +142,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201611020315">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201612130121">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>QVT Operational</value>
@@ -156,7 +156,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201610310821">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201612121035">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse OCL 6.3</value>
@@ -191,7 +191,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M3-20161031000121/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M4-20161213000057/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -1355,7 +1355,7 @@
           </workingSet>
         </setupTask>
         <setupTask xsi:type="setup.targlets:TargletTask">
-          <description>
+          <description>&#xD;
             Additional dependencies, e.g. for Subversive (SVN team integration), including&#xD;    &#xD;
             an SVN connector from Polarion to prevent the connector dialog appearing at&#xD;    &#xD;
             run-time, especially as it interferes with JUnit test execution.&#xD;    &#xD;
@@ -1480,7 +1480,7 @@
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
           <requirement name="org.eclipse.emf.cdo.sdk.feature.group"/>
           <repositoryList name="Oxygen">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20161101-0352">
+            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20161214-0307">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF CDO</value>
