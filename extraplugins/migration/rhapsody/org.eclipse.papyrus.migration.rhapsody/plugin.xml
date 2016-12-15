@@ -122,7 +122,7 @@
    <extension
 			point="org.eclipse.emf.ecore.uri_mapping">
 		<mapping
-			source="pathmap://PapyrusC_Cpp_LIBRARIES_Rhapsody/"
+			source="pathmap://PapyrusC_Cpp_LIBRARIES/"
 			target="platform:/plugin/org.eclipse.papyrus.migration.rhapsody/models/"/>
 	</extension>
 </plugin>

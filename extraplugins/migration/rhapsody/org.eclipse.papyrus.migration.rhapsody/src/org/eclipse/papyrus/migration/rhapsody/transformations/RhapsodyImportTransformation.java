@@ -471,7 +471,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 
 	public ModelExtent getPrimitivesCUMLModel() {
 		// URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml");
-		URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES_Rhapsody/AnsiCLibrary.uml");
+		URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml");
 		Resource primitiveTypes = resourceSet.getResource(primitiveTypesURI, true);
 		primitivesCTypesModel = new BasicModelExtent(primitiveTypes.getContents());
 		return primitivesCTypesModel;
