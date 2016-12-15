@@ -60,11 +60,5 @@
             id="org.eclipse.papyrus.uml.navigation.menuContributor.typesButton"
             label="Types">
       </contributor>
-      <!--<contributor
-            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ViewsButton"
-            description="Views button"
-            id="org.eclipse.papyrus.uml.navigation.menuContributor.viewsButton"
-            label="Views button">
-      </contributor>-->
    </extension>
 </plugin>

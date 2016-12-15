@@ -25,7 +25,6 @@ import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternat
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * Navigates from a CallBehaviorAction to its Behavior declaration
