@@ -31,7 +31,6 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
-import org.eclipse.papyrus.infra.internationalization.edit.provider.InternationalizationNotationItemProviderAdapterFactory;
 
 public class LabelQuery implements IJavaQuery2<EObject, String> {
 
@@ -50,7 +49,6 @@ public class LabelQuery implements IJavaQuery2<EObject, String> {
 		if (sfParam == null) {
 			final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			adapterFactory.insertAdapterFactory(new InternationalizationNotationItemProviderAdapterFactory());
 
 			try {
 				final IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(source, IItemLabelProvider.class);
