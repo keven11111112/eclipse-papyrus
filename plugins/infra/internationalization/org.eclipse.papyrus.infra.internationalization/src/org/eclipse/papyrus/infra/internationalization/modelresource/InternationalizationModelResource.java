@@ -1148,7 +1148,11 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected static EObject getParentEObject(final EObject eObject) {
 		EObject parentEObject = eObject;
 		if (eObject instanceof Table) {
-			parentEObject = ((Table) eObject).getOwner();
+			if(null != ((Table) eObject).getOwner()){
+				parentEObject = ((Table) eObject).getOwner();
+			}else{
+				parentEObject = ((Table) eObject).getContext();
+			}
 		} else if (eObject instanceof Diagram) {
 			parentEObject = QualifiedNameUtils.getOwner((Diagram) eObject);
 		}

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.internationalization.utils.utils;
 import java.util.Locale;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
@@ -247,7 +248,11 @@ public class LabelInternationalization {
 	 *            The new preference value.
 	 */
 	public void setInternationalizationPreference(final Table table, final boolean value) {
-		InternationalizationPreferencesUtils.setInternationalizationPreference(table.getOwner(), value);
+		EObject tableOwner = table.getOwner();
+		if(null == tableOwner){
+			tableOwner = table.getContext();
+		}
+		InternationalizationPreferencesUtils.setInternationalizationPreference(tableOwner, value);
 	}
 
 	/**
@@ -261,7 +266,11 @@ public class LabelInternationalization {
 	 *         <code>false</code> otherwise.
 	 */
 	public boolean getInternationalizationPreference(final Table table) {
-		return InternationalizationPreferencesUtils.getInternationalizationPreference(table.getOwner());
+		EObject tableOwner = table.getOwner();
+		if(null == tableOwner){
+			tableOwner = table.getContext();
+		}
+		return InternationalizationPreferencesUtils.getInternationalizationPreference(tableOwner);
 	}
 
 	/**

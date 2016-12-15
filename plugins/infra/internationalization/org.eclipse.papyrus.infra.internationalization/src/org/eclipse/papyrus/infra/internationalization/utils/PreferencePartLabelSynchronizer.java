@@ -146,8 +146,12 @@ public class PreferencePartLabelSynchronizer {
 	 */
 	protected String getTableLabel(final Table table) {
 		String result = null;
-		if (InternationalizationPreferencesUtils.getInternationalizationPreference(table.getOwner())) {
-			result = modelResource.getValueForEntryKey(table.eResource().getURI(), table);
+		EObject tableOwner = table.getOwner();
+		if(null == tableOwner){
+			tableOwner = table.getContext();
+		}
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(tableOwner)) {
+			result = modelResource.getValueForEntryKey(tableOwner.eResource().getURI(), table);
 		}
 		return null != result ? result : table.getName();
 	}

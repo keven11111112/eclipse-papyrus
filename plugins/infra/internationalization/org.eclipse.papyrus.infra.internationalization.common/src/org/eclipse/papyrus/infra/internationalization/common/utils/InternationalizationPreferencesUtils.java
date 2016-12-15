@@ -146,7 +146,7 @@ public class InternationalizationPreferencesUtils {
 	 */
 	public static boolean getInternationalizationPreference(final EObject eObject) {
 		boolean result = false;
-		if(null != eObject.eResource()){
+		if(null != eObject && null != eObject.eResource()){
 			result = getInternationalizationPreference(getRootContainer(eObject).eResource());
 		}
 		return result;
@@ -214,7 +214,11 @@ public class InternationalizationPreferencesUtils {
 	 * @return The locale preference.
 	 */
 	public static Locale getLocalePreference(final EObject eObject) {
-		return getLocalePreference(getRootContainer(eObject).eResource().getURI());
+		Locale result = null;
+		if(null != eObject){
+			result = getLocalePreference(getRootContainer(eObject).eResource().getURI());
+		}
+		return result;
 	}
 
 	/**

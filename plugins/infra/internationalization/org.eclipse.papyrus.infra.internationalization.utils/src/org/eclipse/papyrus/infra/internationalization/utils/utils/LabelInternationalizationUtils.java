@@ -281,6 +281,9 @@ public class LabelInternationalizationUtils {
 		EObject parentEObject = eObject;
 		if (eObject instanceof Table) {
 			parentEObject = ((Table) eObject).getOwner();
+			if(null == parentEObject){
+				parentEObject = ((Table) eObject).getContext();
+			}
 		} else if (eObject instanceof Diagram) {
 			parentEObject = QualifiedNameUtils.getOwner((Diagram) eObject);
 		}

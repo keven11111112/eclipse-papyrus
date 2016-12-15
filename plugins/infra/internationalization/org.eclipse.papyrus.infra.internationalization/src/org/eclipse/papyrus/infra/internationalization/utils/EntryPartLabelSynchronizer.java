@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.internationalization.utils;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationEntry;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationPackage;
@@ -142,8 +143,12 @@ public class EntryPartLabelSynchronizer {
 	 */
 	protected String getTableLabel(final Table table) {
 		String result = null;
-		if (InternationalizationPreferencesUtils.getInternationalizationPreference(table.getOwner())) {
-			result = modelResource.getValueForEntryKey(table.eResource().getURI(), table);
+		EObject tableOwner = table.getOwner();
+		if(null == tableOwner){
+			tableOwner = table.getContext();
+		}
+		if (InternationalizationPreferencesUtils.getInternationalizationPreference(tableOwner)) {
+			result = modelResource.getValueForEntryKey(tableOwner.eResource().getURI(), table);
 		}
 		return null != result ? result : table.getName();
 	}
