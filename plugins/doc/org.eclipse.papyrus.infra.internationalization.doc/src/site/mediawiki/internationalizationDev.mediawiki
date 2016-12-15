@@ -176,13 +176,32 @@ The notation and the internationalization preference storage are managed by:
 
 == Specificities ==
 === Loading properties resources ===
-The properties resources are loaded and managed by the <code>UMLInternationalizationModelResource</code> class.
-This <code>UMLInternationalizationModelResource</code> class inherit from <code>InternationalizationModelResource</code> from infra plugins.
-The load is managed as 2 steps:
-# Load the file and read the content to create the <code>InternationalizationLibrary</code> with diagrams and tables labels reconciliation with existing diagrams and tables.
-# Loop on content to resolve the UML dependencies in properties files to reference the existing UML objects.
+The properties resources are loaded and managed by the <code>InternationalizationResource</code> class.
+The load is managed as following:
+# Load the properties file contents (keys, values)
+# Create the <code>InternationalizationLibrary</code>
+# Loop on each keys, create the <code>InternationalizationEntry</code> (added in library) and try to resolve the key as object (Diagram, Table or UML element) with the <code>InternationalizationKeyResolver</code>.
+# Set the <code>InternationalizationLibrary</code> to the resource contents
 
-So, after the load, the resolveable properties are managed as UML object, diagram or table as key of <code>InternationalizationLibrary</code>
+The <code>InternationalizationResource</code> need options for its load and save:
+* Load
+** The <code>InternationalizationKeyResolver</code>
+** The initial <code>URI</code> of the resource to load (without the locale in the name file)
+** The locale of the file to load (but can be null)
+* save
+** The <code>InternationalizationKeyResolver</code>
+** ''optional'' The list of objects which be not store in the properties file
+** ''optional'' The sort boolean to determinate if the properties must be sorted by key
+
+=== Model Resource ===
+The <code>InternationalizationResource</code> are managed with a <code>ModelResource</code>.
+For the internationalization, the model resource is the <code>UMLInternationalizationModelResource</code> (UML plugins) inherit from <code>InternationalizationModelResource</code> (infra plugins).
+
+=== InternationalizationKeyResolver ===
+The <code>InternationalizationKeyResolver</code> and <code>UMLInternationalizationKeyResolver</code> manage the correct retrieve of Diagrams, Tables (infra plugins) and UML elements (UML plugins) by the keys and the correct save elements keys as specified previously.
+
+Those ones are created respectively in the <code>InternationalizationModelResource</code> and <code>UMLInternationalizationModelResource</code>.
+This key resolver is needed for the <code>InternationalizationResource</code> and must be added to its options.
 
 === InternationalizationUMLItemProviderAdapterFactory ===
 The <code>InternationalizationUMLItemProviderAdapterFactory</code> extends <code>UMLItemProviderAdapterFactory</code> and allows to redefine the ItemProvider of UML elements to get the Papyrus internationalization getLabel instead of UML getLabel.
