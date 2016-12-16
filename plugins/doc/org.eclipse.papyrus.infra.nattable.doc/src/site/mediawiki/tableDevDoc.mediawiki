@@ -2362,8 +2362,12 @@ The classes managing the NatTable widget in the property view are:
 
 These tables have some custom behaviors: 
 * the tree table is always expand all ath the beginning
+* <pre style="color:red">the table will use percentage sizing for the columns display, excepted if you set a BooleanNamedStyle columnsWidthAsPercentage to false has a child of your TableConfiguration.</pre>
 * the table are not really persisted, but we keep the user configuration for a given table opened on an object of a given EClass. See 
-<code>org.eclipse.papyrus.uml.properties.widgets.NattablePropertyEditor.createTableURI(EObject, TableConfiguration)</code> for further information.
+<code>org.eclipse.papyrus.uml.properties.widgets.NattablePropertyEditor.createTableURI(EObject, TableConfiguration)</code> for further information. 
+* <pre style="color:red"> So during your table development, you need to clear your workspace each time to test your table configuration, or you need to remove your table instance from the location yourRuntimeWorkspace/.metadata.plugins/org.eclipse.papyrus.uml.properties/tables.</pre>
+
+
 
 =Enhancements to plan for a next table version=
 *allow to a user/developper to add a new AxisManager to an existing table. Currently it is not possible, because the java AxisManager are represented in the nattableconfiguration file by an AxisManagerRepresentation. This one provides several configuration to the AxisManager, like LabelProvider to use
