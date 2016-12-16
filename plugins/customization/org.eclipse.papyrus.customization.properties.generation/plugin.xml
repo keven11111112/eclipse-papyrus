@@ -38,6 +38,9 @@
       <generator
             generator="org.eclipse.papyrus.customization.properties.generation.layout.ProfileWithDatatypes">
       </generator>
+      <generator
+            generator="org.eclipse.papyrus.customization.properties.generation.layout.GeneratorProfileDataType">
+      </generator>
    </extension>
    <extension point="org.eclipse.m2m.qvt.oml.runtime.qvtTransformation">
       <library

@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
@@ -76,6 +77,16 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	}
 
 	/**
+	 * Getter axisElement
+	 * 
+	 * @return the axisElement
+	 * @since 3.0
+	 */
+	public Object getAxisElement() {
+		return axisElement;
+	}
+
+	/**
 	 *
 	 * @see org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor#open()
 	 *
@@ -83,7 +94,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 */
 	@Override
 	public int open() {
-		int result = ((MultipleValueSelectionDialog) this.dialog).open();
+		int result = ((Dialog) this.dialog).open();
 		if (manager instanceof IAdaptable) {
 			NatTable nattable = (NatTable) ((IAdaptable) manager).getAdapter(NatTable.class);
 			if (nattable != null && !nattable.isDisposed()) {
@@ -151,7 +162,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 * @param resourceSet
 	 *            the resourceset
 	 * @return
-	 *         the dialog to edit the property
+	 * 		the dialog to edit the property
 	 */
 	protected Object createDialog(EObject realEditedObject, EStructuralFeature realFeature, Stereotype stereotype, ResourceSet resourceSet) {
 		final UMLContentProvider p = new UMLContentProvider(realEditedObject, realFeature, stereotype, resourceSet);
@@ -197,7 +208,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	/**
 	 *
 	 * @return
-	 *         the reference factory used to create to element
+	 * 		the reference factory used to create to element
 	 */
 	protected abstract ReferenceValueFactory getFactory();
 
@@ -207,7 +218,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 	 * @param labelProvider
 	 * @param contentProvider
 	 * @return
-	 *         the element selector to use in the dialog
+	 * 		the element selector to use in the dialog
 	 */
 	protected abstract IElementSelector getElementSelector(final boolean isUnique, final ILabelProvider labelProvider, final IStaticContentProvider contentProvider);
 

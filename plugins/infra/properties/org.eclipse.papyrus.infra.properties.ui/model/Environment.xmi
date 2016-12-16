@@ -27,6 +27,9 @@
   <modelElementFactories
       name="Basic preferences Factory"
       factoryClass="org.eclipse.papyrus.infra.properties.ui.modelelement.PreferencesModelElementFactory"/>
+  <modelElementFactories
+      name="DynamicEObject Factory"
+      factoryClass="org.eclipse.papyrus.infra.properties.ui.modelelement.DynamicEObjectModelElementFactory"/>
   <widgetTypes
       label="Label"
       widgetClass="Label"/>
@@ -184,6 +187,11 @@
       label="Icon property editor with browser"
       widgetClass="IconPropertyEditor"
       namespace="//@namespaces.3"/>
+  <propertyEditorTypes
+      label="DataTypeEditor"
+      widgetClass="DataTypeEditor"
+      namespace="//@namespaces.3"
+      type="Reference"/>
   <compositeWidgetTypes
       label="Composite"
       widgetClass="Composite"/>

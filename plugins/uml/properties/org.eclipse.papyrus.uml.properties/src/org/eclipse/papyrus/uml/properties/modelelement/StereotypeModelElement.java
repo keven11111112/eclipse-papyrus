@@ -9,8 +9,10 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - bug 453445
- *  
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 502533
+ *
  *****************************************************************************/
+
 package org.eclipse.papyrus.uml.properties.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
@@ -25,6 +27,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EObjectStructuredValueFactory;
+import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeProvider;
@@ -32,6 +36,7 @@ import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableV
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
+import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -140,5 +145,28 @@ public class StereotypeModelElement extends EMFModelElement {
 		}
 
 		return new UMLContentProvider(source, feature, stereotype);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#getValueFactory(java.lang.String)
+	 */
+	@Override
+	public ReferenceValueFactory getValueFactory(final String propertyPath) {
+		EStructuralFeature feature = getFeature(propertyPath);
+		if (feature != null) {
+			if (feature instanceof EReference) {
+				EReference reference = (EReference) feature;
+				if (reference.isContainment()) {
+					EClassifier featureType = feature.getEType();
+					if (featureType instanceof EClass && DataTypeUtil.isDataTypeDefinition((EClass) featureType, getSource())) {
+						return new EObjectStructuredValueFactory(reference);
+					}
+				}
+			}
+		}
+
+		return super.getValueFactory(propertyPath);
 	}
 }
