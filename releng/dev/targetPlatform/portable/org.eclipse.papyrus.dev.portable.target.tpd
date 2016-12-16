@@ -5,9 +5,9 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 //manualUpdate 
 
 location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/" {
-	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group
-	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group
-	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group
+	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
+	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
+	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
 }
 
 //manualUpdate 

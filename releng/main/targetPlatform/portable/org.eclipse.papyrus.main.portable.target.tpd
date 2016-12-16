@@ -91,7 +91,7 @@ location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S
 //updateFrom("Subversive",0) 
 
 location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-site/" {
-	org.eclipse.team.svn.feature.group
+	org.eclipse.team.svn.feature.group lazy
 }
 
 //updateFrom("EMF VALIDATION",0)
