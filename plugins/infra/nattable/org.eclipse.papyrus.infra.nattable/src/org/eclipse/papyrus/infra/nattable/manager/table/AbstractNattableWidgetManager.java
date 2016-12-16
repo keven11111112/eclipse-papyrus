@@ -13,7 +13,7 @@
  *  Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077, 497571
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -104,6 +104,7 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeColumnHeaderData
 import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeRowHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.display.converter.ObjectNameAndPathDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.export.file.command.PapyrusFileExportCommand;
+import org.eclipse.papyrus.infra.nattable.export.image.PapyrusImageExportCommand;
 import org.eclipse.papyrus.infra.nattable.fillhandle.config.PapyrusFillHandleConfiguration;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
@@ -1512,6 +1513,16 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	@Override
 	public void selectAll() {
 		this.natTable.doCommand(new SelectAllCommand());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#exportToImage()
+	 */
+	@Override
+	public void exportToImage() {
+		this.natTable.doCommand(new PapyrusImageExportCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
 	}
 
 	/**

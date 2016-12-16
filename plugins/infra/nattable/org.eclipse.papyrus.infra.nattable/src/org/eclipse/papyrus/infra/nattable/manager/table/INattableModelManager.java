@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -96,7 +95,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 
 	/**
 	 * Get the command to add row elements at the index in parameter.
-	 * 
+	 *
 	 * @param objectsToAdd
 	 *            The row elements to add.
 	 * @param index
@@ -107,7 +106,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 
 	/**
 	 * Get the command to add column elements at the index in parameter.
-	 * 
+	 *
 	 * @param objectsToAdd
 	 *            The column elements to add.
 	 * @param index
@@ -119,11 +118,12 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	/**
 	 * This allows to set the label of a table.
 	 * 
-	 * @param label The new label.
+	 * @param label
+	 *            The new label.
 	 * @since 3.0
 	 */
 	public void setTableLabel(final String label);
-	
+
 	public void setTableName(String name);
 
 	public String getTableName();
@@ -133,11 +133,19 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 
 	public void selectAll();
 
+
+	/**
+	 * This allows to export a table as image
+	 * 
+	 * @since 3.0
+	 */
+	public void exportToImage();
+
 	public void exportToXLS();
 
 	/**
 	 * This allows to export the table contents into a file.
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	public void exportToFile();
@@ -212,7 +220,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	/**
 	 *
 	 * @return
-	 *         the column axis manager, managing the axis inversion
+	 * 		the column axis manager, managing the axis inversion
 	 */
 	public IAxisManager getColumnAxisManager();
 
@@ -239,7 +247,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 
 	/**
 	 * @return the selection in table.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	public TableStructuredSelection getSelectionInTable();

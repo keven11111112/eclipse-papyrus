@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.messages;
 
@@ -36,37 +36,37 @@ public class Messages extends NLS {
 	public static String AbstractCreateNattableEditorHandler_PapyrusTableCreation;
 
 	public static String AbstractPasteInSelectionNattableCommandProvider_AnExceptionOccuredDuringThePaste;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_ElementCantBeAdded;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_identifierNotFoundInSelection;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_identifierNotFoundInSelectionSoTheObjectWasCreated;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_MultipleSelectedRowsCorrespondingForIdentifier;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_NonEditableCellTriedToBeOverwrited;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_notyetimplemented;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_readrowsexceedsexistingrows;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_readcolumnsexceedsexistingcolumns;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_TheAxisUsedAsIdentifierNotAvailable;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_TheCommandCantBeExecuted;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_ThePasteHasBeenDoneWithSomeProblems;
-	
+
 	public static String AbstractPasteInSelectionNattableCommandProvider_ThePasteHasNotBeenDoneBecauseOfSomeProblems;
-	
+
 	public static String AbstractPasteImportInNattableManager_PasteColumnsError;
-	
+
 	public static String AbstractPasteImportInNattableManager_PasteNotYetManaged;
 
 	public static String AbstractPasteImportInNattableManager_PasteRowsError;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_column;
 
 	public static String AbstractPasteImportInsertInNattableManager_EnablementStatusForPasteInTheTable;
@@ -76,7 +76,7 @@ public class Messages extends NLS {
 	public static String AbstractPasteImportInsertInNattableManager_NoPasteConfiguration;
 
 	public static String AbstractPasteImportInsertInNattableManager_NoPasteConfiguration2;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_NoPasteConfigurationNeeded;
 
 	public static String AbstractPasteImportInsertInNattableManager_NumberOfColumnsAreEquals;
@@ -84,21 +84,21 @@ public class Messages extends NLS {
 	public static String AbstractPasteImportInsertInNattableManager_NumberOfColumnsAreNotEquals;
 
 	public static String AbstractPasteImportInsertInNattableManager_row;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_PasteConfigurationAxisIdentifierHasBeenSet;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_PasteConfigurationAxisIdentifierHasNotBeenSet;
 
 	public static String AbstractPasteImportInsertInNattableManager_PasteConfigurationFeatureHasNotBeenSet;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_TheContextOfTheTableHasNotTheContainmentFeatureDefinedForThePaste;
 
 	public static String AbstractPasteImportInsertInNattableManager_TheContextOfTheTableHasTheContainmentFeatureDefinedForThePaste;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_TheElementTypeIsUnknown;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_ThereIsNoElementIdDefinedInThePasteConfiguration;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_ThereIsNoPasteConfgurationForATreeFillingConfiguration;
 
 	public static String AbstractPasteImportInsertInNattableManager_TheTableCanCreateElement;
@@ -112,11 +112,11 @@ public class Messages extends NLS {
 	public static String AbstractPasteImportInsertInNattableManager_TheUserChosesToPasteColumns;
 
 	public static String AbstractPasteImportInsertInNattableManager_TheUserChosesToPasteRows;
-	
+
 	public static String AbstractPasteImportInsertInNattableManager_YouHaveMoreThan1Category;
 
 	public static String AbstractPasteImportInsertInNattableManager_WhatAreYouPasting;
-	
+
 	public static String AbstractInsertImportInNattableManager_MoreThanOnePasteConfigurationByDepth;
 
 	public static String AbstractSaveCurrentAxisProvidersHandler_0;
@@ -136,13 +136,13 @@ public class Messages extends NLS {
 	public static String AxisManagerFactory_TheClassCantBeInstanciated;
 
 	public static String CompositeAxisManager_AddAxisCommand;
-	
+
 	public static String ConfigurePastePage_firstColumnTitle;
-	
+
 	public static String ConfigurePastePage_secondColumnTitle;
-	
+
 	public static String ConfigurePastePage_thirdColumnTitle;
-	
+
 	public static String ConfigurePastePage_fourthColumnTitle;
 
 	public static String ConfigureTableCategoriesWizard_ConfigureCategoriesAndPaste;
@@ -177,13 +177,13 @@ public class Messages extends NLS {
 	public static String EditConfiguration_FactoryHandlesElementButDoesntProvideEditor;
 
 	public static String EObjectManager_AddAxisElement;
-	
+
 	public static String InsertInNattableManager_InsertColumnsError;
-	
+
 	public static String InsertInNattableManager_InsertNotYetManaged;
 
 	public static String InsertInNattableManager_InsertRowsError;
-	
+
 	public static String NattableConfigurationRegistry_ConfigurationNotFound;
 
 	public static String NattableConfigurationRegistry_NoTesterForThisConfiguration;
@@ -321,21 +321,21 @@ public class Messages extends NLS {
 	public static String LoadCurrentAxisProvidersDialog_2;
 
 	public static String LoadCurrentAxisProvidersDialog_3;
-	
+
 	public static String PapyrusFillHandleDragMode_CopyCommandName;
-	
+
 	public static String PapyrusFillHandleDragMode_DecrementCommandName;
-	
+
 	public static String PapyrusFillHandleDragMode_DecrementPrefixCommandName;
-	
+
 	public static String PapyrusFillHandleDragMode_DecrementSuffixCommandName;
-	
+
 	public static String PapyrusFillHandleDragMode_IncrementCommandName;
-	
+
 	public static String PapyrusFillHandleDragMode_IncrementPrefixCommandName;
-	
+
 	public static String PapyrusFillHandleDragMode_IncrementSuffixCommandName;
-	
+
 	public static String PapyrusPopupMenuAction_ShowCategoriesOnDepth;
 
 	public static String PasteConfigurationUtils_ContainementFeatureIsNotAReference;
@@ -353,7 +353,7 @@ public class Messages extends NLS {
 	public static String PasteConfigurationUtils_PasteConfigurationIsConsistent;
 
 	public static String PasteEObjectAxisInTableCommandProvider_AddingElementToTheTable;
-	
+
 	public static String PasteEObjectAxisInTableCommandProvider_AddRowsCommandName;
 
 	public static String PasteEObjectAxisInTableCommandProvider_CommandCreationHasBeenCancelled;
@@ -371,7 +371,7 @@ public class Messages extends NLS {
 	public static String PasteEObjectAxisInTableCommandProvider_PasteColumns;
 
 	public static String PasteEObjectAxisInTableCommandProvider_PasteFromStringCommand;
-	
+
 	public static String PasteEObjectAxisInTableCommandProvider_PasteInTableCommandName;
 
 	public static String PasteEObjectAxisInTableCommandProvider_PasteRows;
@@ -379,7 +379,7 @@ public class Messages extends NLS {
 	public static String PasteEObjectTreeAxisInNatTableCommandProvider_CantPasteColumnsInTreeTable;
 
 	public static String PasteImportHandler_EmptyClipboardString;
-	
+
 	public static String PasteImportStatusDialog_ImportPasteDialogTitle;
 
 	public static String PasteImportStatusDialog_PasteConfigurationMessage;
@@ -415,17 +415,17 @@ public class Messages extends NLS {
 	public static String PasteInPapyrusTableCommandProvider_TheTextCantBeMappedOnAnExistingElement;
 
 	public static String PasteInTableHandler_PasteCancelled;
-	
+
 	public static String PasteInTableHandler_PasteCreation;
-	
+
 	public static String PasteInTableHandler_PasteError;
-	
+
 	public static String PasteInTableHandler_PasteInformation;
-	
+
 	public static String PasteInTableHandler_PasteWarning;
-	
+
 	public static String PasteInTableHandler_ThePasteCommandCantBeExecuted;
-	
+
 	public static String PasteSeparator_Comma;
 
 	public static String PasteSeparator_Other;
@@ -439,6 +439,57 @@ public class Messages extends NLS {
 	public static String SelectCategoriesWizardPage_SelectCategoriesPage;
 
 	public static String SelectCategoriesWizardPage_SelectCategoriesToListenInTheTreeTable;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_ExportTableDialogTitle;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_SelectOutputDirLabel;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_ImageNameLabel;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_BrowseFileSystem;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_BrowseWorkSpace;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_SelectOutputFormatLabel;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_ContainerSelectionDialogTitle;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_SelectTreeActionLabel;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_OverrideConfirmMessasgeDialogMessage;
+
+	/**
+	 * @since 3.0
+	 */
+	public static String ExportTableDialog_OverrideConfirmMessasgeDialogText;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

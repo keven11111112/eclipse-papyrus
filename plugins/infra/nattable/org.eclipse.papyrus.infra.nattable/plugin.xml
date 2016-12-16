@@ -25,6 +25,10 @@
              style="push">
        </command>
        <command
+             commandId="org.eclipse.papyrus.infra.nattable.exportToImageCommand"
+             style="push">
+       </command>
+       <command
              commandId="org.eclipse.papyrus.infra.nattable.invert.axis"
              style="toggle">
           <visibleWhen>
@@ -729,6 +733,22 @@
           </and>
        </activeWhen>
     </handler>
+    <handler
+          class="org.eclipse.papyrus.infra.nattable.handler.ExportToImageHandler"
+          commandId="org.eclipse.papyrus.infra.nattable.exportToImageCommand">
+       <activeWhen>
+          <and>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>
           <handler
           class="org.eclipse.papyrus.infra.nattable.copy.CopySelectionToClipboardAction"
           commandId="org.eclipse.ui.edit.copy">
@@ -1027,6 +1047,12 @@
          description="Export Table to XLS Command"
          id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
          name="Export to XLS">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Export Table to Image Command"
+         id="org.eclipse.papyrus.infra.nattable.exportToImageCommand"
+         name="Export to Image">
    </command>
 <!--   <command
          description="Merge all the Table"

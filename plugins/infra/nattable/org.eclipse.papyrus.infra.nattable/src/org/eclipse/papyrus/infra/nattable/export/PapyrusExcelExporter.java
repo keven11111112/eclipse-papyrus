@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) <thanhliem.phan@all4tec.net> - Bug 417095
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.export;
@@ -30,7 +30,7 @@ public class PapyrusExcelExporter extends ExcelExporter {
 	private static final String EXCEL_HEADER_FILE = "papyrusExcelExportHeader.txt"; //$NON-NLS-1$
 
 	public PapyrusExcelExporter() {
-		this(new FileOutputStreamProvider("table_export.xls", new String[] { "Excel Workbok (*.xls)" }, new String[] { "*.xls" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		this(new FileOutputStreamProvider("table_export.xls", new String[] { "Excel Workbook (*.xls)" }, new String[] { "*.xls" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	public PapyrusExcelExporter(IOutputStreamProvider outputStreamProvider) {

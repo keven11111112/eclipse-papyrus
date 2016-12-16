@@ -127,6 +127,7 @@ public class NattableConfigAttributes {
 
 	/**
 	 * The config attribute used to reinitialise the height of rows in the table.
+	 * @since 3.0
 	 */
 	public static final ConfigAttribute<Boolean> REINITIALISE_ROW_HEIGHT = new ConfigAttribute<Boolean>();
 

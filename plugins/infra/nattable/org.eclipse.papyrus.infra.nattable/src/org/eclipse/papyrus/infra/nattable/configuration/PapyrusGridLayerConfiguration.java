@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.configuration;
 
@@ -17,6 +16,7 @@ import org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerCon
 import org.eclipse.nebula.widgets.nattable.layer.CompositeLayer;
 import org.eclipse.papyrus.infra.nattable.export.PapyrusExportBindings;
 import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportBindings;
+import org.eclipse.papyrus.infra.nattable.export.image.PapyrusImageExportBindings;
 
 /**
  * We change the edit configuration
@@ -35,6 +35,7 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 	public PapyrusGridLayerConfiguration(CompositeLayer gridLayer) {
 		super(gridLayer);
 		addFileExportUIBindings();
+		addImageExportUIBindings();
 	}
 
 	/**
@@ -66,13 +67,21 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 	protected void addExcelExportUIBindings() {
 		addConfiguration(new PapyrusExportBindings());
 	}
-	
+
 	/**
 	 * Add the file export binding.
 	 * 
 	 * @since 2.0
 	 */
-	protected void addFileExportUIBindings(){
+	protected void addFileExportUIBindings() {
 		addConfiguration(new PapyrusFileExportBindings());
+	}
+
+	/**
+	 * Add the image export binding.
+	 * @since 3.0
+	 */
+	protected void addImageExportUIBindings() {
+		addConfiguration(new PapyrusImageExportBindings());
 	}
 }

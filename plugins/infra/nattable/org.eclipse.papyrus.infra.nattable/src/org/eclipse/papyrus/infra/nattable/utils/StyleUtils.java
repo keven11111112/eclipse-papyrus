@@ -152,6 +152,7 @@ public class StyleUtils {
 	 * @param namedStyleString
 	 *            The named style string
 	 * @return The boolean value of the named style
+	 * @since 3.0
 	 */
 	public static boolean getBooleanNamedStyleValue(final Table table, final String namedStyleString) {
 		boolean resultValue = false;
@@ -182,6 +183,7 @@ public class StyleUtils {
 	 *            The named style string
 	 * @param value
 	 *            The boolean value to be set
+	 * @since 3.0
 	 */
 	public static void setBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final Table table, final String namedStyleString, final boolean value) {
 		if (null != editingDomain && null != table && null != namedStyleString) {
@@ -212,6 +214,7 @@ public class StyleUtils {
 	 *            The named style string
 	 * @param defaultValue
 	 *            The default value to be set
+	 * @since 3.0
 	 */
 	public static void initBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final Table table, final String namedStyleString, final boolean defaultValue) {
 		if (null != editingDomain && null != table && null != namedStyleString) {

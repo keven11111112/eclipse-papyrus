@@ -10,7 +10,6 @@
  *   CEA LIST - Initial API and implementation
  *   Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 508175
- *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -343,7 +342,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 	/**
 	 * Get the width of the slider composite.
-	 * 
+	 *
 	 * @return The int value corresponding to the needed row header width.
 	 * @since 2.0
 	 */
@@ -362,7 +361,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 	/**
 	 * This allows to calculate the initial width of the row header.
-	 * 
+	 *
 	 * @return The int value corresponding to the needed row header width.
 	 * @since 2.0
 	 */
@@ -468,7 +467,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 	/**
 	 * This allows to create the control listener when the slider composite is resized.
-	 * 
+	 *
 	 * @param leftSliderComposite
 	 *            the slider composite.
 	 * @since 2.0
@@ -730,6 +729,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	/**
 	 * @since 2.0
 	 */
+	@Override
 	public RowHeaderHierarchicalLayerStack getRowHeaderLayerStack() {
 		return (RowHeaderHierarchicalLayerStack) super.getRowHeaderLayerStack();
 	}
