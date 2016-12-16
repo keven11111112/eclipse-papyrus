@@ -10,13 +10,17 @@
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
  *  Christian W. Damus - bug 485220
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
- *
+ *  Benoit Maggi - Bug 509346
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.internal.emf;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -44,11 +48,19 @@ import org.osgi.framework.ServiceRegistration;
  */
 public class Activator extends AbstractUIPlugin {
 
+
+
 	/**
 	 * The plug-in ID
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.ui.emf"; //$NON-NLS-1$
-
+	
+	/**
+	 * Key to store the facet order
+	 */
+	private static final String LOADED_FACET_ORDER = PLUGIN_ID+".facet.order";
+	
+	
 	// The shared instance
 	private static Activator plugin;
 
@@ -108,48 +120,44 @@ public class Activator extends AbstractUIPlugin {
 	public void saveCustomizationManagerState() {
 		IDialogSettings dialogSettings = getBrowserCustomizationDialogSettings();
 		List<Customization> appliedCustomizations = getCustomizationManager().getManagedCustomizations();
-
 		final List<Customization> registeredCustomizations = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(getCustomizationManager().getResourceSet()).getRegisteredCustomizations();
-
 		for (Customization customization : registeredCustomizations) {
-
 			boolean isApplied = appliedCustomizations.contains(customization);
 			String settingKey = getSettingKey(customization);
-
-			dialogSettings.put(settingKey, isApplied);
+			dialogSettings.put(settingKey, isApplied);		
 		}
+		
+		// We have to use a temporary list since CustomizationsDelegatingList is buggy (missing a lot of methods)
+		List<Customization> customizationList = new ArrayList<>();
+		customizationList.addAll(appliedCustomizations);
+		String[] loadedCustomizationArray = customizationList.stream().map(customization -> customization.eResource().getURI().toString()).toArray(size -> new String[size]);
+		dialogSettings.put(LOADED_FACET_ORDER, loadedCustomizationArray);
+		
 	}
 
 	private String getSettingKey(Customization customization) {
 		// do not exist anymore
 		return customization.eResource().getURI().toString();
-		// return "";
 	}
 
 	protected IDialogSettings getBrowserCustomizationDialogSettings() {
-		String sectionId = CUSTOMIZATION_MANAGER_SECTION;
-
-		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(sectionId);
+		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(CUSTOMIZATION_MANAGER_SECTION);
 		if (settings == null) {
-			settings = Activator.getDefault().getDialogSettings().addNewSection(sectionId);
+			settings = Activator.getDefault().getDialogSettings().addNewSection(CUSTOMIZATION_MANAGER_SECTION);
 		}
 		return settings;
 	}
 
 	private void init(final ICustomizationManager customizationManager) {
 		// the appearance can be customized here:
-
 		IDialogSettings settings = getBrowserCustomizationDialogSettings();
-
 		try {
-
 			// load customizations defined as default through the customization
 			// extension
 			ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(customizationManager.getResourceSet());
 			// no possibility to get default customization
-
 			List<Customization> registryAllCustomizations = customCatalog.getRegisteredCustomizations();
-			ArrayList<Customization> orderedCustomizationList = new ArrayList<Customization>();
+			List<Customization> orderedCustomizationList = new ArrayList<>();
 			for (Customization customization : registryAllCustomizations) {
 				String settingKey = getSettingKey(customization);
 
@@ -163,11 +171,21 @@ public class Activator extends AbstractUIPlugin {
 
 				if (isActive) {
 					orderedCustomizationList.add(customization);
-
 				}
 			}
-
-			Collections.sort(orderedCustomizationList, new CustomizationComparator());
+			String[] loadedFacetOrder = settings.getArray(LOADED_FACET_ORDER);
+			if (loadedFacetOrder != null && loadedFacetOrder.length > 0){
+				
+				Map<String, Customization> mapProp = registryAllCustomizations.stream().collect(
+					    Collectors.toMap(e -> getSettingKey(e),e -> e));
+				
+				Stream<String> stream = Arrays.stream(loadedFacetOrder);
+				Stream<Customization> map = stream.map(id -> mapProp.get(id));
+				orderedCustomizationList = map.collect(Collectors.toList());
+			} else {
+				Collections.sort(orderedCustomizationList, new CustomizationComparator());
+			}
+			
 			customizationManager.getManagedCustomizations().addAll(orderedCustomizationList);
 
 		} catch (Throwable e) {
@@ -184,18 +202,8 @@ public class Activator extends AbstractUIPlugin {
 	 * Restores the default Customization Manager configuration
 	 */
 	public void restoreDefaultCustomizationManager() {
-		// ICustomizationManager manager = getCustomizationManager();
-
 		DialogSettings settings = (DialogSettings) getDialogSettings();
 		settings.removeSection(CUSTOMIZATION_MANAGER_SECTION);
-
-		// List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-		//
-		// manager.clearCustomizations();
-		// for(MetamodelView customization : registryDefaultCustomizations) {
-		// manager.registerCustomization(customization);
-		// }
-		// manager.loadCustomizations();
 	}
 
 	public ICustomizationManager getCustomizationManager() {
