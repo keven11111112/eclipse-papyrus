@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[2.0.0,3.
  org.eclipse.papyrus.uml.types.core;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.1.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.service.types.Activator
