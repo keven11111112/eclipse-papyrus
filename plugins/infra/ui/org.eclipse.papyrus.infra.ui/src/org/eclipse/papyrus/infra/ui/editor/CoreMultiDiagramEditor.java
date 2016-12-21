@@ -20,6 +20,7 @@ package org.eclipse.papyrus.infra.ui.editor;
 
 import static org.eclipse.papyrus.infra.core.Activator.log;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -614,7 +615,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			servicesRegistry.startRegistry();
 
 			// In case of a shard
-			String name = uri.lastSegment();
+			String name = java.net.URLDecoder.decode(uri.lastSegment(), "UTF-8");
 			if (!name.equals(getPartName())) {
 				setPartName(name);
 			}
@@ -631,6 +632,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		} catch (ServiceException e) {
 			log.error(e);
 			// throw new PartInitException("could not initialize services", e);
+		} catch (UnsupportedEncodingException e) {
+			log.error(e);
 		}
 
 		// Get required services
