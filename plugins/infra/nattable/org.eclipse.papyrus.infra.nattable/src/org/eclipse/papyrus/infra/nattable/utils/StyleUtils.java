@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,24 +8,31 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.text.StyledDocument;
-
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
  * @author VL222926
@@ -83,26 +90,26 @@ public class StyleUtils {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param manager
 	 *            a table manager
 	 * @param depth
 	 *            a depth
 	 * @return
-	 *         <code>true</code> if the category must be hidden
+	 * 		<code>true</code> if the category must be hidden
 	 */
 	public static final boolean isHiddenDepth(final INattableModelManager manager, final int depth) {
 		return isHiddenDepth(manager.getTable(), depth);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param table
 	 *            a table
 	 * @param depth
 	 *            a depth
 	 * @return
-	 *         <code>true</code> if the category must be hidden
+	 * 		<code>true</code> if the category must be hidden
 	 */
 	public static final boolean isHiddenDepth(final Table table, final int depth) {
 		List<Integer> hidden = getHiddenDepths(table);
@@ -113,11 +120,11 @@ public class StyleUtils {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param manager
 	 *            the table manager
 	 * @return
-	 *         <code>true</code> if at least one filter is register on the currents columns
+	 * 		<code>true</code> if at least one filter is register on the currents columns
 	 */
 	public static final boolean hasAppliedFilter(final INattableModelManager manager) {
 		for (Object current : manager.getColumnElementsList()) {
@@ -135,5 +142,99 @@ public class StyleUtils {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Get the value of a boolean named style in a given table.
+	 *
+	 * @param table
+	 *            The given papyrus table
+	 * @param namedStyleString
+	 *            The named style string
+	 * @return The boolean value of the named style
+	 */
+	public static boolean getBooleanNamedStyleValue(final Table table, final String namedStyleString) {
+		boolean resultValue = false;
+
+		if (null != table && null != namedStyleString) {
+			// Get the relevant boolean named style from the table
+			BooleanValueStyle booleanNamedStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+
+			if (null == booleanNamedStyle) {
+				final TableConfiguration config = table.getTableConfiguration();
+				booleanNamedStyle = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+			}
+
+			resultValue = null != booleanNamedStyle && booleanNamedStyle.isBooleanValue();
+		}
+
+		return resultValue;
+	}
+
+	/**
+	 * Set the value of a boolean named style in a given table.
+	 *
+	 * @param editingDomain
+	 *            The editing domain
+	 * @param table
+	 *            The given papyrus table
+	 * @param namedStyleString
+	 *            The named style string
+	 * @param value
+	 *            The boolean value to be set
+	 */
+	public static void setBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final Table table, final String namedStyleString, final boolean value) {
+		if (null != editingDomain && null != table && null != namedStyleString) {
+			// Get the relevant boolean named style from the table
+			BooleanValueStyle booleanNamedStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+
+			if (null != booleanNamedStyle) {
+				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(booleanNamedStyle);
+				SetRequest request = new SetRequest(editingDomain, booleanNamedStyle, NattablestylePackage.eINSTANCE.getBooleanValueStyle_BooleanValue(), value);
+
+				if (editService.canEdit(request)) {
+					Command command = GMFtoEMFCommandWrapper.wrap(editService.getEditCommand(request));
+					editingDomain.getCommandStack().execute(command);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Initialize the given named style if it is not created.
+	 * If the named style has been already created, do nothing.
+	 *
+	 * @param editingDomain
+	 *            The editing domain
+	 * @param table
+	 *            The given papyrus table
+	 * @param namedStyleString
+	 *            The named style string
+	 * @param defaultValue
+	 *            The default value to be set
+	 */
+	public static void initBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final Table table, final String namedStyleString, final boolean defaultValue) {
+		if (null != editingDomain && null != table && null != namedStyleString) {
+			// Get the relevant named style
+			BooleanValueStyle namedStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+
+			// If it does not exist, initialize it, otherwise do nothing
+			if (null == namedStyle) {
+				namedStyle = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
+				namedStyle.setName(namedStyleString);
+				namedStyle.setBooleanValue(defaultValue);
+
+				// Add the new boolean style
+				List<Style> styleList = new ArrayList<Style>(table.getStyles());
+				styleList.add(namedStyle);
+
+				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(table);
+				SetRequest request = new SetRequest(editingDomain, table, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), styleList);
+				if (editService.canEdit(request)) {
+					Command command = GMFtoEMFCommandWrapper.wrap(editService.getEditCommand(request));
+					editingDomain.getCommandStack().execute(command);
+				}
+			}
+		}
 	}
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.celleditor.config;
@@ -24,8 +24,12 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.celleditor.MultiLineTextCellEditorEx;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.tools.util.TypesConstants;
 
 /**
@@ -91,7 +95,23 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 	 */
 	@Override
 	public void configureCellEditor(IConfigRegistry configRegistry, Object axis, String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.EDIT, configLabel);
+		final INattableModelManager nattableManager = configRegistry.getConfigAttribute(
+				NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE,
+				DisplayMode.NORMAL,
+				NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+
+		final Table table = nattableManager.getTable();
+
+		final boolean wrapTextFlag = StyleUtils.getBooleanNamedStyleValue(table, NamedStyleConstants.WRAP_TEXT);
+		final boolean autoResizeCellHeightFlag = StyleUtils.getBooleanNamedStyleValue(table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT);
+
+		// Note that the width of the affected column will not be changed
+		TextPainter textPainter = new TextPainter(wrapTextFlag, true, 2, false, autoResizeCellHeightFlag);
+
+		// TODO: using wordWrapping when upgrade to the new NatTable version
+		// textPainter.setWordWrapping(true);
+
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, textPainter, DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new MultiLineTextCellEditorEx(true), DisplayMode.EDIT, configLabel);
 		// I believe that we don't need converters because we are working with the standard type --String.
 		// configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, null, DisplayMode.EDIT, configLabel);

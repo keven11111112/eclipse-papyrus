@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST, LIFL, and others.
- *
+ * Copyright (c) 2009, 2017 CEA LIST, LIFL, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,7 +12,7 @@
  *  Christian W. Damus (CEA) - bug 430880
  *  Christian W. Damus (CEA) - bug 437217
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.editor;
 
@@ -58,10 +57,7 @@ import org.eclipse.ui.part.EditorPart;
 
 
 /**
- * Abstract class for TableEditor
- *
- *
- *
+ * Abstract class for TableEditor.
  */
 public abstract class AbstractEMFNattableEditor extends EditorPart implements NavigationTarget, IInternationalizationEditor {
 
@@ -262,22 +258,24 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	/**
 	 * this method is used dispose the existing nattable widget and recreate a new one.
 	 * It has been created to be able to reload a table when a bug broke the table after a user action.
-	 * 
+	 *
 	 * see bug 466447: [TreeTable] Missing method to reload a (hierarchic) table
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=466447
 	 */
 	public void reloadNattableModelManager() {
-		if (TableHelper.isTreeTable(tableManager)) {
-			reloadTreeNattableModelManager();
-		} else {
-			Table rawModel = this.tableManager.getTable();
-			// we dispose the previous nattable widget
-			NatTable nattable = this.tableManager.getAdapter(NatTable.class);
-			Composite parent = nattable.getParent();
-			this.tableManager.dispose();
-			this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
-			nattable = this.tableManager.createNattable(parent, SWT.NONE, getSite());
-			nattable.getParent().layout();
+		if (null != this.tableManager) {
+			if (TableHelper.isTreeTable(tableManager)) {
+				reloadTreeNattableModelManager();
+			} else {
+				Table rawModel = this.tableManager.getTable();
+				// we dispose the previous nattable widget
+				NatTable nattable = this.tableManager.getAdapter(NatTable.class);
+				Composite parent = nattable.getParent();
+				this.tableManager.dispose();
+				this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
+				nattable = this.tableManager.createNattable(parent, SWT.NONE, getSite());
+				nattable.getParent().layout();
+			}
 		}
 	}
 
@@ -420,7 +418,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the table model displayed by the editor
 	 */
@@ -429,7 +427,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the table editing domain
 	 */
@@ -438,7 +436,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the table context editing domain
 	 */
@@ -448,21 +446,21 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#modifyPartName(java.lang.String)
 	 */
 	@Override
 	public void modifyPartName(final String name) {
 		setPartName(name);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#refreshEditorPart()
 	 */
 	@Override
-	public void refreshEditorPart(){
+	public void refreshEditorPart() {
 		// We don't need to refresh the editor part, the table is refreshed alone
 	}
 }

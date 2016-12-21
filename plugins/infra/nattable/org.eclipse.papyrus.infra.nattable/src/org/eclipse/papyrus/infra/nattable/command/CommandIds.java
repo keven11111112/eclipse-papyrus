@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,12 +8,12 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.command;
 
 /**
- * This class references the ids of the commands declared for tables
+ * This class references the ids of the commands declared for tables.
  *
  * @author vl222926
  *
@@ -77,8 +76,12 @@ public class CommandIds {
 
 	public static final String COMMAND_MERGE_SELECTED_COLUMNS = "org.eclipse.papyrus.infra.nattable.mergeSelectedColumns"; //$NON-NLS-1$
 
-	//	public static final String COMMAND_MERGE_TABLE = "org.eclipse.papyrus.infra.nattable.mergeTable"; //$NON-NLS-1$
+	// public static final String COMMAND_MERGE_TABLE = "org.eclipse.papyrus.infra.nattable.mergeTable"; //$NON-NLS-1$
 
 	public static final String COMMAND_HIERARCHIC_DISPLAY_STYLE = "org.eclipse.papyrus.infra.nattable.table.hierarchic.style";////$NON-NLS-1$
+
+	public static final String COMMAND_WRAP_TEXT = "org.eclipse.papyrus.infra.nattable.wraptext"; //$NON-NLS-1$
+
+	public static final String COMMAND_AUTO_RESIZE_CELL_HEIGHT = "org.eclipse.papyrus.infra.nattable.autoresize.cellheight"; //$NON-NLS-1$
 
 }

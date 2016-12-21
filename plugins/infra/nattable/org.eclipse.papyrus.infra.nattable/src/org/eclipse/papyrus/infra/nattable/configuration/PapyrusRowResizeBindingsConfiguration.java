@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,11 +8,12 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.configuration;
 
 import org.eclipse.nebula.widgets.nattable.config.AbstractUiBindingConfiguration;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.resize.action.RowResizeCursorAction;
 import org.eclipse.nebula.widgets.nattable.resize.event.RowResizeEventMatcher;
@@ -22,10 +22,11 @@ import org.eclipse.nebula.widgets.nattable.ui.action.ClearCursorAction;
 import org.eclipse.nebula.widgets.nattable.ui.action.NoOpMouseAction;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.swt.SWT;
 
 /**
- * Adapted code from DefaultRowResizeBindings. Allow to resize the rows on all regions of the table (corner, body, row header, column header)
+ * Adapted code from DefaultRowResizeBindings. Allow to resize the rows on all regions of the table (corner, body, row header, column header).
  *
  * @author vl222926
  *
@@ -51,6 +52,14 @@ public class PapyrusRowResizeBindingsConfiguration extends AbstractUiBindingConf
 		// uiBindingRegistry.registerDoubleClickBinding(new RowResizeEventMatcher(SWT.NONE, GridRegion.ROW_HEADER, 1), new AutoResizeRowAction());
 		uiBindingRegistry.registerSingleClickBinding(new RowResizeEventMatcher(SWT.NONE, GridRegion.ROW_HEADER, 1), new NoOpMouseAction());
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void configureRegistry(final IConfigRegistry configRegistry) {
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.REINITIALISE_ROW_HEIGHT, new Boolean(false));
 	}
 
 }

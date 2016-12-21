@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Esterel Technologies SAS and others.
- *
+ * Copyright (c) 2012, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,7 +11,7 @@
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 504077, 496905, 508175
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -55,6 +54,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.data.IColumnAccessor;
@@ -62,6 +62,7 @@ import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
+import org.eclipse.nebula.widgets.nattable.resize.command.InitializeAutoResizeRowsCommand;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectCellCommand;
@@ -69,6 +70,7 @@ import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
+import org.eclipse.nebula.widgets.nattable.util.GCFactory;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.nattable.Activator;
@@ -111,8 +113,10 @@ import org.eclipse.papyrus.infra.nattable.sort.PapyrusCompositeGlazedListSortMod
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CellMapKey;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
+import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -144,9 +148,7 @@ import ca.odell.glazedlists.event.ListEvent;
 import ca.odell.glazedlists.event.ListEventListener;
 
 /**
- * All the code concerning tree table is in the subclass {@link TreeNattableModelManager}
- *
- *
+ * All the code concerning tree table is in the subclass {@link TreeNattableModelManager}.
  */
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager, FocusListener {
 
@@ -246,7 +248,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 *
 	 * @param rawModel
@@ -392,7 +394,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.listEventListener = new ListEventListener<Object>() {
 
 			/**
-			 * 
+			 *
 			 * @param listChanges
 			 */
 			@Override
@@ -408,7 +410,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * @param listChanges
 	 *            manage the list events
 	 */
@@ -453,7 +455,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	protected SortedList<Object> columnSortedList;
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the new list to use for vertical element
 	 */
@@ -467,7 +469,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the new list to use for horizontal element
 	 */
@@ -538,7 +540,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		nattable.addFocusListener(this.focusListener);
 
 		// registering to focusService allows to declare properties tester on "activeFocusControl" and "activeFocusControlId" variables
-		focusService = (IFocusService) PlatformUI.getWorkbench().getService(IFocusService.class);
+		focusService = PlatformUI.getWorkbench().getService(IFocusService.class);
 		if (focusService != null) {
 			String id = null;
 			if (getTable().getTableConfiguration() != null) {
@@ -705,8 +707,13 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			// updateToggleCommandState(command, false);
 			// }
 
+			// Update the wrap text command state
+			command = commandService.getCommand(CommandIds.COMMAND_WRAP_TEXT);
+			updateToggleCommandState(command, StyleUtils.getBooleanNamedStyleValue(getTable(), NamedStyleConstants.WRAP_TEXT));
 
-
+			// Update the auto resize cell height state
+			command = commandService.getCommand(CommandIds.COMMAND_AUTO_RESIZE_CELL_HEIGHT);
+			updateToggleCommandState(command, StyleUtils.getBooleanNamedStyleValue(getTable(), NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT));
 
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service %s has not been found", ICommandService.class)); //$NON-NLS-1$
@@ -1151,6 +1158,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			// Refresh the nattable columns size in the case of named style
 			doFillColumnsSize();
 
+			// Resize all rows if necessary
+			reinitialiseRowHeight();
+
 			// Keep the selection after the refresh of the table
 			if (null != selectedCells && !selectedCells.isEmpty()) {
 				Collection<Integer> selectedColumns = new ArrayList<Integer>();
@@ -1450,7 +1460,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getAddRowElementCommand(java.util.Collection, int)
 	 */
 	@Override
@@ -1475,7 +1485,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getAddColumnElementCommand(java.util.Collection, int)
 	 */
 	@Override
@@ -1798,7 +1808,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#setTableLabel(java.lang.String)
 	 */
 	@Override
@@ -2128,7 +2138,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		a new decoration service listener
 	 */
@@ -2136,7 +2146,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if (this.decoractionServiceObserver == null) {
 			this.decoractionServiceObserver = new Observer() {
 				/**
-				 * 
+				 *
 				 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 				 *
 				 * @param o
@@ -2149,5 +2159,24 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			};
 		}
 		return this.decoractionServiceObserver;
+	}
+
+	/**
+	 * Method to resize rows of the NatTable if the reinitialise row height attribute is <code>true</true>.
+	 */
+	protected void reinitialiseRowHeight() {
+		IConfigRegistry configRegistry = this.natTable.getConfigRegistry();
+
+		final Boolean isAutoResizeRowsEnabled = configRegistry.getConfigAttribute(NattableConfigAttributes.REINITIALISE_ROW_HEIGHT, DisplayMode.NORMAL);
+
+		if (isAutoResizeRowsEnabled) {
+			// Loop to resize all rows of the NatTable
+			for (int rowIndex = 0; rowIndex < natTable.getRowCount(); rowIndex++) {
+				natTable.doCommand(new InitializeAutoResizeRowsCommand(natTable, rowIndex, natTable.getConfigRegistry(), new GCFactory(natTable)));
+			}
+
+			// Once it is done, reset the resize row height flag to false
+			configRegistry.registerConfigAttribute(NattableConfigAttributes.REINITIALISE_ROW_HEIGHT, false);
+		}
 	}
 }

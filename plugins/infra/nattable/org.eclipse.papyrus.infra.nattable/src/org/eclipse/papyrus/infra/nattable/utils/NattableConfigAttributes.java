@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
@@ -26,7 +25,7 @@ import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
 /**
- * This class references the keys registered in the ConfigRegistry of the table to facilitate access to these objects
+ * This class references the keys registered in the ConfigRegistry of the table to facilitate access to these objects.
  *
  * @author Vincent Lorenzo
  *
@@ -69,7 +68,7 @@ public class NattableConfigAttributes {
 	 */
 	public static final ConfigAttribute<DecorationService> DECORATION_SERVICE_CONFIG_ATTRIBUTE = new ConfigAttribute<DecorationService>();
 
-	
+
 	/**
 	 * Id used to register the label provider service
 	 */
@@ -80,7 +79,7 @@ public class NattableConfigAttributes {
 	 */
 	public static final String DECORATION_SERVICE_ID = "decoration_service_id"; //$NON-NLS-1$
 
-	
+
 	/**
 	 * Id used to register the table model manager
 	 */
@@ -125,5 +124,10 @@ public class NattableConfigAttributes {
 	 * the config attribute used to register the sort model
 	 */
 	public static final ConfigAttribute<ISortModel> ROW_SORT_MODEl = new ConfigAttribute<ISortModel>();
+
+	/**
+	 * The config attribute used to reinitialise the height of rows in the table.
+	 */
+	public static final ConfigAttribute<Boolean> REINITIALISE_ROW_HEIGHT = new ConfigAttribute<Boolean>();
 
 }

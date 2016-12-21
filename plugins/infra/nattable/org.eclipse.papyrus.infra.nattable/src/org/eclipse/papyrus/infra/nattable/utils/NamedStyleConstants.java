@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
- *
+ * Copyright (c) 2014, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +9,7 @@
  * Contributors:
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -99,8 +98,8 @@ public class NamedStyleConstants {
 	/**
 	 * key used to save a filter configuration id state when the system use a filter choosen by the user
 	 * It is only used as name for a {@link StringValueStyle}, we use a specific key in order to not destroyed it when we unapply filter on a column where filter has been definied by the user
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public static final String FILTER_FORCED_BY_USER_ID = "filterForcedByUserId"; //$NON-NLS-1$
 
@@ -111,7 +110,7 @@ public class NamedStyleConstants {
 
 	/**
 	 * This allows to manage the fill columns size to take all the container space.
-	 * 
+	 *
 	 * @deprecated since 3.0
 	 */
 	@Deprecated
@@ -120,7 +119,7 @@ public class NamedStyleConstants {
 	/**
 	 * This allows to determinate if the columns width must be managed as percentage.
 	 * This named style is not compatible with 'fillColumnsSize'.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	public static final String COLUMNS_WIDTH_AS_PERCENTAGE = "columnsWidthAsPercentage"; //$NON-NLS-1$
@@ -128,15 +127,25 @@ public class NamedStyleConstants {
 	/**
 	 * This allows to determinate if the columns width must be saved or not.
 	 * This named style is not compatible with 'fillColumnsSize'.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	public static final String SAVE_COLUMNS_WIDTH = "saveColumnsWidth"; //$NON-NLS-1$
 
 	/**
 	 * Enable the drag behavior regions from the natTable to an other widget/editor (diagram, table, ...) which can accept it.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	public static final String DRAG_REGIONS = "dragRegions"; //$NON-NLS-1$
+
+	/**
+	 * A {@link BooleanValueStyle} used to enable wrap text in the NatTable.
+	 */
+	public static final String WRAP_TEXT = "wrapText"; //$NON-NLS-1$
+
+	/**
+	 * A {@link BooleanValueStyle} used to enable auto-resize cell height in the NatTable.
+	 */
+	public static final String AUTO_RESIZE_CELL_HEIGHT = "autoResizeCellHeight"; //$NON-NLS-1$
 }

@@ -209,9 +209,12 @@ Moreover Tree table provides some specific features
 ; Resize Axis
 ; Unset cell value (reset to default value)
 : Selecting a cell in the table and doing "Delete" unset the cell value. That is to say, than the value is set to the default value (which is often null). It works only for editeable feature.
-
+; Wrap Text for String cell
+: Right click on the table body to show the context menu and select WrapText 
+; Auto Resize Cell Height for String cell
+: Right click on the table body to show the context menu and select Auto Resize Cell Height
 ===The list of available features for tables===
-This table lists all feature available for Tabular editors provided by Papyrus (the 17th of December 2014). This list could be considered as representative of tables capabilities '''assuming 3 points''':
+This table lists all feature available for Tabular editors provided by Papyrus (the 25th of Avril 2017). This list could be considered as representative of tables capabilities '''assuming 3 points''':
 # The table is not inverted
 # Elements are on rows
 # Features are on columns
@@ -354,11 +357,11 @@ if the user changed the configuration
 |-
 | Merged All Body Cells for a Column
 (cells must contains the same values)
-| colspan="5" style="text-align: center;" | Yes (action provided by a poopup menu of the body)
+| colspan="5" style="text-align: center;" | Yes (action provided by a popup menu of the body)
 |-
 | Merged All Body Cells for a Row
 (cells must contains the same values)
-| colspan="5" style="text-align: center;" | Yes (action provided by a poopup menu of the body)
+| colspan="5" style="text-align: center;" | Yes (action provided by a popup menu of the body)
 |-
 | Merge Column./Row Header Cells
 (cells must contains the same values)
@@ -395,6 +398,12 @@ if the user changed the configuration
 |-
 | Display Validation Marker in Row and Column Label Header
 | colspan="5" style="text-align: center;" | Yes
+|-
+| Wrap Text for String cell
+| colspan="5" style="text-align: center;" | Yes (action provided by a popup menu of the body)
+|-
+| Automatic Resize Cell Height for String cell
+| colspan="5" style="text-align: center;" | Yes (action provided by a popup menu of the body)
 |-
 |}
 

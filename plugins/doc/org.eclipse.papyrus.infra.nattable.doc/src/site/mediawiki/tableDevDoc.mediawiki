@@ -1838,10 +1838,10 @@ The <code>getSelection()</code> managed in the <code>NattableModelManager</code>
 This one contains a reference to the wrapper for the table selection: <code>TableSelectionWrapper</code>. To get this one: it is just needed to use the <code>getAdapter(TableSelectionWrapper.class)</code>.
 
 ==TableSelectionWrapper==
-The TableSelectionWrapper can allow to determinate the selected cells, the selected rows and the selected columns.
+The TableSelectionWrapper can allow to determine the selected cells, the selected rows and the selected columns.
 The rows and the columns selected only contains the entire rows or columns selected, not partial.
 
-This can determinate if the cells, rows or columns are continous or not.
+This can determine if the cells, rows or columns are continous or not.
 
 ==Example of use==
 This is an example how to use the table selection (enable an action when only rows are selected:
@@ -1884,58 +1884,68 @@ NamedStyles are properties that the users can add to table configurations to pro
 | style="font-weight: bold;" | rowIndexWidth
 | IntValueStyle
 | child of RowHeaderAxisConfiguration
-| determinate the size of the row index
+| determines the size of the row index
 |-
 | style="font-weight: bold;" | rowLabelWidth
 | IntValueStyle
 | child of RowHeaderAxisConfiguration
-| determinate the size of the first row label
+| determines the size of the first row label
 |-
 | style="font-weight: bold;" | rowPosition''X''LabelWidth
 | IntValueStyle
 | child of RowHeaderAxisConfiguration
-| determinate the size of the row label at position ''X''
+| determines the size of the row label at position ''X''
 |-
 | style="font-weight: bold;" | columnIndexHeight
 | IntValueStyle
 | child of ColumnHeaderAxisConfiguration
-| determinate the height of the column index
+| determines the height of the column index
 |-
 | style="font-weight: bold;" | columnLabelHeight
 | IntValueStyle
 | child of ColumnHeaderAxisConfiguration
-| determinate the height of the column label
+| determines the height of the column label
 |-
 | style="font-weight: bold;" | rowHeaderWidth
 | IntValueStyle
 | child of Table
-| determinate the width of the row header (for the slider composite)
+| determines the width of the row header (for the slider composite)
 |-
 | style="font-weight: bold;" | expandAll
 | BooleanValueStyle
 | child of Tree Table Configuration
-| determinates if the rows will be expanded automatically when opening the table
+| determines if the rows will be expanded automatically when opening the table
 |- 
 | style="font-weight: bold;" | fillColumnsSize ''(deprecated)''
 | BooleanValueStyle
 | child of Tree Table Configuration
-| determinates if the columns must fill the parent composite space
+| determines if the columns must fill the parent composite space
 |- 
 | style="font-weight: bold;" | dragRegions
 | StringListValueStyle
 | child of Table or child of TableConfiguration
-| determinates grid regions where the drag support is activate. Activate by default on row header. Can set with: "ROW_HEADER", "BODY", "COLUMN_HEADER". Limitations: when activate on column, reorder column dosn't work(see [https://bugs.eclipse.org/bugs/show_bug.cgi?id=508311 bug 508311] and [https://bugs.eclipse.org/bugs/show_bug.cgi?id=508313 bug 508313])
+| determines grid regions where the drag support is activate. Activate by default on row header. Can set with: "ROW_HEADER", "BODY", "COLUMN_HEADER". Limitations: when activate on column, reorder column dosn't work(see [https://bugs.eclipse.org/bugs/show_bug.cgi?id=508311 bug 508311] and [https://bugs.eclipse.org/bugs/show_bug.cgi?id=508313 bug 508313])
 |- 
 | style="font-weight: bold;" | columnsWidthAsPercentage
 | BooleanValueStyle
 | child of Tree Table Configuration
-| determinates if the columns width are managed as percentage (in this case, all the possible width must be used)
+| determines if the columns width are managed as percentage (in this case, all the possible width must be used)
 |- 
 | style="font-weight: bold;" | saveColumnsWidth
 | BooleanValueStyle
 | child of Tree Table Configuration
-| determinates if the width must be saved (actually, the width are saved but just not used)
+| determines if the width must be saved (actually, the width are saved but just not used)
 |- 
+| style="font-weight: bold;" | wrapText
+| BooleanValueStyle
+| child of Table
+| determines if the text of cells will be wrapped when displaying the table
+|-
+| style="font-weight: bold;" | autoResizeCellHeight
+| BooleanValueStyle
+| child of Table
+| determines if the cell height will be resized automatically when displaying the table
+|-
 | 
 | 
 | 

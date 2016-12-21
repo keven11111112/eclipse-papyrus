@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST and others.
- *
+ * Copyright (c) 2012, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,7 +13,7 @@
  *  Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -146,6 +145,7 @@ import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.PapyrusTableSizeCalculation;
 import org.eclipse.papyrus.infra.nattable.utils.PercentageCalculationUtils;
+import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
@@ -264,7 +264,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * the composite layer providing the filter row in the column header
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	protected FilterRowHeaderComposite<?> filterColumnHeaderComposite;
@@ -303,14 +303,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * The CTabFolder.
-	 * 
+	 *
 	 * @since 2.1
 	 */
 	private CTabFolder cTabFolder;
 
 	/**
 	 * The CTabFolder selection listener.
-	 * 
+	 *
 	 * @since 2.1
 	 */
 	private SelectionListener cTabFolderSelectionListener;
@@ -473,9 +473,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Get the parent CTabFolder if exists.
-	 * 
+	 *
 	 * @return The parent CTabFolder or <code>null</code>.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	protected CTabFolder getParentCTabFolder() {
@@ -493,9 +493,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Get the CTabFolder selection listener created if doesn't exists.
-	 * 
+	 *
 	 * @return The CTabFolder selection listener.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	protected SelectionListener getCTabFolderSelectionListener() {
@@ -531,9 +531,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Get the display of the top composite of nattable editor.
-	 * 
+	 *
 	 * @return The display of the top composite.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	protected Control getNattableTopParentComposite() {
@@ -836,7 +836,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Instantiate a new {@link NatTableDropListener}.
-	 * 
+	 *
 	 * @return The Drop Listener.
 	 */
 	protected NatTableDropListener createDropListener() {
@@ -845,7 +845,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Instantiate a new {@link DragSourceListener}.
-	 * 
+	 *
 	 * @return The Drag Listener.
 	 */
 	protected DragSourceListener createDragListener() {
@@ -952,14 +952,20 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 					// the process is the same for this event
 					else if (event instanceof RowResizeEvent) {
-						int resizedRowPosition = getRangeStart(event);
-						int newRowSize = rowHeaderLayerStack.getRowHeightByPosition(resizedRowPosition);
-						ICommand cmd = createSetRowSizeCommand(resizedRowPosition, newRowSize);
-						if (cmd != null && cmd.canExecute()) {
-							resizeCommand.add(cmd);
-						}
+						final boolean autoResizeCellHeightFlag = StyleUtils.getBooleanNamedStyleValue(table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT);
 
+						// The set row size command is performed only if the auto resize cell height flag is turned off
+						// When this flag is turned on, all rows will be resized. So there's no need to do it here
+						if (!autoResizeCellHeightFlag) {
+							int resizedRowPosition = getRangeStart(event);
+							int newRowSize = rowHeaderLayerStack.getRowHeightByPosition(resizedRowPosition);
+							ICommand cmd = createSetRowSizeCommand(resizedRowPosition, newRowSize);
+							if (cmd != null && cmd.canExecute()) {
+								resizeCommand.add(cmd);
+							}
+						}
 					}
+
 					if (!resizeCommand.isEmpty()) {
 						tableDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(resizeCommand));
 					}
@@ -974,7 +980,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * This allows to calculate the initial width percentage for a column without 'axisWidth' named style.
-	 * 
+	 *
 	 * @return The percentage for a column without 'axisWidth' named style.
 	 * @since 3.0
 	 */
@@ -1013,14 +1019,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Create the set column size command for the column resizing.
-	 * 
+	 *
 	 * @param columnIndex
 	 *            the column where we edit the width.
 	 * @param newColumnWidth
 	 *            the new width for the given column.
 	 * @return
 	 * 		the command to set the new column width when the column is saved as IAxis and <code>null</code> in others cases
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	private ICommand createSetColumnSizeCommand(final int resizedColumnPosition, final int newColumnWidth) {
@@ -1069,14 +1075,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Create the set row size command for the row resizing.
-	 * 
+	 *
 	 * @param columnIndex
 	 *            the row where we edit the height.
 	 * @param newRowHeight
 	 *            the new height for the given row.
 	 * @return
 	 * 		the command to set the new row height when the row is saved as IAxis and <code>null</code> in others cases
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	private ICommand createSetRowSizeCommand(final int resizedRowPosition, final int newRowHeight) {
@@ -1490,7 +1496,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#exportToFile()
 	 */
 	@Override
@@ -1515,7 +1521,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.ui.services.IDisposable#dispose()
 	 */
 	@Override
@@ -1778,10 +1784,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			}
 		}
 	}
-	
+
 	/**
 	 * This allows to manage the fill columns size named style by managing the width of columns to fill all the parent space.
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	protected void doFillColumnsSize() {
@@ -1814,7 +1820,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Get the column width as percentage management value.
-	 * 
+	 *
 	 * @return <code>true</code> if columns width are managed as percentage, <code>false</code> otherwise.
 	 * @since 3.0
 	 */

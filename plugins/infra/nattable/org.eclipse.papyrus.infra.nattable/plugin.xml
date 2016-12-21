@@ -1734,4 +1734,75 @@
             type="java.lang.Object">
       </propertyTester>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.category"
+            description="Wrap Text"
+            id="org.eclipse.papyrus.infra.nattable.wraptext"
+            name="Wrap Text">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.category"
+            description="Auto Resize Cell Height"
+            id="org.eclipse.papyrus.infra.nattable.autoresize.cellheight"
+            name="Auto Resize Cell Height">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?endof=general.separator">
+         <command
+               commandId="org.eclipse.papyrus.infra.nattable.wraptext"
+               label="Wrap Text"
+               style="toggle">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.nattable.autoresize.cellheight"
+               label="Auto Resize Cell Height"
+               style="toggle">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.infra.nattable.handler.SetWrapTextHandler"
+            commandId="org.eclipse.papyrus.infra.nattable.wraptext">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                     value="true">
+               </test>
+            </with>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.infra.nattable.handler.SetAutoResizeCellHeightHandler"
+            commandId="org.eclipse.papyrus.infra.nattable.autoresize.cellheight">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                     value="true">
+               </test>
+            </with>
+         </activeWhen>
+      </handler>
+   </extension>
 </plugin>
