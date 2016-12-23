@@ -1,6 +1,5 @@
 /*****************************************************************************
-
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
- *		CEA LIST - Initial API and implementation
+ *	CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 509383
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -43,7 +42,6 @@ import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Edit helper class for binary {@link Connector}
@@ -250,23 +248,15 @@ public class ConnectorEditHelper extends ElementEditHelper {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				if((sourceRole == null) || (targetRole == null)) {
-					//to allow creation from the ModelExplorer or from the table
-					//return CommandResult.newCancelledCommandResult();
-				}
-
 				// Add source connector end
-				ConnectorEnd sourceEnd = UMLFactory.eINSTANCE.createConnectorEnd();
+				ConnectorEnd sourceEnd = connector.createEnd();
 				sourceEnd.setRole(sourceRole);
 				sourceEnd.setPartWithPort(sourcePartWithPort);
 
 				// Add target connector end
-				ConnectorEnd targetEnd = UMLFactory.eINSTANCE.createConnectorEnd();
+				ConnectorEnd targetEnd = connector.createEnd();
 				targetEnd.setRole(targetRole);
 				targetEnd.setPartWithPort(targetPartWithPort);
-
-				connector.getEnds().add(sourceEnd);
-				connector.getEnds().add(targetEnd);
 
 				return CommandResult.newOKCommandResult(connector);
 			}
