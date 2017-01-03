@@ -62,6 +62,9 @@ public class PropertiesURIHandler implements URIHandler {
 			throw new IOException(uri.toString() + " not found");
 		}
 		URIHandler handler = getDelegateHandler(convertedURI);
+		if(handler == null){
+			throw new IOException(uri.toString() + " : no handler found");
+		}
 		return handler.createInputStream(convertedURI, options);
 	}
 
