@@ -35,7 +35,7 @@
           implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetDiagramLabel"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href=".platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <facetOperations
         name="GetDiagramIcon"

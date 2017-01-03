@@ -106,10 +106,10 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	public void checkFrenchLabels() throws Exception {
 		super.checkFrenchLabels();
 
-		Assert.assertEquals("The root element label is not the expected one.", "Diagram MonDiagrammeDeClasse",
+		Assert.assertEquals("The diagram label is not the expected one.", "Diagram MonDiagrammeDeClasse",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The class label is not the expected one.", "Table MaTableGenerique",
+		Assert.assertEquals("The table label is not the expected one.", "Table MaTableGenerique",
 				labelProvider.getText(table));
 	}
 
