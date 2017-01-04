@@ -28,6 +28,7 @@ import org.eclipse.nebula.widgets.nattable.edit.EditConfigHelper;
 import org.eclipse.nebula.widgets.nattable.edit.ICellEditHandler;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IEditErrorHandler;
+import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.infra.widgets.editors.StringEditorWithCompletionWrapp
 import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.infra.widgets.util.ISetPapyrusConverter;
+import org.eclipse.papyrus.uml.nattable.editor.MultiReferenceCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.SingleReferenceValueCellEditor;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.util.UMLReferenceConverter;
@@ -85,16 +87,21 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	 * The cell editor which allow to use the dialog reference selection.
 	 * It must be used when the text completion can't reach the value.
 	 */
-	protected SingleReferenceValueCellEditor singleReferenceValueCellEditor;
+	protected AbstractDialogCellEditor referenceValueCellEditor;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param table The current table.
-	 * @param axisElement The axis element to manage.
-	 * @param elementProvider The element provider for the current axis to edit.
-	 * @param commitOnUpDown Flag to configure whether the editor should commit and move the selection in the corresponding way if the up or down key is pressed.
-	 * @param moveSelectionOnEnter Flag to configure whether the selection should move after a value was committed after pressing enter.
+	 * @param table
+	 *            The current table.
+	 * @param axisElement
+	 *            The axis element to manage.
+	 * @param elementProvider
+	 *            The element provider for the current axis to edit.
+	 * @param commitOnUpDown
+	 *            Flag to configure whether the editor should commit and move the selection in the corresponding way if the up or down key is pressed.
+	 * @param moveSelectionOnEnter
+	 *            Flag to configure whether the selection should move after a value was committed after pressing enter.
 	 */
 	public UMLReferenceTextWithCompletionCellEditor(final Table table, final Object axisElement, final ITableAxisElementProvider elementProvider, final boolean commitOnUpDown, final boolean moveSelectionOnEnter) {
 		super(table, axisElement, elementProvider, commitOnUpDown, moveSelectionOnEnter);
@@ -103,10 +110,14 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	/**
 	 * Constructor.
 	 *
-	 * @param table The current table.
-	 * @param axisElement The axis element to manage.
-	 * @param elementProvider The element provider for the current axis to edit.
-	 * @param commitOnUpDown Flag to configure whether the editor should commit and move the selection in the corresponding way if the up or down key is pressed.
+	 * @param table
+	 *            The current table.
+	 * @param axisElement
+	 *            The axis element to manage.
+	 * @param elementProvider
+	 *            The element provider for the current axis to edit.
+	 * @param commitOnUpDown
+	 *            Flag to configure whether the editor should commit and move the selection in the corresponding way if the up or down key is pressed.
 	 */
 	public UMLReferenceTextWithCompletionCellEditor(final Table table, final Object axisElement, final ITableAxisElementProvider elementProvider, final boolean commitOnUpDown) {
 		super(table, axisElement, elementProvider, commitOnUpDown);
@@ -115,9 +126,12 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	/**
 	 * Constructor.
 	 *
-	 * @param table The current table.
-	 * @param axisElement The axis element to manage.
-	 * @param elementProvider The element provider for the current axis to edit.
+	 * @param table
+	 *            The current table.
+	 * @param axisElement
+	 *            The axis element to manage.
+	 * @param elementProvider
+	 *            The element provider for the current axis to edit.
 	 */
 	public UMLReferenceTextWithCompletionCellEditor(final Table table, final Object axisElement, final ITableAxisElementProvider elementProvider) {
 		super(table, axisElement, elementProvider);
@@ -126,7 +140,8 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	/**
 	 * Set the multi valued boolean value.
 	 * 
-	 * @param isMultivalued The multi valued boolean value.
+	 * @param isMultivalued
+	 *            The multi valued boolean value.
 	 */
 	public void setIsMultiValued(boolean isMultivalued) {
 		this.isMultiValued = isMultivalued;
@@ -141,89 +156,131 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	protected Control activateCell(final Composite parent, final Object originalCanonicalValue) {
 		final CrossAxisWrapper<EObject, EStructuralFeature> editedElement = UMLTableUtils.getRealEditedObject(layerCell, elementProvider);
 		final EObject element = editedElement.getFirstAxis();
-		
+
 		boolean useSimpleDialog = true;
-		
+
 		Control control = null;
-		
+
 		// Bug 482790: Check if this is not an object with a null namespace
 		if (!(element instanceof NamedElement && null == ((NamedElement) element).getNamespace())) {
 			this.helper = createNameResolutionHelper();
 			parser = new StringResolutionProblemPapyrusConverter(new UMLReferenceConverter(this.helper, isMultiValued));
 			setPapyrusConverter(parser);
-			
+
 			// Get the display value
 			Object displayValue = null;
 			if (this.displayConverter != null) {
-	            displayValue = this.displayConverter.canonicalToDisplayValue(this.layerCell, this.configRegistry, originalCanonicalValue);
-	        } else {
-	            displayValue = originalCanonicalValue;
-	        }
-			
+				displayValue = this.displayConverter.canonicalToDisplayValue(this.layerCell, this.configRegistry, originalCanonicalValue);
+			} else {
+				displayValue = originalCanonicalValue;
+			}
+
 			// Bug 481835 : If the display value is empty and the data value is not null,
-			//              this means the namespace of the object to edit cannot be resolved (same Objects name? other?).
-			//              In this case, use the simple reference dialog.
-			if(displayValue.toString().isEmpty() && null != layerCell.getDataValue()){
+			// this means the namespace of the object to edit cannot be resolved (same Objects name? other?).
+			// In this case, use the simple reference dialog.
+			// Bug 492989 : For the multi-valued feature, the value is not null but empty
+			if (displayValue.toString().isEmpty()
+					&& ((!isMultiValued && null != layerCell.getDataValue())
+							|| (isMultiValued && layerCell.getDataValue() instanceof Collection && !((Collection<?>) layerCell.getDataValue()).isEmpty()))) {
 				helper = null;
 				parser = null;
 				setPapyrusConverter(parser);
-			}else{
+			} else {
 				useSimpleDialog = false;
 			}
 		}
 
-		if(useSimpleDialog){
+		if (useSimpleDialog) {
 			// Bug 482790: The parse can't be used because no name resolution helper can't be created
 			// So re-initialize the display converter to null
 			this.displayConverter = null;
-			
+
 			// The reference dialog used is managed by the SingleReferenceValueCellEditor cell editor
-			singleReferenceValueCellEditor = new SingleReferenceValueCellEditor(axisElement, elementProvider) {
 
-				@Override
-				public Control activateCell(Composite parent, Object originalCanonicalValue, EditModeEnum editMode, ICellEditHandler editHandler, ILayerCell cell, IConfigRegistry configRegistry) {
-					this.parent = parent;
-					this.layerCell = cell;
-					this.configRegistry = configRegistry;
+			if (isMultiValued) {
+				referenceValueCellEditor = new MultiReferenceCellEditor(axisElement, elementProvider) {
 
-					final List<String> configLabels = cell.getConfigLabels().getLabels();
-					this.displayConverter = UMLReferenceTextWithCompletionCellEditor.this.displayConverter;
-					this.dataValidator = configRegistry.getConfigAttribute(
-							EditConfigAttributes.DATA_VALIDATOR,
-							DisplayMode.EDIT,
-							configLabels);
+					@Override
+					public Control activateCell(Composite parent, Object originalCanonicalValue, EditModeEnum editMode, ICellEditHandler editHandler, ILayerCell cell, IConfigRegistry configRegistry) {
+						this.parent = parent;
+						this.layerCell = cell;
+						this.configRegistry = configRegistry;
 
-					this.conversionEditErrorHandler = EditConfigHelper.getEditErrorHandler(
-							configRegistry,
-							EditConfigAttributes.CONVERSION_ERROR_HANDLER,
-							configLabels);
-					this.validationEditErrorHandler = EditConfigHelper.getEditErrorHandler(
-							configRegistry,
-							EditConfigAttributes.VALIDATION_ERROR_HANDLER,
-							configLabels);
+						final List<String> configLabels = cell.getConfigLabels().getLabels();
+						this.displayConverter = UMLReferenceTextWithCompletionCellEditor.this.displayConverter;
+						this.dataValidator = configRegistry.getConfigAttribute(
+								EditConfigAttributes.DATA_VALIDATOR,
+								DisplayMode.EDIT,
+								configLabels);
 
-					this.dialog = createDialogInstance();
+						this.conversionEditErrorHandler = EditConfigHelper.getEditErrorHandler(
+								configRegistry,
+								EditConfigAttributes.CONVERSION_ERROR_HANDLER,
+								configLabels);
+						this.validationEditErrorHandler = EditConfigHelper.getEditErrorHandler(
+								configRegistry,
+								EditConfigAttributes.VALIDATION_ERROR_HANDLER,
+								configLabels);
 
-					setCanonicalValue(originalCanonicalValue);
+						this.dialog = createDialogInstance();
 
-					// this method is only needed to initialize the dialog editor, there
-					// will be no control to return
-					return null;
-				}
+						setCanonicalValue(originalCanonicalValue);
 
-			};
+						// this method is only needed to initialize the dialog editor, there
+						// will be no control to return
+						return null;
+					}
+
+				};
+			} else {
+				referenceValueCellEditor = new SingleReferenceValueCellEditor(axisElement, elementProvider) {
+
+					@Override
+					public Control activateCell(Composite parent, Object originalCanonicalValue, EditModeEnum editMode, ICellEditHandler editHandler, ILayerCell cell, IConfigRegistry configRegistry) {
+						this.parent = parent;
+						this.layerCell = cell;
+						this.configRegistry = configRegistry;
+
+						final List<String> configLabels = cell.getConfigLabels().getLabels();
+						this.displayConverter = UMLReferenceTextWithCompletionCellEditor.this.displayConverter;
+						this.dataValidator = configRegistry.getConfigAttribute(
+								EditConfigAttributes.DATA_VALIDATOR,
+								DisplayMode.EDIT,
+								configLabels);
+
+						this.conversionEditErrorHandler = EditConfigHelper.getEditErrorHandler(
+								configRegistry,
+								EditConfigAttributes.CONVERSION_ERROR_HANDLER,
+								configLabels);
+						this.validationEditErrorHandler = EditConfigHelper.getEditErrorHandler(
+								configRegistry,
+								EditConfigAttributes.VALIDATION_ERROR_HANDLER,
+								configLabels);
+
+						this.dialog = createDialogInstance();
+
+						setCanonicalValue(originalCanonicalValue);
+
+						// this method is only needed to initialize the dialog editor, there
+						// will be no control to return
+						return null;
+					}
+
+				};
+			}
+
 			// Activate the cell of the single reference cell editor
-			control = singleReferenceValueCellEditor.activateCell(parent, originalCanonicalValue, EditModeEnum.DIALOG, new DialogEditHandler(), layerCell, configRegistry);
+			control = referenceValueCellEditor.activateCell(parent, originalCanonicalValue, EditModeEnum.DIALOG, new DialogEditHandler(), layerCell, configRegistry);
 			// Manage the dialog return
-			if (Window.OK == singleReferenceValueCellEditor.open()) {
+			if (Window.OK == referenceValueCellEditor.open()) {
 				// The user click on 'OK' button, so set the canonical value
-				setCanonicalValue(singleReferenceValueCellEditor.getEditorValue());
+				setCanonicalValue(referenceValueCellEditor.getEditorValue());
 				// Commit the value
 				commit(MoveDirectionEnum.NONE);
 			} else {
-				singleReferenceValueCellEditor.close();
+				referenceValueCellEditor.close();
 			}
-		}else{
+		} else {
 			control = super.activateCell(parent, originalCanonicalValue);
 		}
 		return control;
@@ -283,7 +340,7 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 		}
 
 		INameResolutionHelper helper = null;
-		
+
 		final EStructuralFeature feature = editedElement.getSecondAxis();
 		final EClassifier eType = feature.getEType();
 		if (eType instanceof EClass) {
@@ -320,12 +377,12 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	@Override
 	public Object getEditorValue() {
 		Object result = null;
-		if (null != singleReferenceValueCellEditor) {
-			result = singleReferenceValueCellEditor.getEditorValue();
+		if (null != referenceValueCellEditor) {
+			result = referenceValueCellEditor.getEditorValue();
 		}
 		return null != result ? result : super.getEditorValue();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
