@@ -43,7 +43,7 @@ A table can be divided in several areas
 * Body
 ** It contains the editable cells of the table
 ** It can't be hidden
-[[File:images/tableAreas.png|frame|none| the areas in a tree table]]
+[[File:images/TableAreas.png|frame|none|The areas in a tree table]]
 
 = General presentation=
 Papyrus provides tabular editors to allow to the user to edit their models with a new way as well than the Diagram editors and the Property View. 
@@ -644,7 +644,7 @@ It is important to note that the changes below are coming into eclipse Mars as t
 NamedStyles are used to introduce those changes and intValues ares used to mark the resizing of table elements. <br/>
 Below is the default model used for the table used to demonstrate the changes when styles are written and/or applied in a table. <br/>
 
-[[File:images/defaultTable.png|none|frame|defaultTable]] <br/>
+[[File:images/DefaultTable.png|none|frame|Default Table]] <br/>
 
 ==== Resize of the Headers ====
 
@@ -653,15 +653,15 @@ Below is the state of the model during the first change: resizing the row header
 
 In this case the local header created is the RowHeader but if the column headers are changed the model gets a ColumnHeader as illustrated by the image below. <br/>
 
-[[File:images/resizeRowHeaders.png|none|frame|MixedSelectionReq]] <br/>
-[[File:images/resizeAllHeaders.png|none|frame|resizeAllHeaders]] <br/>
+[[File:images/ResizeRowHeaders.png|none|frame|Mixed Selection Req]] <br/>
+[[File:images/ResizeAllHeaders.png|none|frame|Resize All Headers]] <br/>
 
 
 ==== Resize of the Axis ====
 
 The values carried by the localHeaders only affect the headerLayer of the table and therefore the height or width of the Axis (columns and/or rows) will not be affected by them. For those to change, new values will be carried by the Axis themselves as can be seen in the following image. Of course, the method used to change the values is the same sliding of the frontier used when resizing the headers. <br/>
 
-[[File:images/resizeAxis.png|center|resizeAxis]]  <br/>
+[[File:images/ResizeAxis.png|center|Resize Axis]]  <br/>
 
 In this example one row and two columns were changed and they all bear the corresponding value in their Axis element. <br/> <br/>
 
@@ -671,48 +671,48 @@ For this type of change the NamedStyles used are booleanValues, indicating if th
 The behavior has been copied from the previous one and the booleans will be caried by the Axis, in case of a user selecting the axis to be merged, or the localHeaders if the user chooses to merge all the rows or columns of the table in one go. <br/>
 To initiate the merge, the user has access to a merge menu and chooses between the four types of merge the one best suited to the task (as illustrated below). The programm then proceeds to merge the cells of same value inside the selection. <br/>
 
-[[File:images/mergeOptions.png|center|mergeOptions]] <br/>
+[[File:images/MergeOptions.png|center|Merge Options]] <br/>
 
 ==== Merge selected Axis ====
 
 As mentionned above, in case of a merge of a selected axis, the boolean will be caried by the Axis element in the model. <br/>
 
-[[File:images/booleanMergeSelectedColumn.png|center|booleanMergeSelectedColumn]] <br/>
+[[File:images/BooleanMergeSelectedColumn.png|center|Boolean Merge Selected Column]] <br/>
 
 The other choices will then be greyed-out and a toggle will be displayed on the selected option to notify the user that this is (or these are) the axis merge. <br/>
 
-[[File:images/mergeSelectedColumns2.png|center|mergeSelectedColumns2]] <br/>
+[[File:images/MergeSelectedColumns2.png|center|Merge Selected Columns]] <br/>
 
 If the user selects a cell or an axis that has not been part of the previously merged selection, the toggle will not be displayed but the option will still be visible as the other will still be greyed-out. <br/>
 It is important to note that, if the user so chooses, the merge option can be reapplied to the new selection and the merge span will consist of the newly selected axis. A cautionary note however as only full rows or columns will be merged. <br/>
 
- [[File:images/mergeSelectedColumns.png|none|frame|mergeSelectedColumns]] <br/>
- [[File:images/mergeSelectedRow.png|none|frame|mergeSelectedRow]] <br/>
- [[File:images/mergeSelectedRows2.png|none|frame|mergeSelectedRows2]] <br/>
- [[File:images/mergeSelectedRows3.png|none|frame|mergeSelectedRows3]] <br/>
+ [[File:images/MergeSelectedColumns.png|none|frame|Merge Selected Columns]] <br/>
+ [[File:images/MergeSelectedRow.png|none|frame|Merge Selected Row]] <br/>
+ [[File:images/MergeSelectedRows2.png|none|frame|Merge Selected Rows]] <br/>
+ [[File:images/MergeSelectedRows3.png|none|frame|Merge Selected Rows]] <br/>
 
 
 ==== Merge All row/column Axis ====
 
 The user can merge all the rows in the table and the result will look like this. <br/>
- [[File:images/booleanMergeAllRows.png|none|frame|booleanMergeAllRows]] <br/>
+ [[File:images/BooleanMergeAllRows.png|none|frame|booleanMergeAllRows]] <br/>
 
- [[File:images/mergeAllRows2.png|none|frame|mergeAllRows2]] <br/>
+ [[File:images/MergeAllRows2.png|none|frame|Merge All Rows]] <br/>
 
 == Edition of merged Cells ==
 
 Once the cells are merged, the user might want to edit them. This edition can be problematic as the merge only takes into account the values of the cells and not their types when applying the merge option. This is shown in the example below asa classifier can be an activity but not the other way around. <br/>
 The first image illustrates the model and the profile's stereotype, applied on both classes, containing the three attributes activity and classifiers. <br/>
 
-[[File:images/tableProfileElements.png|center|tableProfileElements|]] <br/>
+ [[File:images/TableProfileElements.png|center|Table Profile Elements|]] <br/>
 
 When the user clicks on the left most part of the merged area, under the activity label, the editing tool only shows activity1 as a possible choice. But if the user selects the right side, under the classifier label, then the choices are many. In this example the choice is to apply the interface type to the merged cells and handle the editing behavior as illustrated by the three next images. <br/>
 
- [[File:images/activityEdition.png|none|frame|activity edition]] <br/>
+ [[File:images/ActivityEdition.png|none|frame|Activity edition]] <br/>
 
- [[File:images/classifierEdition.png|none|frame|classifier edition]] <br/>
+ [[File:images/ClassifierEdition.png|none|frame|Classifier edition]] <br/>
 
- [[File:images/editedTable.png|none|frame|edition's result]] <br/>
+ [[File:images/EditedTable.png|none|frame|Edition's result]] <br/>
 
 
 The tool will then automatically detect the possibility, or impossibility, of the edition and split the merge accordingly. <br/>
@@ -731,15 +731,15 @@ Several kind of cell editors are available:
  but not the other way around. <br/>
 The first image illustrates the model and the profile's stereotype, applied on both classes, containing the three attributes activity and classifiers. <br/>
 
-[[File:images/tableProfileElements.png|center|tableProfileElements|]] <br/>
+ [[File:images/TableProfileElements.png|center|Table Profile Elements|]] <br/>
 
 When the user clicks on the left most part of the merged area, under the activity label, the editing tool only shows activity1 as a possible choice. But if the user selects the right side, under the classifier label, then the choices are many. In this example the choice is to apply the interface type to the merged cells and handle the editing behavior as illustrated by the three next images. <br/>
 
- [[File:images/activityEdition.png|none|frame|activity edition]] <br/>
+ [[File:images/ActivityEdition.png|none|frame|Activity edition]] <br/>
 
- [[File:images/classifierEdition.png|none|frame|classifier edition]] <br/>
+ [[File:images/ClassifierEdition.png|none|frame|Classifier edition]] <br/>
 
- [[File:images/editedTable.png|none|frame|edition's result]] <br/>
+ [[File:images/EditedTable.png|none|frame|Edition's result]] <br/>
 
 
 The tool will then automatically detect the possibility, or impossibility, of the edition and split the merge accordingly. <br/>
