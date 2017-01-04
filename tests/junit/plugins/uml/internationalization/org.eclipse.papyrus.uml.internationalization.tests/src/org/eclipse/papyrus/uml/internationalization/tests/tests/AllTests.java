@@ -18,8 +18,7 @@ import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ 
-	UMLInternationalizationLabelProviderTest.class,
+@SuiteClasses({  
 	UMLInternationalizationChangePreferencesTest.class
 })
 public class AllTests {

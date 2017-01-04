@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.internationalization.controlmode.tests.tests;
 
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.junit.Test;
 
 /**
@@ -45,6 +46,7 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 	 * @throws Exception
 	 *             The caught exception.
 	 */
+	@InvalidTest
 	@Test
 	public void testControlClass() throws Exception {
 		checkFrenchLabels();
@@ -65,6 +67,7 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 	 * @throws Exception
 	 *             The caught exception.
 	 */
+	@InvalidTest
 	@Test
 	public void testControlWithLanguageModificationTest() throws Exception{
 		checkFrenchLabels();
@@ -88,6 +91,7 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 	 * @throws Exception
 	 *             The caught exception.
 	 */
+	@InvalidTest
 	@Test
 	public void testControlWithUseInternationalizationModificationTest() throws Exception{
 		checkFrenchLabels();
