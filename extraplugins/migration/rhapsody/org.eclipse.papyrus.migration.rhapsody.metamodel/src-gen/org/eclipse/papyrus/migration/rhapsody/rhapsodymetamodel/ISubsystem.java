@@ -65,7 +65,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ISubsystem extends OwnerHandleType, DependsOnType, DeclarativesType, M_pModelObjectType, TargetType, DefaultSubsystemType, IModelElement {
+public interface ISubsystem extends OwnerHandleType, DependsOnType, DeclarativesType, M_pModelObjectType, TargetType, DefaultSubsystemType {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

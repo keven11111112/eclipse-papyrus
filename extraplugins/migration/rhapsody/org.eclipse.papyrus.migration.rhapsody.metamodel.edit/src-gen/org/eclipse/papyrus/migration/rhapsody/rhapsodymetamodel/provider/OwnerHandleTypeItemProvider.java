@@ -113,7 +113,10 @@ public class OwnerHandleTypeItemProvider extends DefaultSubsystemTypeItemProvide
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_OwnerHandleType_type"); //$NON-NLS-1$
+		String label = ((OwnerHandleType)object).getDisplayName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_OwnerHandleType_type") : //$NON-NLS-1$
+			getString("_UI_OwnerHandleType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

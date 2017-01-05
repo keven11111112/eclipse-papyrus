@@ -983,7 +983,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclarativesType" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DefaultSubsystemType" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultSubsystemType" abstract="true"
+      eSuperTypes="#//IModelElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultTransType" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DependsOnType" abstract="true" eSuperTypes="#//ElementsType"/>
   <eClassifiers xsi:type="ecore:EClass" name="DescriptionType" abstract="true"/>
@@ -2438,7 +2439,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IStructureDiagram" eSuperTypes="#//IDiagram #//DeclarativesType #//DependsOnType #//TargetType #//TheMainDiagramType #//M_pModelObjectType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ISubsystem" eSuperTypes="#//OwnerHandleType #//DependsOnType #//DeclarativesType #//M_pModelObjectType #//TargetType #//DefaultSubsystemType #//IModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ISubsystem" eSuperTypes="#//OwnerHandleType #//DependsOnType #//DeclarativesType #//M_pModelObjectType #//TargetType #//DefaultSubsystemType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="myState" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

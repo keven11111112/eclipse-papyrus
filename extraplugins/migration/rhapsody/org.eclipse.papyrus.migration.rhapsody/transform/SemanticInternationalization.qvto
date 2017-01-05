@@ -83,7 +83,7 @@ helper NamedElement::getRhaposdyLabel():String{
 	
 	//mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml::Package when{self.oclIsKindOf(ISubsystem)}{	
 	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IProject::iProjectToPapyrusModel);
+		rpyElement:=self.invresolveoneIn(DefaultSubsystemType::iDefaultSubsystemTypeToPackage);
 	};
 	
 	//mapping EObject::generalMappingToUMLElement():uml::Element disjuncts

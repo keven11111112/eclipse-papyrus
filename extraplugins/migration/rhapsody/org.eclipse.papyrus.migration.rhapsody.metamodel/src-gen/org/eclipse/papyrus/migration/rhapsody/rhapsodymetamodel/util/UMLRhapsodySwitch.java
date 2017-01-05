@@ -501,6 +501,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 			case UMLRhapsodyPackage.DEFAULT_SUBSYSTEM_TYPE: {
 				DefaultSubsystemType defaultSubsystemType = (DefaultSubsystemType)theEObject;
 				T result = caseDefaultSubsystemType(defaultSubsystemType);
+				if (result == null) result = caseIModelElement(defaultSubsystemType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -905,9 +906,9 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseDependsOnType(iComponent);
 				if (result == null) result = caseDeclarativesType(iComponent);
 				if (result == null) result = caseM_pModelObjectType(iComponent);
-				if (result == null) result = caseIModelElement(iComponent);
 				if (result == null) result = caseDefaultSubsystemType(iComponent);
 				if (result == null) result = caseElementsType(iComponent);
+				if (result == null) result = caseIModelElement(iComponent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1787,9 +1788,9 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseDeclarativesType(iSubsystem);
 				if (result == null) result = caseM_pModelObjectType(iSubsystem);
 				if (result == null) result = caseTargetType(iSubsystem);
-				if (result == null) result = caseIModelElement(iSubsystem);
 				if (result == null) result = caseDefaultSubsystemType(iSubsystem);
 				if (result == null) result = caseElementsType(iSubsystem);
+				if (result == null) result = caseIModelElement(iSubsystem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2122,6 +2123,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				OwnerHandleType ownerHandleType = (OwnerHandleType)theEObject;
 				T result = caseOwnerHandleType(ownerHandleType);
 				if (result == null) result = caseDefaultSubsystemType(ownerHandleType);
+				if (result == null) result = caseIModelElement(ownerHandleType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

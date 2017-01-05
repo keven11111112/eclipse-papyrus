@@ -9812,24 +9812,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int DEFAULT_SUBSYSTEM_TYPE = 55;
 
 	/**
-	 * The number of structural features of the '<em>Default Subsystem Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT_SUBSYSTEM_TYPE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Default Subsystem Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFAULT_SUBSYSTEM_TYPE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DefaultTransTypeImpl <em>Default Trans Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9838,6 +9820,160 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	int DEFAULT_TRANS_TYPE = 56;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ElementsTypeImpl <em>Elements Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ElementsTypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getElementsType()
+	 * @generated
+	 */
+	int ELEMENTS_TYPE = 59;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DependsOnTypeImpl <em>Depends On Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DependsOnTypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getDependsOnType()
+	 * @generated
+	 */
+	int DEPENDS_ON_TYPE = 57;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DescriptionTypeImpl <em>Description Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DescriptionTypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getDescriptionType()
+	 * @generated
+	 */
+	int DESCRIPTION_TYPE = 58;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.EmbededFilesTypeImpl <em>Embeded Files Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.EmbededFilesTypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getEmbededFilesType()
+	 * @generated
+	 */
+	int EMBEDED_FILES_TYPE = 60;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End1_TypeImpl <em>End1 Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End1_TypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getEnd1_Type()
+	 * @generated
+	 */
+	int END1_TYPE = 61;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End2_TypeImpl <em>End2 Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End2_TypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getEnd2_Type()
+	 * @generated
+	 */
+	int END2_TYPE = 62;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FilesTypeImpl <em>Files Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FilesTypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getFilesType()
+	 * @generated
+	 */
+	int FILES_TYPE = 63;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FromLinkTypeImpl <em>From Link Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FromLinkTypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getFromLinkType()
+	 * @generated
+	 */
+	int FROM_LINK_TYPE = 64;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.HyperLinksTypeImpl <em>Hyper Links Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.HyperLinksTypeImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getHyperLinksType()
+	 * @generated
+	 */
+	int HYPER_LINKS_TYPE = 67;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IModelElementImpl <em>IModel Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IModelElementImpl
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getIModelElement()
+	 * @generated
+	 */
+	int IMODEL_ELEMENT = 157;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMODEL_ELEMENT__DISPLAY_NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>IModel Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMODEL_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>IModel Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMODEL_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_SUBSYSTEM_TYPE__DISPLAY_NAME = IMODEL_ELEMENT__DISPLAY_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Default Subsystem Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_SUBSYSTEM_TYPE_FEATURE_COUNT = IMODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Default Subsystem Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFAULT_SUBSYSTEM_TYPE_OPERATION_COUNT = IMODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Default Trans Type</em>' class.
@@ -9858,16 +9994,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int DEFAULT_TRANS_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ElementsTypeImpl <em>Elements Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ElementsTypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getElementsType()
-	 * @generated
-	 */
-	int ELEMENTS_TYPE = 59;
-
-	/**
 	 * The number of structural features of the '<em>Elements Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9884,16 +10010,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int ELEMENTS_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DependsOnTypeImpl <em>Depends On Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DependsOnTypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getDependsOnType()
-	 * @generated
-	 */
-	int DEPENDS_ON_TYPE = 57;
 
 	/**
 	 * The number of structural features of the '<em>Depends On Type</em>' class.
@@ -9914,16 +10030,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int DEPENDS_ON_TYPE_OPERATION_COUNT = ELEMENTS_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DescriptionTypeImpl <em>Description Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.DescriptionTypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getDescriptionType()
-	 * @generated
-	 */
-	int DESCRIPTION_TYPE = 58;
-
-	/**
 	 * The number of structural features of the '<em>Description Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9940,16 +10046,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int DESCRIPTION_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.EmbededFilesTypeImpl <em>Embeded Files Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.EmbededFilesTypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getEmbededFilesType()
-	 * @generated
-	 */
-	int EMBEDED_FILES_TYPE = 60;
 
 	/**
 	 * The number of structural features of the '<em>Embeded Files Type</em>' class.
@@ -9970,16 +10066,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int EMBEDED_FILES_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End1_TypeImpl <em>End1 Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End1_TypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getEnd1_Type()
-	 * @generated
-	 */
-	int END1_TYPE = 61;
-
-	/**
 	 * The number of structural features of the '<em>End1 Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9996,16 +10082,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int END1_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End2_TypeImpl <em>End2 Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.End2_TypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getEnd2_Type()
-	 * @generated
-	 */
-	int END2_TYPE = 62;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
@@ -10033,16 +10109,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int END2_TYPE_OPERATION_COUNT = END1_TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FilesTypeImpl <em>Files Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FilesTypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getFilesType()
-	 * @generated
-	 */
-	int FILES_TYPE = 63;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -10135,16 +10201,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int FILES_TYPE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FromLinkTypeImpl <em>From Link Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.FromLinkTypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getFromLinkType()
-	 * @generated
-	 */
-	int FROM_LINK_TYPE = 64;
-
-	/**
 	 * The number of structural features of the '<em>From Link Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10161,53 +10217,6 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @ordered
 	 */
 	int FROM_LINK_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.HyperLinksTypeImpl <em>Hyper Links Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.HyperLinksTypeImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getHyperLinksType()
-	 * @generated
-	 */
-	int HYPER_LINKS_TYPE = 67;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IModelElementImpl <em>IModel Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IModelElementImpl
-	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.UMLRhapsodyPackageImpl#getIModelElement()
-	 * @generated
-	 */
-	int IMODEL_ELEMENT = 157;
-
-	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMODEL_ELEMENT__DISPLAY_NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>IModel Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMODEL_ELEMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>IModel Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMODEL_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -27871,6 +27880,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int OWNER_HANDLE_TYPE = 233;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OWNER_HANDLE_TYPE__DISPLAY_NAME = DEFAULT_SUBSYSTEM_TYPE__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Weak CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27917,6 +27935,15 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISUBSYSTEM = 191;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISUBSYSTEM__DISPLAY_NAME = OWNER_HANDLE_TYPE__DISPLAY_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Weak CG Time</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27935,22 +27962,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISUBSYSTEM__STRONG_CG_TIME = OWNER_HANDLE_TYPE__STRONG_CG_TIME;
 
 	/**
-	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISUBSYSTEM__DISPLAY_NAME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 1;
+	int ISUBSYSTEM__ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>My State</b></em>' attribute.
@@ -27959,7 +27977,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MY_STATE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 2;
+	int ISUBSYSTEM__MY_STATE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -27968,7 +27986,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__NAME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 3;
+	int ISUBSYSTEM__NAME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -27977,7 +27995,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MODIFIED_TIME_WEAK = OWNER_HANDLE_TYPE_FEATURE_COUNT + 4;
+	int ISUBSYSTEM__MODIFIED_TIME_WEAK = OWNER_HANDLE_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Default Composite</b></em>' reference.
@@ -27986,7 +28004,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DEFAULT_COMPOSITE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 5;
+	int ISUBSYSTEM__DEFAULT_COMPOSITE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Events Base ID</b></em>' attribute.
@@ -27995,7 +28013,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__EVENTS_BASE_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 6;
+	int ISUBSYSTEM__EVENTS_BASE_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -28004,7 +28022,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CLASSES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 7;
+	int ISUBSYSTEM__CLASSES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Configuration Related Time</b></em>' attribute list.
@@ -28013,7 +28031,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CONFIGURATION_RELATED_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 8;
+	int ISUBSYSTEM__CONFIGURATION_RELATED_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -28022,7 +28040,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__PROPERTIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 9;
+	int ISUBSYSTEM__PROPERTIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Last ID</b></em>' attribute.
@@ -28031,7 +28049,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__LAST_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 10;
+	int ISUBSYSTEM__LAST_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Cmheader</b></em>' attribute.
@@ -28040,7 +28058,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CMHEADER = OWNER_HANDLE_TYPE_FEATURE_COUNT + 11;
+	int ISUBSYSTEM__CMHEADER = OWNER_HANDLE_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Declaratives</b></em>' containment reference list.
@@ -28049,7 +28067,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DECLARATIVES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 12;
+	int ISUBSYSTEM__DECLARATIVES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -28058,7 +28076,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 13;
+	int ISUBSYSTEM__TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
@@ -28067,7 +28085,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__STEREOTYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 14;
+	int ISUBSYSTEM__STEREOTYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Predefined Types</b></em>' attribute.
@@ -28076,7 +28094,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__PREDEFINED_TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 15;
+	int ISUBSYSTEM__PREDEFINED_TYPES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
@@ -28085,7 +28103,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__EVENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 16;
+	int ISUBSYSTEM__EVENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -28094,7 +28112,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ANNOTATIONS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 17;
+	int ISUBSYSTEM__ANNOTATIONS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Use Cases</b></em>' containment reference list.
@@ -28103,7 +28121,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__USE_CASES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 18;
+	int ISUBSYSTEM__USE_CASES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Actors</b></em>' containment reference list.
@@ -28112,7 +28130,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ACTORS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 19;
+	int ISUBSYSTEM__ACTORS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -28121,7 +28139,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DESCRIPTION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 20;
+	int ISUBSYSTEM__DESCRIPTION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference list.
@@ -28130,7 +28148,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TAGS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 21;
+	int ISUBSYSTEM__TAGS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Association Elements</b></em>' reference list.
@@ -28139,7 +28157,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__ASSOCIATION_ELEMENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 22;
+	int ISUBSYSTEM__ASSOCIATION_ELEMENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -28148,7 +28166,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DEPENDENCIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 23;
+	int ISUBSYSTEM__DEPENDENCIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Owner Handle</b></em>' reference.
@@ -28157,7 +28175,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__OWNER_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 24;
+	int ISUBSYSTEM__OWNER_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>The Main Diagram</b></em>' reference.
@@ -28166,7 +28184,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__THE_MAIN_DIAGRAM = OWNER_HANDLE_TYPE_FEATURE_COUNT + 25;
+	int ISUBSYSTEM__THE_MAIN_DIAGRAM = OWNER_HANDLE_TYPE_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference.
@@ -28175,7 +28193,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__HYPER_LINKS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 26;
+	int ISUBSYSTEM__HYPER_LINKS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Table Layouts</b></em>' containment reference list.
@@ -28184,7 +28202,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TABLE_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 27;
+	int ISUBSYSTEM__TABLE_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 26;
 
 	/**
 	 * The feature id for the '<em><b>Matrix Layouts</b></em>' containment reference list.
@@ -28193,7 +28211,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MATRIX_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 28;
+	int ISUBSYSTEM__MATRIX_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 27;
 
 	/**
 	 * The feature id for the '<em><b>Table Instances</b></em>' containment reference list.
@@ -28202,7 +28220,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TABLE_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 29;
+	int ISUBSYSTEM__TABLE_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 28;
 
 	/**
 	 * The feature id for the '<em><b>Matrix Instances</b></em>' containment reference list.
@@ -28211,7 +28229,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MATRIX_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 30;
+	int ISUBSYSTEM__MATRIX_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 29;
 
 	/**
 	 * The feature id for the '<em><b>Embeded Files</b></em>' containment reference list.
@@ -28220,7 +28238,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__EMBEDED_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 31;
+	int ISUBSYSTEM__EMBEDED_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 30;
 
 	/**
 	 * The feature id for the '<em><b>Component Files</b></em>' containment reference list.
@@ -28229,7 +28247,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__COMPONENT_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 32;
+	int ISUBSYSTEM__COMPONENT_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 31;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -28238,7 +28256,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__REQUIREMEN_TRACABILITY_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 33;
+	int ISUBSYSTEM__REQUIREMEN_TRACABILITY_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 32;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -28247,7 +28265,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CODE_UPDATE_CG_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 34;
+	int ISUBSYSTEM__CODE_UPDATE_CG_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -28256,7 +28274,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__OBJECT_CREATION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 35;
+	int ISUBSYSTEM__OBJECT_CREATION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 34;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -28265,7 +28283,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__UML_DEPENDENCY_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 36;
+	int ISUBSYSTEM__UML_DEPENDENCY_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 35;
 
 	/**
 	 * The number of structural features of the '<em>ISubsystem</em>' class.
@@ -28274,7 +28292,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM_FEATURE_COUNT = OWNER_HANDLE_TYPE_FEATURE_COUNT + 37;
+	int ISUBSYSTEM_FEATURE_COUNT = OWNER_HANDLE_TYPE_FEATURE_COUNT + 36;
 
 	/**
 	 * The number of operations of the '<em>ISubsystem</em>' class.

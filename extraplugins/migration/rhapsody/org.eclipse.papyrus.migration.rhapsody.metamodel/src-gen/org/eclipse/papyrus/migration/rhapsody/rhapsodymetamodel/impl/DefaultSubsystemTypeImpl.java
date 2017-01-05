@@ -13,9 +13,6 @@
 package org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.DefaultSubsystemType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
 
@@ -26,7 +23,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *
  * @generated
  */
-public abstract class DefaultSubsystemTypeImpl extends MinimalEObjectImpl.Container implements DefaultSubsystemType {
+public abstract class DefaultSubsystemTypeImpl extends IModelElementImpl implements DefaultSubsystemType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

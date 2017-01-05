@@ -30,8 +30,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.DeclarativesType;
-import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.DependsOnType;
-import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ElementsType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.EmbededFilesType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.HyperLinksType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClass;
@@ -46,11 +44,9 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPropertyContain
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITag;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IUnit;
-import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.M_pModelObjectType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.MatrixInstancesType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.OwnerHandleType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.TableInstancesType;
-import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.TargetType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.TheMainDiagramType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType;
@@ -63,7 +59,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getMyState <em>My State</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getName <em>Name</em>}</li>
@@ -105,26 +100,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType;
  * @generated
  */
 public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
-	/**
-	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DISPLAY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisplayName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String displayName = DISPLAY_NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -1397,27 +1372,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME, oldDisplayName, displayName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -1469,8 +1423,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME:
-				return getDisplayName();
 			case UMLRhapsodyPackage.ISUBSYSTEM__ID:
 				return getId();
 			case UMLRhapsodyPackage.ISUBSYSTEM__MY_STATE:
@@ -1563,9 +1515,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME:
-				setDisplayName((String)newValue);
-				return;
 			case UMLRhapsodyPackage.ISUBSYSTEM__ID:
 				setId((String)newValue);
 				return;
@@ -1705,9 +1654,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME:
-				setDisplayName(DISPLAY_NAME_EDEFAULT);
-				return;
 			case UMLRhapsodyPackage.ISUBSYSTEM__ID:
 				setId(ID_EDEFAULT);
 				return;
@@ -1828,8 +1774,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME:
-				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.ISUBSYSTEM__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case UMLRhapsodyPackage.ISUBSYSTEM__MY_STATE:
@@ -1912,95 +1856,11 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ElementsType.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == DependsOnType.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == DeclarativesType.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == M_pModelObjectType.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == TargetType.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == IModelElement.class) {
-			switch (derivedFeatureID) {
-				case UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME: return UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ElementsType.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == DependsOnType.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == DeclarativesType.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == M_pModelObjectType.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == TargetType.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == IModelElement.class) {
-			switch (baseFeatureID) {
-				case UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME: return UMLRhapsodyPackage.ISUBSYSTEM__DISPLAY_NAME;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (displayName: "); //$NON-NLS-1$
-		result.append(displayName);
-		result.append(", id: "); //$NON-NLS-1$
+		result.append(" (id: "); //$NON-NLS-1$
 		result.append(id);
 		result.append(", myState: "); //$NON-NLS-1$
 		result.append(myState);

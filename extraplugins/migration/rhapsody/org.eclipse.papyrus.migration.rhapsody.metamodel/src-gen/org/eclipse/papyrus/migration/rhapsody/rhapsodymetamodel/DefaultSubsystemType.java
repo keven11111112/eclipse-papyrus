@@ -12,8 +12,6 @@
  */
 package org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Default Subsystem Type</b></em>'.
@@ -24,5 +22,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface DefaultSubsystemType extends EObject {
+public interface DefaultSubsystemType extends IModelElement {
 } // DefaultSubsystemType
