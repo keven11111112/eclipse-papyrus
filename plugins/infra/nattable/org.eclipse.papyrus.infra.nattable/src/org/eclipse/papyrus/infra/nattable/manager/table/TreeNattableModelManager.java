@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 508175
  *
  *****************************************************************************/
 
@@ -147,10 +148,27 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * Constructor.
 	 *
 	 * @param rawModel
+	 *            The table model.
 	 * @param selectionExtractor
+	 *            The selection extrator.
 	 */
 	public TreeNattableModelManager(Table rawModel, ISelectionExtractor selectionExtractor) {
-		super(rawModel, selectionExtractor);
+		this(rawModel, selectionExtractor, true);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param rawModel
+	 *            The table model.
+	 * @param selectionExtractor
+	 *            The selection extrator.
+	 * @param initializeListeners
+	 *            Boolean to determinate if the listeners have to be initialized or not (example: properties view doesn't it).
+	 * @since 3.0
+	 */
+	public TreeNattableModelManager(final Table rawModel, final ISelectionExtractor selectionExtractor, final boolean initializeListeners) {
+		super(rawModel, selectionExtractor, initializeListeners);
 		Assert.isTrue(TableHelper.isTreeTable(rawModel));
 
 		// Manage the change axis provider adapter only for the column (row cannot manage refresh)
@@ -322,7 +340,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		}
 		return nattable;
 	}
-	
+
 	/**
 	 * Get the width of the slider composite.
 	 * 
@@ -414,7 +432,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 			@Override
 			public Point computeSize(int wHint, int hHint, boolean changed) {
 				int width = ((ClientAreaAdapter) left.getClientAreaProvider()).getWidth();
-				if(null != getRowHeaderLayerStack() && null != getRowHeaderLayerStack().getIndexRowHeaderLayer()){			
+				if (null != getRowHeaderLayerStack() && null != getRowHeaderLayerStack().getIndexRowHeaderLayer()) {
 					width += getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
 				}
 				return new Point(width, scrollbarHeight);

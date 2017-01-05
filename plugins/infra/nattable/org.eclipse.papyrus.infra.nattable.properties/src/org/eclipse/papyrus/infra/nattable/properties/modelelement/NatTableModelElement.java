@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
- *  Nicolas FAUVERGUE (ALL4tEC) nicolas.fauvergue@all4tec.net - Bug 476618, 192891, 496905
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 192891, 496905, 508175
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.modelelement;
@@ -130,7 +130,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 * a table manager created to get possible axis contents
 	 */
 	private INattableModelManager tableModelManager;
-	
+
 	/**
 	 * This allows to keep a reference to the table to manage (because the source must be modified when the edited object is not a table).
 	 * 
@@ -157,7 +157,8 @@ public class NatTableModelElement extends EMFModelElement {
 	 * Add the listener
 	 */
 	private void init() {
-		tableModelManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(getEditedTable(), new EObjectSelectionExtractor());
+		// The create nattable model manager for the properties view doesn't need some listeners of the table (invert axis and update cells map listener)
+		tableModelManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(getEditedTable(), new EObjectSelectionExtractor(), false);
 		this.interestingFeatures = new ArrayList<EStructuralFeature>();
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Prototype());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Owner());
@@ -176,9 +177,9 @@ public class NatTableModelElement extends EMFModelElement {
 		interestingFeatures.add(NattablelabelproviderPackage.eINSTANCE.getObjectLabelProviderConfiguration_DisplayIcon());
 		interestingFeatures.add(NattablelabelproviderPackage.eINSTANCE.getObjectLabelProviderConfiguration_DisplayLabel());
 
-		if(null != table){
+		if (null != table) {
 			this.tableListener = new AdapterImpl() {
-	
+
 				/**
 				 *
 				 * @see org.eclipse.emf.common.notify.impl.AdapterImpl#notifyChanged(org.eclipse.emf.common.notify.Notification)
@@ -296,7 +297,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 				final Event event = new Event();
 				final Iterator<IObservable> observableIterator = getObservables().values().iterator();
-				while(observableIterator.hasNext()){
+				while (observableIterator.hasNext()) {
 					final IObservable current = observableIterator.next();
 					if (!current.isDisposed() && current instanceof Listener) {
 						((Listener) current).handleEvent(event);
@@ -314,7 +315,7 @@ public class NatTableModelElement extends EMFModelElement {
 	@Override
 	public void dispose() {
 		super.dispose();
-		if(null != table){
+		if (null != table) {
 			table.eAdapters().remove(tableListener);
 			removeListeners();
 			table = null;
@@ -344,7 +345,7 @@ public class NatTableModelElement extends EMFModelElement {
 	@Override
 	protected IObservable doGetObservable(final String propertyPath) {
 		IObservable value = null;
-		
+
 		Table table = getEditedTable();
 		// column header properties
 		if (Constants.LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION_DISPLAY_FILTER.equals(propertyPath)) {
@@ -435,10 +436,10 @@ public class NatTableModelElement extends EMFModelElement {
 		} else if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
 			value = new ColumnPasteEObjectAxisIdentifierObservableValue(table);
 		}
-			
-			else if(Constants.TABLE_LABEL.equals(propertyPath)){
-				value = new TableLabelObservableValue(table);
-			}
+
+		else if (Constants.TABLE_LABEL.equals(propertyPath)) {
+			value = new TableLabelObservableValue(table);
+		}
 
 		if (value != null) {
 			return value;
@@ -522,8 +523,8 @@ public class NatTableModelElement extends EMFModelElement {
 			} else if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
 				res = new ColumnAxisIdentifierContentProvider(this.tableModelManager).getElements().length != 0;
 			}
-			
-			else if(Constants.TABLE_LABEL.equals(propertyPath)){
+
+			else if (Constants.TABLE_LABEL.equals(propertyPath)) {
 				res = true;
 			}
 		}

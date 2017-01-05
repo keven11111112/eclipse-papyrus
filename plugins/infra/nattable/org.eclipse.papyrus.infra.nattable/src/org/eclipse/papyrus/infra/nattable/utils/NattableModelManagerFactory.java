@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 508175
  *   
  *****************************************************************************/
 
@@ -34,15 +35,33 @@ public class NattableModelManagerFactory {
 	/**
 	 * 
 	 * @param table
-	 *            the table model
+	 *            The table model.
+	 * @param selectionExtractor
+	 *            The selection extrator.
 	 * @return
-	 *         the INattableModelManager to use to manipulate the table
+	 *         the INattableModelManager to use to manipulate the table.
 	 */
-	public INattableModelManager createNatTableModelManager(final Table table, ISelectionExtractor selectionExtractor) {
+	public INattableModelManager createNatTableModelManager(final Table table, final ISelectionExtractor selectionExtractor) {
+		return createNatTableModelManager(table, selectionExtractor, true);
+	}
+	
+	/**
+	 * 
+	 * @param table
+	 *            The table model.
+	 * @param selectionExtractor
+	 *            The selection extrator.
+	 * @param initializeListeners
+	 *            Boolean to determinate if the listeners have to be initialized or not (example: properties view doesn't it)
+	 * @return
+	 * 		the INattableModelManager to use to manipulate the table
+	 * @since 3.0
+	 */
+	public INattableModelManager createNatTableModelManager(final Table table, final ISelectionExtractor selectionExtractor, final boolean initializeListeners) {
 		if (TableHelper.isTreeTable(table)) {
-			return new TreeNattableModelManager(table,selectionExtractor);
+			return new TreeNattableModelManager(table,selectionExtractor, initializeListeners);
 		}
-		return new NattableModelManager(table, selectionExtractor);
+		return new NattableModelManager(table, selectionExtractor, initializeListeners);
 	}
 
 }

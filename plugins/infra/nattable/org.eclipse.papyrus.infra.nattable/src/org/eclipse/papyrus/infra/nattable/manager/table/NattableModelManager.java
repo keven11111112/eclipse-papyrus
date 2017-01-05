@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618, 504077, 496905
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 504077, 496905, 508175
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *
@@ -255,6 +255,22 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 *            the selection extrator
 	 */
 	public NattableModelManager(final Table rawModel, final ISelectionExtractor selectionExtractor) {
+		this(rawModel, selectionExtractor, true);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param rawModel
+	 *            The table model.
+	 * @param selectionExtractor
+	 *            The selection extrator.
+	 * @param initializeListeners
+	 *            boolean to determinate if the listeners have to be initialized or not (example: properties view doesn't it).
+	 * @since 3.0
+	 */
+	public NattableModelManager(final Table rawModel, final ISelectionExtractor selectionExtractor, final boolean initializeListeners) {
 		super(rawModel, selectionExtractor);
 
 		this.rowProvider = rawModel.getCurrentRowAxisProvider();
@@ -264,13 +280,34 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		this.cellsMap = HashBiMap.create();
 
-		this.invertAxisListener = createInvertAxisListener();
-
-		if (this.invertAxisListener != null) {
-			rawModel.eAdapters().add(this.invertAxisListener);
-		}
-
 		init();
+
+		// If needed, initialize the invert axis listener and the update of cells map.
+		// Other listeners can stay used in all cases.
+		// For example: The table reference for properties view, these listeners are not needed and can caught exception 
+		if (initializeListeners) {
+			this.invertAxisListener = createInvertAxisListener();
+
+			if (this.invertAxisListener != null) {
+				rawModel.eAdapters().add(this.invertAxisListener);
+			}
+
+			tableCellsListener = new AdapterImpl() {
+
+				@Override
+				public void notifyChanged(final Notification msg) {
+					if (msg.getFeature() == NattablePackage.eINSTANCE.getTable_Cells()) {
+						updateCellMap(msg);
+					}
+				}
+			};
+			rawModel.eAdapters().add(tableCellsListener);
+
+			addListeners();
+		} else {
+			tableCellsListener = null;
+			invertAxisListener = null;
+		}
 
 		changeAxisProvider = new AdapterImpl() {
 
@@ -311,18 +348,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 
 		rawModel.eAdapters().add(changeAxisProvider);
-		tableCellsListener = new AdapterImpl() {
-
-			@Override
-			public void notifyChanged(final Notification msg) {
-				if (msg.getFeature() == NattablePackage.eINSTANCE.getTable_Cells()) {
-					updateCellMap(msg);
-				}
-			}
-		};
-		rawModel.eAdapters().add(tableCellsListener);
-
-		addListeners();
 	}
 
 	/**
@@ -414,10 +439,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * remove required listener
 	 */
 	protected void removeListeners() {
-		final EventList<?> rowsList = (EventList<?>) getRowElementsList();
-		final EventList<?> columnsList = (EventList<?>) getColumnElementsList();
-		rowsList.removeListEventListener(this.listEventListener);
-		columnsList.removeListEventListener(this.listEventListener);
+		if (null != listEventListener) {
+			final EventList<?> rowsList = (EventList<?>) getRowElementsList();
+			final EventList<?> columnsList = (EventList<?>) getColumnElementsList();
+			rowsList.removeListEventListener(this.listEventListener);
+			columnsList.removeListEventListener(this.listEventListener);
+		}
 	}
 
 
