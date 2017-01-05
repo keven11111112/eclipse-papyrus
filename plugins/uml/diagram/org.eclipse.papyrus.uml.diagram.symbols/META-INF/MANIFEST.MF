@@ -12,6 +12,6 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.symbols.Activator
 Bundle-ManifestVersion: 2
-Bundle-Description: %pluginDescription
+Bundle-Description: %Bundle-Description
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.symbols;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
