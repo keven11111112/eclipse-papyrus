@@ -34,7 +34,7 @@ public class ShapeCompartmentViewProvider extends AbstractShapeCompartmentViewPr
 		if ((diagramType == null) || (!diagramType.equals(op.getContainerView().getDiagram().getType()))) {
 			return false;
 		}
-		throw new UnsupportedOperationException("Should never be called by the " + diagramType + " diagram.");
+		throw new UnsupportedOperationException("Should never be called by the " + diagramType + " diagram."); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

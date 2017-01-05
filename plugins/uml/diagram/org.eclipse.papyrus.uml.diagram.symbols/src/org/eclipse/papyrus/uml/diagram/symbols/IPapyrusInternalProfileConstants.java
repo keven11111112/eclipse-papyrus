@@ -22,23 +22,23 @@ public interface IPapyrusInternalProfileConstants {
 
 	// profile
 	/** main profile name */
-	public final static String PAPYRUS_INTERNAL_PROFILE_NAME = "PapyrusInternal";
+	public static final String PAPYRUS_INTERNAL_PROFILE_NAME = "PapyrusInternal";
 
 	/** Symbols Sub Profile name */
-	public final static String SYMBOL_PROFILE_NAME = PAPYRUS_INTERNAL_PROFILE_NAME + NamedElementUtil.QUALIFIED_NAME_SEPARATOR + "Symbols";
+	public static final String SYMBOL_PROFILE_NAME = PAPYRUS_INTERNAL_PROFILE_NAME + NamedElementUtil.QUALIFIED_NAME_SEPARATOR + "Symbols";
 
 	// stereotypes definition
 
 	/** TypeSymbolDefinition stereotype name */
-	public final static String TYPE_SYMBOL_DEFINITION_QUALIFIED_NAME = SYMBOL_PROFILE_NAME + NamedElementUtil.QUALIFIED_NAME_SEPARATOR + "TypeSymbolDefinition";
+	public static final String TYPE_SYMBOL_DEFINITION_QUALIFIED_NAME = SYMBOL_PROFILE_NAME + NamedElementUtil.QUALIFIED_NAME_SEPARATOR + "TypeSymbolDefinition";
 
 	// Stereotype properties definition
 
 	/** TypeSymbolDefinition::symbolPath property name */
-	public final static String TYPE_SYMBOL_DEFINITION_SYMBOL_PATH = "symbolPath";
+	public static final String TYPE_SYMBOL_DEFINITION_SYMBOL_PATH = "symbolPath";
 
 	// Extension definition
 	/** profile name as defined in the extension point */
-	public final static String PAPYRUS_INTERNAL_PROFILE_EXTENSION_NAME = "Papyrus Internal";
+	public static final String PAPYRUS_INTERNAL_PROFILE_EXTENSION_NAME = "Papyrus Internal";
 
 }
