@@ -120,7 +120,7 @@ mapping UMLShape::toPapyrusShape() : Shape inherits Shape::toPapyrusShape when {
 	not self.getType().oclIsUndefined() and (
 		self.element.oclIsTypeOf(DurationInterval)or
 	self.element.oclIsTypeOf(UseCase)or
-	self.element.oclIsTypeOf(Port)or
+	(self.element.oclIsTypeOf(Port) and not(self.isSemiAutomatic()))or
 	self.element.oclIsTypeOf(LiteralInteger)or
 	self.element.oclIsTypeOf(Node)or
 	self.element.oclIsTypeOf(Class)or
@@ -879,4 +879,13 @@ query View::getEdgeType(element : Element) : String {
 		elif element.oclIsTypeOf(InformationFlow) then 'InformationFlow_Edge'
 		else self.fail()
 	endif;
+}
+
+// see Bug 508438: a semiautomatic port layout is the persistence of a port shape layout (with no specific x and y) in the notation model
+// this layout constraint is added whenever the parent shape got refreshed (when for example we move another port)
+// we did not tranform this type of port shape to not force the location of the port at the top left corner (with explicitly x=y=0)
+query UMLShape::isSemiAutomatic() : Boolean {
+	var layoutlocation = self.layoutConstraint.oclAsType(Location);
+	return layoutlocation.x=0 and layoutlocation.y=0;
+
 }
