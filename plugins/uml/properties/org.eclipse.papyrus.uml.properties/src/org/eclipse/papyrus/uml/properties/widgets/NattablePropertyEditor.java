@@ -91,6 +91,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyComposite;
 
 /**
  * The property editor for the nattable widget.
@@ -557,12 +558,13 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @since 2.0
 	 */
 	protected void configureLayout(final EObject sourceElement) {
+          	//must be done first!
+		((NattableModelManager) nattableManager).refreshNatTable();
+		
 		// Configure the size of the parent container
 		configureSize(sourceElement);
 
 		natTableWidget.layout();
-
-		((NattableModelManager) nattableManager).refreshNatTable();
 	}
 
 	/**
@@ -1074,6 +1076,20 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 						// Recreate the table widget, its adjuncts, and their layout
 						createWidgets(sourceElement, feature, contexts);
+						
+						// We need to refresh the parent composite to get the needed space
+						Composite parent = self.getParent();
+						boolean found = false;
+						while(null != parent && !found){
+							if(parent instanceof TabbedPropertyComposite){
+								found = true;
+							}else{
+								parent.layout(true, true);
+								parent.redraw();
+								parent.update();
+							}
+							parent = parent.getParent();
+						}
 					}
 				}
 			};
