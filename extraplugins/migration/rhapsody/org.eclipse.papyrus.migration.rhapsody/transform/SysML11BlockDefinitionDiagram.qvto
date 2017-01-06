@@ -63,115 +63,7 @@ query getPapyrusDiagramType():String{
 	return 'BlockDefinition';
 };
 
-//TODO : use disjuncts here
- mapping umlrhapsody::CGIGenericElement::toSysML11BlockDefinitionDiagramElements() : Shape  when { not (self.m_pParent.oclIsUndefined())}
-{
-	var res = self.m_pModelObject;
- 
-	result.element := self.m_pModelObject.resolveone().oclAsType(EObject);
-	if(res.oclIsKindOf(IType)){
-		var type:IType:=res.oclAsType(IType);
-		if (type.isUMLDataType()){	  //TODO : use disjonct for this method
-					result.type:="shape_uml_datatype_as_classifier";
-					var decorationNode:notation::DecorationNode:= object DecorationNode{
-						
-					};
-					decorationNode.type:="label_uml_namedelement_name";
-					result.children+=decorationNode;
-						var cptAslist:notation::ListCompartment= object ListCompartment{
-							styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_uml_property_as_list";
-					result.children+=cptAslist;
-				}else if(type.isUMLInstanceSpecification()){
-					result.type:="InstanceSpecification_Shape";
-				}else if(type.isUMLEnumeration()){
-					result.type:="shape_uml_enumeration_as_classifier";
-				}else if(type.isUMLClass()){
-					result.type:="shape_sysml_block_as_classifier";
-					var decorationNode:notation::DecorationNode:= object DecorationNode{
-						
-					};
-					decorationNode.type:="label_uml_namedelement_name";
-					result.children+=decorationNode;
-					var cptAslist:notation::ListCompartment= object ListCompartment{
-							styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_sysml_property_as_list";
-					result.children+=cptAslist;
-					
-					cptAslist:= object ListCompartment{
-							styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_sysml_reference_as_list";
-					result.children+=cptAslist;
-					
-					cptAslist:= object ListCompartment{
-							styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_uml_port_as_list";
-					result.children+=cptAslist;
-					
-					cptAslist:= object ListCompartment{
-						styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_sysml_flowport_as_list";
-					result.children+=cptAslist;
-					
-					cptAslist:= object ListCompartment{
-							styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_uml_operation_as_list";
-					result.children+=cptAslist;
-					
-					cptAslist:= object ListCompartment{
-							styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_sysml_constraint_as_list";
-					result.children+=cptAslist;
-					
-					cptAslist:= object ListCompartment{
-							styles := object DrawerStyle{};
-							styles += object TitleStyle{};
-							styles += object SortingStyle{};
-							styles += object FilteringStyle{};
-					};
-					cptAslist.type:="compartment_sysml_value_as_list";
-					result.children+=cptAslist;
-					
-				};
-	};
-	//result.type := self.getNodeType();
-	result.children+= self.map toDecorationNode();
-	result.children+= self.Compartments[CGICompartment].map toBasicCompartment();
-	if not (self.m_transform->oclIsUndefined()) then
-	{
-	result.layoutConstraint:= self.m_transform->asSequence()->map toLayoutConstraints();
-	result.layoutConstraint:= self.map toLayoutConstraint();
-	}endif;
-	
-}
+
 mapping GraphElementsType::toLayoutConstraint() : Bounds
 {
 
@@ -313,43 +205,6 @@ type:=
 		}
 }
 
-
-
-mapping umlrhapsody::CGICompartment::toBasicCompartment(): notation::BasicCompartment  {
-	type:= self.getDecorationType();
-	result.styles := object TitleStyle{};
-	result.styles += object SortingStyle{};
-	result.styles += object FilteringStyle{};
-	
-	result.layoutConstraint :=self.map toLayoutConstraints();
-}
-
-mapping umlrhapsody::CGICompartment::toLayoutConstraints(): Bounds {
-	
-}
-query CGICompartment::getDecorationType() : String{
-	var res := self.doGetDecorationType();
-	
-	return res;	
-}
-
-query CGICompartment::doGetDecorationType() : String{
-return switch {
-				
-	case (self.m_name = 'Attribute') '7017';
-	case (self.m_name = 'Operation') '7018';
-				
-}
-}
-//TODO : end of rewrite me
-
-//	disjuncts 
-//	umlrhapsody::CGIGenericElement::toSysML11BDDDataTypeShape, //TODO split with value type
-//	umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape,
-//	umlrhapsody::CGIGenericElement::toSysML11BDDDimensionShape,
-//	umlrhapsody::CGIGenericElement::toSysML11BDDEnumerationShape,
-//	umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape{} 
-
 /**
 *
 * This mapping allows to create all views in a Papyrus SysML 1.1 BDD according to the Rhapsody Model
@@ -370,11 +225,7 @@ mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramEdge() : 
 	disjuncts 
 	umlrhapsody::CGIAssociationEnd::toSysML11BDDAssociationEdge
 	{}
-//mapping umlrhapsody::CGIAssociationEnd::toSysML11BDDCGIAssociationLink() : Edge {
-//	var source:=self.m_pSource;
-//	var t:=self.m_pTarget;
-//	
-//}
+	
 /**
 * This mapping creates the Block Shape with its compartment and their children
 */	
@@ -778,7 +629,7 @@ query umlrhapsody::IEnumerationLiteral::toSysML11BDDEnumerationLiteralNode() : N
 
 mapping umlrhapsody::CGIAssociationEnd::toSysML11BDDAssociationEdge() : Connector 
 {
-//TODO : utilise rla classe RhapsodyNode pour les anchors!
+	//TODO : use the class RhapsodyNode for the anchors!
 	var sourceNode:CGIClass:=self.m_pSource![CGIClass];
 	var targetNode:CGIClass:=self.m_pTarget![CGIClass];
 	
