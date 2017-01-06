@@ -218,8 +218,12 @@ mapping rhapsodymetamodel::CGIPortConnector::CGIPortConnectorToIBDPort(cgiClassC
 	layoutConstraint:= object Bounds{
 		x:=getX(self);
 		y:=getY(self);
-		width:=getRectangleWidth(self);
-		height:=getRectangleHeight(self);
+		//width:=getRectangleWidth(self);
+		//height:=getRectangleHeight(self);
+		//result of calculus was wrong for port size and moreover this calculus is useless for port.
+		width:=20;
+		height:=20;
+		
 	};
 	
 	var semanticElementRpy:IRelation:=self.m_pModelObject;
