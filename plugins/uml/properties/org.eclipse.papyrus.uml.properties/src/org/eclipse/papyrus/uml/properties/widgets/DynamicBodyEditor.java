@@ -136,8 +136,10 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 	private void disposeBodyEditor() {
 		currentEditor.removeChangeListener(this);
 		currentEditor.dispose();
-		for (Control control : bodyEditorContainer.getChildren()) {
-			control.dispose();
+		if (null != bodyEditorContainer && !bodyEditorContainer.isDisposed()) {
+			for (Control control : bodyEditorContainer.getChildren()) {
+				control.dispose();
+			}
 		}
 	}
 
