@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  Christian W. Damus - bug 469188
- *
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 508275
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
@@ -218,7 +218,9 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 */
 	@Override
 	public void removePage(int pageIndex) {
-		getChildren().remove(pageIndex);
+		if (0 <= pageIndex && pageIndex < getChildren().size()) {
+			getChildren().remove(pageIndex);
+		}
 	}
 
 	/**
