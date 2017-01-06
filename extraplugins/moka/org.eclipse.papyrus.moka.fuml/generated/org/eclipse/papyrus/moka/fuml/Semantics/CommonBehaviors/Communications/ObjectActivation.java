@@ -123,14 +123,11 @@ public class ObjectActivation {
 		return ((GetNextEventStrategy) this.object.locus.factory.getStrategy("getNextEvent")).getNextEvent(this);
 	}
 
-	public void send(SignalInstance signalInstance) {
-		// Add a signal event occurrence for the given signal instance to the event pool
-		// and signal that a new event occurrence has arrived.
+	public void send(EventOccurrence eventOccurrence) {
+		// Add an event occurrence to the event pool and signal that a 
+		// new event occurrence has arrived.
 		
 		//fUML12-35 Initial execution of an activity is not run to completion
-		
-		SignalEventOccurrence eventOccurrence = new SignalEventOccurrence();
-		eventOccurrence.signalInstance = (SignalInstance) signalInstance.copy();
 		this.eventPool.add(eventOccurrence);
 		_send(new ArrivalSignal());
 	}

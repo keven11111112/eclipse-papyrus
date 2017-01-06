@@ -20,8 +20,8 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
@@ -62,11 +62,11 @@ public class Object_ extends ExtensionalValue {
 		return ((DispatchStrategy) this.locus.factory.getStrategy("dispatch")).dispatch(this, operation);
 	}
 
-	public void send(SignalInstance signalInstance) {
-		// If the object is active, add the given signal instance to the event
+	public void send(EventOccurrence eventOccurrence) {
+		// If the object is active, add the given event occurrence to the event
 		// pool and signal that a new signal instance has arrived.
 		if (this.objectActivation != null) {
-			this.objectActivation.send(signalInstance);
+			this.objectActivation.send(eventOccurrence);
 		}
 	}
 

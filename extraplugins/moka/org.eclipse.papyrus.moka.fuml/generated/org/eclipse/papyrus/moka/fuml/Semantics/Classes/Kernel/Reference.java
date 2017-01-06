@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
@@ -42,9 +42,9 @@ public class Reference extends StructuredValue {
 		return this.referent.dispatch(operation);
 	}
 
-	public void send(SignalInstance signalInstance) {
-		// Send the given signal instance to the referent object.
-		this.referent.send(signalInstance);
+	public void send(EventOccurrence eventOccurrence) {
+		// Send the given event occurrence to the referent object.
+		this.referent.send(eventOccurrence);
 	}
 
 	public void destroy() {
