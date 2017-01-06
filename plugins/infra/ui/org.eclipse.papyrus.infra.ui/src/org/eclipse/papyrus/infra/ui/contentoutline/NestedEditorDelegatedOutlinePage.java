@@ -691,18 +691,17 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 			return;
 		}
 
-		if(activeRec!=null){
 		activeRec = pageRec;
-		Control pageControl = activeRec.contentOutlinePage.getControl();
-		if (pageControl != null && !pageControl.isDisposed()) {
-			PageSite pageSite = (PageSite) activeRec.getPageSite();
-			// Verify that the page control is not disposed
-			// If we are closing, it may have already been disposed
-			sashEditorPageBook.showPage(pageControl);
-			getSite().setActivePageSite(pageSite);
+		if (activeRec != null) {
+			Control pageControl = activeRec.contentOutlinePage.getControl();
+			if (pageControl != null && !pageControl.isDisposed()) {
+				PageSite pageSite = (PageSite) activeRec.getPageSite();
+				// Verify that the page control is not disposed
+				// If we are closing, it may have already been disposed
+				sashEditorPageBook.showPage(pageControl);
+				getSite().setActivePageSite(pageSite);
+			}
 		}
-		}
-
 	}
 
 	/**
