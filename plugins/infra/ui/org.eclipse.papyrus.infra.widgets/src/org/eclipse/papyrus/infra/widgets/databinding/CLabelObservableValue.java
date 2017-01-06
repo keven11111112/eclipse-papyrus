@@ -107,15 +107,17 @@ public class CLabelObservableValue extends AbstractObservableValue {
 	@Override
 	protected void doSetValue(Object value) {
 		this.currentValue = value;
-		if (aggregated != null && aggregated.hasDifferentValues()) {
-			label.setText(Messages.ReferenceDialogObservable_Unchanged);
-			label.setImage(null);
-		} else if (currentValue == null) {
-			label.setText(Messages.ReferenceDialog_Unset);
-			label.setImage(null);
-		} else {
-			label.setText(labelProvider.getText(value));
-			label.setImage(labelProvider.getImage(value));
+		if (null != label && !label.isDisposed()) {
+			if (aggregated != null && aggregated.hasDifferentValues()) {
+				label.setText(Messages.ReferenceDialogObservable_Unchanged);
+				label.setImage(null);
+			} else if (currentValue == null) {
+				label.setText(Messages.ReferenceDialog_Unset);
+				label.setImage(null);
+			} else {
+				label.setText(labelProvider.getText(value));
+				label.setImage(labelProvider.getImage(value));
+			}
 		}
 	}
 }
