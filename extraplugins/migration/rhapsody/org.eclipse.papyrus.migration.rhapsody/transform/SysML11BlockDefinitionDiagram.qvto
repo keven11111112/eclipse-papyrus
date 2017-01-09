@@ -758,6 +758,9 @@ mapping umlrhapsody::CGIAssociationEnd::toSysML11BDDAssociationEdge() : Connecto
 		eObjectValue:=association.memberEnd->asSequence()->at(2).oclAsType(EObject); //TODO
 	};
 	
+	//manage connector routing
+	routing:=self.oclAsType(GraphElementsType).getConnectorRouting();	
+	eAnnotations+=createCSSForceValue("routing");
 }
 
 

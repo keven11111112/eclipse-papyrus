@@ -110,6 +110,10 @@ mapping rhapsodymetamodel::CGIAnchor::graphElementsTypeToIBDCommentLink(cgiClass
 	var sourceNode:M_pRootType:=self.m_pSource;
 	var targetNode:M_pRootType:=self.m_pTarget;
 	addAnchorsAndBendpoints(self,result);
+	
+	//manage connector routing
+	routing:=self.oclAsType(GraphElementsType).getConnectorRouting();	
+	eAnnotations+=createCSSForceValue("routing");
 }
 
 
@@ -141,6 +145,10 @@ mapping rhapsodymetamodel::CGIObjectLink::graphElementsTypeToIBDConnector(cgiCla
 			y:=-10; //TODO : a dummy value 
 		};
 	};
+	
+	//manage connector routing
+	routing:=self.oclAsType(GraphElementsType).getConnectorRouting();	
+	eAnnotations+=createCSSForceValue("routing");
 }
 
 

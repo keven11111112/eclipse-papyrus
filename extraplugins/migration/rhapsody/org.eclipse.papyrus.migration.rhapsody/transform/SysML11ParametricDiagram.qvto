@@ -144,6 +144,10 @@ mapping rhapsodymetamodel::CGIAnchor::graphElementsTypeToPDCommentLink(cgiClassC
 	var sourceNode:M_pRootType:=self.m_pSource;
 	var targetNode:M_pRootType:=self.m_pTarget;
 	addAnchorsAndBendpoints(self,result);
+	
+	//manage connector routing
+	routing:=self.oclAsType(GraphElementsType).getConnectorRouting();	
+	eAnnotations+=createCSSForceValue("routing");
 }
 
 /**
@@ -174,6 +178,10 @@ mapping rhapsodymetamodel::CGIObjectLink::graphElementsTypeToPDConnector(cgiClas
 			y:=-10; //TODO : a dummy value 
 		};
 	};
+	
+	//manage connector routing
+	routing:=self.oclAsType(GraphElementsType).getConnectorRouting();	
+	eAnnotations+=createCSSForceValue("routing");
 }
 
 //TODO : calling resolve method could not work in soem case : if we are mapping a link linked to another link not yet mapped -> we will not able to resolve it!

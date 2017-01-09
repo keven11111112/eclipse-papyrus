@@ -150,3 +150,31 @@ helper createCSSForceValue(detailKey:String):EAnnotation{
 	var eAnnotation:EAnnotation:= object EAnnotation { source:="PapyrusCSSForceValue" ; details+=object EStringToStringMapEntry { key:=detailKey; value:="true"}};
 	return eAnnotation;
 }
+
+/**
+* Return the routing to use for the given connector. 
+* The current implementations returns always Manual routing to avoid problems with anchors, bendopints and snapToGrid
+*/
+query umlrhapsody::GraphElementsType::getConnectorRouting():notation::Routing{
+	var routing:Routing:=Routing::Manual;
+	var rpyValue:String;
+	if(self.oclIsKindOf(CGIObjectLink)){
+		rpyValue:=self.oclAsType(CGIObjectLink).m_line_style;
+	}elif(self.oclIsTypeOf(CGIAnchor)){
+		rpyValue:=self.oclAsType(CGIAnchor).m_line_style;
+	}elif(self.oclIsTypeOf(CGIAssociationEnd)){
+		rpyValue:=self.oclAsType(CGIAssociationEnd).m_line_style;
+	}else{
+		log("The object " + self.toString() + " is not yet managed to get its routing")
+	};
+	
+	routing:=switch{
+		case (rpyValue="0") Routing::Manual;
+		case (rpyValue="1") Routing::Manual; //spline in Rhapsody
+		case (rpyValue="2") Routing::Rectilinear;
+	};
+	
+	//as we currently get trouble with anchos, bendpoints and snap to grid, we always return Manual
+	routing:=Routing::Manual;
+	return routing;
+}

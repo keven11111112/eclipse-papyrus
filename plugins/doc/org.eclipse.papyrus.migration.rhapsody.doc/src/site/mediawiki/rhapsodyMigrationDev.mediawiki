@@ -123,3 +123,5 @@ To ease future fixes for generated corrupted models, an '''EMF EAnnotation''' is
 
 This work is done by the QVTo library <code>RhapsodyToPapyrusUtils</code>, with the helper method <code>createEAnnotationForVersioning</code>.
 
+==Diagram Styling==
+As we want to get the same style in import models than in the Rhapsody source model, we need to add EAnnoation PapyrusCSSForceValue to override the styling done by CSS stylesheet. The method to create a such EAnnotation is provided by the QVTo library <code>RhapsodyToPapyrusDiagamCommon</code>, by the helper <code>createCSSForceValue</code>.  

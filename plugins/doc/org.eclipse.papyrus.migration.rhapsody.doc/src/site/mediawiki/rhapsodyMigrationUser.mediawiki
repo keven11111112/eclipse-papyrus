@@ -233,3 +233,6 @@ In it, you will find the Papyrus model, with these files:
 
 
 If you are in the Project Explorer, a shortest method allows you to import a selected ''*.rpy'' file, doing '''Right-Click > Import SysML Rhapsody Model'''.
+
+==Why my CSS are ignored in imported Diagrams?==
+The goal of the Papyrus Rhapsody Import Model feature is to provide the same display for a given Rhapsody Diagram and its equivalent in Papyrus. As the CSS stylesheet can impact the display of the diagram, our transformation process add a specific information to each imported display property to bypass CSS renderer. Technically we add an '''EAnnotation''' named '''PapyrusCSSForceValue''' to ignore CSS value. All CSS customizations can be impacted, like connector routing or compartment visibility. 
