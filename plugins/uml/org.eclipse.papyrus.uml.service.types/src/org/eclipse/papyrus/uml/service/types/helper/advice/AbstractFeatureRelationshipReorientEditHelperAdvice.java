@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import java.util.Arrays;
@@ -16,7 +27,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.types.core.utils.ElementTypeRegistryUtils;
 
-abstract public class AbstractFeatureRelationshipReorientEditHelperAdvice extends AbstractEditHelperAdvice {
+public abstract class AbstractFeatureRelationshipReorientEditHelperAdvice extends AbstractEditHelperAdvice {
 
 
 	@Override
@@ -37,8 +48,7 @@ abstract public class AbstractFeatureRelationshipReorientEditHelperAdvice extend
 					}
 				}
 			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				org.eclipse.papyrus.uml.service.types.Activator.log.error(e);
 			}
 
 		}
@@ -49,9 +59,9 @@ abstract public class AbstractFeatureRelationshipReorientEditHelperAdvice extend
 	/**
 	 * @return
 	 */
-	abstract protected String elementTypeIDToSpecialize();
+	protected abstract String elementTypeIDToSpecialize();
 
-	abstract protected ICommand getFeatureRelationshipReorientCommand(ReorientReferenceRelationshipRequest request);
+	protected abstract ICommand getFeatureRelationshipReorientCommand(ReorientReferenceRelationshipRequest request);
 
 
 }
