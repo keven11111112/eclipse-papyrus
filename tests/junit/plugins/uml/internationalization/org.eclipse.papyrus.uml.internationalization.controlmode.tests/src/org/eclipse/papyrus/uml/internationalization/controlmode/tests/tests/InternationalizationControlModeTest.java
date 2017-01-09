@@ -7,20 +7,21 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.internationalization.controlmode.tests.tests;
 
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
+import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.junit.Test;
 
 /**
  * This allows to test the internationalization during the control mode.
  */
 @SuppressWarnings("nls")
+@PluginResource({"resources/controlmode/internationalizationModel.di", "resources/controlmode/internationalizationModel_en_US.properties", "resources/controlmode/internationalizationModel_fr_FR.properties"})
 public class InternationalizationControlModeTest extends AbstractInternationalizationControlModeTest {
 
 	/**
@@ -31,22 +32,11 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInternationalizationTest#getSourcePath()
-	 */
-	@Override
-	protected String getSourcePath() {
-		return "resources/controlmode/";
-	}
-
-	/**
 	 * This allows to test the control of the class object.
 	 * 
 	 * @throws Exception
 	 *             The caught exception.
 	 */
-	@InvalidTest
 	@Test
 	public void testControlClass() throws Exception {
 		checkFrenchLabels();
@@ -60,51 +50,51 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 		redo();
 		checkFrenchLabels();
 	}
-	
+
 	/**
-	 * This allows to test the control of the class object with the language modification preference.
+	 * This allows to test the control of the class object with the language
+	 * modification preference.
 	 * 
 	 * @throws Exception
 	 *             The caught exception.
 	 */
-	@InvalidTest
 	@Test
-	public void testControlWithLanguageModificationTest() throws Exception{
+	public void testControlWithLanguageModificationTest() throws Exception {
 		checkFrenchLabels();
-		
+
 		control(modelClass, "Class1");
 		checkFrenchLabels();
-		
+
 		InternationalizationPreferencesUtils.setLanguagePreference(modelClass, "en_US");
 		checkEnglishLabels();
-		
+
 		undo();
 		checkEnglishLabels();
-		
+
 		redo();
 		checkEnglishLabels();
 	}
 
 	/**
-	 * This allows to test the control of the class object with the use internationalization preference.
+	 * This allows to test the control of the class object with the use
+	 * internationalization preference.
 	 * 
 	 * @throws Exception
 	 *             The caught exception.
 	 */
-	@InvalidTest
 	@Test
-	public void testControlWithUseInternationalizationModificationTest() throws Exception{
+	public void testControlWithUseInternationalizationModificationTest() throws Exception {
 		checkFrenchLabels();
-		
+
 		control(modelClass, "Class1");
 		checkFrenchLabels();
-		
+
 		InternationalizationPreferencesUtils.setInternationalizationPreference(modelClass, false);
 		checkNoLabels();
-		
+
 		undo();
 		checkNoLabels();
-		
+
 		redo();
 		checkNoLabels();
 	}

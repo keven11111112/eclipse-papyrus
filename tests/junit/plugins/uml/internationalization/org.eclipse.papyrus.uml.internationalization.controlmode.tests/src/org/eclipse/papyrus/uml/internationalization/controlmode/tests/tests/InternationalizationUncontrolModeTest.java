@@ -7,20 +7,21 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.internationalization.controlmode.tests.tests;
 
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
+import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.junit.Test;
 
 /**
  * This allows to test the internationalization during the uncontrol mode.
  */
 @SuppressWarnings("nls")
+@PluginResource({"resources/controlmode/internationalizationModel.di", "resources/controlmode/internationalizationModel_en_US.properties", "resources/controlmode/internationalizationModel_fr_FR.properties"})
 public class InternationalizationUncontrolModeTest extends AbstractInternationalizationControlModeTest {
 
 	/**
@@ -38,18 +39,8 @@ public class InternationalizationUncontrolModeTest extends AbstractInternational
 	@Override
 	public void initTest() throws Exception {
 		super.initTest();
-		
+
 		control(modelClass, "Class1");
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInternationalizationTest#getSourcePath()
-	 */
-	@Override
-	protected String getSourcePath() {
-		return "resources/controlmode/";
 	}
 
 	/**
@@ -58,7 +49,6 @@ public class InternationalizationUncontrolModeTest extends AbstractInternational
 	 * @throws Exception
 	 *             The caught exception.
 	 */
-	@InvalidTest
 	@Test
 	public void testUncontrolClass() throws Exception {
 		checkFrenchLabels();
@@ -74,47 +64,47 @@ public class InternationalizationUncontrolModeTest extends AbstractInternational
 	}
 
 	/**
-	 * This allows to test the uncontrol of the class object with the language modification preference.
+	 * This allows to test the uncontrol of the class object with the language
+	 * modification preference.
 	 * 
 	 * @throws Exception
 	 *             The caught exception.
 	 */
-	@InvalidTest
 	@Test
-	public void testUncontrolWithLanguageModificationTest() throws Exception{
+	public void testUncontrolWithLanguageModificationTest() throws Exception {
 		checkFrenchLabels();
-		
+
 		InternationalizationPreferencesUtils.setLanguagePreference(model, "en_US");
 		uncontrol(modelClass);
 		checkEnglishLabels();
-		
+
 		undo();
 		checkEnglishLabels();
-		
+
 		redo();
 		checkEnglishLabels();
 	}
-	
+
 	/**
-	 * This allows to test the uncontrol of the class object with the use internationalization preference.
+	 * This allows to test the uncontrol of the class object with the use
+	 * internationalization preference.
 	 * 
 	 * @throws Exception
 	 *             The caught exception.
 	 */
-	@InvalidTest
 	@Test
-	public void testUncontrolWithUseInternationalizationModificationTest() throws Exception{
+	public void testUncontrolWithUseInternationalizationModificationTest() throws Exception {
 		checkFrenchLabels();
-		
+
 		InternationalizationPreferencesUtils.setInternationalizationPreference(modelClass, false);
 		uncontrol(modelClass);
 		checkNoLabels();
-		
+
 		undo();
 		checkNoLabels();
-		
+
 		redo();
 		checkNoLabels();
 	}
-	
+
 }

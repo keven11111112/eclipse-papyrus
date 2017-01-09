@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -19,7 +19,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({  
-	UMLInternationalizationChangePreferencesTest.class
+	UMLInternationalizationChangePreferencesTest.class,
+	UMLInternationalizationChangeLanguageTest.class
 })
 public class AllTests {
 	

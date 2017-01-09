@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -21,19 +21,16 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetRelTypesForSREOnSourceOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
-import org.eclipse.papyrus.uml.internationalization.controlmode.tests.Activator;
 import org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInternationalizationTest;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
-import org.osgi.framework.Bundle;
 
 /**
  * The abstract class for the internationalization control mode tests.
@@ -63,23 +60,13 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	public void initTest() throws Exception {
 		super.initTest();
 
-		for (Object object : getPageManager().allPages()) {
+		for (Object object : fixture.getPageManager().allPages()) {
 			if (object instanceof Table) {
 				table = (Table) object;
 			} else if (object instanceof Diagram) {
 				diagram = (Diagram) object;
 			}
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInternationalizationTest#initTestModel()
-	 */
-	@Override
-	protected void initTestModel() throws Exception {
-		initModel("testLabels", "internationalizationModel", getBundle());
 	}
 
 	/**
@@ -94,7 +81,8 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 		Assert.assertEquals("The root element label is not the expected one.", "Diagram ClassDiagram",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The class label is not the expected one.", "Table GenericTable0", labelProvider.getText(table));
+		Assert.assertEquals("The class label is not the expected one.", "Table GenericTable0",
+				labelProvider.getText(table));
 	}
 
 	/**
@@ -125,27 +113,8 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 		Assert.assertEquals("The root element label is not the expected one.", "Diagram MyClassDiagram",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The class label is not the expected one.", "Table MyGenericTable", labelProvider.getText(table));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInternationalizationTest#getSourcePath()
-	 */
-	@Override
-	protected String getSourcePath() {
-		return "resources/controlmode";
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest#getBundle()
-	 */
-	@Override
-	protected Bundle getBundle() {
-		return Activator.getDefault().getBundle();
+		Assert.assertEquals("The class label is not the expected one.", "Table MyGenericTable",
+				labelProvider.getText(table));
 	}
 
 	/**
@@ -165,8 +134,7 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 		final ICommand control = ControlModeManager.getInstance().getControlCommand(request);
 
 		execute(control);
-		assertThat("Cannot undo control command", getTransactionalEditingDomain().getCommandStack().canUndo(),
-				is(true));
+		assertThat("Cannot undo control command", fixture.getEditingDomain().getCommandStack().canUndo(), is(true));
 
 		return request.getTargetResource(UmlModel.UML_FILE_EXTENSION);
 	}
@@ -193,7 +161,7 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 
 		try {
 			final URI fragmentURI = objectToControl.eResource().getURI().trimSegments(1).appendSegment(fragmentName);
-			result = new ControlModeRequest(getTransactionalEditingDomain(), objectToControl, fragmentURI);
+			result = new ControlModeRequest(fixture.getEditingDomain(), objectToControl, fragmentURI);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Failed to create ControlModeRequest: " + e.getLocalizedMessage());
@@ -215,8 +183,7 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 		final ICommand uncontrol = ControlModeManager.getInstance().getUncontrolCommand(request(element));
 
 		execute(uncontrol);
-		assertThat("Cannot undo control command", getTransactionalEditingDomain().getCommandStack().canUndo(),
-				is(true));
+		assertThat("Cannot undo control command", fixture.getEditingDomain().getCommandStack().canUndo(), is(true));
 	}
 
 	/**
@@ -229,12 +196,7 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	private ControlModeRequest request(final EObject objectToUncontrol) {
 		ControlModeRequest result = null;
 
-		try {
-			result = new ControlModeRequest(getTransactionalEditingDomain(), objectToUncontrol);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Failed to create ControlModeRequest: " + e.getLocalizedMessage());
-		}
+		result = new ControlModeRequest(fixture.getEditingDomain(), objectToUncontrol);
 
 		return result;
 	}
@@ -246,36 +208,21 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	 *            The GMF command to execute.
 	 */
 	protected void execute(final ICommand command) {
-		try {
-			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			fail("Failed to execute GMF command: " + e.getLocalizedMessage());
-		}
+		fixture.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 	}
 
 	/**
 	 * This allows to undo the last command done.
 	 */
 	protected void undo() {
-		try {
-			getTransactionalEditingDomain().getCommandStack().undo();
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			fail("Failed to undo command: " + e.getLocalizedMessage());
-		}
+		fixture.getEditingDomain().getCommandStack().undo();
 	}
 
 	/**
 	 * This allows to redo the last command undoable.
 	 */
 	protected void redo() {
-		try {
-			getTransactionalEditingDomain().getCommandStack().redo();
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			fail("Failed to redo command: " + e.getLocalizedMessage());
-		}
+		fixture.getEditingDomain().getCommandStack().redo();
 	}
 
 }

@@ -21,5 +21,12 @@
             fileExtension="internationalization">
       </model>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipse.papyrus.infra.internationalization.resource.InternationalizationResourceFactory"
+            type="properties">
+      </parser>
+   </extension>
 
 </plugin>

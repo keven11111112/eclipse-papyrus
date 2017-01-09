@@ -430,9 +430,11 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		List<IMultiDiagramEditor> result = Lists.newArrayList();
 
 		for (Resource resource : initModelResources(description)) {
-			IFile papyrusModel = getProject().getFile(resource.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION));
-			modelFiles.put(description, papyrusModel);
-			result.add(open(papyrusModel));
+			if(resource.getURI().fileExtension().equals(UmlModel.UML_FILE_EXTENSION)){
+				IFile papyrusModel = getProject().getFile(resource.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION));
+				modelFiles.put(description, papyrusModel);
+				result.add(open(papyrusModel));
+			}
 		}
 
 		return result;

@@ -7,14 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.internationalization.tests.tests;
 
-import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
-import org.eclipse.papyrus.uml.internationalization.tests.Activator;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Enumeration;
@@ -25,14 +25,18 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
 import org.junit.Before;
-import org.osgi.framework.Bundle;
+import org.junit.Rule;
 
 /**
  * This allows to define the abstract class for the UML internationalization
  * tests.
  */
-@SuppressWarnings("nls")
-public abstract class AbstractUMLInternationalizationTest extends AbstractEditorTest {
+@SuppressWarnings({ "nls", "restriction" })
+public abstract class AbstractUMLInternationalizationTest extends AbstractPapyrusTest {
+
+	/** The papyrus fixture for the project. */
+	@Rule
+	public final PapyrusEditorFixture fixture = new PapyrusEditorFixture();
 
 	/** The class name. */
 	private static final String CLASS_NAME = "Class1";
@@ -97,12 +101,14 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 	 */
 	@Before
 	public void initTest() throws Exception {
-		initTestModel();
+		
+		fixture.flushDisplayEvents();
 
-		model = getRootUMLModel();
+		model = fixture.getModel();
 		Assert.assertNotNull("The model cannot be null", model);
 
-		labelProvider = (DecoratingLabelProviderWTooltips) getModelExplorerView().getCommonViewer().getLabelProvider();
+		labelProvider = (DecoratingLabelProviderWTooltips) fixture.getModelExplorerView().getCommonViewer()
+				.getLabelProvider();
 
 		modelClass = (Class) model.getOwnedMember(CLASS_NAME);
 		Assert.assertNotNull("The class cannot be null", modelClass);
@@ -131,16 +137,6 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 		modelEnumeration = (Enumeration) modelInterface.getOwnedMember(ENUMERATION_NAME);
 		Assert.assertNotNull("The enumeration cannot be null", modelEnumeration);
 		Assert.assertEquals("Enumeration is not the one Expected", ENUMERATION_NAME, modelEnumeration.getName());
-	}
-
-	/**
-	 * This allows to initialize the test model.
-	 * 
-	 * @throws Exception
-	 *             The caught exception.
-	 */
-	protected void initTestModel() throws Exception {
-		initModel("testLabels", "internationalizationModel", getBundle());
 	}
 
 	/**
@@ -241,23 +237,4 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractEditor
 				labelProvider.getText(modelEnumeration));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest#getBundle()
-	 */
-	@Override
-	protected Bundle getBundle() {
-		return Activator.getDefault().getBundle();
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest#getSourcePath()
-	 */
-	@Override
-	protected String getSourcePath() {
-		return "resources/";
-	}
 }

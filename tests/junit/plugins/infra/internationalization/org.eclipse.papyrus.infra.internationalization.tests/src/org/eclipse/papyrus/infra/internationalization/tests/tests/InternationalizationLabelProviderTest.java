@@ -7,12 +7,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.internationalization.tests.tests;
 
+import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.junit.Test;
 
 /**
@@ -20,6 +21,7 @@ import org.junit.Test;
  * internationalization.
  */
 @SuppressWarnings("nls")
+@PluginResource({"resources/internationalizationModel.di", "resources/internationalizationModel_en_US.properties", "resources/internationalizationModel_fr_FR.properties"})
 public class InternationalizationLabelProviderTest extends AbstractInternationalizationTest {
 
 	/**
