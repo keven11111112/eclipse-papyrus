@@ -1,3 +1,12 @@
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
 import org.eclipse.draw2d.IFigure;
@@ -5,7 +14,6 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy;
@@ -28,8 +36,7 @@ public class CustomActivityPartitionEditPart extends ActivityPartitionEditPart {
 
 	@Override
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(-20, -20);
-		return result;
+		return new RoundedRectangleNodePlateFigure(-20, -20);
 	}
 
 	@Override

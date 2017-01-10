@@ -1,3 +1,12 @@
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
 import org.eclipse.draw2d.IFigure;
@@ -28,7 +37,6 @@ public class ShapeCompartmentWithoutScrollbarsEditPart extends LinkLFShapeCompar
 		figure.getScrollPane().setHorizontalScrollBar(null);
 		figure.getScrollPane().setVerticalScrollBar(null);
 		figure.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
-		// result.getScrollPane().getViewport().setContentsTracksHeight(true);
 		return figure;
 	}
 

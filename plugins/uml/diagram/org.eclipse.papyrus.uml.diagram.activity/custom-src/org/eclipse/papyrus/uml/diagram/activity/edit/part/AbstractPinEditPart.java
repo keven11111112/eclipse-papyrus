@@ -1,3 +1,12 @@
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
 import java.util.List;
@@ -13,6 +22,10 @@ import org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityFigureDrawer;
 
 
+/**
+ * This edit part allow to update pin icon following UML Norm
+ * @see 16.2.4.2 Pins and Figure 16.4 Pin notations
+ */
 public abstract class AbstractPinEditPart extends BorderedBorderItemEditPart {
 
 	public AbstractPinEditPart(View view) {

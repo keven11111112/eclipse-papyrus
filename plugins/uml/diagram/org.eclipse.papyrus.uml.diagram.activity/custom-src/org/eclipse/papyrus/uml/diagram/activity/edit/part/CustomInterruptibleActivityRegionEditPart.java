@@ -22,7 +22,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CustomInterruptibleActivityRegionEditPart.
  */
