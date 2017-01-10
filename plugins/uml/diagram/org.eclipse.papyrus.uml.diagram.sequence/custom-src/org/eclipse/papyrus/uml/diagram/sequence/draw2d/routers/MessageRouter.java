@@ -35,6 +35,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageAsync;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A multi behavior router which enable to draw message.
@@ -46,28 +50,74 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 @SuppressWarnings({ "restriction", "deprecation" })
 public class MessageRouter extends ObliqueRouter {
 
-	private static final int MAX_DELTA = 10;
+	private static final int MAX_DELTA = 65;
+	private static final int PRECISION_DELTA = 10;
+
+	private static boolean precisionMode;
 
 	public static enum RouterKind {
 		HORIZONTAL, OBLIQUE, SELF;
 
 		public static RouterKind getKind(Connection conn, PointList newLine) {
+
+					
+			PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, new Listener() {
+
+				@Override
+				public void handleEvent(Event event) {
+					// in case the SHIFT key is down, the creation enter in the precision Mode
+					precisionMode = (event.keyCode == SWT.SHIFT);
+				}
+			});
+
+
+			PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new Listener() {
+
+				@Override
+				public void handleEvent(Event event) {
+					// in case the SHIFT key is released, the creation mode goes back to normal
+					if (event.keyCode == SWT.SHIFT) {
+						precisionMode = false;
+					}
+				}
+			});
+
+
+
+
 			if (isSelfConnection(conn)) {
+
 				return SELF;
 			}
 			if (isHorizontalConnection(conn, newLine)) {
+
 				return HORIZONTAL;
 			}
+
 			return OBLIQUE;
 		}
 
+
+
 		private static boolean isHorizontalConnection(Connection conn, PointList newLine) {
+			boolean horizontal = true;
+
 			if (!(conn instanceof MessageAsync)) {
-				return false;
+				horizontal = false;
 			}
 			Point sourcePoint = newLine.getFirstPoint();
 			Point targetPoint = newLine.getLastPoint();
-			return Math.abs(sourcePoint.y - targetPoint.y) <= MAX_DELTA;
+
+			int realDelta = Math.abs(sourcePoint.y - targetPoint.y);
+
+			if (!precisionMode) {
+				horizontal = (realDelta <= MAX_DELTA);
+
+			} else {
+				horizontal = (realDelta <= PRECISION_DELTA);
+			}
+
+			return horizontal;
 		}
 
 		/**
@@ -127,6 +177,8 @@ public class MessageRouter extends ObliqueRouter {
 			break;
 		}
 	}
+
+
 
 	@Override
 	protected boolean checkShapesIntersect(Connection conn, PointList newLine) {

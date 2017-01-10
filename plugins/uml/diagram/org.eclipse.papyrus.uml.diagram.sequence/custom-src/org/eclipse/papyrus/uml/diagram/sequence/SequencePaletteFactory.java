@@ -492,12 +492,9 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		@Override
 		protected Point getLocation() {
 			Point mouseLocation = getCurrentInput().getMouseLocation();
-			// Horizontal connection if Shift is pressed
-			if (getCurrentInput().isShiftKeyDown()) {
-				return new Point(mouseLocation.x, getStartLocation().y);
-			} else {
-				return mouseLocation;
-			}
+			
+			return mouseLocation;
+			
 		}
 		
 		@Override
