@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
- *   Sébastien REVOL (CEA LIST) - Initial API and implementation
+ *   Jï¿½rï¿½mie TATIBOUET (CEA LIST) - Initial API and implementation
+ *   Sï¿½bastien REVOL (CEA LIST) - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -29,7 +29,11 @@ public abstract class AbstractCallActionPinUpdater<NodeType extends CallAction> 
 	@Override
 	public void updatePins(NodeType node) {
 		super.updatePins(node);
-		this.update(node.getResults(), this.deriveResults(node));
+		if (node.isSynchronous()) {
+			this.update(node.getResults(), this.deriveResults(node));
+		} else {
+			node.getResults().clear();
+		}
 	}
 
 	/**

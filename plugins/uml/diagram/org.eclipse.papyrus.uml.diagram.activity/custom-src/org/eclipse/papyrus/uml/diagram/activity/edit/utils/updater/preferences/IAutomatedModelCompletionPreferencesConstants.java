@@ -38,6 +38,8 @@ public interface IAutomatedModelCompletionPreferencesConstants {
 
 	final public String START_CLASSIFIER_BEHAVIOR_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.startClassifierBehaviorAction";
 
+	final public String START_OBJECT_BEHAVIOR_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.startObjectBehaviorAction";
+
 	final public String TEST_IDENTITY_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.testIdentityAction";
 
 	final public String VALUE_SPECIFICATION_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.valueSpecificationAction";

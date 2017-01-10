@@ -919,6 +919,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testInputPinAsObjectInStartObjectBehaviorAction() {
+		// Pins of StartObjectBehaviorAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.START_OBJECT_BEHAVIOR_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
@@ -928,6 +933,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testActionPinAsObjectInStartObjectBehaviorAction() {
+		// Pins of StartObjectBehaviorAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.START_OBJECT_BEHAVIOR_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
@@ -937,6 +947,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testValuePinAsObjectInStartObjectBehaviorAction() {
+		// Pins of StartObjectBehaviorAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.START_OBJECT_BEHAVIOR_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
