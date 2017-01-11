@@ -152,7 +152,11 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 		if (!toAdd.isEmpty() || !toRemove.isEmpty()) {
 			List<Object> newValue = new ArrayList<Object>(this.managedObject);
 			newValue.removeAll(toRemove);
-			newValue.addAll(toAdd);
+			for(final Object objectToAdd: toAdd){
+				if(!newValue.contains(objectToAdd)){
+					newValue.add(objectToAdd);
+				}
+			}
 			if (toAdd.size() > 0) {
 				newValue = organizeContents(newValue);
 			}

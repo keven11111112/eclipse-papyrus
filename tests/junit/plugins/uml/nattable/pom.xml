@@ -20,6 +20,7 @@
 		<module>org.eclipse.papyrus.uml.nattable.generic.tests</module>
 		<module>org.eclipse.papyrus.uml.nattable.stereotype.display.tests</module>
 		<module>org.eclipse.papyrus.uml.nattable.tests</module>
+		<module>org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests</module>
 	</modules>
 
 </project>
