@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 417409
- *  Christian W. Damus - bug 455075
+ *  Christian W. Damus - bugs 455075, 510254
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.modelelement;
@@ -31,6 +31,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
+import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * A DataSource is an object encapsulating one or more {@link ModelElement}s.
@@ -249,12 +251,25 @@ public class DataSource implements IChangeListener {
 			public void labelProviderChanged(LabelProviderChangedEvent event) {
 				if (!listeners.isEmpty()) {
 					LabelProviderChangedEvent forward = new LabelProviderChangedEvent(this, event.getElements());
-					for (ILabelProviderListener next : listeners) {
-						try {
-							next.labelProviderChanged(forward);
-						} catch (Exception e) {
-							Activator.log.error("Uncaught exception in label provider listener.", e); //$NON-NLS-1$
-						}
+					
+					// Listeners will most likely need to interact with the observables provided through me,
+					// so ensure that events are propagated on the UI thread
+					if (Display.getCurrent() != null) {
+						// Already on the UI thread
+						fireLabelProviderChanged(forward);
+					} else {
+						// Post asynchronously on the UI thread
+						CoreExecutors.getUIExecutorService().execute(() -> fireLabelProviderChanged(forward));
+					}
+				}
+			}
+			
+			protected void fireLabelProviderChanged(LabelProviderChangedEvent event) {
+				for (ILabelProviderListener next : listeners) {
+					try {
+						next.labelProviderChanged(event);
+					} catch (Exception e) {
+						Activator.log.error("Uncaught exception in label provider listener.", e); //$NON-NLS-1$
 					}
 				}
 			}
