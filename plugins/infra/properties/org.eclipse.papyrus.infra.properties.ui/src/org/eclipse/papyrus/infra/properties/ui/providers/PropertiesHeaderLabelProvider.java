@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 508629
+ *  Christian W. Damus - bugs 508629, 510254
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.providers;
 
@@ -18,7 +18,9 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * An extensible LabelProvider for the Properties View header. It is based
@@ -57,7 +59,18 @@ public class PropertiesHeaderLabelProvider extends LabelProvider {
 	}
 
 	private void forwardLabelChange(LabelProviderChangedEvent event) {
-		fireLabelProviderChanged(new LabelProviderChangedEvent(this, event.getElements()));
+		LabelProviderChangedEvent forward = new LabelProviderChangedEvent(this, event.getElements());
+
+		// The TabbedPropertySheetPage does not account for label-provider events happening
+		// off the UI thread, so we have to synchronize with the UI to protect it
+
+		if (Display.getCurrent() != null) {
+			// Already on the UI thread
+			fireLabelProviderChanged(forward);
+		} else {
+			// Asynchronously on the UI thread, then
+			CoreExecutors.getUIExecutorService().execute(() -> fireLabelProviderChanged(forward));
+		}
 	}
 
 	@Override
