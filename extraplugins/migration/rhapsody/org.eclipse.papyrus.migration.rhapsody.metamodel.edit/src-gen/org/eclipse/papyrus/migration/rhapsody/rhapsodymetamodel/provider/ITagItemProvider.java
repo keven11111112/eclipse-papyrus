@@ -632,6 +632,11 @@ public class ITagItemProvider extends IVariableItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -718,6 +723,11 @@ public class ITagItemProvider extends IVariableItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITag_ValueSpecifications(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter

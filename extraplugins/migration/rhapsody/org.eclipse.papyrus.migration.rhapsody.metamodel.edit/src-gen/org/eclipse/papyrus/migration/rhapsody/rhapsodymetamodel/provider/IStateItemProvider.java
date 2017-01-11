@@ -585,6 +585,11 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -671,6 +676,11 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter

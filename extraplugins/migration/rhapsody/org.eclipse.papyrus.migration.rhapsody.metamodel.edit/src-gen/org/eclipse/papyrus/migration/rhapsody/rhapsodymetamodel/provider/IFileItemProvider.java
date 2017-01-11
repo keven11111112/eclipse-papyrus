@@ -615,6 +615,11 @@ public class IFileItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -701,6 +706,11 @@ public class IFileItemProvider extends IUnitItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIFile_Fragments(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter

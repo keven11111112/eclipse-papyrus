@@ -596,6 +596,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -682,6 +687,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -1086,6 +1096,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -1172,6 +1187,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter

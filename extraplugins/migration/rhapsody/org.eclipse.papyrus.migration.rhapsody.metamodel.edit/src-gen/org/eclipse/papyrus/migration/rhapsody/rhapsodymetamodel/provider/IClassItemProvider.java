@@ -1182,6 +1182,11 @@ public class IClassItemProvider extends IClassifierItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -1268,6 +1273,11 @@ public class IClassItemProvider extends IClassifierItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -2223,7 +2233,8 @@ public class IClassItemProvider extends IClassifierItemProvider {
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Operations() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_PrimitiveOperations() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Dependencies() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_HyperLinks();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_HyperLinks() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_ObjectLinks();
 
 		if (qualify) {
 			return getString

@@ -62,6 +62,7 @@ public class IObjectLinkItemProvider extends ObjectLinksTypeItemProvider {
 			addIdPropertyDescriptor(object);
 			addMyStatePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addDisplayNamePropertyDescriptor(object);
 			addToLinkPropertyDescriptor(object);
 			addFromLinkPropertyDescriptor(object);
 			addEnd1MultiplicityPropertyDescriptor(object);
@@ -156,6 +157,28 @@ public class IObjectLinkItemProvider extends ObjectLinksTypeItemProvider {
 				 getString("_UI_ValueType_name_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ValueType_name_feature", "_UI_ValueType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 UMLRhapsodyPackage.eINSTANCE.getValueType_Name(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Display Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDisplayNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
 				 true,
 				 false,
 				 false,
@@ -459,6 +482,7 @@ public class IObjectLinkItemProvider extends ObjectLinksTypeItemProvider {
 			case UMLRhapsodyPackage.IOBJECT_LINK__ID:
 			case UMLRhapsodyPackage.IOBJECT_LINK__MY_STATE:
 			case UMLRhapsodyPackage.IOBJECT_LINK__NAME:
+			case UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IOBJECT_LINK__END1_MULTIPLICITY:
 			case UMLRhapsodyPackage.IOBJECT_LINK__END2_MULTIPLICITY:
 			case UMLRhapsodyPackage.IOBJECT_LINK__REQUIREMEN_TRACABILITY_HANDLE:

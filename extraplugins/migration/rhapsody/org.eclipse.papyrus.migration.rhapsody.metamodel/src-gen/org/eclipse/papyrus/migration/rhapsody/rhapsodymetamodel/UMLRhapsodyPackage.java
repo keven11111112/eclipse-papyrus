@@ -20288,13 +20288,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IINFORMATION_FLOW = 133;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IINFORMATION_FLOW__DISPLAY_NAME = DECLARATIVES_TYPE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__ID = DECLARATIVES_TYPE_FEATURE_COUNT + 0;
+	int IINFORMATION_FLOW__ID = DECLARATIVES_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>My State</b></em>' attribute.
@@ -20303,7 +20312,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__MY_STATE = DECLARATIVES_TYPE_FEATURE_COUNT + 1;
+	int IINFORMATION_FLOW__MY_STATE = DECLARATIVES_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -20312,7 +20321,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__NAME = DECLARATIVES_TYPE_FEATURE_COUNT + 2;
+	int IINFORMATION_FLOW__NAME = DECLARATIVES_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Conveyed</b></em>' reference list.
@@ -20321,7 +20330,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__CONVEYED = DECLARATIVES_TYPE_FEATURE_COUNT + 3;
+	int IINFORMATION_FLOW__CONVEYED = DECLARATIVES_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>End1 </b></em>' reference.
@@ -20330,7 +20339,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__END1_ = DECLARATIVES_TYPE_FEATURE_COUNT + 4;
+	int IINFORMATION_FLOW__END1_ = DECLARATIVES_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>End2 </b></em>' reference.
@@ -20339,7 +20348,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__END2_ = DECLARATIVES_TYPE_FEATURE_COUNT + 5;
+	int IINFORMATION_FLOW__END2_ = DECLARATIVES_TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Direction </b></em>' attribute.
@@ -20348,7 +20357,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__DIRECTION_ = DECLARATIVES_TYPE_FEATURE_COUNT + 6;
+	int IINFORMATION_FLOW__DIRECTION_ = DECLARATIVES_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -20357,7 +20366,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__MODIFIED_TIME_WEAK = DECLARATIVES_TYPE_FEATURE_COUNT + 7;
+	int IINFORMATION_FLOW__MODIFIED_TIME_WEAK = DECLARATIVES_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -20366,7 +20375,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__DESCRIPTION = DECLARATIVES_TYPE_FEATURE_COUNT + 8;
+	int IINFORMATION_FLOW__DESCRIPTION = DECLARATIVES_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>End1 Object Port </b></em>' reference.
@@ -20375,7 +20384,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__END1_OBJECT_PORT_ = DECLARATIVES_TYPE_FEATURE_COUNT + 9;
+	int IINFORMATION_FLOW__END1_OBJECT_PORT_ = DECLARATIVES_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>End2 Object Port </b></em>' reference.
@@ -20384,7 +20393,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__END2_OBJECT_PORT_ = DECLARATIVES_TYPE_FEATURE_COUNT + 10;
+	int IINFORMATION_FLOW__END2_OBJECT_PORT_ = DECLARATIVES_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -20393,7 +20402,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__REQUIREMEN_TRACABILITY_HANDLE = DECLARATIVES_TYPE_FEATURE_COUNT + 11;
+	int IINFORMATION_FLOW__REQUIREMEN_TRACABILITY_HANDLE = DECLARATIVES_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference.
@@ -20402,7 +20411,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__HYPER_LINKS = DECLARATIVES_TYPE_FEATURE_COUNT + 12;
+	int IINFORMATION_FLOW__HYPER_LINKS = DECLARATIVES_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference.
@@ -20411,7 +20420,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__DEPENDENCIES = DECLARATIVES_TYPE_FEATURE_COUNT + 13;
+	int IINFORMATION_FLOW__DEPENDENCIES = DECLARATIVES_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference.
@@ -20420,7 +20429,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__ANNOTATIONS = DECLARATIVES_TYPE_FEATURE_COUNT + 14;
+	int IINFORMATION_FLOW__ANNOTATIONS = DECLARATIVES_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -20429,7 +20438,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__OBJECT_CREATION = DECLARATIVES_TYPE_FEATURE_COUNT + 15;
+	int IINFORMATION_FLOW__OBJECT_CREATION = DECLARATIVES_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -20438,7 +20447,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__UML_DEPENDENCY_ID = DECLARATIVES_TYPE_FEATURE_COUNT + 16;
+	int IINFORMATION_FLOW__UML_DEPENDENCY_ID = DECLARATIVES_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
@@ -20447,7 +20456,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__STEREOTYPES = DECLARATIVES_TYPE_FEATURE_COUNT + 17;
+	int IINFORMATION_FLOW__STEREOTYPES = DECLARATIVES_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference list.
@@ -20456,7 +20465,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW__TAGS = DECLARATIVES_TYPE_FEATURE_COUNT + 18;
+	int IINFORMATION_FLOW__TAGS = DECLARATIVES_TYPE_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of structural features of the '<em>IInformation Flow</em>' class.
@@ -20465,7 +20474,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IINFORMATION_FLOW_FEATURE_COUNT = DECLARATIVES_TYPE_FEATURE_COUNT + 19;
+	int IINFORMATION_FLOW_FEATURE_COUNT = DECLARATIVES_TYPE_FEATURE_COUNT + 20;
 
 	/**
 	 * The number of operations of the '<em>IInformation Flow</em>' class.
@@ -23136,13 +23145,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IOBJECT_LINK__NAME = OBJECT_LINKS_TYPE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IOBJECT_LINK__DISPLAY_NAME = OBJECT_LINKS_TYPE_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__STEREOTYPES = OBJECT_LINKS_TYPE_FEATURE_COUNT + 4;
+	int IOBJECT_LINK__STEREOTYPES = OBJECT_LINKS_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Tags</b></em>' containment reference.
@@ -23151,7 +23169,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__TAGS = OBJECT_LINKS_TYPE_FEATURE_COUNT + 5;
+	int IOBJECT_LINK__TAGS = OBJECT_LINKS_TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>To Link</b></em>' reference.
@@ -23160,7 +23178,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__TO_LINK = OBJECT_LINKS_TYPE_FEATURE_COUNT + 6;
+	int IOBJECT_LINK__TO_LINK = OBJECT_LINKS_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>From Link</b></em>' reference.
@@ -23169,7 +23187,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__FROM_LINK = OBJECT_LINKS_TYPE_FEATURE_COUNT + 7;
+	int IOBJECT_LINK__FROM_LINK = OBJECT_LINKS_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Instantiates</b></em>' containment reference.
@@ -23178,7 +23196,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__INSTANTIATES = OBJECT_LINKS_TYPE_FEATURE_COUNT + 8;
+	int IOBJECT_LINK__INSTANTIATES = OBJECT_LINKS_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>End1 Multiplicity</b></em>' attribute.
@@ -23187,7 +23205,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__END1_MULTIPLICITY = OBJECT_LINKS_TYPE_FEATURE_COUNT + 9;
+	int IOBJECT_LINK__END1_MULTIPLICITY = OBJECT_LINKS_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>End2 Multiplicity</b></em>' attribute.
@@ -23196,7 +23214,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__END2_MULTIPLICITY = OBJECT_LINKS_TYPE_FEATURE_COUNT + 10;
+	int IOBJECT_LINK__END2_MULTIPLICITY = OBJECT_LINKS_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>To Port</b></em>' reference.
@@ -23205,7 +23223,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__TO_PORT = OBJECT_LINKS_TYPE_FEATURE_COUNT + 11;
+	int IOBJECT_LINK__TO_PORT = OBJECT_LINKS_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>From Port</b></em>' reference.
@@ -23214,7 +23232,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__FROM_PORT = OBJECT_LINKS_TYPE_FEATURE_COUNT + 12;
+	int IOBJECT_LINK__FROM_PORT = OBJECT_LINKS_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -23223,7 +23241,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__DESCRIPTION = OBJECT_LINKS_TYPE_FEATURE_COUNT + 13;
+	int IOBJECT_LINK__DESCRIPTION = OBJECT_LINKS_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -23232,7 +23250,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__REQUIREMEN_TRACABILITY_HANDLE = OBJECT_LINKS_TYPE_FEATURE_COUNT + 14;
+	int IOBJECT_LINK__REQUIREMEN_TRACABILITY_HANDLE = OBJECT_LINKS_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -23241,7 +23259,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__CODE_UPDATE_CG_TIME = OBJECT_LINKS_TYPE_FEATURE_COUNT + 15;
+	int IOBJECT_LINK__CODE_UPDATE_CG_TIME = OBJECT_LINKS_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -23250,7 +23268,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__OBJECT_CREATION = OBJECT_LINKS_TYPE_FEATURE_COUNT + 16;
+	int IOBJECT_LINK__OBJECT_CREATION = OBJECT_LINKS_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -23259,7 +23277,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK__UML_DEPENDENCY_ID = OBJECT_LINKS_TYPE_FEATURE_COUNT + 17;
+	int IOBJECT_LINK__UML_DEPENDENCY_ID = OBJECT_LINKS_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The number of structural features of the '<em>IObject Link</em>' class.
@@ -23268,7 +23286,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IOBJECT_LINK_FEATURE_COUNT = OBJECT_LINKS_TYPE_FEATURE_COUNT + 18;
+	int IOBJECT_LINK_FEATURE_COUNT = OBJECT_LINKS_TYPE_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of operations of the '<em>IObject Link</em>' class.

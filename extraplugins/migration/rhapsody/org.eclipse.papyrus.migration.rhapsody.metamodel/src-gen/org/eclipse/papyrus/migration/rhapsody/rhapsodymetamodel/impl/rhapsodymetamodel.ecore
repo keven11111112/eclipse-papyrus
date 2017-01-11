@@ -1839,7 +1839,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="umlDependencyID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IHyperLink" eSuperTypes="#//IDependency"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IInformationFlow" eSuperTypes="#//DeclarativesType #//DependsOnType">
+  <eClassifiers xsi:type="ecore:EClass" name="IInformationFlow" eSuperTypes="#//DeclarativesType #//DependsOnType #//IModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="myState" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -2103,7 +2103,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="INode" eSuperTypes="#//IClassifier"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IObjectLink" eSuperTypes="#//ObjectLinksType #//ValueType #//M_pModelObjectType #//DependsOnType">
+  <eClassifiers xsi:type="ecore:EClass" name="IObjectLink" eSuperTypes="#//ObjectLinksType #//ValueType #//M_pModelObjectType #//DependsOnType #//IModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Stereotypes" eType="#//IUnit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Tags" eType="#//ITag" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toLink" eType="#//ToLinkType"/>

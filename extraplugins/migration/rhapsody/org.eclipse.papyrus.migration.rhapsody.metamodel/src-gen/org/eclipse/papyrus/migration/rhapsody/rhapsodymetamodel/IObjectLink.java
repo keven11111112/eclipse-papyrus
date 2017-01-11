@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IObjectLink extends ObjectLinksType, ValueType, M_pModelObjectType, DependsOnType {
+public interface IObjectLink extends ObjectLinksType, ValueType, M_pModelObjectType, DependsOnType, IModelElement {
 	/**
 	 * Returns the value of the '<em><b>Stereotypes</b></em>' reference.
 	 * <!-- begin-user-doc -->

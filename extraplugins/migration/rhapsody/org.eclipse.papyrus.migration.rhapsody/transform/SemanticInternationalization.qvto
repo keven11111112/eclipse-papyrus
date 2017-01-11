@@ -141,21 +141,23 @@ helper NamedElement::getRhaposdyLabel():String{
 		rpyElement:=self.invresolveoneIn(IType::iTypeFromRhapsodyPredefinedTypesWithUMLPrimitivesTypes)->selectByKind(IModelElement)->any(true);
 	};
 	
-	
+	//IAssociationEnd doesn't have the feature displayName
 	//mapping umlrhapsody::IAssociationEnd::toAssociationswithoutProp(): uml::Association
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationswithoutProp)->selectByKind(IModelElement)->any(true);
-	};
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationswithoutProp)->selectByKind(IModelElement)->any(true);
+//	};
 	
+	//IAssociationEnd doesn't have the feature displayName
 	//mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association {			
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationswithProp)->selectByKind(IModelElement)->any(true);
-	};
-	
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationswithProp)->selectByKind(IModelElement)->any(true);
+//	};
+
+	//IAssociationEnd doesn't have the feature displayName
 	//mapping umlrhapsody::IAssociationEnd::toOwnedAssociationEnd(): uml::Property{
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IAssociationEnd::toOwnedAssociationEnd)->selectByKind(IModelElement)->any(true);
-	};
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(IAssociationEnd::toOwnedAssociationEnd)->selectByKind(IModelElement)->any(true);
+//	};
 	
 	//mapping umlrhapsody::IType::toUMLDatatype() : uml::DataType when {self.isUMLDataType()}{
 	//already managed by IType::iTypeToUMLElement
@@ -319,10 +321,11 @@ helper NamedElement::getRhaposdyLabel():String{
 		rpyElement:=self.invresolveoneIn(IInterfaceItemTrigger::toTrigger)->selectByKind(IModelElement)->any(true);
 	};
 	
+	//IAssociationEnd doesn't have the feature displayName
 	//mapping umlrhapsody::IAssociationEnd::toAssociationsEnd(): uml::Property when{self.oclIsTypeOf(IAssociationEnd)}{
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationsEnd)->selectByKind(IModelElement)->any(true);
-	};
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationsEnd)->selectByKind(IModelElement)->any(true);
+//	};
 
 	//mapping umlrhapsody::IClass::fromClasse2Associations(): uml::Association
 	if(rpyElement=null){

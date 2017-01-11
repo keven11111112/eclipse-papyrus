@@ -31,6 +31,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ElementsType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.FromLinkType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDescription;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IMetaLinkHandle;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IObjectLink;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IRelation;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITag;
@@ -52,6 +53,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ValueType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IObjectLinkImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IObjectLinkImpl#getMyState <em>My State</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IObjectLinkImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IObjectLinkImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IObjectLinkImpl#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IObjectLinkImpl#getTags <em>Tags</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IObjectLinkImpl#getToLink <em>To Link</em>}</li>
@@ -140,6 +142,26 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DISPLAY_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getStereotypes() <em>Stereotypes</em>}' reference.
@@ -423,6 +445,27 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IOBJECT_LINK__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDisplayName(String newDisplayName) {
+		String oldDisplayName = displayName;
+		displayName = newDisplayName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME, oldDisplayName, displayName));
 	}
 
 	/**
@@ -964,6 +1007,8 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 				return getMyState();
 			case UMLRhapsodyPackage.IOBJECT_LINK__NAME:
 				return getName();
+			case UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME:
+				return getDisplayName();
 			case UMLRhapsodyPackage.IOBJECT_LINK__STEREOTYPES:
 				if (resolve) return getStereotypes();
 				return basicGetStereotypes();
@@ -1025,6 +1070,9 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 				return;
 			case UMLRhapsodyPackage.IOBJECT_LINK__NAME:
 				setName((String)newValue);
+				return;
+			case UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME:
+				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IOBJECT_LINK__STEREOTYPES:
 				setStereotypes((IUnit)newValue);
@@ -1093,6 +1141,9 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 			case UMLRhapsodyPackage.IOBJECT_LINK__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
+				return;
 			case UMLRhapsodyPackage.IOBJECT_LINK__STEREOTYPES:
 				setStereotypes((IUnit)null);
 				return;
@@ -1155,6 +1206,8 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 				return MY_STATE_EDEFAULT == null ? myState != null : !MY_STATE_EDEFAULT.equals(myState);
 			case UMLRhapsodyPackage.IOBJECT_LINK__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IOBJECT_LINK__STEREOTYPES:
 				return stereotypes != null;
 			case UMLRhapsodyPackage.IOBJECT_LINK__TAGS:
@@ -1218,6 +1271,12 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (derivedFeatureID) {
+				case UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME: return UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -1252,6 +1311,12 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (baseFeatureID) {
+				case UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME: return UMLRhapsodyPackage.IOBJECT_LINK__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
@@ -1273,6 +1338,8 @@ public class IObjectLinkImpl extends ObjectLinksTypeImpl implements IObjectLink 
 		result.append(myState);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
+		result.append(", displayName: "); //$NON-NLS-1$
+		result.append(displayName);
 		result.append(", end1Multiplicity: "); //$NON-NLS-1$
 		result.append(end1Multiplicity);
 		result.append(", end2Multiplicity: "); //$NON-NLS-1$

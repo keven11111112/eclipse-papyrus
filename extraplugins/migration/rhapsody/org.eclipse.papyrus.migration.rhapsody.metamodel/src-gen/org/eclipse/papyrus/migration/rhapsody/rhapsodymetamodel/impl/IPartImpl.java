@@ -812,6 +812,27 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDisplayName(String newDisplayName) {
+		String oldDisplayName = displayName;
+		displayName = newDisplayName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IPART__DISPLAY_NAME, oldDisplayName, displayName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IUnit getStereotypes() {
 		if (stereotypes != null && stereotypes.eIsProxy()) {
 			InternalEObject oldStereotypes = (InternalEObject)stereotypes;
@@ -1063,27 +1084,6 @@ public class IPartImpl extends AssociationsTypeImpl implements IPart {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IPART__INITIAL_CALL_ACTION, newInitialCallAction, newInitialCallAction));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDisplayName(String newDisplayName) {
-		String oldDisplayName = displayName;
-		displayName = newDisplayName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IPART__DISPLAY_NAME, oldDisplayName, displayName));
 	}
 
 	/**

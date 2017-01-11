@@ -19,6 +19,11 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>IAssociation End</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This object must not inherit from IModelElement.
+ * In Rhapsody, this object doesn't have displayName field!
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

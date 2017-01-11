@@ -135,7 +135,8 @@ public class IAssociationClassItemProvider extends IClassItemProvider {
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Operations() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_PrimitiveOperations() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_Dependencies() ||
-			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_HyperLinks();
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_HyperLinks() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getIClass_ObjectLinks();
 
 		if (qualify) {
 			return getString

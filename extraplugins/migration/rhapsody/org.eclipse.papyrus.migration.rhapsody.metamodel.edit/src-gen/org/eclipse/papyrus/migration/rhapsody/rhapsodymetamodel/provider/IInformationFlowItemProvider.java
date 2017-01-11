@@ -58,6 +58,7 @@ public class IInformationFlowItemProvider extends DeclarativesTypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDisplayNamePropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
 			addMyStatePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
@@ -72,6 +73,28 @@ public class IInformationFlowItemProvider extends DeclarativesTypeItemProvider {
 			addUmlDependencyIDPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Display Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDisplayNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -412,6 +435,7 @@ public class IInformationFlowItemProvider extends DeclarativesTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IInformationFlow.class)) {
+			case UMLRhapsodyPackage.IINFORMATION_FLOW__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IINFORMATION_FLOW__ID:
 			case UMLRhapsodyPackage.IINFORMATION_FLOW__MY_STATE:
 			case UMLRhapsodyPackage.IINFORMATION_FLOW__NAME:

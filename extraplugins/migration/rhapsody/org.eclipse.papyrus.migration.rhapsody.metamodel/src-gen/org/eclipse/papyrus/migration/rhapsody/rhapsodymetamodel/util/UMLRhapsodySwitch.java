@@ -1204,6 +1204,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				T result = caseIInformationFlow(iInformationFlow);
 				if (result == null) result = caseDeclarativesType(iInformationFlow);
 				if (result == null) result = caseDependsOnType(iInformationFlow);
+				if (result == null) result = caseIModelElement(iInformationFlow);
 				if (result == null) result = caseElementsType(iInformationFlow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -1441,6 +1442,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueType(iObjectLink);
 				if (result == null) result = caseM_pModelObjectType(iObjectLink);
 				if (result == null) result = caseDependsOnType(iObjectLink);
+				if (result == null) result = caseIModelElement(iObjectLink);
 				if (result == null) result = caseElementsType(iObjectLink);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

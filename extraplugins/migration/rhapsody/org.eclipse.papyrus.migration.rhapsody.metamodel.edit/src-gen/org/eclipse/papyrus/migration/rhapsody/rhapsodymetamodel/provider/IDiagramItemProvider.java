@@ -718,6 +718,11 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -804,6 +809,11 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter

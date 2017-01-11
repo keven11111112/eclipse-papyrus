@@ -48,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IInformationFlow extends DeclarativesType, DependsOnType {
+public interface IInformationFlow extends DeclarativesType, DependsOnType, IModelElement {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

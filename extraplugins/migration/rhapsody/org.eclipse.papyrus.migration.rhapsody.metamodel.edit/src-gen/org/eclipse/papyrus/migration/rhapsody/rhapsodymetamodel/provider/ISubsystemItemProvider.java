@@ -1898,6 +1898,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIInformationFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createIRelation()));
 
 		newChildDescriptors.add
@@ -1984,6 +1989,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createINode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIObjectLink()));
 
 		newChildDescriptors.add
 			(createChildParameter
