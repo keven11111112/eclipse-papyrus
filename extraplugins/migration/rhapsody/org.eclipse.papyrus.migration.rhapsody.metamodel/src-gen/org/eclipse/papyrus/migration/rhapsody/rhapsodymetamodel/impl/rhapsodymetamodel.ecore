@@ -1693,7 +1693,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//IDescription"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IEvent" eSuperTypes="#//IInterfaceItem #//M_subjectType #//M_pFormalMessageType #//ConveyedType #//TargetType">
+  <eClassifiers xsi:type="ecore:EClass" name="IEvent" eSuperTypes="#//IInterfaceItem #//M_subjectType #//M_pFormalMessageType #//ConveyedType #//TargetType #//M_pModelObjectType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="myState" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

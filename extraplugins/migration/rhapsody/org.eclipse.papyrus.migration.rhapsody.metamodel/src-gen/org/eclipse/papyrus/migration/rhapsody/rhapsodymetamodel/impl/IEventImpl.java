@@ -39,6 +39,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPropertyContain
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ITag;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IVariable;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.M_pFormalMessageType;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.M_pModelObjectType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.M_subjectType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.TargetType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
@@ -1143,6 +1144,11 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 				default: return -1;
 			}
 		}
+		if (baseClass == M_pModelObjectType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -1172,6 +1178,11 @@ public class IEventImpl extends IInterfaceItemImpl implements IEvent {
 			}
 		}
 		if (baseClass == TargetType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == M_pModelObjectType.class) {
 			switch (baseFeatureID) {
 				default: return -1;
 			}

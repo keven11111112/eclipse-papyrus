@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IEvent extends IInterfaceItem, M_subjectType, M_pFormalMessageType, ConveyedType, TargetType {
+public interface IEvent extends IInterfaceItem, M_subjectType, M_pFormalMessageType, ConveyedType, TargetType, M_pModelObjectType {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -1072,6 +1072,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseM_pFormalMessageType(iEvent);
 				if (result == null) result = caseConveyedType(iEvent);
 				if (result == null) result = caseTargetType(iEvent);
+				if (result == null) result = caseM_pModelObjectType(iEvent);
 				if (result == null) result = caseIClassifier(iEvent);
 				if (result == null) result = caseIUnit(iEvent);
 				if (result == null) result = caseIModelElement(iEvent);

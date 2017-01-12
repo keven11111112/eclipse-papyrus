@@ -402,6 +402,11 @@ public class IMatrixInstanceItemProvider extends MatrixInstancesTypeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIMatrixInstance_FromScopeHandles(),
+				 UMLRhapsodyFactory.eINSTANCE.createIEvent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIMatrixInstance_FromScopeHandles(),
 				 UMLRhapsodyFactory.eINSTANCE.createIInteractionOperand()));
 
 		newChildDescriptors.add
@@ -608,6 +613,11 @@ public class IMatrixInstanceItemProvider extends MatrixInstancesTypeItemProvider
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIMatrixInstance_ToScopeHandles(),
 				 UMLRhapsodyFactory.eINSTANCE.createIDeploymentDiagram()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIMatrixInstance_ToScopeHandles(),
+				 UMLRhapsodyFactory.eINSTANCE.createIEvent()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -51,7 +51,13 @@ mapping rhapsodymetamodel::IDiagram::iDiagramToSysML11BlockDefinitionDiagram(rpy
 		result:=self.map createAndInitDiagram(rpyProject,getPapyrusDiagramType(), owner, owner);
 	}	
 	
-	children:= self.graphicChart.graphElements.map toSysML11BlockDefinitionDiagramShape();
+	//1. find some objects
+	var cgiClassChart:CGIClassChart:=self.graphicChart->oclAsSet().selectByType(CGIClassChart)->any(true);
+	var cgiClass:CGIClass:=cgiClassChart.graphElements->selectByType(CGIClass)->any(true);
+	var cgiDiagramFrame:CGIDiagramFrame:=cgiClassChart.graphElements->selectByType(CGIDiagramFrame)->any(true);
+	
+	
+	children:= self.graphicChart.graphElements.map toSysML11BlockDefinitionDiagramShape(cgiClassChart, cgiClass->asSequence());
 	edges:=self.graphicChart.graphElements.map toSysML11BlockDefinitionDiagramEdge();
 	
 }
@@ -208,8 +214,13 @@ type:=
 /**
 *
 * This mapping allows to create all views in a Papyrus SysML 1.1 BDD according to the Rhapsody Model
+* @param
+*		cgiClassChart : the class chart of the diagram, it is useful to find child to create for the created element
+* @param
+* 		rpyAllowedParent : the list of the allowed Rhapsody parent to manage the object.
+*		if the Rhapsody parent is not in this list, the object won't be mapped
 */
-mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramShape() : Shape 
+mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape 
 	disjuncts 
 	umlrhapsody::CGIGenericElement::toSysML11BDDDataTypeShape, //TODO split with value type
 	umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape,
@@ -218,7 +229,10 @@ mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramShape() :
 	umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape,
 	umlrhapsody::CGIClass::toSysML11BDDBlockShape,
 	umlrhapsody::CGIClass::toSysML11BDDConstraintBlockShape,
-	umlrhapsody::CGIClass::toSysML11BDDFlowSpecificationShape
+	umlrhapsody::CGIClass::toSysML11BDDFlowSpecificationShape,
+	umlrhapsody::CGIBasicClass::toSysML11BDDActorShape,
+	umlrhapsody::CGIPackage::toSysML11BDDPackageShape, 
+	umlrhapsody::CGIGenericElement::toSysML11BDDSignalShape
 	{}
 	
 mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramEdge() : Edge 
@@ -229,7 +243,7 @@ mapping umlrhapsody::GraphElementsType::toSysML11BlockDefinitionDiagramEdge() : 
 /**
 * This mapping creates the Block Shape with its compartment and their children
 */	
-mapping umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLClass()}{
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLClass() and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 	type:="shape_sysml_block_as_classifier";
 	element := self.m_pModelObject.resolveone().oclAsType(EObject);
 	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_block_name"};
@@ -260,7 +274,7 @@ mapping umlrhapsody::CGIGenericElement::toSysML11BDDBlockShape() : Shape when {s
 /**
 * This mapping creates the Block Shape with its compartment and their children
 */	
-mapping umlrhapsody::CGIClass::toSysML11BDDBlockShape() : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and  self.m_pModelObject.oclIsTypeOf(IClass) and not (self.m_pModelObject.oclAsType(IClass).isSysMLFlowSpecification() or self.m_pModelObject.oclAsType(IClass).isSysMLConstraintBlock()) }{
+mapping umlrhapsody::CGIClass::toSysML11BDDBlockShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and  self.m_pModelObject.oclIsTypeOf(IClass) and not (self.m_pModelObject.oclAsType(IClass).isSysMLFlowSpecification() or self.m_pModelObject.oclAsType(IClass).isSysMLConstraintBlock()) and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 	var res:Boolean= self.m_pModelObject.oclIsTypeOf(IClass);
 
 	type:="shape_sysml_block_as_classifier";
@@ -293,7 +307,7 @@ mapping umlrhapsody::CGIClass::toSysML11BDDBlockShape() : Shape when {self.oclIs
 * This mapping creates the Block Shape with its compartment and their children
 */	
 //TODO : merge me with previous one ?
-mapping umlrhapsody::CGIClass::toSysML11BDDConstraintBlockShape() : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLConstraintBlock()}{
+mapping umlrhapsody::CGIClass::toSysML11BDDConstraintBlockShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLConstraintBlock() and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 
 // <children xmi:type="notation:Shape" xmi:id="_Mr2uIIlmEeaNf9-vLHMoKw" type="shape_sysml_flowspecification_as_classifier">
 //    <children xmi:type="notation:DecorationNode" xmi:id="_Mr3VMIlmEeaNf9-vLHMoKw" type="label_sysml_flowspecification_name"/>
@@ -343,7 +357,7 @@ mapping umlrhapsody::CGIClass::toSysML11BDDConstraintBlockShape() : Shape when {
 * This mapping creates the Block Shape with its compartment and their children
 */	
 //TODO : merge me with previous one ?
-mapping umlrhapsody::CGIClass::toSysML11BDDFlowSpecificationShape() : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLFlowSpecification()}{
+mapping umlrhapsody::CGIClass::toSysML11BDDFlowSpecificationShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.oclIsTypeOf(CGIClass) and self.m_pParent<>null and self.m_pModelObject.oclIsTypeOf(IClass) and self.m_pModelObject.oclAsType(IClass).isSysMLFlowSpecification() and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 
 // <children xmi:type="notation:Shape" xmi:id="_Mr2uIIlmEeaNf9-vLHMoKw" type="shape_sysml_flowspecification_as_classifier">
 //    <children xmi:type="notation:DecorationNode" xmi:id="_Mr3VMIlmEeaNf9-vLHMoKw" type="label_sysml_flowspecification_name"/>
@@ -382,7 +396,7 @@ mapping umlrhapsody::CGIClass::toSysML11BDDFlowSpecificationShape() : Shape when
 	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
 }
 
-mapping umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLInstanceSpecification() and self.m_pModelObject.oclAsType(IType).isSysMLUnit()}{
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLInstanceSpecification() and self.m_pModelObject.oclAsType(IType).isSysMLUnit() and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 	type:="shape_sysml_unit_as_classifier";
 	element := self.m_pModelObject.resolveone().oclAsType(EObject);
 	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_unit_name"};
@@ -390,7 +404,7 @@ mapping umlrhapsody::CGIGenericElement::toSysML11BDDUnitShape() : Shape when {se
 	//TODO : add compartment as hidden
 	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
 }
-mapping umlrhapsody::CGIGenericElement::toSysML11BDDDimensionShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLInstanceSpecification() and self.m_pModelObject.oclAsType(IType).isSysMLDimension()}{
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDDimensionShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLInstanceSpecification() and self.m_pModelObject.oclAsType(IType).isSysMLDimension() and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 	type:="shape_sysml_dimension_as_classifier";
 	element := self.m_pModelObject.resolveone().oclAsType(EObject);
 	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_sysml_dimension_name"};
@@ -404,7 +418,7 @@ mapping umlrhapsody::CGIGenericElement::toSysML11BDDDimensionShape() : Shape whe
 /**
 * map the Rhapsody enumeration representation to the Papyrus Enumeration
 */
-mapping umlrhapsody::CGIGenericElement::toSysML11BDDEnumerationShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLEnumeration()}{
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDEnumerationShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLEnumeration() and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 	type:="shape_uml_enumeration_as_classifier";
 	element := self.m_pModelObject.resolveone().oclAsType(EObject);
 	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_uml_namedelement_name"};
@@ -415,7 +429,7 @@ mapping umlrhapsody::CGIGenericElement::toSysML11BDDEnumerationShape() : Shape w
 	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
 }
 
-mapping umlrhapsody::CGIGenericElement::toSysML11BDDDataTypeShape() : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLDataType()}{
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDDataTypeShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)) : Shape when {self.m_pModelObject.oclIsKindOf(IType) and self.m_pModelObject.oclAsType(IType).isUMLDataType() and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
 	type:="shape_uml_datatype_as_classifier";
 	element := self.m_pModelObject.resolveone().oclAsType(EObject);
 	var decorationNode:notation::DecorationNode:= object DecorationNode{type:="label_uml_namedelement_name"};
@@ -763,4 +777,60 @@ mapping umlrhapsody::CGIAssociationEnd::toSysML11BDDAssociationEdge() : Connecto
 	eAnnotations+=createCSSForceValue("routing");
 }
 
+/**
+* Create the Actor Shape
+*/ 
+mapping umlrhapsody::CGIBasicClass::toSysML11BDDActorShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):notation::Shape when {self.m_pModelObject.oclIsTypeOf(IActor) and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	type:="shape_uml_actor_as_classifier";
+	children+= object DecorationNode{
+		type:="label_uml_namedelement_name";
+	};
+	children+=self.map toListCompartment("compartment_uml_property_as_list",null);
+	children+=self.map toListCompartment("compartment_uml_operation_as_list",null);
+  	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}
 
+/**
+* Create the package shape
+*
+*/
+mapping umlrhapsody::CGIPackage::toSysML11BDDPackageShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):notation::Shape when {self.m_pModelObject.oclIsTypeOf(ISubsystem) and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	type:="Package_Shape";
+	children+= object DecorationNode{
+		type:="Package_NameLabel";
+	};
+	var blockPropertyStructure:BasicCompartment:= object BasicCompartment {
+		type:="Package_PackagedElementCompartment";
+		styles+=object TitleStyle{};
+		layoutConstraint:=object Bounds{};
+	};
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+	
+	//create package contents
+	
+	blockPropertyStructure.children+=cgiClassChart.graphElements->select(a | a.isAllowedAsCompartmentChildren(blockPropertyStructure)).map toSysML11BlockDefinitionDiagramShape(cgiClassChart, self->asSequence());
+	children+=blockPropertyStructure;
+}
+
+/**
+* Returns true when the graph element can be set as a children of a given compartment
+*/
+query umlrhapsody::GraphElementsType::isAllowedAsCompartmentChildren(cpt:BasicCompartment):Boolean{
+	return not self.oclIsTypeOf(CGIPortConnector);
+}
+
+/**
+* Map the CGIGenericElement to a Signal Shape
+*/
+mapping umlrhapsody::CGIGenericElement::toSysML11BDDSignalShape(cgiClassChart:CGIClassChart, rpyAllowedParent:Sequence(GraphElementsType)):notation::Shape when{self.m_pModelObject.oclIsTypeOf(IEvent) and self.m_pParent.oclIsKindOf(GraphElementsType) and rpyAllowedParent->includes(self.m_pParent.oclAsType(GraphElementsType))}{
+	element := self.m_pModelObject.resolveone().oclAsType(EObject);
+	type:="shape_uml_signal_as_classifier";
+	children+= object DecorationNode{
+		type:="label_uml_namedelement_name";
+	};
+	children+=self.map toListCompartment("compartment_uml_property_as_list",null);
+	children+=self.map toListCompartment("compartment_uml_operation_as_list",null);
+	layoutConstraint:= object Bounds{ x:=getX(self); y:=getY(self); width :=getRectangleWidth(self); height := getRectangleHeight(self)};
+}

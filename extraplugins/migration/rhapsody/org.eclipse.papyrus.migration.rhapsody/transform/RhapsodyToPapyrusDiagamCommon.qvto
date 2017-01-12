@@ -143,6 +143,30 @@ mapping umlrhapsody::CGIClass::toListCompartment(papyrusCompartmentName:String, 
 	eAnnotations+=createCSSForceValue("visible");
 }
 
+//TODO : merge me with previous one
+mapping umlrhapsody::CGIBasicClass::toListCompartment(papyrusCompartmentName:String, rhapsodyCompartmentName:String) : notation::ListCompartment{
+	type:=papyrusCompartmentName;
+	styles := object DrawerStyle{};
+	styles += object TitleStyle{};
+	styles += object SortingStyle{};
+	styles += object FilteringStyle{};
+	//we hide the compartment by default. We show it only if it the equivalent compartment is shown in Rhapsody
+	visible:=false;
+	
+	if(rhapsodyCompartmentName<>null){
+		visible:=self.Compartments->selectByKind(CGICompartment)->select(cpt | cpt.m_name=rhapsodyCompartmentName)->notEmpty();
+	};
+	if(visible){
+		var showCompartmentTitleProperty:umlrhapsody::IProperty :=self[CGIBasicClass].properties.Subjects->select(subject | subject.Name="General").Metaclasses->select(metaclass | metaclass.Name="Graphics").Properties->select(p | p.Name="ShowCompartmentsTitle")->any(true);
+		if((not showCompartmentTitleProperty.oclIsUndefined()) and showCompartmentTitleProperty.Value="False"){
+			eAnnotations+= object EAnnotation { source:="PapyrusCSSForceValue" ; details+=object EStringToStringMapEntry { key:="showTitle"; value:="false"}};	
+		};
+	};
+	
+	//force value to avoid impact of CSS and get the same display between Rhapsody and Papyrus
+	eAnnotations+=createCSSForceValue("visible");
+}
+
 /**
 * Helper to create an EAnnotation to force a value and ignore CSS. It is used to get the same diaply between Rhapsody model and Papyrus model, ignoring CSS applied on the model
 */

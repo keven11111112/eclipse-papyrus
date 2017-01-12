@@ -381,6 +381,11 @@ public class ITableInstanceItemProvider extends TableInstancesTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getITableInstance_ScopeHandles(),
+				 UMLRhapsodyFactory.eINSTANCE.createIEvent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getITableInstance_ScopeHandles(),
 				 UMLRhapsodyFactory.eINSTANCE.createIInteractionOperand()));
 
 		newChildDescriptors.add
