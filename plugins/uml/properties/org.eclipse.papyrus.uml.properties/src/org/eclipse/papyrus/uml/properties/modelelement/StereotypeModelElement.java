@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EObjectStructuredValueFactory;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
@@ -88,6 +89,13 @@ public class StereotypeModelElement extends EMFModelElement {
 				// TODO : Multi-valued DataTypes
 			}
 		}
+
+		if (feature.getEType() instanceof EClass) {
+			if (DataTypeUtil.isDataTypeDefinition((EClass) feature.getEType(), getSource(featurePath))) {
+				return new org.eclipse.papyrus.infra.services.edit.ui.databinding.PapyrusObservableValue(getSource(featurePath), feature, domain, GMFtoEMFCommandWrapper::wrap);
+			}
+		}
+
 
 		if (feature.getUpperBound() != 1) {
 			return new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);

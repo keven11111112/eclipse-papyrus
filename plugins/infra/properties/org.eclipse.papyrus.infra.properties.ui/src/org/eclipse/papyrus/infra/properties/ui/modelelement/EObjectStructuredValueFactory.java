@@ -44,8 +44,6 @@ public class EObjectStructuredValueFactory extends EObjectDirectEditingValueFact
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory#doCreateObject(org.eclipse.swt.widgets.Control, java.lang.Object)
 	 */
 	@Override
 	protected Object doCreateObject(final Control widget, final Object context) {
@@ -100,8 +98,10 @@ public class EObjectStructuredValueFactory extends EObjectDirectEditingValueFact
 							eGet = eObject.eGet(eStructuralFeature);
 						}
 					}
+					if (eGet instanceof EObject) {
+						createStructure((EObject) eGet);
+					}
 
-					createStructure((EObject) eGet);
 				}
 			}
 		}

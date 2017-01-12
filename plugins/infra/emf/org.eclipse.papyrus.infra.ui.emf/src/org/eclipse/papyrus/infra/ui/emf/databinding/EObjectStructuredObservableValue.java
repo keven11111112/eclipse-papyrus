@@ -36,6 +36,11 @@ public class EObjectStructuredObservableValue extends EMFObservableValue {
 	protected List<EObjectObservableValue> observables = new ArrayList<>();
 
 	/**
+	 * The parent of this EObjectStructuredObservableValue.
+	 */
+	protected EObjectStructuredObservableValue parent;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param eObject
@@ -47,8 +52,9 @@ public class EObjectStructuredObservableValue extends EMFObservableValue {
 	 * @param browseFeatures
 	 *            The features for the browse.
 	 */
-	public EObjectStructuredObservableValue(EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain, boolean browseFeatures) {
+	public EObjectStructuredObservableValue(final EObject eObject, final EStructuralFeature eStructuralFeature, final EditingDomain domain, final boolean browseFeatures, final EObjectStructuredObservableValue parent) {
 		super(eObject, eStructuralFeature, domain);
+		this.parent = parent;
 		if (null != eObject) {
 			if (browseFeatures) {
 				browseFeatures(eObject);
@@ -66,6 +72,15 @@ public class EObjectStructuredObservableValue extends EMFObservableValue {
 	}
 
 	/**
+	 * Get the parent.
+	 *
+	 * @return The parent.
+	 */
+	public EObjectStructuredObservableValue getParent() {
+		return parent;
+	}
+
+	/**
 	 * Crete the child.
 	 *
 	 * @param eObject
@@ -78,9 +93,9 @@ public class EObjectStructuredObservableValue extends EMFObservableValue {
 			EObjectObservableValue eObjectObservableValue;
 			Object eGet = eObject.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EReference && eGet instanceof EObject) {
-				eObjectObservableValue = new EObjectStructuredObservableValue((EObject) eGet, eStructuralFeature, editingDomain, true);
+				eObjectObservableValue = new EObjectStructuredObservableValue((EObject) eGet, eStructuralFeature, editingDomain, true, this);
 			} else {
-				eObjectObservableValue = new EObjectStructuredObservableValue(eObject, eStructuralFeature, editingDomain, false);
+				eObjectObservableValue = new EObjectStructuredObservableValue(eObject, eStructuralFeature, editingDomain, false, this);
 			}
 			observables.add(eObjectObservableValue);
 		}

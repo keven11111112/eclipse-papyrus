@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.ui.emf.databinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.databinding.EObjectObservableValue;
@@ -32,6 +33,11 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.selectors.BooleanSelector;
+import org.eclipse.papyrus.infra.widgets.selectors.IntegerSelector;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.swt.SWT;
 
 /**
@@ -41,7 +47,7 @@ import org.eclipse.swt.SWT;
  */
 public class EObjectObservableValueEditingSupport extends EditingSupport {
 
-	/** proposals for boolean */
+	/** Proposals for boolean */
 	protected final String[] booleanProposals = new String[] { "true", "false" }; //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
@@ -58,8 +64,6 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.viewers.EditingSupport#canEdit(java.lang.Object)
 	 */
 	@Override
 	protected boolean canEdit(final Object element) {
@@ -68,8 +72,6 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.viewers.EditingSupport#getCellEditor(java.lang.Object)
 	 */
 	@Override
 	protected CellEditor getCellEditor(final Object element) {
@@ -83,17 +85,21 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 				}
 
 				EClassifier eType = feature.getEType();
-				if (eType instanceof EEnum) {
-					return createEnumerationEditor(feature);
+				if (feature.isMany()) {
+					return createMultipleCellEditor(feature, (EObjectObservableValue) element);
 				} else {
-					String instanceTypeName = eType.getInstanceClassName();
-					if (instanceTypeName.equals("boolean")) { //$NON-NLS-1$
-						return createBooleanEditor();
+					if (eType instanceof EEnum) {
+						return createEnumerationEditor(feature);
+					} else {
+						String eTypeName = eType.getName();
+						if (eTypeName.equals("Boolean")) { //$NON-NLS-1$
+							return createBooleanEditor();
+						}
 					}
-				}
 
-				if (eType instanceof EDataType) {
-					return new EDataTypeCellEditor((EDataType) eType, ((TreeViewer) getViewer()).getTree());
+					if (eType instanceof EDataType) {
+						return new EDataTypeCellEditor((EDataType) eType, ((TreeViewer) getViewer()).getTree());
+					}
 				}
 			}
 		}
@@ -101,9 +107,46 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Create a cell editor which opened a dialog to select multiple value.
 	 * 
-	 * @see org.eclipse.jface.viewers.EditingSupport#getValue(java.lang.Object)
+	 * @return The CellEditor.
+	 */
+	private CellEditor createMultipleCellEditor(EStructuralFeature feature, EObjectObservableValue element) {
+		EClassifier eType = feature.getEType();
+		MultipleCellEditor multiEditor = new MultipleCellEditor(((TreeViewer) getViewer()).getTree(), ((EObjectObservableValue) element).getObserved(), feature);
+		if (eType instanceof EEnum) {
+			ReferenceSelector referenceSelector = new ReferenceSelector(true);
+			referenceSelector.setContentProvider(new AbstractStaticContentProvider() {
+
+				@Override
+				public Object[] getElements() {
+					return ((EEnum) eType).getELiterals().toArray();
+				}
+			});
+
+			multiEditor.setSelector(referenceSelector);
+		} else {
+			String eTypeName = eType.getName();
+			switch (eTypeName) {
+			case "Integer": //$NON-NLS-1$
+				multiEditor.setSelector(new IntegerSelector());
+				break;
+			case "Boolean": //$NON-NLS-1$
+				BooleanSelector booleanSelector = new BooleanSelector();
+				multiEditor.setSelector(booleanSelector);
+				break;
+			case "String": //$NON-NLS-1$
+				multiEditor.setSelector(new StringSelector());
+				break;
+			default:
+				break;
+			}
+		}
+		return multiEditor;
+	}
+
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected Object getValue(final Object element) {
@@ -115,15 +158,19 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 			}
 			EClassifier eType = feature.getEType();
 			Object object = ((EObjectObservableValue) element).getValue();
-			if (eType instanceof EEnum) {
-				return getEnumerationValue((EEnum) eType, object);
-			} else {
-				String instanceTypeName = eType.getInstanceClassName();
-				if (instanceTypeName.equals("boolean")) { //$NON-NLS-1$
-					return getBooleanValue(object);
-				}
-
+			if (feature.isMany()) {
 				return object;
+			} else {
+				if (eType instanceof EEnum) {
+					return getEnumerationValue((EEnum) eType, object);
+				} else {
+					String eTypeName = eType.getName();
+					if (eTypeName.equals("Boolean")) { //$NON-NLS-1$
+						return getBooleanValue(object);
+					}
+
+					return object;
+				}
 			}
 		}
 		return null;
@@ -163,8 +210,6 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object, java.lang.Object)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -178,8 +223,8 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 				if (eType instanceof EEnum) {
 					setEnumerationValue((EObjectObservableValue) element, value);
 				} else {
-					String instanceTypeName = eType.getInstanceClassName();
-					if (instanceTypeName.equals("boolean")) { //$NON-NLS-1$
+					String eTypeName = eType.getName();
+					if (eTypeName.equals("Boolean")) { //$NON-NLS-1$
 						setBooleanValue((EObjectObservableValue) element, value);
 					} else {
 						((EObjectObservableValue) element).setValue(value);
@@ -204,19 +249,40 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 		EStructuralFeature feature = (EStructuralFeature) element.getValueType();
 		EEnum eType = (EEnum) feature.getEType();
 		List<EEnumLiteral> literals = eType.getELiterals();
+
 		List<String> proposals = new ArrayList<>();
 		for (int i = 0; i < literals.size(); i++) {
 			// i+1 because there is already the "" string
 			proposals.add(i, literals.get(i).getLiteral());
 		}
+
 		if (null == value) {
 			element.setValue(null);
 		} else {
-			// retrieve the index of the current value in the list
-			int index = (Integer) value;
-			if (index >= 0 && index < literals.size()) {
-				element.setValue(literals.get(index));
+			if (value instanceof Collection<?>) {
+				List<EEnumLiteral> literalsToSet = new ArrayList<EEnumLiteral>();
+				for (Object object : ((Collection<Object>) value)) {
+					if (object instanceof EEnumLiteral) {
+						literalsToSet.add((EEnumLiteral) object);
+					} else if (object instanceof Integer) {
+						// retrieve the index of the current value in the list
+						int index = (Integer) value;
+						if (index >= 0 && index < literals.size()) {
+							literalsToSet.add(literals.get(index));
+						}
+					}
+				}
+
+				element.setValue(literalsToSet);
+
+			} else {
+				// retrieve the index of the current value in the list
+				int index = (Integer) value;
+				if (index >= 0 && index < literals.size()) {
+					element.setValue(literals.get(index));
+				}
 			}
+
 		}
 	}
 
@@ -230,14 +296,19 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void setBooleanValue(final EObjectObservableValue element, final Object value) {
-		if (null == value) {
-			// propertiesToUpdate.remove(featureName);
-		} else if (value.equals(0)) {
-			element.setValue(Boolean.valueOf(booleanProposals[0]));
-		} else if (value.equals(1)) {
-			element.setValue(Boolean.valueOf(booleanProposals[1]));
+		if (value instanceof Collection<?>) {
+			element.setValue(value);
 		} else {
-			Activator.log.error("impossible to set boolean value " + value, null); //$NON-NLS-1$
+			if (null == value) {
+				// Do Nothing
+				// propertiesToUpdate.remove(featureName);
+			} else if (value.equals(0)) {
+				element.setValue(Boolean.valueOf(booleanProposals[0]));
+			} else if (value.equals(1)) {
+				element.setValue(Boolean.valueOf(booleanProposals[1]));
+			} else {
+				Activator.log.error("impossible to set boolean value " + value, null); //$NON-NLS-1$
+			}
 		}
 	}
 

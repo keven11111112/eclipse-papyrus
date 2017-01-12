@@ -28,7 +28,7 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	/**
 	 * Value root of the tree.
 	 */
-	private Object valueRoot = null;
+	private List<EObjectStructuredObservableValue> valueRoot = null;
 
 	/**
 	 * Constructor.
@@ -36,7 +36,7 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	 * @param value
 	 *            The value to manage.
 	 */
-	public EObjectObservableValueContentProvider(final Object value) {
+	public EObjectObservableValueContentProvider(final List<EObjectStructuredObservableValue> value) {
 		super();
 		valueRoot = value;
 	}
@@ -47,7 +47,7 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	 * @param value
 	 *            the root value
 	 */
-	public void setValueRoot(final Object value) {
+	public void setValueRoot(final List<EObjectStructuredObservableValue> value) {
 		this.valueRoot = value;
 	}
 
@@ -58,13 +58,10 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	 */
 	@Override
 	public Object[] getElements(final Object inputElement) {
-		ArrayList<Object> arrayList = new ArrayList<>();
 		if (null != valueRoot) {
-			arrayList.add(valueRoot);
+			return valueRoot.toArray();
 		}
-
-
-		return arrayList.toArray();
+		return null;
 	}
 
 	/**

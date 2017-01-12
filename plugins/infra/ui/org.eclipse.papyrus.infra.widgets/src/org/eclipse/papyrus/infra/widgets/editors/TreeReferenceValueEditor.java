@@ -42,6 +42,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.widgets.Widget;
 
 /**
@@ -118,14 +119,14 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 		((GridLayout) getLayout()).numColumns += 1;
 
 		// Create a parent composite to set the margin
-		final Composite gridComposite = factory.createComposite(this);
+		Composite gridComposite = factory.createComposite(this);
 		gridComposite.setLayout(new GridLayout());
 		gridComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		compositeTree = factory.createComposite(gridComposite);
 		final TreeColumnLayout treeColumnLayout = new TreeColumnLayout();
 		compositeTree.setLayout(treeColumnLayout);
-		final GridData compositeTreeGridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		final GridData compositeTreeGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
 		compositeTreeGridData.minimumHeight = 150;
 		compositeTree.setLayoutData(compositeTreeGridData);
 
@@ -145,8 +146,6 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 
 		columnValue.setEditingSupport(createEditingSupport());
 
-		treeViewer.setAutoExpandLevel(10);
-
 		createButtons();
 	}
 
@@ -154,17 +153,28 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 	 * Create the buttons.
 	 */
 	protected void createButtons() {
-		((GridLayout) getLayout()).numColumns += 2;
+		((GridLayout) getLayout()).numColumns += 1;
 
-		createInstanceButton = factory.createButton(this, null, SWT.PUSH);
+		// Create a parent composite to set add the buttons on the top
+		final Composite gridComposite = factory.createComposite(this);
+		gridComposite.setLayout(new GridLayout(2, true));
+		gridComposite.setLayoutData(new GridData(SWT.NONE, SWT.BEGINNING, false, false));
+
+		createInstanceButton = factory.createButton(gridComposite, null, SWT.PUSH);
 		createInstanceButton.setImage(Activator.getDefault().getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
 		createInstanceButton.setToolTipText(Messages.ReferenceDialog_CreateANewObject);
 		createInstanceButton.addSelectionListener(this);
 
-		unsetButton = factory.createButton(this, null, SWT.PUSH);
+		unsetButton = factory.createButton(gridComposite, null, SWT.PUSH);
 		unsetButton.setImage(Activator.getDefault().getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		unsetButton.setToolTipText(Messages.ReferenceDialog_UnsetValue);
 		unsetButton.addSelectionListener(this);
+
+		if (null != treeViewer && treeViewer.getSelection() != null && !treeViewer.getSelection().isEmpty()) {
+			unsetButton.setEnabled(true);
+		} else {
+			unsetButton.setEnabled(false);
+		}
 	}
 
 	/**
@@ -187,18 +197,18 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 					Collection<Object> validatedObjects = valueFactory.validateObjects(Collections.singleton(value));
 					if (!validatedObjects.isEmpty()) {
 						setValue(validatedObjects.iterator().next());
+						if (null != tree) {
+							int itemsSize = tree.getItems().length;
+							TreeItem item = tree.getItem(itemsSize - 1);
+							if (null != item) {
+								treeViewer.expandToLevel(item.getData(), TreeViewer.ALL_LEVELS);
+							}
+						}
+						checkCreateInstanceButton();
 					}
 				}
 			}, NLS.bind(Messages.ReferenceDialog_setOperation, labelText));
 		}
-	}
-
-	/**
-	 * The action executed when the "unset" button is selected Sets the current
-	 * reference to null.
-	 */
-	protected void unsetAction() {
-		setValue(null);
 	}
 
 	/**
@@ -254,6 +264,7 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 		super.setModelObservable(modelProperty);
 		addEAdapters();
 		setWidgetObservable(createWidgetObservable(modelProperty));
+		checkCreateInstanceButton();
 	}
 
 	/**
@@ -321,7 +332,7 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 			IContentProvider treeViewerContentProvider = treeViewer.getContentProvider();
 			if (null != treeViewerContentProvider) {
 				setValueRootContentProvider();
-				treeViewer.setInput(""); // $NON-NLS-1$
+				treeViewer.refresh();
 			}
 		}
 
@@ -404,4 +415,13 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 	@SuppressWarnings("rawtypes")
 	public abstract IObservableValue createWidgetObservable(final IObservableValue modelProperty);
 
+	/**
+	 * Verify if the CreateInstance button should be enabled or not.
+	 */
+	public abstract void checkCreateInstanceButton();
+
+	/**
+	 * Action associated to the Unset button.
+	 */
+	public abstract void unsetAction();
 }
