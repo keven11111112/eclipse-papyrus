@@ -9,3 +9,7 @@ sonarlint/
 
 # Workspace metadata folder created by Oomph when launching tests.
 tests/**/.metadata/
+
+#intellij files
+.idea/
+*.iml
