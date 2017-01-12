@@ -531,6 +531,58 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			command.execute();
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.core.resource.EMFLogicalModel#setModelURI(org.eclipse.emf.common.util.URI)
+	 */
+	@Override
+	public void setModelURI(final URI uriWithoutExtension) {
+		// Compute model URI
+		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
+				
+		for (final Resource resource : getResources()) {
+			updateURI(resource, uriWithoutExtension);
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.core.resource.EMFLogicalModel#updateURI(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.common.util.URI)
+	 */
+	@Override
+	protected void updateURI(final Resource resource, final URI newURIwithoutExtension) {
+		// Get the initial URI and locale for the resource
+		final URI initialURI = getInitialURIForResource(resource);
+		final Locale locale = getLocaleForResource(resource);
+		
+		// Calculate the new URI with the correct name (depending to locale)
+		URI newBaseURI = newURIwithoutExtension.trimFileExtension();
+		if(null == locale || !locale.toString().isEmpty()){
+			String lastSegment = newBaseURI.lastSegment();
+			lastSegment = lastSegment + LocaleNameResolver.UNDERSCORE + locale.toString();
+			newBaseURI = newBaseURI.trimSegments(1);
+			newBaseURI = newBaseURI.appendSegment(lastSegment);
+		}
+		newBaseURI = newBaseURI.appendFileExtension(getModelFileExtension());
+		
+		// Set the new URI
+		resource.setURI(newBaseURI);
+		
+		// Remove the old resource URI from map
+		propertiesByLocale.get(initialURI).remove(locale);
+		if(propertiesByLocale.get(initialURI).isEmpty()){
+			propertiesByLocale.remove(initialURI);
+		}
+		
+		// Add the new resource URI from map
+		if (null == propertiesByLocale.get(resourceURI)) {
+			propertiesByLocale.put(resourceURI, new HashMap<Locale, Resource>());
+		}
+		propertiesByLocale.get(resourceURI).put(locale, resource);
+	}
 
 	/**
 	 * {@inheritDoc}
