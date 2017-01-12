@@ -10,6 +10,7 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Christian W. Damus - bug 451230
+ *    Benoit Maggi (CEA LIST) -#510281 change dependency to replace gmft-runtime
  */
 package aspects.xpt.providers
 
@@ -21,6 +22,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 import xpt.diagram.Utils_qvto
 import xpt.editor.VisualIDRegistry
+import plugin.Activator
 
 @Singleton class ElementTypes extends xpt.providers.ElementTypes {
 	@Inject extension Common;
@@ -28,6 +30,20 @@ import xpt.editor.VisualIDRegistry
 
 	@Inject CodeStyle xptCodeStyle;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
+
+	@Inject Activator xptActivator;
+
+	override def attributes(GenDiagram it) '''
+		«generatedMemberComment»
+		private static java.util.Map<org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.emf.ecore.ENamedElement> elements;
+		
+		«generatedMemberComment»
+		private static org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages elementTypeImages = new org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages(« //
+		xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().getItemProvidersAdapterFactory());
+		
+		«generatedMemberComment»
+		private static java.util.Set<org.eclipse.gmf.runtime.emf.type.core.IElementType> KNOWN_ELEMENT_TYPES;
+	'''
 
 	override def getElement(GenDiagram it) '''
 		«generatedMemberComment('Returns \'type\' of the ecore object associated with the hint.\n')»

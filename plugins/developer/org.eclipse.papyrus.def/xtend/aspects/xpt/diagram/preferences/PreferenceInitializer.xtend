@@ -16,8 +16,6 @@ package aspects.xpt.diagram.preferences
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.gmf.codegen.gmfgen.GenNode
 import plugin.Activator
 import xpt.Common
 
@@ -25,35 +23,5 @@ import xpt.Common
 	@Inject extension Common;
 
 	@Inject Activator xptActivator;
-
-//	override PreferenceInitializer(GenDiagram it) '''
-//		«copyright(editorGen)»
-//		package «packageName(it)»;
-//		
-//		«generatedClassComment»
-//		public class «className(it)» extends org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer {
-//		
-//			«generatedMemberComment»
-//			public void initializeDefaultPreferences() {
-//				org.eclipse.jface.preference.IPreferenceStore store = getPreferenceStore();
-//				«FOR GenNode node : getAllNodes()»
-//					«IF !('UNDEFINED'.equals(node.elementType.displayName.toUpperCase()))»
-//						«it.preferencesPackageName».«node.elementType.displayName»PreferencePage.initDefaults(store);
-//					«ENDIF»
-//				«ENDFOR»
-//				
-//				«FOR GenNode node : getAllNodes()»
-//					«IF !('UNDEFINED'.equals(node.elementType.displayName.toUpperCase()))»
-//						«it.preferencesPackageName».«node.elementType.displayName»PreferencePage.initDefaults(store);
-//					«ENDIF»
-//				«ENDFOR»
-//			}
-//		
-//			«generatedMemberComment»
-//			protected org.eclipse.jface.preference.IPreferenceStore getPreferenceStore() {
-//				return «xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().getPreferenceStore();
-//			}
-//		} 
-//	'''
 
 }

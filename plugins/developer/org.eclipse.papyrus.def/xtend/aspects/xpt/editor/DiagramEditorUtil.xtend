@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2017 CEA LIST and other.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - #510281 change dependency to replace gmft-runtime
+ *****************************************************************************/
 package aspects.xpt.editor
 
 import com.google.inject.Inject
@@ -19,6 +30,14 @@ import com.google.inject.Singleton
 	@Inject Activator xptActivator
 	@Inject Externalizer xptExternalizer
 	@Inject MetaModel xptMetaModel
+
+	override def getUniqueFileNameMethod(GenDiagram it) '''
+		«generatedMemberComment»
+		public static String getUniqueFileName(org.eclipse.core.runtime.IPath containerFullPath, String fileName, String extension) {
+			return org.eclipse.gmf.tooling.runtime.part.DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, «»
+				org.eclipse.gmf.tooling.runtime.part.DefaultDiagramEditorUtil.«IF editorGen.application == null»EXISTS_IN_WORKSPACE«ELSE»EXISTS_AS_IO_FILE«ENDIF»);
+		}
+	'''
 	
 	override createDiagramMethod(GenDiagram it) '''
 		«generatedMemberComment(

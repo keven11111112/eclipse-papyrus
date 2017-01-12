@@ -125,21 +125,21 @@ import xpt.providers.ShortcutsDecoratorProvider
 		
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
 		«tripleSpace(2)»«xmlGeneratedTag»
-		 «IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size<1»
-		«tripleSpace(2)»<clientContext id="«editorGen.plugin.ID».TypeContext">
-		«tripleSpace(3)»<enablement>
-		«tripleSpace(4)»<test
-		«tripleSpace(5)»property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-		«tripleSpace(5)»value="«editingDomainID»"/>
-		«tripleSpace(3)»</enablement>
-		«tripleSpace(2)»</clientContext> 
-		«tripleSpace(2)»<binding context="«editorGen.plugin.ID».TypeContext">
-		      «ENDIF»
+		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size<1»
+			«tripleSpace(2)»<clientContext id="«editorGen.plugin.ID».TypeContext">
+			«tripleSpace(3)»<enablement>
+			«tripleSpace(4)»<test
+			«tripleSpace(5)»property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+			«tripleSpace(5)»value="«editingDomainID»"/>
+			«tripleSpace(3)»</enablement>
+			«tripleSpace(2)»</clientContext> 
+			«tripleSpace(2)»<binding context="«editorGen.plugin.ID».TypeContext">
+		«ENDIF»
 		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
 
-       <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-      «ENDIF»
-				«FOR e : getLocalDefineTypedElements(it)»
+        <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+        «ENDIF»
+		«FOR e : getLocalDefineTypedElements(it)»
 		«tripleSpace(3)»<elementType ref="«e.elementType.uniqueIdentifier»"/>
 				«ENDFOR»
 		«tripleSpace(3)»<advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>

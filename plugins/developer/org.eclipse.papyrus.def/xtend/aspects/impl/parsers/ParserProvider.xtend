@@ -19,24 +19,12 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import impl.parsers.expression_qvto
 import metamodel.MetaModel
-import org.eclipse.emf.codegen.ecore.genmodel.GenClass
-import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
-import org.eclipse.gmf.codegen.gmfgen.CustomParser
-import org.eclipse.gmf.codegen.gmfgen.ExpressionLabelParser
-import org.eclipse.gmf.codegen.gmfgen.ExternalParser
-import org.eclipse.gmf.codegen.gmfgen.FeatureLabelModelFacet
 import org.eclipse.gmf.codegen.gmfgen.GenChildLabelNode
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenLink
 import org.eclipse.gmf.codegen.gmfgen.GenNode
-import org.eclipse.gmf.codegen.gmfgen.GenParserImplementation
 import org.eclipse.gmf.codegen.gmfgen.GenParsers
-import org.eclipse.gmf.codegen.gmfgen.LabelModelFacet
-import org.eclipse.gmf.codegen.gmfgen.LabelTextAccessMethod
-import org.eclipse.gmf.codegen.gmfgen.OclChoiceParser
-import org.eclipse.gmf.codegen.gmfgen.PredefinedEnumParser
-import org.eclipse.gmf.codegen.gmfgen.PredefinedParser
-import org.eclipse.gmf.codegen.gmfgen.ValueExpression
+import parsers.ExpressionLabelParser
+import parsers.PredefinedParser
 import plugin.Activator
 import xpt.Common
 import xpt.Common_qvto
@@ -54,8 +42,8 @@ import xpt.providers.ParserUtils_qvto
 	@Inject extension ParserUtils_qvto
 	@Inject extension expression_qvto
 
-	@Inject extension parsers.ExpressionLabelParser;
-	@Inject extension parsers.PredefinedParser;
+	@Inject extension ExpressionLabelParser;
+	@Inject extension PredefinedParser;
 
 	@Inject getExpression xptGetExpression;
 	@Inject MetaModel xptMetaModel;

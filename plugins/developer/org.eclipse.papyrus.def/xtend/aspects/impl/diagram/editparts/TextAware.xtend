@@ -13,7 +13,6 @@
  */
 package aspects.impl.diagram.editparts
 
-import aspects.xpt.editor.VisualIDRegistry
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.DesignLabelModelFacet

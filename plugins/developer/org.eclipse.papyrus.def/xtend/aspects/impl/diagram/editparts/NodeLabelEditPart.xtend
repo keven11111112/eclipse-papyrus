@@ -11,6 +11,7 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Thibault Landre (Atos Origin) - initial API and implementation
+ *    Benoit Maggi (CEA LIST) -#510281 change dependency to replace gmft-runtime
  */
 package aspects.impl.diagram.editparts
 
@@ -19,11 +20,14 @@ import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenNodeLabel
 import xpt.diagram.editparts.Common
 import xpt.diagram.editparts.Utils_qvto
+import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 @Singleton class NodeLabelEditPart extends impl.diagram.editparts.NodeLabelEditPart {
 	@Inject extension Utils_qvto;
 
 	@Inject Common xptEditpartsCommon;
+
+	override def nodeLabelDragPolicyQualifiedClassName(GenDiagram it) '''org.eclipse.gmf.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy'''
 	
 
 	override handleNotificationEventBody(GenNodeLabel it) '''

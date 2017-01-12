@@ -13,9 +13,7 @@
 
 package aspects.impl.diagram.editparts
 
-import xpt.diagram.editparts.Common
 import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
-import com.google.inject.Inject
 
 /**
  * @author Mickael ADAM
