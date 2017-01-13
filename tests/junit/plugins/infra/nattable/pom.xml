@@ -2,20 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.eclipse.papyrus</groupId>
-    	<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
-    	<version>1.2.0-SNAPSHOT</version>
-    	<relativePath>../../../../../releng/main-tests/pom.xml</relativePath>
-	</parent>
-	<groupId>org.eclipse.papyrus</groupId>
+  <parent>
+  	<groupId>org.eclipse.papyrus.tests</groupId>
+  	<artifactId>org.eclipse.papyrus.infra.tests.releng</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>	
+  </parent>
+	<groupId>org.eclipse.papyrus.tests</groupId>
 	<artifactId>org.eclipse.papyrus.infra.nattable.main.test</artifactId>
 	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Papyrus Nattable Test for Infra</name>
 	<description>Papyrus Nattable are a set of plugins dedicated to manage tables in relation with models.</description>
 
 	<modules>
+		<module>org.eclipse.papyrus.infra.nattable.suite.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.common.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.model.editor.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.model.tests</module>

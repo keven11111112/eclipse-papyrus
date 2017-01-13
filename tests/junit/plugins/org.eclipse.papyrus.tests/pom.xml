@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
+		<version>1.2.0-SNAPSHOT</version>
+		<relativePath>../../../../releng/main-tests/pom.xml</relativePath>
+	</parent>
+	<groupId>org.eclipse.papyrus.tests</groupId>
+	<artifactId>org.eclipse.papyrus.tests</artifactId>
+	<version>1.2.100-SNAPSHOT</version>
+	<packaging>eclipse-test-plugin</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+					<testFailureIgnore>true</testFailureIgnore>
+					<product>org.eclipse.sdk.ide</product>
+					If a specific <argLine> is required here, make sure to include JaCoCo parameters (See parent pom, Bug 478170)
+					<skipTests>true</skipTests>
+					<testClass>org.eclipse.papyrus.tests.AllTests</testClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<dependency-resolution>
+						<extraRequirements>
+							<requirement>
+								<type>p2-installable-unit</type>
+								<id>org.eclipse.sdk.feature.group</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+							<requirement>
+								<type>eclipse-feature</type>
+								<id>org.eclipse.papyrus.sdk.feature</id>
+								<versionRange>0.0.0</versionRange>
+							</requirement>
+						</extraRequirements>
+					</dependency-resolution>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+  			<id>exec-gen-tests</id>
+	  		<activation>
+	  			<!-- Activate this profile when running generated tests. --> 
+				<property>
+					<name>testConfig</name>
+					<value>GENERATED_TESTS_CONFIG</value>
+				</property>
+	  		</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-surefire-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<configuration>
+							<useUIHarness>true</useUIHarness>
+							<useUIThread>true</useUIThread>
+							<testFailureIgnore>true</testFailureIgnore>
+							<argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=512M -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
+							<appArgLine>-testConfig=${testConfig}</appArgLine>
+							<product>org.eclipse.sdk.ide</product>
+						</configuration>
+						<executions>
+							<execution>
+								<id>suite1</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<!-- Don't put skipTests in the common section because that
+									     would then also apply to the default execution, above -->
+									<skipTests>false</skipTests>
+									<testClass>org.eclipse.papyrus.tests.AllGenTests$Suite1</testClass>
+								</configuration>
+							</execution>
+							<execution>
+								<id>suite2</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<!-- Don't put skipTests in the common section because that
+									     would then also apply to the default execution, above -->
+									<skipTests>false</skipTests>
+									<testClass>org.eclipse.papyrus.tests.AllGenTests$Suite2</testClass>
+								</configuration>
+							</execution>
+							<execution>
+								<id>suite3</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<!-- Don't put skipTests in the common section because that
+									     would then also apply to the default execution, above -->
+									<skipTests>false</skipTests>
+									<testClass>org.eclipse.papyrus.tests.AllGenTests$Suite3</testClass>
+								</configuration>
+							</execution>
+							<execution>
+								<id>suite4</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<!-- Don't put skipTests in the common section because that
+									     would then also apply to the default execution, above -->
+									<skipTests>false</skipTests>
+									<testClass>org.eclipse.papyrus.tests.AllGenTests$Suite4</testClass>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

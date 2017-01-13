@@ -24,6 +24,8 @@ import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurati
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.BeforeClass;
+import org.junit.ClassRule;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -46,6 +48,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		WorkspaceModelIndexTest.class,
 })
 public class AllTests {
+	@ClassRule
+	public static Timeout timeout = Timeout.seconds(300);
 
 	public AllTests() {
 		super();

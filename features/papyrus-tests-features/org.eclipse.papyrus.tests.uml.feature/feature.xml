@@ -20,8 +20,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.modelexplorer.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.search.tests" install-size="0" unpack="false" version="0.0.0"/>
-
    <plugin download-size="0" id="org.eclipse.papyrus.uml.modelrepair.tests" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.service.types.tests" install-size="0" unpack="false" version="0.0.0"/>
