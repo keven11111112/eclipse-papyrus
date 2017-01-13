@@ -1,0 +1,2 @@
+This feature must not been distributed, because the JUnit tests won't be able to run on hduson. 
+They need a Shared Rhapsody folder to run and we can't have it on Eclipse server due to licensing problem

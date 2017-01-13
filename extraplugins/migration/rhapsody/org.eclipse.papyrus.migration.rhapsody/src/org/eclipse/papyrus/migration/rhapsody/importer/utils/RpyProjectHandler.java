@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.migration.rhapsody.importer.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -38,11 +39,15 @@ import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.RpyStringMapEntry
 import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.SimpleValueList;
 import org.eclipse.papyrus.migration.rhapsody.utils.RhapsodyShareFolderUtils;
 
+import com.google.common.io.Files;
+
 /**
  * @author sr246418
  *         Class allowing to easily parse Rhapsody projects.
  *         It can return a CST or an AST instance of the parsed files.
  */
+// TODO decide which techno use for file:
+// emf URI is ok, but we should should between java.nio, java, io, apache and google
 public class RpyProjectHandler {
 
 	private RpyFileHandler projectFile;
@@ -239,8 +244,65 @@ public class RpyProjectHandler {
 		}
 	}
 
+	/**
+	 * This method copy the current rhapsody project in a new folder given as argument.
+	 * This method doesn't change the URI on which work this class after the copy
+	 * 
+	 * @param newPath
+	 *            the new path for the rhapsody project
+	 * @return
+	 * 		the URi of the *.rpy file of the project
+	 */
+	public URI copyRhapsodyProjectToNewFolder(final URI newPath) {
+		URI uri = projectURI.trimSegments(1);// to get the parent folder
+		File rpyProjectFolder = new File(uri.toFileString());
+		List<File> duplicatedFile = new ArrayList<File>();
+		if (rpyProjectFolder.exists() && rpyProjectFolder.isDirectory()) {
+			for (File subFile : rpyProjectFolder.listFiles()) {
+				duplicatedFile.addAll(copyFile(subFile, newPath));
+			}
+		}
+		for (File current : duplicatedFile) {
+			URI newURI = URI.createFileURI(current.getPath());
+			if (RhapsodyFileUtils.FILE_EXTENSION_RPY.equals(newURI.fileExtension())) {
+				return newURI;
+			}
+		}
+		return null;
+	}
 
+	/**
+	 * This method copy a file to a given path. The File can be a directory. In this case, we create it in the new path with its contents
+	 * 
+	 * @param src
+	 *            the source file (can be a directory
+	 * @param target
+	 *            the target path for the copied file
+	 * @return
+	 * 		the file of copied file (useful in case of folder
+	 */
+	public List<File> copyFile(final File src, final URI target) {
+		List<File> duplicatedFile = new ArrayList<File>();
+		URI copiedFileURI = URI.createFileURI(target.devicePath());
+		copiedFileURI = copiedFileURI.appendSegment(src.getName());
+		if (src.isDirectory()) {
+			File folder = new File(copiedFileURI.devicePath());
+			folder.mkdir();
+			for (File f : src.listFiles()) {
+				duplicatedFile.addAll(copyFile(f, copiedFileURI));
+			}
+		} else {
+			File newFile = new File(copiedFileURI.devicePath());
+			try {
+				Files.copy(src, newFile);
+				duplicatedFile.add(newFile);
+			} catch (IOException e) {
+				Activator.log.error(e);
+			}
+		}
+		return duplicatedFile;
 
+	}
 
 	private URI getNormalizedURI(String fileString) {
 		// TODO : improve me

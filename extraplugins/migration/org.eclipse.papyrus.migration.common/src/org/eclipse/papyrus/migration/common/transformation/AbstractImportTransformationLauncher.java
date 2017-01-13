@@ -132,6 +132,7 @@ public abstract class AbstractImportTransformationLauncher implements IImportTra
 
 	protected abstract IImportTransformation createTransformation(URI transformationURI, final ThreadConfig config, final IDependencyAnalysisHelper analysisHelper);
 
+	public static final String IMPORT_MODELS_JOB_NAME = "Import Models"; // $NON-NLS-0$
 
 	/**
 	 * Start a Job and delegate to {@link #importModels(IProgressMonitor, List)}
@@ -139,7 +140,7 @@ public abstract class AbstractImportTransformationLauncher implements IImportTra
 	 * @param transformations
 	 */
 	protected void importModels(final List<IImportTransformation> transformations) {
-		importDependenciesJob = new Job("Import Models") {
+		importDependenciesJob = new Job(IMPORT_MODELS_JOB_NAME) {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
@@ -179,7 +180,7 @@ public abstract class AbstractImportTransformationLauncher implements IImportTra
 					log("\tTotal execution time: " + timeFormat(totalPhase2));
 
 					log("Total");
-					log("\tTotal execution time: " + timeFormat(transformation.getExecutionTime() + (totalPhase2==null ? 0 : totalPhase2)));
+					log("\tTotal execution time: " + timeFormat(transformation.getExecutionTime() + (totalPhase2 == null ? 0 : totalPhase2)));
 					log("\n");
 				}
 
@@ -357,19 +358,19 @@ public abstract class AbstractImportTransformationLauncher implements IImportTra
 
 		return Status.OK_STATUS;
 	}
-	
+
 	protected void handleModelDependencies(List<IImportTransformation> transformations, IProgressMonitor monitor) {
-		//TODO, seem not required for Rhapsody import
+		// TODO, seem not required for Rhapsody import
 	}
 
 	final protected Map<IImportTransformation, Long> loadingTimeV2 = new HashMap<IImportTransformation, Long>();
-	
+
 	final protected Map<IImportTransformation, Long> proxiesTime = new HashMap<IImportTransformation, Long>();
 
 	final protected Map<IImportTransformation, Long> stereoTime = new HashMap<IImportTransformation, Long>();
 
 	final protected Map<IImportTransformation, Long> totalTimeV2 = new HashMap<IImportTransformation, Long>();
-	
+
 	/** Mainly for test purpose */
 	public void waitForCompletion() throws Exception {
 		importDependenciesJob.join();

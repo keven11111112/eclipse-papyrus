@@ -1,0 +1,118 @@
+I-Logix-RPY-Archive version 8.12.0 C++ 9728113
+{ ISubsystem 
+	- _id = GUID b31fcd11-4230-4a83-85e5-ed16472029b6;
+	- _myState = 8192;
+	- _name = "Default";
+	- _modifiedTimeWeak = 1.12.2017::15:35:7;
+	- _lastID = 1;
+	- weakCGTime = 1.12.2017::15:35:7;
+	- strongCGTime = 1.2.1990::0:0:0;
+	- _defaultComposite = GUID b12d7d74-2e9f-41ac-8fdb-3cb3cb34d46d;
+	- _eventsBaseID = -1;
+	- Classes = { IRPYRawContainer 
+		- size = 2;
+		- value = 
+		{ IClass 
+			- _id = GUID b12d7d74-2e9f-41ac-8fdb-3cb3cb34d46d;
+			- _myState = 40960;
+			- _name = "TopLevel";
+			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID a809dd99-7428-433c-9c3d-fe2d6f0eadee;
+			- _myState = 10240;
+			- _name = "block_0";
+			- Stereotypes = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IHandle 
+					- _m2Class = "IStereotype";
+					- _filename = "$OMROOT\\Profiles\\SysML\\SysMLProfile_rpy\\SysML.sbs";
+					- _subsystem = "SysML::Blocks";
+					- _class = "";
+					- _name = "Block";
+					- _id = GUID f685432f-691e-4ff1-be70-4d09d19457e1;
+				}
+			}
+			- _modifiedTimeWeak = 1.12.2017::15:36:29;
+			- _lastID = 1;
+			- weakCGTime = 1.12.2017::15:36:29;
+			- strongCGTime = 1.12.2017::15:34:5;
+			- Attrs = { IRPYRawContainer 
+				- size = 3;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 2b73684a-e350-4754-a551-c4b4b31f6c18;
+					- _myState = 10240;
+					- _name = "attribute_0";
+					- _modifiedTimeWeak = 1.12.2017::15:34:16;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 753d1612-5f39-4c44-a016-c424fb1b130a;
+					- _myState = 8192;
+					- _name = "attribute_1";
+					- _modifiedTimeWeak = 1.12.2017::15:35:7;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypes.sbs";
+						- _subsystem = "PredefinedTypes";
+						- _class = "";
+						- _name = "RhpInteger";
+						- _id = GUID 9503fd72-4374-4a1d-9a70-b60508d8f583;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+				{ IAttribute 
+					- _id = GUID 3a196e85-90cf-4585-b6b5-9918c9836faf;
+					- _myState = 8192;
+					- _name = "attribute_2";
+					- _modifiedTimeWeak = 1.12.2017::15:36:29;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "OMString";
+						- _id = GUID 1af3f2a5-fcc3-48cd-b086-29e9f0c30052;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+		}
+	}
+	- _configurationRelatedTime = 1.1.1970::1:0:0;
+}
+
