@@ -1023,7 +1023,11 @@ mapping umlrhapsody::IPrimitiveOperation::toOperations(): uml::Operation
     	};
     	ownedParameter+=return_param;
     };
-   	visibility:=getVisibility(self.protection);
+  	var desiredVisibility := getVisibility(self.protection); 
+	if (desiredVisibility != VisibilityKind::public) { //to avoid green + in UML editor
+		visibility:= desiredVisibility
+	};  
+
    	
 }
 
@@ -1052,7 +1056,10 @@ mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {s
 	}else{
 		type := self.typeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
 	};
-	visibility:=getVisibility(self.protection);
+	var desiredVisibility := getVisibility(self.protection); 
+	if (desiredVisibility != VisibilityKind::public) { //to avoid green + in UML editor
+		visibility:= desiredVisibility
+	};  
 	var lower:String;
 	var upper:String;
 		//a multiplicity has been defined

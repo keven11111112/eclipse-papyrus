@@ -64,6 +64,10 @@ Be careful with these object :
 
 ==QVTo Informations==
 The QVTo files are stored in the plugin '''org.eclipse.papyrus.migration.rhapsody'''.
+
+===Cast===
+Casting collection doing [Type] seems change arbitrary the order of the elements. It is a pattern to avoid.
+
 ===Transformation files===
 *Transformation file have a kind of constructor preceded by the transform keyword and contains a method main. They are registered with the extension point '''org.eclipse.m2m.qvt.oml.runtime.qvtTransformation''' as transformation.
 *Library file have a name preceded by the keyword library. They must be registered with the extension point '''org.eclipse.m2m.qvt.oml.runtime.qvtTransformation''', as transformation or as library.

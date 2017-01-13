@@ -51,8 +51,8 @@ mapping rhapsodymetamodel::IDiagram::iDiagramToSysML11BlockDefinitionDiagram(rpy
 		result:=self.map createAndInitDiagram(rpyProject,getPapyrusDiagramType(), owner, owner);
 	}	
 	
-	children:= self[IDiagram].graphicChart.graphElements[GraphElementsType].map toSysML11BlockDefinitionDiagramShape();
-	edges:=self[IDiagram].graphicChart.graphElements[GraphElementsType].map toSysML11BlockDefinitionDiagramEdge();
+	children:= self.graphicChart.graphElements.map toSysML11BlockDefinitionDiagramShape();
+	edges:=self.graphicChart.graphElements.map toSysML11BlockDefinitionDiagramEdge();
 	
 }
 
