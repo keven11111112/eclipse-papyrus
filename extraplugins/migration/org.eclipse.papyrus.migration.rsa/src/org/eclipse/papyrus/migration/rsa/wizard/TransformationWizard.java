@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 505330
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.wizard;
 
@@ -23,11 +24,12 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
+import org.eclipse.papyrus.migration.rsa.internal.ConfigurationManager;
 import org.eclipse.papyrus.migration.rsa.messages.Messages;
 import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformationLauncher;
+import org.eclipse.papyrus.migration.rsa.wizard.pages.DialogData;
 import org.eclipse.papyrus.migration.rsa.wizard.pages.TransformationConfigPage;
 import org.eclipse.papyrus.migration.rsa.wizard.pages.TransformationSelectionPage;
-import org.eclipse.papyrus.migration.rsa.wizard.pages.DialogData;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -48,16 +50,27 @@ public class TransformationWizard extends Wizard implements IImportWizard {
 
 	protected TransformationConfigPage configPage = new TransformationConfigPage(dialogData);
 
+	private ConfigurationManager configMan = new ConfigurationManager();
 
 	public TransformationWizard() {
 		setWindowTitle(Messages.TransformationWizard_Title);
+
+		configMan.loadConfig(dialogData.getConfig());
+	}
+
+	@Override
+	public void dispose() {
+		try {
+			configMan.dispose();
+		} finally {
+			super.dispose();
+		}
 	}
 
 	@Override
 	public void addPages() {
 		this.addPage(selectionPage);
 		this.addPage(configPage);
-
 	}
 
 	@Override
@@ -90,6 +103,8 @@ public class TransformationWizard extends Wizard implements IImportWizard {
 
 	@Override
 	public boolean performFinish() {
+		configMan.saveConfig(dialogData.getConfig());
+
 		// Set or update the unchecked elements for future executions of the plugin
 		dialogData.setSelectionMap();
 		importFiles();

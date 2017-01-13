@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 505330
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.handler;
 
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.infra.properties.ui.creation.PropertyEditorFactory;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersFactory;
+import org.eclipse.papyrus.migration.rsa.internal.ConfigurationManager;
 import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformationLauncher;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -54,7 +56,7 @@ public class ImportHandler extends AbstractHandler {
 			while (selectionIterator.hasNext()) {
 				Object selectedElement = selectionIterator.next();
 				if (selectedElement instanceof IAdaptable) {
-					IFile selectedFile = (IFile) ((IAdaptable) selectedElement).getAdapter(IFile.class);
+					IFile selectedFile = ((IAdaptable) selectedElement).getAdapter(IFile.class);
 					if (selectedFile == null) {
 						continue;
 					}
@@ -110,6 +112,8 @@ public class ImportHandler extends AbstractHandler {
 
 	public Config getTransformationParameters(ExecutionEvent event) {
 		Config config = RSAToPapyrusParametersFactory.eINSTANCE.createConfig();
+		ConfigurationManager configMan = new ConfigurationManager();
+		configMan.loadConfig(config);
 
 		Shell activeShell = HandlerUtil.getActiveShell(event);
 
@@ -130,6 +134,7 @@ public class ImportHandler extends AbstractHandler {
 		Object result = factory.edit(activeShell, config);
 
 		if (!okPressed.get()) {
+			configMan.dispose();
 			return null;
 		}
 
@@ -137,6 +142,9 @@ public class ImportHandler extends AbstractHandler {
 		if (result instanceof Config) {
 			config = (Config) result;
 		}
+
+		configMan.saveConfig(config);
+		configMan.dispose();
 
 		return config;
 	}

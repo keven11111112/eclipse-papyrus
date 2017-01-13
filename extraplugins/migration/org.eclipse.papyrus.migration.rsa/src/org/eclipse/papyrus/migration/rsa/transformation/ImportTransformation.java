@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 496439, 496299, 505330
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.transformation;
 
@@ -27,8 +28,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -37,6 +40,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
@@ -73,8 +77,10 @@ import org.eclipse.m2m.qvt.oml.util.ISessionData;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRulePackage;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.m2m.qvto.TraceHelper;
@@ -86,6 +92,7 @@ import org.eclipse.papyrus.migration.rsa.blackbox.ProfileBaseHelper;
 import org.eclipse.papyrus.migration.rsa.concurrent.ExecutorsPool;
 import org.eclipse.papyrus.migration.rsa.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.rsa.default_.DefaultPackage;
+import org.eclipse.papyrus.migration.rsa.internal.extension.PostProcessExtension;
 import org.eclipse.papyrus.migration.rsa.internal.extension.TransformationExtension;
 import org.eclipse.papyrus.migration.rsa.profilebase.ProfileBasePackage;
 import org.eclipse.papyrus.uml.documentation.Documentation.DocumentationPackage;
@@ -113,7 +120,7 @@ public class ImportTransformation {
 	private static final boolean DEBUG = false;
 
 	// SourceURI is the input
-	protected final URI sourceURI;
+	protected URI sourceURI;
 
 	// targetURI is computed during the transformation
 	protected URI targetURI;
@@ -376,6 +383,18 @@ public class ImportTransformation {
 		}
 	}
 
+	protected void initResourceSet(URI sourceURI, MigrationResourceSet resourceSet) {
+		this.sourceURI = sourceURI;
+		this.resourceSet = resourceSet;
+		this.umlResource = resourceSet.getResource(sourceURI, false);
+
+		// These are all new in the new resource set
+		outUML = null;
+		outNotation = null;
+		outSashModel = null;
+		inPapyrusProfiles = null;
+	}
+
 	/**
 	 * Returns the number of elements to be migrated (i.e. diagrams to be migrated + specific non-trivial elements)
 	 * Used to initialize the progress monitor
@@ -413,7 +432,7 @@ public class ImportTransformation {
 		i += getAllTransformationURIs().size();
 
 		// Add the number of steps required by each extension
-		for (TransformationExtension extension : extensions) {
+		for (TransformationExtension extension : getExtensions()) {
 			int extraSteps = extension.getNumberOfSteps();
 			if (extraSteps > 0) {
 				i += extraSteps;
@@ -727,19 +746,37 @@ public class ImportTransformation {
 		public static IStatus executeAfter(TransformationExtension extension, ExecutionContext context, IProgressMonitor monitor) {
 			return extension.executeAfter(context, monitor);
 		}
+
+		/**
+		 * Delegates to {@link PostProcessExtension#postProcess(ExecutionContext, IProgressMonitor)}.
+		 */
+		public static IStatus postProcess(TransformationExtension extension, ExecutionContext context, IProgressMonitor monitor) {
+			return Optional.of(extension)
+					.filter(PostProcessExtension.class::isInstance)
+					.map(PostProcessExtension.class::cast)
+					.map(post -> post.postProcess(context, SubMonitor.convert(monitor, 1)))
+					.orElse(Status.OK_STATUS);
+		}
 	}
 
 	protected void prepareExtensions() {
-		for (TransformationExtension extension : extensions) {
+		for (TransformationExtension extension : getExtensions()) {
 			extension.setResourceSet(resourceSet);
 			extension.setExecutorsPool(executorsPool);
 			extension.setTransformation(this);
 		}
 	}
 
+	/**
+	 * @return the extensions
+	 */
+	protected List<TransformationExtension> getExtensions() {
+		return extensions;
+	}
+
 	protected IStatus importExtensions(ExecutionContext context, IProgressMonitor monitor, ExtensionFunction function) {
-		List<IStatus> allResults = new ArrayList<>(extensions.size());
-		for (TransformationExtension extension : extensions) {
+		List<IStatus> allResults = new ArrayList<>(getExtensions().size());
+		for (TransformationExtension extension : getExtensions()) {
 			IStatus result = function.apply(extension, context, monitor);
 			allResults.add(result);
 		}
@@ -1234,6 +1271,7 @@ public class ImportTransformation {
 
 		context.getSessionData().setValue(TraceHelper.TRACE_HISTORY, trace);
 
+		this.context = context;
 		return context;
 	}
 
@@ -1340,7 +1378,26 @@ public class ImportTransformation {
 	/* Notation model is initially empty, but will be filled successively by each transformation */
 	public ModelExtent getInoutNotationModel() {
 		if (outNotation == null) {
-			outNotation = new BasicModelExtent();
+			try {
+				if (resourceSet instanceof ModelSet) {
+					// This is the post-processing phase, so we already have the notations
+					NotationModel notation = (NotationModel) ((ModelSet) resourceSet).getModel(NotationModel.MODEL_ID);
+					if (notation != null) {
+						List<EObject> diagrams = notation.getResources().stream()
+								.flatMap(res -> res.getContents().stream())
+								.filter(Diagram.class::isInstance)
+								.collect(Collectors.toList());
+						outNotation = new BasicModelExtent(diagrams);
+					}
+				}
+			} catch (Exception e) {
+				Activator.log.error(e);
+			}
+
+			if (outNotation == null) {
+				// Guess it's not the post-processing phase
+				outNotation = new BasicModelExtent();
+			}
 		}
 
 		return outNotation;

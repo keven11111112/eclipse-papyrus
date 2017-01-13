@@ -43,5 +43,8 @@
       <transformation
             className="org.eclipse.papyrus.migration.rsa.tests.regression.StereotypeApplicationsTest$MigrationTracker">
       </transformation>
+      <transformation
+            className="org.eclipse.papyrus.migration.rsa.tests.PostProcessor">
+      </transformation>
    </extension>
 </plugin>
