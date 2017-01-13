@@ -437,7 +437,6 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 		allExtents.add(getInRhapsodyModel());
 		allExtents.add(getInoutNotationModel());
 		allExtents.add(getInOutUMLModel());
-		allExtents.add(getPrimitivesCUMLModel());
 		allExtents.add(getSysML1_1Profile());
 		allExtents.add(getInUMLPrimitivesTypes());
 		allExtents.add(getInOutInternationalizationModel());
@@ -452,7 +451,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 		return umlPrimitivesTypes;
 	}
 
-	private ModelExtent inRhapsodyModel, primitivesCTypesModel, umlPrimitivesTypes, labels;
+	private ModelExtent inRhapsodyModel, umlPrimitivesTypes, labels;
 
 	public ModelExtent getInRhapsodyModel() {
 		if (inRhapsodyModel == null) {
@@ -467,14 +466,6 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 		Resource fCMProfile = resourceSet.getResource(sysMLProfile, true);
 		sysML11Profile = new BasicModelExtent(fCMProfile.getContents());
 		return sysML11Profile;
-	}
-
-	public ModelExtent getPrimitivesCUMLModel() {
-		// URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml");
-		URI primitiveTypesURI = URI.createURI("pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml");
-		Resource primitiveTypes = resourceSet.getResource(primitiveTypesURI, true);
-		primitivesCTypesModel = new BasicModelExtent(primitiveTypes.getContents());
-		return primitivesCTypesModel;
 	}
 
 

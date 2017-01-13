@@ -32,9 +32,9 @@ modeltype properties "strict" uses 'http://www.eclipse.org/papyrus/international
 * This transformation does the SysML 1.1 Diagram creation from a Rhapsody Model
 *
 */
-transformation SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes, inout labels:properties) 
-access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes) 
-extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+transformation SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes, inout labels:properties) 
+access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes) 
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes)
 {
 	main() {
 		if(sysml11<>null){

@@ -16,6 +16,7 @@ import RhapsodyToPapyrus;
 import SysML11Diagrams;
 import SysML11Profile;
 import RhapsodyToPapyrusDiagamCommon;
+
 import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
 
 modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
@@ -33,27 +34,27 @@ modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Ty
 modeltype properties "strict" uses 'http://www.eclipse.org/papyrus/internationalization/model';
 
 
-transformation Rhapsody2PapyrusNotation(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml ,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes, inout labels:properties)
-extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
-access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes),
-SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes,inout labels:properties),
-SysML11Profile(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes),
-SemanticInternationalization(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes, inout labels:properties)
-//access transformation RhapsodyUtils
+transformation Rhapsody2PapyrusNotation(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes, inout labels:properties)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in primitives:UMLPrimitivesTypes)
+access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes),
+SysML11Diagrams(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes,inout labels:properties),
+SysML11Profile(in inModel:umlrhapsody, out outModel:uml, in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes),
+SemanticInternationalization(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes, inout labels:properties)
+
 
 	
 {
 	main() {
 		//we do the semantic transformation for UML
-		var rhap2uml := new Rhapsody2PapyrusSemanticElements(semantics, model, ancyCprimitiveTypes, primitives);
+		var rhap2uml := new Rhapsody2PapyrusSemanticElements(semantics, model, primitives);
 		rhap2uml.transform();
 		
-		var internationalization:= new SemanticInternationalization(semantics, model, ancyCprimitiveTypes, primitives, labels);
+		var internationalization:= new SemanticInternationalization(semantics, model, primitives, labels);
 		internationalization.transform();
 		
 		//we apply the sysml transformation when required
 		if(sysml11<>null){
-			var sysmlProfile:=new SysML11Profile(semantics,  model, ancyCprimitiveTypes, Sysml11Profile, primitives);
+			var sysmlProfile:=new SysML11Profile(semantics,  model, Sysml11Profile, primitives);
 			sysmlProfile.transform();
 		};
 		
@@ -65,7 +66,7 @@ SemanticInternationalization(in inModel:umlrhapsody, out outModel:uml,  in ancyC
 //		graphics.objectsOfType(Shape)->select(type = '6000').map fixLayout();
 		
 		//We do the SysML transformation to get SysML 1.1 diagram
-		var iDiagramToSysML11 := new SysML11Diagrams(semantics, graphics, model, ancyCprimitiveTypes, Sysml11Profile, primitives, labels);
+		var iDiagramToSysML11 := new SysML11Diagrams(semantics, graphics, model, Sysml11Profile, primitives, labels);
 		iDiagramToSysML11.transform();
 		
 		

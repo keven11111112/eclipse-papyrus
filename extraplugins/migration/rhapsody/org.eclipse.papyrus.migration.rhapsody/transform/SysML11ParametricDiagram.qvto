@@ -29,9 +29,9 @@ modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Ty
 * This transformation allows to import Rhapsody Parametric Diagram as Papyrus SysML 1.1 Parametric Diagram
 *
 */
-transformation SysML11ParametricDiagram(in semantics : umlrhapsody, out graphics : notation, inout model:uml, in ancyCprimitiveTypes:uml ,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
-access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes) 
-extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+transformation SysML11ParametricDiagram(in semantics : umlrhapsody, out graphics : notation, inout model:uml ,in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
+access transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes) 
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes)
 {
 	//nothing to do here
 }

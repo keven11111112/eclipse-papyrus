@@ -30,8 +30,8 @@ modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Ty
 * WARNING : ISysMLPort is a part of Rhapsody metamodel and doesn't come from the SysML Rhapsody Profile
 *
 */
-transformation SysML11Profile(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
-extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+transformation SysML11Profile(in inModel:umlrhapsody, out outModel:uml, in Sysml11Profile:sysml11, in primitives:UMLPrimitivesTypes)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes)
 
 {
 	main() {

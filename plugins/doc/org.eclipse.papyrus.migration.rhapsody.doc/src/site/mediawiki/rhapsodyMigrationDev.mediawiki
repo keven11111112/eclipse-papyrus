@@ -52,6 +52,7 @@ JUnit tests are provided too. They use EMF-Compare to check that the imported mo
 The migration process is done in 3 steps:
 #the ''*rpy'' file is parsed by the XText parser (plugin '''org.eclipse.papyrus.migration.rhapsody.parser''') and converted into a first simple model using a first EMF metamodel,  '''RpySyntax''', provided by this plugin, then
 #this first model is converted into  a set of ''*.umlrhapsody'' by the class '''org.eclipse.papyrus.migration.rhapsody.importer.UMLRhapsodyImporter'''. There is a ''*.umlrhapsody'' file for the intial selected ''*rpy'' file, and one other for each dependency of the Rhapsody model (SysML, PredefinedTypes, ...)/
+#the ''*.umlrhapsody'' files representing a Rhapsody Library owns a EAnnotation at the root of the file, indicating they are Rhapsody Library.
 #the ''*.umlrhapsody'' files are converted into a Papyrus model.
 
 ==What is the purpose of the UMLRhapsody metamodel?==

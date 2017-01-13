@@ -11,6 +11,7 @@
  *****************************************************************************/
  
 import org.eclipse.papyrus.migration.rhapsody.blackboxes.uml.AssociationOwnerHelper;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.rhapsody.RhapsodyHelper;
 import RhapsodyToPapyrusUtils;
 import SysMLRhapsodyUtils;
 
@@ -25,7 +26,7 @@ modeltype sysml11 "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/SysML';
 /**
 *	Transformation rules for importing a Rhapsody Semantic model into a UML model 
 */
-transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes);
+transformation Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes);
 
 property events : Set(IEvent) = null;
 
@@ -47,10 +48,17 @@ main() {
 mapping umlrhapsody::IProject::iProjectToPapyrusModel() : uml::Model {
 	name:=self.name.replaceAll("\"","");
 	eAnnotations+=inModel.rootObjects()->selectByType(IProject)![IProject].createEAnnotationForVersioning();
+
+	//managing the rhapsodyType, importing them in the user model
+	var rhapsodyLibraries:Sequence(uml::Package):=getISubsystemsFromRhapsodyLibraries(self).map importRhapsodyTypeLibrary();
+
+	//we map the packaged elements
 	packagedElement+=self.Subsystems.map iDefaultSubsystemTypeToPackage();
-	
-	// import primitves types and C type
-	//import uml basic primitives Types
+
+	//we add the rhapsody library at the end
+	packagedElement+=rhapsodyLibraries;//we add them add the end of the list. it is a kind of feature, to show firstly in the model the user elements 
+		
+	//import uml basic primitives Types by default
 	var importedPackages: Set(PackageImport);
 	var models : Set(Model) := primitives.objectsOfType(Model);
 	models->forEach(package){
@@ -59,21 +67,17 @@ mapping umlrhapsody::IProject::iProjectToPapyrusModel() : uml::Model {
 		};
 		importedPackages+=packageImport;
 	};
-	
-
-	//import ansi C library : TODO should be done by an other QVTo file!
-	models := ancyCprimitiveTypes.objectsOfType(Model);
-	models->forEach(package){
-		var packageImport:=object PackageImport{
-			importedPackage:=package;
-		};
-		importedPackages+=packageImport;
-	};
-
 
 	packageImport+=importedPackages;
+}
 
-	
+/**
+*
+* dedicated method to import only types from Rhapsody Library
+*/
+mapping umlrhapsody::ISubsystem::importRhapsodyTypeLibrary():uml::Package{
+	name:=self.name;
+	packagedElement += self.Types[IType].oclAsSet().map iTypeToUMLElement().oclAsType(uml::PackageableElement);
 }
 
 /**
@@ -224,9 +228,7 @@ mapping umlrhapsody::IType::iTypeToDefault():uml::Class{
 */
 mapping umlrhapsody::IType::iTypeToUMLElement() : uml::Element 
 	disjuncts 
-	umlrhapsody::IType::iTypeFromRhapsodyPredefinedTypesWithUMLPrimitivesTypes,
-	umlrhapsody::IType::iTypeFromRhapsodyToUML_ANSI_C_CPPType,
- 	umlrhapsody::IType::toUMLDatatype, 
+ 	umlrhapsody::IType::toUMLDatatype,
  	umlrhapsody::IType::toUMLInstanceSpecification, 
  	umlrhapsody::IType::toUMLEnumeration,
  	umlrhapsody::IType::iTypeToUMLClass, 
@@ -270,56 +272,6 @@ query umlrhapsody::IType::mapToBasicType(inout templateableElement:TemplateableE
 //	return templateableElement;
 }
 
-/**
-*
-* This method allows to map Rhapsody Type defined into the file PredefinedTypes with the UML Primitives Types.
-* So, only these types are managed : 
-* <ul> 
-* <li>Boolean</li>
-* <li>Integer</li>
-* <li>Real</li>
-* <li>String</li>
-* <li>UnlimitedNatural</li>
-* </ul>
-*/
-mapping umlrhapsody::IType::iTypeFromRhapsodyPredefinedTypesWithUMLPrimitivesTypes():uml::Type when {self.isTranslatableIntoUMLPrimitivesTypes()}{
-	init{
-		var name:=self.name;
-		var umlTypeName:String=null;
-		umlTypeName:= switch{
-			case (name="RhpBoolean") "Boolean";
-			case (name="RhpInteger") "Integer";
-			case (name="RhpReal") "Real";
-			case (name="RhpString") "String";
-			case (name="RhpUnlimitedNatural") "UnlimitedNatural";
-			//others case not possible
-		};
-		
-		if(not(umlTypeName.oclIsUndefined())){ //should always be true
-			result:=primitives.objectsOfKind(Type)->select(t | t.name=umlTypeName)->selectOne(true);
-		};
-	}
-}
-
-/**
-*
-* Returns true if the IType can be mapped with a UML PrimitiveTypes from the UML Library  
-*/
-helper umlrhapsody::IType::isTranslatableIntoUMLPrimitivesTypes():Boolean{
-	var r:Boolean:=false;
-	if(self.isRhapsodyPredefinedType()){
-		var name:=self.name;
-		r:=switch{
-			case (name="RhpBoolean") true;
-			case (name="RhpInteger") true;
-			case (name="RhpReal") true;
-			case (name="RhpString") true;
-			case (name="RhpUnlimitedNatural") true;
-			else {false};
-		};
-	};
-	return r;
-}
 
 /*
 * Return true if the object must be converted into a UML DataType
@@ -332,7 +284,7 @@ helper umlrhapsody::IType::isTranslatableIntoUMLPrimitivesTypes():Boolean{
 *    MySpeed : kind = kind = Typedef and ValueType 
 */
 query umlrhapsody::IType::isUMLDataType(): Boolean {
-	var res:=self.isRhapsodyDataType();
+	var res:=self.isRhapsodyDataType() or self.isRhapsodyLibraryType(); //we decided to import IType defined in Rhapsody library as DataType;
 	if(res){
 		res:= self.isKindLanguage() or self.isKindTypedef(); 
 	}else{
@@ -368,7 +320,8 @@ query umlrhapsody::IType::isUMLClass(): Boolean{
 }
 
 query umlrhapsody::IType::isUMLEnumeration():Boolean{
-	return self.isKindEnumeration() and (self.isRhapsodyDataType() or self.isSysMLValueType());
+	return self.isKindEnumeration() and ((self.isRhapsodyDataType() or self.isSysMLValueType()) //TODO to check : is it required to check isDatatYpe and isSysmlValueType ? 
+	or self.isRhapsodyLibraryType()); //to create Enumeration for Type defined ni RhapsodyLibrary
 }
 
 query umlrhapsody::IType::isUMLInstanceSpecification(): Boolean {
@@ -1166,71 +1119,6 @@ var direction: uml::ParameterDirectionKind;
 	return direction;
 }
 
-
-
-/**
-* Map Rhapsody Predefined Type on a Papyrus UML Predefined Types from ANSI C/CPP Lilbrary
-*
-*/ 
-mapping umlrhapsody::IType::iTypeFromRhapsodyToUML_ANSI_C_CPPType():uml::PrimitiveType when {self.isAManagedRhapsodyPredefinedTypes()}{
-	init{
-		result:= switch  {
-			case (self.name="bool") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="bool")->any(true);
-			case (self.name="char") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="char")->any(true);
-			case (self.name="double") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="double")->any(true);
-			case (self.name="float") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="float")->any(true);
-			case (self.name="int") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="int")->any(true);
-			case (self.name="long") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="long")->any(true);
-			case (self.name="long double") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="long double")->any(true);
-			case (self.name="unsigned char") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="unsigned char")->any(true);
-			case (self.name="unsigned int") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="unsigned int")->any(true);
-			case (self.name="unsigned long") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="unsigned long")->any(true);	
-			case (self.name="void") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="void")->any(true);
-			//TODO unsigned short
-			//TODO void*
-			//TODO OMBoolean 
-			//TODO : OMString
-			//TODO short
-			//TODO char*
-			//TODO : RiCString
-			//TODO  :RiCBoolean
-			
-			
-			//from Rhapsody PredefinedTypes
-			case (self.name="RhpCharacter") ancyCprimitiveTypes.objectsOfType(uml::PrimitiveType)->select(t|t.oclAsType(uml::PrimitiveType).name="char")->any(true);
-			
-		};	
-	}
-}
-
-/**
-*
-* Returns true if the IType is a Rhapsody Predefined Types mapped on a Papyrus UML ANSI C/C++ type
-*/
-query umlrhapsody::IType::isAManagedRhapsodyPredefinedTypes():Boolean{
-	var res:Boolean = false;
-	if(self.isRhapsodyPredefinedType() or self.isRhapsodyPredefinedC_Type() or self.isRhapsodyPredefinedCPP_Type()){
-		var name:String:=self.name;
-		res:= switch  {
-			case (name="bool") true;
-			case (name="char") true;
-			case (name="double") true;
-			case (name="float") true;
-			case (name="int") true;
-			case (name="long") true;
-			case (name="long double") true;
-			case (name="unsigned char") true;
-			case (name="unsigned int")true;
-			case (name="unsigned long") true;	
-			case (name="void")true;
-			
-			//from Rhapsody Predefined Types
-			case (self.name="RhpCharacter") true;
-			else{false};
-		};
-	};
-	return res;
-}
 
 mapping umlrhapsody::IEvent::toSignalEvents(): uml::SignalEvent
 {

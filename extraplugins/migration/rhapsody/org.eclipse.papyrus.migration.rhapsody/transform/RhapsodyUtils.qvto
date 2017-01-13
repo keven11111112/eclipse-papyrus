@@ -11,6 +11,8 @@
  *****************************************************************************/
  
 import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
+import org.eclipse.papyrus.migration.rhapsody.blackboxes.rhapsody.RhapsodyHelper;
+
 modeltype umlrhapsody "strict" uses 'http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0';
 modeltype ecore "strict" uses 'http://www.eclipse.org/emf/2002/Ecore';
 
@@ -103,6 +105,13 @@ helper umlrhapsody::IDiagram::isRhapsodyPredefinedTypeLibraryDiagram():Boolean {
 helper umlrhapsody::IDiagram::isRhapsodyMarteLibraryDiagram():Boolean {
 	var resourceName:String:=self[EObject].eResource()![EResource].toString();
 	return resourceName.endsWith("MARTE.umlrhapsody'");
+}
+
+/**
+* Returns true if the type come from a Rhapsody Library
+*/
+helper umlrhapsody::IType::isRhapsodyLibraryType():Boolean{
+	return isComingFromARhapsodyLibraryResource(self.oclAsType(EObject));
 }
 
 /**

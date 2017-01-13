@@ -101,5 +101,20 @@
             </metamodel>
          </library>
       </unit>
+      <unit
+            description="Provides useful Method for Rhapsody elements and Rhapsody libraries"
+            name="RhapsodyHelper"
+            namespace="org.eclipse.papyrus.migration.rhapsody.blackboxes.rhapsody">
+         <library
+               class="org.eclipse.papyrus.migration.rhapsody.blackboxes.rhapsody.RhapsodyHelper"
+               name="RhapsodyHelper">
+            <metamodel
+                  nsURI="http://www.eclipse.org/Papyrus/UMLRhapsody/1.0.0">
+            </metamodel>
+            <metamodel
+                  nsURI="http://www.eclipse.org/emf/2002/Ecore">
+            </metamodel>
+         </library>
+      </unit>
    </extension>
 </plugin>

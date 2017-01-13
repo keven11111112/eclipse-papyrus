@@ -25,8 +25,8 @@ modeltype properties "strict" uses 'http://www.eclipse.org/papyrus/international
 * This transformation allows to import the label of elements defined in Rhapsody models
 */
 
-transformation SemanticInternationalization(in inModel:umlrhapsody, in outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes, out labels:properties)
-extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+transformation SemanticInternationalization(in inModel:umlrhapsody, in outModel:uml, in primitives:UMLPrimitivesTypes, out labels:properties)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in primitives:UMLPrimitivesTypes)
 {
 	
 	main() {
@@ -134,12 +134,6 @@ helper NamedElement::getRhaposdyLabel():String{
 		rpyElement:=self.invresolveoneIn(IType::iTypeToUMLElement)->selectByKind(IModelElement)->any(true);
 	};
 	
-	
-	//mapping umlrhapsody::IType::iTypeFromRhapsodyPredefinedTypesWithUMLPrimitivesTypes():uml::Type when {self.isTranslatableIntoUMLPrimitivesTypes()}{
-	//already managed by IType::iTypeToUMLElement
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IType::iTypeFromRhapsodyPredefinedTypesWithUMLPrimitivesTypes)->selectByKind(IModelElement)->any(true);
-	};
 	
 	//IAssociationEnd doesn't have the feature displayName
 	//mapping umlrhapsody::IAssociationEnd::toAssociationswithoutProp(): uml::Association

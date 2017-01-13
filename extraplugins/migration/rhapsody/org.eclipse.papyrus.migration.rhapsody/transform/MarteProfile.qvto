@@ -33,8 +33,8 @@ modeltype UMLPrimitivesTypes "strict" uses 'http://www.eclipse.org/uml2/5.0.0/Ty
 *
 * Nevertheless, to avoid to lose this work, I keep this file in the plugin
 */
-transformation MarteProfile(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in marteProfile:marte, in primitives:UMLPrimitivesTypes)
-extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml,  in ancyCprimitiveTypes:uml, in primitives:UMLPrimitivesTypes)
+transformation MarteProfile(in inModel:umlrhapsody, out outModel:uml, in marteProfile:marte, in primitives:UMLPrimitivesTypes)
+extends Rhapsody2PapyrusSemanticElements(in inModel:umlrhapsody, out outModel:uml, in primitives:UMLPrimitivesTypes)
 
 {
 //TODO : remove this field
