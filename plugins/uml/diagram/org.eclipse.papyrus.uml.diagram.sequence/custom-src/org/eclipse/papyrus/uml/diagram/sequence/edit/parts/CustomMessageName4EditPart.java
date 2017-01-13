@@ -46,6 +46,9 @@ public class CustomMessageName4EditPart extends MessageName4EditPart implements 
 	@Override
 	protected void refreshLabel() {
 		EditPolicy maskLabelPolicy = getParent().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		if (maskLabelPolicy instanceof IMaskManagedLabelEditPolicy) {
+			((IMaskManagedLabelEditPolicy) maskLabelPolicy).refreshDisplay();
+		}
 		if (maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());

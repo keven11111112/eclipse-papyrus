@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy.ICustomMessageLabel;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
@@ -64,6 +65,8 @@ public class CustomMessageName2EditPart extends MessageName2EditPart implements 
 	public int getDirectEditionType() {
 		return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 	}
+
+	
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#deactivate()
@@ -108,7 +111,12 @@ public class CustomMessageName2EditPart extends MessageName2EditPart implements 
 
 	@Override
 	protected void refreshLabel() {
+
 		EditPolicy maskLabelPolicy = getParent().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		if (maskLabelPolicy instanceof IMaskManagedLabelEditPolicy) {
+			((IMaskManagedLabelEditPolicy) maskLabelPolicy).refreshDisplay();
+		}
+
 		if (maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
