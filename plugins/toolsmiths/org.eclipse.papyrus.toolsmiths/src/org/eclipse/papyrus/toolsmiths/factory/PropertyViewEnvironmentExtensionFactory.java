@@ -1,0 +1,44 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.toolsmiths.factory;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
+import org.eclipse.papyrus.toolsmiths.messages.Messages;
+import org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizableElement;
+import org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage;
+import org.eclipse.papyrus.toolsmiths.model.customizationplugin.FileBasedCustomizableElement;
+
+
+public class PropertyViewEnvironmentExtensionFactory extends FileBasedExtensionFactory {
+
+	public PropertyViewEnvironmentExtensionFactory() {
+		super(Messages.EnvironmentExtensionFactory_PropertyViewEnvironment, "org.eclipse.papyrus.infra.properties.environment", "environmentModel", "environment", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+
+	@Override
+	public void addElement(CustomizableElement element, IPluginEditor editor) {
+		super.addElement(element, editor);
+
+		editor.addDependency("org.eclipse.papyrus.infra.properties.ui"); //$NON-NLS-1$
+	}
+
+	@Override
+	protected String getTargetPath(FileBasedCustomizableElement element) {
+		return "/environment/" + getFileName(element); //$NON-NLS-1$
+	}
+
+	public EClass getCustomizableElementClass() {
+		return CustomizationPluginPackage.eINSTANCE.getPropertyViewEnvironment();
+	}
+
+}

@@ -46,7 +46,6 @@
 		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.uml.ui</module>
 		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.validation.problems</module>
 		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.validation.problems.edit</module>
-		<module>../../plugins/customization/org.eclipse.papyrus.customization</module>
 		<module>../../extraplugins/diagramtemplate/org.eclipse.papyrus.diagramtemplate</module>
 		<module>../../extraplugins/diagramtemplate/org.eclipse.papyrus.diagramtemplate.edit</module>
 		<module>../../extraplugins/diagramtemplate/org.eclipse.papyrus.diagramtemplate.editor</module>
