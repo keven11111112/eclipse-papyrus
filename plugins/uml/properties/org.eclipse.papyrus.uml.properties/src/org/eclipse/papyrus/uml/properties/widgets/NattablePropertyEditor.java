@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2015, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,9 +7,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation, Bug 502160, 494531
  *  Christian W. Damus - bugs 493858, 493853
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bugs 494537, 504745
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editparts.AbstractEditPart;
@@ -51,6 +53,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -70,8 +73,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanVa
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
+import org.eclipse.papyrus.infra.nattable.resource.TableResourceHelper;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
+import org.eclipse.papyrus.infra.nattable.utils.TableResourceConstants;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.CompositeModelElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
@@ -96,10 +101,13 @@ import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyCompos
 /**
  * The property editor for the nattable widget.
  */
+@SuppressWarnings("restriction")
 public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	/**
 	 * The save options to use.
+	 * 
+	 * @deprecated since 3.0. Use TableResourceFactory.
 	 */
 	private static final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 
@@ -108,7 +116,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
 		saveOptions.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, true);
 	}
-	
+
 	/**
 	 * The folders in which we will save the table configured by the user.
 	 */
@@ -118,7 +126,10 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * The file in which the table will be saved.
 	 * 
 	 * It doesn't work using .notation as extension file. In this case, the commands are not executed, because it is read-only, but why ?
+	 * 
+	 * @deprecated since 3.0. Use TableResourceConstants.TABLE_FILE_EXTENSION.
 	 */
+	@SuppressWarnings("unused")
 	private static final String FILE_EXTENSION = "table";//$NON-NLS-1$
 
 	/**
@@ -407,9 +418,16 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		final ResourceSet resourceSet = getResourceSet();
 		// Bug 502160: Remove the resource from the resource set to execute the command without using the editing command stack
 		resourceSet.getResources().remove(this.resource);
-		domain.getCommandStack().execute(cc);
-		// Bug 502160: Re-add the removed resource before the command execute
-		resourceSet.getResources().add(this.resource);
+		try {
+			GMFUnsafe.write(domain, cc);
+		} catch (InterruptedException e) {
+			Activator.log.error(e);
+		} catch (RollbackException e) {
+			Activator.log.error(e);
+		} finally {
+			// Bug 502160: Re-add the removed resource before the command execute
+			resourceSet.getResources().add(this.resource);
+		}
 
 		if (this.table.getContext() == null) {
 			displayError("The context of the table hasn't be set");//$NON-NLS-1$
@@ -558,9 +576,9 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @since 2.0
 	 */
 	protected void configureLayout(final EObject sourceElement) {
-          	//must be done first!
+		// must be done first!
 		((NattableModelManager) nattableManager).refreshNatTable();
-		
+
 		// Configure the size of the parent container
 		configureSize(sourceElement);
 
@@ -646,6 +664,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		if (this.serviceRegistry != null) {
 			URI tableURI = createTableURI(sourceElement, tableConfiguration);
 			final ResourceSet resourceSet = getResourceSet();
+			// Install the table support to manage the table as a correct Resource
+			TableResourceHelper.installTableSupport(resourceSet);
 			((ModelSet) resourceSet).createModels(tableURI);
 			boolean exists = resourceSet.getURIConverter().exists(tableURI, Collections.emptyMap());
 			if (exists) {
@@ -695,8 +715,10 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * Create URI for the table configuration.
 	 * 
-	 * @param sourceElement The source Element
-	 * @param tableConfiguration The tableConfiguration
+	 * @param sourceElement
+	 *            The source Element
+	 * @param tableConfiguration
+	 *            The tableConfiguration
 	 * @return The URI to use to save and load the table
 	 * @since 2.0
 	 */
@@ -704,7 +726,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		// If the source element is an EClass, the table configuration file name
 		// will be suffixed by the name of its eClass
 		setRegisterTableConfigurationByEClass(null != sourceElement && sourceElement.eClass() instanceof EClass);
-		
+
 		IPath preferencePath = Activator.getDefault().getStateLocation();
 		// we create a folder to save the tables used by the property view and we start to create the name of the model owning the table
 		preferencePath = preferencePath.append(TABLES_PREFERENCES_FOLDER_NAME).append(tableConfiguration.getType());
@@ -735,7 +757,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			b.append("_"); //$NON-NLS-1$
 			b.append(eClass.getName());
 		}
-		URI newURI = URI.createFileURI(b.toString()).appendFileExtension(FILE_EXTENSION);
+		URI newURI = URI.createFileURI(b.toString()).appendFileExtension(TableResourceConstants.TABLE_FILE_EXTENSION);
 		return newURI;
 	}
 
@@ -950,19 +972,9 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			if (null != this.natTableWidget) {
 				this.natTableWidget.dispose();
 			}
-			TransactionalEditingDomain domain = getTableEditingDomain();
-			if (domain != null && this.table != null) {
-				final ResourceSet resourceSet = getResourceSet();
-				// Bug 502160: Remove the resource from the resource set to execute the command without using the editing command stack
-				resourceSet.getResources().remove(this.resource);
-				Command cmd = getDisposeTableCommand(domain, this.table);
-				cmd.execute();
-				// Bug 502160: Re-add the removed resource before the command execute
-				resourceSet.getResources().add(this.resource);
-			}
 			if (NattablePropertyEditor.this.resource != null) {
 				try {
-					NattablePropertyEditor.this.resource.save(saveOptions);
+					NattablePropertyEditor.this.resource.save(null);
 				} catch (IOException e1) {
 					Activator.log.error(e1);
 				}
@@ -987,6 +999,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @return
 	 * 		the command to use to clean the table before disposing it
 	 * @since 2.0
+	 * @deprecated since 3.0
 	 */
 	protected CompoundCommand getDisposeTableCommand(final TransactionalEditingDomain domain, final Table table) {
 		CompoundCommand disposeCommand = new CompoundCommand("Command used to clean the table before disposing it"); //$NON-NLS-1$
@@ -1076,14 +1089,14 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 						// Recreate the table widget, its adjuncts, and their layout
 						createWidgets(sourceElement, feature, contexts);
-						
+
 						// We need to refresh the parent composite to get the needed space
 						Composite parent = self.getParent();
 						boolean found = false;
-						while(null != parent && !found){
-							if(parent instanceof TabbedPropertyComposite){
+						while (null != parent && !found) {
+							if (parent instanceof TabbedPropertyComposite) {
 								found = true;
-							}else{
+							} else {
 								parent.layout(true, true);
 								parent.redraw();
 								parent.update();
