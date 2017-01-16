@@ -17,11 +17,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.CDOTextURIHandler;
-import org.eclipse.papyrus.customization.properties.storage.actions.AbstractContextStorageActionProvider;
-import org.eclipse.papyrus.customization.properties.storage.actions.IContextCopyAction;
-import org.eclipse.papyrus.customization.properties.storage.actions.IContextDeleteAction;
-import org.eclipse.papyrus.customization.properties.storage.actions.IContextEditAction;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.AbstractContextStorageActionProvider;
+import org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.IContextCopyAction;
+import org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.IContextDeleteAction;
+import org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.IContextEditAction;
 
 
 /**

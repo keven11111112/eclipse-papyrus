@@ -9,7 +9,7 @@
    </extension>
    
    <extension
-         point="org.eclipse.papyrus.customization.properties.contextStorage">
+         point="org.eclipse.papyrus.views.properties.toolsmiths.contextStorage">
       <actionProvider
             class="org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.action.CDOContextStorageActionProvider">
       </actionProvider>

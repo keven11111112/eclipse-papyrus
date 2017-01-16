@@ -3,7 +3,7 @@ Export-Package: org.eclipse.papyrus.infra.properties.internal.ui;x-internal:=tru
  org.eclipse.papyrus.infra.properties.internal.ui.extensions;x-friends:="org.eclipse.papyrus.views.properties",
  org.eclipse.papyrus.infra.properties.internal.ui.messages;x-internal:=true,
  org.eclipse.papyrus.infra.properties.internal.ui.observable;x-internal:=true,
- org.eclipse.papyrus.infra.properties.internal.ui.runtime;x-friends:="org.eclipse.papyrus.customization.properties,org.eclipse.papyrus.views.properties",
+ org.eclipse.papyrus.infra.properties.internal.ui.runtime;x-friends:="org.eclipse.papyrus.views.properties.toolsmiths,org.eclipse.papyrus.views.properties",
  org.eclipse.papyrus.infra.properties.ui.creation,
  org.eclipse.papyrus.infra.properties.ui.modelelement,
  org.eclipse.papyrus.infra.properties.ui.preferences,

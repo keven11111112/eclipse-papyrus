@@ -16,7 +16,7 @@ package org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.act
 
 import static org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.CDOContextStorageProvider.CONTEXTS_PATH;
 import static org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.CDOContextStorageProvider.CONTEXT_EXTENSION;
-import static org.eclipse.papyrus.customization.properties.storage.actions.ContextStorageActionUtil.isRelative;
+import static org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.ContextStorageActionUtil.isRelative;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,14 +55,14 @@ import org.eclipse.papyrus.cdo.internal.ui.customization.properties.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.messages.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.CDOTextURIHandler;
 import org.eclipse.papyrus.cdo.internal.ui.dialogs.CheckoutSelectionDialog;
-import org.eclipse.papyrus.customization.properties.storage.actions.ContextStorageActionUtil;
-import org.eclipse.papyrus.customization.properties.storage.actions.IContextCopyAction;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
+import org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.ContextStorageActionUtil;
+import org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.IContextCopyAction;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 

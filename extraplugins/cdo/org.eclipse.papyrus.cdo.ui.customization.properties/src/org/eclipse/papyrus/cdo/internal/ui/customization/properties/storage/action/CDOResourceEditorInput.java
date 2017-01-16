@@ -13,7 +13,7 @@ package org.eclipse.papyrus.cdo.internal.ui.customization.properties.storage.act
 
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.customization.properties.editor.ResourceEditorInput;
+import org.eclipse.papyrus.views.properties.toolsmiths.editor.ResourceEditorInput;
 
 
 /**

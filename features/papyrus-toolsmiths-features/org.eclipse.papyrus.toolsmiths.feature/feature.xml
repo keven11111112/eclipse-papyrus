@@ -52,19 +52,19 @@
   <!--Properties-->
 
    <plugin
-         id="org.eclipse.papyrus.customization.properties"
+         id="org.eclipse.papyrus.views.properties.toolsmiths"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.papyrus.customization.properties.generation"
+         id="org.eclipse.papyrus.uml.properties.generation"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.papyrus.customization.properties.model.xwt"
+         id="org.eclipse.papyrus.views.properties.model.xwt"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -20,8 +20,8 @@ import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.messages.Messages;
-import org.eclipse.papyrus.customization.properties.storage.actions.IContextDeleteAction;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.toolsmiths.storage.actions.IContextDeleteAction;
 
 /**
  * This is the CDOContextDeleteAction type. Enjoy.
