@@ -57,7 +57,7 @@ public class PapyrusFile implements IPapyrusFile {
 					final String fileWithoutExtension = OneFileUtils.withoutFileExtension(file);
 					if(fileWithoutExtension.equals(resourceWithoutExtension)) {
 						files.add(res);
-					}else if(res.getFileExtension().equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION) && resourceWithoutExtension.startsWith(fileWithoutExtension)){
+					}else if(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION.equals(res.getFileExtension()) && resourceWithoutExtension.startsWith(fileWithoutExtension)){
 						String possibleLocale = resourceWithoutExtension.substring(fileWithoutExtension.length());
 						if(possibleLocale.startsWith("_")){ //$NON-NLS-1$
 							possibleLocale = possibleLocale.substring(1);
