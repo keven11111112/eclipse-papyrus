@@ -39,6 +39,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		CanonicalRegressionTest.class,
 		ShapeCustomisationTest.class,
 		Bug476873_MoveCommandTest.class,
+		Bug495430_DuplicatedTransitionsTest.class,
 		Bug488744_PortPositionTest.class
 })
 
