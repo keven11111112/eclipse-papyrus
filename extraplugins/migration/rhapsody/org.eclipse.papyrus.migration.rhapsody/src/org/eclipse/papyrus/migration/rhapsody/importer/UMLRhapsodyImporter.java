@@ -14,13 +14,18 @@
 package org.eclipse.papyrus.migration.rhapsody.importer;
 
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -48,6 +53,7 @@ import org.eclipse.papyrus.migration.rhapsody.parser.rpySyntax.SimpleValueList;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IProject;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyFactory;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
+import org.eclipse.papyrus.migration.rhapsody.utils.RhapsodyShareFolderUtils;
 
 
 /**
@@ -129,7 +135,7 @@ public class UMLRhapsodyImporter {
 	 */
 	private EObject transform(RpyFileHandler rpyFileHandler) {
 		Resource outputRes = getResource(rpyFileHandler);
-		if (outputRes.getContents().isEmpty()){
+		if (outputRes.getContents().isEmpty() || outputRes.getContents().get(0) instanceof EAnnotation){
 			RpyFile rpyFile = rpyFileHandler.getRpyFile();
 
 			List<EObject> roots= new ArrayList<EObject>();
@@ -141,7 +147,7 @@ public class UMLRhapsodyImporter {
 					}
 				}
 			}
-			outputRes.getContents().addAll(roots);			
+			outputRes.getContents().addAll(0, roots);			
 		}
 		if (outputRes.getContents().isEmpty()){
 			return null;
@@ -328,10 +334,39 @@ public class UMLRhapsodyImporter {
 			if (inURI != null){
 				URI outURI = URI.createFileURI(targetPath).appendSegment(inURI.trimFileExtension().lastSegment()).appendFileExtension(RhapsodyFileUtils.UML_RHAPSODY_FILE);
 				ret= resSet.createResource(outURI);
+				addSharedResourceAnnotationIfNeeded(inURI, ret);
 				fileToResourceMap.put(rpyFileHandler, ret);
 			}
 		}
 		return ret;
+	}
+
+	/**
+	 * @param inURI
+	 * @param ret
+	 */
+	private void addSharedResourceAnnotationIfNeeded(URI inURI, Resource ret) {
+		String sharedFolderURIString = RhapsodyShareFolderUtils.getRhapsodyShareFolder();
+		if (sharedFolderURIString != null){
+			URL inURL;
+			try {
+				inURL = FileLocator.toFileURL(new URL(inURI.toString()));
+				if (inURL != null) {
+					Path inURIPath = Paths.get(inURL.toURI());
+					Path sharedFolderPath = Paths.get(sharedFolderURIString);
+					if(inURIPath.toAbsolutePath().startsWith(sharedFolderPath.toAbsolutePath())){
+						EAnnotation annotation =  RhapsodyShareFolderUtils.createRhapsodyLibraryResourceEAnnotation();
+						ret.getContents().add(annotation);
+					}
+				}
+				
+			} catch (Exception e) {
+				//should never happen since the file from inURI has already been loaded
+			}
+			
+		}
+		
+		
 	}
 
 

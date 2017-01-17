@@ -21,6 +21,10 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
@@ -55,6 +59,16 @@ public class RhapsodyShareFolderUtils {
 	private static final String PREDEFINED_CPP_TYPE_FILE = "PredefinedTypesC++.sbs"; //$NON-NLS-1$
 
 	private static final String RHAPSODY_HOME_VARIABLE_NAME = "RhapsodyHome"; //$NON-NLS-1$
+
+	/**
+	 * text used for EAnnotation created during the Rhapsody import
+	 */
+	public static final String RHAPSODY_IMPORTER_EANNOTATION_SOURCE = "RhapsodyImporter";//$NON-NLS-1$
+
+	/**
+	 * String used to define if the created resource represents a Rhapsody Library (<code>true</code>) or a user resource (<code>false</code>)
+	 */
+	public static final String RHAPSODY_IMPORTER_IS_RHAPSODY_LIBRARY_RESOURCE_KEY = "IsRhapsodyLibraryResource";//$NON-NLS-1$
 
 
 	/**
@@ -111,7 +125,7 @@ public class RhapsodyShareFolderUtils {
 			if (!finalResult) {
 				final MessageDialog dialog = new MessageDialog(Display.getDefault().getActiveShell(), SELECT_FOLDER_TITLE, null, MESSAGE, MessageDialog.QUESTION, 0, new String[] { Messages.RhapsodyShareFolderUtils_Retry, IDialogConstants.CANCEL_LABEL });
 				int res = dialog.open();
-				if (IDialogConstants.OK_ID==res) {
+				if (IDialogConstants.OK_ID == res) {
 					finalResult = checkRhapsodyShareFolderAndAskForItWhenRequired();
 				}
 			}
@@ -294,4 +308,36 @@ public class RhapsodyShareFolderUtils {
 		}
 		return new Status(IStatus.OK, Activator.PLUGIN_ID, NLS.bind("The required folder \"{0}\" doesn't exist in the \"{1}\" folder.", name, SHARE)); //$NON-NLS-1$
 	}
+
+	/**
+	 * 
+	 * @return
+	 * 		a EAnnotation defining that the resource is a Rhapsody Library
+	 */
+	public static EAnnotation createRhapsodyLibraryResourceEAnnotation() {
+		final EAnnotation result = EcoreFactory.eINSTANCE.createEAnnotation();
+		result.setSource(RHAPSODY_IMPORTER_EANNOTATION_SOURCE);
+		result.getDetails().put(RHAPSODY_IMPORTER_IS_RHAPSODY_LIBRARY_RESOURCE_KEY, Boolean.TRUE.toString());
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param resource
+	 *            a resource
+	 * @return
+	 * 		<code>true</code> if the resource represents a Rhapsody Library. <code>false</code> otherwise
+	 */
+	public static boolean isRhapsodyLibraryResource(final Resource resource) {
+		for (EObject content : resource.getContents()) {
+			if (content instanceof EAnnotation) {
+				EAnnotation annotation = (EAnnotation) content;
+				if (RHAPSODY_IMPORTER_EANNOTATION_SOURCE.equals(annotation.getSource())) {
+					return Boolean.TRUE.toString().equals(annotation.getDetails().get(RHAPSODY_IMPORTER_IS_RHAPSODY_LIBRARY_RESOURCE_KEY));
+				}
+			}
+		}
+		return false;
+	}
+
 }

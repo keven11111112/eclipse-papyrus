@@ -117,6 +117,9 @@ public class RhapsodyMetamodelGenerator {
 	 * @param content
 	 */
 	private EClass transform(RpyNode node) {
+		if (node.getName() == null || node.getName().isEmpty()){
+			return null;
+		}
 		EClass eClass = eClassMap.get(node.getName());
 		if (eClass == null){
 			eClass = EcoreFactory.eINSTANCE.createEClass();
@@ -148,7 +151,7 @@ public class RhapsodyMetamodelGenerator {
 	 */
 	private void transformOwningHandlerIfDifferent(RpyNode referencedNode, RpyFeature rpyFeature) {
 		RpyFileHandler referencedNodeHandler = projectHandler.getOwningFileHandler(referencedNode);
-		if (referencedNodeHandler != projectHandler.getOwningFileHandler((RpyNode)rpyFeature.eContainer()) && !transformedFileHandlers.contains(referencedNodeHandler)){
+		if (referencedNodeHandler != null && referencedNodeHandler != projectHandler.getOwningFileHandler((RpyNode)rpyFeature.eContainer()) && !transformedFileHandlers.contains(referencedNodeHandler)){
 			transformedFileHandlers.add(referencedNodeHandler);
 			transform(referencedNodeHandler);
 		}

@@ -239,20 +239,33 @@ public class MetamodelFactorizer {
 		return ret;
 	}
 
-	private static EClass findCommonSuperType(List<EClass> types) {
+	private static List<EClass> findCommonSuperTypes(List<EClass> types) {
 		Iterator<EClass> typeIter = types.iterator();
 		EClass firstType = typeIter.next();
-		List<EClass> ret = new ArrayList<>(firstType.getESuperTypes());
+		List<EClass> ret = new ArrayList<>(firstType.getEAllSuperTypes());
+		ret.add(firstType);
 
 		while (typeIter.hasNext() && !ret.isEmpty()){
 			EClass nextType = typeIter.next();
+			ret.add(nextType);
 			ret.retainAll(nextType.getEAllSuperTypes());
 		}
-		if (!ret.isEmpty()){
-			return ret.get(0);
+		
+		//we have here the intersection of all common super types. 
+		//we now remove shared "grand-super-types" (super types of super types)
+		
+		Set<EClass> grandSuperTypes = new HashSet<EClass>();
+		for (EClass superType : ret){
+			for (EClass grandSuperType : superType.getEAllSuperTypes()){
+				if (ret.contains(grandSuperType)){
+					grandSuperTypes.add(grandSuperType);
+				}
+			}
 		}
-
-		return null;
+		
+		ret.removeAll(grandSuperTypes);
+		
+		return ret;
 	}
 
 	/**
@@ -375,20 +388,15 @@ public class MetamodelFactorizer {
 	 */
 	private static EClass findOrCreateCommonFeatureType(EStructuralFeature finalRef, List<EClass> types) {
 
-		EClass commonSuperType = findCommonSuperType(types);
-		if (commonSuperType != null){
-			return commonSuperType;
+		List<EClass> commonSuperType = findCommonSuperTypes(types);
+		
+		//if there is already exactly one common superType, we use it
+		if (commonSuperType.size() == 1){
+			return commonSuperType.get(0);
 		}
-		//		List<EClass> commonSuperTypes = collectCommonL1SuperTypes(types);
-		//		
-		//		//in this implem, we reuse an existing type only if the list of existing types is exactly the list of the subtypes of a common ancestor
-		//		for (EClass superType : commonSuperTypes){
-		//			List<EClass> specializations = collectCommonL1Specializations(superType);
-		//			if (specializations.size() == types.size()){
-		//				return superType;
-		//			}
-		//		}
 
+		//if there are 0 common super types or more than one, we create a new type, or check if this type already exists
+		//considering that all the features with the same name have the same type... (strong hypothesis...)
 		EPackage targetEPack = finalRef.getEContainingClass().getEPackage();
 		String eClassName = capitalize(finalRef.getName())+"Type";
 		//eClassName = finalRef.getEContainingClass().getName() + "_"+ eClassName;
