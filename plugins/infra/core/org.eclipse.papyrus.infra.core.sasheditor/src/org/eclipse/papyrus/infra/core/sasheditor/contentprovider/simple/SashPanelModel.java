@@ -117,6 +117,17 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel#getSashInitialPosition()
+	 *
+	 * @return 0;
+	 */
+	@Override
+	public int getSashInitialPosition() {
+		return 0;
+	}
+
+
+	/**
 	 * Replace specified child with the new child. {@inheritDoc}
 	 */
 	@Override
@@ -165,6 +176,7 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 
 
 	}
+
 
 
 }

@@ -93,4 +93,15 @@ public class SashPanelModel implements IAbstractPanelModel, ISashPanelModel {
 		return sashPanel.getSashPosition();
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel#getSashInitialPosition()
+	 *
+	 * @return
+	 */
+	@Override
+	public int getSashInitialPosition() {
+		int pos = (int) (sashPanel.getSashPosition()*100);
+		return pos;
+	}
+
 }

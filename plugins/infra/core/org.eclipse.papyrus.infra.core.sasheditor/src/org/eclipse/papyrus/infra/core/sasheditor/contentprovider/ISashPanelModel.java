@@ -38,4 +38,15 @@ public interface ISashPanelModel extends IAbstractPanelModel {
 	 */
 	public int getSashDirection();
 
+	/**
+	 * Get the initial position of the Sash, in percent. This position is used to set the sash when a new part is created.
+	 * The value is betwenn 1 and 100 (percent).
+	 * A value of 0 mean that the sash should separate both part equaly (in the middle)
+	 * 
+	 * @return A value between 0 and 100. 
+	 * 
+	 * @since 2.0
+	 */
+	
+	public int getSashInitialPosition();
 }

@@ -112,11 +112,15 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 		container = new ReplaceableSashForm(parent, sashDirection);
 		
 		// Set weight
-		float sashPosition = (float) 0.7;
-		int firstSize = (int) (sashPosition*100);
-		int secondSize = 100-firstSize;
-		int[] weights = {firstSize,secondSize};
-		container.setWeights(weights);
+		
+		int sashPosition = model.getSashInitialPosition();
+		if( sashPosition >0 && sashPosition <101 ) {
+			// Use initial position
+			int firstSize = (int) (sashPosition);
+			int secondSize = 100-firstSize;
+			int[] weights = {firstSize,secondSize};
+			container.setWeights(weights);			
+		}
 	}
 
 	/**
