@@ -46,6 +46,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -70,6 +71,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetEnclosingInteractionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -1030,7 +1032,7 @@ public class SequenceUtil {
 	 * @param ignoreSet
 	 *            a set of ift to ignore.
 	 * @return
-	 *         a set containing ift at least partially covered by the rectangle.
+	 * 		a set containing ift at least partially covered by the rectangle.
 	 */
 	@SuppressWarnings("unchecked")
 	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {
@@ -1056,7 +1058,7 @@ public class SequenceUtil {
 							coveredInteractionFragments.add(es.getStart());
 							coveredInteractionFragments.add(es.getFinish());
 						}
-					} 
+					}
 				}
 			} else if (ep instanceof ConnectionEditPart) {
 				ConnectionEditPart cep = (ConnectionEditPart) ep;
@@ -1098,14 +1100,7 @@ public class SequenceUtil {
 	 * @return The command.
 	 */
 	public static ICommand getSetEnclosingInteractionCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final EObject interaction) {
-		return new AbstractTransactionalCommand(ed, "Set enclosing interaction command", null) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				setEnclosingInteraction(ift, interaction, false);
-				return CommandResult.newOKCommandResult();
-			}
-		};
+		return new SetEnclosingInteractionCommand(ed, ift, interaction);
 	}
 
 	/**
@@ -1118,37 +1113,25 @@ public class SequenceUtil {
 	 * @param forceIfCoregion
 	 *            force the set even if fragment belong to a coregion. Use true only when you are sure the fragment no longer belongs to a coregion's
 	 *            operand.
+	 * @deprecated Use {@link SetEnclosingInteractionCommand#SetEnclosingInteractionCommand(TransactionalEditingDomain, InteractionFragment, EObject)} instead.
 	 */
+	@Deprecated
 	public static void setEnclosingInteraction(InteractionFragment ift, EObject interaction, boolean forceIfCoregion) {
 		if (ift != null) {
 			if (interaction instanceof Interaction) {
 				if (!interaction.equals(ift.getEnclosingInteraction())) {
 					// check case when mos looks outside but is in a coregion.
-					if (!forceIfCoregion && ift instanceof MessageOccurrenceSpecification) {
-						InteractionOperand operand = ift.getEnclosingOperand();
-						if (operand != null) {
-							Element cf = operand.getOwner();
-							if (cf instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment) cf).getInteractionOperator())) {
-								// was in a coregion. Check whether other mos is still in the coregion
-								Message mess = ((MessageOccurrenceSpecification) ift).getMessage();
-								// find other mos
-								MessageOccurrenceSpecification otherMos = null;
-								if (ift.equals(mess.getSendEvent()) && mess.getReceiveEvent() instanceof MessageOccurrenceSpecification) {
-									otherMos = (MessageOccurrenceSpecification) mess.getReceiveEvent();
-								} else if (ift.equals(mess.getReceiveEvent()) && mess.getSendEvent() instanceof MessageOccurrenceSpecification) {
-									otherMos = (MessageOccurrenceSpecification) mess.getSendEvent();
-								}
-								if (otherMos != null) {
-									// check that it is in a coregion (specific code is in charge of taking it out in ReconnectMessageHelper)
-									if (operand.equals(otherMos.getEnclosingOperand())) {
-										return;
-									}
-								}
-							}
+					if (!(ift instanceof MessageOccurrenceSpecification)) {
+						ift.setEnclosingOperand(null);
+						ift.setEnclosingInteraction((Interaction) interaction);
+					} else {
+						// If ift is a message check if we have to force the coregion if so, do nothing
+						if (!messageOccurenceSpecIsCoregion(ift, forceIfCoregion)) {
+
+							ift.setEnclosingOperand(null);
+							ift.setEnclosingInteraction((Interaction) interaction);
 						}
 					}
-					ift.setEnclosingOperand(null);
-					ift.setEnclosingInteraction((Interaction) interaction);
 				}
 			} else if (interaction instanceof InteractionOperand) {
 				if (!interaction.equals(ift.getEnclosingOperand())) {
@@ -1157,6 +1140,44 @@ public class SequenceUtil {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Check case when Message Occurence Specification (mos) looks outside but is in a coregion
+	 * 
+	 * @param ift
+	 *            Current Interaction Fragment
+	 * @param forceIfCoregion
+	 *            define if we have to force the modification in case of Coregion
+	 * @deprecated Use {@link SetEnclosingInteractionCommand#messageOccurenceSpecIsCoregion(InteractionFragment ift, boolean forceIfCoregion)} instead
+	 */
+	public static boolean messageOccurenceSpecIsCoregion(InteractionFragment ift, boolean forceIfCoregion) {
+		boolean coRegion = false;
+
+		if (!forceIfCoregion && ift instanceof MessageOccurrenceSpecification) {
+			InteractionOperand operand = ift.getEnclosingOperand();
+			if (operand != null) {
+				Element cf = operand.getOwner();
+				if (cf instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment) cf).getInteractionOperator())) {
+					// was in a coregion. Check whether other mos is still in the coregion
+					Message mess = ((MessageOccurrenceSpecification) ift).getMessage();
+					// find other mos
+					MessageOccurrenceSpecification otherMos = null;
+					if (ift.equals(mess.getSendEvent()) && mess.getReceiveEvent() instanceof MessageOccurrenceSpecification) {
+						otherMos = (MessageOccurrenceSpecification) mess.getReceiveEvent();
+					} else if (ift.equals(mess.getReceiveEvent()) && mess.getSendEvent() instanceof MessageOccurrenceSpecification) {
+						otherMos = (MessageOccurrenceSpecification) mess.getSendEvent();
+					}
+					if (otherMos != null) {
+						// check that it is in a coregion (specific code is in charge of taking it out in ReconnectMessageHelper)
+						if (operand.equals(otherMos.getEnclosingOperand())) {
+							coRegion = true;
+						}
+					}
+				}
+			}
+		}
+		return coRegion;
 	}
 
 	/**
@@ -1345,19 +1366,49 @@ public class SequenceUtil {
 			}
 		}
 		CompoundCommand cmd = new CompoundCommand();
-		for (Map.Entry<InteractionFragment, Rectangle> entry : iftToCheckForUpdate.entrySet()) {
-			InteractionFragment newEnclosingInteraction = findInteractionFragmentContainerAt(entry.getValue(), executionSpecificationEP);
-			if (newEnclosingInteraction != null) {
-				cmd.add(new ICommandProxy(getSetEnclosingInteractionCommand(executionSpecificationEP.getEditingDomain(), entry.getKey(), newEnclosingInteraction)));
+		boolean sameContainer = isInSingleInteraction(executionSpecificationEP, iftToCheckForUpdate);
+		if (sameContainer) {
+			for (Map.Entry<InteractionFragment, Rectangle> entry : iftToCheckForUpdate.entrySet()) {
+				InteractionFragment newEnclosingInteraction = findInteractionFragmentContainerAt(entry.getValue(), executionSpecificationEP);
+				if (newEnclosingInteraction != null) {
+					cmd.add(new ICommandProxy(getSetEnclosingInteractionCommand(executionSpecificationEP.getEditingDomain(), entry.getKey(), newEnclosingInteraction)));
+				}
 			}
-		}
-		if (!cmd.isEmpty()) {
-			return cmd;
+			if (!cmd.isEmpty()) {
+				return cmd;
+			} else {
+				return null;
+			}
 		} else {
-			return null;
+			return UnexecutableCommand.INSTANCE;
 		}
 	}
 
+	/**
+	 * Define if the Execution Specification Start and Finish into the same Interaction
+	 * 
+	 * @param executionSpecificationEP
+	 *            The Edit Part of the Execution Specification
+	 * @param iftToCheckForUpdate
+	 *            The Map of the ES element and their Occurrence Specification with their position
+	 * @return true if Interaction at the bottom and at the start are the same.
+	 */
+	public static boolean isInSingleInteraction(ShapeNodeEditPart executionSpecificationEP, HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate) {
+		boolean included = false;
+		ExecutionSpecification element = (ExecutionSpecification) executionSpecificationEP.resolveSemanticElement();
+		OccurrenceSpecification start = element.getStart();
+		OccurrenceSpecification finish = element.getFinish();
+
+		InteractionFragment interactionContainerAtStart = findInteractionFragmentContainerAt(iftToCheckForUpdate.get(start), executionSpecificationEP);
+		InteractionFragment interactionContainerAtFinish = findInteractionFragmentContainerAt(iftToCheckForUpdate.get(finish), executionSpecificationEP);
+
+		if (interactionContainerAtStart == interactionContainerAtFinish) {
+			included = true;
+		}
+		return included;
+	}
+
+	
 	/**
 	 * Find the edit part a connection should be reconnected to at a given reference point on a lifeline
 	 *

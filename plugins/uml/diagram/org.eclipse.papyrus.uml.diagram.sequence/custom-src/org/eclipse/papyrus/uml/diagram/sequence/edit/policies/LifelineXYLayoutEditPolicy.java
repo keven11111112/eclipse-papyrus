@@ -109,7 +109,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	private static final String CO_REGION_HINT = ((IHintedType) UMLElementTypes.CombinedFragment_CoRegionShape).getSemanticHint();
 
 	private static final String DESTRUCTION_OCCURANCE_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_Shape).getSemanticHint();
-	
+
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		EditPart targetEditPart = super.getTargetEditPart(request);
@@ -249,8 +249,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		switch (UMLVisualIDRegistry.getVisualID(childView)) {
 		case StateInvariantEditPart.VISUAL_ID:
 			return new StateInvariantResizableEditPolicy();
-		//case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-		//	return new BorderItemResizableEditPolicy();
+		// case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+		// return new BorderItemResizableEditPolicy();
 		}
 		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (result == null) {
@@ -261,12 +261,15 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	@Override
 	protected Rectangle getCurrentConstraintFor(GraphicalEditPart child) {
-		IFigure fig = child.getFigure();
-		Object con = fig.getParent().getLayoutManager().getConstraint(fig);
-		if (con instanceof Rectangle) {
-			return (Rectangle) con;
+		IFigure fig = null;
+		if (null != child) {
+			fig = child.getFigure();
+			Object con = fig.getParent().getLayoutManager().getConstraint(fig);
+			if (con instanceof Rectangle) {
+				return (Rectangle) con;
+			}
 		}
-		return fig.getBounds();
+		return fig == null ? null : fig.getBounds();
 	}
 
 	@Override
@@ -320,7 +323,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	private Command getCommandForDestructionOccuranceCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
 		if (cvr.getLocation() == null) {
-			return UnexecutableCommand.INSTANCE; 
+			return UnexecutableCommand.INSTANCE;
 		}
 		LifelineEditPart lifelineEP = (LifelineEditPart) getHost();
 		// Translate the absolute location to relative
@@ -331,7 +334,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		command = getSetLifelineHeightCommand(command, lifelineEP, location.y);
 		return command;
 	}
-	
+
 	private Rectangle getCreateExecuteSpecificationBounds(Point location, Dimension size, String semanticHint) {
 		Point newLocation = location == null ? new Point() : location.getCopy();
 		if (newLocation.x < 0 || newLocation.y < 0) {
@@ -378,10 +381,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			IFigure figure = externalExecutionSpecificationEP.getFigure();
 			Rectangle bounds = figure.getBounds().getCopy();
 			View view = externalExecutionSpecificationEP.getNotationView();
-			// Handle the case of ExecutionSpecification being resized in the same compound command  
+			// Handle the case of ExecutionSpecification being resized in the same compound command
 			if (view instanceof Shape && ((Shape) view).getLayoutConstraint() instanceof Bounds) {
 				Bounds newBounds = (Bounds) ((Shape) view).getLayoutConstraint();
-				bounds.height = newBounds.getHeight(); 
+				bounds.height = newBounds.getHeight();
 			}
 			if (!bounds.contains(newLocation) || bounds.x > newLocation.x) {
 				continue;
@@ -417,11 +420,9 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		newBounds.x -= dotLineBounds.x;
 		newBounds.y -= dotLineBounds.y;
-		// newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0), true);
-		// if(newBounds == null) {
-		// return UnexecutableCommand.INSTANCE;
-		// }
+	
 		Command p = new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewDescriptor, newBounds));
+
 		// resize parent bar
 		if (parent != null) {
 			Rectangle newAdjustedBounds = newBounds.getCopy();
@@ -440,7 +441,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		if (childBounds.y - spacingY < rect.y) {
 			rect.height += rect.y - childBounds.y + spacingY;
 			rect.y = childBounds.y - spacingY;
-		} else if (childBounds.bottom() + spacingY> rect.bottom()) {
+		} else if (childBounds.bottom() + spacingY > rect.bottom()) {
 			rect.height = childBounds.bottom() - rect.y + spacingY;
 		} else {
 			return null;
@@ -667,8 +668,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						executionSpecificationEP.getFigure().translateToRelative(newBounds);
 						// Remove X component of the alignment
 						newBounds.x = oldBounds.x;
-					}
-					else {
+					} else {
 						newBounds.x += request.getMoveDelta().x;
 						newBounds.y += request.getMoveDelta().y;
 						newBounds.height += newSizeDelta.height;
@@ -741,7 +741,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				}
 				if (ep instanceof DestructionOccurrenceSpecificationEditPart) {
 					Rectangle rectLifeline = lifelineEP.getFigure().getBounds();
-					compoundCmd = getSetLifelineHeightCommand(compoundCmd,lifelineEP, rectLifeline.height + request.getMoveDelta().y);
+					compoundCmd = getSetLifelineHeightCommand(compoundCmd, lifelineEP, rectLifeline.height + request.getMoveDelta().y);
 				}
 			}
 			if (!compoundCmd.isEmpty()) {
@@ -750,9 +750,9 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Modifies Lifeline's height and keeps anchors' positions intact.  
+	 * Modifies Lifeline's height and keeps anchors' positions intact.
 	 *
 	 * @param compoundCmd
 	 *            command to add to
@@ -761,13 +761,13 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * @param newHeight
 	 *            new height of the Lifeline
 	 *
-	 * @return the compound command 
+	 * @return the compound command
 	 */
 	public static CompoundCommand getSetLifelineHeightCommand(CompoundCommand compoundCmd, LifelineEditPart lifelineEP, int newHeight) {
-		Rectangle rectLifeline = lifelineEP.getFigure().getBounds() .getCopy();
-		Dimension zoomedAddon = new Dimension(0, DESTRUCTION_INIT_SIZE/2);
+		Rectangle rectLifeline = lifelineEP.getFigure().getBounds().getCopy();
+		Dimension zoomedAddon = new Dimension(0, DESTRUCTION_INIT_SIZE / 2);
 		lifelineEP.getFigure().translateToRelative(zoomedAddon);
-		int minimumHeight = ((CustomLifelineEditPart)lifelineEP).getMinimumHeight(-1, true) + zoomedAddon.height;
+		int minimumHeight = ((CustomLifelineEditPart) lifelineEP).getMinimumHeight(-1, true) + zoomedAddon.height;
 		newHeight = Math.max(newHeight, minimumHeight);
 		int heightDelta = newHeight - rectLifeline.height;
 		if (heightDelta == 0) {
