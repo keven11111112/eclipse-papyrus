@@ -362,6 +362,11 @@ helper NamedElement::getRhaposdyLabel():String{
 	//		rpyElement:=self.invresolveoneIn(IType::iTypeFromRhapsodyToUML_ANSI_C_CPPType)->selectByKind(IModelElement)->any(true);
 	//	};
 
+	//mapping umlrhapsody::IEvent::toSignals(): uml::Signal
+	if(rpyElement=null){
+		rpyElement:=self.invresolveoneIn(IEvent::toSignals)->selectByKind(IModelElement)->any(true);
+	};
+
 	//mapping umlrhapsody::IEvent::toSignalEvents(): uml::SignalEvent
 	if(rpyElement=null){
 		rpyElement:=self.invresolveoneIn(IEvent::toSignalEvents)->selectByKind(IModelElement)->any(true);
