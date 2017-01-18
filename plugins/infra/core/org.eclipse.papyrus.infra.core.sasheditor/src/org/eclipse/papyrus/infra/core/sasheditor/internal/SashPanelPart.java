@@ -110,6 +110,13 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	protected void createControl(Composite parent) {
 		// container = new SashForm(parent, sashDirection);
 		container = new ReplaceableSashForm(parent, sashDirection);
+		
+		// Set weight
+		float sashPosition = (float) 0.7;
+		int firstSize = (int) (sashPosition*100);
+		int secondSize = 100-firstSize;
+		int[] weights = {firstSize,secondSize};
+		container.setWeights(weights);
 	}
 
 	/**
