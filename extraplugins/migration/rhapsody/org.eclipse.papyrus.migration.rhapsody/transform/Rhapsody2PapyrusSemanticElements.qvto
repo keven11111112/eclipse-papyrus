@@ -113,8 +113,7 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	packagedElement += iSubSystem.Types[IType].oclAsSet().map iTypeToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Actors->selectByKind(IActor)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement +=iSubSystem.Declaratives[DefaultSubsystemType].oclAsSet().map iDefaultSubsystemTypeToPackage();
-	ownedComment += iSubSystem.Annotations->selectByKind(IComment)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
-	ownedComment += iSubSystem.description->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	ownedComment += iSubSystem.Annotations->select(a | (a.oclIsTypeOf(IAnnotation) or a.oclIsTypeOf(IComment)))->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
 }
 
 /**
