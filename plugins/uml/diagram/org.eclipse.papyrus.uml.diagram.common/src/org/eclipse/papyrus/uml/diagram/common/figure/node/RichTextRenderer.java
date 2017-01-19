@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502878
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -38,22 +39,20 @@ public class RichTextRenderer implements HTMLRenderer {
 
 	/** Image representing HTML content */
 	protected Image htmlImage;
-	
+
 	private boolean validated;
-	
+
 	/**
 	 * Scroll pane to wrap the renderFigure
 	 */
 	protected AnimatableScrollPane contentPane;
-	//protected ScrollPane contentPane;
 
 	@Override
 	public IFigure getFigure() {
 		renderFigure = new ImageFigure();
 		renderFigure.setOpaque(false);
-		
+
 		contentPane = new AnimatableScrollPane();
-		//contentPane = new ScrollPane();
 		contentPane.setOpaque(false);
 		contentPane.setScrollBarVisibility(ScrollPane.NEVER);
 		contentPane.setContents(renderFigure);
@@ -61,7 +60,7 @@ public class RichTextRenderer implements HTMLRenderer {
 		painter = new RichTextPainter(true);
 
 		validated = false;
-		
+
 		return contentPane;
 	}
 
@@ -70,28 +69,30 @@ public class RichTextRenderer implements HTMLRenderer {
 		if (renderFigure == null || painter == null || contentPane == null) {
 			return;
 		}
-		
+
 		// Validate first time, otherwise infinite layout loop
 		if (!validated) {
 			contentPane.setPreferredSize(width, height);
 			contentPane.validate();
 		}
-		
+
 		if (htmlImage != null) {
 			htmlImage.dispose();
 		}
 
 		// Create a transparent background
 		htmlImage = getTransparentBackground(Display.getDefault(), width, height);
+
 		if (htmlImage == null) {
 			htmlImage = new Image(Display.getDefault(), width, height);
 		}
-		
+
 		if (htmlImage != null) {
 			// Compute the preferred size of the image to display all of the HTML content
 			GC gc = new GC(htmlImage);
 			Rectangle bounds = new Rectangle(x, y, width, height);
 			painter.preCalculate(text != null ? text : "", gc, bounds, true);
+
 			boolean changeBounds = false;
 			if (width < getPreferredSize().x) {
 				width = getPreferredSize().x;
@@ -115,13 +116,14 @@ public class RichTextRenderer implements HTMLRenderer {
 
 				bounds = new Rectangle(x, y, width, height);
 			}
-			
+
 			// Paint and clean up
 			painter.paintHTML(text != null ? text : "", gc, bounds); //$NON-NLS-1$
+
 			if (gc != null) {
 				gc.dispose();
 			}
-			
+
 			renderFigure.setImage(htmlImage);
 		}
 	}
@@ -135,9 +137,9 @@ public class RichTextRenderer implements HTMLRenderer {
 		try {
 			Image src = new Image(device, width, height);
 			ImageData imageData = src.getImageData();
-			imageData.alpha = 0;
+			imageData.transparentPixel = imageData.getPixel(0, 0);
 			src.dispose();
-			return new Image(device, imageData); 
+			return new Image(device, imageData);
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
