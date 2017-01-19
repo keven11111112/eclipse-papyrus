@@ -236,7 +236,7 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	public void testToManageReadStructuralFeatureAction() {
 		// Change for Bug 438560: 2 pins were created by the Live validation actions. These validation actions are not live anymore.
 		// FIXME: Implement a specific Palette post-action to create the pins automatically (Independently of the validation rules)
-		testToManageNode(UMLElementTypes.ReadStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getReadStructuralFeatureAction(), UMLElementTypes.StructuredActivityNode_Shape, true, 0);
+		testToManageNode(UMLElementTypes.ReadStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getReadStructuralFeatureAction(), UMLElementTypes.StructuredActivityNode_Shape, true, 1);
 	}
 
 	/**

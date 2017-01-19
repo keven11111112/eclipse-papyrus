@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -81,6 +82,25 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 										}
 									}
 								}
+							}
+						}
+					}
+				}
+				// Pins of ReadStructuralFeatureAction should be create and update automatically
+				// 1] check if the setFeature is not Name (only type and multiplicity is interesting)
+				if (!request.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
+					// 2] get the preference for ReadStructuralFeatureAction
+					synchronizePinPreference = prefStore.getString(IAutomatedModelCompletionPreferencesConstants.READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION);
+					// 3] check preference
+					if (synchronizePinPreference) {
+						// 4] get all ReadStructuralFeatureAction
+						List<ReadStructuralFeatureAction> allReadStructuralFeatureAction = ElementUtil.getInstancesFilteredByType(root, ReadStructuralFeatureAction.class, null);
+						// 5] loop into the list of ReadStructuralFeatureAction
+						for (ReadStructuralFeatureAction readStructuralFeatureAction : allReadStructuralFeatureAction) {
+							if (readStructuralFeatureAction.getStructuralFeature() == property) {
+								// 6] call the command for the ReadStructuralFeatureAction whose the structuralFeature reference the property
+								IPinUpdater<ReadStructuralFeatureAction> updater = PinUpdaterFactory.getInstance().instantiate(readStructuralFeatureAction);
+								command.add(new PinUpdateCommand<ReadStructuralFeatureAction>("Update read structural feature action pins", updater, readStructuralFeatureAction)); //$NON-NLS-1$
 							}
 						}
 					}

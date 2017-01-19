@@ -1,3 +1,8 @@
-CallBehaviorAction, CallOperationAction, SendSignalAction, AcceptEventAction, AcceptCallAction {
+AcceptEventAction, 
+AcceptCallAction, 
+CallBehaviorAction, 
+CallOperationAction, 
+ReadStructuralFeatureAction,
+SendSignalAction {
 	canonical: true;
 }

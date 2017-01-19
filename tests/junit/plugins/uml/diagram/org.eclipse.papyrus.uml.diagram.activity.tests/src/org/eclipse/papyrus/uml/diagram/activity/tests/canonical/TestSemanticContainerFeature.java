@@ -20,10 +20,14 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.InterruptibleActivityRegion;
@@ -1033,15 +1037,25 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 
 	@Test
 	public void testInputPinAsObjectInReadStructuralFeatureAction() {
+		// Pins of ReadStructuralFeatureAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(ReadStructuralFeatureActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID, actionEP);
 
 		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 	}
-	
+
 	@Test
 	public void testActionPinAsObjectInReadStructuralFeatureAction() {
+		// Pins of ReadStructuralFeatureAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(ReadStructuralFeatureActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID, actionEP);
 
@@ -1051,6 +1065,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testValuePinAsObjectInReadStructuralFeatureAction() {
+		// Pins of ReadStructuralFeatureAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(ReadStructuralFeatureActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID, actionEP);
 

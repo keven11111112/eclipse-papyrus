@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.common.preferences.AutomatedModelCompleti
 import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 
 /**
  * 
@@ -70,6 +71,7 @@ public class ActivityAutomatedModelCompletionPreferencePage extends AbstractAuto
 		List<Class<? extends ActivityNode>> actionList = new ArrayList<>();
 		actionList.add(AcceptCallAction.class);
 		actionList.add(AcceptEventAction.class);
+		actionList.add(ReadStructuralFeatureAction.class);
 		return actionList;
 	}
 
