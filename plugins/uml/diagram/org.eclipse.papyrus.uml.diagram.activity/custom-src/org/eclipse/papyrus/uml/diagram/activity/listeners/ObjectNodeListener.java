@@ -45,7 +45,7 @@ public class ObjectNodeListener extends AbstractPapyrusModifcationTriggerListene
 		if (notif.getNewValue() instanceof ObjectNode && notif.getFeature() instanceof EReference && ((EReference) notif.getFeature()).isContainment()) {
 			cc = new CompositeCommand("Modify Pin");
 			final ObjectNode object = (ObjectNode) notif.getNewValue();
-			if (object.getUpperBound() == null) {
+			if (object.getUpperBound() == null && AdapterFactoryEditingDomain.getEditingDomainFor(object) != null) {
 				LiteralInteger literalInteger = UMLFactory.eINSTANCE.createLiteralInteger();
 				literalInteger.setValue(1);
 				cc.compose(new EMFtoGMFCommandWrapper(SetCommand.create(AdapterFactoryEditingDomain.getEditingDomainFor(object), object, UMLPackage.Literals.OBJECT_NODE__UPPER_BOUND, literalInteger)));

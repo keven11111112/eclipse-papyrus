@@ -21,8 +21,11 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.PinUpdateCommand;
+import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.PinUpdateLinkEndDataCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdaterLinkEndData;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFactory;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkEndCreationDataPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -31,6 +34,7 @@ import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
+import org.eclipse.uml2.uml.LinkEndCreationData;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
@@ -84,6 +88,22 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 									}
 								}
 							}
+						}
+					}
+				}
+				// Pins of CreateLinkAction should be create and update automatically
+				// 1] get the preference for CreateLinkAction
+				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.CREATE_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
+				// 2] check preference
+				if (synchronizePinPreference) {
+					// 3] get all LinkEndCreationData
+					List<LinkEndCreationData> allLinkEndCreationData = ElementUtil.getInstancesFilteredByType(root, LinkEndCreationData.class, null);
+					// 4] loop into the list of LinkEndCreationData
+					for (LinkEndCreationData linkEndCreationData : allLinkEndCreationData) {
+						if (linkEndCreationData.getEnd() == property) {
+							// 5] call the command for the CreateLinkAction owning the LinkEndCreationData
+							IPinUpdaterLinkEndData updater = new LinkEndCreationDataPinUpdater();
+							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndCreationData)); //$NON-NLS-1$
 						}
 					}
 				}
