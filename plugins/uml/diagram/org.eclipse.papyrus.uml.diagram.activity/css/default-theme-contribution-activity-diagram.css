@@ -5,6 +5,7 @@ CallBehaviorAction,
 CallOperationAction, 
 CreateObjectAction,
 ReadStructuralFeatureAction,
-SendSignalAction {
+SendSignalAction,
+ValueSpecificationAction {
 	canonical: true;
 }

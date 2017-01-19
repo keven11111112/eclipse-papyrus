@@ -14,12 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.AbstractActionPinUpdater;
-import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Event;
@@ -187,41 +184,22 @@ public class AcceptEventActionPinUpdater extends AbstractActionPinUpdater<Accept
 	}
 
 	/**
-	 * Get the common ancestor supposing all triggers referenced a signalEvent
+	 * Get the common ancestor
 	 * 
 	 * @param triggers
 	 * @return
 	 */
 	private Classifier getTypeForMultipleTriggers(List<Trigger> triggers) {
-		if (!triggers.isEmpty()) {
-			// 1] get super class of the signal referencing by the first trigger
-			List<Classifier> commonSuperClass = new ArrayList<>(Util.getAllSuperClasses(null, ((SignalEvent) triggers.get(0).getEvent()).getSignal()));
-			commonSuperClass.add(((SignalEvent) triggers.get(0).getEvent()).getSignal());
-			Set<Classifier> nonCommonClassifier = new HashSet<Classifier>();
-			// 2] loop into triggers
+		List<Classifier> listOfClassifier = new ArrayList<>();
+		// 1] check if all triggers reference a SignalEvent
+		if(!triggers.isEmpty()){
 			for (Trigger t : triggers) {
-				// 3] loop into the list of the commonSuperClass
-				// put into nonCommonClassifier list all super classifier of the signal referenced by the trigger
-				// which is not in the commonSuperClass list
-				for (Classifier c : commonSuperClass) {
-					if (!(Util.getAllSuperClasses(null, ((SignalEvent) t.getEvent()).getSignal()).contains(c)) && ((SignalEvent) t.getEvent()).getSignal() != c) {
-						nonCommonClassifier.add(c);
-					}
+				if (t.getEvent() instanceof SignalEvent) {
+					listOfClassifier.add(((SignalEvent) t.getEvent()).getSignal());
 				}
 			}
-
-			// 4] remove all nonCommonClassifier from commonSuperClass
-			commonSuperClass.removeAll(nonCommonClassifier);
-
-			// 5] Get the classifier which inherited of all common super class
-			for (Classifier classifier : commonSuperClass) {
-				List<Classifier> inheritedClassifier = new ArrayList<>(Util.getAllSuperClasses(null, classifier));
-				inheritedClassifier.add(classifier);
-				if (inheritedClassifier.containsAll(commonSuperClass)) {
-					return classifier;
-				}
-			}
-
+			// 2] get common super classifier
+			return getFirstCommonSuperClassifier(listOfClassifier);
 		}
 		return null;
 	}

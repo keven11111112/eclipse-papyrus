@@ -152,7 +152,7 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 */
 	@Test
 	public void testToManageValueSpecificationAction() {
-		testToManageNode(UMLElementTypes.ValueSpecificationAction_Shape, UMLPackage.eINSTANCE.getValueSpecificationAction(), UMLElementTypes.StructuredActivityNode_Shape, true);
+		testToManageNode(UMLElementTypes.ValueSpecificationAction_Shape, UMLPackage.eINSTANCE.getValueSpecificationAction(), UMLElementTypes.StructuredActivityNode_Shape, true, 1);
 	}
 
 	/**
