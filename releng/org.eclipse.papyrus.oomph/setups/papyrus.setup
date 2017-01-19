@@ -1184,35 +1184,29 @@
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
-    <project label="Customization" name="customization">
+    <project label="Toolsmiths" name="toolsmiths">
       <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
       </setupTask>
       <setupTask xsi:type="projects:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/customization}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/customization}"/>
-        <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.(tests\.)?customization($|\..+)"/>
-          </predicate>
-        </sourceLocator>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-toolsmiths-features}" />
       </setupTask>
       <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-        <workingSet id="papyrus-customization" name="Papyrus Customization">
+        <workingSet id="papyrus-toolsmiths" name="Papyrus Toolsmiths">
           <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.customization"/>
             <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
             <operand xsi:type="predicates:OrPredicate">
               <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.customization(?:$|\..+)"/>
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.editor(?:$|\..+)"/>
             </operand>
           </predicate>
         </workingSet>
-        <workingSet id="papyrus-customization-features" name="Papyrus Customization Features">
+        <workingSet id="papyrus-toolsmiths-features" name="Papyrus Toolsmiths Features">
           <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.customization.feature"/>
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.toolsmiths.feature"/>
             <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.customization(?:$|\..+)"/>
+            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.toolsmiths(?:$|\..+)"/>
           </predicate>
         </workingSet>
       </setupTask>
