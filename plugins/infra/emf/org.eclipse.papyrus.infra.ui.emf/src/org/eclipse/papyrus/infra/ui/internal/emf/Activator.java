@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
@@ -51,9 +52,25 @@ public class Activator extends AbstractUIPlugin {
 
 
 	/**
+	 *  Preference to enforce loaded facet by default
+	 */
+	private static final String DEFAULT_LOADED_FACET = "defaultLoadedFacet"; //$NON-NLS-1$
+
+
+	/**
+	 * Separator for DEFAULT_LOADED_FACET
+	 */
+	private static final String SEPARATOR_DEFAULT_LOADED_FACET = ",";	
+	
+	/**
 	 * The plug-in ID
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.ui.emf"; //$NON-NLS-1$
+
+	/**
+	 * The section name of the Dialog Settings for storing Customization Manager settings
+	 */
+	public static final String CUSTOMIZATION_MANAGER_SECTION = PLUGIN_ID + ".customizationManager";//$NON-NLS-1$
 	
 	/**
 	 * Key to store the facet order
@@ -132,7 +149,6 @@ public class Activator extends AbstractUIPlugin {
 		customizationList.addAll(appliedCustomizations);
 		String[] loadedCustomizationArray = customizationList.stream().map(customization -> customization.eResource().getURI().toString()).toArray(size -> new String[size]);
 		dialogSettings.put(LOADED_FACET_ORDER, loadedCustomizationArray);
-		
 	}
 
 	private String getSettingKey(Customization customization) {
@@ -144,6 +160,9 @@ public class Activator extends AbstractUIPlugin {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(CUSTOMIZATION_MANAGER_SECTION);
 		if (settings == null) {
 			settings = Activator.getDefault().getDialogSettings().addNewSection(CUSTOMIZATION_MANAGER_SECTION);
+			IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
+			String string = preferenceStore.getString(DEFAULT_LOADED_FACET);
+			settings.put(LOADED_FACET_ORDER, string.split(SEPARATOR_DEFAULT_LOADED_FACET));
 		}
 		return settings;
 	}
@@ -160,11 +179,9 @@ public class Activator extends AbstractUIPlugin {
 			List<Customization> orderedCustomizationList = new ArrayList<>();
 			for (Customization customization : registryAllCustomizations) {
 				String settingKey = getSettingKey(customization);
-
-				boolean isActive = false;
+				boolean isActive;
 				if (settings.get(settingKey) == null) { // Never customized
 					isActive = customization.isMustBeLoadedByDefault(); // Loaded by default
-
 				} else {
 					isActive = settings.getBoolean(settingKey);
 				}
@@ -178,25 +195,19 @@ public class Activator extends AbstractUIPlugin {
 				
 				Map<String, Customization> mapProp = registryAllCustomizations.stream().collect(
 					    Collectors.toMap(e -> getSettingKey(e),e -> e));
-				
 				Stream<String> stream = Arrays.stream(loadedFacetOrder);
-				Stream<Customization> map = stream.map(id -> mapProp.get(id));
+				Stream<Customization> map = stream.map(id -> mapProp.get(id.trim()));
 				orderedCustomizationList = map.collect(Collectors.toList());
 			} else {
 				Collections.sort(orderedCustomizationList, new CustomizationComparator());
 			}
-			
 			customizationManager.getManagedCustomizations().addAll(orderedCustomizationList);
-
 		} catch (Throwable e) {
 			log.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
 		}
 	}
 
-	/**
-	 * The section name of the Dialog Settings for storing Customization Manager settings
-	 */
-	public static final String CUSTOMIZATION_MANAGER_SECTION = PLUGIN_ID + ".customizationManager";//$NON-NLS-1$
+
 
 	/**
 	 * Restores the default Customization Manager configuration
