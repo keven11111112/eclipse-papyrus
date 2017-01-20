@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 496439
+ *  Christian W. Damus - bugs 496439, 505330
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.transformation;
 
@@ -29,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
@@ -49,6 +51,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.m2m.qvt.oml.ExecutionContext;
+import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
@@ -56,15 +60,18 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
+import org.eclipse.papyrus.m2m.qvto.TraceHelper;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.MappingParameters;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.URIMapping;
 import org.eclipse.papyrus.migration.rsa.concurrent.ResourceAccessHelper;
+import org.eclipse.papyrus.migration.rsa.internal.extension.PostProcessExtension;
 import org.eclipse.papyrus.migration.rsa.internal.schedule.JobWrapper;
 import org.eclipse.papyrus.migration.rsa.internal.schedule.Schedulable;
 import org.eclipse.papyrus.migration.rsa.internal.schedule.Scheduler;
 import org.eclipse.papyrus.migration.rsa.internal.schedule.TransformationWrapper;
+import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformation.ExtensionFunction;
 import org.eclipse.papyrus.migration.rsa.transformation.ui.URIMappingDialog;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.swt.widgets.Control;
@@ -116,6 +123,11 @@ public class ImportTransformationLauncher {
 	 * Own cumulated execution time for repairing stereotypes
 	 */
 	protected long ownRepairStereotypesTime;
+
+	/**
+	 * Own cumulated execution time for post-processing extensions
+	 */
+	protected long ownPostProcessingTime;
 
 	/**
 	 * Own cumulated execution time for repairing libraries
@@ -171,7 +183,7 @@ public class ImportTransformationLauncher {
 	protected ImportTransformation createTransformation(URI transformationURI) {
 		return new ImportTransformation(transformationURI, config, analysisHelper);
 	}
-	
+
 	/**
 	 * Start a Job and delegate to {@link #importModels(IProgressMonitor, List)}
 	 *
@@ -209,12 +221,14 @@ public class ImportTransformationLauncher {
 					Long loadingTime = loadingTimeV2.get(transformation);
 					Long repairProxiesTime = proxiesTime.get(transformation);
 					Long repairStereoTime = stereoTime.get(transformation);
+					Long postTime = postProcessTime.get(transformation);
 					Long totalPhase2 = totalTimeV2.get(transformation);
 
 					log("Second phase (50-100%):");
 					log("\tTotal loading time: " + timeFormat(loadingTime));
 					log("\tTotal fix proxies time: " + timeFormat(repairProxiesTime));
 					log("\tTotal fix stereotypes time: " + timeFormat(repairStereoTime));
+					log("\tTotal post-processing time: " + timeFormat(postTime));
 					log("\tTotal execution time: " + timeFormat(totalPhase2));
 
 					log("Total");
@@ -235,6 +249,7 @@ public class ImportTransformationLauncher {
 				log("\tCumulated Loading Time: " + timeFormat(ownLoadingTime));
 				log("\tCumulated Fix Libraries Time: " + timeFormat(ownRepairLibrariesTime));
 				log("\tCumulated Fix Stereotypes Time: " + timeFormat(ownRepairStereotypesTime));
+				log("\tCumulated Post-processing Time: " + timeFormat(ownPostProcessingTime));
 				log("\tTotal Fix Dependencies Time: " + timeFormat(ownExecutionTime));
 
 				log("Total");
@@ -485,6 +500,8 @@ public class ImportTransformationLauncher {
 
 	final protected Map<ImportTransformation, Long> stereoTime = new HashMap<ImportTransformation, Long>();
 
+	final protected Map<ImportTransformation, Long> postProcessTime = new HashMap<ImportTransformation, Long>();
+
 	final protected Map<ImportTransformation, Long> totalTimeV2 = new HashMap<ImportTransformation, Long>();
 
 	protected IStatus fixDependencies(ImportTransformation transformation, IProgressMonitor monitor, Map<URI, URI> urisToReplace, Map<URI, URI> profileUrisToReplace) {
@@ -610,6 +627,53 @@ public class ImportTransformationLauncher {
 			return repairDisplayStatus;
 		}
 
+		IStatus result = Status.OK_STATUS;
+
+		// Post-processing extensions
+		long postProcessors = transformation.getExtensions().stream()
+				.filter(PostProcessExtension.class::isInstance)
+				.count();
+		if (postProcessors > 0L) {
+			final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
+
+			String statusMessage = String.format("Post-process %s", transformation.getModelName());
+			MultiStatus postProcessStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, statusMessage, null);
+
+			long startPostProcessing = System.nanoTime();
+
+			try {
+				runFastTransaction(domain, () -> {
+					// Re-initialize the transformation for the new resource set
+					transformation.initResourceSet(transformation.getTargetURI(), modelSet);
+
+					ExecutionContext context = transformation.createExecutionContext(
+							SubMonitor.convert(monitor, 1),
+							postProcessStatus);
+
+					// Cannot increment on previous transformations because they were in a different resource set
+					context.getSessionData().setValue(TraceHelper.TRACE_HISTORY, Trace.createEmptyTrace());
+
+					postProcessStatus.merge(transformation.importExtensions(context, monitor, ExtensionFunction::postProcess));
+				});
+			} catch (RollbackException ex) {
+				Activator.log.error(ex);
+			} catch (InterruptedException ex) {
+				Activator.log.error(ex);
+			} finally {
+				long endPostProcessing = System.nanoTime();
+				synchronized (ImportTransformationLauncher.this) {
+					ownPostProcessingTime += endPostProcessing - startPostProcessing;
+					postProcessTime.put(transformation, endPostProcessing - startPostProcessing);
+				}
+			}
+
+			if (postProcessStatus.getSeverity() > IStatus.WARNING) {
+				return postProcessStatus;
+			}
+
+			result = postProcessStatus;
+		}
+
 		try {
 
 			for (Resource resource : resourcesToRepair) {
@@ -618,23 +682,8 @@ public class ImportTransformationLauncher {
 
 			monitor.worked(1);
 
-			final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
-
-			InternalTransactionalEditingDomain internalDomain = (InternalTransactionalEditingDomain) domain;
-
-			Map<String, Object> options = new HashMap<String, Object>();
-			options.put(Transaction.OPTION_NO_UNDO, true);
-			options.put(Transaction.OPTION_NO_VALIDATION, true);
-			options.put(Transaction.OPTION_NO_TRIGGERS, true);
-			options.put(Transaction.OPTION_UNPROTECTED, true);
-
-			// We're in a batch environment, with no undo/redo support. Run a vanilla transaction to improve performances
-			Transaction fastTransaction = internalDomain.startTransaction(false, options);
-			try {
-				EMFHelper.unload(modelSet);
-			} finally {
-				fastTransaction.commit();
-			}
+			TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
+			runFastTransaction(domain, () -> EMFHelper.unload(modelSet));
 
 			domain.dispose();
 
@@ -646,7 +695,7 @@ public class ImportTransformationLauncher {
 			Activator.log.error(ex);
 		}
 
-		return Status.OK_STATUS;
+		return result;
 	}
 
 	protected IStatus repairStereotypeDisplay(ModelSet modelSet, Collection<Resource> resourcesToRepair) {

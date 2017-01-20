@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 505330
  *
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.internal.extension;
@@ -82,9 +83,12 @@ public interface TransformationExtension {
 	public IStatus executeAfter(ExecutionContext context, IProgressMonitor monitor);
 
 	/**
-	 * The number of work steps required by this transformation. Corresponds to the total number of worked() you can invoke in executeBefore/executeAfter
+	 * The number of work steps required by this transformation. Corresponds to the total number of worked() you can invoke in executeBefore/executeAfter.
+	 * This does not include any work that is done in optional extensions such as {@link PostProcessExtension}.
 	 *
-	 * @return
+	 * @return the total number of steps consumed from the shared progress monitor in
+	 *         my {@link #executeBefore(ExecutionContext, IProgressMonitor) executeBefore} and
+	 *         {@link #executeAfter(ExecutionContext, IProgressMonitor) executeAfter}
 	 */
 	public int getNumberOfSteps();
 }
