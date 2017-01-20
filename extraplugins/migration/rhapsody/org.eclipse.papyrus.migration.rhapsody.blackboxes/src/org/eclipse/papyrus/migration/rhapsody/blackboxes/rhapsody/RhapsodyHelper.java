@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.migration.rhapsody.blackboxes.rhapsody;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -55,6 +56,23 @@ public class RhapsodyHelper {
 				}
 			}
 		}
+		// we add a comparator to generate the import always in the same order (to fix trouble with Junit test)
+		subs.sort(new Comparator<ISubsystem>() {
+
+			@Override
+			public int compare(final ISubsystem o1, final ISubsystem o2) {
+				if (o1 == o2 || o1 == null || o2 == null) {
+					return 0; // should not be possible
+				}
+				final String name1 = o1.getName();
+				final String name2 = o2.getName();
+				if (name1 == null || name2 == null) {
+					return 0; // should not be possible
+				}
+				return o1.getName().compareToIgnoreCase(o2.getName());
+			}
+
+		});
 		return subs;
 	}
 
