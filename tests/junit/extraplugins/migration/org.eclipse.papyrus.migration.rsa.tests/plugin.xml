@@ -46,5 +46,8 @@
       <transformation
             className="org.eclipse.papyrus.migration.rsa.tests.PostProcessor">
       </transformation>
+      <transformation
+            className="org.eclipse.papyrus.migration.rsa.tests.PostProcessor$WithQVTo">
+      </transformation>
    </extension>
 </plugin>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -137,7 +137,7 @@ public abstract class AbstractMigrationRegressionTest extends AbstractTransforma
 		protected void finished(Description description) {
 			TransformationExtensionClass ext = JUnitUtils.getAnnotation(description, TransformationExtensionClass.class);
 			if (ext != null) {
-				Arrays.asList(ext.value()).forEach(e -> setEnabled(e, true));
+				Arrays.asList(ext.value()).forEach(e -> setEnabled(e, false));
 			}
 		}
 
