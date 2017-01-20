@@ -245,32 +245,6 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 			}
 			return commandDone;
 		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public boolean canUndo() {
-			return commandDone.canUndo();
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			commandDone.undo();
-			return Status.OK_STATUS;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			commandDone.redo();
-			return Status.OK_STATUS;
-		}
 	}
 
 	/** Shadow the base class's element-to-edit because we need direct access. */
@@ -305,28 +279,6 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 		if ((container != null) && container.eClass().getEAllContainments().contains(request.getContainmentFeature())) {
 			setElementToEdit(container);
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (compositeEMFOperation != null && compositeEMFOperation.canUndo()) {
-			return compositeEMFOperation.undo(monitor, info);
-		}
-		return new Status(IStatus.ERROR, Activator.ID, "imposible to undo the command");
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if (compositeEMFOperation != null && compositeEMFOperation.canRedo()) {
-			return compositeEMFOperation.redo(monitor, info);
-		}
-		return new Status(IStatus.ERROR, Activator.ID, "imposible to redo the command");
 	}
 
 	/**
