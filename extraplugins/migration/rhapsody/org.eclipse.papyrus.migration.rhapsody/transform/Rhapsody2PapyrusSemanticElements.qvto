@@ -230,7 +230,7 @@ mapping umlrhapsody::IType::iTypeToUMLElement() : uml::Element
  	umlrhapsody::IType::toUMLDatatype,
  	umlrhapsody::IType::toUMLInstanceSpecification, 
  	umlrhapsody::IType::toUMLEnumeration,
- 	umlrhapsody::IType::iTypeToUMLClass, 
+ 	umlrhapsody::IType::iTypeToUMLClass, //TODO : merge me with the existing other way to create a class
  	umlrhapsody::IType::iTypeToDefault
  	//don't forget to call the query mapToBasicType for created element instance of uml::TemplateableElement
  	{}
@@ -689,7 +689,11 @@ mapping umlrhapsody::IRelation::iRelationToSysMLPort(): uml::Port when {self.isR
 		var sysPort:umlrhapsody::ISysMLPort:=self.oclAsType(ISysMLPort);
 		name:= sysPort.name.replaceAll("\"","");
 		if (not sysPort.otherClass.oclIsUndefined()){
-			type := sysPort.otherClass [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+			if(sysPort.otherClass.oclIsKindOf(IType)){ 
+				type := sysPort.otherClass.oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+			}elif(sysPort.otherClass.oclIsKindOf(IClass)){
+				type := sysPort.otherClass.oclAsType(IClass).map toUMLElement().oclAsType(Type);
+			}
 		};
 		aggregation:=AggregationKind::composite;
 		isConjugated:=sysPort.isConjugated();
