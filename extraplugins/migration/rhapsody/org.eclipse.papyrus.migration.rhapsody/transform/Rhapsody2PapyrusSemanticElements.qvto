@@ -272,7 +272,7 @@ query umlrhapsody::IType::mapToBasicType(inout templateableElement:TemplateableE
 }
 
 
-/*
+/**
 * Return true if the object must be converted into a UML DataType
 *
 * For JUnit SysML test1: 
@@ -281,35 +281,41 @@ query umlrhapsody::IType::mapToBasicType(inout templateableElement:TemplateableE
 *    MyArrayOfInt : kind = Typedef and stereotype DataType
 *    MyPrimitivesTypes : kind = Language and stereotype = DataType
 *    MySpeed : kind = kind = Typedef and ValueType 
+*    IType defined in Rhapsody Library (like PredefinedTypes) must be imported as DatType
 */
 query umlrhapsody::IType::isUMLDataType(): Boolean {
-	var res:=self.isRhapsodyDataType() or self.isRhapsodyLibraryType(); //we decided to import IType defined in Rhapsody library as DataType;
-	if(res){
-		res:= self.isKindLanguage() or self.isKindTypedef(); 
-	}else{
-		res:=(self.isKindTypedef() or self.isKindLanguage()) and self.isSysMLValueType();
-	};
+	var res:=self.isSysMLValueType() and not self.isKindEnumeration();
+	if(not res){
+		res:=(self.isRhapsodyDataType() or self.isRhapsodyLibraryType()) and  (self.isKindLanguage() or self.isKindTypedef());
+    };
 	return res;
 }
 
 
-/*
-* Return true if the IType kind if Typedef
+/**
+* Return true if the IType is kind Typedef
 */
 query umlrhapsody::IType::isKindTypedef(): Boolean{
 	return self.kind="Typedef";
 }
 
-
+/**
+* Return true if the IType is kind Enumeration
+*/
 query umlrhapsody::IType::isKindEnumeration(): Boolean{
 	return self.kind="Enumeration";
 }
 
+/**
+* Return true if the IType is kind Enumeration
+*/
 query umlrhapsody::IType::isKindStructure(): Boolean{
 	return self.kind="Structure";
 }
 
-
+/**
+* Return true if the IType has kind Language
+*/
 query umlrhapsody::IType::isKindLanguage(): Boolean {
 	return self.kind="Language";
 }
@@ -366,8 +372,8 @@ mapping umlrhapsody::IAssociationEnd::toOwnedAssociationEnd(): uml::Property{
 
 mapping umlrhapsody::IType::toUMLDatatype() : uml::DataType when {self.isUMLDataType()}{
 	name:= self.name.replaceAll("\"","");
+	ownedAttribute+=self.Attrs[IAttribute].map iVariableToUMLElement();
 	self.mapToBasicType(result.oclAsType(uml::TemplateableElement));
-	
 }
 
 mapping umlrhapsody::IType::toUMLEnumeration() : uml::Enumeration when {self.isUMLEnumeration()}{
