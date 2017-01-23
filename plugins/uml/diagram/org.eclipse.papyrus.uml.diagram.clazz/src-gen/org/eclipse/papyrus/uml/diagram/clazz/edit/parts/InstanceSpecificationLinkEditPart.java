@@ -23,10 +23,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNode
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 
 /**
- * @generated
- */
-public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -54,12 +53,10 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof SourceISLinkLabelEditPart) {
-			((SourceISLinkLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getSourceLabel());
+			((SourceISLinkLabelEditPart) childEditPart).setLabel(getPrimaryShape().getSourceLabel());
 		}
 		if (childEditPart instanceof TargetISLinkLabelEditPart) {
-			((TargetISLinkLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getTargetLabel());
+			((TargetISLinkLabelEditPart) childEditPart).setLabel(getPrimaryShape().getTargetLabel());
 		}
 		return false;
 	}

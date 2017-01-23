@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.linklf.editparts.LinkLFConnectionNodeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.editparts.LinkLFConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.uml2.uml.AggregationKind;

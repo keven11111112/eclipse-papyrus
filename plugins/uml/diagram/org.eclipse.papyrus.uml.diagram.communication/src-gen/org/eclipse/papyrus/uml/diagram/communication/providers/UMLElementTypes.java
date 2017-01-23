@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.providers;
 
@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConnectorDurationObservationEditPart;
@@ -73,73 +73,61 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType Package_CommunicationDiagram = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Package_CommunicationDiagram"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interaction_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Interaction_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Diagram_ShortcutShape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Diagram_ShortcutShape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Lifeline_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Constraint_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Comment_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.TimeObservation_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.DurationObservation_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Path_Edge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Path_Edge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_EventEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.communication.DurationObservation_EventEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -176,7 +164,7 @@ public class UMLElementTypes {
 
 	/**
 	 * Returns 'type' of the ecore object associated with the hint.
-	 *
+	 * 
 	 * @generated
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
@@ -223,6 +211,39 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static synchronized boolean isKnownElementType(IElementType elementType) {
+		if (KNOWN_ELEMENT_TYPES == null) {
+			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES.add(Package_CommunicationDiagram);
+			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
+			KNOWN_ELEMENT_TYPES.add(Diagram_ShortcutShape);
+			KNOWN_ELEMENT_TYPES.add(Lifeline_Shape);
+			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(Path_Edge);
+			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_EventEdge);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_EventEdge);
+		}
+
+		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		if (!result) {
+			IElementType[] supertypes = elementType.getAllSuperTypes();
+			for (int i = 0; !result && (i < supertypes.length); i++) {
+				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static IElementType getElementType(String visualID) {
 		if (visualID != null) {
 			switch (visualID) {
@@ -255,39 +276,6 @@ public class UMLElementTypes {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Package_CommunicationDiagram);
-			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
-			KNOWN_ELEMENT_TYPES.add(Diagram_ShortcutShape);
-			KNOWN_ELEMENT_TYPES.add(Lifeline_Shape);
-			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
-			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
-			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
-			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
-			KNOWN_ELEMENT_TYPES.add(Path_Edge);
-			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
-			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
-			KNOWN_ELEMENT_TYPES.add(DurationObservation_EventEdge);
-			KNOWN_ELEMENT_TYPES.add(TimeObservation_EventEdge);
-		}
-
-		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-
-		if (!result) {
-			IElementType[] supertypes = elementType.getAllSuperTypes();
-			for (int i = 0; !result && (i < supertypes.length); i++) {
-				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
-			}
-		}
-
-		return result;
 	}
 
 	/**

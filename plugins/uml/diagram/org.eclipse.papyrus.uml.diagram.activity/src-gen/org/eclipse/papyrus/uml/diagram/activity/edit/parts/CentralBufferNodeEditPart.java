@@ -72,7 +72,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -133,12 +132,9 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	// not generated but change include on gmfgen, can be override at the generation
-	@Override
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -160,15 +156,14 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new RoundedCompartmentFigure();
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
 	 * @generated
 	 */
-	@Override
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
@@ -198,7 +193,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -209,7 +203,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -220,7 +213,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
@@ -231,7 +223,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof CentralBufferNodeFloatingNameEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
@@ -248,7 +239,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -256,27 +246,23 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects
-	 * layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -289,7 +275,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -300,7 +285,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -310,7 +294,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -318,7 +301,6 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -328,56 +310,8 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CentralBufferNodeLabelEditPart.VISUAL_ID));
 	}
-	// /**
-	// * @generated
-	// */
-	// public class ObjectNodeDescriptor extends NodeNamedElementFigure {
-	//
-	// /**
-	// * @generated
-	// */
-	// private WrappingLabel fObjectNodeLabel;
-	//
-	// /**
-	// * @generated NOT call super
-	// */
-	// public ObjectNodeDescriptor() {
-	// // call super
-	// super();
-	// createContents();
-	// }
-	//
-	// /**
-	// * @generated NOT use super figure name label instead
-	// */
-	// private void createContents() {
-	// // use super figure name label instead
-	// getNameLabel().setTextJustification(PositionConstants.CENTER);
-	// getNameLabel().setAlignment(PositionConstants.CENTER);
-	// getNameLabel().setTextWrap(true);
-	// getNameLabel().setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-	// // fObjectNodeLabel = new WrappingLabel();
-	// //
-	// //
-	// //
-	// // fObjectNodeLabel.setBorder(new
-	// // MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
-	// // getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-	// //
-	// // this.add(fObjectNodeLabel);
-	// }
-	//
-	// /**
-	// * @generated NOT get label from super figure instead
-	// */
-	// public WrappingLabel getObjectNodeLabel() {
-	// // get label from super figure instead
-	// return getNameLabel();
-	// // return fObjectNodeLabel;
-	// }
-	// }
+
 }

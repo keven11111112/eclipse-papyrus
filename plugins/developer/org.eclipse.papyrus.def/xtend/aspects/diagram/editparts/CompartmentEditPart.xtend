@@ -32,7 +32,7 @@ import xpt.Common
 «ENDFOR»
 «««END: BEGIN: PapyrusGenCode
 «ELSE»
-  extends «IF listLayout»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart«ELSE»org.eclipse.gmf.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart«ENDIF»
+  extends «IF listLayout»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart«ELSE»org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart«ENDIF»
 «ENDIF»
 	'''
 

@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramPreferenceInitializer;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.DiagramPreferenceInitializer;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

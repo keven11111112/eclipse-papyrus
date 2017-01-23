@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
 
 /**
  * @author adaussy

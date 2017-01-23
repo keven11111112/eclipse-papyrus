@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.profile.providers;
 
@@ -962,7 +962,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
-	 *
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {
@@ -1020,7 +1019,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		/**
 		 * @generated
 		 */
-		@Override
 		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;
@@ -1028,4 +1026,5 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
+
 }

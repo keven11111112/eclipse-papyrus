@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -19,13 +6,10 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -38,7 +22,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -265,19 +248,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
 			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
-		} else if (source.getFigure() instanceof NodeFigure) {
-			WrappingLabel wrappingLabel = (WrappingLabel) source.getFigure().getChildren().get(0);
-			if (wrappingLabel != null) {
-				return new TextCellEditorLocator(wrappingLabel);
-			}
-			return null;
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
+
 		}
 	}
 
@@ -308,7 +286,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 		/**
 		 * @generated
 		 */
-		@Override
 		public void relocate(CellEditor celleditor) {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
@@ -323,4 +300,5 @@ public class UMLEditPartFactory implements EditPartFactory {
 			}
 		}
 	}
+
 }

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.Collections;
@@ -84,9 +71,7 @@ import org.eclipse.uml2.uml.Feature;
 
 /**
  * @generated
- * 			Manually changed to PapyrusLabelEditPart modification has been applied to the gmfgen file.
  */
-// Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826
 public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 		implements ITextAwareEditPart, IBorderItemEditPart {
 
@@ -117,17 +102,16 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 *
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 *
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -148,7 +132,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -159,7 +142,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -172,7 +154,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -247,7 +228,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -255,7 +235,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -300,7 +279,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -316,7 +294,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -335,7 +312,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -370,7 +346,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -381,7 +356,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -389,7 +363,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.TimeObservation_Shape, getParserElement(), this, VISUAL_ID);
@@ -452,7 +425,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -549,7 +521,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -611,7 +582,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -624,7 +594,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -632,7 +601,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -648,7 +616,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -662,7 +629,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -685,7 +651,7 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -704,7 +670,7 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -717,7 +683,7 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -727,7 +693,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Initializes the extended editor configuration
-	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -746,7 +711,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Updates the preference configuration
-	 *
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -762,12 +726,10 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -799,7 +761,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -835,7 +796,6 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -848,4 +808,5 @@ public class TimeObservationLabelEditPart extends PapyrusLabelEditPart
 	protected IFigure createFigurePrim() {
 		return new MultilineLabelFigure();
 	}
+
 }

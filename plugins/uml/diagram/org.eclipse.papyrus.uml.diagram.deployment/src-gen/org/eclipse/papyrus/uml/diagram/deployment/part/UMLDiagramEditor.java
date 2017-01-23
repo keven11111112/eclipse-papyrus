@@ -51,6 +51,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -225,7 +226,8 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
+				getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
@@ -249,7 +251,17 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 
 			@Override
 			public void commandStackChanged(EventObject event) {
-				firePropertyChange(IEditorPart.PROP_DIRTY);
+				if (Display.getCurrent() == null) {
+					Display.getDefault().asyncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							firePropertyChange(IEditorPart.PROP_DIRTY);
+						}
+					});
+				} else {
+					firePropertyChange(IEditorPart.PROP_DIRTY);
+				}
 			}
 		});
 	}
@@ -394,7 +406,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * whenever a key is released, and the Tool is in the proper state. Override
 						 * to support pressing the enter key to create a shape or connection
 						 * (between two selected shapes)
-						 *
+						 * 
 						 * @param event
 						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
@@ -444,7 +456,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						/**
 						 * Override to support double-clicking a palette tool entry to create a
 						 * shape or connection (between two selected shapes).
-						 *
+						 * 
 						 * @see MouseListener#mouseDoubleClick(MouseEvent)
 						 */
 						@Override

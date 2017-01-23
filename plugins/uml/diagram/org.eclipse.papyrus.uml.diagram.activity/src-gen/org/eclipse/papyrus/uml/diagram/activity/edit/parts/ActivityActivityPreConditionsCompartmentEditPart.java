@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -56,7 +43,6 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -64,7 +50,6 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getCompartmentName() {
 		return Messages.ActivityActivityPreConditionsCompartmentEditPart_title;
 	}
@@ -72,7 +57,6 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -82,15 +66,14 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityPreConditionsCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityPreConditionsCompartmentCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
@@ -100,7 +83,6 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -110,7 +92,6 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -119,7 +100,6 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -147,7 +127,6 @@ public class ActivityActivityPreConditionsCompartmentEditPart extends NoBorderLi
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

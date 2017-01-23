@@ -21,8 +21,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**

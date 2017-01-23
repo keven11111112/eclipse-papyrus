@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 
@@ -73,7 +73,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -83,9 +82,12 @@ public class NodeEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
+				new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
@@ -122,11 +124,9 @@ public class NodeEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -135,17 +135,14 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new NodeFigure();
 	}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes.NodeFigure
-	 *
 	 * @generated
 	 */
-	@Override
 	public NodeFigure getPrimaryShape() {
 		return (NodeFigure) primaryShape;
 	}
@@ -159,10 +156,9 @@ public class NodeEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-
 		if (childEditPart instanceof NodeCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((NodeCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -188,7 +184,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -199,7 +194,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -210,7 +204,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof NodeCompositeCompartmentEditPart) {
 			return getPrimaryShape().getCompositeCompartmentFigure();
@@ -221,7 +214,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(150, 150);
 		return result;
@@ -229,13 +221,12 @@ public class NodeEditPart extends NamedElementEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -244,12 +235,9 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -262,7 +250,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -273,7 +260,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -283,7 +269,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -291,7 +276,6 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -301,8 +285,8 @@ public class NodeEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(NodeNameEditPart.VISUAL_ID));
 	}
+
 }

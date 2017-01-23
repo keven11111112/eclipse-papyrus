@@ -22,10 +22,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNode
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
- * @generated
- */
-public class DependencyBranchEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class DependencyBranchEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,10 +46,6 @@ public class DependencyBranchEditPart extends ConnectionEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
-
-
-
-
 
 	/**
 	 * Creates figure for this edit part.

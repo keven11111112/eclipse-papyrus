@@ -6,12 +6,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -55,10 +50,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEd
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.StructuralFeature;
-import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -90,7 +81,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -99,8 +89,8 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadStructuralFeatureActionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadStructuralFeatureActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
@@ -165,17 +155,38 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	}
 
 	/**
-	 * @generated
-	 */
-	@Override
-	protected IFigure createNodeShape() {
-		return primaryShape = new RoundedCompartmentFigure();
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
+	protected IFigure createNodeShape() {
+		return primaryShape = new RoundedCompartmentFigure();
+	}
+
+	/**
+	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
+	 * @generated
+	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
@@ -189,7 +200,7 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInReadStructuralFeatureAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer()
@@ -197,7 +208,7 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInReadStructuralFeatureAsResultEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer()
@@ -205,7 +216,7 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInReadStructuralFeatureAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer()
@@ -213,7 +224,7 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed Pin locator for Actions
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInReadStructuralFeatureAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer()
@@ -257,7 +268,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -268,7 +278,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -279,7 +288,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
@@ -290,7 +298,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof ReadStructuralFeatureActionFloatingNameEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
@@ -304,7 +311,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -312,13 +318,12 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -327,12 +332,9 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -345,7 +347,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -356,7 +357,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -366,7 +366,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -374,7 +373,6 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -384,69 +382,8 @@ public class ReadStructuralFeatureActionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ReadStructuralFeatureActionNameEditPart.VISUAL_ID));
 	}
 
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
-	 *
-	 * @param notification
-	 */
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		super.handleNotificationEvent(notification);
-		Object feature = notification.getFeature();
-		if (UMLPackage.Literals.STRUCTURAL_FEATURE_ACTION__STRUCTURAL_FEATURE.equals(feature)) {
-			final Object result = this.resolveSemanticElement()
-					.eGet(UMLPackage.Literals.READ_STRUCTURAL_FEATURE_ACTION__RESULT);
-			final Object object = this.resolveSemanticElement()
-					.eGet(UMLPackage.Literals.STRUCTURAL_FEATURE_ACTION__OBJECT);
-			Object _feature = notification.getNewValue();
-			if (_feature instanceof StructuralFeature) {
-				org.eclipse.emf.common.command.Command cmdSetResultType = null;
-				org.eclipse.emf.common.command.Command cmdSetObjectType = null;
-				StructuralFeature newFeature = (StructuralFeature) _feature;
-				Type type = newFeature.getType();
-				if (type != null) {
-					cmdSetResultType = SetCommand.create(getEditingDomain(), result,
-							UMLPackage.Literals.TYPED_ELEMENT__TYPE, type);
-				}
-				Element owner = newFeature.getOwner();
-				if (owner != null) {
-					cmdSetObjectType = SetCommand.create(getEditingDomain(), object,
-							UMLPackage.Literals.TYPED_ELEMENT__TYPE, owner);
-				}
-				try {
-					if (cmdSetResultType != null) {
-						if (cmdSetResultType.canExecute()) {
-							CommandStack commandStack = getEditingDomain().getCommandStack();
-							if (commandStack instanceof TransactionalCommandStack) {
-								((TransactionalCommandStack) commandStack).execute(cmdSetResultType,
-										Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
-							} else {
-								commandStack.execute(cmdSetResultType);
-							}
-						}
-					}
-					if (cmdSetObjectType != null) {
-						if (cmdSetObjectType.canExecute()) {
-							CommandStack commandStack = getEditingDomain().getCommandStack();
-							if (commandStack instanceof TransactionalCommandStack) {
-								((TransactionalCommandStack) commandStack).execute(cmdSetObjectType,
-										Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
-							} else {
-								commandStack.execute(cmdSetObjectType);
-							}
-						}
-					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				} catch (RollbackException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 }

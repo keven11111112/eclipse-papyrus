@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -22,7 +9,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -68,7 +54,6 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -81,17 +66,6 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 				new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -123,17 +97,25 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	}
 
 	/**
-	 * @generated
-	 */
-	@Override
-	protected IFigure createNodeShape() {
-		return primaryShape = new RoundedCompartmentFigure();
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
+	protected IFigure createNodeShape() {
+		return primaryShape = new RoundedCompartmentFigure();
+	}
+
+	/**
+	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
+	 * @generated
+	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
@@ -141,7 +123,6 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -149,13 +130,12 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -164,12 +144,9 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -182,7 +159,6 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -191,17 +167,8 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	}
 
 	/**
-	 * @generated NOT avoid class cast exception by implementing this method
-	 */
-	@Override
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		return getContentPane();
-	}
-
-	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -211,7 +178,6 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -219,10 +185,10 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
+
 }

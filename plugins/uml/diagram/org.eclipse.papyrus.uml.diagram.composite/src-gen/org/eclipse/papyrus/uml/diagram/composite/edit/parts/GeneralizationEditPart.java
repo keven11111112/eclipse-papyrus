@@ -22,8 +22,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.GeneralizationFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

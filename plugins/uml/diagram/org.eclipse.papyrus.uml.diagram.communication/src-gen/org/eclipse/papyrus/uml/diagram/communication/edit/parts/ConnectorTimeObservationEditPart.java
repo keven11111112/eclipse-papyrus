@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.edit.parts;
 
@@ -20,8 +20,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class ConnectorTimeObservationEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -39,7 +39,6 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -47,13 +46,12 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new SimpleDashedEdgeFigure();
 	}
@@ -64,4 +62,5 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 	public SimpleDashedEdgeFigure getPrimaryShape() {
 		return (SimpleDashedEdgeFigure) getFigure();
 	}
+
 }

@@ -34,8 +34,8 @@ import com.google.inject.Singleton
 	override def getUniqueFileNameMethod(GenDiagram it) '''
 		«generatedMemberComment»
 		public static String getUniqueFileName(org.eclipse.core.runtime.IPath containerFullPath, String fileName, String extension) {
-			return org.eclipse.gmf.tooling.runtime.part.DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, «»
-				org.eclipse.gmf.tooling.runtime.part.DefaultDiagramEditorUtil.«IF editorGen.application == null»EXISTS_IN_WORKSPACE«ELSE»EXISTS_AS_IO_FILE«ENDIF»);
+			return org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, «»
+				org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.«IF editorGen.application == null»EXISTS_IN_WORKSPACE«ELSE»EXISTS_AS_IO_FILE«ENDIF»);
 		}
 	'''
 	

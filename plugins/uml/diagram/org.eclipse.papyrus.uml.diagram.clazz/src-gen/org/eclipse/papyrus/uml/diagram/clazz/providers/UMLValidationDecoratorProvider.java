@@ -30,17 +30,14 @@ import org.eclipse.papyrus.uml.diagram.common.providers.ValidationDecoratorProvi
 /**
  * @generated
  */
-public class UMLValidationDecoratorProvider
-		extends ValidationDecoratorProvider
-		implements IDecoratorProvider {
+public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider implements IDecoratorProvider {
 
 	/**
 	 * @generated
 	 */
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
-		if (editPart instanceof GraphicalEditPart ||
-				editPart instanceof AbstractConnectionEditPart) {
+		if (editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
 			Object model = editPart.getModel();
 			if ((model instanceof View)) {
 				View view = (View) model;
@@ -66,10 +63,8 @@ public class UMLValidationDecoratorProvider
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		View view = (View) decoratorTarget.getAdapter(
-				View.class);
+		View view = (View) decoratorTarget.getAdapter(View.class);
 		return view != null && ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
-
 
 }

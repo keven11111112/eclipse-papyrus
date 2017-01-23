@@ -25,10 +25,9 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
- * @generated
- */
-public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,7 +47,8 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -57,12 +57,11 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof BindingSubstitutionEditPart) {
-			((BindingSubstitutionEditPart) childEditPart).setLabel(
-					getPrimaryShape().getBindingSubstitutionFigure());
+			((BindingSubstitutionEditPart) childEditPart).setLabel(getPrimaryShape().getBindingSubstitutionFigure());
 		}
 		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
-			((AppliedStereotypeTemplateBindingEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeTemplateBindingEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

@@ -9,8 +9,8 @@ import org.eclipse.papyrus.uml.diagram.activity.figures.LinkFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -28,7 +28,6 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -36,13 +35,12 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new LinkFigure();
 	}
@@ -50,8 +48,8 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	/**
 	 * @generated
 	 */
-	@Override
 	public LinkFigure getPrimaryShape() {
 		return (LinkFigure) getFigure();
 	}
+
 }

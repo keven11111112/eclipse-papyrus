@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -81,7 +68,6 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -95,30 +81,6 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
-	protected void handleNotificationEvent(Notification event) {
-		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
-		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
-			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
-					return;
-				}
-			}
-		}
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -168,6 +130,28 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	}
 
 	/**
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
@@ -175,9 +159,9 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure
 	 * @generated
 	 */
-	@Override
 	public PinFigure getPrimaryShape() {
 		return (PinFigure) primaryShape;
 	}
@@ -185,7 +169,6 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof ValuePinInCBActLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
@@ -211,13 +194,12 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -231,9 +213,7 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -243,7 +223,6 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -254,7 +233,6 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -264,7 +242,6 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -272,7 +249,6 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -282,8 +258,8 @@ public class ValuePinInCallBeActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ValuePinInCBActLabelEditPart.VISUAL_ID));
 	}
+
 }

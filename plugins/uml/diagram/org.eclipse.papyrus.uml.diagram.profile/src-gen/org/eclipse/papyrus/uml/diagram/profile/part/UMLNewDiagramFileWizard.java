@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.profile.part;
 
@@ -99,7 +99,6 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void addPages() {
 		addPage(myFileCreationPage);
 		addPage(diagramRootElementSelectionPage);
@@ -108,7 +107,6 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean performFinish() {
 		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
@@ -164,7 +162,6 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		/**
 		 * @generated
 		 */
-		@Override
 		protected String getSelectionTitle() {
 			return Messages.UMLNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 		}
@@ -172,7 +169,6 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		/**
 		 * @generated
 		 */
-		@Override
 		protected boolean validatePage() {
 			if (getModelElement() == null) {
 				setErrorMessage(Messages.UMLNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);

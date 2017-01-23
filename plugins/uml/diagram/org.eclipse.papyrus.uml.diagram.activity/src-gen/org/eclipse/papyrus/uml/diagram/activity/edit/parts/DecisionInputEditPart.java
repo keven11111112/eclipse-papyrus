@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -115,17 +102,16 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 *
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 *
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -146,7 +132,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -158,7 +143,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -171,7 +155,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -246,7 +229,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -254,7 +236,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -299,7 +280,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -315,7 +295,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -334,7 +313,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -368,7 +346,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -379,7 +356,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -387,7 +363,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.DecisionNode_Shape, getParserElement(), this, VISUAL_ID);
@@ -450,7 +425,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -547,7 +521,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -609,7 +582,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -622,7 +594,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -630,7 +601,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -646,7 +616,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -660,7 +629,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -683,7 +651,7 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -702,7 +670,7 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -715,7 +683,7 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -725,7 +693,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 
 	/**
 	 * Initializes the extended editor configuration
-	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -744,7 +711,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 
 	/**
 	 * Updates the preference configuration
-	 *
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -760,12 +726,10 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -797,7 +761,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -833,7 +796,6 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -846,4 +808,5 @@ public class DecisionInputEditPart extends PapyrusLabelEditPart implements IText
 	protected IFigure createFigurePrim() {
 		return new LinkAndCornerBentWithTextFigure();
 	}
+
 }

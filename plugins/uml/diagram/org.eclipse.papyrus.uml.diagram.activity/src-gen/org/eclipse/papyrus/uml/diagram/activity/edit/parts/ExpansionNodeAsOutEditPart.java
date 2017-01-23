@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -67,7 +54,6 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -118,6 +104,7 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	}
 
 	/**
+	 * ExpansionNodeDescriptor
 	 * @generated
 	 */
 	public ExpansionNodeDescriptor getPrimaryShape() {
@@ -134,13 +121,12 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -154,9 +140,7 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -166,7 +150,6 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -177,7 +160,6 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -187,7 +169,6 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -195,7 +176,6 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -227,5 +207,7 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 			this.setFill(true);
 			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(48), getMapMode().DPtoLP(16)));
 		}
+
 	}
+
 }

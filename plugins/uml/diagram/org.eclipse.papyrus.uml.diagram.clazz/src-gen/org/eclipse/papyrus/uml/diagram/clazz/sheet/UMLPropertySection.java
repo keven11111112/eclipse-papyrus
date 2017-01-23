@@ -11,7 +11,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.sheet;
 
-import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet.DefaultPropertySection;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
 /**
@@ -21,12 +21,11 @@ public class UMLPropertySection extends DefaultPropertySection implements IPrope
 
 	/**
 	 * Modify/unwrap selection.
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected Object transformSelection(Object selected) {
-		selected = /* super. */transformSelectionToDomain(selected);
+		selected = /*super.*/transformSelectionToDomain(selected);
 		return selected;
 	}
 

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.timing.edit.parts;
 
@@ -52,7 +52,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -60,7 +59,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getCompartmentName() {
 		return Messages.CompactLifelineTimeRulerCompartmentEditPartCN_title;
 	}
@@ -68,7 +66,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -78,7 +75,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -91,7 +87,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -101,7 +96,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -110,7 +104,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -138,7 +131,6 @@ public class CompactLifelineTimeRulerCompartmentEditPartCN extends ListCompartme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

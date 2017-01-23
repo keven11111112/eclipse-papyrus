@@ -130,9 +130,8 @@ public class AssociationMultiplicityTargetEditPart extends PapyrusLabelEditPart
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationMultiplicityTargetEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationMultiplicityTargetEditPart.VISUAL_ID),
 				new Point(0, -20));
 	}
 

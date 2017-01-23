@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.timing.edit.parts;
 
@@ -20,9 +20,9 @@ import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.LabelCellEditorLocator;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.LabelCellEditorLocator;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.TextCellEditorLocator;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.papyrus.uml.diagram.timing.custom.LifelineVerticalLabelCellEditorLocator;
@@ -39,7 +39,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -295,7 +294,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	private static class MultilineCellEditorLocator implements CellEditorLocator {
+	static private class MultilineCellEditorLocator implements CellEditorLocator {
 
 		/**
 		 * @generated
@@ -319,7 +318,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 		/**
 		 * @generated
 		 */
-		@Override
 		public void relocate(CellEditor celleditor) {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
@@ -334,4 +332,5 @@ public class UMLEditPartFactory implements EditPartFactory {
 			}
 		}
 	}
+
 }

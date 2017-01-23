@@ -54,7 +54,7 @@ Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
  org.apache.batik.dom.svg;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.dom;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.xml;bundle-version="[1.6.0,1.7.0)",
- org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  com.ibm.icu,
  org.eclipse.papyrus.infra.services.decoration;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="[1.7.0,2.0.0)",
@@ -65,7 +65,8 @@ Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
  org.eclipse.papyrus.infra.emf.gmf,
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[2.2.0,3.0.0)",
- org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)"
+ org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

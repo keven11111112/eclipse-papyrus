@@ -24,10 +24,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DeleteLinkedAssocia
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure;
 
 /**
- * @generated
- */
-public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class AssociationClassLinkEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,7 +47,8 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(DeleteLinkedAssociationClassViewEditPolicy.HIDE_ROLE, new DeleteLinkedAssociationClassViewEditPolicy());
+		installEditPolicy(DeleteLinkedAssociationClassViewEditPolicy.HIDE_ROLE,
+				new DeleteLinkedAssociationClassViewEditPolicy());
 	}
 
 	/**
@@ -56,12 +56,10 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
-			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(
-					getPrimaryShape().getRoleSourceLabel());
+			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
 		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
-			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(
-					getPrimaryShape().getRoleTargetLabel());
+			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 		}
 		return false;
 	}

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -114,18 +101,24 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInOActLabelEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInOActLabelEditPart.VISUAL_ID),
 				new Point(0, 0));
 	}
 
@@ -139,7 +132,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -151,7 +143,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -164,7 +155,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -239,8 +229,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
-	@SuppressWarnings("rawtypes")
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -248,7 +236,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -293,7 +280,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -309,7 +295,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -328,7 +313,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -365,7 +349,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -376,7 +359,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -384,7 +366,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.ActionInputPin_OpaqueActionInputShape, getParserElement(),
@@ -448,7 +429,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -545,7 +525,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -607,7 +586,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -620,7 +598,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -628,7 +605,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -644,7 +620,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -658,7 +633,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -681,7 +655,7 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -700,7 +674,7 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -713,7 +687,7 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -723,7 +697,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Initializes the extended editor configuration
-	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -742,25 +715,25 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Updates the preference configuration
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("")
-				&& languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred,
-					resolveSemanticElement().eClass().getInstanceClassName());
+				&& !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
+					this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -792,7 +765,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -828,7 +800,6 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -841,4 +812,5 @@ public class ActionInputPinInOActLabelEditPart extends PapyrusLabelEditPart
 	protected IFigure createFigurePrim() {
 		return new SimpleLabel();
 	}
+
 }

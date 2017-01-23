@@ -162,7 +162,7 @@
 	<extension
 			point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
 		<editpartProvider
-        	class="org.eclipse.gmf.tooling.runtime.linklf.router.LinkLFDiagramRootEditPartProvider">
+        	class="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.router.LinkLFDiagramRootEditPartProvider">
 			<Priority name="Medium"/>
 			<context providesRootEditPart="true"/>
 			<!-- uml -->

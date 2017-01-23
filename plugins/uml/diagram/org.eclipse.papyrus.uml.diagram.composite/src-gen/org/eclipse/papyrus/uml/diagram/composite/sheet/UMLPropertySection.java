@@ -11,7 +11,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.composite.sheet;
 
-import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet.DefaultPropertySection;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
 /**
@@ -21,7 +21,6 @@ public class UMLPropertySection extends DefaultPropertySection implements IPrope
 
 	/**
 	 * Modify/unwrap selection.
-	 * 
 	 * @generated
 	 */
 	@Override

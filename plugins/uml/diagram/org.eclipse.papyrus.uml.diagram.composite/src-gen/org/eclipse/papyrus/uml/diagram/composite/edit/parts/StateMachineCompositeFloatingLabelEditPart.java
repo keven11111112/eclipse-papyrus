@@ -113,14 +113,12 @@ public class StateMachineCompositeFloatingLabelEditPart extends FloatingLabelEdi
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -129,9 +127,8 @@ public class StateMachineCompositeFloatingLabelEditPart extends FloatingLabelEdi
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeFloatingLabelEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeFloatingLabelEditPart.VISUAL_ID),
 				new Point(0, 0));
 	}
 
@@ -707,7 +704,6 @@ public class StateMachineCompositeFloatingLabelEditPart extends FloatingLabelEdi
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -726,7 +722,6 @@ public class StateMachineCompositeFloatingLabelEditPart extends FloatingLabelEdi
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -742,12 +737,10 @@ public class StateMachineCompositeFloatingLabelEditPart extends FloatingLabelEdi
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {

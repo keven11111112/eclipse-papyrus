@@ -66,7 +66,6 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -79,30 +78,6 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
-	protected void handleNotificationEvent(Notification event) {
-		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
-		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
-			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
-					return;
-				}
-			}
-		}
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -151,6 +126,28 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	}
 
 	/**
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
@@ -158,9 +155,9 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure
 	 * @generated
 	 */
-	@Override
 	public InputPinFigure getPrimaryShape() {
 		return (InputPinFigure) primaryShape;
 	}
@@ -168,7 +165,6 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof InputPinInReadStructuralFeatureAsObjectLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
@@ -191,13 +187,12 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -211,9 +206,7 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -223,7 +216,6 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -234,7 +226,6 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -244,7 +235,6 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -252,7 +242,6 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -262,9 +251,9 @@ public class InputPinInReadStructuralFeatureAsObjectEditPart extends AbstractPin
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(
 				UMLVisualIDRegistry.getType(InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID));
 	}
+
 }

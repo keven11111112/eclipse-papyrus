@@ -25,10 +25,9 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
- * @generated
- */
-public class AbstractionEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class AbstractionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,7 +47,8 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -57,12 +57,11 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AbstractionNameEditPart) {
-			((AbstractionNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((AbstractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof AppliedStereotypeAbstractionEditPart) {
-			((AppliedStereotypeAbstractionEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeAbstractionEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

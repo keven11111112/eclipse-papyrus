@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.Collections;
@@ -76,7 +63,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -144,6 +130,7 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure
 	 * @generated
 	 */
 	public DurationConstraintFigure getPrimaryShape() {
@@ -153,7 +140,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof DurationConstraintLabelEditPart
 				|| borderItemEditPart instanceof DurationConstraintAppliedStereotypeEditPart) {
@@ -175,13 +161,12 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -195,9 +180,7 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -207,7 +190,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -218,7 +200,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -228,7 +209,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -236,7 +216,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -246,8 +225,8 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DurationConstraintLabelEditPart.VISUAL_ID));
 	}
+
 }

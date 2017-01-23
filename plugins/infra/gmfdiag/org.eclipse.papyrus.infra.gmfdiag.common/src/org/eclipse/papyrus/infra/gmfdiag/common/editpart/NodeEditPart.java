@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
-import org.eclipse.gmf.tooling.runtime.linklf.editparts.LinkLFBorderedShapeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.editparts.LinkLFBorderedShapeEditPart;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.FollowSVGSymbolEditPolicy;

@@ -146,10 +146,9 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	}
 
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -177,7 +176,6 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.ParameterFigure
-	 * 
 	 * @generated
 	 */
 	public ParameterFigure getPrimaryShape() {
@@ -228,9 +226,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

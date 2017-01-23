@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
 import java.util.HashSet;
@@ -22,9 +9,9 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -92,181 +79,151 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType Package_SequenceDiagram = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Package_SequenceDiagram"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interaction_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Interaction_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ConsiderIgnoreFragment_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType CombinedFragment_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InteractionOperand_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InteractionUse_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Continuation_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Continuation_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Lifeline_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ActionExecutionSpecification_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType BehaviorExecutionSpecification_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType StateInvariant_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType CombinedFragment_CoRegionShape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_CoRegionShape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Constraint_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Comment_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationConstraint_Shape_CN = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape_CN"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_AsynchEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Message_AsynchEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_ReplyEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Message_ReplyEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_CreateEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Message_CreateEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_DeleteEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Message_DeleteEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_LostEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Message_LostEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_FoundEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Message_FoundEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType GeneralOrdering_Edge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_Edge"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -303,7 +260,7 @@ public class UMLElementTypes {
 
 	/**
 	 * Returns 'type' of the ecore object associated with the hint.
-	 *
+	 * 
 	 * @generated
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
@@ -388,6 +345,57 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static synchronized boolean isKnownElementType(IElementType elementType) {
+		if (KNOWN_ELEMENT_TYPES == null) {
+			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES.add(Package_SequenceDiagram);
+			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
+			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_Shape);
+			KNOWN_ELEMENT_TYPES.add(CombinedFragment_Shape);
+			KNOWN_ELEMENT_TYPES.add(InteractionOperand_Shape);
+			KNOWN_ELEMENT_TYPES.add(InteractionUse_Shape);
+			KNOWN_ELEMENT_TYPES.add(Continuation_Shape);
+			KNOWN_ELEMENT_TYPES.add(Lifeline_Shape);
+			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(StateInvariant_Shape);
+			KNOWN_ELEMENT_TYPES.add(CombinedFragment_CoRegionShape);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape_CN);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_ReplyEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_CreateEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_DeleteEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_LostEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_FoundEdge);
+			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_Edge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ContextEdge);
+		}
+
+		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		if (!result) {
+			IElementType[] supertypes = elementType.getAllSuperTypes();
+			for (int i = 0; !result && (i < supertypes.length); i++) {
+				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static IElementType getElementType(String visualID) {
 		if (visualID != null) {
 			switch (visualID) {
@@ -456,57 +464,6 @@ public class UMLElementTypes {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Package_SequenceDiagram);
-			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
-			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_Shape);
-			KNOWN_ELEMENT_TYPES.add(CombinedFragment_Shape);
-			KNOWN_ELEMENT_TYPES.add(InteractionOperand_Shape);
-			KNOWN_ELEMENT_TYPES.add(InteractionUse_Shape);
-			KNOWN_ELEMENT_TYPES.add(Continuation_Shape);
-			KNOWN_ELEMENT_TYPES.add(Lifeline_Shape);
-			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_Shape);
-			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_Shape);
-			KNOWN_ELEMENT_TYPES.add(StateInvariant_Shape);
-			KNOWN_ELEMENT_TYPES.add(CombinedFragment_CoRegionShape);
-			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
-			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape);
-			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_Shape);
-			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
-			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape_CN);
-			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
-			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_ReplyEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_CreateEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_DeleteEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_LostEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_FoundEdge);
-			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
-			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
-			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_Edge);
-			KNOWN_ELEMENT_TYPES.add(Constraint_ContextEdge);
-		}
-
-		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-
-		if (!result) {
-			IElementType[] supertypes = elementType.getAllSuperTypes();
-			for (int i = 0; !result && (i < supertypes.length); i++) {
-				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
-			}
-		}
-
-		return result;
 	}
 
 	/**

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
@@ -27,7 +27,7 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableEditPolicyEx;
 import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
 
 /**
  * @generated
@@ -52,7 +52,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -66,7 +65,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -83,7 +81,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -101,7 +98,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -115,7 +111,6 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
@@ -233,11 +228,11 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> createSelectionHandles() {
 		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);
 		moveHandle.setDragTracker(new DragEditPartsTrackerEx(getHost()));
 		return Collections.singletonList(moveHandle);
 	}
+
 }

@@ -121,6 +121,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_InitialShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -140,6 +141,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_JoinShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -159,6 +161,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_ForkShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -178,6 +181,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_ChoiceShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -197,6 +201,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_JunctionShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -216,6 +221,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_ShallowHistoryShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -235,6 +241,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_DeepHistoryShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -254,6 +261,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_TerminateShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -273,6 +281,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_EntryPointShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}
@@ -292,6 +301,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = kind_Pseudostate_ExitPointShape(instance);
 			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
 				instance.setKind((PseudostateKind) value_0);
 			}

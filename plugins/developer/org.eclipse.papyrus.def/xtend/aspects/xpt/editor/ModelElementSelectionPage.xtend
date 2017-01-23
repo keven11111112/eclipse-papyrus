@@ -16,6 +16,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 @Singleton class ModelElementSelectionPage extends xpt.editor.ModelElementSelectionPage{
 
-	override def extendsList(GenDiagram it) '''extends org.eclipse.gmf.tooling.runtime.part.DefaultModelElementSelectionPage'''
+	override def extendsList(GenDiagram it) '''extends org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultModelElementSelectionPage'''
 
 }

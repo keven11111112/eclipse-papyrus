@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -83,7 +70,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -92,8 +78,8 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifelineXYLayoutEditPolicy());
@@ -106,17 +92,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -160,17 +135,25 @@ public class LifelineEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
-	@Override
-	protected IFigure createNodeShape() {
-		return primaryShape = new LifelineFigure();
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
+	protected IFigure createNodeShape() {
+		return primaryShape = new LifelineFigure();
+	}
+
+	/**
+	 * org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure
+	 * @generated
+	 */
 	public LifelineFigure getPrimaryShape() {
 		return (LifelineFigure) primaryShape;
 	}
@@ -184,7 +167,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
+		//Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof StateInvariantEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart) childEditPart).getFigure(),
@@ -192,7 +175,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof TimeConstraintEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart) childEditPart).getFigure(),
@@ -200,7 +183,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof TimeObservationEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((TimeObservationEditPart) childEditPart).getFigure(),
@@ -208,7 +191,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof DurationConstraintEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart) childEditPart).getFigure(),
@@ -216,7 +199,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
+		//Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer()
@@ -262,7 +245,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -273,7 +255,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -282,11 +263,8 @@ public class LifelineEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 *
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
@@ -295,12 +273,8 @@ public class LifelineEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	 * Overrides to disable the defaultAnchorArea. The edge is now more stuck with the middle of the
-	 * figure.
-	 *
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 250);
 		return result;
@@ -308,27 +282,23 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set
-	 * for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -341,7 +311,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -352,7 +321,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -362,7 +330,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -370,7 +337,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -380,8 +346,8 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
 	}
+
 }

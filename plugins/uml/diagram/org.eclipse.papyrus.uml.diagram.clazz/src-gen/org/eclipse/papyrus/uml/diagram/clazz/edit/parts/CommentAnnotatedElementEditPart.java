@@ -22,10 +22,9 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPar
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 
 /**
- * @generated
- */
-public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,10 +46,6 @@ public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
-
-
-
-
 
 	/**
 	 * Creates figure for this edit part.

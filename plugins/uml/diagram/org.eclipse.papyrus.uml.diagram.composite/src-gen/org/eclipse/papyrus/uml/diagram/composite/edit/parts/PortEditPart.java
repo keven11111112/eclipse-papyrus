@@ -45,7 +45,6 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElemen
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorPortEditPolicy;
@@ -150,10 +149,9 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	}
 
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -181,7 +179,6 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.PortFigure
-	 * 
 	 * @generated
 	 */
 	public PortFigure getPrimaryShape() {
@@ -232,9 +229,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

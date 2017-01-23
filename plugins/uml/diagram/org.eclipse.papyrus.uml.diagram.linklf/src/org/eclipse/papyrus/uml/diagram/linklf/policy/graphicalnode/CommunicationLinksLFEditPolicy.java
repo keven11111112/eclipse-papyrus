@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.tooling.runtime.linklf.policies.LinksLFGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.policies.LinksLFGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationRequestConstant;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationUtil;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.MessageHelper;

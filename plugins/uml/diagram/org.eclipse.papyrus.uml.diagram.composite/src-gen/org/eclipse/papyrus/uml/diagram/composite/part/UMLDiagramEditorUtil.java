@@ -51,10 +51,10 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.part.DefaultDiagramEditorUtil;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
@@ -134,7 +134,6 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
-	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
@@ -183,21 +182,21 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	* Create a new instance of domain element associated with canvas.
-	* <!-- begin-user-doc -->
+	 * Create a new instance of domain element associated with canvas.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static Package createInitialModel() {
 		return UMLFactory.eINSTANCE.createPackage();
 	}
 
 	/**
-	* Store model element in the resource.
-	* <!-- begin-user-doc -->
+	 * Store model element in the resource.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
@@ -288,7 +287,6 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
-	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -364,6 +362,6 @@ public class UMLDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} // LazyElement2ViewMap
+	} //LazyElement2ViewMap	
 
 }

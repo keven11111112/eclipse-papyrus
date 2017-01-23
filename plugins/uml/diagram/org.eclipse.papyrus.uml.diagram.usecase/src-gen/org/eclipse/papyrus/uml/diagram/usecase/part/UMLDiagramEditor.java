@@ -52,6 +52,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -278,7 +279,17 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 
 			@Override
 			public void commandStackChanged(EventObject event) {
-				firePropertyChange(IEditorPart.PROP_DIRTY);
+				if (Display.getCurrent() == null) {
+					Display.getDefault().asyncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							firePropertyChange(IEditorPart.PROP_DIRTY);
+						}
+					});
+				} else {
+					firePropertyChange(IEditorPart.PROP_DIRTY);
+				}
 			}
 		});
 	}

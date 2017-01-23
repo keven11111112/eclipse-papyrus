@@ -23,7 +23,7 @@ import xpt.Common
 	
 	@Inject extension Common;
 
-	override TextNonResizableEditPolicy_implementsClause(GenDiagram it) '''implements org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
+	override TextNonResizableEditPolicy_implementsClause(GenDiagram it) '''implements org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
 
 	override def TextNonResizableEditPolicy_createSelectionHandles(GenDiagram it) '''
 		«generatedMemberComment»

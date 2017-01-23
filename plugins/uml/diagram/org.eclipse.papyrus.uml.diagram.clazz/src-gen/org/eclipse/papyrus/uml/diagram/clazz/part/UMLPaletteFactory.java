@@ -25,10 +25,10 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreat
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
-	// RS: New Palette generation
+	//RS: New Palette generation
 
-	// Generates the ID for the tool elements
-	// Generate the tool factory (if(ID) createtool...)
+	//Generates the ID for the tool elements
+	//Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
@@ -389,7 +389,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		// default return: null
 		return null;
 	}
-
 
 	/**
 	 * @generated

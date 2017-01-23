@@ -11,11 +11,10 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.part;
 
-import org.eclipse.gmf.tooling.runtime.part.DefaultModelElementSelectionPage;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultModelElementSelectionPage;
 
 /**
  * Wizard page that allows to select element from model.
- * 
  * @generated
  */
 public class ModelElementSelectionPage extends DefaultModelElementSelectionPage {
@@ -27,18 +26,12 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 		super(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory(), pageName);
 	}
 
-
-
-
 	/**
 	 * Override to provide custom model element description.
-	 * 
 	 * @generated
 	 */
 	protected String getSelectionTitle() {
 		return Messages.ModelElementSelectionPageMessage;
 	}
-
-
 
 }

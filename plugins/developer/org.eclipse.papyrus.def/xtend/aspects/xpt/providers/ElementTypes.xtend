@@ -38,7 +38,7 @@ import plugin.Activator
 		private static java.util.Map<org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.emf.ecore.ENamedElement> elements;
 		
 		«generatedMemberComment»
-		private static org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages elementTypeImages = new org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages(« //
+		private static org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages elementTypeImages = new org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages(« //
 		xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().getItemProvidersAdapterFactory());
 		
 		«generatedMemberComment»

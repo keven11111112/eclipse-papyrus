@@ -23,7 +23,7 @@ import xpt.CodeStyle
 	@Inject extension CodeStyle
 	
 	// rebranch to the tooling runtime in the release train.
-	override TextSelectionEditPolicy_implementsClause(GenDiagram it) '''implements org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
+	override TextSelectionEditPolicy_implementsClause(GenDiagram it) '''implements org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
 	
 	override textFeedback_createFocusFeedbackFigure(GenDiagram it) '''
 		«generatedMemberComment»

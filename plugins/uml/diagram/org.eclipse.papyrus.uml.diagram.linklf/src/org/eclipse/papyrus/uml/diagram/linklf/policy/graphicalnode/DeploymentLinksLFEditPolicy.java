@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdap
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.tooling.runtime.linklf.policies.LinksLFGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.policies.LinksLFGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.helpers.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;
 

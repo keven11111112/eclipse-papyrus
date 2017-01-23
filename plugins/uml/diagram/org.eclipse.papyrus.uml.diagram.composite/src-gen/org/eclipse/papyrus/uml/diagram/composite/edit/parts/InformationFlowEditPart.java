@@ -22,8 +22,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.InformationFlowFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class InformationFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

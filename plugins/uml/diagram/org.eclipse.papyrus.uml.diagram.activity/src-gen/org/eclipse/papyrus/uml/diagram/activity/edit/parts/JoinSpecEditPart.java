@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -81,7 +68,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Feature;
-import org.eclipse.uml2.uml.JoinNode;
 
 /**
  * @generated
@@ -113,11 +99,18 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -138,7 +131,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -149,7 +141,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -162,7 +153,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -237,8 +227,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
-	@SuppressWarnings("rawtypes")
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -246,7 +234,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -291,7 +278,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -307,7 +293,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -326,7 +311,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -361,7 +345,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -372,7 +355,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -380,7 +362,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.JoinNode_Shape, getParserElement(), this, VISUAL_ID);
@@ -441,11 +422,12 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	}
 
 	/**
-	 * @generated NOT default direct edit occurs only if there is a defined join specification
+	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
+
 		final Request theRequest = request;
+
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -456,11 +438,24 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if (configuration instanceof IAdvancedEditorConfiguration) {
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
+					initializeDirectEditManager(theRequest);
+					return;
+				} else if (configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
+							.createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
 							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
 							configuration.getTextToEdit(resolveSemanticElement()));
@@ -472,6 +467,7 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -480,6 +476,7 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(),
 									((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -487,36 +484,7 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-			// prevent default direct edition if no join specification
-			EObject element = resolveSemanticElement();
-			if (element instanceof JoinNode && ((JoinNode) element).getJoinSpec() == null) {
-				break;
-			}
-			// initialize the direct edit manager
-			try {
-				getEditingDomain().runExclusive(new Runnable() {
-
-					@Override
-					public void run() {
-						if (isActive() && isEditable()) {
-							if (theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character) theRequest.getExtendedData()
-										.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-								performDirectEdit(initialChar.charValue());
-							} else if ((theRequest instanceof DirectEditRequest)
-									&& (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-								performDirectEdit(editRequest.getLocation());
-							} else {
-								performDirectEdit();
-							}
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			initializeDirectEditManager(theRequest);
 			break;
 		default:
 			break;
@@ -552,7 +520,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -614,7 +581,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -627,7 +593,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -635,7 +600,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -651,7 +615,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -665,7 +628,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -688,7 +650,7 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -707,7 +669,7 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -720,7 +682,7 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -730,7 +692,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 
 	/**
 	 * Initializes the extended editor configuration
-	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -749,25 +710,25 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 
 	/**
 	 * Updates the preference configuration
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("")
-				&& languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred,
-					resolveSemanticElement().eClass().getInstanceClassName());
+				&& !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
+					this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -799,7 +760,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -835,7 +795,6 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -848,4 +807,5 @@ public class JoinSpecEditPart extends PapyrusLabelEditPart implements ITextAware
 	protected IFigure createFigurePrim() {
 		return new WrappedLabel();
 	}
+
 }

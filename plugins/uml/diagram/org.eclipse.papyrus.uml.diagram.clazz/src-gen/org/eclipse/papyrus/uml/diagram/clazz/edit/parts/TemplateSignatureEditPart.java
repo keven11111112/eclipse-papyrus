@@ -112,9 +112,6 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		return lep;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -124,7 +121,6 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateFigure
-	 * 
 	 * @generated
 	 */
 	public TemplateFigure getPrimaryShape() {
@@ -136,10 +132,9 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-
 		if (childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((TemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -189,7 +184,6 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -197,7 +191,6 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -220,9 +213,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -253,7 +244,6 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -270,29 +260,28 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		}
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.ClassifierTemplateParameter_TemplateParameterLabel)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.OperationTemplateParameter_TemplateParameterLabel)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.TemplateParameter_TemplateParameterLabel)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
 
 }

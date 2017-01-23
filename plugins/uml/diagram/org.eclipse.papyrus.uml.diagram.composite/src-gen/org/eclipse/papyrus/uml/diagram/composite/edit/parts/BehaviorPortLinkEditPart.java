@@ -23,8 +23,8 @@ import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoConnecta
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoDeleteFromDiagramEditPolicy;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**

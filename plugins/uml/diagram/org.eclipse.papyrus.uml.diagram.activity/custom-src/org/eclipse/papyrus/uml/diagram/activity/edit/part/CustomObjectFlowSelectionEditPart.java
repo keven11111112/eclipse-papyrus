@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.swt.graphics.Image;

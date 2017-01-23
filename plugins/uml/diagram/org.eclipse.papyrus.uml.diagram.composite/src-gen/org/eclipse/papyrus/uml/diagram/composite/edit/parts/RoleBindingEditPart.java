@@ -22,8 +22,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.RoleBindingFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

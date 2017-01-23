@@ -90,7 +90,8 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
@@ -143,12 +144,10 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		return lep;
 	}
 
-
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -157,8 +156,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -167,7 +165,6 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -178,13 +175,11 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
-	 * 
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -210,7 +205,6 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -227,9 +221,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -255,7 +247,6 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -278,9 +269,5 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationFloatingNameEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 }

@@ -27,7 +27,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 	@Inject Common xptEditpartsCommon;
 
-	override def nodeLabelDragPolicyQualifiedClassName(GenDiagram it) '''org.eclipse.gmf.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy'''
+	override def nodeLabelDragPolicyQualifiedClassName(GenDiagram it) '''org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy'''
 	
 
 	override handleNotificationEventBody(GenNodeLabel it) '''

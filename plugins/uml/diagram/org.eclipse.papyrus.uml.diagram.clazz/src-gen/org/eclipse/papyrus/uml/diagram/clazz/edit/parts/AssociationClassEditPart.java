@@ -99,12 +99,16 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
+				new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
-		installEditPolicy(DeleteLinkedAssociationClassViewEditPolicy.HIDE_ROLE, new DeleteLinkedAssociationClassViewEditPolicy());
+		installEditPolicy(DeleteLinkedAssociationClassViewEditPolicy.HIDE_ROLE,
+				new DeleteLinkedAssociationClassViewEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -153,12 +157,10 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 		return lep;
 	}
 
-
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -167,8 +169,7 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -177,7 +178,6 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -188,7 +188,6 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure
-	 * 
 	 * @generated
 	 */
 	public ClassifierFigure getPrimaryShape() {
@@ -204,24 +203,23 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 			return true;
 		}
 
-
 		if (childEditPart instanceof AssociationClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((AssociationClassAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof AssociationClassOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((AssociationClassOperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof AssociationClassNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((AssociationClassNestedClassifierCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -313,7 +311,6 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -330,9 +327,7 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -363,7 +358,6 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -387,29 +381,28 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassNameEditPart.VISUAL_ID));
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Property_ComponentAttributeLabel)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID));
 			}
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_ComponentOperationLabel)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassOperationCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(AssociationClassOperationCompartmentEditPart.VISUAL_ID));
 			}
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Class_ComponentNestedClassifierLabel)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
 
 }

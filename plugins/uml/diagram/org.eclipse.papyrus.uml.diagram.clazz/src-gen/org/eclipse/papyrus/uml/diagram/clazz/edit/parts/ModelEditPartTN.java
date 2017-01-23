@@ -86,14 +86,16 @@ public class ModelEditPartTN extends PackageEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ModelCanonicalEditPolicyTN());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ModelCanonicalEditPolicyTN());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -136,17 +138,14 @@ public class ModelEditPartTN extends PackageEditPart {
 		return lep;
 	}
 
-
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -157,7 +156,6 @@ public class ModelEditPartTN extends PackageEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure
-	 * 
 	 * @generated
 	 */
 	public PackageFigure getPrimaryShape() {
@@ -173,33 +171,28 @@ public class ModelEditPartTN extends PackageEditPart {
 			return true;
 		}
 
-
 		if (childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ModelPackageableElementCompartmentEditPartTN) childEditPart).getFigure());
 			return true;
 		}
 
-
-
-		// Papyrus Gencode :precise the locator for a template signature
+		//Papyrus Gencode :precise the locator for a template signature
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
-
-		// Papyrus Gencode :precise the locator for a template signature
+		//Papyrus Gencode :precise the locator for a template signature
 		if (childEditPart instanceof TemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
-
 
 		return false;
 	}
@@ -217,11 +210,13 @@ public class ModelEditPartTN extends PackageEditPart {
 			return true;
 		}
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof TemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((TemplateSignatureEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((TemplateSignatureEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -260,7 +255,6 @@ public class ModelEditPartTN extends PackageEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -268,7 +262,6 @@ public class ModelEditPartTN extends PackageEditPart {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(200, 100);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -286,9 +279,7 @@ public class ModelEditPartTN extends PackageEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -319,7 +310,6 @@ public class ModelEditPartTN extends PackageEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -342,9 +332,5 @@ public class ModelEditPartTN extends PackageEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ModelNameEditPartTN.VISUAL_ID));
 	}
-
-
-
-
 
 }

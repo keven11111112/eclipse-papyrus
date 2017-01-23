@@ -22,10 +22,9 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPar
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
- * @generated
- */
-public class InformationFlowEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class InformationFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,7 +44,8 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -53,16 +53,14 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
-			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getConveyedLabel());
+			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConveyedLabel());
 		}
 		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
-			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((InformationFlowAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		if (childEditPart instanceof InformationFlowNameEditPart) {
-			((InformationFlowNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((InformationFlowNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		return false;
 	}

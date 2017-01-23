@@ -488,13 +488,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		dependency_MultiNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location dependency_MultiNameLabel_Location = (Location) dependency_MultiNameLabel.getLayoutConstraint();
 		dependency_MultiNameLabel_Location.setX(0);
-		dependency_MultiNameLabel_Location.setY(5);
+		dependency_MultiNameLabel_Location.setY(15);
 		Node dependency_FloatingNameLabel = createLabel(node,
 				UMLVisualIDRegistry.getType(DependencyNodeFloatingLabelEditPart.VISUAL_ID));
 		dependency_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location dependency_FloatingNameLabel_Location = (Location) dependency_FloatingNameLabel.getLayoutConstraint();
 		dependency_FloatingNameLabel_Location.setX(0);
-		dependency_FloatingNameLabel_Location.setY(5);
+		dependency_FloatingNameLabel_Location.setY(15);
 		return node;
 	}
 
@@ -519,7 +519,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		component_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location component_FloatingNameLabel_Location = (Location) component_FloatingNameLabel.getLayoutConstraint();
 		component_FloatingNameLabel_Location.setX(0);
-		component_FloatingNameLabel_Location.setY(5);
+		component_FloatingNameLabel_Location.setY(15);
 		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPart.VISUAL_ID), true,
 				true, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Component");
@@ -593,7 +593,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location interface_ClassifierFloatingNameLabel_Location = (Location) interface_ClassifierFloatingNameLabel
 				.getLayoutConstraint();
 		interface_ClassifierFloatingNameLabel_Location.setX(0);
-		interface_ClassifierFloatingNameLabel_Location.setY(5);
+		interface_ClassifierFloatingNameLabel_Location.setY(15);
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID), true,
 				true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID), true,
@@ -681,13 +681,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		interface_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location interface_NameLabel_Location = (Location) interface_NameLabel.getLayoutConstraint();
 		interface_NameLabel_Location.setX(0);
-		interface_NameLabel_Location.setY(5);
+		interface_NameLabel_Location.setY(15);
 		Node interface_FloatingNameLabel = createLabel(node,
 				UMLVisualIDRegistry.getType(InterfaceFloatingLabelEditPart.VISUAL_ID));
 		interface_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location interface_FloatingNameLabel_Location = (Location) interface_FloatingNameLabel.getLayoutConstraint();
 		interface_FloatingNameLabel_Location.setX(0);
-		interface_FloatingNameLabel_Location.setY(5);
+		interface_FloatingNameLabel_Location.setY(15);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Interface");
 		return node;
 	}
@@ -710,7 +710,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		port_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location port_NameLabel_Location = (Location) port_NameLabel.getLayoutConstraint();
 		port_NameLabel_Location.setX(0);
-		port_NameLabel_Location.setY(5);
+		port_NameLabel_Location.setY(15);
 		Node port_StereotypeLabel = createLabel(node,
 				UMLVisualIDRegistry.getType(PortAppliedStereotypeEditPart.VISUAL_ID));
 		port_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -785,7 +785,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location interface_ClassifierFloatingNameLabel_CN_Location = (Location) interface_ClassifierFloatingNameLabel_CN
 				.getLayoutConstraint();
 		interface_ClassifierFloatingNameLabel_CN_Location.setX(0);
-		interface_ClassifierFloatingNameLabel_CN_Location.setY(5);
+		interface_ClassifierFloatingNameLabel_CN_Location.setY(15);
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPartCN.VISUAL_ID), true,
 				true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPartCN.VISUAL_ID), true,
@@ -816,7 +816,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location component_FloatingNameLabel_CCN_Location = (Location) component_FloatingNameLabel_CCN
 				.getLayoutConstraint();
 		component_FloatingNameLabel_CCN_Location.setX(0);
-		component_FloatingNameLabel_CCN_Location.setY(5);
+		component_FloatingNameLabel_CCN_Location.setY(15);
 		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPartCN.VISUAL_ID), true,
 				true, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Component");
@@ -845,7 +845,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location component_FloatingNameLabel_CN_Location = (Location) component_FloatingNameLabel_CN
 				.getLayoutConstraint();
 		component_FloatingNameLabel_CN_Location.setX(0);
-		component_FloatingNameLabel_CN_Location.setY(5);
+		component_FloatingNameLabel_CN_Location.setY(15);
 		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPartPCN.VISUAL_ID), true,
 				true, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Component");
@@ -958,14 +958,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		interface_NameLabel_CN.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location interface_NameLabel_CN_Location = (Location) interface_NameLabel_CN.getLayoutConstraint();
 		interface_NameLabel_CN_Location.setX(0);
-		interface_NameLabel_CN_Location.setY(5);
+		interface_NameLabel_CN_Location.setY(15);
 		Node interface_FloatingNameLabel_CN = createLabel(node,
 				UMLVisualIDRegistry.getType(InterfaceFloatingLabelEditPartPCN.VISUAL_ID));
 		interface_FloatingNameLabel_CN.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location interface_FloatingNameLabel_CN_Location = (Location) interface_FloatingNameLabel_CN
 				.getLayoutConstraint();
 		interface_FloatingNameLabel_CN_Location.setX(0);
-		interface_FloatingNameLabel_CN_Location.setY(5);
+		interface_FloatingNameLabel_CN_Location.setY(15);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Interface");
 		return node;
 	}

@@ -21,10 +21,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AddedLinkFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 
 /**
- * @generated
- */
-public class ContainmentLinkEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class ContainmentLinkEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,10 +45,6 @@ public class ContainmentLinkEditPart extends UMLConnectionNodeEditPart
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * Creates figure for this edit part.

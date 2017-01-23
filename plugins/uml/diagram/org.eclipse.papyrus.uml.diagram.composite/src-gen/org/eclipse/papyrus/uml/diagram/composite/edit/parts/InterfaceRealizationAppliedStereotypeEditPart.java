@@ -112,14 +112,12 @@ public class InterfaceRealizationAppliedStereotypeEditPart extends PapyrusLabelE
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -128,9 +126,8 @@ public class InterfaceRealizationAppliedStereotypeEditPart extends PapyrusLabelE
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.composite.edit.parts.InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.composite.edit.parts.InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID),
 				new Point(0, 30));
 	}
 
@@ -684,7 +681,6 @@ public class InterfaceRealizationAppliedStereotypeEditPart extends PapyrusLabelE
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -703,7 +699,6 @@ public class InterfaceRealizationAppliedStereotypeEditPart extends PapyrusLabelE
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -719,12 +714,10 @@ public class InterfaceRealizationAppliedStereotypeEditPart extends PapyrusLabelE
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {

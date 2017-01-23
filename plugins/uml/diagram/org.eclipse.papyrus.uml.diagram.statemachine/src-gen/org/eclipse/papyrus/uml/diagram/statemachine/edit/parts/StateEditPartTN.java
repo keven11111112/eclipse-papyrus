@@ -84,17 +84,23 @@ public class StateEditPartTN extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateCanonicalEditPolicyTN());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateCanonicalEditPolicyTN());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE,
+				new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomStateLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStateMachineDiagramDragDropEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new SideAffixedNodesCreationEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -138,12 +144,12 @@ public class StateEditPartTN extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -155,7 +161,6 @@ public class StateEditPartTN extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.StateFigure
-	 * 
 	 * @generated
 	 */
 	public StateFigure getPrimaryShape() {
@@ -170,24 +175,30 @@ public class StateEditPartTN extends RoundedCompartmentEditPart {
 			((StateNameEditPartTN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
 		if (childEditPart instanceof StateCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getStateCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StateCompartmentEditPartTN) childEditPart).getFigure());
 			return true;
 		}
-		// Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
+
+		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if (childEditPart instanceof PseudostateEntryPointEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PseudostateEntryPointEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((PseudostateEntryPointEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
+
+		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if (childEditPart instanceof PseudostateExitPointEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PseudostateExitPointEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((PseudostateExitPointEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -204,11 +215,13 @@ public class StateEditPartTN extends RoundedCompartmentEditPart {
 			return true;
 		}
 		if (childEditPart instanceof PseudostateEntryPointEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PseudostateEntryPointEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((PseudostateEntryPointEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof PseudostateExitPointEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PseudostateExitPointEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((PseudostateExitPointEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -265,14 +278,13 @@ public class StateEditPartTN extends RoundedCompartmentEditPart {
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -325,4 +337,5 @@ public class StateEditPartTN extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateNameEditPartTN.VISUAL_ID));
 	}
+
 }

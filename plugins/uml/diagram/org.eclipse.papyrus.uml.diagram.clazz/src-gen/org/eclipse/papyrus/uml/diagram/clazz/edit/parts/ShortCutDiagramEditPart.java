@@ -135,12 +135,10 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		return lep;
 	}
 
-
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -149,8 +147,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -159,7 +156,6 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -170,13 +166,11 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure
-	 * 
 	 * @generated
 	 */
 	public DiagramNodeFigure getPrimaryShape() {
 		return (DiagramNodeFigure) primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -199,7 +193,6 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -216,9 +209,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -244,7 +235,6 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -267,9 +257,5 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 }

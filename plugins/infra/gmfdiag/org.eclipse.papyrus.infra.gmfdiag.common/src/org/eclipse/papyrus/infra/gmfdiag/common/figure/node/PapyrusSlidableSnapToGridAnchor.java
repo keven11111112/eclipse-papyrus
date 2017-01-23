@@ -18,8 +18,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.tooling.runtime.linklf.DiagramGridSpec;
-import org.eclipse.gmf.tooling.runtime.linklf.SlidableSnapToGridAnchor;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.DiagramGridSpec;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.SlidableSnapToGridAnchor;
 
 /**
  * Internal class to manage anchors snappable to grid
@@ -60,7 +60,7 @@ public class PapyrusSlidableSnapToGridAnchor extends SlidableSnapToGridAnchor {
 	}
 
 	/**
-	 * @see org.eclipse.gmf.tooling.runtime.linklf.SlidableSnapToGridAnchor#setEditPartViewer(org.eclipse.gef.EditPartViewer)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.SlidableSnapToGridAnchor#setEditPartViewer(org.eclipse.gef.EditPartViewer)
 	 *
 	 * @param viewer
 	 */

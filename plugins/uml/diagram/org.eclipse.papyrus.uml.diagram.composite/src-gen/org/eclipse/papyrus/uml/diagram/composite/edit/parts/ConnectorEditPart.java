@@ -22,8 +22,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.ConnectorFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

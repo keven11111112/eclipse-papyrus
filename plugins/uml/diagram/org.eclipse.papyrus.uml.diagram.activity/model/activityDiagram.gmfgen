@@ -18528,7 +18528,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ResizeActivityEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass

@@ -129,9 +129,8 @@ public class AssociationBranchMultiplicityEditPart extends PapyrusLabelEditPart
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchMultiplicityEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationBranchMultiplicityEditPart.VISUAL_ID),
 				new Point(0, 20));
 	}
 

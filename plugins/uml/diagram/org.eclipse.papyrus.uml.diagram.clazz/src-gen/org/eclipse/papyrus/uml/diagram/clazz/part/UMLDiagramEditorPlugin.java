@@ -31,8 +31,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
@@ -123,10 +123,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public IPreferenceStore getPreferenceStore() {
-		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault()
+				.getPreferenceStore();
 		return store;
 	}
-
 
 	/**
 	 * @generated
@@ -139,11 +139,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(
-				item, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
 		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(
-					labelProvider.getImage(item));
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
 	}
@@ -153,8 +151,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * plug-in relative path.
 	 * 
 	 * @generated
-	 * @param path
-	 *            the path
+	 * @param path the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -167,15 +164,14 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * path, first segment is taken as id of plug-in with image
 	 * 
 	 * @generated
-	 * @param path
-	 *            the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
+	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(
-					p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0),
+					p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -186,8 +182,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * Client do not need to dispose this image. Images will be disposed automatically.
 	 * 
 	 * @generated
-	 * @param path
-	 *            the path
+	 * @param path the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
@@ -205,8 +200,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public static String getString(String key) {
-		return Platform.getResourceString(
-				getInstance().getBundle(), "%" + key); //$NON-NLS-1$
+		return Platform.getResourceString(getInstance().getBundle(), "%" + key); //$NON-NLS-1$
 	}
 
 	/**

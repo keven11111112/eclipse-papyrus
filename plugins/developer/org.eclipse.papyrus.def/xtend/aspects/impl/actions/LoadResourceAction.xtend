@@ -16,6 +16,6 @@ import com.google.inject.Singleton
 @Singleton class LoadResourceAction extends impl.actions.LoadResourceAction{
 
 	override def extendsList(org.eclipse.gmf.codegen.gmfgen.LoadResourceAction it) //
-	''' extends org.eclipse.gmf.tooling.runtime.actions.DefaultLoadResourceAction'''
+	''' extends org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.actions.DefaultLoadResourceAction'''
 
 }

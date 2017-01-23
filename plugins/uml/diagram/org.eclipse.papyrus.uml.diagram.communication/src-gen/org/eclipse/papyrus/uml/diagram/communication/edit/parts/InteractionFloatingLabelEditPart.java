@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.edit.parts;
 
@@ -40,7 +40,6 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -71,7 +70,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.communication.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.communication.providers.UMLParserProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -115,24 +113,22 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.communication.edit.parts.InteractionFloatingLabelEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.communication.edit.parts.InteractionFloatingLabelEditPart.VISUAL_ID),
 				new Point(0, 0));
 	}
 
@@ -146,7 +142,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -157,7 +152,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -170,7 +164,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -245,7 +238,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -253,7 +245,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -446,7 +437,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -543,7 +533,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -605,7 +594,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -618,7 +606,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -626,7 +613,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -642,7 +628,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -656,7 +641,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -679,7 +663,7 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -698,7 +682,7 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -711,7 +695,7 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -721,7 +705,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -740,7 +723,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -756,12 +738,10 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -793,7 +773,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -829,7 +808,6 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -842,4 +820,5 @@ public class InteractionFloatingLabelEditPart extends FloatingLabelEditPart
 	protected IFigure createFigurePrim() {
 		return new PapyrusWrappingLabel();
 	}
+
 }

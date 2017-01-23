@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -23,8 +10,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.uml.diagram.activity.figures.ExceptionHandlerFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -42,7 +29,6 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -58,7 +44,6 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -76,7 +61,6 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -86,13 +70,12 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new ExceptionHandlerFigure();
 	}
@@ -100,8 +83,8 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	@Override
 	public ExceptionHandlerFigure getPrimaryShape() {
 		return (ExceptionHandlerFigure) getFigure();
 	}
+
 }

@@ -48,7 +48,8 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[4];
-		this.expressionBodies = new String[] { "(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)", //$NON-NLS-1$
+		this.expressionBodies = new String[] {
+				"(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).exit->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).entry->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).doActivity->includes(self)\r\nelse false endif", //$NON-NLS-1$
@@ -76,13 +77,15 @@ public class UMLOCLFactory {
 	/**
 	 * @generated
 	 */
-	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
+	public static UMLAbstractExpression getExpression(int index, EClassifier context,
+			Map<String, EClassifier> environment) {
 		UMLOCLFactory cached = getInstance();
 		if (index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
 		if (cached.expressions[index] == null) {
-			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
+					environment == null ? Collections.<String, EClassifier>emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
@@ -92,7 +95,8 @@ public class UMLOCLFactory {
 	 *
 	 * @generated
 	 */
-	public static UMLAbstractExpression getExpression(String body, EClassifier context, Map<String, EClassifier> environment) {
+	public static UMLAbstractExpression getExpression(String body, EClassifier context,
+			Map<String, EClassifier> environment) {
 		return new Expression(body, context, environment);
 	}
 
@@ -102,7 +106,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
-		return getExpression(body, context, Collections.<String, EClassifier> emptyMap());
+		return getExpression(body, context, Collections.<String, EClassifier>emptyMap());
 	}
 
 	/**
@@ -164,9 +168,11 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
+		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
+				Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
-			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
+			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv),
+					EcorePackage.eINSTANCE.getEObject());
 			for (String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
@@ -176,7 +182,8 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv, String name, EClassifier type) {
+		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv,
+				String name, EClassifier type) {
 			Variable var = EcoreFactory.eINSTANCE.createVariable();
 			var.setName(name);
 			var.setType(ecoreEnv.getUMLReflection().getOCLType(type));

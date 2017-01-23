@@ -21,7 +21,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
-import org.eclipse.gmf.tooling.runtime.draw2d.CenterLayout;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.swt.SWT;

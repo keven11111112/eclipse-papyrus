@@ -24,10 +24,9 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
- * @generated
- */
-public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+	 * @generated
+	 */
+public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,7 +47,8 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy("CustomDisplay", new GeneralizationSetLabelDisplayEditPolicy()); //$NON-NLS-1$
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -56,12 +56,11 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getConstraintLabel());
+			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
 		}
 		if (childEditPart instanceof AppliedStereotypeGeneralizationSetLabelEditPart) {
-			((AppliedStereotypeGeneralizationSetLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeGeneralizationSetLabelEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

@@ -16,6 +16,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenCustomPropertyTab
 
 @Singleton class PropertySection extends xpt.propsheet.PropertySection {
 
-	override extendsList(GenCustomPropertyTab it) '''extends org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection'''
+	override extendsList(GenCustomPropertyTab it) '''extends org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet.DefaultPropertySection'''
 	
 }

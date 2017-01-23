@@ -32,7 +32,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 						(org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure) source.getFigure());
 						}
 						   else {
-						      return org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
+						      return org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 		
 		       }
 		   }

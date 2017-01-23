@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionInputEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.figures.LinkAndCornerBentWithTextFigure;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;

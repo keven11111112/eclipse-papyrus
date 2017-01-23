@@ -101,7 +101,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			@Override
 			public boolean handleResourceChanged(final Resource resource) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
+						.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -113,7 +114,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			@Override
 			public boolean handleResourceDeleted(Resource resource) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
+						.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -125,7 +127,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			@Override
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
+						.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -136,8 +139,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 		});
 	}
-
-
 
 	/**
 	 * @generated
@@ -252,15 +253,12 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		return EMPTY_ARRAY;
 	}
 
-
 	/**
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
 		return ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
-
-
 
 	/**
 	 * @generated

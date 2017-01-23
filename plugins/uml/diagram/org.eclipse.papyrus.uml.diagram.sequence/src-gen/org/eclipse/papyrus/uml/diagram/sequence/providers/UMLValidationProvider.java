@@ -224,7 +224,8 @@ public class UMLValidationProvider {
 				if (nextTarget instanceof View) {
 					final String id = UMLVisualIDRegistry.getVisualID((View) nextTarget);
 					String nextSemanticId = (id != null && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0)
-							? id : null;
+							? id
+							: null;
 					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId)
 							|| (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
 						this.ctxChanged = true;

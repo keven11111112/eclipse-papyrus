@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -67,7 +54,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -80,17 +66,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BehaviorExecutionSpecificationItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -122,28 +97,32 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	}
 
 	/**
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure();
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure
 	 * @generated
 	 */
-	@Override
 	public AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure getPrimaryShape() {
 		return (AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure) primaryShape;
 	}
 
 	/**
-	 * Overrides to disable the defaultAnchorArea. The edge is no more stuck with the middle of the
-	 * figure.
-	 *
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 60);
 		return result;
@@ -152,7 +131,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
@@ -164,27 +142,23 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 
 	/**
 	 * Creates figure for this edit part.
-	 *
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
-	 *
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set
-	 * for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -192,7 +166,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -203,7 +176,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -213,27 +185,17 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
 
-	// /**
-	// * @generated
-	// */
-	// @Override
-	// protected void setLineWidth(int width) {
-	// if(primaryShape instanceof Shape) {
-	// ((Shape)primaryShape).setLineWidth(width);
-	// }
-	// }
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
+
 }

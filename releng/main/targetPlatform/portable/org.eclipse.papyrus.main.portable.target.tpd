@@ -118,14 +118,6 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releas
 	org.eclipse.emf.query.sdk.feature.group
 }
 
-//updateFrom("GMF Tooling",0) 
-
-location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
-	org.eclipse.gmf.tooling.feature.group
-	org.eclipse.gmf.tooling.runtime.feature.group
-	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
-}
-
 //updateFrom("GEF",0)
 
 location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952" {

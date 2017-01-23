@@ -15,8 +15,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageFoundItemSe
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFound;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class MessageFoundEditPart extends AbstractMessageEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -34,7 +34,6 @@ public class MessageFoundEditPart extends AbstractMessageEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -63,7 +62,6 @@ public class MessageFoundEditPart extends AbstractMessageEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -87,7 +85,6 @@ public class MessageFoundEditPart extends AbstractMessageEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -97,13 +94,12 @@ public class MessageFoundEditPart extends AbstractMessageEditPart implements ITr
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new MessageFound();
 	}
@@ -111,7 +107,6 @@ public class MessageFoundEditPart extends AbstractMessageEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	@Override
 	public MessageFound getPrimaryShape() {
 		return (MessageFound) getFigure();
 	}

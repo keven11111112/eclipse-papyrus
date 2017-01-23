@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -67,7 +54,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -117,6 +103,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure
 	 * @generated
 	 */
 	public ContinuationFigure getPrimaryShape() {
@@ -148,7 +135,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -159,7 +145,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -170,7 +155,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
@@ -185,13 +169,12 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -205,9 +188,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -222,7 +203,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -233,7 +213,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -243,7 +222,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -251,7 +229,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -261,8 +238,8 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ContinuationNameEditPart.VISUAL_ID));
 	}
+
 }

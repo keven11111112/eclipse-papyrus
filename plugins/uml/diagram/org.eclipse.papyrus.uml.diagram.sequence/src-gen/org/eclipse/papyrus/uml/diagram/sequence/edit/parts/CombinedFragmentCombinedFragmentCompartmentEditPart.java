@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *   Soyatec - add the DnD support
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -54,7 +41,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
-	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -62,17 +48,13 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getCompartmentName() {
 		return Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title;
 	}
 
 	/**
-	 * Not generated for delete borders add stretch children figures.
-	 *
 	 * @generated
 	 */
-	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -80,19 +62,16 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	}
 
 	/**
-	 * Add RemoveOrphanView role
-	 *
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy());
@@ -101,7 +80,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -111,7 +89,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -120,7 +97,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -148,7 +124,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

@@ -90,7 +90,8 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -141,12 +142,10 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 		return lep;
 	}
 
-
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -155,8 +154,7 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -165,7 +163,6 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -176,7 +173,6 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.clazz.custom.figure.nodes.InformationItemFigure
-	 * 
 	 * @generated
 	 */
 	public InformationItemFigure getPrimaryShape() {
@@ -191,7 +187,6 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 			((InformationItemNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -256,7 +251,6 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -273,9 +267,7 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -306,7 +298,6 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -329,9 +320,5 @@ public class InformationItemEditPartCN extends ClassifierEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InformationItemNameEditPartCN.VISUAL_ID));
 	}
-
-
-
-
 
 }

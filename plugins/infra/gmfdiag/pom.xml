@@ -32,6 +32,7 @@
 		<module>org.eclipse.papyrus.infra.gmfdiag.viewersearcher</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.welcome</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.widgets</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</module>
 		<module>assistant</module>
 		<module>css</module>
 		<module>expansion</module>

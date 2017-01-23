@@ -20,8 +20,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class DurationObservationEventEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**

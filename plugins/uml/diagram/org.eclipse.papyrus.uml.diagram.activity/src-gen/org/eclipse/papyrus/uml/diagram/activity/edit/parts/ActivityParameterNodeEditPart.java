@@ -1,20 +1,8 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
@@ -60,7 +48,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEditPart { // BorderNamedElementEditPart RoundedCompartmentEditPart
+public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEditPart {
 
 	/**
 	 * @generated
@@ -87,7 +75,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -106,30 +93,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 		installEditPolicy(ShowHideExceptionEditPolicy.KEY, new ShowHideExceptionEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
-	protected void handleNotificationEvent(Notification event) {
-		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
-		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
-			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
-					return;
-				}
-			}
-		}
-		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -178,6 +141,28 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	}
 
 	/**
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
@@ -185,9 +170,9 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
 	 * @generated
 	 */
-	@Override
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
@@ -217,7 +202,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -228,7 +212,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -239,7 +222,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
@@ -250,7 +232,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof ActivityParameterNodeStreamLabelEditPart
 				|| borderItemEditPart instanceof ActivityParameterNodeExceptionLabelEditPart) {
@@ -272,13 +253,12 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -292,9 +272,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -309,7 +287,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -320,7 +297,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -330,7 +306,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -338,7 +313,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -348,106 +322,8 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ParameterNodeNameEditPart.VISUAL_ID));
 	}
-	// /**
-	// * @generated NOT implements IPapyrusNodeUMLElementFigure
-	// */
-	// public class ActivityParameterNodeDescriptor extends RectangleFigure implements IPapyrusNodeUMLElementFigure {
-	//
-	// /** The helper which handles stereotype aspects */
-	// private StereotypeFigureHelper stereotypeHelper;
-	//
-	// /**
-	// * @generated NOT use StereotypeFigureHelper
-	// */
-	// public ActivityParameterNodeDescriptor() {
-	// GridLayout layoutThis = new GridLayout();
-	// layoutThis.numColumns = 1;
-	// layoutThis.makeColumnsEqualWidth = true;
-	// this.setLayoutManager(layoutThis);
-	// this.setLineWidth(1);
-	// this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(50)));
-	// // use StereotypeFigureHelper
-	// stereotypeHelper = new StereotypeFigureHelper(this) {
-	//
-	// // @Override
-	// // public IMapMode getMapMode() {
-	// // return ActivityParameterNodeEditPart.this.getMapMode();
-	// // }
-	// @Override
-	// public Object getStereotypeRectangleConstraint() {
-	// GridData constraintStereotypeRect0 = new GridData();
-	// constraintStereotypeRect0.verticalAlignment = GridData.BEGINNING;
-	// constraintStereotypeRect0.horizontalAlignment = GridData.FILL;
-	// constraintStereotypeRect0.horizontalIndent = 0;
-	// constraintStereotypeRect0.horizontalSpan = 1;
-	// constraintStereotypeRect0.verticalSpan = 1;
-	// constraintStereotypeRect0.grabExcessHorizontalSpace = false;
-	// constraintStereotypeRect0.grabExcessVerticalSpace = false;
-	// return constraintStereotypeRect0;
-	// }
-	// };
-	// }
-	//
-	// /**
-	// * Refresh the layout of the figure
-	// */
-	// protected void refreshLayout() {
-	// }
-	//
-	// /**
-	// * Sets the stereotypes for this figure.
-	// *
-	// * @param stereotypes
-	// * the string representing the stereotypes to be displayed
-	// * @param image
-	// * the image representing the stereotypes to be displayed
-	// * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String, org.eclipse.swt.graphics.Image)
-	// */
-	// @Override
-	// public void setStereotypeDisplay(String stereotypes, Image image) {
-	// stereotypeHelper.setStereotypeDisplay(stereotypes, image);
-	// refreshLayout();
-	// }
-	//
-	// /**
-	// * Sets the stereotypes properties for this figure.
-	// *
-	// * @param stereotypeProperties
-	// * the string representing the stereotype properties to be displayed
-	// */
-	// @Override
-	// public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-	// stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
-	// refreshLayout();
-	// }
-	//
-	// /**
-	// * displays the new string corresponding to the list of stereotypes.
-	// *
-	// * @param stereotypeProperties
-	// * the string to be displayed.
-	// */
-	// @Override
-	// public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-	// stereotypeHelper.setStereotypePropertiesInCompartment(stereotypeProperties);
-	// refreshLayout();
-	// }
-	//
-	// /**
-	// * Gets the stereotype label.
-	// *
-	// * @return the stereotype label
-	// * @unused
-	// * @deprecated
-	// */
-	// @Deprecated
-	// @Override
-	// public Label getStereotypesLabel() {
-	// return null;// fActionStereotypeLabel;
-	// }
-	// }
+
 }

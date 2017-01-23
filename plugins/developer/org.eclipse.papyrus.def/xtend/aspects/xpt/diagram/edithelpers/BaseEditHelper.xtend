@@ -15,11 +15,11 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 public class BaseEditHelper extends xpt.diagram.edithelpers.BaseEditHelper {
 
-	override superClass(GenDiagram it) '''org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase'''
+	override superClass(GenDiagram it) '''org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.helpers.GeneratedEditHelperBase'''
 
-	override def editPolicyCommandConstant(GenDiagram it) '''org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase.EDIT_POLICY_COMMAND'''
+	override def editPolicyCommandConstant(GenDiagram it) '''org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.helpers.GeneratedEditHelperBase.EDIT_POLICY_COMMAND'''
 
-	override def contextElementTypeConstant(GenDiagram it) '''org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE'''
+	override def contextElementTypeConstant(GenDiagram it) '''org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.helpers.GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE'''
 
 
 }

@@ -106,24 +106,22 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 *
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 *
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart.VISUAL_ID),
 				new Point(0, 0));
 	}
 
@@ -135,7 +133,7 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	 * @generated
+	 * @generated Papyrus Generation
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
@@ -149,7 +147,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
 	}
@@ -220,7 +217,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -228,7 +224,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -236,7 +231,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setParser(IParser parser) {
 		this.parser = parser;
 	}
@@ -285,7 +279,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -301,7 +294,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -320,7 +312,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -357,7 +348,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -368,7 +358,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -376,7 +365,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.ObjectFlow_Edge, getParserElement(), this, VISUAL_ID);
@@ -439,7 +427,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -536,7 +523,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -598,7 +584,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -611,7 +596,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -619,7 +603,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -635,7 +618,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -649,7 +631,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -672,7 +653,7 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -683,7 +664,7 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -696,7 +677,7 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -706,7 +687,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Initializes the extended editor configuration
-	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -725,7 +705,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Updates the preference configuration
-	 *
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -741,12 +720,10 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -778,7 +755,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -819,7 +795,6 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -832,4 +807,5 @@ public class ObjectFlowInterruptibleIconEditPart extends PapyrusLabelEditPart
 	protected IFigure createFigurePrim() {
 		return new InterruptibleEdgeExternalIconFigure();
 	}
+
 }

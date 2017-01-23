@@ -21,8 +21,8 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPar
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.RepresentationFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class RepresentationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

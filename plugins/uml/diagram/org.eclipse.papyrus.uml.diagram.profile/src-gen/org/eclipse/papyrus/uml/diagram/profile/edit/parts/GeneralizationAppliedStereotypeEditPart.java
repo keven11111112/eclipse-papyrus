@@ -129,9 +129,8 @@ public class GeneralizationAppliedStereotypeEditPart extends PapyrusLabelEditPar
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.profile.edit.parts.GeneralizationAppliedStereotypeEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.profile.edit.parts.GeneralizationAppliedStereotypeEditPart.VISUAL_ID),
 				new Point(0, 60));
 	}
 

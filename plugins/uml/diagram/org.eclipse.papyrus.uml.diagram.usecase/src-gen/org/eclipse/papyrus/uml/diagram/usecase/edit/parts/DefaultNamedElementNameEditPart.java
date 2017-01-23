@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
@@ -38,12 +38,10 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
@@ -65,14 +63,13 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditP
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
-import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLParserProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -116,14 +113,12 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -138,7 +133,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
@@ -212,7 +206,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -220,7 +213,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -228,7 +220,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setParser(IParser parser) {
 		this.parser = parser;
 	}
@@ -276,7 +267,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -292,7 +282,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -311,7 +300,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -346,7 +334,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -357,7 +344,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -365,7 +351,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.NamedElement_DefaultShape, getParserElement(), this,
@@ -429,7 +414,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -526,7 +510,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -594,7 +577,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -607,7 +589,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -615,7 +596,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -631,7 +611,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -645,7 +624,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -668,7 +646,7 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -687,7 +665,7 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -700,7 +678,7 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -710,7 +688,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -729,7 +706,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -745,12 +721,10 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 * @generated
-	 */
+	* Performs the direct edit usually used by GMF editors.
+	* @param theRequest the direct edit request that starts the direct edit system
+	* @generated
+	*/
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -782,7 +756,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
@@ -791,7 +764,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
@@ -800,7 +772,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		refreshLabel();
 		Object feature = event.getFeature();
@@ -841,7 +812,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
@@ -855,7 +825,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void activate() {
 		super.activate();
 		addOwnerElementListeners();
@@ -872,7 +841,6 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	@Override
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
@@ -886,4 +854,5 @@ public class DefaultNamedElementNameEditPart extends PapyrusCompartmentEditPart
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 }

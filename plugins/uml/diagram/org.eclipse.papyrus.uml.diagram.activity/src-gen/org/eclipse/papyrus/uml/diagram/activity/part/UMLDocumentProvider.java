@@ -81,7 +81,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
 							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", //$NON-NLS-1$
-									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$
+									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 					null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
@@ -102,7 +102,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
 							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", //$NON-NLS-1$
-									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$
+									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 					null));
 		}
 		IDocument document = createEmptyDocument();
@@ -221,7 +221,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					try {
 						@SuppressWarnings({ "rawtypes", "unchecked" })
 						Map<?, ?> options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
+						// @see 171060 
 						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
@@ -260,7 +260,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
 							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", //$NON-NLS-1$
-									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$
+									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 					null));
 		}
 	}
@@ -560,7 +560,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			fireElementStateChanging(element);
 			try {
 				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask,
-						info.getResourceSet().getResources().size() + 1); // "Saving diagram"
+						info.getResourceSet().getResources().size() + 1); //"Saving diagram"
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					monitor.setTaskName(
@@ -598,7 +598,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 						NLS.bind(Messages.UMLDocumentProvider_IncorrectInputError,
 								new Object[] { element, "org.eclipse.ui.part.FileEditorInput", //$NON-NLS-1$
-										"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$
+										"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 						null));
 			}
 			if (false == document instanceof IDiagramDocument) {

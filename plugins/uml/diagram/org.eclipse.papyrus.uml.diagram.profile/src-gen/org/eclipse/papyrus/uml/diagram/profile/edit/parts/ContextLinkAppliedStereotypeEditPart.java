@@ -130,9 +130,8 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(
-				UMLVisualIDRegistry.getType(
-						org.eclipse.papyrus.uml.diagram.profile.edit.parts.ContextLinkAppliedStereotypeEditPart.VISUAL_ID),
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(
+				org.eclipse.papyrus.uml.diagram.profile.edit.parts.ContextLinkAppliedStereotypeEditPart.VISUAL_ID),
 				new Point(0, 60));
 	}
 

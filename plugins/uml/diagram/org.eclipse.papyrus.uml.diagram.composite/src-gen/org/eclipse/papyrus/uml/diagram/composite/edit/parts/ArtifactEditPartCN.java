@@ -145,7 +145,6 @@ public class ArtifactEditPartCN extends NodeEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
-	 * 
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
@@ -240,9 +239,7 @@ public class ArtifactEditPartCN extends NodeEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

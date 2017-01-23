@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.policies;
 
@@ -43,7 +43,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
@@ -71,18 +71,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
-	 *
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
-
 	/**
 	 * Extended request data key to hold the edge view during a reconnect request.
-	 *
 	 * @generated
 	 */
 	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -102,12 +98,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 * Add the reoriented view to the request extended data so that the view
-	 * currently edited can be distinguished from other views of the same element
-	 * and these latter possibly removed if they become inconsistent after reconnect
-	 *
+	 *  currently edited can be distinguished from other views of the same element
+	 *  and these latter possibly removed if they become inconsistent after reconnect
+	 * 
 	 * @generated
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
@@ -123,7 +118,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
-	 *
 	 * @generated
 	 */
 	protected String getVisualID(IEditCommandRequest request) {
@@ -133,7 +127,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -158,7 +151,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy
+					? ((ICommandProxy) editPolicyCommand).getICommand()
+					: new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -244,7 +239,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
-	// RS: End of add code for extended types
 	/**
 	 * @generated
 	 */
@@ -323,7 +317,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
-	 *
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -332,14 +325,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
-	 *
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
 		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
+					|| nextView.getElement() != view.getElement()) {
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -380,14 +373,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
-				if (source.getAnnotatedElements()
-						.contains(target)) {
+				if (source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistComment_AnnotatedElementEdge(
-					source, target);
+			return canExistComment_AnnotatedElementEdge(source, target);
 		}
 
 		/**
@@ -395,62 +386,54 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
-				if (source.getConstrainedElements()
-						.contains(target)) {
+				if (source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistConstraint_ConstrainedElementEdge(
-					source, target);
+			return canExistConstraint_ConstrainedElementEdge(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDeployment_Edge(DeploymentTarget container, NamedElement source, NamedElement target) {
-			return canExistDeployment_Edge(
-					container, null, source, target);
+			return canExistDeployment_Edge(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateManifestation_Edge(Artifact container, NamedElement source, NamedElement target) {
-			return canExistManifestation_Edge(
-					container, null, source, target);
+			return canExistManifestation_Edge(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralization_Edge(Classifier container, Classifier source, Classifier target) {
-			return canExistGeneralization_Edge(
-					container, null, source, target);
+			return canExistGeneralization_Edge(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_Edge(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_Edge(
-					container, null, source, target);
+			return canExistDependency_Edge(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_BranchEdge(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_BranchEdge(
-					container, null, source, target);
+			return canExistDependency_BranchEdge(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateCommunicationPath_Edge(Package container, Type source, Type target) {
-			return canExistCommunicationPath_Edge(
-					container, null, source, target);
+			return canExistCommunicationPath_Edge(container, null, source, target);
 		}
 
 		/**
@@ -522,4 +505,5 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return true;
 		}
 	}
+
 }

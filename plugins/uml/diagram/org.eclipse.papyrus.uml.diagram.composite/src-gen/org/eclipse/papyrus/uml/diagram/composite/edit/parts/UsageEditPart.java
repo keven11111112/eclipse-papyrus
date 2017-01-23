@@ -22,8 +22,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

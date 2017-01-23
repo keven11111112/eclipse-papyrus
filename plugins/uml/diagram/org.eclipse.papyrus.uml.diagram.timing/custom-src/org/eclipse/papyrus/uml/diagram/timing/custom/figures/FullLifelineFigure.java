@@ -17,7 +17,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.tooling.runtime.draw2d.CenterLayout;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.Constants;
 
 public class FullLifelineFigure extends LifelineFigure {

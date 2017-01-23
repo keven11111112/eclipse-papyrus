@@ -59,8 +59,8 @@ Require-Bundle: org.eclipse.core.runtime,
 «IF editorGen.application == null» org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
 «ENDIF»
 «var reqPlugins = getAllRequiredPlugins()»
-«IF !reqPlugins.contains('org.eclipse.gmf.tooling.runtime')»
-«var notUsetBooleanVar = reqPlugins.add('org.eclipse.gmf.tooling.runtime')»
+«IF !reqPlugins.contains('org.eclipse.papyrus.infra.gmfdiag.tooling.runtime')»
+«var notUsetBooleanVar = reqPlugins.add('org.eclipse.papyrus.infra.gmfdiag.tooling.runtime')»
 «ENDIF»
 «FOR reqId : reqPlugins» «reqId»;visibility:=reexport,«extraLineBreak»
 «ENDFOR» org.eclipse.gef,

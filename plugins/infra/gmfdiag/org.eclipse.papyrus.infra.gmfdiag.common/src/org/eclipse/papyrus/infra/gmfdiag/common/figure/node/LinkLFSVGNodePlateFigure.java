@@ -19,7 +19,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
-import org.eclipse.gmf.tooling.runtime.linklf.LinkLFNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFNodeFigure;
 
 public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 	private static final double AVOID_DEFAULT_ANCHOR_AREA = 1.0;

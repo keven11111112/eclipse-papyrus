@@ -109,10 +109,9 @@ public class TimeConstraintEditPartCN extends AbstractConstraintEditPart {
 	}
 
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
+	*Papyrus codeGen
+	*@generated
+	**/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -127,7 +126,6 @@ public class TimeConstraintEditPartCN extends AbstractConstraintEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure
-	 * 
 	 * @generated
 	 */
 	public ConstraintFigure getPrimaryShape() {
@@ -214,9 +212,7 @@ public class TimeConstraintEditPartCN extends AbstractConstraintEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *            instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

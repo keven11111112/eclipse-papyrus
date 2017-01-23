@@ -12,8 +12,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GeneralOrderingIte
 import org.eclipse.papyrus.uml.diagram.sequence.figures.GeneralOrderingDescriptor;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -31,7 +31,6 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -54,7 +53,6 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -75,7 +73,6 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -85,13 +82,12 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new GeneralOrderingDescriptor();
 	}
@@ -102,4 +98,5 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	public GeneralOrderingDescriptor getPrimaryShape() {
 		return (GeneralOrderingDescriptor) getFigure();
 	}
+
 }

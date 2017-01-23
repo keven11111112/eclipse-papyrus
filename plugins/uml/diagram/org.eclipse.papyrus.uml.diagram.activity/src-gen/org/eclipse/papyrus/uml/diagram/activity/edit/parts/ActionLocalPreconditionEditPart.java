@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -23,8 +10,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class ActionLocalPreconditionEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -42,7 +29,6 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -50,13 +36,12 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new DashedLinkDescriptor();
 	}
@@ -64,7 +49,6 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 	/**
 	 * @generated
 	 */
-	@Override
 	public DashedLinkDescriptor getPrimaryShape() {
 		return (DashedLinkDescriptor) getFigure();
 	}
@@ -81,5 +65,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 			this.setLineStyle(Graphics.LINE_DASH);
 
 		}
+
 	}
+
 }
