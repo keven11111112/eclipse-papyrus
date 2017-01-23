@@ -1019,6 +1019,8 @@ mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {s
 		lowerValue:= createLowerMultiplicity(self.multiplicity);
 		upperValue:= createUpperMultiplicity(self.multiplicity);
 	};
+	
+	aggregation:=AggregationKind::composite;
 }
 
 
