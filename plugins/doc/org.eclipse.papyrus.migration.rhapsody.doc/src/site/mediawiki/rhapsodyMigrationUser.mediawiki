@@ -140,9 +140,6 @@ Papyrus migration tools allows to import Rhapsody models as UML Model. Some Rhap
 | IType
 | Class
 |-
-| IType
-| UML Predefined Types defined in Papyrus
-|-
 | IVariable
 | Designer
 |}
@@ -181,6 +178,7 @@ The following stereotypes are supported (not complete list).
 ===Properties's Type Mapping===
 * The Rhapsody Types Libraries (like PredefinedTypes, PredefinedTypesC and PredefinedTypesCpp) are imported, when required, as UML Package in the imported Model. By this way, the types of the user model are preserved by the transformation.
 * To ease user experience, we always import the UML Predefined Types library, but we doesn't use the provided types in the imported model.
+* In some case, a Package called '''UserTypesDeclaration''' is created. The goal of this package is to group the type declared using the '''C++ declaration''' field text in Rhapsody. It is not a reference to an existing type, it is only a name given to the type.
 
 ===Diagram Mapping===
 *Papyrus Rhapsody Migration Tools allows to import Rhapsody SysML Diagrams as Papyrus SysML 1.1 Diagrams. The supported diagrams are:
