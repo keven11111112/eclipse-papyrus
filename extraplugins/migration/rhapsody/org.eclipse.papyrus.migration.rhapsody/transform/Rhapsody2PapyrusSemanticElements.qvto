@@ -685,12 +685,17 @@ mapping umlrhapsody::IRelation::iRelationToUMLProperty(): uml::Property when {se
 		aggregation:=AggregationKind::composite;
 		if (not sysPort.otherClass.oclIsUndefined()){
 			type := sysPort.otherClass [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+		}elif(sysPort.otherClass.oclIsKindOf(IClass)){
+				type := sysPort.otherClass.oclAsType(IClass).map toUMLElement().oclAsType(Type);
 		};
 			//a multiplicity has been defined
 		if(not sysPort.multiplicity.oclIsUndefined()){
 			lowerValue:= createLowerMultiplicity(sysPort.multiplicity);
 			upperValue:= createUpperMultiplicity(sysPort.multiplicity);
-		};
+		}else{
+			lowerValue:= createLowerMultiplicity("1");
+			upperValue:= createUpperMultiplicity("1");
+		}
 }
 
 /**
@@ -713,7 +718,10 @@ mapping umlrhapsody::IRelation::iRelationToSysMLPort(): uml::Port when {self.isR
 		if(not sysPort.multiplicity.oclIsUndefined()){
 			lowerValue:= createLowerMultiplicity(sysPort.multiplicity);
 			upperValue:= createUpperMultiplicity(sysPort.multiplicity);
-		};
+		}else{
+			lowerValue:= createLowerMultiplicity("1");
+			upperValue:= createUpperMultiplicity("1");
+		}
 }
 
 
@@ -1030,9 +1038,8 @@ mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {s
 	if (desiredVisibility != VisibilityKind::public) { //to avoid green + in UML editor
 		visibility:= desiredVisibility
 	};  
-	var lower:String;
-	var upper:String;
-		//a multiplicity has been defined
+
+	//a multiplicity has been defined
 	if(not self.multiplicity.oclIsUndefined()){
 		lowerValue:= createLowerMultiplicity(self.multiplicity);
 		upperValue:= createUpperMultiplicity(self.multiplicity);
