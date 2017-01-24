@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.StartClassifierBehaviorActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.StartObjectBehaviorActionPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ReadSelfActionPinUpdater;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -37,6 +38,7 @@ import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.DestroyLinkAction;
 import org.eclipse.uml2.uml.ReadLinkAction;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
+import org.eclipse.uml2.uml.ReadSelfAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.TestIdentityAction;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
@@ -111,6 +113,8 @@ public class PinUpdaterFactory {
 			updater = (IPinUpdater<T>) new StartClassifierBehaviorActionPinUpdater();
 		} else if (node instanceof StartObjectBehaviorAction) {
 			updater = (IPinUpdater<T>) new StartObjectBehaviorActionPinUpdater();
+		} else if (node instanceof ReadSelfAction) {
+			updater = (IPinUpdater<T>) new ReadSelfActionPinUpdater();
 		}
 		return updater;
 	}

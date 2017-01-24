@@ -14,12 +14,16 @@
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
@@ -185,6 +189,11 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 	 */
 	@Test
 	public void testToManageReadSelfAction() {
+		// Pin of ReadSelfAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.READ_SELF_ACTION_ACCELERATOR, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		testToManageNode(UMLElementTypes.ReadSelfAction_Shape, UMLPackage.eINSTANCE.getReadSelfAction(), UMLElementTypes.StructuredActivityNode_Shape, true);
 	}
 
