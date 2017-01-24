@@ -22,8 +22,10 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.Message;
@@ -150,8 +152,13 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			Package nearestPackage = baseElement.getNearestPackage();
 
 			Stereotype st = ((AppliedStereotypeTreeObject) object).getStereotype();
-			String stName = st.getName();
-			String profileName = st.getProfile().getQualifiedName();
+			String stName = UMLLabelInternationalization.getInstance().getKeyword(st);
+			String profileName = null;
+			if (LabelInternationalizationPreferencesUtils.getInternationalizationPreference(st.getProfile())) {
+				profileName = UMLLabelInternationalization.getInstance().getQualifiedLabel(st.getProfile());
+			}else {
+				profileName = st.getProfile().getQualifiedName();
+			}
 			String label = stName + TAB + "(from " + profileName + ")";
 
 			if (ProfileUtil.isDirty(nearestPackage, st.getProfile())) {
@@ -364,8 +371,8 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			derived = "/";
 		}
 		Type type = property.getType();
-		String typeName = type == null ? TypeUtil.UNDEFINED_TYPE_NAME : type.getName();
-		String name = property.getName();
+		String typeName = type == null ? TypeUtil.UNDEFINED_TYPE_NAME : UMLLabelInternationalization.getInstance().getLabel(type);
+		String name = UMLLabelInternationalization.getInstance().getLabel(property);
 		return derived + name + ": " + typeName + " " + MultiplicityElementUtil.formatMultiplicity(property);
 	}
 
@@ -468,7 +475,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		}
 
 		if (eLiteral != null) {
-			return eLiteral.getName();
+			return UMLLabelInternationalization.getInstance().getLabel(eLiteral);
 		} else {
 			return "undefined";
 		}

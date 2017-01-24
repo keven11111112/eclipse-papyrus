@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.css.helper.CSSDOMUMLSemanticElementHelper;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
@@ -131,7 +132,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 			if (APPLIED_STEREOTYPES_PROPERTY.equals(attr)) {
 				List<String> appliedStereotypes = new LinkedList<String>();
 				for (Stereotype stereotype : currentElement.getAppliedStereotypes()) {
-					appliedStereotypes.add(stereotype.getName());
+					appliedStereotypes.add(UMLLabelInternationalization.getInstance().getKeyword(stereotype));
 					appliedStereotypes.add(stereotype.getQualifiedName());
 				}
 				if (!appliedStereotypes.isEmpty()) {
@@ -248,7 +249,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 			DecorationNode propertyLabel = (DecorationNode) semanticElement;
 			if (propertyLabel.getElement() instanceof Property) {
 				Property prop = (Property) propertyLabel.getElement();
-				String propLabel = prop.getName();
+				String propLabel = UMLLabelInternationalization.getInstance().getLabel(prop);
 				return propLabel;
 			}
 			// CSS can match Container Name
@@ -294,7 +295,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	@Override
 	protected String getCSSValue(EStructuralFeature feature, Object value) {
 		if (feature instanceof EReference && value instanceof NamedElement) {
-			String name = ((NamedElement) value).getName();
+			String name = UMLLabelInternationalization.getInstance().getLabel(((NamedElement) value));
 			return name == null || name.isEmpty() ? EMPTY_VALUE : name; // Bug 467716: Never return null or empty string if the value is not null
 		}
 		return super.getCSSValue(feature, value);

@@ -16,10 +16,16 @@ package org.eclipse.papyrus.uml.internationalization.utils.utils;
 import java.util.Locale;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationUtils;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -73,8 +79,15 @@ public class UMLLabelInternationalization {
 	 */
 	public String getLabel(final NamedElement namedElement, final boolean localize) {
 		String result = null;
-		if (null != namedElement.eResource() && InternationalizationPreferencesUtils.getInternationalizationPreference(namedElement)) {
-			result = getLabelWithoutUML(namedElement, localize);
+		if (null != namedElement.eResource()) {
+			URI resourceURI = namedElement.eResource().getURI();
+			final ResourceSet resourceSet = namedElement.eResource().getResourceSet();
+			if(resourceSet instanceof ModelSet) {
+				resourceURI = ((ModelSet)resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			}
+			if(InternationalizationPreferencesUtils.getInternationalizationPreference(resourceURI)) {
+				result = getLabelWithoutUML(namedElement, localize);
+			}
 		}
 		return null != result ? result : namedElement.getName();
 	}
@@ -134,7 +147,8 @@ public class UMLLabelInternationalization {
 	 *            it for the current locale).
 	 * @return The command which allow to set the named element label.
 	 */
-	public Command getSetLabelCommand(final EditingDomain domain, final NamedElement namedElement, final String value, final Locale locale) {
+	public Command getSetLabelCommand(final EditingDomain domain, final NamedElement namedElement, final String value,
+			final Locale locale) {
 		return LabelInternationalizationUtils.getSetLabelCommand(domain, namedElement, value, locale);
 	}
 
@@ -160,8 +174,15 @@ public class UMLLabelInternationalization {
 	 */
 	public String getKeyword(final Stereotype stereotype, final boolean localize) {
 		String result = null;
-		if (null != stereotype.eResource() && InternationalizationPreferencesUtils.getInternationalizationPreference(stereotype)) {
-			result = LabelInternationalizationUtils.getLabelWithoutSubstract(stereotype, localize);
+		if (null != stereotype.eResource()) {
+			URI resourceURI = stereotype.eResource().getURI();
+			final ResourceSet resourceSet = stereotype.eResource().getResourceSet();
+			if(resourceSet instanceof ModelSet) {
+				resourceURI = ((ModelSet)resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			}
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(resourceURI)) {
+				result = LabelInternationalizationUtils.getLabelWithoutSubstract(stereotype, localize);
+			}
 		}
 		return null != result ? result : stereotype.getName();
 	}
@@ -221,7 +242,40 @@ public class UMLLabelInternationalization {
 	 *            it for the current locale).
 	 * @return The command which allow to set the stereotype keyword.
 	 */
-	public Command getSetKeywordCommand(final EditingDomain domain, final Stereotype stereotype, final String value, final Locale locale) {
+	public Command getSetKeywordCommand(final EditingDomain domain, final Stereotype stereotype, final String value,
+			final Locale locale) {
 		return LabelInternationalizationUtils.getSetLabelCommand(domain, stereotype, value, locale);
+	}
+
+	/**
+	 * This allows to get the qualified label (this means the qualified name
+	 * with labels).
+	 * 
+	 * @param namedElement
+	 *            The named element to get its qualified label.
+	 * @return The qualified label or <code>null</code>.
+	 */
+	public String getQualifiedLabel(final NamedElement namedElement) {
+		StringBuilder result = null;
+
+		final String name = getLabel(namedElement);
+
+		if (!UML2Util.isEmpty(name)) {
+			result = new StringBuilder(name);
+
+			for (final Namespace namespace : namedElement.allNamespaces()) {
+				final String namespaceLabel = getLabel(namespace);
+
+				if (UML2Util.isEmpty(namespaceLabel)) {
+					result = null;
+					break;
+				} else {
+					result.insert(0, namespace.separator());
+					result.insert(0, namespaceLabel);
+				}
+			}
+		}
+
+		return null != result ? result.toString() : null;
 	}
 }

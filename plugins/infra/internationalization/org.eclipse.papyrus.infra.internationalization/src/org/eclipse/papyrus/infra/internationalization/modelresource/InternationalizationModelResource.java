@@ -133,6 +133,11 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected Map<EObject, PreferencePartLabelSynchronizer> preferencePartLabelSynchronizers = null;
 
 	/**
+	 * This contains the resources created to manage the initial read-only resources replaced by 'fake' resources.
+	 */
+	protected Set<Resource> resourcesToNotSave = new HashSet<Resource>();
+	
+	/**
 	 * Constructor.
 	 */
 	public InternationalizationModelResource() {
@@ -366,21 +371,49 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				resource = modelSet.createResource(resourceBundleAndURI.getUri());
 
 				configureResource(uri, resource, locale);
-
+				
 				// call registered snippets
 				startSnippets();
 			}
 
 			// Load the resource if not already loaded
 			if (!resource.isLoaded()) {
-				try {
-					resource.load(null);
-				} catch (IOException e) {
-					Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
+				// If this is a read-only resource, create a fake resource to get the internationalization content and read the needed entries
+				if(modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
+					final URI initialResourceURI = resource.getURI();
+					final String lastSegment = initialResourceURI.lastSegment();
+					URI newResourceURI = modelSet.getURIWithoutExtension();
+					newResourceURI = newResourceURI.trimSegments(1);
+					newResourceURI = newResourceURI.appendSegment(lastSegment);
+					
+					// Create the resource with the ResourceSet but this one need to be removed from the ResourceSet
+					resource = modelSet.createResource(newResourceURI);
+					configureResource(initialResourceURI, resource, locale);
+					
+					try {
+						resource.load(null);
+					} catch (IOException e) {
+						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
+					}
+					
+					// Remove the resource from the ResourceSet because this is only needed to read and not save the resource
+					modelSet.getResources().remove(resource);
+					
+					// And add the temporary resource to the list of resources to not save
+					resourcesToNotSave.add(resource);
+				}else {
+					try {
+						resource.load(null);
+					} catch (IOException e) {
+						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
+					}
 				}
 			}
 
 			loadInternationalizationContent(uri, locale);
+		} else {
+			// call registered snippets
+			startSnippets();
 		}
 
 		return resource;
@@ -453,8 +486,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *            The locale to use.
 	 */
 	protected void loadInternationalizationContent(final URI uri, final Locale locale) {
-		if (null != resource && resource.getContents().isEmpty()) {
-			final InternationalizationLibrary library = getModelRoot();
+		final Resource resource = getResourceForURIAndLocale(uri, locale);
+		if (null != resource && !resource.getContents().isEmpty()) {
+			final InternationalizationLibrary library = getModelRoot(resource);
 
 			if (null != library) {
 				for (final InternationalizationEntry entry : library.getEntries()) {
@@ -543,7 +577,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
 				
 		for (final Resource resource : getResources()) {
-			updateURI(resource, uriWithoutExtension);
+			if(!resourcesToNotSave.contains(resource)) {
+				updateURI(resource, uriWithoutExtension);
+			}
 		}
 	}
 	
@@ -593,7 +629,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	public void saveModel() throws IOException {
 		// Save into the properties files
 		for (final Resource resource : getResources()) {
-			saveResource(resource);
+			if(!resourcesToNotSave.contains(resource)) {
+				saveResource(resource);
+			}
 		}
 	}
 
@@ -606,17 +644,19 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *             The input output file exception.
 	 */
 	protected void saveResource(final Resource resource) throws IOException {
-		Map<Object, Object> saveOptions = null;
-		if (resource instanceof XMLResource) {
-			saveOptions = ((XMLResource) resource).getDefaultSaveOptions();
-			if (resource instanceof InternationalizationResource) {
-				saveOptions.put(InternationalizationResourceOptionsConstants.SAVE_OPTION_DELETED_OBJECTS,
-						deletedObjects);
-				saveOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
-						keyResolver);
+		if(!resourcesToNotSave.contains(resource)) {
+			Map<Object, Object> saveOptions = null;
+			if (resource instanceof XMLResource) {
+				saveOptions = ((XMLResource) resource).getDefaultSaveOptions();
+				if (resource instanceof InternationalizationResource) {
+					saveOptions.put(InternationalizationResourceOptionsConstants.SAVE_OPTION_DELETED_OBJECTS,
+							deletedObjects);
+					saveOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
+							keyResolver);
+				}
 			}
+			resource.save(saveOptions);
 		}
-		resource.save(saveOptions);
 	}
 
 	/**

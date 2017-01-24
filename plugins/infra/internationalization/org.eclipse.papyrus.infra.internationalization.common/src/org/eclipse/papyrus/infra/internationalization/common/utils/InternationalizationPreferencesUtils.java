@@ -23,7 +23,10 @@ import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.internationalization.common.Activator;
 
 /**
@@ -41,7 +44,12 @@ public class InternationalizationPreferencesUtils {
 	 * @return The preference store for the project containing the EObject.
 	 */
 	public static IPreferenceStore getPreferenceStore(final EObject eObject) {
-		return getPreferenceStore(getRootContainer(eObject).eResource());
+		URI resourceURI = eObject.eResource().getURI();
+		final ResourceSet resourceSet = eObject.eResource().getResourceSet();
+		if (resourceSet instanceof ModelSet) {
+			resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+		}
+		return getPreferenceStore(resourceURI);
 	}
 
 	/**
@@ -104,7 +112,12 @@ public class InternationalizationPreferencesUtils {
 	 *            The new preference value.
 	 */
 	public static void setInternationalizationPreference(final EObject eObject, final boolean value) {
-		setInternationalizationPreference(getRootContainer(eObject).eResource(), value);
+		URI resourceURI = eObject.eResource().getURI();
+		final ResourceSet resourceSet = eObject.eResource().getResourceSet();
+		if (resourceSet instanceof ModelSet) {
+			resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+		}
+		setInternationalizationPreference(resourceURI, value);
 	}
 
 	/**
@@ -118,7 +131,7 @@ public class InternationalizationPreferencesUtils {
 	public static void setInternationalizationPreference(final Resource resource, final boolean value) {
 		setInternationalizationPreference(resource.getURI(), value);
 	}
-	
+
 	/**
 	 * This allows to modify the internationalization preference value.
 	 * 
@@ -146,8 +159,13 @@ public class InternationalizationPreferencesUtils {
 	 */
 	public static boolean getInternationalizationPreference(final EObject eObject) {
 		boolean result = false;
-		if(null != eObject && null != eObject.eResource()){
-			result = getInternationalizationPreference(getRootContainer(eObject).eResource());
+		if (null != eObject && null != eObject.eResource()) {
+			URI resourceURI = eObject.eResource().getURI();
+			final ResourceSet resourceSet = eObject.eResource().getResourceSet();
+			if (resourceSet instanceof ModelSet) {
+				resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			}
+			result = getInternationalizationPreference(resourceURI);
 		}
 		return result;
 	}
@@ -163,7 +181,7 @@ public class InternationalizationPreferencesUtils {
 	public static boolean getInternationalizationPreference(final Resource resource) {
 		return getInternationalizationPreference(resource.getURI());
 	}
-	
+
 	/**
 	 * This allows to get the internationalization preference value.
 	 * 
@@ -215,8 +233,13 @@ public class InternationalizationPreferencesUtils {
 	 */
 	public static Locale getLocalePreference(final EObject eObject) {
 		Locale result = null;
-		if(null != eObject){
-			result = getLocalePreference(getRootContainer(eObject).eResource().getURI());
+		if (null != eObject && null != eObject.eResource()) {
+			URI resourceURI = eObject.eResource().getURI();
+			final ResourceSet resourceSet = eObject.eResource().getResourceSet();
+			if (resourceSet instanceof ModelSet) {
+				resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			}
+			result = getLocalePreference(resourceURI);
 		}
 		return result;
 	}
@@ -251,7 +274,12 @@ public class InternationalizationPreferencesUtils {
 	 *            The language to set.
 	 */
 	public static void setLanguagePreference(final EObject eObject, final String language) {
-		setLanguagePreference(getRootContainer(eObject).eResource(), language);
+		URI resourceURI = eObject.eResource().getURI();
+		final ResourceSet resourceSet = eObject.eResource().getResourceSet();
+		if (resourceSet instanceof ModelSet) {
+			resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+		}
+		setLanguagePreference(resourceURI, language);
 	}
 
 	/**
@@ -265,7 +293,7 @@ public class InternationalizationPreferencesUtils {
 	public static void setLanguagePreference(final Resource resource, final String language) {
 		setLanguagePreference(resource.getURI(), language);
 	}
-	
+
 	/**
 	 * This allows to set the language preference.
 	 * 
@@ -280,21 +308,5 @@ public class InternationalizationPreferencesUtils {
 		if (null != preferenceStore) {
 			preferenceStore.setValue(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE, language);
 		}
-	}
-	
-	/**
-	 * This allows to get the root container of the EObject in parameter.
-	 * 
-	 * @param eObject The initial EObject.
-	 * @return The root container.
-	 */
-	protected static EObject getRootContainer(final EObject eObject){
-		EObject rootContainer = eObject;
-		
-		while(null != rootContainer.eContainer()){
-			rootContainer = rootContainer.eContainer();
-		}
-		
-		return rootContainer;
 	}
 }

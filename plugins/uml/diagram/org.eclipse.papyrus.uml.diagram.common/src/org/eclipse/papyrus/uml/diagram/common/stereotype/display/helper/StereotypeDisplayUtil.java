@@ -28,9 +28,11 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.UnsetPersistentViewCommand;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
@@ -179,7 +181,7 @@ public class StereotypeDisplayUtil {
 			// Then add the ornament around the text.
 			if ((textToDisplay.toString() != null) && (!EMPTY_STRING.equals(textToDisplay.toString()))) {
 				finalText.append(StereotypeDisplayConstant.QUOTE_LEFT).append(textToDisplay).append(StereotypeDisplayConstant.QUOTE_RIGHT);
-			}			
+			}
 		}
 		// Return the text or null if empty
 		return finalText.toString();
@@ -652,10 +654,16 @@ public class StereotypeDisplayUtil {
 		if (isStereotypeLabel(label)) {
 			String defaultName = EMPTY_STRING;
 			if (label != null && label.getElement() instanceof Stereotype) {
-				defaultName = ((Stereotype) label.getElement()).getQualifiedName();
+
+				if (LabelInternationalizationPreferencesUtils.getInternationalizationPreference(label.getElement())) {
+					name = UMLLabelInternationalization.getInstance().getQualifiedLabel(((Stereotype) label.getElement()));
+				} else {
+					defaultName = ((Stereotype) label.getElement()).getQualifiedName();
+
+					// Retrieve Name from CSS or NamedStyle from the Notation model.
+					name = NotationUtils.getStringValue(label, StereotypeDisplayConstant.STEREOTYPE_LABEL_NAME, defaultName);
+				}
 			}
-			// Retrieve Name from CSS or NamedStyle from the Notation model.
-			name = NotationUtils.getStringValue(label, StereotypeDisplayConstant.STEREOTYPE_LABEL_NAME, defaultName);
 		}
 		return name;
 	}
@@ -672,10 +680,15 @@ public class StereotypeDisplayUtil {
 		if (isStereotypeCompartment(compartment) || isStereotypeBrace(compartment)) {
 			String defaultName = EMPTY_STRING;
 			if (compartment != null && compartment.getElement() instanceof Stereotype) {
-				defaultName = ((Stereotype) compartment.getElement()).getQualifiedName();
+				if (LabelInternationalizationPreferencesUtils.getInternationalizationPreference(compartment.getElement())) {
+					name = UMLLabelInternationalization.getInstance().getQualifiedLabel(((Stereotype) compartment.getElement()));
+				} else {
+					defaultName = ((Stereotype) compartment.getElement()).getQualifiedName();
+
+					// Retrieve Name from CSS or NamedStyle from the Notation model.
+					name = NotationUtils.getStringValue(compartment, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_NAME, defaultName);
+				}
 			}
-			// Retrieve Name from CSS or NamedStyle from the Notation model.
-			name = NotationUtils.getStringValue(compartment, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_NAME, defaultName);
 		}
 		return name;
 	}
@@ -786,13 +799,13 @@ public class StereotypeDisplayUtil {
 			if (isDisplayed(node)) {
 				// maybe this is an inherited properties so the applied stereotype is not the owner of the property but the stereotype referenced by the container of stereotype properties
 				if (node.eContainer() instanceof BasicCompartment) {
-					if (isStereotypeProperty(node) || isStereotypeBraceProperty(node)) {	
+					if (isStereotypeProperty(node) || isStereotypeBraceProperty(node)) {
 						BasicCompartment stereotypeCompartment = (BasicCompartment) node.eContainer();
 						EObject stereotypeEObject = stereotypeCompartment.getElement();
 						if (stereotypeEObject instanceof Stereotype) {
 							final Stereotype stereotype = (Stereotype) stereotypeEObject;
 							Element umlElement = getContainerSemanticElement(view);
-							if (umlElement == null){
+							if (umlElement == null) {
 								umlElement = getCommentSemanticElement(getTopContainer(view));
 							}
 							if (umlElement != null) {
@@ -998,7 +1011,7 @@ public class StereotypeDisplayUtil {
 	 * @param hostSemanticElement
 	 * @return
 	 */
-	@Deprecated 
+	@Deprecated
 	public boolean isAppliedStereotype(Stereotype stereotype, Element hostSemanticElement) {
 		return hostSemanticElement.isStereotypeApplied(stereotype);
 	}
