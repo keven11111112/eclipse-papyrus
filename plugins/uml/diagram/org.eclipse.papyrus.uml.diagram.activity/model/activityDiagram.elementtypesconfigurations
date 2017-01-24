@@ -36,6 +36,9 @@
   <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_VETnUMLAEea39fmRoX19Og" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ReadLinkActionEditHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ReadLinkActionEditHelperAdvice">
     <target xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../../org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6REtx0EeWVxMf7SXAfhg"/>
   </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_UshUcNZ_Eea59qT0SE9HCw" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.StartClassifierBehaviorActionEditHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.StartClassifierBehaviorActionEditHelperAdvice">
+    <target xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../../org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6RVtx0EeWVxMf7SXAfhg"/>
+  </adviceBindingsConfigurations>
   <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_qc9DEKzLEeaKg_9XdFC-Jg" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.TriggerEditHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.TriggerEditHelperAdvice">
     <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdLCt1YCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>

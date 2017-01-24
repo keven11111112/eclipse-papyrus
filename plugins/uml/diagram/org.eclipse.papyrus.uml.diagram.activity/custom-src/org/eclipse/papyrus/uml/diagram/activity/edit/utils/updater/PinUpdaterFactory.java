@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediatea
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ValueSpecificationActionPinUpdater;
 import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.StartClassifierBehaviorActionPinUpdater;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -38,6 +39,7 @@ import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.TestIdentityAction;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
+import org.eclipse.uml2.uml.StartClassifierBehaviorAction;
 
 public class PinUpdaterFactory {
 
@@ -103,6 +105,8 @@ public class PinUpdaterFactory {
 			updater = (IPinUpdater<T>) new LinkActionPinUpdater();
 		} else if (node instanceof ReadLinkAction) {
 			updater = (IPinUpdater<T>) new ReadLinkActionPinUpdater();
+		} else if (node instanceof StartClassifierBehaviorAction) {
+			updater = (IPinUpdater<T>) new StartClassifierBehaviorActionPinUpdater();
 		}
 		return updater;
 	}

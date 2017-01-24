@@ -1353,6 +1353,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testInputPinAsObjectIngetStartClassifierBehaviorAction() {
+		// Pin of StartClassifierBehaviorAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.START_CLASSIFIER_BEHAVIOR_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(StartClassifierBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
@@ -1362,6 +1367,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testActionPinAsObjectIngetStartClassifierBehaviorAction() {
+		// Pin of StartClassifierBehaviorAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.START_CLASSIFIER_BEHAVIOR_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(StartClassifierBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
@@ -1371,6 +1381,11 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	
 	@Test
 	public void testValuePinAsObjectIngetStartClassifierBehaviorAction() {
+		// Pin of StartClassifierBehaviorAction should be create and update automatically
+		// Set Automated Model Completion preference to NONE
+		IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+		prefStore.setValue(IAutomatedModelCompletionPreferencesConstants.START_CLASSIFIER_BEHAVIOR_ACTION, AutomatedModelCompletionPreferencesInitializer.NONE);
+
 		IGraphicalEditPart actionEP = createChild(StartClassifierBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 

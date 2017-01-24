@@ -36,6 +36,8 @@ public interface IAutomatedModelCompletionPreferencesConstants {
 
 	final public String READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR = "org.eclipse.papyrus.uml.diagram.activity.preferences.readStructuralFeatureAction";
 
+	final public String START_CLASSIFIER_BEHAVIOR_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.startClassifierBehaviorAction";
+
 	final public String TEST_IDENTITY_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.testIdentityAction";
 
 	final public String VALUE_SPECIFICATION_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.valueSpecificationAction";

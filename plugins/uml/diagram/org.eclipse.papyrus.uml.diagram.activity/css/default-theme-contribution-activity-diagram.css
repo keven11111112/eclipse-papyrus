@@ -9,6 +9,7 @@ DestroyLinkAction,
 ReadLinkAction,
 ReadStructuralFeatureAction,
 SendSignalAction,
+StartClassifierBehaviorAction,
 TestIdentityAction,
 ValueSpecificationAction {
 	canonical: true;
