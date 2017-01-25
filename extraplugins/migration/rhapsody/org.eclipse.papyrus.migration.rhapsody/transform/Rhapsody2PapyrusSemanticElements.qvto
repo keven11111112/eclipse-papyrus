@@ -116,6 +116,7 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	
 	packagedElement+=iSubSystem.Events[IEvent].map toSignals();
 	
+	packagedElement+= iSubSystem.Classes[IClass]->selectByType(IClass)->any(name="TopLevel").Attrs->selectByKind(IAttribute).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(PackageableElement);
 	//TODO probably more check are required to remove TopLevel without problems (check with MARTE...)
 	packagedElement+= iSubSystem.Classes[IClass]->select(curr:IClass | curr.name<>"TopLevel").oclAsSet().map toUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->any(true).map toAssociationswithoutProp();
@@ -136,7 +137,8 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 mapping EObject::generalMappingToUMLElement():uml::Element disjuncts
 	EObject::iActorToUMLActor,
 	EObject::iCommentToUMLComment,
-	EObject::iDescriptionToUMLComment
+	EObject::iDescriptionToUMLComment,
+	EObject::iAttributeToInstanceSpecification
 {}
 
 /**
@@ -1042,6 +1044,8 @@ mapping umlrhapsody::IVariable::iVariableToUMLElement():uml::Property disjuncts
 	umlrhapsody::IAttribute::iAttributeToUMLElement
 {}
 
+
+
 mapping umlrhapsody::IArgument::iArgumentToUMLElement(): uml::Property when {self.oclIsTypeOf(umlrhapsody::IArgument)}{
  	name:= self.oclAsType(IArgument).name.replaceAll("\"","");
 	// should add the PtR Stereotpe if the type is a C++ Declaration : i,e: Class *;
@@ -1051,6 +1055,38 @@ mapping umlrhapsody::IArgument::iArgumentToUMLElement(): uml::Property when {sel
 	}else{
 		type := self.typeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
 	};
+}
+
+/**
+* We map IAttribute declared in the TopLevel class as instance specifications
+*/
+helper umlrhapsody::IAttribute::isInstanceSpecification():Boolean{
+	var owner:EObject:=self.oclAsType(EObject).eContainer();
+	return owner.oclIsKindOf(IClass) and owner.oclAsType(IClass).name="TopLevel";
+}
+
+/**
+* This mapping creates InstanceSpecification from IAttribute
+*/ 
+mapping ecore::EObject::iAttributeToInstanceSpecification(): uml::InstanceSpecification when {self.oclIsKindOf(IAttribute) and self.oclAsType(IAttribute).isInstanceSpecification()}{
+	var iAttribute:IAttribute:=self.oclAsType(IAttribute);
+	name:=iAttribute.name;
+	classifier+=iAttribute.typeOf.oclAsType(IType).map iTypeToUMLElement().oclAsType(uml::Classifier);
+	var tmp:String:="";
+	if(not iAttribute.ValueSpecifications.oclIsUndefined()){
+		tmp:=iAttribute.ValueSpecifications.value;
+	};
+	if(classifier->any(true).oclIsTypeOf(Enumeration)){
+		specification:=object InstanceValue{
+			name:="InstanceValue1";
+			instance:=classifier.oclAsType(Enumeration).member->any(name=tmp).oclAsType(InstanceSpecification);
+		}
+	}else{
+		specification:=object OpaqueExpression{
+			body:=tmp;
+		}
+	}
+	
 }
 
 mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {self.oclIsTypeOf(umlrhapsody::IAttribute)}{
