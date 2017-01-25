@@ -300,14 +300,13 @@ mapping uml::Property::applySysML11FlowProperty(rpyElement:EObject, stereotypeNa
 			
 			//we have model with 2 kind of declaration for the same thing...
 			//the first way!
-			var dir:String:=rpyElement.oclAsType(IAttribute).Tags->select(t | (t.name="direction" and t.typeOf.oclAsType(IType).name="FlowDirection"))	
-				->any(true).ValueSpecifications->any(true).oclAsType(ILiteralSpecification).value;
-				
-			//the 2nd way when required
-			if(dir=null){
-				dir:=rpyElement.oclAsType(IAttribute).Tags->select(t | (t.name="direction" and t.typeOf.oclAsType(IType).name="RhpString"))	//probably due to an error in the model
-					->any(true).ValueSpecifications->any(true).oclAsType(ILiteralSpecification).value;
+			var dir:String:=rpyElement.oclAsType(IAttribute).Tags->any(name="direction" and typeOf.oclAsType(IType).name="FlowDirection").ValueSpecifications->any(true).oclAsType(ILiteralSpecification).value;
+			//the 2nd way is required
+			if(dir.oclIsUndefined()){
+				//probably due to an error in the model, but in soem case we met RhpString
+				dir:=rpyElement.oclAsType(IAttribute).Tags->any(name="direction" and typeOf.oclAsType(IType).name="RhpString").ValueSpecifications->any(true).oclAsType(ILiteralSpecification).value;
 			};
+			
 			direction:=getSysML11FlowDirection(dir);
 		};
 		result:=stereotypeApplication.oclAsType(EObject);
