@@ -160,9 +160,10 @@ public class Activator extends AbstractUIPlugin {
 		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(CUSTOMIZATION_MANAGER_SECTION);
 		if (settings == null) {
 			settings = Activator.getDefault().getDialogSettings().addNewSection(CUSTOMIZATION_MANAGER_SECTION);
-			IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
-			String string = preferenceStore.getString(DEFAULT_LOADED_FACET);
-			settings.put(LOADED_FACET_ORDER, string.split(SEPARATOR_DEFAULT_LOADED_FACET));
+			String loadedFacetPreferences = Activator.getDefault().getPreferenceStore().getString(DEFAULT_LOADED_FACET);
+			if (loadedFacetPreferences != null && !"".equals(loadedFacetPreferences)) {
+				settings.put(LOADED_FACET_ORDER, loadedFacetPreferences.split(SEPARATOR_DEFAULT_LOADED_FACET));
+			}	
 		}
 		return settings;
 	}
