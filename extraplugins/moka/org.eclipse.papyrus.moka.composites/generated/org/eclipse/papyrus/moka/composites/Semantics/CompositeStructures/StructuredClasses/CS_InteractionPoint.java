@@ -16,12 +16,14 @@ package org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.Struct
 // Imports
 import java.util.List;
 
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Port;
 
@@ -52,9 +54,19 @@ public class CS_InteractionPoint extends Reference {
 	}
 
 	@Override
-	public void send(SignalInstance signalInstance) {
-		// Delegates sending to the owning object
-		this.owner.sendIn(signalInstance, this);
+	public void send(EventOccurrence eventOccurrence) {
+		// An event occurrence that passes through a CS_InteractionPoint is
+		// (if necessary) wrapped in a CS_EventOccurrence. This event occurrence
+		// is then sent to the owning object. 
+		CS_EventOccurrence wrappingEventOccurrence = null;
+		if(eventOccurrence instanceof CS_EventOccurrence){
+			wrappingEventOccurrence = (CS_EventOccurrence) eventOccurrence; 
+		}else{
+			wrappingEventOccurrence = new CS_EventOccurrence();
+			wrappingEventOccurrence.wrappedEventOccurrence = eventOccurrence;
+		}
+		wrappingEventOccurrence.interactionPoint = this;
+		this.owner.sendIn(wrappingEventOccurrence, this);
 	}
 
 	@Override
@@ -70,6 +82,11 @@ public class CS_InteractionPoint extends Reference {
 		// Create a new interaction point with no referent.
 		return new CS_InteractionPoint();
 	}
-
+	
+	@Override
+	public boolean checkAllParents(Classifier type, Classifier classifier) {
+		// Delegates the type checking to the reference
+		return this.referent.checkAllParents(type, classifier);
+	}
 
 }

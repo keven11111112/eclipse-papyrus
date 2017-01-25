@@ -19,8 +19,9 @@ import java.util.List;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.StructuredClasses.CS_Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions.SendSignalActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
-import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.SendSignalAction;
@@ -51,14 +52,14 @@ public class CS_SendSignalActionActivation extends SendSignalActionActivation {
 
 		if (action.getOnPort() == null) {
 			// Behaves like in fUML
-			this.doActionDefault();
+			super.doAction();
 		} else {
 			Value target = this.takeTokens(action.getTarget()).get(0);
 
 			if (target instanceof CS_Reference) {
 				// Constructs the signal instance
 				Signal signal = action.getSignal();
-				CS_SignalInstance signalInstance = new CS_SignalInstance();
+				SignalInstance signalInstance = new SignalInstance();
 				signalInstance.type = signal;
 
 				List<Property> attributes = signal.getOwnedAttributes();
@@ -72,49 +73,24 @@ public class CS_SendSignalActionActivation extends SendSignalActionActivation {
 					i = i + 1;
 				}
 
+				// Construct the signal event occurrence
+				SignalEventOccurrence signalEventOccurrence =  new SignalEventOccurrence();
+				signalEventOccurrence.signalInstance = (SignalInstance) signalInstance.copy();
+				
 				// Tries to determine if the signal has to be
 				// sent to the environment or to the internals of
 				// target, through onPort
 				CS_Reference targetReference = (CS_Reference) target;
 				// Port onPort = action.onPort ;
+				
 				Object_ executionContext = this.group.activityExecution.context;
 				if (executionContext == targetReference.referent || targetReference.compositeReferent.contains(executionContext)) {
-					targetReference.sendOut(signalInstance, action.getOnPort());
+					targetReference.sendOut(signalEventOccurrence, action.getOnPort());
 				} else {
-					targetReference.sendIn(signalInstance, action.getOnPort());
+					targetReference.sendIn(signalEventOccurrence, action.getOnPort());
 				}
 			}
 		}
 	}
 
-	public void doActionDefault() {
-		// Get the value from the target pin. If the value is not a reference,
-		// then do nothing.
-		// Otherwise, construct a signal using the values from the argument pins
-		// and send it to the referent object.
-		// This operation captures same semantics as fUML
-		// SendSignalActionActivation.doAction() except that it constructs
-		// a CS_SignalInstance instead of a SignalInstance
-
-		SendSignalAction action = (SendSignalAction) (this.node);
-		Value target = this.takeTokens(action.getTarget()).get(0);
-
-		if (target instanceof Reference) {
-			Signal signal = action.getSignal();
-
-			CS_SignalInstance signalInstance = new CS_SignalInstance();
-			signalInstance.type = signal;
-
-			List<Property> attributes = signal.getOwnedAttributes();
-			List<InputPin> argumentPins = action.getArguments();
-			for (int i = 0; i < attributes.size(); i++) {
-				Property attribute = attributes.get(i);
-				InputPin argumentPin = argumentPins.get(i);
-				List<Value> values = this.takeTokens(argumentPin);
-				signalInstance.setFeatureValue(attribute, values, 0);
-			}
-
-			((Reference) target).send(signalInstance);
-		}
-	}
 }

@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.Communications.CS_DispatchOperationOfInterfaceStrategy;
 import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.Communications.CS_StructuralFeatureOfInterfaceAccessStrategy;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_RequestPropagationStrategy;
-import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_SignalInstance;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions.CallOperationActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.BasicActions.SendSignalActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.ExtensionalValue;
@@ -29,16 +28,16 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectorKind;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.StructuralFeature;
 
 
@@ -81,25 +80,20 @@ public class CS_Object extends Object_ {
 	}
 
 
-	public void sendIn(SignalInstance signalInstance, CS_InteractionPoint interactionPoint) {
-		// If the interaction is a behavior port,
-		// creates a CS_SignalInstance from the signal instance,
-		// sets its interaction point,
-		// and sends it to the target object using operation send
-		// If this is not a behavior port,
-		// select appropriate delegation targets from interactionPoint,
-		// and propagates the signal to these targets
+	public void sendIn(EventOccurrence eventOccurrence, CS_InteractionPoint interactionPoint) {
+		// 1] If the interaction is a behavior port then sends the event occurrence to the target
+		// object using operation send.
+		// 2] If this is not a behavior port, select appropriate delegation targets from interactionPoint,
+		// and propagates the event occurrence to these targets
 		if (interactionPoint.definingPort.isBehavior()) {
-			CS_SignalInstance newSignalInstance = (CS_SignalInstance) signalInstance.copy();
-			newSignalInstance.interactionPoint = interactionPoint;
-			this.send(newSignalInstance);
+			this.send(eventOccurrence);
 		} else {
 			boolean toInternal = true;
 			List<Reference> potentialTargets = new ArrayList<Reference>();
 			List<CS_Link> cddLinks = this.getLinks(interactionPoint);
 			Integer linkIndex = 1;
 			while (linkIndex <= cddLinks.size()) {
-				List<Reference> validTargets = this.selectTargetsForSending(cddLinks.get(linkIndex - 1), interactionPoint, ConnectorKind.DELEGATION_LITERAL, signalInstance.type, toInternal);
+				List<Reference> validTargets = this.selectTargetsForSending(cddLinks.get(linkIndex - 1), interactionPoint, ConnectorKind.DELEGATION_LITERAL, toInternal);
 				Integer targetIndex = 1;
 				while (targetIndex <= validTargets.size()) {
 					potentialTargets.add(validTargets.get(targetIndex - 1));
@@ -112,15 +106,13 @@ public class CS_Object extends Object_ {
 			// Otherwise, do the following concurrently
 			for (int i = 0; i < potentialTargets.size(); i++) {
 				Reference target = potentialTargets.get(i);
-				CS_SignalInstance newSignalInstance = (CS_SignalInstance) signalInstance.copy();
-				newSignalInstance.interactionPoint = interactionPoint;
-				target.send(newSignalInstance);
+				target.send(eventOccurrence);
 			}
 		}
 	}
 
 
-	public List<Reference> selectTargetsForSending(CS_Link link, CS_InteractionPoint interactionPoint, ConnectorKind connectorKind, Signal signal, Boolean toInternal) {
+	public List<Reference> selectTargetsForSending(CS_Link link, CS_InteractionPoint interactionPoint, ConnectorKind connectorKind, Boolean toInternal) {
 		// From the given link, signal and interaction point, retrieves potential targets (i.e. end values of link)
 		// through which request can be propagated
 		// These targets are attached to interaction point through the given link, and respect the following rules:
@@ -291,15 +283,14 @@ public class CS_Object extends Object_ {
 		return potentialTargets;
 	}
 
-	public void sendOut(SignalInstance signalInstance, CS_InteractionPoint interactionPoint) {
+	public void sendOut(EventOccurrence eventOccurrence, CS_InteractionPoint interactionPoint) {
 		// Select appropriate delegation links from interactionPoint,
-		// and propagates the signal instance through these links
+		// and propagates the event occurrence through these links
 		// Appropriate links are links which target elements
 		// in the environment of this CS_Object.
 		// These can be delegation links (i.e, the targeted elements must
 		// require a reception for the signal) or assembly links (i.e., the target elements
 		// must provide a reception for the signal)
-
 		boolean notToInternal = false; // i.e. to environment
 		List<Reference> allPotentialTargets = new ArrayList<Reference>();
 		List<Reference> targetsForSendingIn = new ArrayList<Reference>();
@@ -308,14 +299,14 @@ public class CS_Object extends Object_ {
 		List<CS_Link> cddLinks = this.getLinks(interactionPoint);
 		Integer linkIndex = 1;
 		while (linkIndex <= cddLinks.size()) {
-			List<Reference> validAssemblyTargets = this.selectTargetsForSending(cddLinks.get(linkIndex - 1), interactionPoint, ConnectorKind.ASSEMBLY_LITERAL, signalInstance.type, notToInternal);
+			List<Reference> validAssemblyTargets = this.selectTargetsForSending(cddLinks.get(linkIndex - 1), interactionPoint, ConnectorKind.ASSEMBLY_LITERAL, notToInternal);
 			Integer targetIndex = 1;
 			while (targetIndex <= validAssemblyTargets.size()) {
 				allPotentialTargets.add(validAssemblyTargets.get(targetIndex - 1));
 				targetsForSendingIn.add(validAssemblyTargets.get(targetIndex - 1));
 				targetIndex = targetIndex + 1;
 			}
-			List<Reference> validDelegationTargets = this.selectTargetsForSending(cddLinks.get(linkIndex - 1), interactionPoint, ConnectorKind.DELEGATION_LITERAL, signalInstance.type, notToInternal);
+			List<Reference> validDelegationTargets = this.selectTargetsForSending(cddLinks.get(linkIndex - 1), interactionPoint, ConnectorKind.DELEGATION_LITERAL, notToInternal);
 			targetIndex = 1;
 			while (targetIndex <= validDelegationTargets.size()) {
 				allPotentialTargets.add(validDelegationTargets.get(targetIndex - 1));
@@ -333,7 +324,7 @@ public class CS_Object extends Object_ {
 			for (int k = 0; k < targetsForSendingIn.size(); k++) {
 				Reference cddTarget = targetsForSendingIn.get(k);
 				if (cddTarget == target) {
-					target.send(signalInstance);
+					target.send(eventOccurrence);
 				}
 			}
 			for (int k = 0; k < targetsForSendingOut.size(); k++) {
@@ -342,7 +333,7 @@ public class CS_Object extends Object_ {
 				CS_InteractionPoint cddTarget = (CS_InteractionPoint) targetsForSendingOut.get(k);
 				if (cddTarget == target) {
 					CS_Reference owner = cddTarget.owner;
-					owner.sendOut(signalInstance, cddTarget);
+					owner.sendOut(eventOccurrence, cddTarget);
 				}
 			}
 		}
@@ -651,9 +642,9 @@ public class CS_Object extends Object_ {
 		return isAValue;
 	}
 
-	public void sendOut(SignalInstance signalInstance, Port onPort) {
+	public void sendOut(EventOccurrence eventOccurrence, Port onPort) {
 		// Select a CS_InteractionPoint value playing onPort,
-		// and send the signal instance to this interaction point
+		// and send the event occurrence to this interaction point
 		FeatureValue featureValue = this.getFeatureValue(onPort);
 		List<Value> values = featureValue.values;
 		List<Reference> potentialTargets = new ArrayList<Reference>();
@@ -664,7 +655,7 @@ public class CS_Object extends Object_ {
 		List<Reference> targets = strategy.select(potentialTargets, new SendSignalActionActivation());
 		for (int i = 0; i < targets.size(); i++) {
 			CS_InteractionPoint target = (CS_InteractionPoint) targets.get(i);
-			this.sendOut(signalInstance, target);
+			this.sendOut(eventOccurrence, target);
 		}
 	}
 
@@ -700,9 +691,9 @@ public class CS_Object extends Object_ {
 		return interactionPoint.dispatch(operation);
 	}
 
-	public void sendIn(SignalInstance signalInstance, Port onPort) {
+	public void sendIn(EventOccurrence eventOccurrence, Port onPort) {
 		// Select a Reference value playing onPort,
-		// and send the signal instance to this interaction point
+		// and send the event occurrence to this interaction point
 		FeatureValue featureValue = this.getFeatureValue(onPort);
 		List<Value> values = featureValue.values;
 		List<Reference> potentialTargets = new ArrayList<Reference>();
@@ -713,8 +704,68 @@ public class CS_Object extends Object_ {
 		List<Reference> targets = strategy.select(potentialTargets, new SendSignalActionActivation());
 		for (int i = 0; i < targets.size(); i++) {
 			Reference target = targets.get(i);
-			target.send(signalInstance);
+			target.send(eventOccurrence);
 		}
 	}
 
+	public boolean checkAllParents(Classifier type, Classifier classifier) {
+		// If the given classifier is not an Interface, behaves like in fUML.
+		// Otherwise, check if the given type (or one of its direct or indirect ancestors)
+		// has an InterfaceRealization relationships with the given classifier.
+		boolean matched = false;
+		if (!(classifier instanceof Interface)) {
+			matched = super.checkAllParents(type, classifier);
+		} else if (!(type instanceof Class)) {
+			matched = false;
+		} else if (this.realizesInterface((Class) type, (Interface) classifier)) {
+			matched = true;
+		} else {
+			List<Classifier> directParents = type.getGenerals();
+			int i = 1;
+			while (!matched & i <= directParents.size()) {
+				Classifier directParent = directParents.get(i - 1);
+				matched = this.checkAllParents(directParent, classifier);
+				i = i + 1;
+			}
+		}
+		return matched;
+	}
+
+	public Boolean realizesInterface(Class type, Interface interface_) {
+		// Checks if the given type has an InterfaceRealization relationship
+		// with the given interface or a descendant of the interface.
+		List<InterfaceRealization> realizations = type.getInterfaceRealizations();
+		boolean realized = false;
+		int i = 1;
+		while (i <= realizations.size() && !realized) {
+			InterfaceRealization realization = realizations.get(i - 1);
+			Interface contract = realization.getContract();
+			if (contract == interface_) {
+				realized = true;
+			} else if (this.isDescendant(contract, interface_)) {
+				realized = true;
+			}
+			i = i + 1;
+		}
+		return realized;
+	}
+
+	public Boolean isDescendant(Interface contract, Interface interface_) {
+		// Checks if the given contract is a descendant of the given interface_
+		boolean matched = false;
+		List<Classifier> descendants = contract.getGenerals();
+		int i = 1;
+		while (i <= descendants.size() && !matched) {
+			if (descendants.get(i - 1) instanceof Interface) {
+				Interface descendant = (Interface) descendants.get(i - 1);
+				if (descendant == interface_) {
+					matched = true;
+				} else {
+					matched = this.isDescendant(descendant, interface_);
+				}
+			}
+			i = i + 1;
+		}
+		return matched;
+	}
 }

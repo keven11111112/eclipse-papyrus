@@ -15,7 +15,6 @@ package org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3;
 
 // Imports
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.CompleteActions.CS_ReadExtentActionActivation;
-import org.eclipse.papyrus.moka.composites.Semantics.Actions.CompleteActions.CS_ReadIsClassifiedObjectActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_AddStructuralFeatureValueActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_ClearStructuralFeatureValueActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_CreateLinkActionActivation;
@@ -38,7 +37,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.ReadExtentAction;
-import org.eclipse.uml2.uml.ReadIsClassifiedObjectAction;
 import org.eclipse.uml2.uml.ReadSelfAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 
@@ -53,8 +51,8 @@ public class CS_ExecutionFactory extends ExecutionFactoryL3 {
 		SemanticVisitor visitor = null;
 		if (element instanceof ReadExtentAction) {
 			visitor = new CS_ReadExtentActionActivation();
-		} else if (element instanceof ReadIsClassifiedObjectAction) {
-			visitor = new CS_ReadIsClassifiedObjectActionActivation();
+		}else if (element instanceof AcceptEventAction) {
+			visitor = new CS_AcceptEventActionActivation();
 		} else if (element instanceof AddStructuralFeatureValueAction) {
 			visitor = new CS_AddStructuralFeatureValueActionActivation();
 		} else if (element instanceof ClearStructuralFeatureAction) {
@@ -67,8 +65,6 @@ public class CS_ExecutionFactory extends ExecutionFactoryL3 {
 			visitor = new CS_ReadSelfActionActivation();
 		} else if (element instanceof InstanceValue) {
 			visitor = new CS_InstanceValueEvaluation();
-		} else if (element instanceof AcceptEventAction) {
-			visitor = new CS_AcceptEventActionActivation();
 		} else if (element instanceof CallOperationAction) {
 			visitor = new CS_CallOperationActionActivation();
 		} else if (element instanceof SendSignalAction) {
