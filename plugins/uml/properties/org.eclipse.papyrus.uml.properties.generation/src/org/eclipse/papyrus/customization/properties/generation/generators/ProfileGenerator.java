@@ -146,7 +146,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 
 	@Override
 	protected URI getTransformationURI() {
-		return URI.createPlatformPluginURI("org.eclipse.papyrus.customization.properties.generation/transforms/profile2datacontext.qvto", true); //$NON-NLS-1$
+		return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/transforms/profile2datacontext.qvto", true); //$NON-NLS-1$
 	}
 
 	/**
