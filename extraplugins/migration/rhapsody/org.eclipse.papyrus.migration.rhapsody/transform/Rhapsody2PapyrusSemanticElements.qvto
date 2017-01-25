@@ -123,6 +123,9 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	packagedElement += iSubSystem.Actors->selectByKind(IActor)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement +=iSubSystem.Declaratives[DefaultSubsystemType].oclAsSet().map iDefaultSubsystemTypeToPackage();
 	ownedComment += iSubSystem.Annotations->select(a | (a.oclIsTypeOf(IAnnotation) or a.oclIsTypeOf(IComment)))->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	var localComment:Comment:=iSubSystem.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 /**
@@ -151,9 +154,12 @@ mapping EObject::iActorToUMLActor():uml::Actor when {self.oclIsTypeOf(umlrhapsod
 */
 mapping EObject::iCommentToUMLComment(): uml::Comment when {self.oclIsTypeOf(IComment)}{
 	var comment:IComment:=self.oclAsType(IComment);
-	body:=comment.description.text;
+	body:=comment.body;
 	if(body=null or body.size()=0){
-		body:=comment.description.textRTF;
+		body:=comment.description.text;
+		if(body=null or body.size()=0){
+			body:=comment.description.textRTF.getTextWithoutMarkers();
+		}
 	};
 	comment.Anchors->forEach(anchor){
 		var rpyAnnotatedElement:EObject:=anchor.dependsOn.oclAsType(EObject);
@@ -181,11 +187,35 @@ mapping EObject::iDescriptionToUMLComment(): uml::Comment when {self.oclIsTypeOf
 	var description:IDescription:=self.oclAsType(IDescription);
 	body:=description.text;
 	if(body=null or body.size()=0){
-		body:=description.textRTF;
+		body:=description.textRTF.getTextWithoutMarkers();
 	};
 	if(self.eContainer().oclIsKindOf(Element)){
 		annotatedElement+=self.eContainer().oclAsType(Element);
 	}
+}
+
+/**
+* This method remove all markers in the string
+*/ 
+helper String::getTextWithoutMarkers():String{
+	//this code seems me quite specific to my examples, but I don't have better idea
+	var res:String:=self.replaceAll("\\\\[a-zA-Z0-9]*", ""); //to remove all formatting information
+	
+	//we remove the end of the string
+	var lastIndex:Integer:=res.lastIndexOf("\n}");
+	if(lastIndex<>-1){
+		res:=res.substring(1,lastIndex-1);
+	};
+			
+	var t:="}\n "; //} + carriage return + white space
+	
+	//we remove the beginning of the string
+	lastIndex:=res.lastIndexOf(t);
+	if(lastIndex<>-1){
+		res:=res.substring(lastIndex+t.length(),res.length());
+	};
+	
+	return res;
 }
 
 
