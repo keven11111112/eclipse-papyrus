@@ -309,6 +309,12 @@ CommunicationDiagram  TimeObservation > Compartment[kind="symbol"]
 {
     visible:true;
 }
+
+CommunicationDiagram Interaction
+{
+	textAlignment: left;
+}
+
 CommunicationDiagram Interaction > Compartment
 {
 	lineLength:0;
