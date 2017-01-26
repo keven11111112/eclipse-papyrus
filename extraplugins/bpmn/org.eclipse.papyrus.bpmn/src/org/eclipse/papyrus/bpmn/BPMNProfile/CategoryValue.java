@@ -62,7 +62,7 @@ public interface CategoryValue extends BaseElement {
 	 * @return the value of the '<em>Categorized Flow Elements</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCategoryValue_CategorizedFlowElements()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.FlowElement#get_categoryValueRef
-	 * @model opposite="_categoryValueRef" required="true" ordered="false"
+	 * @model opposite="_categoryValueRef" ordered="false"
 	 * @generated
 	 */
 	EList<FlowElement> getCategorizedFlowElements();

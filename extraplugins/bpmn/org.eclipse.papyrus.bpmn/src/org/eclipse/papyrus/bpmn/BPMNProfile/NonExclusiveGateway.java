@@ -34,7 +34,7 @@ public interface NonExclusiveGateway extends Gateway {
 	 * @return the value of the '<em>Base Join Node</em>' reference.
 	 * @see #setBase_JoinNode(JoinNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getNonExclusiveGateway_Base_JoinNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	JoinNode getBase_JoinNode();
@@ -60,7 +60,7 @@ public interface NonExclusiveGateway extends Gateway {
 	 * @return the value of the '<em>Base Fork Node</em>' reference.
 	 * @see #setBase_ForkNode(ForkNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getNonExclusiveGateway_Base_ForkNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	ForkNode getBase_ForkNode();

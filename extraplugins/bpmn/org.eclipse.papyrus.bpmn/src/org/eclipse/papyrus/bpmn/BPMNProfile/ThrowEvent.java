@@ -39,7 +39,7 @@ public interface ThrowEvent extends BPMNEvent {
 	 * @return the value of the '<em>Base Call Operation Action</em>' reference.
 	 * @see #setBase_CallOperationAction(CallOperationAction)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getThrowEvent_Base_CallOperationAction()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	CallOperationAction getBase_CallOperationAction();
@@ -91,7 +91,7 @@ public interface ThrowEvent extends BPMNEvent {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Input Association</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getThrowEvent_DataInputAssociation()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<DataInputAssociation> getDataInputAssociation();

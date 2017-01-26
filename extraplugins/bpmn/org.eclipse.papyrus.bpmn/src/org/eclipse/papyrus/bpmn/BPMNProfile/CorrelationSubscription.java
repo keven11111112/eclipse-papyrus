@@ -86,7 +86,7 @@ public interface CorrelationSubscription extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Correlation Property Binding</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCorrelationSubscription_CorrelationPropertyBinding()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CorrelationPropertyBinding> getCorrelationPropertyBinding();

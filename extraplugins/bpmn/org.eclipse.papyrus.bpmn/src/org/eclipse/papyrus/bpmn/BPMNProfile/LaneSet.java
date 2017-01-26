@@ -67,7 +67,7 @@ public interface LaneSet extends BaseElement {
 	 * @return the value of the '<em>Lanes</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getLaneSet_Lanes()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.Lane#getLaneSet
-	 * @model opposite="laneSet" required="true" ordered="false"
+	 * @model opposite="laneSet" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Lane> getLanes();
@@ -83,7 +83,7 @@ public interface LaneSet extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Lane</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getLaneSet_ParentLane()
-	 * @model required="true" ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<Lane> getParentLane();

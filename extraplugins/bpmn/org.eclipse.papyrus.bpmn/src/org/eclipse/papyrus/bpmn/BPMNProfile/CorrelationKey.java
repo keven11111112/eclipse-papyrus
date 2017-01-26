@@ -59,7 +59,7 @@ public interface CorrelationKey extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Correlation Property Ref</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCorrelationKey_CorrelationPropertyRef()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CorrelationProperty> getCorrelationPropertyRef();

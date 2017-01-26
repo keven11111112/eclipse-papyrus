@@ -35,7 +35,7 @@ public interface GlobalBusinessRuleTask extends GlobalTask {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Implementation</em>' attribute list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getGlobalBusinessRuleTask_Implementation()
-	 * @model default="##unspecified" unique="false" dataType="org.eclipse.uml2.types.String" required="true"
+	 * @model default="##unspecified" unique="false" dataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
 	EList<String> getImplementation();

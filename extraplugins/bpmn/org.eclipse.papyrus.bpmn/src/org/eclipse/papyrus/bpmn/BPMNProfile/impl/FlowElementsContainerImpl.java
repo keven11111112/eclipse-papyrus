@@ -40,16 +40,6 @@ public abstract class FlowElementsContainerImpl extends BaseElementImpl implemen
 	 */
 	protected EList<LaneSet> laneSets;
 	/**
-	 * The cached value of the '{@link #getFlowElements() <em>Flow Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFlowElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FlowElement> flowElements;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -86,10 +76,9 @@ public abstract class FlowElementsContainerImpl extends BaseElementImpl implemen
 	 * @generated
 	 */
 	public EList<FlowElement> getFlowElements() {
-		if (flowElements == null) {
-			flowElements = new EObjectWithInverseResolvingEList<FlowElement>(FlowElement.class, this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS, BPMNProfilePackage.FLOW_ELEMENT__CONTAINER);
-		}
-		return flowElements;
+		// TODO: implement this method to return the 'Flow Elements' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -103,8 +92,6 @@ public abstract class FlowElementsContainerImpl extends BaseElementImpl implemen
 		switch (featureID) {
 			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLaneSets()).basicAdd(otherEnd, msgs);
-			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFlowElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -119,8 +106,6 @@ public abstract class FlowElementsContainerImpl extends BaseElementImpl implemen
 		switch (featureID) {
 			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS:
 				return ((InternalEList<?>)getLaneSets()).basicRemove(otherEnd, msgs);
-			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS:
-				return ((InternalEList<?>)getFlowElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -154,10 +139,6 @@ public abstract class FlowElementsContainerImpl extends BaseElementImpl implemen
 				getLaneSets().clear();
 				getLaneSets().addAll((Collection<? extends LaneSet>)newValue);
 				return;
-			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS:
-				getFlowElements().clear();
-				getFlowElements().addAll((Collection<? extends FlowElement>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -172,9 +153,6 @@ public abstract class FlowElementsContainerImpl extends BaseElementImpl implemen
 		switch (featureID) {
 			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS:
 				getLaneSets().clear();
-				return;
-			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS:
-				getFlowElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -191,7 +169,7 @@ public abstract class FlowElementsContainerImpl extends BaseElementImpl implemen
 			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS:
 				return laneSets != null && !laneSets.isEmpty();
 			case BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS:
-				return flowElements != null && !flowElements.isEmpty();
+				return !getFlowElements().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -95,7 +95,7 @@ public interface Lane extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Flow Node Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getLane_FlowNodeRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<FlowNode> getFlowNodeRefs();
@@ -135,23 +135,12 @@ public interface Lane extends BaseElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Child Lane Set</em>' reference.
-	 * @see #setChildLaneSet(LaneSet)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getLane_ChildLaneSet()
-	 * @model required="true" ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='childLaneSet '"
 	 * @generated
 	 */
 	LaneSet getChildLaneSet();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.Lane#getChildLaneSet <em>Child Lane Set</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Child Lane Set</em>' reference.
-	 * @see #getChildLaneSet()
-	 * @generated
-	 */
-	void setChildLaneSet(LaneSet value);
 
 	/**
 	 * Returns the value of the '<em><b>Lane Set</b></em>' reference.
@@ -163,23 +152,12 @@ public interface Lane extends BaseElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Lane Set</em>' reference.
-	 * @see #setLaneSet(LaneSet)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getLane_LaneSet()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.LaneSet#getLanes
-	 * @model opposite="lanes" required="true" ordered="false"
+	 * @model opposite="lanes" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	LaneSet getLaneSet();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.Lane#getLaneSet <em>Lane Set</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lane Set</em>' reference.
-	 * @see #getLaneSet()
-	 * @generated
-	 */
-	void setLaneSet(LaneSet value);
 
 	/**
 	 * <!-- begin-user-doc -->

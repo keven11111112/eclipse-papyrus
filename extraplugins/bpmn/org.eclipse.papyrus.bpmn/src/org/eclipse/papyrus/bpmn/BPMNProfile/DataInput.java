@@ -71,7 +71,7 @@ public interface DataInput extends ItemAwareElement {
 	 * @return the value of the '<em>Base Input Pin</em>' reference.
 	 * @see #setBase_InputPin(InputPin)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataInput_Base_InputPin()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	InputPin getBase_InputPin();
@@ -97,7 +97,7 @@ public interface DataInput extends ItemAwareElement {
 	 * @return the value of the '<em>Base Parameter</em>' reference.
 	 * @see #setBase_Parameter(Parameter)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataInput_Base_Parameter()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Parameter getBase_Parameter();
@@ -123,7 +123,7 @@ public interface DataInput extends ItemAwareElement {
 	 * @return the value of the '<em>Base Activity Parameter Node</em>' reference.
 	 * @see #setBase_ActivityParameterNode(ActivityParameterNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataInput_Base_ActivityParameterNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	ActivityParameterNode getBase_ActivityParameterNode();
@@ -151,7 +151,7 @@ public interface DataInput extends ItemAwareElement {
 	 * @return the value of the '<em>Input Set Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataInput_InputSetRefs()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.InputSet#getDataInputRefs
-	 * @model opposite="dataInputRefs" required="true" ordered="false"
+	 * @model opposite="dataInputRefs" ordered="false"
 	 * @generated
 	 */
 	EList<InputSet> getInputSetRefs();
@@ -169,7 +169,7 @@ public interface DataInput extends ItemAwareElement {
 	 * @return the value of the '<em>Input Set With Optional</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataInput_InputSetWithOptional()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.InputSet#getOptionalInputRefs
-	 * @model opposite="optionalInputRefs" required="true" ordered="false"
+	 * @model opposite="optionalInputRefs" ordered="false"
 	 * @generated
 	 */
 	EList<InputSet> getInputSetWithOptional();
@@ -187,7 +187,7 @@ public interface DataInput extends ItemAwareElement {
 	 * @return the value of the '<em>Input Set With While Executing</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataInput_InputSetWithWhileExecuting()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.InputSet#getWhileExecutingInputRefs
-	 * @model opposite="whileExecutingInputRefs" required="true" ordered="false"
+	 * @model opposite="whileExecutingInputRefs" ordered="false"
 	 * @generated
 	 */
 	EList<InputSet> getInputSetWithWhileExecuting();

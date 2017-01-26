@@ -5,9 +5,7 @@ package org.eclipse.papyrus.bpmn.BPMNProfile.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -85,26 +83,6 @@ public class LaneImpl extends BaseElementImpl implements Lane {
 	 * @ordered
 	 */
 	protected BaseElement partitionElementRef;
-
-	/**
-	 * The cached value of the '{@link #getChildLaneSet() <em>Child Lane Set</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getChildLaneSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected LaneSet childLaneSet;
-
-	/**
-	 * The cached value of the '{@link #getLaneSet() <em>Lane Set</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLaneSet()
-	 * @generated
-	 * @ordered
-	 */
-	protected LaneSet laneSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -257,36 +235,17 @@ public class LaneImpl extends BaseElementImpl implements Lane {
 	 * @generated
 	 */
 	public LaneSet getChildLaneSet() {
-		if (childLaneSet != null && childLaneSet.eIsProxy()) {
-			InternalEObject oldChildLaneSet = (InternalEObject)childLaneSet;
-			childLaneSet = (LaneSet)eResolveProxy(oldChildLaneSet);
-			if (childLaneSet != oldChildLaneSet) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.LANE__CHILD_LANE_SET, oldChildLaneSet, childLaneSet));
-			}
-		}
-		return childLaneSet;
+		LaneSet childLaneSet = basicGetChildLaneSet();
+		return childLaneSet != null && childLaneSet.eIsProxy() ? (LaneSet)eResolveProxy((InternalEObject)childLaneSet) : childLaneSet;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public LaneSet basicGetChildLaneSet() {
-		return childLaneSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setChildLaneSet(LaneSet newChildLaneSet) {
-		LaneSet oldChildLaneSet = childLaneSet;
-		childLaneSet = newChildLaneSet;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.LANE__CHILD_LANE_SET, oldChildLaneSet, childLaneSet));
+		return LaneCustom.basicGetChildLaneSet(this);
 	}
 
 	/**
@@ -295,58 +254,17 @@ public class LaneImpl extends BaseElementImpl implements Lane {
 	 * @generated
 	 */
 	public LaneSet getLaneSet() {
-		if (laneSet != null && laneSet.eIsProxy()) {
-			InternalEObject oldLaneSet = (InternalEObject)laneSet;
-			laneSet = (LaneSet)eResolveProxy(oldLaneSet);
-			if (laneSet != oldLaneSet) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.LANE__LANE_SET, oldLaneSet, laneSet));
-			}
-		}
-		return laneSet;
+		LaneSet laneSet = basicGetLaneSet();
+		return laneSet != null && laneSet.eIsProxy() ? (LaneSet)eResolveProxy((InternalEObject)laneSet) : laneSet;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public LaneSet basicGetLaneSet() {
-		return laneSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLaneSet(LaneSet newLaneSet, NotificationChain msgs) {
-		LaneSet oldLaneSet = laneSet;
-		laneSet = newLaneSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.LANE__LANE_SET, oldLaneSet, newLaneSet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLaneSet(LaneSet newLaneSet) {
-		if (newLaneSet != laneSet) {
-			NotificationChain msgs = null;
-			if (laneSet != null)
-				msgs = ((InternalEObject)laneSet).eInverseRemove(this, BPMNProfilePackage.LANE_SET__LANES, LaneSet.class, msgs);
-			if (newLaneSet != null)
-				msgs = ((InternalEObject)newLaneSet).eInverseAdd(this, BPMNProfilePackage.LANE_SET__LANES, LaneSet.class, msgs);
-			msgs = basicSetLaneSet(newLaneSet, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.LANE__LANE_SET, newLaneSet, newLaneSet));
+		return LaneCustom.basicGetLaneSet(this);
 	}
 
 	/**
@@ -455,36 +373,6 @@ public class LaneImpl extends BaseElementImpl implements Lane {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BPMNProfilePackage.LANE__LANE_SET:
-				if (laneSet != null)
-					msgs = ((InternalEObject)laneSet).eInverseRemove(this, BPMNProfilePackage.LANE_SET__LANES, LaneSet.class, msgs);
-				return basicSetLaneSet((LaneSet)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BPMNProfilePackage.LANE__LANE_SET:
-				return basicSetLaneSet(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BPMNProfilePackage.LANE__BASE_ACTIVITY_PARTITION:
@@ -530,12 +418,6 @@ public class LaneImpl extends BaseElementImpl implements Lane {
 			case BPMNProfilePackage.LANE__PARTITION_ELEMENT_REF:
 				setPartitionElementRef((BaseElement)newValue);
 				return;
-			case BPMNProfilePackage.LANE__CHILD_LANE_SET:
-				setChildLaneSet((LaneSet)newValue);
-				return;
-			case BPMNProfilePackage.LANE__LANE_SET:
-				setLaneSet((LaneSet)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -560,12 +442,6 @@ public class LaneImpl extends BaseElementImpl implements Lane {
 			case BPMNProfilePackage.LANE__PARTITION_ELEMENT_REF:
 				setPartitionElementRef((BaseElement)null);
 				return;
-			case BPMNProfilePackage.LANE__CHILD_LANE_SET:
-				setChildLaneSet((LaneSet)null);
-				return;
-			case BPMNProfilePackage.LANE__LANE_SET:
-				setLaneSet((LaneSet)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -587,9 +463,9 @@ public class LaneImpl extends BaseElementImpl implements Lane {
 			case BPMNProfilePackage.LANE__PARTITION_ELEMENT_REF:
 				return partitionElementRef != null;
 			case BPMNProfilePackage.LANE__CHILD_LANE_SET:
-				return childLaneSet != null;
+				return basicGetChildLaneSet() != null;
 			case BPMNProfilePackage.LANE__LANE_SET:
-				return laneSet != null;
+				return basicGetLaneSet() != null;
 		}
 		return super.eIsSet(featureID);
 	}

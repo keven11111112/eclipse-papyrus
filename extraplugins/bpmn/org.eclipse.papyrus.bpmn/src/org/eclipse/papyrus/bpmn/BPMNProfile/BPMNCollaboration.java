@@ -71,7 +71,7 @@ public interface BPMNCollaboration extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Participant Associations</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNCollaboration_ParticipantAssociations()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ParticipantAssociation> getParticipantAssociations();
@@ -89,7 +89,7 @@ public interface BPMNCollaboration extends RootElement {
 	 * @return the value of the '<em>Conversation Links</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNCollaboration_ConversationLinks()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.ConversationLink#getCollaboration
-	 * @model opposite="collaboration" required="true" ordered="false"
+	 * @model opposite="collaboration" ordered="false"
 	 * @generated
 	 */
 	EList<ConversationLink> getConversationLinks();
@@ -105,7 +105,7 @@ public interface BPMNCollaboration extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Message Flow Associations</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNCollaboration_MessageFlowAssociations()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<MessageFlowAssociation> getMessageFlowAssociations();
@@ -121,7 +121,7 @@ public interface BPMNCollaboration extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Message Flows</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNCollaboration_MessageFlows()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<MessageFlow> getMessageFlows();
@@ -163,7 +163,7 @@ public interface BPMNCollaboration extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Conversations</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNCollaboration_Conversations()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ConversationNode> getConversations();
@@ -179,7 +179,7 @@ public interface BPMNCollaboration extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Correlation Keys</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNCollaboration_CorrelationKeys()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CorrelationKey> getCorrelationKeys();
@@ -195,7 +195,7 @@ public interface BPMNCollaboration extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Participants</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNCollaboration_Participants()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Participant> getParticipants();

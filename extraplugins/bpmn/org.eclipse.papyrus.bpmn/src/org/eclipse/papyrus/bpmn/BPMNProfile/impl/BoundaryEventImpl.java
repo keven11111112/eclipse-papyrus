@@ -56,16 +56,6 @@ public class BoundaryEventImpl extends CatchEventImpl implements BoundaryEvent {
 	protected boolean cancelActivity = CANCEL_ACTIVITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAttachedToRef() <em>Attached To Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAttachedToRef()
-	 * @generated
-	 * @ordered
-	 */
-	protected BPMNActivity attachedToRef;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -111,36 +101,17 @@ public class BoundaryEventImpl extends CatchEventImpl implements BoundaryEvent {
 	 * @generated
 	 */
 	public BPMNActivity getAttachedToRef() {
-		if (attachedToRef != null && attachedToRef.eIsProxy()) {
-			InternalEObject oldAttachedToRef = (InternalEObject)attachedToRef;
-			attachedToRef = (BPMNActivity)eResolveProxy(oldAttachedToRef);
-			if (attachedToRef != oldAttachedToRef) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.BOUNDARY_EVENT__ATTACHED_TO_REF, oldAttachedToRef, attachedToRef));
-			}
-		}
-		return attachedToRef;
+		BPMNActivity attachedToRef = basicGetAttachedToRef();
+		return attachedToRef != null && attachedToRef.eIsProxy() ? (BPMNActivity)eResolveProxy((InternalEObject)attachedToRef) : attachedToRef;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public BPMNActivity basicGetAttachedToRef() {
-		return attachedToRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAttachedToRef(BPMNActivity newAttachedToRef) {
-		BPMNActivity oldAttachedToRef = attachedToRef;
-		attachedToRef = newAttachedToRef;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.BOUNDARY_EVENT__ATTACHED_TO_REF, oldAttachedToRef, attachedToRef));
+		return BoundaryEventCustom.basicGetAttachedToRef(this);
 	}
 
 	/**
@@ -196,9 +167,6 @@ public class BoundaryEventImpl extends CatchEventImpl implements BoundaryEvent {
 			case BPMNProfilePackage.BOUNDARY_EVENT__CANCEL_ACTIVITY:
 				setCancelActivity((Boolean)newValue);
 				return;
-			case BPMNProfilePackage.BOUNDARY_EVENT__ATTACHED_TO_REF:
-				setAttachedToRef((BPMNActivity)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -213,9 +181,6 @@ public class BoundaryEventImpl extends CatchEventImpl implements BoundaryEvent {
 		switch (featureID) {
 			case BPMNProfilePackage.BOUNDARY_EVENT__CANCEL_ACTIVITY:
 				setCancelActivity(CANCEL_ACTIVITY_EDEFAULT);
-				return;
-			case BPMNProfilePackage.BOUNDARY_EVENT__ATTACHED_TO_REF:
-				setAttachedToRef((BPMNActivity)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -232,7 +197,7 @@ public class BoundaryEventImpl extends CatchEventImpl implements BoundaryEvent {
 			case BPMNProfilePackage.BOUNDARY_EVENT__CANCEL_ACTIVITY:
 				return cancelActivity != CANCEL_ACTIVITY_EDEFAULT;
 			case BPMNProfilePackage.BOUNDARY_EVENT__ATTACHED_TO_REF:
-				return attachedToRef != null;
+				return basicGetAttachedToRef() != null;
 		}
 		return super.eIsSet(featureID);
 	}

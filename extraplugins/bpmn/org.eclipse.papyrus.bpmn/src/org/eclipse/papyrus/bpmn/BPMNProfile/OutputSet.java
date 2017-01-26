@@ -65,7 +65,7 @@ public interface OutputSet extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Optional Output Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getOutputSet_OptionalOutputRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='optionalOutputRefs '"
 	 * @generated
 	 */
@@ -82,7 +82,7 @@ public interface OutputSet extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>While Executing Output Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getOutputSet_WhileExecutingOutputRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='whileExecutingOutputRefs '"
 	 * @generated
 	 */
@@ -101,7 +101,7 @@ public interface OutputSet extends BaseElement {
 	 * @return the value of the '<em>Data Output Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getOutputSet_DataOutputRefs()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.DataOutput#getOutputSetRefs
-	 * @model opposite="outputSetRefs" required="true" ordered="false"
+	 * @model opposite="outputSetRefs" ordered="false"
 	 * @generated
 	 */
 	EList<DataOutput> getDataOutputRefs();

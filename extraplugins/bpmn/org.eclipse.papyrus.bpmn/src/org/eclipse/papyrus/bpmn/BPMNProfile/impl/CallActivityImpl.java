@@ -47,16 +47,6 @@ public class CallActivityImpl extends BPMNActivityImpl implements CallActivity {
 	protected CallBehaviorAction base_CallBehaviorAction;
 
 	/**
-	 * The cached value of the '{@link #getCalledElementRef() <em>Called Element Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCalledElementRef()
-	 * @generated
-	 * @ordered
-	 */
-	protected CallableElement calledElementRef;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -119,15 +109,8 @@ public class CallActivityImpl extends BPMNActivityImpl implements CallActivity {
 	 * @generated
 	 */
 	public CallableElement getCalledElementRef() {
-		if (calledElementRef != null && calledElementRef.eIsProxy()) {
-			InternalEObject oldCalledElementRef = (InternalEObject)calledElementRef;
-			calledElementRef = (CallableElement)eResolveProxy(oldCalledElementRef);
-			if (calledElementRef != oldCalledElementRef) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.CALL_ACTIVITY__CALLED_ELEMENT_REF, oldCalledElementRef, calledElementRef));
-			}
-		}
-		return calledElementRef;
+		CallableElement calledElementRef = basicGetCalledElementRef();
+		return calledElementRef != null && calledElementRef.eIsProxy() ? (CallableElement)eResolveProxy((InternalEObject)calledElementRef) : calledElementRef;
 	}
 
 	/**
@@ -136,19 +119,7 @@ public class CallActivityImpl extends BPMNActivityImpl implements CallActivity {
 	 * @generated
 	 */
 	public CallableElement basicGetCalledElementRef() {
-		return calledElementRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCalledElementRef(CallableElement newCalledElementRef) {
-		CallableElement oldCalledElementRef = calledElementRef;
-		calledElementRef = newCalledElementRef;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.CALL_ACTIVITY__CALLED_ELEMENT_REF, oldCalledElementRef, calledElementRef));
+		return CallActivityCustom.basicGetCalledElementRef(this);
 	}
 
 	/**
@@ -205,9 +176,6 @@ public class CallActivityImpl extends BPMNActivityImpl implements CallActivity {
 			case BPMNProfilePackage.CALL_ACTIVITY__BASE_CALL_BEHAVIOR_ACTION:
 				setBase_CallBehaviorAction((CallBehaviorAction)newValue);
 				return;
-			case BPMNProfilePackage.CALL_ACTIVITY__CALLED_ELEMENT_REF:
-				setCalledElementRef((CallableElement)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -222,9 +190,6 @@ public class CallActivityImpl extends BPMNActivityImpl implements CallActivity {
 		switch (featureID) {
 			case BPMNProfilePackage.CALL_ACTIVITY__BASE_CALL_BEHAVIOR_ACTION:
 				setBase_CallBehaviorAction((CallBehaviorAction)null);
-				return;
-			case BPMNProfilePackage.CALL_ACTIVITY__CALLED_ELEMENT_REF:
-				setCalledElementRef((CallableElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -241,7 +206,7 @@ public class CallActivityImpl extends BPMNActivityImpl implements CallActivity {
 			case BPMNProfilePackage.CALL_ACTIVITY__BASE_CALL_BEHAVIOR_ACTION:
 				return base_CallBehaviorAction != null;
 			case BPMNProfilePackage.CALL_ACTIVITY__CALLED_ELEMENT_REF:
-				return calledElementRef != null;
+				return basicGetCalledElementRef() != null;
 		}
 		return super.eIsSet(featureID);
 	}

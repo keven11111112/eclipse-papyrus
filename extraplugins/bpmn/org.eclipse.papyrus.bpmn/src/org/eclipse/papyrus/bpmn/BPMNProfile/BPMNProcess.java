@@ -207,7 +207,7 @@ public interface BPMNProcess extends CallableElement, FlowElementsContainer {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Correlation Subscriptions</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNProcess_CorrelationSubscriptions()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CorrelationSubscription> getCorrelationSubscriptions();
@@ -247,22 +247,11 @@ public interface BPMNProcess extends CallableElement, FlowElementsContainer {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Supports</em>' reference.
-	 * @see #setSupports(BPMNProcess)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNProcess_Supports()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	BPMNProcess getSupports();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProcess#getSupports <em>Supports</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Supports</em>' reference.
-	 * @see #getSupports()
-	 * @generated
-	 */
-	void setSupports(BPMNProcess value);
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' reference list.
@@ -275,7 +264,7 @@ public interface BPMNProcess extends CallableElement, FlowElementsContainer {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNProcess_Properties()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNProperty> getProperties();
@@ -293,7 +282,7 @@ public interface BPMNProcess extends CallableElement, FlowElementsContainer {
 	 * @return the value of the '<em>Resources</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNProcess_Resources()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.ResourceRole#getProcess
-	 * @model opposite="process" required="true" ordered="false"
+	 * @model opposite="process" ordered="false"
 	 * @generated
 	 */
 	EList<ResourceRole> getResources();

@@ -38,7 +38,7 @@ public interface ItemAwareElement extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data State</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getItemAwareElement_DataState()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<DataState> getDataState();

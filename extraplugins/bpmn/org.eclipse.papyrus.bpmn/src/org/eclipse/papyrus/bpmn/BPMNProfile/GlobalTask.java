@@ -63,7 +63,7 @@ public interface GlobalTask extends CallableElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resources</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getGlobalTask_Resources()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ResourceRole> getResources();

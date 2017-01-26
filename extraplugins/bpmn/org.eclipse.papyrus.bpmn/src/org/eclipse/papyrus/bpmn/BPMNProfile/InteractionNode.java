@@ -64,7 +64,7 @@ public interface InteractionNode extends EObject {
 	 * @return the value of the '<em>Outgoing Conversation Links</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInteractionNode_OutgoingConversationLinks()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.ConversationLink#getSourceRef
-	 * @model opposite="sourceRef" required="true" ordered="false"
+	 * @model opposite="sourceRef" ordered="false"
 	 * @generated
 	 */
 	EList<ConversationLink> getOutgoingConversationLinks();

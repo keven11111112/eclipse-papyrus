@@ -145,7 +145,7 @@ public interface BPMNOperation extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Error Ref</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNOperation_ErrorRef()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<org.eclipse.papyrus.bpmn.BPMNProfile.Error> getErrorRef();

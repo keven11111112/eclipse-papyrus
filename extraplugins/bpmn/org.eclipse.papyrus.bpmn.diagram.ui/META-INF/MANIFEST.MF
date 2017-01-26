@@ -7,7 +7,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.107.0",
 Export-Package: org.eclipse.papyrus.bpmn.diagram.ui
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

@@ -59,22 +59,11 @@ public interface BoundaryEvent extends CatchEvent {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attached To Ref</em>' reference.
-	 * @see #setAttachedToRef(BPMNActivity)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBoundaryEvent_AttachedToRef()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	BPMNActivity getAttachedToRef();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.BoundaryEvent#getAttachedToRef <em>Attached To Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Attached To Ref</em>' reference.
-	 * @see #getAttachedToRef()
-	 * @generated
-	 */
-	void setAttachedToRef(BPMNActivity value);
 
 	/**
 	 * <!-- begin-user-doc -->

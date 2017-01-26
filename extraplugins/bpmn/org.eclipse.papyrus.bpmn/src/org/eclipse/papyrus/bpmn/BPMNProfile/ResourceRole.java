@@ -118,7 +118,7 @@ public interface ResourceRole extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resource Parameter Bindings</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getResourceRole_ResourceParameterBindings()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='resourceParameterBindings '"
 	 * @generated
 	 */

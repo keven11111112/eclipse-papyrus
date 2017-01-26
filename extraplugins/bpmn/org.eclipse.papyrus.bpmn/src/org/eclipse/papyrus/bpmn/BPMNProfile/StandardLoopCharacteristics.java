@@ -88,22 +88,11 @@ public interface StandardLoopCharacteristics extends LoopCharacteristics {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Test Before</em>' attribute.
-	 * @see #setTestBefore(boolean)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getStandardLoopCharacteristics_TestBefore()
-	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isTestBefore();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.StandardLoopCharacteristics#isTestBefore <em>Test Before</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Test Before</em>' attribute.
-	 * @see #isTestBefore()
-	 * @generated
-	 */
-	void setTestBefore(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Loop Condition</b></em>' reference.
@@ -114,22 +103,11 @@ public interface StandardLoopCharacteristics extends LoopCharacteristics {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Loop Condition</em>' reference.
-	 * @see #setLoopCondition(BPMNExpression)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getStandardLoopCharacteristics_LoopCondition()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	BPMNExpression getLoopCondition();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.StandardLoopCharacteristics#getLoopCondition <em>Loop Condition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Loop Condition</em>' reference.
-	 * @see #getLoopCondition()
-	 * @generated
-	 */
-	void setLoopCondition(BPMNExpression value);
 
 	/**
 	 * <!-- begin-user-doc -->

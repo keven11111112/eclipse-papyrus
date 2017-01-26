@@ -91,7 +91,7 @@ public interface InputOutputSpecification extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Inputs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInputOutputSpecification_DataInputs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<DataInput> getDataInputs();
@@ -107,7 +107,7 @@ public interface InputOutputSpecification extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Outputs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInputOutputSpecification_DataOutputs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<DataOutput> getDataOutputs();

@@ -60,7 +60,7 @@ public interface Gateway extends FlowNode {
 	 * @return the value of the '<em>Base Activity Group</em>' reference.
 	 * @see #setBase_ActivityGroup(ActivityGroup)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getGateway_Base_ActivityGroup()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	ActivityGroup getBase_ActivityGroup();

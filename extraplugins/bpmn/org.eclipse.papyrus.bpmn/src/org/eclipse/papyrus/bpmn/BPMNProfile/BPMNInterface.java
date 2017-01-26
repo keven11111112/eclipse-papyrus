@@ -92,7 +92,7 @@ public interface BPMNInterface extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operations</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNInterface_Operations()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNOperation> getOperations();
@@ -108,7 +108,7 @@ public interface BPMNInterface extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Callable Elements</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNInterface_CallableElements()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CallableElement> getCallableElements();

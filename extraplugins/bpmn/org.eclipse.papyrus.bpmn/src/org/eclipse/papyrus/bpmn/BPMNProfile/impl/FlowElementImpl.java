@@ -3,7 +3,6 @@
 package org.eclipse.papyrus.bpmn.BPMNProfile.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -65,16 +64,6 @@ public abstract class FlowElementImpl extends BaseElementImpl implements FlowEle
 	 * @ordered
 	 */
 	protected EList<CategoryValue> _categoryValueRef;
-
-	/**
-	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainer()
-	 * @generated
-	 * @ordered
-	 */
-	protected FlowElementsContainer container;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,58 +178,17 @@ public abstract class FlowElementImpl extends BaseElementImpl implements FlowEle
 	 * @generated
 	 */
 	public FlowElementsContainer getContainer() {
-		if (container != null && container.eIsProxy()) {
-			InternalEObject oldContainer = (InternalEObject)container;
-			container = (FlowElementsContainer)eResolveProxy(oldContainer);
-			if (container != oldContainer) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.FLOW_ELEMENT__CONTAINER, oldContainer, container));
-			}
-		}
-		return container;
+		FlowElementsContainer container = basicGetContainer();
+		return container != null && container.eIsProxy() ? (FlowElementsContainer)eResolveProxy((InternalEObject)container) : container;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public FlowElementsContainer basicGetContainer() {
-		return container;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainer(FlowElementsContainer newContainer, NotificationChain msgs) {
-		FlowElementsContainer oldContainer = container;
-		container = newContainer;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.FLOW_ELEMENT__CONTAINER, oldContainer, newContainer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContainer(FlowElementsContainer newContainer) {
-		if (newContainer != container) {
-			NotificationChain msgs = null;
-			if (container != null)
-				msgs = ((InternalEObject)container).eInverseRemove(this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS, FlowElementsContainer.class, msgs);
-			if (newContainer != null)
-				msgs = ((InternalEObject)newContainer).eInverseAdd(this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS, FlowElementsContainer.class, msgs);
-			msgs = basicSetContainer(newContainer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.FLOW_ELEMENT__CONTAINER, newContainer, newContainer));
+		return FlowElementCustom.basicGetContainer(this);
 	}
 
 	/**
@@ -254,10 +202,6 @@ public abstract class FlowElementImpl extends BaseElementImpl implements FlowEle
 		switch (featureID) {
 			case BPMNProfilePackage.FLOW_ELEMENT__CATEGORY_VALUE_REF:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)get_categoryValueRef()).basicAdd(otherEnd, msgs);
-			case BPMNProfilePackage.FLOW_ELEMENT__CONTAINER:
-				if (container != null)
-					msgs = ((InternalEObject)container).eInverseRemove(this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__FLOW_ELEMENTS, FlowElementsContainer.class, msgs);
-				return basicSetContainer((FlowElementsContainer)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -272,8 +216,6 @@ public abstract class FlowElementImpl extends BaseElementImpl implements FlowEle
 		switch (featureID) {
 			case BPMNProfilePackage.FLOW_ELEMENT__CATEGORY_VALUE_REF:
 				return ((InternalEList<?>)get_categoryValueRef()).basicRemove(otherEnd, msgs);
-			case BPMNProfilePackage.FLOW_ELEMENT__CONTAINER:
-				return basicSetContainer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -320,9 +262,6 @@ public abstract class FlowElementImpl extends BaseElementImpl implements FlowEle
 				get_categoryValueRef().clear();
 				get_categoryValueRef().addAll((Collection<? extends CategoryValue>)newValue);
 				return;
-			case BPMNProfilePackage.FLOW_ELEMENT__CONTAINER:
-				setContainer((FlowElementsContainer)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -344,9 +283,6 @@ public abstract class FlowElementImpl extends BaseElementImpl implements FlowEle
 			case BPMNProfilePackage.FLOW_ELEMENT__CATEGORY_VALUE_REF:
 				get_categoryValueRef().clear();
 				return;
-			case BPMNProfilePackage.FLOW_ELEMENT__CONTAINER:
-				setContainer((FlowElementsContainer)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -366,7 +302,7 @@ public abstract class FlowElementImpl extends BaseElementImpl implements FlowEle
 			case BPMNProfilePackage.FLOW_ELEMENT__CATEGORY_VALUE_REF:
 				return _categoryValueRef != null && !_categoryValueRef.isEmpty();
 			case BPMNProfilePackage.FLOW_ELEMENT__CONTAINER:
-				return container != null;
+				return basicGetContainer() != null;
 		}
 		return super.eIsSet(featureID);
 	}
