@@ -31,19 +31,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="NonExclusiveGateway" abstract="true"
       eSuperTypes="#//Gateway">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_JoinNode" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ForkNode" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Gateway" abstract="true" eSuperTypes="#//FlowNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ControlNode" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ControlNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityGroup" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityGroup"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityGroup"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FlowNode" abstract="true" eSuperTypes="#//FlowElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityNode" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityNode"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FlowElement" abstract="true" eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="auditing" ordered="false"
@@ -51,28 +51,29 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="monitoring" ordered="false"
         eType="#//Monitoring"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="_categoryValueRef" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//CategoryValue" eOpposite="#//CategoryValue/categorizedFlowElements">
+        upperBound="-1" eType="#//CategoryValue" eOpposite="#//CategoryValue/categorizedFlowElements">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value=" categoryValueRef"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="container" ordered="false"
-        lowerBound="1" eType="#//FlowElementsContainer" eOpposite="#//FlowElementsContainer/flowElements"/>
+        lowerBound="1" eType="#//FlowElementsContainer" changeable="false" volatile="true"
+        transient="true" derived="true" eOpposite="#//FlowElementsContainer/flowElements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BaseElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionValues" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ExtensionAttributeValue"/>
+        upperBound="-1" eType="#//ExtensionAttributeValue"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Element" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Documentation"/>
+        upperBound="-1" eType="#//Documentation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionDefinitions" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ExtensionDefinition"/>
+        upperBound="-1" eType="#//ExtensionDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNAssociation" eOpposite="#//BPMNAssociation/sourceRef"/>
+        upperBound="-1" eType="#//BPMNAssociation" eOpposite="#//BPMNAssociation/sourceRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNAssociation" eOpposite="#//BPMNAssociation/targetRef"/>
+        upperBound="-1" eType="#//BPMNAssociation" eOpposite="#//BPMNAssociation/targetRef"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtensionAttributeValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Slot" ordered="false"
@@ -102,7 +103,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionAttributeDefinitions"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//ExtensionAttributeDefinition"/>
+        ordered="false" upperBound="-1" eType="#//ExtensionAttributeDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNAssociation" eSuperTypes="#//BPMNArtifact">
     <eOperations name="AssociationEnd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -151,14 +152,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_EnumerationLiteral"
         ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//EnumerationLiteral"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="categorizedFlowElements"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//FlowElement" eOpposite="#//FlowElement/_categoryValueRef"/>
+        ordered="false" upperBound="-1" eType="#//FlowElement" eOpposite="#//FlowElement/_categoryValueRef"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FlowElementsContainer" abstract="true"
       eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="laneSets" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//LaneSet" eOpposite="#//LaneSet/flowElementsContainer"/>
+        upperBound="-1" eType="#//LaneSet" eOpposite="#//LaneSet/flowElementsContainer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowElements" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//FlowElement" eOpposite="#//FlowElement/container"/>
+        upperBound="-1" eType="#//FlowElement" changeable="false" volatile="true"
+        transient="true" derived="true" eOpposite="#//FlowElement/container"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LaneSet" eSuperTypes="#//BaseElement">
     <eOperations name="LaneSetlanes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -249,9 +251,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityPartition"
         ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lanes" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Lane" eOpposite="#//Lane/laneSet"/>
+        upperBound="-1" eType="#//Lane" changeable="false" volatile="true" transient="true"
+        derived="true" eOpposite="#//Lane/laneSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentLane" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Lane"/>
+        upperBound="-1" eType="#//Lane" changeable="false" volatile="true" transient="true"
+        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowElementsContainer"
         ordered="false" eType="#//FlowElementsContainer" eOpposite="#//FlowElementsContainer/laneSets"/>
   </eClassifiers>
@@ -353,17 +357,18 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowNodeRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//FlowNode"/>
+        upperBound="-1" eType="#//FlowNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="partitionElementRef" ordered="false"
         eType="#//BaseElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="childLaneSet" ordered="false"
-        lowerBound="1" eType="#//LaneSet">
+        eType="#//LaneSet" changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="childLaneSet "/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="laneSet" ordered="false"
-        lowerBound="1" eType="#//LaneSet" eOpposite="#//LaneSet/lanes"/>
+        eType="#//LaneSet" changeable="false" volatile="true" transient="true" derived="true"
+        eOpposite="#//LaneSet/lanes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceFlow" eSuperTypes="#//FlowElement">
     <eOperations name="SequenceFlowconditionExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -441,7 +446,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNExpression" eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_OpaqueExpression"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBasedGateway" eSuperTypes="#//Gateway">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instantiate" ordered="false"
@@ -563,9 +568,9 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_DecisionNode" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_MergeNode" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="default" ordered="false"
         eType="#//SequenceFlow"/>
   </eClassifiers>
@@ -589,13 +594,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exporterVersion" ordered="false"
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNExtension"/>
+        upperBound="-1" eType="#//BPMNExtension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Import"/>
+        upperBound="-1" eType="#//Import"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relationships" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNRelationship"/>
+        upperBound="-1" eType="#//BPMNRelationship"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootElements" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//RootElement" eOpposite="#//RootElement/definition"/>
+        upperBound="-1" eType="#//RootElement" eOpposite="#//RootElement/definition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNExtension">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Stereotype" ordered="false"
@@ -763,15 +768,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Activity" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correlationSubscriptions"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//CorrelationSubscription"/>
+        ordered="false" upperBound="-1" eType="#//CorrelationSubscription"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="monitoring" ordered="false"
         eType="#//Monitoring"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" ordered="false"
-        lowerBound="1" eType="#//BPMNProcess"/>
+        lowerBound="1" eType="#//BPMNProcess" changeable="false" volatile="true" transient="true"
+        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNProperty"/>
+        upperBound="-1" eType="#//BPMNProperty"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resources" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ResourceRole" eOpposite="#//ResourceRole/process"/>
+        upperBound="-1" eType="#//ResourceRole" eOpposite="#//ResourceRole/process"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CallableElement" abstract="true" eSuperTypes="#//RootElement">
     <eOperations name="CallableEelementsupportedInterfaceRefs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -823,9 +829,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ioSpecification" ordered="false"
         eType="#//InputOutputSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedInterfaceRefs"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//BPMNInterface"/>
+        ordered="false" upperBound="-1" eType="#//BPMNInterface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ioBinding" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//InputOutputBinding"/>
+        upperBound="-1" eType="#//InputOutputBinding"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputOutputSpecification" eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Behavior" ordered="false"
@@ -833,9 +839,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Action" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataInputs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataInput"/>
+        upperBound="-1" eType="#//DataInput"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataOutputs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataOutput"/>
+        upperBound="-1" eType="#//DataOutput"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputSets" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//InputSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputSets" ordered="false"
@@ -912,17 +918,17 @@
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_InputPin" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Parameter" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityParameterNode"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputSetRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//InputSet" eOpposite="#//InputSet/dataInputRefs"/>
+        upperBound="-1" eType="#//InputSet" eOpposite="#//InputSet/dataInputRefs"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputSetWithOptional" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//InputSet" eOpposite="#//InputSet/optionalInputRefs"/>
+        upperBound="-1" eType="#//InputSet" eOpposite="#//InputSet/optionalInputRefs"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputSetWithWhileExecuting"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//InputSet" eOpposite="#//InputSet/whileExecutingInputRefs"/>
+        ordered="false" upperBound="-1" eType="#//InputSet" eOpposite="#//InputSet/whileExecutingInputRefs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ItemAwareElement" abstract="true" eSuperTypes="#//BaseElement">
     <eOperations name="ItemAwareElementdataState" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -948,7 +954,7 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataState" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataState"/>
+        upperBound="-1" eType="#//DataState"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_TypedElement" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//TypedElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="itemSubjectRef" ordered="false"
@@ -1075,11 +1081,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ParameterSet" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ParameterSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="optionalInputRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataInput" eOpposite="#//DataInput/inputSetWithOptional"/>
+        upperBound="-1" eType="#//DataInput" eOpposite="#//DataInput/inputSetWithOptional"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whileExecutingInputRefs"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//DataInput" eOpposite="#//DataInput/inputSetWithWhileExecuting"/>
+        ordered="false" upperBound="-1" eType="#//DataInput" eOpposite="#//DataInput/inputSetWithWhileExecuting"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataInputRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataInput" eOpposite="#//DataInput/inputSetRefs"/>
+        upperBound="-1" eType="#//DataInput" eOpposite="#//DataInput/inputSetRefs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataOutput" eSuperTypes="#//ItemAwareElement">
     <eOperations name="DataOutputnotation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1127,20 +1133,20 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_OutputPin" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCollection" ordered="false"
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Parameter" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityParameterNode"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputSetRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//OutputSet" eOpposite="#//OutputSet/dataOutputRefs"/>
+        upperBound="-1" eType="#//OutputSet" eOpposite="#//OutputSet/dataOutputRefs"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputSetWithOptional"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//OutputSet"/>
+        ordered="false" upperBound="-1" eType="#//OutputSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputSetWithWhileExecuting"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//OutputSet"/>
+        ordered="false" upperBound="-1" eType="#//OutputSet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutputSet" eSuperTypes="#//BaseElement">
     <eOperations name="OutputSetdataOutputRefs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1212,19 +1218,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ParameterSet" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ParameterSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="optionalOutputRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataOutput">
+        upperBound="-1" eType="#//DataOutput">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="optionalOutputRefs "/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whileExecutingOutputRefs"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//DataOutput">
+        ordered="false" upperBound="-1" eType="#//DataOutput">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="whileExecutingOutputRefs "/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataOutputRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataOutput" eOpposite="#//DataOutput/outputSetRefs"/>
+        upperBound="-1" eType="#//DataOutput" eOpposite="#//DataOutput/outputSetRefs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNInterface" eSuperTypes="#//RootElement">
     <eOperations name="Interfaceoperationmultiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1320,9 +1326,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementationRef" ordered="false"
         eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNOperation"/>
+        upperBound="-1" eType="#//BPMNOperation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="callableElements" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//CallableElement"/>
+        upperBound="-1" eType="#//CallableElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNOperation" eSuperTypes="#//BaseElement">
     <eOperations name="BPMNOperationowner" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1422,7 +1428,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="outMessageRef" ordered="false"
         eType="#//BPMNMessage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="errorRef" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Error"/>
+        upperBound="-1" eType="#//Error"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNMessage" eSuperTypes="#//ItemDefinition">
     <eOperations name="MessageitemRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1499,21 +1505,21 @@
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participantAssociations"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//ParticipantAssociation"/>
+        ordered="false" upperBound="-1" eType="#//ParticipantAssociation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conversationLinks" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ConversationLink" eOpposite="#//ConversationLink/collaboration"/>
+        upperBound="-1" eType="#//ConversationLink" eOpposite="#//ConversationLink/collaboration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messageFlowAssociations"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//MessageFlowAssociation"/>
+        ordered="false" upperBound="-1" eType="#//MessageFlowAssociation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messageFlows" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//MessageFlow"/>
+        upperBound="-1" eType="#//MessageFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Collaboration" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Collaboration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conversations" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ConversationNode"/>
+        upperBound="-1" eType="#//ConversationNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correlationKeys" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//CorrelationKey"/>
+        upperBound="-1" eType="#//CorrelationKey"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participants" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Participant"/>
+        upperBound="-1" eType="#//Participant"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParticipantAssociation" eSuperTypes="#//BaseElement">
     <eOperations name="ParticipantAssociationinnerParticipantRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1777,18 +1783,17 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="partnerEntityRef" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//PartnerEntity" eOpposite="#//PartnerEntity/participantRef"/>
+        upperBound="-1" eType="#//PartnerEntity" eOpposite="#//PartnerEntity/participantRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="partnerRoleRef" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//PartnerRole" eOpposite="#//PartnerRole/participantRef"/>
+        upperBound="-1" eType="#//PartnerRole" eOpposite="#//PartnerRole/participantRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaceRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNInterface"/>
+        upperBound="-1" eType="#//BPMNInterface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InteractionNode" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Element" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingConversationLinks"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//ConversationLink"
-        eOpposite="#//ConversationLink/sourceRef"/>
+        ordered="false" upperBound="-1" eType="#//ConversationLink" eOpposite="#//ConversationLink/sourceRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingConversationLinks"
         ordered="false" lowerBound="1" eType="#//ConversationLink" eOpposite="#//ConversationLink/targetRef"/>
   </eClassifiers>
@@ -1836,7 +1841,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_InstanceSpecification"
         ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participantRef" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Participant" eOpposite="#//Participant/partnerEntityRef"/>
+        upperBound="-1" eType="#//Participant" eOpposite="#//Participant/partnerEntityRef"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PartnerRole" eSuperTypes="#//RootElement">
     <eOperations name="PartnerRoleparticipantRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1864,7 +1869,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participantRef" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Participant" eOpposite="#//Participant/partnerRoleRef"/>
+        upperBound="-1" eType="#//Participant" eOpposite="#//Participant/partnerRoleRef"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MessageFlowAssociation" eSuperTypes="#//BaseElement">
     <eOperations name="MessageFlowAssociationinnerMessageFlowRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2020,9 +2025,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_InformationFlow" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//InformationFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messageFlowRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//MessageFlow"/>
+        upperBound="-1" eType="#//MessageFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correlationKeys" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//CorrelationKey"/>
+        upperBound="-1" eType="#//CorrelationKey"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participantRefs" ordered="false"
         lowerBound="2" upperBound="-1" eType="#//Participant"/>
   </eClassifiers>
@@ -2030,7 +2035,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correlationPropertyRef"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//CorrelationProperty"/>
+        ordered="false" upperBound="-1" eType="#//CorrelationProperty"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CorrelationProperty" eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Property" ordered="false"
@@ -2080,7 +2085,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="correlationKeyRef" ordered="false"
         lowerBound="1" eType="#//CorrelationKey"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correlationPropertyBinding"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//CorrelationPropertyBinding"/>
+        ordered="false" upperBound="-1" eType="#//CorrelationPropertyBinding"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CorrelationPropertyBinding" eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Property" ordered="false"
@@ -2258,7 +2263,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceRef" ordered="false"
         eType="#//Resource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameterBindings"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//ResourceParameterBinding">
+        ordered="false" upperBound="-1" eType="#//ResourceParameterBinding">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="resourceParameterBindings "/>
       </eAnnotations>
@@ -2316,7 +2321,7 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ResourceParameter"/>
+        upperBound="-1" eType="#//ResourceParameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceParameter" eSuperTypes="#//BaseElement">
     <eOperations name="ResourceParameterowner" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2493,9 +2498,9 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="script" unique="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scriptFormat" lowerBound="1"
         upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scriptFormat" upperBound="-1"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalTask" eSuperTypes="#//CallableElement">
     <eOperations name="GlobalTasksupportedInterfaceRefs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2523,7 +2528,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_OpaqueBehavior" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resources" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ResourceRole"/>
+        upperBound="-1" eType="#//ResourceRole"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalBusinessRuleTask" eSuperTypes="#//GlobalTask">
     <eOperations name="GlobalBusinessRuleTaskimplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2549,7 +2554,7 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" unique="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
         defaultValueLiteral="##unspecified"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompensateEventDefinition" eSuperTypes="#//EventDefinition">
@@ -2712,19 +2717,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityClass" ordered="false"
         eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNProperty"/>
+        upperBound="-1" eType="#//BPMNProperty"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="default" ordered="false"
         eType="#//SequenceFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="boundaryEventRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BoundaryEvent"/>
+        upperBound="-1" eType="#//BoundaryEvent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataInputAssociations"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//DataInputAssociation"/>
+        ordered="false" upperBound="-1" eType="#//DataInputAssociation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataOutputAssociations"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//DataOutputAssociation"/>
+        ordered="false" upperBound="-1" eType="#//DataOutputAssociation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="loopCharacteristics" ordered="false"
         eType="#//LoopCharacteristics"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resources" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ResourceRole"/>
+        upperBound="-1" eType="#//ResourceRole"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoundaryEvent" eSuperTypes="#//CatchEvent">
     <eOperations name="boundaryEventattachedToRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2752,7 +2757,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cancelActivity" ordered="false"
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachedToRef" ordered="false"
-        lowerBound="1" eType="#//BPMNActivity"/>
+        lowerBound="1" eType="#//BPMNActivity" changeable="false" volatile="true"
+        transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CatchEvent" abstract="true" eSuperTypes="#//BPMNEvent">
     <eOperations name="catchEventeventDefinitionsRefs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2781,25 +2787,25 @@
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_AcceptEventAction"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction"/>
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_InitialNode" ordered="false"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//InitialNode"/>
+        eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//InitialNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataOutputAssociation"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//DataOutputAssociation"/>
+        ordered="false" upperBound="-1" eType="#//DataOutputAssociation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNEvent" abstract="true" eSuperTypes="#//FlowNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventClass" ordered="false"
         eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="_eventDefinitions" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//EventDefinition">
+        upperBound="-1" eType="#//EventDefinition">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value=" eventDefinitions"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//BPMNProperty"/>
+        upperBound="-1" eType="#//BPMNProperty"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventDefinitionRefs" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//EventDefinition"/>
+        upperBound="-1" eType="#//EventDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataOutputAssociation" eSuperTypes="#//DataAssociation">
     <eOperations name="dataOutputAssociationsource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2923,7 +2929,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformation" ordered="false"
         lowerBound="1" eType="#//FormalExpression"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignment" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Assignment"/>
+        upperBound="-1" eType="#//Assignment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Dependency" ordered="false"
@@ -3084,11 +3090,11 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CallOperationAction"
-        ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CallOperationAction"/>
+        ordered="false" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CallOperationAction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_FlowFinalNode" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//FlowFinalNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataInputAssociation" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//DataInputAssociation"/>
+        upperBound="-1" eType="#//DataInputAssociation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MessageEventDefinition" eSuperTypes="#//EventDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="messageRef" ordered="false"
@@ -3139,7 +3145,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//LinkEventDefinition" eOpposite="#//LinkEventDefinition/_target"/>
+        upperBound="-1" eType="#//LinkEventDefinition" eOpposite="#//LinkEventDefinition/_target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CallEvent" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CallEvent"/>
   </eClassifiers>
@@ -3175,7 +3181,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Enumeration" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Enumeration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="categoryValue" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//CategoryValue"/>
+        upperBound="-1" eType="#//CategoryValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//BPMNArtifact">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityPartition"
@@ -3342,7 +3348,7 @@
         lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
         defaultValueLiteral="##unspecified"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="renderings" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Rendering"/>
+        upperBound="-1" eType="#//Rendering"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//BPMNActivity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ioSpecification" ordered="false"
@@ -3400,10 +3406,10 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" unique="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
         defaultValueLiteral="##unspecified"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="renderings" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Rendering"/>
+        upperBound="-1" eType="#//Rendering"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalManualTask" eSuperTypes="#//GlobalTask"/>
   <eClassifiers xsi:type="ecore:EClass" name="ManualTask" eSuperTypes="#//Task">
@@ -3435,7 +3441,7 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conversationNodes" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ConversationNode"/>
+        upperBound="-1" eType="#//ConversationNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalConversation" eSuperTypes="#//BPMNCollaboration">
     <eOperations name="GlobalConversationcontainedelements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -3515,7 +3521,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="calledCollaborationRef"
         ordered="false" eType="#//BPMNCollaboration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="participantAssociations"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//ParticipantAssociation"/>
+        ordered="false" upperBound="-1" eType="#//ParticipantAssociation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Conversation" eSuperTypes="#//ConversationNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="SubProcess" eSuperTypes="#//BPMNActivity #//FlowElementsContainer">
@@ -3547,7 +3553,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_StructuredActivityNode"
         ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="hasLaneSets" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//LaneSet"/>
+        upperBound="-1" eType="#//LaneSet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CallActivity" eSuperTypes="#//BPMNActivity">
     <eOperations name="CallActivitycalledElementRefvalues" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -3575,7 +3581,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CallBehaviorAction"
         ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//CallBehaviorAction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="calledElementRef" ordered="false"
-        eType="#//CallableElement"/>
+        eType="#//CallableElement" changeable="false" volatile="true" transient="true"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BusinessRuleTask" eSuperTypes="#//Task">
     <eOperations name="BusinessRuleTaskimplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -3788,9 +3795,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_LoopNode" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//LoopNode"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="testBefore" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
+        changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="loopCondition" ordered="false"
-        lowerBound="1" eType="#//BPMNExpression"/>
+        lowerBound="1" eType="#//BPMNExpression" changeable="false" volatile="true"
+        transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MultiInstanceBehavior">
     <eLiterals name="none"/>
@@ -3955,6 +3964,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="noneBehaviorEventRef" ordered="false"
         eType="#//EventDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="complexBehaviorDefinition"
-        ordered="false" lowerBound="1" upperBound="-1" eType="#//ComplexBehaviorDefinition"/>
+        ordered="false" upperBound="-1" eType="#//ComplexBehaviorDefinition"/>
   </eClassifiers>
 </ecore:EPackage>

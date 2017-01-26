@@ -65,7 +65,7 @@ public interface ConversationNode extends InteractionNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Message Flow Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getConversationNode_MessageFlowRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<MessageFlow> getMessageFlowRefs();
@@ -81,7 +81,7 @@ public interface ConversationNode extends InteractionNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Correlation Keys</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getConversationNode_CorrelationKeys()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CorrelationKey> getCorrelationKeys();

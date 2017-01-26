@@ -197,7 +197,7 @@ public interface Definitions extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extensions</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDefinitions_Extensions()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNExtension> getExtensions();
@@ -213,7 +213,7 @@ public interface Definitions extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Imports</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDefinitions_Imports()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Import> getImports();
@@ -229,7 +229,7 @@ public interface Definitions extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relationships</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDefinitions_Relationships()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNRelationship> getRelationships();
@@ -247,7 +247,7 @@ public interface Definitions extends BaseElement {
 	 * @return the value of the '<em>Root Elements</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDefinitions_RootElements()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.RootElement#getDefinition
-	 * @model opposite="definition" required="true" ordered="false"
+	 * @model opposite="definition" ordered="false"
 	 * @generated
 	 */
 	EList<RootElement> getRootElements();

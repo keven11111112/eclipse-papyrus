@@ -337,7 +337,7 @@ public interface MultiInstanceLoopCharacteristics extends LoopCharacteristics {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complex Behavior Definition</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getMultiInstanceLoopCharacteristics_ComplexBehaviorDefinition()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ComplexBehaviorDefinition> getComplexBehaviorDefinition();

@@ -91,7 +91,7 @@ public interface CallableElement extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Supported Interface Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCallableElement_SupportedInterfaceRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNInterface> getSupportedInterfaceRefs();
@@ -107,7 +107,7 @@ public interface CallableElement extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Io Binding</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCallableElement_IoBinding()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<InputOutputBinding> getIoBinding();

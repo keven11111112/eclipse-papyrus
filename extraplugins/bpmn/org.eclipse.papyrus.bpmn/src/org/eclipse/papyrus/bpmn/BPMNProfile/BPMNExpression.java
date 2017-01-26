@@ -32,7 +32,7 @@ public interface BPMNExpression extends BaseElement {
 	 * @return the value of the '<em>Base Opaque Expression</em>' reference.
 	 * @see #setBase_OpaqueExpression(OpaqueExpression)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNExpression_Base_OpaqueExpression()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	OpaqueExpression getBase_OpaqueExpression();

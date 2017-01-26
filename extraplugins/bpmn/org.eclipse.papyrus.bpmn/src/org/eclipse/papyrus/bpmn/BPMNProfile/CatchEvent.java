@@ -67,7 +67,7 @@ public interface CatchEvent extends BPMNEvent {
 	 * @return the value of the '<em>Base Accept Event Action</em>' reference.
 	 * @see #setBase_AcceptEventAction(AcceptEventAction)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCatchEvent_Base_AcceptEventAction()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	AcceptEventAction getBase_AcceptEventAction();
@@ -93,7 +93,7 @@ public interface CatchEvent extends BPMNEvent {
 	 * @return the value of the '<em>Base Initial Node</em>' reference.
 	 * @see #setBase_InitialNode(InitialNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCatchEvent_Base_InitialNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	InitialNode getBase_InitialNode();
@@ -119,7 +119,7 @@ public interface CatchEvent extends BPMNEvent {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Output Association</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCatchEvent_DataOutputAssociation()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<DataOutputAssociation> getDataOutputAssociation();

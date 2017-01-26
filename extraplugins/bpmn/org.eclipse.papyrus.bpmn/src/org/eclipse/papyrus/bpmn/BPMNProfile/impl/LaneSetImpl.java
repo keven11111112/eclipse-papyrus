@@ -3,7 +3,6 @@
 package org.eclipse.papyrus.bpmn.BPMNProfile.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -16,10 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.FlowElementsContainer;
 import org.eclipse.papyrus.bpmn.BPMNProfile.Lane;
@@ -54,24 +50,6 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	 */
 	protected ActivityPartition base_ActivityPartition;
 
-	/**
-	 * The cached value of the '{@link #getLanes() <em>Lanes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLanes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Lane> lanes;
-	/**
-	 * The cached value of the '{@link #getParentLane() <em>Parent Lane</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParentLane()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Lane> parentLane;
 	/**
 	 * The cached value of the '{@link #getFlowElementsContainer() <em>Flow Elements Container</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -142,25 +120,19 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Lane> getLanes() {
-		if (lanes == null) {
-			lanes = new EObjectWithInverseResolvingEList<Lane>(Lane.class, this, BPMNProfilePackage.LANE_SET__LANES, BPMNProfilePackage.LANE__LANE_SET);
-		}
-		return lanes;
+		return LaneSetCustom.getLanes(this);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Lane> getParentLane() {
-		if (parentLane == null) {
-			parentLane = new EObjectResolvingEList<Lane>(Lane.class, this, BPMNProfilePackage.LANE_SET__PARENT_LANE);
-		}
-		return parentLane;
+		return LaneSetCustom.getParentLane(this);
 	}
 
 	/**
@@ -332,8 +304,6 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BPMNProfilePackage.LANE_SET__LANES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLanes()).basicAdd(otherEnd, msgs);
 			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
 				if (flowElementsContainer != null)
 					msgs = ((InternalEObject)flowElementsContainer).eInverseRemove(this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS, FlowElementsContainer.class, msgs);
@@ -350,8 +320,6 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BPMNProfilePackage.LANE_SET__LANES:
-				return ((InternalEList<?>)getLanes()).basicRemove(otherEnd, msgs);
 			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
 				return basicSetFlowElementsContainer(null, msgs);
 		}
@@ -392,14 +360,6 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 			case BPMNProfilePackage.LANE_SET__BASE_ACTIVITY_PARTITION:
 				setBase_ActivityPartition((ActivityPartition)newValue);
 				return;
-			case BPMNProfilePackage.LANE_SET__LANES:
-				getLanes().clear();
-				getLanes().addAll((Collection<? extends Lane>)newValue);
-				return;
-			case BPMNProfilePackage.LANE_SET__PARENT_LANE:
-				getParentLane().clear();
-				getParentLane().addAll((Collection<? extends Lane>)newValue);
-				return;
 			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
 				setFlowElementsContainer((FlowElementsContainer)newValue);
 				return;
@@ -417,12 +377,6 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 		switch (featureID) {
 			case BPMNProfilePackage.LANE_SET__BASE_ACTIVITY_PARTITION:
 				setBase_ActivityPartition((ActivityPartition)null);
-				return;
-			case BPMNProfilePackage.LANE_SET__LANES:
-				getLanes().clear();
-				return;
-			case BPMNProfilePackage.LANE_SET__PARENT_LANE:
-				getParentLane().clear();
 				return;
 			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
 				setFlowElementsContainer((FlowElementsContainer)null);
@@ -442,9 +396,9 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 			case BPMNProfilePackage.LANE_SET__BASE_ACTIVITY_PARTITION:
 				return base_ActivityPartition != null;
 			case BPMNProfilePackage.LANE_SET__LANES:
-				return lanes != null && !lanes.isEmpty();
+				return !getLanes().isEmpty();
 			case BPMNProfilePackage.LANE_SET__PARENT_LANE:
-				return parentLane != null && !parentLane.isEmpty();
+				return !getParentLane().isEmpty();
 			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
 				return flowElementsContainer != null;
 		}

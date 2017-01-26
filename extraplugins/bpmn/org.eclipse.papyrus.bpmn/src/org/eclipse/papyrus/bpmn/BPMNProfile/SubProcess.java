@@ -91,7 +91,7 @@ public interface SubProcess extends BPMNActivity, FlowElementsContainer {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Lane Sets</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getSubProcess_HasLaneSets()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<LaneSet> getHasLaneSets();

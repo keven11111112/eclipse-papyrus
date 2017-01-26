@@ -144,7 +144,7 @@ public interface DataAssociation extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assignment</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataAssociation_Assignment()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Assignment> getAssignment();

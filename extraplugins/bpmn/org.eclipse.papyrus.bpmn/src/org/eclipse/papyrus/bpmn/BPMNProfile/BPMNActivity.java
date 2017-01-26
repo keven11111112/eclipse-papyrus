@@ -180,7 +180,7 @@ public interface BPMNActivity extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNActivity_Properties()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNProperty> getProperties();
@@ -222,7 +222,7 @@ public interface BPMNActivity extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Boundary Event Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNActivity_BoundaryEventRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BoundaryEvent> getBoundaryEventRefs();
@@ -238,7 +238,7 @@ public interface BPMNActivity extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Input Associations</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNActivity_DataInputAssociations()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<DataInputAssociation> getDataInputAssociations();
@@ -254,7 +254,7 @@ public interface BPMNActivity extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Output Associations</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNActivity_DataOutputAssociations()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<DataOutputAssociation> getDataOutputAssociations();
@@ -296,7 +296,7 @@ public interface BPMNActivity extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resources</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNActivity_Resources()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ResourceRole> getResources();

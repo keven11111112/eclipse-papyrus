@@ -35,7 +35,7 @@ public interface FlowElementsContainer extends BaseElement {
 	 * @return the value of the '<em>Lane Sets</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getFlowElementsContainer_LaneSets()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.LaneSet#getFlowElementsContainer
-	 * @model opposite="flowElementsContainer" required="true" ordered="false"
+	 * @model opposite="flowElementsContainer" ordered="false"
 	 * @generated
 	 */
 	EList<LaneSet> getLaneSets();
@@ -53,7 +53,7 @@ public interface FlowElementsContainer extends BaseElement {
 	 * @return the value of the '<em>Flow Elements</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getFlowElementsContainer_FlowElements()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.FlowElement#getContainer
-	 * @model opposite="container" required="true" ordered="false"
+	 * @model opposite="container" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<FlowElement> getFlowElements();

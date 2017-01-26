@@ -36,7 +36,7 @@ public interface GlobalScriptTask extends GlobalTask {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Script</em>' attribute list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getGlobalScriptTask_Script()
-	 * @model unique="false" dataType="org.eclipse.uml2.types.String" required="true"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
 	EList<String> getScript();
@@ -52,7 +52,7 @@ public interface GlobalScriptTask extends GlobalTask {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Script Format</em>' attribute list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getGlobalScriptTask_ScriptFormat()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true"
+	 * @model dataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
 	EList<String> getScriptFormat();

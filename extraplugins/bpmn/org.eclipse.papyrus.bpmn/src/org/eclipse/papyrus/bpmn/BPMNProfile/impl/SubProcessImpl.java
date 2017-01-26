@@ -57,16 +57,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 	protected EList<LaneSet> laneSets;
 
 	/**
-	 * The cached value of the '{@link #getFlowElements() <em>Flow Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFlowElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FlowElement> flowElements;
-
-	/**
 	 * The default value of the '{@link #isTriggeredByEvent() <em>Triggered By Event</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,10 +133,9 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 	 * @generated
 	 */
 	public EList<FlowElement> getFlowElements() {
-		if (flowElements == null) {
-			flowElements = new EObjectWithInverseResolvingEList<FlowElement>(FlowElement.class, this, BPMNProfilePackage.SUB_PROCESS__FLOW_ELEMENTS, BPMNProfilePackage.FLOW_ELEMENT__CONTAINER);
-		}
-		return flowElements;
+		// TODO: implement this method to return the 'Flow Elements' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -256,8 +245,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 		switch (featureID) {
 			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLaneSets()).basicAdd(otherEnd, msgs);
-			case BPMNProfilePackage.SUB_PROCESS__FLOW_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFlowElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -272,8 +259,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 		switch (featureID) {
 			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
 				return ((InternalEList<?>)getLaneSets()).basicRemove(otherEnd, msgs);
-			case BPMNProfilePackage.SUB_PROCESS__FLOW_ELEMENTS:
-				return ((InternalEList<?>)getFlowElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -314,10 +299,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 				getLaneSets().clear();
 				getLaneSets().addAll((Collection<? extends LaneSet>)newValue);
 				return;
-			case BPMNProfilePackage.SUB_PROCESS__FLOW_ELEMENTS:
-				getFlowElements().clear();
-				getFlowElements().addAll((Collection<? extends FlowElement>)newValue);
-				return;
 			case BPMNProfilePackage.SUB_PROCESS__TRIGGERED_BY_EVENT:
 				setTriggeredByEvent((Boolean)newValue);
 				return;
@@ -343,9 +324,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
 				getLaneSets().clear();
 				return;
-			case BPMNProfilePackage.SUB_PROCESS__FLOW_ELEMENTS:
-				getFlowElements().clear();
-				return;
 			case BPMNProfilePackage.SUB_PROCESS__TRIGGERED_BY_EVENT:
 				setTriggeredByEvent(TRIGGERED_BY_EVENT_EDEFAULT);
 				return;
@@ -370,7 +348,7 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
 				return laneSets != null && !laneSets.isEmpty();
 			case BPMNProfilePackage.SUB_PROCESS__FLOW_ELEMENTS:
-				return flowElements != null && !flowElements.isEmpty();
+				return !getFlowElements().isEmpty();
 			case BPMNProfilePackage.SUB_PROCESS__TRIGGERED_BY_EVENT:
 				return triggeredByEvent != TRIGGERED_BY_EVENT_EDEFAULT;
 			case BPMNProfilePackage.SUB_PROCESS__BASE_STRUCTURED_ACTIVITY_NODE:

@@ -67,7 +67,7 @@ public interface InputSet extends BaseElement {
 	 * @return the value of the '<em>Optional Input Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInputSet_OptionalInputRefs()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.DataInput#getInputSetWithOptional
-	 * @model opposite="inputSetWithOptional" required="true" ordered="false"
+	 * @model opposite="inputSetWithOptional" ordered="false"
 	 * @generated
 	 */
 	EList<DataInput> getOptionalInputRefs();
@@ -85,7 +85,7 @@ public interface InputSet extends BaseElement {
 	 * @return the value of the '<em>While Executing Input Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInputSet_WhileExecutingInputRefs()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.DataInput#getInputSetWithWhileExecuting
-	 * @model opposite="inputSetWithWhileExecuting" required="true" ordered="false"
+	 * @model opposite="inputSetWithWhileExecuting" ordered="false"
 	 * @generated
 	 */
 	EList<DataInput> getWhileExecutingInputRefs();
@@ -103,7 +103,7 @@ public interface InputSet extends BaseElement {
 	 * @return the value of the '<em>Data Input Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInputSet_DataInputRefs()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.DataInput#getInputSetRefs
-	 * @model opposite="inputSetRefs" required="true" ordered="false"
+	 * @model opposite="inputSetRefs" ordered="false"
 	 * @generated
 	 */
 	EList<DataInput> getDataInputRefs();

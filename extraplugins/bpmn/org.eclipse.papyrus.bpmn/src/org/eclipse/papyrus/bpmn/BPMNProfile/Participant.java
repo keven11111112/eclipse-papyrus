@@ -122,7 +122,7 @@ public interface Participant extends BaseElement {
 	 * @return the value of the '<em>Partner Entity Ref</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getParticipant_PartnerEntityRef()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.PartnerEntity#getParticipantRef
-	 * @model opposite="participantRef" required="true" ordered="false"
+	 * @model opposite="participantRef" ordered="false"
 	 * @generated
 	 */
 	EList<PartnerEntity> getPartnerEntityRef();
@@ -140,7 +140,7 @@ public interface Participant extends BaseElement {
 	 * @return the value of the '<em>Partner Role Ref</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getParticipant_PartnerRoleRef()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.PartnerRole#getParticipantRef
-	 * @model opposite="participantRef" required="true" ordered="false"
+	 * @model opposite="participantRef" ordered="false"
 	 * @generated
 	 */
 	EList<PartnerRole> getPartnerRoleRef();
@@ -156,7 +156,7 @@ public interface Participant extends BaseElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Interface Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getParticipant_InterfaceRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNInterface> getInterfaceRefs();

@@ -23,7 +23,7 @@ Export-Package: org.eclipse.papyrus.bpmn.diagram.common,
  org.eclipse.papyrus.bpmn.diagram.common.providers
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

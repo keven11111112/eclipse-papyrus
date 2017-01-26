@@ -38,7 +38,7 @@ public interface ExclusiveGateway extends Gateway {
 	 * @return the value of the '<em>Base Decision Node</em>' reference.
 	 * @see #setBase_DecisionNode(DecisionNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getExclusiveGateway_Base_DecisionNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	DecisionNode getBase_DecisionNode();
@@ -64,7 +64,7 @@ public interface ExclusiveGateway extends Gateway {
 	 * @return the value of the '<em>Base Merge Node</em>' reference.
 	 * @see #setBase_MergeNode(MergeNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getExclusiveGateway_Base_MergeNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	MergeNode getBase_MergeNode();

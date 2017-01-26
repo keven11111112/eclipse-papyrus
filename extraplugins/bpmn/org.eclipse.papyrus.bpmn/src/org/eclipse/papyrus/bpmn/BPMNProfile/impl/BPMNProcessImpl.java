@@ -5,7 +5,6 @@ package org.eclipse.papyrus.bpmn.BPMNProfile.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -70,16 +69,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	 * @ordered
 	 */
 	protected EList<LaneSet> laneSets;
-
-	/**
-	 * The cached value of the '{@link #getFlowElements() <em>Flow Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFlowElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FlowElement> flowElements;
 
 	/**
 	 * The default value of the '{@link #getProcessType() <em>Process Type</em>}' attribute.
@@ -192,16 +181,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	protected Monitoring monitoring;
 
 	/**
-	 * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSupports()
-	 * @generated
-	 * @ordered
-	 */
-	protected BPMNProcess supports;
-
-	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -255,13 +234,10 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<FlowElement> getFlowElements() {
-		if (flowElements == null) {
-			flowElements = new EObjectWithInverseResolvingEList<FlowElement>(FlowElement.class, this, BPMNProfilePackage.BPMN_PROCESS__FLOW_ELEMENTS, BPMNProfilePackage.FLOW_ELEMENT__CONTAINER);
-		}
-		return flowElements;
+		return BPMNProcessCustom.getFlowElements(this);
 	}
 
 	/**
@@ -497,36 +473,17 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	 * @generated
 	 */
 	public BPMNProcess getSupports() {
-		if (supports != null && supports.eIsProxy()) {
-			InternalEObject oldSupports = (InternalEObject)supports;
-			supports = (BPMNProcess)eResolveProxy(oldSupports);
-			if (supports != oldSupports) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.BPMN_PROCESS__SUPPORTS, oldSupports, supports));
-			}
-		}
-		return supports;
+		BPMNProcess supports = basicGetSupports();
+		return supports != null && supports.eIsProxy() ? (BPMNProcess)eResolveProxy((InternalEObject)supports) : supports;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public BPMNProcess basicGetSupports() {
-		return supports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSupports(BPMNProcess newSupports) {
-		BPMNProcess oldSupports = supports;
-		supports = newSupports;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.BPMN_PROCESS__SUPPORTS, oldSupports, supports));
+		return this;
 	}
 
 	/**
@@ -689,8 +646,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 		switch (featureID) {
 			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLaneSets()).basicAdd(otherEnd, msgs);
-			case BPMNProfilePackage.BPMN_PROCESS__FLOW_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFlowElements()).basicAdd(otherEnd, msgs);
 			case BPMNProfilePackage.BPMN_PROCESS__RESOURCES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getResources()).basicAdd(otherEnd, msgs);
 		}
@@ -707,8 +662,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 		switch (featureID) {
 			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
 				return ((InternalEList<?>)getLaneSets()).basicRemove(otherEnd, msgs);
-			case BPMNProfilePackage.BPMN_PROCESS__FLOW_ELEMENTS:
-				return ((InternalEList<?>)getFlowElements()).basicRemove(otherEnd, msgs);
 			case BPMNProfilePackage.BPMN_PROCESS__RESOURCES:
 				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 		}
@@ -771,10 +724,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 				getLaneSets().clear();
 				getLaneSets().addAll((Collection<? extends LaneSet>)newValue);
 				return;
-			case BPMNProfilePackage.BPMN_PROCESS__FLOW_ELEMENTS:
-				getFlowElements().clear();
-				getFlowElements().addAll((Collection<? extends FlowElement>)newValue);
-				return;
 			case BPMNProfilePackage.BPMN_PROCESS__PROCESS_TYPE:
 				setProcessType((ProcessType)newValue);
 				return;
@@ -800,9 +749,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 			case BPMNProfilePackage.BPMN_PROCESS__MONITORING:
 				setMonitoring((Monitoring)newValue);
 				return;
-			case BPMNProfilePackage.BPMN_PROCESS__SUPPORTS:
-				setSupports((BPMNProcess)newValue);
-				return;
 			case BPMNProfilePackage.BPMN_PROCESS__PROPERTIES:
 				getProperties().clear();
 				getProperties().addAll((Collection<? extends BPMNProperty>)newValue);
@@ -825,9 +771,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 		switch (featureID) {
 			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
 				getLaneSets().clear();
-				return;
-			case BPMNProfilePackage.BPMN_PROCESS__FLOW_ELEMENTS:
-				getFlowElements().clear();
 				return;
 			case BPMNProfilePackage.BPMN_PROCESS__PROCESS_TYPE:
 				setProcessType(PROCESS_TYPE_EDEFAULT);
@@ -853,9 +796,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 			case BPMNProfilePackage.BPMN_PROCESS__MONITORING:
 				setMonitoring((Monitoring)null);
 				return;
-			case BPMNProfilePackage.BPMN_PROCESS__SUPPORTS:
-				setSupports((BPMNProcess)null);
-				return;
 			case BPMNProfilePackage.BPMN_PROCESS__PROPERTIES:
 				getProperties().clear();
 				return;
@@ -877,7 +817,7 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
 				return laneSets != null && !laneSets.isEmpty();
 			case BPMNProfilePackage.BPMN_PROCESS__FLOW_ELEMENTS:
-				return flowElements != null && !flowElements.isEmpty();
+				return !getFlowElements().isEmpty();
 			case BPMNProfilePackage.BPMN_PROCESS__PROCESS_TYPE:
 				return processType != PROCESS_TYPE_EDEFAULT;
 			case BPMNProfilePackage.BPMN_PROCESS__IS_CLOSED:
@@ -895,7 +835,7 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 			case BPMNProfilePackage.BPMN_PROCESS__MONITORING:
 				return monitoring != null;
 			case BPMNProfilePackage.BPMN_PROCESS__SUPPORTS:
-				return supports != null;
+				return basicGetSupports() != null;
 			case BPMNProfilePackage.BPMN_PROCESS__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case BPMNProfilePackage.BPMN_PROCESS__RESOURCES:

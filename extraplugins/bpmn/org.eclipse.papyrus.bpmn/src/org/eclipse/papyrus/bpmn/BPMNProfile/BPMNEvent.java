@@ -61,7 +61,7 @@ public interface BPMNEvent extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>event Definitions</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNEvent__eventDefinitions()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName=' eventDefinitions'"
 	 * @generated
 	 */
@@ -78,7 +78,7 @@ public interface BPMNEvent extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNEvent_Properties()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<BPMNProperty> getProperties();
@@ -94,7 +94,7 @@ public interface BPMNEvent extends FlowNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Event Definition Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBPMNEvent_EventDefinitionRefs()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<EventDefinition> getEventDefinitionRefs();

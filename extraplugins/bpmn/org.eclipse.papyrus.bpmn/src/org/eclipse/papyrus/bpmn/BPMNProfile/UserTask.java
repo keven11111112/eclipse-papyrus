@@ -91,7 +91,7 @@ public interface UserTask extends Task {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Renderings</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getUserTask_Renderings()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Rendering> getRenderings();

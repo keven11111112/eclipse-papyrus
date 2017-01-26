@@ -66,7 +66,7 @@ public interface BaseElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extension Values</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBaseElement_ExtensionValues()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ExtensionAttributeValue> getExtensionValues();
@@ -108,7 +108,7 @@ public interface BaseElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Documentation</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBaseElement_Documentation()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Documentation> getDocumentation();
@@ -124,7 +124,7 @@ public interface BaseElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extension Definitions</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBaseElement_ExtensionDefinitions()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ExtensionDefinition> getExtensionDefinitions();
@@ -142,7 +142,7 @@ public interface BaseElement extends EObject {
 	 * @return the value of the '<em>Outgoing</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBaseElement_Outgoing()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNAssociation#getSourceRef
-	 * @model opposite="sourceRef" required="true" ordered="false"
+	 * @model opposite="sourceRef" ordered="false"
 	 * @generated
 	 */
 	EList<BPMNAssociation> getOutgoing();
@@ -160,7 +160,7 @@ public interface BaseElement extends EObject {
 	 * @return the value of the '<em>Incoming</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getBaseElement_Incoming()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNAssociation#getTargetRef
-	 * @model opposite="targetRef" required="true" ordered="false"
+	 * @model opposite="targetRef" ordered="false"
 	 * @generated
 	 */
 	EList<BPMNAssociation> getIncoming();

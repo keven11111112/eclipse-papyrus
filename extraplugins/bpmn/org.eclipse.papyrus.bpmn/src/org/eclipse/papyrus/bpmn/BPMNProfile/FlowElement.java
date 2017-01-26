@@ -89,7 +89,7 @@ public interface FlowElement extends BaseElement {
 	 * @return the value of the '<em>category Value Ref</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getFlowElement__categoryValueRef()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.CategoryValue#getCategorizedFlowElements
-	 * @model opposite="categorizedFlowElements" required="true" ordered="false"
+	 * @model opposite="categorizedFlowElements" ordered="false"
 	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName=' categoryValueRef'"
 	 * @generated
 	 */
@@ -105,22 +105,11 @@ public interface FlowElement extends BaseElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Container</em>' reference.
-	 * @see #setContainer(FlowElementsContainer)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getFlowElement_Container()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.FlowElementsContainer#getFlowElements
-	 * @model opposite="flowElements" required="true" ordered="false"
+	 * @model opposite="flowElements" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	FlowElementsContainer getContainer();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.FlowElement#getContainer <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container</em>' reference.
-	 * @see #getContainer()
-	 * @generated
-	 */
-	void setContainer(FlowElementsContainer value);
 
 } // FlowElement

@@ -91,7 +91,7 @@ public interface CallConversation extends ConversationNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Participant Associations</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCallConversation_ParticipantAssociations()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ParticipantAssociation> getParticipantAssociations();

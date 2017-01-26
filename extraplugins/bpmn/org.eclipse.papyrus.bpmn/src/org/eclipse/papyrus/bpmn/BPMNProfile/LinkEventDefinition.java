@@ -66,7 +66,7 @@ public interface LinkEventDefinition extends EventDefinition {
 	 * @return the value of the '<em>Source</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getLinkEventDefinition_Source()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.LinkEventDefinition#get_target
-	 * @model opposite="_target" required="true" ordered="false"
+	 * @model opposite="_target" ordered="false"
 	 * @generated
 	 */
 	EList<LinkEventDefinition> getSource();

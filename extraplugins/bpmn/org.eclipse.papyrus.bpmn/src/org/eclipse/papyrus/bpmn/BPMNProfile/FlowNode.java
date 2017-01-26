@@ -32,7 +32,7 @@ public interface FlowNode extends FlowElement {
 	 * @return the value of the '<em>Base Activity Node</em>' reference.
 	 * @see #setBase_ActivityNode(ActivityNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getFlowNode_Base_ActivityNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	ActivityNode getBase_ActivityNode();

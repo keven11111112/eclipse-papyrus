@@ -61,7 +61,7 @@ public interface ExtensionDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extension Attribute Definitions</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getExtensionDefinition_ExtensionAttributeDefinitions()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ExtensionAttributeDefinition> getExtensionAttributeDefinitions();

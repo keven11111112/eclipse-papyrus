@@ -11576,6 +11576,8 @@
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-Gateway-base_ActivityGroup" name="base_ActivityGroup" visibility="public" association="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-15">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityGroup"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4udBUOJWEeafNPB9cvTcXg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_5glB0OJWEeafNPB9cvTcXg" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-20" memberEnd="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-20-ownedEnd BPMNProfile-CoreStructure-Common-Gateways-InclusiveGateway-default">
@@ -11628,9 +11630,13 @@
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-NonExclusiveGateway-generalization" general="BPMNProfile-CoreStructure-Common-Gateways-Gateway"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-NonExclusiveGateway-base_JoinNode" name="base_JoinNode" visibility="public" association="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-11">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#JoinNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pqDOAOJWEeafNPB9cvTcXg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_qdUeAOJWEeafNPB9cvTcXg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-NonExclusiveGateway-base_ForkNode" name="base_ForkNode" visibility="public" association="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-12">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ForkNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_n-YWYOJWEeafNPB9cvTcXg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_ozgnkOJWEeafNPB9cvTcXg" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-ParallelGateway" name="ParallelGateway">
@@ -11679,9 +11685,13 @@
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-ExclusiveGateway-generalization" general="BPMNProfile-CoreStructure-Common-Gateways-Gateway"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-ExclusiveGateway-base_DecisionNode" name="base_DecisionNode" visibility="public" association="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-7">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DecisionNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_weA1IOJWEeafNPB9cvTcXg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_xRgHkOJWEeafNPB9cvTcXg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-ExclusiveGateway-base_MergeNode" name="base_MergeNode" visibility="public" association="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-6">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#MergeNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tTZj8OL-EeaNk-nUJgbcXg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_uoz3sOL-EeaNk-nUJgbcXg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-ExclusiveGateway-default" name="default" visibility="public" type="BPMNProfile-CoreStructure-Common-SequenceFlow" association="BPMNProfile-CoreStructure-Common-Gateways-packagedElement-19" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Gateways-ExclusiveGateway-default-lowerValue"/>
@@ -11771,19 +11781,19 @@
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-extensions" name="extensions" visibility="public" type="BPMNProfile-CoreStructure-Foundation-BPMNExtension" association="BPMNProfile-CoreStructure-Infrastructure-packagedElement-7" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-extensions-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-extensions-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-extensions-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-rootElements" name="rootElements" visibility="public" type="BPMNProfile-CoreStructure-Infrastructure-RootElement" association="BPMNProfile-CoreStructure-Infrastructure-packagedElement-8" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-rootElements-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-rootElements-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-rootElements-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-imports" name="imports" visibility="public" type="BPMNProfile-CoreStructure-Infrastructure-Import" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-imports-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-imports-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-imports-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-relationships" name="relationships" visibility="public" type="BPMNProfile-CoreStructure-Foundation-BPMNRelationship" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-relationships-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-relationships-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Infrastructure-Definitions-relationships-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -11829,12 +11839,12 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-LaneSet-base_ActivityPartition" name="base_ActivityPartition" visibility="public" association="BPMNProfile-Process-packagedElement-16">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityPartition"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-LaneSet-lanes" name="lanes" visibility="public" type="BPMNProfile-Process-Lane" association="BPMNProfile-Process-packagedElement-26" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-LaneSet-lanes-lowerValue"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-LaneSet-lanes" name="lanes" visibility="public" type="BPMNProfile-Process-Lane" isReadOnly="true" isDerived="true" association="BPMNProfile-Process-packagedElement-26" isderived="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-LaneSet-lanes-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-LaneSet-lanes-upperValue" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-LaneSet-parentLane" name="parentLane" visibility="public" type="BPMNProfile-Process-Lane" association="BPMNProfile-Process-packagedElement-27" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-LaneSet-parentLane-lowerValue"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-LaneSet-parentLane" name="parentLane" visibility="public" type="BPMNProfile-Process-Lane" isReadOnly="true" isDerived="true" association="BPMNProfile-Process-packagedElement-27" isderived="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-LaneSet-parentLane-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-LaneSet-parentLane-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-LaneSet-flowElementsContainer" name="flowElementsContainer" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElementsContainer" association="BPMNProfile-CoreStructure-Common-packagedElement-42" isderived="false">
@@ -11903,19 +11913,22 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-BPMNProcess-correlationSubscriptions" name="correlationSubscriptions" visibility="public" type="BPMNProfile-CoreStructure-Common-CorrelationSubscription" association="BPMNProfile-Process-packagedElement-17">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-correlationSubscriptions-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-BPMNProcess-correlationSubscriptions-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-correlationSubscriptions-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-BPMNProcess-monitoring" name="monitoring" visibility="public" type="BPMNProfile-Process-Monitoring" association="BPMNProfile-Process-packagedElement-13">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-BPMNProcess-monitoring-lowerValue"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-BPMNProcess-supports" name="supports" visibility="public" type="BPMNProfile-Process-BPMNProcess" association="BPMNProfile-Process-packagedElement-24" isderived="false"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-BPMNProcess-supports" name="supports" visibility="public" type="BPMNProfile-Process-BPMNProcess" isReadOnly="true" isDerived="true" association="BPMNProfile-Process-packagedElement-24" isderived="false">
+        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-supports-lowerValue" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-supports-upperValue" value="1"/>
+      </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-BPMNProcess-properties" name="properties" visibility="public" type="BPMNProfile-Process-Data-BPMNProperty" association="BPMNProfile-Process-packagedElement-25" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-properties-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-BPMNProcess-properties-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-properties-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-BPMNProcess-resources" name="resources" visibility="public" type="BPMNProfile-Process-Activities-ResourceRole" association="BPMNProfile-Process-packagedElement-30" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-resources-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-BPMNProcess-resources-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-resources-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_CsTPMLJWEeW3evHeiuWSvw" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/Process.png">
@@ -11993,15 +12006,21 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Lane-_partitionElement-lowerValue"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Lane-laneSet" name="laneSet" visibility="public" type="BPMNProfile-Process-LaneSet" association="BPMNProfile-Process-packagedElement-26" isderived="false"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Lane-laneSet" name="laneSet" visibility="public" type="BPMNProfile-Process-LaneSet" isReadOnly="true" isDerived="true" association="BPMNProfile-Process-packagedElement-26" isderived="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pEdCMN5nEeaxgJm_PRusFg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_p_uXoN5nEeaxgJm_PRusFg" value="1"/>
+      </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Lane-flowNodeRefs" name="flowNodeRefs" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowNode" association="BPMNProfile-Process-packagedElement-28" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Lane-flowNodeRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Lane-flowNodeRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Lane-flowNodeRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Lane-partitionElementRef" name="partitionElementRef" visibility="public" type="BPMNProfile-CoreStructure-Foundation-BaseElement" association="BPMNProfile-Process-packagedElement-29" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Lane-partitionElementRef-lowerValue"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Lane-childLaneSet_" name="childLaneSet " visibility="public" type="BPMNProfile-Process-LaneSet" isderived="false"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Lane-childLaneSet_" name="childLaneSet " visibility="public" type="BPMNProfile-Process-LaneSet" isReadOnly="true" isDerived="true" isderived="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mpVDkN5nEeaxgJm_PRusFg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_nsz50N5nEeaxgJm_PRusFg" value="1"/>
+      </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_wfB50OmcEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/Lane.png">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IE9W8LJLEeW3evHeiuWSvw" source="image_papyrus">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IE9-ALJLEeW3evHeiuWSvw" key="image_kind_key" value="icon"/>
@@ -12029,12 +12048,12 @@
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-Process-GlobalScriptTask-generalization" general="BPMNProfile-Process-GlobalTask"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-GlobalScriptTask-script" name="script" visibility="public" isOrdered="true" isUnique="false" association="BPMNProfile-Process-packagedElement-33" isderived="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalScriptTask-script-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-GlobalScriptTask-script-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalScriptTask-script-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-GlobalScriptTask-scriptFormat" name="scriptFormat" visibility="public" isOrdered="true" association="BPMNProfile-Process-packagedElement-34" isderived="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalScriptTask-scriptFormat-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-GlobalScriptTask-scriptFormat-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalScriptTask-scriptFormat-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12061,7 +12080,7 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#OpaqueBehavior"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-GlobalTask-resources" name="resources" visibility="public" type="BPMNProfile-Process-Activities-ResourceRole" association="BPMNProfile-Process-packagedElement-31" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalTask-resources-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-GlobalTask-resources-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalTask-resources-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12091,7 +12110,7 @@
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-Process-GlobalBusinessRuleTask-generalization" general="BPMNProfile-Process-GlobalTask"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-GlobalBusinessRuleTask-implementation" name="implementation" visibility="public" isOrdered="true" isUnique="false" association="BPMNProfile-Process-packagedElement-32" isderived="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalBusinessRuleTask-implementation-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-GlobalBusinessRuleTask-implementation-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-GlobalBusinessRuleTask-implementation-upperValue" value="*"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="BPMNProfile-Process-GlobalBusinessRuleTask-implementation-defaultValue" value="##unspecified"/>
       </ownedAttribute>
@@ -12129,13 +12148,13 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-52" memberEnd="BPMNProfile-CoreStructure-Common-Events-packagedElement-52-ownedEnd BPMNProfile-CoreStructure-Common-Events-CompensateEventDefinition-activityRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-52-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-CompensateEventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-52">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-52-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-52-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-52-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-14" memberEnd="BPMNProfile-CoreStructure-Common-Events-EscalationEventDefinition-escalationRef BPMNProfile-CoreStructure-Common-Events-packagedElement-14-ownedEnd">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-14-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-EscalationEventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-14">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-14-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-14-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-14-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -12195,7 +12214,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-54" memberEnd="BPMNProfile-CoreStructure-Common-Events-packagedElement-54-ownedEnd BPMNProfile-CoreStructure-Common-Events-MessageEventDefinition-messageRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-54-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-MessageEventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-54">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-54-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-54-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-54-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -12217,7 +12236,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-16" memberEnd="BPMNProfile-CoreStructure-Common-Events-MessageEventDefinition-operationRef BPMNProfile-CoreStructure-Common-Events-packagedElement-16-ownedEnd">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-16-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-MessageEventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-16">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-16-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-16-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-16-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -12297,15 +12316,15 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-eventClass-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-_eventDefinitions" name=" eventDefinitions" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-EventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-48">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-_eventDefinitions-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-_eventDefinitions-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-_eventDefinitions-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-properties" name="properties" visibility="public" type="BPMNProfile-Process-Data-BPMNProperty" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-56" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-properties-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-properties-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-properties-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-eventDefinitionRefs" name="eventDefinitionRefs" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-EventDefinition" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-eventDefinitionRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-eventDefinitionRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-BPMNEvent-eventDefinitionRefs-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12351,12 +12370,16 @@
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-CatchEvent-base_AcceptEventAction" name="base_AcceptEventAction" visibility="public" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-4">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#AcceptEventAction"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AMFsUNc6EeaarKPBv3s3yQ"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_CMHDUNc6EeaarKPBv3s3yQ" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-CatchEvent-base_InitialNode" name="base_InitialNode" visibility="public" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-5">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InitialNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y-1B4NjbEeaVxflS-EEn7Q"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_0Je3INjbEeaVxflS-EEn7Q" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-CatchEvent-dataOutputAssociation" name="dataOutputAssociation" visibility="public" type="BPMNProfile-Process-Data-DataOutputAssociation" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-59" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-CatchEvent-dataOutputAssociation-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-CatchEvent-dataOutputAssociation-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-CatchEvent-dataOutputAssociation-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12423,7 +12446,7 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-LinkEventDefinition-_target-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-LinkEventDefinition-source" name="source" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-LinkEventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-51">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-LinkEventDefinition-source-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-LinkEventDefinition-source-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-LinkEventDefinition-source-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-LinkEventDefinition-base_CallEvent" name="base_CallEvent" visibility="public" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-50">
@@ -12447,7 +12470,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-53" memberEnd="BPMNProfile-CoreStructure-Common-Events-packagedElement-53-ownedEnd BPMNProfile-CoreStructure-Common-Events-ErrorEventDefinition-errorRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-53-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-ErrorEventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-53">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-53-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-53-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-53-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -12496,12 +12519,14 @@
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-Events-ThrowEvent-generalization" general="BPMNProfile-CoreStructure-Common-Events-BPMNEvent"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-ThrowEvent-base_CallOperationAction" name="base_CallOperationAction" visibility="public" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-7">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CallOperationAction"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MFCQQNc6EeaarKPBv3s3yQ"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_M5w40Nc6EeaarKPBv3s3yQ" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-ThrowEvent-base_FlowFinalNode" name="base_FlowFinalNode" visibility="public" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-8">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#FlowFinalNode"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-ThrowEvent-dataInputAssociation" name="dataInputAssociation" visibility="public" type="BPMNProfile-Process-Data-DataInputAssociation" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-58" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-ThrowEvent-dataInputAssociation-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-ThrowEvent-dataInputAssociation-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-ThrowEvent-dataInputAssociation-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12542,7 +12567,7 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-BoundaryEvent-cancelActivity" name="cancelActivity" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-BoundaryEvent-attachedToRef" name="attachedToRef" visibility="public" type="BPMNProfile-Process-Activities-BPMNActivity" isderived="false"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-BoundaryEvent-attachedToRef" name="attachedToRef" visibility="public" type="BPMNProfile-Process-Activities-BPMNActivity" isReadOnly="true" isDerived="true" isderived="false"/>
       <icon xmi:type="uml:Image" xmi:id="_P3jRUOmcEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/BoundaryEvent.png">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Kw_HYIycEeahl9J4idMaeA" source="image_papyrus">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KxAVgIycEeahl9J4idMaeA" key="image_kind_key" value="icon"/>
@@ -12558,7 +12583,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-39" memberEnd="BPMNProfile-CoreStructure-Common-Events-packagedElement-39-ownedEnd BPMNProfile-CoreStructure-Common-Events-SignalEventDefinition-signalRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-39-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-SignalEventDefinition" association="BPMNProfile-CoreStructure-Common-Events-packagedElement-39">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-39-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-39-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Events-packagedElement-39-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -12595,7 +12620,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-8" memberEnd="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-8-ownedEnd BPMNProfile-CoreStructure-Common-Artifacts-Group-_categoryValueRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-8-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-Artifacts-Group" association="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-8">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-8-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-8-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-8-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -12624,7 +12649,7 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Enumeration"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-Category-categoryValue" name="categoryValue" visibility="public" type="BPMNProfile-CoreStructure-Common-Artifacts-CategoryValue" association="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-17" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-Category-categoryValue-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-Category-categoryValue-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-Category-categoryValue-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12678,7 +12703,7 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#EnumerationLiteral"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-CategoryValue-categorizedFlowElements" name="categorizedFlowElements" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElement" association="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-12" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-CategoryValue-categorizedFlowElements-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-CategoryValue-categorizedFlowElements-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Artifacts-CategoryValue-categorizedFlowElements-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12707,13 +12732,15 @@
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-generalization" general="BPMNProfile-CoreStructure-Common-FlowElement"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-base_ActivityNode" name="base_ActivityNode" visibility="public" association="BPMNProfile-CoreStructure-Common-packagedElement-30">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J9hK4NywEeaKmtNtvNnrBw"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_K0vGwNywEeaKmtNtvNnrBw" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-incoming" name="incoming" visibility="public" type="BPMNProfile-CoreStructure-Common-SequenceFlow" association="BPMNProfile-CoreStructure-Common-packagedElement-44" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-incoming-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-incoming-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-incoming-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-outgoing" name="outgoing" visibility="public" type="BPMNProfile-CoreStructure-Common-SequenceFlow" association="BPMNProfile-CoreStructure-Common-packagedElement-45" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-outgoing-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-outgoing-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowNode-outgoing-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12728,7 +12755,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-53" memberEnd="BPMNProfile-CoreStructure-Common-packagedElement-53-ownedEnd BPMNProfile-CoreStructure-Common-CorrelationPropertyRetrievalExpression-messageRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-53-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-CorrelationPropertyRetrievalExpression" association="BPMNProfile-CoreStructure-Common-packagedElement-53">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-53-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-53-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-53-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -12778,7 +12805,7 @@
       </ownedRule>
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-Resource-generalization" general="BPMNProfile-CoreStructure-Common-ItemDefinition"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Resource-resourceParameters" name="resourceParameters" visibility="public" type="BPMNProfile-CoreStructure-Common-ResourceParameter" association="BPMNProfile-CoreStructure-Common-packagedElement-43" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Resource-resourceParameters-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-Resource-resourceParameters-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-Resource-resourceParameters-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12814,10 +12841,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowElement-monitoring-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElement-_categoryValueRef" name=" categoryValueRef" visibility="public" type="BPMNProfile-CoreStructure-Common-Artifacts-CategoryValue" association="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-12">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElement-_categoryValueRef-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowElement-_categoryValueRef-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElement-_categoryValueRef-upperValue" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElement-container" name="container" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElementsContainer" association="BPMNProfile-CoreStructure-Common-packagedElement-38" isderived="false"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElement-container" name="container" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElementsContainer" isReadOnly="true" isDerived="true" association="BPMNProfile-CoreStructure-Common-packagedElement-38" isderived="false"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-39" memberEnd="BPMNProfile-CoreStructure-Common-packagedElement-39-ownedEnd BPMNProfile-CoreStructure-Common-SequenceFlow-conditionExpression">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-39-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Common-SequenceFlow" association="BPMNProfile-CoreStructure-Common-packagedElement-39"/>
@@ -12837,7 +12864,7 @@
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationSubscription-correlationKeyRef" name="correlationKeyRef" visibility="public" type="BPMNProfile-CoreStructure-Common-CorrelationKey" association="BPMNProfile-CoreStructure-Common-packagedElement-49" isderived="false"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationSubscription-correlationPropertyBinding" name="correlationPropertyBinding" visibility="public" type="BPMNProfile-CoreStructure-Common-CorrelationPropertyBinding" association="BPMNProfile-CoreStructure-Common-packagedElement-50" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationSubscription-correlationPropertyBinding-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationSubscription-correlationPropertyBinding-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationSubscription-correlationPropertyBinding-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12860,11 +12887,11 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-ioSpecification-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-supportedInterfaceRefs" name="supportedInterfaceRefs" visibility="public" type="BPMNProfile-CoreStructure-Service-BPMNInterface" association="BPMNProfile-CoreStructure-Common-packagedElement-46" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-supportedInterfaceRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-supportedInterfaceRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-supportedInterfaceRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-ioBinding" name="ioBinding" visibility="public" type="BPMNProfile-Process-Data-InputOutputBinding" association="BPMNProfile-CoreStructure-Common-packagedElement-36">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-ioBinding-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-ioBinding-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CallableElement-ioBinding-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12918,6 +12945,8 @@
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-BPMNExpression-generalization" general="BPMNProfile-CoreStructure-Foundation-BaseElement"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-BPMNExpression-base_OpaqueExpression" name="base_OpaqueExpression" visibility="public" association="BPMNProfile-CoreStructure-Common-packagedElement-22">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#OpaqueExpression"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_T7DOgNjgEeaVxflS-EEn7Q"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_U6CmUNjgEeaVxflS-EEn7Q" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="BPMNProfile-CoreStructure-Common-packagedElement-31" memberEnd="BPMNProfile-CoreStructure-Common-packagedElement-31-ownedEnd BPMNProfile-CoreStructure-Common-ItemDefinition-base_Class" navigableOwnedEnd="BPMNProfile-CoreStructure-Common-packagedElement-31-ownedEnd">
@@ -12974,7 +13003,7 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationKey-correlationPropertyRef" name="correlationPropertyRef" visibility="public" type="BPMNProfile-CoreStructure-Common-CorrelationProperty" association="BPMNProfile-CoreStructure-Common-packagedElement-47" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationKey-correlationPropertyRef-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationKey-correlationPropertyRef-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-CorrelationKey-correlationPropertyRef-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -12983,12 +13012,12 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer" name="FlowElementsContainer" isAbstract="true">
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-generalization" general="BPMNProfile-CoreStructure-Foundation-BaseElement"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements" name="flowElements" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElement" association="BPMNProfile-CoreStructure-Common-packagedElement-38" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements-lowerValue"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements" name="flowElements" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElement" isReadOnly="true" association="BPMNProfile-CoreStructure-Common-packagedElement-38" isderived="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets" name="laneSets" visibility="public" type="BPMNProfile-Process-LaneSet" association="BPMNProfile-CoreStructure-Common-packagedElement-42" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -13107,27 +13136,27 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ParameterSet"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-OutputSet-dataOutputRefs" name="dataOutputRefs" visibility="public" type="BPMNProfile-Process-Data-DataOutput" association="BPMNProfile-Process-Data-packagedElement-57" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-OutputSet-dataOutputRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-OutputSet-dataOutputRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-OutputSet-dataOutputRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-OutputSet-optionalOutputRefs_" name="optionalOutputRefs " visibility="public" type="BPMNProfile-Process-Data-DataOutput" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-OutputSet-optionalOutputRefs_-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-OutputSet-optionalOutputRefs_-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-OutputSet-optionalOutputRefs_-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-OutputSet-whileExecutingOutputRefs_" name="whileExecutingOutputRefs " visibility="public" type="BPMNProfile-Process-Data-DataOutput" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-OutputSet-whileExecutingOutputRefs_-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-OutputSet-whileExecutingOutputRefs_-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-OutputSet-whileExecutingOutputRefs_-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-23" memberEnd="BPMNProfile-Process-Data-packagedElement-23-ownedEnd BPMNProfile-Process-Data-DataObjectReference-dataObjectRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-23-ownedEnd" visibility="public" type="BPMNProfile-Process-Data-DataObjectReference" association="BPMNProfile-Process-Data-packagedElement-23">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-23-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-23-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-23-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-33" memberEnd="BPMNProfile-Process-Data-packagedElement-33-ownedEnd BPMNProfile-Process-Data-DataStoreReference-_dataStore">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-33-ownedEnd" visibility="public" type="BPMNProfile-Process-Data-DataStoreReference" association="BPMNProfile-Process-Data-packagedElement-33">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-33-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-33-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-33-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -13155,15 +13184,15 @@
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ParameterSet"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-InputSet-dataInputRefs" name="dataInputRefs" visibility="public" type="BPMNProfile-Process-Data-DataInput" association="BPMNProfile-Process-Data-packagedElement-54" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputSet-dataInputRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-InputSet-dataInputRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputSet-dataInputRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-InputSet-optionalInputRefs" name="optionalInputRefs" visibility="public" type="BPMNProfile-Process-Data-DataInput" association="BPMNProfile-Process-Data-packagedElement-55" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputSet-optionalInputRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-InputSet-optionalInputRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputSet-optionalInputRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-InputSet-whileExecutingInputRefs" name="whileExecutingInputRefs" visibility="public" type="BPMNProfile-Process-Data-DataInput" association="BPMNProfile-Process-Data-packagedElement-56" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputSet-whileExecutingInputRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-InputSet-whileExecutingInputRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputSet-whileExecutingInputRefs-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -13219,7 +13248,7 @@ Property or an Expression.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-27" memberEnd="BPMNProfile-Process-Data-packagedElement-27-ownedEnd BPMNProfile-Process-Data-ItemAwareElement-dataState">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-27-ownedEnd" visibility="public" type="BPMNProfile-Process-Data-ItemAwareElement" association="BPMNProfile-Process-Data-packagedElement-27">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-27-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-27-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-27-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -13261,6 +13290,8 @@ DataOutput owned by BPMN Activity has no notation. </body>
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-Process-Data-DataOutput-generalization" general="BPMNProfile-Process-Data-ItemAwareElement"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataOutput-base_OutputPin" name="base_OutputPin" visibility="public" association="BPMNProfile-Process-Data-packagedElement-3">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#OutputPin"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_arT5oN17EeaQFL1kCeUXTA"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_bihOcN17EeaQFL1kCeUXTA" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataOutput-isCollection" name="isCollection" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
@@ -13268,20 +13299,24 @@ DataOutput owned by BPMN Activity has no notation. </body>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataOutput-base_Parameter" name="base_Parameter" visibility="public" association="BPMNProfile-Process-Data-packagedElement-4">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-VWkENlxEeaUpu42JOX4Xg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="__HqKwNlxEeaUpu42JOX4Xg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataOutput-base_ActivityParameterNode" name="base_ActivityParameterNode" visibility="public" association="BPMNProfile-Process-Data-packagedElement-36">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityParameterNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8kr3sNlxEeaUpu42JOX4Xg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_9WERUNlxEeaUpu42JOX4Xg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetRefs" name="outputSetRefs" visibility="public" type="BPMNProfile-Process-Data-OutputSet" association="BPMNProfile-Process-Data-packagedElement-57" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithOptional" name="outputSetWithOptional" visibility="public" type="BPMNProfile-Process-Data-OutputSet" association="BPMNProfile-Process-Data-packagedElement-58" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithOptional-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithOptional-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithOptional-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithWhileExecuting" name="outputSetWithWhileExecuting" visibility="public" type="BPMNProfile-Process-Data-OutputSet" association="BPMNProfile-Process-Data-packagedElement-59" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithWhileExecuting-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithWhileExecuting-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataOutput-outputSetWithWhileExecuting-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_dtYYsOmcEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataOutput.png">
@@ -13329,7 +13364,7 @@ Variable owned by SubProcess</body>
       </ownedRule>
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-Process-Data-ItemAwareElement-generalization" general="BPMNProfile-CoreStructure-Foundation-BaseElement"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-ItemAwareElement-dataState" name="dataState" visibility="public" type="BPMNProfile-Process-Data-DataState" association="BPMNProfile-Process-Data-packagedElement-27">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-ItemAwareElement-dataState-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-ItemAwareElement-dataState-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-ItemAwareElement-dataState-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-ItemAwareElement-base_TypedElement" name="base_TypedElement" visibility="public" association="BPMNProfile-Process-Data-packagedElement-18">
@@ -13357,11 +13392,11 @@ Variable owned by SubProcess</body>
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataInputs" name="dataInputs" visibility="public" type="BPMNProfile-Process-Data-DataInput" association="BPMNProfile-Process-Data-packagedElement-50" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataInputs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataInputs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataInputs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataOutputs" name="dataOutputs" visibility="public" type="BPMNProfile-Process-Data-DataOutput" association="BPMNProfile-Process-Data-packagedElement-51" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataOutputs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataOutputs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-dataOutputs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-InputOutputSpecification-inputSets" name="inputSets" visibility="public" type="BPMNProfile-Process-Data-InputSet" association="BPMNProfile-Process-Data-packagedElement-52" isderived="false">
@@ -13380,7 +13415,7 @@ Variable owned by SubProcess</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-43" memberEnd="BPMNProfile-Process-Data-packagedElement-43-ownedEnd BPMNProfile-Process-Data-InputOutputBinding-inputDataRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-43-ownedEnd" visibility="public" type="BPMNProfile-Process-Data-InputOutputBinding" association="BPMNProfile-Process-Data-packagedElement-43">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-43-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-43-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-43-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -13499,7 +13534,7 @@ scope, e.g. a Data Object, a Property or an Expression.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-44" memberEnd="BPMNProfile-Process-Data-packagedElement-44-ownedEnd BPMNProfile-Process-Data-InputOutputBinding-outputDataRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-44-ownedEnd" visibility="public" type="BPMNProfile-Process-Data-InputOutputBinding" association="BPMNProfile-Process-Data-packagedElement-44">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-44-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-44-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-44-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -13535,23 +13570,29 @@ DataInput owned by BPMN Activity has no notation. </body>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataInput-base_InputPin" name="base_InputPin" visibility="public" association="BPMNProfile-Process-Data-packagedElement-7">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InputPin"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kVCFkN1-EeaQFL1kCeUXTA"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_k3LJUN1-EeaQFL1kCeUXTA" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataInput-base_Parameter" name="base_Parameter" visibility="public" association="BPMNProfile-Process-Data-packagedElement-8">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_35eFwNlxEeaUpu42JOX4Xg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_4qt8gNlxEeaUpu42JOX4Xg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataInput-base_ActivityParameterNode" name="base_ActivityParameterNode" visibility="public" association="BPMNProfile-Process-Data-packagedElement-35">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityParameterNode"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5hsAwNlxEeaUpu42JOX4Xg"/>
+        <upperValue xmi:type="uml:LiteralInteger" xmi:id="_6INOMNlxEeaUpu42JOX4Xg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetRefs" name="inputSetRefs" visibility="public" type="BPMNProfile-Process-Data-InputSet" association="BPMNProfile-Process-Data-packagedElement-54" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithOptional" name="inputSetWithOptional" visibility="public" type="BPMNProfile-Process-Data-InputSet" association="BPMNProfile-Process-Data-packagedElement-55" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithOptional-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithOptional-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithOptional-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithWhileExecuting" name="inputSetWithWhileExecuting" visibility="public" type="BPMNProfile-Process-Data-InputSet" association="BPMNProfile-Process-Data-packagedElement-56" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithWhileExecuting-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithWhileExecuting-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataInput-inputSetWithWhileExecuting-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_aVt5UOmcEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataInput.png">
@@ -13578,7 +13619,7 @@ DataInput owned by BPMN Activity has no notation. </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-59" memberEnd="BPMNProfile-Process-Data-packagedElement-59-ownedEnd BPMNProfile-Process-Data-DataOutput-outputSetWithWhileExecuting">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-59-ownedEnd" name="whileExecutingOutputRefs" visibility="public" type="BPMNProfile-Process-Data-DataOutput" association="BPMNProfile-Process-Data-packagedElement-59" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-59-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-59-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-59-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -13594,7 +13635,7 @@ DataInput owned by BPMN Activity has no notation. </body>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-57" memberEnd="BPMNProfile-Process-Data-OutputSet-dataOutputRefs BPMNProfile-Process-Data-DataOutput-outputSetRefs"/>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-58" memberEnd="BPMNProfile-Process-Data-packagedElement-58-ownedEnd BPMNProfile-Process-Data-DataOutput-outputSetWithOptional">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-58-ownedEnd" name="optionalOutputRefs" visibility="public" type="BPMNProfile-Process-Data-DataOutput" association="BPMNProfile-Process-Data-packagedElement-58" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-58-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-58-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-58-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -13664,7 +13705,7 @@ DataInput owned by BPMN Activity has no notation. </body>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataAssociation-targetRef" name="targetRef" visibility="public" type="BPMNProfile-Process-Data-ItemAwareElement" association="BPMNProfile-Process-Data-packagedElement-48" isderived="false"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataAssociation-transformation" name="transformation" visibility="public" type="BPMNProfile-CoreStructure-Common-FormalExpression" association="BPMNProfile-Process-Data-packagedElement-49" isderived="false"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataAssociation-assignment" name="assignment" visibility="public" type="BPMNProfile-Process-Data-Assignment" association="BPMNProfile-Process-Data-packagedElement-41">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataAssociation-assignment-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-DataAssociation-assignment-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-DataAssociation-assignment-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_VGNukOmcEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataAssociation.png">
@@ -13682,7 +13723,7 @@ DataInput owned by BPMN Activity has no notation. </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Data-packagedElement-45" memberEnd="BPMNProfile-Process-Data-packagedElement-45-ownedEnd BPMNProfile-Process-Data-InputOutputBinding-operationRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-packagedElement-45-ownedEnd" name="ioBinding" visibility="public" type="BPMNProfile-Process-Data-InputOutputBinding" association="BPMNProfile-Process-Data-packagedElement-45" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-45-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Data-packagedElement-45-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Data-packagedElement-45-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -13721,7 +13762,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="BPMNProfile-Process-HumanInteraction-UserTask-implementation-defaultValue" value="##unspecified"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-HumanInteraction-UserTask-renderings" name="renderings" visibility="public" type="BPMNProfile-Process-HumanInteraction-Rendering" association="BPMNProfile-Process-HumanInteraction-packagedElement-14" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-HumanInteraction-UserTask-renderings-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-HumanInteraction-UserTask-renderings-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-HumanInteraction-UserTask-renderings-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_EpYSsHRXEeW1y_LdWwRLJQ" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/UserTask.png">
@@ -13754,12 +13795,12 @@ DataInput owned by BPMN Activity has no notation. </body>
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-generalization" general="BPMNProfile-Process-GlobalTask"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-implementation" name="implementation" visibility="public" isOrdered="true" isUnique="false" association="BPMNProfile-Process-HumanInteraction-packagedElement-11" isderived="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-implementation-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-implementation-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-implementation-upperValue" value="*"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-implementation-defaultValue" value="##unspecified"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-renderings" name="renderings" visibility="public" type="BPMNProfile-Process-HumanInteraction-Rendering" association="BPMNProfile-Process-HumanInteraction-packagedElement-12" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-renderings-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-renderings-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-HumanInteraction-GlobalUserTask-renderings-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -13800,7 +13841,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-InteractionNode-outgoingConversationLinks" name="outgoingConversationLinks" visibility="public" type="BPMNProfile-Collaboration-Conversation-ConversationLink" association="BPMNProfile-Collaboration-Conversation-packagedElement-16" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-InteractionNode-outgoingConversationLinks-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-InteractionNode-outgoingConversationLinks-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-InteractionNode-outgoingConversationLinks-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-InteractionNode-incomingConversationLinks" name="incomingConversationLinks" visibility="public" type="BPMNProfile-Collaboration-Conversation-ConversationLink" association="BPMNProfile-Collaboration-Conversation-packagedElement-17" isderived="false"/>
@@ -13881,15 +13922,15 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Participant-participantMultiplicity_-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Participant-partnerEntityRef" name="partnerEntityRef" visibility="public" type="BPMNProfile-Collaboration-PartnerEntity" association="BPMNProfile-Collaboration-packagedElement-34" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Participant-partnerEntityRef-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Participant-partnerEntityRef-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Participant-partnerEntityRef-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Participant-partnerRoleRef" name="partnerRoleRef" visibility="public" type="BPMNProfile-Collaboration-PartnerRole" association="BPMNProfile-Collaboration-packagedElement-35" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Participant-partnerRoleRef-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Participant-partnerRoleRef-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Participant-partnerRoleRef-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Participant-interfaceRefs" name="interfaceRefs" visibility="public" type="BPMNProfile-CoreStructure-Service-BPMNInterface" association="BPMNProfile-Collaboration-packagedElement-40" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Participant-interfaceRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Participant-interfaceRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Participant-interfaceRefs-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_1DI-MOmcEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/Participant.png">
@@ -13935,7 +13976,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-PartnerRole-participantRef" name="participantRef" visibility="public" type="BPMNProfile-Collaboration-Participant" association="BPMNProfile-Collaboration-packagedElement-35" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-PartnerRole-participantRef-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-PartnerRole-participantRef-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-PartnerRole-participantRef-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -13989,34 +14030,34 @@ DataInput owned by BPMN Activity has no notation. </body>
         <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-isClosed-defaultValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participantAssociations" name="participantAssociations" visibility="public" type="BPMNProfile-Collaboration-ParticipantAssociation" association="BPMNProfile-Collaboration-packagedElement-6">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participantAssociations-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participantAssociations-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participantAssociations-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlowAssociations" name="messageFlowAssociations" visibility="public" type="BPMNProfile-Collaboration-MessageFlowAssociation" association="BPMNProfile-Collaboration-packagedElement-3">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlowAssociations-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlowAssociations-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlowAssociations-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlows" name="messageFlows" visibility="public" type="BPMNProfile-Collaboration-MessageFlow" association="BPMNProfile-Collaboration-packagedElement-19">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlows-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlows-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-messageFlows-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-base_Collaboration" name="base_Collaboration" visibility="public" association="BPMNProfile-Collaboration-packagedElement-2">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Collaboration"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversations" name="conversations" visibility="public" type="BPMNProfile-Collaboration-Conversation-ConversationNode" association="BPMNProfile-Collaboration-packagedElement-9">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversations-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversations-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversations-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-correlationKeys" name="correlationKeys" visibility="public" type="BPMNProfile-CoreStructure-Common-CorrelationKey" association="BPMNProfile-Collaboration-packagedElement-12">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-correlationKeys-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-correlationKeys-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-correlationKeys-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participants" name="participants" visibility="public" type="BPMNProfile-Collaboration-Participant" association="BPMNProfile-Collaboration-packagedElement-25" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participants-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participants-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-participants-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversationLinks" name="conversationLinks" visibility="public" type="BPMNProfile-Collaboration-Conversation-ConversationLink" association="BPMNProfile-Collaboration-packagedElement-26" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversationLinks-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversationLinks-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversationLinks-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_Fy5zwLJWEeW3evHeiuWSvw" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/Collaboration.png">
@@ -14054,7 +14095,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InstanceSpecification"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-PartnerEntity-participantRef" name="participantRef" visibility="public" type="BPMNProfile-Collaboration-Participant" association="BPMNProfile-Collaboration-packagedElement-34" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-PartnerEntity-participantRef-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-PartnerEntity-participantRef-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-PartnerEntity-participantRef-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14176,7 +14217,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Stereotype"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Foundation-ExtensionDefinition-extensionAttributeDefinitions" name="extensionAttributeDefinitions" visibility="public" type="BPMNProfile-CoreStructure-Foundation-ExtensionAttributeDefinition" association="BPMNProfile-CoreStructure-Foundation-packagedElement-24" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-ExtensionDefinition-extensionAttributeDefinitions-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Foundation-ExtensionDefinition-extensionAttributeDefinitions-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-ExtensionDefinition-extensionAttributeDefinitions-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14224,7 +14265,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-id-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionValues" name="extensionValues" visibility="public" type="BPMNProfile-CoreStructure-Foundation-ExtensionAttributeValue" association="BPMNProfile-CoreStructure-Foundation-packagedElement-3">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionValues-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionValues-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionValues-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-base_Element" name="base_Element" visibility="public" association="BPMNProfile-CoreStructure-Foundation-packagedElement-2">
@@ -14235,15 +14276,15 @@ DataInput owned by BPMN Activity has no notation. </body>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-documentation-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionDefinitions" name="extensionDefinitions" visibility="public" type="BPMNProfile-CoreStructure-Foundation-ExtensionDefinition" association="BPMNProfile-CoreStructure-Foundation-packagedElement-21" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionDefinitions-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionDefinitions-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-extensionDefinitions-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-outgoing" name="outgoing" visibility="public" type="BPMNProfile-CoreStructure-Common-Artifacts-BPMNAssociation" association="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-15" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-outgoing-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-outgoing-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-outgoing-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-incoming" name="incoming" visibility="public" type="BPMNProfile-CoreStructure-Common-Artifacts-BPMNAssociation" association="BPMNProfile-CoreStructure-Common-Artifacts-packagedElement-16" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-incoming-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-incoming-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-BaseElement-incoming-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14287,7 +14328,7 @@ DataInput owned by BPMN Activity has no notation. </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-CoreStructure-Foundation-packagedElement-14" memberEnd="BPMNProfile-CoreStructure-Foundation-packagedElement-14-ownedEnd BPMNProfile-CoreStructure-Foundation-ExtensionAttributeValue-valueRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Foundation-packagedElement-14-ownedEnd" visibility="public" type="BPMNProfile-CoreStructure-Foundation-ExtensionAttributeValue" association="BPMNProfile-CoreStructure-Foundation-packagedElement-14">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-packagedElement-14-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Foundation-packagedElement-14-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Foundation-packagedElement-14-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -14371,7 +14412,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Service-BPMNOperation-outMessageRef-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Service-BPMNOperation-errorRef" name="errorRef" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-Error" association="BPMNProfile-CoreStructure-Service-packagedElement-8" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Service-BPMNOperation-errorRef-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Service-BPMNOperation-errorRef-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Service-BPMNOperation-errorRef-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14423,11 +14464,11 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-implementationRef-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-operations" name="operations" visibility="public" type="BPMNProfile-CoreStructure-Service-BPMNOperation" association="BPMNProfile-CoreStructure-Service-packagedElement-5" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-operations-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-operations-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-operations-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-callableElements" name="callableElements" visibility="public" type="BPMNProfile-CoreStructure-Common-CallableElement" association="BPMNProfile-CoreStructure-Service-packagedElement-9" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-callableElements-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-callableElements-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Service-BPMNInterface-callableElements-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14445,7 +14486,7 @@ DataInput owned by BPMN Activity has no notation. </body>
       </ownedRule>
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-Collaboration-Conversation-SubConversation-generalization" general="BPMNProfile-Collaboration-Conversation-ConversationNode"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Conversation-SubConversation-conversationNodes" name="conversationNodes" visibility="public" type="BPMNProfile-Collaboration-Conversation-ConversationNode" association="BPMNProfile-Collaboration-Conversation-packagedElement-5">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-SubConversation-conversationNodes-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Conversation-SubConversation-conversationNodes-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-SubConversation-conversationNodes-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14454,7 +14495,7 @@ DataInput owned by BPMN Activity has no notation. </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Collaboration-Conversation-packagedElement-8" memberEnd="BPMNProfile-Collaboration-Conversation-packagedElement-8-ownedEnd BPMNProfile-Collaboration-Conversation-ConversationNode-messageFlowRefs">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Conversation-packagedElement-8-ownedEnd" visibility="public" type="BPMNProfile-Collaboration-Conversation-ConversationNode" association="BPMNProfile-Collaboration-Conversation-packagedElement-8">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-packagedElement-8-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Conversation-packagedElement-8-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-packagedElement-8-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -14475,11 +14516,11 @@ DataInput owned by BPMN Activity has no notation. </body>
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InformationFlow"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-messageFlowRefs" name="messageFlowRefs" visibility="public" type="BPMNProfile-Collaboration-MessageFlow" association="BPMNProfile-Collaboration-Conversation-packagedElement-8">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-messageFlowRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-messageFlowRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-messageFlowRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-correlationKeys" name="correlationKeys" visibility="public" type="BPMNProfile-CoreStructure-Common-CorrelationKey" association="BPMNProfile-Collaboration-Conversation-packagedElement-9">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-correlationKeys-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-correlationKeys-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-correlationKeys-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Conversation-ConversationNode-participantRefs" name="participantRefs" visibility="public" type="BPMNProfile-Collaboration-Participant" association="BPMNProfile-Collaboration-Conversation-packagedElement-13" isderived="false">
@@ -14525,7 +14566,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Conversation-CallConversation-calledCollaborationRef-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Collaboration-Conversation-CallConversation-participantAssociations" name="participantAssociations" visibility="public" type="BPMNProfile-Collaboration-ParticipantAssociation" association="BPMNProfile-Collaboration-Conversation-packagedElement-15" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-CallConversation-participantAssociations-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Collaboration-Conversation-CallConversation-participantAssociations-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-Conversation-CallConversation-participantAssociations-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14592,7 +14633,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#StructuredActivityNode"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-SubProcess-hasLaneSets" name="hasLaneSets" visibility="public" type="BPMNProfile-Process-LaneSet" association="BPMNProfile-Process-Activities-packagedElement-34">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-SubProcess-hasLaneSets-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-SubProcess-hasLaneSets-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-SubProcess-hasLaneSets-upperValue" value="*"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_CeMOEOmdEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/SubProcess.png">
@@ -14682,29 +14723,29 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-activityClass-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-properties" name="properties" visibility="public" type="BPMNProfile-Process-Data-BPMNProperty" association="BPMNProfile-Process-Activities-packagedElement-42" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-properties-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-properties-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-properties-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-default" name="default" visibility="public" type="BPMNProfile-CoreStructure-Common-SequenceFlow" association="BPMNProfile-Process-Activities-packagedElement-43" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-default-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-boundaryEventRefs" name="boundaryEventRefs" visibility="public" type="BPMNProfile-CoreStructure-Common-Events-BoundaryEvent" association="BPMNProfile-Process-Activities-packagedElement-48" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-boundaryEventRefs-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-boundaryEventRefs-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-boundaryEventRefs-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataInputAssociations" name="dataInputAssociations" visibility="public" type="BPMNProfile-Process-Data-DataInputAssociation" association="BPMNProfile-Process-Activities-packagedElement-49" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataInputAssociations-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataInputAssociations-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataInputAssociations-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataOutputAssociations" name="dataOutputAssociations" visibility="public" type="BPMNProfile-Process-Data-DataOutputAssociation" association="BPMNProfile-Process-Activities-packagedElement-50" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataOutputAssociations-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataOutputAssociations-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-dataOutputAssociations-upperValue" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-loopCharacteristics" name="loopCharacteristics" visibility="public" type="BPMNProfile-Process-Activities-LoopCharacteristics" association="BPMNProfile-Process-Activities-packagedElement-52" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-loopCharacteristics-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-resources" name="resources" visibility="public" type="BPMNProfile-Process-Activities-ResourceRole" association="BPMNProfile-Process-Activities-packagedElement-65" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-resources-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-resources-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-BPMNActivity-resources-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14722,7 +14763,7 @@ DataInput owned by BPMN Activity has no notation. </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Activities-packagedElement-3" memberEnd="BPMNProfile-Process-Activities-packagedElement-3-ownedEnd BPMNProfile-Process-Activities-ReceiveTask-messageRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-packagedElement-3-ownedEnd" visibility="public" type="BPMNProfile-Process-Activities-ReceiveTask" association="BPMNProfile-Process-Activities-packagedElement-3">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-packagedElement-3-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-packagedElement-3-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-packagedElement-3-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -14763,7 +14804,7 @@ DataInput owned by BPMN Activity has no notation. </body>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-CallActivity-base_CallBehaviorAction" name="base_CallBehaviorAction" visibility="public" association="BPMNProfile-Process-Activities-packagedElement-11">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CallBehaviorAction"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-CallActivity-calledElementRef" name="calledElementRef" visibility="public" type="BPMNProfile-CoreStructure-Common-CallableElement" association="BPMNProfile-Process-Activities-packagedElement-44" isderived="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-CallActivity-calledElementRef" name="calledElementRef" visibility="public" type="BPMNProfile-CoreStructure-Common-CallableElement" isReadOnly="true" isDerived="true" association="BPMNProfile-Process-Activities-packagedElement-44" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-CallActivity-calledElementRef-lowerValue"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_lW8HwIybEeahl9J4idMaeA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/CallActivity.png">
@@ -14821,7 +14862,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-ResourceRole-resourceRef-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-ResourceRole-resourceParameterBindings_" name="resourceParameterBindings " visibility="public" type="BPMNProfile-Process-Activities-ResourceParameterBinding" association="BPMNProfile-Process-Activities-packagedElement-69" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-ResourceRole-resourceParameterBindings_-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-ResourceRole-resourceParameterBindings_-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-ResourceRole-resourceParameterBindings_-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>
@@ -14832,7 +14873,7 @@ DataInput owned by BPMN Activity has no notation. </body>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Activities-packagedElement-12" memberEnd="BPMNProfile-Process-Activities-packagedElement-12-ownedEnd BPMNProfile-Process-Activities-SendTask-messageRef">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-packagedElement-12-ownedEnd" visibility="public" type="BPMNProfile-Process-Activities-SendTask" association="BPMNProfile-Process-Activities-packagedElement-12">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-packagedElement-12-ownedEnd-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-packagedElement-12-ownedEnd-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-packagedElement-12-ownedEnd-upperValue" value="*"/>
       </ownedEnd>
     </packagedElement>
@@ -15050,10 +15091,10 @@ DataInput owned by BPMN Activity has no notation. </body>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-StandardLoopCharacteristics-base_LoopNode" name="base_LoopNode" visibility="public" association="BPMNProfile-Process-Activities-packagedElement-2">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#LoopNode"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-StandardLoopCharacteristics-testBefore" name="testBefore" visibility="public" association="BPMNProfile-Process-Activities-packagedElement-53" isderived="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-StandardLoopCharacteristics-testBefore" name="testBefore" visibility="public" isReadOnly="true" isDerived="true" association="BPMNProfile-Process-Activities-packagedElement-53" isderived="false">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-StandardLoopCharacteristics-loopCondition" name="loopCondition" visibility="public" type="BPMNProfile-CoreStructure-Common-BPMNExpression" association="BPMNProfile-Process-Activities-packagedElement-54" isderived="false"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-StandardLoopCharacteristics-loopCondition" name="loopCondition" visibility="public" type="BPMNProfile-CoreStructure-Common-BPMNExpression" isReadOnly="true" isDerived="true" association="BPMNProfile-Process-Activities-packagedElement-54" isderived="false"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="BPMNProfile-Process-Activities-packagedElement-18" memberEnd="BPMNProfile-Process-Activities-packagedElement-18-ownedEnd BPMNProfile-Process-Activities-ServiceTask-base_CallOperationAction" navigableOwnedEnd="BPMNProfile-Process-Activities-packagedElement-18-ownedEnd">
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-Process-Activities-packagedElement-18-generalization" general="BPMNProfile-Process-Activities-packagedElement-29"/>
@@ -15225,7 +15266,7 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-MultiInstanceLoopCharacteristics-noneBehaviorEventRef-lowerValue"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-MultiInstanceLoopCharacteristics-complexBehaviorDefinition" name="complexBehaviorDefinition" visibility="public" type="BPMNProfile-Process-Activities-ComplexBehaviorDefinition" association="BPMNProfile-Process-Activities-packagedElement-62" isderived="false">
-        <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-MultiInstanceLoopCharacteristics-complexBehaviorDefinition-lowerValue"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-MultiInstanceLoopCharacteristics-complexBehaviorDefinition-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-Activities-MultiInstanceLoopCharacteristics-complexBehaviorDefinition-upperValue" value="*"/>
       </ownedAttribute>
     </packagedElement>

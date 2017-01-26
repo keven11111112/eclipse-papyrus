@@ -35,7 +35,7 @@ public interface SubConversation extends ConversationNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Conversation Nodes</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getSubConversation_ConversationNodes()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ConversationNode> getConversationNodes();

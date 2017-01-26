@@ -44,7 +44,7 @@ public interface DataOutput extends ItemAwareElement {
 	 * @return the value of the '<em>Base Output Pin</em>' reference.
 	 * @see #setBase_OutputPin(OutputPin)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataOutput_Base_OutputPin()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	OutputPin getBase_OutputPin();
@@ -97,7 +97,7 @@ public interface DataOutput extends ItemAwareElement {
 	 * @return the value of the '<em>Base Parameter</em>' reference.
 	 * @see #setBase_Parameter(Parameter)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataOutput_Base_Parameter()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Parameter getBase_Parameter();
@@ -123,7 +123,7 @@ public interface DataOutput extends ItemAwareElement {
 	 * @return the value of the '<em>Base Activity Parameter Node</em>' reference.
 	 * @see #setBase_ActivityParameterNode(ActivityParameterNode)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataOutput_Base_ActivityParameterNode()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	ActivityParameterNode getBase_ActivityParameterNode();
@@ -151,7 +151,7 @@ public interface DataOutput extends ItemAwareElement {
 	 * @return the value of the '<em>Output Set Refs</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataOutput_OutputSetRefs()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.OutputSet#getDataOutputRefs
-	 * @model opposite="dataOutputRefs" required="true" ordered="false"
+	 * @model opposite="dataOutputRefs" ordered="false"
 	 * @generated
 	 */
 	EList<OutputSet> getOutputSetRefs();
@@ -167,7 +167,7 @@ public interface DataOutput extends ItemAwareElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Output Set With Optional</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataOutput_OutputSetWithOptional()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<OutputSet> getOutputSetWithOptional();
@@ -183,7 +183,7 @@ public interface DataOutput extends ItemAwareElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Output Set With While Executing</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getDataOutput_OutputSetWithWhileExecuting()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<OutputSet> getOutputSetWithWhileExecuting();

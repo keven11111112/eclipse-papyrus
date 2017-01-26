@@ -36,7 +36,7 @@ public interface GlobalUserTask extends GlobalTask {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Implementation</em>' attribute list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getGlobalUserTask_Implementation()
-	 * @model default="##unspecified" unique="false" dataType="org.eclipse.uml2.types.String" required="true"
+	 * @model default="##unspecified" unique="false" dataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
 	EList<String> getImplementation();
@@ -52,7 +52,7 @@ public interface GlobalUserTask extends GlobalTask {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Renderings</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getGlobalUserTask_Renderings()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Rendering> getRenderings();

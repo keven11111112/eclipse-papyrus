@@ -60,7 +60,7 @@ public interface Category extends RootElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Category Value</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getCategory_CategoryValue()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CategoryValue> getCategoryValue();

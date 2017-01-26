@@ -79,26 +79,6 @@ public class StandardLoopCharacteristicsImpl extends LoopCharacteristicsImpl imp
 	protected static final boolean TEST_BEFORE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isTestBefore() <em>Test Before</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isTestBefore()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean testBefore = TEST_BEFORE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getLoopCondition() <em>Loop Condition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLoopCondition()
-	 * @generated
-	 * @ordered
-	 */
-	protected BPMNExpression loopCondition;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -179,22 +159,10 @@ public class StandardLoopCharacteristicsImpl extends LoopCharacteristicsImpl imp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isTestBefore() {
-		return testBefore;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTestBefore(boolean newTestBefore) {
-		boolean oldTestBefore = testBefore;
-		testBefore = newTestBefore;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__TEST_BEFORE, oldTestBefore, testBefore));
+		return StandardLoopCharacteristicsCustom.isTestBefore(this);
 	}
 
 	/**
@@ -203,36 +171,17 @@ public class StandardLoopCharacteristicsImpl extends LoopCharacteristicsImpl imp
 	 * @generated
 	 */
 	public BPMNExpression getLoopCondition() {
-		if (loopCondition != null && loopCondition.eIsProxy()) {
-			InternalEObject oldLoopCondition = (InternalEObject)loopCondition;
-			loopCondition = (BPMNExpression)eResolveProxy(oldLoopCondition);
-			if (loopCondition != oldLoopCondition) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__LOOP_CONDITION, oldLoopCondition, loopCondition));
-			}
-		}
-		return loopCondition;
+		BPMNExpression loopCondition = basicGetLoopCondition();
+		return loopCondition != null && loopCondition.eIsProxy() ? (BPMNExpression)eResolveProxy((InternalEObject)loopCondition) : loopCondition;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public BPMNExpression basicGetLoopCondition() {
-		return loopCondition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLoopCondition(BPMNExpression newLoopCondition) {
-		BPMNExpression oldLoopCondition = loopCondition;
-		loopCondition = newLoopCondition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__LOOP_CONDITION, oldLoopCondition, loopCondition));
+		return StandardLoopCharacteristicsCustom.basicGetLoopCondition(this);
 	}
 
 	/**
@@ -321,12 +270,6 @@ public class StandardLoopCharacteristicsImpl extends LoopCharacteristicsImpl imp
 			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__BASE_LOOP_NODE:
 				setBase_LoopNode((LoopNode)newValue);
 				return;
-			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__TEST_BEFORE:
-				setTestBefore((Boolean)newValue);
-				return;
-			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__LOOP_CONDITION:
-				setLoopCondition((BPMNExpression)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -345,12 +288,6 @@ public class StandardLoopCharacteristicsImpl extends LoopCharacteristicsImpl imp
 			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__BASE_LOOP_NODE:
 				setBase_LoopNode((LoopNode)null);
 				return;
-			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__TEST_BEFORE:
-				setTestBefore(TEST_BEFORE_EDEFAULT);
-				return;
-			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__LOOP_CONDITION:
-				setLoopCondition((BPMNExpression)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -368,9 +305,9 @@ public class StandardLoopCharacteristicsImpl extends LoopCharacteristicsImpl imp
 			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__BASE_LOOP_NODE:
 				return base_LoopNode != null;
 			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__TEST_BEFORE:
-				return testBefore != TEST_BEFORE_EDEFAULT;
+				return isTestBefore() != TEST_BEFORE_EDEFAULT;
 			case BPMNProfilePackage.STANDARD_LOOP_CHARACTERISTICS__LOOP_CONDITION:
-				return loopCondition != null;
+				return basicGetLoopCondition() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -404,8 +341,6 @@ public class StandardLoopCharacteristicsImpl extends LoopCharacteristicsImpl imp
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (loopMaximum: ");
 		result.append(loopMaximum);
-		result.append(", testBefore: ");
-		result.append(testBefore);
 		result.append(')');
 		return result.toString();
 	}

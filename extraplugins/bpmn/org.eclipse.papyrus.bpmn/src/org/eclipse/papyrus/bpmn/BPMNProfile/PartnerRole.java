@@ -64,7 +64,7 @@ public interface PartnerRole extends RootElement {
 	 * @return the value of the '<em>Participant Ref</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getPartnerRole_ParticipantRef()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.Participant#getPartnerRoleRef
-	 * @model opposite="partnerRoleRef" required="true" ordered="false"
+	 * @model opposite="partnerRoleRef" ordered="false"
 	 * @generated
 	 */
 	EList<Participant> getParticipantRef();
