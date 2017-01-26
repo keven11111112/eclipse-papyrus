@@ -25,6 +25,6 @@ public class ViewsImageQuery implements IJavaQuery2<Context, IImage> {
 			final IParameterValueList2 parameterValues,
 			final IFacetManager facetManager)
 			throws DerivedTypedElementException {
-		return new URIImage("platform:/plugin/org.eclipse.papyrus.customization.properties/icons/MultiView.gif"); //$NON-NLS-1$
+		return new URIImage("platform:/plugin/org.eclipse.papyrus.views.properties.toolsmiths/icons/MultiView.gif"); //$NON-NLS-1$
 	}
 }

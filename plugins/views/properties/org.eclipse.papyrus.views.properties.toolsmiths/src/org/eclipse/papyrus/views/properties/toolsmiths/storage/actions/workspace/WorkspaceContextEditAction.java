@@ -59,6 +59,6 @@ public class WorkspaceContextEditAction implements IContextEditAction {
 
 	protected void runOpenEditor(Context context) throws CoreException {
 		IFile contextFile = ProjectUtil.getContextFile(context);
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new FileEditorInput(contextFile), "org.eclipse.papyrus.customization.properties.UIEditor", true); //$NON-NLS-1$ ;
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new FileEditorInput(contextFile), "org.eclipse.papyrus.views.properties.toolsmiths.UIEditor", true); //$NON-NLS-1$ ;
 	}
 }

@@ -5,12 +5,12 @@
     modelPluginID="org.eclipse.papyrus.views.properties.model.xwt" modelName="Xml"
     editPluginClass="org.eclipse.papyrus.views.properties.model.xwt.xwtxml.provider.XmlEditPlugin"
     editorPluginClass="org.eclipse.papyrus.views.properties.model.xwt.xwtxml.presentation.XmlEditorPlugin"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.customization.properties.model.xwt.tests/src-gen"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.views.properties.model.xwt.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     editPluginID="org.eclipse.papyrus.views.properties.model.xwt.edit" editorPluginID="org.eclipse.papyrus.views.properties.model.xwt.editor"
     operationReflection="true" importOrganizing="true">
   <foreignModel>xml.ecore</foreignModel>
-  <genPackages prefix="Xwtxml" basePackage="org.eclipse.papyrus.customization.properties.model.xwt"
+  <genPackages prefix="Xwtxml" basePackage="org.eclipse.papyrus.views.properties.model.xwt"
       disposableProviderFactory="true" ecorePackage="xml.ecore#/">
     <genClasses image="false" ecoreClass="xml.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xml.ecore#//Node/name"/>

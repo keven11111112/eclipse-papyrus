@@ -47,7 +47,7 @@ public class ProjectUtil {
 	/**
 	 * The name of the customization's hidden project
 	 */
-	public static final String CUSTOM_PROJECT_NAME = "org.eclipse.papyrus.customization.properties.internal"; //$NON-NLS-1$
+	public static final String CUSTOM_PROJECT_NAME = "org.eclipse.papyrus.views.properties.toolsmiths.internal"; //$NON-NLS-1$
 
 	/**
 	 *

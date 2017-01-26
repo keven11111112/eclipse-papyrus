@@ -70,7 +70,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <facetOperations
         name="visibleReferences"
@@ -80,10 +80,10 @@
           href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.customization.properties.query.GetVisibleFeaturesQuery"/>
+          implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.GetVisibleFeaturesQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
     <facetOperations
         name="image"
@@ -106,7 +106,7 @@
           <value
               xsi:type="javaQuery:JavaQuery"
               canBeCached="true"
-              implementationClassName="org.eclipse.papyrus.customization.properties.query.ViewsImageQuery"/>
+              implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.ViewsImageQuery"/>
         </cases>
         <cases>
           <case
@@ -115,12 +115,12 @@
           <value
               xsi:type="javaQuery:JavaQuery"
               canBeCached="true"
-              implementationClassName="org.eclipse.papyrus.customization.properties.query.DataContextsImageQuery"/>
+              implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.DataContextsImageQuery"/>
         </cases>
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
     </facetOperations>
     <facetOperations
         name="collapseLink">
@@ -151,10 +151,10 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:EClassCustomization"
@@ -169,13 +169,13 @@
           href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.customization.properties.query.GetVisibleFeaturesQuery"/>
+          implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.GetVisibleFeaturesQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:EClassCustomization"
@@ -224,10 +224,10 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:EClassCustomization"
@@ -263,7 +263,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
     </facetOperations>
     <facetOperations
         name="label"
@@ -292,7 +292,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <facetOperations
         name="visibleReferences"
@@ -302,13 +302,13 @@
           href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.customization.properties.query.GetVisibleFeaturesQuery"/>
+          implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.GetVisibleFeaturesQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:EClassCustomization"
@@ -342,7 +342,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <facetOperations
         name="visibleReferences"
@@ -352,13 +352,13 @@
           href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.customization.properties.query.GetVisibleFeaturesQuery"/>
+          implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.GetVisibleFeaturesQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:EClassCustomization"
@@ -392,7 +392,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <facetOperations
         name="collapseLink">
@@ -423,7 +423,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
     </facetOperations>
     <facetOperations
         name="visibleReferences"
@@ -433,13 +433,13 @@
           href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.customization.properties.query.GetVisibleFeaturesQuery"/>
+          implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.GetVisibleFeaturesQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:EClassCustomization"
@@ -473,7 +473,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <facetOperations
         name="visibleReferences"
@@ -483,13 +483,13 @@
           href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.customization.properties.query.GetVisibleFeaturesQuery"/>
+          implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.GetVisibleFeaturesQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:EClassCustomization"
@@ -525,7 +525,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
     </facetOperations>
     <facetOperations
         name="label"
@@ -554,7 +554,7 @@
       </query>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <facetOperations
         name="visibleReferences"
@@ -564,12 +564,12 @@
           href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.customization.properties.query.GetVisibleFeaturesQuery"/>
+          implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.GetVisibleFeaturesQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
+        href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
 </custom:Customization>

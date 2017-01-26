@@ -40,7 +40,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.customization.properties"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.properties.toolsmiths"; //$NON-NLS-1$
 
 	/**
 	 * The Preview view ID

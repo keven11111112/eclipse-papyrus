@@ -29,7 +29,7 @@
       </editor>
    </extension>
    <extension point="org.eclipse.emf.ecore.uri_mapping">
-      <mapping source="pathmap://PPECustom/" target="platform:/plugin/org.eclipse.papyrus.customization.properties/Model/">
+      <mapping source="pathmap://PPECustom/" target="platform:/plugin/org.eclipse.papyrus.views.properties.toolsmiths/Model/">
       </mapping>
    </extension>
    <extension point="org.eclipse.papyrus.infra.properties.environments">

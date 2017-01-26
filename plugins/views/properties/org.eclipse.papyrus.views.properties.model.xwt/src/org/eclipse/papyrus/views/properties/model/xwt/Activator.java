@@ -23,7 +23,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.customization.properties.model.xwt"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.properties.model.xwt"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

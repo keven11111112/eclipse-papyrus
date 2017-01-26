@@ -920,7 +920,7 @@
         <properties xmi:id="_W4EBbpLCEeWbp4A9_-WIrQ" name="typeName" description="The fully-qualified name of this element"/>
       </elements>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.customization.properties/Model/CustomizationEnvironment.xmi#//@modelElementFactories.2"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties.toolsmiths/Model/CustomizationEnvironment.xmi#//@modelElementFactories.2"/>
   </dataContexts>
   <dataContexts xmi:id="_W4EoUJLCEeWbp4A9_-WIrQ" name="Custom" label="Custom">
     <elements xsi:type="contexts:DataContextPackage" xmi:id="_W4EoUZLCEeWbp4A9_-WIrQ" name="Attribute">
@@ -951,7 +951,7 @@
         <properties xmi:id="_W4EoZJLCEeWbp4A9_-WIrQ" name="increment" description="The increment value for this spinner"/>
       </elements>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.customization.properties/Model/CustomizationEnvironment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties.toolsmiths/Model/CustomizationEnvironment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts xmi:id="_W4EoZZLCEeWbp4A9_-WIrQ" name="Properties" label="Properties">
     <elements xmi:id="_W4EoZpLCEeWbp4A9_-WIrQ" name="EcoreInstanceOf">
@@ -967,6 +967,6 @@
     <elements xmi:id="_W4EobZLCEeWbp4A9_-WIrQ" name="Stereotype">
       <properties xmi:id="_W4EobpLCEeWbp4A9_-WIrQ" name="stereotypeName" label="Stereotype name" description="The fully qualified name of the Stereotype. The separator is &quot;::&quot;. For example : MyProfile::MyPackage::MyStereotype"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.customization.properties/Model/CustomizationEnvironment.xmi#//@modelElementFactories.1"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties.toolsmiths/Model/CustomizationEnvironment.xmi#//@modelElementFactories.1"/>
   </dataContexts>
 </contexts:Context>

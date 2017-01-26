@@ -17,7 +17,7 @@ import org.eclipse.papyrus.views.properties.toolsmiths.messages.Messages;
 
 public class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.customization.properties.messages.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.views.properties.toolsmiths.messages.messages"; //$NON-NLS-1$
 
 	public static String CopyContextAction_Copying;
 
