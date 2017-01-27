@@ -24,6 +24,7 @@
 		<module>org.eclipse.papyrus.dev.tests.framework</module>
 		<module>org.eclipse.papyrus.dev.tests.framework.ui</module>
 		<module>org.eclipse.papyrus.dev.types</module>
+		<module>org.eclipse.papyrus.dev.ui</module>
 		<module>org.eclipse.papyrus.dev.view.services.edit.request</module>
 		<module>org.eclipse.papyrus.developer.profile</module>
 		<module>org.eclipse.papyrus.gmf.editpartview</module>
