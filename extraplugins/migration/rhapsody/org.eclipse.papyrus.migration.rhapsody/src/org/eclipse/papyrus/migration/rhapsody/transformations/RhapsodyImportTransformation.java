@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.m2m.internal.qvt.oml.library.Context;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.migration.common.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.common.transformation.AbstractImportTransformation;
 import org.eclipse.papyrus.migration.common.transformation.IDependencyAnalysisHelper;
 import org.eclipse.papyrus.migration.rhapsody.Activator;
+import org.eclipse.papyrus.migration.rhapsody.xmi.PreserveRhapsodySemanticIDHelper;
 import org.eclipse.papyrus.uml.internationalization.utils.UMLInternationalizationKeyResolver;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
@@ -127,7 +129,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 			// TODO : warning, this step is not in RSA
 			monitor.subTask("Importing semantic model...");
 			URI semanticTransformationURI = getSemanticTransformationURI();
-			if(null!=semanticTransformationURI){
+			if (null != semanticTransformationURI) {
 				result = runTransformation(semanticTransformationURI, extents, monitor);
 				generationStatus.add(result);
 			}
@@ -168,7 +170,7 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 			long endExtensionsAfter = System.nanoTime();
 			this.importExtensionsTime += endExtensionsAfter - startExtensionsAfter;
 		} finally {
-			context = null;
+			// context = null;
 		}
 
 		//
@@ -198,6 +200,11 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 			// which were created during the QVTo transformations.
 			List<EObject> outUMLObjects = getInOutUMLModel().getContents();
 			umlResource.getContents().addAll(outUMLObjects);
+
+			PreserveRhapsodySemanticIDHelper helper = new PreserveRhapsodySemanticIDHelper(new Context(context));
+			helper.keepIdForUMLResource((XMIResource) this.umlResource);
+		
+			context = null; 
 
 			GMFResource notationResource = new GMFResource(notationModelURI); // GMF Resource content type?
 			resourceSet.getResources().add(notationResource);
@@ -407,19 +414,19 @@ public class RhapsodyImportTransformation extends AbstractImportTransformation {
 	protected Collection<URI> getAllTransformationURIs() {
 		final Collection<URI> allTransformations = new ArrayList<URI>();
 		final URI semanticTransformationURI = getSemanticTransformationURI();
-		if(null!=semanticTransformationURI){
+		if (null != semanticTransformationURI) {
 			allTransformations.add(semanticTransformationURI);
 		}
 		final Collection<URI> diagramTransformationURI = getDiagramTransformationURIs();
-		if(null!=diagramTransformationURI){
+		if (null != diagramTransformationURI) {
 			allTransformations.addAll(diagramTransformationURI);
 		}
 		final Collection<URI> profilesTransformationURI = getProfilesTransformationURI();
-		if(null!=profilesTransformationURI){
+		if (null != profilesTransformationURI) {
 			allTransformations.addAll(profilesTransformationURI);
 		}
 		final Collection<URI> additionalTransformationURIs = getAdditionalTransformationURIs();
-		if(null!=additionalTransformationURIs){
+		if (null != additionalTransformationURIs) {
 			allTransformations.addAll(additionalTransformationURIs);
 		}
 		return allTransformations;

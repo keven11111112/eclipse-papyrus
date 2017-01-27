@@ -809,4 +809,13 @@ public abstract class AbstractImportTransformation implements IImportTransformat
 			values.remove(elementToDelete);
 		}
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * 		the trace of the transformation
+	 */
+	protected Trace getTrace() {
+		return this.trace;
+	}
 }

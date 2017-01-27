@@ -44,32 +44,39 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  */
 public class RpyUtil {
 
-	public static final Object RAW_CONTAINER_NAME = "IRPYRawContainer";
-	public static final String RAW_CONTAINER_VALUE_FEATURE_NAME = "value";
+	public static final String GUID_STRING = "GUID"; //$NON-NLS-1$
+	
+	public static final String OLDID_STRING = "OLDID"; //$NON-NLS-1$
+	
+	public static final String ID_SEPARATOR = "-"; //$NON-NLS-1$
 
-	private static final String ID_FEATURE_NAME = "_id";
-	private static final String IHANDLE_NAME = "IHandle";
-	private static final String ISUBSYSTEM_HANDLE_NAME = "ISubsystemHandle";
-	private static final String INOBJECT_HANDLE_NAME ="INObjectHandle";
-	private static final String ICLASSIFIER_HANDLE_NAME = "IClassifierHandle";
+	
+	public static final Object RAW_CONTAINER_NAME = "IRPYRawContainer"; //$NON-NLS-1$
+	public static final String RAW_CONTAINER_VALUE_FEATURE_NAME = "value"; //$NON-NLS-1$
 
-	private static final String HANDLE_FILE_NAME_REF = "_filename";
-	private static final String ELEMENT_FILE_NAME_REF = "fileName";
-	private static final String ELEMENT_PERSIST_AT = "_persistAs";
-	private static final String OWNER_HANDLE_FEATURE_NAME = "_ownerHandle";
-	private static final String NAME_FEATURE_NAME = "_name";
-	private static final String SUBSYSTEM_FEATURE_NAME="_subsystem";
-	private static final String ISUBSYSTEM_NODE_NAME = "ISubsystem";
-	private static final String CLASS_FEATURE_NAME = "_class";
-	private static final String M2_CLASS_FEATURE_NAME = "_m2Class";
+	private static final String ID_FEATURE_NAME = "_id"; //$NON-NLS-1$
+	private static final String IHANDLE_NAME = "IHandle"; //$NON-NLS-1$
+	private static final String ISUBSYSTEM_HANDLE_NAME = "ISubsystemHandle"; //$NON-NLS-1$
+	private static final String INOBJECT_HANDLE_NAME ="INObjectHandle"; //$NON-NLS-1$
+	private static final String ICLASSIFIER_HANDLE_NAME = "IClassifierHandle"; //$NON-NLS-1$
+
+	private static final String HANDLE_FILE_NAME_REF = "_filename"; //$NON-NLS-1$
+	private static final String ELEMENT_FILE_NAME_REF = "fileName"; //$NON-NLS-1$
+	private static final String ELEMENT_PERSIST_AT = "_persistAs"; //$NON-NLS-1$
+	private static final String OWNER_HANDLE_FEATURE_NAME = "_ownerHandle"; //$NON-NLS-1$
+	private static final String NAME_FEATURE_NAME = "_name"; //$NON-NLS-1$
+	private static final String SUBSYSTEM_FEATURE_NAME="_subsystem"; //$NON-NLS-1$
+	private static final String ISUBSYSTEM_NODE_NAME = "ISubsystem"; //$NON-NLS-1$
+	private static final String CLASS_FEATURE_NAME = "_class"; //$NON-NLS-1$
+	private static final String M2_CLASS_FEATURE_NAME = "_m2Class"; //$NON-NLS-1$
 
 	public static  List<String> SUPPORTED_EXTENSIONS = new ArrayList<String>();
 	public static Map<String, String> nodeTypeToExtensionMap = new HashMap<String, String>() ;
-	private static final String FILE_EXTENSION_PROPERTIES = "fileextension.properties";
-	private static final String NULL_STRING = "NULL";
+	private static final String FILE_EXTENSION_PROPERTIES = "fileextension.properties"; //$NON-NLS-1$
+	private static final String NULL_STRING = "NULL"; //$NON-NLS-1$
 	
-	public static final String OWNED_ELEMENT_FEATURE_NAME = "graphElements";
-	public static final String UNKNWON_CLASS_NAME = "UnknownType";
+	public static final String OWNED_ELEMENT_FEATURE_NAME = "graphElements"; //$NON-NLS-1$
+	public static final String UNKNWON_CLASS_NAME = "UnknownType"; //$NON-NLS-1$
 
 	static {
 		Properties prop = new Properties();
@@ -81,7 +88,7 @@ public class RpyUtil {
 			for (Map.Entry<Object, Object> entry: prop.entrySet()){
 				SUPPORTED_EXTENSIONS.add((String) entry.getKey());
 				String valueString = (String) entry.getValue();
-				String[] valueTable = valueString.split(",");
+				String[] valueTable = valueString.split(","); //$NON-NLS-1$
 				for (String value : valueTable){
 					nodeTypeToExtensionMap.put(value, (String) entry.getKey());
 				}
@@ -111,7 +118,7 @@ public class RpyUtil {
 	 * @return the feature of null if the path is incorrect
 	 */
 	public static RpyFeatureValue getFeatureValueFromPath(EObject context, String featurePath) {
-		String[] path = featurePath.split(".");
+		String[] path = featurePath.split("."); //$NON-NLS-1$
 
 		//TODO Implement it if needed 
 
@@ -178,17 +185,22 @@ public class RpyUtil {
 	 * @return
 	 */
 	public static String getStringValue(SimpleValueList value) {
-
 		if (!value.getValueElements().isEmpty()) {
-
-			String ret = "";
+			final StringBuilder builder = new StringBuilder();
+			if(value.isIsGUID()) {
+				builder.append(GUID_STRING);
+				builder.append(ID_SEPARATOR);
+			}
+			if(value.isIsOldID()) {
+				builder.append(OLDID_STRING);
+				builder.append(ID_SEPARATOR);
+			}
 			for (RpySimpleValueElement simpleValueElem : value.getValueElements()){
 				for (String val : simpleValueElem.getValues()){
-					ret += val;
+					builder.append(val);
 				}
 			}
-
-			return ret;
+			return builder.toString();
 		}
 		return null;
 	}
@@ -223,7 +235,7 @@ public class RpyUtil {
 			String nodeType = node.getName();
 			String extension = nodeTypeToExtensionMap.get(nodeType);
 			if (extension != null){
-				fileName +="."+extension;
+				fileName +="."+extension; //$NON-NLS-1$
 				return fileName;
 			}else {
 				Activator.log.error(NLS.bind(Messages.UnknownExtension,  new String[]{nodeType, fileName, getNodeIndexInFile(node), node.eResource().getURI().toFileString()}), null);
@@ -244,8 +256,8 @@ public class RpyUtil {
 
 	private static String getPathStringInFeature(RpyNode node, String featurePath) {
 		String stringValue = getNodeFeatureValueAsString(node, featurePath);
-		if (stringValue != null && stringValue.startsWith("\"")){
-			stringValue = stringValue.replaceAll("\"", "");
+		if (stringValue != null && stringValue.startsWith("\"")){ //$NON-NLS-1$
+			stringValue = stringValue.replaceAll("\"", ""); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return  stringValue;
 	}
@@ -277,7 +289,7 @@ public class RpyUtil {
 	 */
 	public static String getNodeIndexInFile(RpyNode node) {
 		ICompositeNode xtextNode = NodeModelUtils.getNode(node);
-		String index ="-";
+		String index ="-"; //$NON-NLS-1$
 		if (xtextNode != null){
 			index=Integer.toString(xtextNode.getStartLine());
 		}
@@ -345,7 +357,7 @@ public class RpyUtil {
 		String m2Class = getNodeFeatureValueAsString(handlerNode, M2_CLASS_FEATURE_NAME);
 		if (m2Class != null){
 			RpyNode ret= RpySyntaxFactory.eINSTANCE.createRpyNode();
-			ret.setName(m2Class.replaceAll("\"", ""));
+			ret.setName(m2Class.replaceAll("\"", "")); //$NON-NLS-1$ //$NON-NLS-2$
 			for (RpyFeature feature : getNodeFeatures(handlerNode)){
 				if (ID_FEATURE_NAME.equals(feature.getName()) || NAME_FEATURE_NAME.equals(feature.getName())){
 					ret.getContents().add(EcoreUtil.copy(feature));

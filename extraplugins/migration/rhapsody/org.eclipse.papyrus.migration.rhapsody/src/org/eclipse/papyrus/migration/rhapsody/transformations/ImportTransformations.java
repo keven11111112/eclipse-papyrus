@@ -53,11 +53,9 @@ import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
-import org.eclipse.papyrus.m2m.qvto.TransformationUI;
 import org.eclipse.papyrus.migration.common.concurrent.ExecutorsPool;
 import org.eclipse.papyrus.migration.common.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.rhapsody.Activator;
-import org.eclipse.papyrus.migration.rhapsody.blackboxes.Rhapsody2PapyrusNotationBlackboxes;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -146,7 +144,9 @@ public class ImportTransformations {
 		// Collection<URI> transformations = getSemanticTransformationURI();
 
 		for (URI transformationURI : transformations) {
-			TransformationExecutor.BlackboxRegistry.INSTANCE.registerModules(Rhapsody2PapyrusNotationBlackboxes.class);
+			
+//			TransformationExecutor.BlackboxRegistry.INSTANCE.registerModules(Rhapsody2PapyrusNotationBlackboxes.class);
+			
 			TransformationExecutor executor = new TransformationExecutor(transformationURI);
 			ExecutionDiagnostic resultTransdo = executor.execute(context, extents.toArray(new ModelExtent[0]));
 			result = createStatusFromDiagnostic(resultTransdo);
