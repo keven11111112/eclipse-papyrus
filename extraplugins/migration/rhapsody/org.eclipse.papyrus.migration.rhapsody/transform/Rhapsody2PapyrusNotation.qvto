@@ -619,7 +619,7 @@ query umlrhapsody::CGIAssociationEnd::getDecorationNodes(): Set(DecorationNode)
  mapping umlrhapsody::CGIClass::toPapyrusNode() : Shape  when { not (self.m_pParent.oclIsUndefined())}
 {
 	
-	result.element := self.m_pModelObject.resolveIn(umlrhapsody::IClass::toClasses, uml::Class)![EObject]; 
+	result.element := self.m_pModelObject.resolveIn(ecore::EObject::generalMappingToUMLElement, uml::Class)![EObject]; 
 	result.type := self.getNodeType();
 	result.children:= self.map toDecorationNode();
 	result.children+= self.Compartments[CGICompartment].map toBasicCompartment();

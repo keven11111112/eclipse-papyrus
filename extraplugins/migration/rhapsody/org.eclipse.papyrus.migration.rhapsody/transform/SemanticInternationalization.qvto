@@ -112,9 +112,9 @@ helper NamedElement::getRhaposdyLabel():String{
 	
 	
 	//mapping umlrhapsody::IClass::toUMLElement() : uml::Element 
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IClass::toUMLElement)->selectByKind(IModelElement)->any(true);
-	};
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(EObject::toUMLElement)->selectByKind(IModelElement)->any(true);
+//	};
 	
 	//mapping umlrhapsody::IClass::toUMLInterface() : uml::Interface when {self.oclIsTypeOf(IClass) and self.isInterface() /*self.isSysMLFlowSpecification()*/}{	
 	//already managed by toUMLElement

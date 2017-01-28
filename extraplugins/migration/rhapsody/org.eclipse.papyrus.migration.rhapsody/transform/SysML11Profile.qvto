@@ -113,7 +113,7 @@ mapping ecore::EObject::applyRequiredSysML11Stereotype() disjuncts
 mapping ecore::EObject::applyStereotypeFromIClass() when {self.oclIsTypeOf(IClass) /*and not self.oclAsType(IClass).Stereotypes->isEmpty()*/}{ //test on stereotype must be done in the method, because we always need to do some thing for IClass
 	var rpyElement:IClass:=self.oclAsType(IClass);
 	//we look for the created uml element
-	var umlElement:Element:=rpyElement.resolveoneIn(IClass::toUMLElement, uml::Element);
+	var umlElement:Element:=rpyElement.resolveoneIn(EObject::generalMappingToUMLElement, uml::Element);
 	if(umlElement<>null){
 		rpyElement.Stereotypes->selectByType(umlrhapsody::IStereotype)->forEach(current){
 				umlElement.map applySysML11Stereotype(rpyElement.oclAsType(EObject), getSysML11StereotypeName(current.name));

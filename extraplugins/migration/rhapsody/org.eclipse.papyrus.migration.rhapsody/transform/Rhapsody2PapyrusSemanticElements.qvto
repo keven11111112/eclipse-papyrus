@@ -116,9 +116,9 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	
 	packagedElement+=iSubSystem.Events[IEvent].map toSignals();
 	
-	packagedElement+= iSubSystem.Classes[IClass]->selectByType(IClass)->any(name="TopLevel").Attrs->selectByKind(IAttribute).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(PackageableElement);
+	packagedElement+= iSubSystem.Classes->selectByType(IClass)->any(name="TopLevel").Attrs->selectByKind(IAttribute).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(PackageableElement);
 	//TODO probably more check are required to remove TopLevel without problems (check with MARTE...)
-	packagedElement+= iSubSystem.Classes[IClass]->select(curr:IClass | curr.name<>"TopLevel").oclAsSet().map toUMLElement().oclAsType(uml::PackageableElement);
+	packagedElement+= iSubSystem.Classes->selectByType(IClass)->select(curr | curr.name<>"TopLevel")->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->any(true).map toAssociationswithoutProp();
 	packagedElement += iSubSystem.Types[IType].oclAsSet().map iTypeToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Actors->selectByKind(IActor)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
@@ -134,11 +134,13 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 * This method has been created to be the common entry point for all the semantic transformations from the Rhapsody Model to the UML Model
 * TODO : rewrite all transformations in order to use me everywhere  
 */
-mapping EObject::generalMappingToUMLElement():uml::Element disjuncts
-	EObject::iActorToUMLActor,
-	EObject::iCommentToUMLComment,
-	EObject::iDescriptionToUMLComment,
-	EObject::iAttributeToInstanceSpecification
+mapping ecore::EObject::generalMappingToUMLElement():uml::Element disjuncts
+	ecore::EObject::iActorToUMLActor,
+	ecore::EObject::iCommentToUMLComment,
+	ecore::EObject::iDescriptionToUMLComment,
+	ecore::EObject::iAttributeToUMLInstanceSpecification,
+	ecore::EObject::iClassToUMLInterface, 
+ 	ecore::EObject::iClassToUMLClass
 {}
 
 /**
@@ -220,22 +222,14 @@ helper String::getTextWithoutMarkers():String{
 	return res;
 }
 
-
-/**
-* a common method to call for the creation of all UML Element
-*/
-mapping umlrhapsody::IClass::toUMLElement() : uml::Element //TODO merge me with generalMappingToUMLElement
-	disjuncts 
- 	umlrhapsody::IClass::toUMLInterface, 
- 	umlrhapsody::IClass::toClasses{} //TODO : rename me
-
 /**
 *
 * return true if the IClass is representing an interface
 */
-mapping umlrhapsody::IClass::toUMLInterface() : uml::Interface when {self.oclIsTypeOf(IClass) and self.isInterface() /*self.isSysMLFlowSpecification()*/}{
-	name:= self.name.replaceAll("\"","");
-	ownedAttribute+= self.Attrs[IAttribute].map iVariableToUMLElement();
+mapping ecore::EObject::iClassToUMLInterface() : uml::Interface when {self.oclIsTypeOf(umlrhapsody::IClass) and self.oclAsType(umlrhapsody::IClass).isInterface() /*self.isSysMLFlowSpecification()*/}{
+	var localIClass:umlrhapsody::IClass:=self.oclAsType(umlrhapsody::IClass);
+	name:= localIClass.name.replaceAll("\"","");
+	ownedAttribute+= localIClass.Attrs[IAttribute].map iVariableToUMLElement();
 //	ownedAttribute+= self.Associations[IAssociationEnd].map toAssociationsEnd();
 //	ownedOperation := self.Operations [IPrimitiveOperation].map toOperations();
 //	ownedReception:= self.Operations[IReception].map toReceptions();
@@ -376,19 +370,9 @@ query umlrhapsody::IType::isUMLInstanceSpecification(): Boolean {
 
 
 
-mapping umlrhapsody::IAssociationEnd::toAssociationswithoutProp(): uml::Association
-{
-		init {
-			
-		result := object uml::Association
-		{
-			var assoEnd:Set(umlrhapsody::IAssociationEnd) =inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->asSet();
-			memberEnd:=assoEnd.map toAssociationsEnd();
-		
-		}
-		
-		}		
-	
+mapping umlrhapsody::IAssociationEnd::toAssociationswithoutProp(): uml::Association {
+	var assoEnd:Set(umlrhapsody::IAssociationEnd) =inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->asSet();
+	memberEnd:=assoEnd.map toAssociationsEnd();
 }
 
 mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association {			
@@ -402,10 +386,8 @@ mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association
 }
 
 mapping umlrhapsody::IAssociationEnd::toOwnedAssociationEnd(): uml::Property{
-	// map toClasses() maps the IClass to Class
-	type:= self.container().oclAsType(IClass).map toUMLElement().oclAsType(Type);
+	type:= self.container().oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	var type : uml::Class = type.oclAsType(Class);
-	
 }
 
 mapping umlrhapsody::IType::toUMLDatatype() : uml::DataType when {self.isUMLDataType()}{
@@ -436,30 +418,32 @@ mapping umlrhapsody::IType::iTypeToUMLClass() : uml::Class when {self.isUMLClass
 }
 
 
-mapping umlrhapsody::IClass::toClasses(): uml::Class when {self.oclIsTypeOf(IClass) and not (self.isInterface())}{
-	name:= self.name.replaceAll("\"","");
-	ownedAttribute+= self.Attrs[IAttribute].map iVariableToUMLElement();
-	ownedAttribute+= self.Associations[IPart].map iPartToUMLElement().oclAsType(uml::Property);
-	
-	var associationsToAdd:=self.Associations[IPart].map iPartToUMLAssociation();
-	
-	nestedClassifier+= self.Associations[IPart]->select(current | current.implicitClass<>null).implicitClass.map toUMLElement().oclAsType(uml::Classifier);
-	nestedClassifier+=self.Declaratives[IClass].map toUMLElement().oclAsType(uml::Classifier);
-	
-	ownedAttribute+= self.Associations[IAssociationEnd].map toAssociationsEnd();
-	associationsToAdd+=self.Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()).oclAsSet().map toAssociationswithProp();
-	
-	
-	ownedOperation += self.Operations [IPrimitiveOperation].map toOperations();
-	ownedReception += self.Operations[IReception].map toReceptions();
-	generalization += self.Inheritances [IGeneralization].map toPapyrusGeneralization();
-	ownedBehavior += self.StateCharts[IStateChart].map toStateMachine();
+mapping ecore::EObject::iClassToUMLClass(): uml::Class when {self.oclIsTypeOf(umlrhapsody::IClass) and not (self.oclAsType(umlrhapsody::IClass).isInterface())}{
+	var localIClass:umlrhapsody::IClass:=self.oclAsType(umlrhapsody::IClass);	
 
-	ownedAttribute+=self.Ports.map iRelationToUMLElement().oclAsType(uml::Property);
-	ownedConnector+=self.ObjectLinks[IObjectLink].map iObjectLinkToUMLElement().oclAsType(uml::Connector);
-	ownedConnector+=self.Declaratives[IInformationFlow].map iInformationFlowToUMLElement().oclAsType(uml::Connector);
+	name:= localIClass.name.replaceAll("\"","");
+	ownedAttribute+= localIClass.Attrs[IAttribute].map iVariableToUMLElement();
+	ownedAttribute+= localIClass.Associations[IPart].map iPartToUMLElement().oclAsType(uml::Property);
 	
-	ownedComment+=self.Annotations.oclAsType(IComment).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	var associationsToAdd:=localIClass.Associations[IPart].map iPartToUMLAssociation();
+	
+	nestedClassifier+= localIClass.Associations[IPart]->select(current | current.implicitClass<>null).implicitClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Classifier);
+	nestedClassifier+=localIClass.Declaratives->selectByType(IClass)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::Classifier);
+	
+	ownedAttribute+= localIClass.Associations[IAssociationEnd].map toAssociationsEnd();
+	associationsToAdd+=localIClass.Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()).oclAsSet().map toAssociationswithProp();
+	
+	
+	ownedOperation += localIClass.Operations [IPrimitiveOperation].map toOperations();
+	ownedReception += localIClass.Operations[IReception].map toReceptions();
+	generalization += localIClass.Inheritances [IGeneralization].map toPapyrusGeneralization();
+	ownedBehavior += localIClass.StateCharts[IStateChart].map toStateMachine();
+
+	ownedAttribute+=localIClass.Ports.map iRelationToUMLElement().oclAsType(uml::Property);
+	ownedConnector+=localIClass.ObjectLinks[IObjectLink].map iObjectLinkToUMLElement().oclAsType(uml::Connector);
+	ownedConnector+=localIClass.Declaratives[IInformationFlow].map iInformationFlowToUMLElement().oclAsType(uml::Connector);
+	
+	ownedComment+=localIClass.Annotations.oclAsType(IComment).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
 	
 	registerAssociationToStore(result, associationsToAdd);
 }
@@ -677,7 +661,7 @@ mapping umlrhapsody::IPart::iPartToUMLProperty():uml::Property when {self.oclIsT
 	name:= self.name.replaceAll("\"","");
 	//TODO : manage aggregation kind
 	aggregation:=AggregationKind::composite;
-	type:=self.otherClass.oclAsType(IClass).map toUMLElement().oclAsType(uml::Type);
+	type:=self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Type);
 }
 
 mapping umlrhapsody::IPart::iPartToUMLAssociation():uml::Association when {true}{
@@ -718,7 +702,7 @@ mapping umlrhapsody::IRelation::iRelationToUMLProperty(): uml::Property when {se
 		if (not sysPort.otherClass.oclIsUndefined()){
 			type := sysPort.otherClass [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
 		}elif(sysPort.otherClass.oclIsKindOf(IClass)){
-				type := sysPort.otherClass.oclAsType(IClass).map toUMLElement().oclAsType(Type);
+				type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 		};
 			//a multiplicity has been defined
 		if(not sysPort.multiplicity.oclIsUndefined()){
@@ -741,7 +725,7 @@ mapping umlrhapsody::IRelation::iRelationToSysMLPort(): uml::Port when {self.isR
 			if(sysPort.otherClass.oclIsKindOf(IType)){ 
 				type := sysPort.otherClass.oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
 			}elif(sysPort.otherClass.oclIsKindOf(IClass)){
-				type := sysPort.otherClass.oclAsType(IClass).map toUMLElement().oclAsType(Type);
+				type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 			}
 		};
 		aggregation:=AggregationKind::composite;
@@ -954,7 +938,7 @@ mapping umlrhapsody::IInterfaceItemTrigger::toTrigger(): uml::Trigger
 
 mapping umlrhapsody::IAssociationEnd::toAssociationsEnd(): uml::Property when{self.oclIsTypeOf(IAssociationEnd)}{
 	name:=self.name.replaceAll("\"","");
-	type:= self.otherClass.oclAsType(IClass).map toUMLElement().oclAsType(Type);
+	type:= self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	aggregation:=AggregationKind::none;
 }
 
@@ -962,7 +946,7 @@ mapping umlrhapsody::IClass::fromClasse2Associations(): uml::Association
 {
 
 //TODO FIXME: default subsystem : bad code
-var classes : Set(uml::Class) :=inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes[IClass].map toClasses()->asSet();
+var classes : Set(uml::Class) :=inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes->selectByKind(EObject).map iClassToUMLClass()->asSet();
 var  associations: Set(uml::Association);
 var i : Integer=0;
 classes->forEach(element)
@@ -1007,7 +991,7 @@ var newasso: uml::Association;
 
 mapping umlrhapsody::IGeneralization::toPapyrusGeneralization(): uml::Generalization
 {
-	general:= self.oclAsType(IGeneralization).dependsOn.oclAsType(IClass).map toClasses();
+	general:= self.oclAsType(IGeneralization).dependsOn.oclAsType(IClass).oclAsType(EObject).map iClassToUMLClass();
 	
 }
 
@@ -1068,7 +1052,7 @@ helper umlrhapsody::IAttribute::isInstanceSpecification():Boolean{
 /**
 * This mapping creates InstanceSpecification from IAttribute
 */ 
-mapping ecore::EObject::iAttributeToInstanceSpecification(): uml::InstanceSpecification when {self.oclIsKindOf(IAttribute) and self.oclAsType(IAttribute).isInstanceSpecification()}{
+mapping ecore::EObject::iAttributeToUMLInstanceSpecification(): uml::InstanceSpecification when {self.oclIsKindOf(IAttribute) and self.oclAsType(IAttribute).isInstanceSpecification()}{
 	var iAttribute:IAttribute:=self.oclAsType(IAttribute);
 	name:=iAttribute.name;
 	classifier+=iAttribute.typeOf.oclAsType(IType).map iTypeToUMLElement().oclAsType(uml::Classifier);

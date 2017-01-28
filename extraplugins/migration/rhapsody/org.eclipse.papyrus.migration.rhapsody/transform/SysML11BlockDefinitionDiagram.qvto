@@ -45,7 +45,7 @@ mapping rhapsodymetamodel::IDiagram::iDiagramToSysML11BlockDefinitionDiagram(rpy
 		
 		var iDiagramOwner:ecore::EObject:=self[EObject].eContainer()![EObject];
 		if(iDiagramOwner.oclIsKindOf(umlrhapsody::IClass)){
-			owner:= iDiagramOwner.resolveIn(umlrhapsody::IClass::toUMLElement, uml::Element)![EObject];
+			owner:= iDiagramOwner.resolveIn(ecore::EObject::generalMappingToUMLElement, uml::Element)![EObject];
 		};
 		//TODO : check owner and owner!
 		result:=self.map createAndInitDiagram(rpyProject,getPapyrusDiagramType(), owner, owner);
