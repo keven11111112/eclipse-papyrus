@@ -130,9 +130,9 @@ helper NamedElement::getRhaposdyLabel():String{
 	
 	
 	//mapping umlrhapsody::IType::iTypeToUMLElement() : uml::Element 
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IType::iTypeToUMLElement)->selectByKind(IModelElement)->any(true);
-	};
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(IType::iTypeToUMLElement)->selectByKind(IModelElement)->any(true);
+//	};
 	
 	
 	//IAssociationEnd doesn't have the feature displayName
@@ -173,9 +173,9 @@ helper NamedElement::getRhaposdyLabel():String{
 	};
 	
 	//mapping umlrhapsody::IType::toUMLInstanceSpecification() : uml::InstanceSpecification when {self.isUMLInstanceSpecification()}{
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IType::toUMLInstanceSpecification)->selectByKind(IModelElement)->any(true);
-	};
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(IType::toUMLInstanceSpecification)->selectByKind(IModelElement)->any(true);
+//	};
 
 	//mapping umlrhapsody::IType::iTypeToUMLClass() : uml::Class when {self.isUMLClass()}{//stereotype Block is added later in the process
 	//already managed by IType::iTypeToUMLElement	
@@ -363,9 +363,9 @@ helper NamedElement::getRhaposdyLabel():String{
 	//	};
 
 	//mapping umlrhapsody::IEvent::toSignals(): uml::Signal
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IEvent::toSignals)->selectByKind(IModelElement)->any(true);
-	};
+//	if(rpyElement=null){
+//		rpyElement:=self.invresolveoneIn(IEvent::toSignals)->selectByKind(IModelElement)->any(true);
+//	};
 
 	//mapping umlrhapsody::IEvent::toSignalEvents(): uml::SignalEvent
 	if(rpyElement=null){

@@ -132,10 +132,10 @@ mapping ecore::EObject::applyStereotypeFromIClass() when {self.oclIsTypeOf(IClas
 /**
 * This method cross the stereotypes applied on the IType and call the method to apply them on the equivalent uml element
 */
-mapping ecore::EObject::applyStereotypeFromIType_To_InstanceSpecification() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.oclAsType(IType).resolveoneIn(IType::toUMLInstanceSpecification, InstanceSpecification)<>null}{
+mapping ecore::EObject::applyStereotypeFromIType_To_InstanceSpecification() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.resolveoneIn(EObject::iTypeToUMLInstanceSpecification, InstanceSpecification)<>null}{
 	var rpyElement:IType:=self.oclAsType(IType);
 	//we look for the created uml element
-	var umlElement:Element:=rpyElement.resolveoneIn(IType::toUMLInstanceSpecification, InstanceSpecification);
+	var umlElement:Element:=self.resolveoneIn(EObject::iTypeToUMLInstanceSpecification, InstanceSpecification);
 	if(umlElement<>null){
 		rpyElement.Stereotypes->selectByType(umlrhapsody::IStereotype)->forEach(current){
 				umlElement.map applySysML11Stereotype(rpyElement.oclAsType(EObject), getSysML11StereotypeName(current.name));
@@ -146,10 +146,10 @@ mapping ecore::EObject::applyStereotypeFromIType_To_InstanceSpecification() when
 /**
 * This method cross the stereotypes applied on the IType and call the method to apply them on the equivalent uml element
 */
-mapping ecore::EObject::applyStereotypeFromIType_To_DataType() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.oclAsType(IType).resolveoneIn(IType::toUMLDatatype, DataType)<>null}{
+mapping ecore::EObject::applyStereotypeFromIType_To_DataType() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.resolveoneIn(EObject::iTypeToUMLDatatype, DataType)<>null}{
 	var rpyElement:IType:=self.oclAsType(IType);
 	//we look for the created uml element
-	var umlElement:Element:=rpyElement.resolveoneIn(IType::toUMLDatatype, DataType);
+	var umlElement:Element:=self.resolveoneIn(EObject::iTypeToUMLDatatype, DataType);
 	if(umlElement<>null){
 		rpyElement.Stereotypes->selectByType(umlrhapsody::IStereotype)->forEach(current){
 				umlElement.map applySysML11Stereotype(rpyElement.oclAsType(EObject), getSysML11StereotypeName(current.name));
@@ -161,10 +161,10 @@ mapping ecore::EObject::applyStereotypeFromIType_To_DataType() when {self.oclIsT
 /**
 * This method cross the stereotypes applied on the IType and call the method to apply them on the equivalent uml element
 */
-mapping ecore::EObject::applyStereotypeFromIType_To_Class() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.oclAsType(IType).resolveoneIn(IType::iTypeToUMLClass, Class)<>null}{
+mapping ecore::EObject::applyStereotypeFromIType_To_Class() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.resolveoneIn(EObject::iTypeToUMLClass, Class)<>null}{
 	var rpyElement:IType:=self.oclAsType(IType);
 	//we look for the created uml element
-	var umlElement:Element:=rpyElement.resolveoneIn(IType::iTypeToUMLClass, Class);
+	var umlElement:Element:=rpyElement.resolveoneIn(EObject::iTypeToUMLClass, Class);
 	if(umlElement<>null){
 		rpyElement.Stereotypes->selectByType(umlrhapsody::IStereotype)->forEach(current){
 				umlElement.map applySysML11Stereotype(rpyElement.oclAsType(EObject), getSysML11StereotypeName(current.name));
@@ -178,10 +178,10 @@ mapping ecore::EObject::applyStereotypeFromIType_To_Class() when {self.oclIsType
 /**
 * This method cross the stereotypes applied on the IType and call the method to apply them on the equivalent uml element
 */
-mapping ecore::EObject::applyStereotypeFromIType_To_Type() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.oclAsType(IType).resolveoneIn(IType::iTypeToUMLElement, Type)<>null}{
+mapping ecore::EObject::applyStereotypeFromIType_To_Type() when {self.oclIsTypeOf(IType)  and not self.oclAsType(IType).Stereotypes->isEmpty() and self.resolveoneIn(EObject::generalMappingToUMLElement, Type)<>null}{
 	var rpyElement:IType:=self.oclAsType(IType);
 	//we look for the created uml element
-	var umlElement:Element:=rpyElement.resolveoneIn(IType::iTypeToUMLElement, Type);
+	var umlElement:Element:=self.resolveoneIn(EObject::generalMappingToUMLElement, Type);
 	if(umlElement<>null){
 		rpyElement.Stereotypes->selectByType(umlrhapsody::IStereotype)->forEach(current){
 				umlElement.map applySysML11Stereotype(rpyElement.oclAsType(EObject), getSysML11StereotypeName(current.name));
@@ -350,7 +350,7 @@ mapping uml::InstanceSpecification::applySysML11Unit(rpyElement:EObject, umlSteN
 			var iinstancespec:umlrhapsody::IInstanceValue=tt.ValueSpecifications->selectByKind(umlrhapsody::IInstanceValue)->any(true);
 			if(iinstancespec<>null){
 				var val = iinstancespec.value;
-	   			var res:uml::InstanceSpecification = val.resolveoneIn(IType::toUMLInstanceSpecification);
+	   			var res:uml::InstanceSpecification = val.resolveoneIn(EObject::iTypeToUMLInstanceSpecification);
 	   			dimension:=res.map applySysML11Stereotype(val.oclAsType(EObject),"Dimension").oclAsType(sysml11::blocks::Dimension);
 			}
 		};
@@ -368,7 +368,7 @@ mapping uml::DataType::applySysML11ValueType(rpyElement:EObject, umlSteName:Stri
 			var dimensionInstanceIInstancespec:umlrhapsody::IInstanceValue=dimensionTag.ValueSpecifications -> selectByKind(umlrhapsody::IInstanceValue)->any(true);
 			if(dimensionInstanceIInstancespec<>null){
 				var val = dimensionInstanceIInstancespec.value;
-	   			var res:uml::InstanceSpecification = val.resolveoneIn(IType::toUMLInstanceSpecification);
+	   			var res:uml::InstanceSpecification = val.resolveoneIn(EObject::iTypeToUMLInstanceSpecification);
 	   			dimension:=res.map applySysML11Stereotype(val.oclAsType(EObject),"Dimension").oclAsType(sysml11::blocks::Dimension);
 			};
 			
@@ -377,7 +377,7 @@ mapping uml::DataType::applySysML11ValueType(rpyElement:EObject, umlSteName:Stri
 			var unitInstanceIInstancespec:umlrhapsody::IInstanceValue=unitTag.ValueSpecifications -> selectByKind(umlrhapsody::IInstanceValue)->any(true);
 			if(unitInstanceIInstancespec<>null){
 				var val = unitInstanceIInstancespec.value;
-	   			var res:uml::InstanceSpecification = val.resolveoneIn(IType::toUMLInstanceSpecification);
+	   			var res:uml::InstanceSpecification = val.resolveoneIn(EObject::iTypeToUMLInstanceSpecification);
 	   			unit:=res.map applySysML11Stereotype(val.oclAsType(EObject),"Unit").oclAsType(sysml11::blocks::Unit);
 			};
 		};

@@ -86,7 +86,7 @@ mapping umlrhapsody::IProject::iProjectToPapyrusModel() : uml::Model {
 */
 mapping umlrhapsody::ISubsystem::importRhapsodyTypeLibrary():uml::Package{
 	name:=self.name;
-	packagedElement += self.Types[IType].oclAsSet().map iTypeToUMLElement().oclAsType(uml::PackageableElement);
+	packagedElement += self.Types->selectByType(IType)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 }
 
 /**
@@ -100,7 +100,7 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	if(iSubSystem.SignalEvents()[IEvent].oclAsSet()->notEmpty()){
 		var SignalsPackage := object Package{
 			name:= "Signals";
-			packagedElement:= iSubSystem.SignalEvents()[IEvent].map toSignals();
+			packagedElement:= iSubSystem.SignalEvents()->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(PackageableElement);
 		};
 		nestedPackage+=SignalsPackage;
 	};
@@ -114,13 +114,13 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 		nestedPackage+=SignalEventPackage;
 	};
 	
-	packagedElement+=iSubSystem.Events[IEvent].map toSignals();
+	packagedElement+=iSubSystem.Events->selectByType(IEvent)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(PackageableElement);
 	
 	packagedElement+= iSubSystem.Classes->selectByType(IClass)->any(name="TopLevel").Attrs->selectByKind(IAttribute).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(PackageableElement);
 	//TODO probably more check are required to remove TopLevel without problems (check with MARTE...)
 	packagedElement+= iSubSystem.Classes->selectByType(IClass)->select(curr | curr.name<>"TopLevel")->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->any(true).map toAssociationswithoutProp();
-	packagedElement += iSubSystem.Types[IType].oclAsSet().map iTypeToUMLElement().oclAsType(uml::PackageableElement);
+	packagedElement += iSubSystem.Types->selectByType(IType)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Actors->selectByKind(IActor)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement +=iSubSystem.Declaratives[DefaultSubsystemType].oclAsSet().map iDefaultSubsystemTypeToPackage();
 	ownedComment += iSubSystem.Annotations->select(a | (a.oclIsTypeOf(IAnnotation) or a.oclIsTypeOf(IComment)))->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
@@ -140,7 +140,13 @@ mapping ecore::EObject::generalMappingToUMLElement():uml::Element disjuncts
 	ecore::EObject::iDescriptionToUMLComment,
 	ecore::EObject::iAttributeToUMLInstanceSpecification,
 	ecore::EObject::iClassToUMLInterface, 
- 	ecore::EObject::iClassToUMLClass
+ 	ecore::EObject::iClassToUMLClass,
+ 	ecore::EObject::iEventToUMLSignal,
+ 	ecore::EObject::iTypeToUMLDatatype,
+ 	ecore::EObject::iTypeToUMLInstanceSpecification, 
+ 	ecore::EObject::iTypeToUMLEnumeration,
+ 	ecore::EObject::iTypeToUMLClass, //TODO : merge me with the existing other way to create a class
+ 	ecore::EObject::iTypeToDefault
 {}
 
 /**
@@ -244,29 +250,18 @@ mapping ecore::EObject::iClassToUMLInterface() : uml::Interface when {self.oclIs
 * We can be here in case of bug, when an existing type has not been resolved
 * or when the user use the C type declaration in Rhapsody (declaring a type with a string, see bug 510869)
 */
-mapping umlrhapsody::IType::iTypeToDefault():uml::DataType{
-	if(self.name=null or self.name.oclIsInvalid()){
-		if(self.declaration<>null){
-			name:=self.declaration;
+mapping ecore::EObject::iTypeToDefault():uml::DataType when{self.oclIsTypeOf(IType)}{
+	var localIType:IType:=self.oclAsType(IType);	
+
+	if(localIType.name=null or localIType.name.oclIsInvalid()){
+		if(localIType.declaration<>null){
+			name:=localIType.declaration;
 		}
 	}else{
-		name:=self.name.replaceAll("\"","");
+		name:=localIType.name.replaceAll("\"","");
 	};
 }
 
-/**
-* a common method to map a Rhapsody iType to the expected UMLElement
-*/
-mapping umlrhapsody::IType::iTypeToUMLElement() : uml::Element 
-	disjuncts 
- 	umlrhapsody::IType::toUMLDatatype,
- 	umlrhapsody::IType::toUMLInstanceSpecification, 
- 	umlrhapsody::IType::toUMLEnumeration,
- 	umlrhapsody::IType::iTypeToUMLClass, //TODO : merge me with the existing other way to create a class
- 	umlrhapsody::IType::iTypeToDefault
- 	//don't forget to call the query mapToBasicType for created element instance of uml::TemplateableElement
- 	{}
- 	
 
 /**
 * This method allows to map a RhapsodyType on an other type
@@ -276,7 +271,7 @@ query umlrhapsody::IType::mapToBasicType(inout templateableElement:TemplateableE
 	var baseType:IUnit := self.typedefBaseType;
 	if(not(baseType.oclIsUndefined()) and baseType.oclIsTypeOf(IType)){
 //			var name:String:=baseType.metaClassName();
-			var umlType:uml::Type :=baseType.oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+			var umlType:uml::Type :=baseType.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 			if(not(umlType.oclIsUndefined())){//should never appends
 						var templateBinding := object uml::TemplateBinding{
 					
@@ -390,31 +385,35 @@ mapping umlrhapsody::IAssociationEnd::toOwnedAssociationEnd(): uml::Property{
 	var type : uml::Class = type.oclAsType(Class);
 }
 
-mapping umlrhapsody::IType::toUMLDatatype() : uml::DataType when {self.isUMLDataType()}{
-	name:= self.name.replaceAll("\"","");
-	ownedAttribute+=self.Attrs[IAttribute].map iVariableToUMLElement();
-	self.mapToBasicType(result.oclAsType(uml::TemplateableElement));
+mapping ecore::EObject::iTypeToUMLDatatype() : uml::DataType when {self.oclIsTypeOf(IType) and self.oclAsType(IType).isUMLDataType()}{
+	var localIType:IType:=self.oclAsType(IType);		
+	name:= localIType.name.replaceAll("\"","");
+	ownedAttribute+=localIType.Attrs[IAttribute].map iVariableToUMLElement();
+	localIType.mapToBasicType(result.oclAsType(uml::TemplateableElement));
 }
 
-mapping umlrhapsody::IType::toUMLEnumeration() : uml::Enumeration when {self.isUMLEnumeration()}{
-	name:= self.name.replaceAll("\"","");
-	ownedLiteral+=self.Literals[IEnumerationLiteral].map toUMLEnumerationLiteral();
-	self.mapToBasicType(result.oclAsType(uml::TemplateableElement));
+mapping ecore::EObject::iTypeToUMLEnumeration() : uml::Enumeration when {self.oclIsTypeOf(IType) and self.oclAsType(IType).isUMLEnumeration()}{
+	var localIType:IType:=self.oclAsType(IType);
+	name:= localIType.name.replaceAll("\"","");
+	ownedLiteral+=localIType.Literals[IEnumerationLiteral].map toUMLEnumerationLiteral();
+	localIType.mapToBasicType(result.oclAsType(uml::TemplateableElement));
 }
 
 mapping umlrhapsody::IEnumerationLiteral::toUMLEnumerationLiteral() : uml::EnumerationLiteral {
 	name:= self.name.replaceAll("\"","");
 }
 
-mapping umlrhapsody::IType::toUMLInstanceSpecification() : uml::InstanceSpecification when {self.isUMLInstanceSpecification()}{
-	name:= self.name.replaceAll("\"","");
+mapping ecore::EObject::iTypeToUMLInstanceSpecification() : uml::InstanceSpecification when {self.oclIsTypeOf(IType) and self.oclAsType(IType).isUMLInstanceSpecification()}{
+	var localIType:IType:=self.oclAsType(IType);	
+	name:= localIType.name.replaceAll("\"","");
 }
 
 //TODO : refactore me, there is at least 2 method to create a class, on efrom an IType and an other one from a IClass
-mapping umlrhapsody::IType::iTypeToUMLClass() : uml::Class when {self.isUMLClass()}{//stereotype Block is added later in the process
-	name:= self.name.replaceAll("\"","");
-	ownedAttribute+=self.Attrs[IAttribute].map iVariableToUMLElement();
-	self.mapToBasicType(result.oclAsType(uml::TemplateableElement));
+mapping ecore::EObject::iTypeToUMLClass() : uml::Class when {self.oclIsTypeOf(IType) and self.oclAsType(IType).isUMLClass()}{//stereotype Block is added later in the process
+	var localIType:IType:=self.oclAsType(IType);
+	name:= localIType.name.replaceAll("\"","");
+	ownedAttribute+=localIType.Attrs[IAttribute].map iVariableToUMLElement();
+	localIType.mapToBasicType(result.oclAsType(uml::TemplateableElement));
 }
 
 
@@ -665,10 +664,10 @@ mapping umlrhapsody::IPart::iPartToUMLProperty():uml::Property when {self.oclIsT
 }
 
 mapping umlrhapsody::IPart::iPartToUMLAssociation():uml::Association when {true}{
-	var part:uml::Property:=self.resolveoneIn(umlrhapsody::IPart::iPartToUMLProperty);
+	var part:uml::Property:=self.resolveoneIn(umlrhapsody::IPart::iPartToUMLProperty); //TODO : replace me with a mapping
 	var propOwner:uml::NamedElement:=part.owner.oclAsType(NamedElement);
 	var propType:=part.type;
-	var initialVal:=propType.invresolveone();
+	var initialVal:=propType.invresolveone();//TODO is it a good idea to use unresolve ? 
 	var res:Boolean:=false;
 	if(initialVal.oclIsTypeOf(umlrhapsody::IClass)){
 		//TODO : make a util for this stereotype application
@@ -699,10 +698,15 @@ mapping umlrhapsody::IRelation::iRelationToUMLProperty(): uml::Property when {se
 		var sysPort:umlrhapsody::ISysMLPort:=self.oclAsType(ISysMLPort);
 		name:= sysPort.name.replaceAll("\"","");
 		aggregation:=AggregationKind::composite;
-		if (not sysPort.otherClass.oclIsUndefined()){
-			type := sysPort.otherClass [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
-		}elif(sysPort.otherClass.oclIsKindOf(IClass)){
-				type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
+//		if (not sysPort.otherClass.oclIsUndefined()){
+//			type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
+//		}elif(sysPort.otherClass.oclIsKindOf(IClass)){
+//				type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
+//		};
+		
+		//at this time we don't generate implicite type
+		if(sysPort.implicitClass<>sysPort.otherClass){
+			type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 		};
 			//a multiplicity has been defined
 		if(not sysPort.multiplicity.oclIsUndefined()){
@@ -721,12 +725,15 @@ mapping umlrhapsody::IRelation::iRelationToUMLProperty(): uml::Property when {se
 mapping umlrhapsody::IRelation::iRelationToSysMLPort(): uml::Port when {self.isRhapsodySysMLPortRepresentingUMLPort()}{
 		var sysPort:umlrhapsody::ISysMLPort:=self.oclAsType(ISysMLPort);
 		name:= sysPort.name.replaceAll("\"","");
-		if (not sysPort.otherClass.oclIsUndefined()){
-			if(sysPort.otherClass.oclIsKindOf(IType)){ 
-				type := sysPort.otherClass.oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
-			}elif(sysPort.otherClass.oclIsKindOf(IClass)){
-				type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
-			}
+//		if (not sysPort.otherClass.oclIsUndefined()){
+//			if(sysPort.otherClass.oclIsKindOf(IType)){ 
+//				type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
+//			}elif(sysPort.otherClass.oclIsKindOf(IClass)){
+//				type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
+//			}
+//		};
+		if(sysPort.implicitClass<>sysPort.otherClass){
+			type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 		};
 		aggregation:=AggregationKind::composite;
 		isConjugated:=sysPort.isConjugated();
@@ -1011,7 +1018,7 @@ mapping umlrhapsody::IPrimitiveOperation::toOperations(): uml::Operation
     if (not self.returnType.oclIsUndefined()){
     	var return_param:= object uml::Parameter {
     		direction:= ParameterDirectionKind::_return;
-    		type:= self.returnType[IType]->any(true).map iTypeToUMLElement().oclAsType(Type);
+    		type:= self.returnType.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
     	};
     	ownedParameter+=return_param;
     };
@@ -1034,10 +1041,10 @@ mapping umlrhapsody::IArgument::iArgumentToUMLElement(): uml::Property when {sel
  	name:= self.oclAsType(IArgument).name.replaceAll("\"","");
 	// should add the PtR Stereotpe if the type is a C++ Declaration : i,e: Class *;
 	if (self.typeOf.oclIsUndefined()){
-		type := self.myTypeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+		type := self.myTypeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 		userTypeDeclaration+=type;
 	}else{
-		type := self.typeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+		type := self.typeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	};
 }
 
@@ -1055,7 +1062,7 @@ helper umlrhapsody::IAttribute::isInstanceSpecification():Boolean{
 mapping ecore::EObject::iAttributeToUMLInstanceSpecification(): uml::InstanceSpecification when {self.oclIsKindOf(IAttribute) and self.oclAsType(IAttribute).isInstanceSpecification()}{
 	var iAttribute:IAttribute:=self.oclAsType(IAttribute);
 	name:=iAttribute.name;
-	classifier+=iAttribute.typeOf.oclAsType(IType).map iTypeToUMLElement().oclAsType(uml::Classifier);
+	classifier+=iAttribute.typeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Classifier);
 	var tmp:String:="";
 	if(not iAttribute.ValueSpecifications.oclIsUndefined()){
 		tmp:=iAttribute.ValueSpecifications.value;
@@ -1079,10 +1086,10 @@ mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {s
 	
 
 	if (self.typeOf.oclIsUndefined()) {
-		type := self.myTypeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+		type := self.myTypeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 		userTypeDeclaration+=type;
 	}else{
-		type := self.typeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+		type := self.typeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	};
 	var desiredVisibility := getVisibility(self.protection); 
 	if (desiredVisibility != VisibilityKind::public) { //to avoid green + in UML editor
@@ -1174,11 +1181,11 @@ mapping umlrhapsody::IArgument::toArguments(): uml::Parameter
 	// should add the PtR Stereotpe if the type is a C++ Declaration : i,e: Class *;
 	if (self.typeOf.oclIsUndefined())
 	{
-		type := self.myTypeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+		type := self.myTypeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 		userTypeDeclaration+=type;
 	}else
 	{
-	type := self.typeOf [IType]->any(true).oclAsType(IType).map iTypeToUMLElement().oclAsType(Type);
+	type := self.typeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	}
 	
 	
@@ -1201,16 +1208,14 @@ mapping umlrhapsody::IEvent::toSignalEvents(): uml::SignalEvent
 {
 	name:= self.name.replaceAll("\"","");
 	
-	signal:= self[IEvent].resolveone(Signal);
+	signal:= self[IEvent].resolveone(Signal); //TODO replace me with a mapping
 	
 }
 
-mapping umlrhapsody::IEvent::toSignals(): uml::Signal
-{
-	name:= self.name.replaceAll("\"","");
-	
-	ownedAttribute += self.Args[IVariable]->map iVariableToUMLElement();
-	
+mapping ecore::EObject::iEventToUMLSignal(): uml::Signal when {self.oclIsTypeOf(IEvent)}{
+	var localEvent:IEvent:=self.oclAsType(IEvent);
+	name:= localEvent.name.replaceAll("\"","");
+	ownedAttribute += localEvent.Args[IVariable]->map iVariableToUMLElement();
 }
 
 //collect the call events from the umlrhapsody file
