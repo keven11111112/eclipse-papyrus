@@ -661,6 +661,10 @@ mapping umlrhapsody::IPart::iPartToUMLProperty():uml::Property when {self.oclIsT
 	//TODO : manage aggregation kind
 	aggregation:=AggregationKind::composite;
 	type:=self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Type);
+	if((not self.multiplicity.oclIsUndefined()) and self.multiplicity<>"1"){
+		lowerValue:=createLowerMultiplicity(self.multiplicity);
+		upperValue:=createUpperMultiplicity(self.multiplicity);
+	}
 }
 
 mapping umlrhapsody::IPart::iPartToUMLAssociation():uml::Association when {true}{
