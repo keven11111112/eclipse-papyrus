@@ -35,6 +35,20 @@
 		<papyrus.repo.extra>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/extra</papyrus.repo.extra>
 		<papyrus.repo.dev>https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/</papyrus.repo.dev>
 		<target.suffix>portable</target.suffix> <!-- set to 'eclipse' when building on HIPP, to improve performances -->
+		
+		<!-- Properties to define the incremental build 
+		to use please set the -Dgib.enable=true in HIPP or in your command line
+		-->
+		<gib.enabled>false</gib.enabled>
+	    <gib.repositorySshKey></gib.repositorySshKey>
+	    <gib.referenceBranch>origin/master</gib.referenceBranch>
+	    <gib.baseBranch>HEAD</gib.baseBranch>
+	    <gib.uncommited>true</gib.uncommited>
+	    <gib.skipTestsForNotImpactedModules>false</gib.skipTestsForNotImpactedModules>
+	    <gib.buildAll>false</gib.buildAll>
+	    <gib.compareToMergeBase>true</gib.compareToMergeBase>
+	    <gib.fetchBaseBranch>false</gib.fetchBaseBranch>
+	    <gib.fetchReferenceBranch>false</gib.fetchReferenceBranch>
 	</properties>
 
 	<modules>
@@ -64,6 +78,14 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
+		<!-- Extension to enable incremental build -->
+		<extensions>
+            <extension>
+                <groupId>com.vackosar.gitflowincrementalbuilder</groupId>
+                <artifactId>gitflow-incremental-builder</artifactId>
+                <version>3.1</version>
+            </extension>
+        </extensions>
 		<pluginManagement>
 			<plugins>
 				<plugin>
