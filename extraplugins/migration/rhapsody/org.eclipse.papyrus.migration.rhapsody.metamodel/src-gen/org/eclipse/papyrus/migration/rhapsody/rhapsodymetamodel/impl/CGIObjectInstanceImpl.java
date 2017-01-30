@@ -63,6 +63,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.CGIObjectInstanceImpl#getAttrs <em>Attrs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.CGIObjectInstanceImpl#getM_bFramesetModified <em>MbFrameset Modified</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.CGIObjectInstanceImpl#getM_pImageViewData <em>MpImage View Data</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.CGIObjectInstanceImpl#getM_bIsMisplaced <em>MbIs Misplaced</em>}</li>
  * </ul>
  *
  * @generated
@@ -257,6 +258,26 @@ public class CGIObjectInstanceImpl extends GraphElementsTypeImpl implements CGIO
 	 * @ordered
 	 */
 	protected CGIImageData m_pImageViewData;
+
+	/**
+	 * The default value of the '{@link #getM_bIsMisplaced() <em>MbIs Misplaced</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getM_bIsMisplaced()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MBIS_MISPLACED_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getM_bIsMisplaced() <em>MbIs Misplaced</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getM_bIsMisplaced()
+	 * @generated
+	 * @ordered
+	 */
+	protected String m_bIsMisplaced = MBIS_MISPLACED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -738,6 +759,27 @@ public class CGIObjectInstanceImpl extends GraphElementsTypeImpl implements CGIO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getM_bIsMisplaced() {
+		return m_bIsMisplaced;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setM_bIsMisplaced(String newM_bIsMisplaced) {
+		String oldM_bIsMisplaced = m_bIsMisplaced;
+		m_bIsMisplaced = newM_bIsMisplaced;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MBIS_MISPLACED, oldM_bIsMisplaced, m_bIsMisplaced));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -797,6 +839,8 @@ public class CGIObjectInstanceImpl extends GraphElementsTypeImpl implements CGIO
 			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MPIMAGE_VIEW_DATA:
 				if (resolve) return getM_pImageViewData();
 				return basicGetM_pImageViewData();
+			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MBIS_MISPLACED:
+				return getM_bIsMisplaced();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -860,6 +904,9 @@ public class CGIObjectInstanceImpl extends GraphElementsTypeImpl implements CGIO
 			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MPIMAGE_VIEW_DATA:
 				setM_pImageViewData((CGIImageData)newValue);
 				return;
+			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MBIS_MISPLACED:
+				setM_bIsMisplaced((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -917,6 +964,9 @@ public class CGIObjectInstanceImpl extends GraphElementsTypeImpl implements CGIO
 			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MPIMAGE_VIEW_DATA:
 				setM_pImageViewData((CGIImageData)null);
 				return;
+			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MBIS_MISPLACED:
+				setM_bIsMisplaced(MBIS_MISPLACED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -959,6 +1009,8 @@ public class CGIObjectInstanceImpl extends GraphElementsTypeImpl implements CGIO
 				return MBFRAMESET_MODIFIED_EDEFAULT == null ? m_bFramesetModified != null : !MBFRAMESET_MODIFIED_EDEFAULT.equals(m_bFramesetModified);
 			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MPIMAGE_VIEW_DATA:
 				return m_pImageViewData != null;
+			case UMLRhapsodyPackage.CGI_OBJECT_INSTANCE__MBIS_MISPLACED:
+				return MBIS_MISPLACED_EDEFAULT == null ? m_bIsMisplaced != null : !MBIS_MISPLACED_EDEFAULT.equals(m_bIsMisplaced);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -985,6 +1037,8 @@ public class CGIObjectInstanceImpl extends GraphElementsTypeImpl implements CGIO
 		result.append(frameset);
 		result.append(", m_bFramesetModified: "); //$NON-NLS-1$
 		result.append(m_bFramesetModified);
+		result.append(", m_bIsMisplaced: "); //$NON-NLS-1$
+		result.append(m_bIsMisplaced);
 		result.append(')');
 		return result.toString();
 	}

@@ -28,10 +28,12 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ElementsType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.FromLinkType;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAttribute;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClass;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDescription;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IModelElement;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IPropertyContainer;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IStereotype;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IType;
@@ -56,6 +58,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getImplicitClass <em>Implicit Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getMyState <em>My State</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getName <em>Name</em>}</li>
@@ -70,6 +73,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPacka
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getQualifierType <em>Qualifier Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.IAssociationEndImpl#getM_associationClass <em>Massociation Class</em>}</li>
  * </ul>
  *
  * @generated
@@ -164,6 +168,26 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 	 * @ordered
 	 */
 	protected IClass implicitClass;
+
+	/**
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DISPLAY_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -374,6 +398,16 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 	 * @ordered
 	 */
 	protected IType qualifierType;
+
+	/**
+	 * The cached value of the '{@link #getM_associationClass() <em>Massociation Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getM_associationClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected IAssociationClass m_associationClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -653,6 +687,27 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IASSOCIATION_END__IMPLICIT_CLASS, newImplicitClass, newImplicitClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDisplayName(String newDisplayName) {
+		String oldDisplayName = displayName;
+		displayName = newDisplayName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME, oldDisplayName, displayName));
 	}
 
 	/**
@@ -1021,6 +1076,44 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IAssociationClass getM_associationClass() {
+		if (m_associationClass != null && m_associationClass.eIsProxy()) {
+			InternalEObject oldM_associationClass = (InternalEObject)m_associationClass;
+			m_associationClass = (IAssociationClass)eResolveProxy(oldM_associationClass);
+			if (m_associationClass != oldM_associationClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRhapsodyPackage.IASSOCIATION_END__MASSOCIATION_CLASS, oldM_associationClass, m_associationClass));
+			}
+		}
+		return m_associationClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IAssociationClass basicGetM_associationClass() {
+		return m_associationClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setM_associationClass(IAssociationClass newM_associationClass) {
+		IAssociationClass oldM_associationClass = m_associationClass;
+		m_associationClass = newM_associationClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLRhapsodyPackage.IASSOCIATION_END__MASSOCIATION_CLASS, oldM_associationClass, m_associationClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -1057,6 +1150,8 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 			case UMLRhapsodyPackage.IASSOCIATION_END__IMPLICIT_CLASS:
 				if (resolve) return getImplicitClass();
 				return basicGetImplicitClass();
+			case UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME:
+				return getDisplayName();
 			case UMLRhapsodyPackage.IASSOCIATION_END__ID:
 				return getId();
 			case UMLRhapsodyPackage.IASSOCIATION_END__MY_STATE:
@@ -1090,6 +1185,9 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 			case UMLRhapsodyPackage.IASSOCIATION_END__QUALIFIER_TYPE:
 				if (resolve) return getQualifierType();
 				return basicGetQualifierType();
+			case UMLRhapsodyPackage.IASSOCIATION_END__MASSOCIATION_CLASS:
+				if (resolve) return getM_associationClass();
+				return basicGetM_associationClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1120,6 +1218,9 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 				return;
 			case UMLRhapsodyPackage.IASSOCIATION_END__IMPLICIT_CLASS:
 				setImplicitClass((IClass)newValue);
+				return;
+			case UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME:
+				setDisplayName((String)newValue);
 				return;
 			case UMLRhapsodyPackage.IASSOCIATION_END__ID:
 				setId((String)newValue);
@@ -1165,6 +1266,9 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 			case UMLRhapsodyPackage.IASSOCIATION_END__QUALIFIER_TYPE:
 				setQualifierType((IType)newValue);
 				return;
+			case UMLRhapsodyPackage.IASSOCIATION_END__MASSOCIATION_CLASS:
+				setM_associationClass((IAssociationClass)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1194,6 +1298,9 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 				return;
 			case UMLRhapsodyPackage.IASSOCIATION_END__IMPLICIT_CLASS:
 				setImplicitClass((IClass)null);
+				return;
+			case UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
 			case UMLRhapsodyPackage.IASSOCIATION_END__ID:
 				setId(ID_EDEFAULT);
@@ -1237,6 +1344,9 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 			case UMLRhapsodyPackage.IASSOCIATION_END__QUALIFIER_TYPE:
 				setQualifierType((IType)null);
 				return;
+			case UMLRhapsodyPackage.IASSOCIATION_END__MASSOCIATION_CLASS:
+				setM_associationClass((IAssociationClass)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1261,6 +1371,8 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 				return properties != null;
 			case UMLRhapsodyPackage.IASSOCIATION_END__IMPLICIT_CLASS:
 				return implicitClass != null;
+			case UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
 			case UMLRhapsodyPackage.IASSOCIATION_END__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case UMLRhapsodyPackage.IASSOCIATION_END__MY_STATE:
@@ -1289,6 +1401,8 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 				return codeUpdateCGTime != null && !codeUpdateCGTime.isEmpty();
 			case UMLRhapsodyPackage.IASSOCIATION_END__QUALIFIER_TYPE:
 				return qualifierType != null;
+			case UMLRhapsodyPackage.IASSOCIATION_END__MASSOCIATION_CLASS:
+				return m_associationClass != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1328,6 +1442,12 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 		if (baseClass == ToLinkType.class) {
 			switch (derivedFeatureID) {
 				case UMLRhapsodyPackage.IASSOCIATION_END__IMPLICIT_CLASS: return UMLRhapsodyPackage.TO_LINK_TYPE__IMPLICIT_CLASS;
+				default: return -1;
+			}
+		}
+		if (baseClass == IModelElement.class) {
+			switch (derivedFeatureID) {
+				case UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME: return UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME;
 				default: return -1;
 			}
 		}
@@ -1372,6 +1492,12 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 				default: return -1;
 			}
 		}
+		if (baseClass == IModelElement.class) {
+			switch (baseFeatureID) {
+				case UMLRhapsodyPackage.IMODEL_ELEMENT__DISPLAY_NAME: return UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME;
+				default: return -1;
+			}
+		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
@@ -1391,6 +1517,8 @@ public class IAssociationEndImpl extends AssociationsTypeImpl implements IAssoci
 		result.append(objectCreation);
 		result.append(", requiremenTracabilityHandle: "); //$NON-NLS-1$
 		result.append(requiremenTracabilityHandle);
+		result.append(", displayName: "); //$NON-NLS-1$
+		result.append(displayName);
 		result.append(", id: "); //$NON-NLS-1$
 		result.append(id);
 		result.append(", myState: "); //$NON-NLS-1$

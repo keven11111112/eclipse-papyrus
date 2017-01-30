@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectInstance#getAttrs <em>Attrs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectInstance#getM_bFramesetModified <em>MbFrameset Modified</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectInstance#getM_pImageViewData <em>MpImage View Data</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectInstance#getM_bIsMisplaced <em>MbIs Misplaced</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getCGIObjectInstance()
@@ -384,5 +385,31 @@ public interface CGIObjectInstance extends GraphElementsType {
 	 * @generated
 	 */
 	void setM_pImageViewData(CGIImageData value);
+
+	/**
+	 * Returns the value of the '<em><b>MbIs Misplaced</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>MbIs Misplaced</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>MbIs Misplaced</em>' attribute.
+	 * @see #setM_bIsMisplaced(String)
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getCGIObjectInstance_M_bIsMisplaced()
+	 * @model
+	 * @generated
+	 */
+	String getM_bIsMisplaced();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectInstance#getM_bIsMisplaced <em>MbIs Misplaced</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>MbIs Misplaced</em>' attribute.
+	 * @see #getM_bIsMisplaced()
+	 * @generated
+	 */
+	void setM_bIsMisplaced(String value);
 
 } // CGIObjectInstance

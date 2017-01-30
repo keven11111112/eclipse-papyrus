@@ -436,6 +436,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
+				 UMLRhapsodyFactory.eINSTANCE.createIAssociationEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Diagrams(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAssociationRole()));
 
 		newChildDescriptors.add
@@ -932,6 +937,11 @@ public class IProjectItemProvider extends IPackageItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAssociationClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIProject_Components(),
+				 UMLRhapsodyFactory.eINSTANCE.createIAssociationEnd()));
 
 		newChildDescriptors.add
 			(createChildParameter

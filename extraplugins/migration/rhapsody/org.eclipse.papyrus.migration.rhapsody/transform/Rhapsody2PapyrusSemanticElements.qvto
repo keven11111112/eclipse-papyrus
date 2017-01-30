@@ -120,6 +120,9 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	//TODO probably more check are required to remove TopLevel without problems (check with MARTE...)
 	packagedElement+= iSubSystem.Classes->selectByType(IClass)->select(curr | curr.name<>"TopLevel")->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 
+	//managing rhapsody objects IAssociationClass
+	packagedElement+=iSubSystem.AssociationElements->selectByType(IAssociationClass)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
+
 	packagedElement += iSubSystem.Types->selectByType(IType)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Actors->selectByKind(IActor)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement +=iSubSystem.Declaratives[DefaultSubsystemType].oclAsSet().map iDefaultSubsystemTypeToPackage();
@@ -146,7 +149,8 @@ mapping ecore::EObject::generalMappingToUMLElement():uml::Element disjuncts
  	ecore::EObject::iTypeToUMLInstanceSpecification, 
  	ecore::EObject::iTypeToUMLEnumeration,
  	ecore::EObject::iTypeToUMLClass, //TODO : merge me with the existing other way to create a class
- 	ecore::EObject::iTypeToDefault
+ 	ecore::EObject::iTypeToDefault,
+ 	ecore::EObject::iAssociationClassToUMLAssociation
 {}
 
 /**
@@ -362,7 +366,41 @@ query umlrhapsody::IType::isUMLInstanceSpecification(): Boolean {
 
 //--------association code--------------
 
-mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association {			
+/**
+* This mapping creates a UML association with its 2 members ends and owned ends when required, according to the navigability value
+*/
+mapping ecore::EObject::iAssociationClassToUMLAssociation(): uml::Association when{self.oclIsKindOf(IAssociationClass)}{
+	var localIAssociationClass:IAssociationClass:=self.oclAsType(IAssociationClass);
+	name:= localIAssociationClass.name.replaceAll("\"","");
+	var end1:IAssociationEnd:=localIAssociationClass.m_end1;
+	var end2:IAssociationEnd:=localIAssociationClass.m_end2;
+	
+	var mapping1:Property:=end1.map toAssociationsEnd().oclAsType(Property);
+	var mapping2:Property:=end2.map toAssociationsEnd().oclAsType(Property);
+	
+	//if navigable: owned by class
+	//if non navigable, owned by the association 
+	 
+	memberEnd+=mapping1;
+	memberEnd+=mapping2;
+	
+	if(not end1.isNavigable()){
+		ownedEnd+=mapping1;
+	};
+	if(not end2.isNavigable()){
+		ownedEnd+=mapping2;
+	}
+}
+
+/**
+* Return true if the association end is navigable. In this case, the property will be owned by the class, 
+* otherwse, by the association
+*/
+helper umlrhapsody::IAssociationEnd::isNavigable():Boolean{
+	return self.navigability.equalsIgnoreCase("Navigable");
+}
+
+mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association when{self.isNavigable() and self.inverse.oclIsUndefined()}{			
 	//please keep this order (O source and 1 target) -> if we change this property we broke the BDD of test2
 	var localMemberEnd:=self.map toAssociationsEnd();
 	memberEnd+= localMemberEnd; 

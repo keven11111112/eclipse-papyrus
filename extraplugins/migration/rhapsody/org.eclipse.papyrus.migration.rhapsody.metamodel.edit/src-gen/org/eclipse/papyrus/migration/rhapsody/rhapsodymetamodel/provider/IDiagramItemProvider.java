@@ -558,6 +558,11 @@ public class IDiagramItemProvider extends IUnitItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
+				 UMLRhapsodyFactory.eINSTANCE.createIAssociationEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIDiagram_Stereotypes(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAssociationRole()));
 
 		newChildDescriptors.add

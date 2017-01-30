@@ -7,13 +7,15 @@
     editPluginClass="org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.provider.rhapsodymetamodelEditPlugin"
     editorPluginClass="org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.presentation.rhapsodymetamodelEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="/org.eclipse.papyrus.migration.rhapsody.metamodel.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    containmentProxies="true" complianceLevel="6.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.migration.rhapsody.metamodel.edit"
+    testsDirectory="/org.eclipse.papyrus.migration.rhapsody.metamodel.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" containmentProxies="true" complianceLevel="6.0"
+    copyrightFields="false" editPluginID="org.eclipse.papyrus.migration.rhapsody.metamodel.edit"
     editorPluginID="org.eclipse.papyrus.migration.rhapsody.metamodel.editor" language=""
     operationReflection="true" importOrganizing="true" oSGiCompatible="true">
   <foreignModel>Rhapsody.ecore</foreignModel>
-  <genPackages prefix="UMLRhapsody" basePackage="org.eclipse.papyrus.migration.rhapsody" disposableProviderFactory="true"
-      loadInitialization="true" literalsInterface="false" ecorePackage="Rhapsody.ecore#/">
+  <genPackages prefix="UMLRhapsody" basePackage="org.eclipse.papyrus.migration.rhapsody"
+      disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
+      ecorePackage="Rhapsody.ecore#/">
     <genClasses image="false" ecoreClass="Rhapsody.ecore#//AssociationsType"/>
     <genClasses ecoreClass="Rhapsody.ecore#//CCollaborationChart">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//CCollaborationChart/m_pModelObject"/>
@@ -551,6 +553,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//CGIObjectInstance/Attrs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//CGIObjectInstance/m_bFramesetModified"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//CGIObjectInstance/m_pImageViewData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//CGIObjectInstance/m_bIsMisplaced"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//CGIObjectLink">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//CGIObjectLink/properties"/>
@@ -809,7 +812,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IActivityGraph/codeUpdateCGTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IActivityGraph/objectCreation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IActivityGraph/umlDependencyID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IActivityGraph/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IActivityGraph/HyperLinks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IActivityGraph/Dependencies"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IActivityGraph/theMainDiagram"/>
@@ -871,7 +873,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IArgument/objectCreation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IArgument/umlDependencyID"/>
     </genClasses>
-    <genClasses ecoreClass="Rhapsody.ecore#//IAssociationClass"/>
+    <genClasses ecoreClass="Rhapsody.ecore#//IAssociationClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IAssociationClass/isClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IAssociationClass/m_end1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IAssociationClass/m_end2"/>
+    </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//IAssociationEnd">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IAssociationEnd/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IAssociationEnd/myState"/>
@@ -887,6 +893,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IAssociationEnd/Stereotypes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IAssociationEnd/codeUpdateCGTime"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IAssociationEnd/qualifierType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IAssociationEnd/m_associationClass"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//IAssociationEndHandle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IAssociationEndHandle/m2Class"/>
@@ -1000,7 +1007,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IClass/TemplateParameters"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IClass/codeUpdateCGTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IClass/cmheader"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IClass/displayName"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//IClassHandle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IClassHandle/m2Class"/>
@@ -1028,7 +1034,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IClassifierRole/Stereotypes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IClassifierRole/objectCreation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IClassifierRole/umlDependencyID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IClassifierRole/displayName"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//ICodeGenConfigInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ICodeGenConfigInfo/id"/>
@@ -1204,7 +1209,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDependency/dependsOn"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDependency/Tags"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDependency/Annotations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IDependency/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDependency/Dependencies"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDependency/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IDependency/requiremenTracabilityHandle"/>
@@ -1239,7 +1243,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IDiagram/modifiedTimeWeak"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDiagram/graphicChart"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDiagram/Annotations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IDiagram/displayName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IDiagram/codeUpdateCGTime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IDiagram/HyperLinks"/>
     </genClasses>
@@ -1277,7 +1280,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IEvent/superEvent"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IEvent/requiremenTracabilityHandle"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IEvent/Annotations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IEvent/displayName"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//IEventHandle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IEventHandle/m2Class"/>
@@ -1495,7 +1497,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMHyperLink/linkType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMHyperLink/isConfigurationFileHyperLink"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMHyperLink/linkTarget"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMHyperLink/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IMHyperLink/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMHyperLink/requiremenTracabilityHandle"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMHyperLink/objectCreation"/>
@@ -1549,7 +1550,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMessage/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMessage/myState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMessage/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMessage/displayName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMessage/m_szSequence"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMessage/m_szActualArgs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMessage/m_szReturnVal"/>
@@ -1577,7 +1577,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMetaLinkHandle/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IMetaLinkHandle/id"/>
     </genClasses>
-    <genClasses ecoreClass="Rhapsody.ecore#//IModelElement"/>
+    <genClasses ecoreClass="Rhapsody.ecore#//IModelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IModelElement/displayName"/>
+    </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//IModule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IModule/Stereotypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IModule/description"/>
@@ -1646,7 +1648,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPart/Dependencies"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPart/Tags"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPart/initialCallAction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IPart/displayName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IPart/codeUpdateCGTime"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPart/theMainDiagram"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPart/Slots"/>
@@ -1687,7 +1688,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPrimitiveOperation/Stereotypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPrimitiveOperation/myReturnType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPrimitiveOperation/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IPrimitiveOperation/displayName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IPrimitiveOperation/requiremenTracabilityHandle"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPrimitiveOperation/Declaratives"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IPrimitiveOperation/itsActivityGraph"/>
@@ -1705,7 +1705,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IProfile/Types"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IProfile/MatrixLayouts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IProfile/license"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IProfile/displayName"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//IProject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IProject/UserColors"/>
@@ -1726,6 +1725,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IProject/unitSccProjPath"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IProject/Dependencies"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IProject/codeUpdateCGTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IProject/version"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//IProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IProperty/Name"/>
@@ -1779,7 +1779,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IRequirement/Stereotypes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IRequirement/modifiedTimeWeak"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IRequirement/reqID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IRequirement/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IRequirement/Dependencies"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IRequirement/Anchors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IRequirement/HyperLinks"/>
@@ -1807,7 +1806,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IState/exitAction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IState/nestedStateChart"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IState/requiremenTracabilityHandle"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IState/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IState/Annotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IState/Dependencies"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IState/theMainDiagram"/>
@@ -1842,7 +1840,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IStereotype/Inheritances"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IStereotype/Dependencies"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IStereotype/requiremenTracabilityHandle"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IStereotype/displayName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IStereotype/objectCreation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//IStereotype/umlDependencyID"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//IStereotype/theMainDiagram"/>
@@ -1871,7 +1868,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/Actors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/Tags"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/AssociationElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/Dependencies"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/ownerHandle"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/theMainDiagram"/>
@@ -1886,7 +1882,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISubsystem/codeUpdateCGTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISubsystem/objectCreation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISubsystem/umlDependencyID"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISubsystem/displayName"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISubsystem/AssociationElements"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//ISwimlane">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISwimlane/id"/>
@@ -1898,7 +1894,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISwimlane/objectCreation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISwimlane/umlDependencyID"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISwimlane/Swimlanes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ISwimlane/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ISwimlane/Stereotypes"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//ISysMLPort">
@@ -1945,7 +1940,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITag/metaClass"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITag/defaultValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITag/codeUpdateCGTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITag/displayName"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//ITemplateInst">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITemplateInst/id"/>
@@ -1990,13 +1984,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ITransition/inheritsFromHandle"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ITransition/Dependencies"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ITransition/Stereotypes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITransition/displayName"/>
     </genClasses>
     <genClasses ecoreClass="Rhapsody.ecore#//ITrigger"/>
     <genClasses ecoreClass="Rhapsody.ecore#//ITriggered">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITriggered/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITriggered/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITriggered/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ITriggered/Args"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rhapsody.ecore#//ITriggered/returnType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rhapsody.ecore#//ITriggered/abstract"/>

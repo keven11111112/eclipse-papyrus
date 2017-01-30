@@ -1022,6 +1022,11 @@ public class IClassItemProvider extends IClassifierItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
+				 UMLRhapsodyFactory.eINSTANCE.createIAssociationEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIClass_Inheritances(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAssociationRole()));
 
 		newChildDescriptors.add

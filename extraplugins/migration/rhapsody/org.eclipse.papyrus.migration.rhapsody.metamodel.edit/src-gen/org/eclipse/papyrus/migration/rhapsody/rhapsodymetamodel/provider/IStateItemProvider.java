@@ -425,6 +425,11 @@ public class IStateItemProvider extends IStateVertexItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
+				 UMLRhapsodyFactory.eINSTANCE.createIAssociationEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getIState_EntryAction(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAssociationRole()));
 
 		newChildDescriptors.add

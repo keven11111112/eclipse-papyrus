@@ -44,7 +44,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getActors <em>Actors</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getTags <em>Tags</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getAssociationElements <em>Association Elements</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getOwnerHandle <em>Owner Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getTheMainDiagram <em>The Main Diagram</em>}</li>
@@ -59,6 +58,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getObjectCreation <em>Object Creation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getUmlDependencyID <em>Uml Dependency ID</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getAssociationElements <em>Association Elements</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getISubsystem()
@@ -513,20 +513,20 @@ public interface ISubsystem extends OwnerHandleType, DependsOnType, Declaratives
 	EList<ITag> getTags();
 
 	/**
-	 * Returns the value of the '<em><b>Association Elements</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType}.
+	 * Returns the value of the '<em><b>Association Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Association Elements</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Association Elements</em>' reference list.
+	 * @return the value of the '<em>Association Elements</em>' containment reference list.
 	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getISubsystem_AssociationElements()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<UnknownType> getAssociationElements();
+	EList<IAssociationClass> getAssociationElements();
 
 	/**
 	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.

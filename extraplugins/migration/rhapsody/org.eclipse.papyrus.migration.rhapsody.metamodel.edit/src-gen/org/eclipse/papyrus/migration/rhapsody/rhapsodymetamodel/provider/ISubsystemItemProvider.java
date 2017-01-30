@@ -68,13 +68,13 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			addLastIDPropertyDescriptor(object);
 			addCmheaderPropertyDescriptor(object);
 			addPredefinedTypesPropertyDescriptor(object);
-			addAssociationElementsPropertyDescriptor(object);
 			addOwnerHandlePropertyDescriptor(object);
 			addTheMainDiagramPropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
 			addObjectCreationPropertyDescriptor(object);
 			addUmlDependencyIDPropertyDescriptor(object);
+			addAssociationElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -484,6 +484,7 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			childrenFeatures.add(UMLRhapsodyPackage.eINSTANCE.getISubsystem_MatrixInstances());
 			childrenFeatures.add(UMLRhapsodyPackage.eINSTANCE.getISubsystem_EmbededFiles());
 			childrenFeatures.add(UMLRhapsodyPackage.eINSTANCE.getISubsystem_ComponentFiles());
+			childrenFeatures.add(UMLRhapsodyPackage.eINSTANCE.getISubsystem_AssociationElements());
 		}
 		return childrenFeatures;
 	}
@@ -573,6 +574,7 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			case UMLRhapsodyPackage.ISUBSYSTEM__MATRIX_INSTANCES:
 			case UMLRhapsodyPackage.ISUBSYSTEM__EMBEDED_FILES:
 			case UMLRhapsodyPackage.ISUBSYSTEM__COMPONENT_FILES:
+			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -1738,6 +1740,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
+				 UMLRhapsodyFactory.eINSTANCE.createIAssociationEnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts(),
 				 UMLRhapsodyFactory.eINSTANCE.createIAssociationRole()));
 
 		newChildDescriptors.add
@@ -2184,6 +2191,11 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			(createChildParameter
 				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_ComponentFiles(),
 				 UMLRhapsodyFactory.eINSTANCE.createIFile()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UMLRhapsodyPackage.eINSTANCE.getISubsystem_AssociationElements(),
+				 UMLRhapsodyFactory.eINSTANCE.createIAssociationClass()));
 	}
 
 	/**
@@ -2206,6 +2218,7 @@ public class ISubsystemItemProvider extends OwnerHandleTypeItemProvider {
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_UseCases() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_Actors() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_TableLayouts() ||
+			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_AssociationElements() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_Events() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_ComponentFiles() ||
 			childFeature == UMLRhapsodyPackage.eINSTANCE.getISubsystem_MatrixLayouts() ||

@@ -19,11 +19,6 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>IAssociation End</b></em>'.
  * <!-- end-user-doc -->
  *
- * <!-- begin-model-doc -->
- * This object must not inherit from IModelElement.
- * In Rhapsody, this object doesn't have displayName field!
- * <!-- end-model-doc -->
- *
  * <p>
  * The following features are supported:
  * </p>
@@ -42,13 +37,14 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd#getStereotypes <em>Stereotypes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd#getQualifierType <em>Qualifier Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd#getM_associationClass <em>Massociation Class</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIAssociationEnd()
  * @model
  * @generated
  */
-public interface IAssociationEnd extends AssociationsType, M_subjectType, M_hTargetType, InverseType, M_pModelObjectType, ToLinkType {
+public interface IAssociationEnd extends AssociationsType, M_subjectType, M_hTargetType, InverseType, M_pModelObjectType, ToLinkType, IModelElement {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -392,5 +388,31 @@ public interface IAssociationEnd extends AssociationsType, M_subjectType, M_hTar
 	 * @generated
 	 */
 	void setQualifierType(IType value);
+
+	/**
+	 * Returns the value of the '<em><b>Massociation Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Massociation Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Massociation Class</em>' reference.
+	 * @see #setM_associationClass(IAssociationClass)
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage#getIAssociationEnd_M_associationClass()
+	 * @model
+	 * @generated
+	 */
+	IAssociationClass getM_associationClass();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd#getM_associationClass <em>Massociation Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Massociation Class</em>' reference.
+	 * @see #getM_associationClass()
+	 * @generated
+	 */
+	void setM_associationClass(IAssociationClass value);
 
 } // IAssociationEnd

@@ -708,6 +708,7 @@ public class UMLRhapsodySwitch<T> extends Switch<T> {
 				if (result == null) result = caseM_hTargetType(iAssociationEnd);
 				if (result == null) result = caseM_pModelObjectType(iAssociationEnd);
 				if (result == null) result = caseToLinkType(iAssociationEnd);
+				if (result == null) result = caseIModelElement(iAssociationEnd);
 				if (result == null) result = caseInverseType(iAssociationEnd);
 				if (result == null) result = caseFromLinkType(iAssociationEnd);
 				if (result == null) result = defaultCase(theEObject);

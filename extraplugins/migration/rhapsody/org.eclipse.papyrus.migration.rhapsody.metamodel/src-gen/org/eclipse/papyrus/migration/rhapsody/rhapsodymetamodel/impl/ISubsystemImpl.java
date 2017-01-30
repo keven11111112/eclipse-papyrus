@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.DeclarativesType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.EmbededFilesType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.HyperLinksType;
+import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClass;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IClassifier;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IDependency;
@@ -49,7 +49,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.OwnerHandleType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.TableInstancesType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.TheMainDiagramType;
 import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UMLRhapsodyPackage;
-import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,7 +79,6 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getActors <em>Actors</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getTags <em>Tags</em>}</li>
- *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getAssociationElements <em>Association Elements</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getOwnerHandle <em>Owner Handle</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getTheMainDiagram <em>The Main Diagram</em>}</li>
@@ -95,6 +93,7 @@ import org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.UnknownType;
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getCodeUpdateCGTime <em>Code Update CG Time</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getObjectCreation <em>Object Creation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getUmlDependencyID <em>Uml Dependency ID</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.impl.ISubsystemImpl#getAssociationElements <em>Association Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -381,16 +380,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	protected EList<ITag> tags;
 
 	/**
-	 * The cached value of the '{@link #getAssociationElements() <em>Association Elements</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAssociationElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<UnknownType> associationElements;
-
-	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -559,6 +548,16 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	 * @ordered
 	 */
 	protected String umlDependencyID = UML_DEPENDENCY_ID_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAssociationElements() <em>Association Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociationElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IAssociationClass> associationElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1059,9 +1058,9 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<UnknownType> getAssociationElements() {
+	public EList<IAssociationClass> getAssociationElements() {
 		if (associationElements == null) {
-			associationElements = new EObjectResolvingEList<UnknownType>(UnknownType.class, this, UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS);
+			associationElements = new EObjectContainmentEList.Resolving<IAssociationClass>(IAssociationClass.class, this, UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS);
 		}
 		return associationElements;
 	}
@@ -1411,6 +1410,8 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				return ((InternalEList<?>)getEmbededFiles()).basicRemove(otherEnd, msgs);
 			case UMLRhapsodyPackage.ISUBSYSTEM__COMPONENT_FILES:
 				return ((InternalEList<?>)getComponentFiles()).basicRemove(otherEnd, msgs);
+			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
+				return ((InternalEList<?>)getAssociationElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1469,8 +1470,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				return basicGetDescription();
 			case UMLRhapsodyPackage.ISUBSYSTEM__TAGS:
 				return getTags();
-			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
-				return getAssociationElements();
 			case UMLRhapsodyPackage.ISUBSYSTEM__DEPENDENCIES:
 				return getDependencies();
 			case UMLRhapsodyPackage.ISUBSYSTEM__OWNER_HANDLE:
@@ -1502,6 +1501,8 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				return getObjectCreation();
 			case UMLRhapsodyPackage.ISUBSYSTEM__UML_DEPENDENCY_ID:
 				return getUmlDependencyID();
+			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
+				return getAssociationElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1588,10 +1589,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				getTags().clear();
 				getTags().addAll((Collection<? extends ITag>)newValue);
 				return;
-			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
-				getAssociationElements().clear();
-				getAssociationElements().addAll((Collection<? extends UnknownType>)newValue);
-				return;
 			case UMLRhapsodyPackage.ISUBSYSTEM__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection<? extends IDependency>)newValue);
@@ -1641,6 +1638,10 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				return;
 			case UMLRhapsodyPackage.ISUBSYSTEM__UML_DEPENDENCY_ID:
 				setUmlDependencyID((String)newValue);
+				return;
+			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
+				getAssociationElements().clear();
+				getAssociationElements().addAll((Collection<? extends IAssociationClass>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1717,9 +1718,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 			case UMLRhapsodyPackage.ISUBSYSTEM__TAGS:
 				getTags().clear();
 				return;
-			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
-				getAssociationElements().clear();
-				return;
 			case UMLRhapsodyPackage.ISUBSYSTEM__DEPENDENCIES:
 				getDependencies().clear();
 				return;
@@ -1761,6 +1759,9 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				return;
 			case UMLRhapsodyPackage.ISUBSYSTEM__UML_DEPENDENCY_ID:
 				setUmlDependencyID(UML_DEPENDENCY_ID_EDEFAULT);
+				return;
+			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
+				getAssociationElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -1816,8 +1817,6 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				return description != null;
 			case UMLRhapsodyPackage.ISUBSYSTEM__TAGS:
 				return tags != null && !tags.isEmpty();
-			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
-				return associationElements != null && !associationElements.isEmpty();
 			case UMLRhapsodyPackage.ISUBSYSTEM__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
 			case UMLRhapsodyPackage.ISUBSYSTEM__OWNER_HANDLE:
@@ -1846,6 +1845,8 @@ public class ISubsystemImpl extends OwnerHandleTypeImpl implements ISubsystem {
 				return OBJECT_CREATION_EDEFAULT == null ? objectCreation != null : !OBJECT_CREATION_EDEFAULT.equals(objectCreation);
 			case UMLRhapsodyPackage.ISUBSYSTEM__UML_DEPENDENCY_ID:
 				return UML_DEPENDENCY_ID_EDEFAULT == null ? umlDependencyID != null : !UML_DEPENDENCY_ID_EDEFAULT.equals(umlDependencyID);
+			case UMLRhapsodyPackage.ISUBSYSTEM__ASSOCIATION_ELEMENTS:
+				return associationElements != null && !associationElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

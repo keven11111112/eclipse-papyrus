@@ -7546,13 +7546,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int CGI_OBJECT_INSTANCE__MPIMAGE_VIEW_DATA = GRAPH_ELEMENTS_TYPE_FEATURE_COUNT + 14;
 
 	/**
+	 * The feature id for the '<em><b>MbIs Misplaced</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CGI_OBJECT_INSTANCE__MBIS_MISPLACED = GRAPH_ELEMENTS_TYPE_FEATURE_COUNT + 15;
+
+	/**
 	 * The number of structural features of the '<em>CGI Object Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CGI_OBJECT_INSTANCE_FEATURE_COUNT = GRAPH_ELEMENTS_TYPE_FEATURE_COUNT + 15;
+	int CGI_OBJECT_INSTANCE_FEATURE_COUNT = GRAPH_ELEMENTS_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of operations of the '<em>CGI Object Instance</em>' class.
@@ -13199,13 +13208,40 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IASSOCIATION_CLASS__CMHEADER = ICLASS__CMHEADER;
 
 	/**
+	 * The feature id for the '<em><b>Is Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IASSOCIATION_CLASS__IS_CLASS = ICLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Mend1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IASSOCIATION_CLASS__MEND1 = ICLASS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Mend2</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IASSOCIATION_CLASS__MEND2 = ICLASS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>IAssociation Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_CLASS_FEATURE_COUNT = ICLASS_FEATURE_COUNT + 0;
+	int IASSOCIATION_CLASS_FEATURE_COUNT = ICLASS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>IAssociation Class</em>' class.
@@ -13281,13 +13317,22 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int IASSOCIATION_END__IMPLICIT_CLASS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IASSOCIATION_END__DISPLAY_NAME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 6;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__ID = ASSOCIATIONS_TYPE_FEATURE_COUNT + 6;
+	int IASSOCIATION_END__ID = ASSOCIATIONS_TYPE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>My State</b></em>' attribute.
@@ -13296,7 +13341,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__MY_STATE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 7;
+	int IASSOCIATION_END__MY_STATE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -13305,7 +13350,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__NAME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 8;
+	int IASSOCIATION_END__NAME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
@@ -13314,7 +13359,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__MULTIPLICITY = ASSOCIATIONS_TYPE_FEATURE_COUNT + 9;
+	int IASSOCIATION_END__MULTIPLICITY = ASSOCIATIONS_TYPE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Other Class</b></em>' reference.
@@ -13323,7 +13368,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__OTHER_CLASS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 10;
+	int IASSOCIATION_END__OTHER_CLASS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Link Name</b></em>' attribute.
@@ -13332,7 +13377,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__LINK_NAME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 11;
+	int IASSOCIATION_END__LINK_NAME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Link Type</b></em>' attribute.
@@ -13341,7 +13386,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__LINK_TYPE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 12;
+	int IASSOCIATION_END__LINK_TYPE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Navigability</b></em>' attribute.
@@ -13350,7 +13395,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__NAVIGABILITY = ASSOCIATIONS_TYPE_FEATURE_COUNT + 13;
+	int IASSOCIATION_END__NAVIGABILITY = ASSOCIATIONS_TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Inverse</b></em>' reference.
@@ -13359,7 +13404,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__INVERSE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 14;
+	int IASSOCIATION_END__INVERSE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Modified Time Weak</b></em>' attribute list.
@@ -13368,7 +13413,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__MODIFIED_TIME_WEAK = ASSOCIATIONS_TYPE_FEATURE_COUNT + 15;
+	int IASSOCIATION_END__MODIFIED_TIME_WEAK = ASSOCIATIONS_TYPE_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Qualifiers</b></em>' reference.
@@ -13377,7 +13422,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__QUALIFIERS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 16;
+	int IASSOCIATION_END__QUALIFIERS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' reference.
@@ -13386,7 +13431,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__STEREOTYPES = ASSOCIATIONS_TYPE_FEATURE_COUNT + 17;
+	int IASSOCIATION_END__STEREOTYPES = ASSOCIATIONS_TYPE_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -13395,7 +13440,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__CODE_UPDATE_CG_TIME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 18;
+	int IASSOCIATION_END__CODE_UPDATE_CG_TIME = ASSOCIATIONS_TYPE_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Qualifier Type</b></em>' reference.
@@ -13404,7 +13449,16 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END__QUALIFIER_TYPE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 19;
+	int IASSOCIATION_END__QUALIFIER_TYPE = ASSOCIATIONS_TYPE_FEATURE_COUNT + 20;
+
+	/**
+	 * The feature id for the '<em><b>Massociation Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IASSOCIATION_END__MASSOCIATION_CLASS = ASSOCIATIONS_TYPE_FEATURE_COUNT + 21;
 
 	/**
 	 * The number of structural features of the '<em>IAssociation End</em>' class.
@@ -13413,7 +13467,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IASSOCIATION_END_FEATURE_COUNT = ASSOCIATIONS_TYPE_FEATURE_COUNT + 20;
+	int IASSOCIATION_END_FEATURE_COUNT = ASSOCIATIONS_TYPE_FEATURE_COUNT + 22;
 
 	/**
 	 * The number of operations of the '<em>IAssociation End</em>' class.
@@ -28169,22 +28223,13 @@ public interface UMLRhapsodyPackage extends EPackage {
 	int ISUBSYSTEM__TAGS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 20;
 
 	/**
-	 * The feature id for the '<em><b>Association Elements</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ISUBSYSTEM__ASSOCIATION_ELEMENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 21;
-
-	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__DEPENDENCIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 22;
+	int ISUBSYSTEM__DEPENDENCIES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Owner Handle</b></em>' reference.
@@ -28193,7 +28238,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__OWNER_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 23;
+	int ISUBSYSTEM__OWNER_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>The Main Diagram</b></em>' reference.
@@ -28202,7 +28247,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__THE_MAIN_DIAGRAM = OWNER_HANDLE_TYPE_FEATURE_COUNT + 24;
+	int ISUBSYSTEM__THE_MAIN_DIAGRAM = OWNER_HANDLE_TYPE_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Hyper Links</b></em>' containment reference.
@@ -28211,7 +28256,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__HYPER_LINKS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 25;
+	int ISUBSYSTEM__HYPER_LINKS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Table Layouts</b></em>' containment reference list.
@@ -28220,7 +28265,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TABLE_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 26;
+	int ISUBSYSTEM__TABLE_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Matrix Layouts</b></em>' containment reference list.
@@ -28229,7 +28274,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MATRIX_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 27;
+	int ISUBSYSTEM__MATRIX_LAYOUTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 26;
 
 	/**
 	 * The feature id for the '<em><b>Table Instances</b></em>' containment reference list.
@@ -28238,7 +28283,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__TABLE_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 28;
+	int ISUBSYSTEM__TABLE_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 27;
 
 	/**
 	 * The feature id for the '<em><b>Matrix Instances</b></em>' containment reference list.
@@ -28247,7 +28292,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__MATRIX_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 29;
+	int ISUBSYSTEM__MATRIX_INSTANCES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 28;
 
 	/**
 	 * The feature id for the '<em><b>Embeded Files</b></em>' containment reference list.
@@ -28256,7 +28301,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__EMBEDED_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 30;
+	int ISUBSYSTEM__EMBEDED_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 29;
 
 	/**
 	 * The feature id for the '<em><b>Component Files</b></em>' containment reference list.
@@ -28265,7 +28310,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__COMPONENT_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 31;
+	int ISUBSYSTEM__COMPONENT_FILES = OWNER_HANDLE_TYPE_FEATURE_COUNT + 30;
 
 	/**
 	 * The feature id for the '<em><b>Requiremen Tracability Handle</b></em>' attribute.
@@ -28274,7 +28319,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__REQUIREMEN_TRACABILITY_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 32;
+	int ISUBSYSTEM__REQUIREMEN_TRACABILITY_HANDLE = OWNER_HANDLE_TYPE_FEATURE_COUNT + 31;
 
 	/**
 	 * The feature id for the '<em><b>Code Update CG Time</b></em>' attribute list.
@@ -28283,7 +28328,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__CODE_UPDATE_CG_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 33;
+	int ISUBSYSTEM__CODE_UPDATE_CG_TIME = OWNER_HANDLE_TYPE_FEATURE_COUNT + 32;
 
 	/**
 	 * The feature id for the '<em><b>Object Creation</b></em>' attribute.
@@ -28292,7 +28337,7 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__OBJECT_CREATION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 34;
+	int ISUBSYSTEM__OBJECT_CREATION = OWNER_HANDLE_TYPE_FEATURE_COUNT + 33;
 
 	/**
 	 * The feature id for the '<em><b>Uml Dependency ID</b></em>' attribute.
@@ -28301,7 +28346,16 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISUBSYSTEM__UML_DEPENDENCY_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 35;
+	int ISUBSYSTEM__UML_DEPENDENCY_ID = OWNER_HANDLE_TYPE_FEATURE_COUNT + 34;
+
+	/**
+	 * The feature id for the '<em><b>Association Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISUBSYSTEM__ASSOCIATION_ELEMENTS = OWNER_HANDLE_TYPE_FEATURE_COUNT + 35;
 
 	/**
 	 * The number of structural features of the '<em>ISubsystem</em>' class.
@@ -37127,6 +37181,17 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EReference getCGIObjectInstance_M_pImageViewData();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectInstance#getM_bIsMisplaced <em>MbIs Misplaced</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>MbIs Misplaced</em>'.
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectInstance#getM_bIsMisplaced()
+	 * @see #getCGIObjectInstance()
+	 * @generated
+	 */
+	EAttribute getCGIObjectInstance_M_bIsMisplaced();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.CGIObjectLink <em>CGI Object Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40334,6 +40399,39 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EClass getIAssociationClass();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass#getIsClass <em>Is Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Class</em>'.
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass#getIsClass()
+	 * @see #getIAssociationClass()
+	 * @generated
+	 */
+	EAttribute getIAssociationClass_IsClass();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass#getM_end1 <em>Mend1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Mend1</em>'.
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass#getM_end1()
+	 * @see #getIAssociationClass()
+	 * @generated
+	 */
+	EReference getIAssociationClass_M_end1();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass#getM_end2 <em>Mend2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Mend2</em>'.
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationClass#getM_end2()
+	 * @see #getIAssociationClass()
+	 * @generated
+	 */
+	EReference getIAssociationClass_M_end2();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd <em>IAssociation End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40496,6 +40594,17 @@ public interface UMLRhapsodyPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIAssociationEnd_QualifierType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd#getM_associationClass <em>Massociation Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Massociation Class</em>'.
+	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEnd#getM_associationClass()
+	 * @see #getIAssociationEnd()
+	 * @generated
+	 */
+	EReference getIAssociationEnd_M_associationClass();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.IAssociationEndHandle <em>IAssociation End Handle</em>}'.
@@ -50142,10 +50251,10 @@ public interface UMLRhapsodyPackage extends EPackage {
 	EReference getISubsystem_Tags();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getAssociationElements <em>Association Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getAssociationElements <em>Association Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Association Elements</em>'.
+	 * @return the meta object for the containment reference list '<em>Association Elements</em>'.
 	 * @see org.eclipse.papyrus.migration.rhapsody.rhapsodymetamodel.ISubsystem#getAssociationElements()
 	 * @see #getISubsystem()
 	 * @generated

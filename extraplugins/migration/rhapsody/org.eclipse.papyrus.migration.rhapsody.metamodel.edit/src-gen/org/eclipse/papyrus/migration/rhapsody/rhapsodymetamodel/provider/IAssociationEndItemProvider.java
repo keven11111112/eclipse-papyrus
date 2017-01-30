@@ -61,6 +61,7 @@ public class IAssociationEndItemProvider extends AssociationsTypeItemProvider {
 			addUmlDependencyIDPropertyDescriptor(object);
 			addObjectCreationPropertyDescriptor(object);
 			addRequiremenTracabilityHandlePropertyDescriptor(object);
+			addDisplayNamePropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
 			addMyStatePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
@@ -73,6 +74,7 @@ public class IAssociationEndItemProvider extends AssociationsTypeItemProvider {
 			addModifiedTimeWeakPropertyDescriptor(object);
 			addCodeUpdateCGTimePropertyDescriptor(object);
 			addQualifierTypePropertyDescriptor(object);
+			addM_associationClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -408,6 +410,50 @@ public class IAssociationEndItemProvider extends AssociationsTypeItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Display Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDisplayNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IModelElement_displayName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IModelElement_displayName_feature", "_UI_IModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIModelElement_DisplayName(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Massociation Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addM_associationClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IAssociationEnd_m_associationClass_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_IAssociationEnd_m_associationClass_feature", "_UI_IAssociationEnd_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UMLRhapsodyPackage.eINSTANCE.getIAssociationEnd_M_associationClass(),
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -482,6 +528,7 @@ public class IAssociationEndItemProvider extends AssociationsTypeItemProvider {
 			case UMLRhapsodyPackage.IASSOCIATION_END__UML_DEPENDENCY_ID:
 			case UMLRhapsodyPackage.IASSOCIATION_END__OBJECT_CREATION:
 			case UMLRhapsodyPackage.IASSOCIATION_END__REQUIREMEN_TRACABILITY_HANDLE:
+			case UMLRhapsodyPackage.IASSOCIATION_END__DISPLAY_NAME:
 			case UMLRhapsodyPackage.IASSOCIATION_END__ID:
 			case UMLRhapsodyPackage.IASSOCIATION_END__MY_STATE:
 			case UMLRhapsodyPackage.IASSOCIATION_END__NAME:

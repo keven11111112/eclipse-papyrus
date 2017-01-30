@@ -748,6 +748,7 @@
         eType="#//IUnit"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="m_bFramesetModified" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="m_pImageViewData" eType="#//CGIImageData"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="m_bIsMisplaced" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CGIObjectLink" eSuperTypes="#//GraphElementsType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//IPropertyContainer"
@@ -1181,11 +1182,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectCreation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="umlDependencyID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IAssociationClass" eSuperTypes="#//IClass"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IAssociationEnd" eSuperTypes="#//AssociationsType #//M_subjectType #//M_hTargetType #//InverseType #//M_pModelObjectType #//ToLinkType">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="This object must not inherit from IModelElement.&#xD;&#xA;In Rhapsody, this object doesn't have displayName field!"/>
-    </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="IAssociationClass" eSuperTypes="#//IClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="m_end1" eType="#//IAssociationEnd"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="m_end2" eType="#//IAssociationEnd"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IAssociationEnd" eSuperTypes="#//AssociationsType #//M_subjectType #//M_hTargetType #//InverseType #//M_pModelObjectType #//ToLinkType #//IModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="myState" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1202,6 +1204,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="codeUpdateCGTime" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="qualifierType" eType="#//IType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="m_associationClass" eType="#//IAssociationClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IAssociationEndHandle">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="m2Class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -2483,8 +2486,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Tags" upperBound="-1" eType="#//ITag"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="AssociationElements" upperBound="-1"
-        eType="#//UnknownType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Dependencies" upperBound="-1"
         eType="#//IDependency" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerHandle" eType="#//OwnerHandleType"/>
@@ -2509,6 +2510,8 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectCreation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="umlDependencyID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="AssociationElements" upperBound="-1"
+        eType="#//IAssociationClass" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ISwimlane" eSuperTypes="#//IModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
