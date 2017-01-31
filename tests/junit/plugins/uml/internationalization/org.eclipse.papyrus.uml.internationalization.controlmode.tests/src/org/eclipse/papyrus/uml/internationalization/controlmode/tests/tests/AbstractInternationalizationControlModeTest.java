@@ -13,23 +13,35 @@
 
 package org.eclipse.papyrus.uml.internationalization.controlmode.tests.tests;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNotNull;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
+import java.util.HashSet;
+
+import org.eclipse.core.commands.IParameter;
+import org.eclipse.core.commands.ParameterValuesException;
+import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
-import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.commands.ControlModeCommandParameterValues;
+import org.eclipse.papyrus.infra.services.controlmode.handler.ControlCommandHandler;
+import org.eclipse.papyrus.junit.utils.HandlerUtils;
+import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.uml.internationalization.tests.tests.AbstractUMLInternationalizationTest;
-import org.eclipse.papyrus.uml.tools.model.UmlModel;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
 
 /**
@@ -58,7 +70,41 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	 */
 	@Override
 	public void initTest() throws Exception {
-		super.initTest();
+		fixture.flushDisplayEvents();
+
+		model = (Model) fixture.getModel();
+		Assert.assertNotNull("The model cannot be null", model);
+
+		labelProvider = (DecoratingLabelProviderWTooltips) fixture.getModelExplorerView().getCommonViewer()
+				.getLabelProvider();
+
+		modelPackage = (Package) model.getOwnedMember(PACKAGE_NAME);
+		Assert.assertNotNull("The package cannot be null", modelPackage);
+		Assert.assertEquals("Package is not the one Expected", PACKAGE_NAME, modelPackage.getName());
+
+		modelClass = (Class) modelPackage.getOwnedMember(CLASS_NAME);
+		Assert.assertNotNull("The class cannot be null", modelClass);
+		Assert.assertEquals("Class is not the one Expected", CLASS_NAME, modelClass.getName());
+
+		modelOperation = (Operation) modelClass.getOwnedMember(OPERATION_NAME);
+		Assert.assertNotNull("The operation cannot be null", modelOperation);
+		Assert.assertEquals("Operation is not the one Expected", OPERATION_NAME, modelOperation.getName());
+
+		modelParameter = (Parameter) modelOperation.getOwnedMember(PARAMETER_NAME);
+		Assert.assertNotNull("The parameter cannot be null", modelParameter);
+		Assert.assertEquals("Parameter is not the one Expected", PARAMETER_NAME, modelParameter.getName());
+
+		modelProperty = (Property) modelClass.getOwnedMember(PROPERTY_NAME);
+		Assert.assertNotNull("The property cannot be null", modelProperty);
+		Assert.assertEquals("Property is not the one Expected", PROPERTY_NAME, modelProperty.getName());
+
+		modelInterface = (Interface) modelPackage.getOwnedMember(INTERFACE_NAME);
+		Assert.assertNotNull("The interface cannot be null", modelInterface);
+		Assert.assertEquals("Interface is not the one Expected", INTERFACE_NAME, modelInterface.getName());
+
+		modelEnumeration = (Enumeration) modelInterface.getOwnedMember(ENUMERATION_NAME);
+		Assert.assertNotNull("The enumeration cannot be null", modelEnumeration);
+		Assert.assertEquals("Enumeration is not the one Expected", ENUMERATION_NAME, modelEnumeration.getName());
 
 		for (Object object : fixture.getPageManager().allPages()) {
 			if (object instanceof Table) {
@@ -121,84 +167,58 @@ public abstract class AbstractInternationalizationControlModeTest extends Abstra
 	 * This allows to create the submodel for the element in parameter with the
 	 * name of the fragment.
 	 * 
+	 * @param model
+	 *            The UML model.
 	 * @param element
 	 *            The element to control.
-	 * @param fragmentName
-	 *            The fragment name to create.
+	 * @param fixture
+	 *            The fixture managed.
 	 * @return The resource created.
-	 * @throws ServiceException
+	 * @throws Exception
 	 *             The exception can be caught by the control operation.
 	 */
-	protected Resource control(final Element element, final String fragmentName) throws ServiceException {
-		final ControlModeRequest request = request(element, fragmentName);
-		final ICommand control = ControlModeManager.getInstance().getControlCommand(request);
+	protected void control(final Model model, final PackageableElement element, final PapyrusEditorFixture fixture)
+			throws Exception {
+		desactivateDialog();
+		final ControlModeAssertion controlAssertion = new ControlModeAssertion((Model) model,
+				fixture.getModelExplorerView()) {
 
-		execute(control);
-		assertThat("Cannot undo control command", fixture.getEditingDomain().getCommandStack().canUndo(), is(true));
+			@Override
+			protected void assertAfterSave() {
+				super.assertAfterSave();
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) fixture.getResourceSet()).getAssociatedResource(controlElement,
+						DiModel.DI_FILE_EXTENSION, false);
+				assertNotNull(resource);
+			}
 
-		return request.getTargetResource(UmlModel.UML_FILE_EXTENSION);
+			@Override
+			protected Iterable<? extends PackageableElement> getElementsToSelectForControl() {
+				HashSet<PackageableElement> hashSet = new HashSet<PackageableElement>(1);
+				hashSet.add(element);
+				return hashSet;
+			}
+
+			@Override
+			protected void save() {
+				fixture.saveAll();
+			}
+		};
+		controlAssertion.testControl();
 	}
 
 	/**
-	 * Get the control request for the object in parameter with the fragment
-	 * name.
+	 * This allows to desactivate the control mode dialog.
 	 * 
-	 * @param objectToControl
-	 *            The object to control.
-	 * @param initialFragmentName
-	 *            The initial fragment name (if does not contain 'uml'
-	 *            extension, must be added).
-	 * @return The control mode request for the object.
+	 * @throws NotDefinedException
+	 * @throws ParameterValuesException
 	 */
-	private ControlModeRequest request(final EObject objectToControl, final String initialFragmentName) {
-		ControlModeRequest result = null;
-
-		String fragmentName = initialFragmentName;
-
-		if (!fragmentName.endsWith("." + UmlModel.UML_FILE_EXTENSION)) {
-			fragmentName = fragmentName + "." + UmlModel.UML_FILE_EXTENSION;
-		}
-
-		try {
-			final URI fragmentURI = objectToControl.eResource().getURI().trimSegments(1).appendSegment(fragmentName);
-			result = new ControlModeRequest(fixture.getEditingDomain(), objectToControl, fragmentURI);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Failed to create ControlModeRequest: " + e.getLocalizedMessage());
-		}
-
-		return result;
-	}
-
-	/**
-	 * This allows to re-integrate submodel corresponding to the object in
-	 * parameter.
-	 * 
-	 * @param element
-	 *            The object to uncontrol.
-	 * @throws ServiceException
-	 *             The exception that can be caught by the uncontrol command.
-	 */
-	protected void uncontrol(final Element element) throws ServiceException {
-		final ICommand uncontrol = ControlModeManager.getInstance().getUncontrolCommand(request(element));
-
-		execute(uncontrol);
-		assertThat("Cannot undo control command", fixture.getEditingDomain().getCommandStack().canUndo(), is(true));
-	}
-
-	/**
-	 * Get the uncontrol request for the object in parameter.
-	 * 
-	 * @param objectToUncontrol
-	 *            The object to uncontrol.
-	 * @return The uncontrol request for the object.
-	 */
-	private ControlModeRequest request(final EObject objectToUncontrol) {
-		ControlModeRequest result = null;
-
-		result = new ControlModeRequest(fixture.getEditingDomain(), objectToUncontrol);
-
-		return result;
+	protected void desactivateDialog() throws NotDefinedException, ParameterValuesException {
+		IParameter dialogParameter = HandlerUtils.getCommand(ControlModeAssertion.COMMAND_ID)
+				.getParameter(ControlCommandHandler.CONTROLMODE_USE_DIALOG_PARAMETER);
+		ControlModeCommandParameterValues controlModePlatformValues = (ControlModeCommandParameterValues) dialogParameter
+				.getValues();
+		controlModePlatformValues.put("showDialog", false);
 	}
 
 	/**

@@ -21,7 +21,9 @@ import org.junit.Test;
  * This allows to test the internationalization during the control mode.
  */
 @SuppressWarnings("nls")
-@PluginResource({"resources/controlmode/internationalizationModel.di", "resources/controlmode/internationalizationModel_en_US.properties", "resources/controlmode/internationalizationModel_fr_FR.properties"})
+@PluginResource({ "resources/controlmode/internationalizationModel.di",
+		"resources/controlmode/internationalizationModel_en_US.properties",
+		"resources/controlmode/internationalizationModel_fr_FR.properties" })
 public class InternationalizationControlModeTest extends AbstractInternationalizationControlModeTest {
 
 	/**
@@ -41,7 +43,7 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 	public void testControlClass() throws Exception {
 		checkFrenchLabels();
 
-		control(modelClass, "Class1");
+		control(model, modelPackage, fixture);
 		checkFrenchLabels();
 
 		undo();
@@ -62,7 +64,7 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 	public void testControlWithLanguageModificationTest() throws Exception {
 		checkFrenchLabels();
 
-		control(modelClass, "Class1");
+		control(model, modelPackage, fixture);
 		checkFrenchLabels();
 
 		InternationalizationPreferencesUtils.setLanguagePreference(modelClass, "en_US");
@@ -86,7 +88,7 @@ public class InternationalizationControlModeTest extends AbstractInternationaliz
 	public void testControlWithUseInternationalizationModificationTest() throws Exception {
 		checkFrenchLabels();
 
-		control(modelClass, "Class1");
+		control(model, modelPackage, fixture);
 		checkFrenchLabels();
 
 		InternationalizationPreferencesUtils.setInternationalizationPreference(modelClass, false);

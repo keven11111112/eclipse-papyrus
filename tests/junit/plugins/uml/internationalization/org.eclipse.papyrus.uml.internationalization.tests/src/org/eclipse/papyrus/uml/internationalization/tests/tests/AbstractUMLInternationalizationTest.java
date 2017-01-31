@@ -19,6 +19,7 @@ import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
@@ -39,28 +40,28 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractPapyru
 	public final PapyrusEditorFixture fixture = new PapyrusEditorFixture();
 
 	/** The class name. */
-	private static final String CLASS_NAME = "Class1";
+	protected static final String CLASS_NAME = "Class1";
 
 	/** The operation name. */
-	private static final String OPERATION_NAME = "Operation1";
+	protected static final String OPERATION_NAME = "Operation1";
 
 	/** The parameter name. */
-	private static final String PARAMETER_NAME = "Parameter1";
+	protected static final String PARAMETER_NAME = "Parameter1";
 
 	/** The property name. */
-	private static final String PROPERTY_NAME = "Attribute1";
+	protected static final String PROPERTY_NAME = "Attribute1";
 
 	/** The package name. */
-	private static final String PACKAGE_NAME = "Package1";
+	protected static final String PACKAGE_NAME = "Package1";
 
 	/** The interface name. */
-	private static final String INTERFACE_NAME = "Interface1";
+	protected static final String INTERFACE_NAME = "Interface1";
 
 	/** The enumeration name. */
-	private static final String ENUMERATION_NAME = "Enumeration1";
+	protected static final String ENUMERATION_NAME = "Enumeration1";
 
 	/** The model. */
-	protected Package model;
+	protected Model model;
 
 	/** The class. */
 	protected org.eclipse.uml2.uml.Class modelClass;
@@ -104,7 +105,7 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractPapyru
 		
 		fixture.flushDisplayEvents();
 
-		model = fixture.getModel();
+		model = (Model) fixture.getModel();
 		Assert.assertNotNull("The model cannot be null", model);
 
 		labelProvider = (DecoratingLabelProviderWTooltips) fixture.getModelExplorerView().getCommonViewer()

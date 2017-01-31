@@ -19,8 +19,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-	InternationalizationControlModeTest.class,
-	InternationalizationUncontrolModeTest.class
+	InternationalizationControlModeTest.class
 })
 public class AllTests {
 	
