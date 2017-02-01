@@ -667,9 +667,6 @@ mapping umlrhapsody::CGIAssociationEnd::toSysML11BDDAssociationEdge() : Connecto
 	var association:Association:=null;
 	if(rpySemanticElement.oclIsTypeOf(IAssociationEnd)){
 		association:=self.m_pModelObject.resolveoneIn(umlrhapsody::IAssociationEnd::toAssociationswithProp, uml::Association);
-		if (association=null){
-			association := self.m_pModelObject.resolveoneIn(umlrhapsody::IAssociationEnd::toAssociationswithoutProp, uml::Association); 
-		};
 	}elif(rpySemanticElement.oclIsTypeOf(IPart)){
 		association:=self.m_pModelObject.resolveoneIn(umlrhapsody::IPart::iPartToUMLAssociation, uml::Association).oclAsType(Association);
 	};

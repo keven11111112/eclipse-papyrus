@@ -119,7 +119,7 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	packagedElement+= iSubSystem.Classes->selectByType(IClass)->any(name="TopLevel").Attrs->selectByKind(IAttribute).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(PackageableElement);
 	//TODO probably more check are required to remove TopLevel without problems (check with MARTE...)
 	packagedElement+= iSubSystem.Classes->selectByType(IClass)->select(curr | curr.name<>"TopLevel")->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
-	packagedElement += iSubSystem.Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->any(true).map toAssociationswithoutProp();
+
 	packagedElement += iSubSystem.Types->selectByType(IType)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement += iSubSystem.Actors->selectByKind(IActor)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement +=iSubSystem.Declaratives[DefaultSubsystemType].oclAsSet().map iDefaultSubsystemTypeToPackage();
@@ -362,76 +362,22 @@ query umlrhapsody::IType::isUMLInstanceSpecification(): Boolean {
 
 //--------association code--------------
 
-mapping umlrhapsody::IAssociationEnd::toAssociationswithoutProp(): uml::Association {
-	var assoEnd:Set(umlrhapsody::IAssociationEnd) =inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->asSet();
-	memberEnd:=assoEnd.map toAssociationsEnd();
-}
-
 mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association {			
 	//please keep this order (O source and 1 target) -> if we change this property we broke the BDD of test2
 	var localMemberEnd:=self.map toAssociationsEnd();
 	memberEnd+= localMemberEnd; 
-	var localOwnedEnd:=self.map toOwnedAssociationEnd();
+	var localOwnedEnd:= object Property{
+		type:= self.container().oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
+	};
 	ownedEnd+= localOwnedEnd;
 	name:=localOwnedEnd.type.name  + " refers to " + localMemberEnd.type.name + " as " + localMemberEnd.name;
 			
-}
-
-mapping umlrhapsody::IAssociationEnd::toOwnedAssociationEnd(): uml::Property{
-	type:= self.container().oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
-	var type : uml::Class = type.oclAsType(Class);
 }
 
 mapping umlrhapsody::IAssociationEnd::toAssociationsEnd(): uml::Property when{self.oclIsTypeOf(IAssociationEnd)}{
 	name:=self.name.replaceAll("\"","");
 	type:= self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	aggregation:=AggregationKind::none;
-}
-
-mapping umlrhapsody::IClass::fromClasse2Associations(): uml::Association
-{
-
-//TODO FIXME: default subsystem : bad code
-var classes : Set(uml::Class) :=inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes->selectByKind(EObject).map iClassToUMLClass()->asSet();
-var  associations: Set(uml::Association);
-var i : Integer=0;
-classes->forEach(element)
-{
-var newasso: uml::Association;
-	// collect the classes with AssociationEnd and create an association with both classes
-	if (not (element.oclAsType(IClass).Associations[IAssociationEnd]->isEmpty()))
-	then 
-	{
-	newasso := object uml::Association
-	
-	{
-		var otherClass : IClass:= element.oclAsType(IClass).Associations[IAssociationEnd].otherClass->any(true).oclAsType(IClass);
-		memberEnd+= element.oclAsType(IClass).Associations[IAssociationEnd].map toAssociationsEnd();
-		memberEnd+= otherClass.Associations[IAssociationEnd].map toAssociationsEnd();
-		memberEnd->asSet();
-		
-	};
-	if (i=0){
-	associations+=newasso;
-	i:= i+1;
-	};
-	
-	if (not (associations->isEmpty()))
-	{
-	associations->forEach(asso)
-	{
-	if( not (asso.memberEnd->includesAll(newasso.memberEnd)))
-			associations+=newasso;
-			
-	}
-	}endif;
-		
-	}endif;
-
-	
-	
-	};
-	
 }
 
 /**

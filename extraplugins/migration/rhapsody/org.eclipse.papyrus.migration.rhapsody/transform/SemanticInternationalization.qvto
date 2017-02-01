@@ -321,11 +321,6 @@ helper NamedElement::getRhaposdyLabel():String{
 //		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationsEnd)->selectByKind(IModelElement)->any(true);
 //	};
 
-	//mapping umlrhapsody::IClass::fromClasse2Associations(): uml::Association
-	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IClass::fromClasse2Associations)->selectByKind(IModelElement)->any(true);
-	};
-	
 	//mapping umlrhapsody::IGeneralization::toPapyrusGeneralization(): uml::Generalization
 	if(rpyElement=null){
 		rpyElement:=self.invresolveoneIn(IGeneralization::toPapyrusGeneralization)->selectByKind(IModelElement)->any(true);
