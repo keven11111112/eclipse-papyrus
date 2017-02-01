@@ -70,6 +70,14 @@ location elk "http://download.eclipse.org/elk/updates/releases/0.1.0/" {
 	  org.eclipse.elk.gmf.feature.feature.group
 }
 
+//updateFrom("GMF Tooling",0) 
+
+location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
+	org.eclipse.gmf.tooling.feature.group
+	org.eclipse.gmf.tooling.runtime.feature.group
+	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
+}
+
 
 //Transitive dependencies
 //Graphiti->emf.cdo.dawn, Sphinx->rmf.reqif10

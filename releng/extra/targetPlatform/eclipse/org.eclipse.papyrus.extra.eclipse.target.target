@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra" sequenceNumber="1485941374">
+<target name="Papyrus Extra" sequenceNumber="1485955585">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170201-0226"/>
@@ -27,12 +27,6 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.10.0.201606071959"/>
       <repository id="gmfRuntime" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.gmf.tooling.feature.group" version="3.3.1.201509291144"/>
-      <unit id="org.eclipse.gmf.tooling.runtime.feature.group" version="3.3.1.201509291144"/>
-      <unit id="org.eclipse.gmf.tooling.codegen.xtend2.feature.group" version="3.3.1.201509291144"/>
-      <repository id="gmfTooling" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.sdk.feature.group" version="4.7.0.v20170126-1030"/>
@@ -142,6 +136,12 @@
       <unit id="org.eclipse.elk.ui.feature.feature.group" version="0.1.0.201607121925"/>
       <unit id="org.eclipse.elk.gmf.feature.feature.group" version="0.1.0.201607121925"/>
       <repository id="elk" location="file:/home/data/httpd/download.eclipse.org/elk/updates/releases/0.1.0/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.gmf.tooling.feature.group" version="3.3.1.201509291144"/>
+      <unit id="org.eclipse.gmf.tooling.runtime.feature.group" version="3.3.1.201509291144"/>
+      <unit id="org.eclipse.gmf.tooling.codegen.xtend2.feature.group" version="3.3.1.201509291144"/>
+      <repository id="gmfTooling" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="graphiti" location="file:/home/data/httpd/download.eclipse.org/graphiti/updates/milestones/S-0.14.0M5-201701312008/"/>
