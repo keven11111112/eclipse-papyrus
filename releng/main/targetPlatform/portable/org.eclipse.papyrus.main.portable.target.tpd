@@ -3,7 +3,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201612130121" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201702010226" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -38,15 +38,24 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
+//updateFrom("GMF Tooling",0) 
+
+location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
+	org.eclipse.gmf.tooling.feature.group
+	org.eclipse.gmf.tooling.runtime.feature.group
+	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
+}
+
+
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M5-201701261030/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201612121035" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201701301050" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -128,4 +137,4 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20161207-0442"
+location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20170124-1946"

@@ -4,19 +4,19 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.4.1" {
+location egit "http://download.eclipse.org/egit/updates-4.6" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M5-201701261030/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 }
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20161207-0442" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20170124-1946" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -28,7 +28,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20161207-0442" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201611040610" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201701271543" {
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
@@ -40,13 +40,13 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestone
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20161214-0307" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20170131-0606" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M5-201701261030/" {
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
 }

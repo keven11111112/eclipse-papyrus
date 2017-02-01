@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1481899418">
+<target name="Papyrus Extra Tests" sequenceNumber="1485941374">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="0.0.0"/>
@@ -33,14 +33,14 @@
       <repository id="tpd" location="http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="egit" location="http://download.eclipse.org/egit/updates-4.4.1"/>
+      <repository id="egit" location="http://download.eclipse.org/egit/updates-4.6"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="m2e" location="http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20160921-2002"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20161213-0121"/>
-      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201612130121"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170201-0226"/>
+      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201702010226"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.10.0.201606071900"/>
@@ -56,7 +56,7 @@
       <repository id="nebula" location="http://download.eclipse.org/nebula/releases/1.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.3.0.v20161031-1037"/>
+      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.3.0.v20170130-0907"/>
       <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -64,13 +64,19 @@
       <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.7.0.v20161208-1309"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M4-201612080830/"/>
+      <unit id="org.eclipse.gmf.tooling.feature.group" version="3.3.1.201509291144"/>
+      <unit id="org.eclipse.gmf.tooling.runtime.feature.group" version="3.3.1.201509291144"/>
+      <unit id="org.eclipse.gmf.tooling.codegen.xtend2.feature.group" version="3.3.1.201509291144"/>
+      <repository id="gmfTooling" location="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.2.200.v20160820-1329"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.3.0.v20161212-1232"/>
-      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201612121035"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.7.0.v20170126-1030"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M5-201701261030/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.3.0.v20170120-1018"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.3.0.v20170130-1348"/>
+      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201701301050"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="1.2.0.v20160502-1019"/>
@@ -112,7 +118,7 @@
       <repository id="gmfNotation" location="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.13.0.v20161031-0512"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.13.0.v20170123-0457"/>
       <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/updates/2.13milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -120,34 +126,28 @@
       <repository id="emfQuery" location="http://download.eclipse.org/modeling/emf/query/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.gmf.tooling.feature.group" version="3.3.1.201509291144"/>
-      <unit id="org.eclipse.gmf.tooling.runtime.feature.group" version="3.3.1.201509291144"/>
-      <unit id="org.eclipse.gmf.tooling.codegen.xtend2.feature.group" version="3.3.1.201509291144"/>
-      <repository id="gmfTooling" location="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
+      <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.22.0/v20170124-1946"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.22.0/v20161207-0442"/>
+      <unit id="org.eclipse.emf.compare.diagram.gmf.source.feature.group" version="3.3.0.201701271543"/>
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.0.201701271543"/>
+      <unit id="org.eclipse.emf.compare.uml2.source.feature.group" version="3.3.0.201701271543"/>
+      <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201701271543"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.compare.diagram.gmf.source.feature.group" version="3.3.0.201611040610"/>
-      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.0.201611040610"/>
-      <unit id="org.eclipse.emf.compare.uml2.source.feature.group" version="3.3.0.201611040610"/>
-      <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201611040610"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.net4j.feature.group" version="4.6.0.v20161213-1050"/>
-      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.6.0.v20161214-0806"/>
+      <unit id="org.eclipse.net4j.feature.group" version="4.6.0.v20170131-0815"/>
+      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.6.0.v20170131-0815"/>
       <unit id="org.eclipse.emf.cdo.dawn.feature.group" version="2.1.400.v20161018-1819"/>
-      <unit id="org.eclipse.emf.cdo.feature.group" version="4.6.0.v20161214-0806"/>
-      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.100.v20161018-1819"/>
-      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20161214-0307"/>
+      <unit id="org.eclipse.emf.cdo.feature.group" version="4.6.0.v20170131-0815"/>
+      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.5.0.v20170130-1651"/>
+      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20170131-0606"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.acceleo.runtime.source.feature.group" version="3.7.0.201610150614"/>
-      <unit id="org.eclipse.acceleo.source.feature.group" version="3.7.0.201610150614"/>
-      <unit id="org.eclipse.acceleo.query.source.feature.group" version="6.0.0.201610150614"/>
-      <unit id="org.eclipse.acceleo.sdk.feature.group" version="3.7.0.201610150614"/>
-      <repository id="acceleo" location="http://download.eclipse.org/acceleo/updates/milestones/3.7/S201610150614"/>
+      <unit id="org.eclipse.acceleo.runtime.source.feature.group" version="3.7.0.201701271332"/>
+      <unit id="org.eclipse.acceleo.source.feature.group" version="3.7.0.201701271332"/>
+      <unit id="org.eclipse.acceleo.query.source.feature.group" version="6.0.0.201701271332"/>
+      <unit id="org.eclipse.acceleo.sdk.feature.group" version="3.7.0.201701271332"/>
+      <repository id="acceleo" location="http://download.eclipse.org/acceleo/updates/milestones/3.7/S201701271332"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.upr.utp.feature.feature.group" version="0.9.0.20141027-1408-incubation"/>
@@ -179,7 +179,7 @@
       <repository id="elk" location="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.14.0M3-201610311154/"/>
+      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.14.0M5-201701312008/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="http://download.eclipse.org/sphinx/previews"/>
