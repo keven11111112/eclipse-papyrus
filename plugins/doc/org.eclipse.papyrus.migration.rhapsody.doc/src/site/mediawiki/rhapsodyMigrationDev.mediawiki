@@ -96,7 +96,7 @@ It is possible to use breakpoint to debug QVTo transformation, but in this case 
 ===QVTo Tricks===
 Here, we describe the main QVTo keyword to know:
 *<code>mapping</code> it allows to declare a mapping method between two objects. It can have parameter. The resulting object is created before the first line of the mapping. If you want avoid to create a new object, you can look it for the object to return using the <code>init{your code}</code> block. Calling a given mapping for a given object will create a new object the first time and will return it other time. No new object will be created calling a given mapping several time with the same parameters.
-*<code>init{your code}</code> it allows to assign the result without creating an object. If at the end of this block, the result is <code>null</null>, the object will be created.
+*<code>init{your code}</code> it allows to assign the result without creating an object. If at the end of this block, the result is <code>null</code>, the object will be created.
 *<code>disjuncts</code> it allows to declare a method dispatching an action to one of the others declared method.
 *<code>when</code> it allows to define a condition to allow the mapping (always used by a mapping called by a disjuncts mapping)
 *<code>result</code> keyword defining the result of a mapping
