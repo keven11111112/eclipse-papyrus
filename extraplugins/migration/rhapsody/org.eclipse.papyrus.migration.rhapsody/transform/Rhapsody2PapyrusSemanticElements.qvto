@@ -360,10 +360,7 @@ query umlrhapsody::IType::isUMLInstanceSpecification(): Boolean {
 	return self.isKindLanguage() and (self.isSysMLDimension() or self.isSysMLUnit());
 }
 
-
-
-
-
+//--------association code--------------
 
 mapping umlrhapsody::IAssociationEnd::toAssociationswithoutProp(): uml::Association {
 	var assoEnd:Set(umlrhapsody::IAssociationEnd) =inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes[IClass].Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |not (assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()))->asSet();
@@ -384,6 +381,109 @@ mapping umlrhapsody::IAssociationEnd::toOwnedAssociationEnd(): uml::Property{
 	type:= self.container().oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	var type : uml::Class = type.oclAsType(Class);
 }
+
+mapping umlrhapsody::IAssociationEnd::toAssociationsEnd(): uml::Property when{self.oclIsTypeOf(IAssociationEnd)}{
+	name:=self.name.replaceAll("\"","");
+	type:= self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
+	aggregation:=AggregationKind::none;
+}
+
+mapping umlrhapsody::IClass::fromClasse2Associations(): uml::Association
+{
+
+//TODO FIXME: default subsystem : bad code
+var classes : Set(uml::Class) :=inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes->selectByKind(EObject).map iClassToUMLClass()->asSet();
+var  associations: Set(uml::Association);
+var i : Integer=0;
+classes->forEach(element)
+{
+var newasso: uml::Association;
+	// collect the classes with AssociationEnd and create an association with both classes
+	if (not (element.oclAsType(IClass).Associations[IAssociationEnd]->isEmpty()))
+	then 
+	{
+	newasso := object uml::Association
+	
+	{
+		var otherClass : IClass:= element.oclAsType(IClass).Associations[IAssociationEnd].otherClass->any(true).oclAsType(IClass);
+		memberEnd+= element.oclAsType(IClass).Associations[IAssociationEnd].map toAssociationsEnd();
+		memberEnd+= otherClass.Associations[IAssociationEnd].map toAssociationsEnd();
+		memberEnd->asSet();
+		
+	};
+	if (i=0){
+	associations+=newasso;
+	i:= i+1;
+	};
+	
+	if (not (associations->isEmpty()))
+	{
+	associations->forEach(asso)
+	{
+	if( not (asso.memberEnd->includesAll(newasso.memberEnd)))
+			associations+=newasso;
+			
+	}
+	}endif;
+		
+	}endif;
+
+	
+	
+	};
+	
+}
+
+/**
+*
+* This mapping convert a IPart into a uml Element
+*/
+mapping umlrhapsody::IPart::iPartToUMLElement():uml::Element disjuncts
+	umlrhapsody::IPart::iPartToUMLProperty
+{}
+
+/**
+* This method convert an IPart into a uml Property
+*
+*/ 
+mapping umlrhapsody::IPart::iPartToUMLProperty():uml::Property when {self.oclIsTypeOf(IPart)}{
+	name:= self.name.replaceAll("\"","");
+	//TODO : manage aggregation kind
+	aggregation:=AggregationKind::composite;
+	type:=self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Type);
+	if((not self.multiplicity.oclIsUndefined()) and self.multiplicity<>"1"){
+		lowerValue:=createLowerMultiplicity(self.multiplicity);
+		upperValue:=createUpperMultiplicity(self.multiplicity);
+	}
+}
+
+mapping umlrhapsody::IPart::iPartToUMLAssociation():uml::Association when {true}{
+	var part:uml::Property:=self.resolveoneIn(umlrhapsody::IPart::iPartToUMLProperty); //TODO : replace me with a mapping
+	var propOwner:uml::NamedElement:=part.owner.oclAsType(NamedElement);
+	var propType:=part.type;
+	var initialVal:=propType.invresolveone();//TODO is it a good idea to use unresolve ? 
+	var res:Boolean:=false;
+	if(initialVal.oclIsTypeOf(umlrhapsody::IClass)){
+		//TODO : make a util for this stereotype application
+		res:=initialVal.oclAsType(umlrhapsody::IClass).Stereotypes[IStereotype]->select(ste | ste.name="ConstraintBlock")->notEmpty();
+	};
+	if(res){
+		name:=propOwner.name + " has constraint " + propType.name + " applied as " + part.name;
+	}elif(part.aggregation.toString()=AggregationKind::composite.toString()){
+		name:=propOwner.name + " owns a " + propType.name + " as " + part.name;
+	};
+	
+	
+	var ownedEnd2:uml::Property:= object Property{};
+	
+	ownedEnd2.name:=propOwner.name.toLowerCase();
+	ownedEnd2.type:=propOwner.oclAsType(uml::Type);
+	memberEnd+=ownedEnd;
+	memberEnd+=part;
+	ownedEnd+=ownedEnd2;
+}
+
+//------end of association code----------------------
 
 mapping ecore::EObject::iTypeToUMLDatatype() : uml::DataType when {self.oclIsTypeOf(IType) and self.oclAsType(IType).isUMLDataType()}{
 	var localIType:IType:=self.oclAsType(IType);		
@@ -644,55 +744,6 @@ mapping umlrhapsody::IRelation::iRelationToUMLElement():uml::Element disjuncts
 	umlrhapsody::IRelation::iRelationToUMLProperty
 {}
 
-/**
-*
-* This mapping convert a IPart into a uml Element
-*/
-mapping umlrhapsody::IPart::iPartToUMLElement():uml::Element disjuncts
-	umlrhapsody::IPart::iPartToUMLProperty
-{}
-
-/**
-* This method convert an IPart into a uml Property
-*
-*/ 
-mapping umlrhapsody::IPart::iPartToUMLProperty():uml::Property when {self.oclIsTypeOf(IPart)}{
-	name:= self.name.replaceAll("\"","");
-	//TODO : manage aggregation kind
-	aggregation:=AggregationKind::composite;
-	type:=self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Type);
-	if((not self.multiplicity.oclIsUndefined()) and self.multiplicity<>"1"){
-		lowerValue:=createLowerMultiplicity(self.multiplicity);
-		upperValue:=createUpperMultiplicity(self.multiplicity);
-	}
-}
-
-mapping umlrhapsody::IPart::iPartToUMLAssociation():uml::Association when {true}{
-	var part:uml::Property:=self.resolveoneIn(umlrhapsody::IPart::iPartToUMLProperty); //TODO : replace me with a mapping
-	var propOwner:uml::NamedElement:=part.owner.oclAsType(NamedElement);
-	var propType:=part.type;
-	var initialVal:=propType.invresolveone();//TODO is it a good idea to use unresolve ? 
-	var res:Boolean:=false;
-	if(initialVal.oclIsTypeOf(umlrhapsody::IClass)){
-		//TODO : make a util for this stereotype application
-		res:=initialVal.oclAsType(umlrhapsody::IClass).Stereotypes[IStereotype]->select(ste | ste.name="ConstraintBlock")->notEmpty();
-	};
-	if(res){
-		name:=propOwner.name + " has constraint " + propType.name + " applied as " + part.name;
-	}elif(part.aggregation.toString()=AggregationKind::composite.toString()){
-		name:=propOwner.name + " owns a " + propType.name + " as " + part.name;
-	};
-	
-	
-	var ownedEnd2:uml::Property:= object Property{};
-	
-	ownedEnd2.name:=propOwner.name.toLowerCase();
-	ownedEnd2.type:=propOwner.oclAsType(uml::Type);
-	memberEnd+=ownedEnd;
-	memberEnd+=part;
-	ownedEnd+=ownedEnd2;
-}
-
 
 /**
 * This mapping convert a IRelation instanceof ISysMLPort into a uml Property
@@ -947,57 +998,7 @@ mapping umlrhapsody::IInterfaceItemTrigger::toTrigger(): uml::Trigger
 	
 }
 
-mapping umlrhapsody::IAssociationEnd::toAssociationsEnd(): uml::Property when{self.oclIsTypeOf(IAssociationEnd)}{
-	name:=self.name.replaceAll("\"","");
-	type:= self.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
-	aggregation:=AggregationKind::none;
-}
 
-mapping umlrhapsody::IClass::fromClasse2Associations(): uml::Association
-{
-
-//TODO FIXME: default subsystem : bad code
-var classes : Set(uml::Class) :=inModel.rootObjects()[IProject].defaultSubsystem[ISubsystem].Classes->selectByKind(EObject).map iClassToUMLClass()->asSet();
-var  associations: Set(uml::Association);
-var i : Integer=0;
-classes->forEach(element)
-{
-var newasso: uml::Association;
-	// collect the classes with AssociationEnd and create an association with both classes
-	if (not (element.oclAsType(IClass).Associations[IAssociationEnd]->isEmpty()))
-	then 
-	{
-	newasso := object uml::Association
-	
-	{
-		var otherClass : IClass:= element.oclAsType(IClass).Associations[IAssociationEnd].otherClass->any(true).oclAsType(IClass);
-		memberEnd+= element.oclAsType(IClass).Associations[IAssociationEnd].map toAssociationsEnd();
-		memberEnd+= otherClass.Associations[IAssociationEnd].map toAssociationsEnd();
-		memberEnd->asSet();
-		
-	};
-	if (i=0){
-	associations+=newasso;
-	i:= i+1;
-	};
-	
-	if (not (associations->isEmpty()))
-	{
-	associations->forEach(asso)
-	{
-	if( not (asso.memberEnd->includesAll(newasso.memberEnd)))
-			associations+=newasso;
-			
-	}
-	}endif;
-		
-	}endif;
-
-	
-	
-	};
-	
-}
 
 
 mapping umlrhapsody::IGeneralization::toPapyrusGeneralization(): uml::Generalization
