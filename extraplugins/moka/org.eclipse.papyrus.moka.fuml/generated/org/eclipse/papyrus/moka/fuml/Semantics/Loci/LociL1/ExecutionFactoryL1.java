@@ -20,6 +20,8 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.LiteralNullEvaluat
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.LiteralRealEvaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.LiteralStringEvaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.LiteralUnlimitedNaturalEvaluation;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.CallEventBehavior;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.CallEventExecution;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralBoolean;
@@ -54,6 +56,8 @@ public class ExecutionFactoryL1 extends ExecutionFactory {
 			visitor = new LiteralIntegerEvaluation();
 		} else if (element instanceof LiteralReal) {
 			visitor = new LiteralRealEvaluation();
+		} else if (element instanceof CallEventBehavior){
+			visitor = new CallEventExecution();
 		}
 		return visitor;
 	}

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.CallEventBehavior;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticStrategy;
 import org.eclipse.uml2.uml.Behavior;
@@ -33,5 +34,13 @@ public abstract class DispatchStrategy extends SemanticStrategy {
 		return object.locus.factory.createExecution(this.getMethod(object, operation), object);
 	}
 
-	public abstract Behavior getMethod(Object_ object, Operation operation);
+	public Behavior getMethod(Object_ object, Operation operation){
+		// Get the method that corresponds to the given operation for the given object.
+		// By default, the operation is treated as being called via a call event occurrence,
+		// with a call even behavior as its effective method. Concrete dispatch strategy
+		// subclasses may override this default to provide other dispatching behavior.
+		CallEventBehavior method = new CallEventBehavior();
+		method.setOperation(operation);
+		return method;
+	}
 }

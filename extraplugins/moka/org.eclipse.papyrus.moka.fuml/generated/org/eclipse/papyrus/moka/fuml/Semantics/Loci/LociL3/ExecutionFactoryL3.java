@@ -13,11 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL3;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.AcceptCallActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.AcceptEventActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.ReadExtentActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.ReadIsClassifiedObjectActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.ReclassifyObjectActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.ReduceActionActivation;
+import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.ReplyActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.StartClassifierBehaviorActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions.StartObjectBehaviorActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.CompleteStructuredActivities.ConditionalNodeActivation;
@@ -27,6 +29,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Activities.ExtraStructuredActivit
 import org.eclipse.papyrus.moka.fuml.Semantics.Activities.ExtraStructuredActivities.ExpansionRegionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL2.ExecutionFactoryL2;
+import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.Element;
@@ -37,6 +40,7 @@ import org.eclipse.uml2.uml.ReadExtentAction;
 import org.eclipse.uml2.uml.ReadIsClassifiedObjectAction;
 import org.eclipse.uml2.uml.ReclassifyObjectAction;
 import org.eclipse.uml2.uml.ReduceAction;
+import org.eclipse.uml2.uml.ReplyAction;
 import org.eclipse.uml2.uml.StartClassifierBehaviorAction;
 import org.eclipse.uml2.uml.StartObjectBehaviorAction;
 import org.eclipse.uml2.uml.StructuredActivityNode;
@@ -78,8 +82,12 @@ public class ExecutionFactoryL3 extends ExecutionFactoryL2 {
 			visitor = new StartObjectBehaviorActionActivation();
 		} else if (element instanceof StartClassifierBehaviorAction) {
 			visitor = new StartClassifierBehaviorActionActivation();
+		}else if (element instanceof AcceptCallAction) {
+			visitor = new AcceptCallActionActivation();
 		} else if (element instanceof AcceptEventAction) {
 			visitor = new AcceptEventActionActivation();
+		} else if (element instanceof ReplyAction) {
+			visitor = new ReplyActionActivation();
 		} else if (element instanceof ReduceAction) {
 			visitor = new ReduceActionActivation();
 		} else {
