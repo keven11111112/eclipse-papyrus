@@ -16,12 +16,10 @@ package org.eclipse.papyrus.infra.widgets.editors;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.layout.TreeColumnLayout;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.EditingSupport;
@@ -92,15 +90,22 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 	protected Composite compositeTree;
 
 	/**
-	 * The adapter used to refresh the TreeViewer.
+	 * Listener to modify IObservableValue when modelProperty changed.
 	 */
-	protected Adapter adapterNotifyChanged = new AdapterImpl() {
+	private IChangeListener changeListener = new IChangeListener() {
+
 		@Override
-		public void notifyChanged(Notification msg) {
+		public void handleChange(ChangeEvent event) {
+			setWidgetObservable(createWidgetObservable(modelProperty));
+			checkCreateInstanceButton();
+			setValueRootContentProvider();
 			if (null != treeViewer) {
 				treeViewer.refresh();
+				if (null != tree && null != tree.getTopItem()) {
+					treeViewer.expandToLevel(tree.getTopItem().getData(), 10);
+				}
 			}
-		};
+		}
 	};
 
 	/**
@@ -137,11 +142,11 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 
 		final TreeViewerColumn columnProperty = new TreeViewerColumn(treeViewer, SWT.LEFT);
 		columnProperty.getColumn().setAlignment(SWT.LEFT);
-		columnProperty.getColumn().setText("Property"); //$NON-NLS-1$
+		columnProperty.getColumn().setText(Messages.TreeReferenceValueEditor_NameColumnProperty); 
 		treeColumnLayout.setColumnData(columnProperty.getColumn(), new ColumnWeightData(100));
 		final TreeViewerColumn columnValue = new TreeViewerColumn(treeViewer, SWT.RIGHT);
 		columnValue.getColumn().setAlignment(SWT.LEFT);
-		columnValue.getColumn().setText("Value"); //$NON-NLS-1$
+		columnValue.getColumn().setText(Messages.TreeReferenceValueEditor_NameColumnValue); 
 		treeColumnLayout.setColumnData(columnValue.getColumn(), new ColumnWeightData(200));
 
 		columnValue.setEditingSupport(createEditingSupport());
@@ -262,8 +267,8 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 			this.value = modelProperty.getValue();
 		}
 		super.setModelObservable(modelProperty);
-		addEAdapters();
 		setWidgetObservable(createWidgetObservable(modelProperty));
+		addListeners();
 		checkCreateInstanceButton();
 	}
 
@@ -311,7 +316,6 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 		// Do nothing
 	}
 
-
 	/**
 	 * Set value of the modelProperty and create the widget observable.
 	 *
@@ -320,12 +324,12 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 	 */
 	@SuppressWarnings("unchecked")
 	public void setValue(final Object value) {
-		removeEAdapters();
+		removeListeners();
 		this.value = value;
 		if (null != modelProperty) {
 			modelProperty.setValue(value);
 			setWidgetObservable(createWidgetObservable(modelProperty));
-			addEAdapters();
+			addListeners();
 		}
 
 		if (null != treeViewer) {
@@ -366,27 +370,27 @@ public abstract class TreeReferenceValueEditor extends AbstractValueEditor imple
 	 */
 	@Override
 	public void dispose() {
-		removeEAdapters();
+		removeListeners();
 		super.dispose();
 	}
 
 	/**
-	 * Add the eAdapters to the current value.
+	 * Add all the listeners.
 	 */
-	private void addEAdapters() {
-		if (value instanceof EObject) {
-			((EObject) value).eAdapters().add(adapterNotifyChanged);
+	protected void addListeners() {
+		if (modelProperty != null) {
+			modelProperty.addChangeListener(changeListener);
 		}
-	}
+	};
 
 	/**
-	 * Remove the eAdapters to the current value.
+	 * Remove all the listeners.
 	 */
-	private void removeEAdapters() {
-		if (value instanceof EObject) {
-			((EObject) value).eAdapters().remove(adapterNotifyChanged);
+	protected void removeListeners() {
+		if (modelProperty != null) {
+			modelProperty.removeChangeListener(changeListener);
 		}
-	}
+	};
 
 	/**
 	 * Set the value root to the content provider of the tree viewer.

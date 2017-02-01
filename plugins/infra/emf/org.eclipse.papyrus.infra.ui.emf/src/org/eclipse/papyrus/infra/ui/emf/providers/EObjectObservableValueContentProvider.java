@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.databinding.EObjectObservableValue;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.tools.databinding.MultipleObservableValue;
 import org.eclipse.papyrus.infra.ui.emf.databinding.EObjectStructuredObservableValue;
 
 /**
@@ -28,7 +29,7 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	/**
 	 * Value root of the tree.
 	 */
-	private List<EObjectStructuredObservableValue> valueRoot = null;
+	private MultipleObservableValue valueRoot;
 
 	/**
 	 * Constructor.
@@ -36,7 +37,7 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	 * @param value
 	 *            The value to manage.
 	 */
-	public EObjectObservableValueContentProvider(final List<EObjectStructuredObservableValue> value) {
+	public EObjectObservableValueContentProvider(final MultipleObservableValue value) {
 		super();
 		valueRoot = value;
 	}
@@ -47,7 +48,7 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	 * @param value
 	 *            the root value
 	 */
-	public void setValueRoot(final List<EObjectStructuredObservableValue> value) {
+	public void setValueRoot(final MultipleObservableValue value) {
 		this.valueRoot = value;
 	}
 
@@ -59,7 +60,7 @@ public class EObjectObservableValueContentProvider implements ITreeContentProvid
 	@Override
 	public Object[] getElements(final Object inputElement) {
 		if (null != valueRoot) {
-			return valueRoot.toArray();
+			return valueRoot.getObservableValues().toArray();
 		}
 		return null;
 	}

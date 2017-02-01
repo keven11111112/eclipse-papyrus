@@ -191,6 +191,10 @@ public class Messages extends NLS {
 
 	public static String BundleExplorerDialog_PlugInSelectionTitle;
 
+	public static String TreeReferenceValueEditor_NameColumnProperty;
+
+	public static String TreeReferenceValueEditor_NameColumnValue;
+
 	public static String TreeSelectorDialog_defaultTabLabel;
 
 	static {

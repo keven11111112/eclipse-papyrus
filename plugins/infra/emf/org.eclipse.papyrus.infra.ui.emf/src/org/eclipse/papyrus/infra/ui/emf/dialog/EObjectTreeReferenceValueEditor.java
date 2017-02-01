@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.infra.ui.emf.dialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -29,6 +28,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.infra.tools.databinding.MultipleObservableValue;
 import org.eclipse.papyrus.infra.ui.emf.databinding.EObjectObservableValueEditingSupport;
 import org.eclipse.papyrus.infra.ui.emf.databinding.EObjectStructuredObservableValue;
 import org.eclipse.papyrus.infra.ui.emf.providers.EObjectObservableValueContentProvider;
@@ -43,9 +43,9 @@ import org.eclipse.swt.widgets.Composite;
 public class EObjectTreeReferenceValueEditor extends TreeReferenceValueEditor {
 
 	/**
-	 * ObservableValues contained on the ValueEditor.
+	 * {@link MultipleObservableValue} which contained all the IObservableValues.
 	 */
-	private List<EObjectStructuredObservableValue> observableValues = new ArrayList<EObjectStructuredObservableValue>();
+	protected MultipleObservableValue multipleObservableValue = new MultipleObservableValue();
 
 	/**
 	 * Constructor.
@@ -79,7 +79,7 @@ public class EObjectTreeReferenceValueEditor extends TreeReferenceValueEditor {
 	public void setValueRootContentProvider() {
 		if (null != treeViewer) {
 			if (treeViewer.getContentProvider() instanceof EObjectObservableValueContentProvider) {
-				((EObjectObservableValueContentProvider) treeViewer.getContentProvider()).setValueRoot(observableValues);
+				((EObjectObservableValueContentProvider) treeViewer.getContentProvider()).setValueRoot(multipleObservableValue);
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class EObjectTreeReferenceValueEditor extends TreeReferenceValueEditor {
 	 */
 	@Override
 	public void setProvidersTreeViewer() {
-		treeViewer.setContentProvider(new EObjectObservableValueContentProvider(observableValues));
+		treeViewer.setContentProvider(new EObjectObservableValueContentProvider(multipleObservableValue));
 		if (labelProvider instanceof IStyledLabelProvider) {
 			treeViewer.setLabelProvider(new EObjectObservableValueLabelProvider((IStyledLabelProvider) labelProvider));
 		} else {
@@ -108,22 +108,20 @@ public class EObjectTreeReferenceValueEditor extends TreeReferenceValueEditor {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public IObservableValue createWidgetObservable(final IObservableValue modelProperty) {
-		EObjectStructuredObservableValue eObjectObser = null;
-		observableValues.clear();
+		multipleObservableValue.getObservableValues().clear();
 		if (modelProperty.getValue() instanceof EObject) {
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain((EObject) modelProperty.getValue());
-			eObjectObser = new EObjectStructuredObservableValue((EObject) modelProperty.getValue(), null, editingDomain, true, null);
-			observableValues.add(eObjectObser);
-		} else if (modelProperty.getValue() instanceof EList<?>) {
-			for (Object object : (EList<Object>) modelProperty.getValue()) {
+			multipleObservableValue.getObservableValues().add(new EObjectStructuredObservableValue((EObject) modelProperty.getValue(), null, editingDomain, true, null));
+		} else if (modelProperty.getValue() instanceof List<?>) {
+			for (Object object : (List<?>) modelProperty.getValue()) {
 				if (object instanceof EObject) {
 					TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(object);
-					eObjectObser = new EObjectStructuredObservableValue((EObject) object, null, editingDomain, true, null);
-					observableValues.add(eObjectObser);
+					multipleObservableValue.getObservableValues().add(new EObjectStructuredObservableValue((EObject) object, null, editingDomain, true, null));
 				}
 			}
 		}
-		return eObjectObser;
+
+		return multipleObservableValue;
 	}
 
 	/**
@@ -141,9 +139,9 @@ public class EObjectTreeReferenceValueEditor extends TreeReferenceValueEditor {
 		Object valueModelProperty = modelProperty.getValue();
 		if (valueModelProperty instanceof EObject) {
 			setValue(null);
-		} else if (valueModelProperty instanceof EList<?>) {
+		} else if (valueModelProperty instanceof List<?>) {
 			ITreeSelection structuredSelection = treeViewer.getStructuredSelection();
-			EList<?> eList = new BasicEList<Object>((EList<?>) valueModelProperty);
+			EList<?> eList = new BasicEList<Object>((List<?>) valueModelProperty);
 			for (Object selection : structuredSelection.toList()) {
 				if (selection instanceof EObjectStructuredObservableValue) {
 					EObjectStructuredObservableValue rootObservableValue = getRootObservableValue((EObjectStructuredObservableValue) selection);
@@ -182,7 +180,7 @@ public class EObjectTreeReferenceValueEditor extends TreeReferenceValueEditor {
 			Object valueType = modelProperty.getValueType();
 			if (valueType instanceof EReference) {
 				int upperBound = ((EReference) valueType).getUpperBound();
-				int size = observableValues.size();
+				int size = multipleObservableValue.getObservableValues().size();
 				if (-1 != upperBound && size >= upperBound) {
 					createInstanceButton.setEnabled(false);
 				} else {
