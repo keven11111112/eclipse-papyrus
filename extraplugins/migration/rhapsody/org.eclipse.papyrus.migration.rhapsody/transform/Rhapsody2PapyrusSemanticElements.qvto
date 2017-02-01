@@ -124,6 +124,7 @@ mapping umlrhapsody::DefaultSubsystemType::iDefaultSubsystemTypeToPackage():uml:
 	packagedElement+=iSubSystem.AssociationElements->selectByType(IAssociationClass)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 
 	packagedElement += iSubSystem.Types->selectByType(IType)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
+	
 	packagedElement += iSubSystem.Actors->selectByKind(IActor)->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::PackageableElement);
 	packagedElement +=iSubSystem.Declaratives[DefaultSubsystemType].oclAsSet().map iDefaultSubsystemTypeToPackage();
 	ownedComment += iSubSystem.Annotations->select(a | (a.oclIsTypeOf(IAnnotation) or a.oclIsTypeOf(IComment)))->oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
@@ -400,8 +401,20 @@ helper umlrhapsody::IAssociationEnd::isNavigable():Boolean{
 	return self.navigability.equalsIgnoreCase("Navigable");
 }
 
-mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association when{self.isNavigable() and self.inverse.oclIsUndefined()}{			
+/**
+* Common method to create association from an IAssociationEnd
+*/
+mapping umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation(): uml::Association disjuncts 
+	umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation_case1,
+	umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation_case2
+{}
+
+mapping umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation_case1(): uml::Association when {self.isNavigable() and self.inverse.oclIsUndefined()}{	
 	//please keep this order (O source and 1 target) -> if we change this property we broke the BDD of test2
+	
+	//when isNavigable() returns true, the property is owned by the classifier
+	//when isNavigable() returns false, the property is owned by the association
+		//here, in the Rhapsody model, we have only one end, so here this end will be owned by the classifier and the other one by the association
 	var localMemberEnd:=self.map toAssociationsEnd();
 	memberEnd+= localMemberEnd; 
 	var localOwnedEnd:= object Property{
@@ -410,6 +423,26 @@ mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association
 	ownedEnd+= localOwnedEnd;
 	name:=localOwnedEnd.type.name  + " refers to " + localMemberEnd.type.name + " as " + localMemberEnd.name;
 			
+}
+
+mapping umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation_case2():uml::Association when{
+	self.isNavigable() and 
+	(not self.inverse.oclIsUndefined())
+	and self.inverse.oclIsTypeOf(IAssociationEnd)
+	and self.inverse.oclAsType(IAssociationEnd).isNavigable()
+	and self.m_associationClass.oclIsUndefined()}{ //in this case, the association is created by the mapping for IAssociationClass
+	//when isNavigable() returns true, the property is owned by the classifier
+	//when isNavigable() returns false, the property is owned by the association
+	//-> here the 2 properties are owned by the classifier
+	init{
+		//this resolve is not a mistake. We call resolve to avoid to create several time the same association
+		result:=self.inverse.resolveoneIn(umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation_case2);
+	}
+	if(result.memberEnd->size()=0){//the result has been created goint out of the init, because the resolve doesn't allow to find an existing association
+		result.memberEnd+=self.map toAssociationsEnd();
+		result.memberEnd+=self.inverse.oclAsType(IAssociationEnd).map toAssociationsEnd();
+		//order of member can't be determined in this case
+	}
 }
 
 mapping umlrhapsody::IAssociationEnd::toAssociationsEnd(): uml::Property when{self.oclIsTypeOf(IAssociationEnd)}{
@@ -513,9 +546,8 @@ mapping ecore::EObject::iClassToUMLClass(): uml::Class when {self.oclIsTypeOf(um
 	nestedClassifier+= localIClass.Associations[IPart]->select(current | current.implicitClass<>null).implicitClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Classifier);
 	nestedClassifier+=localIClass.Declaratives->selectByType(IClass)->selectByKind(EObject).map generalMappingToUMLElement().oclAsType(uml::Classifier);
 	
-	ownedAttribute+= localIClass.Associations[IAssociationEnd].map toAssociationsEnd();
-	associationsToAdd+=localIClass.Associations[IAssociationEnd]->select(assoEnd: IAssociationEnd |assoEnd.oclAsType(IAssociationEnd).inverse.oclIsUndefined()).oclAsSet().map toAssociationswithProp();
-	
+	ownedAttribute+= localIClass.Associations->selectByType(IAssociationEnd)->select(a | a.isNavigable()).map toAssociationsEnd();
+	associationsToAdd+=localIClass.Associations[IAssociationEnd].map iAssociationEndToUMLAssociation();	
 	
 	ownedOperation += localIClass.Operations [IPrimitiveOperation].map toOperations();
 	ownedReception += localIClass.Operations[IReception].map toReceptions();

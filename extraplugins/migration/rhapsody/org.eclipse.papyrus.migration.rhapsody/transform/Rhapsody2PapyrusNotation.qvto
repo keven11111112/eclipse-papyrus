@@ -346,7 +346,7 @@ mapping umlrhapsody::CGIAssociationEnd::toPapyrusAssociation() : Connector
 	var sourceAnchorId: String:= getAnchorId(source_mpolygon, source_mtransform,source_Port);
 	var targetAnchorId: String:= getAnchorId(target_mpolygon, target_mtransform,target_Port);
 	
-	result.element:=self.m_pModelObject.resolveIn(umlrhapsody::IAssociationEnd::toAssociationswithProp, uml::Association)![EObject];
+	result.element:=self.m_pModelObject.resolveIn(umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation, uml::Association)![EObject];
 	
 	result.type := self.getEdgeType();
 	result.source:= sourceNode.resolveIn(umlrhapsody::CGIClass::toPapyrusNode, Shape)![View];

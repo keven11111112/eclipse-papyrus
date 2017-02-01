@@ -281,7 +281,7 @@ mapping rhapsodymetamodel::CGIGenericElement::CGIGenericElementToIBDBlockPropert
 	//2. set the represented element
 	var representedElement:=self.m_pModelObject;
 	var assoEnd:IAssociationEnd:=self.m_pModelObject.oclAsType(IAssociationEnd);
-	var resolvedE:Association=representedElement.resolveoneIn(umlrhapsody::IAssociationEnd::toAssociationswithProp);
+	var resolvedE:Association=representedElement.resolveoneIn(umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation);
 	var resolvedE2:Property:=resolvedE.memberEnd->select(endd | endd.oclIsKindOf(Property))->select(p | not p.oclAsType(Property).owner.oclIsKindOf(Association))->any(true);
 	element:=resolvedE2.oclAsType(EObject);
 }

@@ -134,9 +134,9 @@ helper NamedElement::getRhaposdyLabel():String{
 //		rpyElement:=self.invresolveoneIn(IType::iTypeToUMLElement)->selectByKind(IModelElement)->any(true);
 //	};
 	
-	//mapping umlrhapsody::IAssociationEnd::toAssociationswithProp(): uml::Association {			
+	//mapping umlrhapsody::IAssociationEnd::iAssociationEndToUMLAssociation(): uml::Association {			
 	if(rpyElement=null){
-		rpyElement:=self.invresolveoneIn(IAssociationEnd::toAssociationswithProp)->selectByKind(IModelElement)->any(true);
+		rpyElement:=self.invresolveoneIn(IAssociationEnd::iAssociationEndToUMLAssociation)->selectByKind(IModelElement)->any(true);
 	};
 	
 	//mapping umlrhapsody::IType::toUMLDatatype() : uml::DataType when {self.isUMLDataType()}{
