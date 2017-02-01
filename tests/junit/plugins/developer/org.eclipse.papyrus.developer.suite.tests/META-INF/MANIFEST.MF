@@ -1,0 +1,17 @@
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.0.1.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.developer.suite.tests.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.developer.suite.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.junit.framework;bundle-version="1.2.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.2.0",
+ org.eclipse.papyrus.bundles.tests;bundle-version="1.2.0"
+ 

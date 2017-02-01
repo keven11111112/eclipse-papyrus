@@ -11,8 +11,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<modules>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.tests</module>
-		<module>../../tests/junit/plugins/suites/org.eclipse.papyrus.tests.diagramassistants</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
@@ -27,68 +25,9 @@
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.views.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.textedit.tests.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.alf.tests.feature</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.editor.integration.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.clipboard.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.di.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.tests</module>
-		<module>../../tests/junit/plugins/infra/types/org.eclipse.papyrus.infra.types.tests</module>
-		<module>../../tests/junit/plugins/infra/types/org.eclipse.papyrus.infra.types.ui.tests</module>
-		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
-		<module>../../tests/junit/plugins/editor/org.eclipse.papyrus.eclipse.project.editors.tests</module>
-		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
-		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.newchild.tests</module>
-		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
-		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.ui.tests</module>
-		<module>../../tests/junit/plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome.tests</module>
-		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly.tests</module>
-		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.tests</module>
-		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.gmf.tests</module>
-		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.ui.emf.tests</module>
-		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.canonical.tests</module>
-		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands.tests</module>
-		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common.tests</module>
-		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.tests</module>
-		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
-		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.welcome.tests</module>
-		<module>../../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
-		<module>../../tests/junit/plugins/infra/nattable</module>
-		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.tests</module>
-		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.ui.tests</module>
-		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.labelprovider.tests</module>
-		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.resourceloading.tests</module>
-		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.semantic.tests</module>
-		<module>../../tests/junit/plugins/infra/properties/org.eclipse.papyrus.infra.properties.ui.tests</module>
-		<module>../../tests/junit/plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.tests</module>
-		<module>../../tests/junit/plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.policy.tests</module>
-		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.tests</module>
-		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.types.generator.tests</module>
-		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
-		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
-		<module>../../tests/junit/plugins/uml/diagram</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.dynamic.profile.tests</module>
-		<module>../../tests/junit/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.tests</module>
-		<module>../../tests/junit/plugins/uml/nattable</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.modelrepair.tests</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.profile.tests</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.service.types.tests</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.service.types.ui.tests</module>
-		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.controlmode.tests</module>
-		<module>../../tests/junit/plugins/uml/tools/org.eclipse.papyrus.uml.tools.tests</module>
-		<module>../../tests/junit/plugins/uml/tools/org.eclipse.papyrus.uml.tools.utils.tests</module>
-		<module>../../tests/junit/plugins/views/modelexplorer/org.eclipse.papyrus.views.modelexplorer.tests</module>
-		<module>../../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.tests</module>
-		<module>../../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.port.tests</module>
-		<module>../../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.property.tests</module>
-		<module>../../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.parameter.tests</module>
-		<module>../../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.valuespecification.tests</module>
-		<module>../../tests/junit/plugins/uml/profile/org.eclipse.papyrus.uml.profile.drafter.tests</module>
-		<module>../../tests/junit/plugins/uml/alf/org.eclipse.papyrus.uml.alf.tests</module>
-		<module>../../tests/junit/plugins/uml/validation/org.eclipse.papyrus.uml.validation.tests</module>
-		<module>../../tests/junit/plugins/uml/validation/org.eclipse.papyrus.uml.validation.tests.genvalidation</module>
-		<module>../../tests/junit/plugins/uml/validation/org.eclipse.papyrus.uml.validation.tests.staticprofile</module>
+		
+		<module>../../tests/junit/plugins/</module>
+
 		<module>targetPlatform</module>
 	</modules>
 	<properties>
