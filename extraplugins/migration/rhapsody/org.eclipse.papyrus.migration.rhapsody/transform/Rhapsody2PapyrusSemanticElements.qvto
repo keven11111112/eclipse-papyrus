@@ -718,6 +718,11 @@ mapping umlrhapsody::IObjectLink::iObjectLinkSourceToUMLConnectorEnd():uml::Conn
 		}
 		//I don't know what to do in other case!
 	};	
+	
+	if(partWithPort.oclIsTypeOf(Property) and role=null){
+		role:=partWithPort;
+		partWithPort:=null;
+	}
 }
 
 /**
@@ -744,7 +749,12 @@ mapping umlrhapsody::IObjectLink::iObjectLinkTargetToUMLConnectorEnd():uml::Conn
 			role:=toPort.oclAsType(umlrhapsody::IRelation).map iRelationToUMLElement().oclAsType(uml::Port);
 		}
 		//I don't know what to do in other case!
-	};	
+	};
+	
+	if(partWithPort.oclIsTypeOf(Property) and role=null){
+		role:=partWithPort;
+		partWithPort:=null;
+	}
 }
 
 /**
