@@ -16,17 +16,25 @@ package org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.Invoca
 import java.util.List;
 
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.StructuredClasses.CS_InteractionPoint;
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.StructuredClasses.CS_Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Trigger;
 
 public class CS_EventOccurrence extends EventOccurrence{
 
-	// Real event occurrence
+	// Real event occurrence.
 	public EventOccurrence wrappedEventOccurrence;
 	
 	// Port manifestation from which the wrapped event occurrence was received.
 	public CS_InteractionPoint interactionPoint;
+	
+	// The direction followed to propagate the event occurrence.
+	public boolean propagationInward;
+	
+	// Port specification of the port manifestation from which this event occurrence was sent. 
+	public Port onPort;
 		
 	@Override
 	public boolean match(Trigger trigger) {
@@ -58,4 +66,38 @@ public class CS_EventOccurrence extends EventOccurrence{
 		return this.wrappedEventOccurrence.getParameterValues();
 	}
 
+	@Override
+	public void doSend() {
+		// If the specified target is a CS_Reference and the propagation must be done
+		// to the environment, then the operation sendOut(EventOccurrence, Port) is called
+		// and make the propagation to continue.
+		// If the specified target is a CS_Reference but the propagation must be done to
+		// the internals then the operation sendIn(EventOccurrence, Port) is called.
+		// In the case were the target is not a CS_EventOccurrence then send(EventOccurence)
+		// is called.
+		if(this.target instanceof CS_Reference){
+			if(this.propagationInward == true){
+				((CS_Reference)this.target).sendIn(this, this.onPort);
+			}else{
+				((CS_Reference)this.target).sendOut(this, this.onPort);
+			}
+		}else{
+			super.doSend();
+		}
+	}
+	
+	public void sendInTo(CS_Reference target, Port port){
+		// Propagate the sending of the event occurrence to the internals
+		this.onPort = port;
+		this.propagationInward = true;
+		this.sendTo(target);
+	}
+	
+	public void sendOutTo(CS_Reference target, Port port){
+		// Propagate the sending of the event occurrence to the environment
+		this.onPort = port;
+		this.propagationInward = false;
+		this.sendTo(target);
+	}
+	
 }

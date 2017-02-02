@@ -47,21 +47,17 @@ public class CS_SendSignalActionActivation extends SendSignalActionActivation {
 		// the object executing the Action, the Signal shall be related to a Reception belonging
 		// to a provided Interface of onPort, and operation sendIn is called so that the signal
 		// will be sent to the internals of the target object
-
 		SendSignalAction action = (SendSignalAction) (this.node);
-
-		if (action.getOnPort() == null) {
+		if(action.getOnPort() == null){
 			// Behaves like in fUML
 			super.doAction();
-		} else {
+		}else{
 			Value target = this.takeTokens(action.getTarget()).get(0);
-
 			if (target instanceof CS_Reference) {
 				// Constructs the signal instance
 				Signal signal = action.getSignal();
 				SignalInstance signalInstance = new SignalInstance();
 				signalInstance.type = signal;
-
 				List<Property> attributes = signal.getOwnedAttributes();
 				List<InputPin> argumentPins = action.getArguments();
 				Integer i = 0;
@@ -72,25 +68,21 @@ public class CS_SendSignalActionActivation extends SendSignalActionActivation {
 					signalInstance.setFeatureValue(attribute, values, 0);
 					i = i + 1;
 				}
-
 				// Construct the signal event occurrence
 				SignalEventOccurrence signalEventOccurrence =  new SignalEventOccurrence();
 				signalEventOccurrence.signalInstance = (SignalInstance) signalInstance.copy();
-				
-				// Tries to determine if the signal has to be
-				// sent to the environment or to the internals of
-				// target, through onPort
+				CS_EventOccurrence wrappingEventOccurrence = new CS_EventOccurrence();
+				wrappingEventOccurrence.wrappedEventOccurrence = signalEventOccurrence;
+				// Tries to determine if the signal has to be sent to the environment
+				// or to the internals of target, through onPort
 				CS_Reference targetReference = (CS_Reference) target;
-				// Port onPort = action.onPort ;
-				
 				Object_ executionContext = this.group.activityExecution.context;
 				if (executionContext == targetReference.referent || targetReference.compositeReferent.contains(executionContext)) {
-					targetReference.sendOut(signalEventOccurrence, action.getOnPort());
+					wrappingEventOccurrence.sendOutTo(targetReference, action.getOnPort());
 				} else {
-					targetReference.sendIn(signalEventOccurrence, action.getOnPort());
+					wrappingEventOccurrence.sendInTo(targetReference, action.getOnPort());;
 				}
 			}
 		}
 	}
-
 }

@@ -17,6 +17,7 @@ package org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.Struct
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.BasicBehaviors.CS_CallEventExecution;
 import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.Communications.CS_DispatchOperationOfInterfaceStrategy;
 import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.Communications.CS_StructuralFeatureOfInterfaceAccessStrategy;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_RequestPropagationStrategy;
@@ -44,14 +45,20 @@ import org.eclipse.uml2.uml.StructuralFeature;
 public class CS_Object extends Object_ {
 
 	public Execution dispatchIn(Operation operation, CS_InteractionPoint interactionPoint) {
-		// If the interaction point refers to a behavior port, does nothing [for the moment... ?],
-		// since the only kind of event supported in fUML is SignalEvent
+		// If the interaction point refers to a behavior port, the operation call is dispatched
+		// to the object owning the behavior port. This may result in the method being handled
+		// by the method defined for the operation at the object or through a call event handled 
+		// by the classifier behavior of the owning object. The latter case only occurs if the
+		// dispatched operation has no implementation.
 		// If it does not refer to a behavior port, select appropriate delegation links
 		// from interactionPoint, and propagates the operation call through
 		// these links
 		Execution execution = null;
 		if (interactionPoint.definingPort.isBehavior()) {
-			// Do nothing
+			execution = this.dispatch(operation);
+			if(execution instanceof CS_CallEventExecution){
+				((CS_CallEventExecution)execution).interactionPoint = interactionPoint;
+			}
 		} else {
 			boolean operationIsProvided = true;
 			List<Reference> potentialTargets = new ArrayList<Reference>();

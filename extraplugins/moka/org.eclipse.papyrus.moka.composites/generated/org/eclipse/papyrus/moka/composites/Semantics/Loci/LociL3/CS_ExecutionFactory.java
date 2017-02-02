@@ -22,11 +22,15 @@ import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_ReadSelfActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.Classes.Kernel.CS_InstanceValueEvaluation;
 import org.eclipse.papyrus.moka.composites.Semantics.Classes.Kernel.CS_OpaqueExpressionEvaluation;
+import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.BasicBehaviors.CS_CallEventExecution;
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_AcceptCallActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_AcceptEventActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_CallOperationActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_SendSignalActionActivation;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.CallEventBehavior;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL3.ExecutionFactoryL3;
+import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -51,6 +55,8 @@ public class CS_ExecutionFactory extends ExecutionFactoryL3 {
 		SemanticVisitor visitor = null;
 		if (element instanceof ReadExtentAction) {
 			visitor = new CS_ReadExtentActionActivation();
+		}else if (element instanceof AcceptCallAction) {
+			visitor = new CS_AcceptCallActionActivation();
 		}else if (element instanceof AcceptEventAction) {
 			visitor = new CS_AcceptEventActionActivation();
 		} else if (element instanceof AddStructuralFeatureValueAction) {
@@ -71,6 +77,8 @@ public class CS_ExecutionFactory extends ExecutionFactoryL3 {
 			visitor = new CS_SendSignalActionActivation();
 		} else if (element instanceof OpaqueExpression) {
 			visitor = new CS_OpaqueExpressionEvaluation();
+		} else if (element instanceof CallEventBehavior) {
+			visitor = new CS_CallEventExecution();
 		} else {
 			visitor = super.instantiateVisitor(element);
 		}
