@@ -121,17 +121,15 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 			projectLocationURI = getMyProjectPage().getLocationURI();
 		}
 
-		IProjectDescription projectDescription = null;
 		NullProgressMonitor progressMonitor = new NullProgressMonitor();
 		if (!project.exists()) {
-			projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(project.getName());
+			IProjectDescription projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(project.getName());
 			if (projectLocationURI != null) {
 				projectDescription.setLocationURI(projectLocationURI);
 			}
 			project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
 			project.open(new SubProgressMonitor(progressMonitor, 1));
 		} else {
-			// projectDescription = project.getDescription();
 			project.open(new SubProgressMonitor(progressMonitor, 1));
 		}
 

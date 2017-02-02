@@ -19,8 +19,6 @@ import java.util.Properties;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.NewPapyrusProjectWizard;
-import org.eclipse.ui.IPerspectiveDescriptor;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroManager;
 import org.eclipse.ui.intro.IIntroPart;
@@ -42,9 +40,6 @@ public class NewProjectAction implements IIntroAction {
 	 * @see org.eclipse.ui.intro.config.IIntroAction#run(org.eclipse.ui.intro.IIntroSite, java.util.Properties)
 	 */
 	public void run(IIntroSite site, Properties params) {
-		final IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		IPerspectiveDescriptor activePerspective = workbenchWindow.getActivePage().getPerspective();
-
 		final IIntroManager introManager = PlatformUI.getWorkbench().getIntroManager();
 		IIntroPart part = introManager.getIntro();
 		introManager.closeIntro(part);

@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.net4j.util.ui.UIUtil;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.uml.diagram.wizards.InitModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.handlers.HandlerUtil;
 

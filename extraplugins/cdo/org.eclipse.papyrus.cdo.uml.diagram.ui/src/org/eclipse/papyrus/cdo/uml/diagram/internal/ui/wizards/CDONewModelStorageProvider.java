@@ -55,8 +55,6 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 
 	private NewModelPage newModelPage;
 
-	private IStructuredSelection selection;
-
 	public CDONewModelStorageProvider() {
 		super();
 	}
@@ -81,7 +79,6 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		super.init(wizard, selection);
 
 		this.wizard = wizard;
-		this.selection = selection;
 		newModelPage = createNewModelPage(selection);
 		createSelectProviderPart();
 
@@ -233,8 +230,8 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 			super(selection, bus, modelKindName);
 
 			myDiagramResourceName = defaultResourceName;
-			setTitle(org.eclipse.papyrus.uml.diagram.wizards.Messages.InitModelWizard_init_papyrus_model);
-			setDescription(org.eclipse.papyrus.uml.diagram.wizards.Messages.InitModelWizard_init_papyrus_model_desc);
+			setTitle(org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.InitModelWizard_init_papyrus_model);
+			setDescription(org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.InitModelWizard_init_papyrus_model_desc);
 		}
 
 		@Override
@@ -250,7 +247,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 
 			if (getMessageType() < ERROR) {
 				if (!myDiagramResourceName.equals(getNewResourceName())) {
-					setMessage(NLS.bind(org.eclipse.papyrus.uml.diagram.wizards.Messages.InitModelWizard_diagram_name_is_different_from_domain_model, myDiagramResourceName), ERROR);
+					setMessage(NLS.bind(org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.InitModelWizard_diagram_name_is_different_from_domain_model, myDiagramResourceName), ERROR);
 					setPageComplete(false);
 				}
 			}

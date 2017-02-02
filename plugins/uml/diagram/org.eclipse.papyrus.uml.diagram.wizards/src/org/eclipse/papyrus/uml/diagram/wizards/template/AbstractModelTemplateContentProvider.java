@@ -22,7 +22,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.uml.diagram.wizards.transformation.IGenerator;
 
 
 public abstract class AbstractModelTemplateContentProvider implements IStructuredContentProvider {

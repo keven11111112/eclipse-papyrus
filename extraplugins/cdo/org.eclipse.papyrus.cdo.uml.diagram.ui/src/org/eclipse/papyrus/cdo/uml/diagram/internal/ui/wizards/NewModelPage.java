@@ -206,8 +206,8 @@ public class NewModelPage extends WizardPage {
 
 			setNewResourceName(newFileName);
 
-			String message1 = org.eclipse.papyrus.uml.diagram.wizards.Messages.NewModelFilePage_new_diagram_category_needs_specific_extension;
-			String message2 = NLS.bind(org.eclipse.papyrus.uml.diagram.wizards.Messages.NewModelFilePage_diagram_file_was_renamed, oldFileName, newFileName);
+			String message1 = org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.NewModelFilePage_new_diagram_category_needs_specific_extension;
+			String message2 = NLS.bind(org.eclipse.papyrus.uml.diagram.wizards.messages.Messages.NewModelFilePage_diagram_file_was_renamed, oldFileName, newFileName);
 			String message = message1 + message2;
 			Status resultStatus = new Status(IStatus.INFO, Activator.PLUGIN_ID, message);
 
