@@ -283,10 +283,38 @@ mapping uml::Port::applySysML11FlowPort(rpyElement:EObject, stereotypeName:Strin
 		var stereotypeApplication:sysml11::portandflows::FlowPort:= object sysml11::portandflows::FlowPort{
 			base_Port:=self;
 			direction:=getSysML11FlowDirection(rpyElement.oclAsType(ISysMLPort).direction);
-			isConjugated:=rpyElement.oclAsType(ISysMLPort).isConjugated();
+			
+			if(not self.isAtomic(rpyElement.oclAsType(umlrhapsody::ISysMLPort))){
+					//If the FlowPort is atomic (by its type), then isAtomic=True, the direction must be specified (has a value), and
+					//isConjugated is not specified (has no value).
+				isConjugated:=rpyElement.oclAsType(ISysMLPort).isConjugated();
+			}else{
+				isConjugated:=false;
+			};
 		};
 		result:=stereotypeApplication.oclAsType(EObject);
 	}
+}
+
+/**
+* @param a ISysMLPort 
+* 
+* @return true if the port is atomic and false otherwise
+*
+*/
+helper uml::Port::isAtomic(rpyPort:umlrhapsody::ISysMLPort): Boolean{
+	var isAtomic:Boolean:=true;
+	if(self.type<>null){
+		//1. we need to call the mapping for stereotype applied on the type of the port to know if it is stereotyped with FlowSpecification
+		rpyPort.oclAsType(ISysMLPort).otherClass.oclAsType(EObject).map applyRequiredSysML11Stereotype();
+		
+		//2. now we could check the stereotype applied on the type of the port
+		var flowSpec:uml::Stereotype:=self.type.getAppliedStereotype(getSysML11Stereotype("FlowSpecification").getQualifiedName());
+		if (flowSpec<> null) {
+				isAtomic:=false;
+		};
+	};
+	return isAtomic;
 }
 
 /**

@@ -883,7 +883,10 @@ mapping umlrhapsody::IRelation::iRelationToSysMLPort(): uml::Port when {self.isR
 			type := sysPort.otherClass.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 		};
 		aggregation:=AggregationKind::composite;
-		isConjugated:=sysPort.isConjugated();
+		
+		//to my mind, the Rhapsody field isConjugated manage the SysML FlowPort property and the UML one.
+		//isConjugated:=sysPort.isConjugated();
+		
 			//a multiplicity has been defined
 		if(not sysPort.multiplicity.oclIsUndefined()){
 			lowerValue:= createLowerMultiplicity(sysPort.multiplicity);
