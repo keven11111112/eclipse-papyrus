@@ -50,7 +50,11 @@ main() {
 mapping umlrhapsody::IProject::iProjectToPapyrusModel() : uml::Model {
 	name:=self.name.replaceAll("\"","");
 	eAnnotations+=inModel.rootObjects()->selectByType(IProject)![IProject].createEAnnotationForVersioning();
-
+	
+	var localComment:Comment:=self.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
+	
 	//managing the rhapsodyType, importing them in the user model
 	var rhapsodyLibraries:Sequence(uml::Package):=getISubsystemsFromRhapsodyLibraries(self).map importRhapsodyTypeLibrary();
 
@@ -161,6 +165,10 @@ mapping EObject::iActorToUMLActor():uml::Actor when {self.oclIsTypeOf(umlrhapsod
 	var actor:IActor:=self.oclAsType(IActor);
 	name:=actor.name;
 	ownedComment += actor.Annotations->selectByType(IComment).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	
+	var localComment:Comment:=actor.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 /**
@@ -214,20 +222,34 @@ mapping EObject::iDescriptionToUMLComment(): uml::Comment when {self.oclIsTypeOf
 */ 
 helper String::getTextWithoutMarkers():String{
 	//this code seems me quite specific to my examples, but I don't have better idea
-	var res:String:=self.replaceAll("\\\\[a-zA-Z0-9]*", ""); //to remove all formatting information
+	//	var res:String:=self.replaceAll("\\\\[a-zA-Z0-9]*", ""); //to remove all formatting information
+
+	//this regex works fine (for php, tested on https://regex101.com/r/9FfA4S/4))
+	//	{\\\\[a-zA-Z0-9\\\\\s]*(;\}+)?|\\\\[a-zA-Z0-9]*
+	//a nicer regex
+	var res:String:=self.replaceAll("\\\\ldblquote\\s", "“"); //replace left quote followed by a space
+	res:=res.replaceAll("\\\\rdblquote\\s?","”"); //replace right quote maybe followed by a space
+	res:=res.replaceAll("\\\\pard",""); //remove explicitely the tag \\pard
+	res:=res.replaceAll("\\\\par","\n"); //replace all new paragraph by new line
+	res:=res.replaceAll("\\\\line","\n"); //replace all new paragraph by new line
+	res:=res.replaceAll("\\{\\\\[a-zA-Z0-9\\\\\\s]*(;\\}+)?|\\\\[a-zA-Z0-9]*\\s?", ""); //to remove all others formatting informations
+
+	res:=res.replaceAll("'\\w+(;})?",""); //in some case we get this kind of string after the first regex : 'cb'ce'cc'e5;}myText
 	
-	//we remove the end of the string
-	var lastIndex:Integer:=res.lastIndexOf("\n}");
-	if(lastIndex<>-1){
+	res:=res.replaceAll("\r\n","\n");
+
+	var a:="}\n";
+	var lastIndex:=res.lastIndexOf(a);
+	if(lastIndex<>-1 and lastIndex=res.length()-(a.size()-1)){
 		res:=res.substring(1,lastIndex-1);
 	};
-			
-	var t:="}\n "; //} + carriage return + white space
+
+	while(res.startsWith("\n") or res.startsWith("}") or res.startsWith(";")  or res.startsWith("{")){
+		res:=res.substring(2,res.length());
+	};
 	
-	//we remove the beginning of the string
-	lastIndex:=res.lastIndexOf(t);
-	if(lastIndex<>-1){
-		res:=res.substring(lastIndex+t.length(),res.length());
+	while(res.endsWith("\n") or res.endsWith("}") or res.endsWith(";") or res.endsWith("{")){
+		res:=res.substring(1,res.length()-1);
 	};
 	
 	return res;
@@ -245,6 +267,10 @@ mapping ecore::EObject::iClassToUMLInterface() : uml::Interface when {self.oclIs
 //	ownedOperation := self.Operations [IPrimitiveOperation].map toOperations();
 //	ownedReception:= self.Operations[IReception].map toReceptions();
 //	generalization:= self.Inheritances [IGeneralization].map toPapyrusGeneralization();
+
+	var localComment:Comment:=localIClass.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 
@@ -471,7 +497,10 @@ mapping umlrhapsody::IPart::iPartToUMLProperty():uml::Property when {self.oclIsT
 	if((not self.multiplicity.oclIsUndefined()) and self.multiplicity<>"1"){
 		lowerValue:=createLowerMultiplicity(self.multiplicity);
 		upperValue:=createUpperMultiplicity(self.multiplicity);
-	}
+	};
+	var localComment:Comment:=self.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 mapping umlrhapsody::IPart::iPartToUMLAssociation():uml::Association when {true}{
@@ -507,6 +536,12 @@ mapping ecore::EObject::iTypeToUMLDatatype() : uml::DataType when {self.oclIsTyp
 	name:= localIType.name.replaceAll("\"","");
 	ownedAttribute+=localIType.Attrs[IAttribute].map iVariableToUMLElement();
 	localIType.mapToBasicType(result.oclAsType(uml::TemplateableElement));
+
+	if(not localIType.isRhapsodyLibraryType()){
+		var localComment:Comment:=localIType.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+		localComment.annotatedElement:=result;
+		ownedComment+=localComment;
+	};
 }
 
 mapping ecore::EObject::iTypeToUMLEnumeration() : uml::Enumeration when {self.oclIsTypeOf(IType) and self.oclAsType(IType).isUMLEnumeration()}{
@@ -514,15 +549,31 @@ mapping ecore::EObject::iTypeToUMLEnumeration() : uml::Enumeration when {self.oc
 	name:= localIType.name.replaceAll("\"","");
 	ownedLiteral+=localIType.Literals[IEnumerationLiteral].map toUMLEnumerationLiteral();
 	localIType.mapToBasicType(result.oclAsType(uml::TemplateableElement));
+	
+	if(not localIType.isRhapsodyLibraryType()){
+		var localComment:Comment:=localIType.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+		localComment.annotatedElement:=result;
+		ownedComment+=localComment;
+	};
 }
 
 mapping umlrhapsody::IEnumerationLiteral::toUMLEnumerationLiteral() : uml::EnumerationLiteral {
 	name:= self.name.replaceAll("\"","");
+	
+	if(not self.oclAsType(EObject).isRhapsodyLibraryType()){
+		var localComment:Comment:=self.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+		localComment.annotatedElement:=result;
+		ownedComment+=localComment;
+	};
 }
 
 mapping ecore::EObject::iTypeToUMLInstanceSpecification() : uml::InstanceSpecification when {self.oclIsTypeOf(IType) and self.oclAsType(IType).isUMLInstanceSpecification()}{
 	var localIType:IType:=self.oclAsType(IType);	
 	name:= localIType.name.replaceAll("\"","");
+	
+	var localComment:Comment:=localIType.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 //TODO : refactore me, there is at least 2 method to create a class, on efrom an IType and an other one from a IClass
@@ -531,6 +582,10 @@ mapping ecore::EObject::iTypeToUMLClass() : uml::Class when {self.oclIsTypeOf(IT
 	name:= localIType.name.replaceAll("\"","");
 	ownedAttribute+=localIType.Attrs[IAttribute].map iVariableToUMLElement();
 	localIType.mapToBasicType(result.oclAsType(uml::TemplateableElement));
+	
+	var localComment:Comment:=localIType.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 
@@ -561,6 +616,10 @@ mapping ecore::EObject::iClassToUMLClass(): uml::Class when {self.oclIsTypeOf(um
 	ownedComment+=localIClass.Annotations.oclAsType(IComment).oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
 	
 	registerAssociationToStore(result, associationsToAdd);
+	
+	var localComment:Comment:=localIClass.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 
@@ -691,6 +750,10 @@ mapping umlrhapsody::IObjectLink::iObjectLinkToUMLConnector():uml::Connector whe
 	name:= self.name.replaceAll("\"","");	
 	_end+=self.map iObjectLinkSourceToUMLConnectorEnd();
 	_end+=self.map iObjectLinkTargetToUMLConnectorEnd();
+	
+	var localComment:Comment:=self.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 /**
@@ -796,7 +859,10 @@ mapping umlrhapsody::IRelation::iRelationToUMLProperty(): uml::Property when {se
 		}else{
 			lowerValue:= createLowerMultiplicity("1");
 			upperValue:= createUpperMultiplicity("1");
-		}
+		};
+	var localComment:Comment:=sysPort.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 /**
@@ -825,7 +891,11 @@ mapping umlrhapsody::IRelation::iRelationToSysMLPort(): uml::Port when {self.isR
 		}else{
 			lowerValue:= createLowerMultiplicity("1");
 			upperValue:= createUpperMultiplicity("1");
-		}
+		};
+		
+	var localComment:Comment:=sysPort.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 
@@ -1077,6 +1147,10 @@ mapping umlrhapsody::IArgument::iArgumentToUMLElement(): uml::Property when {sel
 	}else{
 		type := self.typeOf.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(Type);
 	};
+	
+	var localComment:Comment:=self.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 /**
@@ -1107,8 +1181,10 @@ mapping ecore::EObject::iAttributeToUMLInstanceSpecification(): uml::InstanceSpe
 		specification:=object OpaqueExpression{
 			body:=tmp;
 		}
-	}
-	
+	};
+	var localComment:Comment:=iAttribute.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {self.oclIsTypeOf(umlrhapsody::IAttribute)}{
@@ -1134,6 +1210,10 @@ mapping umlrhapsody::IAttribute::iAttributeToUMLElement(): uml::Property when {s
 	};
 	
 	aggregation:=AggregationKind::composite;
+	
+	var localComment:Comment:=self.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 
@@ -1247,6 +1327,10 @@ mapping ecore::EObject::iEventToUMLSignal(): uml::Signal when {self.oclIsTypeOf(
 	var localEvent:IEvent:=self.oclAsType(IEvent);
 	name:= localEvent.name.replaceAll("\"","");
 	ownedAttribute += localEvent.Args[IVariable]->map iVariableToUMLElement();
+	
+	var localComment:Comment:=localEvent.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
+	localComment.annotatedElement:=result;
+	ownedComment+=localComment;
 }
 
 //collect the call events from the umlrhapsody file

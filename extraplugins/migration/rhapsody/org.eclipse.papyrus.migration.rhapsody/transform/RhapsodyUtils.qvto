@@ -115,6 +115,13 @@ helper umlrhapsody::IType::isRhapsodyLibraryType():Boolean{
 }
 
 /**
+* Returns true if the eobject come from a Rhapsody Library
+*/
+helper ecore::EObject::isRhapsodyLibraryType():Boolean{
+	return isComingFromARhapsodyLibraryResource(self.oclAsType(EObject));
+}
+
+/**
 * Return true if the type is a Rhapsody C type
 */
 helper umlrhapsody::IType::isRhapsodyPredefinedC_Type():Boolean {
