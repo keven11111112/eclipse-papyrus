@@ -31,6 +31,7 @@
 		<plugin name="org.eclipse.papyrus.emf.facet.util.emf.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.views.references.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.views.documentation.doc" version="1.0.0"/>
+		<plugin name="org.eclipse.papyrus.migration.rhapsody.doc" version="0.7.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.editor.feature" version="2.0.0">
 		<plugin name="org.eclipse.papyrus.editor" version="2.0.0"/>
@@ -135,6 +136,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.properties" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.widgets" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.common" version="3.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.expansion" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.gef" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.modelexplorer" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.extensionpoints.editors" version="2.0.0"/>
@@ -151,6 +153,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.ui" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.canonical" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.welcome" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime" version="3.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.internationalization.feature" version="1.0.0">
 		<plugin name="org.eclipse.papyrus.infra.internationalization" version="1.0.0"/>
@@ -470,9 +473,6 @@
 	<plugin name="org.eclipse.papyrus.copypaste.ui.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.customization.palette" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.customization.paletteconfiguration" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.customization.properties" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.customization.properties.generation" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.customization.properties.model.xwt" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.dsml.validation.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.eclipse.project.editors" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.editor" version="2.0.0"/>
@@ -566,6 +566,7 @@
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.css3.xtext" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.dnd" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.expansion" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.expansion.edit" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.expansion.editor" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.export" version="2.0.0"/>
@@ -578,6 +579,7 @@
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.outline" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.preferences" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.properties" version="3.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.viewersearcher" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.welcome" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.widgets" version="1.2.0"/>
@@ -588,6 +590,7 @@
 	<plugin name="org.eclipse.papyrus.infra.internationalization.doc" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.edit" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.readonly" version="1.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.internationalization.tests" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.ui" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.utils" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.nattable" version="3.0.0"/>
@@ -654,6 +657,7 @@
 	<plugin name="org.eclipse.papyrus.infra.widgets" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.layers.documentation" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.migration.rhapsody.doc" version="0.7.0"/>
 	<plugin name="org.eclipse.papyrus.releng.main.release" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.req.reqif.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.sdk" version="2.0.0"/>
@@ -728,7 +732,9 @@
 	<plugin name="org.eclipse.papyrus.uml.icons" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.import" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.internationalization" version="1.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.internationalization.controlmode.tests" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.internationalization.edit" version="1.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.internationalization.tests" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.internationalization.utils" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.modelexplorer" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.modelexplorer.widgets" version="2.0.0"/>
@@ -754,6 +760,7 @@
 	<plugin name="org.eclipse.papyrus.uml.profile.types.generator" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.profile.types.generator.ui" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.properties" version="3.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.properties.generation" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.properties.xtext" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.resourceloading.profile" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.search.ui" version="2.0.0"/>
@@ -804,6 +811,8 @@
 	<plugin name="org.eclipse.papyrus.views.modelexplorer.widgets" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.views.properties" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.views.properties.doc" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.views.properties.model.xwt" version="2.0.0"/>
+	<plugin name="org.eclipse.papyrus.views.properties.toolsmiths" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.views.references" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.views.references.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.views.search" version="2.0.0"/>
