@@ -1185,6 +1185,12 @@ mapping ecore::EObject::iAttributeToUMLInstanceSpecification(): uml::InstanceSpe
 			body:=tmp;
 		}
 	};
+	
+	var desiredVisibility := getVisibility(iAttribute.protection); 
+	if (desiredVisibility != VisibilityKind::public) { //to avoid green + in UML editor
+		visibility:= desiredVisibility
+	}; 
+	
 	var localComment:Comment:=iAttribute.description.oclAsType(EObject).map generalMappingToUMLElement().oclAsType(uml::Comment);
 	localComment.annotatedElement:=result;
 	ownedComment+=localComment;
