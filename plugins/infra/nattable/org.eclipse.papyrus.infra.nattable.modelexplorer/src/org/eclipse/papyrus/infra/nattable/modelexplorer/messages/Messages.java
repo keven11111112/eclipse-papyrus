@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 509357
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer.messages;
 
@@ -22,6 +23,9 @@ public class Messages extends NLS {
 	public static String RenameTableHandler_NewName;
 
 	public static String RenameTableHandler_RenameAnExistingTable;
+
+	public static String RenameTableHandler_Label_DialogTitle;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -94,7 +94,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	}
 
 	/**
-	 * Obtain direct editor configuration for a semantic element
+	 * Obtain direct editor configuration for a semantic element.
 	 *
 	 * @param semanticElement
 	 *            a semantic element
@@ -102,22 +102,26 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	 */
 	public static ICustomDirectEditorConfiguration getConfiguration(final EObject semanticElement) {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		EClass eClass = semanticElement.eClass();
-		String semanticClassName = eClass.getInstanceClassName();
-		String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
-		String languagePreferred = store.getString(key);
 
-		IDirectEditorConfiguration configuration = null;
+		if (null != semanticElement) {
+			EClass eClass = semanticElement.eClass();
+			String semanticClassName = eClass.getInstanceClassName();
+			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
+			String languagePreferred = store.getString(key);
 
-		if (null != languagePreferred && !languagePreferred.isEmpty()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, semanticElement);
-		} else {
-			configuration = getConfigurationSuperType(eClass, semanticElement);
+			IDirectEditorConfiguration configuration = null;
+
+			if (null != languagePreferred && !languagePreferred.isEmpty()) {
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, semanticElement);
+			} else {
+				configuration = getConfigurationSuperType(eClass, semanticElement);
+			}
+
+			if (configuration instanceof ICustomDirectEditorConfiguration) {
+				return (ICustomDirectEditorConfiguration) configuration;
+			}
 		}
 
-		if (configuration instanceof ICustomDirectEditorConfiguration) {
-			return (ICustomDirectEditorConfiguration) configuration;
-		}
 		return null;
 	}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,35 +11,33 @@
  *  Christian W. Damus - bug 485220
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 509357
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
 
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.modelexplorer.commands.RenameDiagramLabelCommand;
 import org.eclipse.papyrus.infra.gmfdiag.modelexplorer.messages.Messages;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
-import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.papyrus.views.modelexplorer.commands.RenameElementCommand;
+import org.eclipse.papyrus.views.modelexplorer.util.ModelExplorerEditionUtil;
 
 /**
- * This handler provides the method to rename a Diagram
+ * This handler provides the method to rename a Diagram.
  */
 public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 
@@ -54,56 +52,16 @@ public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 		if (editingDomain != null && diagrams.size() == 1) {
 
 			final Diagram diag = diagrams.get(0);
-			
+
 			final String diagramLabel = LabelInternationalization.getInstance().getDiagramLabelWithoutName(diag);
-			if(null != diagramLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(diag)){
-				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "ChangeDiagramLabelCommand", null) { //$NON-NLS-1$
-					
-					/**
-					 *
-					 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-					 *
-					 * @param monitor
-					 * @param info
-					 * @return
-					 * @throws ExecutionException
-					 */
-					@Override
-					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename diagram label...", "New label:", diagramLabel, null); //$NON-NLS-1$ //$NON-NLS-2$
-						if (Window.OK == dialog.open()) {
-							final String label = dialog.getValue();
-							if (label != null && label.length() > 0) {
-								LabelInternationalization.getInstance().setDiagramLabel(diag, label, null);
-							}
-							return CommandResult.newOKCommandResult();
-						} else {
-							return CommandResult.newCancelledCommandResult();
-						}
-					}
-				};
+			if (null != diagramLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(diag)) {
+				AbstractTransactionalCommand cmd = new RenameDiagramLabelCommand(editingDomain, "ChangeDiagramLabelCommand", diag, diagramLabel, Messages.RenameDiagramHandler_Label_DialogTitle); //$NON-NLS-1$
 				return new GMFtoEMFCommandWrapper(cmd);
-			}else{
+			} else {
 				final String currentName = diag.getName();
 				if (currentName != null) {
-	
-					AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameDiagramCommand", null) { //$NON-NLS-1$
-	
-						@Override
-						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-							InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
-							if (dialog.open() == Window.OK) {
-								final String name = dialog.getValue();
-								if (name != null && name.length() > 0) {
-									diag.setName(name);
-								}
-								return CommandResult.newOKCommandResult();
-							} else {
-								return CommandResult.newCancelledCommandResult();
-							}
-						}
-					};
-					return new GMFtoEMFCommandWrapper(cmd);
+					EStructuralFeature nameFeature = diag.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
+					return new RenameElementCommand(editingDomain, "RenameDiagramCommand", diag, currentName, nameFeature, Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName); //$NON-NLS-1$
 				}
 			}
 		}
@@ -119,21 +77,30 @@ public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 		if (computeEnabled) {
 			List<EObject> selectedElements = getSelectedElements();
 			EObject selection = selectedElements.get(0);
-			computeEnabled = !EMFHelper.isReadOnly(selection) && !isHandledByDirectEditor(selection);
+			computeEnabled = !EMFHelper.isReadOnly(selection);
 		}
 
 		return computeEnabled;
 	}
 
 	/**
-	 * Check whether the editing of an element is handled by a direct editor. In this case, we do
-	 * not want to open the rename pop-up.
-	 *
-	 * @param element
-	 *            an element that should be edited.
-	 * @return true, if handled by a direct editor
+	 * {@inheritDoc}
+	 * 
+	 * Overridden to inline edit a diagram if it is handled by direct editor.
 	 */
-	protected boolean isHandledByDirectEditor(final EObject element) {
-		return null != DirectEditorEditingSupport.getConfiguration(element);
+	@Override
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
+		EObject selectedDiagram = getSelectedElement();
+
+		// If the diagram could be handled by direct editor
+		if (ModelExplorerEditionUtil.isHandledByDirectEditor(selectedDiagram)) {
+			// Call the edit element method from the model explorer to trigger DirectEditor
+			ModelExplorerEditionUtil.editElement(selectedDiagram);
+		} else {
+			// Otherwise, show the model dialog to get user input
+			super.execute(event);
+		}
+
+		return null;
 	}
 }

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 509357
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.util;
 
@@ -21,11 +20,14 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- *
- * a helper for the Eclipse workbench part
+ * A helper for retrieving from Eclipse Platform UI:
+ * <ul>
+ * <li>the active editor part</li>
+ * <li>the active workbench part</li>
+ * <li>and the active workbench</li>
+ * </ul>
  * 
  * @since 1.2
- *
  */
 public class WorkbenchPartHelper {
 
@@ -34,40 +36,45 @@ public class WorkbenchPartHelper {
 	}
 
 	/**
-	 *
 	 * @return
-	 * 		the current IWorkbenchPart or <code>null</code> if not found
+	 * 		The current {@link IWorkbenchPage} or <code>null</code> if not found
 	 */
-	public static final IWorkbenchPart getCurrentActiveWorkbenchPart() {
+	public static final IWorkbenchPage getCurrentActiveWorkbenchPage() {
 		final IWorkbench workbench = PlatformUI.getWorkbench();
-		if (workbench != null) {
+		if (null != workbench) {
 			final IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
-			if (activeWorkbench != null) {
-				final IWorkbenchPage activePage = activeWorkbench.getActivePage();
-				if (activePage != null) {
-					return activePage.getActivePart();
-				}
+			if (null != activeWorkbench) {
+				return activeWorkbench.getActivePage();
 			}
 		}
+
+		return null;
+	}
+
+
+	/**
+	 * @return
+	 * 		The current {@link IWorkbenchPart} or <code>null</code> if not found
+	 */
+	public static final IWorkbenchPart getCurrentActiveWorkbenchPart() {
+		final IWorkbenchPage activePage = getCurrentActiveWorkbenchPage();
+		if (null != activePage) {
+			return activePage.getActivePart();
+		}
+
 		return null;
 	}
 
 	/**
-	 *
 	 * @return
-	 * 		the current IEditorPart or <code>null</code> if not found
+	 * 		The current {@link IEditorPart} or <code>null</code> if not found
 	 */
 	public static final IEditorPart getCurrentActiveEditorPart() {
-		final IWorkbench workbench = PlatformUI.getWorkbench();
-		if (workbench != null) {
-			final IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
-			if (activeWorkbench != null) {
-				final IWorkbenchPage activePage = activeWorkbench.getActivePage();
-				if (activePage != null) {
-					return activePage.getActiveEditor();
-				}
-			}
+		final IWorkbenchPage activePage = getCurrentActiveWorkbenchPage();
+		if (null != activePage) {
+			return activePage.getActiveEditor();
 		}
+
 		return null;
 	}
 }

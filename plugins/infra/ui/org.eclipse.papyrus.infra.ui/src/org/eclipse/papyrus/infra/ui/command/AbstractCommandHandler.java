@@ -183,7 +183,6 @@ public abstract class AbstractCommandHandler extends AbstractPapyrusHandler {
 			if (selection instanceof Collection<?>) {
 				this.selection = (selection instanceof List<?>) ? (List<?>) selection : new java.util.ArrayList<Object>((Collection<?>) selection);
 				setBaseEnabled(computeEnabled(context));
-				this.selection = Collections.EMPTY_LIST;
 			}
 		}
 		super.setEnabled(evaluationContext);

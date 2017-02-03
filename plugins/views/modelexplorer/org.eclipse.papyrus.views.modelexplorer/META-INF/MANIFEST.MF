@@ -10,7 +10,8 @@ Export-Package: org.eclipse.papyrus.views.modelexplorer,
  org.eclipse.papyrus.views.modelexplorer.handler,
  org.eclipse.papyrus.views.modelexplorer.matching,
  org.eclipse.papyrus.views.modelexplorer.preferences,
- org.eclipse.papyrus.views.modelexplorer.queries
+ org.eclipse.papyrus.views.modelexplorer.queries,
+ org.eclipse.papyrus.views.modelexplorer.util
 Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.emf.converter;bundle-version="[2.7.0,3.0.0)",
  org.eclipse.emf.ecore.editor;bundle-version="[2.11.0,3.0.0)",
