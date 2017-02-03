@@ -56,9 +56,11 @@ import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.extensionpoints.IAdviceKindExtensionPoint;
 import org.eclipse.papyrus.infra.types.core.factories.impl.AbstractAdviceBindingFactory;
+import org.eclipse.papyrus.infra.types.core.factories.impl.MetamodelTypeFactory;
 import org.eclipse.papyrus.infra.types.core.factories.impl.SpecializationTypeFactory;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
@@ -672,7 +674,13 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 
 						// for each gets advice configuration
 						for (ElementTypeConfiguration elementTypeConfiguration : elementTypesSem) {
-							IHintedType createElementType = new SpecializationTypeFactory().createElementType((SpecializationTypeConfiguration) elementTypeConfiguration);
+							IHintedType createElementType = null;
+							if (elementTypeConfiguration instanceof SpecializationTypeConfiguration) {
+								createElementType = new SpecializationTypeFactory().createElementType((SpecializationTypeConfiguration) elementTypeConfiguration);
+							} else if (elementTypeConfiguration instanceof MetamodelTypeConfiguration) {
+								createElementType = new MetamodelTypeFactory().createElementType((MetamodelTypeConfiguration) elementTypeConfiguration);
+							}
+
 							editingDomain.getResourceSet().getLoadOptions().put(SOURCE_ECLASS, createElementType.getEClass());
 							actions.addAll(elementTypeSetConfigurationSemantic.getAdviceBindingsConfigurations().stream().filter(p -> null != p.getTarget() && p.getTarget().equals(elementTypeConfiguration)).collect(Collectors.toList()));
 						}
@@ -775,20 +783,9 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 				setElementTypeModels();
 				setToolSource(modelElement);
 				initActionsViewer();
-				// addUMLresources();
 			}
 		}
 	}
-
-	// /**
-	// *
-	// */
-	// private void addUMLresources() {
-	//
-	// // platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore TODO
-	// URI uri = URI.createURI("platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore");
-	// Resource resource = getDomain().getResourceSet().getResource(uri, true);
-	// }
 
 	/**
 	 * Set the toolSource field.

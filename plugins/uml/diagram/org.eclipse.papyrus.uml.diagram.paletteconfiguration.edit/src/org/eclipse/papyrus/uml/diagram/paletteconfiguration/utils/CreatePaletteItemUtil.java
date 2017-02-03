@@ -33,14 +33,13 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
-import org.eclipse.papyrus.infra.types.core.impl.ConfiguredHintedSpecializationElementType;
+import org.eclipse.papyrus.infra.types.core.IConfiguredHintedElementType;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
@@ -252,9 +251,9 @@ public class CreatePaletteItemUtil {
 
 			// Create UI Specialize Type
 			for (IElementType elementType : elementTypes) {
-				if (elementType instanceof ConfiguredHintedSpecializationElementType) {
+				if (elementType instanceof IConfiguredHintedElementType) {
 					// Create or get UI Specialized Type
-					uiSpecializationTypes.add(createUISpecializedType(entry.getLabel(), uiElementTypeModel, semanticSpecializedType, (ConfiguredHintedSpecializationElementType) elementType));
+					uiSpecializationTypes.add(createUISpecializedType(entry.getLabel(), uiElementTypeModel, semanticSpecializedType, (IConfiguredHintedElementType) elementType));
 				}
 			}
 		}
@@ -276,8 +275,8 @@ public class CreatePaletteItemUtil {
 		String name = paletteEntry.getLabel();
 		SpecializationTypeConfiguration specializedType = null;
 		if (paletteEntry instanceof ToolEntry) {
-			SpecializationType toolSpecializedType = (SpecializationType) getToolElementTypes(((ToolEntry) paletteEntry).createTool()).get(0);
-			if (toolSpecializedType instanceof ConfiguredHintedSpecializationElementType) {
+			IElementType toolSpecializedType = (IElementType) getToolElementTypes(((ToolEntry) paletteEntry).createTool()).get(0);
+			if (toolSpecializedType instanceof IConfiguredHintedElementType) {
 
 				String id = getPaletteConfigurationModel(resourceSet).getId();
 
@@ -286,7 +285,7 @@ public class CreatePaletteItemUtil {
 				newSpecializedTypeId.append(".");//$NON-NLS-1$
 				newSpecializedTypeId.append(identifier);
 
-				List<ElementTypeConfiguration> elementTypeConfigurations = Arrays.asList(((ConfiguredHintedSpecializationElementType) toolSpecializedType).getConfiguration());
+				List<ElementTypeConfiguration> elementTypeConfigurations = Arrays.asList(((IConfiguredHintedElementType) toolSpecializedType).getConfiguration());
 				ElementTypeSetConfiguration semanticElementTypeModel = getSemanticElementTypeModel(resourceSet);
 				if (null != semanticElementTypeModel) {
 					specializedType = createSpecializedType(newSpecializedTypeId.toString(), name, elementTypeConfigurations);
@@ -362,7 +361,7 @@ public class CreatePaletteItemUtil {
 	 * @return
 	 */
 	public static SpecializationTypeConfiguration createUISpecializedType(final String name, final ElementTypeSetConfiguration uiElementTypeModel, final SpecializationTypeConfiguration semanticSpecializedType,
-			final ConfiguredHintedSpecializationElementType uiElementType) {
+			final IConfiguredHintedElementType uiElementType) {
 		String semanticHint = uiElementType.getSemanticHint();
 
 		// List of necessary SpecializedType to apply
