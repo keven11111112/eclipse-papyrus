@@ -98,7 +98,7 @@ public class DefaultPasteCommand extends AbstractCommand {
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
 				if (provider != null) {
 					ICommand editCommand = provider.getEditCommand(moveRequest);
-					if (editCommand.canExecute()) {
+					if (editCommand != null && editCommand.canExecute()) {
 						getCommand().compose(editCommand);
 					}
 				}
