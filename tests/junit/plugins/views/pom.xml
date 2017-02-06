@@ -19,8 +19,8 @@
 	<module>org.eclipse.papyrus.views.suite.tests</module>  	
   
   	<!-- Plugins -->
-	<module>modelexplorer/org.eclipse.papyrus.views.modelexplorer.tests</module>
-	<module>properties/org.eclipse.papyrus.views.properties.toolsmiths.tests</module>
+	<module>org.eclipse.papyrus.views.modelexplorer.tests</module>
+	<module>org.eclipse.papyrus.views.properties.toolsmiths.tests</module>
 			
   </modules>
   

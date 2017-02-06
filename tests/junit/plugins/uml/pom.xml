@@ -35,7 +35,6 @@
 	<module>org.eclipse.papyrus.uml.dynamic.profile.tests</module>
 	<module>org.eclipse.papyrus.uml.filters.tests</module>
 	<module>org.eclipse.papyrus.uml.modelrepair.tests</module>
-	<module>org.eclipse.papyrus.uml.profile.tests</module>
 	<module>org.eclipse.papyrus.uml.service.types.tests</module>
 	<module>org.eclipse.papyrus.uml.service.types.ui.tests</module>
 		

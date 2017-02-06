@@ -15,6 +15,7 @@
 	<description>Tests for the Papyrus uml profiles</description>
   
   <modules>
+	<module>org.eclipse.papyrus.uml.profile.tests</module>
 	<module>org.eclipse.papyrus.uml.profile.drafter.tests</module>
 			
   </modules>

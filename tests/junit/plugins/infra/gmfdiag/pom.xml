@@ -21,7 +21,7 @@
 	<module>org.eclipse.papyrus.infra.gmfdiag.welcome.tests</module>
 	<module>org.eclipse.papyrus.infra.gmfdiag.css.tests</module>
 	<module>org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
-	<module>assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
+	<module>assistant</module>
 		
   </modules>
   
