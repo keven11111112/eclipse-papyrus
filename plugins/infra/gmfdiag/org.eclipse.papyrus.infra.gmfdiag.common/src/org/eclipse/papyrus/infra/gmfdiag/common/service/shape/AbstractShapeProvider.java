@@ -181,7 +181,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	 */
 	private SVGDocument doGetSVGDocument(String location) {
 		int extensionIndex = location.lastIndexOf('.');
-		if (extensionIndex == 0) {
+		if (extensionIndex <= 0) {
 			return null;
 		}
 		String fileExtension = location.substring(extensionIndex);
