@@ -114,53 +114,6 @@ public class TestGuardVisibility_402966 extends AbstractNodeTest {
 		return null;
 	}
 
-	@Test
-	public void testPropertySheetPage() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(400, 100));
-		assertNotNull(cf);
-		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
-		assertNotNull(compartment);
-		InteractionOperandEditPart operand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_Shape, compartment, getAbsoluteCenter(compartment), null);
-		assertNotNull(operand);
-		waitForComplete();
-		try {
-			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			PropertySheet propertySheet = (PropertySheet)activePage.showView(IPageLayout.ID_PROP_SHEET);
-			waitForComplete();
-			IEditorPart activeEditor = activePage.getActiveEditor();
-			propertySheet.partActivated(activeEditor);
-			waitForComplete();
-			IPage currentPage = propertySheet.getCurrentPage();
-			assertTrue(currentPage instanceof TabbedPropertySheetPage);
-			waitForComplete();
-			TabbedPropertySheetPage page = (TabbedPropertySheetPage)currentPage;
-			//force select the operand
-			page.selectionChanged(activePage.getActiveEditor(), new StructuredSelection(operand));
-			page.setSelectedTab("appearance");
-			waitForComplete();
-			ITabDescriptor selectedTab = page.getSelectedTab();
-			assertNotNull(selectedTab);
-			assertEquals("appearance", selectedTab.getId());
-			waitForComplete();
-			waitForComplete();
-			Control control = page.getControl();
-			assertNotNull(control);
-			Button checkbox = (Button)getControl((Composite)control, Button.class, "Show Guard", SWT.CHECK);
-			assertNotNull("Could not found \"Show Guard\" CheckBox in Properties: ", checkbox);
-			assertEquals("Synchronized value with model: ", InteractionOperandModelElementFactory.isGuardVisible(operand.getPrimaryView()), checkbox.getSelection());
-			testGuardVisibility(operand, checkbox.getSelection());
-			checkbox.setSelection(!checkbox.getSelection());
-			Event event = new Event();
-			event.button = 1;
-			event.widget = checkbox;
-			event.type = SWT.Selection;
-			checkbox.notifyListeners(SWT.Selection, event);
-			waitForComplete();
-			testGuardVisibility(operand, checkbox.getSelection());
-		} catch (PartInitException e) {
-			fail("Could not open Property Sheet View: " + e.getMessage());
-		}
-	}
 
 	public void testGuardVisibility(InteractionOperandEditPart op, boolean visible) {
 		assertNotNull(op);

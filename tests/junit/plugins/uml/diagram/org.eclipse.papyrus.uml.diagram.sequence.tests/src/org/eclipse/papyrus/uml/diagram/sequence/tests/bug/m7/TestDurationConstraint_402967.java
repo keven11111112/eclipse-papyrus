@@ -187,38 +187,6 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		return connectPoint;
 	}
 
-	@Test
-	// test property view of duration link
-	public void testDurationLinkProperty() {
-		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), null);
-		assertNotNull(lifeline);
-		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, new Point(231, 150), null);
-		assertNotNull(es);
-
-		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(400, 200), null);
-		assertNotNull(dc);
-
-		// start connection
-		Point fromLocation = getAbsoluteBounds(dc).getTop();
-		Point toLocation = getAbsoluteBounds(es).getTop();
-		CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
-		assertTrue(dc.getSourceConnections().size() == 1);
-
-		Control control = openPropertyView(linkPart);
-		Button automatic = (Button) getControl((Composite) control, Button.class, "Automatic", SWT.RADIO);
-		assertNotNull("Could not found router in Properties: ", automatic);
-		assertTrue("Automatic router selected", automatic.getSelection());
-
-		Button manual = (Button) getControl((Composite) control, Button.class, "Manual", SWT.RADIO);
-		assertNotNull("Could not found router in Properties: ", manual);
-		assertFalse("Manual router selected", manual.getSelection());
-
-		PolylineConnection conn = (PolylineConnection) linkPart.getFigure();
-		assertTrue("Automatic Router Connection Points", conn.getPoints().size() == 3);
-		selectRadio(manual, true); // switch to manual router
-		assertTrue("Manual Router Connection Points", conn.getPoints().size() == 2);
-	}
-
 	public void selectRadio(Button button, boolean value) {
 		button.setSelection(value);
 		Event event = new Event();

@@ -22,17 +22,7 @@
       </contribution>
    </extension>
 
-  <extension point="org.eclipse.papyrus.infra.properties.contexts">
-     <context contextModel="model/prop/seq.ctx">
-     </context>
-  </extension>
-  <extension
-         point="org.eclipse.papyrus.infra.properties.environments">
-      <environment
-            environmentModel="model/prop/Environment.xmi">
-      </environment>
-   </extension>
-   
+
    <extension point="org.eclipse.ui.contexts" id="ui-context">
 				      <?gmfgen generated="true"?>
 				      <context
