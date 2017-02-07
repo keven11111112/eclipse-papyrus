@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8' ?>
-<toc label="Rhapsody Migration" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusTasks">
-   <topic label="Rhapsody Migration" >
-      <link toc="target/site/generated-eclipse-help/rhapsodyMigrationUser-toc.xml"/>
-      <anchor id="RhapsodyMigrationUserDoc"/>
-   </topic>
-</toc>

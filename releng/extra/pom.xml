@@ -30,7 +30,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.layers.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.export.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rhapsody.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
@@ -100,9 +99,6 @@
 		<!-- RSA Migration Tool -->
 		<module>../../extraplugins/migration/org.eclipse.papyrus.m2m.qvto</module>
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.rsa</module>
-		
-		<!-- Rhapsody Migration Tool -->
-		<module>../../extraplugins/migration/rhapsody</module>
 		
 		<!-- Refactoring plugins -->
 		<module>../../extraplugins/refactoring/org.eclipse.papyrus.refactoring</module>
