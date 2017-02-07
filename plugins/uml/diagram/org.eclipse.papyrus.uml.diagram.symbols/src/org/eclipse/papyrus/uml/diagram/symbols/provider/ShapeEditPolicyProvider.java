@@ -24,11 +24,12 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvide
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ShapeCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 
 /**
- * Edit policy provider for the shape compartement
+ * Edit policy provider for the shape compartment
  */
 public class ShapeEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
@@ -42,15 +43,36 @@ public class ShapeEditPolicyProvider extends AbstractProvider implements IEditPo
 			return false;
 		}
 
-		// Make sure this concern Block Definition Diagram only
+		// Verify whether graphical edit part provides symbol
 		IGraphicalEditPart gep = (IGraphicalEditPart) epOperation.getEditPart();
-		// Provides for edit parts that represent nodes in Block Definition diagram
-		if (gep instanceof NamedElementEditPart) {
+		return provides(gep);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void createEditPolicies(EditPart editPart) {
+		// add behavior for the shapes display
+		if (provides(editPart)) {
+			editPart.installEditPolicy(ShapeCompartmentEditPolicy.SHAPE_COMPARTMENT_EDIT_POLICY, new ShapeCompartmentEditPolicy());
+		}
+	}
+
+	/**
+	 * check whether edit part provides a symbol compartment
+	 * @param the edit part
+	 * @return
+	 */
+	protected boolean provides(EditPart ep) {
+		// Provides for edit parts that represent nodes in Block Definition diagram and
+		// nodes that represent ports in composite structure (and similar, e.g. pseudo states)
+		if (ep instanceof NamedElementEditPart || ep instanceof RoundedBorderNamedElementEditPart) {
 			return true;
 		}
 
 		// Provides for NodeEditParts with figures which can contain shapes
-		if (isNodeEPWithSymbolCompartmentFigure(gep)) {
+		if (isNodeEPWithSymbolCompartmentFigure(ep)) {
 			return true;
 		}
 
@@ -58,23 +80,9 @@ public class ShapeEditPolicyProvider extends AbstractProvider implements IEditPo
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void createEditPolicies(EditPart editPart) {
-		// add behavior for the shapes display
-		if (editPart instanceof NamedElementEditPart) { // add to Block Property Composite and Block Composite
-			editPart.installEditPolicy(ShapeCompartmentEditPolicy.SHAPE_COMPARTMENT_EDIT_POLICY, new ShapeCompartmentEditPolicy());
-		}
-		if (isNodeEPWithSymbolCompartmentFigure((IGraphicalEditPart)editPart)) {
-				editPart.installEditPolicy(ShapeCompartmentEditPolicy.SHAPE_COMPARTMENT_EDIT_POLICY, new ShapeCompartmentEditPolicy());
-		}
-	}
-
-	/**
 	 * @return true if figure contain container for shape elements and container edit part is a NodeEditPart
 	 */
-	private boolean isNodeEPWithSymbolCompartmentFigure(IGraphicalEditPart ep) {
+	private boolean isNodeEPWithSymbolCompartmentFigure(EditPart ep) {
 		if (ep instanceof NodeEditPart) {
 			IFigure figure = ((NodeEditPart) ep).getPrimaryShape();
 			return figure instanceof RoundedCompartmentFigure || figure instanceof NodeNamedElementFigure;

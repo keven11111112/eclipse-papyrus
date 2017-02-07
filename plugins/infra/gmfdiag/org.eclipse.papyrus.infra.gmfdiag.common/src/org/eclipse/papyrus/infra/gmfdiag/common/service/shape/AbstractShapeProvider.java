@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.gmfdiag.common.service.shape;
 
 import java.io.IOException;
@@ -22,15 +23,25 @@ import java.util.WeakHashMap;
 import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.dom.util.DOMUtilities;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
+import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.PositionEnum;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.w3c.dom.Document;
 import org.w3c.dom.svg.SVGDocument;
@@ -40,14 +51,22 @@ import org.w3c.dom.svg.SVGDocument;
  */
 public abstract class AbstractShapeProvider extends AbstractProvider implements IShapeProvider, IRefreshHandlerPart {
 
+	/** Prefix for platform strings */
+	protected static final String PLATFORM = "platform:/"; //$NON-NLS-1$
+
+	/**
+	 * "Magic" key within an SVG filename for orientation dependent files
+	 */
+	protected static final String POSITION_KEY = "position"; //$NON-NLS-1$
+
 	/** field for name */
-	protected static final String NAME = "name";
+	protected static final String NAME = "name"; //$NON-NLS-1$
 
 	/** field for identifier */
-	protected static final String ID = "id";
+	protected static final String ID = "id"; //$NON-NLS-1$
 
 	/** field for description */
-	protected static final String DESCRIPTION = "description";
+	protected static final String DESCRIPTION = "description"; //$NON-NLS-1$
 
 	/** field for Activator ID */
 	protected String bundleId;
@@ -120,7 +139,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	 */
 	@Override
 	public boolean provides(IOperation operation) {
-		return (operation instanceof GetAllShapeProvidersOperation || operation instanceof GetShapeProviderByIdentifierOperation);
+		return operation instanceof GetAllShapeProvidersOperation || operation instanceof GetShapeProviderByIdentifierOperation;
 	}
 
 	/**
@@ -148,10 +167,55 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 		if (relativePaths == null) {
 			relativePaths = new WeakHashMap<Resource, Map<String, String>>();
 		}
+		if (location.contains("/" + POSITION_KEY) || location.contains("." + POSITION_KEY)) {  //$NON-NLS-1$//$NON-NLS-2$
+			// load a specific variant of a symbol (with a different orientation) if the file name
+			// contains a specific "magic" key. The motivation is that symbols on the border of a parent
+			// (e.g. a port	symbol) could always point into the parent shape depending on its position
+			try {
+				IMultiDiagramEditor editor = ServiceUtilsForEObject.getInstance().getService(IMultiDiagramEditor.class, view);
+
+				IEditorPart part = editor.getActiveEditor();
+				PositionEnum positionKey = PositionEnum.SOUTH;
+				if (part instanceof DiagramEditor) {
+					Map<?, ?> editPartRegistry = ((DiagramEditor) part).getDiagramGraphicalViewer().getEditPartRegistry();
+					// get edit part, in order to retrieve a border item locator that is in turn used to obtain the
+					// relative position
+					EditPart ep = (EditPart) editPartRegistry.get(view);
+					if (ep instanceof AbstractBorderItemEditPart) {
+						IBorderItemLocator locator = ((AbstractBorderItemEditPart) ep).getBorderItemLocator();
+						if (locator != null) {
+							int side = locator.getCurrentSideOfParent();
+							positionKey = getPositionKey(side);
+						}
+					}
+				}
+				location = location.replace(POSITION_KEY, positionKey.getLiteral());
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+		}
+
 		String canonical = getCanonicalURI(view, location);
 		return getSVGDocument(canonical);
 	}
 
+	/**
+	 * Get a position key (enumeration) from the bit-vector representation of the position
+	 * @param side the binary encoded position
+	 * @return the position key
+	 */
+	protected PositionEnum getPositionKey(int side) {
+		if ((side & PositionConstants.WEST) > 0) {
+			return PositionEnum.WEST;
+		} else if ((side & PositionConstants.EAST) > 0) {
+			return PositionEnum.EAST;
+		} else if ((side & PositionConstants.NORTH) > 0) {
+			return PositionEnum.NORTH;
+		} else {
+			// use south as default
+			return PositionEnum.SOUTH;
+		}
+	}
 	/**
 	 * Loads a SVG document from the given location.
 	 * This method uses a cache so that any given document is only loaded once.
@@ -185,7 +249,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 			return null;
 		}
 		String fileExtension = location.substring(extensionIndex);
-		if (!fileExtension.equalsIgnoreCase(".svg")) {
+		if (!fileExtension.equalsIgnoreCase(".svg")) { //$NON-NLS-1$
 			return null;
 		}
 
@@ -205,8 +269,8 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	}
 
 	/**
-	 * Translates the given uri as a string to a canonical Eclipse URI
-	 * The uri may be relative to the currently edited EMF resource
+	 * Translates the given URI as a string to a canonical Eclipse URI
+	 * The URI may be relative to the currently edited EMF resource
 	 *
 	 * @param model
 	 *            The model element used to retrieve the EMF resource that is currently edited
@@ -215,7 +279,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	 * @return The canonical URI of the resource
 	 */
 	private String getCanonicalURI(EObject model, String uri) {
-		if (uri.startsWith("platform:/")) {
+		if (uri.startsWith(PLATFORM)) {
 			return uri;
 		}
 
@@ -233,11 +297,11 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 		if (!resURI.isPlatform()) {
 			return null;
 		}
-		StringBuilder builder = new StringBuilder("platform:/");
+		StringBuilder builder = new StringBuilder(PLATFORM);
 		String[] segments = resURI.segments();
 		for (int i = 0; i < segments.length - 1; i++) {
 			builder.append(segments[i]);
-			builder.append("/");
+			builder.append("/"); //$NON-NLS-1$
 		}
 		builder.append(uri);
 		canonical = builder.toString();
