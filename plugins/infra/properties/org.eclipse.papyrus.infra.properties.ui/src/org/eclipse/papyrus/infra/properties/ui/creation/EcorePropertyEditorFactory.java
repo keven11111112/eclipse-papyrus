@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 402525
- *  Christian W. Damus (CEA) - bug 430077
- *  Christian W. Damus (CEA) - bug 443497
+ *  Christian W. Damus (CEA) - bugs 402525, 430077, 443497
+ *  Christian W. Damus - bug 511942
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.creation;
@@ -28,6 +27,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -234,6 +234,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 			NestedEditingDialogContext.getInstance().enter();
 			try {
 				result = getOperationExecutor(source).execute(new Callable<Object>() {
+					@Override
 					public Object call() throws Exception {
 						return basicDoEdit(widget, source, views, dialogTitle);
 					}
@@ -270,7 +271,18 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 			return null;
 		}
 
-		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
+		EFactory eFactory;
+		ResourceSet rset = NestedEditingDialogContext.getInstance().getResourceSet();
+		if (rset == null) {
+			eFactory = eClass.getEPackage().getEFactoryInstance();
+		} else {
+			eFactory = rset.getPackageRegistry().getEFactory(eClass.getEPackage().getNsURI());
+			if (eFactory == null) {
+				eFactory = eClass.getEPackage().getEFactoryInstance();
+			}
+		}
+
+		EObject instance = eFactory.create(eClass);
 		return instance;
 	}
 
@@ -339,10 +351,12 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 			item.setData("eClass", eClass); //$NON-NLS-1$
 			item.addSelectionListener(new SelectionListener() {
 
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					EcorePropertyEditorFactory.this.eClass = (EClass) item.getData("eClass"); //$NON-NLS-1$
 				}
 
+				@Override
 				public void widgetDefaultSelected(SelectionEvent e) {
 					// Nothing
 				}
@@ -506,10 +520,12 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 				return type == CreationContext.class;
 			}
 
+			@Override
 			public Object getCreationContextElement() {
 				return context;
 			}
 
+			@Override
 			public void popCreatedElement(Object newElement) {
 				if (createdElements.remove(newElement)) {
 					((Notifier) newElement).eAdapters().remove(this);
@@ -521,6 +537,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 				}
 			}
 
+			@Override
 			public void pushCreatedElement(Object newElement) {
 				createdElements.add(newElement);
 				((Notifier) newElement).eAdapters().add(this);
