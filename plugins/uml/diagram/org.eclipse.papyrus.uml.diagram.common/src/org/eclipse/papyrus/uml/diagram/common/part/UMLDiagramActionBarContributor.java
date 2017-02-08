@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPage;
 
 public class UMLDiagramActionBarContributor extends DiagramActionBarContributor {
@@ -35,17 +36,16 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 	@Override
 	public void init(IActionBars bars, IWorkbenchPage page) {
 		super.init(bars, page);
-		IMenuManager fileMenu = bars.getMenuManager();
+		IMenuManager menuManager = bars.getMenuManager();
 
-		IContributionItem undoAction = bars.getMenuManager().findMenuUsingPath("undoGroup");
+		IContributionItem undoAction = bars.getMenuManager().findMenuUsingPath("undoGroup"); //$NON-NLS-1$
 		if (undoAction != null) {
-			fileMenu.remove(undoAction);
+			menuManager.remove(undoAction);
 		}
 		// print preview
-		// IMenuManager fileMenu =
-		// bars.getMenuManager().findMenuUsingPath(IWorkbenchActionConstants.M_FILE);
-		// assert fileMenu != null;
-		//fileMenu.remove("pageSetupAction"); //$NON-NLS-1$
-
+		IMenuManager fileMenu = bars.getMenuManager().findMenuUsingPath(IWorkbenchActionConstants.M_FILE);
+		if (null != fileMenu) {
+			fileMenu.remove("pageSetupAction"); //$NON-NLS-1$
+		}
 	}
 }

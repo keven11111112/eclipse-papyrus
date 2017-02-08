@@ -414,7 +414,7 @@
 <extension
       point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
    <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.printing.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         class="org.eclipse.papyrus.uml.diagram.common.providers.CustomDiagramWithPrintGlobalActionHandlerProvider"
          id="GenericDiagramActionHandlerProvider">
       <Priority
             name="Low">
