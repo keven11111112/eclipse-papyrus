@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Group xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
-	xmlns="http://www.eclipse.org/xwt/presentation" text="Tiler">
-	<Group.layout>
-		<ppel:PropertiesLayout></ppel:PropertiesLayout>
-	</Group.layout>
-</Group>

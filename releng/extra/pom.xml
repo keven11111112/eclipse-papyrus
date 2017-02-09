@@ -22,9 +22,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.dsml.validation.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.eastadl.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.marte.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.marte.properties.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.marte.textedit.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.migration.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.uml.compare.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.layers.feature</module>
@@ -67,14 +64,6 @@
 		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel.edit</module>
 		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel.editor</module>
 		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.ui</module>
-		<module>../../extraplugins/marte/properties/org.eclipse.papyrus.marte.properties</module>
-		<module>../../extraplugins/marte/org.eclipse.papyrus.marte.static.profile</module>
-		<module>../../extraplugins/marte/textedit/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext</module>
-		<module>../../extraplugins/marte/textedit/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui</module>
-		<module>../../extraplugins/marte/textedit/org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext</module>
-		<module>../../extraplugins/marte/textedit/org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui</module>
-		<module>../../extraplugins/marte/org.eclipse.papyrus.marte.vsl</module>
-		<module>../../extraplugins/marte/org.eclipse.papyrus.marte.vsl.ui</module>
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.properties.model</module>
 
 		<module>../../extraplugins/uml/compare/org.eclipse.papyrus.uml.compare</module>

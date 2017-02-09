@@ -1659,9 +1659,6 @@
       <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>

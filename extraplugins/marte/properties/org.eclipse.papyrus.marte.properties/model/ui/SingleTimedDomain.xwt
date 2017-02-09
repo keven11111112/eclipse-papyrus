@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Group xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
-	xmlns:j="clr-namespace:java.lang" text="TimedDomain">
-	<Group.layout>
-		<ppel:PropertiesLayout></ppel:PropertiesLayout>
-	</Group.layout>
-</Group>
