@@ -112,6 +112,18 @@ abstract mapping Node::toPapyrusConnectorLabel() : Node {
 	//Do not set children
 }
 
+abstract mapping Node::toPapyrusNodeLabel() : Node {
+
+	result.visible := self.visible;
+	
+	result.type := self.getType();
+	
+	result.layoutConstraint := (self.layoutConstraint.map toLayout(self.diagram)).oclAsType(Location);
+	
+	//Do not set element
+	//Do not set children
+}
+
 abstract mapping Shape::toPapyrusShape() : Shape inherits Node::toPapyrusNode, FillStyle::toFillStyle, FontStyle::toFontStyle, LineStyle::toLineStyle{
 	result.layoutConstraint := self.layoutConstraint.map toLayout(self.diagram);
 	
