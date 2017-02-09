@@ -139,6 +139,11 @@
             class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleDataTypeCellEditorConfiguration"
             order="2">
       </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeMultiDataTypeCellEditorConfiguration"
+            order="3">
+      </cellAxisConfiguration>
+      
    </extension>
  <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">

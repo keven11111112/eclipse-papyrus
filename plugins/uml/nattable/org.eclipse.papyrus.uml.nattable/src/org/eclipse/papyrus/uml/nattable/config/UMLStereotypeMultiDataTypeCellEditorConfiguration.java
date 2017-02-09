@@ -36,12 +36,12 @@ import org.eclipse.uml2.uml.Type;
 /**
  * The cell editor for UML Single Datatype declared in the profile.
  */
-public class UMLStereotypeSingleDataTypeCellEditorConfiguration implements ICellAxisConfiguration {
+public class UMLStereotypeMultiDataTypeCellEditorConfiguration implements ICellAxisConfiguration {
 
 	/**
 	 * The identifier.
 	 */
-	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleDataTypeCellEditorConfiguration.dialog"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeMultiDataTypeCellEditorConfiguration.dialog"; //$NON-NLS-1$
 
 	/**
 	 * {@inheritDoc}
@@ -59,7 +59,7 @@ public class UMLStereotypeSingleDataTypeCellEditorConfiguration implements ICell
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationDescription()
 	 */
 	public String getConfigurationDescription() {
-		return "This configuration provides a dialog to edit a single UML datatype"; //$NON-NLS-1$
+		return "This configuration provides a dialog to edit a multi UML datatype"; //$NON-NLS-1$
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class UMLStereotypeSingleDataTypeCellEditorConfiguration implements ICell
 		if (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX)) {
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), id);
 			final Type type = prop.getType();
-			if (null != prop && !prop.isMultivalued()) {
+			if (null != prop && prop.isMultivalued()) {
 				result = type instanceof DataType && !(type instanceof Enumeration) && !(type instanceof PrimitiveType);
 			}
 		}
