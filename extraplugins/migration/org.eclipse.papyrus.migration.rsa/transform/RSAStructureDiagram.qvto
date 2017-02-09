@@ -224,7 +224,6 @@ mapping BasicDecorationNode::toConnectorLabel() : DecorationNode inherits Node::
 		self.type = 'NameLabel' or
 		self.type = 'KindLabel' or
 		self.type = 'PartTextCompartment' or
-		self.type = 'PartName' or
 		self.type = 'CommentBody'
 	)
 }{
@@ -233,14 +232,14 @@ mapping BasicDecorationNode::toConnectorLabel() : DecorationNode inherits Node::
 
 /****** Compartments *******/
 
-mapping BasicDecorationNode::toLabel() : DecorationNode inherits Node::toPapyrusNode when {
+mapping BasicDecorationNode::toLabel() : DecorationNode inherits Node::toPapyrusNodeLabel when {
 	not self.getType().oclIsUndefined() and
 	self.element.oclIsKindOf(uml::NamedElement) and 
 	self.type = 'Name' or self.type = 'PartName' or  self.type = 'PortName'
 }{
 // add the layoutconstraint fot the PortNamelabel
 	if (self.type = 'PortName'){
-		var thislayoutConstraint := (self.layoutConstraint.map toLayout(self.diagram)).oclAsType(Location);
+		var thislayoutConstraint := result.layoutConstraint.oclAsType(Location);
 		thislayoutConstraint.x:=thislayoutConstraint.x -10; // to fit better RSA layout
 		thislayoutConstraint.y:=thislayoutConstraint.y -10; // to fit better RSA layout
 		result.layoutConstraint := thislayoutConstraint;

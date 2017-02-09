@@ -21,6 +21,7 @@ import static org.junit.Assume.assumeThat;
 
 import java.util.List;
 
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -141,6 +142,25 @@ public class StructureDiagramTest extends AbstractMigrationRegressionTest {
 		streamAllContents(diagram)
 				.filter(Shape.class::isInstance).map(Shape.class::cast)
 				.filter(s -> s.getElement() instanceof Port).forEach(p -> requireChild(p, PortNameEditPart.VISUAL_ID));
+
+	}
+	
+	/**
+	 * Verify that Port name label is shown on diagram
+	 * 
+	 * @see <a href="http://eclip.se/507860">bug 507860</a>
+	 */
+	@Test
+	@PluginResource("bug511211/StructureInheritanceExample.emx")
+	public void portNameLabelElementUnset_bug511211() throws Exception {
+		// Need to open the diagram to convert the visual IDs to modern notation for assertions
+				Diagram diagram = openDiagram("ImplementationCapsuleA");
+
+		// assert that for all ports name label  (inherited or not), no element is set, 
+		// here we have one inherited port and one not inherited port
+				streamAllContents(diagram)
+						.filter(DecorationNode.class::isInstance).map(DecorationNode.class::cast)
+						.filter(n -> n.getType().equals(PortNameEditPart.VISUAL_ID)).forEach(p -> assertThat(p.eIsSet(NotationPackage.Literals.VIEW__ELEMENT), is(false)));
 
 	}
 
