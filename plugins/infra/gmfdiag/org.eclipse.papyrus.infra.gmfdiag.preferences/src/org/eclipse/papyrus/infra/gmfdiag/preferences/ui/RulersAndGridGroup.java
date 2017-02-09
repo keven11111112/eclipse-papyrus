@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *
- *		CEA LIST - Initial API and implementation
+ *	CEA LIST - Initial API and implementation
+ *	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 511473
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
@@ -123,8 +124,8 @@ public class RulersAndGridGroup extends AbstractGroup {
 		// }
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_PIXELS);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.VIEW_RULER), false);
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.VIEW_GRID), false);
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_GRID), false);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.VIEW_GRID), true);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_GRID), true);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_GEOMETRY), false);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_LINE_STYLE), Graphics.LINE_CUSTOM);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_ORDER), false);
