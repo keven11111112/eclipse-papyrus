@@ -293,7 +293,6 @@
     <styles xmi:type="notation:DiagramStyle" xmi:id="_wa94EtenEeSTpeYJP6Dwgg"/>
     <styles xmi:type="style:PapyrusViewStyle" xmi:id="_wa94E9enEeSTpeYJP6Dwgg">
       <owner xmi:type="uml:Model" href="ExpansionModel.uml#_haqhoNenEeSTpeYJP6Dwgg"/>
-      <configuration xmi:type="configuration:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.ecore/resources/configuration/EcoreUML.configuration#_9xMXIBP7EeSS0oyATXohNA"/>
     </styles>
     <element xmi:type="uml:Model" href="ExpansionModel.uml#_haqhoNenEeSTpeYJP6Dwgg"/>
     <edges xmi:type="notation:Connector" xmi:id="_7rcmcNeqEeSTpeYJP6Dwgg" type="4001" source="_32TBMNenEeSTpeYJP6Dwgg" target="_4OewUNeqEeSTpeYJP6Dwgg">

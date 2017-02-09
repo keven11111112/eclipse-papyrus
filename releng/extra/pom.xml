@@ -92,9 +92,6 @@
 		<!--  <module>../../extraplugins/refactoring/org.eclipse.papyrus.uml.refactoring.qvtTransformation</module> -->
 		<module>../../extraplugins/refactoring/org.eclipse.papyrus.uml.refactoring.replace</module>
 		
-		<!-- Papyrus Uml Diagram Ecore -->
-		<module>../../extraplugins/papyrus4ecore/org.eclipse.papyrus.uml.diagram.ecore</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.ecore.feature</module>
 		<!-- Papyrus 4 Education -->
 		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
