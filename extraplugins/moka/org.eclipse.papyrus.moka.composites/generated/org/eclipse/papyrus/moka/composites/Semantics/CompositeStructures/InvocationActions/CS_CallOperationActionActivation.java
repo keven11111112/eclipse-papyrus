@@ -100,7 +100,7 @@ public class CS_CallOperationActionActivation extends CallOperationActionActivat
 				// dispatched to the environment or to the internals of
 				// target, through onPort
 				CS_Reference targetReference = (CS_Reference) target;
-				Object_ executionContext = this.group.activityExecution.context;
+				Object_ executionContext = this.getActivityExecution().context;
 				boolean operationIsOnProvidedInterface = this.isOperationProvided(action.getOnPort(), action.getOperation());
 				boolean operationIsOnRequiredInterface = this.isOperationRequired(action.getOnPort(), action.getOperation());
 				// Operation on a provided interface only

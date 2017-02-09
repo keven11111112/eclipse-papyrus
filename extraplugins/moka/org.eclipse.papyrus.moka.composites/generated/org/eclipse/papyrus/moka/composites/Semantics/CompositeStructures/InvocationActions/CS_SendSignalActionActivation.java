@@ -76,7 +76,7 @@ public class CS_SendSignalActionActivation extends SendSignalActionActivation {
 				// Tries to determine if the signal has to be sent to the environment
 				// or to the internals of target, through onPort
 				CS_Reference targetReference = (CS_Reference) target;
-				Object_ executionContext = this.group.activityExecution.context;
+				Object_ executionContext = this.group.getActivityExecution().context;
 				if (executionContext == targetReference.referent || targetReference.compositeReferent.contains(executionContext)) {
 					wrappingEventOccurrence.sendOutTo(targetReference, action.getOnPort());
 				} else {
