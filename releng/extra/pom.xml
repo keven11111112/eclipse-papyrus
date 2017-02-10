@@ -29,7 +29,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.effbd.feature</module>
 		
 		<!-- plug-ins-->
 		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.core</module>
@@ -148,9 +147,6 @@
 
 		<module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
-		<!-- Papyrus EFFBD -->
-		<module>../../extraplugins/EFFBD/org.eclipse.papyrus.effbd</module>
-		
 		
 		<!-- Papyrus for Measurement (a.k.a Papyrus Metrics) -->
 		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.commands</module>
