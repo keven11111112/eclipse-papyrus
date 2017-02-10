@@ -1729,9 +1729,6 @@
     <project label="UML Compare" name="umlcompare">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="uml/compare"/>
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="extra.uml.compare"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>

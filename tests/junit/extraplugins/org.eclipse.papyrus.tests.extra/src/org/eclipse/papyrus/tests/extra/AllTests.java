@@ -46,17 +46,6 @@ public class AllTests {
 			suiteClasses.addAll(AllSysMLTests.suiteClasses);
 		}
 
-		/* UML Compare tests */
-		/**
-		 * UML Compare tests have been temporarily disabled. See:
-		 *
-		 * 389811: [Papyrus Compare] The Papyrus Compare feature is not compatible with Kepler
-		 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=389811
-		 */
-		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.tests.AllTests.class));
-		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.file.tests.AllTests.class));
-		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
-
 		/* **************** plugins *********************** */
 
 	}
