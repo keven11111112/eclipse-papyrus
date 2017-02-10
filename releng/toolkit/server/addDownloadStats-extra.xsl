@@ -28,10 +28,6 @@ Nicolas Bros (Mia-Software) - stats for extra plug-ins
 		</properties>
 	</xsl:template>
 
-	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.layout']/properties">
-		<xsl:call-template name="artifact_properties"/>
-	</xsl:template>
-
  	<xsl:template name="artifact_properties">
  		<properties size='{@size+1}'>
 			<xsl:copy-of select="property" />

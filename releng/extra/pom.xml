@@ -133,17 +133,6 @@
 		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.editor</module>
 		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.utils</module>
 		<module>../../extraplugins/facade/org.eclipse.papyrus.facade</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.gridAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalTreeAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.radialAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.springAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.treeAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm</module>
-		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.subeditor.gmf</module>
 
 		<module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
