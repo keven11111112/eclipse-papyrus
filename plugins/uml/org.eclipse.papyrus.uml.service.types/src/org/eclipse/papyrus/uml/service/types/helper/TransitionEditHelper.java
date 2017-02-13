@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
@@ -65,14 +66,17 @@ public class TransitionEditHelper extends ElementEditHelper {
 		if (false == target instanceof Vertex) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		Region container = findRegionContainer((Vertex) source);
-		if (null == container) {
-			container = findRegionContainer((Vertex) target);
+		Region container = TypeUtils.as(req.getContainer(), Region.class);
+		if (container == null) {
+			container = findRegionContainer((Vertex) source);
 			if (null == container) {
-				// If neither the source nor the Target are contained in a Region, create the transition in the first Region of StateMachine.
-				container = getFirstRegionStateMachine((Vertex) source);
+				container = findRegionContainer((Vertex) target);
 				if (null == container) {
-					return UnexecutableCommand.INSTANCE;
+					// If neither the source nor the Target are contained in a Region, create the transition in the first Region of StateMachine.
+					container = getFirstRegionStateMachine((Vertex) source);
+					if (null == container) {
+						return UnexecutableCommand.INSTANCE;
+					}
 				}
 			}
 		}
