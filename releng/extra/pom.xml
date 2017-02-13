@@ -22,7 +22,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.dsml.validation.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.eastadl.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.migration.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.layers.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.export.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
@@ -62,7 +61,6 @@
 		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel.edit</module>
 		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel.editor</module>
 		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.ui</module>
-		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.properties.model</module>
 
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.diagram.dnd.smart</module>
