@@ -122,13 +122,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.umldi.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.notation.feature</module>
 
-		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.codegen</module>
-		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.definition.editor</module>
-		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.edit</module>
-		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.editor</module>
-		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.utils</module>
-		<module>../../extraplugins/facade/org.eclipse.papyrus.facade</module>
-
 		<module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
 		
