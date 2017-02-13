@@ -190,16 +190,15 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 				Rectangle paramBoundcontainer = getParameterFigure().getBounds().getCopy();
 				paramBoundcontainer.y = getStereotypePropertiesContent().getBounds().getBottomLeft().y;
 				getParameterFigure().setBounds(paramBoundcontainer);
-				if (getParameterFigure().getChildren().size() > 0) {
+				if (getParameterFigure().getChildren().size() > 0 && shapeCompartment.getChildren().size() > 0) {
 					((IFigure) shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);
 				}
 			} else {
 				Rectangle paramBoundcontainer = getParameterFigure().getBounds().getCopy();
 				paramBoundcontainer.y = getNameLabel().getBounds().getBottomLeft().y;
 				getParameterFigure().setBounds(paramBoundcontainer);
-				if (getParameterFigure().getChildren().size() > 0) {
+				if (getParameterFigure().getChildren().size() > 0 && shapeCompartment.getChildren().size() > 0) {
 					((IFigure) shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);
-					;
 				}
 			}
 		}
@@ -443,10 +442,10 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 	public RectangleFigure getCompartmentFigure() {
 		return fCompartmentFigure;
 	}
-	
+
 	public void setRightAndBottomMargin(int rightAndBottomMargin){
 		ActivityLayoutManager lm = (ActivityLayoutManager) getLayoutManager();
-		
+
 		if(lm != null){
 			lm.setRightAndBottomMargin(rightAndBottomMargin);
 		}
