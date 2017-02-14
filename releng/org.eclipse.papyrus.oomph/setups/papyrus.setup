@@ -1646,9 +1646,6 @@
     </project>
     <project label="Manufacturing" name="manufacturing">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="manufacturing"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
