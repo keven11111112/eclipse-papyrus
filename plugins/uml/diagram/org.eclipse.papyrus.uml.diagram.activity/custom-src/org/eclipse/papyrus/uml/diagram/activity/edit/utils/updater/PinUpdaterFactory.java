@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediatea
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.CreateLinkActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.CreateObjectActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkActionPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ReadLinkActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ReadStructuralFeatureActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.TestIdentityActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ValueSpecificationActionPinUpdater;
@@ -32,6 +33,7 @@ import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.CreateLinkAction;
 import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.DestroyLinkAction;
+import org.eclipse.uml2.uml.ReadLinkAction;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.TestIdentityAction;
@@ -99,6 +101,8 @@ public class PinUpdaterFactory {
 			updater = (IPinUpdater<T>) new CreateLinkActionPinUpdater();
 		} else if (node instanceof DestroyLinkAction) {
 			updater = (IPinUpdater<T>) new LinkActionPinUpdater();
+		} else if (node instanceof ReadLinkAction) {
+			updater = (IPinUpdater<T>) new ReadLinkActionPinUpdater();
 		}
 		return updater;
 	}

@@ -50,6 +50,7 @@ public class AutomatedModelCompletionPreferencesInitializer extends AbstractPref
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.CREATE_LINK_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.CREATE_OBJECT_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.DESTROY_LINK_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
+		store.setDefault(IAutomatedModelCompletionPreferencesConstants.READ_LINK_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR, PIN_SYNCHRONIZATION);
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.TEST_IDENTITY_ACTION, PIN_SYNCHRONIZATION);
 		store.setDefault(IAutomatedModelCompletionPreferencesConstants.VALUE_SPECIFICATION_ACTION, PIN_SYNCHRONIZATION);

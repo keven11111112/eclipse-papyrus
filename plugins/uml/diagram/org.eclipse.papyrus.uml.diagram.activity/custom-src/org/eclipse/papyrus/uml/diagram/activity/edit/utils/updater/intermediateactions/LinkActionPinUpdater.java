@@ -43,7 +43,9 @@ public class LinkActionPinUpdater extends AbstractActionPinUpdater<LinkAction> {
 			// 1] put value pin of each LinkEndData into the keepingValues list
 			for (LinkEndData linkEndData : endData) {
 				InputPin valuePin = linkEndData.getValue();
-				keepingValues.add(valuePin);
+				if (valuePin != null) {
+					keepingValues.add(valuePin);
+				}
 			}
 
 			// 2] delete edges of pins which are not in the keepingValues list

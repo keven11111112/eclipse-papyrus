@@ -32,6 +32,8 @@ public interface IAutomatedModelCompletionPreferencesConstants {
 
 	final public String DESTROY_LINK_ACTION_ACCELERATOR = "org.eclipse.papyrus.uml.diagram.activity.preferences.destroyLinkAction";
 
+	final public String READ_LINK_ACTION_ACCELERATOR = "org.eclipse.papyrus.uml.diagram.activity.preferences.readLinkAction";
+
 	final public String READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR = "org.eclipse.papyrus.uml.diagram.activity.preferences.readStructuralFeatureAction";
 
 	final public String TEST_IDENTITY_ACTION = "org.eclipse.papyrus.uml.diagram.activity.preferences.testIdentityAction";

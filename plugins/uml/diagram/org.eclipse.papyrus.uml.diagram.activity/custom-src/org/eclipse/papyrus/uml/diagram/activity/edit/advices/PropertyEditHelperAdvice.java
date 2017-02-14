@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdaterLinkEndData;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFactory;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkEndCreationDataPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkEndDataPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkEndDestructionDataPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
@@ -36,6 +37,7 @@ import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.LinkEndCreationData;
+import org.eclipse.uml2.uml.LinkEndData;
 import org.eclipse.uml2.uml.LinkEndDestructionData;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -94,15 +96,16 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					}
 				}
 				// Pins of CreateLinkAction should be create and update automatically
+				List<LinkEndData> allLinkEndData = null;
 				// 1] get the preference for CreateLinkAction
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.CREATE_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				// 2] check preference
 				if (synchronizePinPreference) {
-					// 3] get all LinkEndCreationData
-					List<LinkEndCreationData> allLinkEndCreationData = ElementUtil.getInstancesFilteredByType(root, LinkEndCreationData.class, null);
+					// 3] get all LinkEndData
+					allLinkEndData = ElementUtil.getInstancesFilteredByType(root, LinkEndData.class, null);
 					// 4] loop into the list of LinkEndCreationData
-					for (LinkEndCreationData linkEndCreationData : allLinkEndCreationData) {
-						if (linkEndCreationData.getEnd() == property) {
+					for (LinkEndData linkEndCreationData : allLinkEndData) {
+						if (linkEndCreationData instanceof LinkEndCreationData && linkEndCreationData.getEnd() == property) {
 							// 5] call the command for the CreateLinkAction owning the LinkEndCreationData
 							IPinUpdaterLinkEndData updater = new LinkEndCreationDataPinUpdater();
 							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndCreationData)); //$NON-NLS-1$
@@ -114,14 +117,36 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.DESTROY_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				// 2] check preference
 				if (synchronizePinPreference) {
-					// 3] get all LinkEndDestructionData
-					List<LinkEndDestructionData> allLinkEndDestructionData = ElementUtil.getInstancesFilteredByType(root, LinkEndDestructionData.class, null);
+					// 3] get all LinkEndDestructionData if not get yet
+					if (allLinkEndData == null) {
+						allLinkEndData = ElementUtil.getInstancesFilteredByType(root, LinkEndData.class, null);
+					}
 					// 4] loop into the list of LinkEndDestructionData
-					for (LinkEndDestructionData linkEndDestructionData : allLinkEndDestructionData) {
-						if (linkEndDestructionData.getEnd() == property) {
+					for (LinkEndData linkEndDestructionData : allLinkEndData) {
+						if (linkEndDestructionData instanceof LinkEndDestructionData && linkEndDestructionData.getEnd() == property) {
 							// 5] call the command for the DestroyLinkAction owning the LinkEndDestructionData
 							IPinUpdaterLinkEndData updater = new LinkEndDestructionDataPinUpdater();
 							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndDestructionData)); //$NON-NLS-1$
+						}
+					}
+				}
+				// Pins of ReadLinkAction should be create and update automatically
+				// 1] get the preference for ReadLinkAction
+				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.READ_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
+				// 2] check preference
+				if (synchronizePinPreference) {
+					// 3] get all LinkEndData if not get yet
+					if (allLinkEndData == null) {
+						allLinkEndData = ElementUtil.getInstancesFilteredByType(root, LinkEndData.class, null);
+					}
+					// 4] loop into the list of LinkEndDestructionData
+					for (LinkEndData linkEndData : allLinkEndData) {
+						if (!(linkEndData instanceof LinkEndCreationData || linkEndData instanceof LinkEndDestructionData)) {
+							if (linkEndData.getEnd() == property) {
+								// 5] call the command for the DestroyLinkAction owning the LinkEndDestructionData
+								IPinUpdaterLinkEndData updater = new LinkEndDataPinUpdater();
+								command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndData)); //$NON-NLS-1$
+							}
 						}
 					}
 				}
