@@ -19,8 +19,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({ TestAcceptCallActionPinDerivation.class, TestAcceptEventActionPinDerivation.class, TestAddStructuralFeatureValueActionPinDerivation.class, TestCallBehaviorActionPinDerivation.class, TestCallOperationActionPinDerivation.class,
-		TestCreateLinkActionPinDerivation.class, TestCreateObjectActionPinDerivation.class, TestReadStructuralFeatureActionPinDerivation.class, TestSendSignalActionPinDerivation.class, TestTestIdentityActionPinDerivation.class,
-		TestValueSpecificationActionPinDerivation.class })
+		TestCreateLinkActionPinDerivation.class, TestCreateObjectActionPinDerivation.class, TestDestroyLinkActionPinDerivation.class, TestReadStructuralFeatureActionPinDerivation.class, TestSendSignalActionPinDerivation.class,
+		TestTestIdentityActionPinDerivation.class, TestValueSpecificationActionPinDerivation.class })
 
 
 

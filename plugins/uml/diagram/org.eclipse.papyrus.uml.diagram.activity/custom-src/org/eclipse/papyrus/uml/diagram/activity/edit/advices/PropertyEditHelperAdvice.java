@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdaterLinkEndData;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFactory;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkEndCreationDataPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkEndDestructionDataPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -35,6 +36,7 @@ import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.LinkEndCreationData;
+import org.eclipse.uml2.uml.LinkEndDestructionData;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
@@ -104,6 +106,22 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 							// 5] call the command for the CreateLinkAction owning the LinkEndCreationData
 							IPinUpdaterLinkEndData updater = new LinkEndCreationDataPinUpdater();
 							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndCreationData)); //$NON-NLS-1$
+						}
+					}
+				}
+				// Pins of DestroyLinkAction should be create and update automatically
+				// 1] get the preference for DestroyLinkAction
+				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.DESTROY_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
+				// 2] check preference
+				if (synchronizePinPreference) {
+					// 3] get all LinkEndDestructionData
+					List<LinkEndDestructionData> allLinkEndDestructionData = ElementUtil.getInstancesFilteredByType(root, LinkEndDestructionData.class, null);
+					// 4] loop into the list of LinkEndDestructionData
+					for (LinkEndDestructionData linkEndDestructionData : allLinkEndDestructionData) {
+						if (linkEndDestructionData.getEnd() == property) {
+							// 5] call the command for the DestroyLinkAction owning the LinkEndDestructionData
+							IPinUpdaterLinkEndData updater = new LinkEndDestructionDataPinUpdater();
+							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndDestructionData)); //$NON-NLS-1$
 						}
 					}
 				}
