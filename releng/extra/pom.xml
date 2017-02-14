@@ -63,7 +63,6 @@
 		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.ui</module>
 
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
-		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.diagram.dnd.smart</module>
 
 		<!-- Papyrus SoaML -->
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.profile</module>
