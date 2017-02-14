@@ -80,7 +80,7 @@ public class CS_SendSignalActionActivation extends SendSignalActionActivation {
 				if (executionContext == targetReference.referent || targetReference.compositeReferent.contains(executionContext)) {
 					wrappingEventOccurrence.sendOutTo(targetReference, action.getOnPort());
 				} else {
-					wrappingEventOccurrence.sendInTo(targetReference, action.getOnPort());;
+					wrappingEventOccurrence.sendInTo(targetReference, action.getOnPort());
 				}
 			}
 		}

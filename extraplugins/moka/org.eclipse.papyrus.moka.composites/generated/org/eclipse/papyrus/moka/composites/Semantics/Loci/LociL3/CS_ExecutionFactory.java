@@ -20,6 +20,7 @@ import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_CreateLinkActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_CreateObjectActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_ReadSelfActionActivation;
+import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_RemoveStructuralFeatureValueActionActivation;
 import org.eclipse.papyrus.moka.composites.Semantics.Classes.Kernel.CS_InstanceValueEvaluation;
 import org.eclipse.papyrus.moka.composites.Semantics.Classes.Kernel.CS_OpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.BasicBehaviors.CS_CallEventExecution;
@@ -42,6 +43,7 @@ import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.ReadExtentAction;
 import org.eclipse.uml2.uml.ReadSelfAction;
+import org.eclipse.uml2.uml.RemoveStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 
 
@@ -79,7 +81,9 @@ public class CS_ExecutionFactory extends ExecutionFactoryL3 {
 			visitor = new CS_OpaqueExpressionEvaluation();
 		} else if (element instanceof CallEventBehavior) {
 			visitor = new CS_CallEventExecution();
-		} else {
+		} else if (element instanceof RemoveStructuralFeatureValueAction) {
+			visitor = new CS_RemoveStructuralFeatureValueActionActivation();
+		} else{
 			visitor = super.instantiateVisitor(element);
 		}
 		return visitor;
