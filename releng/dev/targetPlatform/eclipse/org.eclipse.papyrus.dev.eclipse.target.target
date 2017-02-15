@@ -103,9 +103,9 @@
       <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.21.1/v20161129-2023"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="1.0.100.20170105-1602"/>
-      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group" version="1.0.100.20170105-1602"/>
-      <unit id="org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group" version="1.0.100.20170105-1602"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="1.0.100.20170127-0431"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group" version="1.0.100.20170127-0431"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group" version="1.0.100.20170127-0431"/>
       <repository id="cbiAggregator" location="file:/home/data/httpd/download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
