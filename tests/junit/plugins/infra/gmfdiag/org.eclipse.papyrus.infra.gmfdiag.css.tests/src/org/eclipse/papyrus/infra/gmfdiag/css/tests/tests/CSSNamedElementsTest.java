@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Celine Janssens (ALL4TEC) - Update tests due to CSS engine modification (Bug 491334)
  *
  *****************************************************************************/
 
@@ -38,6 +39,7 @@ import org.junit.Test;
 
 /**
  * @author Camille Letavernier
+ *
  *
  */
 public class CSSNamedElementsTest extends AbstractPapyrusTest {
@@ -92,7 +94,7 @@ public class CSSNamedElementsTest extends AbstractPapyrusTest {
 	public void testUntypedReference() {
 		Shape namedType = findShape("untyped");
 		Assert.assertNotEquals("The color should not be red", 255, namedType.getFontColor());
-		Assert.assertFalse("The property should not be bold", namedType.isBold());
+		Assert.assertTrue("The property should be bold", namedType.isBold());
 	}
 
 

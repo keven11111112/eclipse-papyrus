@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
+ *  Celine Janssens (ALL4TEC) - Update tests due to CSS engine modification (Bug 491334)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.tests.tests;
@@ -149,7 +150,7 @@ public class CSSCompartmentsTests extends AbstractPapyrusTest {
 		Assert.assertFalse("Classifiers compartment should be hidden", classifiers1.isVisible());
 
 		BasicCompartment attributes2 = findCompartment(interface2, INTERFACE_ATTRIBUTE_COMPARTMENT_TYPE);
-		Assert.assertFalse("Attribute compartment should not be visible, as it doesn't contain any property", attributes2.isVisible());
+		Assert.assertTrue("Attribute compartment should be visible by default, as it doesn't contain any property", attributes2.isVisible());
 		BasicCompartment operations2 = findCompartment(interface2, INTERFACE_OPERATION_COMPARTMENT_TYPE);
 		Assert.assertTrue("Operation compartment should be visible", operations2.isVisible());
 		BasicCompartment classifiers2 = findCompartment(interface2, INTERFACE_INTERFACEIFIER_COMPARTMENT_TYPE);
