@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -44,7 +43,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
@@ -57,7 +55,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
-import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Vertex;
 
 public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditPolicy {
@@ -91,7 +88,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 				// used by popup-bar assistant
 				CreateViewRequest createViewRequest = (CreateViewRequest) request;
 				for (ViewDescriptor vd : createViewRequest.getViewDescriptors()) {
-					Command cmd = getCustomCreateCommand(request, null, vd.getSemanticHint());
+					Command cmd = getCustomCreateCommand(request, null, vd.getElementAdapter().getAdapter(IElementType.class), vd.getSemanticHint());
 					if (cmd != null) {
 						return cmd;
 					}
@@ -104,7 +101,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 					IElementType elementType = (IElementType) elementTypeObj;
 
 					CreateRequest createRequest = unspecReq.getRequestForType(elementType);
-					Command cmd = getCustomCreateCommand(request, createRequest, ((IHintedType) elementType).getSemanticHint());
+					Command cmd = getCustomCreateCommand(request, createRequest, elementType, ((IHintedType) elementType).getSemanticHint());
 					if (cmd != null) {
 						return cmd;
 					}
@@ -144,30 +141,15 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 
 		CreateViewRequest.ViewDescriptor viewDescriptor;
 
-		CreateElementRequest createElementRequest;
+		IElementType elementType;
 
-		public CustomVertexCreateElementCommand(TransactionalEditingDomain domain, ViewDescriptor viewDescriptor, IAdaptable adaptable, String label) {
+		public CustomVertexCreateElementCommand(TransactionalEditingDomain domain, ViewDescriptor viewDescriptor, IElementType elementType, IAdaptable adaptable, String label) {
 			super(domain, label, null);
 			this.adaptable = adaptable;
 			this.viewDescriptor = viewDescriptor;
+			this.elementType = elementType;
 			// make sure the return object is available even before executing/undoing/redoing
 			setResult(CommandResult.newOKCommandResult(viewDescriptor));
-
-		}
-
-		protected void doConfigure(Vertex newElement, IProgressMonitor monitor, IAdaptable info, View regionView) throws ExecutionException {
-
-			String semanticHint = viewDescriptor.getSemanticHint();
-			createElementRequest = new CreateElementRequest(getEditingDomain(), regionView, UMLElementTypes.getElementType(semanticHint));
-
-			IElementType elementType = createElementRequest.getElementType();
-			ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-			configureRequest.setClientContext(createElementRequest.getClientContext());
-			configureRequest.addParameters(createElementRequest.getParameters());
-			ICommand configureCommand = elementType.getEditCommand(configureRequest);
-			if (configureCommand != null && configureCommand.canExecute()) {
-				configureCommand.execute(monitor, info);
-			}
 		}
 
 		@Override
@@ -176,14 +158,14 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 			View regionView = (View) adaptable.getAdapter(View.class);
 			View compartment = (View) regionView.getChildren().get(0);
 
-			IElementType elementType = UMLElementTypes.getElementType(viewDescriptor.getSemanticHint());
-			Vertex newVertex = (Vertex)
-					UMLFactory.eINSTANCE.create((EClass) UMLElementTypes.getElement(elementType));
+			CreateElementRequest createElementRequest = new CreateElementRequest(regionView.getElement(), elementType);
+			ICommand createElementCommand = elementType.getEditCommand(createElementRequest);
+			
+			if (createElementCommand != null && createElementCommand.canExecute()) {
+				createElementCommand.execute(monitor, info);
+			}
 
-			Region region = (Region) regionView.getElement();
-			region.getSubvertices().add(newVertex);
-
-			doConfigure(newVertex, monitor, info, regionView);
+			Vertex newVertex = (Vertex) createElementRequest.getNewElement();
 
 			View view =
 				ViewService.getInstance().createView(
@@ -201,7 +183,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 		}
 	}
 
-	public Command getCustomCreateCommand(Request request, CreateRequest createReq, String semanticHint) {
+	public Command getCustomCreateCommand(Request request, CreateRequest createReq, IElementType elementType, String semanticHint) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
 
@@ -266,8 +248,8 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 						Node.class,
 						semanticHint,
 						((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
-				CustomVertexCreateElementCommand createVertex = new CustomVertexCreateElementCommand(editingDomain, viewDescriptor, (IAdaptable) createNewRegion.getCommandResult().getReturnValue(), DiagramUIMessages.CreateCommand_Label);
-
+				CustomVertexCreateElementCommand createVertex = new CustomVertexCreateElementCommand(editingDomain, viewDescriptor, elementType, (IAdaptable) createNewRegion.getCommandResult().getReturnValue(), DiagramUIMessages.CreateCommand_Label);
+				
 				cc.compose(showCompartment);
 				cc.compose(createNewRegion);
 				cc.compose(createVertex);
@@ -279,7 +261,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 						((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
 				IAdaptable adapter = new SemanticAdapter(null, existingRegionView);
 				CustomVertexCreateElementCommand createVertex =
-					new CustomVertexCreateElementCommand(editingDomain, viewDescriptor, adapter, DiagramUIMessages.CreateCommand_Label);
+					new CustomVertexCreateElementCommand(editingDomain, viewDescriptor, elementType, adapter, DiagramUIMessages.CreateCommand_Label);
 				cc.compose(createVertex);
 			}
 
