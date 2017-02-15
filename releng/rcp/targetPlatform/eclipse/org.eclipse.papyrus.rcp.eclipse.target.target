@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1484048512">
+<target name="Papyrus RCP" sequenceNumber="1487147785">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160606-1156"/>
@@ -22,7 +22,7 @@
       <repository id="nebula" location="file:/home/data/httpd/download.eclipse.org/nebula/releases/1.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.2.3.v20161219-1228"/>
+      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.2.3.v20170212-1116"/>
       <repository id="uml" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/uml2/updates/5.2.x"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -32,7 +32,7 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.2.1.v20160808-1416"/>
       <unit id="org.eclipse.ocl.examples.feature.group" version="6.1.2.v20161111-1812"/>
-      <repository id="ocl" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.2/S201611141024"/>
+      <repository id="ocl" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/ocl/updates/releases/6.1.2"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="1.2.0.v20160502-1019"/>
@@ -134,8 +134,8 @@
       <repository id="sphinx" location="file:/home/data/httpd/download.eclipse.org/sphinx/updates/0.10.x"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.egit.feature.group" version="4.4.1.201607150455-r"/>
-      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.4.1"/>
+      <unit id="org.eclipse.egit.feature.group" version="4.6.0.201612231935-r"/>
+      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.6"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.21.0.v20160912-1820"/>
@@ -169,11 +169,11 @@
       <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20161124-1400"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20170208-0400"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20161122-1740"/>
-      <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160503-0947"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.2.v20161124-1529"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6/R-4.6.2-201611241400/"/>
+      <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20170131-1452"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.3.v20170208-0400"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC1-201702080400/"/>
     </location>
   </locations>
 </target>
