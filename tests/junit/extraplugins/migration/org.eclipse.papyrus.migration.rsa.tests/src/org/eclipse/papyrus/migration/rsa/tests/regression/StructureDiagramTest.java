@@ -151,13 +151,12 @@ public class StructureDiagramTest extends AbstractMigrationRegressionTest {
 	 * @see <a href="http://eclip.se/507860">bug 507860</a>
 	 */
 	@Test
-	@PluginResource("bug511211/StructureInheritanceExample.emx")
+	@PluginResource("bug507860/StructureWithPort.emx")
 	public void portNameLabelElementUnset_bug511211() throws Exception {
 		// Need to open the diagram to convert the visual IDs to modern notation for assertions
-				Diagram diagram = openDiagram("ImplementationCapsuleA");
+				Diagram diagram = openDiagram("compositediagram");
 
-		// assert that for all ports name label  (inherited or not), no element is set, 
-		// here we have one inherited port and one not inherited port
+		// assert that for all ports name label, no element is set, 
 				streamAllContents(diagram)
 						.filter(DecorationNode.class::isInstance).map(DecorationNode.class::cast)
 						.filter(n -> n.getType().equals(PortNameEditPart.VISUAL_ID)).forEach(p -> assertThat(p.eIsSet(NotationPackage.Literals.VIEW__ELEMENT), is(false)));
