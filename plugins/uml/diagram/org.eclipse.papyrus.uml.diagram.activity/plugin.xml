@@ -92,12 +92,6 @@
       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLActivityDiagram"
       class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPrintingPreferencePage">
 </page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramRulersAndGridPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLActivityDiagram"
-      class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramRulersAndGridPreferencePage">
-</page>
    </extension>
 
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">

@@ -388,12 +388,6 @@
       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
       class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DiagramPrintingPreferencePage">
 </page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.sequence.preferences.DiagramRulersAndGridPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLSequenceDiagram"
-      class="org.eclipse.papyrus.uml.diagram.sequence.preferences.DiagramRulersAndGridPreferencePage">
-</page>
    </extension>
 
 <extension

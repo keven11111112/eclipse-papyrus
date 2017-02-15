@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI 
+<xmi:XMI
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8831,11 +8831,6 @@
             iD="org.eclipse.uml2.uml.diagram.printing"
             name="Printing"
             kind="Printing"/>
-        <children
-            xsi:type="gmfgen:GenStandardPreferencePage"
-            iD="org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            name="Rulers And Grid"
-            kind="RulersAndGrid"/>
         <children
             xsi:type="gmfgen:GenStandardPreferencePage"
             iD="org.eclipse.uml2.uml.diagram.pathmaps"

@@ -567,12 +567,6 @@
       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLProfileDiagram"
       class="org.eclipse.papyrus.uml.diagram.profile.preferences.DiagramPrintingPreferencePage">
 </page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.profile.preferences.DiagramRulersAndGridPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLProfileDiagram"
-      class="org.eclipse.papyrus.uml.diagram.profile.preferences.DiagramRulersAndGridPreferencePage">
-</page>
    </extension>
 
 <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">

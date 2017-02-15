@@ -139,12 +139,6 @@
       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLTimingDiagram"
       class="org.eclipse.papyrus.uml.diagram.timing.preferences.DiagramPrintingPreferencePage">
 </page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.timing.preferences.DiagramRulersAndGridPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLTimingDiagram"
-      class="org.eclipse.papyrus.uml.diagram.timing.preferences.DiagramRulersAndGridPreferencePage">
-</page>
    </extension>
    
     <?gmfgen generated="true"?>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009,2017 Atos Origin.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 512207
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
@@ -34,7 +35,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		DiagramAppearancePreferencePage.initDefaults(store);
 		DiagramConnectionsPreferencePage.initDefaults(store);
 		DiagramPrintingPreferencePage.initDefaults(store);
-		DiagramRulersAndGridPreferencePage.initDefaults(store);
 
 	}
 

@@ -4,8 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
-    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.communication"
       modelID="PapyrusUMLCommunicationDiagram"
@@ -973,12 +972,6 @@
             name="Printing"
             kind="Printing"
             className="DiagramPrintingPreferencePage"/>
-        <children
-            xsi:type="gmfgen:GenStandardPreferencePage"
-            iD="org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            name="Rulers And Grid"
-            kind="RulersAndGrid"
-            className="DiagramRulersAndGridPreferencePage"/>
       </preferencePages>
     </diagram>
     <plugin

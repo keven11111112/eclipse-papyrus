@@ -2680,11 +2680,6 @@
             kind="Printing"/>
         <children
             xsi:type="gmfgen:GenStandardPreferencePage"
-            iD="org.eclipse.uml2.uml.diagram.rulersAndGrid"
-            name="Rulers And Grid"
-            kind="RulersAndGrid"/>
-        <children
-            xsi:type="gmfgen:GenStandardPreferencePage"
             iD="org.eclipse.uml2.uml.diagram.pathmaps"
             name="Pathmaps"
             kind="Pathmaps"/>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2017 Atos Origin.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,16 +9,12 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 512207
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 
@@ -37,7 +33,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		DiagramAppearancePreferencePage.initDefaults(store);
 		DiagramConnectionsPreferencePage.initDefaults(store);
 		DiagramPrintingPreferencePage.initDefaults(store);
-		DiagramRulersAndGridPreferencePage.initDefaults(store);
 
 	}
 

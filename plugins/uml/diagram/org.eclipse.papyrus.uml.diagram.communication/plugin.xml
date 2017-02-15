@@ -241,12 +241,6 @@
       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLCommunicationDiagram"
       class="org.eclipse.papyrus.uml.diagram.communication.preferences.DiagramPrintingPreferencePage">
 </page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.communication.preferences.DiagramRulersAndGridPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLCommunicationDiagram"
-      class="org.eclipse.papyrus.uml.diagram.communication.preferences.DiagramRulersAndGridPreferencePage">
-</page>
    </extension>
 
 <extension point="org.eclipse.core.runtime.preferences" id="prefs">
