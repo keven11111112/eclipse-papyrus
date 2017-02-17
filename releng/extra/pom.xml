@@ -93,11 +93,6 @@
 		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
 
-		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipse.profile</module>
-		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.assistant</module>
-		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.table</module>
-		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool</module>
-		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.osgi.profile</module>
 		<!-- Missing org.eclipse.xtext.gmf.glue 0.8.0' <module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext.ui</module> 
 			<module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext</module> -->
 
