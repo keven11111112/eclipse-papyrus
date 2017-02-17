@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 ATOS ORIGIN, CEA, and others.
- *
+ * Copyright (c) 2009, 2017 ATOS ORIGIN, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,8 +8,10 @@
  *
  * Atos Origin - Initial API and implementation
  * Christian W. Damus (CEA) - bug 386118
+ * Christian W. Damus - bug 512387
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.common.sheet;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AdvancedPropertySection;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
@@ -38,13 +40,6 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
  */
 public class UMLPropertySection extends AdvancedPropertySection implements IPropertySourceProvider {
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.eclipse.ui.views.properties.IPropertySourceProvider#getPropertySource
-	 * (java.lang.Object)
-	 */
 	@Override
 	public IPropertySource getPropertySource(Object object) {
 		if (object instanceof IPropertySource) {
@@ -58,7 +53,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 			}
 		}
 		if (object instanceof IAdaptable) {
-			return (IPropertySource) ((IAdaptable) object).getAdapter(IPropertySource.class);
+			return ((IAdaptable) object).getAdapter(IPropertySource.class);
 		}
 		return null;
 	}
@@ -82,21 +77,33 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		if (selected == null) {
 			return null;
 		}
-		if (selected instanceof IAdaptable && ((IAdaptable) selected).getAdapter(IPropertySource.class) != null) {
-			return ((IAdaptable) selected).getAdapter(IPropertySource.class);
+		if (selected instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable) selected;
+
+			Object adapter = adaptable.getAdapter(IPropertySource.class);
+			if (adapter != null) {
+				// This is a terminal transformation
+				return adapter;
+			}
+			adapter = adaptable.getAdapter(EObject.class);
+			if (adapter != null) {
+				// This is a terminal transformation
+				return adapter;
+			}
+			adapter = adaptable.getAdapter(View.class);
+			if (adapter instanceof View) {
+				// This is an intermediate transformation
+				return transformSelection(adapter);
+			}
 		}
 		if (selected instanceof EditPart) {
+			// This is an intermediate transformation
 			Object model = ((EditPart) selected).getModel();
-			return model instanceof View ? ((View) model).getElement() : null;
+			return transformSelection(model);
 		}
 		if (selected instanceof View) {
-			return ((View) selected).getElement();
-		}
-		if (selected instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) selected).getAdapter(View.class);
-			if (view != null) {
-				return view.getElement();
-			}
+			// This is a terminal transformation
+			return ViewUtil.resolveSemanticElement((View) selected);
 		}
 
 		EObject elem = EMFHelper.getEObject(selected);
@@ -107,13 +114,6 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return selected;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.gmf.runtime.diagram.ui.properties.sections.
-	 * AdvancedPropertySection#setInput(org .eclipse.ui.IWorkbenchPart,
-	 * org.eclipse.jface.viewers.ISelection)
-	 */
 	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		if (selection.isEmpty() || false == selection instanceof StructuredSelection) {
@@ -121,8 +121,8 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 			return;
 		}
 		final StructuredSelection structuredSelection = ((StructuredSelection) selection);
-		ArrayList transformedSelection = new ArrayList(structuredSelection.size());
-		for (Iterator it = structuredSelection.iterator(); it.hasNext();) {
+		ArrayList<Object> transformedSelection = new ArrayList<>(structuredSelection.size());
+		for (Iterator<?> it = structuredSelection.iterator(); it.hasNext();) {
 			Object r = transformSelection(it.next());
 			if (r != null) {
 				transformedSelection.add(r);
