@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1487147785">
+<target name="Papyrus Extra Tests" sequenceNumber="1487316309">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="0.0.0"/>
@@ -10,23 +10,23 @@
       <repository id="cbiAggregator" location="file:/home/data/httpd/download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.oomph.version.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.6.0.v20161104-0635"/>
-      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.6.0.v20161019-0656"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.6.0.v20161128-0924"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.6.0.v20161128-0928"/>
-      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.6.0.v20161019-0656"/>
-      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/release/1.6.0"/>
+      <unit id="org.eclipse.oomph.version.feature.group" version="1.7.0.v20170201-1645"/>
+      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.7.0.v20170201-1645"/>
+      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.7.0.v20170201-1645"/>
+      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.7.0.v20170215-0804"/>
+      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.7.0.v20170210-1347"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.7.0.v20170210-1347"/>
+      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.7.0.v20170104-1401"/>
+      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20170215-125145-1.7.0-M2"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
@@ -101,16 +101,16 @@
       <repository id="emfQuery" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/query/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.8.0.v201608061842"/>
-      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.8.0.v201608061842"/>
-      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.8.1/R-3.8.1-20160912100321/repository/"/>
+      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.8.2.v201701191735"/>
+      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.8.2.v201701191735"/>
+      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC1-20170215000049/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.10.0.201606071713"/>
       <repository id="emfValidation" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/validation/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.team.svn.feature.group" version="4.0.3.I20161129-1700"/>
+      <unit id="org.eclipse.team.svn.feature.group" version="4.0.4.I20170216-1700"/>
       <repository id="subversive" location="file:/home/data/httpd/download.eclipse.org/technology/subversive/4.0/neon-site/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
