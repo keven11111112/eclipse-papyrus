@@ -98,12 +98,18 @@ public class MessageRouter extends ObliqueRouter {
 		}
 
 
-
+		/**
+		 * isHorizontalConnection tests whether an asynchronous message is horizontal
+		 * @param conn controller representing the link
+		 * @param newLine points corresponding to message ends
+		 * @return false if message is not asynchronous
+		 * true if the message is asynchronous and horizontal
+		 */
 		private static boolean isHorizontalConnection(Connection conn, PointList newLine) {
 			boolean horizontal = true;
 
 			if (!(conn instanceof MessageAsync)) {
-				horizontal = false;
+				return false;
 			}
 			Point sourcePoint = newLine.getFirstPoint();
 			Point targetPoint = newLine.getLastPoint();
