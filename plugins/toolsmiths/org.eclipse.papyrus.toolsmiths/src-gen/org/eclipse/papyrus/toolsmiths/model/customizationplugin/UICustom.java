@@ -1,14 +1,15 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2012 CEA LIST.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *****************************************************************************/
+ *   Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 
+ */
 package org.eclipse.papyrus.toolsmiths.model.customizationplugin;
 
 
@@ -19,10 +20,10 @@ package org.eclipse.papyrus.toolsmiths.model.customizationplugin;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.UICustom#isLoadByDefault <em>Load By Default</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.UICustom#isLoadByDefault <em>Load By Default</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage#getUICustom()
  * @model
@@ -34,10 +35,10 @@ public interface UICustom extends FileBasedCustomizableElement {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Load By Default</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Load By Default</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Load By Default</em>' attribute.
 	 * @see #setLoadByDefault(boolean)
 	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage#getUICustom_LoadByDefault()
@@ -50,9 +51,7 @@ public interface UICustom extends FileBasedCustomizableElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.UICustom#isLoadByDefault <em>Load By Default</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Load By Default</em>' attribute.
+	 * @param value the new value of the '<em>Load By Default</em>' attribute.
 	 * @see #isLoadByDefault()
 	 * @generated
 	 */

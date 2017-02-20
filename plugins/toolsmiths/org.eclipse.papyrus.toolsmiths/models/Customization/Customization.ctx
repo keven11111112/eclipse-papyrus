@@ -307,6 +307,6 @@
 			<properties name="provider" />
 		</elements>
 		<modelElementFactory
-			href="ppe:/environment/org.eclipse.papyrus.customization/Model/Environment.xmi#//@modelElementFactories.0" />
+			href="ppe:/environment/org.eclipse.papyrus.toolsmiths/models/Environment.xmi#//@modelElementFactories.0" />
 	</dataContexts>
 </contexts:Context>

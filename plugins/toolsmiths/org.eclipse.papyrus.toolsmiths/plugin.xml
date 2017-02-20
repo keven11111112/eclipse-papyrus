@@ -23,21 +23,21 @@
             category="org.eclipse.papyrus.wizards.category"
             class="org.eclipse.papyrus.toolsmiths.wizard.CreateNewCustomizationPluginWizard"
             icon="icons/16-config.png"
-            id="org.eclipse.papyrus.customization.wizard"
+            id="org.eclipse.papyrus.toolsmiths.wizard"
             name="%wizard.name">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.properties.contexts">
       <context
-            contextModel="Model/Customization/Customization.ctx"
+            contextModel="models/Customization/Customization.ctx"
             isCustomizable="false">
       </context>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.properties.environments">
       <environment
-            environmentModel="Model/Environment.xmi">
+            environmentModel="models/Environment.xmi">
       </environment>
    </extension>
    <extension
@@ -65,12 +65,5 @@
       </factory>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Customization -->
-      <package
-            uri="http://www.eclipse.org/papyrus/toolsmiths"
-            class="org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage"
-            genModel="models/Customization.genmodel"/>
-   </extension>
 
 </plugin>

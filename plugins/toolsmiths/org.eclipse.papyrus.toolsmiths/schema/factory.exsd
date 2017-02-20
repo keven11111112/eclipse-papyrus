@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.customization" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.toolsmiths" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.customization" id="factory" name="factory"/>
+         <meta.schema plugin="org.eclipse.papyrus.toolsmiths" id="factory" name="factory"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -57,7 +57,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.customization.factory.ExtensionFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.toolsmiths.factory.ExtensionFactory"/>
                </appInfo>
             </annotation>
          </attribute>

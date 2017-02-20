@@ -1,10 +1,23 @@
 /**
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage;
 import org.eclipse.papyrus.toolsmiths.model.customizationplugin.Profile;
 
@@ -14,14 +27,14 @@ import org.eclipse.papyrus.toolsmiths.model.customizationplugin.Profile;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getQualifiednames <em>Qualifiednames</em>}</li>
- * <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getIconpath <em>Iconpath</em>}</li>
- * <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getDescription <em>Description</em>}</li>
- * <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getProvider <em>Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getName <em>Name</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getQualifiednames <em>Qualifiednames</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getIconpath <em>Iconpath</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getProvider <em>Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl#getName <em>Name</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -30,7 +43,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The default value of the '{@link #getQualifiednames() <em>Qualifiednames</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getQualifiednames()
 	 * @generated
 	 * @ordered
@@ -41,7 +53,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The cached value of the '{@link #getQualifiednames() <em>Qualifiednames</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getQualifiednames()
 	 * @generated
 	 * @ordered
@@ -52,7 +63,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The default value of the '{@link #getIconpath() <em>Iconpath</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIconpath()
 	 * @generated
 	 * @ordered
@@ -63,7 +73,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The cached value of the '{@link #getIconpath() <em>Iconpath</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getIconpath()
 	 * @generated
 	 * @ordered
@@ -74,7 +83,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -85,7 +93,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -96,7 +103,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getProvider()
 	 * @generated
 	 * @ordered
@@ -107,7 +113,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getProvider()
 	 * @generated
 	 * @ordered
@@ -118,7 +123,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -129,7 +133,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -139,7 +142,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ProfileImpl() {
@@ -149,7 +151,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -160,7 +161,6 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getQualifiednames() {
@@ -170,21 +170,18 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setQualifiednames(String newQualifiednames) {
 		String oldQualifiednames = qualifiednames;
 		qualifiednames = newQualifiednames;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES, oldQualifiednames, qualifiednames));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getIconpath() {
@@ -194,21 +191,18 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setIconpath(String newIconpath) {
 		String oldIconpath = iconpath;
 		iconpath = newIconpath;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CustomizationPluginPackage.PROFILE__ICONPATH, oldIconpath, iconpath));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getDescription() {
@@ -218,21 +212,18 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CustomizationPluginPackage.PROFILE__DESCRIPTION, oldDescription, description));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getProvider() {
@@ -242,21 +233,18 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setProvider(String newProvider) {
 		String oldProvider = provider;
 		provider = newProvider;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CustomizationPluginPackage.PROFILE__PROVIDER, oldProvider, provider));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getName() {
@@ -266,36 +254,33 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CustomizationPluginPackage.PROFILE__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
-			return getQualifiednames();
-		case CustomizationPluginPackage.PROFILE__ICONPATH:
-			return getIconpath();
-		case CustomizationPluginPackage.PROFILE__DESCRIPTION:
-			return getDescription();
-		case CustomizationPluginPackage.PROFILE__PROVIDER:
-			return getProvider();
-		case CustomizationPluginPackage.PROFILE__NAME:
-			return getName();
+			case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
+				return getQualifiednames();
+			case CustomizationPluginPackage.PROFILE__ICONPATH:
+				return getIconpath();
+			case CustomizationPluginPackage.PROFILE__DESCRIPTION:
+				return getDescription();
+			case CustomizationPluginPackage.PROFILE__PROVIDER:
+				return getProvider();
+			case CustomizationPluginPackage.PROFILE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,27 +288,26 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
-			setQualifiednames((String) newValue);
-			return;
-		case CustomizationPluginPackage.PROFILE__ICONPATH:
-			setIconpath((String) newValue);
-			return;
-		case CustomizationPluginPackage.PROFILE__DESCRIPTION:
-			setDescription((String) newValue);
-			return;
-		case CustomizationPluginPackage.PROFILE__PROVIDER:
-			setProvider((String) newValue);
-			return;
-		case CustomizationPluginPackage.PROFILE__NAME:
-			setName((String) newValue);
-			return;
+			case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
+				setQualifiednames((String)newValue);
+				return;
+			case CustomizationPluginPackage.PROFILE__ICONPATH:
+				setIconpath((String)newValue);
+				return;
+			case CustomizationPluginPackage.PROFILE__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case CustomizationPluginPackage.PROFILE__PROVIDER:
+				setProvider((String)newValue);
+				return;
+			case CustomizationPluginPackage.PROFILE__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -331,27 +315,26 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
-			setQualifiednames(QUALIFIEDNAMES_EDEFAULT);
-			return;
-		case CustomizationPluginPackage.PROFILE__ICONPATH:
-			setIconpath(ICONPATH_EDEFAULT);
-			return;
-		case CustomizationPluginPackage.PROFILE__DESCRIPTION:
-			setDescription(DESCRIPTION_EDEFAULT);
-			return;
-		case CustomizationPluginPackage.PROFILE__PROVIDER:
-			setProvider(PROVIDER_EDEFAULT);
-			return;
-		case CustomizationPluginPackage.PROFILE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+			case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
+				setQualifiednames(QUALIFIEDNAMES_EDEFAULT);
+				return;
+			case CustomizationPluginPackage.PROFILE__ICONPATH:
+				setIconpath(ICONPATH_EDEFAULT);
+				return;
+			case CustomizationPluginPackage.PROFILE__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case CustomizationPluginPackage.PROFILE__PROVIDER:
+				setProvider(PROVIDER_EDEFAULT);
+				return;
+			case CustomizationPluginPackage.PROFILE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -359,22 +342,21 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
-			return QUALIFIEDNAMES_EDEFAULT == null ? qualifiednames != null : !QUALIFIEDNAMES_EDEFAULT.equals(qualifiednames);
-		case CustomizationPluginPackage.PROFILE__ICONPATH:
-			return ICONPATH_EDEFAULT == null ? iconpath != null : !ICONPATH_EDEFAULT.equals(iconpath);
-		case CustomizationPluginPackage.PROFILE__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-		case CustomizationPluginPackage.PROFILE__PROVIDER:
-			return PROVIDER_EDEFAULT == null ? provider != null : !PROVIDER_EDEFAULT.equals(provider);
-		case CustomizationPluginPackage.PROFILE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case CustomizationPluginPackage.PROFILE__QUALIFIEDNAMES:
+				return QUALIFIEDNAMES_EDEFAULT == null ? qualifiednames != null : !QUALIFIEDNAMES_EDEFAULT.equals(qualifiednames);
+			case CustomizationPluginPackage.PROFILE__ICONPATH:
+				return ICONPATH_EDEFAULT == null ? iconpath != null : !ICONPATH_EDEFAULT.equals(iconpath);
+			case CustomizationPluginPackage.PROFILE__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case CustomizationPluginPackage.PROFILE__PROVIDER:
+				return PROVIDER_EDEFAULT == null ? provider != null : !PROVIDER_EDEFAULT.equals(provider);
+			case CustomizationPluginPackage.PROFILE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -382,28 +364,25 @@ public class ProfileImpl extends FileBasedCustomizableElementImpl implements Pro
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (qualifiednames: ");
+		result.append(" (qualifiednames: "); //$NON-NLS-1$
 		result.append(qualifiednames);
-		result.append(", iconpath: ");
+		result.append(", iconpath: "); //$NON-NLS-1$
 		result.append(iconpath);
-		result.append(", description: ");
+		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
-		result.append(", provider: ");
+		result.append(", provider: "); //$NON-NLS-1$
 		result.append(provider);
-		result.append(", name: ");
+		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(')');
 		return result.toString();
 	}
 
-} // ProfileImpl
+} //ProfileImpl
