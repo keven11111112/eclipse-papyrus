@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier
-Bundle-Name: EMF Facet PDE Core Utils
+Bundle-Name: Papyrus EMF Facet PDE Core Utils
 Bundle-Activator: org.eclipse.papyrus.emf.facet.util.pde.core.internal.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.pde.core

@@ -1,5 +1,5 @@
 Bundle-ManifestVersion: 2
-Bundle-Name: Facet Custom Editor
+Bundle-Name: Papyrus Facet Custom Editor
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.metamodel.editor.doc;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Require-Bundle: org.eclipse.help;bundle-version="[3.7.0,4.0.0)"
