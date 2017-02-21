@@ -21,14 +21,6 @@
    <extension-point id="index" name="Workspace Model Index" schema="schema/index.exsd"/>
    
    <extension
-         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="model/infra-emf.elementtypesconfigurations">
-      </elementTypeSet>
-   </extension>
-
-   <extension
          point="org.eclipse.papyrus.infra.emf.index">
       <indexProvider
             class="org.eclipse.papyrus.infra.emf.internal.resource.CrossReferenceIndex$IndexProvider">

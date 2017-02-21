@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -39,10 +38,23 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
+import org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelsReader;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
+import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.ModelUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
@@ -81,6 +93,8 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 	private static Activity testActivityWithNode;
 
 	private static Resource resource;
+	
+	private static ModelSet modelSet;
 
 	private static TransactionalEditingDomain domain;
 
@@ -92,7 +106,10 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 		// create UML resource
 		// import test model
 		try {
-			copyPapyrusModel = PapyrusProjectUtils.copyIFile("/resource/TestPureUMLModel.uml", Platform.getBundle("org.eclipse.papyrus.uml.service.types.tests"), createProject, "TestPureUMLModel.uml");
+			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(
+					createProject, 
+					Platform.getBundle("org.eclipse.papyrus.uml.service.types.tests"),
+					"/resource/", "TestPureUMLModel");
 		} catch (CoreException e) {
 			fail(e.getMessage());
 		} catch (IOException e) {
@@ -100,14 +117,16 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 		}
 
 		// open model as UML resource
-		domain = houseKeeper.createSimpleEditingDomain();
-		ResourceSet set = domain.getResourceSet();
-		resource = set.createResource(URI.createPlatformResourceURI(createProject.getName() + '/' + copyPapyrusModel.getName(), true));
+		final URI clientModelDiURI = URI.createPlatformResourceURI(createProject.getName() + '/' + copyPapyrusModel.getName(), true);
 		try {
-			resource.load(Collections.emptyMap());
-		} catch (IOException e) {
+			modelSet = ModelUtils.loadModelSet(clientModelDiURI, true);
+		} catch (ModelMultiException e) {
 			fail(e.getMessage());
 		}
+		domain = ModelUtils.getEditingDomain(modelSet);
+
+		final URI clientModelUmlURI = URI.createPlatformResourceURI(createProject.getName() + '/' + "TestPureUMLModel.uml", true);
+		resource = modelSet.getResource(clientModelUmlURI, true);
 
 		rootModel = (Model) resource.getContents().get(0);
 		assertNotNull("Model should not be null", rootModel);
@@ -127,8 +146,72 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 				Assert.assertNotNull("element type should not be null", UMLElementTypes.CLASS);
 			}
 		});
+	}
+
+	/**
+	 * Create Models set from selected file.
+	 *
+	 * @return the model set
+	 */
+	private ModelSet initialiseModelSet(URI modelURI) {
+		ServicesRegistry service = null;
+
+		try {
+			service = new ExtensionServicesRegistry();
+		} catch (ServiceException e) {
+			fail(e.getMessage());
+		}
+
+		// Override service factory for Model Set
+		ServiceDescriptor descriptor = new ServiceDescriptor(ModelSet.class, ModelSetServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10);
+		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
+		service.add(descriptor);
+
+		// Override factory for editing domain
+		descriptor = new ServiceDescriptor(TransactionalEditingDomain.class, EditingDomainServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(ModelSet.class.getName()));
+		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
+		service.add(descriptor);
+
+		try {
+			service.startServicesByClassKeys(
+					ModelSet.class,
+					TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			fail(e.getMessage());
+		}
+
+		ModelSet modelSet = null;
+		try {
+			modelSet = ServiceUtils.getInstance().getModelSet(service);
+		} catch (ServiceException e) {
+			// Ignore service exception
+		}
+
+		// Instantiate a Model set
+		if (modelSet == null) {
+			modelSet = new ModelSet();
+			try {
+				ModelSetServiceFactory.setServiceRegistry(modelSet, service);
+			} catch (ServiceException e) {
+				// Ignore service exception
+			}
+		}
 
 
+
+		// Read all Model from selected file
+		ModelsReader modelsReader = new ModelsReader();
+		modelsReader.readModel(modelSet);
+		try {
+			modelSet.loadModels(modelURI);
+		} catch (ModelMultiException e) {
+			fail(e.getMessage());
+		}
+
+		// Initialise an editing domain
+		modelSet.getTransactionalEditingDomain();
+
+		return modelSet;
 	}
 
 	/**

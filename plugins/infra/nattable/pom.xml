@@ -26,6 +26,8 @@
 		<module>org.eclipse.papyrus.infra.nattable.properties</module>
 		<module>org.eclipse.papyrus.infra.nattable.views.config</module>
 		<module>org.eclipse.papyrus.infra.nattable.views.editor</module>
+		<module>org.eclipse.papyrus.infra.nattable.representation</module>
+		<module>org.eclipse.papyrus.infra.nattable.representation.edit</module>
 		
 		<!-- This one has a dependency also on Infra Diagram, so it is built outside of both modules. -->
 		<!--module>org.eclipse.papyrus.infra.nattable.gmfdiag</module-->

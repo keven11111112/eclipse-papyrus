@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -48,7 +48,7 @@ public interface INewModelStorageProvider {
 
 	List<? extends IWizardPage> createPages();
 
-	IStatus validateDiagramCategories(String... newCategories);
+	IStatus validateArchitectureContexts(String... newContexts);
 
 	/**
 	 * Create the URI identifying a new model, as indicated by my wizard page
@@ -85,7 +85,7 @@ public interface INewModelStorageProvider {
 	 */
 	ISelectProviderPart createSelectProviderPart();
 
-	SelectDiagramCategoryPage getDiagramCategoryPage();
+	SelectArchitectureContextPage getArchitectureContextPage();
 
 	//
 	// Nested types

@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
@@ -104,7 +104,7 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, DiagramPrototype prototype, String name) {
 		Diagram diagram = null;
 		if (element instanceof org.eclipse.uml2.uml.Package) {
 			diagram = ViewService.createDiagram(element, getDiagramNotationID(), getPreferenceHint());
@@ -116,9 +116,7 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 			setName(name);
 			diagram.setElement(element);
 			DiagramUtils.setOwner(diagram, owner);
-			if (!prototype.isNatural()) {
-				DiagramUtils.setPrototype(diagram, prototype);
-			}
+			DiagramUtils.setPrototype(diagram, prototype);
 			initializeModel(element);
 			initializeDiagram(diagram);
 			diagramResource.getContents().add(diagram);

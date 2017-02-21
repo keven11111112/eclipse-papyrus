@@ -7,18 +7,17 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 import org.eclipse.papyrus.infra.services.edit.tests.AbstractTestElementEditService;
 import org.junit.Test;
 
 public class TestElementEditServiceUtils extends AbstractTestElementEditService {
-
+	
 	@Test
 	public void testGetCommandProvider() {
 
 		// Test EPackage access
 		EPackage eP = EcoreFactory.eINSTANCE.createEPackage();
-		IElementEditService serviceForEPack = ElementEditServiceUtils.getCommandProvider(eP);
+		IElementEditService serviceForEPack = ElementEditServiceUtils.getCommandProvider(eP, context);
 
 		if(serviceForEPack == null) {
 			fail("No IElementEditService found for EPackage.");
@@ -30,13 +29,4 @@ public class TestElementEditServiceUtils extends AbstractTestElementEditService 
 			fail("The IElementEditService does not rely on the correct IElementType.");
 		}
 	}
-
-	@Test
-	public void testGetEditServiceProvider() {
-		IElementEditServiceProvider provider = ElementEditServiceUtils.getEditServiceProvider();
-		if(provider == null) {
-			fail("Element edit service can not be found.");
-		}
-	}
-
 }

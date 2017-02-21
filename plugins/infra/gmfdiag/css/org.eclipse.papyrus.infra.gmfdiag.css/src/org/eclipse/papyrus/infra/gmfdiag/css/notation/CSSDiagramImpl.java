@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.DiagramCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
@@ -32,8 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -129,7 +129,7 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.I
 		if (proto == null) {
 			return null;
 		}
-		PapyrusView conf = proto.getConfiguration();
+		PapyrusRepresentationKind conf = proto.getRepresentationKind();
 		if (conf == null || !(conf instanceof PapyrusDiagram)) {
 			return null;
 		}

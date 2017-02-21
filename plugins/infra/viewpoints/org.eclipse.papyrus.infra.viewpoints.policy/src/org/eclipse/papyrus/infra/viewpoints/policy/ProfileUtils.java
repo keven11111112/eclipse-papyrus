@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EPackage;
  *
  * @author Laurent Wouters
  */
-class ProfileUtils {
+public class ProfileUtils {
 	/**
 	 * ID of the extension point
 	 */

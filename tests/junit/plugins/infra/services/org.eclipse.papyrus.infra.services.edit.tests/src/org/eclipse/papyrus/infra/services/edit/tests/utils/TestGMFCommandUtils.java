@@ -9,8 +9,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.tests.AbstractTestElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
@@ -29,7 +31,8 @@ public class TestGMFCommandUtils extends AbstractTestElementEditService {
 		// Prepare and execute a command that adds a sub-EPackage
 		EPackage ePckg = EcoreFactory.eINSTANCE.createEPackage();
 		CreateElementRequest req = new CreateElementRequest(editingDomain, ePckg, ePackgType);
-		ICommand createCommand = ElementEditServiceUtils.getCommandProvider(ePckg).getEditCommand(req);
+		IClientContext context = TypeContext.getContext(editingDomain);
+		ICommand createCommand = ElementEditServiceUtils.getCommandProvider(ePckg, context).getEditCommand(req);
 
 		// Try to execute command and make quick result verification.
 		assertTrue("The service command should be executable.", createCommand.canExecute());

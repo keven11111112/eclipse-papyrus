@@ -32,9 +32,7 @@ import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.junit.utils.rules.ServiceRegistryModelSetFixture;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.StateMachine;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -78,30 +76,14 @@ public class ViewPrototypeTest {
 	// Test framework
 	//
 
-	/**
-	 * Ensure that these tests operate under the default viewpoint configuration,
-	 * no matter what.
-	 */
-	@BeforeClass
-	public static void setDefaultViewpoint() {
-		policyToRestore = PolicyChecker.getCurrent();
-		PolicyChecker.setCurrent(new PolicyChecker(false));
-	}
-
 	@Before
 	public void getModelElements() {
 		class1_stateMachine1 = (StateMachine) ((BehavioredClassifier) modelSet.getModel().getOwnedType("Class1")).getClassifierBehavior();
 		class2_stateMachine1 = (StateMachine) ((BehavioredClassifier) modelSet.getModel().getOwnedType("Class2")).getClassifierBehavior();
 	}
 
-	@AfterClass
-	public static void restoreViewpoint() {
-		PolicyChecker.setCurrent(policyToRestore);
-		policyToRestore = null;
-	}
-
 	List<ViewPrototype> getApplicableViewPrototypes(EObject object) {
-		Collection<ViewPrototype> result = PolicyChecker.getCurrent().getPrototypesFor(object);
+		Collection<ViewPrototype> result = PolicyChecker.getFor(object).getPrototypesFor(object);
 
 		// Only one diagram, so there must be only one prototype
 		assertThat(result.size(), greaterThan(0));

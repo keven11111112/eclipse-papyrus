@@ -29,17 +29,21 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
@@ -71,13 +75,21 @@ public class TypeDropHelper extends ElementHelper {
 			return UnexecutableCommand.INSTANCE;
 		}
 
+		IClientContext context;
+		try {
+			context = TypeContext.getContext(typedElementDropTarget);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		if (newType == typedElementDropTarget.getType()) {
 			setCommand = IdentityCommand.INSTANCE;
 		}
 
 		// Prepare a command to set the new type
 		SetRequest req = new SetRequest(typedElementDropTarget, UMLPackage.eINSTANCE.getTypedElement_Type(), newType);
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.TYPED_ELEMENT);
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.TYPED_ELEMENT, context);
 		if (provider != null) {
 			setCommand = provider.getEditCommand(req);
 		}

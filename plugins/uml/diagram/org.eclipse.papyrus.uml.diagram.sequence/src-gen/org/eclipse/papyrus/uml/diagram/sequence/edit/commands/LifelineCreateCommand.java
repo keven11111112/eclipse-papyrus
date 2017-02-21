@@ -97,7 +97,7 @@ public class LifelineCreateCommand extends EditElementCommand {
 	@Override
 	public boolean canExecute() {
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getLifeline());
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getLifeline());
 		return data.isPermitted();
 	}
 
@@ -110,7 +110,7 @@ public class LifelineCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Lifeline newElement = UMLFactory.eINSTANCE.createLifeline();
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
 			if (data.isPathDefined()) {
 				if (!data.execute(target, newElement)) {

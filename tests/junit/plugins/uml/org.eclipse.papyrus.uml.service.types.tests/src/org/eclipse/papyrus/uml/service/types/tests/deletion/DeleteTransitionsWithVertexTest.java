@@ -28,7 +28,6 @@ import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.junit.utils.rules.ServiceRegistryModelSetFixture;
-import org.eclipse.papyrus.uml.service.types.helper.advice.VertexEditHelperAdvice;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;

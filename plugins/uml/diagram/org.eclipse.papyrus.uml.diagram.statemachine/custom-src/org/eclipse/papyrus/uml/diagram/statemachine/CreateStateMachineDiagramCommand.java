@@ -27,8 +27,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateBehavioredClassifierDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
@@ -104,7 +104,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 	 * @return
 	 */
 	@Override
-	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, DiagramPrototype prototype, String name) {
 		Diagram diagram = super.doCreateDiagram(diagramResource, owner, element, prototype, name);
 		if (diagram == null) {
 			if (element instanceof State) {
@@ -115,9 +115,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 				setName(name);
 				diagram.setElement(element);
 				DiagramUtils.setOwner(diagram, owner);
-				if (!prototype.isNatural()) {
-					DiagramUtils.setPrototype(diagram, prototype);
-				}
+				DiagramUtils.setPrototype(diagram, prototype);
 				initializeModel(element);
 				initializeDiagram(diagram);
 				diagramResource.getContents().add(diagram);

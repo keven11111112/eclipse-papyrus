@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.core.utils.ElementTypeRegistryUtils;
 
 public abstract class AbstractFeatureRelationshipReorientEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -38,7 +38,7 @@ public abstract class AbstractFeatureRelationshipReorientEditHelperAdvice extend
 		if (value instanceof View) {
 
 			try {
-				IClientContext context = TypeContext.getContext();
+				IClientContext context = TypeContext.getContext((View)value);
 				List<IElementType> elementTypes = ElementTypeRegistryUtils.getElementTypesBySemanticHint(((View) value).getType(), context.getId());
 
 				for (IElementType iElementType : elementTypes) {

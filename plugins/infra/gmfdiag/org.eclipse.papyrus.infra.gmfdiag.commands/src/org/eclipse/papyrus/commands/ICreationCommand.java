@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**

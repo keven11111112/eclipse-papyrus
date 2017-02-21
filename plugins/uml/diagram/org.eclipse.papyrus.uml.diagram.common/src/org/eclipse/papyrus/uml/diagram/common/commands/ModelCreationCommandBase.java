@@ -13,19 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
-import java.util.Collections;
-
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 /**
@@ -34,41 +25,14 @@ import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 public abstract class ModelCreationCommandBase implements IModelCreationCommand {
 
 	/**
-	 * @see org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand#createModel(org.eclipse.papyrus.infra.core.utils.DiResourceSet)
-	 *
-	 * @param diResourceSet
+	 * @param modelSet
 	 */
 	@Override
 	public void createModel(final ModelSet modelSet) {
-		runAsTransaction(modelSet);
-	}
-
-	/**
-	 * Run as transaction.
-	 *
-	 * @param diResourceSet
-	 *            the di resource set
-	 */
-	protected void runAsTransaction(final ModelSet modelSet) {
-		// Get the uml element to which the newly created diagram will be
-		// attached.
-		// Create the diagram
 		final Resource modelResource = UmlUtils.getUmlResource(modelSet);
-		TransactionalEditingDomain editingDomain = modelSet.getTransactionalEditingDomain();
-
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, "Initialize model", Collections.EMPTY_LIST) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				EObject model = getRootElement(modelResource);
-				attachModelToResource(model, modelResource);
-
-				initializeModel(model);
-				return CommandResult.newOKCommandResult();
-
-			}
-		};
-		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+		EObject model = getRootElement(modelResource);
+		attachModelToResource(model, modelResource);
+		initializeModel(model);
 	}
 
 	/**

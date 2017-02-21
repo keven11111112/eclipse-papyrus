@@ -25,8 +25,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
@@ -104,7 +104,7 @@ public class TestCreateModelFromExistingModelWizard extends TestNewModelWizardBa
 	public void testOrderOfPages() {
 		// actual pages: [SelectDiagramCategory -> SelectDiagramCategoryPage, SelectStorageProvider -> SelectStorageProviderPage,
 		// NewPapyrusModel -> NewModelFilePage, NewCDOModel -> NewModelPage, SelectDiagramKind -> SelectDiagramKindPage, SelectRootPage -> SelectRootElementPage]
-		Class<?>[] expectedPages = new Class[] { SelectDiagramCategoryPage.class, NewModelFilePage.class, SelectDiagramKindPage.class, /* SelectRootElementPage.class, */ };
+		Class<?>[] expectedPages = new Class[] { SelectArchitectureContextPage.class, NewModelFilePage.class, SelectRepresentationKindPage.class, /* SelectRootElementPage.class, */ };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);

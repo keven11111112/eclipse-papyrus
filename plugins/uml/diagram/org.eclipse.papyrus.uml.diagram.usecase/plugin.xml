@@ -15,14 +15,6 @@
    
 -->
 <plugin>
-   <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="models/usecaseDiagram.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-   
    <extension point="org.eclipse.ui.contexts" id="ui-context">
 				      <?gmfgen generated="true"?>
 				      <context
@@ -972,21 +964,21 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="UseCase"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconciler"
-         source="undefined"
-         target="1.1.0">
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconciler_1_1_0"
+         source="1.0.0"
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="UseCase"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconcilerForCompartment"
-         source="undefined"
-         target="1.2.0">
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconcilerForCompartment_1_2_0"
+         source="1.1.0"
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="UseCase"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconciler_1_2_0"
          source="1.1.0"
-         target="1.2.0">
+         target="1.3.0">
    </diagramReconciler>
 </extension>
 

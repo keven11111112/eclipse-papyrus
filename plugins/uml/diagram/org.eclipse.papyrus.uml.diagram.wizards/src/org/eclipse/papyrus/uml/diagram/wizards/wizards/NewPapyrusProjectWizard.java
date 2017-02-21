@@ -26,7 +26,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
@@ -75,10 +75,10 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		// Gives the CreateModelWizard the newProjectPage to display it after the selectDiagramCategoryPage
 		setNewProjectPage(getMyProjectPage());
 
-		if (getDiagramCategoryIds() == null) {
+		if (getSelectedContexts() == null) {
 			// If no one Overrides the id list then no specific behavior is expected
 			// We therefore fall back to the original behavior: ask the user to pick a language
-			selectDiagramCategoryPage = new SelectDiagramCategoryPage();
+			selectArchitectureContextPage = new SelectArchitectureContextPage();
 		}
 
 		super.addPages();
@@ -121,15 +121,17 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 			projectLocationURI = getMyProjectPage().getLocationURI();
 		}
 
+		IProjectDescription projectDescription = null;
 		NullProgressMonitor progressMonitor = new NullProgressMonitor();
 		if (!project.exists()) {
-			IProjectDescription projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(project.getName());
+			projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(project.getName());
 			if (projectLocationURI != null) {
 				projectDescription.setLocationURI(projectLocationURI);
 			}
 			project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
 			project.open(new SubProgressMonitor(progressMonitor, 1));
 		} else {
+			// projectDescription = project.getDescription();
 			project.open(new SubProgressMonitor(progressMonitor, 1));
 		}
 

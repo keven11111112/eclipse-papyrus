@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.types.Activator;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.core.impl.ConfiguredHintedSpecializationElementType;
 import org.eclipse.papyrus.infra.types.rulebased.core.AbstractRule;
 
@@ -53,7 +53,7 @@ public class InvariantContainerRule extends AbstractRule<InvariantContainerRuleC
 		}
 		boolean isValid = false;
 		try {
-			IElementType newContainerElementType = ElementTypeRegistry.getInstance().getElementType(container, TypeContext.getContext());
+			IElementType newContainerElementType = ElementTypeRegistry.getInstance().getElementType(container, TypeContext.getContext(container));
 
 			for (HierarchyPermission permission : invariantRuleConfiguration.getPermissions()) { // for each permission, get the matcher and matches directly
 				boolean isPermitted = permission.isPermitted();

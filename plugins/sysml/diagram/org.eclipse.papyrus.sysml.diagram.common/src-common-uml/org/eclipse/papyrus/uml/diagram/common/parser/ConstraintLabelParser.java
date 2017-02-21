@@ -27,12 +27,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -172,7 +174,8 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 
 		try {
 			if (updateRequest != null) {
-				command = ElementEditServiceUtils.getEditServiceProvider().getEditService(constraint).getEditCommand(updateRequest);
+				IClientContext context = TypeContext.getContext(constraint);
+				command = ElementEditServiceUtils.getEditServiceProvider(context).getEditService(constraint).getEditCommand(updateRequest);
 			}
 
 		} catch (ServiceException e) {

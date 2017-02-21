@@ -28,7 +28,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewDiagramForExistingModelPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
@@ -43,7 +43,7 @@ public class WorkspaceNewModelStorageProvider extends AbstractNewModelStoragePro
 	/** New model file page for the file. */
 	private NewModelFilePage newModelFilePage;
 
-	private SelectDiagramCategoryPage newDiagramCategoryPage;
+	private SelectArchitectureContextPage newSelectArchitectureContextPage;
 
 	public WorkspaceNewModelStorageProvider() {
 		super();
@@ -69,33 +69,33 @@ public class WorkspaceNewModelStorageProvider extends AbstractNewModelStoragePro
 
 		this.wizard = wizard;
 		newModelFilePage = createNewModelFilePage(selection);
-		newDiagramCategoryPage = createNewDiagramCategoryPage(selection);
+		newSelectArchitectureContextPage = createNewArchitectureContextPage(selection);
 	}
 
 
 
 	@Override
 	public List<? extends IWizardPage> createPages() {
-		if (newModelFilePage == null && newDiagramCategoryPage == null) {
+		if (newModelFilePage == null && newSelectArchitectureContextPage == null) {
 			return Collections.emptyList();
 		}
 
-		return Arrays.asList(newDiagramCategoryPage, newModelFilePage);
+		return Arrays.asList(newSelectArchitectureContextPage, newModelFilePage);
 	}
 
 	@Override
-	public IStatus validateDiagramCategories(String... newCategories) {
+	public IStatus validateArchitectureContexts(String... newContexts) {
 		if (newModelFilePage != null) {
-			String firstCategory = newCategories.length > 0 ? newCategories[0] : null;
-			if (newCategories.length > 0) {
+			String firstContext = newContexts.length > 0 ? newContexts[0] : null;
+			if (newContexts.length > 0) {
 				// 316943 - [Wizard] Wrong suffix for file name when creating a
 				// profile model
-				return newModelFilePage.diagramExtensionChanged(wizard.getDiagramFileExtension(firstCategory));
+				return newModelFilePage.diagramExtensionChanged(wizard.getDiagramFileExtension(firstContext));
 			}
 
 		}
 
-		return super.validateDiagramCategories(newCategories);
+		return super.validateArchitectureContexts(newContexts);
 	}
 
 	/**
@@ -152,18 +152,16 @@ public class WorkspaceNewModelStorageProvider extends AbstractNewModelStoragePro
 		// return (newFile == null) ? null :
 	}
 
-	private SelectDiagramCategoryPage createNewDiagramCategoryPage(IStructuredSelection selection) {
+	private SelectArchitectureContextPage createNewArchitectureContextPage(IStructuredSelection selection) {
 		if (wizard.isCreateProjectWizard() || wizard.isCreateMultipleModelsWizard() || !wizard.isPapyrusRootWizard()) {
-
 			return null;
 		}
-		return new SelectDiagramCategoryPage();
+		return new SelectArchitectureContextPage();
 	}
 
 	@Override
-	public SelectDiagramCategoryPage getDiagramCategoryPage() {
-		return this.newDiagramCategoryPage;
+	public SelectArchitectureContextPage getArchitectureContextPage() {
+		return this.newSelectArchitectureContextPage;
 	}
-
 
 }

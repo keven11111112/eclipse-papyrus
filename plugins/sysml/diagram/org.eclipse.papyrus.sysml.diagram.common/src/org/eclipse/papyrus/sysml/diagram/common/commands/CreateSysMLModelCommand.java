@@ -27,8 +27,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class CreateSysMLModelCommand extends ModelCreationCommandBase {
 
-	public static final String COMMAND_ID = "sysml";
-
 	/**
 	 * @see org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase#createRootElement()
 	 *

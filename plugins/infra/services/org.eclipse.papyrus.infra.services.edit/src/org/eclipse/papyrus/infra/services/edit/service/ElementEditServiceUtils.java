@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
@@ -27,6 +28,7 @@ import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
@@ -35,8 +37,8 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.Activator;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.internal.ElementEditServiceProvider;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.messages.Messages;
 import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 
@@ -52,26 +54,25 @@ public class ElementEditServiceUtils {
 	/**
 	 * <pre>
 	 * Try to retrieve an edit service for the object in parameter
-	 * (EObject or EClass expected).
+	 * (EObject or EClass, or IElementType expected) in a given context
 	 *
 	 * Current implementation directly use {@link IElementEditServiceProvider} instance
 	 * rather than using Papyrus {@link ServiceUtils} which requires Papyrus to be
 	 * the active editor.
 	 *
 	 * @param objectToEdit
+	 * @param context
 	 * @return the edit service or null
 	 * </pre>
 	 */
-	public static IElementEditService getCommandProvider(Object objectToEdit) {
-
+	public static IElementEditService getCommandProvider(Object objectToEdit, IClientContext context) {
 		try {
-			return getEditServiceProvider().getEditService(objectToEdit);
+			IElementEditServiceProvider provider = getEditServiceProvider(context);
+			if (provider != null)
+				return provider.getEditService(objectToEdit);
 		} catch (ServiceException e) {
 			Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
-		} catch (NullPointerException e) {
-			Activator.log.error(NLS.bind(Messages.ElementEditServiceUtils_UnableToFindElementType, objectToEdit), e);
 		}
-
 		return null;
 
 		// ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
@@ -86,6 +87,26 @@ public class ElementEditServiceUtils {
 
 	/**
 	 * <pre>
+	 * Try to retrieve an edit service for the EObject in parameter assuming the context
+	 * of the model set that the object belongs to
+	 *
+	 * @param objectToEdit
+	 * @return the edit service or null
+	 * </pre>
+	 */
+	public static IElementEditService getCommandProvider(EObject objectToEdit) {
+		IClientContext context;
+		try {
+			context = TypeContext.getContext(objectToEdit);
+			return getCommandProvider(objectToEdit, context);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+	
+	/**
+	 * <pre>
 	 * Get the edit service provider (using {@link ElementTypeRegistry} instead of
 	 * {@link ServiceUtils}). Note that {@link ServiceUtils} would return the same instance
 	 * anyway.
@@ -93,15 +114,9 @@ public class ElementEditServiceUtils {
 	 * @return the service provider
 	 * </pre>
 	 */
-	public static IElementEditServiceProvider getEditServiceProvider() {
+	public static IElementEditServiceProvider getEditServiceProvider(IClientContext context) {
 
-		try {
-			return getEditServiceProviderFromElementTypeRegistry();
-		} catch (ServiceException e) {
-			Activator.log.error(Messages.ElementEditServiceUtils_UnableToFindServiceProvider, e);
-		}
-
-		return null;
+		return new ElementEditServiceProvider(context);
 
 		// ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
 		// try {
@@ -110,16 +125,6 @@ public class ElementEditServiceUtils {
 		// } catch (ServiceException e) {
 		// return null;
 		// }
-	}
-
-	/**
-	 * Get the element edit service provider from the {@link ElementTypeRegistry}.
-	 *
-	 * @return the element edit service
-	 * @throws ServiceException
-	 */
-	protected static IElementEditServiceProvider getEditServiceProviderFromElementTypeRegistry() throws ServiceException {
-		return ElementEditServiceProvider.getInstance();
 	}
 
 	/**
@@ -139,7 +144,7 @@ public class ElementEditServiceUtils {
 		editContextRequest.setParameter(IRequestCacheEntries.Cache_Maps, new HashMap<Object, Object>());
 		editContextRequest.setEditContext(owner);
 		try {
-			editContextRequest.setClientContext(TypeContext.getContext());
+			editContextRequest.setClientContext(TypeContext.getContext(editingDomain));
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 			return null;

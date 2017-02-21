@@ -32,13 +32,12 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusViewpoint;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
+import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -52,16 +51,6 @@ public abstract class ViewPrototype {
 	 * Singleton for unavailable views
 	 */
 	public static final ViewPrototype UNAVAILABLE_VIEW = new UnavailableViewPrototype("View", "View");
-	/**
-	 * Singleton for unavailable views (diagrams)
-	 */
-	public static final ViewPrototype UNAVAILABLE_DIAGRAM = new UnavailableViewPrototype("Diagram", "Diagram");
-
-	/**
-	 * Singleton for unavailable views (tables)
-	 */
-	public static final ViewPrototype UNAVAILABLE_TABLE = new UnavailableViewPrototype("Table", "Table");
-
 	/**
 	 * ID of the extension point for Papyrus diagrams
 	 */
@@ -99,17 +88,6 @@ public abstract class ViewPrototype {
 	}
 
 	/**
-	 * Determines whether the given configuration element applies on a natural view
-	 *
-	 * @param config
-	 *            The configuration element
-	 * @return <code>true</code> if the configuration applies on a natural view
-	 */
-	public static boolean isNatural(PapyrusView config) {
-		return config.getName() == null && config.getIcon() == null;
-	}
-
-	/**
 	 * Determines whether the given object is a supported view object
 	 *
 	 * @param object
@@ -126,30 +104,22 @@ public abstract class ViewPrototype {
 	}
 
 	/**
-	 * Gets the prototype for the given configuration element
+	 * Gets the prototype for the given representationKind element
 	 *
 	 * @param config
-	 *            The configuration element
+	 *            The representationKind element
 	 * @return The prototype
 	 */
-	public static ViewPrototype get(PapyrusView config) {
+	public static ViewPrototype get(PapyrusRepresentationKind representationKind) {
 		for (IViewTypeHelper helper : HELPERS) {
-			if (helper.isSupported(config.eClass())) {
-				ViewPrototype proto = helper.getPrototypeFor(config);
+			if (helper.isSupported(representationKind.eClass())) {
+				ViewPrototype proto = helper.getPrototypeFor(representationKind);
 				if (proto != null) {
 					return proto;
 				}
 			}
 		}
-		if (config instanceof PapyrusDiagram) {
-			return UNAVAILABLE_DIAGRAM;
-		} else if (config instanceof PapyrusTable) {
-			return UNAVAILABLE_TABLE;
-		} else if (config instanceof PapyrusSyncTable) {
-			return UNAVAILABLE_TABLE;
-		} else {
-			return UNAVAILABLE_VIEW;
-		}
+		return UNAVAILABLE_VIEW;
 	}
 
 	/**
@@ -182,10 +152,10 @@ public abstract class ViewPrototype {
 	 *            The root element
 	 * @return The prototype
 	 */
-	public static ViewPrototype get(String implem, EObject owner, EObject root) {
-		PapyrusView view = PolicyChecker.getCurrent().getViewFrom(implem, owner, root);
+	public static ViewPrototype get(PolicyChecker policy, String implem, EObject owner, EObject root) {
+		PapyrusRepresentationKind view = policy.getRepresentationKindFrom(implem, owner, root);
 		if (view == null) {
-			// The given implementation has been inhibited by the current viewpoint configuration
+			// The given implementation has been inhibited by the current viewpoint representationKind
 			return UNAVAILABLE_VIEW;
 		}
 		return get(view);
@@ -193,36 +163,27 @@ public abstract class ViewPrototype {
 
 
 	/**
-	 * The configuration element of this view
+	 * The representation kind of this view
 	 */
-	protected final PapyrusView configuration;
+	protected final PapyrusRepresentationKind representationKind;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param configuration
-	 *            The configuration element
+	 * @param representationKind
+	 *            The representation kind element
 	 */
-	protected ViewPrototype(PapyrusView configuration) {
-		this.configuration = configuration;
+	protected ViewPrototype(PapyrusRepresentationKind representationKind) {
+		this.representationKind = representationKind;
 	}
 
 	/**
-	 * Gets the configuration element for this view prototype
+	 * Gets the representation kind for this view prototype
 	 *
-	 * @return The configuration element
+	 * @return The representation kind
 	 */
-	public PapyrusView getConfiguration() {
-		return configuration;
-	}
-
-	/**
-	 * Gets whether the represented view is the raw implementation
-	 *
-	 * @return <code>true</code> if this is a natural view
-	 */
-	public boolean isNatural() {
-		return isNatural(configuration);
+	public PapyrusRepresentationKind getRepresentationKind() {
+		return representationKind;
 	}
 
 	/**
@@ -242,7 +203,7 @@ public abstract class ViewPrototype {
 	 * @return The implementation ID
 	 */
 	public String getImplementation() {
-		return configuration.getImplementationID();
+		return representationKind.getImplementationID();
 	}
 
 	/**
@@ -251,7 +212,7 @@ public abstract class ViewPrototype {
 	 * @return The label
 	 */
 	public String getLabel() {
-		return configuration.getName();
+		return representationKind.getName();
 	}
 
 	/**
@@ -263,7 +224,7 @@ public abstract class ViewPrototype {
 		StringBuilder builder = new StringBuilder(getLabel());
 		builder.append(" for ");
 		boolean first = true;
-		for (ModelRule rule : configuration.getModelRules()) {
+		for (ModelRule rule : representationKind.getModelRules()) {
 			if (rule.getStereotypes() != null && rule.getStereotypes().size() > 0) {
 				for (EClass stereotype : rule.getStereotypes()) {
 					if (!first) {
@@ -291,8 +252,8 @@ public abstract class ViewPrototype {
 	 * @return The qualified name
 	 */
 	public String getQualifiedName() {
-		PapyrusViewpoint vp = (PapyrusViewpoint) configuration.eContainer();
-		return vp.getName() + " :: " + getLabel();
+		ArchitectureDescriptionLanguage lang = (ArchitectureDescriptionLanguage) representationKind.eContainer();
+		return lang.getName() + " :: " + getLabel();
 	}
 
 	/**
@@ -301,7 +262,7 @@ public abstract class ViewPrototype {
 	 * @return The icon's URI
 	 */
 	public String getIconURI() {
-		return configuration.getIcon();
+		return representationKind.getIcon();
 	}
 
 	/**
@@ -326,15 +287,6 @@ public abstract class ViewPrototype {
 	 */
 	public Image getIcon() {
 		return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(getIconDescriptor());
-	}
-
-	/**
-	 * Gets the categories of this view prototype
-	 *
-	 * @return The prototype's categories
-	 */
-	public Collection<Category> getCategories() {
-		return configuration.getCategories();
 	}
 
 	/**
@@ -410,7 +362,7 @@ public abstract class ViewPrototype {
 	 * @author Laurent Wouters
 	 */
 	public static class Comp implements Comparator<ViewPrototype> {
-		private static final Map<Class<? extends PapyrusView>, Integer> priorities = new HashMap<Class<? extends PapyrusView>, Integer>();
+		private static final Map<Class<? extends PapyrusRepresentationKind>, Integer> priorities = new HashMap<Class<? extends PapyrusRepresentationKind>, Integer>();
 		{
 			priorities.put(PapyrusDiagram.class, 1);
 			priorities.put(PapyrusTable.class, 2);
@@ -418,8 +370,8 @@ public abstract class ViewPrototype {
 		}
 
 		private static Integer getPriority(ViewPrototype proto) {
-			for (Map.Entry<Class<? extends PapyrusView>, Integer> entry : priorities.entrySet()) {
-				if (entry.getKey().isAssignableFrom(proto.configuration.getClass())) {
+			for (Map.Entry<Class<? extends PapyrusRepresentationKind>, Integer> entry : priorities.entrySet()) {
+				if (entry.getKey().isAssignableFrom(proto.representationKind.getClass())) {
 					return entry.getValue();
 				}
 			}

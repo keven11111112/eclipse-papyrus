@@ -14,14 +14,6 @@
    
 -->
 <plugin>
-   <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="model/InteractionOverviewDiagram.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-
     <!-- Diagram declaration -->
     <extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
         <creationCommand
@@ -685,27 +677,20 @@
           <!-- Link labels -->
    </diagramMappings>
 </extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/interactionOverviewDiagram.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
 
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="PapyrusUMLInteractionOverviewDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconciler"
-         source="undefined"
-         target="1.1.0">
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconciler_1_1_0"
+         source="1.0.0"
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="PapyrusUMLInteractionOverviewDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.interactionoverview.migration.InteractionOverviewReconciler_1_2_0"
          source="1.1.0"
-         target="1.2.0">
+         target="1.3.0">
    </diagramReconciler>
 </extension>
 

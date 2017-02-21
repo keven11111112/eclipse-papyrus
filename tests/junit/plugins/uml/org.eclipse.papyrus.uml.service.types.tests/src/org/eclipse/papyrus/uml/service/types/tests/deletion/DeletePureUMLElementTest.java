@@ -22,6 +22,8 @@ import java.util.Collections;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -29,9 +31,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.ModelUtils;
+import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -62,6 +68,8 @@ public class DeletePureUMLElementTest extends AbstractPapyrusTest {
 
 	private static Resource resource;
 
+	private static ModelSet modelSet;
+
 	private static TransactionalEditingDomain domain;
 
 	private static Activity testActivityDelete;
@@ -81,18 +89,30 @@ public class DeletePureUMLElementTest extends AbstractPapyrusTest {
 
 		// create UML resource
 		// import test model
-		copyPapyrusModel = houseKeeper.createFile(createProject, "TestPureUMLModel.uml", "/resource/TestPureUMLModel.uml");
-
-		// open model as UML resource
-		domain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
-		resource = domain.getResourceSet().createResource(URI.createPlatformResourceURI(copyPapyrusModel.getFullPath().toString(), true));
 		try {
-			resource.load(Collections.emptyMap());
+			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(
+					createProject, 
+					Platform.getBundle("org.eclipse.papyrus.uml.service.types.tests"),
+					"/resource/", "TestPureUMLModel");
+		} catch (CoreException e) {
+			fail(e.getMessage());
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}
 
-		rootModel = (Model)resource.getContents().get(0);
+		// open model as UML resource
+		final URI clientModelDiURI = URI.createPlatformResourceURI(createProject.getName() + '/' + copyPapyrusModel.getName(), true);
+		try {
+			modelSet = ModelUtils.loadModelSet(clientModelDiURI, true);
+		} catch (ModelMultiException e) {
+			fail(e.getMessage());
+		}
+		domain = ModelUtils.getEditingDomain(modelSet);
+
+		final URI clientModelUmlURI = URI.createPlatformResourceURI(createProject.getName() + '/' + "TestPureUMLModel.uml", true);
+		resource = modelSet.getResource(clientModelUmlURI, true);
+
+		rootModel = (Model) resource.getContents().get(0);
 		assertNotNull("Model should not be null", rootModel);
 		try {
 			initExistingElements();

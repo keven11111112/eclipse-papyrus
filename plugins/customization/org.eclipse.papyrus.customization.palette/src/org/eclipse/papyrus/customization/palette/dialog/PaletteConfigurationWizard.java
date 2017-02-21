@@ -25,6 +25,8 @@ import org.eclipse.papyrus.customization.palette.Messages;
 import org.eclipse.papyrus.customization.palette.PaletteConstants;
 import org.eclipse.papyrus.customization.palette.PaletteConstants.PaletteModelContextEnum;
 import org.eclipse.papyrus.customization.palette.utils.PaletteUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -186,12 +188,18 @@ public class PaletteConfigurationWizard extends AbstractPaletteConfigurationWiza
 	 */
 	protected void deployElementTypesModels() {
 		// deploy element types configuration files
-		if (!elementTypeSemResource.getContents().isEmpty() && !elementTypeUIResource.getContents().isEmpty()) {
-			ElementTypeSetConfigurationRegistry.getInstance().unload(getClientContext(), ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)).getIdentifier());
-			ElementTypeSetConfigurationRegistry.getInstance().unload(getClientContext(), ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)).getIdentifier());
+		try {
+			if (!elementTypeSemResource.getContents().isEmpty() && !elementTypeUIResource.getContents().isEmpty()) {
+				String clientContext = TypeContext.getDefaultContext().getId();
 
-			ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(getClientContext(), ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)));
-			ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(getClientContext(), ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)));
+				ElementTypeSetConfigurationRegistry.getInstance().unload(clientContext, ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)).getIdentifier());
+				ElementTypeSetConfigurationRegistry.getInstance().unload(clientContext, ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)).getIdentifier());
+	
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(clientContext, ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)));
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(clientContext, ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)));
+			}
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 	}
 
@@ -256,24 +264,17 @@ public class PaletteConfigurationWizard extends AbstractPaletteConfigurationWiza
 				elementTypeUIResource.save(PaletteUtils.saveOptions);
 				elementTypeSemResource.save(PaletteUtils.saveOptions);
 			} else {
-				ElementTypeSetConfigurationRegistry.getInstance().unload(getClientContext(), ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)).getIdentifier());
-				ElementTypeSetConfigurationRegistry.getInstance().unload(getClientContext(), ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)).getIdentifier());
+				String clientContext = TypeContext.getDefaultContext().getId();
+				ElementTypeSetConfigurationRegistry.getInstance().unload(clientContext, ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)).getIdentifier());
+				ElementTypeSetConfigurationRegistry.getInstance().unload(clientContext, ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)).getIdentifier());
 				elementTypeUIResource.delete(Collections.EMPTY_MAP);
 				elementTypeSemResource.delete(Collections.EMPTY_MAP);
 			}
 		} catch (IOException e) {
 			Activator.log.error(e);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 	}
-
-	/**
-	 * @return The client context of element types.
-	 * 
-	 *         TODO: switch it with point of you context if needed.
-	 */
-	protected String getClientContext() {
-		return "org.eclipse.papyrus.infra.services.edit.TypeContext";//$NON-NLS-1$
-	}
-
 
 }

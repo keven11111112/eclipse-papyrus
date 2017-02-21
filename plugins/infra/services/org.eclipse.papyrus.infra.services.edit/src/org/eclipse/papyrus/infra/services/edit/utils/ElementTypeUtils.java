@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.Activator;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 
 /**
  * Utils class for elements types
@@ -44,7 +44,7 @@ public class ElementTypeUtils {
 	 * 		all existing elements types
 	 */
 	public static final Collection<IElementType> getAllExistingElementTypes() {
-		IClientContext clientContext = getEditContext();
+		IClientContext clientContext = getDefaultClientContext();
 		final IElementType[] types = ElementTypeRegistry.getInstance().getElementTypes(clientContext);
 		return Arrays.asList(types);
 	}
@@ -62,15 +62,15 @@ public class ElementTypeUtils {
 	}
 
 	/**
-	 * Obtains the element type client context in which the edit service binds element types.
+	 * Obtains the default client context in which the edit service binds element types.
 	 *
-	 * @return the edit service's client context, or {@code null} if it is not available in the current installation
+	 * @return the edit service's default client context, or {@code null} if it is not available in the current installation
 	 */
-	public static IClientContext getEditContext() {
+	public static IClientContext getDefaultClientContext() {
 		IClientContext result = null;
 
 		try {
-			result = TypeContext.getContext();
+			result = TypeContext.getDefaultContext();
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}

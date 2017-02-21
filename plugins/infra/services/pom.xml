@@ -12,6 +12,7 @@
 	<description>Core services provided by the Papyrus Editor's Service Registry.</description>
 
 	<modules>
+		<module>org.eclipse.papyrus.infra.services.architecture</module>
 		<module>org.eclipse.papyrus.infra.services.controlmode</module>
 		<module>org.eclipse.papyrus.infra.services.controlmode.history</module>
 		<module>org.eclipse.papyrus.infra.services.decoration</module>

@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
@@ -144,7 +145,7 @@ public abstract class AbstractElementTypeTests extends AbstractPapyrusTest imple
 		}
 
 		try {
-			papyrusContext = org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext.getContext();
+			papyrusContext = TypeContext.getContext(modelset);
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		}

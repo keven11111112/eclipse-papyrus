@@ -16,14 +16,18 @@ package org.eclipse.papyrus.uml.diagram.communication.custom.policies.itemsemant
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.communication.custom.commands.CustomMessageCreateCommand;
@@ -35,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.commands.ConstraintCon
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.policies.LifelineItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -90,8 +95,17 @@ public class CustomLifelineItemSemanticEditPolicyCN extends LifelineItemSemantic
 
 			// return getGEFWrapper(new CustomMessagesReorientCommand(req));
 			View connector = (View) req.getParameter(UMLBaseItemSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
-			Object elementToedit = UMLPackage.eINSTANCE.getMessage();
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToedit);
+			EClass elementToedit = UMLPackage.eINSTANCE.getMessage();
+			
+			IClientContext context;
+			try {
+				context = TypeContext.getContext(getEditingDomain());
+			} catch (ServiceException e) {
+				UMLDiagramEditorPlugin.getInstance().getLogHelper().error(e);
+				return UnexecutableCommand.INSTANCE;
+			}
+
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToedit, context);
 			if (provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}

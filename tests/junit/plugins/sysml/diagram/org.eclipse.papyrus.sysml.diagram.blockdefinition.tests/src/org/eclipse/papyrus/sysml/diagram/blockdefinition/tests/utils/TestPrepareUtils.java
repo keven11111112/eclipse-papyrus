@@ -37,15 +37,18 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
@@ -110,7 +113,14 @@ public class TestPrepareUtils {
 	public static EObject createLink(IElementType elementType, EObject source, EObject target) throws Exception {
 		CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(getTransactionalEditingDomain(), source, target, elementType);
 
-		ICommand createRelationshipCommand = ElementEditServiceUtils.getCommandProvider(elementType).getEditCommand(createRelationshipRequest);
+		IClientContext context;
+		try {
+			context = TypeContext.getContext(getTransactionalEditingDomain());
+		} catch (ServiceException e) {
+			return null;
+		}
+
+		ICommand createRelationshipCommand = ElementEditServiceUtils.getCommandProvider(elementType, context).getEditCommand(createRelationshipRequest);
 		getDiagramCommandStack().execute(new ICommandProxy(createRelationshipCommand));
 
 		return GMFCommandUtils.getCommandEObjectResult(createRelationshipCommand);

@@ -17,6 +17,7 @@
 		<module>org.eclipse.papyrus.doc.feature</module>
 		<module>org.eclipse.papyrus.editor.feature</module>
 		<module>org.eclipse.papyrus.emf.facet.feature</module>
+		<module>org.eclipse.papyrus.infra.architecture.feature</module>
 		<module>org.eclipse.papyrus.infra.core.feature</module>
 		<module>org.eclipse.papyrus.infra.discovery.feature</module>
 		<module>org.eclipse.papyrus.infra.emf.feature</module>
@@ -31,6 +32,7 @@
 		<module>org.eclipse.papyrus.infra.widget.feature</module>
 		<module>org.eclipse.papyrus.sdk.feature</module>
 		<module>org.eclipse.papyrus.uml.alf.feature</module>
+		<module>org.eclipse.papyrus.uml.architecture.feature</module>
 		<module>org.eclipse.papyrus.uml.assistants.feature</module>
 		<module>org.eclipse.papyrus.uml.decoratormodel.feature</module>
 		<module>org.eclipse.papyrus.uml.diagram.css.feature</module>

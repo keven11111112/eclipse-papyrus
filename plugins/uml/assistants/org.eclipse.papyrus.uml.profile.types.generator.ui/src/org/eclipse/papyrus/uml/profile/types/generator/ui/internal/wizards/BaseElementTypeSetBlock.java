@@ -28,6 +28,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.uml.profile.types.generator.ui.internal.Activator;
@@ -59,8 +61,6 @@ class BaseElementTypeSetBlock {
 
 	private static final String UML_ELEMENT_TYPE_SET = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"; //$NON-NLS-1$
 
-	private static final String CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext";
-
 	private final GeneratorWizardModel model;
 
 	private final BiMap<String, ElementTypeSetConfiguration> elementTypeSets;
@@ -69,7 +69,14 @@ class BaseElementTypeSetBlock {
 		super();
 
 		this.model = model;
-		this.elementTypeSets = HashBiMap.create(ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().get(CONTEXT_ID));
+		
+		String clientContextId = "";
+		try {
+			clientContextId = TypeContext.getDefaultContext().getId();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		this.elementTypeSets = HashBiMap.create(ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().get(clientContextId));
 	}
 
 	public void createControl(Composite parent) {

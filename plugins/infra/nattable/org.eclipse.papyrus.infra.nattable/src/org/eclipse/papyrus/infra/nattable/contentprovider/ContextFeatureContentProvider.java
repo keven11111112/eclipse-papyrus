@@ -22,10 +22,10 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ui.ECoreModelContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.utils.EcoreModelContentProvider;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
@@ -50,7 +50,7 @@ import org.eclipse.swt.widgets.Composite;
  *
  * @author Laurent Wouters
  */
-public class ContextFeatureContentProvider extends ECoreModelContentProvider implements IStaticContentProvider, IHierarchicContentProvider, IFlattenableContentProvider, IGraphicalContentProvider {
+public class ContextFeatureContentProvider extends EcoreModelContentProvider implements IStaticContentProvider, IHierarchicContentProvider, IFlattenableContentProvider, IGraphicalContentProvider {
 	/**
 	 * The table
 	 */
@@ -104,11 +104,11 @@ public class ContextFeatureContentProvider extends ECoreModelContentProvider imp
 		if (!(element instanceof EObject)) {
 			return false;
 		}
-		ViewPrototype prototype = ViewPrototype.get((PapyrusView) table.getPrototype());
+		ViewPrototype prototype = ViewPrototype.get((PapyrusRepresentationKind) table.getPrototype());
 		if (prototype == null) {
 			return false;
 		}
-		return PolicyChecker.getCurrent().canHaveNewView((EObject) element, table.getOwner(), prototype);
+		return PolicyChecker.getFor((EObject)element).canHaveNewView((EObject) element, table.getOwner(), prototype);
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class ContextFeatureContentProvider extends ECoreModelContentProvider imp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.ui.ECoreModelContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.utils.EcoreModelContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {

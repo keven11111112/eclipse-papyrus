@@ -15,12 +15,4 @@
             manager="org.eclipse.papyrus.uml.nattable.clazz.config.manager.axis.UMLClassTreeAxisManagerForEventList">
       </axisManager>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="configs/classTreeTable.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-
 </plugin>

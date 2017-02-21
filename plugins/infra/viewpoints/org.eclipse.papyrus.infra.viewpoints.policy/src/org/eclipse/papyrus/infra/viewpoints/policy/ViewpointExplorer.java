@@ -56,7 +56,7 @@ public class ViewpointExplorer extends ViewPart {
 		tree.setLabelProvider(new ViewPrototypeContentProvider.LP());
 		tree.setSorter(getViewerSorter());
 		tree.setContentProvider(new ViewPrototypeContentProvider());
-		tree.setInput(ViewPrototypeContentProvider.treeRoot);
+		//tree.setInput(ViewPrototypeContentProvider.treeRoot);
 	}
 
 	/*

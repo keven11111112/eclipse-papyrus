@@ -12,6 +12,7 @@
 	<description>Container of the core APIs of the Papyrus editor and headless components.</description>
 
 	<modules>
+		<module>architecture</module>
 		<module>core</module>
 		<module>onefile</module>
 		<module>constraints</module>

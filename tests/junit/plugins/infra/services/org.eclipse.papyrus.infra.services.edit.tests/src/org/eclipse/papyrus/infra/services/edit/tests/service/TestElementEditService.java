@@ -11,8 +11,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
-import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -32,8 +30,6 @@ public class TestElementEditService extends AbstractTestElementEditService {
 	// MetamodelType("ECLASS_TEST_ID", null, "ECLASS", EcorePackage.eINSTANCE.getEClass(), null); //$NON-NLS-1$
 	// MetamodelType("EPACKG_TEST_ID", null, "EPACKG", EcorePackage.eINSTANCE.getEPackage(), null); //$NON-NLS-1$
 
-	IClientContext context;
-
 	IElementEditService ePckgService;
 
 	IElementEditService eClassService;
@@ -47,10 +43,16 @@ public class TestElementEditService extends AbstractTestElementEditService {
 	public void setUp() {
 		super.setUp();
 
-		context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-
-		ePckgService = new ElementEditService(ePackgType, context);
-		eClassService = new ElementEditService(eClassType, context);
+		try {
+			ePckgService = provider.getEditService(ePackgType);
+		} catch (ServiceException e) {
+			fail("failed to get the edit service for "+ePackgType);
+		}
+		try {
+			eClassService = provider.getEditService(eClassType);
+		} catch (ServiceException e) {
+			fail("failed to get the edit service for "+eClassType);
+		}
 
 		ePckg = EcoreFactory.eINSTANCE.createEPackage();
 		eClass = EcoreFactory.eINSTANCE.createEClass();

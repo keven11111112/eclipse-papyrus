@@ -39,8 +39,8 @@
     </genClasses>
     <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractMatcherConfiguration"/>
     <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//AdviceConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AdviceConfiguration/before"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AdviceConfiguration/after"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AdviceConfiguration/before"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AdviceConfiguration/after"/>
     </genClasses>
     <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/target"/>
@@ -49,10 +49,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/inheritance"/>
     </genClasses>
     <genClasses ecoreClass="ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/specializedTypesID"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/editHelperAdviceConfiguration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/containerConfiguration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/matcherConfiguration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/specializedTypes"/>
     </genClasses>
     <genClasses ecoreClass="ElementTypesConfigurations.ecore#//ContainerConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ContainerConfiguration/containerMatcherConfiguration"/>

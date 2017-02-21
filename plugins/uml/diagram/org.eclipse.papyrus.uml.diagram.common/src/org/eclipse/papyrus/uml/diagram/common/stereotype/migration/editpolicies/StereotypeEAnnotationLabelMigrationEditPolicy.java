@@ -19,7 +19,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationDetailCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler_1_2_0;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayMigrationConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.commands.StereotypeLabelMigrationCommand;
 import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
  *
  * @author Céline JANSSENS
  *
- * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler}
+ * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler_1_2_0}
  */
 @Deprecated
 public class StereotypeEAnnotationLabelMigrationEditPolicy extends StereotypeEAnnotationMigrationEditPolicy {

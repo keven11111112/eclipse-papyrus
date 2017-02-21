@@ -21,8 +21,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class CreateUMLModelCommand extends ModelCreationCommandBase {
 
-	public static final String COMMAND_ID = "uml";
-
 	/**
 	 * @see org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase#createRootElement()
 	 *

@@ -21,7 +21,7 @@
 		</Composite.layout>
 		<ppe:ReferenceLabel input="{Binding}"
 			property="EObjectInTable:Table:prototype" readOnly="true"
-			customLabel="View Type"></ppe:ReferenceLabel>
+			customLabel="Table Kind"></ppe:ReferenceLabel>
 		<ppe:ReferenceDialog input="{Binding}"
 			property="EObjectInTable:Table:owner" customLabel="Owner"></ppe:ReferenceDialog>
 		<ppe:ReferenceLabel input="{Binding}"

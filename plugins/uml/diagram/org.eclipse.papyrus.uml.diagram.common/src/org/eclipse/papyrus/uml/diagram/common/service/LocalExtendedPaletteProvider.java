@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
@@ -120,13 +122,18 @@ public class LocalExtendedPaletteProvider extends ExtendedPluginPaletteProvider 
 				if (!elementTypeUIResource.getContents().isEmpty() && !elementTypeSemResource.getContents().isEmpty()) {
 
 					// deploy element types configuration files
-					String clientContext = "org.eclipse.papyrus.infra.services.edit.TypeContext";//$NON-NLS-1$
+					String clientContextId = "";
+					try {
+						clientContextId = TypeContext.getDefaultContext().getId();
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+					}
 
-					ElementTypeSetConfigurationRegistry.getInstance().unload(clientContext, ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)).getIdentifier());
-					ElementTypeSetConfigurationRegistry.getInstance().unload(clientContext, ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)).getIdentifier());
+					ElementTypeSetConfigurationRegistry.getInstance().unload(clientContextId, ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)).getIdentifier());
+					ElementTypeSetConfigurationRegistry.getInstance().unload(clientContextId, ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)).getIdentifier());
 
-					ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(clientContext, ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)));
-					ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(clientContext, ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)));
+					ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(clientContextId, ((ElementTypeSetConfiguration) elementTypeSemResource.getContents().get(0)));
+					ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(clientContextId, ((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)));
 				}
 			}
 		}

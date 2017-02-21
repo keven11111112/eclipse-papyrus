@@ -42,8 +42,8 @@ import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.SWT;
@@ -73,7 +73,7 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 	/**
 	 * The context of the future table.
 	 */
-	private Object context;
+	private EObject context;
 
 	/**
 	 * The checked image for the table to select the view prototypes.
@@ -191,7 +191,7 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 			@Override
 			public String getText(final Object element) {
 				ViewPrototype viewPrototype = (ViewPrototype) element;
-				return viewPrototype.getConfiguration().getImplementationID();
+				return viewPrototype.getRepresentationKind().getImplementationID();
 			}
 
 			@Override
@@ -356,8 +356,8 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		final List<ViewPrototype> viewPrototypes = new ArrayList<ViewPrototype>();
 
 		// build a list of all the available prototypes corresponding to the context
-		for (final ViewPrototype proto : PolicyChecker.getCurrent().getAllPrototypes()) {
-			if ((proto.getConfiguration() instanceof PapyrusTable || proto.getConfiguration() instanceof PapyrusSyncTable)) {
+		for (final ViewPrototype proto : PolicyChecker.getFor(context).getAllPrototypes()) {
+			if ((proto.getRepresentationKind() instanceof PapyrusTable || proto.getRepresentationKind() instanceof PapyrusSyncTable)) {
 				if (NattableConfigurationRegistry.INSTANCE.canCreateTable(proto.getImplementation(), context).isOK()) {
 					viewPrototypes.add(proto);
 				}
@@ -379,15 +379,15 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 	 * 		the {@link URI} of the nattable configuration, or <code>null</code> if not found
 	 */
 	private URI getTableConfigurationURI(final TableViewPrototype viewPrototype) {
-		if (viewPrototype.getConfiguration() instanceof PapyrusTable) {
-			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getConfiguration();
+		if (viewPrototype.getRepresentationKind() instanceof PapyrusTable) {
+			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getRepresentationKind();
 			String uri = papyrusTable.getConfiguration();
 			if (uri != null && uri.length() > 0) {
 				return URI.createURI(uri);
 			}
 		}
-		if (viewPrototype.getConfiguration() instanceof PapyrusSyncTable) {
-			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getConfiguration()).getImplementationID());
+		if (viewPrototype.getRepresentationKind() instanceof PapyrusSyncTable) {
+			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getRepresentationKind()).getImplementationID());
 		}
 		return null;
 	}

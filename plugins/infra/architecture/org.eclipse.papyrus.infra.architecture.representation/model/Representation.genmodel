@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2016 CEA LIST.&#xD;&#xA;&#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA; Contributors:&#xD;&#xA; Maged Elaasar - Initial API and implementation&#xD;&#xA; &#xD;&#xA;"
+    modelDirectory="/org.eclipse.papyrus.infra.architecture.representation/src-gen"
+    editDirectory="/org.eclipse.papyrus.infra.architecture.representation.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.infra.architecture.representation.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.infra.architecture.representation" modelName="Representation"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.infra.architecture.representation.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editorPluginID="org.eclipse.papyrus.infra.architecture.representation.editor"
+    usedGenPackages="../../org.eclipse.papyrus.infra.core.architecture/model/Architecture.genmodel#//architecture ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Representation.ecore</foreignModel>
+  <genPackages prefix="Representation" basePackage="org.eclipse.papyrus.infra.core.architecture"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="Representation.ecore#/">
+    <genClasses image="false" ecoreClass="Representation.ecore#//PapyrusRepresentationKind">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Representation.ecore#//PapyrusRepresentationKind/parent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Representation.ecore#//PapyrusRepresentationKind/modelRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Representation.ecore#//PapyrusRepresentationKind/owningRules"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Representation.ecore#//PapyrusRepresentationKind/implementationID"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Representation.ecore#//Rule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Representation.ecore#//Rule/permit"/>
+    </genClasses>
+    <genClasses ecoreClass="Representation.ecore#//ModelRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Representation.ecore#//ModelRule/element"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Representation.ecore#//ModelRule/stereotypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Representation.ecore#//ModelRule/multiplicity"/>
+    </genClasses>
+    <genClasses ecoreClass="Representation.ecore#//OwningRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Representation.ecore#//OwningRule/element"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Representation.ecore#//OwningRule/stereotypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Representation.ecore#//OwningRule/multiplicity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Representation.ecore#//OwningRule/newModelPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Representation.ecore#//OwningRule/selectDiagramRoot"/>
+    </genClasses>
+    <genClasses ecoreClass="Representation.ecore#//ModelAutoCreate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Representation.ecore#//ModelAutoCreate/feature"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Representation.ecore#//ModelAutoCreate/origin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Representation.ecore#//ModelAutoCreate/creationType"/>
+    </genClasses>
+    <genClasses ecoreClass="Representation.ecore#//RootAutoSelect">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Representation.ecore#//RootAutoSelect/feature"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -110,7 +110,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 */
 	public IStatus diagramExtensionChanged(String newExtension) {
 		String currentExtension = getFileExtension();
-		if (!currentExtension.equals(newExtension)) {
+		if (!currentExtension.equals(newExtension) && this.getControl() != null) {
 
 			// String oldFileName = getFileName();
 			String newFileName = NewModelFilePage.getUniqueFileName(getContainerFullPath(), getFileName().replace(currentExtension, ""), newExtension);

@@ -2,15 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-   <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="model/Requirement.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-
-
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
 	<creationCommand
@@ -850,21 +841,21 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="RequirementDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconciler"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconciler_1_1_0"
          source="1.0.0"
-         target="1.1.0">
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="RequirementDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconcilerForCompartment"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconcilerForCompartment_1_2_0"
          source="1.1.0"
-         target="1.2.0">
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="RequirementDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconciler_1_2_0"
          source="1.1.0"
-         target="1.2.0">
+         target="1.3.0">
    </diagramReconciler>
 </extension>
 <!-- // End of user code 

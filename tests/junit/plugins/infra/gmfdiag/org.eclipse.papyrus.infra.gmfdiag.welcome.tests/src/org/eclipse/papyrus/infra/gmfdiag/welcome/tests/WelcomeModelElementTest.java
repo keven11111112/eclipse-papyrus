@@ -34,11 +34,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.editor.welcome.tests.AbstractWelcomePageTest;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.NotationObservable;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.WelcomeModelElement;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.WelcomeModelElementFactory;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
@@ -202,9 +202,10 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 			@Override
 			protected void doExecute() {
 				// Be resilient against misconfigured diagrams: look for the class diagram, specifically
-				ViewPrototype prototype = PolicyChecker.getCurrent().getPrototypesFor(editor.getModel()).stream()
-						.filter(proto -> proto.getConfiguration() instanceof PapyrusDiagram)
-						.filter(proto -> EcoreUtil.getURI(proto.getConfiguration()).toString().contains("org.eclipse.papyrus.uml.diagram.clazz"))
+				Collection<ViewPrototype> prototypes = PolicyChecker.getFor(editor.getModelSet()).getPrototypesFor(editor.getModel());
+				ViewPrototype prototype = prototypes.stream()
+						.filter(proto -> proto.getRepresentationKind() instanceof PapyrusDiagram)
+						.filter(proto -> proto.getRepresentationKind().getName().equals("Class Diagram"))
 						.findAny().get();
 				prototype.instantiateOn(editor.getModel(), "CreatedInTest");
 			}

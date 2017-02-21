@@ -69,7 +69,7 @@ public class GateCreateCommand extends EditElementCommand {
 	public boolean canExecute() {
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getGate());
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getGate());
 		return data.isPermitted();
 
 
@@ -84,7 +84,7 @@ public class GateCreateCommand extends EditElementCommand {
 		Gate newElement = UMLFactory.eINSTANCE.createGate();
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
 			if (data.isPathDefined()) {
 				if (!data.execute(target, newElement)) {

@@ -1,0 +1,237 @@
+/**
+ * Copyright (c) 2017 CEA LIST.
+ * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *  Maged Elaasar - Initial API and implementation
+ *  
+ * 
+ */
+package org.eclipse.papyrus.infra.architecture;
+
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedADElement;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+
+/**
+ * A merger for architecture domains read from extensions or preferences or contributed
+ * dynamically (programmatically)
+ * 
+ * It produces a collection of {@link org.eclipse.papyrus.infra.core.architecture.
+ * merged.MergedDomain}s by merging a collection of {@link org.eclipse.papyrus.infra.
+ * core.architecture.ArchitectureDomain}s.
+ * 
+ * @since 1.0
+ */
+public class ArchitectureDomainMerger implements Cloneable {
+
+	/**
+	 * A resource set used to load architecture models
+	 */
+	private ResourceSet resourceSet;
+		
+	/**
+	 * a collection of architecture models coming from extensions
+	 */
+	private Collection<URI> extensionModels;
+	
+	/**
+	 * a collection of architecture models coming from preferences
+	 */
+	private Collection<URI> preferenceModels;
+
+	/**
+	 * a collection of architecture domains contributed dynamically (programmatically)
+	 */
+	private Collection<ArchitectureDomain> dynamicDomains;
+
+	/**
+	 * A collection of merged domains
+	 */
+	private Map<String, MergedArchitectureDomain> mergedDomains;
+
+	/**
+	 * a cached mapping from id to ADElement
+	 */
+	private Map<String, MergedADElement> idCache;
+	
+	/**
+	 * Constructs a new instance of the class
+	 */
+	ArchitectureDomainMerger() {
+	}
+
+	/**
+	 * Sets the collection of architecture models URIs read from extensions
+	 * 
+	 * @param models a collection of architecture model URIs
+	 */
+	public void setExtensionModels(Collection<URI> models) {
+		this.extensionModels = models;
+		reset();
+	}
+	
+	/**
+	 * Sets the collection of architecture model URIs read from preferences
+	 * 
+	 * @param models a collection of architecture model URIS
+	 */
+	public void setPreferenceModels(Collection<URI> models) {
+		this.preferenceModels = models;
+		reset();
+	}
+
+	/**
+	 * Sets the collection of architecture domains contributed dynamically
+	 * 
+	 * @param domains a collection of architecture domains
+	 */
+	public void setDynamicDomains(Collection<ArchitectureDomain> domains) {
+		this.dynamicDomains = domains;
+		reset();
+	}
+
+	/**
+	 * Gets the collection of merged architecture domains
+	 * 
+	 * @return the collection of merged architecture domains
+	 */
+	public Collection<MergedArchitectureDomain> getDomains() {
+		if (mergedDomains == null)
+			init();
+		return mergedDomains.values();
+	}
+	
+	/**
+	 * Gets an architecture context given its id
+	 * 
+	 * @param id an id for an architecture context
+	 * @return an architecture context
+	 */
+	public MergedArchitectureContext getArchitectureContextById(String id) {
+		if (mergedDomains == null)
+			init();
+		MergedADElement found = idCache.get(id);
+		return (found instanceof MergedArchitectureContext)? (MergedArchitectureContext)found : null;
+	}
+
+	/**
+	 * Gets an architecture viewpoint given its id
+	 * 
+	 * @param id an id for an architecture viewpoint
+	 * @return an architecture viewpoint
+	 */
+	public MergedArchitectureViewpoint getArchitectureViewpointById(String id) {
+		if (mergedDomains == null)
+			init();
+		MergedADElement found = idCache.get(id);
+		return (found instanceof MergedArchitectureViewpoint)? (MergedArchitectureViewpoint)found : null;
+	}
+	
+	@Override
+	public ArchitectureDomainMerger clone() {
+		ArchitectureDomainMerger clone = new ArchitectureDomainMerger();
+		clone.setExtensionModels(extensionModels);
+		clone.setPreferenceModels(preferenceModels);
+		return clone;
+	}
+
+	/*
+	 * Resets the merger's state 
+	 */
+	private void reset() {
+		resourceSet = null;
+		mergedDomains = null;
+		idCache = null;
+	}
+	
+	/**
+	 * Initializes this instance of the merger
+	 */
+	void init() {
+		resourceSet = new ResourceSetImpl();
+		mergedDomains = new HashMap<String, MergedArchitectureDomain>();
+		if (extensionModels != null) {
+			for (URI model : extensionModels) {
+				ArchitectureDomain domain = loadDomain(resourceSet.createResource(model));
+				if (domain != null)
+					merge(domain);
+			}
+		}
+		if (preferenceModels != null) {
+			for (URI model : preferenceModels) {
+				ArchitectureDomain domain = loadDomain(resourceSet.createResource(model));
+				if (domain != null)
+					merge(domain);
+			}
+		}
+		if (dynamicDomains != null) {
+			for (ArchitectureDomain domain : dynamicDomains) {
+				if (domain != null)
+					merge(domain);
+			}
+		}
+		buildCache();
+	}
+
+	/*
+	 * Read an architecture domain from the given architecture model resource
+	 */
+	private ArchitectureDomain loadDomain(Resource resource) {
+		try {
+			resource.load(null);
+		} catch (IOException e) {
+			// Don't log the error yet; we're trying several options
+			return null;
+		}
+		EObject content = resource.getContents().get(0);
+		if (content instanceof ArchitectureDomain) {
+			return (ArchitectureDomain) content;
+		} else
+			Activator.log.warn("file "+resource.getURI()+ " is not an architecture model");
+		return null;
+	}
+	
+	/*
+	 * Merges the given architecture domain with the others
+	 */
+	private void merge(ArchitectureDomain domain) {
+		MergedArchitectureDomain merged = mergedDomains.get(domain.getName());
+		if (merged == null) {
+			mergedDomains.put(domain.getName(), merged = new MergedArchitectureDomain());
+		}
+		merged.merge(domain);
+	}
+
+	/*
+	 * builds a id to element cache for faster lookup
+	 */
+	private void buildCache() {
+		idCache = new HashMap<String, MergedADElement>();
+		for (MergedArchitectureDomain domain : mergedDomains.values()) {
+			for (MergedArchitectureContext context : domain.getContexts()) {
+				idCache.put(context.getId(), context);
+				for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
+					idCache.put(viewpoint.getId(), viewpoint);
+				}
+			}
+		}
+	}
+	
+}

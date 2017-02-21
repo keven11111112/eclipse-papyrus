@@ -13,8 +13,8 @@ package org.eclipse.papyrus.soaml.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.soaml.diagram.common.commands.CreateSoamlModelCommand;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.NewPapyrusProjectWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
@@ -47,7 +47,7 @@ public class NewSoamlProjectWizard extends NewPapyrusProjectWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
+	protected SelectArchitectureContextPage createSelectArchitectureContextPage() {
 		return null;
 	}
 
@@ -63,7 +63,7 @@ public class NewSoamlProjectWizard extends NewPapyrusProjectWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected String[] getDiagramCategoryIds() {
+	protected String[] getSelectedContexts() {
 		return new String[]{ CreateSoamlModelCommand.COMMAND_ID };
 	}
 

@@ -28,7 +28,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.common.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.canonical.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.emf.readonly.tests;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.viewpoints.configuration.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.editor.welcome.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.welcome.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.properties.ui.tests;bundle-version="1.2.1", 
@@ -39,4 +38,3 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.menu.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.css.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.internationalization.tests;bundle-version="1.0.0"
- 

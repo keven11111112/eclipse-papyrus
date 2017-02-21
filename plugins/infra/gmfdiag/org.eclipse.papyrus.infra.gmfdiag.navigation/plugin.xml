@@ -52,6 +52,10 @@
       <menuContribution
             allPopups="false"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?before=newelements">
+	    <separator
+	          name="navigat"
+	          visible="true">
+	    </separator>
          <menu
                id="org.eclipse.papyrus.infra.services.navigation.ui.popup.navigate"
                label="Navigate"

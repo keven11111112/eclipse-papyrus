@@ -33,6 +33,9 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescription;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -412,12 +415,16 @@ public class SashModel extends EMFLogicalModel implements IModel {
 
 	@Override
 	protected boolean isRootElement(EObject object) {
-		return super.isRootElement(object) && (object instanceof SashWindowsMngr);
+		return super.isRootElement(object) && 
+				(object instanceof SashWindowsMngr || 
+				 object instanceof ArchitectureDescription ||
+				 object instanceof ArchitectureDescriptionPreferences);
 	}
 
 	@Override
 	protected boolean isSupportedRoot(EObject object) {
-		return DiPackage.Literals.SASH_WINDOWS_MNGR.isInstance(object);
+		return DiPackage.Literals.SASH_WINDOWS_MNGR.isInstance(object) ||
+			  ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION.isInstance(object);
 	}
 
 	//

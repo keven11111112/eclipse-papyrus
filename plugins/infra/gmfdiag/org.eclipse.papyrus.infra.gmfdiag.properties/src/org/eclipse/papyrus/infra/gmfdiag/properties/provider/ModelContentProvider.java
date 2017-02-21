@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.properties.provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ui.ECoreModelContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.utils.EcoreModelContentProvider;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
  *
  * @author Laurent Wouters
  */
-public abstract class ModelContentProvider extends ECoreModelContentProvider implements IStaticContentProvider, IHierarchicContentProvider {
+public abstract class ModelContentProvider extends EcoreModelContentProvider implements IStaticContentProvider, IHierarchicContentProvider {
 
 	/**
 	 * The diagram

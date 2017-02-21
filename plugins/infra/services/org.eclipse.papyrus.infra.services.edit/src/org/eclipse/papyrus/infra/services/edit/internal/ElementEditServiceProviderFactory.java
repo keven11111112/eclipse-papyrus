@@ -14,13 +14,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.internal;
 
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 
 /** Papyrus factory that provides ElementEditServiceProvider */
 public class ElementEditServiceProviderFactory implements IServiceFactory {
+
+	private ModelSet modelSet;
 
 	/** Default constructor */
 	public ElementEditServiceProviderFactory() {
@@ -36,6 +41,7 @@ public class ElementEditServiceProviderFactory implements IServiceFactory {
 	 */
 	@Override
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
+		this.modelSet = servicesRegistry.getService(ModelSet.class);
 	}
 
 	/**
@@ -67,7 +73,8 @@ public class ElementEditServiceProviderFactory implements IServiceFactory {
 	 */
 	@Override
 	public Object createServiceInstance() throws ServiceException {
-		return ElementEditServiceProvider.getInstance();
+		IClientContext context = TypeContext.getContext(modelSet);
+		return new ElementEditServiceProvider(context);
 	}
 
 }

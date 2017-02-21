@@ -283,11 +283,4 @@
             type="PapyrusUMLGenericTreeTable">
       </configuration>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="configs/genericTreeTable.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
 </plugin>

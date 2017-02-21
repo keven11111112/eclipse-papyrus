@@ -23,8 +23,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class CreateProfileModelCommand extends ModelCreationCommandBase {
 
-	public static final String COMMAND_ID = "profile";
-
 	/**
 	 * @see org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase#createRootElement()
 	 *

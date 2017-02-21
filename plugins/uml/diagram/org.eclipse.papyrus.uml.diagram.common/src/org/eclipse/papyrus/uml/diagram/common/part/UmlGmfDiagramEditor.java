@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.common.part;
 
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -25,15 +24,12 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.ReconcileHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationPackage;
 import org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationUtils;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.contexts.IContextService;
 
 /**
@@ -84,14 +80,6 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		// account.
 		ISaveAndDirtyService saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		saveAndDirtyService.registerIsaveablePart(this);
-	}
-
-	@Override
-	public void doSetInput(IEditorInput input, boolean releaseEditorContents) throws CoreException {
-		super.doSetInput(input, releaseEditorContents);
-		if (getDiagram() != null && !DiagramVersioningUtils.isOfCurrentPapyrusVersion(getDiagram())) {
-			new ReconcileHelper(getEditingDomain()).reconcileDiagram(getDiagram());
-		}
 	}
 
 	/**

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnAxisIdentifierContentProvider;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnContainmentFeatureContentProvider;
@@ -84,7 +85,6 @@ import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.graphics.Image;
@@ -629,19 +629,19 @@ public class NatTableModelElement extends EMFModelElement {
 
 				@Override
 				public Image getImage(Object element) {
-					if (element == null) {
+					if (!(element instanceof PapyrusRepresentationKind)) {
 						return null;
 					}
-					ViewPrototype proto = ViewPrototype.get((PapyrusView) element);
+					ViewPrototype proto = ViewPrototype.get((PapyrusRepresentationKind) element);
 					return proto.getIcon();
 				}
 
 				@Override
 				public String getText(Object element) {
-					if (element == null) {
+					if (!(element instanceof PapyrusRepresentationKind)) {
 						return null;
 					}
-					ViewPrototype proto = ViewPrototype.get((PapyrusView) element);
+					ViewPrototype proto = ViewPrototype.get((PapyrusRepresentationKind) element);
 					return proto.getQualifiedName();
 				}
 			};

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -37,6 +38,8 @@ import org.eclipse.papyrus.infra.internationalization.common.editor.IInternation
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationUtils;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
+import org.eclipse.papyrus.infra.nattable.common.helper.TableReconcileHelper;
+import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -174,6 +177,18 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		setPartName(LabelInternationalization.getInstance().getTableLabel(this.tableManager.getTable()));
 	}
 
+	@Override
+    protected void setInput(IEditorInput input) {
+		super.setInput(input);
+		if (getTable() != null && !TableVersioningUtils.isOfCurrentPapyrusVersion(getTable())) {
+			try {
+				new TableReconcileHelper(getEditingDomain()).reconcileTable(getTable());
+			} catch (CoreException e) {
+				Activator.log.error(e);
+			}
+		}
+    }
+    
 	/**
 	 *
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#getEditingDomain()

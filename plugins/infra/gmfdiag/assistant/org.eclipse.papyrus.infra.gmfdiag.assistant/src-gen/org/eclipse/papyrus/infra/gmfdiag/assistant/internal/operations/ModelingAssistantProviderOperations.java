@@ -478,7 +478,7 @@ public class ModelingAssistantProviderOperations
 		}
 
 		if (result == null) {
-			result = ElementTypeUtils.getEditContext();
+			result = ElementTypeUtils.getDefaultClientContext();
 
 			if (result == null) {
 				result = ClientContextManager.getDefaultClientContext();

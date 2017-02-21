@@ -6,7 +6,8 @@ Require-Bundle: org.eclipse.papyrus.infra.properties.ui;bundle-version="[2.0.0,3
  org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.canonical;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.papyrus.infra.internationalization;bundle-version="[1.0.0,2.0.0)"
+ org.eclipse.papyrus.infra.internationalization;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="1.0.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy;exclude:="org.eclipse.papyrus.infra.gmfdiag.properties.constraint"
 Bundle-Version: 3.0.0.qualifier

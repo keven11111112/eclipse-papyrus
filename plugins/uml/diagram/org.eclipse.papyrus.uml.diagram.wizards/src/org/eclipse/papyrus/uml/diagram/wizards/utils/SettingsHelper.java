@@ -12,36 +12,13 @@
 
 package org.eclipse.papyrus.uml.diagram.wizards.utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringTokenizer;
-
 import org.eclipse.jface.dialogs.IDialogSettings;
 
 
 public class SettingsHelper {
 
-	/** The Constant DIAGRAM_KIND_SEPARATOR. */
-	private static final String DIAGRAM_KIND_SEPARATOR = ","; //$NON-NLS-1$
-
-	/** The Constant TEMPLATE_SEPARATOR. */
-	private static final String TEMPLATE_SEPARATOR = ","; //$NON-NLS-1$
-
-	/** The Constant SETTINGS_KEY_REMEMBER_CURRENT_SELECTION. */
-	private static final String SETTINGS_KEY_REMEMBER_CURRENT_SELECTION = "RememberCurrentSelection"; //$NON-NLS-1$
-
-	/** The Constant SETTINGS_KEY_DIAGRAM_KINDS. */
-	private static final String SETTINGS_KEY_DIAGRAM_KINDS = "DiagramKindsFor_"; //$NON-NLS-1$
-
-	/** The Constant SETTINGS_KEY_DIAGRAM_TEMPLATES. */
-	private static final String SETTINGS_KEY_DIAGRAM_TEMPLATES = "DiagramTemplatesFor_"; //$NON-NLS-1$
-
-	/** The Constant LAST_SELECTED_CATEGORY. */
-	private static final String DIAGRAM_CATEGORIES = "diagramCategory"; //$NON-NLS-1$
-
-	/** The Constant used to access the last selected category */
-	private static final String SETTINGS_KEY_DIAGRAM_CATEGORY = "lastSelectedCategory"; //$NON-NLS-1$
+	/** The Constant ARCHITECTURE_CONTEXTS. */
+	private static final String ARCHITECTURE_CONTEXTS = "architectureContexts"; //$NON-NLS-1$
 
 	/** The my settings. */
 	private final IDialogSettings mySettings;
@@ -57,160 +34,23 @@ public class SettingsHelper {
 	}
 
 	/**
-	 * Gets the default diagram category.
+	 * Gets the saved architecture contexts.
 	 *
-	 * @return the default diagram category
+	 * @return the saved architecture contexts
 	 */
-	public String[] getDefaultDiagramCategories() {
-		return mySettings.getArray(DIAGRAM_CATEGORIES);
+	public String[] getArchitectureContexts() {
+		String[] contexts = mySettings.getArray(ARCHITECTURE_CONTEXTS);
+		return (contexts != null) ? contexts : new String[0];
 	}
 
 	/**
-	 * Save default diagram category.
+	 * Save the given architecture contexts.
 	 *
-	 * @param categories
-	 *            the categories
+	 * @param contexts
+	 *            the architecture contexts
 	 */
-	public void saveDefaultDiagramCategory(String[] categories) {
-		mySettings.put(DIAGRAM_CATEGORIES, categories);
-	}
-
-	/**
-	 * Gets the default diagram kinds.
-	 *
-	 * @param category
-	 *            the category
-	 * @return the default diagram kinds
-	 */
-	public List<String> getDefaultDiagramKinds(String category) {
-		String csl = mySettings.get(getKeyForDiagramKind(category));
-		if (csl == null || csl.equals("")) { //$NON-NLS-1$
-			return Collections.emptyList();
-		}
-		List<String> result = new ArrayList<String>();
-		StringTokenizer tokenizer = new StringTokenizer(csl, DIAGRAM_KIND_SEPARATOR);
-		while (tokenizer.hasMoreTokens()) {
-			result.add(tokenizer.nextToken().trim());
-		}
-		return result;
-	}
-
-	/**
-	 * Save default diagram kinds.
-	 *
-	 * @param category
-	 *            the category
-	 * @param kinds
-	 *            the kinds
-	 */
-	public void saveDefaultDiagramKinds(String category, List<String> kinds) {
-		String value = ""; //$NON-NLS-1$
-		for (String kind : kinds) {
-			value += kind;
-			value += DIAGRAM_KIND_SEPARATOR;
-		}
-		mySettings.put(getKeyForDiagramKind(category), value);
-	}
-
-	/**
-	 * Gets the default templates.
-	 *
-	 * @param category
-	 *            the category
-	 * @return the default templates
-	 */
-	public List<String> getDefaultTemplates(String category) {
-		String csl = mySettings.get(getKeyForTemplate(category));
-		if (csl == null || csl.equals("")) { //$NON-NLS-1$
-			return Collections.emptyList();
-		}
-		List<String> result = new ArrayList<String>();
-		StringTokenizer tokenizer = new StringTokenizer(csl, TEMPLATE_SEPARATOR);
-		while (tokenizer.hasMoreTokens()) {
-			result.add(tokenizer.nextToken().trim());
-		}
-		return result;
-	}
-
-	/**
-	 * Save default templates.
-	 *
-	 * @param category
-	 *            the category
-	 * @param templates
-	 *            the templates
-	 */
-	public void saveDefaultTemplates(String category, List<String> templates) {
-		String value = ""; //$NON-NLS-1$
-		for (String template : templates) {
-			value += template;
-			value += TEMPLATE_SEPARATOR;
-		}
-		mySettings.put(getKeyForTemplate(category), value);
-	}
-
-	/**
-	 * Save remember current selection.
-	 *
-	 * @param remember
-	 *            the remember
-	 */
-	public void saveRememberCurrentSelection(boolean remember) {
-		mySettings.put(SETTINGS_KEY_REMEMBER_CURRENT_SELECTION, remember);
-	}
-
-	/**
-	 * Remember current selection.
-	 *
-	 * @param settings
-	 *            the settings
-	 * @return true, if successful
-	 */
-	public boolean rememberCurrentSelection(IDialogSettings settings) {
-		return mySettings.getBoolean(SETTINGS_KEY_REMEMBER_CURRENT_SELECTION);
-	}
-
-	/**
-	 * Puts the most recently selected category tag in the settings to retrieve it on the next execution
-	 * 
-	 * @param category
-	 *            The language tag
-	 */
-	public void setCurrentSelection(String category) {
-		mySettings.put(SETTINGS_KEY_DIAGRAM_CATEGORY, category);
-	}
-
-	/**
-	 * Retrieves the most recently selected category tag from the settings
-	 * 
-	 * @return
-	 * 		The category tag
-	 */
-	public String getPreviousSelection() {
-		return mySettings.get(SETTINGS_KEY_DIAGRAM_CATEGORY);
-	}
-
-
-	/**
-	 * Gets the key for diagram kind.
-	 *
-	 * @param category
-	 *            the category
-	 * @return the key for diagram kind
-	 */
-	private String getKeyForDiagramKind(String category) {
-		return SETTINGS_KEY_DIAGRAM_KINDS + category;
-	}
-
-	/**
-	 * Gets the key for template.
-	 *
-	 * @param category
-	 *            the category
-	 * @return the key for template
-	 */
-	private String getKeyForTemplate(String category) {
-		return SETTINGS_KEY_DIAGRAM_TEMPLATES + category;
+	public void saveArchitectureContexts(String[] contexts) {
+		mySettings.put(ARCHITECTURE_CONTEXTS, contexts);
 	}
 
 }

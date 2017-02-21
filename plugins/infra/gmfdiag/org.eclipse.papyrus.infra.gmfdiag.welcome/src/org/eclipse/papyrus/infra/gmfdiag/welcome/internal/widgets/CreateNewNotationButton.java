@@ -126,7 +126,7 @@ public class CreateNewNotationButton extends Composite {
 					EObject object = EMFHelper.getEObject(element);
 					if (object != null) {
 						// build a list of all the available prototypes
-						for (final ViewPrototype proto : PolicyChecker.getCurrent().getPrototypesFor(object)) {
+						for (final ViewPrototype proto : PolicyChecker.getFor(object).getPrototypesFor(object)) {
 							availablePrototypes.add(proto);
 						}
 					}

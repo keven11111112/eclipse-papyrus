@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
@@ -66,8 +67,10 @@ public class PackageDiagramEditorFactory extends GmfEditorFactory {
 			@Override
 			public void execute() {
 				ViewPrototype proto = DiagramUtils.getPrototype(diagram);
-				DiagramUtils.setPrototype(diagram, proto);
-				diagram.setType("PapyrusUMLClassDiagram");
+				if (proto instanceof DiagramPrototype) {
+					DiagramUtils.setPrototype(diagram, (DiagramPrototype) proto);
+					diagram.setType("PapyrusUMLClassDiagram");
+				}
 			}
 
 			@Override

@@ -634,7 +634,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider extends AbstractPaste
 	protected Object createElementInAttachedMode(final ExtendedCompoundCommand compoundCommand, final Map<Integer, EObject> contextMap, final int depth, final String valueAsString, final PasteEObjectConfiguration pasteConfToUse, final IProgressMonitor monitor,
 			final IAdaptable info)
 			throws ExecutionException {
-		Object createdElement = null;
+		EObject createdElement = null;
 
 		// get the element type to use to create the element
 		final IElementType typeToCreate = ElementTypeRegistry.getInstance().getType(pasteConfToUse.getPastedElementId());
@@ -660,29 +660,25 @@ public class PasteEObjectTreeAxisInNattableCommandProvider extends AbstractPaste
 			final CommandResult res = commandCreation.getCommandResult();
 
 			// 3 we update the map
-			createdElement = res.getReturnValue();
-			contextMap.put(Integer.valueOf(depth), (EObject) createdElement);
+			createdElement = (EObject) res.getReturnValue();
+			contextMap.put(Integer.valueOf(depth), createdElement);
 
 			// 4. we use the label to do a set name command on the created element
-			if (createdElement instanceof EObject) {
-				// TODO : this past must be specific for EMF AND for UML
-				final EObject eobject = (EObject) createdElement;
-				// get the feature used as ID for the element
-				final EStructuralFeature nameFeature = eobject.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
-				if (null != nameFeature) {
-					final SetRequest setNameRequest = new SetRequest(contextEditingDomain, eobject, nameFeature, valueAsString);
-					final IElementEditService createdElementCommandProvider = ElementEditServiceUtils.getCommandProvider(createdElement);
-					if (null != createdElementCommandProvider) {
-						final ICommand setName = createdElementCommandProvider.getEditCommand(setNameRequest);
-						if (setName != null && setName.canExecute()) {
+			// get the feature used as ID for the element
+			final EStructuralFeature nameFeature = createdElement.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
+			if (null != nameFeature) {
+				final SetRequest setNameRequest = new SetRequest(contextEditingDomain, createdElement, nameFeature, valueAsString);
+				final IElementEditService createdElementCommandProvider = ElementEditServiceUtils.getCommandProvider(createdElement);
+				if (null != createdElementCommandProvider) {
+					final ICommand setName = createdElementCommandProvider.getEditCommand(setNameRequest);
+					if (setName != null && setName.canExecute()) {
 
-							// We create the set command
-							final Command emfSetNameCommandCreation = GMFtoEMFCommandWrapper.wrap(setName);
-							emfSetNameCommandCreation.execute();
+						// We create the set command
+						final Command emfSetNameCommandCreation = GMFtoEMFCommandWrapper.wrap(setName);
+						emfSetNameCommandCreation.execute();
 
-							// Add the set name command to the compound command
-							compoundCommand.append(emfSetNameCommandCreation);
-						}
+						// Add the set name command to the compound command
+						compoundCommand.append(emfSetNameCommandCreation);
 					}
 				}
 			}

@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
@@ -48,7 +49,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.ReconcileHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
@@ -62,6 +65,7 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
@@ -350,8 +354,14 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		}
 	}
 
+	@Override
+	public void doSetInput(IEditorInput input, boolean releaseEditorContents) throws CoreException {
+		super.doSetInput(input, releaseEditorContents);
+		if (getDiagram() != null && !DiagramVersioningUtils.isOfCurrentPapyrusVersion(getDiagram())) {
+			new ReconcileHelper(getEditingDomain()).reconcileDiagram(getDiagram());
+		}
+	}
 	
-
 	protected class PalettePageWrapper implements PalettePage, IAdaptable {
 
 		private final CustomPalettePage delegate;

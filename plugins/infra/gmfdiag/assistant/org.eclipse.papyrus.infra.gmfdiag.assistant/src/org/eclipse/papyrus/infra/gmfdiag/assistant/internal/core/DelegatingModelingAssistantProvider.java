@@ -241,7 +241,7 @@ public class DelegatingModelingAssistantProvider implements IModelingAssistantPr
 
 		if (diagram != null) {
 			for (Iterator<? extends IElementType> iter = elementTypes.iterator(); iter.hasNext();) {
-				if (!PolicyChecker.getCurrent().isInModelingAssistants(diagram, iter.next())) {
+				if (!PolicyChecker.getFor(diagram).isInModelingAssistants(diagram, iter.next())) {
 					iter.remove();
 				}
 			}

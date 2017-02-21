@@ -70,7 +70,7 @@ public class ConstraintCreateCommandCN extends EditElementCommand {
 	public boolean canExecute() {
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getConstraint());
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getConstraint());
 		return data.isPermitted();
 
 
@@ -85,7 +85,7 @@ public class ConstraintCreateCommandCN extends EditElementCommand {
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
 			if (data.isPathDefined()) {
 				if (!data.execute(target, newElement)) {

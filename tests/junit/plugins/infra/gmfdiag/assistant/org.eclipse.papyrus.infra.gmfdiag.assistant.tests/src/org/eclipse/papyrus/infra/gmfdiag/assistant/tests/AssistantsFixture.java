@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.core.IModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.DefaultModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.ModelingAssistantModelRegistry;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
@@ -65,7 +65,7 @@ public class AssistantsFixture extends TestWatcher {
 			ElementTypeSetConfiguration elementTypes = UMLUtil.load(resourceSet, elementTypesModelURI, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
 
 			try {
-				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) elementTypes);
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getDefaultContext().getId(), (ElementTypeSetConfiguration) elementTypes);
 			} catch (ServiceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -74,7 +74,7 @@ public class AssistantsFixture extends TestWatcher {
 			elementTypesID = JUnitUtils.getTestClass(description).getName();
 
 			try {
-				String contextId = TypeContext.getContext().getId();
+				String contextId = TypeContext.getDefaultContext().getId();
 
 				if (!ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().containsKey(contextId)) {
 					ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().put(contextId, new HashMap<String, ElementTypeSetConfiguration>());
@@ -109,7 +109,7 @@ public class AssistantsFixture extends TestWatcher {
 
 		if (elementTypesID != null) {
 			try {
-				String contextId = TypeContext.getContext().getId();
+				String contextId = TypeContext.getDefaultContext().getId();
 
 				ElementTypeSetConfigurationRegistry.getInstance().unload(contextId, elementTypesID);
 			} catch (ServiceException e) {

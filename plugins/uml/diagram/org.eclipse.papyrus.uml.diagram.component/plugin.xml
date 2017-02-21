@@ -15,14 +15,6 @@
 -->
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="model/ComponentDiagram.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-
-<extension
       point="org.eclipse.ui.commands">
    <command
          categoryId="org.eclipse.papyrus.editor.category"
@@ -965,21 +957,21 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="PapyrusUMLComponentDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconciler"
-         source="undefined"
-         target="1.1.0">
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconciler_1_1_0"
+         source="1.0.0"
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="PapyrusUMLComponentDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilerForCompartment"
-         source="undefined"
-         target="1.2.0">
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilerForCompartment_1_2_0"
+         source="1.1.0"
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="PapyrusUMLComponentDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconciler_1_2_0"
          source="1.1.0"
-         target="1.2.0">
+         target="1.3.0">
    </diagramReconciler>
 </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">

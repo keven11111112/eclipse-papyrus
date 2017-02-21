@@ -214,16 +214,6 @@
          realization="org.eclipse.papyrus.uml.diagram.common.providers.DefaultPasteCommandProvider">
    </PasteCommandProvider>
 </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
-      <diagramCategory
-            class="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand"
-            description="Create Unified Modeling Language diagrams"
-            icon="icons/category_uml.gif"
-            id="uml"
-            label="UML">
-      </diagramCategory>      
-   </extension>
 
 <!-- Property tester to check the nature (UML Model or Profile) of currently opened project -->  
 <extension
@@ -610,9 +600,9 @@
        point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
     <diagramReconciler
           diagramType="AllDiagrams"
-          reconcilerClass="org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler"
-          source="Undefined"
-          target="1.2.0">
+          reconcilerClass="org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler_1_2_0"
+          source="1.1.0"
+          target="1.3.0">
     </diagramReconciler>
  </extension>
 </plugin>

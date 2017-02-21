@@ -131,15 +131,13 @@ public class SashLayoutCommandFactory {
 	void moveContents(Resource fromResource, Resource toResource) {
 		// Safe copy to allow concurrent modifications
 		for (EObject root : new ArrayList<>(fromResource.getContents())) {
-			EObject toReplace = (EObject) EcoreUtil.getObjectByType(toResource.getContents(), root.eClass());
-			if (toReplace != null) {
-				EcoreUtil.replace(toReplace, root);
-			} else {
-				if (root instanceof SashWindowsMngr) {
+			if (root instanceof SashWindowsMngr) {
+				EObject toReplace = (EObject) EcoreUtil.getObjectByType(toResource.getContents(), root.eClass());
+				if (toReplace != null) {
+					EcoreUtil.replace(toReplace, root);
+				} else {
 					// This one is expected always to be first
 					toResource.getContents().add(0, root);
-				} else {
-					toResource.getContents().add(root);
 				}
 			}
 		}

@@ -17,68 +17,38 @@ package org.eclipse.papyrus.infra.viewpoints.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.core.pluginexplorer.Plugin;
-import org.eclipse.papyrus.infra.core.pluginexplorer.PluginEntry;
-import org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ChildRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PaletteRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusConfiguration;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusViewpoint;
-import org.eclipse.papyrus.infra.viewpoints.iso42010.ArchitectureViewpoint;
-import org.eclipse.papyrus.infra.viewpoints.iso42010.ModelKind;
-import org.eclipse.papyrus.infra.viewpoints.iso42010.Stakeholder;
-import org.eclipse.papyrus.infra.viewpoints.policy.listener.PolicyCheckerNotifier;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.architecture.representation.ModelAutoCreate;
+import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
+import org.eclipse.papyrus.infra.architecture.representation.OwningRule;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.gmfdiag.representation.AssistantRule;
+import org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PaletteRule;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 
 /**
- * The <code>PolicyChecker</code> enforces the viewpoints configuration as a policy in the user interface
+ * The <code>PolicyChecker</code> enforces the viewpoints description as a policy in the user interface
  *
  * @author Laurent Wouters
  */
 public class PolicyChecker {
-	/**
-	 * ID of the extension point defining the configurations
-	 */
-	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.viewpoints.policy.custom";
-	/**
-	 * The cache of loaded configurations
-	 */
-	private static final Map<String, PapyrusConfiguration> CONFIGURATIONS_CACHE = new HashMap<String, PapyrusConfiguration>();
-	/**
-	 * The resource set for our configuration cache. Use a single resource set for loading configurations so that configurations
-	 * for dynamic profiles don't cause the UML metamodel and all of its dependencies to be loaded repeatedly
-	 */
-	private static final ResourceSet CONFIGURATIONS_RESOURCE_SET = new ResourceSetImpl();
-	/**
-	 * The default built-in configuration
-	 */
-	private static final PapyrusConfiguration CONFIG_BUILTIN_DEFAULT = loadDefaultConfiguration("builtin/default.configuration");
 	/**
 	 * Default result when the current policy cannot determine whether an element can be added to a view
 	 */
@@ -87,8 +57,6 @@ public class PolicyChecker {
 	 * Default result when the current policy cannot determine whether a palette item should be exposed
 	 */
 	private static final boolean DEFAULT_POLICY_UNKNWON_PALETTE = true;
-
-
 	/**
 	 * Policy check result allowing an action
 	 */
@@ -102,227 +70,39 @@ public class PolicyChecker {
 	 */
 	private static final int RESULT_DENY = -1;
 
-	/**
-	 * Loads a built-in configuration
-	 *
-	 * @param name
-	 *            The name of the configuration
-	 * @return The loaded configuration
-	 */
-	private static PapyrusConfiguration loadDefaultConfiguration(String name) {
-		Plugin me = new Plugin(Activator.getDefault().getBundle());
-		PluginEntry entry = me.getEntry(name);
-		return loadConfigurationFrom(entry.getLogicalPath());
+	public static PolicyChecker getFor(EObject object) {
+		if (object.eResource() != null)
+			return getFor(object.eResource());
+		else
+			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
+	}
+	
+	public static PolicyChecker getFor(Resource resource) {
+		if (resource.getResourceSet() != null)
+			return getFor(resource.getResourceSet());
+		else
+			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
 	}
 
-	/**
-	 * Loads a viewpoints configuration from the given location.
-	 *
-	 * @param location
-	 *            The location from where to load the configuration
-	 * @return The loaded configuration, or <code>null</code> if the operation failed
-	 */
-	public static PapyrusConfiguration loadConfigurationFrom(String location) {
-		if (location == null) {
-			return null;
-		}
-		if (location.isEmpty()) {
-			return null;
-		}
-		URI uri = null;
-		if (location.startsWith("platform:/")) {
-			uri = URI.createURI(location);
-		} else {
-			uri = URI.createFileURI(location);
-		}
-		location = uri.toString();
-		PapyrusConfiguration config = CONFIGURATIONS_CACHE.get(location);
-		if (config != null) {
-			return config;
-		}
-		Resource res = CONFIGURATIONS_RESOURCE_SET.getResource(uri, true);
-		EList<EObject> contents = res.getContents();
-		if (contents.size() > 0) {
-			config = (PapyrusConfiguration) contents.get(0);
-			CONFIGURATIONS_CACHE.put(location, config);
-		}
-		return config;
+	public static PolicyChecker getFor(ResourceSet resourceSet) {
+		if (resourceSet instanceof ModelSet)
+			return getFor((ModelSet) resourceSet);
+		else
+			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
 	}
 
-	/**
-	 * Gets the default configuration
-	 *
-	 * @return The default configuration
-	 */
-	public static PapyrusConfiguration getDefaultConfiguration() {
-		return CONFIG_BUILTIN_DEFAULT;
+	public static PolicyChecker getFor(ModelSet modelSet) {
+		Collection<MergedArchitectureViewpoint> viewpoints = new ArchitectureDescriptionUtils(modelSet).getArchitectureViewpoints();
+		return getFor(viewpoints);
+	}
+	
+	public static PolicyChecker getFor(MergedArchitectureContext context) {
+		return new PolicyChecker(context.getViewpoints());
 	}
 
-
-	private static Map<String, Collection<String>> CONTRIBUTIONS_DEFINITON = null;
-	private static Map<PapyrusConfiguration, Collection<PapyrusConfiguration>> CONTRIBUTIONS_CACHE = null;
-
-	/**
-	 * Gets the viewpoints contributing to the given viewpoint
-	 *
-	 * @param viewpoint
-	 *            A viewpoint
-	 * @return A collection of the other viewpoints contributing to the given one
-	 */
-	private static Collection<PapyrusViewpoint> getContributionsTo(PapyrusViewpoint viewpoint) {
-		Collection<PapyrusViewpoint> result = new ArrayList<PapyrusViewpoint>();
-		Collection<PapyrusConfiguration> contributions = getContributionsTo((PapyrusConfiguration) viewpoint.eContainer());
-		for (PapyrusConfiguration contrib : contributions) {
-			for (ArchitectureViewpoint vp : contrib.getViewpoints()) {
-				if (vp instanceof PapyrusViewpoint && vp.getName().equals(viewpoint.getName())) {
-					result.add((PapyrusViewpoint) vp);
-				}
-			}
-		}
-		return result;
+	public static PolicyChecker getFor(Collection<MergedArchitectureViewpoint> viewpoints) {
+		return new PolicyChecker(viewpoints);
 	}
-
-	/**
-	 * Gets the configurations contributing to the given configuration
-	 *
-	 * @param config
-	 *            A configuration
-	 * @return A collection of the contributing configurations
-	 */
-	private static Collection<PapyrusConfiguration> getContributionsTo(PapyrusConfiguration config) {
-		if (CONTRIBUTIONS_CACHE == null) {
-			loadContributions();
-		}
-		Collection<PapyrusConfiguration> result = CONTRIBUTIONS_CACHE.get(config);
-		if (result != null) {
-			return result;
-		}
-		result = new ArrayList<PapyrusConfiguration>();
-		CONTRIBUTIONS_CACHE.put(config, result);
-		for (Map.Entry<String, PapyrusConfiguration> entry : CONFIGURATIONS_CACHE.entrySet()) {
-			if (entry.getValue() == config) {
-				Collection<String> contribURIs = CONTRIBUTIONS_DEFINITON.get(entry.getKey());
-				if (contribURIs != null) {
-					for (String uri : contribURIs) {
-						result.add(loadConfigurationFrom(uri));
-					}
-				}
-				return result;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * Loads the viewpoints contribution data from the extension points
-	 */
-	private static void loadContributions() {
-		CONTRIBUTIONS_DEFINITON = new HashMap<String, Collection<String>>();
-		CONTRIBUTIONS_CACHE = new HashMap<PapyrusConfiguration, Collection<PapyrusConfiguration>>();
-
-		IExtensionRegistry registry = Platform.getExtensionRegistry();
-		IExtensionPoint point = registry.getExtensionPoint(EXTENSION_ID);
-		IExtension[] extensions = point.getExtensions();
-
-		for (int i = 0; i != extensions.length; i++) {
-			String plugin = extensions[i].getContributor().getName();
-			IConfigurationElement[] elements = extensions[i].getConfigurationElements();
-			for (int j = 0; j != elements.length; j++) {
-				if (elements[j].getName().equals("contribution")) {
-					String uriOriginal = getCanonicalURI(plugin, elements[j].getAttribute("original"));
-					String uriContrib = getCanonicalURI(plugin, elements[j].getAttribute("file"));
-					Collection<String> list = CONTRIBUTIONS_DEFINITON.get(uriOriginal);
-					if (list == null) {
-						list = new ArrayList<String>();
-						CONTRIBUTIONS_DEFINITON.put(uriOriginal, list);
-					}
-					list.add(uriContrib);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Gets the canonical (absolute) URI from a potentially plugin-relative URI
-	 *
-	 * @param plugin
-	 *            The container plugin
-	 * @param uri
-	 *            The URI to canonicalize
-	 * @return The canonical (absolute) URI
-	 */
-	private static String getCanonicalURI(String plugin, String uri) {
-		if (uri.startsWith(PreferenceConstants.P_CONF_PATH_SCHEME_PLUGIN_VALUE)) {
-			return uri;
-		}
-		return PreferenceConstants.P_CONF_PATH_SCHEME_PLUGIN_VALUE + plugin + "/" + uri;
-	}
-
-
-	/**
-	 * Gets the preference store for the viewpoints-related preferences
-	 *
-	 * @return The preference store for the viewpoints-related preferences
-	 */
-	public static IPreferenceStore getPreferences() {
-		return Activator.getDefault().getPreferenceStore();
-	}
-
-
-	/**
-	 * The current (global) instance
-	 */
-	private static PolicyChecker currentPolicyChecker;
-
-	/**
-	 * Gets the policy checker currently enforcing the viewpoints configuration
-	 *
-	 * @return The current policy checker
-	 */
-	public static synchronized PolicyChecker getCurrent() {
-		if (currentPolicyChecker == null) {
-			currentPolicyChecker = new PolicyChecker();
-			PolicyCheckerNotifier.getInstance().fire(currentPolicyChecker);
-		}
-		return currentPolicyChecker;
-	}
-
-	/**
-	 * Sets the policy checker currently enforcing the viewpoints configuration
-	 *
-	 * @param pc
-	 *            The new policy checker
-	 */
-	public static void setCurrent(PolicyChecker pc) {
-		currentPolicyChecker = pc;
-		PolicyCheckerNotifier.getInstance().fire(pc);
-	}
-
-
-	/**
-	 * The checker's configuration
-	 */
-	private PapyrusConfiguration configuration;
-
-	/**
-	 * Force only one type of view per model element
-	 */
-	private boolean oneViewPerElem;
-
-	/**
-	 * The current stakeholder
-	 */
-	private Stakeholder selectedStakeholder;
-
-	/**
-	 * The current viewpoint
-	 */
-	private PapyrusViewpoint selectedViewpoint;
-
-	/**
-	 * The cache of applicable viewpoints, with all contributing configurations taken into account
-	 */
-	private Collection<PapyrusViewpoint> applicableViewpoints;
 
 	/**
 	 * The current profile helper
@@ -330,151 +110,25 @@ public class PolicyChecker {
 	private IProfileHelper profileHelper;
 
 	/**
-	 * Gets the configuration enforced by this object
-	 *
-	 * @return The configuration
+	 * The architecture viewpoints
 	 */
-	public PapyrusConfiguration getConfiguration() {
-		return configuration;
-	}
-
-	/**
-	 * Gets the stakeholder represented by this object
-	 *
-	 * @return The stakeholder
-	 */
-	public Stakeholder getStakeholder() {
-		return selectedStakeholder;
-	}
+	private Collection<MergedArchitectureViewpoint> viewpoints;
 
 	/**
 	 * Gets the viewpoint enforced by this object
 	 *
 	 * @return The enforced viewpoint
 	 */
-	public PapyrusViewpoint getViewpoint() {
-		return selectedViewpoint;
+	public Collection<MergedArchitectureViewpoint> getViewpoints() {
+		return viewpoints;
 	}
 
 	/**
 	 * Initializes this instance from the current preferences
 	 */
-	private PolicyChecker() {
-		IPreferenceStore store = getPreferences();
-		String prefType = store.getString(PreferenceConstants.P_CONF_TYPE);
-		String prefForce = store.getString(PreferenceConstants.P_FORCE_MULTIPLICITY);
-		String prefViewpoint = store.getString(PreferenceConstants.P_VIEWPOINT);
-
+	private PolicyChecker(Collection<MergedArchitectureViewpoint> viewpoints) {
 		this.profileHelper = ProfileUtils.getProfileHelper();
-		this.oneViewPerElem = "true".equals(prefForce);
-		if (PreferenceConstants.P_CONF_TYPE_DEFAULT_VALUE.equals(prefType)) {
-			this.configuration = CONFIG_BUILTIN_DEFAULT;
-		} else if (PreferenceConstants.P_CONF_TYPE_EXTENSION_VALUE.equals(prefType)) {
-			WeightedConfiguration wc = WeightedConfiguration.getTopConfiguration();
-			this.configuration = (wc != null ? wc.getConfiguration() : null);
-		} else {
-			String scheme = store.getString(PreferenceConstants.P_CONF_PATH_SCHEME);
-			String path = store.getString(PreferenceConstants.P_CONF_PATH);
-			if (PreferenceConstants.P_CONF_PATH_SCHEME_WORKSPACE_VALUE.equals(scheme)) {
-				path = PreferenceConstants.P_CONF_PATH_SCHEME_WORKSPACE_VALUE + path;
-			}
-			this.configuration = loadConfigurationFrom(path);
-		}
-		if (this.configuration == null) {
-			this.configuration = CONFIG_BUILTIN_DEFAULT;
-		}
-
-		if (prefViewpoint != null && !prefViewpoint.isEmpty()) {
-			for (Stakeholder stakeholder : this.configuration.getStakeholders()) {
-				for (ArchitectureViewpoint vp : stakeholder.getViewpoints()) {
-					if (prefViewpoint.equals(vp.getName())) {
-						this.selectedStakeholder = stakeholder;
-						this.selectedViewpoint = (PapyrusViewpoint) vp;
-						buildApplicableViewpoints();
-						return;
-					}
-				}
-			}
-		}
-		this.selectedStakeholder = this.configuration.getDefaultStakeholder();
-		this.selectedViewpoint = (PapyrusViewpoint) this.selectedStakeholder.getViewpoints().get(0);
-		buildApplicableViewpoints();
-	}
-
-	/**
-	 * Initializes this policy checker with the default configuration and viewpoint
-	 *
-	 * @param oneViewPerElem
-	 *            Force only one type of view per model element
-	 */
-	public PolicyChecker(boolean oneViewPerElem) {
-		this.configuration = CONFIG_BUILTIN_DEFAULT;
-		this.oneViewPerElem = oneViewPerElem;
-		this.selectedStakeholder = this.configuration.getDefaultStakeholder();
-		this.selectedViewpoint = (PapyrusViewpoint) this.selectedStakeholder.getViewpoints().get(0);
-		this.profileHelper = ProfileUtils.getProfileHelper();
-		buildApplicableViewpoints();
-	}
-
-	/**
-	 * Initializes this policy checker with the given configuration and viewpoint
-	 *
-	 * @param config
-	 *            The configuration to enforce
-	 * @param viewpoint
-	 *            The viewpoint to enforce
-	 * @param oneViewPerElem
-	 *            Force only one type of view per model element
-	 */
-	public PolicyChecker(PapyrusConfiguration config, PapyrusViewpoint viewpoint, boolean oneViewPerElem) {
-		this.configuration = config;
-		this.oneViewPerElem = oneViewPerElem;
-		this.selectedViewpoint = viewpoint;
-		this.profileHelper = ProfileUtils.getProfileHelper();
-		buildApplicableViewpoints();
-		for (Stakeholder stakeholder : configuration.getStakeholders()) {
-			if (stakeholder.getViewpoints().contains(viewpoint)) {
-				this.selectedStakeholder = stakeholder;
-				return;
-			}
-		}
-	}
-
-
-	/**
-	 * Builds the <code>applicableViewpoints</code> member from the selected viewpoint.
-	 */
-	private void buildApplicableViewpoints() {
-		applicableViewpoints = new ArrayList<PapyrusViewpoint>();
-		buildApplicableViewpoints(selectedViewpoint);
-	}
-
-	/**
-	 * Builds the <code>applicableViewpoints</code> member from the given viewpoint by adding it,
-	 * as well as its parents and its and all its contributions, recursively
-	 *
-	 * @param vp
-	 *            the viewpoint to add
-	 */
-	private void buildApplicableViewpoints(PapyrusViewpoint vp) {
-		// Guard against cycles, redundant contributions, contributions having the
-		// same parent, and other ways of repeating the processing of any viewpoint
-		if (!applicableViewpoints.contains(vp)) {
-			// This viewpoint
-			applicableViewpoints.add(vp);
-
-			// Its contributions, recursively. Process these first because they
-			// are more likely to be more pertinent to the selected stakeholder
-			// than the inherited viewpoint(s)
-			for (PapyrusViewpoint contrib : getContributionsTo(vp)) {
-				buildApplicableViewpoints(contrib);
-			}
-
-			// Its parents, recursively
-			if ((vp.getParent() != null) && !vp.getParent().eIsProxy()) {
-				buildApplicableViewpoints(vp.getParent());
-			}
-		}
+		this.viewpoints = viewpoints;
 	}
 
 	/**
@@ -492,13 +146,13 @@ public class PolicyChecker {
 		if (prototype == null) {
 			return false;
 		}
-		if (!matchesProfiles(prototype.configuration, profileHelper.getAppliedProfiles(owner))) {
+		if (!matchesProfiles(prototype.representationKind, profileHelper.getAppliedProfiles(owner))) {
 			return false;
 		}
-		if (!matchesProfiles(prototype.configuration, profileHelper.getAppliedProfiles(element))) {
+		if (!matchesProfiles(prototype.representationKind, profileHelper.getAppliedProfiles(element))) {
 			return false;
 		}
-		if (!matchesCreationRoot(prototype.configuration, element, profileHelper.getAppliedStereotypes(element), prototype.getViewCountOn(element))) {
+		if (!matchesCreationRoot(prototype.representationKind, element, profileHelper.getAppliedStereotypes(element), prototype.getViewCountOn(element))) {
 			return false;
 		}
 		return true;
@@ -522,7 +176,7 @@ public class PolicyChecker {
 			return new ModelAddData(false);
 		}
 
-		PapyrusDiagram config = (PapyrusDiagram) prototype.configuration;
+		PapyrusDiagram config = (PapyrusDiagram) prototype.representationKind;
 		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(child);
 		while (config != null) {
 			for (ChildRule rule : config.getChildRules()) {
@@ -554,7 +208,7 @@ public class PolicyChecker {
 			return new ModelAddData(false);
 		}
 
-		PapyrusDiagram config = (PapyrusDiagram) prototype.configuration;
+		PapyrusDiagram config = (PapyrusDiagram) prototype.representationKind;
 		while (config != null) {
 			for (ChildRule rule : config.getChildRules()) {
 				int result = allows(rule, parentType, childType, new ArrayList<EClass>(0));
@@ -583,7 +237,7 @@ public class PolicyChecker {
 			return false;
 		}
 
-		PapyrusDiagram config = (PapyrusDiagram) prototype.configuration;
+		PapyrusDiagram config = (PapyrusDiagram) prototype.representationKind;
 		while (config != null) {
 			for (PaletteRule rule : config.getPaletteRules()) {
 				int result = allows(rule, entryID);
@@ -612,7 +266,7 @@ public class PolicyChecker {
 			return false;
 		}
 
-		PapyrusDiagram config = (PapyrusDiagram) prototype.configuration;
+		PapyrusDiagram config = (PapyrusDiagram) prototype.representationKind;
 		while (config != null) {
 			for (AssistantRule rule : config.getAssistantRules()) {
 				int result = allows(rule, elementType);
@@ -626,17 +280,16 @@ public class PolicyChecker {
 	}
 
 	/**
-	 * Determines whether the given view configuration element is part of the current viewpoint
+	 * Determines whether the given view description element is part of the current viewpoint
 	 *
 	 * @param config
-	 *            A view configuration element
+	 *            A view description element
 	 * @return <code>true</code> if the element is part of the current viewpoint
 	 */
-	public boolean isInViewpoint(PapyrusView config) {
-		for (PapyrusViewpoint viewpoint : applicableViewpoints) {
-			for (ModelKind kind : viewpoint.getModelKinds()) {
-				PapyrusView view = (PapyrusView) kind;
-				if (EcoreUtil.equals(view, config)) {
+	public boolean isInViewpoint(PapyrusRepresentationKind kind) {
+		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
+			for (RepresentationKind aKind : viewpoint.getRepresentationKinds()) {
+				if (aKind.getQualifiedName().equals(kind.getQualifiedName())) {
 					return true;
 				}
 			}
@@ -651,9 +304,9 @@ public class PolicyChecker {
 	 */
 	public Collection<ViewPrototype> getAllPrototypes() {
 		Collection<ViewPrototype> result = new ArrayList<ViewPrototype>();
-		for (PapyrusViewpoint viewpoint : applicableViewpoints) {
-			for (ModelKind kind : viewpoint.getModelKinds()) {
-				PapyrusView view = (PapyrusView) kind;
+		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
+			for (RepresentationKind kind : viewpoint.getRepresentationKinds()) {
+				PapyrusRepresentationKind view = (PapyrusRepresentationKind) kind;
 				ViewPrototype proto = ViewPrototype.get(view);
 				if (proto != null) {
 					result.add(proto);
@@ -671,12 +324,12 @@ public class PolicyChecker {
 	 * @return A list of the prototypes that can be instantiated
 	 */
 	public Collection<ViewPrototype> getPrototypesFor(EObject element) {
-		Collection<ViewPrototype> result = new ArrayList<ViewPrototype>();
+		Collection<ViewPrototype> result = new LinkedHashSet<ViewPrototype>();
 		Collection<EPackage> profiles = profileHelper.getAppliedProfiles(element);
 		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(element);
-		for (PapyrusViewpoint viewpoint : applicableViewpoints) {
-			for (ModelKind kind : viewpoint.getModelKinds()) {
-				PapyrusView view = (PapyrusView) kind;
+		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
+			for (RepresentationKind kind : viewpoint.getRepresentationKinds()) {
+				PapyrusRepresentationKind view = (PapyrusRepresentationKind) kind;
 				if (!matchesProfiles(view, profiles)) {
 					continue;
 				}
@@ -719,12 +372,12 @@ public class PolicyChecker {
 	public OwningRule getOwningRuleFor(ViewPrototype prototype, EObject owner) {
 		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(owner);
 		int count = prototype.getOwnedViewCount(owner);
-		OwningRule rule = matchesCreationOwner(prototype.configuration, owner, stereotypes, count);
+		OwningRule rule = matchesCreationOwner(prototype.representationKind, owner, stereotypes, count);
 		return rule;
 	}
 
 	/**
-	 * Tries to match a view configuration from the given info
+	 * Tries to match a view description from the given info
 	 *
 	 * @param implem
 	 *            The implementation ID
@@ -734,10 +387,10 @@ public class PolicyChecker {
 	 *            The root element
 	 * @return The matching view, or <code>null</code> if none was found
 	 */
-	protected PapyrusView getViewFrom(String implem, EObject owner, EObject root) {
-		for (PapyrusViewpoint viewpoint : applicableViewpoints) {
-			for (ModelKind kind : viewpoint.getModelKinds()) {
-				PapyrusView view = (PapyrusView) kind;
+	protected PapyrusRepresentationKind getRepresentationKindFrom(String implem, EObject owner, EObject root) {
+		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
+			for (RepresentationKind kind : viewpoint.getRepresentationKinds()) {
+				PapyrusRepresentationKind view = (PapyrusRepresentationKind) kind;
 				if (matches(view, implem, owner, root)) {
 					return view;
 				}
@@ -747,22 +400,19 @@ public class PolicyChecker {
 	}
 
 	/**
-	 * Tries to match a view configuration with the given info
+	 * Tries to match a view description with the given info
 	 *
 	 * @param view
-	 *            A view configuration
+	 *            A view description
 	 * @param implem
 	 *            The implementation ID
 	 * @param owner
 	 *            The owner
 	 * @param root
 	 *            The root element
-	 * @return <code>true</code> if the configuration matches
+	 * @return <code>true</code> if the description matches
 	 */
-	private boolean matches(PapyrusView view, String implem, EObject owner, EObject root) {
-		if (!ViewPrototype.isNatural(view)) {
-			return false;
-		}
+	private boolean matches(PapyrusRepresentationKind view, String implem, EObject owner, EObject root) {
 		if (!view.getImplementationID().equals(implem)) {
 			return false;
 		}
@@ -794,10 +444,10 @@ public class PolicyChecker {
 	 *            The applied profiles
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesProfiles(PapyrusView view, Collection<EPackage> profiles) {
-		PapyrusView current = view;
+	private boolean matchesProfiles(PapyrusRepresentationKind view, Collection<EPackage> profiles) {
+		PapyrusRepresentationKind current = view;
 		while (current != null) {
-			for (EPackage profile : view.getProfiles()) {
+			for (EPackage profile : view.getLanguage().getProfiles()) {
 				if (!profiles.contains(profile)) {
 					return false;
 				}
@@ -818,8 +468,8 @@ public class PolicyChecker {
 	 *            The stereotypes applied on the owning element
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesExistingOwner(PapyrusView view, EObject owner, Collection<EClass> stereotypes) {
-		PapyrusView current = view;
+	private boolean matchesExistingOwner(PapyrusRepresentationKind view, EObject owner, Collection<EClass> stereotypes) {
+		PapyrusRepresentationKind current = view;
 		while (current != null) {
 			for (OwningRule rule : current.getOwningRules()) {
 				int result = allows(rule, owner, stereotypes);
@@ -848,8 +498,8 @@ public class PolicyChecker {
 	 *            The current cardinality for the owning element
 	 * @return The matching rule that allows the owner
 	 */
-	private OwningRule matchesCreationOwner(PapyrusView view, EObject owner, Collection<EClass> stereotypes, int count) {
-		PapyrusView current = view;
+	private OwningRule matchesCreationOwner(PapyrusRepresentationKind view, EObject owner, Collection<EClass> stereotypes, int count) {
+		PapyrusRepresentationKind current = view;
 		while (current != null) {
 			for (OwningRule rule : current.getOwningRules()) {
 				int allow = allows(rule, owner, stereotypes);
@@ -882,8 +532,8 @@ public class PolicyChecker {
 	 *            The stereotypes applied on the root element
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesExistingRoot(PapyrusView view, EObject root, Collection<EClass> stereotypes) {
-		PapyrusView current = view;
+	private boolean matchesExistingRoot(PapyrusRepresentationKind view, EObject root, Collection<EClass> stereotypes) {
+		PapyrusRepresentationKind current = view;
 		while (current != null) {
 			for (ModelRule rule : current.getModelRules()) {
 				int result = allows(rule, root, stereotypes);
@@ -912,8 +562,8 @@ public class PolicyChecker {
 	 *            The current cardinality for the root element
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesCreationRoot(PapyrusView view, EObject root, Collection<EClass> stereotypes, int count) {
-		PapyrusView current = view;
+	private boolean matchesCreationRoot(PapyrusRepresentationKind view, EObject root, Collection<EClass> stereotypes, int count) {
+		PapyrusRepresentationKind current = view;
 		while (current != null) {
 			for (ModelRule rule : current.getModelRules()) {
 				int allow = allows(rule, root, stereotypes);
@@ -923,7 +573,7 @@ public class PolicyChecker {
 				if (allow == RESULT_UNKNOWN) {
 					continue;
 				}
-				int multiplicity = (oneViewPerElem ? 1 : rule.getMultiplicity());
+				int multiplicity = rule.getMultiplicity();
 				if (multiplicity == -1 || count < multiplicity) {
 					return true;
 				}

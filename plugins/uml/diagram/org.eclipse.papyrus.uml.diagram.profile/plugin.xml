@@ -15,14 +15,6 @@
    
 -->
 <plugin>
-   <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="model/profilediagram.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-
    <extension point="org.eclipse.ui.contexts" id="ui-context">
 				      <?gmfgen generated="true"?>
 				      <context
@@ -692,18 +684,6 @@
    </command>
 </extension>
 
-<extension
-	point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
-	<diagramCategory
-       class="org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand"
-       description="Profile diagram"
-       extensionPrefix="profile"
-       icon="icons/wizban/category_profile.gif"
-       id="profile"
-       label="Profile">
-	</diagramCategory>      
-</extension>
-
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
       <ParserProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLParserProvider">
@@ -948,7 +928,7 @@
          diagramType="PapyrusUMLProfileDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.profile.custom.migration.ProfileReconciler_1_2_0"
          source="1.1.0"
-         target="1.2.0">
+         target="1.3.0">
    </diagramReconciler>
 </extension>
 

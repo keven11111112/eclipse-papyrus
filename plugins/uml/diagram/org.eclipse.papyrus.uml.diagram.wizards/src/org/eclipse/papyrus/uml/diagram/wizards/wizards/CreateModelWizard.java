@@ -19,6 +19,7 @@ package org.eclipse.papyrus.uml.diagram.wizards.wizards;
 import static org.eclipse.papyrus.uml.diagram.wizards.Activator.log;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +32,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
@@ -44,27 +46,29 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
-import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
-import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.papyrus.uml.diagram.wizards.command.InitFromTemplateCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.command.NewPapyrusModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage.CategoryProvider;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ViewpointProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectStorageProviderPage;
 import org.eclipse.papyrus.uml.diagram.wizards.providers.INewModelStorageProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.providers.NewModelStorageProviderRegistry;
@@ -109,10 +113,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	private SelectStorageProviderPage selectStorageProviderPage;
 
 	/** Select kind of new diagram the wizard must create. */
-	private SelectDiagramKindPage selectDiagramKindPage;
+	private SelectRepresentationKindPage selectRepresentationKindPage;
 
-	/** The select diagram category page. */
-	protected SelectDiagramCategoryPage selectDiagramCategoryPage;
+	/** The select architecture context page. */
+	protected SelectArchitectureContextPage selectArchitectureContextPage;
 
 	/** Current workbench. */
 	private IWorkbench workbench;
@@ -152,10 +156,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	@Override
 	public void addPages() {
 		// ModelCreation: the selectDiagramCategoryPage exists
-		if (selectedStorageProvider.getDiagramCategoryPage() == null) {
-			addPageIfNotNull(selectDiagramCategoryPage);
+		if (selectedStorageProvider.getArchitectureContextPage() != null) {
+			addPageIfNotNull(selectedStorageProvider.getArchitectureContextPage());
 		} else {
-			addPageIfNotNull(selectedStorageProvider.getDiagramCategoryPage());
+			addPageIfNotNull(selectArchitectureContextPage);
 		}
 
 		// The selectStorageProviderPage is only set if a model is created, cf initStorageProvider(IWorkbench, IStructuredSelection)
@@ -170,7 +174,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				if (page != null) {
 					pageList.add(page);
 					providersByPage.put(page, next);
-					if (!page.equals(selectedStorageProvider.getDiagramCategoryPage())) {
+					if (!page.equals(selectedStorageProvider.getArchitectureContextPage())) {
 						addPage(page);
 					}
 				}
@@ -179,7 +183,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 		endProviderPageIndex = getPageCount();
 
-		addPageIfNotNull(selectDiagramKindPage);
+		addPageIfNotNull(selectRepresentationKindPage);
 	}
 
 	protected void setNewProjectPage(IWizardPage page) {
@@ -237,7 +241,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			next.init(this, selection);
 		}
 
-		selectDiagramKindPage = createSelectDiagramKindPage();
+		selectRepresentationKindPage = createSelectRepresentationKindPage();
 	}
 
 	/**
@@ -247,26 +251,27 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		String[] diagramCategoryIds = getDiagramCategoryIds();
-		if (diagramCategoryIds.length == 0) {
+		String[] contextIds = getSelectedContexts();
+		if (contextIds.length == 0) {
 			return false;
 		}
 
-		SelectDiagramCategoryPage selectDiagramCategoryPage = getSelectDiagramCategoryPage();
-		if (selectDiagramCategoryPage != null) {
-			selectDiagramCategoryPage.performFinish();
+		SelectArchitectureContextPage selectArchitectureContextPage = getSelectArchitectureContextPage();
+		if (selectArchitectureContextPage != null) {
+			selectArchitectureContextPage.performFinish();
 		}
 
-		String diagramCategoryId = diagramCategoryIds[0];
-		final URI newURI = createNewModelURI(diagramCategoryId);
+		String contextId = contextIds[0];
+		final URI newURI = createNewModelURI(contextId);
 
-		createAndOpenPapyrusModel(newURI, diagramCategoryId);
+		String[] viewpointIds = getSelectedViewpoints(contextId);
+		createAndOpenPapyrusModel(newURI, contextId, viewpointIds);
 
 		return true;
 	}
 
-	protected URI createNewModelURI(String diagramCategoryID) {
-		return getSelectedStorageProvider().createNewModelURI(diagramCategoryID);
+	protected URI createNewModelURI(String contextId) {
+		return getSelectedStorageProvider().createNewModelURI(contextId);
 	}
 
 	/**
@@ -276,11 +281,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *            the di resource set
 	 * @param newURI
 	 *            the URI of the new model's principal resource
-	 * @param diagramCategoryId
-	 *            the diagram category id
+	 * @param contextId
+	 *            the architecture context id
+	 * @param viewpointIds
+	 * 			  the architecture viewpoint ids
 	 * @return true, if successful
 	 */
-	protected boolean createAndOpenPapyrusModel(URI newURI, String diagramCategoryId) {
+	protected boolean createAndOpenPapyrusModel(URI newURI, String contextId, String[] viewpointIds) {
 
 		if (newURI == null) {
 			return false;
@@ -301,9 +308,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 			initServicesRegistry(registry);
 
-			initDomainModel(modelSet, newURI, diagramCategoryId);
+			initDomainModel(modelSet, contextId, viewpointIds);
 
-			initDiagramModel(modelSet, diagramCategoryId);
+			initDiagramModel(modelSet, contextId);
 
 			initProfile(modelSet);
 
@@ -315,7 +322,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		} catch (ServiceException e) {
 			Activator.log.error(e);
-			this.selectDiagramKindPage.setErrorMessage(e.getMessage());
+			this.selectRepresentationKindPage.setErrorMessage(e.getMessage());
 			return false;
 
 		} finally {
@@ -330,15 +337,15 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	private void initProfile(ModelSet modelSet) {
-		boolean isToApplyProfile = selectDiagramKindPage.getProfileURI() != null;
-		boolean isProfileDefined = selectDiagramKindPage.getProfileDefinitionStatus().isOK();
+		boolean isToApplyProfile = selectRepresentationKindPage.getProfileURI() != null;
+		boolean isProfileDefined = selectRepresentationKindPage.getProfileDefinitionStatus().isOK();
 		if (isToApplyProfile & isProfileDefined) {
 			applyProfile(modelSet);
 		}
 	}
 
 	private void initTemplate(ModelSet modelSet) {
-		boolean isToInitFromTemplateTransfo = selectDiagramKindPage.getTemplateTransfo().size() > 0;
+		boolean isToInitFromTemplateTransfo = selectRepresentationKindPage.getTemplateTransfo().size() > 0;
 		if (isToInitFromTemplateTransfo) {
 			applyTemplateTransfo(modelSet);
 		}
@@ -379,23 +386,53 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * Gets the diagram category ids.
+	 * Gets the selected context ids.
 	 *
-	 * @return the diagram category ids
+	 * @return the context ids
 	 */
-	protected String[] getDiagramCategoryIds() {
-		SelectDiagramCategoryPage page = getSelectDiagramCategoryPage();
+	protected String[] getSelectedContexts() {
+		SelectArchitectureContextPage page = getSelectArchitectureContextPage();
 		if (page != null) {
-			return page.getDiagramCategories();
+			return page.getSelectedContexts();
 		}
 		return null;
 	}
 
-	private SelectDiagramCategoryPage getSelectDiagramCategoryPage() {
-		return (selectDiagramCategoryPage != null)
-				? selectDiagramCategoryPage
+	/**
+	 * Gets the viewpoint ids.
+	 *
+	 * @return the viewpoint ids
+	 */
+	protected String[] getSelectedViewpoints() {
+		SelectArchitectureContextPage page = getSelectArchitectureContextPage();
+		if (page != null) {
+			return page.getSelectViewpoints();
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the viewpoint ids.
+	 *
+	 * @return the viewpoint ids
+	 */
+	protected String[] getSelectedViewpoints(String contextId) {
+		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
+		MergedArchitectureContext context = manager.getArchitectureContextById(contextId);
+		List<String> availableViewpoints = new ArrayList<String>();
+		for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
+			availableViewpoints.add(viewpoint.getId());
+		}
+		List<String> selectedViewpoints = Arrays.asList(getSelectedViewpoints());
+		selectedViewpoints.retainAll(availableViewpoints);
+		return selectedViewpoints.toArray(new String[0]);
+	}
+	
+	private SelectArchitectureContextPage getSelectArchitectureContextPage() {
+		return (selectArchitectureContextPage != null)
+				? selectArchitectureContextPage
 				: (selectedStorageProvider != null)
-						? selectedStorageProvider.getDiagramCategoryPage()
+						? selectedStorageProvider.getArchitectureContextPage()
 						: null;
 	}
 
@@ -406,45 +443,45 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *            the diagram category id
 	 * @return the diagram file extension
 	 */
-	public String getDiagramFileExtension(String diagramCategoryId) {
-		return getDiagramFileExtension(diagramCategoryId, NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
+	public String getDiagramFileExtension(String contextId) {
+		return getDiagramFileExtension(contextId, NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
 	}
 
 	/**
 	 * Gets the diagram file extension.
 	 *
-	 * @param categoryId
-	 *            the category id
+	 * @param contextId
+	 *            the context id
 	 * @param defaultExtension
 	 *            the default extension
 	 * @return the diagram file extension
 	 */
-	public String getDiagramFileExtension(String categoryId, String defaultExtension) {
-		DiagramCategoryDescriptor diagramCategory = getDiagramCategoryMap().get(categoryId);
-		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
+	public String getDiagramFileExtension(String contextId, String defaultExtension) {
+		MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getArchitectureContextById(contextId);
+		String extensionPrefix = context != null ? context.getExtensionPrefix() : null;
 		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension; //$NON-NLS-1$
 	}
 
 	/**
-	 * Creates the select diagram category page.
+	 * Creates the select architecture context page.
 	 *
-	 * @return the select diagram category page
+	 * @return the select architecture context page
 	 */
-	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
-		return new SelectDiagramCategoryPage();
+	protected SelectArchitectureContextPage createSelectArchitectureContextPage() {
+		return new SelectArchitectureContextPage();
 	}
 
 	/**
-	 * Creates the select diagram kind page.
+	 * Creates the select representation kind page.
 	 *
-	 * @return the select diagram kind page
+	 * @return the select representation kind page
 	 */
-	protected SelectDiagramKindPage createSelectDiagramKindPage() {
-		return new SelectDiagramKindPage(new CategoryProvider() {
+	protected SelectRepresentationKindPage createSelectRepresentationKindPage() {
+		return new SelectRepresentationKindPage(new ViewpointProvider() {
 
 			@Override
-			public String[] getCurrentCategories() {
-				return getDiagramCategoryIds();
+			public String[] getCurrentViewpoints() {
+				return getSelectedViewpoints();
 			}
 
 		});
@@ -455,23 +492,23 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *
 	 * @param modelSet
 	 *            the di resource set
-	 * @param newURI
-	 *            the URI of the new model's principal resource
-	 * @param diagramCategoryId
-	 *            the diagram category id
+	 * @param contextId
+	 *            the architecture context id
+	 * @param viewpointIds
+	 *            the architecture viewpoint ids
 	 */
-	protected void initDomainModel(ModelSet modelSet, final URI newURI, String diagramCategoryId) {
+	protected void initDomainModel(ModelSet modelSet, String contextId, String[] viewpointIds) {
 
-		boolean isToInitFromTemplate = selectDiagramKindPage.getTemplatePath() != null;
+		boolean isToInitFromTemplate = selectRepresentationKindPage.getTemplatePath() != null;
 		if (isToInitFromTemplate) {
 			initDomainModelFromTemplate(modelSet);
 		} else {
-			createEmptyDomainModel(modelSet, diagramCategoryId);
+			createEmptyDomainModel(modelSet, contextId, viewpointIds);
 		}
 	}
 
 	protected void applyProfile(ModelSet modelSet) {
-		String profilePath = selectDiagramKindPage.getProfileURI();
+		String profilePath = selectRepresentationKindPage.getProfileURI();
 		Resource resource = modelSet.getResource(URI.createURI(profilePath), true);
 		Profile profileToApply = (Profile) resource.getContents().get(0);
 
@@ -483,7 +520,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void applyTemplateTransfo(ModelSet modelSet) {
-		List<ModelTemplateDescription> templateList = selectDiagramKindPage.getTemplateTransfo();
+		List<ModelTemplateDescription> templateList = selectRepresentationKindPage.getTemplateTransfo();
 		// // This is an example of the use of QVT Transformations
 		// QVToGenerator generator = new QVToGenerator();
 		//
@@ -535,7 +572,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	protected void initDomainModelFromTemplate(ModelSet modelSet) {
 		getCommandStack(modelSet).execute(
-				new InitFromTemplateCommand(modelSet.getTransactionalEditingDomain(), modelSet, selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath(), selectDiagramKindPage.getNotationTemplatePath(), selectDiagramKindPage
+				new InitFromTemplateCommand(modelSet.getTransactionalEditingDomain(), modelSet, selectRepresentationKindPage.getTemplatePluginId(), selectRepresentationKindPage.getTemplatePath(), selectRepresentationKindPage.getNotationTemplatePath(), selectRepresentationKindPage
 						.getDiTemplatePath()));
 	}
 
@@ -544,14 +581,17 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *
 	 * @param modelSet
 	 *            the di resource set
-	 * @param diagramCategoryId
-	 *            the diagram category id
+	 * @param contextId
+	 *            the architecture context id
+	 * @param viewpointIds
+	 *            the architecture viewpoint ids
 	 */
-	protected void createEmptyDomainModel(ModelSet modelSet, String diagramCategoryId) {
+	protected void createEmptyDomainModel(ModelSet modelSet, String contextId, String[] viewpointIds) {
 		try {
-			IModelCreationCommand creationCommand = getDiagramCategoryMap().get(diagramCategoryId).getCommand();
-			creationCommand.createModel(modelSet);
-		} catch (BackboneException e) {
+			ArchitectureDescriptionUtils helper = new ArchitectureDescriptionUtils(modelSet);
+			Command command = helper.createNewModel(contextId, viewpointIds);
+			getCommandStack(modelSet).execute(command);
+		} catch (Exception e) {
 			log.error(e);
 		}
 	}
@@ -564,8 +604,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @param newURI
 	 *            the URI of the new model's principal resource
 	 */
-	protected void createPapyrusModels(ModelSet modelSet, URI newURI) {
-		RecordingCommand command = new NewPapyrusModelCommand(modelSet, newURI);
+	protected void createPapyrusModels(ModelSet modelSet, URI newURIs) {
+		RecordingCommand command = new NewPapyrusModelCommand(modelSet, newURIs);
 		getCommandStack(modelSet).execute(command);
 	}
 
@@ -622,11 +662,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *
 	 * @param modelSet
 	 *            the di resource set
-	 * @param categoryId
-	 *            the category id
+	 * @param contextId
+	 *            the architecture context id
 	 */
-	protected void initDiagramModel(ModelSet modelSet, String categoryId) {
-		initDiagrams(modelSet, categoryId);
+	protected void initDiagramModel(ModelSet modelSet, String contextId) {
+		initDiagrams(modelSet, contextId);
 	}
 
 
@@ -650,11 +690,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *
 	 * @param modelSet
 	 *            the di resource set
-	 * @param categoryId
-	 *            the category id
+	 * @param contextId
+	 *            the architecture context id
 	 */
-	protected void initDiagrams(ModelSet modelSet, String categoryId) {
-		initDiagrams(modelSet, null, categoryId);
+	protected void initDiagrams(ModelSet modelSet, String contextId) {
+		initDiagrams(modelSet, null, contextId);
 	}
 
 	/**
@@ -664,10 +704,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *            the resource set
 	 * @param root
 	 *            the root
-	 * @param categoryId
-	 *            the category id
+	 * @param contextId
+	 *            the architecture context id
 	 */
-	protected void initDiagrams(ModelSet resourceSet, EObject root, String categoryId) {
+	protected void initDiagrams(ModelSet resourceSet, EObject root, String contextId) {
 		UmlModel model = (UmlModel) resourceSet.getModel(UmlModel.MODEL_ID);
 		EList<EObject> roots = model.getResource().getContents();
 		if (!roots.isEmpty()) {
@@ -678,35 +718,39 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			}
 
 		}
-		List<ViewPrototype> creationCommands = getPrototypesFor(categoryId);
-		List<String> diagramName = selectDiagramKindPage.getDiagramName();
+		List<RepresentationKind> creationCommands = getRepresentationKindsFor(contextId);
+		List<String> diagramName = selectRepresentationKindPage.getDiagramName();
 		if (creationCommands.isEmpty()) {
 			createEmptyDiagramEditor(resourceSet);
 		} else {
 			for (int i = 0; i < creationCommands.size(); i++) {
-				creationCommands.get(i).instantiateOn(root, diagramName.get(i));
+				RepresentationKind kind = creationCommands.get(i);
+				if (kind instanceof PapyrusRepresentationKind) {
+					ViewPrototype proto = ViewPrototype.get((PapyrusRepresentationKind)kind);
+					proto.instantiateOn(root, diagramName.get(i));
+				}
 			}
 		}
 	}
 
 	/**
-	 * Gets the diagram kinds for.
+	 * Gets the representation kinds for.
 	 *
-	 * @param categoryId
-	 *            the category id
-	 * @return the diagram kinds for
+	 * @param contextId
+	 *            the architecture context id
+	 * @return the repersentation kinds for
 	 */
-	protected List<ViewPrototype> getPrototypesFor(String categoryId) {
-		return selectDiagramKindPage.getSelectedPrototypes(categoryId);
+	protected List<RepresentationKind> getRepresentationKindsFor(String contextId) {
+		return selectRepresentationKindPage.getSelectedRepresentationKinds(contextId);
 	}
 
 
 	protected List<String> getDiagramNames() {
-		return selectDiagramKindPage.getDiagramName();
+		return selectRepresentationKindPage.getDiagramName();
 	}
 
 	protected String getRootElementName() {
-		return selectDiagramKindPage.getRootElementName();
+		return selectRepresentationKindPage.getRootElementName();
 	}
 
 	/**
@@ -734,23 +778,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * Gets the diagram category map.
-	 *
-	 * @return the diagram category map
-	 */
-	protected Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
-		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
-	}
-
-	/**
 	 * Diagram category changed.
 	 *
 	 * @param newCategories
 	 *            the new categories
 	 * @return the i status
 	 */
-	public IStatus diagramCategoryChanged(String... newCategories) {
-		return getSelectedStorageProvider().validateDiagramCategories(newCategories);
+	public IStatus architectureContextChanged(String... newContexts) {
+		return getSelectedStorageProvider().validateArchitectureContexts(newContexts);
 	}
 
 	protected void initStorageProvider(IWorkbench workbench, IStructuredSelection selection) {

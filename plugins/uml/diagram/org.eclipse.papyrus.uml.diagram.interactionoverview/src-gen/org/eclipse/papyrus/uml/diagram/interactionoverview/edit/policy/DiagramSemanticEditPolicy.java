@@ -26,7 +26,7 @@ public class DiagramSemanticEditPolicy extends SemanticEditPolicy {
 
 	protected Command getCreateCommand(final CreateElementRequest req) {
 
-		final IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.Package_ActivityDiagram);
+		final IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.Package_ActivityDiagram, req.getClientContext());
 		if (commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}

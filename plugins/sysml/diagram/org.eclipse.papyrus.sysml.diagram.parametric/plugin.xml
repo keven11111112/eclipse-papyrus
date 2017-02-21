@@ -2,14 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-   <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="model/ParametricDiagram.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-
 <extension point="org.eclipse.ui.contexts" id="ui-context">
   <?gmfgen generated="true"?>
   <context
@@ -690,27 +682,27 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="Parametric"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconciler"
-         source="undefined"
-         target="1.1.0">
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconciler_1_1_0"
+         source="1.0.0"
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="Parametric"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconcilerForCompartment"
-         source="undefined"
-         target="1.2.0">
-   </diagramReconciler>
-   <diagramReconciler
-         diagramType="Parametric"
-         reconcilerClass="org.eclipse.papyrus.sysml.diagram.parametric.migration.ParametricReconciler_1_2_0"
-         source="undefined"
-         target="1.1.0">
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconcilerForCompartment_1_2_0"
+         source="1.1.0"
+         target="1.3.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="Parametric"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconciler_1_2_0"
-         source="undefined"
-         target="1.2.0">
+         source="1.1.0"
+         target="1.3.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="Parametric"
+         reconcilerClass="org.eclipse.papyrus.sysml.diagram.parametric.migration.ParametricReconciler_1_2_0"
+         source="1.1.0"
+         target="1.3.0">
    </diagramReconciler>
 </extension>
 </plugin>

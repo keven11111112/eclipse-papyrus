@@ -47,6 +47,8 @@ import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy.NavigationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.button.HyperlinkButton;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
@@ -56,16 +58,14 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
-import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -251,10 +251,10 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 			List<ViewPrototype> diagramPrototypes = new ArrayList<ViewPrototype>();
 			List<ViewPrototype> tablePrototypes = new ArrayList<ViewPrototype>();
 
-			for (final ViewPrototype proto : PolicyChecker.getCurrent().getPrototypesFor(selection)) {
-				if (proto.getConfiguration() instanceof PapyrusDiagram) {
+			for (final ViewPrototype proto : PolicyChecker.getFor(selection).getPrototypesFor(selection)) {
+				if (proto.getRepresentationKind() instanceof PapyrusDiagram) {
 					diagramPrototypes.add(proto);
-				} else if (proto.getConfiguration() instanceof PapyrusTable || proto.getConfiguration() instanceof PapyrusSyncTable) {
+				} else if (proto.getRepresentationKind() instanceof PapyrusTable || proto.getRepresentationKind() instanceof PapyrusSyncTable) {
 					tablePrototypes.add(proto);
 				}
 			}
@@ -337,9 +337,9 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 						// Gets the container
 						EObject container = null;
 						for (EObject createdObject : usagesAfter) {
-							if (createdObject instanceof PapyrusViewStyle) {
+							if (createdObject instanceof PapyrusDiagramStyle) {
 								// Add it to hyperLink
-								PapyrusViewStyle viewStyle = (PapyrusViewStyle) createdObject;
+								PapyrusDiagramStyle viewStyle = (PapyrusDiagramStyle) createdObject;
 								container = viewStyle.eContainer();
 							} else if (null == container) {
 								container = createdObject;

@@ -25,8 +25,8 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.uml.diagram.wizards.command.PapyrusModelFromExistingDomainModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage.CategoryProvider;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ViewpointProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IWorkbench;
@@ -91,19 +91,19 @@ public class InitModelWizard extends CreateModelWizard {
 	 * @return the select diagram kind page {@inheritDoc}
 	 */
 	@Override
-	protected SelectDiagramKindPage createSelectDiagramKindPage() {
+	protected SelectRepresentationKindPage createSelectRepresentationKindPage() {
 		if (isCreateFromExistingDomainModel()) {
-			return new SelectDiagramKindPage(false, new CategoryProvider() {
+			return new SelectRepresentationKindPage(false, new ViewpointProvider() {
 
 				@Override
-				public String[] getCurrentCategories() {
-					return getDiagramCategoryIds();
+				public String[] getCurrentViewpoints() {
+					return getSelectedViewpoints();
 				}
 
-			}, SelectDiagramKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
+			}, SelectRepresentationKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
 		}
 		;
-		return super.createSelectDiagramKindPage();
+		return super.createSelectRepresentationKindPage();
 	}
 
 	/**
@@ -177,17 +177,17 @@ public class InitModelWizard extends CreateModelWizard {
 	 *
 	 * @param diResourceSet
 	 *            the di resource set
-	 * @param newURI
-	 *            the URI of the new model's principal resource
-	 * @param diagramCategoryId
-	 *            the diagram category id {@inheritDoc}
+	 * @param contextId
+	 *            the architecture context id
+	 * @param viewpointIds
+	 *            the architecture viewpoint ids
 	 */
 	@Override
-	protected void initDomainModel(ModelSet modelSet, final URI newURI, String diagramCategoryId) {
+	protected void initDomainModel(ModelSet modelSet, String contextId, String[] viewpointIds) {
 		if (isCreateFromExistingDomainModel()) {
 			// do nothing
 		} else {
-			super.initDomainModel(modelSet, newURI, diagramCategoryId);
+			super.initDomainModel(modelSet, contextId, viewpointIds);
 		}
 	}
 
@@ -196,12 +196,12 @@ public class InitModelWizard extends CreateModelWizard {
 	 *
 	 * @param diResourceSet
 	 *            the di resource set
-	 * @param categoryId
-	 *            the category id {@inheritDoc}
+	 * @param contextName
+	 *            the architecture context name {@inheritDoc}
 	 */
 	@Override
-	protected void initDiagrams(ModelSet modelSet, String categoryId) {
-		initDiagrams(modelSet, getRoot(), categoryId);
+	protected void initDiagrams(ModelSet modelSet, String contextName) {
+		initDiagrams(modelSet, getRoot(), contextName);
 	}
 
 	/**
@@ -214,11 +214,11 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	@Override
-	public String getDiagramFileExtension(String diagramCategoryId) {
+	public String getDiagramFileExtension(String contextId) {
 		if (isCreateFromExistingDomainModel()) {
 			return NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 		}
-		return super.getDiagramFileExtension(diagramCategoryId);
+		return super.getDiagramFileExtension(contextId);
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class InitModelWizard extends CreateModelWizard {
 	private EObject getRoot() {
 		if (selectRootElementPage != null) {
 			// return selectRootElementPage.getModelElement();
-			return SelectDiagramKindPage.getModelRoot();
+			return SelectRepresentationKindPage.getModelRoot();
 		}
 		return null;
 	}

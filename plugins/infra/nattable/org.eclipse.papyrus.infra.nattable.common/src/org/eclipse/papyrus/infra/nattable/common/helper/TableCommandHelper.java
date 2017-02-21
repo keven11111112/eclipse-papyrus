@@ -18,11 +18,12 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
+import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -35,15 +36,15 @@ public class TableCommandHelper implements IViewTypeHelper {
 	/**
 	 * The cache of prototypes
 	 */
-	private Map<PapyrusView, TableViewPrototype> cache;
+	private Map<PapyrusRepresentationKind, TableViewPrototype> cache;
 
 	@Override
-	public ViewPrototype getPrototypeFor(PapyrusView configuration) {
+	public ViewPrototype getPrototypeFor(PapyrusRepresentationKind configuration) {
 		if (!(configuration instanceof PapyrusTable)) {
 			return null;
 		}
 		if (cache == null) {
-			cache = new HashMap<PapyrusView, TableViewPrototype>();
+			cache = new HashMap<PapyrusRepresentationKind, TableViewPrototype>();
 		}
 		if (cache.containsKey(configuration)) {
 			return cache.get(configuration);
@@ -55,7 +56,7 @@ public class TableCommandHelper implements IViewTypeHelper {
 
 	@Override
 	public boolean isSupported(EClass type) {
-		return (type == ConfigurationPackage.eINSTANCE.getPapyrusTable());
+		return (type == RepresentationPackage.eINSTANCE.getPapyrusTable());
 	}
 
 	@Override
@@ -69,6 +70,13 @@ public class TableCommandHelper implements IViewTypeHelper {
 
 	@Override
 	public ViewPrototype getPrototypeOf(EObject view) {
-		return getPrototypeFor((PapyrusView) ((Table) view).getPrototype());
+		if (!isSupported(view)) {
+			return null;
+		}
+		PolicyChecker checker = PolicyChecker.getFor(view);
+		PapyrusTable repKind = (PapyrusTable) ((Table)view).getPrototype();
+		if (checker.isInViewpoint(repKind))
+			return getPrototypeFor(repKind);
+		return ViewPrototype.UNAVAILABLE_VIEW;
 	}
 }

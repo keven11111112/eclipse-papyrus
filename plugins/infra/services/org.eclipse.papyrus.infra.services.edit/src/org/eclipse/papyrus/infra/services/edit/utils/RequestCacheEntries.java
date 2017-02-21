@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 
 /**
  * Caching the advices for a given eobject for a given context
@@ -35,7 +35,7 @@ public final class RequestCacheEntries implements IRequestCacheEntries {
 	}
 
 	public static final void initializeEObjCache(EObject eObj, Map map) throws ServiceException {
-		IClientContext clientContext = TypeContext.getContext();
+		IClientContext clientContext = TypeContext.getContext(eObj);
 		map.put(Client_Context, clientContext);
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(
 				eObj, clientContext);

@@ -19,8 +19,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.nattable.common.handlers.PolicyDefinedTableHandler;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 

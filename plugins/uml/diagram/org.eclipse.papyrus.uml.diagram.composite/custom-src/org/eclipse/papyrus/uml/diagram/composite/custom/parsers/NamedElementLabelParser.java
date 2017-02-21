@@ -28,11 +28,13 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
@@ -87,7 +89,8 @@ public class NamedElementLabelParser implements ISemanticParser {
 				final ModelSet modelSet = (ModelSet)objectToEdit.eResource().getResourceSet();
 				command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), (NamedElement)objectToEdit, newString, null));
 			}else{
-				command = ElementEditServiceUtils.getEditServiceProvider().getEditService(objectToEdit).getEditCommand(new SetRequest(objectToEdit, UMLPackage.eINSTANCE.getNamedElement_Name(), newString));
+				IClientContext context = TypeContext.getContext(objectToEdit);
+				command = ElementEditServiceUtils.getEditServiceProvider(context).getEditService(objectToEdit).getEditCommand(new SetRequest(objectToEdit, UMLPackage.eINSTANCE.getNamedElement_Name(), newString));
 			}
 		} catch (ServiceException e) {
 			Activator.log.error(e);

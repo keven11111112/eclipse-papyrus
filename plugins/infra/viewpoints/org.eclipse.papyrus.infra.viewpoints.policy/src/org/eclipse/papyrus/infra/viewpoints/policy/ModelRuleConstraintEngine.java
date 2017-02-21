@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 import org.eclipse.papyrus.infra.constraints.runtime.ConstraintEngine;
 import org.eclipse.papyrus.infra.constraints.runtime.ConstraintFactory;
 import org.eclipse.papyrus.infra.constraints.runtime.DefaultConstraintEngine;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
+import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
 
 /**
  * {@link ConstraintEngine} for viewpoint {@link ModelRule}

@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -36,7 +36,7 @@ public class DiagramPrototype extends ViewPrototype {
 	protected final String category;
 	protected final AbstractPapyrusGmfCreateDiagramCommandHandler command;
 
-	public DiagramPrototype(PapyrusView configuration, String category, AbstractPapyrusGmfCreateDiagramCommandHandler command) {
+	public DiagramPrototype(PapyrusDiagram configuration, String category, AbstractPapyrusGmfCreateDiagramCommandHandler command) {
 		super(configuration);
 		this.category = category;
 		this.command = command;
@@ -136,4 +136,10 @@ public class DiagramPrototype extends ViewPrototype {
 	public EObject getRootOf(EObject view) {
 		return ((Diagram) view).getElement();
 	}
+	
+	@Override
+	public PapyrusDiagram getRepresentationKind() {
+		return (PapyrusDiagram) representationKind;
+	}
+
 }

@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -204,7 +204,8 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 				return true;
 			}
 		}
-		return PolicyChecker.getCurrent().isInPalette(((DiagramEditor) editor).getDiagram(), entryID);
+		Diagram diagram = ((DiagramEditor) editor).getDiagram();
+		return PolicyChecker.getFor(diagram).isInPalette(diagram, entryID);
 	}
 
 	/**
@@ -230,7 +231,7 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 	 */
 	private String getCustomPalette(Diagram diagram) {
 		ViewPrototype proto = ViewPrototype.get(diagram);
-		PapyrusDiagram pd = (PapyrusDiagram) proto.getConfiguration();
+		PapyrusDiagram pd = (PapyrusDiagram) proto.getRepresentationKind();
 		if (pd == null) {
 			return null;
 		}

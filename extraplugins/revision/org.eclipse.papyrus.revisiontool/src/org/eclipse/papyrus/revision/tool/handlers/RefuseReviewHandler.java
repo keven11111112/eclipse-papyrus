@@ -30,8 +30,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.revision.tool.core.I_ReviewStereotype;
@@ -182,7 +184,7 @@ public class RefuseReviewHandler extends RevisionAbstractHandler {
 	protected void executeSeCommand(EObject eOject, ReviewResourceManager r, EStructuralFeature feature, Object set,Element element) {
 		SetRequest request= new SetRequest(((Match)eOject).getLeft(), feature, set);
 		request.setEditingDomain(r.getDomain());
-		IElementEditService  provider = ElementEditServiceUtils.getCommandProvider(request);
+		IElementEditService  provider = ElementEditServiceUtils.getCommandProvider(request, request.getClientContext());
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand cmd = provider.getEditCommand(request);

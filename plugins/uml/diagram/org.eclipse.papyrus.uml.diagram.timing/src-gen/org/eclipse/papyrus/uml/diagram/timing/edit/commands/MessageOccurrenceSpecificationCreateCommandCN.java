@@ -69,7 +69,7 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 	public boolean canExecute() {
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getMessageOccurrenceSpecification());
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getMessageOccurrenceSpecification());
 		return data.isPermitted();
 
 
@@ -84,7 +84,7 @@ public class MessageOccurrenceSpecificationCreateCommandCN extends EditElementCo
 		MessageOccurrenceSpecification newElement = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
 			if (data.isPathDefined()) {
 				if (!data.execute(target, newElement)) {

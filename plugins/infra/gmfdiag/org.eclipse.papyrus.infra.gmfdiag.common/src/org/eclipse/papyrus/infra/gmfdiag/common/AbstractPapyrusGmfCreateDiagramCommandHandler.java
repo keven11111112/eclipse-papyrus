@@ -50,6 +50,9 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
+import org.eclipse.papyrus.infra.architecture.representation.ModelAutoCreate;
+import org.eclipse.papyrus.infra.architecture.representation.OwningRule;
+import org.eclipse.papyrus.infra.architecture.representation.RootAutoSelect;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
@@ -60,16 +63,14 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
-import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.RootAutoSelect;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.widgets.Display;
@@ -104,7 +105,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 		private EObject element;
 
-		private ViewPrototype prototype;
+		private DiagramPrototype prototype;
 
 		private OwningRule rule;
 
@@ -114,7 +115,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 		private IClientContext clientContext;
 
-		public Creator(ModelSet modelSet, EObject owner, EObject element, ViewPrototype prototype, String name) {
+		public Creator(ModelSet modelSet, EObject owner, EObject element, DiagramPrototype prototype, String name) {
 			this.modelSet = modelSet;
 			this.owner = owner;
 			this.element = element;
@@ -139,14 +140,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				attachModelToResource(owner, modelResource);
 			}
 
-			service = ElementEditServiceUtils.getCommandProvider(owner);
-			if (service == null) {
-				// Something isn't right ...
-				return null;
-			}
-
 			try {
-				clientContext = TypeContext.getContext();
+				clientContext = TypeContext.getContext(modelSet);
 			} catch (ServiceException e) {
 				Activator.log.error(e);
 			}
@@ -155,7 +150,13 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				return null;
 			}
 
-			rule = PolicyChecker.getCurrent().getOwningRuleFor(prototype, owner);
+			service = ElementEditServiceUtils.getCommandProvider(owner, clientContext);
+			if (service == null) {
+				// Something isn't right ...
+				return null;
+			}
+
+			rule = PolicyChecker.getFor(modelSet).getOwningRuleFor(prototype, owner);
 			if (rule == null) {
 				// Something isn't right ...
 				return null;
@@ -267,7 +268,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	protected CommandResult doEditDiagramName(ViewPrototype prototype, String name) {
 
 		if (name == null) {
-			name = openDiagramNameDialog(prototype.isNatural() ? getDefaultDiagramName() : "New" + prototype.getLabel().replace(" ", ""));
+			name = openDiagramNameDialog("New" + prototype.getLabel().replace(" ", ""));
 		}
 		// canceled
 		if (name == null) {
@@ -334,7 +335,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	@Override
 	public final Diagram createDiagram(ModelSet modelSet, EObject owner, String name) {
 		Diagram diagram = null;
-		ViewPrototype proto = ViewPrototype.get(getCreatedDiagramType(), owner, owner);
+		ViewPrototype proto = ViewPrototype.get(PolicyChecker.getFor(modelSet), getCreatedDiagramType(), owner, owner);
 		if (proto != null) {
 			diagram = createDiagram(modelSet, owner, owner, proto, name);
 		}
@@ -396,7 +397,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	@Override
 	public final ICommand getCreateDiagramCommand(ModelSet modelSet, EObject owner, String name) {
-		ViewPrototype proto = ViewPrototype.get(getCreatedDiagramType(), owner, owner);
+		ViewPrototype proto = ViewPrototype.get(PolicyChecker.getFor(modelSet), getCreatedDiagramType(), owner, owner);
 		if (proto == null) {
 			return null;
 		}
@@ -434,18 +435,18 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				Creator creator = new Creator(modelSet, owner, element, prototype, name);
+				Creator creator = new Creator(modelSet, owner, element, (DiagramPrototype) prototype, name);
 				try {
 					CommandResult commandResult = creator.createDiagram();
 					if (commandResult != null) {
-					if (!commandResult.getStatus().isOK()) {
-						return commandResult;
-					}
+						if (!commandResult.getStatus().isOK()) {
+							return commandResult;
+						}
 
-					diagram = (Diagram) commandResult.getReturnValue();
-					diagramElement = diagram.getElement();
-					diagramOwner = DiagramUtils.getOwner(diagram);
-					return commandResult;
+						diagram = (Diagram) commandResult.getReturnValue();
+						diagramElement = diagram.getElement();
+						diagramOwner = DiagramUtils.getOwner(diagram);
+						return commandResult;
 					}
 				} catch (ServiceException e) {
 					Activator.log.error(e);
@@ -525,16 +526,14 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 *            the diagram's name
 	 * @return the created diagram, or <code>null</code> if the creation failed
 	 */
-	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, DiagramPrototype prototype, String name) {
 		// create diagram
 		Diagram diagram = ViewService.createDiagram(element, getDiagramNotationID(), getPreferenceHint());
 		if (diagram != null) {
 			diagram.setName(name);
 			diagram.setElement(element);
 			DiagramUtils.setOwner(diagram, owner);
-			if (!prototype.isNatural()) {
-				DiagramUtils.setPrototype(diagram, prototype);
-			}
+			DiagramUtils.setPrototype(diagram, prototype);
 			diagramResource.getContents().add(diagram);
 			initializeDiagram(diagram);
 

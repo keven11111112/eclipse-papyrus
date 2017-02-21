@@ -60,11 +60,11 @@ public class Messages extends NLS {
 	public static String DiagramCategoryRegistry_bad_class_name_of_category;
 
 
-	public static String DiagramKindComposite_0;
+	public static String RepresentationKindComposite_0;
 
-	public static String DiagramKindComposite_2;
+	public static String RepresentationKindComposite_2;
 
-	public static String DiagramKindComposite_3;
+	public static String RepresentationKindComposite_3;
 
 	/** The Diagram kind label provider_undefined_element. */
 	public static String DiagramKindLabelProvider_undefined_element;
@@ -97,52 +97,47 @@ public class Messages extends NLS {
 
 
 	/** The Select diagram category page_cannot_find_category. */
-	public static String SelectDiagramCategoryPage_cannot_find_category;
+	public static String SelectArchitectureContextPage_cannot_find_category;
 
 	/** The Select diagram category page_diagram_language_group. */
-	public static String SelectDiagramCategoryPage_diagram_language_group;
+	public static String SelectArchitectureContextPage_diagram_language_group;
 
 	/** The Select diagram category page_select_language. */
-	public static String SelectDiagramCategoryPage_select_language;
+	public static String SelectArchitectureContextPage_select_language;
 
 	/** The Select diagram category page_select_one_category. */
-	public static String SelectDiagramCategoryPage_select_one_category;
+	public static String SelectArchitectureContextPage_select_one_category;
 
-	public static String SelectDiagramCategoryPage_umlGroup;
-
-	public static String SelectDiagramCategoryPage_dsmlGroup;
-
-
-	public static String SelectDiagramKindPage_0;
+	public static String SelectRepresentationKindPage_0;
 
 	/** The Select diagram kind page_default_diagram_name. */
-	public static String SelectDiagramKindPage_default_diagram_name;
+	public static String SelectRepresentationKindPage_default_diagram_name;
 
 	/** The Select diagram kind page_diagram_name_group. */
-	public static String SelectDiagramKindPage_diagram_name_group;
+	public static String SelectRepresentationKindPage_diagram_name_group;
 
 	/** The Select diagram kind page_diagram_name_is_empty. */
-	public static String SelectDiagramKindPage_diagram_name_is_empty;
+	public static String SelectRepresentationKindPage_diagram_name_is_empty;
 
 	/** The Select diagram kind page_load_template_group. */
-	public static String SelectDiagramKindPage_load_template_group;
+	public static String SelectRepresentationKindPage_load_template_group;
 
 	/** The Select diagram kind page_page_desc. */
-	public static String SelectDiagramKindPage_page_desc;
+	public static String SelectRepresentationKindPage_page_desc;
 
 	/** The Select diagram kind page_page_title. */
-	public static String SelectDiagramKindPage_page_title;
+	public static String SelectRepresentationKindPage_page_title;
 
 	/** The Select diagram kind page_remember_current_selection_text. */
-	public static String SelectDiagramKindPage_remember_current_selection_text;
+	public static String SelectRepresentationKindPage_remember_current_selection_text;
 
 	/** The Select diagram kind page_remember_current_selection_tooltip. */
-	public static String SelectDiagramKindPage_remember_current_selection_tooltip;
+	public static String SelectRepresentationKindPage_remember_current_selection_tooltip;
 
 	/** The Select diagram kind page_select_kind_group. */
-	public static String SelectDiagramKindPage_select_kind_group;
+	public static String SelectRepresentationKindPage_select_kind_group;
 
-	public static String SelectDiagramKindPage_Set_Root_Name_Error;
+	public static String SelectRepresentationKindPage_Set_Root_Name_Error;
 
 
 	public static String ProfileChooserComposite_RegisteredProfilesDialog;

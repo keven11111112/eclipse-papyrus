@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *		Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Viewpoints application
  *
@@ -29,10 +29,10 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
-import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
@@ -78,7 +78,7 @@ public class ParametricDiagramCreateCommand extends AbstractPapyrusGmfCreateDiag
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, DiagramPrototype prototype, String name) {
 		// Start of user code Custom diagram creation
 		Diagram diagram = null;
 

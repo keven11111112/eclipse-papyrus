@@ -40,7 +40,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.menu.utils.DeleteActionUtil;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.types.core.utils.ElementTypeRegistryUtils;
@@ -386,7 +386,7 @@ public class DeleteCommentLinkTest extends AbstractPapyrusTest {
 	protected EReference getFeatureToRemove(String visualId) {
 
 		try {
-			IClientContext context = TypeContext.getContext();
+			IClientContext context = TypeContext.getContext(fixture.getModel());
 			List<IElementType> elementTypes = ElementTypeRegistryUtils.getElementTypesBySemanticHint(visualId, context.getId());
 
 			for (IElementType iElementType : elementTypes) {

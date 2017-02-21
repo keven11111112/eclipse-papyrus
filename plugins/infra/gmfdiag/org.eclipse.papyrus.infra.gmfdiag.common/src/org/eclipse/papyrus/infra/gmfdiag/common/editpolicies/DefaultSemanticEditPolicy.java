@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -38,7 +39,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
@@ -58,6 +62,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 *
+	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -222,6 +227,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * Returns editing domain from the host edit part.
 	 *
+	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
@@ -232,21 +238,24 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	private Command getDefaultSemanticCommand(IEditCommandRequest req, Object context) {
-		IElementEditService commandService;
-		if (context != null) {
-			commandService = ElementEditServiceUtils.getCommandProvider(context);
-		} else {
-			commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement());
-		}
-
-		if (commandService == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-
-		ICommand semanticCommand = commandService.getEditCommand(req);
-
-		if ((semanticCommand != null) && (semanticCommand.canExecute())) {
-			return getGEFWrapper(semanticCommand);
+		try {
+			IClientContext clientContext = TypeContext.getContext(getEditingDomain());
+			
+			IElementEditService commandService;
+			if (context != null) {
+				commandService = ElementEditServiceUtils.getCommandProvider(context, clientContext);
+			} else {
+				commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement(), clientContext);
+			}
+	
+			if (commandService != null) {
+				ICommand semanticCommand = commandService.getEditCommand(req);
+				if ((semanticCommand != null) && (semanticCommand.canExecute())) {
+					return getGEFWrapper(semanticCommand);
+				}
+			}
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

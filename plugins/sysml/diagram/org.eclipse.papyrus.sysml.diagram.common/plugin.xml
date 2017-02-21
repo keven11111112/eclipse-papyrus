@@ -2,11 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-<extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
-	<diagramCategory class="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand" description="SysML diagrams" icon="icons/category_sysml.gif" id="sysml" label="SysML">
-	</diagramCategory>      
-</extension>
-   
 <extension point="org.eclipse.core.expressions.propertyTesters">
 	<propertyTester class="org.eclipse.papyrus.sysml.diagram.common.utils.SysMLSelectionTester" id="org.eclipse.papyrus.SysMLSelectionTester" namespace="org.eclipse.papyrus.SysMLSelectionTester" properties="isSysMLModel, isSysMLRequirementsModel, isSysMLBlocksModel" type="org.eclipse.jface.viewers.ISelection">
 	</propertyTester>

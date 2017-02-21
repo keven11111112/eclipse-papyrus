@@ -7,15 +7,17 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
+import org.eclipse.papyrus.sysml.architecture.SysMLArchitectureContextIds;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
@@ -31,18 +33,22 @@ import org.junit.Test;
  *
  */
 public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
-
-	private static final String PAPYRUS_CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext"; //$NON-NLS-1$
-
+	private static IClientContext context;
+	
 	private static final String PAPYRUS_ELEMENT_TYPE_PREFIX = "org.eclipse.papyrus.sysml."; //$NON-NLS-1$
 
 	private static final String PAPYRUS_ST_APPLICATION_TYPE_PREFIX = "org.eclipse.papyrus.sysml.stereotype."; //$NON-NLS-1$
 
 	@BeforeClass
 	public static void before() {
-		ElementTypeSetConfigurationRegistry registry = ElementTypeSetConfigurationRegistry.getInstance();
-		Assert.assertNotNull("registry should not be null after init", registry);
+		Assert.assertNotNull("registry should not be null after init", ElementTypeSetConfigurationRegistry.getInstance());
 		Assert.assertNotNull("element type should not be null", SysMLElementTypes.BLOCK);
+		
+		try {
+			context = TypeContext.getContext(SysMLArchitectureContextIds.SysML);
+		} catch (ServiceException e) {
+			fail("Default client context could not be found.");
+		}
 	}
 
 
@@ -56,7 +62,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 
 				EClass eClass = (EClass) eObject;
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -71,7 +77,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 
 				EClass eClass = (EClass) eObject;
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -116,7 +122,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 					continue;
 				}
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -131,7 +137,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -146,7 +152,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 
 				EClass eClass = (EClass) eObject;
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -161,7 +167,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 
 				EClass eClass = (EClass) eObject;
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -176,7 +182,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 
 				EClass eClass = (EClass) eObject;
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -201,7 +207,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 					continue;
 				}
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -216,7 +222,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -241,7 +247,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 					continue;
 				}
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -256,7 +262,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -271,7 +277,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 
 				EClass eClass = (EClass) eObject;
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -286,7 +292,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 			if (eObject instanceof EClass) {
 
 				EClass eClass = (EClass) eObject;
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -294,12 +300,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 	@Test
 	public void testRegistryContentForSysMLAssociations() {
 
-		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		if (context == null) {
-			fail("Papyrus IClientContext could not be found.");
-		}
-
-		IElementEditServiceProvider service = ElementEditServiceUtils.getEditServiceProvider();
+		IElementEditServiceProvider service = ElementEditServiceUtils.getEditServiceProvider(context);
 
 		assertTrue("No ISpecializationType found for SysML Association in Papyrus context", service.isKnownElementType("org.eclipse.papyrus.sysml.Association"));
 

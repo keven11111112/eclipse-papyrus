@@ -15,15 +15,17 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.editor.integration.tests.Activator;
+import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
@@ -59,7 +61,7 @@ public class ModelSetTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testCreateModelWithSpecialChars() throws Exception {
-		ModelSet modelSet = new DiResourceSet();
+		final ModelSet modelSet = new DiResourceSet();
 		IProject emptyModelCreationProject = ResourcesPlugin.getWorkspace().getRoot().getProject("diagramCreationWithSpecialChars");
 		emptyModelCreationProject.create(new NullProgressMonitor());
 		emptyModelCreationProject.open(new NullProgressMonitor());
@@ -81,10 +83,17 @@ public class ModelSetTests extends AbstractEditorIntegrationTest {
 			//Ignore
 		}
 
-		IModelCreationCommand creationCommand = new CreateUMLModelCommand();
-		creationCommand.createModel(modelSet);
+		// create the UML model
+		TransactionalEditingDomain ted = modelSet.getTransactionalEditingDomain();
+		ted.getCommandStack().execute(new RecordingCommand(ted) {
+			@Override
+			protected void doExecute() {
+				IModelCreationCommand creationCommand = new CreateUMLModelCommand();
+				creationCommand.createModel(modelSet);
+			}
+		});
 
-		//Create the root UML Model
+		//get the root UML Model
 		UmlModel umlModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
 		Model model = (Model)umlModel.lookupRoot();
 

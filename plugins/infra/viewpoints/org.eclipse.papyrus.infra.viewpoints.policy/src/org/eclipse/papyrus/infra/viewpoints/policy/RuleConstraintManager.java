@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
+import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
 
 /**
  * Manager for the rule constraints

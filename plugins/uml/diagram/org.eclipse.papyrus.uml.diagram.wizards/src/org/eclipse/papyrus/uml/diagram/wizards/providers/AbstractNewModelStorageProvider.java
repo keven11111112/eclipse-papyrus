@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
@@ -33,7 +33,7 @@ public abstract class AbstractNewModelStorageProvider implements INewModelStorag
 		// pass
 	}
 
-	public IStatus validateDiagramCategories(String... newCategories) {
+	public IStatus validateArchitectureContexts(String... newContexts) {
 		return Status.OK_STATUS;
 	}
 
@@ -52,7 +52,7 @@ public abstract class AbstractNewModelStorageProvider implements INewModelStorag
 		return null;
 	}
 
-	public SelectDiagramCategoryPage getDiagramCategoryPage() {
+	public SelectArchitectureContextPage getArchitectureContextPage() {
 		return null;
 	}
 }

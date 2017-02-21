@@ -56,7 +56,6 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.common.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.canonical.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.emf.readonly.tests.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.viewpoints.configuration.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.editor.welcome.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.welcome.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.properties.ui.tests.AllTests.class));

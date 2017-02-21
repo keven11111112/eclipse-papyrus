@@ -84,8 +84,8 @@ public class ModelingAssistantUtil {
 				result = new IElementType[] { type };
 			} else if (context.getClientContext() == null) {
 				result = ElementTypeRegistry.getInstance().getAllTypesMatching(context.getEObject(), provider.getClientContext());
-				if (provider.getClientContext() != ElementTypeUtils.getEditContext()) {
-					IElementType[] more = ElementTypeRegistry.getInstance().getAllTypesMatching(context.getEObject(), ElementTypeUtils.getEditContext());
+				if (provider.getClientContext() != ElementTypeUtils.getDefaultClientContext()) {
+					IElementType[] more = ElementTypeRegistry.getInstance().getAllTypesMatching(context.getEObject(), ElementTypeUtils.getDefaultClientContext());
 					result = (more.length == 0) ? result : (result.length == 0) ? more : ObjectArrays.concat(more, result, IElementType.class);
 				}
 			} else {
@@ -97,9 +97,9 @@ public class ModelingAssistantUtil {
 				List<IElementType> core = Arrays.asList(ElementTypeRegistry.getInstance().getAllTypesMatching(object, provider.getClientContext()));
 				List<IElementType> resultList = Lists.newArrayListWithExpectedSize(core.size());
 
-				if (provider.getClientContext() != ElementTypeUtils.getEditContext()) {
+				if (provider.getClientContext() != ElementTypeUtils.getDefaultClientContext()) {
 					// First add the client-context-specific types
-					List<IElementType> more = Arrays.asList(ElementTypeRegistry.getInstance().getAllTypesMatching(object, ElementTypeUtils.getEditContext()));
+					List<IElementType> more = Arrays.asList(ElementTypeRegistry.getInstance().getAllTypesMatching(object, ElementTypeUtils.getDefaultClientContext()));
 					resultList.addAll(more);
 				}
 

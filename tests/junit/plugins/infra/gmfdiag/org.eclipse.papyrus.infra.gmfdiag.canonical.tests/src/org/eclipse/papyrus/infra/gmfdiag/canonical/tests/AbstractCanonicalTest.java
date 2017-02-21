@@ -433,7 +433,7 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 	private List<? extends IElementType> getClassDiagramElementTypes(EClass metaclass) {
 		List<IElementType> result = Lists.newArrayListWithExpectedSize(3);
-		IElementType base = ElementTypeRegistry.getInstance().getElementType(metaclass, ElementTypeUtils.getEditContext());
+		IElementType base = ElementTypeRegistry.getInstance().getElementType(metaclass, ElementTypeUtils.getDefaultClientContext());
 
 		// Filter for class diagram types matching the exact metaclass (e.g., no Usage for Dependency or Port for Property)
 		for (IElementType next : ElementTypeRegistry.getInstance().getSpecializationsOf(base.getId())) {

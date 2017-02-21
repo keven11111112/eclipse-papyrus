@@ -184,7 +184,7 @@ import xpt.diagram.Utils_qvto
 	«ENDIF»
 	
 	org.eclipse.emf.ecore.EObject target = getElementToEdit();
-	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), «MetaClass(metaClass)»);
+	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), «MetaClass(metaClass)»);
 	return data.isPermitted();
 
 	'''
@@ -194,7 +194,7 @@ import xpt.diagram.Utils_qvto
 		«xptMetaModel.NewInstance(it.metaClass, varName)»
 		
 		org.eclipse.emf.ecore.EObject target = getElementToEdit();
-				org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getCurrent().getChildAddData(diagram, target, «varName»);
+				org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target, «varName»);
 				if (data.isPermitted()) {
 					if (data.isPathDefined()) {
 						if (!data.execute(target, «varName»)) {

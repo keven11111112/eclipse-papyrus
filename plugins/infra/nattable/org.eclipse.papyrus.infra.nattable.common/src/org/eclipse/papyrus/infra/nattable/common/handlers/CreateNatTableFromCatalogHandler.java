@@ -37,9 +37,9 @@ import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.wizards.CreateNattableFromCatalogWizard;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -193,15 +193,15 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	 * 		the {@link URI} of the nattable configuration, or <code>null</code> if not found
 	 */
 	private URI getTableConfigurationURI(final TableViewPrototype viewPrototype) {
-		if (viewPrototype.getConfiguration() instanceof PapyrusTable) {
-			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getConfiguration();
+		if (viewPrototype.getRepresentationKind() instanceof PapyrusTable) {
+			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getRepresentationKind();
 			String uri = papyrusTable.getConfiguration();
 			if (uri != null && uri.length() > 0) {
 				return URI.createURI(uri);
 			}
 		}
-		if (viewPrototype.getConfiguration() instanceof PapyrusSyncTable) {
-			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getConfiguration()).getImplementationID());
+		if (viewPrototype.getRepresentationKind() instanceof PapyrusSyncTable) {
+			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getRepresentationKind()).getImplementationID());
 		}
 		return null;
 	}

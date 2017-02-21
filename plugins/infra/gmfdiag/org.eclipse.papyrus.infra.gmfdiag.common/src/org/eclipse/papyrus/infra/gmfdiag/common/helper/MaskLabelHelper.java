@@ -64,7 +64,7 @@ public class MaskLabelHelper {
 		}
 
 		TransactionalEditingDomain editingDomain = (TransactionalEditingDomain) EMFHelper.resolveEditingDomain(view);
-		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Restore default label configuration") {
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Restore default label ") {
 
 			@Override
 			protected void doExecute() {

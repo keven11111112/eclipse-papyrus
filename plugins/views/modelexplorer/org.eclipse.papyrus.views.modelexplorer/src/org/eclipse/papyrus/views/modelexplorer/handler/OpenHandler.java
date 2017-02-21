@@ -115,7 +115,7 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 		if (selection instanceof Diagram) {
 			Diagram diagram = (Diagram) selection;
 			ViewPrototype proto = DiagramUtils.getPrototype(diagram);
-			return (proto != ViewPrototype.UNAVAILABLE_VIEW && proto != ViewPrototype.UNAVAILABLE_DIAGRAM);
+			return proto != ViewPrototype.UNAVAILABLE_VIEW;
 		}
 		return true;
 	}

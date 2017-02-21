@@ -21,12 +21,13 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.profile.standard.StandardPackage;
@@ -37,22 +38,25 @@ import org.junit.Test;
  */
 public class TestElementTypeRegistryContent {
 
-	private static final String PAPYRUS_CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext"; //$NON-NLS-1$
-
+	private IClientContext context;
+	
 	private static final String PAPYRUS_ELEMENT_TYPE_PREFIX = "org.eclipse.papyrus.uml."; //$NON-NLS-1$
 
 	private static final String PAPYRUS_ST_APPLICATION_TYPE_PREFIX = "org.eclipse.papyrus.uml.stereotype."; //$NON-NLS-1$
 
 	private static final String PAPYRUS_INVALID_PREFIX = "org.eclipse.papyrus.uml.diagram"; //$NON-NLS-1$
 
+	public TestElementTypeRegistryContent() {
+		try {
+			context = TypeContext.getDefaultContext();
+		} catch (ServiceException e) {
+			fail("Default client context could not be found.");
+			return;
+		}
+	}
+	
 	@Test
 	public void testRegistryContentForUML() {
-
-		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		if (context == null) {
-			fail("Papyrus IClientContext could not be found.");
-		}
-
 		// Iterate over UML2 contents
 		Iterator<EObject> it = UMLPackage.eINSTANCE.eAllContents();
 		while (it.hasNext()) {
@@ -87,7 +91,7 @@ public class TestElementTypeRegistryContent {
 					continue;
 				}
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 
 			}
 		}
@@ -108,7 +112,7 @@ public class TestElementTypeRegistryContent {
 					continue;
 				}
 
-				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 
 			}
 		}
@@ -117,16 +121,19 @@ public class TestElementTypeRegistryContent {
 	@Test
 	public void testRegistryContentForUMLAssociations() {
 
-		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		if (context == null) {
-			fail("Papyrus IClientContext could not be found.");
+		IClientContext context;
+		try {
+			context = TypeContext.getDefaultContext();
+		} catch (ServiceException e) {
+			fail("Default client context could not be found.");
+			return;
 		}
 
 		IElementType associationBaseElementType = ElementTypeRegistry.getInstance().getElementType(UMLPackage.eINSTANCE.getAssociation(), context);
 		assertTrue("Incorrect id for base Association element type (" + associationBaseElementType.getId() + ")", associationBaseElementType.getId().equals("org.eclipse.papyrus.uml.AssociationBase"));
 
 		IElementType associationElementType = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Association");
-		assertTrue("No ISpecializationType found for UML Association in Papyrus context", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.uml.Association"));
+		assertTrue("No ISpecializationType found for UML Association in Papyrus context", ElementEditServiceUtils.getEditServiceProvider(context).isKnownElementType("org.eclipse.papyrus.uml.Association"));
 		assertTrue("Incorrect kind of ElementType (ISpecializationType expected for " + associationElementType.getId() + ")", associationElementType instanceof ISpecializationType);
 		ISpecializationType associationSpecializationType = (ISpecializationType) associationElementType;
 		assertTrue("Incorrect specialization type hierarchy for " + associationElementType.getId(), associationSpecializationType.isSpecializationOf(associationBaseElementType));

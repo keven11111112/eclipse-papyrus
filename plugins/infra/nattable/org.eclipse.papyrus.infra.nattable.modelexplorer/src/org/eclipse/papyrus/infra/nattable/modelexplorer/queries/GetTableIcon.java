@@ -11,15 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer.queries;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.papyrus.emf.facet.custom.ui.ImageUtils;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.ui.editorsfactory.AbstractGetEditorIconQuery;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /** Return the path to the icon of the corresponding table */
@@ -27,7 +28,7 @@ public class GetTableIcon extends AbstractGetEditorIconQuery implements IJavaQue
 
 	@Override
 	public IImage evaluate(Table source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		ViewPrototype prototype = ViewPrototype.get((PapyrusView) source.getPrototype());
-		return ImageUtils.wrap(prototype.getIconURI());
+		ViewPrototype prototype = ViewPrototype.get(source);
+		return (prototype != null) ? ImageUtils.wrap(prototype.getIconURI()) : null;
 	}
 }

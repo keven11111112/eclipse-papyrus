@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.papyrus.infra.types.rulebased;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.types.rulebased;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.properties.edit;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.uml2.uml.edit;bundle-version="[5.1.0,6.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.services.edit;bundle-version="[2.0.0,3.0.0)",

@@ -94,7 +94,7 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 	@Override
 	public boolean canExecute() {
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getActionExecutionSpecification());
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getActionExecutionSpecification());
 		return data.isPermitted();
 	}
 
@@ -107,7 +107,7 @@ public class ActionExecutionSpecificationCreateCommand extends EditElementComman
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ActionExecutionSpecification newElement = UMLFactory.eINSTANCE.createActionExecutionSpecification();
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
 			if (data.isPathDefined()) {
 				if (!data.execute(target, newElement)) {

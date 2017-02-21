@@ -31,6 +31,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -39,8 +41,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtil
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
+import org.eclipse.papyrus.uml.architecture.UMLArchitectureContextIds;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
+import org.eclipse.papyrus.uml.diagram.wizards.command.NewPapyrusModelCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.utils.CustomUMLUtil;
 import org.eclipse.swt.widgets.Display;
@@ -187,13 +191,27 @@ public class SharedTestSuiteState implements TestRule {
 		}
 		if (!file.exists()) {
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-			modelSet.createModels(fileURI);
+			
+			final String contextId;
+			if (fileURI.lastSegment().matches(".*\\.profile\\.(di|uml)"))
+				contextId = UMLArchitectureContextIds.Profile;
+			else
+				contextId = UMLArchitectureContextIds.UML;
 
-			if (fileURI.lastSegment().matches(".*\\.profile\\.(di|uml)")) {
-				new CreateProfileModelCommand().createModel(modelSet);
-			} else {
-				new CreateUMLModelCommand().createModel(modelSet);
-			}
+			RecordingCommand command = new NewPapyrusModelCommand(modelSet, fileURI);
+			modelSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+			
+			TransactionalEditingDomain ted = modelSet.getTransactionalEditingDomain();
+			ted.getCommandStack().execute(new RecordingCommand(ted) {
+				@Override
+				protected void doExecute() {
+					if (contextId == UMLArchitectureContextIds.Profile) {
+						new CreateProfileModelCommand().createModel(modelSet);
+					} else {
+						new CreateUMLModelCommand().createModel(modelSet);
+					}
+				}
+			});
 
 			ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 			try {

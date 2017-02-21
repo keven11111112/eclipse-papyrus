@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
@@ -255,9 +255,9 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 		if (root instanceof ElementTypeSetConfiguration) {
 
 			try {
-				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) root);
-				IEditHelperAdvice[] advicesAfterLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType);
-				Arrays.sort(advicesAfterLoading, new AdviceComparator(classElementType, TypeContext.getContext().getId()));
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getDefaultContext().getId(), (ElementTypeSetConfiguration) root);
+				IEditHelperAdvice[] advicesAfterLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType, TypeContext.getDefaultContext());
+				Arrays.sort(advicesAfterLoading, new AdviceComparator(classElementType, TypeContext.getDefaultContext().getId()));
 				int advice1Index = -1;
 				int advice2Index = -1;
 				int advice3Index = -1;
@@ -293,7 +293,7 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 		org.eclipse.emf.ecore.EObject root = cyclicAdvicesConfigurationResource.getContents().get(0);
 		if (root instanceof ElementTypeSetConfiguration) {
 			try {
-				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) root);
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getDefaultContext().getId(), (ElementTypeSetConfiguration) root);
 			} catch (ServiceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

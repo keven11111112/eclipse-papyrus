@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
@@ -40,9 +41,8 @@ import org.eclipse.papyrus.infra.nattable.internal.common.commands.CreateAndOpen
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
@@ -372,15 +372,15 @@ public class TableEditorCreationHelper {
 	 */
 	protected URI getTableConfigurationURI(TableViewPrototype viewPrototype) {
 		Assert.isNotNull(viewPrototype);
-		if (viewPrototype.getConfiguration() instanceof PapyrusTable) {
-			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getConfiguration();
+		if (viewPrototype.getRepresentationKind() instanceof PapyrusTable) {
+			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getRepresentationKind();
 			String uri = papyrusTable.getConfiguration();
 			if (uri != null && uri.length() > 0) {
 				return URI.createURI(uri);
 			}
 		}
-		if (viewPrototype.getConfiguration() instanceof PapyrusSyncTable) {
-			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getConfiguration()).getImplementationID());
+		if (viewPrototype.getRepresentationKind() instanceof PapyrusSyncTable) {
+			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getRepresentationKind()).getImplementationID());
 		}
 		return null;
 	}
@@ -399,7 +399,7 @@ public class TableEditorCreationHelper {
 			return null;
 		}
 		// 1. get all available view prototype for the table context
-		Collection<ViewPrototype> prototypes = PolicyChecker.getCurrent().getPrototypesFor(tableContext);
+		Collection<ViewPrototype> prototypes = PolicyChecker.getFor(tableContext).getPrototypesFor(tableContext);
 		Iterator<ViewPrototype> iter = prototypes.iterator();
 
 		// 2. find the view prototype allowing to create the wanted table, identified by it ViewPrototype
@@ -412,7 +412,7 @@ public class TableEditorCreationHelper {
 					return prototype;
 				}
 				if (implementationID == null || implementationID.isEmpty()) {
-					PapyrusView configuration = prototype.getConfiguration();
+					PapyrusRepresentationKind configuration = prototype.getRepresentationKind();
 					if (configuration instanceof PapyrusTable) {
 						// we need to load the real table configuration to check the type
 						PapyrusTable papyrusTable = (PapyrusTable) configuration;

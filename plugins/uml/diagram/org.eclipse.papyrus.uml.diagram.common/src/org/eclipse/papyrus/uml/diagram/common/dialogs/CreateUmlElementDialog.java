@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -39,8 +40,11 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
@@ -297,13 +301,19 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 	 *         The command corresponding to this request or an {@link UnexecutableCommand} when the command can not be build
 	 */
 	private ICommand getCommand(IEditCommandRequest request) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(UMLPackage.eINSTANCE.getNamedElement());
-		{
-			if (provider != null) {
-				ICommand cmd = provider.getEditCommand(request);
-				if (cmd != null && cmd.canExecute()) {
-					return cmd;
-				}
+		IClientContext context;
+		try {
+			context = TypeContext.getContext(domain);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(UMLPackage.eINSTANCE.getNamedElement(), context);
+		if (provider != null) {
+			ICommand cmd = provider.getEditCommand(request);
+			if (cmd != null && cmd.canExecute()) {
+				return cmd;
 			}
 		}
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;

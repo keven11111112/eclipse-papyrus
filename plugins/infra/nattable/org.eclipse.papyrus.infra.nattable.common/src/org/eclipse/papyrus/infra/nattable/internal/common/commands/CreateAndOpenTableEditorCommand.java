@@ -23,6 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
+import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
@@ -215,7 +216,7 @@ public   class CreateAndOpenTableEditorCommand extends RecordingCommand {
 	@Override
 	protected void doExecute() {
 		final Table table = TableHelper.createTable(configuration, null, this.name, this.description); // context null here, see bug 410357
-
+		TableVersioningUtils.stampCurrentVersion(table);
 		
 		table.setContext(this.context);
 		// Save the model in the associated resource
@@ -226,7 +227,7 @@ public   class CreateAndOpenTableEditorCommand extends RecordingCommand {
 		} else {
 			table.setOwner(this.owner);
 		}
-		table.setPrototype(tableViewPrototype.getConfiguration());
+		table.setPrototype(tableViewPrototype.getRepresentationKind());
 		if (this.pageManager != null) {
 			this.pageManager.openPage(table);
 		}

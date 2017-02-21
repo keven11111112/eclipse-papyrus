@@ -21,29 +21,13 @@ import org.eclipse.gmf.runtime.emf.type.core.MetamodelType;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.internal.ElementEditServiceProvider;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 import org.eclipse.papyrus.infra.services.edit.tests.AbstractTestElementEditService;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
  * JUnit tests for {@link ElementEditServiceProvider} class.
  */
 public class TestElementEditServiceProvider extends AbstractTestElementEditService {
-
-	IElementEditServiceProvider provider;
-
-	@Override
-	@Before
-	public void setUp() {
-		super.setUp();
-
-		try {
-			provider = ElementEditServiceProvider.getInstance();
-		} catch (ServiceException e) {
-			fail("Test aborted - Singleton IElementEditServiceProvider not found.");
-		}
-	}
 
 	@Test
 	public void testGetEditService_EClass() {

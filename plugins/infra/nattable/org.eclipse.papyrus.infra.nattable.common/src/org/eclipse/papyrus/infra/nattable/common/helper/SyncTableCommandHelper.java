@@ -23,12 +23,13 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -50,12 +51,12 @@ public class SyncTableCommandHelper implements IViewTypeHelper {
 	/**
 	 * The cache of prototypes
 	 */
-	private Map<PapyrusView, TableViewPrototype> cache;
+	private Map<PapyrusRepresentationKind, TableViewPrototype> cache;
 
 
 
 	@Override
-	public ViewPrototype getPrototypeFor(PapyrusView configuration) {
+	public ViewPrototype getPrototypeFor(PapyrusRepresentationKind configuration) {
 		if (!(configuration instanceof PapyrusSyncTable)) {
 			return null;
 		}
@@ -63,7 +64,7 @@ public class SyncTableCommandHelper implements IViewTypeHelper {
 			buildImplementationCache();
 		}
 		if (cache == null) {
-			cache = new HashMap<PapyrusView, TableViewPrototype>();
+			cache = new HashMap<PapyrusRepresentationKind, TableViewPrototype>();
 		}
 		if (cache.containsKey(configuration)) {
 			return cache.get(configuration);
@@ -78,7 +79,7 @@ public class SyncTableCommandHelper implements IViewTypeHelper {
 
 	@Override
 	public boolean isSupported(EClass type) {
-		return (type == ConfigurationPackage.eINSTANCE.getPapyrusSyncTable());
+		return (type == RepresentationPackage.eINSTANCE.getPapyrusSyncTable());
 	}
 
 	@Override
@@ -92,7 +93,14 @@ public class SyncTableCommandHelper implements IViewTypeHelper {
 
 	@Override
 	public ViewPrototype getPrototypeOf(EObject view) {
-		return getPrototypeFor((PapyrusView) ((Table) view).getPrototype());
+		if (!isSupported(view)) {
+			return null;
+		}
+		PolicyChecker checker = PolicyChecker.getFor(view);
+		PapyrusSyncTable repKind = (PapyrusSyncTable) ((Table)view).getPrototype();
+		if (checker.isInViewpoint(repKind))
+			return getPrototypeFor(repKind);
+		return ViewPrototype.UNAVAILABLE_VIEW;
 	}
 
 	/**

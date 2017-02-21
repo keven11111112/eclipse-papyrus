@@ -155,7 +155,7 @@ public class XMLPaletteApplicator implements XMLPaletteDefinitionVisitor, IPapyr
 	public void onToolEntry(Node node) {
 		String id = node.getAttributes().getNamedItem(ID).getNodeValue();
 		PaletteEntry entry = predefinedEntries.get(id);
-		if (PolicyChecker.getCurrent().isInPalette(diagram, id)) {
+		if (PolicyChecker.getFor(diagram).isInPalette(diagram, id)) {
 			appendPaletteEntry(computePath(node), entry);
 		}
 	}
@@ -206,7 +206,7 @@ public class XMLPaletteApplicator implements XMLPaletteDefinitionVisitor, IPapyr
 		CombinedTemplateCreationEntry realEntry = new AspectCreationEntry(name, desc, id, iconDesc, entry, properties);
 
 		predefinedEntries.put(id, realEntry);
-		if (PolicyChecker.getCurrent().isInPalette(diagram, id)) {
+		if (PolicyChecker.getFor(diagram).isInPalette(diagram, id)) {
 			appendPaletteEntry(computePath(node), realEntry);
 		}
 	}

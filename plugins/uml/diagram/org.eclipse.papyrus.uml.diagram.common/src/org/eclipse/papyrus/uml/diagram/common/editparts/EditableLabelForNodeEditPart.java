@@ -45,8 +45,6 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
@@ -68,6 +66,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditP
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy;
@@ -76,7 +77,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigu
 import org.eclipse.papyrus.uml.diagram.common.locator.MultilineCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.common.parser.DefaultParserHintAdapter;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -158,8 +158,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 		}
 	}
 
-	public void setLabel(IFigure
-			figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -188,13 +187,13 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 
 	protected Image getLabelIcon() {
 		EObject parserElement = getParserElement();
-		if(parserElement == null) {
+		if (parserElement == null) {
 			return null;
 		}
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for(View view : views) {
-			if(AppearanceHelper.showElementIcon(view)) {
-				return  org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getImage(parserElement.eClass());
+		for (View view : views) {
+			if (AppearanceHelper.showElementIcon(view)) {
+				return org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getImage(parserElement.eClass());
 			}
 		}
 		return null;
@@ -251,15 +250,14 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid =
-								(IParserEditStatus) getEditingDomain().runExclusive(
-										new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
-											@Override
-											public void run() {
-												setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
-											}
-										});
+									@Override
+									public void run() {
+										setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+									}
+								});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
@@ -287,9 +285,9 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 
 	public IParser getParser() {
 
-		if(parser == null) {
-			parser =ParserService.getInstance().getParser(new DefaultParserHintAdapter(getNotationView().getDiagram(), resolveSemanticElement(), getNotationView().getType()));
-			if(parser == null) {
+		if (parser == null) {
+			parser = ParserService.getInstance().getParser(new DefaultParserHintAdapter(getNotationView().getDiagram(), resolveSemanticElement(), getNotationView().getType()));
+			if (parser == null) {
 				parser = new NamedElementLabelParser();
 			}
 		}
@@ -335,12 +333,12 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
 			return new MultilineCellEditorLocator(
 					(IMultilineEditableFigure) source.getFigure());
-		}
-		else {
+		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
 		}
 	}
+
 	@Override
 	protected void performDirectEditRequest(Request request) {
 
@@ -357,7 +355,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this),getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -370,8 +368,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
-				}
-				else if (configuration instanceof IAdvancedEditorConfiguration) {
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
@@ -413,8 +410,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						}
-						else {
+						} else {
 							performDirectEdit();
 						}
 					}
@@ -445,8 +441,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 			if (view.isVisible()) {
 				setLabelTextHelper(getFigure(), getLabelText());
 				setLabelIconHelper(getFigure(), getLabelIcon());
-			}
-			else {
+			} else {
 				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
 				setLabelIconHelper(getFigure(), null);
 			}
@@ -462,26 +457,23 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 	}
 
 	protected void refreshUnderline() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if (resolveSemanticElement() instanceof Feature) {
 			if (((Feature) resolveSemanticElement()).isStatic()) {
 				((WrappingLabel) getFigure()).setTextUnderline(true);
-			}
-			else {
+			} else {
 				((WrappingLabel) getFigure()).setTextUnderline(false);
 			}
 		}
 	}
 
 	protected void refreshStrikeThrough() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -489,14 +481,13 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 
 	@Override
 	protected void refreshFont() {
-		FontStyle style =
-				(FontStyle) getFontStyleOwnerView().getStyle(
-						NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
 			FontData fontData = new FontData(
 					style.getFontName(), style.getFontHeight(),
 					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
-					(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -682,8 +673,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 				refreshLabel();
 			}
 			if (getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser =
-						(ISemanticParser) getParser();
+				ISemanticParser modelParser = (ISemanticParser) getParser();
 				if (modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
 					if (resolveSemanticElement() != null) {
@@ -700,14 +690,13 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 	}
 
 	protected IFigure createFigure() {
-		IFigure label=null;
-		if(getParent() instanceof ContainerNodeEditPart){
-			label= ((ContainerNodeEditPart)getParent()).getPrimaryShape().getNameLabel();
-		}
-		else{
+		IFigure label = null;
+		if (getParent() instanceof ContainerNodeEditPart) {
+			label = ((ContainerNodeEditPart) getParent()).getPrimaryShape().getNameLabel();
+		} else {
 			label = createFigurePrim();
 		}
-		defaultText	 = getLabelTextHelper(label);
+		defaultText = getLabelTextHelper(label);
 		return label;
 	}
 
@@ -739,7 +728,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-	
+
 	@Override
 	public boolean isSelectable() {
 		return getFigure().isShowing();

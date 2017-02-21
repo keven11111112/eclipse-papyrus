@@ -2,8 +2,8 @@ package org.eclipse.papyrus.infra.services.edit.tests.context;
 
 import static org.junit.Assert.fail;
 
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
-import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.Test;
 
@@ -12,12 +12,11 @@ import org.junit.Test;
  */
 public class TestClientContext extends AbstractPapyrusTest {
 
-	private static final String PAPYRUS_CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext"; //$NON-NLS-1$
-
 	@Test
 	public void testClientContextExist() {
-		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		if(context == null) {
+		try {
+			TypeContext.getDefaultContext();
+		} catch (ServiceException e) {
 			fail("Papyrus IClientContext could not be found.");
 		}
 	}

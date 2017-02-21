@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.infra.services.edit.tests.commands;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -9,14 +10,11 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
-import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
-import org.eclipse.papyrus.infra.services.edit.internal.ElementEditService;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.tests.AbstractTestElementEditService;
 import org.junit.Before;
@@ -27,8 +25,6 @@ import org.junit.Test;
  */
 public class TestConfigureFeatureCommandFactory extends AbstractTestElementEditService {
 
-	IClientContext context;
-
 	IElementEditService ePckgService;
 
 	EPackage ePckg;
@@ -38,8 +34,11 @@ public class TestConfigureFeatureCommandFactory extends AbstractTestElementEditS
 	public void setUp() {
 		super.setUp();
 
-		context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		ePckgService = new ElementEditService(ePackgType, context);
+		try {
+			ePckgService = provider.getEditService(ePackgType);
+		} catch (ServiceException e) {
+			fail("failed to get the edit service for "+ePackgType);
+		}
 		ePckg = EcoreFactory.eINSTANCE.createEPackage();
 	}
 

@@ -6,6 +6,10 @@ package org.eclipse.papyrus.infra.core.resource.sasheditor;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescription;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
@@ -56,4 +60,31 @@ public class DiModelUtils {
 		return null;
 	}
 
+	/**
+	 * @since 2.3
+	 */
+	public static ArchitectureDescription getArchitectureDescription(ModelSet modelSet) {
+		ArchitectureDescription result = null;
+
+		Resource resource = getDiResource(modelSet);
+		if (resource != null) {
+			result = (ArchitectureDescription) EcoreUtil.getObjectByType(resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
+		}
+
+		return result;
+	}
+
+	/**
+	 * @since 2.3
+	 */
+	public static ArchitectureDescriptionPreferences getArchitectureDescriptionPreferences(ModelSet modelSet) {
+		ArchitectureDescriptionPreferences result = null;
+
+		Resource resource = getDiResource(modelSet);
+		if (resource != null) {
+			result = (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+		}
+
+		return result;
+	}
 }

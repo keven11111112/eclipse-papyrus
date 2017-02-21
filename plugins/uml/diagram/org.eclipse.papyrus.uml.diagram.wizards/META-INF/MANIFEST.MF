@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.diagram.wizards,
- org.eclipse.papyrus.uml.diagram.wizards.category,
  org.eclipse.papyrus.uml.diagram.wizards.command,
  org.eclipse.papyrus.uml.diagram.wizards.kind,
  org.eclipse.papyrus.uml.diagram.wizards.messages,
@@ -18,7 +17,9 @@ Require-Bundle: org.eclipse.m2m.qvt.oml;bundle-version="[3.6.0,4.0.0)";visibilit
  org.eclipse.papyrus.uml.tools;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.help;bundle-version="[3.7.0,4.0.0)",
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="[1.2.0,2.0.0)"
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.core.architecture;bundle-version="0.1.0",
+ org.eclipse.papyrus.infra.ui.architecture;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 3.0.0.qualifier

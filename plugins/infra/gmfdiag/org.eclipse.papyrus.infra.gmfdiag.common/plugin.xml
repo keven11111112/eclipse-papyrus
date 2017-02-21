@@ -440,13 +440,6 @@
    </paletteProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/notation.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
-<extension
       point="org.eclipse.gmf.runtime.common.ui.services.iconProviders">
    <IconProvider
          class="org.eclipse.papyrus.infra.gmfdiag.common.providers.ElementTypeIconProvider">
@@ -479,13 +472,6 @@
                serviceKeyRef="org.eclipse.papyrus.infra.sync.service.ISyncService">
          </dependsOn>
       </service>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="model/gmfdiag-common.elementtypesconfigurations">
-      </elementTypeSet>
    </extension>
 
 </plugin>

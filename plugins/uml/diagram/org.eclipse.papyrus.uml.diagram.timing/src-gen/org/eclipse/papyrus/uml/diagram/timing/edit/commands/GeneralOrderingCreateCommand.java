@@ -69,7 +69,7 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 	public boolean canExecute() {
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getGeneralOrdering());
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getGeneralOrdering());
 		return data.isPermitted();
 
 
@@ -84,7 +84,7 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		GeneralOrdering newElement = UMLFactory.eINSTANCE.createGeneralOrdering();
 
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
 			if (data.isPathDefined()) {
 				if (!data.execute(target, newElement)) {

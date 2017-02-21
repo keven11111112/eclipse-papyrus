@@ -25,7 +25,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -52,7 +52,7 @@ public class ElementTypeInfo extends AbstractHandler {
 				EObject adapted = ((IAdaptable) selectedElement).getAdapter(EObject.class);
 				if (adapted != null) {
 					try {
-						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(adapted, TypeContext.getContext());
+						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(adapted, TypeContext.getContext(adapted));
 						String result = "";
 						for (IElementType iElementType : types) {
 							result += iElementType.getId() + "\n";

@@ -1734,18 +1734,4 @@
             type="java.lang.Object">
       </propertyTester>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="model/nattable-tablecontents.elementtypesconfigurations">
-      </elementTypeSet>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-      <elementTypeSet
-            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            path="model/nattable-tablecontext.elementtypesconfigurations">
-      </elementTypeSet>
-   </extension>
 </plugin>

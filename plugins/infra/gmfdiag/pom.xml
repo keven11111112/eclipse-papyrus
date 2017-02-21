@@ -33,6 +33,10 @@
 		<module>org.eclipse.papyrus.infra.gmfdiag.welcome</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.widgets</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.representation</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.representation.edit</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.style</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.style.edit</module>
 		<module>assistant</module>
 		<module>css</module>
 		<module>expansion</module>

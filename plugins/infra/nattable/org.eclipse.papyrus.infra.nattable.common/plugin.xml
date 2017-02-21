@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="tableReconciler" name="tableReconciler" schema="schema/tableReconciler.exsd"/>
+
 <!--We declare the model used for the Papyrus Table Editor  -->
    <extension point="org.eclipse.papyrus.infra.core.model">
       <model classname="org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel" description="Model for Papyrus Nattable editors">
@@ -270,12 +272,5 @@
          </with>
       </activeWhen>
    </handler>
-</extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/nattable-common.elementtypesconfigurations">
-   </elementTypeSet>
 </extension>
 </plugin>

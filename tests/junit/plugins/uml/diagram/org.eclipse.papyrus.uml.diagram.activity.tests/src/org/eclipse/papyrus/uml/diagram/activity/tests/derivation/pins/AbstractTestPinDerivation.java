@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
+ *   Jï¿½rï¿½mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
@@ -35,8 +37,6 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 
 public abstract class AbstractTestPinDerivation extends AbstractPapyrusTest {
-
-	protected static final String TYPE_CONTEXT = "org.eclipse.papyrus.infra.services.edit.TypeContext";
 
 	protected static final String UML_PRIMITIVE_TYPES_PATH = "platform:/plugin/org.eclipse.uml2.uml.resources/libraries/UMLPrimitiveTypes.library.uml";
 
@@ -96,9 +96,15 @@ public abstract class AbstractTestPinDerivation extends AbstractPapyrusTest {
 	 * @return the element type set
 	 */
 	protected ElementTypeSetConfiguration getActivityDiagramElementTypeConfiguration() {
+		String clientContextId = "";
+		try {
+			clientContextId = TypeContext.getDefaultContext().getId();
+		} catch (ServiceException e) {
+			Assert.fail("Default client context cannot be found");
+		}
 		ElementTypeSetConfigurationRegistry instance = ElementTypeSetConfigurationRegistry.getInstance();
 		Map<String, Map<String, ElementTypeSetConfiguration>> elementTypeSetConfigurations = instance.getElementTypeSetConfigurations();
-		Map<String, ElementTypeSetConfiguration> map = elementTypeSetConfigurations.get(TYPE_CONTEXT);
+		Map<String, ElementTypeSetConfiguration> map = elementTypeSetConfigurations.get(clientContextId);
 		return map.get("org.eclipse.papyrus.uml.diagram.activity.elementTypeSet");
 	}
 
@@ -107,9 +113,15 @@ public abstract class AbstractTestPinDerivation extends AbstractPapyrusTest {
 	 */
 	@BeforeClass
 	public static void loadActvityDiagramElementTypes() {
+		String clientContextId = "";
+		try {
+			clientContextId = TypeContext.getDefaultContext().getId();
+		} catch (ServiceException e) {
+			Assert.fail("Default client context cannot be found");
+		}
 		ElementTypeSetConfigurationRegistry instance = ElementTypeSetConfigurationRegistry.getInstance();
 		Map<String, Map<String, ElementTypeSetConfiguration>> elementTypeSetConfigurations = instance.getElementTypeSetConfigurations();
-		Map<String, ElementTypeSetConfiguration> map = elementTypeSetConfigurations.get(TYPE_CONTEXT);
+		Map<String, ElementTypeSetConfiguration> map = elementTypeSetConfigurations.get(clientContextId);
 		ElementTypeSetConfiguration elementTypeSetConfiguration = map.get("org.eclipse.papyrus.uml.diagram.activity.elementTypeSet");
 		Assert.assertNotNull("The element types set definition for activity model could not be found", elementTypeSetConfiguration);
 	}

@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler_1_2_0;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.commands.StereotypeNestedPropertiesMigrationCommand;
 
 /**
@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.commands.Ster
  *
  * @author Céline JANSSENS
  *
- * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler}
+ * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler_1_2_0}
  */
 @Deprecated
 public class StereotypeEAnnotationNestedMigrationEditPolicy extends StereotypeEAnnotationPropertiesMigrationEditPolicy {

@@ -270,7 +270,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		IElementEditService commandService = ElementEditServiceUtils
 				.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement());
 		if (req.getElementType() != null) {
-			commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType());
+			commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType(), req.getClientContext());
 		}
 
 		if (commandService == null) {

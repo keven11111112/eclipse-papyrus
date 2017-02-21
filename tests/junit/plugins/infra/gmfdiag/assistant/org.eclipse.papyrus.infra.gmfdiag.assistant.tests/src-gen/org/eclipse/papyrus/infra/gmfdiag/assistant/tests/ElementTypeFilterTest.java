@@ -173,7 +173,7 @@ public class ElementTypeFilterTest extends TestCase {
 	{
 		IElementType type = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.AssociationBase");
 		Association association = UMLFactory.eINSTANCE.createAssociation();
-		IEditHelperContext editContext = new EditHelperContext(association, ElementTypeUtils.getEditContext());
+		IEditHelperContext editContext = new EditHelperContext(association, ElementTypeUtils.getDefaultClientContext());
 
 		assertThat(getFixture().matches(type), is(false));
 		assertThat(getFixture().matches(association), is(false));

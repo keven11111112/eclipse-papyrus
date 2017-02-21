@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.emf.type.core.NullElementType;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.messages.Messages;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
@@ -40,7 +39,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvid
  *
  * This provider wrap {@link ElementTypeRegistry} especially to provide a Papyrus-like
  * service provider.
- * This class is a singleton that may be access directly or via Papyrus service registry.
  * Note that this provider does not necessary need Papyrus to be the active editor to be available
  * (it relies on {@link ElementTypeRegistry} which is independant from Papyrus.
  *
@@ -53,21 +51,9 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 	/** Papyrus shared {@link IClientContext} */
 	protected IClientContext sharedClientContext;
 
-	/** Singleton instance */
-	private static IElementEditServiceProvider instance;
-
 	/** Default constructor */
-	private ElementEditServiceProvider() throws ServiceException {
-		this.sharedClientContext = TypeContext.getContext();
-	}
-
-	/** Get singleton instance */
-	public static synchronized IElementEditServiceProvider getInstance() throws ServiceException {
-		if (instance == null) {
-			instance = new ElementEditServiceProvider();
-		}
-
-		return instance;
+	public ElementEditServiceProvider(IClientContext clientContext) {
+		this.sharedClientContext = clientContext;
 	}
 
 	/**

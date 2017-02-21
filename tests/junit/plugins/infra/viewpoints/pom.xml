@@ -15,7 +15,6 @@
 	<description>Tests for infra viewpoints role-based viewpoints customizing the UI experience.</description>
   
   <modules>
-	<module>org.eclipse.papyrus.infra.viewpoints.configuration.tests</module>
 	<module>org.eclipse.papyrus.infra.viewpoints.policy.tests</module>
 		
   </modules>

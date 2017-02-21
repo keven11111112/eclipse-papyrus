@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
@@ -64,8 +65,9 @@ public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
 				protected void doExecute() {
 					try {
 						Table table = PolicyDefinedTableHandler.this.doExecute(serviceRegistry, name, this.description);
+						TableVersioningUtils.stampCurrentVersion(table);
 						table.setOwner(context);
-						table.setPrototype(prototype.getConfiguration());
+						table.setPrototype(prototype.getRepresentationKind());
 					} catch (Exception ex) {
 						Activator.log.error(ex);
 					}

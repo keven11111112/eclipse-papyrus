@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler_1_2_0;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeMigrationHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
 
@@ -42,7 +42,7 @@ import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
  *
  * @author Céline JANSSENS
  *
- * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler}
+ * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler_1_2_0}
  */
 @Deprecated
 public abstract class StereotypeEAnnotationMigrationEditPolicy extends AbstractEditPolicy {

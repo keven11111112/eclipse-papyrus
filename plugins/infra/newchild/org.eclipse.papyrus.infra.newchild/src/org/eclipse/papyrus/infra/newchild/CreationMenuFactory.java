@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -42,6 +43,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -50,6 +52,7 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelatio
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
@@ -374,6 +377,14 @@ public class CreationMenuFactory {
 	 * @return a command that can be executed by the domain
 	 */
 	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache) {
+		IClientContext context;
+		try {
+			context = TypeContext.getContext(container);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return UnexecutableCommand.INSTANCE;
+		}
+		
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -383,7 +394,7 @@ public class CreationMenuFactory {
 		if (creationMenu instanceof CreateRelationshipMenu) {
 			IElementType elementType = getElementType(creationMenu.getElementTypeIdRef());
 			if (elementType != null) {
-				IElementEditService serviceProvider = ElementEditServiceUtils.getCommandProvider(elementType);
+				IElementEditService serviceProvider = ElementEditServiceUtils.getCommandProvider(elementType, context);
 				TreeSelectorDialog dialog = getTargetTreeSelectorDialog(container, serviceProvider, editingDomain, reference, container, elementType);
 				if (dialog != null) {
 					createGMFCommand = new SetTargetAndRelationshipCommand(this.editingDomain, "Create " + elementType.getDisplayName(), serviceProvider, reference, container, elementType, dialog);

@@ -30,8 +30,8 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
 import org.eclipse.ui.IWorkbench;
 
 /**
@@ -65,7 +65,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	}
 
 	@Override
-	public IStatus diagramCategoryChanged(String... newCategories) {
+	public IStatus architectureContextChanged(String... newCategories) {
 		// clean pages
 		List<String> newCategoriesList = Arrays.asList(newCategories);
 		Collection<String> keys = new HashSet<String>(myCategory2modelFilePageMap.keySet());
@@ -80,7 +80,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 				myCategory2modelFilePageMap.put(newCategory, newPage);
 			}
 		}
-		return super.diagramCategoryChanged(newCategories);
+		return super.architectureContextChanged(newCategories);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	@Override
 	public IWizardPage getNextPage(IWizardPage page) {
 		String pageId = page.getName();
-		if(SelectDiagramKindPage.PAGE_ID.equals(pageId)) {
+		if(SelectRepresentationKindPage.PAGE_ID.equals(pageId)) {
 			String nextKey = myCategory2modelFilePageMap.keySet().iterator().next();
 			return myCategory2modelFilePageMap.get(nextKey);
 		}
@@ -138,14 +138,9 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 		return super.getPreviousPage(page);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard#createSelectDiagramCategoryPage()
-	 */
 	@Override
-	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
-		return new SelectDiagramCategoryPage(true);
+	protected SelectArchitectureContextPage createSelectArchitectureContextPage() {
+		return new SelectArchitectureContextPage(true);
 	}
 
 	/**
@@ -155,10 +150,11 @@ public class CreateSeveralModelsWizard extends CreateModelWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		for(String category : getDiagramCategoryIds()) {
+		for(String contextId : getSelectedContexts()) {
 
-			final URI newURI = createNewModelURI(category);
-			createAndOpenPapyrusModel(newURI, category);
+			final URI newURI = createNewModelURI(contextId);
+			String[] viewpointIds = getSelectedViewpoints(contextId);
+			createAndOpenPapyrusModel(newURI, contextId, viewpointIds);
 		}
 
 		//		saveDiagramCategorySettings();

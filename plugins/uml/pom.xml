@@ -37,6 +37,7 @@
 		<module>org.eclipse.papyrus.uml.templaterepository</module>
 		<module>org.eclipse.papyrus.uml.ui</module>
 		<module>alf</module>
+		<module>architecture</module>
 		<module>assistants</module>
 		<module>decoratormodel</module>
 		<module>diagram</module>

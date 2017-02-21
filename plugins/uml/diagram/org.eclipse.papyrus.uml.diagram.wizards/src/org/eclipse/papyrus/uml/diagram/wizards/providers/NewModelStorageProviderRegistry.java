@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.services.IEvaluationService;
@@ -181,8 +181,8 @@ public class NewModelStorageProviderRegistry implements Iterable<NewModelStorage
 			return getInstance().createEditorInput(uri);
 		}
 
-		public IStatus validateDiagramCategories(String... newCategories) {
-			return getInstance().validateDiagramCategories(newCategories);
+		public IStatus validateArchitectureContexts(String... newContexts) {
+			return getInstance().validateArchitectureContexts(newContexts);
 		}
 
 		public ISelectProviderPart createSelectProviderPart() {
@@ -200,10 +200,10 @@ public class NewModelStorageProviderRegistry implements Iterable<NewModelStorage
 			}
 		}
 
-		public SelectDiagramCategoryPage getDiagramCategoryPage() {
-			return getInstance().getDiagramCategoryPage();
+		public SelectArchitectureContextPage getArchitectureContextPage() {
+			return getInstance().getArchitectureContextPage();
 		}
-	}
+}
 
 	private static final class NullProvider extends AbstractNewModelStorageProvider {
 

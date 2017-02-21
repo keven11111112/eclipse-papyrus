@@ -164,7 +164,7 @@
  <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
     <separator
           name="newelements"
-          visible="false">
+          visible="true">
     </separator>
     <menu id="org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild" label="New Child">
     </menu>

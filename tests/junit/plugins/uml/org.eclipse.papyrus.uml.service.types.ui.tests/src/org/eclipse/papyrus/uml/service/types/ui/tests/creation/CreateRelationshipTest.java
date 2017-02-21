@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.newchild.SetTargetAndRelationshipCommand;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.ITreeSelectorDialog;
@@ -704,7 +706,13 @@ public class CreateRelationshipTest extends AbstractCreateRelationshipTest {
 	 */
 	@Override
 	protected ICommand buildWrappedRelationshipCommand(TransactionalEditingDomain ted, IElementType elementType, EObject source, EObject target, EReference reference) {
-		IElementEditService serviceProvider = ElementEditServiceUtils.getCommandProvider(elementType);
+		IClientContext context;
+		try {
+			context = TypeContext.getContext(ted);
+		} catch (ServiceException e) {
+			return null;
+		}
+		IElementEditService serviceProvider = ElementEditServiceUtils.getCommandProvider(elementType, context);
 		ITreeSelectorDialog dialog = new TestTargetSelectionDialog(target);
 		SetTargetAndRelationshipCommand createGMFCommand = new SetTargetAndRelationshipCommand(ted, "Create " + elementType.getDisplayName(), serviceProvider, reference, source, elementType, dialog);
 		return createGMFCommand;

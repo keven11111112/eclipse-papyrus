@@ -112,7 +112,7 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 		Object oldValue = getValue();
 
 		try {
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getObserved());
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider((EObject)getObserved());
 
 			if (provider != null) {
 				CompositeCommand cc = new CompositeCommand("Edit value");

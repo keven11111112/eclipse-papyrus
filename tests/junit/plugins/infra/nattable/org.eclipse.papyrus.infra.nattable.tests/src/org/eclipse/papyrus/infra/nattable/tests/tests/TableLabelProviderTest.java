@@ -17,17 +17,32 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
 
+import java.util.Collections;
+
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainPreferences;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationFactory;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
+import org.eclipse.papyrus.infra.nattable.representation.RepresentationFactory;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -110,18 +125,40 @@ public class TableLabelProviderTest {
 	public void createFixture() {
 		fixture = houseKeeper.cleanUpLater(new TableLabelProvider());
 
-		package_ = UMLFactory.eINSTANCE.createPackage();
-		package_.setName("foo");
-
-		proto = ConfigurationFactory.eINSTANCE.createPapyrusTable();
+		ArchitectureDomain domain = ArchitectureFactory.eINSTANCE.createArchitectureDomain();
+		domain.setName("Testing");
+		
+		ArchitectureDescriptionLanguage language = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionLanguage();
+		language.setId("Testing.TestTable");
+		domain.getContexts().add(language);
+		
+		proto = RepresentationFactory.eINSTANCE.createPapyrusTable();
 		proto.setName("Test Table");
 		proto.setImplementationID("org.eclipse.papyrus.infra.nattable.tests.TestTable");
 		proto.setConfiguration("TestTable");
+		language.getRepresentationKinds().add(proto);
+		
+		ArchitectureViewpoint viewpoint = ArchitectureFactory.eINSTANCE.createArchitectureViewpoint();
+		viewpoint.setId("tesing.TestTable.Testing");
+		viewpoint.getRepresentationKinds().add(proto);
+		language.getViewpoints().add(viewpoint);
+		
+		ArchitectureDomainManager.getInstance().getMerger().setDynamicDomains(Collections.singleton(domain));
+		ArchitectureDomainManager.getInstance().getPreferences().setDefaultContextId("Testing.TestTable");
+		
+		package_ = UMLFactory.eINSTANCE.createPackage();
+		package_.setName("foo");
 
 		table = NattableFactory.eINSTANCE.createTable();
+		TableVersioningUtils.stampCurrentVersion(table);
 		table.setName("classes");
 		table.setPrototype(proto);
 		table.setContext(package_);
 	}
 
+	@After
+	public void teardown() {
+		ArchitectureDomainManager.getInstance().getMerger().setDynamicDomains(Collections.emptyList());
+		ArchitectureDomainManager.getInstance().getPreferences().setDefaultContextId(TypeContext.getDefaultContextId());
+	}
 }

@@ -4,7 +4,9 @@ Export-Package: org.eclipse.papyrus.infra.nattable.common,
  org.eclipse.papyrus.infra.nattable.common.editor,
  org.eclipse.papyrus.infra.nattable.common.factory,
  org.eclipse.papyrus.infra.nattable.common.handlers,
+ org.eclipse.papyrus.infra.nattable.common.helper,
  org.eclipse.papyrus.infra.nattable.common.modelresource,
+ org.eclipse.papyrus.infra.nattable.common.reconciler,
  org.eclipse.papyrus.infra.nattable.common.utils,
  org.eclipse.papyrus.infra.nattable.common.wizards,
  org.eclipse.papyrus.infra.nattable.internal.common.commands;x-friends:="org.eclipse.papyrus.infra.nattable.gmfdiag"
@@ -18,7 +20,8 @@ Require-Bundle: org.eclipse.papyrus.infra.nattable;bundle-version="[3.0.0,4.0.0)
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.types.core;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.papyrus.infra.internationalization.common;bundle-version="[1.0.0,2.0.0)"
+ org.eclipse.papyrus.infra.internationalization.common;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.infra.nattable.representation;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 3.0.0.qualifier

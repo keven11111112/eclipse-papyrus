@@ -17,9 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -29,10 +27,10 @@ import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
-import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusViewpoint;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
+import org.eclipse.papyrus.infra.architecture.representation.OwningRule;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -53,7 +51,6 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 	}
 
 	public static class LP extends LabelProvider {
-		private static final String IMG_CATEGORY = "imageCategory"; //$NON-NLS-1$
 		private static final String IMG_VIEWPOINT = "imageViewpoint"; //$NON-NLS-1$
 		private static final String IMG_PROFILE = "imageProfile"; //$NON-NLS-1$
 		private static final String IMG_MODEL = "imageModel"; //$NON-NLS-1$
@@ -62,11 +59,10 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 		private ImageRegistry images = new ImageRegistry(JFaceResources.getResources());
 
 		{
-			images.put(IMG_CATEGORY, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/PapyrusView.png"));
-			images.put(IMG_VIEWPOINT, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/PapyrusViewpoint.png"));
+			images.put(IMG_VIEWPOINT, loadImage("platform:/plugin/org.eclipse.papyrus.infra.core.architecture.edit/icons/full/obj16/MergedArchitectureViewpoint.gif"));
 			images.put(IMG_PROFILE, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Profile.gif"));
-			images.put(IMG_MODEL, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/ModelRule.png"));
-			images.put(IMG_OWNER, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/OwningRule.png"));
+			images.put(IMG_MODEL, loadImage("platform:/plugin/org.eclipse.papyrus.infra.core.architecture.edit/icons/full/obj16/ModelRule.gif"));
+			images.put(IMG_OWNER, loadImage("platform:/plugin/org.eclipse.papyrus.infra.core.architecture.edit/icons/full/obj16/OwningRule.gif"));
 		}
 
 		@Override
@@ -78,14 +74,11 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 
 		@Override
 		public String getText(Object element) {
-			if (element instanceof Category) {
-				return "Category " + ((Category) element).getName();
+			if (element instanceof MergedArchitectureViewpoint) {
+				return "Viewpoint " + ((MergedArchitectureViewpoint) element).getName();
 			}
 			if (element instanceof ViewPrototype) {
 				return ((ViewPrototype) element).getLabel();
-			}
-			if (element instanceof PapyrusViewpoint) {
-				return "Available in viewpoint: " + ((PapyrusViewpoint) element).getName();
 			}
 			if (element instanceof EPackage) {
 				return "Required profile: " + ((EPackage) element).getNsURI();
@@ -151,14 +144,11 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 
 		@Override
 		public Image getImage(Object element) {
-			if (element instanceof Category) {
-				return images.get(IMG_CATEGORY);
+			if (element instanceof MergedArchitectureViewpoint) {
+				return images.get(IMG_VIEWPOINT);
 			}
 			if (element instanceof ViewPrototype) {
 				return ((ViewPrototype) element).getIcon();
-			}
-			if (element instanceof PapyrusViewpoint) {
-				return images.get(IMG_VIEWPOINT);
 			}
 			if (element instanceof EPackage) {
 				return images.get(IMG_PROFILE);
@@ -173,20 +163,6 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 		}
 	}
 
-	/**
-	 * The root of all views
-	 */
-	public static final Object treeRoot = new Object();
-
-	/**
-	 * The views
-	 */
-	private Map<Category, List<ViewPrototype>> views;
-
-	/**
-	 * The categories
-	 */
-	private List<Category> categories;
 
 	/**
 	 * Creates the provider
@@ -195,17 +171,6 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 	 *            The views to provide
 	 */
 	public ViewPrototypeContentProvider() {
-		this.views = new HashMap<Category, List<ViewPrototype>>();
-		this.categories = new ArrayList<Category>();
-		for (ViewPrototype view : PolicyChecker.getCurrent().getAllPrototypes()) {
-			for (Category category : view.getCategories()) {
-				if (!categories.contains(category)) {
-					categories.add(category);
-					views.put(category, new ArrayList<ViewPrototype>());
-				}
-				views.get(category).add(view);
-			}
-		}
 	}
 
 	/*
@@ -230,19 +195,19 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
 	 */
 	public Object[] getElements(Object inputElement) {
-		return categories.toArray();
+		return (Object[])inputElement;
 	}
 
 
 	private Object[] getChildren(ViewPrototype view) {
-		if (view.getConfiguration() == null) {
+		if (view.getRepresentationKind() == null) {
 			return new String[0];
 		}
 		List<Object> data = new ArrayList<Object>();
-		data.add(view.getConfiguration().eContainer());
-		data.addAll(view.getConfiguration().getProfiles());
-		data.addAll(view.getConfiguration().getModelRules());
-		data.addAll(view.getConfiguration().getOwningRules());
+		data.add(view.getRepresentationKind().eContainer());
+		data.addAll(view.getRepresentationKind().getLanguage().getProfiles());
+		data.addAll(view.getRepresentationKind().getModelRules());
+		data.addAll(view.getRepresentationKind().getOwningRules());
 		return data.toArray();
 	}
 
@@ -252,11 +217,12 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
 	 */
 	public Object[] getChildren(Object element) {
-		if (element == treeRoot) {
-			return categories.toArray();
-		}
-		if (element instanceof Category) {
-			List<ViewPrototype> protos = new ArrayList<ViewPrototype>(views.get(element));
+		if (element instanceof MergedArchitectureViewpoint) {
+			MergedArchitectureViewpoint viewpoint = (MergedArchitectureViewpoint)element;
+			List<ViewPrototype> protos = new ArrayList<ViewPrototype>();
+			for (RepresentationKind kind : viewpoint.getRepresentationKinds()) {
+				protos.add(ViewPrototype.get(kind));
+			}
 			Collections.sort(protos, new ViewPrototype.Comp());
 			return protos.toArray();
 		}
@@ -272,12 +238,6 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
 	 */
 	public Object getParent(Object element) {
-		if (element == treeRoot) {
-			return null;
-		}
-		if (element instanceof Category) {
-			return treeRoot;
-		}
 		return null;
 	}
 
@@ -287,10 +247,7 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 	 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
 	 */
 	public boolean hasChildren(Object element) {
-		if (element == treeRoot) {
-			return true;
-		}
-		if (element instanceof Category) {
+		if (element instanceof MergedArchitectureViewpoint) {
 			return true;
 		}
 		if (element instanceof ViewPrototype) {

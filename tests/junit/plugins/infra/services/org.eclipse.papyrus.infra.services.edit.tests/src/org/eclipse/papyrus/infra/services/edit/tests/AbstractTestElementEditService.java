@@ -22,11 +22,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.transaction.RunnableWithResult;
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.MetamodelType;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 import org.eclipse.papyrus.infra.services.edit.tests.edit.helper.EPackageEditHelper;
@@ -51,13 +52,13 @@ public abstract class AbstractTestElementEditService extends AbstractPapyrusTest
 
 	private static Bundle testBundle;
 
-	protected static final String PAPYRUS_CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext"; //$NON-NLS-1$
-
 	protected IElementType eClassType;
 
 	protected IElementType ePackgType;
 
-	protected IElementEditServiceProvider service;
+	protected IClientContext context;
+
+	protected IElementEditServiceProvider provider;
 
 	protected static IEditorPart editor;
 
@@ -114,11 +115,19 @@ public abstract class AbstractTestElementEditService extends AbstractPapyrusTest
 		eClassType = ElementTypeRegistry.getInstance().getType("ECLASS_TEST_ID");
 		ePackgType = ElementTypeRegistry.getInstance().getType("EPACKG_TEST_ID");
 
-		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		context.bindId("ECLASS_TEST_ID"); //$NON-NLS-1$
-		context.bindId("EPACKG_TEST_ID"); //$NON-NLS-1$
+		try {
+			context = TypeContext.getDefaultContext();
+			context.bindId("ECLASS_TEST_ID"); //$NON-NLS-1$
+			context.bindId("EPACKG_TEST_ID"); //$NON-NLS-1$
+		} catch (ServiceException e) {
+			fail("Default client context is not found");
+			return;
+		}
 
-		service = ElementEditServiceUtils.getEditServiceProvider();
+		provider = ElementEditServiceUtils.getEditServiceProvider(context);
+		if(provider == null) {
+			fail("Element edit service can not be found.");
+		}
 	}
 
 	@AfterClass

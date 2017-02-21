@@ -13,6 +13,8 @@
 
 	<modules>
 		<module>org.eclipse.papyrus.infra.core</module>
+		<module>org.eclipse.papyrus.infra.core.architecture</module>
+		<module>org.eclipse.papyrus.infra.core.architecture.edit</module>
 		<module>org.eclipse.papyrus.infra.core.log</module>
 		<module>org.eclipse.papyrus.infra.core.pluginexplorer</module>
 		<module>org.eclipse.papyrus.infra.core.sasheditor</module>

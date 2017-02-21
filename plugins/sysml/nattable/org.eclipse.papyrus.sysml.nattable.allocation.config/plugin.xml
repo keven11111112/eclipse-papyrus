@@ -2,14 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <contribution
-            file="resources/allocationTable.configuration"
-            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
-      </contribution>
-   </extension>
-
-   <extension
          point="org.eclipse.papyrus.infra.nattable.tester">
       <tester
             class="org.eclipse.papyrus.sysml.nattable.allocation.config.tester.TableAllocationCreationTester"

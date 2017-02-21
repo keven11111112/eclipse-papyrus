@@ -28,8 +28,11 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.nattable.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -38,6 +41,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -481,14 +485,19 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 	 */
 	@Override
 	public Command getDestroyAxisElementCommand(TransactionalEditingDomain domain, Integer axisPosition) {
-		if (canDestroyAxisElement(axisPosition)) {
-			final Object current = getElements().get(axisPosition);
-			Object elementToDestroy = AxisUtils.getRepresentedElement(current);
-			if (elementToDestroy != null && elementToDestroy instanceof EObject) {
-				final DestroyElementRequest request = new DestroyElementRequest(getContextEditingDomain(), (EObject) elementToDestroy, false);
-				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
-				return new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(provider.getEditCommand(request)), Collections.singleton(elementToDestroy));
+		try {
+			if (canDestroyAxisElement(axisPosition)) {
+				final Object current = getElements().get(axisPosition);
+				Object elementToDestroy = AxisUtils.getRepresentedElement(current);
+				if (elementToDestroy != null && elementToDestroy instanceof EObject) {
+					final DestroyElementRequest request = new DestroyElementRequest(getContextEditingDomain(), (EObject) elementToDestroy, false);
+					IClientContext context = TypeContext.getContext(domain);
+					final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToDestroy, context);
+					return new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(provider.getEditCommand(request)), Collections.singleton(elementToDestroy));
+				}
 			}
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

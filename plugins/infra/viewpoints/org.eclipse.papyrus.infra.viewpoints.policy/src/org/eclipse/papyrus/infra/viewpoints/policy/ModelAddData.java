@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PathElement;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PathElement;
 
 /**
  * Represents the set of data related to the insertion of a new model element in a view

@@ -167,7 +167,7 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 	«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size() > 0»
 	org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)getHost()).resolveSemanticElement());
 	if(req.getElementType() != null) {
-		commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getElementType());
+		commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getElementType(), req.getClientContext());
 	}
 
 	if(commandService == null) {

@@ -38,6 +38,7 @@ import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.editor.integration.tests.Activator;
+import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
@@ -50,7 +51,6 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
@@ -81,7 +81,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 	@Test
 	public void testModelWithDiagramCreation() throws Exception {
-		ModelSet modelSet = new DiResourceSet();
+		final ModelSet modelSet = new DiResourceSet();
 		IProject emptyModelCreationProject = ResourcesPlugin.getWorkspace().getRoot().getProject("diagramModelCreation");
 		emptyModelCreationProject.create(new NullProgressMonitor());
 		emptyModelCreationProject.open(new NullProgressMonitor());
@@ -101,8 +101,14 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 			// Ignore
 		}
 
-		IModelCreationCommand creationCommand = new CreateUMLModelCommand();
-		creationCommand.createModel(modelSet);
+		TransactionalEditingDomain ted = modelSet.getTransactionalEditingDomain();
+		ted.getCommandStack().execute(new RecordingCommand(ted) {
+			@Override
+			protected void doExecute() {
+				IModelCreationCommand creationCommand = new CreateUMLModelCommand();
+				creationCommand.createModel(modelSet);
+			}
+		});
 
 		// Create the root UML Model
 		UmlModel umlModel = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
@@ -162,7 +168,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	}
 
 	private IFile createEmptyModel() throws Exception {
-		ModelSet modelSet = new DiResourceSet();
+		final ModelSet modelSet = new DiResourceSet();
 		IProject emptyModelCreationProject = ResourcesPlugin.getWorkspace().getRoot().getProject("emptyModelCreation");
 		emptyModelCreationProject.create(new NullProgressMonitor());
 		emptyModelCreationProject.open(new NullProgressMonitor());
@@ -171,8 +177,16 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		modelSet.createsModels(emptyModelDi);
 
-		IModelCreationCommand creationCommand = new CreateUMLModelCommand();
-		creationCommand.createModel(modelSet);
+		// create the UML model
+		TransactionalEditingDomain ted = modelSet.getTransactionalEditingDomain();
+		ted.getCommandStack().execute(new RecordingCommand(ted) {
+			@Override
+			protected void doExecute() {
+				IModelCreationCommand creationCommand = new CreateUMLModelCommand();
+				creationCommand.createModel(modelSet);
+			}
+		});
+
 
 		modelSet.save(new NullProgressMonitor());
 

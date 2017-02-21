@@ -1590,12 +1590,6 @@
 		<image commandId="org.eclipse.papyrus.uml.service.types.RefineCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" >
 			</image>
  </extension>
- <extension
-       point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-    <elementTypeSet
-          clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-          path="model/uml-advice.elementtypesconfigurations">
-    </elementTypeSet>
- </extension>
+
 </plugin>
 

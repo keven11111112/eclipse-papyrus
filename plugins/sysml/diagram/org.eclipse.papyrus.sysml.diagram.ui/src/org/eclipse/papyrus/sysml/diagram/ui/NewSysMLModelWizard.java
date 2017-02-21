@@ -15,9 +15,9 @@
 package org.eclipse.papyrus.sysml.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
+import org.eclipse.papyrus.sysml.architecture.SysMLArchitectureContextIds;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.ui.IWorkbench;
 
 
@@ -51,15 +51,15 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected String[] getDiagramCategoryIds() {
-		return new String[]{ CreateSysMLModelCommand.COMMAND_ID };
+	protected String[] getSelectedContexts() {
+		return new String[] { SysMLArchitectureContextIds.SysML };
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
+	protected SelectArchitectureContextPage createSelectArchitectureContextPage() {
 		// here SysML is the only available category
 		return null;
 	}

@@ -255,7 +255,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	public void addResourceToModel(final URI uri, final Resource resource, final Locale locale) {
 		resourceURI = uri.trimFileExtension().appendFileExtension(getModelFileExtension());
-		configureResource(resource, locale);
+		configureResource(resourceURI, resource, locale);
 	}
 
 	/**
@@ -359,13 +359,13 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 			// Check if model is loaded.
 			if (null != resource) {
-				configureResource(resource, locale);
+				configureResource(uri, resource, locale);
 			} else {
 				// model is not loaded, do it.
 				// Create Resource of appropriate type
 				resource = modelSet.createResource(resourceBundleAndURI.getUri());
 
-				configureResource(resource, locale);
+				configureResource(uri, resource, locale);
 
 				// call registered snippets
 				startSnippets();
@@ -425,22 +425,22 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 * @param locale
 	 *            The locale to manage.
 	 */
-	protected void configureResource(final Resource resourceToConfigure, final Locale locale) {
+	protected void configureResource(final URI uri, final Resource resourceToConfigure, final Locale locale) {
 		if (resourceToConfigure instanceof InternationalizationResource) {
 			final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resourceToConfigure)
 					.getDefaultLoadOptions();
 			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
 					keyResolver);
 			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_LOCALE, locale);
-			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_URI, resourceURI);
+			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_URI, uri);
 		}
 		super.configureResource(resourceToConfigure);
 		// Add the resource to the resource properties classified by their
 		// locale
-		if (null == propertiesByLocale.get(resourceURI)) {
-			propertiesByLocale.put(resourceURI, new HashMap<Locale, Resource>());
+		if (null == propertiesByLocale.get(uri)) {
+			propertiesByLocale.put(uri, new HashMap<Locale, Resource>());
 		}
-		propertiesByLocale.get(resourceURI).put(locale, resourceToConfigure);
+		propertiesByLocale.get(uri).put(locale, resourceToConfigure);
 	}
 
 	/**
@@ -491,7 +491,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 		// Create the resource needed
 		final Resource resultResource = modelSet.createResource(propertiesURI);
-		configureResource(resultResource, locale);
+		configureResource(propertiesURI, resultResource, locale);
 		// Load the resource if not already loaded
 		if (!resultResource.isLoaded()) {
 			try {

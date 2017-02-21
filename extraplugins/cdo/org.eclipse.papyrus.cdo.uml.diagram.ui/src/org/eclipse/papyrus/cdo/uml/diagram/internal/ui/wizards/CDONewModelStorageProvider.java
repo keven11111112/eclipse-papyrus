@@ -33,7 +33,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorInput;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.providers.AbstractNewModelStorageProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
@@ -51,7 +51,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 
 	private CreateModelWizard wizard;
 
-	private SelectDiagramCategoryPage newDiagramCategoryPage;
+	private SelectArchitectureContextPage selectArchitectureContextPage;
 
 	private NewModelPage newModelPage;
 
@@ -87,7 +87,7 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 			bus.post(checkout);
 		}
 
-		newDiagramCategoryPage = createNewDiagramCategoryPage(selection);
+		selectArchitectureContextPage = createArchitectureContextPage(selection);
 	}
 
 	/**
@@ -126,30 +126,30 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 
 	@Override
 	public List<? extends IWizardPage> createPages() {
-		if (newModelPage == null && newDiagramCategoryPage == null) {
+		if (newModelPage == null && selectArchitectureContextPage == null) {
 			return Collections.emptyList();
 		}
 
-		return Arrays.asList(newDiagramCategoryPage, newModelPage);
+		return Arrays.asList(selectArchitectureContextPage, newModelPage);
 	}
 
 	@Override
-	public SelectDiagramCategoryPage getDiagramCategoryPage() {
-		return newDiagramCategoryPage;
+	public SelectArchitectureContextPage getArchitectureContextPage() {
+		return selectArchitectureContextPage;
 	}
 
 	@Override
-	public IStatus validateDiagramCategories(String... newCategories) {
+	public IStatus validateArchitectureContexts(String... newContexts) {
 		if (newModelPage != null && newModelPage.getNewResourceName() != null) {
-			String firstCategory = newCategories.length > 0 ? newCategories[0] : null;
-			if (newCategories.length > 0) {
+			String firstCategory = newContexts.length > 0 ? newContexts[0] : null;
+			if (newContexts.length > 0) {
 				// 316943 - [Wizard] Wrong suffix for file name when creating a
 				// profile model
 				return newModelPage.diagramExtensionChanged(wizard.getDiagramFileExtension(firstCategory));
 			}
 		}
 
-		return super.validateDiagramCategories(newCategories);
+		return super.validateArchitectureContexts(newContexts);
 	}
 
 	/**
@@ -191,12 +191,12 @@ public class CDONewModelStorageProvider extends AbstractNewModelStorageProvider 
 		return new PapyrusCDOEditorInput(uri, uri.trimFileExtension().lastSegment());
 	}
 
-	private SelectDiagramCategoryPage createNewDiagramCategoryPage(IStructuredSelection selection) {
+	private SelectArchitectureContextPage createArchitectureContextPage(IStructuredSelection selection) {
 		if (wizard.isCreateProjectWizard() || wizard.isCreateMultipleModelsWizard() || !wizard.isPapyrusRootWizard()) {
 			return null;
 		}
 
-		return new SelectDiagramCategoryPage();
+		return new SelectArchitectureContextPage();
 	}
 
 

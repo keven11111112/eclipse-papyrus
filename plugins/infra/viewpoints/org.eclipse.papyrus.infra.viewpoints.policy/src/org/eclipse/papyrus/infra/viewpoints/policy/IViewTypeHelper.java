@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.viewpoints.policy;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 
 
 /**
@@ -47,7 +47,7 @@ public interface IViewTypeHelper {
 	 *            A view configuration element
 	 * @return The associated prototype
 	 */
-	ViewPrototype getPrototypeFor(PapyrusView configuration);
+	ViewPrototype getPrototypeFor(PapyrusRepresentationKind configuration);
 
 	/**
 	 * Gets the prototype of the given view

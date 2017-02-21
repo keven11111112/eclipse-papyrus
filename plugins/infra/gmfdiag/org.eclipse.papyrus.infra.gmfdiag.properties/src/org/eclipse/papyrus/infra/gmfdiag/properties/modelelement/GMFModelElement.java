@@ -39,12 +39,12 @@ import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.DiagramLabelObse
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.GradientObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.provider.ModelContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.properties.util.LegacyOwnerObservable;
+import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.InternationalizationConstants;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
-import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.graphics.Image;
@@ -102,18 +102,18 @@ public class GMFModelElement extends EMFModelElement {
 			return new DiagramLabelObservableValue(diagram, getDomain());
 		}else if (propertyPath.endsWith("owner")) {
 			Diagram diagram = (Diagram) source;
-			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
 			if (style != null) {
-				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_VIEW_STYLE__OWNER, domain);
+				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__OWNER, domain);
 			}
-			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_VIEW_STYLE__OWNER, domain);
+			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__OWNER, domain);
 		} else if (propertyPath.endsWith("prototype")) {
 			Diagram diagram = (Diagram) source;
-			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
 			if (style != null) {
-				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_VIEW_STYLE__CONFIGURATION, domain);
+				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND, domain);
 			}
-			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_VIEW_STYLE__CONFIGURATION, domain);
+			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND, domain);
 		}
 
 		FeaturePath featurePath = getFeaturePath(propertyPath);
@@ -191,7 +191,7 @@ public class GMFModelElement extends EMFModelElement {
 
 					@Override
 					protected boolean isValid(EObject selection, Diagram diagram, ViewPrototype prototype) {
-						return PolicyChecker.getCurrent().canHaveNewView(selection, DiagramUtils.getOwner(diagram), prototype);
+						return PolicyChecker.getFor(diagram).canHaveNewView(selection, DiagramUtils.getOwner(diagram), prototype);
 					}
 				};
 			} else {
@@ -203,7 +203,7 @@ public class GMFModelElement extends EMFModelElement {
 
 				@Override
 				protected boolean isValid(EObject selection, Diagram diagram, ViewPrototype prototype) {
-					return (PolicyChecker.getCurrent().getOwningRuleFor(prototype, selection) != null);
+					return (PolicyChecker.getFor(diagram).getOwningRuleFor(prototype, selection) != null);
 				}
 			};
 		}

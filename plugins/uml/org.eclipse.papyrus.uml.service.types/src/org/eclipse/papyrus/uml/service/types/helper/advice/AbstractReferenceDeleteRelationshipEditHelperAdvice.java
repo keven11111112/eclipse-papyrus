@@ -36,8 +36,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.types.core.utils.ElementTypeRegistryUtils;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -58,7 +56,7 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 		super.configureRequest(request);
 		if (request instanceof DestroyReferenceRequest && ((DestroyReferenceRequest) request).getContainingFeature() == null) {
 			String visualId = (String) request.getParameter(RequestParameterConstants.VIEW_VISUAL_ID);
-			((DestroyReferenceRequest) request).setContainingFeature(getFeature(visualId));
+			((DestroyReferenceRequest) request).setContainingFeature(getFeature(visualId, request.getClientContext()));
 		}
 	}
 
@@ -69,23 +67,17 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 	 * @return
 	 * 		the EReference represented by the view with this visual id
 	 */
-	protected EReference getFeature(String visualId) {
+	protected EReference getFeature(String visualId, IClientContext context) {
+		List<IElementType> elementTypes = ElementTypeRegistryUtils.getElementTypesBySemanticHint(visualId, context.getId());
 
-		try {
-			IClientContext context = TypeContext.getContext();
-			List<IElementType> elementTypes = ElementTypeRegistryUtils.getElementTypesBySemanticHint(visualId, context.getId());
-
-			for (IElementType iElementType : elementTypes) {
-				Map<String, EReference> featureElementTypeToEReferenceMap = getFeatureElementTypeToEReferenceMap();
-				for (String featureElementType : featureElementTypeToEReferenceMap.keySet()) {
-					List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(featureElementType));
-					if (subs.contains(iElementType)) {
-						return featureElementTypeToEReferenceMap.get(featureElementType);
-					}
+		for (IElementType iElementType : elementTypes) {
+			Map<String, EReference> featureElementTypeToEReferenceMap = getFeatureElementTypeToEReferenceMap();
+			for (String featureElementType : featureElementTypeToEReferenceMap.keySet()) {
+				List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(featureElementType));
+				if (subs.contains(iElementType)) {
+					return featureElementTypeToEReferenceMap.get(featureElementType);
 				}
 			}
-		} catch (ServiceException e) {
-			org.eclipse.papyrus.uml.service.types.Activator.log.error(e);
 		}
 
 		return null;

@@ -19,6 +19,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -27,9 +30,6 @@ import org.eclipse.papyrus.infra.nattable.common.api.TableEditorCreationHelper;
 import org.eclipse.papyrus.infra.nattable.common.api.TableEditorDeleteHelper;
 import org.eclipse.papyrus.infra.nattable.common.api.TableEditorFinderHelper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.junit.Assert;
@@ -228,7 +228,7 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 		EObject proto = tableToCheck.getPrototype();
 
 		Assert.assertTrue(createAssertMessage("The view prototype seems not valid for a table", tableType), proto instanceof PapyrusSyncTable || proto instanceof PapyrusTable); //$NON-NLS-1$
-		String implementation = ((PapyrusView) proto).getImplementationID();
+		String implementation = ((PapyrusRepresentationKind) proto).getImplementationID();
 		if (implementation == null || implementation.isEmpty()) {
 			implementation = tableToCheck.getTableConfiguration().getType();
 		}

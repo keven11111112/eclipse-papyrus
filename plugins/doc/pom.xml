@@ -21,7 +21,7 @@
 		<module>org.eclipse.papyrus.infra.nattable.doc</module>
 		<module>org.eclipse.papyrus.infra.newchild.doc</module>
 		<module>org.eclipse.papyrus.infra.services.controlmode.doc</module>
-		<module>org.eclipse.papyrus.infra.viewpoints.doc</module>
+		<module>org.eclipse.papyrus.infra.architecture.doc</module>
 		<module>org.eclipse.papyrus.infra.types.doc</module>
 		<module>org.eclipse.papyrus.layers.documentation</module>
 		<module>org.eclipse.papyrus.req.reqif.doc</module>

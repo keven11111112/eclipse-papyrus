@@ -94,7 +94,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	}
 
 	/**
-	 * Obtain direct editor configuration for a semantic element.
+	 * Obtain direct editor configuration for a semantic element
 	 *
 	 * @param semanticElement
 	 *            a semantic element

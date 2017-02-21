@@ -70,7 +70,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationRunnerWithParametersFactory;
 import org.eclipse.papyrus.junit.framework.classification.rules.Condition;
 import org.eclipse.papyrus.junit.framework.classification.rules.ConditionRule;
@@ -112,7 +114,7 @@ public class ReadOnlyObjectEditAdviceTest {
 
 	private static final String TEST_BUNDLE = "org.eclipse.papyrus.infra.emf.tests"; //$NON-NLS-1$
 
-	private static final IClientContext PAPYRUS_CONTEXT = ClientContextManager.getInstance().getClientContext("org.eclipse.papyrus.infra.services.edit.TypeContext"); //$NON-NLS-1$
+	private static IClientContext PAPYRUS_CONTEXT;
 
 	private static IAdapterFactory readOnlyHandlerAdapterFactory;
 
@@ -144,6 +146,11 @@ public class ReadOnlyObjectEditAdviceTest {
 
 	public ReadOnlyObjectEditAdviceTest() {
 		super();
+		try {
+			PAPYRUS_CONTEXT = TypeContext.getDefaultContext();
+		} catch (ServiceException e) {
+			fail("default context is not found.");
+		}
 	}
 
 	/**

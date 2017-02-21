@@ -146,7 +146,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ViewPrototype proto = ViewPrototype.get(view);
 
 		// check if diagram can exist in new location
-		if (!proto.isOwnerReassignable() || PolicyChecker.getCurrent().getOwningRuleFor(proto, target) == null) {
+		if (!proto.isOwnerReassignable() || PolicyChecker.getFor(target).getOwningRuleFor(proto, target) == null) {
 			// stop here with unexecutable command
 			return UnexecutableCommand.INSTANCE;
 		}

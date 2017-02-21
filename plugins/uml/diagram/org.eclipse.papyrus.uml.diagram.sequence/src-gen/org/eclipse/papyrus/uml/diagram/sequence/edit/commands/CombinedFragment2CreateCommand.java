@@ -95,7 +95,7 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	@Override
 	public boolean canExecute() {
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getCombinedFragment());
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), UMLPackage.eINSTANCE.getCombinedFragment());
 		return data.isPermitted();
 	}
 
@@ -110,7 +110,7 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
 		EObject target = getElementToEdit();
-		ModelAddData data = PolicyChecker.getCurrent().getChildAddData(diagram, target, newElement);
+		ModelAddData data = PolicyChecker.getFor(target).getChildAddData(diagram, target, newElement);
 		if (data.isPermitted()) {
 			if (data.isPathDefined()) {
 				if (!data.execute(target, newElement)) {

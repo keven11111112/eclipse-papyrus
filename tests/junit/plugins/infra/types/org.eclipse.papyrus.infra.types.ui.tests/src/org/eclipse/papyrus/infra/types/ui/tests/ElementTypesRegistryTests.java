@@ -24,7 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.types.tests.AbstractElementTypeTests;
 import org.eclipse.papyrus.infra.types.tests.ITestConstants;
@@ -96,14 +96,14 @@ public class ElementTypesRegistryTests extends AbstractElementTypeTests implemen
 		checkPluginTypes();
 		// register
 		try {
-			ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), workspaceTestFile.getFullPath().toString());
+			ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getDefaultContext().getId(), workspaceTestFile.getFullPath().toString());
 
 			//
 			workspaceType = ElementTypeRegistry.getInstance().getType(WORKSPACE_ELEMENT_TYPE_TOOL);
 			Assert.assertNotNull("Element type should be registered", workspaceType);
 			checkPluginTypes();
 			// unregister
-			ElementTypeSetConfigurationRegistry.getInstance().unload(TypeContext.getContext().getId(), WORKSPACE_ELEMENT_TYPE_ID);
+			ElementTypeSetConfigurationRegistry.getInstance().unload(TypeContext.getDefaultContext().getId(), WORKSPACE_ELEMENT_TYPE_ID);
 			workspaceType = ElementTypeRegistry.getInstance().getType(WORKSPACE_ELEMENT_TYPE_TOOL);
 			Assert.assertNull("Element type should not be registered anymore", workspaceType);
 			checkPluginTypes();

@@ -36,6 +36,10 @@ public class NewPapyrusModelCommand extends RecordingCommand {
 	 *        the di resource set
 	 * @param newURI
 	 *        the URI of the new model's principal resource
+	 * @param contextId
+	 *        the id of the architecture context
+	 * @param viewpointIds
+	 *        the ids of the architecture viewpoints
 	 */
 	public NewPapyrusModelCommand(ModelSet modelSet, URI newURI) {
 		super(modelSet.getTransactionalEditingDomain());

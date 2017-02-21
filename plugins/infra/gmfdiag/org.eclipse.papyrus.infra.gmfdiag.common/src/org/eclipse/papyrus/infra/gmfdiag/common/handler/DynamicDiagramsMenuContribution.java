@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.DynamicContribution;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
@@ -59,8 +59,8 @@ public class DynamicDiagramsMenuContribution extends DynamicContribution {
 
 		// build a list of all the available prototypes
 		List<ViewPrototype> data = new ArrayList<ViewPrototype>();
-		for (final ViewPrototype proto : PolicyChecker.getCurrent().getPrototypesFor(selection)) {
-			if (!(proto.getConfiguration() instanceof PapyrusDiagram)) {
+		for (final ViewPrototype proto : PolicyChecker.getFor(selection).getPrototypesFor(selection)) {
+			if (!(proto.getRepresentationKind() instanceof PapyrusDiagram)) {
 				continue;
 			}
 			data.add(proto);

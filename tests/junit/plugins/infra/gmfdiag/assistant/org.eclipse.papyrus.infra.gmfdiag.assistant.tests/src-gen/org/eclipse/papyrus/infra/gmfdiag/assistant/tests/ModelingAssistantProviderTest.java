@@ -185,12 +185,12 @@ public class ModelingAssistantProviderTest extends TestCase {
 	 */
 	public void testGetClientContext()
 	{
-		assertThat(getFixture().getClientContext(), is(ElementTypeUtils.getEditContext()));
+		assertThat(getFixture().getClientContext(), is(ElementTypeUtils.getDefaultClientContext()));
 
 		getFixture().setClientContextID("org.eclipse.papyrus.uml.diagram.clazz.TypeContext");
 		IClientContext classDiagramContext = ClientContextManager.getInstance().getClientContext("org.eclipse.papyrus.uml.diagram.clazz.TypeContext");
 		if (classDiagramContext == null) {
-			assertThat(getFixture().getClientContext(), is(ElementTypeUtils.getEditContext()));
+			assertThat(getFixture().getClientContext(), is(ElementTypeUtils.getDefaultClientContext()));
 		} else {
 			assertThat(getFixture().getClientContext(), is(classDiagramContext));
 		}

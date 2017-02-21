@@ -29,8 +29,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
 import org.eclipse.papyrus.infra.services.edit.ui.databinding.PapyrusObservableValue;
-import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 
 /**
  * Represents the observable value of a diagram's owner in the case where the diagram does not yet have the viewpoints-compatible style for holding the value itself
@@ -85,7 +85,7 @@ public class LegacyOwnerObservable extends AbstractObservableValue {
 				if (valueListener != null) {
 					return;
 				}
-				Style style = LegacyOwnerObservable.this.diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+				Style style = LegacyOwnerObservable.this.diagram.getStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
 				if (style != null) {
 					buildValueListener(style);
 				}
@@ -159,7 +159,7 @@ public class LegacyOwnerObservable extends AbstractObservableValue {
 
 			@Override
 			public void execute() {
-				Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+				Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
 				createStyle = (style == null);
 				DiagramUtils.setOwner(diagram, newValue);
 			}
@@ -172,7 +172,7 @@ public class LegacyOwnerObservable extends AbstractObservableValue {
 			@Override
 			public void undo() {
 				if (createStyle) {
-					Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+					Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
 					diagram.getStyles().remove(style);
 				} else {
 					DiagramUtils.setOwner(diagram, oldValue);

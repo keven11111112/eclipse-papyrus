@@ -80,14 +80,6 @@
 		priority="1" startKind="startup">
  	</serviceFactory>
 
-</extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/marker.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
-   
+</extension>   
    
 </plugin>

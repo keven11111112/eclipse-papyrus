@@ -20,7 +20,7 @@
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:ReferenceLabel input="{Binding}"
-			property="nattable:Table:prototype" readOnly="true" customLabel="View Type"></ppe:ReferenceLabel>
+			property="nattable:Table:prototype" readOnly="true" customLabel="Table Kind"></ppe:ReferenceLabel>
 		<ppe:ReferenceDialog input="{Binding}" property="nattable:Table:owner"
 			customLabel="Owner"></ppe:ReferenceDialog>
 		<ppe:ReferenceLabel input="{Binding}"

@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 
 /**
  * The Wizard creates a new Project and a several Papyrus Models of different categories inside it.
@@ -55,14 +55,9 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard#createSelectDiagramCategoryPage()
-	 */
 	@Override
-	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
-		return new SelectDiagramCategoryPage(true);
+	protected SelectArchitectureContextPage createSelectArchitectureContextPage() {
+		return new SelectArchitectureContextPage(true);
 	}
 
 	/**
@@ -82,13 +77,14 @@ public class NewPapyrusProjectWithMultiModelsWizard extends NewPapyrusProjectWiz
 		if (newProjectHandle == null) {
 			return false;
 		}
-		for (String category : getDiagramCategoryIds()) {
-			if (myDoNotCreateModelForNoDiagrams && getPrototypesFor(category).isEmpty()) {
+		for (String contextId : getSelectedContexts()) {
+			if (myDoNotCreateModelForNoDiagrams && getRepresentationKindsFor(contextId).isEmpty()) {
 				// don't create model
 				continue;
 			}
-			final URI newURI = createNewModelURI(category);
-			createAndOpenPapyrusModel(newURI, category);
+			final URI newURI = createNewModelURI(contextId);
+			String[] viewpointIds = getSelectedViewpoints(contextId);
+			createAndOpenPapyrusModel(newURI, contextId, viewpointIds);
 		}
 
 		// saveDiagramCategorySettings();

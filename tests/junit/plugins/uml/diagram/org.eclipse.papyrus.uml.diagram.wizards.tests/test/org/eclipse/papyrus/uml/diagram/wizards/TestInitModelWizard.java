@@ -15,10 +15,10 @@ package org.eclipse.papyrus.uml.diagram.wizards;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
+import org.eclipse.papyrus.uml.architecture.UMLArchitectureContextIds;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.junit.Test;
@@ -39,8 +39,8 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 
 
 			@Override
-			protected String[] getDiagramCategoryIds() {
-				return new String[] { "uml" };
+			protected String[] getSelectedContexts() {
+				return new String[] { "Software Engineering::UML" };
 			}
 
 			@Override
@@ -77,7 +77,7 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 	public void testOrderOfPages() {
 		// actual pages: [SelectDiagramCategory -> SelectDiagramCategoryPage, SelectStorageProvider -> SelectStorageProviderPage,
 		// NewPapyrusModel -> NewModelFilePage, NewCDOModel -> NewModelPage, SelectDiagramKind -> SelectDiagramKindPage, SelectRootPage -> SelectRootElementPage]
-		Class<?>[] expectedPages = new Class[] { SelectDiagramCategoryPage.class, NewModelFilePage.class, SelectDiagramKindPage.class, /* SelectRootElementPage.class, */ };
+		Class<?>[] expectedPages = new Class[] { SelectArchitectureContextPage.class, NewModelFilePage.class, SelectRepresentationKindPage.class, /* SelectRootElementPage.class, */ };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
@@ -101,14 +101,14 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 			}
 
 			@Override
-			protected String[] getDiagramCategoryIds() {
-				return new String[] { CreateProfileModelCommand.COMMAND_ID };
+			protected String[] getSelectedContexts() {
+				return new String[] { UMLArchitectureContextIds.Profile };
 			}
 
 		};
 
 		// ensure that the dialog would create a profile
-		settings.saveDefaultDiagramCategory(new String[] { "profile" });
+		settings.saveArchitectureContexts(new String[] { UMLArchitectureContextIds.Profile });
 
 		initWizardDialog(wizard);
 		NewModelFilePage page = getPage(wizard, NewModelFilePage.class);
