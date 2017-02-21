@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
- * 
+ * Copyright (c) 2014, 2017 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Gaabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 438511
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - bug 511045
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.commands;
 
@@ -25,7 +26,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A Command to apply a Stereotype and its data to an UML Element
- * 
+ *
  * @author Benoit Maggi
  */
 public class DuplicateStereotypeCommand extends RecordingCommand {
@@ -37,9 +38,9 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 	protected Stereotype stereotypeInTargetContext;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param element
 	 *            The UML Element on which the stereotype will be applied
 	 * @param stereotype
@@ -62,7 +63,14 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 
 	@Override
 	protected void doExecute() {
-		EObject applyStereotype = element.applyStereotype(stereotypeInTargetContext);
+		// Retrieve the stereotype application for the element
+		EObject applyStereotype = element.getStereotypeApplication(stereotypeInTargetContext);
+		// If the stereotype is not applied yet
+		if (null == applyStereotype) {
+			// Then apply it safely without triggering the exception when applying an already applied stereotype (bug 511045)
+			applyStereotype = element.applyStereotype(stereotypeInTargetContext);
+		}
+
 		EList<EStructuralFeature> eStructuralFeatures = applyStereotype.eClass().getEAllStructuralFeatures();
 		for (EStructuralFeature eStructuralFeature : eStructuralFeatures) {
 			String name = eStructuralFeature.getName();
