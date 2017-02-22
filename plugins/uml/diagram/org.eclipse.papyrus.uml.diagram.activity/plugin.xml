@@ -1563,43 +1563,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
       </viewProvider>
    </extension>
    
-   
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            description="Synchronize pins and parameters"
-            categoryId="org.eclipse.papyrus.editor.category"            
-            id="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand"
-            name="Synchronize pins and parameters">
-      </command>
-      </extension>
-
-<extension
-         point="org.eclipse.ui.commands">
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            description="Global Synchronize pins and parameters"
-            id="org.eclipse.papyrus.uml.diagram.activity.GlobalSynchronizePinsParametersCommand"
-            name="Global Synchronize pins and parameters">
-      </command>
-</extension>
-
-<extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="org.eclipse.papyrus.uml.diagram.activity.handlers.SynchronizePinsParametersHandler"
-            commandId="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand">
-      </handler>
-      </extension>
-
-<extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="org.eclipse.papyrus.uml.diagram.activity.handlers.GlobalSynchronizePinsParametersHandler"
-            commandId="org.eclipse.papyrus.uml.diagram.activity.GlobalSynchronizePinsParametersCommand">
-      </handler>
-</extension>
-
 <!-- Defnition for seleciton is call action and editor is papyrus -->
 	<extension
 		point="org.eclipse.core.expressions.definitions">	
@@ -1628,48 +1591,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	       type="org.eclipse.jface.viewers.ISelection">
 	</propertyTester>
 	</extension>
-
-<extension
-      point="org.eclipse.ui.menus">
-
-	<menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=fileMenu"
-		allPopups="false">
-      <command
-            commandId="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand"
-            icon="icons/obj16/RefreshPin.png"
-            label="Synchronize pins and parameters"
-            mnemonic="Synchronize pins and parameters of the current selection"
-            style="push">
-         <visibleWhen>
-            <and>
-               
-            <reference
-                  definitionId="org.eclipse.papyrus.diagram.common.IsCallAction">
-            </reference>
-               
-            </and>
-         </visibleWhen>
-      </command>
-   </menuContribution>
- <menuContribution
-       allPopups="false"
-       locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
-    <command
-          commandId="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand"
-          icon="icons/obj16/RefreshPin.png"
-          label="Synchronize pins and parameters"
-          mnemonic="Synchronize pins and parameters of the current selection"
-          style="push">
-       <visibleWhen>
-          <and>
-             <reference
-                   definitionId="org.eclipse.papyrus.diagram.common.IsCallAction">
-             </reference>
-          </and>
-       </visibleWhen>
-    </command>
- </menuContribution>
-</extension>
 <extension
       point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
    <propertyTabs
