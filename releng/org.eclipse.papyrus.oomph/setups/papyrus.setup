@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<setup:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0" xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0" xmlns:mylyn="http://www.eclipse.org/oomph/setup/mylyn/1.0" xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0" xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0" xmlns:setup="http://www.eclipse.org/oomph/setup/1.0" xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0" xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0" xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0" xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0" xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/mylyn/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Mylyn.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore" name="papyrus" label="Papyrus">
+<setup:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:git_1.0="http://www.eclipse.org/oomph/setup/git/1.0" xmlns:jdt_1.0="http://www.eclipse.org/oomph/setup/jdt/1.0" xmlns:mylyn_1.0="http://www.eclipse.org/oomph/setup/mylyn/1.0" xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0" xmlns:projects_1.0="http://www.eclipse.org/oomph/setup/projects/1.0" xmlns:setup="http://www.eclipse.org/oomph/setup/1.0" xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0" xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0" xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0" xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0" xsi:schemaLocation="http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore" name="papyrus" label="Papyrus">
   <logicalProjectContainer xsi:type="setup:ProjectCatalog" href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
   <description>Workbench and workspace configuration for development on Papyrus</description>
   <setupTask xsi:type="setup.p2:P2Task" label="Core Development Tools">
@@ -58,7 +58,7 @@
   <setupTask xsi:type="setup:VariableTask" type="URI" name="base.downloads.url" value="http://download.eclipse.org"/>
   <setupTask xsi:type="setup:VariableTask" name="git.checkout.branch" value="${scope.project.stream.name}"/>
   <setupTask xsi:type="setup:VariableTask" name="eclipse.target.platform" defaultValue="Neon" storageURI="scope://Workspace"/>
-  <setupTask xsi:type="git:GitCloneTask" id="papyrus.git.clone" remoteURI="papyrus/org.eclipse.papyrus" pushURI="" checkoutBranch="${git.checkout.branch}">
+  <setupTask xsi:type="git_1.0:GitCloneTask" checkoutBranch="${git.checkout.branch}" id="papyrus.git.clone" pushURI="" remoteURI="papyrus/org.eclipse.papyrus">
     <description>Papyrus</description>
     <annotation source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail key="inherit">
@@ -78,7 +78,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC1-201702080400/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC2-201702150400/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -191,7 +191,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/R-3.8.1-20160912100321/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC2-20170221000049/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -513,20 +513,20 @@
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.repository" value="https://bugs.eclipse.org/bugs"/>
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.prefix" value="/buglist.cgi?classification=Modeling&amp;product=Papyrus&amp;${papyrus.bugzilla.version}"/>
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.open" value="bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED"/>
-    <setupTask xsi:type="mylyn:MylynQueriesTask" repositoryURL="${papyrus.bugzilla.repository}">
+    <setupTask xsi:type="mylyn_1.0:MylynQueriesTask" repositoryURL="${papyrus.bugzilla.repository}">
       <query summary="Papyrus Flagged for Review" url="${papyrus.bugzilla.prefix}&amp;${papyrus.bugzilla.open}&amp;query_format=advanced&amp;field0-0-0=flagtypes.name&amp;type0-0-0=equals&amp;value0-0-0=review%3F"/>
       <query summary="Papyrus Open Bugs" url="${papyrus.bugzilla.prefix}&amp;${papyrus.bugzilla.open}&amp;bug_severity=blocker&amp;bug_severity=critical&amp;bug_severity=major&amp;bug_severity=normal&amp;bug_severity=minor&amp;bug_severity=trivial"/>
       <query summary="Papyrus Open Enhancement Requests" url="${papyrus.bugzilla.prefix}&amp;${papyrus.bugzilla.open}&amp;bug_severity=enhancement"/>
       <query summary="Papyrus Resolved Items" url="${papyrus.bugzilla.prefix}&amp;bug_status=RESOLVED&amp;resolution=FIXED"/>
     </setupTask>
-    <setupTask xsi:type="mylyn:MylynQueriesTask" connectorKind="org.eclipse.mylyn.gerrit" repositoryURL="https://git.eclipse.org/r" userID="${bugzilla.id}" password="${eclipse.user.password}">
+    <setupTask xsi:type="mylyn_1.0:MylynQueriesTask" connectorKind="org.eclipse.mylyn.gerrit" password="${eclipse.user.password}" repositoryURL="https://git.eclipse.org/r" userID="${bugzilla.id}">
       <query summary="Papyrus Open Gerrit Reviews">
         <attribute key="gerrit query type" value="custom"/>
         <attribute key="gerrit query project" value="papyrus/org.eclipse.papyrus"/>
         <attribute key="gerrit query string" value="project:papyrus/org.eclipse.papyrus status:open branch:${git.checkout.branch}"/>
       </query>
     </setupTask>
-    <setupTask xsi:type="mylyn:MylynBuildsTask" serverURL="https://hudson.eclipse.org/papyrus/" userID="${bugzilla.id}" password="${eclipse.user.password}">
+    <setupTask xsi:type="mylyn_1.0:MylynBuildsTask" password="${eclipse.user.password}" serverURL="https://hudson.eclipse.org/papyrus/" userID="${bugzilla.id}">
       <buildPlan name="Papyrus-Master-Full"/>
       <buildPlan name="Papyrus-Master"/>
       <buildPlan name="Papyrus-Master-Tests"/>
@@ -539,7 +539,7 @@
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.mars" value="version=1.0.0&amp;version=1.0.1&amp;version=1.0.2&amp;version=1.1.0&amp;version=1.1.1&amp;version=1.1.2"/>
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.luna" value="version=1.0.0&amp;version=1.0.1&amp;version=1.0.2"/>
   </setupTask>
-  <setupTask xsi:type="projects:ProjectsImportTask">
+  <setupTask xsi:type="projects_1.0:ProjectsImportTask">
     <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins}">
       <predicate xsi:type="predicates:OrPredicate">
         <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.junit\.framework"/>
@@ -550,7 +550,7 @@
   </setupTask>
   <project label="Main" name="main">
     <project label="Infra" name="infra">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/infra}">
           <predicate xsi:type="predicates:AndPredicate">
             <operand xsi:type="predicates:OrPredicate">
@@ -677,7 +677,7 @@
       </stream>
     </project>
     <project label="Views" name="views">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/views}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/views}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
@@ -716,7 +716,7 @@
       </stream>
       <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-        <setupTask xsi:type="projects:ProjectsImportTask">
+        <setupTask xsi:type="projects_1.0:ProjectsImportTask">
           <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/xwt}"/>
           <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
             <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.(tests\.)?xwt($|\..+)"/>
@@ -741,7 +741,7 @@
       </stream>
     </project>
     <project label="UML" name="uml">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/uml}">
           <predicate xsi:type="predicates:NotPredicate">
             <operand xsi:type="predicates:NamePredicate" pattern=".*\.(alf|textedit|xtext)($|\..+)"/>
@@ -835,7 +835,7 @@
       </stream>
     </project>
     <project label="UML ALF" name="uml-alf">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/uml}">
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.uml\.alf($|\..+)"/>
         </sourceLocator>
@@ -882,7 +882,7 @@
       </stream>
     </project>
     <project label="UML Text Editors" name="uml-text">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/uml}">
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.uml\.(textedit|xtext)($|\..+)"/>
         </sourceLocator>
@@ -923,7 +923,7 @@
       </stream>
     </project>
     <project label="SysML" name="sysml">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/sysml}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/sysml}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
@@ -983,7 +983,7 @@
       </stream>
     </project>
     <project label="EMF Facet" name="emffacet">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/facet}">
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.emf\.facet\..*"/>
         </sourceLocator>
@@ -1023,7 +1023,7 @@
       <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
       </setupTask>
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/customization}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/customization}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
@@ -1062,7 +1062,7 @@
       </stream>
     </project>
     <project label="Documentation" name="doc">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/doc}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
           <predicate xsi:type="predicates:AndPredicate">
@@ -1097,7 +1097,7 @@
       </stream>
     </project>
     <project label="All Tests" name="alltests">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins}"/>
         <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
           <predicate xsi:type="predicates:AndPredicate">
@@ -1155,7 +1155,7 @@
       </stream>
       <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-        <setupTask xsi:type="projects:ProjectsImportTask">
+        <setupTask xsi:type="projects_1.0:ProjectsImportTask">
           <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/team}"/>
           <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
             <predicate xsi:type="predicates:AndPredicate">
@@ -1197,7 +1197,7 @@
       </stream>
     </project>
     <project label="Releng" name="releng">
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/releng}">
           <excludedPath>emfgen</excludedPath>
         </sourceLocator>
@@ -1211,7 +1211,7 @@
         </workingSet>
       </setupTask>
       <project label="Maven Plug-ins" name="maven">
-        <setupTask xsi:type="projects:ProjectsImportTask">
+        <setupTask xsi:type="projects_1.0:ProjectsImportTask">
           <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/releng/emfgen}"/>
         </setupTask>
         <stream label="master (Neon/2.0)" name="master">
@@ -1252,7 +1252,7 @@
         </repositoryList>
       </targlet>
     </setupTask>
-    <setupTask xsi:type="projects:ProjectsImportTask">
+    <setupTask xsi:type="projects_1.0:ProjectsImportTask">
       <sourceLocator rootFolder="${papyrus.git.clone.location/extraplugins}/${papyrus.extraplugins.folder}"/>
       <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/extraplugins}/${papyrus.extratests.folder}"/>
       <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-extra-features}">
@@ -1331,7 +1331,7 @@
     </project>
     <project label="DSML Validation" name="dsml.validation">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="dsml.validation"/>
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator rootFolder="${papyrus.git.clone.location/plugins}/infra/core">
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.infra\.tools"/>
         </sourceLocator>
@@ -1376,7 +1376,7 @@
           </predicate>
         </workingSet>
       </setupTask>
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <description>Import plugin requested by Layers</description>
         <sourceLocator rootFolder="${papyrus.git.clone.location/tests/integration/plugins}/org.eclipse.papyrus.integrationtests.editor"/>
       </setupTask>
@@ -1531,7 +1531,7 @@
     <description>Select sub-projects to import dependencies and sources for Papyrus extra components.</description>
   </project>
   <project label="Developer" name="dev">
-    <setupTask xsi:type="projects:ProjectsImportTask">
+    <setupTask xsi:type="projects_1.0:ProjectsImportTask">
       <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/developer}">
         <predicate xsi:type="predicates:NotPredicate">
           <operand xsi:type="predicates:OrPredicate">
@@ -1590,7 +1590,7 @@
           </repositoryList>
         </targlet>
       </setupTask>
-      <setupTask xsi:type="projects:ProjectsImportTask">
+      <setupTask xsi:type="projects_1.0:ProjectsImportTask">
         <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/plugins/developer}">
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.releng\.tools"/>
         </sourceLocator>
@@ -1660,7 +1660,7 @@
   </project>
   <stream label="master (Neon/2.0)" name="master">
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-    <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.8" location="${jre.location-1.8}"/>
+    <setupTask xsi:type="jdt_1.0:JRETask" location="${jre.location-1.8}" version="JavaSE-1.8"/>
     <setupTask xsi:type="setup.targlets:TargletTask">
       <targlet name="Papyrus Test Generation Framework Dependencies">
         <requirement name="org.eclipse.upr.utp"/>
@@ -1679,11 +1679,11 @@
   </stream>
   <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-    <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.7" location="${jre.location-1.7}"/>
+    <setupTask xsi:type="jdt_1.0:JRETask" location="${jre.location-1.7}" version="JavaSE-1.7"/>
   </stream>
   <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-    <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.6" location="${jre.location-1.6}"/>
+    <setupTask xsi:type="jdt_1.0:JRETask" location="${jre.location-1.6}" version="JavaSE-1.6"/>
     <setupTask xsi:type="setup.targlets:TargletTask">
       <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Luna Dependencies">
         <requirement name="org.eclipse.acceleo.feature.group"/>

@@ -224,7 +224,7 @@
 		<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="1.2.0"/>
 		<plugin name="org.eclipse.nebula.widgets.richtext" version="1.1.0"/>
 	</feature>
-	<feature name="org.eclipse.papyrus.sdk.feature" version="2.0.2">
+	<feature name="org.eclipse.papyrus.sdk.feature" version="2.0.3">
 		<feature name="org.eclipse.papyrus.customization.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.editor.feature" version="1.2.0"/>
 		<feature name="org.eclipse.papyrus.infra.core.feature" version="2.0.1"/>
@@ -317,7 +317,7 @@
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.diagram.feature" version="2.0.1">
 		<plugin name="org.eclipse.papyrus.uml.diagram.clazz" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.diagram.common" version="2.0.0"/>
+		<plugin name="org.eclipse.papyrus.uml.diagram.common" version="2.0.1"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.common.groups" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.common.palette.customaction" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.component" version="2.0.0"/>
@@ -342,7 +342,7 @@
 		<plugin name="org.eclipse.papyrus.uml.diagram.interactionoverview" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.symbols" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.symbols.properties" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.uml.diagram.linklf" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.uml.diagram.linklf" version="1.2.1"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.feature" version="2.0.0">
 		<plugin name="org.eclipse.papyrus.uml.commands" version="1.2.1"/>
@@ -670,7 +670,7 @@
 	<plugin name="org.eclipse.papyrus.uml.decoratormodel.ui" version="1.2.1"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.activity" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.clazz" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.diagram.common" version="2.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.diagram.common" version="2.0.1"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.common.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.common.groups" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.common.palette.customaction" version="1.2.0"/>
@@ -683,7 +683,7 @@
 	<plugin name="org.eclipse.papyrus.uml.diagram.dnd" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.icons" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.interactionoverview" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.diagram.linklf" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.uml.diagram.linklf" version="1.2.1"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.menu" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.modelexplorer" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.navigation" version="1.2.0"/>
