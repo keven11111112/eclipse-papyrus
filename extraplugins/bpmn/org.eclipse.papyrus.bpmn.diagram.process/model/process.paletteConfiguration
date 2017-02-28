@@ -21,7 +21,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/SequenceFlow.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.SequenceFlow_ControlFlow_4004"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.SequenceFlow_ControlFlow_4004"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -33,7 +33,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataAssociation.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataAssociation_ObjectFlow_4003"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.DataAssociation_ObjectFlow_4003"/>
 		</ownedConfigurations>
 	</drawerConfigurations>
 	<drawerConfigurations
@@ -43,13 +43,13 @@
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
 				id="bpmn.process.macrotask.tool"
-				label="Macro Task"
-				description="Macro Task (Call Behavior Action)">
+				label="Call Activity"
+				description="Call Activity (Call Behavior Action)">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/CallBehaviorAction.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmndi.process.CallActivity_CallBehaviorAction"/>
+					elementTypeId="org.eclipse.papyrus.custombpmndi.CallActivity_CallBehaviorAction"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -60,7 +60,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/Task.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.Task_Action_3007"/>
+					elementTypeId="org.eclipse.papyrus.custombpmndi.Task_Action_3007"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -71,7 +71,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ManualTask.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ManualTask_OpaqueAction_3007"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.ManualTask_OpaqueAction_3007"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -82,7 +82,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/UserTask.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.UserTask_OpaqueAction_3007"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.UserTask_OpaqueAction_3007"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -93,7 +93,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ScriptTask.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ScriptTask_OpaqueAction_3007"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.ScriptTask_OpaqueAction_3007"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -104,7 +104,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/BusinessRuleTask.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.BusinessRuleTask_OpaqueAction_3007"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.BusinessRuleTask_OpaqueAction_3007"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -115,7 +115,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/SendTask.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.SendTask_CallOperationAction_3010"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.SendTask_CallOperationAction_3010"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -126,7 +126,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ServiceTask.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ServiceTask_CallOperationAction_3010"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.ServiceTask_CallOperationAction_3010"/>
 		</ownedConfigurations>
 	</drawerConfigurations>
 	<drawerConfigurations
@@ -142,7 +142,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/InclusiveGatewayFork.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.InclusiveGateway_ForkNode_3040"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.InclusiveGateway_ForkNode_3040"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -153,7 +153,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/InclusiveGatewayJoin.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.InclusiveGateway_JoinNode_3041"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.InclusiveGateway_JoinNode_3041"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -164,7 +164,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ExclusiveGatewayFork.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ExclusiveGateway_DecisionNode_3038"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.ExclusiveGateway_DecisionNode_3038"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -175,7 +175,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ExclusiveGatewayJoin.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ExclusiveGateway_MergeNode_3039"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.ExclusiveGateway_MergeNode_3039"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -186,7 +186,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ParallelGatewayFork.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ParallelGateway_ForkNode_3040"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.ParallelGateway_ForkNode_3040"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -197,7 +197,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ParallelGatewayJoin.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ParallelGateway_JoinNode_3041"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.ParallelGateway_JoinNode_3041"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -208,7 +208,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/EventBasedGateway.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.EventBasedGateway_ForkNode_3040"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.EventBasedGateway_ForkNode_3040"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -219,7 +219,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/EventBasedGateway.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.EventBasedGateway_InterruptibleActivityRegion_3068"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.EventBasedGateway_InterruptibleActivityRegion_3068"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -230,7 +230,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/EventBasedGateway.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.EventBasedGateway_StructuredActivityNode_3065"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.EventBasedGateway_StructuredActivityNode_3065"/>
 		</ownedConfigurations>
 	</drawerConfigurations>
 	<drawerConfigurations
@@ -246,7 +246,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/StartEvent.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.StartEvent_InitialNode_3004"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.StartEvent_InitialNode_3004"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -257,7 +257,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/EndEvent.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.EndEvent_FlowFinalNode_3006"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.EndEvent_FlowFinalNode_3006"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -268,7 +268,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/IntermediateThrowEvent.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.IntermediateThrowEvent_CallOperationAction_3010"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.IntermediateThrowEvent_CallOperationAction_3010"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -279,7 +279,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/BoundaryEvent.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.BoundaryEvent_InitialNode_3004"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.BoundaryEvent_InitialNode_3004"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -290,7 +290,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/IntermediateThrowEvent.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.IntermediateCatchEvent_AcceptEventAction_3063"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.IntermediateCatchEvent_AcceptEventAction_3063"/>
 		</ownedConfigurations>
 	</drawerConfigurations>
 	<drawerConfigurations
@@ -306,7 +306,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/SubProcess.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.SubProcess_StructuredActivityNode_3065"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.SubProcess_StructuredActivityNode_3065"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -317,7 +317,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/LoopNode.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.StandardLoopCharacteristics_LoopNode_3071"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.StandardLoopCharacteristics_LoopNode_3071"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -328,7 +328,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/ExpansionRegion.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.MultiInstanceLoopCharacteristics_ExpansionRegion_3070"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.MultiInstanceLoopCharacteristics_ExpansionRegion_3070"/>
 		</ownedConfigurations>
 	</drawerConfigurations>
 	<drawerConfigurations
@@ -344,7 +344,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataStoreReference.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataStoreReference_DataStoreNode_3078"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.DataStoreReference_DataStoreNode_3078"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -355,7 +355,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataInput.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataInput_InputPin_3013"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.DataInput_InputPin_3013"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -366,7 +366,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataOutput.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataOutput_OutputPin_3014"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.DataOutput_OutputPin_3014"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -377,7 +377,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataInputActivity.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataInput_ActivityParameterNode_3059"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.DataInput_ActivityParameterNode_3059"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -388,7 +388,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataOutputActivity.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataOutput_ActivityParameterNode_3059"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.DataOutput_ActivityParameterNode_3059"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -399,7 +399,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataObject.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataObject_DataStoreNode_3078"/>
+					elementTypeId="org.eclipse.papyrus.bpmndi.DataObject_DataStoreNode_3078"/>
 		</ownedConfigurations>
 	</drawerConfigurations>
 	<requiredProfiles>BPMNProfile</requiredProfiles>

@@ -104,4 +104,18 @@
            stylesheetPath="css/style.css">
      </stylesheet>
   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="model/bpmndi.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="model/customBpmndi.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
  </plugin>
