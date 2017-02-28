@@ -10,8 +10,10 @@ location egit "http://download.eclipse.org/egit/updates-4.6" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC2-201702150400/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC3-201702220400/" {
 	org.eclipse.e4.core.tools.feature.feature.group
+	org.eclipse.rcp.configuration.feature.group
+	org.eclipse.equinox.executable.feature.group
 }
 
 //updateFrom("Mylyn",0)
@@ -42,11 +44,4 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12/" {
 
 location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209" {
 	org.eclipse.emf.cdo.epp.feature.group
-}
-
-//updateFrom("Eclipse",0)
-
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC2-201702150400/" {
-	org.eclipse.rcp.configuration.feature.group
-	org.eclipse.equinox.executable.feature.group
 }
