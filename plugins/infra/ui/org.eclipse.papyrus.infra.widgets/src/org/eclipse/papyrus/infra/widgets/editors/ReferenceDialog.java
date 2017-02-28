@@ -434,14 +434,19 @@ public class ReferenceDialog extends AbstractReferenceDialog implements Selectio
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 		Widget widget = e.widget;
-		if (widget == browseValuesButton) {
-			browseAction();
-		} else if (widget == createInstanceButton) {
-			createAction();
-		} else if (widget == editInstanceButton) {
-			editAction();
-		} else if (widget == unsetButton) {
-			unsetAction();
+		try {
+			if (widget == browseValuesButton) {
+				browseAction();
+			} else if (widget == createInstanceButton) {
+				createAction();
+			} else if (widget == editInstanceButton) {
+				editAction();
+			} else if (widget == unsetButton) {
+				unsetAction();
+			}
+		} catch (OperationCanceledException canceledException) {
+			// do nothing, this exception occurs whenever one of the actions above
+			// gets canceled
 		}
 	}
 
