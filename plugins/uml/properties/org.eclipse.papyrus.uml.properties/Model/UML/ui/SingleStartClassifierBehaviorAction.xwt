@@ -23,8 +23,8 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:ReferenceCombo input="{Binding}"
-			property="UML:StartClassifierBehaviorAction:object"></ppe:ReferenceCombo>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="UML:StartClassifierBehaviorAction:object"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>
 		<Composite.layout>
