@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,10 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
  *		CEA LIST - Initial API and implementation
- *      Christian W. Damus (CEA) - bug 413703
- *
+ *		Christian W. Damus (CEA) - bug 413703
+ *		Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 348657
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
@@ -24,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -56,6 +57,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This HelperAdvice completes {@link Property} edit commands with:
  * 		- the deletion of any ConnectorEnd related to the Property.
  * 		- the deletion of any {@link Association} related to the Property when less than 2 ends remains.
+ *
+ * This helper also prohibits the move of an Association's Property into another Property.
  * </pre>
  */
 public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
@@ -63,11 +66,11 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * While deleting a {@link Property}:
 	 * - remove related {@link ConnectorEnd}
 	 * - remove related {@link Association} when less than 2 ends remains.
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
@@ -115,11 +118,11 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * While setting {@link Property} (excluding {@link Port}) type:
 	 * - remove related {@link ConnectorEnd} if they become inconsistent due to the new {@link Type}.
 	 * - add possibly required (UML) association re-factor command when needed.
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
@@ -245,7 +248,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Create a re-factoring command related to a Property move.
-	 * 
+	 *
 	 * @param setProperty
 	 *            the property which type is set
 	 * @param associationToRefactor
@@ -293,7 +296,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Returns all views referencing Association except the view currently re-oriented.
-	 * 
+	 *
 	 * @param association
 	 *            the association referenced by views
 	 * @param request
@@ -311,5 +314,28 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		viewsToDestroy.addAll(associationViews);
 
 		return viewsToDestroy;
+	}
+
+	/**
+	 * <pre>
+	 * {@inheritDoc}
+	 *
+	 * Prohibit the move command of a {@link Property}, which belongs to an {@link Association}, to a {@link Property}.
+	 * </pre>
+	 */
+	@Override
+	protected ICommand getBeforeMoveCommand(final MoveRequest request) {
+
+		ICommand gmfCommand = super.getBeforeMoveCommand(request);
+
+		for (Object movedObject : request.getElementsToMove().keySet()) {
+
+			// Prohibit the move request if the current property belongs to an association
+			if (movedObject instanceof Property && ((Property) movedObject).eContainer() instanceof Association) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+
+		return gmfCommand;
 	}
 }

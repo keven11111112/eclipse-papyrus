@@ -1,16 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
- * 
+ * Copyright (c) 2010, 2017 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
  *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873, 481317, 500642
- *
+ *		Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 348657
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
@@ -26,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
@@ -43,6 +43,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.AttributeOwner;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Feature;
@@ -57,10 +58,12 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This HelperAdvice completes {@link Classifier} edit commands with the deletion of :
  * - any Generalization related to the Classifier (source or target).
  * - any Association related to the Classifier (source or target type).
- * 
+ *
  * This helper also add Association re-factor command when an Association member end is
  * moved.
- * 
+ *
+ * This helper prohibits the move of an Association Property into another Classifier
+ * and the move of an Association Property into another Property.
  * </pre>
  */
 public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
@@ -68,11 +71,11 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * While deleting a Classifier:
 	 * - remove {@link Generalization} in which this Classifier is involved
 	 * - remove {@link Association} in which this Classifier is involved
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
@@ -108,15 +111,17 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * While moving a {@link Property} to a Classifier:
+	 * - prohibit the drag&drop of an Association's Property into a Classifier
 	 * - re-orient Association possibly related to the moved Property
 	 * - remove deprecated connectorEnd
-	 * 
+	 *
+	 * NB: this method handles the case ViewerDropAdapter.LOCATION_ON where a property is moved into a Classifier.
 	 * </pre>
 	 */
 	@Override
-	protected ICommand getBeforeMoveCommand(MoveRequest request) {
+	protected ICommand getBeforeMoveCommand(final MoveRequest request) {
 
 		ICommand gmfCommand = super.getBeforeMoveCommand(request);
 
@@ -128,8 +133,15 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 				continue;
 			}
 
-			// Find ConnectorEnd referencing the edited Property as partWithPort or role
 			Property movedProperty = (Property) movedObject;
+
+			// If the current property is a child of an association, the move request must be prohibited
+			// NB: Do not use movedPropety.getAssociation() as it will forbid also the association reorient, which must be allowed in all cases
+			if (movedProperty.eContainer() instanceof Association) {
+				return UnexecutableCommand.INSTANCE;
+			}
+
+			// Find ConnectorEnd referencing the edited Property as partWithPort or role
 			EReference[] refs = new EReference[] { UMLPackage.eINSTANCE.getConnectorEnd_PartWithPort(), UMLPackage.eINSTANCE.getConnectorEnd_Role() };
 			@SuppressWarnings("unchecked")
 			Collection<ConnectorEnd> referencers = EMFCoreUtil.getReferencers(movedProperty, refs);
@@ -198,8 +210,38 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	/**
+	 * <pre>
+	 * {@inheritDoc}
+	 *
+	 * Overridden to prohibit the move of an association property to a position which is before or after an element of an {@link AttributeOwner}.
+	 * It handles the case ViewerDropAdapter.LOCATION_BEFORE or ViewerDropAdapter.LOCATION_AFTER. In this case, a SetRequest is triggered
+	 * instead of a MoveRequest.
+	 * </pre>
+	 */
+	@Override
+	protected ICommand getBeforeSetCommand(final SetRequest request) {
+		ICommand gmfCommand = super.getBeforeSetCommand(request);
+
+		if (request.getValue() instanceof ArrayList && request.getElementToEdit() instanceof AttributeOwner && request.getFeature().equals(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute())) {
+			ArrayList<?> newPropertyList = (ArrayList<?>) request.getValue();
+			EList<Property> oldPropertyList = ((AttributeOwner) request.getElementToEdit()).getOwnedAttributes();
+
+			// Traverse the new property list
+			for (Object object : newPropertyList) {
+				// If there exists the one that is a non existing Property and its parent is an Association
+				// then the command must be prohibited
+				if (object instanceof Property && !oldPropertyList.contains(object) && (((Property) object).eContainer() instanceof Association)) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+		}
+
+		return gmfCommand;
+	}
+
+	/**
 	 * Create a re-factoring command related to a Property move.
-	 * 
+	 *
 	 * @param movedProperty
 	 *            the moved property
 	 * @param associationToRefactor
@@ -324,7 +366,7 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method returns a list of views to be deleted after a move of a Property.
-	 * 
+	 *
 	 * @param property
 	 *            The Property
 	 * @param targetContainer
