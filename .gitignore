@@ -13,3 +13,7 @@ tests/**/.metadata/
 #intellij files
 .idea/
 *.iml
+
+# All .project that are not in a Papyrus plugin
+.project
+!**/org.eclipse.papyrus.*/.project
