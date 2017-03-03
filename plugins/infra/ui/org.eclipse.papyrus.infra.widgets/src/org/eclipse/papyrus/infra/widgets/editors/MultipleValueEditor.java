@@ -387,20 +387,24 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		if (e.widget == null) {
 			return;
 		}
-		if (e.widget == add) {
-			if (this.upperBound == MANY || modelProperty.size() < this.upperBound) {
-				addAction();
+		try {
+			if (e.widget == add) {
+				if (this.upperBound == MANY || modelProperty.size() < this.upperBound) {
+					addAction();
+				}
+			} else if (e.widget == remove) {
+				removeAction();
+			} else if (e.widget == up) {
+				upAction();
+			} else if (e.widget == down) {
+				downAction();
+			} else if (e.widget == edit) {
+				editAction();
 			}
-		} else if (e.widget == remove) {
-			removeAction();
-		} else if (e.widget == up) {
-			upAction();
-		} else if (e.widget == down) {
-			downAction();
-		} else if (e.widget == edit) {
-			editAction();
+		} catch (OperationCanceledException canceledException) {
+			// do nothing, this exception occurs whenever one of the actions above
+			// gets canceled
 		}
-
 		updateBoutons();
 	}
 
