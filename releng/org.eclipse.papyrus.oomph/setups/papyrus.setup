@@ -1740,9 +1740,6 @@
     <project label="UML Export" name="umlexport">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="uml/org.eclipse.papyrus.uml.export"/>
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="uml.export"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
