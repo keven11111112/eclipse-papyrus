@@ -18,7 +18,6 @@
 	<modules>
 		<!-- features -->
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cdo.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.diagramtemplate.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.dsml.validation.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.eastadl.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
@@ -38,9 +37,6 @@
 		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.uml.ui</module>
 		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.validation.problems</module>
 		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.validation.problems.edit</module>
-		<module>../../extraplugins/diagramtemplate/org.eclipse.papyrus.diagramtemplate</module>
-		<module>../../extraplugins/diagramtemplate/org.eclipse.papyrus.diagramtemplate.edit</module>
-		<module>../../extraplugins/diagramtemplate/org.eclipse.papyrus.diagramtemplate.editor</module>
 		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation</module>
 		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.generator</module>
 		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.model</module>
