@@ -17,18 +17,11 @@
 	
 	<modules>
 		<!-- features -->
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.dsml.validation.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.eastadl.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		
 		<!-- plug-ins-->
-		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation</module>
-		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.generator</module>
-		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.model</module>
-		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.model.ui</module>
-		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.properties</module>
-		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.wizard</module>
 		<module>../../extraplugins/eastadl/org.eclipse.papyrus.eastadl</module>
 		<module>../../extraplugins/eastadl/org.eclipse.papyrus.eastadl.nattable</module>
 		<module>../../extraplugins/eastadl/org.eclipse.papyrus.eastadl.nattable.allocation</module>
