@@ -21,7 +21,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.dsml.validation.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.eastadl.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.layers.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
@@ -48,13 +47,6 @@
 		<module>../../extraplugins/eastadl/org.eclipse.papyrus.eastadl.nattable.allocation.config</module>
 		<module>../../extraplugins/eastadl/org.eclipse.papyrus.eastadl.nattable.menu</module>
 		<module>../../extraplugins/eastadl/org.eclipse.papyrus.eastadl.service.types</module>
-		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.notationmodel.edit</module>
-		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.runtime</module>
-		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel</module>
-		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel.diagram</module>
-		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel.edit</module>
-		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.stackmodel.editor</module>
-		<module>../../extraplugins/layers/org.eclipse.papyrus.layers.ui</module>
 
 		<!-- Papyrus SoaML -->
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.profile</module>
