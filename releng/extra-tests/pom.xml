@@ -40,7 +40,6 @@
 	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
 	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
 	
-	<module>../../tests/junit/extraplugins/elk/org.eclipse.papyrus.infra.gmfdiag.elk.tests</module>
 	<module>targetPlatform</module>
 	
    </modules>

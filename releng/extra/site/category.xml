@@ -78,12 +78,6 @@
    <feature url="features/org.eclipse.papyrus.sysml.properties.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.properties.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.category.sysml11"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.infra.gmfdiag.elk.feature_0.1.0.qualifier.jar" id="org.eclipse.papyrus.infra.gmfdiag.elk.feature" version="0.1.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.infra.gmfdiag.elk.feature.source_0.1.0.qualifier.jar" id="org.eclipse.papyrus.infra.gmfdiag.elk.feature.source" version="0.1.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
    <category-def name="org.eclipse.papyrus.extra.category" label="Papyrus Extra (All - Not recommended)">
       <description>
          Papyrus Extra Category
