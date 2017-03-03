@@ -32,8 +32,6 @@
 	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.internalblock.tests</module>
 	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.parametric.tests</module>
     
-    <!--  <module>../../tests/junit/extraplugins/refactoring/org.eclipse.papyrus.refactoring.tests</module> -->
-	
 	<!-- Temporarily disabled - Bug 490206 -->
 	<!-- module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.requirement.tests</module-->
 	
