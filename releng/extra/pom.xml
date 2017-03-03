@@ -23,7 +23,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.layers.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
 		
@@ -63,12 +62,6 @@
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.ui</module>
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.common</module>
 
-		<!-- ALF -->
-		<module>../../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.text</module>
-		<module>../../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.transaction</module>
-		<module>../../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.properties.xtext</module>
-		<module>../../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.preferences</module>
-
 		<!-- Common Migration Tool -->
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.common</module>
 		
@@ -79,9 +72,6 @@
 		<!-- Papyrus 4 Education -->
 		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
-
-		<!-- Missing org.eclipse.xtext.gmf.glue 0.8.0' <module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext.ui</module> 
-			<module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext</module> -->
 
 		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture</module>
 		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.edit</module>
