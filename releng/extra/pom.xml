@@ -144,15 +144,6 @@
 		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.examples</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bmm.extra.feature</module>
 
-		<!-- Papyrus BPMN -->
-		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn</module>
-		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram</module>
-		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.common</module>
-		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.process</module>
-		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.collaboration</module>
-		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.ui</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bpmn.extra.feature</module>
-
 		<!-- SysML 1.1 -->
 		<module>../../plugins/sysml</module> <!-- Deprecated component moved to extraplugin for Neon. To be removed in Oxygen -->
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.diagram.feature</module>

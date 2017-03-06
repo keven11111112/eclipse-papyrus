@@ -48,12 +48,6 @@
    <feature url="features/org.eclipse.papyrus.extra.soaml.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.soaml.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.bpmn.extra.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.bpmn.extra.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.bpmn.extra.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.bpmn.extra.feature.source" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.metrics.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.metrics.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
