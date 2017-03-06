@@ -91,54 +91,6 @@
 
 		<module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
-		
-		<!-- Papyrus for Measurement (a.k.a Papyrus Metrics) -->
-		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.commands</module>
-		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.extensionpoints</module>
-		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.handlers</module>
-		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.smm</module>
-		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.ui</module>
-		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.view</module>
-		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.viewers</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.metrics.feature</module>
-
-		<!-- Papyrus 4 Requirements (a.k.a. Papyrus Req)-->
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.common</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.common.ui</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.export</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.commands</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.handlers</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.ui</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.preferences</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.reqif</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.commands</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.handlers</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.ui</module>        
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.common</module>      
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.testers</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.assistant</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.commands</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.handlers</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.ui</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.common</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.verifiedBy.config</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.tracedTo.config</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.verification</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.metrics.library</module>
-		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.templates</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.requirements.feature</module>
-
-		<!-- Papyrus BMM -->
-		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm</module>
-		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.diagram</module>
-		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.diagram.common</module>
-		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.diagram.ui</module>
-		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.examples</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bmm.extra.feature</module>
 
 		<!-- SysML 1.1 -->
 		<module>../../plugins/sysml</module> <!-- Deprecated component moved to extraplugin for Neon. To be removed in Oxygen -->
