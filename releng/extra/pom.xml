@@ -73,10 +73,6 @@
 		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
 
-		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture</module>
-		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.edit</module>
-		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.editor</module>
-
 		<!-- Diagram Definition -->
 		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.edit</module>
 		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.editor</module>
