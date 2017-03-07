@@ -1848,11 +1848,10 @@
     
   <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Scz2V1YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations hint="Link_DescriptorEdge" identifier="org.eclipse.papyrus.umldi.Link_DescriptorEdge" name="Link Descriptor Edge" xmi:id="_eu5pj9x0EeWVxMf7SXAfhg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Link.gif" xmi:id="_sYgAQNx2EeWVxMf7SXAfhg"/>
     
   <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_1U1kgEOBEeay77YZlFOXVQ" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations hint="Link_InterfacePortEdge" identifier="org.eclipse.papyrus.umldi.Link_InterfacePortEdge" name="Link Interface Port Edge" xmi:id="_eu5pkdx0EeWVxMf7SXAfhg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Link.gif" xmi:id="_sYh1cNx2EeWVxMf7SXAfhg"/>
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Interface.gif" xmi:id="_sYh1cNx2EeWVxMf7SXAfhg"/>
     
   <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_1U1kgEOBEeay77YZlFOXVQ" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations hint="LiteralBoolean_Shape" identifier="org.eclipse.papyrus.umldi.LiteralBoolean_Shape" name="Literal Boolean Shape" xmi:id="_eu5pk9x0EeWVxMf7SXAfhg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
