@@ -35,7 +35,7 @@ public class DiscoveryComponent {
 	/** 
 	* URI of the model where all extra component features to be installed are referenced. Can be set via the system property 'papyrus.discovery.uri'.
 	*/
-	public static final String DISCOVERY_PAPYRUS_URI = System.getProperty("papyrus.discovery.uri", "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/neon/papyrus-extra.xmi"); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final String DISCOVERY_PAPYRUS_URI = System.getProperty("papyrus.discovery.uri", "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/oxygen/papyrus-extra.xmi"); //$NON-NLS-1$ //$NON-NLS-2$
 	
 	public static final Object execute() {
 		final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
@@ -49,7 +49,7 @@ public class DiscoveryComponent {
 			protected DiscoveryDefinition load() {
 				Resource res = new XMIResourceImpl(URI.createURI(DISCOVERY_PAPYRUS_URI));
 				try {
-					res.load(Collections.EMPTY_MAP);
+					res.load(Collections.emptyMap());
 				} catch (IOException e) {
 					MessageDialog.openError(window.getShell(), Messages.DiscoveryComponent_CannotConnectToSource_title, Messages.DiscoveryComponent_CannotConnectToSource_label);
 					throw new RuntimeException(e);
