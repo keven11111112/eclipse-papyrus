@@ -17,24 +17,13 @@
 	
 	<modules>
 		<!-- features -->
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cdo.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.dsml.validation.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.eastadl.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
 		
 		<!-- plug-ins-->
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.core</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.ui</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.ui.customization.properties</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.ui.hyperlink</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.uml.diagram.ui</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.uml.search.ui</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.uml.ui</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.validation.problems</module>
-		<module>../../extraplugins/cdo/org.eclipse.papyrus.cdo.validation.problems.edit</module>
 		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation</module>
 		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.generator</module>
 		<module>../../extraplugins/dsml.validation/org.eclipse.papyrus.dsml.validation.model</module>
@@ -81,7 +70,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.umldi.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.notation.feature</module>
 
-		<module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
 
 		<!-- SysML 1.1 -->

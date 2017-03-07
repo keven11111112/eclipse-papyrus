@@ -21,8 +21,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes id="org.eclipse.papyrus.extra.feature" version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.extra.cdo.source.feature" version="0.0.0"/>
-
    <includes id="org.eclipse.papyrus.extra.dsml.validation.source.feature" version="0.0.0"/>
 
    <includes id="org.eclipse.papyrus.extra.eastadl.source.feature" version="0.0.0"/>

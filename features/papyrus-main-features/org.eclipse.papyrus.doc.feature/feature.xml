@@ -22,13 +22,6 @@
    </description>
 
    <plugin
-         id="org.eclipse.papyrus.cdo.ui.doc"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.copypaste.ui.doc"
          download-size="0"
          install-size="0"
