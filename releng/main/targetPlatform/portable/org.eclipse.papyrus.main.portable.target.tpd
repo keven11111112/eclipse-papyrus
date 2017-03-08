@@ -46,7 +46,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC3-201702220400/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC4-201703010400/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -96,7 +96,7 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releas
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC2-20170221000049/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC3-20170301000049/repository/" {
 	org.eclipse.wst.xml_sdk.feature.feature.group
 	org.eclipse.wst.xml_ui.feature.feature.group
 }

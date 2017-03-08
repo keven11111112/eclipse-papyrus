@@ -78,7 +78,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC3-201702220400/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC4-201703010400/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -191,7 +191,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC2-20170221000049/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC3-20170301000049/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>

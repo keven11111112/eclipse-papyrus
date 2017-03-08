@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1488270524">
+<target name="Papyrus Extra Tests" sequenceNumber="1488959247">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="0.0.0"/>
@@ -18,22 +18,22 @@
       <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.7.0.v20170104-1401"/>
       <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.7.0.v20170104-1401"/>
       <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.7.0.v20170201-1645"/>
-      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.7.0.v20170215-0804"/>
-      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.7.0.v20170104-1401"/>
+      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.7.0.v20170302-1014"/>
+      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.7.0.v20170305-1123"/>
       <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.7.0.v20170104-1401"/>
       <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.7.0.v20170104-1401"/>
       <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.7.0.v20170104-1401"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.7.0.v20170210-1347"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.7.0.v20170210-1347"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.7.0.v20170228-1751"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.7.0.v20170305-1123"/>
       <unit id="org.eclipse.oomph.preferences.feature.group" version="1.7.0.v20170104-1401"/>
-      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20170215-125145-1.7.0-M2"/>
+      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20170307-122318-1.7.0-M4"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
       <repository id="tpd" location="http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.6"/>
+      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.6.1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/releases/1.7/1.7.0.20160603-1933"/>
@@ -65,8 +65,8 @@
       <repository id="gmfRuntime" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.3.v20170222-0400"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC3-201702220400/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.3.v20170301-0400"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC4-201703010400/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.2.1.v20160808-1416"/>
@@ -101,9 +101,9 @@
       <repository id="emfQuery" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/query/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.8.2.v201701191735"/>
-      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.8.2.v201701191735"/>
-      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC2-20170221000049/repository/"/>
+      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.8.2.v201702270442"/>
+      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.8.2.v201702270442"/>
+      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.8.2/S-3.8.2RC3-20170301000049/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.10.0.201606071713"/>
