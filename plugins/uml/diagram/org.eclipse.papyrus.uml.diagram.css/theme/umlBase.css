@@ -239,6 +239,12 @@ ActivityDiagram StructuredActivityNode>Compartment{
 	lineLength:0;
 }
 
+ActivityDiagram ObjectFlow>Label[type=ObjectFlow_WeightLabel],
+ActivityDiagram ObjectFlow>Label[type=ObjectFlow_GuardLabel]
+{
+	visible:false;
+}
+
 /* Some actions of the ActivityDiagram should have rounded corner */
 ActivityDiagram AcceptCallAction,
 ActivityDiagram ClearStructuralFeatureAction,
