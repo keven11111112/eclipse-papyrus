@@ -383,7 +383,9 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 			// During display, a resource has been loaded (e.g. by a Label provider).
 			// Schedule an update (in the future, to avoid conflicts with a potential current update)
-			if ((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
+			
+			// do not trigger a refresh if the widget is activated (in edit mode) Bug 509653
+			if ((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed() && !viewer.getControl().isFocusControl()) {
 				if (pendingRefresh.compareAndSet(null, new Runnable() {
 
 					@Override
