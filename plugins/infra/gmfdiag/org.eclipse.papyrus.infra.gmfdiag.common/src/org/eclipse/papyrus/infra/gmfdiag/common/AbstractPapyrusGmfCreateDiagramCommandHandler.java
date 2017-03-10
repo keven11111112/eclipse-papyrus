@@ -48,7 +48,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
@@ -57,11 +56,10 @@ import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
-import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
@@ -129,7 +127,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			if (notationResource == null) {
 				return CommandResult.newErrorCommandResult("Cannot create a diagram on the selected element (ReadOnly?)"); //$NON-NLS-1$
 			}
-			Resource diResource = DiModelUtils.getDiResource(modelSet);
 
 			if (owner == null) {
 				Resource modelResource = ILanguageService.getLanguageModels(modelSet).stream()
@@ -201,8 +198,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			Diagram diagram = doCreateDiagram(notationResource, owner, element, prototype, name);
 
 			if (diagram != null) {
-				IPageManager pageManager = ServiceUtilsForResource.getInstance().getService(IPageManager.class, diResource);
-				pageManager.addPage(diagram);
 				return CommandResult.newOKCommandResult(diagram);
 			}
 
@@ -338,11 +333,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 */
 	@Override
 	public final Diagram createDiagram(ModelSet modelSet, EObject owner, String name) {
+		Diagram diagram = null;
 		ViewPrototype proto = ViewPrototype.get(getCreatedDiagramType(), owner, owner);
-		if (proto == null) {
-			return null;
+		if (proto != null) {
+			diagram = createDiagram(modelSet, owner, owner, proto, name);
 		}
-		return createDiagram(modelSet, owner, owner, proto, name);
+		return diagram;
 	}
 
 
@@ -441,6 +437,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				Creator creator = new Creator(modelSet, owner, element, prototype, name);
 				try {
 					CommandResult commandResult = creator.createDiagram();
+					if (commandResult != null) {
 					if (!commandResult.getStatus().isOK()) {
 						return commandResult;
 					}
@@ -449,6 +446,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					diagramElement = diagram.getElement();
 					diagramOwner = DiagramUtils.getOwner(diagram);
 					return commandResult;
+					}
 				} catch (ServiceException e) {
 					Activator.log.error(e);
 				}
