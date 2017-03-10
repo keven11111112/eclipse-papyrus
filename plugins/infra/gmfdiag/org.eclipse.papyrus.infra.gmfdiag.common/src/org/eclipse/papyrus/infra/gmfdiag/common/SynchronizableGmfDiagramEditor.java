@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *  Christian W. Damus - bug 451683
  *  Christian W. Damus - bug 465416
  *  Simon Delisle - Move ReconcilerHelper to a separate class
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 491816
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -49,6 +50,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.ReconcileHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
@@ -307,7 +309,8 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		super.addDefaultPreferences();
 		final PreferencesHint preferencesHint = getPreferencesHint();
 		final IPreferenceStore globalPreferenceStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-		final String diagramType = getDiagram().getType();
+		final Diagram diagram = getDiagram();
+		final String diagramType = diagram.getType();
 		// get the preferences
 		final boolean viewGrid = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.VIEW_GRID));
 		final boolean viewRuler = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.VIEW_RULER));
@@ -322,19 +325,19 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 		// set the preferences
 		final IPreferenceStore localStore = getWorkspaceViewerPreferenceStore();
-		localStore.setValue(PreferencesConstantsHelper.VIEW_GRID_CONSTANT, viewGrid);
-		localStore.setValue(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, viewRuler);
-		localStore.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, rulerUnit);
-		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, snapToGrid);
-		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, snapToGeometry);
-		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, gridLineColor);
-		localStore.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, gridSpacing);
+		localStore.setValue(PreferencesConstantsHelper.VIEW_GRID_CONSTANT, NotationUtils.getBooleanValue(diagram, PreferencesConstantsHelper.VIEW_GRID_CONSTANT, viewGrid));
+		localStore.setValue(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, NotationUtils.getBooleanValue(diagram, PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, viewRuler));
+		localStore.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, NotationUtils.getIntValue(diagram, PreferencesConstantsHelper.RULER_UNITS_CONSTANT, rulerUnit));
+		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, NotationUtils.getBooleanValue(diagram, PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, snapToGrid));
+		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, NotationUtils.getBooleanValue(diagram, PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, snapToGeometry));
+		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, NotationUtils.getIntValue(diagram, PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, gridLineColor));
+		localStore.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, NotationUtils.getDoubleValue(diagram, PreferencesConstantsHelper.GRID_SPACING_CONSTANT, gridSpacing));
 
 		// to force refresh
-		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, !gridOrder);
-		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, gridOrder);
+		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, !NotationUtils.getBooleanValue(diagram, PreferencesConstantsHelper.GRID_ORDER_CONSTANT, gridOrder));
+		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, NotationUtils.getBooleanValue(diagram, PreferencesConstantsHelper.GRID_ORDER_CONSTANT, gridOrder));
 
-		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, gridLineStyle);
+		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, NotationUtils.getIntValue(diagram, PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, gridLineStyle));
 
 	}
 

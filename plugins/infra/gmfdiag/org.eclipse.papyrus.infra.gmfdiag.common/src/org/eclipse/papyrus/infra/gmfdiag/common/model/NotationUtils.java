@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2016 Atos Origin, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2017 Atos Origin, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *  Christian W. Damus - bug 482220
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 491816
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.DoubleValueStyle;
 import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.IntValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
@@ -164,7 +166,7 @@ public class NotationUtils {
 	 *
 	 */
 	public static List<Diagram> getDiagrams(Resource notationResource, EObject eObject) {
-		List<Diagram> diagrams = new LinkedList<Diagram>();
+		List<Diagram> diagrams = new LinkedList<>();
 		if (notationResource != null) {
 			for (EObject obj : notationResource.getContents()) {
 				if (obj instanceof Diagram) {
@@ -221,12 +223,12 @@ public class NotationUtils {
 
 	/**
 	 * Obtains all of the notation views (diagrams, tables, etc.) persisted in a resource-set.
-	 * 
+	 *
 	 * @param resourceSet
 	 *            a resource-set
-	 * 
+	 *
 	 * @return all of the notations within it
-	 * 
+	 *
 	 * @see #getAllNotations(ResourceSet, Class)
 	 */
 	public static Iterable<EObject> getAllNotations(ResourceSet resourceSet) {
@@ -235,12 +237,12 @@ public class NotationUtils {
 
 	/**
 	 * Obtains all of the notation views of some type persisted in a resource-set.
-	 * 
+	 *
 	 * @param resourceSet
 	 *            a resource-set
 	 * @param type
 	 *            the notation type (diagram, table, etc.)
-	 * 
+	 *
 	 * @return all of the notations of that {@code type} within it
 	 */
 	public static <T extends EObject> Iterable<T> getAllNotations(ResourceSet resourceSet, Class<T> type) {
@@ -424,15 +426,39 @@ public class NotationUtils {
 		return value;
 	}
 
+	/**
+	 * Get the double value from a NamedStyle property.
+	 *
+	 * @param view
+	 *            the view
+	 * @param property
+	 *            the property
+	 * @param defaultDouble
+	 *            the default double
+	 * @return double corresponding to the property
+	 */
+	public static double getDoubleValue(final View view, final String property, final double defaultDouble) {
+		double value = defaultDouble;
+		EClass doubleValueStyle = NotationPackage.eINSTANCE.getDoubleValueStyle();
+		NamedStyle style;
+
+		if (null != doubleValueStyle) {
+			style = view.getNamedStyle(doubleValueStyle, property);
+			if (style instanceof DoubleValueStyle) {
+				value = ((DoubleValueStyle) style).getDoubleValue();
+			}
+		}
+		return value;
+	}
 
 	/**
 	 * Get the list as a String list and convert it to Int list
-	 * 
+	 *
 	 * @param model
 	 * @param floatingLabelOffsetWidth
 	 * @param defaultCustomStyle
 	 * @return
-	 * 
+	 *
 	 */
 	public static int[] getIntListValue(View view, String property, int[] defaultIntList) {
 		int[] value = defaultIntList;
@@ -459,7 +485,7 @@ public class NotationUtils {
 
 	/**
 	 * Get the list as a String list
-	 * 
+	 *
 	 * @param view
 	 *            model
 	 * @param property
@@ -467,7 +493,7 @@ public class NotationUtils {
 	 * @param defaultStringList
 	 *            default value if empty
 	 * @return List of String
-	 * 
+	 *
 	 */
 	public static EList<String> getStringListValue(View view, String property, EList<String> defaultStringList) {
 		EList<String> value = defaultStringList;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 417409
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 491816
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
@@ -20,6 +21,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
@@ -56,6 +58,7 @@ public class RulersAndGridModelElementFactory extends AbstractModelElementFactor
 		EditPart editPart = (EditPart) newSourceElement;
 		modelElement.store = DiagramEditPartsUtil.getDiagramWorkspacePreferenceStore(editPart);
 		modelElement.diagram = (Diagram) NotationHelper.findView(DiagramEditPartsUtil.getDiagramEditPart(editPart));
+		modelElement.domain = EMFHelper.resolveEditingDomain(newSourceElement);
 	}
 
 }

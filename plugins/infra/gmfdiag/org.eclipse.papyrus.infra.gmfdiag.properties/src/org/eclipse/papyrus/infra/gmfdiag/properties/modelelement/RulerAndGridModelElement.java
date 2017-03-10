@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 417409
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 491816
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
@@ -22,12 +23,12 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerPro
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleWithStoreObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomDoubleStyleWithStoreObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyleWithStoreObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.RulersUnitStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.LineStyleLabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.UnitsLabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.BooleanDiagramViewObservableValue;
-import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.DoubleDiagramViewObservaleValue;
-import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.IntegerDiagramViewObservableValue;
-import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.RulersUnitObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.util.RulersAndGridPropertyConstants;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
@@ -56,6 +57,11 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 	protected IPreferenceStore store;
 
 	/**
+	 * The editing domain.
+	 */
+	protected EditingDomain domain;
+
+	/**
 	 *
 	 * Constructor.
 	 *
@@ -70,6 +76,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 	 */
 	public RulerAndGridModelElement(final Diagram view, final EditingDomain domain, final DataContextElement context, final IPreferenceStore preferenceStore) {
 		this.diagram = view;
+		this.domain = domain;
 		this.store = preferenceStore;
 	}
 
@@ -95,32 +102,33 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 	@Override
 	protected IObservable doGetObservable(final String propertyPath) {
 		IObservable observable = null;
+
 		if (RulersAndGridPropertyConstants.GRID_IS_DISPLAYING_GRID.equals(propertyPath)) {
-			observable = new BooleanDiagramViewObservableValue(this.diagram, WorkspaceViewerProperties.VIEWGRID, this.store);
+			observable = new CustomBooleanStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.VIEWGRID, this.store);
 		}
 		if (RulersAndGridPropertyConstants.RULERS_IS_DISPLAYING_RULER.equals(propertyPath)) {
-			observable = new BooleanDiagramViewObservableValue(this.diagram, WorkspaceViewerProperties.VIEWRULERS, this.store);
+			observable = new CustomBooleanStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.VIEWRULERS, this.store);
 		}
 		if (RulersAndGridPropertyConstants.GRID_IS_IN_FRONT.equals(propertyPath)) {
-			observable = new BooleanDiagramViewObservableValue(diagram, WorkspaceViewerProperties.GRIDORDER, this.store);
+			observable = new CustomBooleanStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.GRIDORDER, this.store);
 		}
 		if (RulersAndGridPropertyConstants.GRID_COLOR.equals(propertyPath)) {
-			observable = new IntegerDiagramViewObservableValue(diagram, WorkspaceViewerProperties.GRIDLINECOLOR, this.store);
+			observable = new CustomIntStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.GRIDLINECOLOR, this.store);
 		}
 		if (RulersAndGridPropertyConstants.GRID_STYLE.equals(propertyPath)) {
-			observable = new IntegerDiagramViewObservableValue(diagram, WorkspaceViewerProperties.GRIDLINESTYLE, this.store);
+			observable = new CustomIntStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.GRIDLINESTYLE, this.store);
 		}
 		if (RulersAndGridPropertyConstants.GRID_SPACING.equals(propertyPath)) {
-			observable = new DoubleDiagramViewObservaleValue(diagram, WorkspaceViewerProperties.GRIDSPACING, this.store);
+			observable = new CustomDoubleStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.GRIDSPACING, this.store);
 		}
 		if (RulersAndGridPropertyConstants.GRID_IS_SNAP_TO_GRID.equals(propertyPath)) {
-			observable = new BooleanDiagramViewObservableValue(this.diagram, WorkspaceViewerProperties.SNAPTOGRID, this.store);
+			observable = new CustomBooleanStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.SNAPTOGRID, this.store);
 		}
 		if (RulersAndGridPropertyConstants.GRID_IS_SNAP_TO_SHAPE.equals(propertyPath)) {
-			observable = new BooleanDiagramViewObservableValue(this.diagram, WorkspaceViewerProperties.SNAPTOGEOMETRY, this.store);
+			observable = new CustomBooleanStyleWithStoreObservableValue(this.diagram, this.domain, WorkspaceViewerProperties.SNAPTOGEOMETRY, this.store);
 		}
 		if (RulersAndGridPropertyConstants.RULERS_UNITS.equals(propertyPath)) {
-			observable = new RulersUnitObservableValue(diagram, this.store);
+			observable = new RulersUnitStyleObservableValue(this.diagram, this.domain, this.store);
 		}
 		return observable;
 	}
