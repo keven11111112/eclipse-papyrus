@@ -102,7 +102,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 
 	private Activity actionParent;
 
-	private EClass selectedType = null;
+	protected EClass selectedType = null;
 
 	protected String selectedName = null;
 
