@@ -44,6 +44,8 @@
 		<ppe:ReferenceDialog input="{Binding}" property="UML:TypedElement:type"></ppe:ReferenceDialog>
 		<ppe:ReferenceDialog input="{Binding}"
 			property="UML:ObjectNode:upperBound"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog property="UML:ActionInputPin:fromAction"
+			input="{Binding}"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>
 		<Composite.layout>
