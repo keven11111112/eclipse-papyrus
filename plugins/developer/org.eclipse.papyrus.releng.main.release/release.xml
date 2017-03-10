@@ -382,7 +382,7 @@
 		<plugin name="org.eclipse.papyrus.uml.nattable.xtext.valuespecification" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.nattable.stereotype.display" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.nattable.richtext" version="2.0.0"/>
-		<plugin name="org.eclipse.nebula.widgets.nattable.extension.nebula" version="1.0.0"/>
+		<plugin name="org.eclipse.nebula.widgets.nattable.extension.nebula" version="1.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.properties.feature" version="2.0.1">
 		<plugin name="org.eclipse.papyrus.uml.properties" version="2.1.0"/>
@@ -452,7 +452,7 @@
 	<plugin name="com.google.guava" version="15.0.0"/>
 	<plugin name="org.eclipse.nebula.widgets.nattable.core" version="1.4.0"/>
 	<plugin name="org.eclipse.nebula.widgets.nattable.extension.glazedlists" version="1.4.0"/>
-	<plugin name="org.eclipse.nebula.widgets.nattable.extension.nebula" version="1.0.0"/>
+	<plugin name="org.eclipse.nebula.widgets.nattable.extension.nebula" version="1.1.0"/>
 	<plugin name="org.eclipse.nebula.widgets.richtext" version="1.1.0"/>
 	<plugin name="org.eclipse.papyrus.cdo.ui.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.copypaste.ui.doc" version="1.2.0"/>
