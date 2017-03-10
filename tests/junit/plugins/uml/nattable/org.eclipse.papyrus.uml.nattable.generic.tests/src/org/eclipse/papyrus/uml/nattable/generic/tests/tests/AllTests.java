@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithCo
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.EnumerationContentItemsTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.FillColumnsSizeTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertAxisTwiceGenericTableTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
@@ -75,6 +76,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		SortAxisGenericTableTest.class,
 		InvertAxisGenericTableTest.class,
+		InvertAxisTwiceGenericTableTest.class,
 		EditAxisGenericTableTest.class,
 		OpenAndDeleteTest.class,
 		AddElementsOnConnectedTableTest.class,
@@ -89,10 +91,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		FilterNumericMatcherTest.class,
 		FilterUMLEnumerationMatcherTest.class,
 		CellEditorsConfigurationTest.class,
-		
+
 		// Test the sort column when no common parent
 		SortTableColumnTest.class,
-		
+
 		// Test the fillColumnsSize style
 		FillColumnsSizeTest.class,
 
@@ -104,7 +106,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		// Check the enumeration content items
 		EnumerationContentItemsTest.class,
-		
+
 		// Bug 456841: Check paste with stereotype attribute typed as enum
 		PasteAttachedModeEnumTest.class,
 
@@ -133,7 +135,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteEmptyOverwriteFailColumns_Test.class,
 		PasteEmptyOverwriteWarningNotExisting_Test.class,
 		PasteEmptyOverwriteAxisIdentifierNotExisting_Test.class,
-		
+
 		// Insert tests
 		InsertEmptyClipboard_Test.class,
 

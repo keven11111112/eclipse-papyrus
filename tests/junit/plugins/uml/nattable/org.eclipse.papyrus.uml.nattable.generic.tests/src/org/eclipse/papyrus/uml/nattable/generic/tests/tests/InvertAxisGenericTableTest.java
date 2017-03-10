@@ -72,6 +72,8 @@ public class InvertAxisGenericTableTest extends AbstractGenericTableTest {
 	@Before
 	public void initModel() throws Exception {
 		initModel("GenericTable", fileName, getBundle()); //$NON-NLS-1$
+		
+		loadGenericTable();
 	};
 
 	/**
@@ -82,7 +84,6 @@ public class InvertAxisGenericTableTest extends AbstractGenericTableTest {
 	 */
 	@Test
 	public void invertAxis() throws Exception {
-		loadGenericTable();
 		IEditorPart tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
@@ -97,12 +98,16 @@ public class InvertAxisGenericTableTest extends AbstractGenericTableTest {
 		Assert.assertEquals(3, manager.getRowElementsList().size());
 		Assert.assertEquals(5, manager.getColumnElementsList().size());
 		checkInitialTable(manager.getRowElementsList(), manager.getColumnElementsList());
+		
+		flushDisplayEvents();
 
 		// Invert Axis a second time and check the rows and columns
 		manager.invertAxis();
 		Assert.assertEquals(3, manager.getColumnElementsList().size());
 		Assert.assertEquals(5, manager.getRowElementsList().size());
 		checkInitialTable(manager.getColumnElementsList(), manager.getRowElementsList());
+		
+		flushDisplayEvents();
 		
 		checkUndoRedo(manager);
 	}
@@ -119,11 +124,15 @@ public class InvertAxisGenericTableTest extends AbstractGenericTableTest {
 		Assert.assertEquals(5, manager.getColumnElementsList().size());
 		checkInitialTable(manager.getRowElementsList(), manager.getColumnElementsList());
 		
+		flushDisplayEvents();
+		
 		// check the redo
 		getTransactionalEditingDomain().getCommandStack().redo();
 		Assert.assertEquals(3, manager.getColumnElementsList().size());
 		Assert.assertEquals(5, manager.getRowElementsList().size());
 		checkInitialTable(manager.getColumnElementsList(), manager.getRowElementsList());
+		
+		flushDisplayEvents();
 	}
 
 	/**
