@@ -1,5 +1,5 @@
-/****************************************
- * Copyright (c) 2013, 2014 CEA and others.
+/*****************************************************************************
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,8 +9,8 @@
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 323802
- *
- */
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 513580
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.messages;
 
 import org.eclipse.osgi.util.NLS;
@@ -121,6 +121,11 @@ public class Messages extends NLS {
 
 	public static String WorkspaceExtendedPaletteProvider_ImpossibleToReadResourcePalette;
 
+	public static String ResizeBindingPreferencePage_PageTitle;
+
+	public static String ResizeBindingPreferencePage_PageDescription;
+
+	public static String ResizeBindingPreferencePage_HoldingShiftToRecalculateAnchorPositionWhenResizing;
 
 	static {
 		// initialize resource bundle

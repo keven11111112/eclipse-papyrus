@@ -67,6 +67,12 @@
          class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.PastePreferencesPage"
          id="org.eclipse.papyrus.infra.gmfdiag.paste.preferences"
          name="Paste">
+   </page>
+   <page
+         category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+         class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.ResizeBindingPreferencePage"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.resizeBindingPreferencePage"
+         name="Resize Binding">
    </page> 
 </extension>
 <extension
@@ -337,6 +343,9 @@
       point="org.eclipse.core.runtime.preferences">
    <initializer
          class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.PastePreferenceInitializer">
+   </initializer>
+   <initializer
+         class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.ResizeBindingPreferenceInitializer">
    </initializer>
 </extension>
 <extension
