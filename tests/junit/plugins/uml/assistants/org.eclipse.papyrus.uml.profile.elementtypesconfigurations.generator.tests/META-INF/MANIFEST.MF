@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.emf;bundle-version="1.2.0",
  org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator;bundle-version="1.2.0",
  com.google.inject;bundle-version="3.0.0",
- com.google.guava;bundle-version="11.0.0",
+ com.google.guava;bundle-version="15.0.0",
  org.eclipse.xtext.xbase.lib;bundle-version="2.8.0"
 Export-Package: org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests
 Bundle-Vendor: %providerName
