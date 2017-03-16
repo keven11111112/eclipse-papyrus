@@ -54,22 +54,6 @@
 		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
 
-		<!-- Diagram Definition -->
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.edit</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.editor</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.qvt</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation.export</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation.qvt</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation2umldi</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.edit</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.editor</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi</module>
-		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi2dg</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.dd.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.umldi.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.notation.feature</module>
-
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
 
 		<!-- SysML 1.1 -->
