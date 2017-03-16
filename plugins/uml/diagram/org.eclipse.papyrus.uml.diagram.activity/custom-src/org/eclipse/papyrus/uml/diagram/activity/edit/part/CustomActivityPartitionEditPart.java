@@ -12,13 +12,16 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityPartitionLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 
@@ -32,6 +35,8 @@ public class CustomActivityPartitionEditPart extends ActivityPartitionEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new ActivityPartitionLabelEditPolicy());
+		
 	}
 
 	@Override
@@ -50,5 +55,14 @@ public class CustomActivityPartitionEditPart extends ActivityPartitionEditPart {
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
+	}
+	
+	@Override
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof CustomActivityPartitionNameEditPart) {
+			((CustomActivityPartitionNameEditPart) childEditPart).setLabel(getPrimaryShape().getPartitionLabel());
+			return true;
+		} else 
+			return super.addFixedChild(childEditPart);
 	}
 }

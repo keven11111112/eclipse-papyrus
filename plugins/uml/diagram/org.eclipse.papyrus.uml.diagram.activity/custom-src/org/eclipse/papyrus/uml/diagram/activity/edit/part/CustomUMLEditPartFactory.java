@@ -34,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityFinalNodeEdit
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddVariableValueActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
@@ -253,6 +254,8 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomForkNodeEditPart(view);
 			case JoinNodeEditPart.VISUAL_ID:
 				return new CustomJoinNodeEditPart(view);
+			case ActivityPartitionNameEditPart.VISUAL_ID:
+				return new CustomActivityPartitionNameEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);
