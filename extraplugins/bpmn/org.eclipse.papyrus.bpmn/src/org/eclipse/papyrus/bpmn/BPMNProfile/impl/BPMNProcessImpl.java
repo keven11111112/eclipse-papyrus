@@ -61,16 +61,6 @@ import org.eclipse.uml2.uml.Activity;
  */
 public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess {
 	/**
-	 * The cached value of the '{@link #getLaneSets() <em>Lane Sets</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLaneSets()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LaneSet> laneSets;
-
-	/**
 	 * The default value of the '{@link #getProcessType() <em>Process Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,13 +212,10 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<LaneSet> getLaneSets() {
-		if (laneSets == null) {
-			laneSets = new EObjectWithInverseResolvingEList<LaneSet>(LaneSet.class, this, BPMNProfilePackage.BPMN_PROCESS__LANE_SETS, BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER);
-		}
-		return laneSets;
+		return BPMNProcessCustom.getLaneSets(this);
 	}
 
 	/**
@@ -644,8 +631,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLaneSets()).basicAdd(otherEnd, msgs);
 			case BPMNProfilePackage.BPMN_PROCESS__RESOURCES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getResources()).basicAdd(otherEnd, msgs);
 		}
@@ -660,8 +645,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
-				return ((InternalEList<?>)getLaneSets()).basicRemove(otherEnd, msgs);
 			case BPMNProfilePackage.BPMN_PROCESS__RESOURCES:
 				return ((InternalEList<?>)getResources()).basicRemove(otherEnd, msgs);
 		}
@@ -720,10 +703,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
-				getLaneSets().clear();
-				getLaneSets().addAll((Collection<? extends LaneSet>)newValue);
-				return;
 			case BPMNProfilePackage.BPMN_PROCESS__PROCESS_TYPE:
 				setProcessType((ProcessType)newValue);
 				return;
@@ -769,9 +748,6 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
-				getLaneSets().clear();
-				return;
 			case BPMNProfilePackage.BPMN_PROCESS__PROCESS_TYPE:
 				setProcessType(PROCESS_TYPE_EDEFAULT);
 				return;
@@ -815,7 +791,7 @@ public class BPMNProcessImpl extends CallableElementImpl implements BPMNProcess 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case BPMNProfilePackage.BPMN_PROCESS__LANE_SETS:
-				return laneSets != null && !laneSets.isEmpty();
+				return !getLaneSets().isEmpty();
 			case BPMNProfilePackage.BPMN_PROCESS__FLOW_ELEMENTS:
 				return !getFlowElements().isEmpty();
 			case BPMNProfilePackage.BPMN_PROCESS__PROCESS_TYPE:

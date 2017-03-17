@@ -24,7 +24,7 @@
         editPartQualifiedName="org.eclipse.papyrus.bpmn.diagram.common.edit.part.LaneEditPart"
         name="Lane overloads activity partition"
         viewFactory="org.eclipse.papyrus.bpmn.diagram.common.factory.LaneViewFactory"
-        graphicalElementType="org.eclipse.papyrus.bpmn.process.Lane_Partition"/>
+        graphicalElementType="org.eclipse.papyrus.bpmndi.Lane_Partition"/>
   </libraries>
   <libraries
       name="reusedCompartment">

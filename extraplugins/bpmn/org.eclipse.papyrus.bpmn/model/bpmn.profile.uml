@@ -13012,11 +13012,11 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer" name="FlowElementsContainer" isAbstract="true">
       <generalization xmi:type="uml:Generalization" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-generalization" general="BPMNProfile-CoreStructure-Foundation-BaseElement"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements" name="flowElements" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElement" isReadOnly="true" association="BPMNProfile-CoreStructure-Common-packagedElement-38" isderived="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements" name="flowElements" visibility="public" type="BPMNProfile-CoreStructure-Common-FlowElement" isReadOnly="true" isDerived="true" association="BPMNProfile-CoreStructure-Common-packagedElement-38" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-flowElements-upperValue" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets" name="laneSets" visibility="public" type="BPMNProfile-Process-LaneSet" association="BPMNProfile-CoreStructure-Common-packagedElement-42" isderived="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets" name="laneSets" visibility="public" type="BPMNProfile-Process-LaneSet" isReadOnly="true" isDerived="true" association="BPMNProfile-CoreStructure-Common-packagedElement-42" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-CoreStructure-Common-FlowElementsContainer-laneSets-upperValue" value="*"/>
       </ownedAttribute>

@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -18,8 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.FlowElement;
 import org.eclipse.papyrus.bpmn.BPMNProfile.FlowElementsContainer;
@@ -46,16 +43,6 @@ import org.eclipse.uml2.uml.StructuredActivityNode;
  * @generated
  */
 public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
-	/**
-	 * The cached value of the '{@link #getLaneSets() <em>Lane Sets</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLaneSets()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LaneSet> laneSets;
-
 	/**
 	 * The default value of the '{@link #isTriggeredByEvent() <em>Triggered By Event</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -118,24 +105,19 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT 
 	 */
 	public EList<LaneSet> getLaneSets() {
-		if (laneSets == null) {
-			laneSets = new EObjectWithInverseResolvingEList<LaneSet>(LaneSet.class, this, BPMNProfilePackage.SUB_PROCESS__LANE_SETS, BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER);
-		}
-		return laneSets;
+		return getHasLaneSets();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<FlowElement> getFlowElements() {
-		// TODO: implement this method to return the 'Flow Elements' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return SubProcessCustom.getFlowElements(this);
 	}
 
 	/**
@@ -239,35 +221,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLaneSets()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
-				return ((InternalEList<?>)getLaneSets()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -295,10 +248,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
-				getLaneSets().clear();
-				getLaneSets().addAll((Collection<? extends LaneSet>)newValue);
-				return;
 			case BPMNProfilePackage.SUB_PROCESS__TRIGGERED_BY_EVENT:
 				setTriggeredByEvent((Boolean)newValue);
 				return;
@@ -321,9 +270,6 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
-				getLaneSets().clear();
-				return;
 			case BPMNProfilePackage.SUB_PROCESS__TRIGGERED_BY_EVENT:
 				setTriggeredByEvent(TRIGGERED_BY_EVENT_EDEFAULT);
 				return;
@@ -346,7 +292,7 @@ public class SubProcessImpl extends BPMNActivityImpl implements SubProcess {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case BPMNProfilePackage.SUB_PROCESS__LANE_SETS:
-				return laneSets != null && !laneSets.isEmpty();
+				return !getLaneSets().isEmpty();
 			case BPMNProfilePackage.SUB_PROCESS__FLOW_ELEMENTS:
 				return !getFlowElements().isEmpty();
 			case BPMNProfilePackage.SUB_PROCESS__TRIGGERED_BY_EVENT:

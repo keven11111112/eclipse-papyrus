@@ -6,7 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -49,16 +48,6 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	 * @ordered
 	 */
 	protected ActivityPartition base_ActivityPartition;
-
-	/**
-	 * The cached value of the '{@link #getFlowElementsContainer() <em>Flow Elements Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFlowElementsContainer()
-	 * @generated
-	 * @ordered
-	 */
-	protected FlowElementsContainer flowElementsContainer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,15 +130,8 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	 * @generated
 	 */
 	public FlowElementsContainer getFlowElementsContainer() {
-		if (flowElementsContainer != null && flowElementsContainer.eIsProxy()) {
-			InternalEObject oldFlowElementsContainer = (InternalEObject)flowElementsContainer;
-			flowElementsContainer = (FlowElementsContainer)eResolveProxy(oldFlowElementsContainer);
-			if (flowElementsContainer != oldFlowElementsContainer) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER, oldFlowElementsContainer, flowElementsContainer));
-			}
-		}
-		return flowElementsContainer;
+		FlowElementsContainer flowElementsContainer = basicGetFlowElementsContainer();
+		return flowElementsContainer != null && flowElementsContainer.eIsProxy() ? (FlowElementsContainer)eResolveProxy((InternalEObject)flowElementsContainer) : flowElementsContainer;
 	}
 
 	/**
@@ -158,22 +140,10 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	 * @generated
 	 */
 	public FlowElementsContainer basicGetFlowElementsContainer() {
-		return flowElementsContainer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetFlowElementsContainer(FlowElementsContainer newFlowElementsContainer, NotificationChain msgs) {
-		FlowElementsContainer oldFlowElementsContainer = flowElementsContainer;
-		flowElementsContainer = newFlowElementsContainer;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER, oldFlowElementsContainer, newFlowElementsContainer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+		// TODO: implement this method to return the 'Flow Elements Container' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -182,17 +152,9 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	 * @generated
 	 */
 	public void setFlowElementsContainer(FlowElementsContainer newFlowElementsContainer) {
-		if (newFlowElementsContainer != flowElementsContainer) {
-			NotificationChain msgs = null;
-			if (flowElementsContainer != null)
-				msgs = ((InternalEObject)flowElementsContainer).eInverseRemove(this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS, FlowElementsContainer.class, msgs);
-			if (newFlowElementsContainer != null)
-				msgs = ((InternalEObject)newFlowElementsContainer).eInverseAdd(this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS, FlowElementsContainer.class, msgs);
-			msgs = basicSetFlowElementsContainer(newFlowElementsContainer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER, newFlowElementsContainer, newFlowElementsContainer));
+		// TODO: implement this method to set the 'Flow Elements Container' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -300,37 +262,6 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
-				if (flowElementsContainer != null)
-					msgs = ((InternalEObject)flowElementsContainer).eInverseRemove(this, BPMNProfilePackage.FLOW_ELEMENTS_CONTAINER__LANE_SETS, FlowElementsContainer.class, msgs);
-				return basicSetFlowElementsContainer((FlowElementsContainer)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
-				return basicSetFlowElementsContainer(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -400,7 +331,7 @@ public class LaneSetImpl extends BaseElementImpl implements LaneSet {
 			case BPMNProfilePackage.LANE_SET__PARENT_LANE:
 				return !getParentLane().isEmpty();
 			case BPMNProfilePackage.LANE_SET__FLOW_ELEMENTS_CONTAINER:
-				return flowElementsContainer != null;
+				return basicGetFlowElementsContainer() != null;
 		}
 		return super.eIsSet(featureID);
 	}

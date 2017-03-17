@@ -101,7 +101,7 @@ public interface LaneSet extends BaseElement {
 	 * @see #setFlowElementsContainer(FlowElementsContainer)
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getLaneSet_FlowElementsContainer()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.FlowElementsContainer#getLaneSets
-	 * @model opposite="laneSets" ordered="false"
+	 * @model opposite="laneSets" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	FlowElementsContainer getFlowElementsContainer();

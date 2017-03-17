@@ -137,7 +137,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="FlowElementsContainer" abstract="true"
       eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="laneSets" ordered="false"
-        upperBound="-1" eType="#//LaneSet" eOpposite="#//LaneSet/flowElementsContainer"/>
+        upperBound="-1" eType="#//LaneSet" changeable="false" volatile="true" transient="true"
+        derived="true" eOpposite="#//LaneSet/flowElementsContainer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowElements" ordered="false"
         upperBound="-1" eType="#//FlowElement" changeable="false" volatile="true"
         transient="true" derived="true" eOpposite="#//FlowElement/container"/>
@@ -197,7 +198,8 @@
         upperBound="-1" eType="#//Lane" changeable="false" volatile="true" transient="true"
         derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flowElementsContainer"
-        ordered="false" eType="#//FlowElementsContainer" eOpposite="#//FlowElementsContainer/laneSets"/>
+        ordered="false" eType="#//FlowElementsContainer" volatile="true" transient="true"
+        derived="true" eOpposite="#//FlowElementsContainer/laneSets"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lane" eSuperTypes="#//BaseElement">
     <eOperations name="LanelaneSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">

@@ -31,6 +31,13 @@ public class FlowElementCustom {
 	private FlowElementCustom() {
 	}
 
+	private static Element getLoopContainer(Element container){
+		while (container != null && container instanceof LoopNode) {
+			container = container.getOwner();
+		}
+		return container;
+	}
+	
 	public static FlowElementsContainer basicGetContainer(FlowElement flowElement) {
 		FlowElementsContainer flowElementsContainer = null;
 		Element element = flowElement.getBase_Element();
@@ -39,10 +46,10 @@ public class FlowElementCustom {
 			if (element instanceof ActivityNode || element instanceof ActivityEdge) {
 				Element container = element.getOwner();
 				if (container != null && container instanceof LoopNode) {
-					container = container.getOwner();
+					container = getLoopContainer(container);
 				}
 				if(container != null){
-					log.debug("owner : " + element.getOwner());
+					log.debug("owner : " + container);
 					flowElementsContainer = UMLUtil.getStereotypeApplication(container, FlowElementsContainer.class);
 				}
 			} else if (element instanceof Event) {

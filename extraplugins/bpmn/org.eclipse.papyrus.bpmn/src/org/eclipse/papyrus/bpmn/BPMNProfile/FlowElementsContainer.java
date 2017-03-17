@@ -35,7 +35,7 @@ public interface FlowElementsContainer extends BaseElement {
 	 * @return the value of the '<em>Lane Sets</em>' reference list.
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getFlowElementsContainer_LaneSets()
 	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.LaneSet#getFlowElementsContainer
-	 * @model opposite="flowElementsContainer" ordered="false"
+	 * @model opposite="flowElementsContainer" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	EList<LaneSet> getLaneSets();
