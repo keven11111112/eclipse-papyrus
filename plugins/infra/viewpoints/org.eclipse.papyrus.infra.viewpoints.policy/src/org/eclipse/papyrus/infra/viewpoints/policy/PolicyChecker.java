@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.viewpoints.policy;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -97,6 +98,9 @@ public class PolicyChecker {
 	}
 	
 	public static PolicyChecker getFor(MergedArchitectureContext context) {
+		if (context == null) {
+			return new PolicyChecker(Collections.emptyList());
+		}
 		return new PolicyChecker(context.getViewpoints());
 	}
 
