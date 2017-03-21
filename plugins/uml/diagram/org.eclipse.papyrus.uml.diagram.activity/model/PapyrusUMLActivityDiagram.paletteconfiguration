@@ -493,7 +493,7 @@
           <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.SendSignalAction_Shape"/>
         </elementDescriptors>
       </ownedConfigurations>
-      <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.invocationactions.startobjectbehaviouraction" label="Start Object Behaviour Action " description="Create a Start Object Behaviour Action" kind="CreationTool">
+      <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.invocationactions.startobjectbehaviouraction" label="Start Object Behavior Action " description="Create a Start Object Behavior Action" kind="CreationTool">
         <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/StartObjectBehaviorAction.gif"/>
         <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
           <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.StartObjectBehaviorAction_Shape"/>
