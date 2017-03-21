@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 471954
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 507488
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.tests.tests;
 
@@ -40,7 +39,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		ShapeCustomisationTest.class,
 		Bug476873_MoveCommandTest.class,
 		Bug495430_DuplicatedTransitionsTest.class,
-		Bug488744_PortPositionTest.class
+		Bug488744_PortPositionTest.class,
+		Bug507488_BinaryRelationshipLabelPositionTest.class
 })
 
 public class AllTests {
