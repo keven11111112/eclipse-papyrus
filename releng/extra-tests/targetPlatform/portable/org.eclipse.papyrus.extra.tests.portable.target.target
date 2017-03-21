@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1489142324">
+<target name="Papyrus Extra Tests" sequenceNumber="1490107457">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="0.0.0"/>
@@ -30,7 +30,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
-      <repository id="tpd" location="http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/"/>
+      <repository id="tpd" location="http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="egit" location="http://download.eclipse.org/egit/updates-4.6"/>
@@ -80,6 +80,8 @@
       <unit id="org.eclipse.xtext.sdk.feature.group" version="2.10.0.v201605250459"/>
       <unit id="org.eclipse.xtend.sdk.feature.group" version="2.10.0.v201605250459"/>
       <unit id="org.eclipse.xtext.redist.feature.group" version="2.10.0.v201605250459"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.10.0.v201605250459"/>
+      <unit id="org.eclipse.xtext.ui.feature.group" version="2.10.0.v201605250459"/>
       <repository id="xtext" location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -112,7 +114,7 @@
       <repository id="gmfNotation" location="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.13.0.v20170123-0457"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.13.0.v20170313-0823"/>
       <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/updates/2.13milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">

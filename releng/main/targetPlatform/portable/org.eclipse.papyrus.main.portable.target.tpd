@@ -63,6 +63,8 @@ location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
+	org.eclipse.xtext.runtime.feature.group
+    org.eclipse.xtext.ui.feature.group
 }
 
 //manualUpdate

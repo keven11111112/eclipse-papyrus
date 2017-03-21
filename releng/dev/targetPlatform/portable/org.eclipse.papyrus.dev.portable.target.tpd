@@ -47,7 +47,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //manualUpdate
 
-location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/" {
+location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/" {
 	fr.obeo.releng.targetplatform-feature.feature.group
 }
 
