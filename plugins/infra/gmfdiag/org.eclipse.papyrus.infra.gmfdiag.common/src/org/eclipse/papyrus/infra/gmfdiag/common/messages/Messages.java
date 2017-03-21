@@ -91,6 +91,37 @@ public class Messages extends NLS {
 
 	public static String PastePreferencesPage_KeepReferenceDescription;
 
+	// Palette UI //
+	/** LAbel for the standard group */
+	public static String StandardGroup_Label;
+
+	/** label for the palette action in the palette viewer menu */
+	public static String Palette_Action_Label;
+
+	/** tooltip for the palette action in the palette viewer menu */
+	public static String Palette_Action_Tooltip;
+
+	public static String PaletteUtil_ErrorMessage_CantReadLocalDefinitionOfFile;
+
+	public static String PaletteUtil_ErrorMessage_NoLocalDefinition;
+
+	public static String PaletteUtil_ErrorMessage_NoRedefinitionFoundWithId;
+
+	public static String PaletteUtil_ErrorMessage_PaletteNullOnContribution;
+
+	public static String PapyrusPalettePreferences_Error_ImpossibleToFindPalette;
+
+	public static String PapyrusPalettePreferences_Error_ImpossibleToFindPaletteInWS;
+
+	public static String PapyrusPalettePreferences_Error_ImpossibleToReadPreferences;
+
+	public static String PapyrusPalettePreferences_ErrorDuringCreation;
+
+	public static String LocalExtendedPaletteProvider_Error_ImpossibleToLoadRessource;
+
+	public static String WorkspaceExtendedPaletteProvider_ImpossibleToReadResourcePalette;
+
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

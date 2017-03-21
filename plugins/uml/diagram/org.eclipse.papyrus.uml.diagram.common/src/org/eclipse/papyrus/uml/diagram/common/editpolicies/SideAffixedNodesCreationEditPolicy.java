@@ -31,9 +31,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.NodeSnapHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 
 
 public class SideAffixedNodesCreationEditPolicy extends DefaultCreationEditPolicy {

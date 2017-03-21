@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="ASCII"?>
+<?gmfgen generated="true"?>
+<paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8"
+	xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
+	id="org.eclipse.papyrus.uml.diagram.profile.paletteconfiguration"
+	label="PapyrusUMLProfileDiagram Palette"
+	description="This is the palette of PapyrusUMLProfileDiagram">
+	<drawerConfigurations
+		id="createNodes1Group"
+		label="Nodes"
+		description="Nodes">
+		<icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createClass6CreationTool" 
+			label="Class"
+			description="Create a new Class">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Class.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bj9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bjdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createComment2CreationTool" 
+			label="Comment"
+			description="Create new comment">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Comment.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4budx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bu9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createConstraint3CreationTool" 
+			label="Constraint"
+			description="Create a constraint">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cC9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cDdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createDataType4CreationTool" 
+			label="DataType"
+			description="Create new DataType">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DataType.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cMdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cM9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createEnumeration5CreationTool" 
+			label="Enumeration"
+			description="Create new Enumeration">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Enumeration.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CTtx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CUNx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createEnumerationLiteral6CreationTool" 
+			label="EnumerationLiteral"
+			description="Add new EnumerationLiteral">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/EnumerationLiteral.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CPtx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createImportMetaclass7CreationTool" 
+			label="Import Metaclass"
+			description="Import a new Metaclass">
+			<icon pluginID="org.eclipse.papyrus.uml.diagram.profile" iconPath="/icons/Metaclass.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bgdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bg9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createOperation8CreationTool" 
+			label="Operation"
+			description="Add new operation">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Operation.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5qHdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5qGdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createPackage9CreationTool" 
+			label="Package"
+			description="Create a new Package">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Package.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qddx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qd9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createProfile10CreationTool" 
+			label="Profile"
+			description="Add a new Profile">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Profile.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qvdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qv9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createPrimitiveType11CreationTool" 
+			label="PrimitiveType"
+			description="Create new PrimitiveType">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/PrimitiveType.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qq9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qrdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createProperty12CreationTool" 
+			label="Property"
+			description="Add new property">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Property.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qxdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qydx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createStereotype13CreationTool" 
+			label="Stereotype"
+			description="Add new Stereotype">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Stereotype.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63Q9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63Qdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+	</drawerConfigurations>
+	<drawerConfigurations
+		id="createEdges2Group"
+		label="Edges"
+		description="Edges">
+		<icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createAssociation1CreationTool" 
+			label="Association"
+			description="Create an Association" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bVNx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createContextLink6CreationTool" 
+			label="ContextLink"
+			description="Creation of a context link for a Constraint" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cBdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createExtension3CreationTool" 
+			label="Extension"
+			description="Add an Extension" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Extension.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CmNx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createGeneralization4CreationTool" 
+			label="Generalization"
+			description="Create a generalization" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Generalization.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5Cytx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createLink5CreationTool" 
+			label="Link"
+			description="Create a link for Comment, Constraint" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.papyrus.uml.diagram.profile" iconPath="icons/obj16/Link.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bt9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cA9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="createProfileApplication6CreationTool" 
+			label="ProfileApplication"
+			description="Create a ProfileApplication" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ProfileApplication.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qr9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+	</drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>

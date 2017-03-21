@@ -36,14 +36,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.customization.paletteconfiguration"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-         
-   <plugin
-         id="org.eclipse.papyrus.uml.diagram.paletteconfiguration.editor"
+         id="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"

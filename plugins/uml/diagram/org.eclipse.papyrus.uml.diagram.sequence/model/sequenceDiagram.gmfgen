@@ -120,6 +120,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_Shape"
+            definedExternally="true"
             editHelperClassName="ConsiderIgnoreFragmentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -169,6 +170,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"
+            definedExternally="true"
             editHelperClassName="CombinedFragmentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -222,6 +224,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_Shape"
+            definedExternally="true"
             editHelperClassName="InteractionOperandEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -273,6 +276,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_Shape"
+            definedExternally="true"
             editHelperClassName="InteractionUseEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -359,6 +363,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Continuation_Shape"
+            definedExternally="true"
             editHelperClassName="ContinuationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -420,6 +425,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Lifeline_Shape"
+            definedExternally="true"
             editHelperClassName="LifelineEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -510,6 +516,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_Shape"
+            definedExternally="true"
             editHelperClassName="ActionExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -557,6 +564,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_Shape"
+            definedExternally="true"
             editHelperClassName="BehaviorExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -605,6 +613,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_Shape"
+            definedExternally="true"
             editHelperClassName="StateInvariantEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -679,6 +688,7 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_CoRegionShape"
+            definedExternally="true"
             metamodelType="/0/@diagram/@childNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -724,6 +734,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_Shape"
+            definedExternally="true"
             editHelperClassName="TimeConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -822,6 +833,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_Shape"
+            definedExternally="true"
             editHelperClassName="TimeObservationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -905,6 +917,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"
+            definedExternally="true"
             editHelperClassName="DurationConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1004,6 +1017,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_Shape"
+            definedExternally="true"
             editHelperClassName="DestructionEventEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1049,6 +1063,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Constraint_Shape"
+            definedExternally="true"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1135,6 +1150,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Comment_Shape"
+            definedExternally="true"
             editHelperClassName="CommentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1206,6 +1222,7 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape_CN"
+            definedExternally="true"
             metamodelType="/0/@diagram/@childNodes.12/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1315,6 +1332,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_Shape"
+            definedExternally="true"
             editHelperClassName="DurationObservationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1410,6 +1428,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Interaction_Shape"
+            definedExternally="true"
             editHelperClassName="InteractionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2288,7 +2307,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ContextEdge"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ContextEdge"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.CustomContextLinkFigure"/>
@@ -2398,13 +2418,6 @@
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Lifeline"
-              description="Create a Lifeline"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
-              genNodes="/0/@diagram/@childNodes.5"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
               title="Action Execution Specification"
               description="Create an Action Execution Specification"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif"
@@ -2419,25 +2432,35 @@
               genNodes="/0/@diagram/@childNodes.7"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="InteractionUse"
-              description="Create InteractionUse"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
-              genNodes="/0/@diagram/@childNodes.3"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
               title="Combined Fragment"
               description="Create Combined Fragment"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
-              genNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1"/>
+              qualifiedToolName=""
+              genNodes="/0/@diagram/@childNodes.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Interaction Operand"
-              description="Create Interaction Operand"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
-              genNodes="/0/@diagram/@childNodes.2"/>
+              title="Comment"
+              description="Create a comment"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool"
+              genNodes="/0/@diagram/@childNodes.15"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Consider Ignore Fragment"
+              description="Create Consider Ignore Fragment"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
+              genNodes="/0/@diagram/@childNodes.0"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Constraint"
+              description="Create a constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool"
+              genNodes="/0/@diagram/@childNodes.14"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Continuation"
@@ -2447,27 +2470,6 @@
               genNodes="/0/@diagram/@childNodes.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="StateInvariant"
-              description="Create StateInvariant"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
-              genNodes="/0/@diagram/@childNodes.8"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Comment"
-              description="Create a comment"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              genNodes="/0/@diagram/@childNodes.15"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Constraint"
-              description="Create a constraint"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              genNodes="/0/@diagram/@childNodes.14"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
               title="CoRegion"
               description="Create a CoRegion"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
@@ -2475,11 +2477,64 @@
               genNodes="/0/@diagram/@childNodes.9"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
+              title="Destruction Event"
+              description="Create a Destruction Event"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionOccurrenceSpecification.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionOccurrenceSpecification.gif"
+              genNodes="/0/@diagram/@childNodes.13"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Duration Constraint"
+              description="Create a Duration Constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool"
+              genNodes="/0/@diagram/@childNodes.12 /0/@diagram/@childNodes.16"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
               title="Duration Observation"
               description="Create a Duration Observation on a Message"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool"
               genNodes="/0/@diagram/@childNodes.17"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Gate"
+              description="Create a Gate"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.GateCreationTool"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Interaction Operand"
+              description="Create Interaction Operand"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
+              genNodes="/0/@diagram/@childNodes.2"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="InteractionUse"
+              description="Create InteractionUse"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
+              genNodes="/0/@diagram/@childNodes.3"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Lifeline"
+              description="Create a Lifeline"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
+              qualifiedToolName=""
+              genNodes="/0/@diagram/@childNodes.5"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="StateInvariant"
+              description="Create StateInvariant"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
+              qualifiedToolName=""
+              genNodes="/0/@diagram/@childNodes.8"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Time Constraint"
@@ -2493,21 +2548,8 @@
               description="Create a Time Observation"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool"
               genNodes="/0/@diagram/@childNodes.11"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Duration Constraint"
-              description="Create a Duration Constraint"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
-              genNodes="/0/@diagram/@childNodes.12 /0/@diagram/@childNodes.16"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Destruction Event"
-              description="Create a Destruction Event"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif"
-              genNodes="/0/@diagram/@childNodes.13"/>
         </groups>
         <groups
             title="Edges"
@@ -2517,10 +2559,19 @@
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
+              title="ContextLink"
+              description="Creation of a context link for a Constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              createMethodName="createContextLink11CreationTool"
+              genLinks="/0/@diagram/@links.10"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
               title="Message Sync"
               description="Create MessageSync"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_synchCall.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_synchCall.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool"
               genLinks="/0/@diagram/@links.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2528,6 +2579,7 @@
               description="Create MessageAsync"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_asynchCall.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_asynchCall.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool"
               genLinks="/0/@diagram/@links.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2535,6 +2587,7 @@
               description="Create MessageReply"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_reply.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_reply.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool"
               genLinks="/0/@diagram/@links.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2542,6 +2595,7 @@
               description="Create MessageCreate"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool"
               genLinks="/0/@diagram/@links.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2549,6 +2603,7 @@
               description="Create MessageDelete"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_deleteMessage.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_deleteMessage.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool"
               genLinks="/0/@diagram/@links.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2556,6 +2611,7 @@
               description="Create MessageLost"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool"
               genLinks="/0/@diagram/@links.5"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2563,6 +2619,7 @@
               description="Create MessageFound"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool"
               genLinks="/0/@diagram/@links.6"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2570,29 +2627,16 @@
               description="Create GeneralOrdering"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif"
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.SequenceSpecificConnectionTool"
               genLinks="/0/@diagram/@links.9"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Comment link"
-              description="Create a comment link"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              genLinks="/0/@diagram/@links.7"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Constraint link"
-              description="Create a constraint link"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              genLinks="/0/@diagram/@links.8"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="ContextLink"
-              description="Creation of a context link for a Constraint"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-              createMethodName="createContextLink11CreationTool"
-              genLinks="/0/@diagram/@links.10"/>
+              title="Link"
+              description="Create a Annotated link"
+              largeIconPath="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif"
+              smallIconPath="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Link.gif"
+              createMethodName=""
+              qualifiedToolName="org.eclipse.papyrus.uml.diagram.sequence.tools.AnnotatedLinkCreationTool"/>
         </groups>
       </palette>
       <preferencePages

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="ASCII"?>
+<?gmfgen generated="true"?>
+<paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8"
+	xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
+	id="org.eclipse.papyrus.uml.diagram.statemachine.paletteconfiguration"
+	label="PapyrusUMLStateMachineDiagram Palette"
+	description="This is the palette of PapyrusUMLStateMachineDiagram">
+	<drawerConfigurations
+		id="createNodesGroup"
+		label="Nodes"
+		description="">
+		<icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.region" 
+			label="Region"
+			description="Region">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Region.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6RMNx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.state" 
+			label="State"
+			description="State">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/State.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63Ldx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.initial" 
+			label="Initial"
+			description="Initial">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_initial.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q_dx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.finalstate" 
+			label="FinalState"
+			description="FinalState">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/FinalState.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CoNx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.shallowhistory" 
+			label="ShallowHistory"
+			description="ShallowHistory">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_shallowHistory.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6RA9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.deephistory" 
+			label="DeepHistory"
+			description="DeepHistory">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_deepHistory.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q9dx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.fork" 
+			label="Fork"
+			description="Fork">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_fork.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q-9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.join" 
+			label="Join"
+			description="Join">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_join.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q_9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.choice" 
+			label="Choice"
+			description="Choice">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_choice.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q89x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.junction" 
+			label="Junction"
+			description="Junction">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_junction.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6RAdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.entrypoint" 
+			label="EntryPoint"
+			description="EntryPoint">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_entryPoint.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q99x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.exitpoint" 
+			label="ExitPoint"
+			description="ExitPoint">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_exitPoint.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q-dx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.terminate" 
+			label="Terminate"
+			description="Terminate">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Pseudostate_terminate.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6RCtx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.connectionpointreference" 
+			label="ConnectionPointReference"
+			description="ConnectionPointReference">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ConnectionPointReference.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4b-dx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.comment" 
+			label="Comment"
+			description="Comment">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Comment.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4budx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createNodesGroup.constraint" 
+			label="Constraint"
+			description="Create Constraint">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cE9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+	</drawerConfigurations>
+	<drawerConfigurations
+		id="createEdgesGroup"
+		label="Edges"
+		description="">
+		<icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createEdgesGroup.transition" 
+			label="Transition"
+			description="Transition" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Transition_local.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63edx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createEdgesGroup.link" 
+			label="Link"
+			description="Creation of a link for comment, constraint" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.papyrus.uml.diagram.statemachine" iconPath="icons/obj16/Link.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bt9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cA9x0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="statemachine.createEdgesGroup.contextlink" 
+			label="ContextLink"
+			description="Creation of a context link for a Constraint" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cBdx0EeWVxMf7SXAfhg"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+	</drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>

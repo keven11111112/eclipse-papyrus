@@ -19663,13 +19663,6 @@
                 genNodes="/0/@diagram/@childNodes.30"/>
             <entries
                 xsi:type="gmfgen:ToolEntry"
-                title="Local Precondition Interaction Constraint"
-                description="Create an Interaction Constraint as Local Precondition for an Action"
-                largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-                smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-                id="&quot;activity.nodes.constraints.localpreconditioninteractionconstraint&quot;"/>
-            <entries
-                xsi:type="gmfgen:ToolEntry"
                 title="Local Precondition Interval Constraint"
                 description="Create an Interval Constraint as Local Precondition for an Action"
                 largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
@@ -19700,13 +19693,6 @@
                 smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
                 id="&quot;activity.nodes.constraints.localpostconditionconstraint&quot;"
                 genNodes="/0/@diagram/@childNodes.31"/>
-            <entries
-                xsi:type="gmfgen:ToolEntry"
-                title="Local Postcondition Interaction Constraint"
-                description="Create an Interaction Constraint as Local Postcondition for an Action"
-                largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-                smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-                id="&quot;activity.nodes.constraints.localpostconditioninteractionconstraint&quot;"/>
             <entries
                 xsi:type="gmfgen:ToolEntry"
                 title="Local Postcondition Interval Constraint"
@@ -20129,14 +20115,6 @@
                 id="&quot;activity.nodes.linkactions.createlinkobjectaction&quot;"
                 genNodes="/0/@diagram/@childNodes.175"/>
           </entries>
-          <entries
-              xsi:type="gmfgen:ToolGroup"
-              title="AcceptEventActions"
-              description="AcceptEventActions"
-              largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-              smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-              id="&quot;activity.nodes.accepteventactions&quot;"
-              stack="true"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Accept Event Action"

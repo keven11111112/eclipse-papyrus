@@ -42,24 +42,6 @@
     <!-- Diagram creation command registration in menu and toolbar -->
 
     <!-- Palette tool declaration (declares the real palette containment) -->
-    <extension
-        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
-        name="UML_InteractionOverviewDiagram">
-
-        <paletteDefinition
-            ID="UML_InteractionOverviewDiagram"
-            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
-            name="UML_InteractionOverviewDiagram"
-            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            path="palettes/interactionoverviewdiagram.palette.xml"
-            provider="CEA LIST">
-            <Priority name="Low"/>
-
-            <!-- Specify diagram this palette tools relate to -->
-            <editor
-                  id="org.eclipse.papyrus.uml.diagram.interactionoverview"/>
-        </paletteDefinition>
-    </extension>
 
     <!-- Diagram view providers declaration -->
     <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
@@ -570,43 +552,6 @@
       </ParserProvider>
    </extension>
    <extension
-		id="org.eclipse.papyrus.uml.diagram.timing.palettedefinition"
-		name="Papyrus Interaction Overview Diagram  Predefined Entries"
-          point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
-       <paletteProvider
-             class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-          <Priority
-                name="Medium">
-          </Priority>
-          <contribution
-                factoryClass="org.eclipse.papyrus.uml.diagram.interactionoverview.part.CustomIODPaletteFactory">
-             <entry
-                   defineOnly="false"
-                   description="Create a new Interaction with snapshot"
-                   id="createCallBehaviorActionAsInteractionCreationTool"
-                   kind="tool"
-                   label="Interaction"
-                   large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
-                   path="/interactionoverview.drawer.nodes/"
-                   small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
-             </entry>
-             <entry
-                   defineOnly="false"
-                   description="Create a new InteractionUse"
-                   id="interactionoverview.drawer.nodes.interactionuse"
-                   kind="tool"
-                   label="Interaction Use"
-                   large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
-                   path="/interactionoverview.drawer.nodes/"
-                   small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif">
-             </entry>
-          </contribution>
-          <editor
-                id="org.eclipse.papyrus.uml.diagram.interactionoverview">
-          </editor>
-       </paletteProvider>
-    </extension>
-    <extension
           point="org.eclipse.ui.commands">
        <command
              defaultHandler="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.UpdateDiagramInSnapshotCommandHandler"
@@ -701,4 +646,21 @@
             diagramType="PapyrusUMLInteractionOverviewDiagram">
       </visualTypeProvider>
    </extension>
+   
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
+	<paletteDefinition
+		ID="org.eclipse.papyrus.uml.diagram.interactionoverview.paletteconfiguration" 
+		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
+		name="Papyrus activity editor Plugin Palette" 
+		path="palettes/PapyrusInteractionOverviewDiagram.paletteconfiguration"
+		provider="Eclipse Modeling Project">
+		<Priority
+			name="Lowest">
+		</Priority>
+		<!-- Specify diagram this palette tools relate to -->
+		<editor
+			id="org.eclipse.papyrus.uml.diagram.interactionoverview">
+		</editor>
+	</paletteDefinition>
+</extension>
 </plugin>

@@ -13,6 +13,8 @@
    <extension-point id="diagramReconciler" name="diagramReconciler" schema="schema/diagramReconciler.exsd"/>
    <extension-point id="diagramExpansion" name="diagramExpansion" schema="schema/DiagramExpansion.exsd"/>
    <extension-point id="visualTypeProviders" name="Visual Type Providers" schema="schema/visualTypeProviders.exsd"/>
+   <extension-point id="paletteCustomization" name="palette Customization" schema="schema/paletteCustomization.exsd"/>
+   <extension-point id="paletteDefinition" name="paletteDefinition" schema="schema/paletteDefinition.exsd"/>
 
 <extension
       point="org.eclipse.ui.handlers">

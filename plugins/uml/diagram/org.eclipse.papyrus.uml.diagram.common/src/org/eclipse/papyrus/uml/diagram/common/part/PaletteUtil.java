@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.uml.diagram.common.part;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -24,7 +23,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Tool;
@@ -40,26 +38,19 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.IPaletteDescription;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.IProfileDependantPaletteProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ProviderDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
-import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.uml.diagram.common.service.IProfileDependantPaletteProvider;
-import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.ProviderDescriptor;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
-import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  * Utility class for palette.
@@ -484,76 +475,6 @@ public class PaletteUtil {
 			}
 		}
 		return true;
-	}
-
-	public static void initAspectActions(NodeList aspectActionNodes, List<IPostAction> postActions, List<IPreAction> preActions) {
-		for (int i = 0; i < aspectActionNodes.getLength(); i++) {
-			Node childNode = aspectActionNodes.item(i);
-			String childName = childNode.getNodeName();
-			if (IPapyrusPaletteConstant.POST_ACTION.equals(childName)) {
-				// node is a post action => retrieve the id of the factory in charge of this configuration
-				IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
-				if (provider != null) {
-					IAspectAction action = provider.createAction(childNode);
-					if (action instanceof IPostAction) {
-						postActions.add((IPostAction) action);
-					}
-				} else {
-					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null); //$NON-NLS-1$
-				}
-			} else if (IPapyrusPaletteConstant.PRE_ACTION.equals(childName)) {
-				// node is a pre action => retrieve the id of the factory in charge of this configuration
-				IAspectActionProvider provider = AspectToolService.getInstance().getProvider(AspectToolService.getProviderId(childNode));
-				if (provider != null) {
-					IAspectAction action = provider.createAction(childNode);
-					if (action instanceof IPreAction) {
-						preActions.add((IPreAction) action);
-					}
-				} else {
-					Activator.log.error("impossible to find factory with id: " + AspectToolService.getProviderId(childNode), null); //$NON-NLS-1$
-				}
-			}
-		}
-	}
-
-	/**
-	 * Returns the redefinition file URI
-	 *
-	 * @return the redefinition file URI or <code>null</code> if no local
-	 *         redefinition can be found.
-	 */
-	public static URI getRedefinitionFileURI(final String contributionID) {
-		String path = PapyrusPalettePreferences.getPaletteRedefinition(contributionID);
-		StringBuilder error = new StringBuilder();
-
-		URI uri = null;
-		if (null == path) {
-			error.append(Messages.PaletteUtil_ErrorMessage_PaletteNullOnContribution);
-			error.append(contributionID);
-		} else {
-			File stateLocationRootFile = Activator.getDefault().getStateLocation().append(path).toFile();
-			if (null == stateLocationRootFile) {
-				error.append(Messages.PaletteUtil_ErrorMessage_NoRedefinitionFoundWithId);
-				error.append(contributionID);
-
-			} else if (!stateLocationRootFile.exists()) {
-				error.append(Messages.PaletteUtil_ErrorMessage_NoLocalDefinition);
-				error.append(stateLocationRootFile);
-
-			} else if (!stateLocationRootFile.canRead()) {
-				error.append(Messages.PaletteUtil_ErrorMessage_CantReadLocalDefinitionOfFile);
-				error.append(stateLocationRootFile);
-
-			} else {
-				uri = URI.createFileURI(stateLocationRootFile.getAbsolutePath());
-			}
-		}
-
-		if (!error.toString().isEmpty()) {
-			Activator.log.error(error.toString(), null);
-		}
-
-		return uri;
 	}
 
 }

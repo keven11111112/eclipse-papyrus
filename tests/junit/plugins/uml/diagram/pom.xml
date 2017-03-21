@@ -26,7 +26,6 @@
 	<module>org.eclipse.papyrus.uml.diagram.deployment.tests</module>
 	<module>org.eclipse.papyrus.uml.diagram.dnd.tests</module>
 	<module>org.eclipse.papyrus.uml.diagram.interactionoverview.tests</module>
-	<module>org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests</module>
 	<module>org.eclipse.papyrus.uml.diagram.profile.tests</module>
 	<module>org.eclipse.papyrus.uml.diagram.sequence.tests</module>
 	<module>org.eclipse.papyrus.uml.diagram.tests</module>

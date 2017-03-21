@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2006, 2014 Borland Software Corporation, CEA, and others
+ * Copyright (c) 2006, 2017 Borland Software Corporation, CEA, and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *    Emilien Perico (Atos Origin) - add code to refactor some classes
  *    Christian W. Damus (CEA) - bug 430648
  *    Christian W. Damus (CEA) - bug 431023
+ *    Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512343
  */
 package aspects.xpt.editor
 
@@ -66,7 +67,7 @@ public static final String CONTEXT_ID = "«contextID»"; «nonNLS»
 
 		«««	Documentation. adds listener for papyrus palette service
 		// adds a listener to the palette service, which reacts to palette customizations
-		org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
+		org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 		
 		«««Share the same editing domain
 		// Share the same editing provider
@@ -96,9 +97,9 @@ override createPaletteRoot (Palette it)'''
 	protected org.eclipse.gef.palette.PaletteRoot createPaletteRoot(org.eclipse.gef.palette.PaletteRoot existingPaletteRoot) {
 		org.eclipse.gef.palette.PaletteRoot paletteRoot;
 		if (existingPaletteRoot == null) {
-			paletteRoot = org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
+			paletteRoot = org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
 		} else {
-			org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
+			org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
 			paletteRoot = existingPaletteRoot;
 		}
 		applyCustomizationsToPalette(paletteRoot);
@@ -109,7 +110,7 @@ override createPaletteRoot (Palette it)'''
 def createPaletteCustomizer (GenEditorView it)'''
 	«generatedMemberComment»
 	protected org.eclipse.gef.ui.palette.PaletteCustomizer createPaletteCustomizer() {
-		return new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteCustomizer(getPreferenceStore());
+		return new org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteCustomizer(getPreferenceStore());
 	}
 '''
 
@@ -153,8 +154,8 @@ def handlePaletteChange (GenEditorView it) '''
 	«generatedMemberComment»
 	public void providerChanged(org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
-		if (org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
+		if (org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().equals(event.getSource())) {
+			org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
 					getDefaultPaletteContent());
 		}
 	}
@@ -163,7 +164,7 @@ def handlePaletteChange (GenEditorView it) '''
 def constructPaletteViewer (GenEditorView it) '''
 	«generatedMemberComment»
 	protected org.eclipse.gef.ui.palette.PaletteViewer constructPaletteViewer() {
-		return new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer();
+		return new org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteViewer();
 	}
 '''
 
@@ -172,7 +173,7 @@ override dispose(GenEditorView it)'''
 	public void dispose() {
 		// remove palette service listener
 		// remove preference listener
-		org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
+		org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
 		
 		if(dirtyState != null) {
 		    dirtyState.dispose();
@@ -219,7 +220,7 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 				super.configurePaletteViewer(viewer);
 
 				// customize menu...
-				viewer.setContextMenu(new org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProvider(viewer));
+				viewer.setContextMenu(new org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteContextMenuProvider(viewer));
 
 				viewer.getKeyHandler().setParent(getPaletteKeyHandler());
 				viewer.getControl().addMouseListener(getPaletteMouseListener());

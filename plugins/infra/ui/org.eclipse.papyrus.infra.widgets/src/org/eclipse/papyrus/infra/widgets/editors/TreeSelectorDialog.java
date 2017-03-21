@@ -120,6 +120,9 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	/** true when tabulations information is set */
 	private boolean initialized = false;
 
+	/** true when ok is pressed */
+	private boolean okPressed = false;
+
 	/** The dialog settings key for this class. */
 	protected static final String DIALOG_SETTINGS_KEY = TreeSelectorDialog.class.getName();
 
@@ -156,33 +159,35 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		 */
 		@Override
 		public void selectionChanged(final SelectionChangedEvent event) {
-			ISelection selection = event.getSelection();
+			if (!okPressed) {
+				ISelection selection = event.getSelection();
 
-			Object selectedElement = null;
-			if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
-				IStructuredSelection sSelection = (IStructuredSelection) selection;
-				selectedElement = sSelection.getFirstElement();
-			}
-
-			ITreeContentProvider currentContentProvider = null;
-			for (Entry<String, TreeViewer> entry : treeViewers.entrySet()) {
-				if (entry.getValue().equals(event.getSource())) {
-					currentContentProvider = contentProviders.get(entry.getKey());
+				Object selectedElement = null;
+				if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
+					IStructuredSelection sSelection = (IStructuredSelection) selection;
+					selectedElement = sSelection.getFirstElement();
 				}
-			}
 
-			if (currentContentProvider instanceof IHierarchicContentProvider) {
-				boolean isValidValue = ((IHierarchicContentProvider) currentContentProvider).isValidValue(selectedElement);
-				if (currentContentProvider instanceof IAdaptableContentProvider) {
-					selectedElement = ((IAdaptableContentProvider) currentContentProvider).getAdaptedValue(selectedElement);
+				ITreeContentProvider currentContentProvider = null;
+				for (Entry<String, TreeViewer> entry : treeViewers.entrySet()) {
+					if (entry.getValue().equals(event.getSource())) {
+						currentContentProvider = contentProviders.get(entry.getKey());
+					}
 				}
-				if (isValidValue) {
-					setResult(Collections.singletonList(selectedElement));
-				} else {
-					setResult(Collections.EMPTY_LIST);
-				}
-				getOkButton().setEnabled(isValidValue);
 
+				if (currentContentProvider instanceof IHierarchicContentProvider) {
+					boolean isValidValue = ((IHierarchicContentProvider) currentContentProvider).isValidValue(selectedElement);
+					if (currentContentProvider instanceof IAdaptableContentProvider) {
+						selectedElement = ((IAdaptableContentProvider) currentContentProvider).getAdaptedValue(selectedElement);
+					}
+					if (isValidValue) {
+						setResult(Collections.singletonList(selectedElement));
+					} else {
+						setResult(Collections.EMPTY_LIST);
+					}
+					getOkButton().setEnabled(isValidValue);
+
+				}
 			}
 		}
 	}
@@ -378,7 +383,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	@Override
 	public void create() {
 		super.create();
-
+		okPressed = false;
 		createTabs();
 
 		// Select the last opened tab if many
@@ -682,6 +687,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	 */
 	@Override
 	public void okPressed() {
+		okPressed = true;// Fix the deselect when used of filter when we press ok.
 		for (ICommitListener listener : commitListeners) {
 			listener.commit(null);
 		}

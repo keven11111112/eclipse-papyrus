@@ -55,7 +55,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomCombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
@@ -64,11 +64,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -561,19 +561,19 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 						IHintedType elementType = (IHintedType) object;
 						switch (UMLVisualIDRegistry.getVisualID(elementType.getSemanticHint())) {
 						case MessageSyncEditPart.VISUAL_ID:
-							return Messages.MessageSync1CreationTool_title;
+							return Messages.MessageSync2CreationTool_title;
 						case MessageAsyncEditPart.VISUAL_ID:
-							return Messages.MessageAsync2CreationTool_title;
+							return Messages.MessageAsync3CreationTool_title;
 						case MessageReplyEditPart.VISUAL_ID:
-							return Messages.MessageReply3CreationTool_title;
+							return Messages.MessageReply4CreationTool_title;
 						case MessageCreateEditPart.VISUAL_ID:
-							return Messages.MessageCreate4CreationTool_title;
+							return Messages.MessageCreate5CreationTool_title;
 						case MessageDeleteEditPart.VISUAL_ID:
-							return Messages.MessageDelete5CreationTool_title;
+							return Messages.MessageDelete6CreationTool_title;
 						case MessageLostEditPart.VISUAL_ID:
-							return Messages.MessageLost6CreationTool_title;
+							return Messages.MessageLost7CreationTool_title;
 						case MessageFoundEditPart.VISUAL_ID:
-							return Messages.MessageFound7CreationTool_title;
+							return Messages.MessageFound8CreationTool_title;
 						}
 					}
 					return super.getText(object);

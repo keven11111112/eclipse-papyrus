@@ -130,18 +130,6 @@ public class Messages extends NLS {
 	/** title when resources have been removed */
 	public static String PartActivationListener_RemovedTitle;
 
-	/** Message for dialog to edit the runtime properties */
-	public static String StereotypePostAction_EditRuntimePropertiesMessage;
-
-	/** Title for dialog to edit the runtime properties */
-	public static String StereotypePostAction_EditRuntimePropertiesTitle;
-
-	/** Message for the add Stereotype Window */
-	public static String StereotypePostAction_StereotypeSelectionMessage;
-
-	/** Title for the add Stereotype Window */
-	public static String StereotypePostAction_StereotypeSelectionTitle;
-
 	/** BooleanEditor Title */
 	public static String PropertyEditors_BooleanTitle;
 
@@ -246,36 +234,5 @@ public class Messages extends NLS {
 
 	/** Title for the distribution menu */
 	public static String DistributionConstants_DistributionTitle;
-
-	public static String LocalExtendedPaletteProvider_Error_ImpossibleToLoadRessource;
-
-	// Palette UI //
-	/** LAbel for the standard group */
-	public static String StandardGroup_Label;
-
-	/** label for the palette action in the palette viewer menu */
-	public static String Palette_Action_Label;
-
-	/** tooltip for the palette action in the palette viewer menu */
-	public static String Palette_Action_Tooltip;
-
-	/** tooltip for the disabled action because of missing profiles */
-	public static String PaletteContextMenu_MissingProfile;
-
-	public static String PaletteUtil_ErrorMessage_CantReadLocalDefinitionOfFile;
-
-	public static String PaletteUtil_ErrorMessage_NoLocalDefinition;
-
-	public static String PaletteUtil_ErrorMessage_NoRedefinitionFoundWithId;
-
-	public static String PaletteUtil_ErrorMessage_PaletteNullOnContribution;
-
-	public static String PapyrusPalettePreferences_Error_ImpossibleToFindPalette;
-
-	public static String PapyrusPalettePreferences_Error_ImpossibleToFindPaletteInWS;
-
-	public static String PapyrusPalettePreferences_Error_ImpossibleToReadPreferences;
-
-	public static String PapyrusPalettePreferences_ErrorDuringCreation;
 
 }

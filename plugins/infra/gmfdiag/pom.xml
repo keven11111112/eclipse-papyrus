@@ -40,5 +40,6 @@
 		<module>assistant</module>
 		<module>css</module>
 		<module>expansion</module>
+        <module>paletteconfiguration</module>
 	</modules>
 </project>

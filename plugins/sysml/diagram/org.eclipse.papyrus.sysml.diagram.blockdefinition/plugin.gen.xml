@@ -1116,7 +1116,7 @@
 <!-- Insert custom extensions here. -->
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition"
 	name="SysML Constraints (BDD)">		
 	<paletteDefinition ID="SYSML_Constraints_BlockDefinition"
 		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -1131,7 +1131,7 @@
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition"
 	name="SysML DataTypes (BDD)">
 	<paletteDefinition ID="SYSML_DataTypes_BlockDefinition"
 		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -1146,7 +1146,7 @@
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition"
 	name="SysML Port and flows (BDD)">	
 	<paletteDefinition ID="SYSML_PortAndFlows_BlockDefinition"
 		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -1161,7 +1161,7 @@
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition"
 	name="SysML ModelElements (BDD)">
 	<paletteDefinition ID="SYSML_ModelElements_BlockDefinition"
 		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -1176,7 +1176,7 @@
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition"
 	name="SysML Associations (BDD)">		
 	<paletteDefinition ID="SYSML_Associations_BlockDefinition"
 		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"

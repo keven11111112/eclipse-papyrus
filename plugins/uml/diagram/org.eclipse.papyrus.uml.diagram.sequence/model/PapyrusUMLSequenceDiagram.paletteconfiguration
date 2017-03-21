@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ASCII"?>
+<paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="org.eclipse.papyrus.uml.diagram.sequence.paletteconfiguration" label="UML Plugin Palette" description="This is the palette of UML Plugin">
+  <drawerConfigurations id="createNodes1Group" label="Nodes" description="">
+    <icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createActionExecutionSpecification1CreationTool" label="Action Execution Specification" description="Create an Action Execution Specification">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionExecutionSpecification.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcefyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createBehaviorExecutionSpecification2CreationTool" label=" Behavior Execution Specification" description="Create an BehaviorExecutionSpecification">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/BehaviorExecutionSpecification.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcevyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createCombinedFragment3CreationTool" label="Combined Fragment" description="Create Combined Fragment">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/CombinedFragment.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcdPyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createComment4CreationTool" label="Comment" description="Create a comment" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Comment.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDhvyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createConsiderIgnoreFragment5CreationTool" label="Consider Ignore Fragment" description="Create Consider Ignore Fragment">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ConsiderIgnoreFragment.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcc_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createConstraint6CreationTool" label="Constraint" description="Create a constraint" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDhfyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createContinuation7CreationTool" label="Continuation" description="Create Continuation">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Continuation.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcd_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createCoRegion8CreationTool" label="CoRegion" description="Create a CoRegion">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/CombinedFragment.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDgPyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createDestructionEvent9CreationTool" label="Destruction Event" description="Create a Destruction Event">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DestructionOccurrenceSpecification.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDhPyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createDurationConstraint10CreationTool" label="Duration Constraint" description="Create a Duration Constraint" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationConstraint.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDg_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDh_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createDurationObservation11CreationTool" label="Duration Observation" description="Create a Duration Observation on a Message" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationObservation.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDiPyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createGate12CreationTool" label="Gate" description="Create a Gate" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.GateCreationTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Gate.gif"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createInteractionOperand13CreationTool" label="Interaction Operand" description="Create Interaction Operand">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InteractionOperand.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcdfyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createInteractionUse14CreationTool" label="InteractionUse" description="Create InteractionUse">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InteractionUse.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcdvyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createLifeline15CreationTool" label="Lifeline" description="Create a Lifeline">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Lifeline.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZcePyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createStateInvariant16CreationTool" label="StateInvariant" description="Create StateInvariant">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/StateInvariant.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiZce_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createTimeConstraint17CreationTool" label="Time Constraint" description="Create a Time Constraint">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/TimeConstraint.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDgfyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createTimeObservation18CreationTool" label="Time Observation" description="Create a Time Observation" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.InteractionChildCreationTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/TimeObservation.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDgvyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations id="createEdges2Group" label="Edges" description="Message tools">
+    <icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createContextLink11CreationTool" label="ContextLink" description="Creation of a context link for a Constraint" kind="ConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDk_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createMessageSync2CreationTool" label="Message Sync" description="Create MessageSync" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message_synchCall.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDifyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createMessageAsync3CreationTool" label="Message Async" description="Create MessageAsync" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message_asynchCall.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDivyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createMessageReply4CreationTool" label="Message Reply" description="Create MessageReply" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message_reply.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDi_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createMessageCreate5CreationTool" label="Message Create" description="Create MessageCreate" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message_createMessage.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDjPyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createMessageDelete6CreationTool" label="Message Delete" description="Create MessageDelete" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message_deleteMessage.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDjfyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createMessageLost7CreationTool" label="Message Lost" description="Create MessageLost" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDjvyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createMessageFound8CreationTool" label="Message Found" description="Create MessageFound" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDj_yaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="createGeneralOrdering9CreationTool" label="General Ordering" description="Create GeneralOrdering" kind="ConnectionTool" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.SequenceSpecificConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/GeneralOrdering.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/sequencediagram.elementtypesconfigurations#_jiaDkvyaEeWbo9Y7g2MLdw"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="" label="Link" description="Create a Annotated link" toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.AnnotatedLinkCreationTool">
+      <icon pluginID="org.eclipse.papyrus.uml.diagram.clazz" iconPath="/icons/obj16/Link.gif"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>

@@ -384,94 +384,84 @@ public class Messages extends NLS {
 	public static String LinkActionsGroup_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String AcceptEventActions13Group_title;
+	* @generated
+	*/
+	public static String AcceptEventAction13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String AcceptEventActions13Group_desc;
+	public static String AcceptEventAction13CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String AcceptEventAction14CreationTool_title;
+	public static String TestIdentityAction14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String AcceptEventAction14CreationTool_desc;
+	public static String TestIdentityAction14CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TestIdentityAction15CreationTool_title;
+	public static String Activity15CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TestIdentityAction15CreationTool_desc;
+	public static String Activity15CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Activity16CreationTool_title;
+	public static String ActivityParameterNode16CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Activity16CreationTool_desc;
+	public static String ActivityParameterNode16CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ActivityParameterNode17CreationTool_title;
+	public static String CentralBufferNode17CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ActivityParameterNode17CreationTool_desc;
+	public static String CentralBufferNode17CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String CentralBufferNode18CreationTool_title;
+	public static String DataStoreNode18CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CentralBufferNode18CreationTool_desc;
+	public static String DataStoreNode18CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DataStoreNode19CreationTool_title;
+	public static String Constraint19CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DataStoreNode19CreationTool_desc;
+	public static String Constraint19CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint20CreationTool_title;
+	public static String Comment20CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint20CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Comment21CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Comment21CreationTool_desc;
+	public static String Comment20CreationTool_desc;
 
 	/**
 	 * @generated
@@ -614,74 +604,74 @@ public class Messages extends NLS {
 	public static String LocalPreconditionConstraint1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String LocalPreconditionIntervalConstraint3CreationTool_title;
+	* @generated
+	*/
+	public static String LocalPreconditionIntervalConstraint2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPreconditionIntervalConstraint3CreationTool_desc;
+	public static String LocalPreconditionIntervalConstraint2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPreconditionDurationConstraint4CreationTool_title;
+	public static String LocalPreconditionDurationConstraint3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPreconditionDurationConstraint4CreationTool_desc;
+	public static String LocalPreconditionDurationConstraint3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPreconditionTimeConstraint5CreationTool_title;
+	public static String LocalPreconditionTimeConstraint4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPreconditionTimeConstraint5CreationTool_desc;
+	public static String LocalPreconditionTimeConstraint4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionConstraint6CreationTool_title;
+	public static String LocalPostconditionConstraint5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionConstraint6CreationTool_desc;
+	public static String LocalPostconditionConstraint5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionIntervalConstraint8CreationTool_title;
+	public static String LocalPostconditionIntervalConstraint6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionIntervalConstraint8CreationTool_desc;
+	public static String LocalPostconditionIntervalConstraint6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionDurationConstraint9CreationTool_title;
+	public static String LocalPostconditionDurationConstraint7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionDurationConstraint9CreationTool_desc;
+	public static String LocalPostconditionDurationConstraint7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionTimeConstraint10CreationTool_title;
+	public static String LocalPostconditionTimeConstraint8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LocalPostconditionTimeConstraint10CreationTool_desc;
+	public static String LocalPostconditionTimeConstraint8CreationTool_desc;
 
 	/**
 	 * @generated

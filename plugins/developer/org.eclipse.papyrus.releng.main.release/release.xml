@@ -340,15 +340,14 @@
 		<plugin name="org.eclipse.papyrus.uml.diagram.clazz" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.common" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.common.groups" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.diagram.common.palette.customaction" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.component" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.deployment" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.icons" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.menu" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.modelexplorer" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.navigation" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.diagram.paletteconfiguration" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit" version="3.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration" version="3.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.edit" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.profile" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.statemachine" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.usecase" version="3.0.0"/>
@@ -486,7 +485,6 @@
 	<plugin name="org.eclipse.papyrus.cdo.ui.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.copypaste.ui.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.customization.palette" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.customization.paletteconfiguration" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.dsml.validation.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.eclipse.project.editors" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.editor" version="2.0.0"/>
@@ -705,7 +703,6 @@
 	<plugin name="org.eclipse.papyrus.uml.diagram.common" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.common.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.common.groups" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.diagram.common.palette.customaction" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.communication" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.component" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.composite" version="3.0.0"/>
@@ -719,8 +716,8 @@
 	<plugin name="org.eclipse.papyrus.uml.diagram.menu" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.modelexplorer" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.navigation" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.diagram.paletteconfiguration" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit" version="3.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration" version="3.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.edit" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.profile" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.profile.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.sequence" version="3.0.0"/>

@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReduceActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInReduceActionAsCollectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService;
 import org.eclipse.papyrus.uml.tools.listeners.ProfileApplicationListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;

@@ -168,9 +168,9 @@ public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementComm
 					IHintedType elementType = (IHintedType) object;
 					switch (UMLVisualIDRegistry.getVisualID(elementType.getSemanticHint())) {
 					case ActionExecutionSpecificationEditPart.VISUAL_ID:
-						return Messages.ActionExecutionSpecification2CreationTool_title;
+						return Messages.ActionExecutionSpecification1CreationTool_title;
 					case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-						return Messages.BehaviorExecutionSpecification3CreationTool_title;
+						return Messages.BehaviorExecutionSpecification2CreationTool_title;
 					}
 				}
 				return super.getText(object);

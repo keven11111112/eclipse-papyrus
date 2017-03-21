@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
 import org.junit.Assert;
 import org.junit.Test;
 

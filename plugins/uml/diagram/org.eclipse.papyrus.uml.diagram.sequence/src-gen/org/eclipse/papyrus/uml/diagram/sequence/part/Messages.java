@@ -274,64 +274,64 @@ public class Messages extends NLS {
 	public static String Edges2Group_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String Lifeline1CreationTool_title;
+	* @generated
+	*/
+	public static String ActionExecutionSpecification1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Lifeline1CreationTool_desc;
+	public static String ActionExecutionSpecification1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ActionExecutionSpecification2CreationTool_title;
+	public static String BehaviorExecutionSpecification2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ActionExecutionSpecification2CreationTool_desc;
+	public static String BehaviorExecutionSpecification2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String BehaviorExecutionSpecification3CreationTool_title;
+	public static String CombinedFragment3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String BehaviorExecutionSpecification3CreationTool_desc;
+	public static String CombinedFragment3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionUse4CreationTool_title;
+	public static String Comment4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionUse4CreationTool_desc;
+	public static String Comment4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String CombinedFragment5CreationTool_title;
+	public static String ConsiderIgnoreFragment5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CombinedFragment5CreationTool_desc;
+	public static String ConsiderIgnoreFragment5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionOperand6CreationTool_title;
+	public static String Constraint6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionOperand6CreationTool_desc;
+	public static String Constraint6CreationTool_desc;
 
 	/**
 	 * @generated
@@ -344,194 +344,114 @@ public class Messages extends NLS {
 	public static String Continuation7CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String StateInvariant8CreationTool_title;
+	* @generated
+	*/
+	public static String CoRegion8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String StateInvariant8CreationTool_desc;
+	public static String CoRegion8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment9CreationTool_title;
+	public static String DestructionEvent9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment9CreationTool_desc;
+	public static String DestructionEvent9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint10CreationTool_title;
+	public static String DurationConstraint10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint10CreationTool_desc;
+	public static String DurationConstraint10CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String CoRegion11CreationTool_title;
+	public static String DurationObservation11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CoRegion11CreationTool_desc;
+	public static String DurationObservation11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation12CreationTool_title;
+	public static String Gate12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation12CreationTool_desc;
+	public static String Gate12CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeConstraint13CreationTool_title;
+	public static String InteractionOperand13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeConstraint13CreationTool_desc;
+	public static String InteractionOperand13CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation14CreationTool_title;
+	public static String InteractionUse14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation14CreationTool_desc;
+	public static String InteractionUse14CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationConstraint15CreationTool_title;
+	public static String Lifeline15CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationConstraint15CreationTool_desc;
+	public static String Lifeline15CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DestructionEvent16CreationTool_title;
+	public static String StateInvariant16CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DestructionEvent16CreationTool_desc;
+	public static String StateInvariant16CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageSync1CreationTool_title;
+	public static String TimeConstraint17CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageSync1CreationTool_desc;
+	public static String TimeConstraint17CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageAsync2CreationTool_title;
+	public static String TimeObservation18CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageAsync2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageReply3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageReply3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageCreate4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageCreate4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageDelete5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageDelete5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageLost6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageLost6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageFound7CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageFound7CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String GeneralOrdering8CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String GeneralOrdering8CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Commentlink9CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Commentlink9CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraintlink10CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraintlink10CreationTool_desc;
+	public static String TimeObservation18CreationTool_desc;
 
 	/**
 	 * @generated
@@ -542,6 +462,96 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String ContextLink11CreationTool_desc;
+
+	/**
+	* @generated
+	*/
+	public static String MessageSync2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageSync2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageAsync3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageAsync3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageReply4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageReply4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageCreate5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageCreate5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageDelete6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageDelete6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageLost7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageLost7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageFound8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String MessageFound8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String GeneralOrdering9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String GeneralOrdering9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String _title;
+
+	/**
+	 * @generated
+	 */
+	public static String _desc;
 
 	/**
 	 * @generated
@@ -559,8 +569,8 @@ public class Messages extends NLS {
 	public static String CommandName_OpenDiagram;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Package_SequenceDiagram_links;
 
 	/**

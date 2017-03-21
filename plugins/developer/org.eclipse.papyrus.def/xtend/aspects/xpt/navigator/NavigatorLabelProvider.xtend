@@ -49,7 +49,7 @@ import xpt.navigator.Utils_qvto
 		«IF null != genClass && null != genClass.labelFeature»
 			«xptMetaModel.DeclareAndAssign(genClass, 'domainModelElement', 'view.getElement()')»
 			if (domainModelElement != null) {
-				return «IF !isStringFeature(genClass.labelFeature)»String.valueOf(«ENDIF»«xptMetaModel.getFeatureValue(genClass.labelFeature, 'domainModelElement', genClass)»«IF !isStringFeature(genClass.labelFeature)»)«ENDIF»;
+				return «IF !isStringFeature(genClass.labelFeature)»String.valueOf(«ENDIF»UMLLabelInternationalization.getInstance().getLabel(domainModelElement)«IF !isStringFeature(genClass.labelFeature)»)«ENDIF»;
 			} else {
 				«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)».getInstance().logError("No domain element for view with visualID = «stringVisualID»");  «nonNLS(1)»
 					«returnEmptyString()»
@@ -58,4 +58,6 @@ import xpt.navigator.Utils_qvto
 			«returnEmptyString()»
 		«ENDIF»
 	'''
+	
+	
 }

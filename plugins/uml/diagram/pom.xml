@@ -16,12 +16,10 @@
 		<module>org.eclipse.papyrus.uml.diagram.clazz</module>
 		<module>org.eclipse.papyrus.uml.diagram.common</module>
 		<module>org.eclipse.papyrus.uml.diagram.common.groups</module>
-		<module>org.eclipse.papyrus.uml.diagram.common.palette.customaction</module>
 		<module>org.eclipse.papyrus.uml.diagram.communication</module>
 		<module>org.eclipse.papyrus.uml.diagram.component</module>
 		<module>org.eclipse.papyrus.uml.diagram.composite</module>
 		<module>org.eclipse.papyrus.uml.diagram.css</module>
-		<module>org.eclipse.papyrus.uml.diagram.css.palette</module>
 		<module>org.eclipse.papyrus.uml.diagram.deployment</module>
 		<module>org.eclipse.papyrus.uml.diagram.dnd</module>
 		<module>org.eclipse.papyrus.uml.diagram.icons</module>
@@ -30,9 +28,6 @@
 		<module>org.eclipse.papyrus.uml.diagram.menu</module>
 		<module>org.eclipse.papyrus.uml.diagram.modelexplorer</module>
 		<module>org.eclipse.papyrus.uml.diagram.navigation</module>
-		<module>org.eclipse.papyrus.uml.diagram.paletteconfiguration</module>
-		<module>org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit</module>
-		<module>org.eclipse.papyrus.uml.diagram.paletteconfiguration.editor</module>
 		<module>org.eclipse.papyrus.uml.diagram.profile</module>
 		<module>org.eclipse.papyrus.uml.diagram.sequence</module>
 		<module>org.eclipse.papyrus.uml.diagram.statemachine</module>

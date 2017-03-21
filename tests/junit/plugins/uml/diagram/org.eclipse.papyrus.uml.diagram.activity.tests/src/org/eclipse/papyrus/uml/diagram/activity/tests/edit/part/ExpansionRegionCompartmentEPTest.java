@@ -17,8 +17,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup.CustomEx
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.After;
 import org.junit.Before;

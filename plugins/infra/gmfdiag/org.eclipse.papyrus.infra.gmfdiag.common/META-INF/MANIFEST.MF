@@ -26,6 +26,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.reconciler,
  org.eclipse.papyrus.infra.gmfdiag.common.selection,
  org.eclipse.papyrus.infra.gmfdiag.common.service,
+ org.eclipse.papyrus.infra.gmfdiag.common.service.palette,
  org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
  org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype,
  org.eclipse.papyrus.infra.gmfdiag.common.snap,
@@ -68,7 +69,8 @@ Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
  org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.representation;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
+ org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

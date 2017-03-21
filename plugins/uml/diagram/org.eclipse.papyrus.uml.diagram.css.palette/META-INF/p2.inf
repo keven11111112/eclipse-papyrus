@@ -1,5 +1,0 @@
-# Inform p2 of the bundle renaming
-update.matchExp=providedCapabilities.exists(pc | \
-  pc.namespace == 'org.eclipse.equinox.p2.iu' \
-      && (pc.name == 'org.eclipse.papyrus.infra.gmfdiag.css.palette' \
-       || pc.name == 'org.eclipse.papyrus.uml.diagram.css.palette'))
