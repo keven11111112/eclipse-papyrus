@@ -87,13 +87,13 @@ public interface ArchitecturePackage extends EPackage {
 	int AD_ELEMENT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AD_ELEMENT__DESCIPTION = 1;
+	int AD_ELEMENT__DESCRIPTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -142,13 +142,13 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_DOMAIN__NAME = AD_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_DOMAIN__DESCIPTION = AD_ELEMENT__DESCIPTION;
+	int ARCHITECTURE_DOMAIN__DESCRIPTION = AD_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -224,13 +224,13 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT__NAME = AD_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__DESCIPTION = AD_ELEMENT__DESCIPTION;
+	int ARCHITECTURE_CONTEXT__DESCRIPTION = AD_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -351,13 +351,13 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE__NAME = ARCHITECTURE_CONTEXT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_DESCRIPTION_LANGUAGE__DESCIPTION = ARCHITECTURE_CONTEXT__DESCIPTION;
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__DESCRIPTION = ARCHITECTURE_CONTEXT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -505,13 +505,13 @@ public interface ArchitecturePackage extends EPackage {
 	int STAKEHOLDER__NAME = AD_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STAKEHOLDER__DESCIPTION = AD_ELEMENT__DESCIPTION;
+	int STAKEHOLDER__DESCRIPTION = AD_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -578,13 +578,13 @@ public interface ArchitecturePackage extends EPackage {
 	int CONCERN__NAME = AD_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCERN__DESCIPTION = AD_ELEMENT__DESCIPTION;
+	int CONCERN__DESCRIPTION = AD_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -642,13 +642,13 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_VIEWPOINT__NAME = AD_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_VIEWPOINT__DESCIPTION = AD_ELEMENT__DESCIPTION;
+	int ARCHITECTURE_VIEWPOINT__DESCRIPTION = AD_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -733,13 +733,13 @@ public interface ArchitecturePackage extends EPackage {
 	int REPRESENTATION_KIND__NAME = AD_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION_KIND__DESCIPTION = AD_ELEMENT__DESCIPTION;
+	int REPRESENTATION_KIND__DESCRIPTION = AD_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -815,13 +815,13 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_FRAMEWORK__NAME = ARCHITECTURE_CONTEXT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_FRAMEWORK__DESCIPTION = ARCHITECTURE_CONTEXT__DESCIPTION;
+	int ARCHITECTURE_FRAMEWORK__DESCRIPTION = ARCHITECTURE_CONTEXT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -1019,15 +1019,15 @@ public interface ArchitecturePackage extends EPackage {
 	EAttribute getADElement_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getDesciption <em>Desciption</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Desciption</em>'.
-	 * @see org.eclipse.papyrus.infra.core.architecture.ADElement#getDesciption()
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ADElement#getDescription()
 	 * @see #getADElement()
 	 * @generated
 	 */
-	EAttribute getADElement_Desciption();
+	EAttribute getADElement_Description();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getQualifiedName <em>Qualified Name</em>}'.
@@ -1468,12 +1468,12 @@ public interface ArchitecturePackage extends EPackage {
 		EAttribute AD_ELEMENT__NAME = eINSTANCE.getADElement_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Desciption</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute AD_ELEMENT__DESCIPTION = eINSTANCE.getADElement_Desciption();
+		EAttribute AD_ELEMENT__DESCRIPTION = eINSTANCE.getADElement_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.

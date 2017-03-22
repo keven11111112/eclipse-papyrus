@@ -276,7 +276,7 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 		});
 		fDescription.setLabelProvider(new LabelProvider() {
 			public String getText(Object element) {
-				return ((MergedADElement)element).getDesciption();
+				return ((MergedADElement)element).getDescription();
 			}
 		});
 	}

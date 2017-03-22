@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.gmfdiag.representation.AssistantRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PaletteRule;
@@ -32,6 +34,7 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PathElement;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationFactory;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,6 +132,9 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		isInited = true;
 
 		// Initialize simple dependencies
+		ArchitecturePackage.eINSTANCE.eClass();
+		ConstraintsPackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects

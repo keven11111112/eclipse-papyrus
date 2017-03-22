@@ -11,7 +11,7 @@
     usedGenPackages="../../org.eclipse.papyrus.infra.core.architecture/model/Architecture.genmodel#//architecture ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Representation.ecore</foreignModel>
-  <genPackages prefix="Representation" basePackage="org.eclipse.papyrus.infra.core.architecture"
+  <genPackages prefix="Representation" basePackage="org.eclipse.papyrus.infra.architecture"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="Representation.ecore#/">
     <genClasses image="false" ecoreClass="Representation.ecore#//PapyrusRepresentationKind">

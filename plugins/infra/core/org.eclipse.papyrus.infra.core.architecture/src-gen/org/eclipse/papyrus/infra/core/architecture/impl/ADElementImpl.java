@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getDesciption <em>Desciption</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  * </ul>
  *
@@ -59,24 +59,24 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDesciption() <em>Desciption</em>}' attribute.
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDesciption()
+	 * @see #getDescription()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DESCIPTION_EDEFAULT = null;
+	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDesciption() <em>Desciption</em>}' attribute.
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDesciption()
+	 * @see #getDescription()
 	 * @generated
 	 * @ordered
 	 */
-	protected String desciption = DESCIPTION_EDEFAULT;
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
@@ -133,8 +133,8 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDesciption() {
-		return desciption;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
@@ -142,11 +142,11 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDesciption(String newDesciption) {
-		String oldDesciption = desciption;
-		desciption = newDesciption;
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.AD_ELEMENT__DESCIPTION, oldDesciption, desciption));
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.AD_ELEMENT__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -174,8 +174,8 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				return getName();
-			case ArchitecturePackage.AD_ELEMENT__DESCIPTION:
-				return getDesciption();
+			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
+				return getDescription();
 			case ArchitecturePackage.AD_ELEMENT__QUALIFIED_NAME:
 				return getQualifiedName();
 		}
@@ -193,8 +193,8 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case ArchitecturePackage.AD_ELEMENT__DESCIPTION:
-				setDesciption((String)newValue);
+			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -211,8 +211,8 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ArchitecturePackage.AD_ELEMENT__DESCIPTION:
-				setDesciption(DESCIPTION_EDEFAULT);
+			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -228,8 +228,8 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ArchitecturePackage.AD_ELEMENT__DESCIPTION:
-				return DESCIPTION_EDEFAULT == null ? desciption != null : !DESCIPTION_EDEFAULT.equals(desciption);
+			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ArchitecturePackage.AD_ELEMENT__QUALIFIED_NAME:
 				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
 		}
@@ -248,8 +248,8 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", desciption: ");
-		result.append(desciption);
+		result.append(", description: ");
+		result.append(description);
 		result.append(')');
 		return result.toString();
 	}

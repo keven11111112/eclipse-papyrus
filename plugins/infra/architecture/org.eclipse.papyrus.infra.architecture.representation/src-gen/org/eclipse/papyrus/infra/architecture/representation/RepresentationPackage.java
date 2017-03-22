@@ -89,13 +89,13 @@ public interface RepresentationPackage extends EPackage {
 	int PAPYRUS_REPRESENTATION_KIND__NAME = ArchitecturePackage.REPRESENTATION_KIND__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Desciption</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_REPRESENTATION_KIND__DESCIPTION = ArchitecturePackage.REPRESENTATION_KIND__DESCIPTION;
+	int PAPYRUS_REPRESENTATION_KIND__DESCRIPTION = ArchitecturePackage.REPRESENTATION_KIND__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.

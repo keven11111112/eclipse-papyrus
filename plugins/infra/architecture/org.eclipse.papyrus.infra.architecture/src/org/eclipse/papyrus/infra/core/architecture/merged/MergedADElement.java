@@ -95,10 +95,10 @@ public class MergedADElement {
 	 * 
 	 * @return a description
 	 */
-	public String getDesciption() {
+	public String getDescription() {
 		for (ADElement element : elements) {
-			if (element.getDesciption() != null)
-				return element.getDesciption();
+			if (element.getDescription() != null)
+				return element.getDescription();
 		}
 		return null;
 	}

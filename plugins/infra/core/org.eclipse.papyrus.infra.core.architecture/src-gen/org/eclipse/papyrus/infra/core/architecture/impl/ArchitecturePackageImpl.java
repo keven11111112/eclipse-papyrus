@@ -206,7 +206,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getADElement_Desciption() {
+	public EAttribute getADElement_Description() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -573,7 +573,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		// Create classes and their features
 		adElementEClass = createEClass(AD_ELEMENT);
 		createEAttribute(adElementEClass, AD_ELEMENT__NAME);
-		createEAttribute(adElementEClass, AD_ELEMENT__DESCIPTION);
+		createEAttribute(adElementEClass, AD_ELEMENT__DESCRIPTION);
 		createEAttribute(adElementEClass, AD_ELEMENT__QUALIFIED_NAME);
 
 		architectureDomainEClass = createEClass(ARCHITECTURE_DOMAIN);
@@ -666,7 +666,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		// Initialize classes, features, and operations; add parameters
 		initEClass(adElementEClass, ADElement.class, "ADElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getADElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, ADElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getADElement_Desciption(), ecorePackage.getEString(), "desciption", null, 0, 1, ADElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getADElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ADElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getADElement_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ADElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(architectureDomainEClass, ArchitectureDomain.class, "ArchitectureDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

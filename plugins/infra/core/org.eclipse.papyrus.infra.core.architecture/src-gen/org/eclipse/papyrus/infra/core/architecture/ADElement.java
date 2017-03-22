@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getDesciption <em>Desciption</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getQualifiedName <em>Qualified Name</em>}</li>
  * </ul>
  *
@@ -61,30 +61,30 @@ public interface ADElement extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Desciption</b></em>' attribute.
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Desciption</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Desciption</em>' attribute.
-	 * @see #setDesciption(String)
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Desciption()
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Description()
 	 * @model
 	 * @generated
 	 */
-	String getDesciption();
+	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getDesciption <em>Desciption</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Desciption</em>' attribute.
-	 * @see #getDesciption()
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
 	 * @generated
 	 */
-	void setDesciption(String value);
+	void setDescription(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.

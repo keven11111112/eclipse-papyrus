@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<architecture:ArchitectureDomain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture="http://www.eclipse.org/papyrus/infra/core/architecture" xmlns:gmfdiagrepresentation="http://www.eclipse.org/papyrus/infra/gmfdiag/representation" xmlns:nattablerepresentation="http://www.eclipse.org/papyrus/infra/nattable/representation" xmi:id="_yMTQcMSdEeaKZJ_pGfaSiA" name="Systems Engineering" desciption="The domain of developing software systems">
-  <stakeholders xmi:id="_yMTQccSdEeaKZJ_pGfaSiA" name="Systems Engineer" desciption="An engineer interested in system development">
+<architecture:ArchitectureDomain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture="http://www.eclipse.org/papyrus/infra/core/architecture" xmlns:gmfdiagrepresentation="http://www.eclipse.org/papyrus/infra/gmfdiag/representation" xmlns:nattablerepresentation="http://www.eclipse.org/papyrus/infra/nattable/representation" xmi:id="_yMTQcMSdEeaKZJ_pGfaSiA" name="Systems Engineering" description="The domain of developing software systems">
+  <stakeholders xmi:id="_yMTQccSdEeaKZJ_pGfaSiA" name="Systems Engineer" description="An engineer interested in system development">
     <concerns href="#_yMTQcsSdEeaKZJ_pGfaSiA"/>
     <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf4sSYEeaKZJ_pGfaSiA"/>
     <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf48SYEeaKZJ_pGfaSiA"/>
     <concerns href="#_yMTQc8SdEeaKZJ_pGfaSiA"/>
     <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf5MSYEeaKZJ_pGfaSiA"/>
   </stakeholders>
-  <concerns xmi:id="_yMTQcsSdEeaKZJ_pGfaSiA" name="Requirements" desciption="The concern of developing the system's requirements"/>
-  <concerns xmi:id="_yMTQc8SdEeaKZJ_pGfaSiA" name="Parametrics" desciption="The concern of developing the system's parametrics"/>
-  <contexts xsi:type="architecture:ArchitectureDescriptionLanguage" xmi:id="_yMTQdMSdEeaKZJ_pGfaSiA" name="SysML" desciption="The Systems Modeling Language" id="org.eclipse.papyrus.sysml.architecture.SysML" icon="platform:/plugin/org.eclipse.papyrus.sysml.architecture/icons/sysml.gif" creationCommandClass="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand">
-    <viewpoints xmi:id="_M5u1AMShEeaKZJ_pGfaSiA" name="Systems Analysis" desciption="A viewpoint allowing systems analysis with SysML" id="org.eclipse.papyrus.sysml.analysis">
+  <concerns xmi:id="_yMTQcsSdEeaKZJ_pGfaSiA" name="Requirements" description="The concern of developing the system's requirements"/>
+  <concerns xmi:id="_yMTQc8SdEeaKZJ_pGfaSiA" name="Parametrics" description="The concern of developing the system's parametrics"/>
+  <contexts xsi:type="architecture:ArchitectureDescriptionLanguage" xmi:id="_yMTQdMSdEeaKZJ_pGfaSiA" name="SysML" description="The Systems Modeling Language" id="org.eclipse.papyrus.sysml.architecture.SysML" icon="platform:/plugin/org.eclipse.papyrus.sysml.architecture/icons/sysml.gif" creationCommandClass="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand">
+    <viewpoints xmi:id="_M5u1AMShEeaKZJ_pGfaSiA" name="Systems Analysis" description="A viewpoint allowing systems analysis with SysML" id="org.eclipse.papyrus.sysml.analysis">
       <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="#_iBC4gHDvEeWh-MssWmCB_A"/>
       <representationKinds xsi:type="nattablerepresentation:PapyrusSyncTable" href="#_lTE0gHDwEeWh-MssWmCB_A"/>
       <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_yeY0sHDvEeWh-MssWmCB_A"/>
       <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="#_m2D8IHDuEeWh-MssWmCB_A"/>
     </viewpoints>
-    <viewpoints xmi:id="_PAtvoMShEeaKZJ_pGfaSiA" name="Systems Design" desciption="A viewpoint allowing systems design with SysML" id="org.eclipse.papyrus.sysml.design">
+    <viewpoints xmi:id="_PAtvoMShEeaKZJ_pGfaSiA" name="Systems Design" description="A viewpoint allowing systems design with SysML" id="org.eclipse.papyrus.sysml.design">
       <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="#_m2D8IHDuEeWh-MssWmCB_A"/>
       <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="#_eHbioHDvEeWh-MssWmCB_A"/>
       <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="#_eHbipHDvEeWh-MssWmCB_A"/>

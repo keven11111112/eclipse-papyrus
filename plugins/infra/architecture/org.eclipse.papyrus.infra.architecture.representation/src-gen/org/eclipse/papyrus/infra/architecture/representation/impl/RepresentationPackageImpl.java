@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.architecture.representation.Rule;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,6 +130,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		// Initialize simple dependencies
 		ArchitecturePackage.eINSTANCE.eClass();
 		ConstraintsPackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theRepresentationPackage.createPackageContents();

@@ -14,7 +14,7 @@
       ecorePackage="Architecture.ecore#/">
     <genClasses image="false" ecoreClass="Architecture.ecore#//ADElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/desciption"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/qualifiedName"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDomain">

@@ -72,7 +72,7 @@ public class ADElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addDesciptionPropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 			addQualifiedNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -101,19 +101,19 @@ public class ADElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Desciption feature.
+	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDesciptionPropertyDescriptor(Object object) {
+	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ADElement_desciption_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_desciption_feature", "_UI_ADElement_type"),
-				 ArchitecturePackage.Literals.AD_ELEMENT__DESCIPTION,
+				 getString("_UI_ADElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_description_feature", "_UI_ADElement_type"),
+				 ArchitecturePackage.Literals.AD_ELEMENT__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -172,7 +172,7 @@ public class ADElementItemProvider
 
 		switch (notification.getFeatureID(ADElement.class)) {
 			case ArchitecturePackage.AD_ELEMENT__NAME:
-			case ArchitecturePackage.AD_ELEMENT__DESCIPTION:
+			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
 			case ArchitecturePackage.AD_ELEMENT__QUALIFIED_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
