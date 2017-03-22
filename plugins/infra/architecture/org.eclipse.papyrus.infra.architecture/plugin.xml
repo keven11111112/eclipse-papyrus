@@ -18,7 +18,7 @@
 <plugin>
    <extension-point id="models" name="Architecture Models" schema="schema/models.exsd"/>
    <extension-point id="commandProviders" name="Architecture Command Providers" schema="schema/commands.exsd"/>
-   <extension-point id="listeners" name="Architecture Listneers" schema="schema/listeners.exsd"/>
+   <extension-point id="listeners" name="Architecture Listeners" schema="schema/listeners.exsd"/>
 
    <extension
          point="org.eclipse.papyrus.infra.core.model">
