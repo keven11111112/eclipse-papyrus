@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.internal.resource;
@@ -20,6 +20,8 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -195,11 +197,14 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 
 	final <V> V sync(Future<V> future) throws CoreException {
 		try {
-			return future.get();
+			// use a (long) timeout to avoid eventual deadlocks (in case of resources needing refresh)
+			return future.get(5, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			throw new CoreException(Status.CANCEL_STATUS);
 		} catch (ExecutionException e) {
 			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to access the resource shard index", e));
+		} catch (TimeoutException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Timeout during access the resource shard index", e));
 		}
 	}
 
