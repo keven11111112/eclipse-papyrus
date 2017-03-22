@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.ui.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -126,7 +127,7 @@ public class UIUtil {
 	 * @see #createUIExecutor(Display)
 	 */
 	public static <V> Future<V> syncCall(Display display, Callable<V> callable) {
-		final FutureTask<V> result = new FutureTask<V>(callable);
+		final FutureTask<V> result = new FutureTask<>(callable);
 		display.syncExec(result);
 		return result;
 	}
@@ -159,7 +160,7 @@ public class UIUtil {
 	 * @see #createUIExecutor(Display)
 	 */
 	public static <V> Future<V> asyncCall(Display display, Callable<V> callable) {
-		final FutureTask<V> result = new FutureTask<V>(callable);
+		final FutureTask<V> result = new FutureTask<>(callable);
 		display.asyncExec(result);
 		return result;
 	}
@@ -289,7 +290,7 @@ public class UIUtil {
 
 			@Override
 			protected Iterator<? extends Control> getChildren(Object object) {
-				return (object instanceof Composite) ? Iterators.forArray(((Composite) object).getChildren()) : Iterators.<Control> emptyIterator();
+				return (object instanceof Composite) ? Iterators.forArray(((Composite) object).getChildren()) : Collections.emptyIterator();
 			}
 		};
 	}
@@ -318,7 +319,7 @@ public class UIUtil {
 
 		private final Condition emptyCond = lock.newCondition();
 
-		private final Queue<RunnableWrapper> pending = new LinkedList<RunnableWrapper>();
+		private final Queue<RunnableWrapper> pending = new LinkedList<>();
 
 		private volatile boolean shutdown;
 
@@ -367,7 +368,7 @@ public class UIUtil {
 
 		@Override
 		public List<Runnable> shutdownNow() {
-			List<Runnable> result = new ArrayList<Runnable>();
+			List<Runnable> result = new ArrayList<>();
 
 			shutdown();
 
@@ -613,7 +614,7 @@ public class UIUtil {
 		@Override
 		public <V> Future<V> submit(IProgressCallable<V> callable) {
 			// No place to report progress in this case
-			FutureTask<V> result = new FutureTask<V>(() -> callable.call(new NullProgressMonitor()));
+			FutureTask<V> result = new FutureTask<>(() -> callable.call(new NullProgressMonitor()));
 			asyncExec(result);
 			return result;
 		}
@@ -621,7 +622,7 @@ public class UIUtil {
 		@Override
 		public <V> V syncCall(IProgressCallable<V> callable) throws InterruptedException, ExecutionException {
 			// No place to report progress in this case
-			FutureTask<V> result = new FutureTask<V>(() -> callable.call(new NullProgressMonitor()));
+			FutureTask<V> result = new FutureTask<>(() -> callable.call(new NullProgressMonitor()));
 			syncExec(result);
 			return result.get(); // It really should be completed, by now
 		}

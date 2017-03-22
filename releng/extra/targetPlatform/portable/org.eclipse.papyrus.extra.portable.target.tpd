@@ -44,7 +44,7 @@ location rmf "http://download.eclipse.org/rmf/updates/releases" {
 
 //manualUpdate
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20170307180635/repository" {
 	org.apache.commons.io
 	org.apache.commons.io.source
 }

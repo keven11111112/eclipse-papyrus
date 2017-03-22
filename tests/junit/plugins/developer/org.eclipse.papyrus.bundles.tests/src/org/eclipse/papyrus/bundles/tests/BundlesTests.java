@@ -219,7 +219,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	@Test
 	public void guavaDependencyVersionText() {
-		testPapyrusDependencies2("com.google.guava", "11.0.0");//$NON-NLS-1$ //$NON-NLS-2$
+		testPapyrusDependencies2("com.google.guava", "21.0.0");//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public final static String REGEX_PACKAGE_WORD = "\\w(?:\\w|\\d)*";// match a //$NON-NLS-1$

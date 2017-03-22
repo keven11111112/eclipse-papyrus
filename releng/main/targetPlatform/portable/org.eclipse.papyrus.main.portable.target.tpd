@@ -126,6 +126,13 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 	org.eclipse.gef.feature.group
 }
 
+//manualUpdate (Needed by infra.tools and other plugins)
+
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20170307180635/repository" {
+	com.google.guava 21.0.0
+	com.google.guava.source 21.0.0
+}
+
 //Transitive dependencies
 
 //updateFrom("Mylyn",0)

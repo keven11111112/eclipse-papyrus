@@ -79,6 +79,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.google.common.io.ByteSource;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.CharStreams;
 import com.google.common.io.Resources;
@@ -453,7 +454,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 	private Map<IPath, Boolean> parseManifest(IPath baseResourcePath, URL manifestURL) throws IOException {
 		Map<IPath, Boolean> result = Maps.newLinkedHashMap();
 
-		List<String> lines = CharStreams.readLines(CharStreams.newReaderSupplier(Resources.newInputStreamSupplier(manifestURL), Charsets.UTF_8));
+		List<String> lines = Resources.asByteSource(manifestURL).asCharSource(Charsets.UTF_8).readLines();
 		Pattern pattern = Pattern.compile("([^=]+)(?:=(true|false))?");
 		Matcher m = pattern.matcher("");
 		for (String line : lines) {

@@ -57,7 +57,7 @@ public class HasExternalizedProfileApplicationsConstraint extends AbstractConstr
 					ListenableFuture<SetMultimap<URI, URI>> appliedProfiles = DecoratorModelIndex.getInstance().getAllAppliedProfilesAsync(EcoreUtil.getURI(package_));
 
 					// Optimistic enablement for responsiveness
-					result = !appliedProfiles.isDone() || !Futures.get(appliedProfiles, CoreException.class).isEmpty();
+					result = !appliedProfiles.isDone() || !Futures.getChecked(appliedProfiles, CoreException.class).isEmpty();
 				}
 			} catch (CoreException e) {
 				// Oh, well. I guess we won't show this property

@@ -178,7 +178,7 @@ http://www.eclipse.org/legal/epl-v10.html
          id="com.google.guava"
          download-size="0"
          install-size="0"
-         version="15.0.0.v201403281430"
+         version="21.0.0.v20170206-1425"
          unpack="false"/>
 
    <plugin

@@ -19,6 +19,7 @@ import org.eclipse.emf.mwe2.runtime.workflow.Workflow;
 
 import com.google.common.collect.Lists;
 
+
 /**
  * A workflow for Xtend transformations. Primarily, it provides Xtend-compatible access to
  * the collections manipulated by the inherited {@link Workflow#addBean(Object)} and

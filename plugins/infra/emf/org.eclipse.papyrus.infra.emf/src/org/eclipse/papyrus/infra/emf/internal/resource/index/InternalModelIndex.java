@@ -98,7 +98,7 @@ public abstract class InternalModelIndex {
 	 */
 	protected <V> ListenableFuture<V> afterIndex(final Callable<V> callable) {
 		AsyncFunction<IndexManager, V> indexFunction = mgr -> mgr.afterIndex(this, callable);
-		return Futures.transform(manager, indexFunction);
+		return Futures.transformAsync(manager, indexFunction);
 	}
 
 	/**

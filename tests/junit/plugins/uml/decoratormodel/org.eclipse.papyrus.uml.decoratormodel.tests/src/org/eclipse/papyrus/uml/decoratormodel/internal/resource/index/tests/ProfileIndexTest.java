@@ -56,7 +56,7 @@ public class ProfileIndexTest {
 		IProfileIndex index = registry.getService(IProfileIndex.class);
 
 		ListenableFuture<Set<URI>> futureProfileURIs = index.getAppliedProfiles(project.getURI("testmodel.uml"));
-		Set<URI> profileURIs = trimFragments(Futures.get(futureProfileURIs, 1L, TimeUnit.MINUTES, ServiceException.class));
+		Set<URI> profileURIs = trimFragments(Futures.getChecked(futureProfileURIs, ServiceException.class, 1L, TimeUnit.MINUTES));
 
 		Set<URI> expected = ImmutableSet.of(
 				project.getURI("profile/profile1.profile.uml"), // an externally applied profile
@@ -70,7 +70,7 @@ public class ProfileIndexTest {
 		IProfileIndex index = registry.getService(IProfileIndex.class);
 
 		ListenableFuture<Set<URI>> futureProfileURIs = index.getAppliedProfiles(project.getURI("profile/profile1.profile.uml"));
-		Set<URI> profileURIs = trimFragments(Futures.get(futureProfileURIs, 1L, TimeUnit.MINUTES, ServiceException.class));
+		Set<URI> profileURIs = trimFragments(Futures.getChecked(futureProfileURIs, ServiceException.class, 1L, TimeUnit.MINUTES));
 
 		assertThat(profileURIs, is(Collections.singleton(URI.createURI(UMLResource.ECORE_PROFILE_URI))));
 	}
@@ -80,7 +80,7 @@ public class ProfileIndexTest {
 		IProfileIndex index = registry.getService(IProfileIndex.class);
 
 		ListenableFuture<Set<URI>> futureProfileURIs = index.getAppliedProfiles(project.getURI("package2.decorator.uml"));
-		Set<URI> profileURIs = trimFragments(Futures.get(futureProfileURIs, 1L, TimeUnit.MINUTES, ServiceException.class));
+		Set<URI> profileURIs = trimFragments(Futures.getChecked(futureProfileURIs, ServiceException.class, 1L, TimeUnit.MINUTES));
 
 		Set<URI> expected = Collections.emptySet(); // We don't index these as user models, but as decorators only
 		assertThat(profileURIs, is(expected));

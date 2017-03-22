@@ -36,7 +36,7 @@ public class VersionRules {
 			new CurrentVersionRule(), // The default behaviour
 			new FixedRangeRule(dep -> dep.startsWith("org.apache.batik"), "[1.6.0,1.7.0)"), //$NON-NLS-1$//$NON-NLS-2$
 			new SkipRule("com.ibm.icu"), //$NON-NLS-1$
-			new FixedRangeRule("com.google.guava", "11.0.0") //$NON-NLS-1$
+			new FixedRangeRule("com.google.guava", "21.0.0") //$NON-NLS-1$
 	);
 
 	public VersionRules() {

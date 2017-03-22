@@ -72,7 +72,7 @@ public class ManifestEditorTest {
 		assertThat(one(manifest, "org.eclipse.jface"), not(containsString(";")));
 
 		// And still just the one one Guava with its version
-		assertThat(one(manifest, "com.google.guava"), containsString(";bundle-version=\"15.0.0\""));
+		assertThat(one(manifest, "com.google.guava"), containsString(";bundle-version=\"21.0.0\""));
 	}
 
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")
@@ -434,7 +434,7 @@ public class ManifestEditorTest {
 		assertThat(manifest, hasItem(" org.eclipse.papyrus.eclipse.project.editors;bundle-version=\"[2.0.0,3.0.0)\","));
 
 		// This is now the last one (no trailing comma)
-		assertThat(manifest, hasItem(" com.google.guava;bundle-version=\"15.0.0\""));
+		assertThat(manifest, hasItem(" com.google.guava;bundle-version=\"21.0.0\""));
 	}
 
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")

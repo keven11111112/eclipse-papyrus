@@ -59,7 +59,7 @@ import com.google.common.util.concurrent.MoreExecutors;
  */
 public class SyncService implements ISyncService {
 
-	private static final ThreadLocal<SyncService> currentService = new ThreadLocal<SyncService>();
+	private static final ThreadLocal<SyncService> currentService = new ThreadLocal<>();
 
 	private ServicesRegistry services;
 
@@ -94,7 +94,7 @@ public class SyncService implements ISyncService {
 	public void startService() throws ServiceException {
 		editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(services);
 
-		setAsyncExecutor(TransactionHelper.createTransactionExecutor(editingDomain, MoreExecutors.sameThreadExecutor()));
+		setAsyncExecutor(TransactionHelper.createTransactionExecutor(editingDomain, MoreExecutors.directExecutor()));
 
 		policy = new SyncServiceOperation<ISyncPolicy>(this) {
 			@Override
