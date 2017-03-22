@@ -69,7 +69,7 @@ location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/
 
 //manualUpdate
 
-location nattable "http://download.eclipse.org/nattable/releases/1.4.0/repository" {
+location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repository" {
 	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group

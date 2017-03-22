@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - Skip the feature-version test when running in development mode
  *  Christian W. Damus - bugs 433206, 485220
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 513963
  *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
 
@@ -36,10 +36,10 @@ import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 /**
- * suppress restriction for org.eclipse.pde.internal.core.feature.Feature;
+ * Suppress restriction for org.eclipse.pde.internal.core.feature.Feature.
  *
  * @author VL222926
- * 
+ *
  * @noreference This class is not intended to be referenced by clients.
  */
 public class BundlesTests extends AbstractPapyrusTest {
@@ -51,7 +51,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	private static final String BATIK_VERSION = "[1.6.0,1.7.0)"; //$NON-NLS-1$
 
-	private static final String NATTABLE_VERSION = "1.4.0"; //$NON-NLS-1$
+	private static final String NATTABLE_VERSION = "1.5.0"; //$NON-NLS-1$
 
 	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
 
