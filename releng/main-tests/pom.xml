@@ -13,7 +13,7 @@
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
 		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
-		<jacoco.version>0.7.4.201502262128</jacoco.version>
+		<jacoco.version>0.7.9</jacoco.version>
 		<!-- Separate property for test argLine seems to be required when running Jacoco + Surefire -->
 		<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</test.argLine>
 		<target.platform>org.eclipse.papyrus.main.tests.${target.suffix}.target</target.platform>
