@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2017 CEA LIST.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel;
 
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +23,7 @@ package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#isDisplayAllRoles <em>Display All Roles</em>}</li>
  * </ul>
@@ -33,30 +34,30 @@ package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel;
  */
 public interface CreationMenu extends Menu {
 	/**
-	 * Returns the value of the '<em><b>Element Type Id Ref</b></em>' attribute.
+	 * Returns the value of the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element Type Id Ref</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Element Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element Type Id Ref</em>' attribute.
-	 * @see #setElementTypeIdRef(String)
-	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#getCreationMenu_ElementTypeIdRef()
-	 * @model required="true" ordered="false"
+	 * @return the value of the '<em>Element Type</em>' reference.
+	 * @see #setElementType(ElementTypeConfiguration)
+	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#getCreationMenu_ElementType()
+	 * @model required="true"
 	 * @generated
 	 */
-	String getElementTypeIdRef();
+	ElementTypeConfiguration getElementType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementType <em>Element Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element Type Id Ref</em>' attribute.
-	 * @see #getElementTypeIdRef()
+	 * @param value the new value of the '<em>Element Type</em>' reference.
+	 * @see #getElementType()
 	 * @generated
 	 */
-	void setElementTypeIdRef(String value);
+	void setElementType(ElementTypeConfiguration value);
 
 	/**
 	 * Returns the value of the '<em><b>Role</b></em>' attribute.

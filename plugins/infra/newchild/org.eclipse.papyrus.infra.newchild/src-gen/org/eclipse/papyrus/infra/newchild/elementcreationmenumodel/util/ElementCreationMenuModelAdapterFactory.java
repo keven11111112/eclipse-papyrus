@@ -1,21 +1,24 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.*;
 
 /**
@@ -73,7 +76,7 @@ public class ElementCreationMenuModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	protected ElementCreationMenuModelSwitch<Adapter> modelSwitch =
-			new ElementCreationMenuModelSwitch<Adapter>() {
+		new ElementCreationMenuModelSwitch<Adapter>() {
 			@Override
 			public Adapter caseFolder(Folder object) {
 				return createFolderAdapter();
@@ -196,4 +199,4 @@ public class ElementCreationMenuModelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} // ElementCreationMenuModelAdapterFactory
+} //ElementCreationMenuModelAdapterFactory

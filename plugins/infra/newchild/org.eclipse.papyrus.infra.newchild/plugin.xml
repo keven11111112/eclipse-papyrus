@@ -8,7 +8,7 @@
       <package
             uri="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel"
             class="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage"
-            genModel="resource/elementCreationMenuModel.genmodel"/>
+            genModel="models/elementCreationMenuModel.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -23,7 +23,7 @@
       <package
             uri="http://ElementCreationMenuModel"
             class="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage"
-            genModel="resource/elementCreationMenuModel.genmodel"/>
+            genModel="models/elementCreationMenuModel.genmodel"/>
    </extension>
 </plugin>
 

@@ -1,14 +1,14 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl;
 
@@ -26,6 +26,8 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreati
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,7 +79,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * factory method {@link #init init()}, which also performs
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#eNS_URI
 	 * @see #init()
@@ -99,8 +102,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * 
 	 * <p>This method is used to initialize {@link ElementCreationMenuModelPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -116,7 +119,9 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		FiltersPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theElementCreationMenuModelPackage.createPackageContents();
@@ -210,8 +215,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCreationMenu_ElementTypeIdRef() {
-		return (EAttribute)creationMenuEClass.getEStructuralFeatures().get(0);
+	public EReference getCreationMenu_ElementType() {
+		return (EReference)creationMenuEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -288,7 +293,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		createEReference(menuEClass, MENU__FILTER);
 
 		creationMenuEClass = createEClass(CREATION_MENU);
-		createEAttribute(creationMenuEClass, CREATION_MENU__ELEMENT_TYPE_ID_REF);
+		createEReference(creationMenuEClass, CREATION_MENU__ELEMENT_TYPE);
 		createEAttribute(creationMenuEClass, CREATION_MENU__ROLE);
 		createEAttribute(creationMenuEClass, CREATION_MENU__DISPLAY_ALL_ROLES);
 
@@ -321,8 +326,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		FiltersPackage theFiltersPackage = (FiltersPackage)EPackage.Registry.INSTANCE.getEPackage(FiltersPackage.eNS_URI);
+		ElementTypesConfigurationsPackage theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -339,15 +344,15 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		initEReference(getFolder_Menu(), this.getMenu(), null, "menu", null, 0, -1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(menuEClass, Menu.class, "Menu", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMenu_Label(), theEcorePackage.getEString(), "label", null, 1, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getMenu_Icon(), theEcorePackage.getEString(), "icon", null, 0, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMenu_Label(), ecorePackage.getEString(), "label", null, 1, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMenu_Icon(), ecorePackage.getEString(), "icon", null, 0, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMenu_Visible(), ecorePackage.getEBoolean(), "visible", "true", 0, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMenu_Filter(), theFiltersPackage.getFilter(), null, "filter", null, 0, 1, Menu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(creationMenuEClass, CreationMenu.class, "CreationMenu", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCreationMenu_ElementTypeIdRef(), theEcorePackage.getEString(), "elementTypeIdRef", null, 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getCreationMenu_Role(), theEcorePackage.getEString(), "role", null, 0, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getCreationMenu_DisplayAllRoles(), theEcorePackage.getEBoolean(), "displayAllRoles", "true", 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCreationMenu_ElementType(), theElementTypesConfigurationsPackage.getElementTypeConfiguration(), null, "elementType", null, 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCreationMenu_Role(), ecorePackage.getEString(), "role", null, 0, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getCreationMenu_DisplayAllRoles(), ecorePackage.getEBoolean(), "displayAllRoles", "true", 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(createRelationshipMenuEClass, CreateRelationshipMenu.class, "CreateRelationshipMenu", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -357,4 +362,4 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		createResource(eNS_URI);
 	}
 
-} // ElementCreationMenuModelPackageImpl
+} //ElementCreationMenuModelPackageImpl

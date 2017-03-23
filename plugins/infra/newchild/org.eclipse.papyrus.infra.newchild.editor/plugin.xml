@@ -43,5 +43,4 @@
             contributorClass="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation.ElementCreationMenuModelActionBarContributor">
       </editor>
    </extension>
-
 </plugin>

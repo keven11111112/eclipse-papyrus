@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2017 CEA LIST.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,11 +15,13 @@ package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +31,7 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreati
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.CreationMenuImpl#getElementTypeIdRef <em>Element Type Id Ref</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.CreationMenuImpl#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.CreationMenuImpl#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.CreationMenuImpl#isDisplayAllRoles <em>Display All Roles</em>}</li>
  * </ul>
@@ -38,24 +40,14 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreati
  */
 public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	/**
-	 * The default value of the '{@link #getElementTypeIdRef() <em>Element Type Id Ref</em>}' attribute.
+	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElementTypeIdRef()
+	 * @see #getElementType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ELEMENT_TYPE_ID_REF_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getElementTypeIdRef() <em>Element Type Id Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementTypeIdRef()
-	 * @generated
-	 * @ordered
-	 */
-	protected String elementTypeIdRef = ELEMENT_TYPE_ID_REF_EDEFAULT;
+	protected ElementTypeConfiguration elementType;
 
 	/**
 	 * The default value of the '{@link #getRole() <em>Role</em>}' attribute.
@@ -121,8 +113,16 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getElementTypeIdRef() {
-		return elementTypeIdRef;
+	public ElementTypeConfiguration getElementType() {
+		if (elementType != null && elementType.eIsProxy()) {
+			InternalEObject oldElementType = (InternalEObject)elementType;
+			elementType = (ElementTypeConfiguration)eResolveProxy(oldElementType);
+			if (elementType != oldElementType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE, oldElementType, elementType));
+			}
+		}
+		return elementType;
 	}
 
 	/**
@@ -130,11 +130,20 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElementTypeIdRef(String newElementTypeIdRef) {
-		String oldElementTypeIdRef = elementTypeIdRef;
-		elementTypeIdRef = newElementTypeIdRef;
+	public ElementTypeConfiguration basicGetElementType() {
+		return elementType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setElementType(ElementTypeConfiguration newElementType) {
+		ElementTypeConfiguration oldElementType = elementType;
+		elementType = newElementType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE_ID_REF, oldElementTypeIdRef, elementTypeIdRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE, oldElementType, elementType));
 	}
 
 	/**
@@ -187,8 +196,9 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE_ID_REF:
-				return getElementTypeIdRef();
+			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE:
+				if (resolve) return getElementType();
+				return basicGetElementType();
 			case ElementCreationMenuModelPackage.CREATION_MENU__ROLE:
 				return getRole();
 			case ElementCreationMenuModelPackage.CREATION_MENU__DISPLAY_ALL_ROLES:
@@ -205,8 +215,8 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE_ID_REF:
-				setElementTypeIdRef((String)newValue);
+			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE:
+				setElementType((ElementTypeConfiguration)newValue);
 				return;
 			case ElementCreationMenuModelPackage.CREATION_MENU__ROLE:
 				setRole((String)newValue);
@@ -226,8 +236,8 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE_ID_REF:
-				setElementTypeIdRef(ELEMENT_TYPE_ID_REF_EDEFAULT);
+			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE:
+				setElementType((ElementTypeConfiguration)null);
 				return;
 			case ElementCreationMenuModelPackage.CREATION_MENU__ROLE:
 				setRole(ROLE_EDEFAULT);
@@ -247,8 +257,8 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE_ID_REF:
-				return ELEMENT_TYPE_ID_REF_EDEFAULT == null ? elementTypeIdRef != null : !ELEMENT_TYPE_ID_REF_EDEFAULT.equals(elementTypeIdRef);
+			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE:
+				return elementType != null;
 			case ElementCreationMenuModelPackage.CREATION_MENU__ROLE:
 				return ROLE_EDEFAULT == null ? role != null : !ROLE_EDEFAULT.equals(role);
 			case ElementCreationMenuModelPackage.CREATION_MENU__DISPLAY_ALL_ROLES:
@@ -267,9 +277,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (elementTypeIdRef: ");
-		result.append(elementTypeIdRef);
-		result.append(", role: ");
+		result.append(" (role: ");
 		result.append(role);
 		result.append(", displayAllRoles: ");
 		result.append(displayAllRoles);

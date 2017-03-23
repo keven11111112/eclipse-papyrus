@@ -1,14 +1,14 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation;
 
@@ -23,51 +23,76 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
+import org.eclipse.emf.common.CommonPlugin;
+
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.emf.ecore.xmi.XMLResource;
+
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.CommonPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ISelection;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
+
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelFactory;
-import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
-import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider.ElementCreationMenuModelEditPlugin;
+
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
+
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.ModifyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+
+import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.ISetSelectionTarget;
+
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelFactory;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider.ElementCreationMenuModelEditPlugin;
+
+
+import org.eclipse.core.runtime.Path;
+
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
-import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.ISetSelectionTarget;
 
 
 /**
@@ -84,7 +109,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-			Collections.unmodifiableList(Arrays.asList(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_ElementCreationMenuModelEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_ElementCreationMenuModelEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -93,7 +118,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-			ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_ElementCreationMenuModelEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_ElementCreationMenuModelEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -157,7 +182,6 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
@@ -353,8 +377,8 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 
 		/**
 		 * @generated
-		 *            <!-- begin-user-doc -->
-		 *            <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 */
 		protected List<String> encodings;
 
@@ -380,9 +404,9 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -454,7 +478,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 		 * @generated
 		 */
 		protected ModifyListener validator =
-				new ModifyListener() {
+			new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
 					setPageComplete(validatePage());
 				}
@@ -552,7 +576,7 @@ public class ElementCreationMenuModelModelWizard extends Wizard implements INewW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+		@Override
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//

@@ -1,21 +1,20 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.papyrus.infra.filters.provider.FiltersEditPlugin;
 
 /**
  * This is the central singleton for the ElementCreationMenuModel edit plugin.
@@ -49,8 +48,6 @@ public final class ElementCreationMenuModelEditPlugin extends EMFPlugin {
 	public ElementCreationMenuModelEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     EcoreEditPlugin.INSTANCE,
-		     FiltersEditPlugin.INSTANCE,
 		   });
 	}
 

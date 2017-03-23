@@ -44,7 +44,7 @@ class NewChildMenuGenerator {
 		for (elementTypeConfigurations : elementTypeConfigurationsList) {
 			var CreationMenu creationMenu = factory.createCreationMenu()
 	    	creationMenu.label = elementTypeConfigurations.name
-	    	creationMenu.elementTypeIdRef = elementTypeConfigurations.identifier
+	    	creationMenu.elementType = elementTypeConfigurations
 	    	folder.menu.add(creationMenu)	
 		}	 
 		return folder

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2017 CEA LIST.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -55,7 +55,7 @@ public class CreationMenuItemProvider extends MenuItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElementTypeIdRefPropertyDescriptor(object);
+			addElementTypePropertyDescriptor(object);
 			addRolePropertyDescriptor(object);
 			addDisplayAllRolesPropertyDescriptor(object);
 		}
@@ -63,23 +63,23 @@ public class CreationMenuItemProvider extends MenuItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Element Type Id Ref feature.
+	 * This adds a property descriptor for the Element Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElementTypeIdRefPropertyDescriptor(Object object) {
+	protected void addElementTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CreationMenu_elementTypeIdRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CreationMenu_elementTypeIdRef_feature", "_UI_CreationMenu_type"),
-				 ElementCreationMenuModelPackage.Literals.CREATION_MENU__ELEMENT_TYPE_ID_REF,
+				 getString("_UI_CreationMenu_elementType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CreationMenu_elementType_feature", "_UI_CreationMenu_type"),
+				 ElementCreationMenuModelPackage.Literals.CREATION_MENU__ELEMENT_TYPE,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -166,7 +166,6 @@ public class CreationMenuItemProvider extends MenuItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CreationMenu.class)) {
-			case ElementCreationMenuModelPackage.CREATION_MENU__ELEMENT_TYPE_ID_REF:
 			case ElementCreationMenuModelPackage.CREATION_MENU__ROLE:
 			case ElementCreationMenuModelPackage.CREATION_MENU__DISPLAY_ALL_ROLES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

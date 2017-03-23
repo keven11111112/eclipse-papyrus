@@ -1,22 +1,22 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.papyrus.infra.filters.provider.FiltersEditPlugin;
 
 /**
  * This is the central singleton for the ElementCreationMenuModel editor plugin.
@@ -32,7 +32,7 @@ public final class ElementCreationMenuModelEditorPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public static final ElementCreationMenuModelEditorPlugin INSTANCE = new ElementCreationMenuModelEditorPlugin();
-
+	
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -50,8 +50,6 @@ public final class ElementCreationMenuModelEditorPlugin extends EMFPlugin {
 	public ElementCreationMenuModelEditorPlugin() {
 		super
 			(new ResourceLocator [] {
-				EcoreEditPlugin.INSTANCE,
-				FiltersEditPlugin.INSTANCE,
 			});
 	}
 
@@ -66,7 +64,7 @@ public final class ElementCreationMenuModelEditorPlugin extends EMFPlugin {
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
-
+	
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
@@ -77,7 +75,7 @@ public final class ElementCreationMenuModelEditorPlugin extends EMFPlugin {
 	public static Implementation getPlugin() {
 		return plugin;
 	}
-
+	
 	/**
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->

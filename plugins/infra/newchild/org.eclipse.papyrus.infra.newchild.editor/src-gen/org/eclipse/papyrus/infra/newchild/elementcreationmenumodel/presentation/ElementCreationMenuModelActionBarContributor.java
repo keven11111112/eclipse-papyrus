@@ -1,14 +1,14 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation;
 
@@ -16,14 +16,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
@@ -35,12 +38,14 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
+
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
+
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
@@ -51,8 +56,8 @@ import org.eclipse.ui.PartInitException;
  * @generated
  */
 public class ElementCreationMenuModelActionBarContributor
-		extends EditingDomainActionBarContributor
-		implements ISelectionChangedListener {
+	extends EditingDomainActionBarContributor
+	implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 * <!-- begin-user-doc -->
@@ -76,7 +81,7 @@ public class ElementCreationMenuModelActionBarContributor
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction =
-			new Action(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+		new Action(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 			@Override
 			public void run() {
 				try {
@@ -96,7 +101,7 @@ public class ElementCreationMenuModelActionBarContributor
 	 * @generated
 	 */
 	protected IAction refreshViewerAction =
-			new Action(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+		new Action(ElementCreationMenuModelEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 			@Override
 			public boolean isEnabled() {
 				return activeEditorPart instanceof IViewerProvider;
@@ -251,7 +256,6 @@ public class ElementCreationMenuModelActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//
@@ -347,7 +351,7 @@ public class ElementCreationMenuModelActionBarContributor
 			}
 		}
 	}
-
+		
 	/**
 	 * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
 	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.

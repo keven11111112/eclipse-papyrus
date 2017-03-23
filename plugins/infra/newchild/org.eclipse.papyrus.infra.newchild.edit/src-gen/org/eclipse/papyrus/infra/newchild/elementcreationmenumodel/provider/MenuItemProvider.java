@@ -1,14 +1,14 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
 
@@ -18,8 +18,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,7 +33,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.papyrus.infra.filters.FiltersFactory;
+
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
 
@@ -40,9 +43,9 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MenuItemProvider
-		extends ItemProviderAdapter
-		implements
+public class MenuItemProvider 
+	extends ItemProviderAdapter
+	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
@@ -185,7 +188,7 @@ public class MenuItemProvider
 			getString("_UI_Menu_type") :
 			getString("_UI_Menu_type") + " " + label;
 	}
-
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -221,16 +224,6 @@ public class MenuItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ElementCreationMenuModelPackage.Literals.MENU__FILTER,
-				 FiltersFactory.eINSTANCE.createCompoundFilter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ElementCreationMenuModelPackage.Literals.MENU__FILTER,
-				 FiltersFactory.eINSTANCE.createEquals()));
 	}
 
 	/**

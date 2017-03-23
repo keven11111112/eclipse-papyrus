@@ -1,14 +1,14 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2017 CEA LIST.
+ *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- *
+ * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel;
 
@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EReference;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each operation of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelFactory
@@ -250,13 +250,13 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	int CREATION_MENU__FILTER = MENU__FILTER;
 
 	/**
-	 * The feature id for the '<em><b>Element Type Id Ref</b></em>' attribute.
+	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CREATION_MENU__ELEMENT_TYPE_ID_REF = MENU_FEATURE_COUNT + 0;
+	int CREATION_MENU__ELEMENT_TYPE = MENU_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Role</b></em>' attribute.
@@ -341,13 +341,13 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	int CREATE_RELATIONSHIP_MENU__FILTER = CREATION_MENU__FILTER;
 
 	/**
-	 * The feature id for the '<em><b>Element Type Id Ref</b></em>' attribute.
+	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CREATE_RELATIONSHIP_MENU__ELEMENT_TYPE_ID_REF = CREATION_MENU__ELEMENT_TYPE_ID_REF;
+	int CREATE_RELATIONSHIP_MENU__ELEMENT_TYPE = CREATION_MENU__ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Role</b></em>' attribute.
@@ -449,6 +449,7 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 */
 	int SEPARATOR_OPERATION_COUNT = MENU_OPERATION_COUNT + 0;
 
+
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder <em>Folder</em>}'.
 	 * <!-- begin-user-doc -->
@@ -535,15 +536,15 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	EClass getCreationMenu();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementType <em>Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Element Type Id Ref</em>'.
-	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementTypeIdRef()
+	 * @return the meta object for the reference '<em>Element Type</em>'.
+	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getElementType()
 	 * @see #getCreationMenu()
 	 * @generated
 	 */
-	EAttribute getCreationMenu_ElementTypeIdRef();
+	EReference getCreationMenu_ElementType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu#getRole <em>Role</em>}'.
@@ -600,11 +601,11 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each operation of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -681,12 +682,12 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 		EClass CREATION_MENU = eINSTANCE.getCreationMenu();
 
 		/**
-		 * The meta object literal for the '<em><b>Element Type Id Ref</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Element Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CREATION_MENU__ELEMENT_TYPE_ID_REF = eINSTANCE.getCreationMenu_ElementTypeIdRef();
+		EReference CREATION_MENU__ELEMENT_TYPE = eINSTANCE.getCreationMenu_ElementType();
 
 		/**
 		 * The meta object literal for the '<em><b>Role</b></em>' attribute feature.
@@ -726,4 +727,4 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 
 	}
 
-} // ElementCreationMenuModelPackage
+} //ElementCreationMenuModelPackage

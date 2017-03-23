@@ -58,6 +58,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.semantic.service.SemanticService;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.ui.providers.DelegatingPapyrusContentProvider;
 import org.eclipse.papyrus.infra.ui.providers.ISemanticContentProviderFactory;
@@ -292,7 +293,7 @@ public class CreationMenuFactory {
 			if (eStructuralFeature instanceof EReference) {
 				EReference ref = (EReference) eStructuralFeature;
 				if (ref.isContainment()) {
-					IElementType menuType = getElementType(currentCreationMenu.getElementTypeIdRef(), context);
+					IElementType menuType = getElementType(currentCreationMenu.getElementType(),context);
 					if (menuType != null && isSubClass(ref.getEType(), menuType.getEClass())) {
 						possibleEFeatures.add(eStructuralFeature);
 					}
@@ -331,7 +332,7 @@ public class CreationMenuFactory {
 	 *            the current menu
 	 */
 	protected void createIconFromElementType(CreationMenu currentCreationMenu, MenuItem item, IClientContext context) {
-		IElementType elementType = getElementType(currentCreationMenu.getElementTypeIdRef(), context);
+		IElementType elementType = getElementType(currentCreationMenu.getElementType(),context);
 		if (elementType != null) {
 			URL iconURL = elementType.getIconURL();
 			if (iconURL != null) {
@@ -377,17 +378,17 @@ public class CreationMenuFactory {
 		}
 		return false;
 	}
-
+	
 	/**
-	 * get the IelementType from a string
+	 * get the IelementType from a EReference with context check
 	 *
 	 * @param elementType
 	 *            the string that represents the element type
 	 * @return the element type or null
+	 * 
 	 */
-	protected IElementType getElementType(String elementType, IClientContext context) {
-
-		IElementType type = ElementTypeRegistry.getInstance().getType(elementType);
+	protected IElementType getElementType(ElementTypeConfiguration elementTypeConfiguration, IClientContext context) {
+		IElementType type = ElementTypeRegistry.getInstance().getType(elementTypeConfiguration.getIdentifier());
 
 		return (type != null && context.includes(type)) ? type : null;
 
@@ -412,7 +413,7 @@ public class CreationMenuFactory {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		IElementType elementType = getElementType(creationMenu.getElementTypeIdRef(), context);
+		IElementType elementType = getElementType(creationMenu.getElementType(),context);
 		if (elementType == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -451,8 +452,7 @@ public class CreationMenuFactory {
 	 * 		the creation request to use in this handler
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache, IClientContext context) {
-		String elementTypeId = creationMenu.getElementTypeIdRef();
-		IElementType elementtype = getElementType(elementTypeId, context);
+		IElementType elementtype = getElementType(creationMenu.getElementType(),context);
 
 		CreateElementRequest request = null;
 		if (reference == null) {
@@ -478,8 +478,7 @@ public class CreationMenuFactory {
 	 * 		the creation request to use in this handler
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, IClientContext context) {
-		String typeId = creationMenu.getElementTypeIdRef();
-		IElementType elementtype = getElementType(typeId, context);
+		IElementType elementtype = getElementType(creationMenu.getElementType(),context);
 
 		if (elementtype != null) {
 			if (reference == null) {
