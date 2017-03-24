@@ -393,11 +393,11 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (customPalette: ");
+		result.append(" (customPalette: "); //$NON-NLS-1$
 		result.append(customPalette);
-		result.append(", customStyle: ");
+		result.append(", customStyle: "); //$NON-NLS-1$
 		result.append(customStyle);
-		result.append(", creationCommandClass: ");
+		result.append(", creationCommandClass: "); //$NON-NLS-1$
 		result.append(creationCommandClass);
 		result.append(')');
 		return result.toString();

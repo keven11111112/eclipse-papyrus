@@ -75,8 +75,8 @@ public class PapyrusRepresentationKindItemProvider extends RepresentationKindIte
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusRepresentationKind_parent_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusRepresentationKind_parent_feature", "_UI_PapyrusRepresentationKind_type"),
+				 getString("_UI_PapyrusRepresentationKind_parent_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusRepresentationKind_parent_feature", "_UI_PapyrusRepresentationKind_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PAPYRUS_REPRESENTATION_KIND__PARENT,
 				 true,
 				 false,
@@ -97,8 +97,8 @@ public class PapyrusRepresentationKindItemProvider extends RepresentationKindIte
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusRepresentationKind_implementationID_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusRepresentationKind_implementationID_feature", "_UI_PapyrusRepresentationKind_type"),
+				 getString("_UI_PapyrusRepresentationKind_implementationID_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusRepresentationKind_implementationID_feature", "_UI_PapyrusRepresentationKind_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PAPYRUS_REPRESENTATION_KIND__IMPLEMENTATION_ID,
 				 true,
 				 false,
@@ -149,8 +149,8 @@ public class PapyrusRepresentationKindItemProvider extends RepresentationKindIte
 	public String getText(Object object) {
 		String label = ((PapyrusRepresentationKind)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_PapyrusRepresentationKind_type") :
-			getString("_UI_PapyrusRepresentationKind_type") + " " + label;
+			getString("_UI_PapyrusRepresentationKind_type") : //$NON-NLS-1$
+			getString("_UI_PapyrusRepresentationKind_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 	/**

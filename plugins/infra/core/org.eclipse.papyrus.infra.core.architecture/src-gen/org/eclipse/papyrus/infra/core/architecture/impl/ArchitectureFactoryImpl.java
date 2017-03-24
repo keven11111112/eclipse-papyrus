@@ -75,7 +75,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION: return createArchitectureDescription();
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_PREFERENCES: return createArchitectureDescriptionPreferences();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

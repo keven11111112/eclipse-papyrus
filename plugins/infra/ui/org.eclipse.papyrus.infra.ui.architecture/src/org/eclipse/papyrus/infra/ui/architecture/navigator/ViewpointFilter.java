@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
+import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractTreeFilter;
@@ -40,7 +42,9 @@ public class ViewpointFilter extends AbstractTreeFilter {
 	public boolean isVisible(Viewer viewer, Object parentElement, Object element) {
 		if (element instanceof EObjectTreeElement) {
 			EObject eObj = ((EObjectTreeElement)element).getEObject();
-			if (eObj instanceof Diagram || eObj instanceof Table) {
+			if (eObj instanceof Diagram && DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram)eObj)) {
+				return ViewPrototype.get(eObj) != ViewPrototype.UNAVAILABLE_VIEW;
+			} else if (eObj instanceof Table && TableVersioningUtils.isOfCurrentPapyrusVersion((Table)eObj)) {
 				return ViewPrototype.get(eObj) != ViewPrototype.UNAVAILABLE_VIEW;
 			}
 		}

@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
  *
  * @generated
  */
+@Deprecated
 public class PapyrusViewImpl extends MinimalEObjectImpl.Container implements PapyrusView {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -275,11 +276,11 @@ public class PapyrusViewImpl extends MinimalEObjectImpl.Container implements Pap
 		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", icon: ");
+		result.append(", icon: "); //$NON-NLS-1$
 		result.append(icon);
-		result.append(", implementationID: ");
+		result.append(", implementationID: "); //$NON-NLS-1$
 		result.append(implementationID);
 		result.append(')');
 		return result.toString();

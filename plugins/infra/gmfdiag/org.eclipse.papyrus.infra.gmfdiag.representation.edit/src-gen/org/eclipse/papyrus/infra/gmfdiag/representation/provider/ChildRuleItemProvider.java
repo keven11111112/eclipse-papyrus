@@ -170,7 +170,7 @@ public class ChildRuleItemProvider extends RuleItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ChildRule"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ChildRule")); //$NON-NLS-1$
 	}
 
 	/**

@@ -79,8 +79,8 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_elementTypes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_elementTypes_feature", "_UI_ArchitectureContext_type"),
+				 getString("_UI_ArchitectureContext_elementTypes_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_elementTypes_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ELEMENT_TYPES,
 				 true,
 				 false,
@@ -101,8 +101,8 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_id_feature", "_UI_ArchitectureContext_type"),
+				 getString("_UI_ArchitectureContext_id_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_id_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ID,
 				 true,
 				 false,
@@ -123,8 +123,8 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_icon_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_icon_feature", "_UI_ArchitectureContext_type"),
+				 getString("_UI_ArchitectureContext_icon_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_icon_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ICON,
 				 true,
 				 false,
@@ -145,8 +145,8 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_extensionPrefix_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_extensionPrefix_feature", "_UI_ArchitectureContext_type"),
+				 getString("_UI_ArchitectureContext_extensionPrefix_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_extensionPrefix_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENSION_PREFIX,
 				 true,
 				 false,
@@ -167,8 +167,8 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_creationCommandClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_creationCommandClass_feature", "_UI_ArchitectureContext_type"),
+				 getString("_UI_ArchitectureContext_creationCommandClass_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_creationCommandClass_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS,
 				 true,
 				 false,
@@ -189,8 +189,8 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_conversionCommandClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_conversionCommandClass_feature", "_UI_ArchitectureContext_type"),
+				 getString("_UI_ArchitectureContext_conversionCommandClass_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_conversionCommandClass_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS,
 				 true,
 				 false,
@@ -240,8 +240,8 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 	public String getText(Object object) {
 		String label = ((ArchitectureContext)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ArchitectureContext_type") :
-			getString("_UI_ArchitectureContext_type") + " " + label;
+			getString("_UI_ArchitectureContext_type") : //$NON-NLS-1$
+			getString("_UI_ArchitectureContext_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

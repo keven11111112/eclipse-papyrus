@@ -6,14 +6,14 @@
       <transformation
             Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypes"
          	id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInModel"
-            language="uml"
+            language="org.eclipse.papyrus.infra.services.edit.TypeContext"
             name="A UML model with basic primitive types">
       </transformation>
 
       <transformation
             Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypes"
             id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInProfile"
-            language="profile"
+            language="org.eclipse.papyrus.uml.architecture.Profile"
             name="A UML profile with basic primitive types">
       </transformation>   
    </extension>

@@ -420,9 +420,9 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (elementMultiplicity: ");
+		result.append(" (elementMultiplicity: "); //$NON-NLS-1$
 		result.append(elementMultiplicity);
-		result.append(", multiplicity: ");
+		result.append(", multiplicity: "); //$NON-NLS-1$
 		result.append(multiplicity);
 		result.append(')');
 		return result.toString();

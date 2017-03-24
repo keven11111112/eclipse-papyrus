@@ -115,7 +115,7 @@ public class StakeholderImpl extends ADElementImpl implements Stakeholder {
 	public void setDomain(ArchitectureDomain newDomain) {
 		if (newDomain != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.STAKEHOLDER__DOMAIN && newDomain != null)) {
 			if (EcoreUtil.isAncestor(this, newDomain))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);

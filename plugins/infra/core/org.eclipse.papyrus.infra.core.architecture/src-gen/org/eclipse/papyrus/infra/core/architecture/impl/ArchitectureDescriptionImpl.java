@@ -163,7 +163,7 @@ public class ArchitectureDescriptionImpl extends MinimalEObjectImpl.Container im
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (contextId: ");
+		result.append(" (contextId: "); //$NON-NLS-1$
 		result.append(contextId);
 		result.append(')');
 		return result.toString();

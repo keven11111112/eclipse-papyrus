@@ -83,6 +83,7 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 
 		// Initialize simple dependencies
 		ConfigurationPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -196,9 +197,9 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		papyrusViewStyleEClass.getESuperTypes().add(theNotationPackage.getStyle());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(papyrusViewStyleEClass, PapyrusViewStyle.class, "PapyrusViewStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPapyrusViewStyle_Owner(), theEcorePackage.getEObject(), null, "owner", null, 1, 1, PapyrusViewStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPapyrusViewStyle_Configuration(), theConfigurationPackage.getPapyrusView(), null, "configuration", null, 0, 1, PapyrusViewStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(papyrusViewStyleEClass, PapyrusViewStyle.class, "PapyrusViewStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPapyrusViewStyle_Owner(), theEcorePackage.getEObject(), null, "owner", null, 1, 1, PapyrusViewStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPapyrusViewStyle_Configuration(), theConfigurationPackage.getPapyrusView(), null, "configuration", null, 0, 1, PapyrusViewStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

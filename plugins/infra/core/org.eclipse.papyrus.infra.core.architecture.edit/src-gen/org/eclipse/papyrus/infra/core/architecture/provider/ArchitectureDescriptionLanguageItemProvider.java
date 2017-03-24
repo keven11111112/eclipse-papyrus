@@ -156,8 +156,8 @@ public class ArchitectureDescriptionLanguageItemProvider extends ArchitectureCon
 	public String getText(Object object) {
 		String label = ((ArchitectureDescriptionLanguage)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ArchitectureDescriptionLanguage_type") :
-			getString("_UI_ArchitectureDescriptionLanguage_type") + " " + label;
+			getString("_UI_ArchitectureDescriptionLanguage_type") : //$NON-NLS-1$
+			getString("_UI_ArchitectureDescriptionLanguage_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

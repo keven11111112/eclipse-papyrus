@@ -74,8 +74,8 @@ public class AssistantRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AssistantRule_elementTypeID_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AssistantRule_elementTypeID_feature", "_UI_AssistantRule_type"),
+				 getString("_UI_AssistantRule_elementTypeID_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AssistantRule_elementTypeID_feature", "_UI_AssistantRule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.ASSISTANT_RULE__ELEMENT_TYPE_ID,
 				 true,
 				 false,
@@ -93,7 +93,7 @@ public class AssistantRuleItemProvider extends RuleItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AssistantRule"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AssistantRule")); //$NON-NLS-1$
 	}
 
 	/**

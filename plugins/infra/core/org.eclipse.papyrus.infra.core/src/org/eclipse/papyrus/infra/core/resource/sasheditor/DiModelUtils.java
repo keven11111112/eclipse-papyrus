@@ -8,8 +8,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescription;
-import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
@@ -47,44 +48,81 @@ public class DiModelUtils {
 	}
 
 	/**
-	 * Returns the DI Resource associated to the model set. May be null.
+	 * Returns the DI Resource (.di) associated to the model set. May be null.
 	 *
 	 * @param modelSet
 	 * @return
 	 */
 	public static Resource getDiResource(ModelSet modelSet) {
-		IModel diModel = modelSet.getModel(SashModel.MODEL_ID);
-		if (diModel instanceof SashModel) {
-			return ((SashModel) diModel).getResource();
+		IModel diModel = modelSet.getModel(DiModel.DI_MODEL_ID);
+		if (diModel instanceof DiModel) {
+			return ((DiModel) diModel).getResource();
 		}
 		return null;
 	}
 
 	/**
+	 * Gets an architecture description element if available in the given model set
+	 * 
+	 * @param modelSet the given model set
+	 * @return an architecture description (can be null)
 	 * @since 2.3
 	 */
 	public static ArchitectureDescription getArchitectureDescription(ModelSet modelSet) {
-		ArchitectureDescription result = null;
-
 		Resource resource = getDiResource(modelSet);
-		if (resource != null) {
-			result = (ArchitectureDescription) EcoreUtil.getObjectByType(resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
-		}
-
-		return result;
+		return (ArchitectureDescription) EcoreUtil.getObjectByType(
+				resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
 	}
 
 	/**
+	 * Gets an architecture description element if available in the given model set or adds one if not available
+	 * 
+	 * @param modelSet the given model set
+	 * @return an architecture description
+	 * @since 2.3
+	 */
+	public static ArchitectureDescription getOrAddArchitectureDescription(ModelSet modelSet) {
+		Resource resource = getDiResource(modelSet);
+		ArchitectureDescription description = (ArchitectureDescription) 
+				EcoreUtil.getObjectByType(resource.getContents(), 
+						ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
+		if (description == null) {
+			description = ArchitectureFactory.eINSTANCE.createArchitectureDescription();
+			resource.getContents().add(description);
+		}
+		return description;
+	}
+
+	/**
+	 * Gets an architecture description preferences element if available in the given model set
+	 * 
+	 * @param modelSet the given model set
+	 * @return an architecture description preferences (can be null)
 	 * @since 2.3
 	 */
 	public static ArchitectureDescriptionPreferences getArchitectureDescriptionPreferences(ModelSet modelSet) {
-		ArchitectureDescriptionPreferences result = null;
-
 		Resource resource = getDiResource(modelSet);
-		if (resource != null) {
-			result = (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
-		}
-
-		return result;
+		return (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(
+				resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
 	}
+
+	/**
+	 * Gets an architecture description preferences element if available in the given model set
+	 * 
+	 * @param modelSet the given model set
+	 * @return an architecture description preferences (can be null)
+	 * @since 2.3
+	 */
+	public static ArchitectureDescriptionPreferences getOrAddArchitectureDescriptionPreferences(ModelSet modelSet) {
+		Resource resource = getDiResource(modelSet);
+		ArchitectureDescriptionPreferences preferences = (ArchitectureDescriptionPreferences) 
+				EcoreUtil.getObjectByType(resource.getContents(), 
+						ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+		if (preferences == null) {
+			preferences = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionPreferences();
+			resource.getContents().add(preferences);
+		}
+		return preferences;
+	}
+
 }

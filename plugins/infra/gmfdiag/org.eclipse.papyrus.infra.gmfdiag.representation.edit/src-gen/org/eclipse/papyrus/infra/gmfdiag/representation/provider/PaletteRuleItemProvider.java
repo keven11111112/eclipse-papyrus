@@ -74,8 +74,8 @@ public class PaletteRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PaletteRule_element_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PaletteRule_element_feature", "_UI_PaletteRule_type"),
+				 getString("_UI_PaletteRule_element_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PaletteRule_element_feature", "_UI_PaletteRule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PALETTE_RULE__ELEMENT,
 				 true,
 				 false,
@@ -93,7 +93,7 @@ public class PaletteRuleItemProvider extends RuleItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PaletteRule"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PaletteRule")); //$NON-NLS-1$
 	}
 
 	/**

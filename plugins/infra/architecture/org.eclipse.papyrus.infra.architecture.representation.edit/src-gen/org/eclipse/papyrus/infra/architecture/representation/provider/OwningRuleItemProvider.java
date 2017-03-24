@@ -114,8 +114,8 @@ public class OwningRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OwningRule_multiplicity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_multiplicity_feature", "_UI_OwningRule_type"),
+				 getString("_UI_OwningRule_multiplicity_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_multiplicity_feature", "_UI_OwningRule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.OWNING_RULE__MULTIPLICITY,
 				 true,
 				 false,
@@ -164,7 +164,7 @@ public class OwningRuleItemProvider extends RuleItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OwningRule"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OwningRule")); //$NON-NLS-1$
 	}
 
 	/**

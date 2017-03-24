@@ -87,8 +87,8 @@ public class ArchitectureDescriptionItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureDescription_contextId_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureDescription_contextId_feature", "_UI_ArchitectureDescription_type"),
+				 getString("_UI_ArchitectureDescription_contextId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureDescription_contextId_feature", "_UI_ArchitectureDescription_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION__CONTEXT_ID,
 				 true,
 				 false,
@@ -106,7 +106,7 @@ public class ArchitectureDescriptionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDescription"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDescription")); //$NON-NLS-1$
 	}
 
 	/**
@@ -119,8 +119,8 @@ public class ArchitectureDescriptionItemProvider
 	public String getText(Object object) {
 		String label = ((ArchitectureDescription)object).getContextId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ArchitectureDescription_type") :
-			getString("_UI_ArchitectureDescription_type") + " " + label;
+			getString("_UI_ArchitectureDescription_type") : //$NON-NLS-1$
+			getString("_UI_ArchitectureDescription_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

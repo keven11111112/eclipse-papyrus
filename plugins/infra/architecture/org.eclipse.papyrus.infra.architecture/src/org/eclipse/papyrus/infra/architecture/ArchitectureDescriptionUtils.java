@@ -20,21 +20,17 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand;
 import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.architecture.commands.ModelCommandProviderRegistry;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescription;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
-import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
 
 /**
  * An API for manipulating architecture descriptions in a model set
@@ -87,7 +83,7 @@ public class ArchitectureDescriptionUtils {
 	 * @return architecture context id
 	 */
 	public String getArchitectureContextId() {
-		ArchitectureDescription description = getArchitectureDescription();
+		ArchitectureDescription description = DiModelUtils.getArchitectureDescription(modelSet);
 		if (description != null) 
 			return description.getContextId();
 		return ArchitectureDomainManager.getInstance().getDefaultArchitectureContextId();
@@ -114,7 +110,7 @@ public class ArchitectureDescriptionUtils {
 	 * @return a collection of architecture viewpoin ids
 	 */
 	public Collection<String> getArchitectureViewpointIds() {
-		ArchitectureDescriptionPreferences preferences = getArchitectureDescriptionPreferences();
+		ArchitectureDescriptionPreferences preferences = DiModelUtils.getArchitectureDescriptionPreferences(modelSet);
 		if (preferences != null) 
 			return preferences.getViewpointIds();
 		MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getDefaultArchitectureContext();
@@ -193,11 +189,7 @@ public class ArchitectureDescriptionUtils {
 		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
 			@Override
 			protected void doExecute() {
-				ArchitectureDescription description = getArchitectureDescription();
-				if (description == null) {
-					description = ArchitectureFactory.eINSTANCE.createArchitectureDescription();
-					addArchitectureDescription(description);
-				}
+				ArchitectureDescription description = DiModelUtils.getOrAddArchitectureDescription(modelSet);
 				description.setContextId(contextId);
 			}
 		};
@@ -259,75 +251,11 @@ public class ArchitectureDescriptionUtils {
 		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
 			@Override
 			protected void doExecute() {
-				ArchitectureDescriptionPreferences preferences = getArchitectureDescriptionPreferences();
-				if (preferences == null) {
-					preferences = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionPreferences();
-					addArchitectureDescriptionPreferences(preferences);
-				}
+				ArchitectureDescriptionPreferences preferences = DiModelUtils.getOrAddArchitectureDescriptionPreferences(modelSet);
 				Arrays.sort(viewpointIds);
 				preferences.eSet(ArchitecturePackage.eINSTANCE.getArchitectureDescriptionPreferences_ViewpointIds(), Arrays.asList(viewpointIds));
 			}
 		};
-	}
-
-	/**
-	 * Gets the architecture description element in the model set
-	 * 
-	 * @return the architecture description element
-	 */
-	protected ArchitectureDescription getArchitectureDescription() {
-		ArchitectureDescription description = null;
-		for (EObject root : getDiResource().getContents()) {
-			if (root instanceof ArchitectureDescription) {
-				description = (ArchitectureDescription) root;
-				break;
-			}
-		}
-		return description;
-	}
-
-	/**
-	 * Adds the given architecture description element to the resource set
-	 * 
-	 * @param description an architecture description element
-	 */
-	protected void addArchitectureDescription(ArchitectureDescription description) {
-		getDiResource().getContents().add(description);
-	}
-
-	/**
-	 * Gets the architecture description preferences element in the model set
-	 * 
-	 * @return the architecture description preferences element
-	 */
-	protected ArchitectureDescriptionPreferences getArchitectureDescriptionPreferences() {
-		ArchitectureDescriptionPreferences preferences = null;
-		for (EObject root : getDiResource().getContents()) {
-			if (root instanceof ArchitectureDescriptionPreferences) {
-				preferences = (ArchitectureDescriptionPreferences) root;
-				break;
-			}
-		}
-		return preferences;
-	}
-
-	/**
-	 * Adds the given architecture description preferences element to the resource set
-	 * 
-	 * @param description an architecture description preferences element
-	 */
-	protected void addArchitectureDescriptionPreferences(ArchitectureDescriptionPreferences preferences) {
-		getDiResource().getContents().add(preferences);
-	}
-
-	/**
-	 * Gets the DI resource from the model set
-	 * 
-	 * @return the DI resource
-	 */
-	protected Resource getDiResource() {
-		IModel model = modelSet.getModel(DiModel.DI_MODEL_ID);
-		return ((DiModel)model).getResource();
 	}
 	
 }

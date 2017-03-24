@@ -85,7 +85,7 @@ public class ConcernImpl extends ADElementImpl implements Concern {
 	public void setDomain(ArchitectureDomain newDomain) {
 		if (newDomain != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.CONCERN__DOMAIN && newDomain != null)) {
 			if (EcoreUtil.isAncestor(this, newDomain))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);

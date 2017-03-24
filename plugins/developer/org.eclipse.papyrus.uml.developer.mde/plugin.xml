@@ -31,11 +31,11 @@
             di_file="resource/developermodel.di"
             file="resource/developermodel.uml"
             id="org.eclipse.papyrus.uml.developer.idm.template"
-            language="uml"
+            language="org.eclipse.papyrus.infra.services.edit.TypeContext"
             name="An empty developer model"
             notation_file="resource/developermodel.notation">
       </template>
-      </extension>
+   </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution

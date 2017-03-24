@@ -68,11 +68,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
           allPopups="false"
-          locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?before=newelements">
-	    <separator
-	          name="architecture"
-	          visible="true">
-	    </separator>
+          locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
         <command
               commandId="org.eclipse.papyrus.infra.ui.architecture.commands.ChangeArchitectureContext"
               icon="icons/full/obj16/ArchitectureContext.gif"

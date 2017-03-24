@@ -156,7 +156,7 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 	public void setLanguage(ArchitectureDescriptionLanguage newLanguage) {
 		if (newLanguage != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.REPRESENTATION_KIND__LANGUAGE && newLanguage != null)) {
 			if (EcoreUtil.isAncestor(this, newLanguage))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -303,7 +303,7 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (icon: ");
+		result.append(" (icon: "); //$NON-NLS-1$
 		result.append(icon);
 		result.append(')');
 		return result.toString();

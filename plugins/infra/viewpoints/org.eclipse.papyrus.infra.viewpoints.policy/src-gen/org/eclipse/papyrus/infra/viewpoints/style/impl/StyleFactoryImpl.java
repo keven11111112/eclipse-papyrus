@@ -66,7 +66,7 @@ public class StyleFactoryImpl extends EFactoryImpl implements StyleFactory {
 		switch (eClass.getClassifierID()) {
 			case StylePackage.PAPYRUS_VIEW_STYLE: return createPapyrusViewStyle();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

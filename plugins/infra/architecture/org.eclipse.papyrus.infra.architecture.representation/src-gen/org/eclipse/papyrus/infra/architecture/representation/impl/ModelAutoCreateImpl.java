@@ -254,7 +254,7 @@ public class ModelAutoCreateImpl extends MinimalEObjectImpl.Container implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (creationType: ");
+		result.append(" (creationType: "); //$NON-NLS-1$
 		result.append(creationType);
 		result.append(')');
 		return result.toString();

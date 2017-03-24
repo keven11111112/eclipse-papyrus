@@ -15,11 +15,13 @@ package org.eclipse.papyrus.uml.diagram.tests.canonical;
 
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -31,8 +33,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
-import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -191,27 +195,25 @@ public class SharedTestSuiteState implements TestRule {
 		}
 		if (!file.exists()) {
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+			modelSet.createModels(fileURI);
 			
 			final String contextId;
 			if (fileURI.lastSegment().matches(".*\\.profile\\.(di|uml)"))
 				contextId = UMLArchitectureContextIds.Profile;
 			else
 				contextId = UMLArchitectureContextIds.UML;
-
-			RecordingCommand command = new NewPapyrusModelCommand(modelSet, fileURI);
-			modelSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+			
+			final List<String> viewpointIds = new ArrayList<String>();
+			MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getArchitectureContextById(contextId);
+			for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
+				viewpointIds.add(viewpoint.getId());
+			}
+			
+			ArchitectureDescriptionUtils utils = new ArchitectureDescriptionUtils(modelSet);
+			Command c = utils.createNewModel(contextId, viewpointIds.toArray(new String[0]));
 			
 			TransactionalEditingDomain ted = modelSet.getTransactionalEditingDomain();
-			ted.getCommandStack().execute(new RecordingCommand(ted) {
-				@Override
-				protected void doExecute() {
-					if (contextId == UMLArchitectureContextIds.Profile) {
-						new CreateProfileModelCommand().createModel(modelSet);
-					} else {
-						new CreateUMLModelCommand().createModel(modelSet);
-					}
-				}
-			});
+			ted.getCommandStack().execute(c);
 
 			ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 			try {

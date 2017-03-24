@@ -354,7 +354,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (multiplicity: ");
+		result.append(" (multiplicity: "); //$NON-NLS-1$
 		result.append(multiplicity);
 		result.append(')');
 		return result.toString();

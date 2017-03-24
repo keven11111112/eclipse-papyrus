@@ -100,7 +100,7 @@ public class ArchitectureDomainItemProvider extends ADElementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDomain"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDomain")); //$NON-NLS-1$
 	}
 
 	/**
@@ -113,8 +113,8 @@ public class ArchitectureDomainItemProvider extends ADElementItemProvider {
 	public String getText(Object object) {
 		String label = ((ArchitectureDomain)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ArchitectureDomain_type") :
-			getString("_UI_ArchitectureDomain_type") + " " + label;
+			getString("_UI_ArchitectureDomain_type") : //$NON-NLS-1$
+			getString("_UI_ArchitectureDomain_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

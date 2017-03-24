@@ -63,7 +63,7 @@ public class ConcernItemProvider extends ADElementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Concern"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Concern")); //$NON-NLS-1$
 	}
 
 	/**
@@ -76,8 +76,8 @@ public class ConcernItemProvider extends ADElementItemProvider {
 	public String getText(Object object) {
 		String label = ((Concern)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Concern_type") :
-			getString("_UI_Concern_type") + " " + label;
+			getString("_UI_Concern_type") : //$NON-NLS-1$
+			getString("_UI_Concern_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

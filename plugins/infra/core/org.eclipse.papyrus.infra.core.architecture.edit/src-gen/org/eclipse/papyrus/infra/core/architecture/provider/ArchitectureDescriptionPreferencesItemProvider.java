@@ -88,8 +88,8 @@ public class ArchitectureDescriptionPreferencesItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureDescriptionPreferences_viewpointIds_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureDescriptionPreferences_viewpointIds_feature", "_UI_ArchitectureDescriptionPreferences_type"),
+				 getString("_UI_ArchitectureDescriptionPreferences_viewpointIds_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureDescriptionPreferences_viewpointIds_feature", "_UI_ArchitectureDescriptionPreferences_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES__VIEWPOINT_IDS,
 				 true,
 				 false,
@@ -107,7 +107,7 @@ public class ArchitectureDescriptionPreferencesItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDescriptionPreferences"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDescriptionPreferences")); //$NON-NLS-1$
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class ArchitectureDescriptionPreferencesItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ArchitectureDescriptionPreferences_type");
+		return getString("_UI_ArchitectureDescriptionPreferences_type"); //$NON-NLS-1$
 	}
 	
 

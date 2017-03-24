@@ -197,7 +197,7 @@ public class AssistantRuleImpl extends RuleImpl implements AssistantRule {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (elementTypeID: ");
+		result.append(" (elementTypeID: "); //$NON-NLS-1$
 		result.append(elementTypeID);
 		result.append(')');
 		return result.toString();

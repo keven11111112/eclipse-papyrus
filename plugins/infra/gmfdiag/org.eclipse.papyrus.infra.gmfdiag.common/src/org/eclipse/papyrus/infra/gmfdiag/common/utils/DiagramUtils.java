@@ -184,9 +184,8 @@ public class DiagramUtils {
 
 			}
 			return ViewPrototype.get(checker, diagram.getType(), pvs.getOwner(), diagram.getElement());
-		} else {
-			return ViewPrototype.get(checker, diagram.getType(), diagram.getElement(), diagram.getElement());
 		}
+		return ViewPrototype.get(checker, diagram.getType(), diagram.getElement(), diagram.getElement());
 	}
 	
 	/**

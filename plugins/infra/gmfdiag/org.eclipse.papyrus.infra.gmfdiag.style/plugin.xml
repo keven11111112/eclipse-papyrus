@@ -25,11 +25,4 @@
             genModel="model/style.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated style -->
-      <parser
-            type="style"
-            class="org.eclipse.papyrus.infra.gmfdiag.style.util.StyleResourceFactoryImpl"/>
-   </extension>
-
 </plugin>

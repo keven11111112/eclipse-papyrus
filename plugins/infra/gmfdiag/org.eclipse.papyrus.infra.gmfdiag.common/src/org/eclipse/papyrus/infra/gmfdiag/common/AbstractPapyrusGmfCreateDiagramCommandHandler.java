@@ -58,7 +58,7 @@ import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
@@ -415,14 +415,15 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	public final ICommand getCreateDiagramCommand(final ModelSet modelSet, final EObject owner, final EObject element, final ViewPrototype prototype, final String name) {
 		// Diagram creation should not change the semantic resource
 		final Resource notationResource = NotationUtils.getNotationResource(modelSet);
-		final Resource diResource = DiModelUtils.getDiResource(modelSet);
+		// the SashModel's resource (either the shared .di or the local .sash) contains the sash window mgr that can be impacted with diagram creation
+		final Resource sashResource = SashModelUtils.getSashModel(modelSet).getResource();
 
 		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
 		if (notationResource.getURI().isPlatformResource()) {
 			modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(notationResource.getURI().toPlatformString(true))));
 		}
-		if (diResource.getURI().isPlatformResource()) {
-			modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResource.getURI().toPlatformString(true))));
+		if (sashResource.getURI().isPlatformResource()) {
+			modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(sashResource.getURI().toPlatformString(true))));
 		}
 
 		return new AbstractTransactionalCommand(modelSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {

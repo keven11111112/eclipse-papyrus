@@ -76,7 +76,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 			case RepresentationPackage.PATH_ELEMENT: return createPathElement();
 			case RepresentationPackage.ASSISTANT_RULE: return createAssistantRule();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -91,7 +91,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 			case RepresentationPackage.ELEMENT_TYPE:
 				return createElementTypeFromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -106,7 +106,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 			case RepresentationPackage.ELEMENT_TYPE:
 				return convertElementTypeToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -79,8 +79,8 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusDiagram_customPalette_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customPalette_feature", "_UI_PapyrusDiagram_type"),
+				 getString("_UI_PapyrusDiagram_customPalette_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customPalette_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_PALETTE,
 				 true,
 				 false,
@@ -101,8 +101,8 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusDiagram_customStyle_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customStyle_feature", "_UI_PapyrusDiagram_type"),
+				 getString("_UI_PapyrusDiagram_customStyle_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customStyle_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_STYLE,
 				 true,
 				 false,
@@ -123,8 +123,8 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusDiagram_creationCommandClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_creationCommandClass_feature", "_UI_PapyrusDiagram_type"),
+				 getString("_UI_PapyrusDiagram_creationCommandClass_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_creationCommandClass_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS,
 				 true,
 				 false,
@@ -174,7 +174,7 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PapyrusDiagram"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PapyrusDiagram")); //$NON-NLS-1$
 	}
 
 	/**

@@ -206,7 +206,8 @@ public class ElementTypeSetConfigurationRegistry {
 				if (ElementTypeRegistryUtils.getType(context, elementTypeID) == null) {
 					// The elementType is already existing but not bound yet
 					context.bindId(elementTypeID);
-					Activator.log.info(elementTypeID + " is already registred elementtype but it is not bound yet. It has been bound to Papyrus context. ");
+					//Now that Papyrus can have multiple contexts, it is not significant to log that an element type is registered but not bound to a new context 
+					//Activator.log.info(elementTypeID + " is already registred elementtype but it is not bound yet. It has been bound to Papyrus context. ");
 				}
 			}
 			return true;

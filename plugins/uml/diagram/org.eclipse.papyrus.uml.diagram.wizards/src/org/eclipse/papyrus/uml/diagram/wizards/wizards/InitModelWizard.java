@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.wizards.command.PapyrusModelFromExistingD
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ViewpointProvider;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ContextProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IWorkbench;
@@ -93,7 +93,12 @@ public class InitModelWizard extends CreateModelWizard {
 	@Override
 	protected SelectRepresentationKindPage createSelectRepresentationKindPage() {
 		if (isCreateFromExistingDomainModel()) {
-			return new SelectRepresentationKindPage(false, new ViewpointProvider() {
+			return new SelectRepresentationKindPage(false, new ContextProvider() {
+
+				@Override
+				public String[] getCurrentContexts() {
+					return getSelectedContexts();
+				}
 
 				@Override
 				public String[] getCurrentViewpoints() {

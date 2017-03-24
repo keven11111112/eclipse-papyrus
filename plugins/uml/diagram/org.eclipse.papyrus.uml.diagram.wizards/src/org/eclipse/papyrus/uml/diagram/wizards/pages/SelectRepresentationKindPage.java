@@ -77,8 +77,8 @@ public class SelectRepresentationKindPage extends WizardPage {
 
 	private ProfileChooserComposite profileChooserComposite;
 
-	/** The my category provider. */
-	private final ViewpointProvider myViewpointProvider;
+	/** The my context provider. */
+	private final ContextProvider myContextProvider;
 
 	/** The allow templates. */
 	private final boolean allowTemplates;
@@ -97,8 +97,8 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @param viewpointProvider
 	 *            the category provider
 	 */
-	public SelectRepresentationKindPage(ViewpointProvider viewpointProvider) {
-		this(true, viewpointProvider, DEFAULT_CREATION_COMMAND_REGISTRY);
+	public SelectRepresentationKindPage(ContextProvider contextProvider) {
+		this(true, contextProvider, DEFAULT_CREATION_COMMAND_REGISTRY);
 	}
 
 	/**
@@ -111,12 +111,12 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @param creationCommandRegistry
 	 *            the creation command registry
 	 */
-	public SelectRepresentationKindPage(boolean allowTemplates, ViewpointProvider viewpointProvider, ICreationCommandRegistry creationCommandRegistry) {
+	public SelectRepresentationKindPage(boolean allowTemplates, ContextProvider contextProvider, ICreationCommandRegistry creationCommandRegistry) {
 		super(PAGE_ID);
 		setTitle(Messages.SelectRepresentationKindPage_page_title);
 		setDescription(Messages.SelectRepresentationKindPage_page_desc);
 		this.allowTemplates = allowTemplates;
-		myViewpointProvider = viewpointProvider;
+		myContextProvider = contextProvider;
 		myCreationCommandRegistry = creationCommandRegistry;
 	}
 
@@ -131,7 +131,6 @@ public class SelectRepresentationKindPage extends WizardPage {
 		Composite pageComposite = new Composite(parent, SWT.NONE);
 		pageComposite.setLayout(new GridLayout());
 		pageComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		String[] viewpoints = getViewpoints();
 
 		Composite nameFormComposite = new Composite(pageComposite, SWT.NONE);
 		nameFormComposite.setLayout(new GridLayout());
@@ -142,13 +141,13 @@ public class SelectRepresentationKindPage extends WizardPage {
 		representationKindComposite.setLayout(new GridLayout());
 		representationKindComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		createPresentationKindForm(representationKindComposite);
-		this.representationKindComposite.setInput(viewpoints);
 
 		Composite modelTemplateComposite = new Composite(pageComposite, SWT.NONE);
 		modelTemplateComposite.setLayout(new GridLayout());
 		modelTemplateComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		createModelTemplateComposite(modelTemplateComposite);
-		fillInTables(viewpoints);
+		
+		fillInTables(getContexts(), getViewpoints());
 
 		Composite profileChooserComposite = new Composite(pageComposite, SWT.NONE);
 		profileChooserComposite.setLayout(new GridLayout());
@@ -201,7 +200,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		if (visible) {
-			fillInTables(getViewpoints());
+			fillInTables(getContexts(), getViewpoints());
 			validatePage();
 			// Deactivates the viewer if its contained list is empty
 			Combo templateCombo = selectTemplateComposite.getTemplateCombo();
@@ -223,12 +222,12 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @param viewpoints
 	 *            the viewpoints
 	 */
-	private void fillInTables(String[] viewpoints) {
-		if (viewpoints == null || viewpoints.length == 0) {
+	private void fillInTables(String[] contexts, String[] viewpoints) {
+		if (viewpoints == null || contexts == null) {
 			return;
 		}
 		representationKindComposite.setInput(viewpoints);
-		selectTemplateComposite.setInput(viewpoints);
+		selectTemplateComposite.setInput(contexts);
 
 		getShell().pack(true);
 	}
@@ -271,15 +270,24 @@ public class SelectRepresentationKindPage extends WizardPage {
 	}
 
 	/**
-	 * Gets the viewpoints.
+	 * Gets the contexts.
 	 *
-	 * @return the viewpoint
+	 * @return the contexts
 	 */
-	private String[] getViewpoints() {
-		return myViewpointProvider.getCurrentViewpoints();
+	private String[] getContexts() {
+		return myContextProvider.getCurrentContexts();
 	}
 
+	/**
+	 * Gets the viewpoints.
+	 *
+	 * @return the viewpoints
+	 */
+	private String[] getViewpoints() {
+		return myContextProvider.getCurrentViewpoints();
+	}
 
+	
 	/**
 	 * Gets the diagram name.
 	 *
@@ -481,14 +489,21 @@ public class SelectRepresentationKindPage extends WizardPage {
 	}
 
 	/**
-	 * The Interface ViewpointProvider.
+	 * The Interface ContextProvider.
 	 */
-	public static interface ViewpointProvider {
+	public static interface ContextProvider {
 
 		/**
-		 * Gets the current categories.
+		 * Gets the current contexts.
 		 *
-		 * @return the current categories
+		 * @return the current contexts
+		 */
+		String[] getCurrentContexts();
+
+		/**
+		 * Gets the current viewpoints.
+		 *
+		 * @return the current viewpoints
 		 */
 		String[] getCurrentViewpoints();
 	}

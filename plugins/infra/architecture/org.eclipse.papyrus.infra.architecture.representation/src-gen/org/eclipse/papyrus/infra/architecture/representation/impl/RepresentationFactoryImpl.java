@@ -71,7 +71,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 			case RepresentationPackage.MODEL_AUTO_CREATE: return createModelAutoCreate();
 			case RepresentationPackage.ROOT_AUTO_SELECT: return createRootAutoSelect();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -85,8 +85,8 @@ public class RuleItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Rule_permit_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rule_permit_feature", "_UI_Rule_type"),
+				 getString("_UI_Rule_permit_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Rule_permit_feature", "_UI_Rule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.RULE__PERMIT,
 				 true,
 				 false,
@@ -105,7 +105,7 @@ public class RuleItemProvider
 	@Override
 	public String getText(Object object) {
 		Rule rule = (Rule)object;
-		return getString("_UI_Rule_type") + " " + rule.isPermit();
+		return getString("_UI_Rule_type") + " " + rule.isPermit(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

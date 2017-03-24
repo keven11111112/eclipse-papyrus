@@ -166,7 +166,7 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (element: ");
+		result.append(" (element: "); //$NON-NLS-1$
 		result.append(element);
 		result.append(')');
 		return result.toString();

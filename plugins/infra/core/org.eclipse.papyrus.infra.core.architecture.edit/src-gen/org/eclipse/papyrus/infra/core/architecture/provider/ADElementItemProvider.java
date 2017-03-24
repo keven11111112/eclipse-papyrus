@@ -89,8 +89,8 @@ public class ADElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ADElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_name_feature", "_UI_ADElement_type"),
+				 getString("_UI_ADElement_name_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_name_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.AD_ELEMENT__NAME,
 				 true,
 				 false,
@@ -111,8 +111,8 @@ public class ADElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ADElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_description_feature", "_UI_ADElement_type"),
+				 getString("_UI_ADElement_description_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_description_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.AD_ELEMENT__DESCRIPTION,
 				 true,
 				 false,
@@ -133,8 +133,8 @@ public class ADElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ADElement_qualifiedName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_qualifiedName_feature", "_UI_ADElement_type"),
+				 getString("_UI_ADElement_qualifiedName_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_qualifiedName_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.AD_ELEMENT__QUALIFIED_NAME,
 				 true,
 				 false,
@@ -154,8 +154,8 @@ public class ADElementItemProvider
 	public String getText(Object object) {
 		String label = ((ADElement)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ADElement_type") :
-			getString("_UI_ADElement_type") + " " + label;
+			getString("_UI_ADElement_type") : //$NON-NLS-1$
+			getString("_UI_ADElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

@@ -108,8 +108,8 @@ public class PathElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PathElement_origin_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PathElement_origin_feature", "_UI_PathElement_type"),
+				 getString("_UI_PathElement_origin_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PathElement_origin_feature", "_UI_PathElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PATH_ELEMENT__ORIGIN,
 				 false,
 				 false,
@@ -130,8 +130,8 @@ public class PathElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PathElement_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PathElement_target_feature", "_UI_PathElement_type"),
+				 getString("_UI_PathElement_target_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PathElement_target_feature", "_UI_PathElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.PATH_ELEMENT__TARGET,
 				 false,
 				 false,
@@ -149,7 +149,7 @@ public class PathElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PathElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PathElement")); //$NON-NLS-1$
 	}
 
 	/**

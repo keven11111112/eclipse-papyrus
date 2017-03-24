@@ -22,10 +22,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.gmfdiag.style.StyleFactory;
 import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,7 +91,12 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		ArchitecturePackage.eINSTANCE.eClass();
+		ConstraintsPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
+		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eINSTANCE.eClass();
 		RepresentationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -192,7 +200,7 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		// Obtain other dependent packages
 		NotationPackage theNotationPackage = (NotationPackage)EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		RepresentationPackage theRepresentationPackage = (RepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(RepresentationPackage.eNS_URI);
+		RepresentationPackage theRepresentationPackage_1 = (RepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(RepresentationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -202,9 +210,9 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		papyrusDiagramStyleEClass.getESuperTypes().add(theNotationPackage.getStyle());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(papyrusDiagramStyleEClass, PapyrusDiagramStyle.class, "PapyrusDiagramStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPapyrusDiagramStyle_Owner(), theEcorePackage.getEObject(), null, "owner", null, 1, 1, PapyrusDiagramStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPapyrusDiagramStyle_DiagramKind(), theRepresentationPackage.getPapyrusDiagram(), null, "diagramKind", null, 0, 1, PapyrusDiagramStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(papyrusDiagramStyleEClass, PapyrusDiagramStyle.class, "PapyrusDiagramStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPapyrusDiagramStyle_Owner(), theEcorePackage.getEObject(), null, "owner", null, 1, 1, PapyrusDiagramStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPapyrusDiagramStyle_DiagramKind(), theRepresentationPackage_1.getPapyrusDiagram(), null, "diagramKind", null, 0, 1, PapyrusDiagramStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

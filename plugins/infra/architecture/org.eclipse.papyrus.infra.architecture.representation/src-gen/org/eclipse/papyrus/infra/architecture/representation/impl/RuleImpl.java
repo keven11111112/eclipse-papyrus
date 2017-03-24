@@ -164,7 +164,7 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (permit: ");
+		result.append(" (permit: "); //$NON-NLS-1$
 		result.append(permit);
 		result.append(')');
 		return result.toString();

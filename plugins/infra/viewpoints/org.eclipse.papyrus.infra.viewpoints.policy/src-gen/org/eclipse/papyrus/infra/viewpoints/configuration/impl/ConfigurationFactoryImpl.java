@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  CEA LIST - Initial API and implementation
- *  
- * 
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -75,7 +75,7 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 		case ConfigurationPackage.PAPYRUS_TABLE:
 			return createPapyrusTable();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -84,6 +84,7 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PapyrusView createPapyrusView() {
 		PapyrusViewImpl papyrusView = new PapyrusViewImpl();
 		return papyrusView;
@@ -94,6 +95,7 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PapyrusDiagram createPapyrusDiagram() {
 		PapyrusDiagramImpl papyrusDiagram = new PapyrusDiagramImpl();
 		return papyrusDiagram;
@@ -104,6 +106,7 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PapyrusSyncTable createPapyrusSyncTable() {
 		PapyrusSyncTableImpl papyrusSyncTable = new PapyrusSyncTableImpl();
 		return papyrusSyncTable;
@@ -114,6 +117,7 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PapyrusTable createPapyrusTable() {
 		PapyrusTableImpl papyrusTable = new PapyrusTableImpl();
 		return papyrusTable;
@@ -124,6 +128,7 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConfigurationPackage getConfigurationPackage() {
 		return (ConfigurationPackage) getEPackage();
 	}

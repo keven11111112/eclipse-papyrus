@@ -46,14 +46,14 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
-import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -68,7 +68,7 @@ import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ViewpointProvider;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ContextProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectStorageProviderPage;
 import org.eclipse.papyrus.uml.diagram.wizards.providers.INewModelStorageProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.providers.NewModelStorageProviderRegistry;
@@ -477,7 +477,12 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @return the select representation kind page
 	 */
 	protected SelectRepresentationKindPage createSelectRepresentationKindPage() {
-		return new SelectRepresentationKindPage(new ViewpointProvider() {
+		return new SelectRepresentationKindPage(new ContextProvider() {
+
+			@Override
+			public String[] getCurrentContexts() {
+				return getSelectedContexts();
+			}
 
 			@Override
 			public String[] getCurrentViewpoints() {
@@ -763,7 +768,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		// Create an empty editor (no diagrams opened)
 		// Geting an IPageMngr is enough to initialize the
 		// SashSystem.
-		EditorUtils.getIPageMngr(DiModelUtils.getDiResource(modelSet));
+		EditorUtils.getIPageMngr(SashModelUtils.getSashModel(modelSet).getResource());
 	}
 
 	/**

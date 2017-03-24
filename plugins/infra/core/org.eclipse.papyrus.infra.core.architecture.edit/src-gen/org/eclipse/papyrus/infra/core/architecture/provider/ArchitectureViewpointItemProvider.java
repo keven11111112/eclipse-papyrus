@@ -74,8 +74,8 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureViewpoint_concerns_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_concerns_feature", "_UI_ArchitectureViewpoint_type"),
+				 getString("_UI_ArchitectureViewpoint_concerns_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_concerns_feature", "_UI_ArchitectureViewpoint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__CONCERNS,
 				 true,
 				 false,
@@ -96,8 +96,8 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureViewpoint_representationKinds_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_representationKinds_feature", "_UI_ArchitectureViewpoint_type"),
+				 getString("_UI_ArchitectureViewpoint_representationKinds_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_representationKinds_feature", "_UI_ArchitectureViewpoint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__REPRESENTATION_KINDS,
 				 true,
 				 false,
@@ -118,8 +118,8 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArchitectureViewpoint_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_id_feature", "_UI_ArchitectureViewpoint_type"),
+				 getString("_UI_ArchitectureViewpoint_id_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_id_feature", "_UI_ArchitectureViewpoint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__ID,
 				 true,
 				 false,
@@ -137,7 +137,7 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureViewpoint"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureViewpoint")); //$NON-NLS-1$
 	}
 
 	/**

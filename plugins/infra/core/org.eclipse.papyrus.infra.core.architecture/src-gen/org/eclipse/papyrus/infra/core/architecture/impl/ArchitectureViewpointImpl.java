@@ -160,7 +160,7 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 	public void setContext(ArchitectureContext newContext) {
 		if (newContext != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT && newContext != null)) {
 			if (EcoreUtil.isAncestor(this, newContext))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -339,7 +339,7 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: ");
+		result.append(" (id: "); //$NON-NLS-1$
 		result.append(id);
 		result.append(')');
 		return result.toString();

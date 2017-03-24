@@ -111,8 +111,8 @@ public class ModelAutoCreateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelAutoCreate_origin_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_origin_feature", "_UI_ModelAutoCreate_type"),
+				 getString("_UI_ModelAutoCreate_origin_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_origin_feature", "_UI_ModelAutoCreate_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.MODEL_AUTO_CREATE__ORIGIN,
 				 false,
 				 false,
@@ -150,7 +150,7 @@ public class ModelAutoCreateItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelAutoCreate"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelAutoCreate")); //$NON-NLS-1$
 	}
 
 	/**

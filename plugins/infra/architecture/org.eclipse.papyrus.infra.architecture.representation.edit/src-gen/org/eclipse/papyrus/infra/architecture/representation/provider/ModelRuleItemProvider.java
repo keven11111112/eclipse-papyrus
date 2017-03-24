@@ -76,8 +76,8 @@ public class ModelRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DisplayUnit_elementMultiplicity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DisplayUnit_elementMultiplicity_feature", "_UI_DisplayUnit_type"),
+				 getString("_UI_DisplayUnit_elementMultiplicity_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_DisplayUnit_elementMultiplicity_feature", "_UI_DisplayUnit_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 ConstraintsPackage.Literals.DISPLAY_UNIT__ELEMENT_MULTIPLICITY,
 				 true,
 				 false,
@@ -138,8 +138,8 @@ public class ModelRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModelRule_multiplicity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelRule_multiplicity_feature", "_UI_ModelRule_type"),
+				 getString("_UI_ModelRule_multiplicity_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModelRule_multiplicity_feature", "_UI_ModelRule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.MODEL_RULE__MULTIPLICITY,
 				 true,
 				 false,
@@ -187,7 +187,7 @@ public class ModelRuleItemProvider extends RuleItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelRule"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelRule")); //$NON-NLS-1$
 	}
 
 	/**

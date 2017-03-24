@@ -78,8 +78,8 @@ public class ArchitectureFrameworkItemProvider extends ArchitectureContextItemPr
 	public String getText(Object object) {
 		String label = ((ArchitectureFramework)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ArchitectureFramework_type") :
-			getString("_UI_ArchitectureFramework_type") + " " + label;
+			getString("_UI_ArchitectureFramework_type") : //$NON-NLS-1$
+			getString("_UI_ArchitectureFramework_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

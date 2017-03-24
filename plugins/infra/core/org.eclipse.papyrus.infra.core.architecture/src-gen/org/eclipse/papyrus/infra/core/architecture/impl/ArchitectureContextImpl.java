@@ -331,7 +331,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	public void setDomain(ArchitectureDomain newDomain) {
 		if (newDomain != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN && newDomain != null)) {
 			if (EcoreUtil.isAncestor(this, newDomain))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -534,15 +534,15 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: ");
+		result.append(" (id: "); //$NON-NLS-1$
 		result.append(id);
-		result.append(", icon: ");
+		result.append(", icon: "); //$NON-NLS-1$
 		result.append(icon);
-		result.append(", extensionPrefix: ");
+		result.append(", extensionPrefix: "); //$NON-NLS-1$
 		result.append(extensionPrefix);
-		result.append(", creationCommandClass: ");
+		result.append(", creationCommandClass: "); //$NON-NLS-1$
 		result.append(creationCommandClass);
-		result.append(", conversionCommandClass: ");
+		result.append(", conversionCommandClass: "); //$NON-NLS-1$
 		result.append(conversionCommandClass);
 		result.append(')');
 		return result.toString();

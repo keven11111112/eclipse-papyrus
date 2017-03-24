@@ -82,8 +82,8 @@ public class RootAutoSelectItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_RootAutoSelect_feature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RootAutoSelect_feature_feature", "_UI_RootAutoSelect_type"),
+				 getString("_UI_RootAutoSelect_feature_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_RootAutoSelect_feature_feature", "_UI_RootAutoSelect_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 RepresentationPackage.Literals.ROOT_AUTO_SELECT__FEATURE,
 				 true,
 				 false,
@@ -101,7 +101,7 @@ public class RootAutoSelectItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RootAutoSelect"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RootAutoSelect")); //$NON-NLS-1$
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class RootAutoSelectItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_RootAutoSelect_type");
+		return getString("_UI_RootAutoSelect_type"); //$NON-NLS-1$
 	}
 	
 
