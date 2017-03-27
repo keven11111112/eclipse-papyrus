@@ -145,29 +145,6 @@ public class ElementTypesConfigurationsItemProviderAdapterFactory extends Elemen
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SpecializationTypeConfigurationItemProvider specializationTypeConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSpecializationTypeConfigurationAdapter() {
-		if (specializationTypeConfigurationItemProvider == null) {
-			specializationTypeConfigurationItemProvider = new SpecializationTypeConfigurationItemProvider(this);
-		}
-
-		return specializationTypeConfigurationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.types.ContainerConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -188,6 +165,29 @@ public class ElementTypesConfigurationsItemProviderAdapterFactory extends Elemen
 		}
 
 		return containerConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SpecializationTypeConfigurationItemProvider specializationTypeConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpecializationTypeConfigurationAdapter() {
+		if (specializationTypeConfigurationItemProvider == null) {
+			specializationTypeConfigurationItemProvider = new SpecializationTypeConfigurationItemProvider(this);
+		}
+
+		return specializationTypeConfigurationItemProvider;
 	}
 
 	/**
@@ -456,8 +456,8 @@ public class ElementTypesConfigurationsItemProviderAdapterFactory extends Elemen
 	public void dispose() {
 		if (elementTypeSetConfigurationItemProvider != null) elementTypeSetConfigurationItemProvider.dispose();
 		if (iconEntryItemProvider != null) iconEntryItemProvider.dispose();
-		if (specializationTypeConfigurationItemProvider != null) specializationTypeConfigurationItemProvider.dispose();
 		if (containerConfigurationItemProvider != null) containerConfigurationItemProvider.dispose();
+		if (specializationTypeConfigurationItemProvider != null) specializationTypeConfigurationItemProvider.dispose();
 		if (metamodelTypeConfigurationItemProvider != null) metamodelTypeConfigurationItemProvider.dispose();
 		if (editHelperAdviceConfigurationItemProvider != null) editHelperAdviceConfigurationItemProvider.dispose();
 		if (adviceBindingConfigurationItemProvider != null) adviceBindingConfigurationItemProvider.dispose();

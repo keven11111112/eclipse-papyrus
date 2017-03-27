@@ -32,7 +32,7 @@ package org.eclipse.papyrus.infra.types;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractAdviceBindingConfiguration extends IdentifiedConfiguration, AdviceConfiguration {
+public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration, IdentifiedConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->

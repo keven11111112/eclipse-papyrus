@@ -69,8 +69,8 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 		switch (eClass.getClassifierID()) {
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION: return createElementTypeSetConfiguration();
 			case ElementTypesConfigurationsPackage.ICON_ENTRY: return createIconEntry();
-			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION: return createSpecializationTypeConfiguration();
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION: return createContainerConfiguration();
+			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION: return createSpecializationTypeConfiguration();
 			case ElementTypesConfigurationsPackage.METAMODEL_TYPE_CONFIGURATION: return createMetamodelTypeConfiguration();
 			case ElementTypesConfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION: return createEditHelperAdviceConfiguration();
 			case ElementTypesConfigurationsPackage.ADVICE_BINDING_CONFIGURATION: return createAdviceBindingConfiguration();
@@ -137,9 +137,9 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SpecializationTypeConfiguration createSpecializationTypeConfiguration() {
-		SpecializationTypeConfigurationImpl specializationTypeConfiguration = new SpecializationTypeConfigurationImpl();
-		return specializationTypeConfiguration;
+	public ContainerConfiguration createContainerConfiguration() {
+		ContainerConfigurationImpl containerConfiguration = new ContainerConfigurationImpl();
+		return containerConfiguration;
 	}
 
 	/**
@@ -147,9 +147,9 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContainerConfiguration createContainerConfiguration() {
-		ContainerConfigurationImpl containerConfiguration = new ContainerConfigurationImpl();
-		return containerConfiguration;
+	public SpecializationTypeConfiguration createSpecializationTypeConfiguration() {
+		SpecializationTypeConfigurationImpl specializationTypeConfiguration = new SpecializationTypeConfigurationImpl();
+		return specializationTypeConfiguration;
 	}
 
 	/**

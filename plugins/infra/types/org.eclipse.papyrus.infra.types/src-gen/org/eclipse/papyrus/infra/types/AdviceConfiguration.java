@@ -32,13 +32,12 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface AdviceConfiguration extends ConfigurationElement {
-
 	/**
 	 * Returns the value of the '<em><b>Before</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.AdviceConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Before</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Before</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -54,7 +53,7 @@ public interface AdviceConfiguration extends ConfigurationElement {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.AdviceConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>After</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>After</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

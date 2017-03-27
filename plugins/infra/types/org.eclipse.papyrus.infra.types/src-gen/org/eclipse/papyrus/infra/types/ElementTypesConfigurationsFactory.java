@@ -50,15 +50,6 @@ public interface ElementTypesConfigurationsFactory extends EFactory {
 	IconEntry createIconEntry();
 
 	/**
-	 * Returns a new object of class '<em>Specialization Type Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Specialization Type Configuration</em>'.
-	 * @generated
-	 */
-	SpecializationTypeConfiguration createSpecializationTypeConfiguration();
-
-	/**
 	 * Returns a new object of class '<em>Container Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,6 +57,15 @@ public interface ElementTypesConfigurationsFactory extends EFactory {
 	 * @generated
 	 */
 	ContainerConfiguration createContainerConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Specialization Type Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Specialization Type Configuration</em>'.
+	 * @generated
+	 */
+	SpecializationTypeConfiguration createSpecializationTypeConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>Metamodel Type Configuration</em>'.

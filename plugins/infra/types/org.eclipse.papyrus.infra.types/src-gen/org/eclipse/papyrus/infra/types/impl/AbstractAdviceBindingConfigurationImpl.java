@@ -12,25 +12,20 @@
  */
 package org.eclipse.papyrus.infra.types.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
-import org.eclipse.papyrus.infra.types.AdviceConfiguration;
-import org.eclipse.papyrus.infra.types.ConfigurationElement;
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.infra.types.InheritanceKind;
 
 /**
@@ -42,9 +37,6 @@ import org.eclipse.papyrus.infra.types.InheritanceKind;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getBefore <em>Before</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getAfter <em>After</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
@@ -53,7 +45,7 @@ import org.eclipse.papyrus.infra.types.InheritanceKind;
  *
  * @generated
  */
-public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObjectImpl.Container implements AbstractAdviceBindingConfiguration {
+public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfigurationImpl implements AbstractAdviceBindingConfiguration {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,46 +65,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 	 * @ordered
 	 */
 	protected String identifier = IDENTIFIER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getBefore() <em>Before</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBefore()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AdviceConfiguration> before;
-
-	/**
-	 * The cached value of the '{@link #getAfter() <em>After</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAfter()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AdviceConfiguration> after;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -202,51 +154,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 		identifier = newIdentifier;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER, oldIdentifier, identifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION, oldDescription, description));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AdviceConfiguration> getBefore() {
-		if (before == null) {
-			before = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE);
-		}
-		return before;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AdviceConfiguration> getAfter() {
-		if (after == null) {
-			after = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER);
-		}
-		return after;
 	}
 
 	/**
@@ -420,12 +327,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER:
 				return getIdentifier();
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION:
-				return getDescription();
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE:
-				return getBefore();
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER:
-				return getAfter();
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
@@ -444,23 +345,11 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER:
 				setIdentifier((String)newValue);
-				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE:
-				getBefore().clear();
-				getBefore().addAll((Collection<? extends AdviceConfiguration>)newValue);
-				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER:
-				getAfter().clear();
-				getAfter().addAll((Collection<? extends AdviceConfiguration>)newValue);
 				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET:
 				setTarget((ElementTypeConfiguration)newValue);
@@ -489,15 +378,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE:
-				getBefore().clear();
-				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER:
-				getAfter().clear();
-				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET:
 				setTarget((ElementTypeConfiguration)null);
 				return;
@@ -524,12 +404,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE:
-				return before != null && !before.isEmpty();
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER:
-				return after != null && !after.isEmpty();
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET:
 				return target != null;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
@@ -549,16 +423,9 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ConfigurationElement.class) {
+		if (baseClass == IdentifiedConfiguration.class) {
 			switch (derivedFeatureID) {
-				case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION: return ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		if (baseClass == AdviceConfiguration.class) {
-			switch (derivedFeatureID) {
-				case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE: return ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__BEFORE;
-				case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER: return ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__AFTER;
+				case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER: return ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION__IDENTIFIER;
 				default: return -1;
 			}
 		}
@@ -572,16 +439,9 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ConfigurationElement.class) {
+		if (baseClass == IdentifiedConfiguration.class) {
 			switch (baseFeatureID) {
-				case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION: return ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		if (baseClass == AdviceConfiguration.class) {
-			switch (baseFeatureID) {
-				case ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__BEFORE: return ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE;
-				case ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__AFTER: return ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER;
+				case ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION__IDENTIFIER: return ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
 				default: return -1;
 			}
 		}
@@ -600,8 +460,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
-		result.append(", description: ");
-		result.append(description);
 		result.append(", inheritance: ");
 		result.append(inheritance);
 		result.append(')');

@@ -82,6 +82,10 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createElementTypeSetConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseConfigurationElement(ConfigurationElement object) {
+				return createConfigurationElementAdapter();
+			}
+			@Override
 			public Adapter caseElementTypeConfiguration(ElementTypeConfiguration object) {
 				return createElementTypeConfigurationAdapter();
 			}
@@ -90,36 +94,40 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createIconEntryAdapter();
 			}
 			@Override
-			public Adapter caseConfigurationElement(ConfigurationElement object) {
-				return createConfigurationElementAdapter();
+			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+				return createIdentifiedConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
-				return createAbstractMatcherConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseAdviceConfiguration(AdviceConfiguration object) {
-				return createAdviceConfigurationAdapter();
+			public Adapter caseNamedConfiguration(NamedConfiguration object) {
+				return createNamedConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 				return createAbstractAdviceBindingConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseSpecializationTypeConfiguration(SpecializationTypeConfiguration object) {
-				return createSpecializationTypeConfigurationAdapter();
+			public Adapter caseAdviceConfiguration(AdviceConfiguration object) {
+				return createAdviceConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseContainerConfiguration(ContainerConfiguration object) {
 				return createContainerConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseMetamodelTypeConfiguration(MetamodelTypeConfiguration object) {
-				return createMetamodelTypeConfigurationAdapter();
+			public Adapter caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
+				return createAbstractMatcherConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseSpecializationTypeConfiguration(SpecializationTypeConfiguration object) {
+				return createSpecializationTypeConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseAbstractEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration object) {
 				return createAbstractEditHelperAdviceConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseMetamodelTypeConfiguration(MetamodelTypeConfiguration object) {
+				return createMetamodelTypeConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseEditHelperAdviceConfiguration(EditHelperAdviceConfiguration object) {
@@ -132,14 +140,6 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 			@Override
 			public Adapter caseMatcherConfiguration(MatcherConfiguration object) {
 				return createMatcherConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
-				return createIdentifiedConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseNamedConfiguration(NamedConfiguration object) {
-				return createNamedConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseExternallyRegisteredType(ExternallyRegisteredType object) {
@@ -184,6 +184,20 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.ConfigurationElement <em>Configuration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.ConfigurationElement
+	 * @generated
+	 */
+	public Adapter createConfigurationElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration <em>Element Type Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -212,44 +226,30 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.ConfigurationElement <em>Configuration Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.IdentifiedConfiguration <em>Identified Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.types.ConfigurationElement
+	 * @see org.eclipse.papyrus.infra.types.IdentifiedConfiguration
 	 * @generated
 	 */
-	public Adapter createConfigurationElementAdapter() {
+	public Adapter createIdentifiedConfigurationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration <em>Abstract Matcher Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.NamedConfiguration <em>Named Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration
+	 * @see org.eclipse.papyrus.infra.types.NamedConfiguration
 	 * @generated
 	 */
-	public Adapter createAbstractMatcherConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration <em>Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.types.AdviceConfiguration
-	 * @generated
-	 */
-	public Adapter createAdviceConfigurationAdapter() {
+	public Adapter createNamedConfigurationAdapter() {
 		return null;
 	}
 
@@ -268,16 +268,16 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration <em>Specialization Type Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration <em>Advice Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration
+	 * @see org.eclipse.papyrus.infra.types.AdviceConfiguration
 	 * @generated
 	 */
-	public Adapter createSpecializationTypeConfigurationAdapter() {
+	public Adapter createAdviceConfigurationAdapter() {
 		return null;
 	}
 
@@ -296,16 +296,30 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration <em>Metamodel Type Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration <em>Abstract Matcher Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration
+	 * @see org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration
 	 * @generated
 	 */
-	public Adapter createMetamodelTypeConfigurationAdapter() {
+	public Adapter createAbstractMatcherConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration <em>Specialization Type Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration
+	 * @generated
+	 */
+	public Adapter createSpecializationTypeConfigurationAdapter() {
 		return null;
 	}
 
@@ -320,6 +334,20 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractEditHelperAdviceConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration <em>Metamodel Type Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration
+	 * @generated
+	 */
+	public Adapter createMetamodelTypeConfigurationAdapter() {
 		return null;
 	}
 
@@ -362,34 +390,6 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createMatcherConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.IdentifiedConfiguration <em>Identified Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.types.IdentifiedConfiguration
-	 * @generated
-	 */
-	public Adapter createIdentifiedConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.NamedConfiguration <em>Named Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.types.NamedConfiguration
-	 * @generated
-	 */
-	public Adapter createNamedConfigurationAdapter() {
 		return null;
 	}
 
