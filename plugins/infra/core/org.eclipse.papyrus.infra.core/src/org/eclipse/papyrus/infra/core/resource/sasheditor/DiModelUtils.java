@@ -1,6 +1,15 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2012-2017 CEA LIST, and others.
  *
- */
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import org.eclipse.core.resources.IFile;
@@ -70,8 +79,11 @@ public class DiModelUtils {
 	 */
 	public static ArchitectureDescription getArchitectureDescription(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
-		return (ArchitectureDescription) EcoreUtil.getObjectByType(
-				resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
+		if (resource != null) {
+			return (ArchitectureDescription) EcoreUtil.getObjectByType(
+					resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
+		}
+		return null;
 	}
 
 	/**
@@ -83,14 +95,17 @@ public class DiModelUtils {
 	 */
 	public static ArchitectureDescription getOrAddArchitectureDescription(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
-		ArchitectureDescription description = (ArchitectureDescription) 
-				EcoreUtil.getObjectByType(resource.getContents(), 
-						ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
-		if (description == null) {
-			description = ArchitectureFactory.eINSTANCE.createArchitectureDescription();
-			resource.getContents().add(description);
+		if (resource != null) {
+			ArchitectureDescription description = (ArchitectureDescription) 
+					EcoreUtil.getObjectByType(resource.getContents(), 
+							ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
+			if (description == null) {
+				description = ArchitectureFactory.eINSTANCE.createArchitectureDescription();
+				resource.getContents().add(description);
+			}
+			return description;
 		}
-		return description;
+		return null;
 	}
 
 	/**
@@ -102,8 +117,11 @@ public class DiModelUtils {
 	 */
 	public static ArchitectureDescriptionPreferences getArchitectureDescriptionPreferences(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
-		return (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(
-				resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+		if (resource != null) {
+			return (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(
+					resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+		}
+		return null;
 	}
 
 	/**
@@ -115,14 +133,17 @@ public class DiModelUtils {
 	 */
 	public static ArchitectureDescriptionPreferences getOrAddArchitectureDescriptionPreferences(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
-		ArchitectureDescriptionPreferences preferences = (ArchitectureDescriptionPreferences) 
-				EcoreUtil.getObjectByType(resource.getContents(), 
-						ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
-		if (preferences == null) {
-			preferences = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionPreferences();
-			resource.getContents().add(preferences);
+		if (resource != null) {
+			ArchitectureDescriptionPreferences preferences = (ArchitectureDescriptionPreferences) 
+					EcoreUtil.getObjectByType(resource.getContents(), 
+							ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+			if (preferences == null) {
+				preferences = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionPreferences();
+				resource.getContents().add(preferences);
+			}
+			return preferences;
 		}
-		return preferences;
+		return null;
 	}
 
 }
