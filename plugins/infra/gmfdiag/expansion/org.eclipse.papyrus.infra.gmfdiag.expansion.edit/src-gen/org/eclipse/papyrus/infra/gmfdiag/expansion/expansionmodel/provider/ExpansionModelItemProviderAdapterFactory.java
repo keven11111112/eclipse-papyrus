@@ -31,7 +31,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionmodelAdapterFactory;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -42,7 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.Expansion
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExpansionmodelItemProviderAdapterFactory extends ExpansionmodelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class ExpansionModelItemProviderAdapterFactory extends ExpansionModelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -73,7 +73,7 @@ public class ExpansionmodelItemProviderAdapterFactory extends ExpansionmodelAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelItemProviderAdapterFactory() {
+	public ExpansionModelItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);

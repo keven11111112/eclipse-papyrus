@@ -4,6 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:expansionmodel="http:///expansionmodel.ecore"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
     xmi:id="_BOX98NnkEeSFtu511b-yaw"
     ID="BadProviderForExpansion">
   <usages diagramType="Class Diagram"
@@ -11,11 +12,9 @@
       name="extension of the class diagram"/>
   <libraries
       name="Bad library">
-    <representations
-        xsi:type="expansionmodel:Representation"
-        editPartQualifiedName="Editpart_that_not_exists"
-        name="Representation with providers that cannot be loaded"
-        viewFactory="View Factory_that_not_exists"
-        graphicalElementType="org.eclipse.papyrus.uml.Class"/>
+        <!--org.eclipse.papyrus.uml.Class-->
+    <representations editPartQualifiedName="Editpart_that_not_exists" name="Representation with providers that cannot be loaded" viewFactory="View Factory_that_not_exists" xsi:type="expansionmodel:Representation">
+      <graphicalElementTypeRef href="TestExpansionDiagram.elementtypesconfigurations#_C-1XION1EeSPY_4fjIBntw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
+    </representations> 
   </libraries>
 </expansionmodel:DiagramExpansion>

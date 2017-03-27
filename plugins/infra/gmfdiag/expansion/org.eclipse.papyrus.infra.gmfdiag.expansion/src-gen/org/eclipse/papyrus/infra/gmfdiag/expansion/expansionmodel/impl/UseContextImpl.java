@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GMFT_BasedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.UseContext;
@@ -148,7 +148,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.USE_CONTEXT;
+		return ExpansionModelPackage.Literals.USE_CONTEXT;
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		String oldDiagramType = diagramType;
 		diagramType = newDiagramType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE, oldDiagramType, diagramType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE, oldDiagramType, diagramType));
 	}
 
 	/**
@@ -179,7 +179,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 */
 	public EList<Representation> getRepresentations() {
 		if (representations == null) {
-			representations = new EObjectResolvingEList<Representation>(Representation.class, this, ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS);
+			representations = new EObjectResolvingEList<Representation>(Representation.class, this, ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS);
 		}
 		return representations;
 	}
@@ -202,7 +202,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.USE_CONTEXT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.USE_CONTEXT__NAME, oldName, name));
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 */
 	public EList<GMFT_BasedRepresentation> getGmftRepresentations() {
 		if (gmftRepresentations == null) {
-			gmftRepresentations = new EObjectContainmentEList<GMFT_BasedRepresentation>(GMFT_BasedRepresentation.class, this, ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS);
+			gmftRepresentations = new EObjectContainmentEList<GMFT_BasedRepresentation>(GMFT_BasedRepresentation.class, this, ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS);
 		}
 		return gmftRepresentations;
 	}
@@ -235,7 +235,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.USE_CONTEXT__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return ((InternalEList<?>)getGmftRepresentations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -260,15 +260,15 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				return getDiagramType();
-			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
 				return getRepresentations();
-			case ExpansionmodelPackage.USE_CONTEXT__NAME:
+			case ExpansionModelPackage.USE_CONTEXT__NAME:
 				return getName();
-			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return getGmftRepresentations();
-			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+			case ExpansionModelPackage.USE_CONTEXT__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -283,21 +283,21 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				setDiagramType((String)newValue);
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
 				getRepresentations().clear();
 				getRepresentations().addAll((Collection<? extends Representation>)newValue);
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__NAME:
+			case ExpansionModelPackage.USE_CONTEXT__NAME:
 				setName((String)newValue);
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				getGmftRepresentations().clear();
 				getGmftRepresentations().addAll((Collection<? extends GMFT_BasedRepresentation>)newValue);
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+			case ExpansionModelPackage.USE_CONTEXT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -312,19 +312,19 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				setDiagramType(DIAGRAM_TYPE_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
 				getRepresentations().clear();
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__NAME:
+			case ExpansionModelPackage.USE_CONTEXT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				getGmftRepresentations().clear();
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+			case ExpansionModelPackage.USE_CONTEXT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -339,15 +339,15 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				return DIAGRAM_TYPE_EDEFAULT == null ? diagramType != null : !DIAGRAM_TYPE_EDEFAULT.equals(diagramType);
-			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
 				return representations != null && !representations.isEmpty();
-			case ExpansionmodelPackage.USE_CONTEXT__NAME:
+			case ExpansionModelPackage.USE_CONTEXT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return gmftRepresentations != null && !gmftRepresentations.isEmpty();
-			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+			case ExpansionModelPackage.USE_CONTEXT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);

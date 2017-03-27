@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.InducedRepresentation;
 
 /**
@@ -74,7 +74,7 @@ public class InducedRepresentationItemProvider extends AbstractRepresentationIte
 				 getResourceLocator(),
 				 getString("_UI_InducedRepresentation_hint_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InducedRepresentation_hint_feature", "_UI_InducedRepresentation_type"),
-				 ExpansionmodelPackage.Literals.INDUCED_REPRESENTATION__HINT,
+				 ExpansionModelPackage.Literals.INDUCED_REPRESENTATION__HINT,
 				 true,
 				 false,
 				 false,
@@ -96,7 +96,7 @@ public class InducedRepresentationItemProvider extends AbstractRepresentationIte
 				 getResourceLocator(),
 				 getString("_UI_InducedRepresentation_children_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InducedRepresentation_children_feature", "_UI_InducedRepresentation_type"),
-				 ExpansionmodelPackage.Literals.INDUCED_REPRESENTATION__CHILDREN,
+				 ExpansionModelPackage.Literals.INDUCED_REPRESENTATION__CHILDREN,
 				 true,
 				 false,
 				 true,
@@ -143,7 +143,7 @@ public class InducedRepresentationItemProvider extends AbstractRepresentationIte
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InducedRepresentation.class)) {
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__HINT:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__HINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -138,7 +138,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 			for (String posibleID : childrenList) {
 				AbstractRepresentation abstractRepresentation = listRepresentation.IDMap.get(posibleID);
 				if (abstractRepresentation instanceof Representation) {
-					String elementTypeID = ((Representation) abstractRepresentation).getGraphicalElementType();
+					String elementTypeID = ((Representation) abstractRepresentation).getGraphicalElementTypeRef().getIdentifier();
 					if (elementTypeID != null && !elementTypeID.isEmpty()) {
 						final IElementType elementType = ElementTypeRegistry.getInstance().getType(elementTypeID);
 						if (elementType instanceof ISpecializationType) {

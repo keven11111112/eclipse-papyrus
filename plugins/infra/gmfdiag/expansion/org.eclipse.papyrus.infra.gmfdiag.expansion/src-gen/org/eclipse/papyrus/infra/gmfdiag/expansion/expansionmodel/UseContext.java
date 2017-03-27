@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.UseContext#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getUseContext()
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getUseContext()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface UseContext extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Diagram Type</em>' attribute.
 	 * @see #setDiagramType(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getUseContext_DiagramType()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getUseContext_DiagramType()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -71,7 +71,7 @@ public interface UseContext extends EObject {
 	 * This is all representation that the framework must have to extend or add.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Representations</em>' reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getUseContext_Representations()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getUseContext_Representations()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -86,7 +86,7 @@ public interface UseContext extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getUseContext_Name()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getUseContext_Name()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -112,7 +112,7 @@ public interface UseContext extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gmft Representations</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getUseContext_GmftRepresentations()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getUseContext_GmftRepresentations()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -128,7 +128,7 @@ public interface UseContext extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getUseContext_Description()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getUseContext_Description()
 	 * @model ordered="false"
 	 * @generated
 	 */

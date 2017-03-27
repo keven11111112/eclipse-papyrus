@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GraphicalElementLibrary;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
 
@@ -126,7 +126,7 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY;
+		return ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY;
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME, oldName, name));
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	 */
 	public EList<RepresentationKind> getRepresentationkinds() {
 		if (representationkinds == null) {
-			representationkinds = new EObjectContainmentEList<RepresentationKind>(RepresentationKind.class, this, ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS);
+			representationkinds = new EObjectContainmentEList<RepresentationKind>(RepresentationKind.class, this, ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS);
 		}
 		return representationkinds;
 	}
@@ -169,7 +169,7 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	 */
 	public EList<AbstractRepresentation> getRepresentations() {
 		if (representations == null) {
-			representations = new EObjectContainmentEList<AbstractRepresentation>(AbstractRepresentation.class, this, ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS);
+			representations = new EObjectContainmentEList<AbstractRepresentation>(AbstractRepresentation.class, this, ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS);
 		}
 		return representations;
 	}
@@ -192,7 +192,7 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -203,9 +203,9 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				return ((InternalEList<?>)getRepresentationkinds()).basicRemove(otherEnd, msgs);
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				return ((InternalEList<?>)getRepresentations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -219,13 +219,13 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				return getName();
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				return getRepresentationkinds();
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				return getRepresentations();
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -240,18 +240,18 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				setName((String)newValue);
 				return;
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				getRepresentationkinds().clear();
 				getRepresentationkinds().addAll((Collection<? extends RepresentationKind>)newValue);
 				return;
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				getRepresentations().clear();
 				getRepresentations().addAll((Collection<? extends AbstractRepresentation>)newValue);
 				return;
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -266,16 +266,16 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				getRepresentationkinds().clear();
 				return;
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				getRepresentations().clear();
 				return;
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -290,13 +290,13 @@ public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				return representationkinds != null && !representationkinds.isEmpty();
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				return representations != null && !representations.isEmpty();
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);

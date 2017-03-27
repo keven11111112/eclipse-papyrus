@@ -34,8 +34,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelFactory;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelFactory;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GraphicalElementLibrary;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin;
@@ -94,7 +94,7 @@ public class GraphicalElementLibraryItemProvider
 				 getResourceLocator(),
 				 getString("_UI_GraphicalElementLibrary_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicalElementLibrary_name_feature", "_UI_GraphicalElementLibrary_type"),
-				 ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__NAME,
+				 ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__NAME,
 				 true,
 				 false,
 				 false,
@@ -116,7 +116,7 @@ public class GraphicalElementLibraryItemProvider
 				 getResourceLocator(),
 				 getString("_UI_GraphicalElementLibrary_description_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GraphicalElementLibrary_description_feature", "_UI_GraphicalElementLibrary_type"),
-				 ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION,
+				 ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -137,8 +137,8 @@ public class GraphicalElementLibraryItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS);
-			childrenFeatures.add(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS);
+			childrenFeatures.add(ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS);
+			childrenFeatures.add(ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -194,12 +194,12 @@ public class GraphicalElementLibraryItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GraphicalElementLibrary.class)) {
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -219,23 +219,23 @@ public class GraphicalElementLibraryItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS,
-				 ExpansionmodelFactory.eINSTANCE.createRepresentationKind()));
+				(ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS,
+				 ExpansionModelFactory.eINSTANCE.createRepresentationKind()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
-				 ExpansionmodelFactory.eINSTANCE.createRepresentation()));
+				(ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
+				 ExpansionModelFactory.eINSTANCE.createRepresentation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
-				 ExpansionmodelFactory.eINSTANCE.createInducedRepresentation()));
+				(ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
+				 ExpansionModelFactory.eINSTANCE.createInducedRepresentation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
-				 ExpansionmodelFactory.eINSTANCE.createGMFT_BasedRepresentation()));
+				(ExpansionModelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS,
+				 ExpansionModelFactory.eINSTANCE.createGMFT_BasedRepresentation()));
 	}
 
 	/**

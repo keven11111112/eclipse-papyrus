@@ -34,10 +34,10 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionmodelValidator;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -163,7 +163,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.ABSTRACT_REPRESENTATION;
+		return ExpansionModelPackage.Literals.ABSTRACT_REPRESENTATION;
 	}
 
 	/**
@@ -184,7 +184,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 		String oldEditPartQualifiedName = editPartQualifiedName;
 		editPartQualifiedName = newEditPartQualifiedName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME, oldEditPartQualifiedName, editPartQualifiedName));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME, oldEditPartQualifiedName, editPartQualifiedName));
 	}
 
 	/**
@@ -198,7 +198,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 			kind = (RepresentationKind)eResolveProxy(oldKind);
 			if (kind != oldKind) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpansionmodelPackage.ABSTRACT_REPRESENTATION__KIND, oldKind, kind));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpansionModelPackage.ABSTRACT_REPRESENTATION__KIND, oldKind, kind));
 			}
 		}
 		return kind;
@@ -222,7 +222,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 		RepresentationKind oldKind = kind;
 		kind = newKind;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.ABSTRACT_REPRESENTATION__KIND, oldKind, kind));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.ABSTRACT_REPRESENTATION__KIND, oldKind, kind));
 	}
 
 	/**
@@ -243,7 +243,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.ABSTRACT_REPRESENTATION__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.ABSTRACT_REPRESENTATION__NAME, oldName, name));
 	}
 
 	/**
@@ -264,7 +264,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 		String oldViewFactory = viewFactory;
 		viewFactory = newViewFactory;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY, oldViewFactory, viewFactory));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY, oldViewFactory, viewFactory));
 	}
 
 	/**
@@ -285,7 +285,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -303,8 +303,8 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 				diagnostic.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-						 ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
-						 ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE,
+						 ExpansionModelValidator.DIAGNOSTIC_SOURCE,
+						 ExpansionModelValidator.ABSTRACT_REPRESENTATION__VALIDATE,
 						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "validate", EObjectValidator.getObjectLabel(this, context) }),
 						 new Object [] { this }));
 			}
@@ -321,16 +321,16 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
 				return getEditPartQualifiedName();
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__KIND:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__KIND:
 				if (resolve) return getKind();
 				return basicGetKind();
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__NAME:
 				return getName();
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				return getViewFactory();
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -344,19 +344,19 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
 				setEditPartQualifiedName((String)newValue);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__KIND:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__KIND:
 				setKind((RepresentationKind)newValue);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__NAME:
 				setName((String)newValue);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				setViewFactory((String)newValue);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -371,19 +371,19 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
 				setEditPartQualifiedName(EDIT_PART_QUALIFIED_NAME_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__KIND:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__KIND:
 				setKind((RepresentationKind)null);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				setViewFactory(VIEW_FACTORY_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -398,15 +398,15 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
 				return EDIT_PART_QUALIFIED_NAME_EDEFAULT == null ? editPartQualifiedName != null : !EDIT_PART_QUALIFIED_NAME_EDEFAULT.equals(editPartQualifiedName);
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__KIND:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__KIND:
 				return kind != null;
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				return VIEW_FACTORY_EDEFAULT == null ? viewFactory != null : !VIEW_FACTORY_EDEFAULT.equals(viewFactory);
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
@@ -420,7 +420,7 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION___VALIDATE__DIAGNOSTICCHAIN_MAP:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION___VALIDATE__DIAGNOSTICCHAIN_MAP:
 				return validate((DiagnosticChain)arguments.get(0), (Map)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

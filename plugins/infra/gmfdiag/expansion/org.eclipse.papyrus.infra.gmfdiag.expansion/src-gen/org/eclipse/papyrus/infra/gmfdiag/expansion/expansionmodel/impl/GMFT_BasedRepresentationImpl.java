@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GMFT_BasedRepresentation;
 
 /**
@@ -71,7 +71,7 @@ public class GMFT_BasedRepresentationImpl extends RepresentationImpl implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.GMFT_BASED_REPRESENTATION;
+		return ExpansionModelPackage.Literals.GMFT_BASED_REPRESENTATION;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class GMFT_BasedRepresentationImpl extends RepresentationImpl implements 
 		String oldReusedID = reusedID;
 		reusedID = newReusedID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID, oldReusedID, reusedID));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID, oldReusedID, reusedID));
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class GMFT_BasedRepresentationImpl extends RepresentationImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
 				return getReusedID();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class GMFT_BasedRepresentationImpl extends RepresentationImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
 				setReusedID((String)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class GMFT_BasedRepresentationImpl extends RepresentationImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
 				setReusedID(REUSED_ID_EDEFAULT);
 				return;
 		}
@@ -147,7 +147,7 @@ public class GMFT_BasedRepresentationImpl extends RepresentationImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
 				return REUSED_ID_EDEFAULT == null ? reusedID != null : !REUSED_ID_EDEFAULT.equals(reusedID);
 		}
 		return super.eIsSet(featureID);

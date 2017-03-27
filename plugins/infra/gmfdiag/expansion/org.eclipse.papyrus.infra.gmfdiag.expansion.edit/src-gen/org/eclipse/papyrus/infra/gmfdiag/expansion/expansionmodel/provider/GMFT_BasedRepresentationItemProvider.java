@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GMFT_BasedRepresentation;
 
 /**
@@ -73,7 +73,7 @@ public class GMFT_BasedRepresentationItemProvider extends RepresentationItemProv
 				 getResourceLocator(),
 				 getString("_UI_GMFT_BasedRepresentation_reusedID_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GMFT_BasedRepresentation_reusedID_feature", "_UI_GMFT_BasedRepresentation_type"),
-				 ExpansionmodelPackage.Literals.GMFT_BASED_REPRESENTATION__REUSED_ID,
+				 ExpansionModelPackage.Literals.GMFT_BASED_REPRESENTATION__REUSED_ID,
 				 true,
 				 false,
 				 false,
@@ -120,7 +120,7 @@ public class GMFT_BasedRepresentationItemProvider extends RepresentationItemProv
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GMFT_BasedRepresentation.class)) {
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION__REUSED_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

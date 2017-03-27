@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind#getViewFactory <em>View Factory</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getRepresentationKind()
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getRepresentationKind()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface RepresentationKind extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Edit Part Qualified Name</em>' attribute.
 	 * @see #setEditPartQualifiedName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getRepresentationKind_EditPartQualifiedName()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getRepresentationKind_EditPartQualifiedName()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -67,7 +67,7 @@ public interface RepresentationKind extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getRepresentationKind_Name()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getRepresentationKind_Name()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -92,7 +92,7 @@ public interface RepresentationKind extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Factory</em>' attribute.
 	 * @see #setViewFactory(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getRepresentationKind_ViewFactory()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getRepresentationKind_ViewFactory()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

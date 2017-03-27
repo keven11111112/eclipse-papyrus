@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelFactory
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelFactory
  * @model kind="package"
  * @generated
  */
-public interface ExpansionmodelPackage extends EPackage {
+public interface ExpansionModelPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -65,14 +65,14 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ExpansionmodelPackage eINSTANCE = org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl.init();
+	ExpansionModelPackage eINSTANCE = org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.AbstractRepresentationImpl <em>Abstract Representation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.AbstractRepresentationImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getAbstractRepresentation()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getAbstractRepresentation()
 	 * @generated
 	 */
 	int ABSTRACT_REPRESENTATION = 1;
@@ -154,7 +154,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.RepresentationImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getRepresentation()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getRepresentation()
 	 * @generated
 	 */
 	int REPRESENTATION = 0;
@@ -205,22 +205,13 @@ public interface ExpansionmodelPackage extends EPackage {
 	int REPRESENTATION__DESCRIPTION = ABSTRACT_REPRESENTATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Graphical Element Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPRESENTATION__GRAPHICAL_ELEMENT_TYPE = ABSTRACT_REPRESENTATION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Induced Representations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION__INDUCED_REPRESENTATIONS = ABSTRACT_REPRESENTATION_FEATURE_COUNT + 1;
+	int REPRESENTATION__INDUCED_REPRESENTATIONS = ABSTRACT_REPRESENTATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Sub Representations</b></em>' reference list.
@@ -229,7 +220,16 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION__SUB_REPRESENTATIONS = ABSTRACT_REPRESENTATION_FEATURE_COUNT + 2;
+	int REPRESENTATION__SUB_REPRESENTATIONS = ABSTRACT_REPRESENTATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Graphical Element Type Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION__GRAPHICAL_ELEMENT_TYPE_REF = ABSTRACT_REPRESENTATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Representation</em>' class.
@@ -263,7 +263,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.RepresentationKindImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getRepresentationKind()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getRepresentationKind()
 	 * @generated
 	 */
 	int REPRESENTATION_KIND = 2;
@@ -318,7 +318,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.InducedRepresentationImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getInducedRepresentation()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getInducedRepresentation()
 	 * @generated
 	 */
 	int INDUCED_REPRESENTATION = 3;
@@ -418,7 +418,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.GraphicalElementLibraryImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getGraphicalElementLibrary()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getGraphicalElementLibrary()
 	 * @generated
 	 */
 	int GRAPHICAL_ELEMENT_LIBRARY = 4;
@@ -482,7 +482,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.UseContextImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getUseContext()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getUseContext()
 	 * @generated
 	 */
 	int USE_CONTEXT = 5;
@@ -555,7 +555,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.GMFT_BasedRepresentationImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getGMFT_BasedRepresentation()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getGMFT_BasedRepresentation()
 	 * @generated
 	 */
 	int GMFT_BASED_REPRESENTATION = 6;
@@ -606,15 +606,6 @@ public interface ExpansionmodelPackage extends EPackage {
 	int GMFT_BASED_REPRESENTATION__DESCRIPTION = REPRESENTATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Graphical Element Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GMFT_BASED_REPRESENTATION__GRAPHICAL_ELEMENT_TYPE = REPRESENTATION__GRAPHICAL_ELEMENT_TYPE;
-
-	/**
 	 * The feature id for the '<em><b>Induced Representations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -631,6 +622,15 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GMFT_BASED_REPRESENTATION__SUB_REPRESENTATIONS = REPRESENTATION__SUB_REPRESENTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Graphical Element Type Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GMFT_BASED_REPRESENTATION__GRAPHICAL_ELEMENT_TYPE_REF = REPRESENTATION__GRAPHICAL_ELEMENT_TYPE_REF;
 
 	/**
 	 * The feature id for the '<em><b>Reused ID</b></em>' attribute.
@@ -673,7 +673,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.DiagramExpansionImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getDiagramExpansion()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getDiagramExpansion()
 	 * @generated
 	 */
 	int DIAGRAM_EXPANSION = 7;
@@ -744,17 +744,6 @@ public interface ExpansionmodelPackage extends EPackage {
 	EClass getRepresentation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation#getGraphicalElementType <em>Graphical Element Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Graphical Element Type</em>'.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation#getGraphicalElementType()
-	 * @see #getRepresentation()
-	 * @generated
-	 */
-	EAttribute getRepresentation_GraphicalElementType();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation#getInducedRepresentations <em>Induced Representations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -775,6 +764,17 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRepresentation_SubRepresentations();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation#getGraphicalElementTypeRef <em>Graphical Element Type Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Graphical Element Type Ref</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation#getGraphicalElementTypeRef()
+	 * @see #getRepresentation()
+	 * @generated
+	 */
+	EReference getRepresentation_GraphicalElementTypeRef();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation <em>Abstract Representation</em>}'.
@@ -1127,7 +1127,7 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	ExpansionmodelFactory getExpansionmodelFactory();
+	ExpansionModelFactory getExpansionModelFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1148,18 +1148,10 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.RepresentationImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getRepresentation()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getRepresentation()
 		 * @generated
 		 */
 		EClass REPRESENTATION = eINSTANCE.getRepresentation();
-
-		/**
-		 * The meta object literal for the '<em><b>Graphical Element Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REPRESENTATION__GRAPHICAL_ELEMENT_TYPE = eINSTANCE.getRepresentation_GraphicalElementType();
 
 		/**
 		 * The meta object literal for the '<em><b>Induced Representations</b></em>' reference list feature.
@@ -1178,11 +1170,19 @@ public interface ExpansionmodelPackage extends EPackage {
 		EReference REPRESENTATION__SUB_REPRESENTATIONS = eINSTANCE.getRepresentation_SubRepresentations();
 
 		/**
+		 * The meta object literal for the '<em><b>Graphical Element Type Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPRESENTATION__GRAPHICAL_ELEMENT_TYPE_REF = eINSTANCE.getRepresentation_GraphicalElementTypeRef();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.AbstractRepresentationImpl <em>Abstract Representation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.AbstractRepresentationImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getAbstractRepresentation()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getAbstractRepresentation()
 		 * @generated
 		 */
 		EClass ABSTRACT_REPRESENTATION = eINSTANCE.getAbstractRepresentation();
@@ -1240,7 +1240,7 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.RepresentationKindImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getRepresentationKind()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getRepresentationKind()
 		 * @generated
 		 */
 		EClass REPRESENTATION_KIND = eINSTANCE.getRepresentationKind();
@@ -1274,7 +1274,7 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.InducedRepresentationImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getInducedRepresentation()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getInducedRepresentation()
 		 * @generated
 		 */
 		EClass INDUCED_REPRESENTATION = eINSTANCE.getInducedRepresentation();
@@ -1300,7 +1300,7 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.GraphicalElementLibraryImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getGraphicalElementLibrary()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getGraphicalElementLibrary()
 		 * @generated
 		 */
 		EClass GRAPHICAL_ELEMENT_LIBRARY = eINSTANCE.getGraphicalElementLibrary();
@@ -1342,7 +1342,7 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.UseContextImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getUseContext()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getUseContext()
 		 * @generated
 		 */
 		EClass USE_CONTEXT = eINSTANCE.getUseContext();
@@ -1392,7 +1392,7 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.GMFT_BasedRepresentationImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getGMFT_BasedRepresentation()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getGMFT_BasedRepresentation()
 		 * @generated
 		 */
 		EClass GMFT_BASED_REPRESENTATION = eINSTANCE.getGMFT_BasedRepresentation();
@@ -1410,7 +1410,7 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.DiagramExpansionImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelPackageImpl#getDiagramExpansion()
+		 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelPackageImpl#getDiagramExpansion()
 		 * @generated
 		 */
 		EClass DIAGRAM_EXPANSION = eINSTANCE.getDiagramExpansion();
@@ -1449,4 +1449,4 @@ public interface ExpansionmodelPackage extends EPackage {
 
 	}
 
-} //ExpansionmodelPackage
+} //ExpansionModelPackage

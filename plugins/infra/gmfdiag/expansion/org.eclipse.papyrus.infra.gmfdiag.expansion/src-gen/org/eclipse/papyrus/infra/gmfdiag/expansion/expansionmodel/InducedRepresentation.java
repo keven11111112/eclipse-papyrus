@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.InducedRepresentation#getChildren <em>Children</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getInducedRepresentation()
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getInducedRepresentation()
  * @model
  * @generated
  */
@@ -48,7 +48,7 @@ public interface InducedRepresentation extends AbstractRepresentation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Hint</em>' attribute.
 	 * @see #setHint(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getInducedRepresentation_Hint()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getInducedRepresentation_Hint()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -73,7 +73,7 @@ public interface InducedRepresentation extends AbstractRepresentation {
 	 * There are representations that can be contained by this induced representation like  attribtutes inside attribute compartment.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Children</em>' reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getInducedRepresentation_Children()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getInducedRepresentation_Children()
 	 * @model ordered="false"
 	 * @generated
 	 */

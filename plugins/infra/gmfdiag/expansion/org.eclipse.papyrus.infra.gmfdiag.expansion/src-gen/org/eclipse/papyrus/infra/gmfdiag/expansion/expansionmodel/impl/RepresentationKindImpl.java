@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
 
 /**
@@ -114,7 +114,7 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.REPRESENTATION_KIND;
+		return ExpansionModelPackage.Literals.REPRESENTATION_KIND;
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 		String oldEditPartQualifiedName = editPartQualifiedName;
 		editPartQualifiedName = newEditPartQualifiedName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME, oldEditPartQualifiedName, editPartQualifiedName));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME, oldEditPartQualifiedName, editPartQualifiedName));
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.REPRESENTATION_KIND__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.REPRESENTATION_KIND__NAME, oldName, name));
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 		String oldViewFactory = viewFactory;
 		viewFactory = newViewFactory;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.REPRESENTATION_KIND__VIEW_FACTORY, oldViewFactory, viewFactory));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.REPRESENTATION_KIND__VIEW_FACTORY, oldViewFactory, viewFactory));
 	}
 
 	/**
@@ -188,11 +188,11 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
 				return getEditPartQualifiedName();
-			case ExpansionmodelPackage.REPRESENTATION_KIND__NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__NAME:
 				return getName();
-			case ExpansionmodelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
+			case ExpansionModelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
 				return getViewFactory();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -206,13 +206,13 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
 				setEditPartQualifiedName((String)newValue);
 				return;
-			case ExpansionmodelPackage.REPRESENTATION_KIND__NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__NAME:
 				setName((String)newValue);
 				return;
-			case ExpansionmodelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
+			case ExpansionModelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
 				setViewFactory((String)newValue);
 				return;
 		}
@@ -227,13 +227,13 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
 				setEditPartQualifiedName(EDIT_PART_QUALIFIED_NAME_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.REPRESENTATION_KIND__NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
+			case ExpansionModelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
 				setViewFactory(VIEW_FACTORY_EDEFAULT);
 				return;
 		}
@@ -248,11 +248,11 @@ public class RepresentationKindImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
 				return EDIT_PART_QUALIFIED_NAME_EDEFAULT == null ? editPartQualifiedName != null : !EDIT_PART_QUALIFIED_NAME_EDEFAULT.equals(editPartQualifiedName);
-			case ExpansionmodelPackage.REPRESENTATION_KIND__NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpansionmodelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
+			case ExpansionModelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
 				return VIEW_FACTORY_EDEFAULT == null ? viewFactory != null : !VIEW_FACTORY_EDEFAULT.equals(viewFactory);
 		}
 		return super.eIsSet(featureID);

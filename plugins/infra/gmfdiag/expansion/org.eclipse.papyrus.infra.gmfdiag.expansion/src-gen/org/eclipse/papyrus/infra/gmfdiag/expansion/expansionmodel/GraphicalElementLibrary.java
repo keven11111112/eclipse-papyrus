@@ -21,6 +21,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Graphical Element Library</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Is a container of representations that can be used in several UseContexts.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GraphicalElementLibrary#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary()
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getGraphicalElementLibrary()
  * @model
  * @generated
  */
@@ -45,7 +49,7 @@ public interface GraphicalElementLibrary extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary_Name()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getGraphicalElementLibrary_Name()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -71,7 +75,7 @@ public interface GraphicalElementLibrary extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representationkinds</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary_Representationkinds()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getGraphicalElementLibrary_Representationkinds()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -87,7 +91,7 @@ public interface GraphicalElementLibrary extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representations</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary_Representations()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getGraphicalElementLibrary_Representations()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -103,7 +107,7 @@ public interface GraphicalElementLibrary extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary_Description()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getGraphicalElementLibrary_Description()
 	 * @model ordered="false"
 	 * @generated
 	 */

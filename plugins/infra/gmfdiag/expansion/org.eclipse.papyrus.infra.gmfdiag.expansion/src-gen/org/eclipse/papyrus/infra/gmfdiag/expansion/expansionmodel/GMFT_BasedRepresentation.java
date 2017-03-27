@@ -29,7 +29,7 @@ package org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GMFT_BasedRepresentation#getReusedID <em>Reused ID</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getGMFT_BasedRepresentation()
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getGMFT_BasedRepresentation()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface GMFT_BasedRepresentation extends Representation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Reused ID</em>' attribute.
 	 * @see #setReusedID(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getGMFT_BasedRepresentation_ReusedID()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getGMFT_BasedRepresentation_ReusedID()
 	 * @model ordered="false"
 	 * @generated
 	 */

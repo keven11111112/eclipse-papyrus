@@ -1,12 +1,12 @@
 package org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionmodelResourceImpl;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelResourceImpl;
 
 /**
  * Overrides default generated resource to use uuids instead of index
  */
-public class CustomExpansionmodelResource extends ExpansionmodelResourceImpl {
+public class CustomExpansionmodelResource extends ExpansionModelResourceImpl {
 	/**
 	 * Creates an instance of the resource.
 	 *

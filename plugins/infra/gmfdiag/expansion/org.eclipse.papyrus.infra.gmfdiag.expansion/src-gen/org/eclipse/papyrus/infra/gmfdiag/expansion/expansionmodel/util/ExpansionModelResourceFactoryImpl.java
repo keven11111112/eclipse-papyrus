@@ -24,17 +24,17 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionmodelResourceImpl
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelResourceImpl
  * @generated
  */
-public class ExpansionmodelResourceFactoryImpl extends ResourceFactoryImpl {
+public class ExpansionModelResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
 	 * Creates an instance of the resource factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelResourceFactoryImpl() {
+	public ExpansionModelResourceFactoryImpl() {
 		super();
 	}
 
@@ -46,8 +46,8 @@ public class ExpansionmodelResourceFactoryImpl extends ResourceFactoryImpl {
 	 */
 	@Override
 	public Resource createResource(URI uri) {
-		XMLResource result = new ExpansionmodelResourceImpl(uri);
+		XMLResource result = new ExpansionModelResourceImpl(uri);
 		return result;
 	}
 
-} //ExpansionmodelResourceFactoryImpl
+} //ExpansionModelResourceFactoryImpl

@@ -34,8 +34,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelFactory;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelFactory;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.UseContext;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin;
@@ -96,7 +96,7 @@ public class UseContextItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UseContext_diagramType_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_UseContext_diagramType_feature", "_UI_UseContext_type"),
-				 ExpansionmodelPackage.Literals.USE_CONTEXT__DIAGRAM_TYPE,
+				 ExpansionModelPackage.Literals.USE_CONTEXT__DIAGRAM_TYPE,
 				 true,
 				 false,
 				 false,
@@ -118,7 +118,7 @@ public class UseContextItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UseContext_representations_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_UseContext_representations_feature", "_UI_UseContext_type"),
-				 ExpansionmodelPackage.Literals.USE_CONTEXT__REPRESENTATIONS,
+				 ExpansionModelPackage.Literals.USE_CONTEXT__REPRESENTATIONS,
 				 true,
 				 false,
 				 true,
@@ -140,7 +140,7 @@ public class UseContextItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UseContext_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_UseContext_name_feature", "_UI_UseContext_type"),
-				 ExpansionmodelPackage.Literals.USE_CONTEXT__NAME,
+				 ExpansionModelPackage.Literals.USE_CONTEXT__NAME,
 				 true,
 				 false,
 				 false,
@@ -162,7 +162,7 @@ public class UseContextItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UseContext_description_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_UseContext_description_feature", "_UI_UseContext_type"),
-				 ExpansionmodelPackage.Literals.USE_CONTEXT__DESCRIPTION,
+				 ExpansionModelPackage.Literals.USE_CONTEXT__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -183,7 +183,7 @@ public class UseContextItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExpansionmodelPackage.Literals.USE_CONTEXT__GMFT_REPRESENTATIONS);
+			childrenFeatures.add(ExpansionModelPackage.Literals.USE_CONTEXT__GMFT_REPRESENTATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -239,12 +239,12 @@ public class UseContextItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UseContext.class)) {
-			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
-			case ExpansionmodelPackage.USE_CONTEXT__NAME:
-			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionModelPackage.USE_CONTEXT__NAME:
+			case ExpansionModelPackage.USE_CONTEXT__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -264,8 +264,8 @@ public class UseContextItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.USE_CONTEXT__GMFT_REPRESENTATIONS,
-				 ExpansionmodelFactory.eINSTANCE.createGMFT_BasedRepresentation()));
+				(ExpansionModelPackage.Literals.USE_CONTEXT__GMFT_REPRESENTATIONS,
+				 ExpansionModelFactory.eINSTANCE.createGMFT_BasedRepresentation()));
 	}
 
 	/**

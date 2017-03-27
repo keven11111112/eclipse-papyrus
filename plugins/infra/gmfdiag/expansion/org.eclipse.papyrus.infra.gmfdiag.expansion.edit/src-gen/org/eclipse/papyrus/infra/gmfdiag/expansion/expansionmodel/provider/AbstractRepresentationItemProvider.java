@@ -33,7 +33,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin;
 
@@ -94,7 +94,7 @@ public class AbstractRepresentationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AbstractRepresentation_editPartQualifiedName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractRepresentation_editPartQualifiedName_feature", "_UI_AbstractRepresentation_type"),
-				 ExpansionmodelPackage.Literals.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME,
+				 ExpansionModelPackage.Literals.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME,
 				 true,
 				 false,
 				 false,
@@ -116,7 +116,7 @@ public class AbstractRepresentationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AbstractRepresentation_kind_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractRepresentation_kind_feature", "_UI_AbstractRepresentation_type"),
-				 ExpansionmodelPackage.Literals.ABSTRACT_REPRESENTATION__KIND,
+				 ExpansionModelPackage.Literals.ABSTRACT_REPRESENTATION__KIND,
 				 true,
 				 false,
 				 true,
@@ -138,7 +138,7 @@ public class AbstractRepresentationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AbstractRepresentation_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractRepresentation_name_feature", "_UI_AbstractRepresentation_type"),
-				 ExpansionmodelPackage.Literals.ABSTRACT_REPRESENTATION__NAME,
+				 ExpansionModelPackage.Literals.ABSTRACT_REPRESENTATION__NAME,
 				 true,
 				 false,
 				 false,
@@ -160,7 +160,7 @@ public class AbstractRepresentationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AbstractRepresentation_viewFactory_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractRepresentation_viewFactory_feature", "_UI_AbstractRepresentation_type"),
-				 ExpansionmodelPackage.Literals.ABSTRACT_REPRESENTATION__VIEW_FACTORY,
+				 ExpansionModelPackage.Literals.ABSTRACT_REPRESENTATION__VIEW_FACTORY,
 				 true,
 				 false,
 				 false,
@@ -182,7 +182,7 @@ public class AbstractRepresentationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AbstractRepresentation_description_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractRepresentation_description_feature", "_UI_AbstractRepresentation_type"),
-				 ExpansionmodelPackage.Literals.ABSTRACT_REPRESENTATION__DESCRIPTION,
+				 ExpansionModelPackage.Literals.ABSTRACT_REPRESENTATION__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -218,10 +218,10 @@ public class AbstractRepresentationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AbstractRepresentation.class)) {
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__NAME:
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__NAME:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

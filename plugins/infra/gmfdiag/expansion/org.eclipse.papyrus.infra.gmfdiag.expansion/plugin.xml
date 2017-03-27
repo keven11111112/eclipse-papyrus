@@ -63,8 +63,14 @@
       <!-- @generated Expansion -->
       <package
             uri="http:///expansionmodel.ecore"
-            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage"
             genModel="src/main/resources/models/ExpansionModel.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Expansion -->
+      <parser
+            type="expansionmodel"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelResourceFactoryImpl"/>
+   </extension>
 </plugin>

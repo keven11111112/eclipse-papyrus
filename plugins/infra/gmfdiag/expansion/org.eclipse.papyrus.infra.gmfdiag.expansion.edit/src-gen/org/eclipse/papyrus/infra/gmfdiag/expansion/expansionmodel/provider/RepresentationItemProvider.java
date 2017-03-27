@@ -21,10 +21,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation;
 
 /**
@@ -55,33 +53,11 @@ public class RepresentationItemProvider extends AbstractRepresentationItemProvid
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addGraphicalElementTypePropertyDescriptor(object);
 			addInducedRepresentationsPropertyDescriptor(object);
 			addSubRepresentationsPropertyDescriptor(object);
+			addGraphicalElementTypeRefPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Graphical Element Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addGraphicalElementTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Representation_graphicalElementType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Representation_graphicalElementType_feature", "_UI_Representation_type"),
-				 ExpansionmodelPackage.Literals.REPRESENTATION__GRAPHICAL_ELEMENT_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -97,7 +73,7 @@ public class RepresentationItemProvider extends AbstractRepresentationItemProvid
 				 getResourceLocator(),
 				 getString("_UI_Representation_inducedRepresentations_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Representation_inducedRepresentations_feature", "_UI_Representation_type"),
-				 ExpansionmodelPackage.Literals.REPRESENTATION__INDUCED_REPRESENTATIONS,
+				 ExpansionModelPackage.Literals.REPRESENTATION__INDUCED_REPRESENTATIONS,
 				 true,
 				 false,
 				 true,
@@ -119,7 +95,29 @@ public class RepresentationItemProvider extends AbstractRepresentationItemProvid
 				 getResourceLocator(),
 				 getString("_UI_Representation_subRepresentations_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Representation_subRepresentations_feature", "_UI_Representation_type"),
-				 ExpansionmodelPackage.Literals.REPRESENTATION__SUB_REPRESENTATIONS,
+				 ExpansionModelPackage.Literals.REPRESENTATION__SUB_REPRESENTATIONS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Graphical Element Type Ref feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGraphicalElementTypeRefPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Representation_graphicalElementTypeRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Representation_graphicalElementTypeRef_feature", "_UI_Representation_type"),
+				 ExpansionModelPackage.Literals.REPRESENTATION__GRAPHICAL_ELEMENT_TYPE_REF,
 				 true,
 				 false,
 				 true,
@@ -164,12 +162,6 @@ public class RepresentationItemProvider extends AbstractRepresentationItemProvid
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Representation.class)) {
-			case ExpansionmodelPackage.REPRESENTATION__GRAPHICAL_ELEMENT_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

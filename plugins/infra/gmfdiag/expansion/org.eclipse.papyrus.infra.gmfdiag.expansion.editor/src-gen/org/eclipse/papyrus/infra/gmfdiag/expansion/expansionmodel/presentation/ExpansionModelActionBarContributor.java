@@ -46,18 +46,18 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpandModelEditorPlugin;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpandModelEditor;
 
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * This is the action bar contributor for the Expansionmodel model editor.
+ * This is the action bar contributor for the ExpansionModel model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExpansionmodelActionBarContributor
+public class ExpansionModelActionBarContributor
 	extends EditingDomainActionBarContributor
 	implements ISelectionChangedListener {
 	/**
@@ -83,14 +83,14 @@ public class ExpansionmodelActionBarContributor
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction =
-		new Action(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+		new Action(ExpandModelEditor.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 			@Override
 			public void run() {
 				try {
 					getPage().showView("org.eclipse.ui.views.PropertySheet");
 				}
 				catch (PartInitException exception) {
-					ExpandModelEditorPlugin.INSTANCE.log(exception);
+					ExpandModelEditor.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -103,7 +103,7 @@ public class ExpansionmodelActionBarContributor
 	 * @generated
 	 */
 	protected IAction refreshViewerAction =
-		new Action(ExpandModelEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+		new Action(ExpandModelEditor.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 			@Override
 			public boolean isEnabled() {
 				return activeEditorPart instanceof IViewerProvider;
@@ -160,7 +160,7 @@ public class ExpansionmodelActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelActionBarContributor() {
+	public ExpansionModelActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
@@ -190,7 +190,7 @@ public class ExpansionmodelActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelEditor_menu"), "org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodelMenuID");
+		IMenuManager submenuManager = new MenuManager(ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelEditor_menu"), "org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodelMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -199,12 +199,12 @@ public class ExpansionmodelActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(ExpandModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		createChildMenuManager = new MenuManager(ExpandModelEditor.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(ExpandModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		createSiblingMenuManager = new MenuManager(ExpandModelEditor.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
@@ -395,11 +395,11 @@ public class ExpansionmodelActionBarContributor
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(ExpandModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager = new MenuManager(ExpandModelEditor.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		populateManager(submenuManager, createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 
-		submenuManager = new MenuManager(ExpandModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager = new MenuManager(ExpandModelEditor.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		populateManager(submenuManager, createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}

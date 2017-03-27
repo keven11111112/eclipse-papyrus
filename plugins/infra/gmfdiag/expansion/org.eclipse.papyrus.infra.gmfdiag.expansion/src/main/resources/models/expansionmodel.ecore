@@ -3,14 +3,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expansionmodel" nsURI="http:///expansionmodel.ecore" nsPrefix="expansionmodel">
   <eClassifiers xsi:type="ecore:EClass" name="Representation" eSuperTypes="#//AbstractRepresentation">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A representation is en element that is displayed on a diagram it is attached to a controler (see editpart) and to a notation structure( build bt the viewFactory)"/>
+      <details key="documentation" value="A representation is an element that is displayed on a diagram.&#xA;It is attached to a controler (see editpart) and to a notation structure (build by the viewFactory)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="graphicalElementType" ordered="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="This the reference of a graphical element type, it can be null.&#xD;&#xA;It is used to defined  a Flow_port_as_label for example.&#xD;&#xA;If it is used the hint has to be null"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inducedRepresentations"
         ordered="false" upperBound="-1" eType="#//InducedRepresentation">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -23,6 +17,8 @@
         <details key="documentation" value="this is representation that can be directly create inside this representation for example  borderItems like ports"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graphicalElementTypeRef"
+        ordered="false" eType="ecore:EClass ../../../../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeConfiguration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractRepresentation" abstract="true">
     <eOperations name="validate" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -89,6 +85,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GraphicalElementLibrary">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Is a container of representations that can be used in several UseContexts."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -27,17 +27,17 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.*;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage
  * @generated
  */
-public class ExpansionmodelValidator extends EObjectValidator {
+public class ExpansionModelValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final ExpansionmodelValidator INSTANCE = new ExpansionmodelValidator();
+	public static final ExpansionModelValidator INSTANCE = new ExpansionModelValidator();
 
 	/**
 	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
@@ -79,7 +79,7 @@ public class ExpansionmodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelValidator() {
+	public ExpansionModelValidator() {
 		super();
 	}
 
@@ -91,7 +91,7 @@ public class ExpansionmodelValidator extends EObjectValidator {
 	 */
 	@Override
 	protected EPackage getEPackage() {
-	  return ExpansionmodelPackage.eINSTANCE;
+	  return ExpansionModelPackage.eINSTANCE;
 	}
 
 	/**
@@ -103,21 +103,21 @@ public class ExpansionmodelValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-			case ExpansionmodelPackage.REPRESENTATION:
+			case ExpansionModelPackage.REPRESENTATION:
 				return validateRepresentation((Representation)value, diagnostics, context);
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION:
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION:
 				return validateAbstractRepresentation((AbstractRepresentation)value, diagnostics, context);
-			case ExpansionmodelPackage.REPRESENTATION_KIND:
+			case ExpansionModelPackage.REPRESENTATION_KIND:
 				return validateRepresentationKind((RepresentationKind)value, diagnostics, context);
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION:
 				return validateInducedRepresentation((InducedRepresentation)value, diagnostics, context);
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY:
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY:
 				return validateGraphicalElementLibrary((GraphicalElementLibrary)value, diagnostics, context);
-			case ExpansionmodelPackage.USE_CONTEXT:
+			case ExpansionModelPackage.USE_CONTEXT:
 				return validateUseContext((UseContext)value, diagnostics, context);
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION:
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION:
 				return validateGMFT_BasedRepresentation((GMFT_BasedRepresentation)value, diagnostics, context);
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION:
 				return validateDiagramExpansion((DiagramExpansion)value, diagnostics, context);
 			default:
 				return true;
@@ -260,4 +260,4 @@ public class ExpansionmodelValidator extends EObjectValidator {
 		return super.getResourceLocator();
 	}
 
-} //ExpansionmodelValidator
+} //ExpansionModelValidator

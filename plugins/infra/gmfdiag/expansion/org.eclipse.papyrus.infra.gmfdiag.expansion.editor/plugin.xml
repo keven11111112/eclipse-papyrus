@@ -13,9 +13,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionmodelModelWizardID"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionModelModelWizardID"
             name="%_UI_ExpansionmodelModelWizard_label"
-            class="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionmodelModelWizard"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionModelModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/ExpansionmodelModelFile.gif">
          <description>%_UI_ExpansionmodelModelWizard_description</description>
@@ -26,12 +26,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated ExpandModel -->
       <editor
-            id="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionmodelEditorID"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.presentation.ExpansionModelEditorID"
             name="%_UI_ExpansionmodelEditor_label"
             icon="icons/full/obj16/ExpansionmodelModelFile.gif"
             extensions="expansionmodel"
-            class="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionmodelEditor"
-            contributorClass="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionmodelActionBarContributor">
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionModelEditor"
+            contributorClass="org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpansionModelActionBarContributor">
       </editor>
    </extension>
    <extension point="org.eclipse.ui.newWizards">
@@ -40,12 +40,12 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelModelWizardID"
-            name="%_UI_ExpansionmodelModelWizard_label"
-            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelModelWizard"
+            id="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionModelModelWizardID"
+            name="%_UI_ExpansionModelModelWizard_label"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionModelModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/ExpansionmodelModelFile.gif">
-         <description>%_UI_ExpansionmodelModelWizard_description</description>
+            icon="icons/full/obj16/ExpansionModelModelFile.gif">
+         <description>%_UI_ExpansionModelModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
@@ -53,12 +53,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated Expansion -->
       <editor
-            id="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelEditorID"
-            name="%_UI_ExpansionmodelEditor_label"
-            icon="icons/full/obj16/ExpansionmodelModelFile.gif"
+            id="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionModelEditorID"
+            name="%_UI_ExpansionModelEditor_label"
+            icon="icons/full/obj16/ExpansionModelModelFile.gif"
             extensions="expansionmodel"
-            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelEditor"
-            contributorClass="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionmodelActionBarContributor">
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionModelEditor"
+            contributorClass="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionModelActionBarContributor">
       </editor>
    </extension>
 </plugin>

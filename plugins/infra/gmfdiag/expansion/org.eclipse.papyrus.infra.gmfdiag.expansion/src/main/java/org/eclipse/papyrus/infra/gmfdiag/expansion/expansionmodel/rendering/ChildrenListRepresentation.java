@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GMFT_BasedRepr
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.InducedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.UseContext;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 
 /**
  * This class is a structure that is adapted for the code of provider not to describe compartments as the model
@@ -58,9 +59,15 @@ public class ChildrenListRepresentation {
 				hint=((GMFT_BasedRepresentation)representation).getReusedID();
 
 			}else{
-				final IElementType elementType=ElementTypeRegistry.getInstance().getType(((Representation)representation).getGraphicalElementType());
-				if( elementType instanceof IHintedType){
-					hint=(((IHintedType)elementType).getSemanticHint());
+				final IElementType elementType;
+				if(((Representation)representation).getGraphicalElementTypeRef()!=null) {
+					if(((Representation)representation).getGraphicalElementTypeRef() instanceof ElementTypeConfiguration) {
+						ElementTypeConfiguration elementTypeConfiguration=(ElementTypeConfiguration)((Representation)representation).getGraphicalElementTypeRef();
+						elementType=ElementTypeRegistry.getInstance().getType(elementTypeConfiguration.getIdentifier());
+						if( elementType instanceof IHintedType){
+							hint=(((IHintedType)elementType).getSemanticHint());
+						}
+					}
 				}
 			}
 			idListToAdd.add(hint);

@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionmodelResourceFactoryImpl
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelResourceFactoryImpl
  * @generated
  */
-public class ExpansionmodelResourceImpl extends XMIResourceImpl {
+public class ExpansionModelResourceImpl extends XMIResourceImpl {
 	/**
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->
@@ -31,8 +31,8 @@ public class ExpansionmodelResourceImpl extends XMIResourceImpl {
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
-	public ExpansionmodelResourceImpl(URI uri) {
+	public ExpansionModelResourceImpl(URI uri) {
 		super(uri);
 	}
 
-} //ExpansionmodelResourceImpl
+} //ExpansionModelResourceImpl

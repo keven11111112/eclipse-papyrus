@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.DiagramExpansion;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GraphicalElementLibrary;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.UseContext;
 
@@ -126,7 +126,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION;
+		return ExpansionModelPackage.Literals.DIAGRAM_EXPANSION;
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 */
 	public EList<UseContext> getUsages() {
 		if (usages == null) {
-			usages = new EObjectContainmentEList<UseContext>(UseContext.class, this, ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES);
+			usages = new EObjectContainmentEList<UseContext>(UseContext.class, this, ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES);
 		}
 		return usages;
 	}
@@ -148,7 +148,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 */
 	public EList<GraphicalElementLibrary> getLibraries() {
 		if (libraries == null) {
-			libraries = new EObjectContainmentEList<GraphicalElementLibrary>(GraphicalElementLibrary.class, this, ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES);
+			libraries = new EObjectContainmentEList<GraphicalElementLibrary>(GraphicalElementLibrary.class, this, ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES);
 		}
 		return libraries;
 	}
@@ -171,7 +171,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 		String oldID = id;
 		id = newID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.DIAGRAM_EXPANSION__ID, oldID, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.DIAGRAM_EXPANSION__ID, oldID, id));
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.DIAGRAM_EXPANSION__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -203,9 +203,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
 				return ((InternalEList<?>)getUsages()).basicRemove(otherEnd, msgs);
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return ((InternalEList<?>)getLibraries()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -219,13 +219,13 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
 				return getUsages();
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return getLibraries();
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__ID:
 				return getID();
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -240,18 +240,18 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends UseContext>)newValue);
 				return;
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				getLibraries().clear();
 				getLibraries().addAll((Collection<? extends GraphicalElementLibrary>)newValue);
 				return;
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__ID:
 				setID((String)newValue);
 				return;
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -266,16 +266,16 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
 				getUsages().clear();
 				return;
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				getLibraries().clear();
 				return;
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__ID:
 				setID(ID_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -290,13 +290,13 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
 				return usages != null && !usages.isEmpty();
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return libraries != null && !libraries.isEmpty();
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);

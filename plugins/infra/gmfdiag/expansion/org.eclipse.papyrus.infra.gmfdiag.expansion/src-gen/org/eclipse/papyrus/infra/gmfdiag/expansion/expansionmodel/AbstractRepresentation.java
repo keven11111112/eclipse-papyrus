@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation()
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getAbstractRepresentation()
  * @model abstract="true"
  * @generated
  */
@@ -48,7 +48,7 @@ public interface AbstractRepresentation extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Edit Part Qualified Name</em>' attribute.
 	 * @see #setEditPartQualifiedName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_EditPartQualifiedName()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getAbstractRepresentation_EditPartQualifiedName()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -74,7 +74,7 @@ public interface AbstractRepresentation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Kind</em>' reference.
 	 * @see #setKind(RepresentationKind)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_Kind()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getAbstractRepresentation_Kind()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -99,7 +99,7 @@ public interface AbstractRepresentation extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_Name()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getAbstractRepresentation_Name()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -125,7 +125,7 @@ public interface AbstractRepresentation extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Factory</em>' attribute.
 	 * @see #setViewFactory(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_ViewFactory()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getAbstractRepresentation_ViewFactory()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -151,7 +151,7 @@ public interface AbstractRepresentation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_Description()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getAbstractRepresentation_Description()
 	 * @model ordered="false"
 	 * @generated
 	 */

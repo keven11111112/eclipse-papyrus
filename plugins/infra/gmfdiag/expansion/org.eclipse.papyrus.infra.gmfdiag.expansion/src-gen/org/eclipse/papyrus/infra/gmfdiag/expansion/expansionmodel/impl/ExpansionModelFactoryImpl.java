@@ -28,24 +28,24 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExpansionmodelFactoryImpl extends EFactoryImpl implements ExpansionmodelFactory {
+public class ExpansionModelFactoryImpl extends EFactoryImpl implements ExpansionModelFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ExpansionmodelFactory init() {
+	public static ExpansionModelFactory init() {
 		try {
-			ExpansionmodelFactory theExpansionmodelFactory = (ExpansionmodelFactory)EPackage.Registry.INSTANCE.getEFactory(ExpansionmodelPackage.eNS_URI);
-			if (theExpansionmodelFactory != null) {
-				return theExpansionmodelFactory;
+			ExpansionModelFactory theExpansionModelFactory = (ExpansionModelFactory)EPackage.Registry.INSTANCE.getEFactory(ExpansionModelPackage.eNS_URI);
+			if (theExpansionModelFactory != null) {
+				return theExpansionModelFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new ExpansionmodelFactoryImpl();
+		return new ExpansionModelFactoryImpl();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class ExpansionmodelFactoryImpl extends EFactoryImpl implements Expansion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelFactoryImpl() {
+	public ExpansionModelFactoryImpl() {
 		super();
 	}
 
@@ -66,13 +66,13 @@ public class ExpansionmodelFactoryImpl extends EFactoryImpl implements Expansion
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ExpansionmodelPackage.REPRESENTATION: return createRepresentation();
-			case ExpansionmodelPackage.REPRESENTATION_KIND: return createRepresentationKind();
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION: return createInducedRepresentation();
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY: return createGraphicalElementLibrary();
-			case ExpansionmodelPackage.USE_CONTEXT: return createUseContext();
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION: return createGMFT_BasedRepresentation();
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION: return createDiagramExpansion();
+			case ExpansionModelPackage.REPRESENTATION: return createRepresentation();
+			case ExpansionModelPackage.REPRESENTATION_KIND: return createRepresentationKind();
+			case ExpansionModelPackage.INDUCED_REPRESENTATION: return createInducedRepresentation();
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY: return createGraphicalElementLibrary();
+			case ExpansionModelPackage.USE_CONTEXT: return createUseContext();
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION: return createGMFT_BasedRepresentation();
+			case ExpansionModelPackage.DIAGRAM_EXPANSION: return createDiagramExpansion();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -153,8 +153,8 @@ public class ExpansionmodelFactoryImpl extends EFactoryImpl implements Expansion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelPackage getExpansionmodelPackage() {
-		return (ExpansionmodelPackage)getEPackage();
+	public ExpansionModelPackage getExpansionModelPackage() {
+		return (ExpansionModelPackage)getEPackage();
 	}
 
 	/**
@@ -164,8 +164,8 @@ public class ExpansionmodelFactoryImpl extends EFactoryImpl implements Expansion
 	 * @generated
 	 */
 	@Deprecated
-	public static ExpansionmodelPackage getPackage() {
-		return ExpansionmodelPackage.eINSTANCE;
+	public static ExpansionModelPackage getPackage() {
+		return ExpansionModelPackage.eINSTANCE;
 	}
 
-} //ExpansionmodelFactoryImpl
+} //ExpansionModelFactoryImpl

@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.InducedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation;
 
@@ -89,7 +89,7 @@ public class InducedRepresentationImpl extends AbstractRepresentationImpl implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.INDUCED_REPRESENTATION;
+		return ExpansionModelPackage.Literals.INDUCED_REPRESENTATION;
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class InducedRepresentationImpl extends AbstractRepresentationImpl implem
 		String oldHint = hint;
 		hint = newHint;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.INDUCED_REPRESENTATION__HINT, oldHint, hint));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.INDUCED_REPRESENTATION__HINT, oldHint, hint));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class InducedRepresentationImpl extends AbstractRepresentationImpl implem
 	 */
 	public EList<Representation> getChildren() {
 		if (children == null) {
-			children = new EObjectResolvingEList<Representation>(Representation.class, this, ExpansionmodelPackage.INDUCED_REPRESENTATION__CHILDREN);
+			children = new EObjectResolvingEList<Representation>(Representation.class, this, ExpansionModelPackage.INDUCED_REPRESENTATION__CHILDREN);
 		}
 		return children;
 	}
@@ -133,9 +133,9 @@ public class InducedRepresentationImpl extends AbstractRepresentationImpl implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__HINT:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__HINT:
 				return getHint();
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__CHILDREN:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__CHILDREN:
 				return getChildren();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -150,10 +150,10 @@ public class InducedRepresentationImpl extends AbstractRepresentationImpl implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__HINT:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__HINT:
 				setHint((String)newValue);
 				return;
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__CHILDREN:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__CHILDREN:
 				getChildren().clear();
 				getChildren().addAll((Collection<? extends Representation>)newValue);
 				return;
@@ -169,10 +169,10 @@ public class InducedRepresentationImpl extends AbstractRepresentationImpl implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__HINT:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__HINT:
 				setHint(HINT_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__CHILDREN:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__CHILDREN:
 				getChildren().clear();
 				return;
 		}
@@ -187,9 +187,9 @@ public class InducedRepresentationImpl extends AbstractRepresentationImpl implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__HINT:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__HINT:
 				return HINT_EDEFAULT == null ? hint != null : !HINT_EDEFAULT.equals(hint);
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION__CHILDREN:
+			case ExpansionModelPackage.INDUCED_REPRESENTATION__CHILDREN:
 				return children != null && !children.isEmpty();
 		}
 		return super.eIsSet(featureID);

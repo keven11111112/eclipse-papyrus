@@ -25,8 +25,9 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionmodelValidator;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelValidator;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeConfigurationTypeRegistry;
 
 /**
@@ -56,10 +57,10 @@ public class ExpansionModelValidationUtil {
 					if (abstractRepresentation.getViewFactory() == null || "".equals(abstractRepresentation.getViewFactory().trim())) {
 						valid = false;
 						diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
-								ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
-								ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+								ExpansionModelValidator.DIAGNOSTIC_SOURCE,
+								ExpansionModelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
 										+ abstractRepresentation.getName() + "' has no kind , no editpartQualifiedName, no viewFactory.",
-								new Object[] { abstractRepresentation }));
+										new Object[] { abstractRepresentation }));
 					}
 				}
 
@@ -84,10 +85,10 @@ public class ExpansionModelValidationUtil {
 				if (loadedClass == null) {
 					valid = false;
 					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
-							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
-							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+							ExpansionModelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionModelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
 									+ abstractRepresentation.getName() + "' references an edit part that does not exist " + abstractRepresentation.getEditPartQualifiedName(),
-							new Object[] { abstractRepresentation }));
+									new Object[] { abstractRepresentation }));
 
 				}
 
@@ -97,10 +98,10 @@ public class ExpansionModelValidationUtil {
 				if (loadedClass == null) {
 					valid = false;
 					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
-							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
-							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+							ExpansionModelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionModelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
 									+ abstractRepresentation.getName() + "' references a view factory that not exist " + abstractRepresentation.getViewFactory(),
-							new Object[] { abstractRepresentation }));
+									new Object[] { abstractRepresentation }));
 
 				}
 			}
@@ -124,10 +125,10 @@ public class ExpansionModelValidationUtil {
 				if (loadedClass == null) {
 					valid = false;
 					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
-							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
-							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+							ExpansionModelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionModelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
 									+ abstractRepresentation.getName() + "' references an edit part that does not exist " + abstractRepresentation.getEditPartQualifiedName(),
-							new Object[] { abstractRepresentation }));
+									new Object[] { abstractRepresentation }));
 
 				}
 
@@ -137,10 +138,10 @@ public class ExpansionModelValidationUtil {
 				if (loadedClass == null) {
 					valid = false;
 					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
-							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
-							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+							ExpansionModelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionModelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
 									+ abstractRepresentation.getName() + "' references a view factory that does not exist " + abstractRepresentation.getViewFactory(),
-							new Object[] { abstractRepresentation }));
+									new Object[] { abstractRepresentation }));
 
 				}
 			}
@@ -158,21 +159,34 @@ public class ExpansionModelValidationUtil {
 	 */
 	public static boolean validate_ElementType(Representation abstractRepresentation, DiagnosticChain diagnostic, Map context) {
 		boolean valid = true;
-		String elementTypeID = abstractRepresentation.getGraphicalElementType();
-		if (elementTypeID != null && !elementTypeID.isEmpty()) {
-			// ensure that element types model are loaded
-			ElementTypeConfigurationTypeRegistry.getInstance();
-			final IElementType elementType = ElementTypeRegistry.getInstance().getType(elementTypeID);
-			if (elementType == null) {
-				valid = false;
-				diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
-						ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
-						ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
-								+ abstractRepresentation.getName() + "' references a element type that does not exist " + abstractRepresentation.getGraphicalElementType(),
-						new Object[] { abstractRepresentation }));
-
+		final IElementType elementType;
+		// ensure that element types model are loaded
+		ElementTypeConfigurationTypeRegistry.getInstance();
+		if(abstractRepresentation.getGraphicalElementTypeRef()!=null) {
+			Object o = ((Representation)abstractRepresentation).getGraphicalElementTypeRef();
+			if(o instanceof ElementTypeConfiguration) {
+				ElementTypeConfiguration elementTypeConfiguration=(ElementTypeConfiguration)o;
+				elementType=ElementTypeRegistry.getInstance().getType(elementTypeConfiguration.getIdentifier());
 			}
+			else {
+				elementType=null;
+			}
+			
 		}
+		else {
+			elementType=null;
+		}
+		
+		if (elementType == null) {
+			valid = false;
+			diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpansionModelValidator.DIAGNOSTIC_SOURCE,
+					ExpansionModelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+							+ abstractRepresentation.getName() + "' references a element type that does not exist " + abstractRepresentation.getGraphicalElementTypeRef(),
+							new Object[] { abstractRepresentation }));
+
+		}
+		
 		return valid;
 	}
 

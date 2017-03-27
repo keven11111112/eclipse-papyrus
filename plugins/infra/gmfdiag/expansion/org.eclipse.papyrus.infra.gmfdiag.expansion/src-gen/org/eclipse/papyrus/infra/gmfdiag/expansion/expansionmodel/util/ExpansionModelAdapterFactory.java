@@ -26,17 +26,17 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage
  * @generated
  */
-public class ExpansionmodelAdapterFactory extends AdapterFactoryImpl {
+public class ExpansionModelAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ExpansionmodelPackage modelPackage;
+	protected static ExpansionModelPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -44,9 +44,9 @@ public class ExpansionmodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelAdapterFactory() {
+	public ExpansionModelAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = ExpansionmodelPackage.eINSTANCE;
+			modelPackage = ExpansionModelPackage.eINSTANCE;
 		}
 	}
 
@@ -75,8 +75,8 @@ public class ExpansionmodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpansionmodelSwitch<Adapter> modelSwitch =
-		new ExpansionmodelSwitch<Adapter>() {
+	protected ExpansionModelSwitch<Adapter> modelSwitch =
+		new ExpansionModelSwitch<Adapter>() {
 			@Override
 			public Adapter caseRepresentation(Representation object) {
 				return createRepresentationAdapter();
@@ -253,4 +253,4 @@ public class ExpansionmodelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //ExpansionmodelAdapterFactory
+} //ExpansionModelAdapterFactory

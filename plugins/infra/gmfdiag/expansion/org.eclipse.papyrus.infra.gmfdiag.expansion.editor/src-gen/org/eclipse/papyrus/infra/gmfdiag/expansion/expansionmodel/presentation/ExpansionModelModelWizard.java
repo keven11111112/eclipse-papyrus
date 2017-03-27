@@ -79,8 +79,8 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelFactory;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelFactory;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin;
 
 
@@ -89,7 +89,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpandModelEditorPlugin;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpandModelEditor;
 
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -103,7 +103,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
+public class ExpansionModelModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -111,7 +111,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -120,7 +120,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -128,7 +128,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpansionmodelPackage expansionmodelPackage = ExpansionmodelPackage.eINSTANCE;
+	protected ExpansionModelPackage expansionModelPackage = ExpansionModelPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -136,7 +136,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpansionmodelFactory expansionmodelFactory = expansionmodelPackage.getExpansionmodelFactory();
+	protected ExpansionModelFactory expansionModelFactory = expansionModelPackage.getExpansionModelFactory();
 
 	/**
 	 * This is the file creation page.
@@ -144,7 +144,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpansionmodelModelWizardNewFileCreationPage newFileCreationPage;
+	protected ExpansionModelModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * This is the initial object creation page.
@@ -152,7 +152,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpansionmodelModelWizardInitialObjectCreationPage initialObjectCreationPage;
+	protected ExpansionModelModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -187,8 +187,8 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(ExpandModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ExpandModelEditorPlugin.INSTANCE.getImage("full/wizban/NewExpansionmodel")));
+		setWindowTitle(ExpandModelEditor.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ExpandModelEditor.INSTANCE.getImage("full/wizban/NewExpansionModel")));
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : expansionmodelPackage.getEClassifiers()) {
+			for (EClassifier eClassifier : expansionModelPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
@@ -220,8 +220,8 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)expansionmodelPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = expansionmodelFactory.create(eClass);
+		EClass eClass = (EClass)expansionModelPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = expansionModelFactory.create(eClass);
 		return rootObject;
 	}
 
@@ -271,7 +271,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							ExpandModelEditorPlugin.INSTANCE.log(exception);
+							ExpandModelEditor.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -304,14 +304,14 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), ExpandModelEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), ExpandModelEditor.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			ExpandModelEditorPlugin.INSTANCE.log(exception);
+			ExpandModelEditor.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -322,14 +322,14 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class ExpansionmodelModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class ExpansionModelModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public ExpansionmodelModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public ExpansionModelModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -345,7 +345,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(ExpandModelEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(ExpandModelEditor.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -369,7 +369,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class ExpansionmodelModelWizardInitialObjectCreationPage extends WizardPage {
+	public class ExpansionModelModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -397,7 +397,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public ExpansionmodelModelWizardInitialObjectCreationPage(String pageId) {
+		public ExpansionModelModelWizardInitialObjectCreationPage(String pageId) {
 			super(pageId);
 		}
 
@@ -407,7 +407,8 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
@@ -422,7 +423,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+				containerLabel.setText(ExpandModelEditor.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -448,7 +449,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(ExpandModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+				encodingLabel.setText(ExpandModelEditor.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -550,7 +551,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 				return ExpandModelEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			}
 			catch(MissingResourceException mre) {
-				ExpandModelEditorPlugin.INSTANCE.log(mre);
+				ExpandModelEditor.INSTANCE.log(mre);
 			}
 			return typeName;
 		}
@@ -563,7 +564,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(ExpandModelEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(ExpandModelEditor.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -581,10 +582,10 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new ExpansionmodelModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelModelWizard_label"));
-		newFileCreationPage.setDescription(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelModelWizard_description"));
-		newFileCreationPage.setFileName(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new ExpansionModelModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelModelWizard_label"));
+		newFileCreationPage.setDescription(ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelModelWizard_description"));
+		newFileCreationPage.setFileName(ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -610,7 +611,7 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -620,9 +621,9 @@ public class ExpansionmodelModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new ExpansionmodelModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(ExpandModelEditorPlugin.INSTANCE.getString("_UI_ExpansionmodelModelWizard_label"));
-		initialObjectCreationPage.setDescription(ExpandModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage = new ExpansionModelModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(ExpandModelEditor.INSTANCE.getString("_UI_ExpansionModelModelWizard_label"));
+		initialObjectCreationPage.setDescription(ExpandModelEditor.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 

@@ -18,13 +18,14 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.DiagramExpansion;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelFactory;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelFactory;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GMFT_BasedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GraphicalElementLibrary;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.InducedRepresentation;
@@ -32,7 +33,9 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.UseContext;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionmodelValidator;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.ExpansionModelValidator;
+
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +43,7 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.util.Expansion
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExpansionmodelPackageImpl extends EPackageImpl implements ExpansionmodelPackage {
+public class ExpansionModelPackageImpl extends EPackageImpl implements ExpansionModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,12 +111,12 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#eNS_URI
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private ExpansionmodelPackageImpl() {
-		super(eNS_URI, ExpansionmodelFactory.eINSTANCE);
+	private ExpansionModelPackageImpl() {
+		super(eNS_URI, ExpansionModelFactory.eINSTANCE);
 	}
 
 	/**
@@ -126,7 +129,7 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link ExpansionmodelPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link ExpansionModelPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -135,36 +138,40 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static ExpansionmodelPackage init() {
-		if (isInited) return (ExpansionmodelPackage)EPackage.Registry.INSTANCE.getEPackage(ExpansionmodelPackage.eNS_URI);
+	public static ExpansionModelPackage init() {
+		if (isInited) return (ExpansionModelPackage)EPackage.Registry.INSTANCE.getEPackage(ExpansionModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ExpansionmodelPackageImpl theExpansionmodelPackage = (ExpansionmodelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ExpansionmodelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ExpansionmodelPackageImpl());
+		ExpansionModelPackageImpl theExpansionModelPackage = (ExpansionModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ExpansionModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ExpansionModelPackageImpl());
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+
 		// Create package meta-data objects
-		theExpansionmodelPackage.createPackageContents();
+		theExpansionModelPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theExpansionmodelPackage.initializePackageContents();
+		theExpansionModelPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theExpansionmodelPackage, 
+			(theExpansionModelPackage, 
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
-					 return ExpansionmodelValidator.INSTANCE;
+					 return ExpansionModelValidator.INSTANCE;
 				 }
 			 });
 
 		// Mark meta-data to indicate it can't be changed
-		theExpansionmodelPackage.freeze();
+		theExpansionModelPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ExpansionmodelPackage.eNS_URI, theExpansionmodelPackage);
-		return theExpansionmodelPackage;
+		EPackage.Registry.INSTANCE.put(ExpansionModelPackage.eNS_URI, theExpansionModelPackage);
+		return theExpansionModelPackage;
 	}
 
 	/**
@@ -181,17 +188,8 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRepresentation_GraphicalElementType() {
-		return (EAttribute)representationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getRepresentation_InducedRepresentations() {
-		return (EReference)representationEClass.getEStructuralFeatures().get(1);
+		return (EReference)representationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -200,6 +198,15 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * @generated
 	 */
 	public EReference getRepresentation_SubRepresentations() {
+		return (EReference)representationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepresentation_GraphicalElementTypeRef() {
 		return (EReference)representationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -496,8 +503,8 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelFactory getExpansionmodelFactory() {
-		return (ExpansionmodelFactory)getEFactoryInstance();
+	public ExpansionModelFactory getExpansionModelFactory() {
+		return (ExpansionModelFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -520,9 +527,9 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 
 		// Create classes and their features
 		representationEClass = createEClass(REPRESENTATION);
-		createEAttribute(representationEClass, REPRESENTATION__GRAPHICAL_ELEMENT_TYPE);
 		createEReference(representationEClass, REPRESENTATION__INDUCED_REPRESENTATIONS);
 		createEReference(representationEClass, REPRESENTATION__SUB_REPRESENTATIONS);
+		createEReference(representationEClass, REPRESENTATION__GRAPHICAL_ELEMENT_TYPE_REF);
 
 		abstractRepresentationEClass = createEClass(ABSTRACT_REPRESENTATION);
 		createEAttribute(abstractRepresentationEClass, ABSTRACT_REPRESENTATION__EDIT_PART_QUALIFIED_NAME);
@@ -587,6 +594,9 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		ElementTypesConfigurationsPackage theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -598,9 +608,9 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(representationEClass, Representation.class, "Representation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRepresentation_GraphicalElementType(), ecorePackage.getEString(), "graphicalElementType", null, 0, 1, Representation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRepresentation_InducedRepresentations(), this.getInducedRepresentation(), null, "inducedRepresentations", null, 0, -1, Representation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRepresentation_SubRepresentations(), this.getRepresentation(), null, "subRepresentations", null, 0, -1, Representation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getRepresentation_GraphicalElementTypeRef(), theElementTypesConfigurationsPackage.getElementTypeConfiguration(), null, "graphicalElementTypeRef", null, 0, 1, Representation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(abstractRepresentationEClass, AbstractRepresentation.class, "AbstractRepresentation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractRepresentation_EditPartQualifiedName(), ecorePackage.getEString(), "editPartQualifiedName", null, 0, 1, AbstractRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -648,4 +658,4 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		createResource(eNS_URI);
 	}
 
-} //ExpansionmodelPackageImpl
+} //ExpansionModelPackageImpl

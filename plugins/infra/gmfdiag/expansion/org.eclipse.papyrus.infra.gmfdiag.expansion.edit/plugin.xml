@@ -24,7 +24,7 @@
       <!-- @generated Expansion -->
       <factory
             uri="http:///expansionmodel.ecore"
-            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpansionmodelItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpansionModelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

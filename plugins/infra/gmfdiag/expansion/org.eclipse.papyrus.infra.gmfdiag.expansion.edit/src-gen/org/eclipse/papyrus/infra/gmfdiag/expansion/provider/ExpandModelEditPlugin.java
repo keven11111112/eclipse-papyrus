@@ -16,6 +16,10 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+
+import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
+
 /**
  * This is the central singleton for the ExpansionModel edit plugin.
  * <!-- begin-user-doc -->
@@ -48,6 +52,8 @@ public final class ExpandModelEditPlugin extends EMFPlugin {
 	public ExpandModelEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     EcoreEditPlugin.INSTANCE,
+		     TypesConfigurationsEditPlugin.INSTANCE,
 		   });
 	}
 

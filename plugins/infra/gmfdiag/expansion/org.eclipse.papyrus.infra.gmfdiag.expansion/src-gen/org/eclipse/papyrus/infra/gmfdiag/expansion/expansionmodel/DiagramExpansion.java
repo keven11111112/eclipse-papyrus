@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.DiagramExpansion#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getDiagramExpansion()
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getDiagramExpansion()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface DiagramExpansion extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getDiagramExpansion_Usages()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getDiagramExpansion_Usages()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -62,7 +62,7 @@ public interface DiagramExpansion extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Libraries</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getDiagramExpansion_Libraries()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getDiagramExpansion_Libraries()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -78,7 +78,7 @@ public interface DiagramExpansion extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>ID</em>' attribute.
 	 * @see #setID(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getDiagramExpansion_ID()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getDiagramExpansion_ID()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -104,7 +104,7 @@ public interface DiagramExpansion extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage#getDiagramExpansion_Description()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage#getDiagramExpansion_Description()
 	 * @model ordered="false"
 	 * @generated
 	 */

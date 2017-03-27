@@ -35,8 +35,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.DiagramExpansion;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelFactory;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelFactory;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin;
 
@@ -94,7 +94,7 @@ public class DiagramExpansionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DiagramExpansion_ID_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_DiagramExpansion_ID_feature", "_UI_DiagramExpansion_type"),
-				 ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__ID,
+				 ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__ID,
 				 true,
 				 false,
 				 false,
@@ -116,7 +116,7 @@ public class DiagramExpansionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DiagramExpansion_description_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_DiagramExpansion_description_feature", "_UI_DiagramExpansion_type"),
-				 ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__DESCRIPTION,
+				 ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -137,8 +137,8 @@ public class DiagramExpansionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__USAGES);
-			childrenFeatures.add(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES);
+			childrenFeatures.add(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__USAGES);
+			childrenFeatures.add(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES);
 		}
 		return childrenFeatures;
 	}
@@ -194,12 +194,12 @@ public class DiagramExpansionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DiagramExpansion.class)) {
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__ID:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -219,13 +219,13 @@ public class DiagramExpansionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__USAGES,
-				 ExpansionmodelFactory.eINSTANCE.createUseContext()));
+				(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__USAGES,
+				 ExpansionModelFactory.eINSTANCE.createUseContext()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES,
-				 ExpansionmodelFactory.eINSTANCE.createGraphicalElementLibrary()));
+				(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES,
+				 ExpansionModelFactory.eINSTANCE.createGraphicalElementLibrary()));
 	}
 
 	/**

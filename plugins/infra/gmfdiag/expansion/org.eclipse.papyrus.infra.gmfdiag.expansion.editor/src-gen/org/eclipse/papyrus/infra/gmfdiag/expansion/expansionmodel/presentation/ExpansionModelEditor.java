@@ -164,20 +164,24 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpansionmodelItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpansionModelItemProviderAdapterFactory;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpandModelEditorPlugin;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+
+import org.eclipse.papyrus.infra.gmfdiag.expansion.presentation.ExpandModelEditor;
+
+import org.eclipse.papyrus.infra.types.provider.ElementTypesConfigurationsItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
- * This is an example of a Expansionmodel model editor.
+ * This is an example of a ExpansionModel model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExpansionmodelEditor
+public class ExpansionModelEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -339,18 +343,18 @@ public class ExpansionmodelEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(ExpansionmodelEditor.this);
+						getActionBarContributor().setActiveEditor(ExpansionModelEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(ExpansionmodelEditor.this);
+						getActionBarContributor().setActiveEditor(ExpansionModelEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == ExpansionmodelEditor.this) {
+				else if (p == ExpansionModelEditor.this) {
 					handleActivate();
 				}
 			}
@@ -416,6 +420,8 @@ public class ExpansionmodelEditor
 	 */
 	protected EContentAdapter problemIndicationAdapter =
 		new EContentAdapter() {
+			protected boolean dispatching;
+
 			@Override
 			public void notifyChanged(Notification notification) {
 				if (notification.getNotifier() instanceof Resource) {
@@ -431,21 +437,26 @@ public class ExpansionmodelEditor
 							else {
 								resourceToDiagnosticMap.remove(resource);
 							}
-
-							if (updateProblemIndication) {
-								getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										 public void run() {
-											 updateProblemIndication();
-										 }
-									 });
-							}
+							dispatchUpdateProblemIndication();
 							break;
 						}
 					}
 				}
 				else {
 					super.notifyChanged(notification);
+				}
+			}
+
+			protected void dispatchUpdateProblemIndication() {
+				if (updateProblemIndication && !dispatching) {
+					dispatching = true;
+					getSite().getShell().getDisplay().asyncExec
+						(new Runnable() {
+							 public void run() {
+								 dispatching = false;
+								 updateProblemIndication();
+							 }
+						 });
 				}
 			}
 
@@ -458,14 +469,7 @@ public class ExpansionmodelEditor
 			protected void unsetTarget(Resource target) {
 				basicUnsetTarget(target);
 				resourceToDiagnosticMap.remove(target);
-				if (updateProblemIndication) {
-					getSite().getShell().getDisplay().asyncExec
-						(new Runnable() {
-							 public void run() {
-								 updateProblemIndication();
-							 }
-						 });
-				}
+				dispatchUpdateProblemIndication();
 			}
 		};
 
@@ -523,7 +527,7 @@ public class ExpansionmodelEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(ExpansionmodelEditor.this, false);
+										 getSite().getPage().closeEditor(ExpansionModelEditor.this, false);
 									 }
 								 }
 							 });
@@ -534,7 +538,7 @@ public class ExpansionmodelEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == ExpansionmodelEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == ExpansionModelEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -542,7 +546,7 @@ public class ExpansionmodelEditor
 					}
 				}
 				catch (CoreException exception) {
-					ExpandModelEditorPlugin.INSTANCE.log(exception);
+					ExpandModelEditor.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -566,7 +570,7 @@ public class ExpansionmodelEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(ExpansionmodelEditor.this, false);
+				getSite().getPage().closeEditor(ExpansionModelEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -658,19 +662,16 @@ public class ExpansionmodelEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					ExpandModelEditorPlugin.INSTANCE.log(exception);
+					ExpandModelEditor.INSTANCE.log(exception);
 				}
 			}
 
 			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
-				markerHelper.deleteMarkers(editingDomain.getResourceSet());
-				if (diagnostic.getSeverity() != Diagnostic.OK) {
-					try {
-						markerHelper.createMarkers(diagnostic);
-					}
-					catch (CoreException exception) {
-						ExpandModelEditorPlugin.INSTANCE.log(exception);
-					}
+				try {
+					markerHelper.updateMarkers(diagnostic);
+				}
+				catch (CoreException exception) {
+					ExpandModelEditor.INSTANCE.log(exception);
 				}
 			}
 		}
@@ -696,7 +697,7 @@ public class ExpansionmodelEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelEditor() {
+	public ExpansionModelEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -713,7 +714,9 @@ public class ExpansionmodelEditor
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ExpansionmodelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ExpansionModelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ElementTypesConfigurationsItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -1034,7 +1037,7 @@ public class ExpansionmodelEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), ExpansionmodelEditor.this) {
+					new ViewerPane(getSite().getPage(), ExpansionModelEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1051,6 +1054,7 @@ public class ExpansionmodelEditor
 
 				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				selectionViewer.setUseHashlookup(true);
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
@@ -1068,7 +1072,7 @@ public class ExpansionmodelEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), ExpansionmodelEditor.this) {
+					new ViewerPane(getSite().getPage(), ExpansionModelEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							Tree tree = new Tree(composite, SWT.MULTI);
@@ -1097,7 +1101,7 @@ public class ExpansionmodelEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), ExpansionmodelEditor.this) {
+					new ViewerPane(getSite().getPage(), ExpansionModelEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new ListViewer(composite);
@@ -1122,7 +1126,7 @@ public class ExpansionmodelEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), ExpansionmodelEditor.this) {
+					new ViewerPane(getSite().getPage(), ExpansionModelEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1149,7 +1153,7 @@ public class ExpansionmodelEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), ExpansionmodelEditor.this) {
+					new ViewerPane(getSite().getPage(), ExpansionModelEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TableViewer(composite);
@@ -1192,7 +1196,7 @@ public class ExpansionmodelEditor
 			//
 			{
 				ViewerPane viewerPane =
-					new ViewerPane(getSite().getPage(), ExpansionmodelEditor.this) {
+					new ViewerPane(getSite().getPage(), ExpansionModelEditor.this) {
 						@Override
 						public Viewer createViewer(Composite composite) {
 							return new TreeViewer(composite);
@@ -1356,6 +1360,7 @@ public class ExpansionmodelEditor
 
 					// Set up the tree viewer.
 					//
+					contentOutlineViewer.setUseHashlookup(true);
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
@@ -1412,8 +1417,8 @@ public class ExpansionmodelEditor
 			new ExtendedPropertySheetPage(editingDomain) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					ExpansionmodelEditor.this.setSelectionToViewer(selection);
-					ExpansionmodelEditor.this.setFocus();
+					ExpansionModelEditor.this.setSelectionToViewer(selection);
+					ExpansionModelEditor.this.setFocus();
 				}
 
 				@Override
@@ -1503,7 +1508,9 @@ public class ExpansionmodelEditor
 					// Save the resources to the file system.
 					//
 					boolean first = true;
-					for (Resource resource : editingDomain.getResourceSet().getResources()) {
+					List<Resource> resources = editingDomain.getResourceSet().getResources();
+					for (int i = 0; i < resources.size(); ++i) {
+						Resource resource = resources.get(i);
 						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
 							try {
 								long timeStamp = resource.getTimeStamp();
@@ -1535,7 +1542,7 @@ public class ExpansionmodelEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			ExpandModelEditorPlugin.INSTANCE.log(exception);
+			ExpandModelEditor.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1739,7 +1746,7 @@ public class ExpansionmodelEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return ExpandModelEditorPlugin.INSTANCE.getString(key);
+		return ExpandModelEditor.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1749,7 +1756,7 @@ public class ExpansionmodelEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return ExpandModelEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return ExpandModelEditor.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

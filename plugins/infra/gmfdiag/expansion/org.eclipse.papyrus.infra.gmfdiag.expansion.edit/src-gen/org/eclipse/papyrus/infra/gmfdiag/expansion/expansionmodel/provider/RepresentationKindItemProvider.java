@@ -32,7 +32,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
 
 import org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin;
@@ -92,7 +92,7 @@ public class RepresentationKindItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RepresentationKind_editPartQualifiedName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RepresentationKind_editPartQualifiedName_feature", "_UI_RepresentationKind_type"),
-				 ExpansionmodelPackage.Literals.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME,
+				 ExpansionModelPackage.Literals.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME,
 				 true,
 				 false,
 				 false,
@@ -114,7 +114,7 @@ public class RepresentationKindItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RepresentationKind_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RepresentationKind_name_feature", "_UI_RepresentationKind_type"),
-				 ExpansionmodelPackage.Literals.REPRESENTATION_KIND__NAME,
+				 ExpansionModelPackage.Literals.REPRESENTATION_KIND__NAME,
 				 true,
 				 false,
 				 false,
@@ -136,7 +136,7 @@ public class RepresentationKindItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RepresentationKind_viewFactory_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RepresentationKind_viewFactory_feature", "_UI_RepresentationKind_type"),
-				 ExpansionmodelPackage.Literals.REPRESENTATION_KIND__VIEW_FACTORY,
+				 ExpansionModelPackage.Literals.REPRESENTATION_KIND__VIEW_FACTORY,
 				 true,
 				 false,
 				 false,
@@ -183,9 +183,9 @@ public class RepresentationKindItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RepresentationKind.class)) {
-			case ExpansionmodelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
-			case ExpansionmodelPackage.REPRESENTATION_KIND__NAME:
-			case ExpansionmodelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
+			case ExpansionModelPackage.REPRESENTATION_KIND__EDIT_PART_QUALIFIED_NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__NAME:
+			case ExpansionModelPackage.REPRESENTATION_KIND__VIEW_FACTORY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

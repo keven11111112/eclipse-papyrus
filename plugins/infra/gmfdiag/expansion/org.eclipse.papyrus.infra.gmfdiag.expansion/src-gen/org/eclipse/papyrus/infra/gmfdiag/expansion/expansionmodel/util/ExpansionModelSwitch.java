@@ -29,17 +29,17 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionmodelPackage
+ * @see org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.ExpansionModelPackage
  * @generated
  */
-public class ExpansionmodelSwitch<T> extends Switch<T> {
+public class ExpansionModelSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ExpansionmodelPackage modelPackage;
+	protected static ExpansionModelPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -47,9 +47,9 @@ public class ExpansionmodelSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionmodelSwitch() {
+	public ExpansionModelSwitch() {
 		if (modelPackage == null) {
-			modelPackage = ExpansionmodelPackage.eINSTANCE;
+			modelPackage = ExpansionModelPackage.eINSTANCE;
 		}
 	}
 
@@ -76,45 +76,45 @@ public class ExpansionmodelSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ExpansionmodelPackage.REPRESENTATION: {
+			case ExpansionModelPackage.REPRESENTATION: {
 				Representation representation = (Representation)theEObject;
 				T result = caseRepresentation(representation);
 				if (result == null) result = caseAbstractRepresentation(representation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION: {
+			case ExpansionModelPackage.ABSTRACT_REPRESENTATION: {
 				AbstractRepresentation abstractRepresentation = (AbstractRepresentation)theEObject;
 				T result = caseAbstractRepresentation(abstractRepresentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpansionmodelPackage.REPRESENTATION_KIND: {
+			case ExpansionModelPackage.REPRESENTATION_KIND: {
 				RepresentationKind representationKind = (RepresentationKind)theEObject;
 				T result = caseRepresentationKind(representationKind);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpansionmodelPackage.INDUCED_REPRESENTATION: {
+			case ExpansionModelPackage.INDUCED_REPRESENTATION: {
 				InducedRepresentation inducedRepresentation = (InducedRepresentation)theEObject;
 				T result = caseInducedRepresentation(inducedRepresentation);
 				if (result == null) result = caseAbstractRepresentation(inducedRepresentation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY: {
+			case ExpansionModelPackage.GRAPHICAL_ELEMENT_LIBRARY: {
 				GraphicalElementLibrary graphicalElementLibrary = (GraphicalElementLibrary)theEObject;
 				T result = caseGraphicalElementLibrary(graphicalElementLibrary);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpansionmodelPackage.USE_CONTEXT: {
+			case ExpansionModelPackage.USE_CONTEXT: {
 				UseContext useContext = (UseContext)theEObject;
 				T result = caseUseContext(useContext);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION: {
+			case ExpansionModelPackage.GMFT_BASED_REPRESENTATION: {
 				GMFT_BasedRepresentation gmfT_BasedRepresentation = (GMFT_BasedRepresentation)theEObject;
 				T result = caseGMFT_BasedRepresentation(gmfT_BasedRepresentation);
 				if (result == null) result = caseRepresentation(gmfT_BasedRepresentation);
@@ -122,7 +122,7 @@ public class ExpansionmodelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpansionmodelPackage.DIAGRAM_EXPANSION: {
+			case ExpansionModelPackage.DIAGRAM_EXPANSION: {
 				DiagramExpansion diagramExpansion = (DiagramExpansion)theEObject;
 				T result = caseDiagramExpansion(diagramExpansion);
 				if (result == null) result = defaultCase(theEObject);
@@ -268,4 +268,4 @@ public class ExpansionmodelSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //ExpansionmodelSwitch
+} //ExpansionModelSwitch

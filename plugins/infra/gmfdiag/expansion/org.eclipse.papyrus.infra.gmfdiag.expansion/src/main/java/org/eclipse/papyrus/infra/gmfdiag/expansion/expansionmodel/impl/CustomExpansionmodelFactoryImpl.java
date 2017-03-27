@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.GMFT_BasedRepr
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.InducedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionmodelFactoryImpl;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.ExpansionModelFactoryImpl;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.GMFT_BasedRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.InducedRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.RepresentationImpl;
@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.impl.Represent
  * See Requirement #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061
  *
  */
-public class CustomExpansionmodelFactoryImpl extends ExpansionmodelFactoryImpl {
+public class CustomExpansionmodelFactoryImpl extends ExpansionModelFactoryImpl {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.expansion.impl.ExpansionmodelFactoryImpl#createInducedRepresentation()
