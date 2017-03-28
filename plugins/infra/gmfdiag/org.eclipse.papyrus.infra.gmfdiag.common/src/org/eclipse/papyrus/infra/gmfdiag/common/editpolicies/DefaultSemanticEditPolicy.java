@@ -10,6 +10,7 @@
  *
  *		CEA LIST - Initial API and implementation
  *      Vincent Lorenzo - bug 492522
+ *      Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - bug 514289
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
@@ -24,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -62,7 +64,6 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 *
-	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -154,8 +155,9 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 
 
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (req.getElementType().getEClass() == null) {
-			return getDefaultSemanticCommand(req, req.getElementType());
+		IElementType elementType = req.getElementType();
+		if (elementType != null && elementType.getEClass() == null) {
+			return getDefaultSemanticCommand(req, elementType);
 		} else {
 			return getDefaultSemanticCommand(req);
 		}
@@ -227,7 +229,6 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * Returns editing domain from the host edit part.
 	 *
-	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
