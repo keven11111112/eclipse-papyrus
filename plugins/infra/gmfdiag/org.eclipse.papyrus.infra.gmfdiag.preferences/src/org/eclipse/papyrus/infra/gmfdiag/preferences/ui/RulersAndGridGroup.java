@@ -9,7 +9,7 @@
  * Contributors:
  *
  *	CEA LIST - Initial API and implementation
- *	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 511473
+ *	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 511473, Bug 514300
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
@@ -55,6 +55,11 @@ import com.ibm.icu.text.NumberFormat;
 public class RulersAndGridGroup extends AbstractGroup {
 
 	private int oldUnits = -1;
+
+	/**
+	 * Default value for the Ruler Units
+	 */
+	private static final int DEFAULT_RULERS_UNITS = RulerProvider.UNIT_PIXELS;
 
 	private String RULER_GROUP_LABEL = DiagramUIMessages.GridRulerPreferencePage_rulerGroup_label;
 
@@ -110,11 +115,17 @@ public class RulersAndGridGroup extends AbstractGroup {
 	private ColorFieldEditor gridColorEditor = null;
 
 	/**
+	 * IPreferenceStore corresponding to the preference page.
+	 */
+	private static IPreferenceStore preferenceStore = null;
+
+	/**
 	 *
 	 * @param store
 	 *            the preference store to initialize
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+		preferenceStore = store;
 		// rulers and grid
 		// String defaultCountry = Locale.getDefault().getCountry();
 		// if(defaultCountry == null || defaultCountry.equals(Locale.US.getCountry()) || defaultCountry.equals(Locale.CANADA.getCountry())) {
@@ -122,7 +133,7 @@ public class RulersAndGridGroup extends AbstractGroup {
 		// } else {
 		// store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_CENTIMETERS);
 		// }
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_PIXELS);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), DEFAULT_RULERS_UNITS);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.VIEW_RULER), false);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.VIEW_GRID), true);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_GRID), true);
@@ -330,9 +341,16 @@ public class RulersAndGridGroup extends AbstractGroup {
 		int units = rulerUnits.getComboControl().getSelectionIndex();
 
 		// IF no selection has been made
-		if (units == -1) {
-			// Read the preference store
-			units = 1;// FIXME;
+		if (-1 == units) {
+			if (null != preferenceStore) {
+				units = preferenceStore.getInt(getPreferenceConstant(PreferencesConstantsHelper.RULER_UNITS));
+				// If no preference is stored
+				if (-1 == units) {
+					units = DEFAULT_RULERS_UNITS;
+				}
+			} else {
+				units = DEFAULT_RULERS_UNITS;
+			}
 			oldUnits = units;
 		}
 		return units;
