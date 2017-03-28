@@ -159,14 +159,14 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 
 		return superStatus;
 	}
-	
+
 	/**
 	 * Get the new URI.
 	 * 
 	 * @return The new URI.
-	 * @since 1.5
+	 * @since 2.0
 	 */
-	protected URI getNewURI(){
+	protected URI getNewURI() {
 		return getRequest().getNewURI();
 	}
 

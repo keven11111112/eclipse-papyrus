@@ -27,7 +27,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * The constraint which allow to determinate if this is a nattable editor as current editor part.
  * 
- * @since 2.2
+ * @since 3.0
  */
 public class IsEObjectInTableConstraint extends AbstractConstraint {
 

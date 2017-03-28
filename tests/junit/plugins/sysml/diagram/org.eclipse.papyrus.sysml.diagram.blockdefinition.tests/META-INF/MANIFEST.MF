@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.junit.framework;bundle-version="1.2.0",
- org.eclipse.papyrus.junit.utils;bundle-version="1.2.0",
- org.eclipse.papyrus.sysml.diagram.blockdefinition;bundle-version="1.2.0",
- org.eclipse.papyrus.sysml;bundle-version="1.2.0",
+ org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.junit.utils;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.sysml.diagram.blockdefinition;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.sysml;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="2.0.0",
- org.eclipse.papyrus.sysml.service.types;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.sashwindows.di
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)"
 Export-Package: org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites
 Bundle-Vendor: %providerName
 Bundle-Version: 1.2.0.qualifier

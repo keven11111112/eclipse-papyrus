@@ -4,20 +4,20 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.validation.tests;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
-Require-Bundle: org.eclipse.papyrus.junit.utils;bundle-version="1.2.0",
+Require-Bundle: org.eclipse.papyrus.junit.utils;bundle-version="[2.0.0,3.0.0)",
  org.junit,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.6.0",
- org.eclipse.papyrus.uml.tools;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.validation;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.service.validation;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.uml.service.validation;bundle-version="[2.1.0,3.0.0)",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.7.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.uml2.uml;bundle-version="5.0.0";visibility:=reexport,
- org.eclipse.papyrus.junit.framework;bundle-version="1.2.0",
+ org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.ocl.xtext.completeocl;bundle-version="1.1.0",
  org.eclipse.ocl.pivot.uml;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.validation.tests.staticprofile;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.validation.tests.genvalidation;bundle-version="1.2.0"
+ org.eclipse.papyrus.uml.validation.tests.staticprofile;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.uml.validation.tests.genvalidation;bundle-version="[1.2.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.validation.tests.Activator

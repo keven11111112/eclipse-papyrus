@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.services.navigation,
  org.eclipse.papyrus.infra.services.navigation.provider,
  org.eclipse.papyrus.infra.services.navigation.service
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.widgets;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: Eclipse Modeling Project

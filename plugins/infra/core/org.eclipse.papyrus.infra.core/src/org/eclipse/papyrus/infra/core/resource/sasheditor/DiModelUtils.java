@@ -73,9 +73,10 @@ public class DiModelUtils {
 	/**
 	 * Gets an architecture description element if available in the given model set
 	 * 
-	 * @param modelSet the given model set
+	 * @param modelSet
+	 *            the given model set
 	 * @return an architecture description (can be null)
-	 * @since 2.3
+	 * @since 3.0
 	 */
 	public static ArchitectureDescription getArchitectureDescription(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
@@ -89,16 +90,16 @@ public class DiModelUtils {
 	/**
 	 * Gets an architecture description element if available in the given model set or adds one if not available
 	 * 
-	 * @param modelSet the given model set
+	 * @param modelSet
+	 *            the given model set
 	 * @return an architecture description
-	 * @since 2.3
+	 * @since 3.0
 	 */
 	public static ArchitectureDescription getOrAddArchitectureDescription(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
 		if (resource != null) {
-			ArchitectureDescription description = (ArchitectureDescription) 
-					EcoreUtil.getObjectByType(resource.getContents(), 
-							ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
+			ArchitectureDescription description = (ArchitectureDescription) EcoreUtil.getObjectByType(resource.getContents(),
+					ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION);
 			if (description == null) {
 				description = ArchitectureFactory.eINSTANCE.createArchitectureDescription();
 				resource.getContents().add(description);
@@ -111,9 +112,10 @@ public class DiModelUtils {
 	/**
 	 * Gets an architecture description preferences element if available in the given model set
 	 * 
-	 * @param modelSet the given model set
+	 * @param modelSet
+	 *            the given model set
 	 * @return an architecture description preferences (can be null)
-	 * @since 2.3
+	 * @since 3.0
 	 */
 	public static ArchitectureDescriptionPreferences getArchitectureDescriptionPreferences(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
@@ -127,16 +129,16 @@ public class DiModelUtils {
 	/**
 	 * Gets an architecture description preferences element if available in the given model set
 	 * 
-	 * @param modelSet the given model set
+	 * @param modelSet
+	 *            the given model set
 	 * @return an architecture description preferences (can be null)
-	 * @since 2.3
+	 * @since 3.0
 	 */
 	public static ArchitectureDescriptionPreferences getOrAddArchitectureDescriptionPreferences(ModelSet modelSet) {
 		Resource resource = getDiResource(modelSet);
 		if (resource != null) {
-			ArchitectureDescriptionPreferences preferences = (ArchitectureDescriptionPreferences) 
-					EcoreUtil.getObjectByType(resource.getContents(), 
-							ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+			ArchitectureDescriptionPreferences preferences = (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(resource.getContents(),
+					ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
 			if (preferences == null) {
 				preferences = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionPreferences();
 				resource.getContents().add(preferences);

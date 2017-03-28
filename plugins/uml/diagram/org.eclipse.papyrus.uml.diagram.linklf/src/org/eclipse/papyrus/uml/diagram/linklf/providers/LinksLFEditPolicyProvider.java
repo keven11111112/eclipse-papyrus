@@ -27,13 +27,13 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeNodeAnchorDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.editparts.LinkLFAnchorsDelegatingEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.editparts.LinkLFConnectionNodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.policies.AdjustBorderItemAnchorsEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.policies.AdjustImplicitlyMovedLinksEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.policies.AdjustSyntheticBendpointsEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.linklf.common.LinkLabelPositionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.linklf.common.LinksLFConnectionLabelControlEditPolicy;
 import org.eclipse.papyrus.uml.diagram.linklf.common.Node2ConnectionLabelControlEditPolicy;
@@ -83,10 +83,14 @@ public class LinksLFEditPolicyProvider extends AbstractProvider implements
 		} else if (editPart instanceof INodeEditPart) {
 			installNodeEditPolicies((INodeEditPart) editPart);
 		} else if (graphicalEP instanceof PapyrusLabelEditPart) {
-			installPapyrusLabelPolicy((PapyrusLabelEditPart)graphicalEP);
+			installPapyrusLabelPolicy((PapyrusLabelEditPart) graphicalEP);
 		}
 	}
 
+	/**
+	 * @since 2.0
+	 * @param linkEP
+	 */
 	protected void installLinkEditPolicies(LinkLFConnectionNodeEditPart linkEP) {
 		linkEP.setLinkLFEnabled(true);
 		linkEP.installEditPolicy(LinksLFConnectionLabelControlEditPolicy.KEY, new LinksLFConnectionLabelControlEditPolicy());

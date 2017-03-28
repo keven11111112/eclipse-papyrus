@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtil
 /**
  * The java constraint to check if the table from the active nattable editor has an object row label configuration.
  * 
- * @since 2.2
+ * @since 3.0
  */
 public class EObjectInTableHasRowObjectLabelConfigurationConstraint extends EObjectInTableJavaConstraint {
 

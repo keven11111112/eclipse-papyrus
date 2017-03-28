@@ -4,7 +4,7 @@ Export-Package: org.eclipse.papyrus.junit.framework.classification,
  org.eclipse.papyrus.junit.framework.classification.tests,
  org.eclipse.papyrus.junit.framework.runner
 Require-Bundle: org.junit;bundle-version="[4.12.0,5.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.tools;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.tools;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.emf.edit;bundle-version="[2.12.0,3.0.0)",
  org.eclipse.ui;bundle-version="[3.107.0,4.0.0)"
 Bundle-Vendor: Eclipse Modeling Project

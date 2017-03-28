@@ -7,11 +7,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
- org.eclipse.papyrus.uml.extensionpoints,
- org.eclipse.papyrus.uml.diagram.common,
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.emf.validation,
- org.eclipse.papyrus.uml.service.validation,
- org.eclipse.papyrus.dsml.validation
+ org.eclipse.papyrus.uml.service.validation;bundle-version="[2.1.0,3.0.0)",
+ org.eclipse.papyrus.dsml.validation;bundle-version="[1.2.0,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -72,7 +72,7 @@ public interface ICustomizedLabelProvider extends ILabelProvider,
 	 * 
 	 * @see org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider#getStyledText(java.lang.Object)
 	 * 
-	 * @since 1.3
+	 * @since 3.0
 	 */
 	@Override
 	default StyledString getStyledText(final Object element) {
@@ -82,7 +82,7 @@ public interface ICustomizedLabelProvider extends ILabelProvider,
 	/**
 	 * Returns the styled text label for the given element.
 	 * 
-	 * @since 1.3
+	 * @since 3.0
 	 */
 	default StyledString getStyledText(final Object element, final ETypedElement eTypedElement) {
 		return new StyledString(getText(element, eTypedElement));

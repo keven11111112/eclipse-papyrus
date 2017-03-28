@@ -857,9 +857,10 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * This allows to delete a resource from the uri.
 	 * 
-	 * @param uri The uri of the resource to delete.
+	 * @param uri
+	 *            The uri of the resource to delete.
 	 * @return <code>true</code> if the resource is deleted, <code>false</code> otherwise.
-	 * @since 2.3
+	 * @since 3.0
 	 */
 	public boolean deleteResource(final URI uri) {
 		boolean result = false;

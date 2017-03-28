@@ -61,7 +61,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="menu:org.eclipse.papyrus.developer.ui.menu?after=org.eclipse.papyrus.developer.ui.menu.separator">
+            locationURI="menu:org.eclipse.ui.main.menu?after=edit">
          <menu
                icon="icons/papyrus.png"
                label="Project management">

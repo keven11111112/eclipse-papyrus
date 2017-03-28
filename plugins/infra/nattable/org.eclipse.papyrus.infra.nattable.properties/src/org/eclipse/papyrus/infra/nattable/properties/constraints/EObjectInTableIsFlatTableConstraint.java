@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 /**
  * The java constraint to check if the table from the active nattable editor is a flat table.
  * 
- * @since 2.2
+ * @since 3.0
  */
 public class EObjectInTableIsFlatTableConstraint extends EObjectInTableJavaConstraint {
 

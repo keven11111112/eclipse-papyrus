@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.services.localizer,
  org.eclipse.papyrus.infra.services.localizer.internal;x-internal:=true,
  org.eclipse.papyrus.infra.services.localizer.util
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)"
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

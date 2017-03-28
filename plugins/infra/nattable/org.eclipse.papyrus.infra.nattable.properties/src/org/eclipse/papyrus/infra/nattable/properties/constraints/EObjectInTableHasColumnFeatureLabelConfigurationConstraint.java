@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtil
 /**
  * The java constraint to check if the table from the active nattable editor has a feature column label configuration.
  * 
- * @since 2.2
+ * @since 3.0
  */
 public class EObjectInTableHasColumnFeatureLabelConfigurationConstraint extends EObjectInTableJavaConstraint {
 

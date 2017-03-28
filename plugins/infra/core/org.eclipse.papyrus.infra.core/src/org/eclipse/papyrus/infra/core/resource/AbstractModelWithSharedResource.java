@@ -48,7 +48,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	/**
 	 * Model kind.
 	 * 
-	 * @since 2.0
+	 * @since 3.0
 	 */
 	protected ModelKind modelKind;
 

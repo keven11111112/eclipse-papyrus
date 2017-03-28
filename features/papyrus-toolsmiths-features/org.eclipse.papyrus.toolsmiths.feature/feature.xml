@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.toolsmiths.feature"
       label="Papyrus Toolsmiths Feature"
-      version="0.0.1.qualifier"
+      version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">

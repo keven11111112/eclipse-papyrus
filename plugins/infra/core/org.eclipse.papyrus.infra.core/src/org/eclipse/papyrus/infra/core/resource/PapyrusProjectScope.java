@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
  * This papyrus scope for the papyrus project preference store.
  * This need to manage the preference for the papyrus project with the papyrus project name (to retrieve the correct name).
  * 
- * @since 2.2
+ * @since 3.0
  */
 @SuppressWarnings("restriction")
 public class PapyrusProjectScope extends AbstractScope {
@@ -55,11 +55,12 @@ public class PapyrusProjectScope extends AbstractScope {
 		this.context = project;
 		this.papyrusProjectName = papyrusProjectName;
 	}
-	
+
 	/**
 	 * Default path hierarchy for nodes is /<scope>/<qualifier>.
 	 * 
-	 * @param qualifier The qualifier.
+	 * @param qualifier
+	 *            The qualifier.
 	 * @return The path hierarchy.
 	 */
 	@Override
@@ -92,11 +93,12 @@ public class PapyrusProjectScope extends AbstractScope {
 		// This must not be save
 		return null;
 	}
-	
+
 	/**
 	 * This allows to determinate if the object in parameter is equals to the current.
 	 * 
-	 * @param obj The object to compare.
+	 * @param obj
+	 *            The object to compare.
 	 * @return <code>true</code> if this is equals, <code>false</code> otherwise.
 	 */
 	@Override

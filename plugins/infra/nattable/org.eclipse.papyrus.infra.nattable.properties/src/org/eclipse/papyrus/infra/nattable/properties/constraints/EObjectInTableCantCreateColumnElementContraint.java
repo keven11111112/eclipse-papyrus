@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 /**
  * The java constraint to define the constraint to not create the paste properties from the active nattable editor.
  * 
- * @since 2.2
+ * @since 3.0
  */
 public class EObjectInTableCantCreateColumnElementContraint extends EObjectInTableCanCreateColumnElementContraint {
 

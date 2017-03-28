@@ -12,11 +12,11 @@ Export-Package: org.eclipse.papyrus.infra.editor.welcome,
  org.eclipse.papyrus.infra.editor.welcome.util
 Require-Bundle: org.eclipse.uml2.types;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.uml2.common;bundle-version="[2.1.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.properties.ui;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy;exclude:="org.eclipse.papyrus.infra.editor.welcome.internal.constraints"
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Name: %pluginName

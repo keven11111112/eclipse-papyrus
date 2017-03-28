@@ -14,10 +14,10 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)";visibil
  org.eclipse.ui;bundle-version="[3.107.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.forms;bundle-version="[3.7.0,4.0.0)";visibility:=reexport,
  org.eclipse.draw2d;bundle-version="[3.10.0,4.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.tools;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
+ org.eclipse.papyrus.infra.tools;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.widgets.toolbox.Activator

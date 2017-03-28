@@ -24,7 +24,7 @@
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>
 					<product>org.eclipse.sdk.ide</product>
-					If a specific <argLine> is required here, make sure to include JaCoCo parameters (See parent pom, Bug 478170)
+					<!-- If a specific <argLine> is required here, make sure to include JaCoCo parameters (See parent pom, Bug 478170) -->
 					<skipTests>true</skipTests>
 					<testClass>org.eclipse.papyrus.tests.AllTests</testClass>
 				</configuration>

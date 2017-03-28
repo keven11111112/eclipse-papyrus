@@ -36,11 +36,11 @@ import org.osgi.framework.Bundle;
 /**
  * This class extends the EMF ExampleInstallerWizard with respect to three aspects
  * 1. It supports the definition of example models for the same installers in multiple extension points. This is
- *    important, if sample models (of the same category) are provided by different plug-ins.
+ * important, if sample models (of the same category) are provided by different plug-ins.
  * 2. It only copies the selected model
  * 3. It also opens the selected example model, if another editor is already open
  *
- * @since 2.1
+ * @since 3.0
  */
 public class PapyrusExampleInstallerWizard extends ExampleInstallerWizard {
 

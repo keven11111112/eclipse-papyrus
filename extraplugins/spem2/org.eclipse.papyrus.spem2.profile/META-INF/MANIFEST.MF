@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.2.0"
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="[1.2.0,2.0.0)"
 Export-Package: org.eclipse.papyrus.spem2.profile
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy

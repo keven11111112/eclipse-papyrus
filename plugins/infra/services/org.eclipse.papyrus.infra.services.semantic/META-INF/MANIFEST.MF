@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.services.semantic,
  org.eclipse.papyrus.infra.services.semantic.service
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: Semantic Service
 Bundle-Activator: org.eclipse.papyrus.infra.services.semantic.Activator

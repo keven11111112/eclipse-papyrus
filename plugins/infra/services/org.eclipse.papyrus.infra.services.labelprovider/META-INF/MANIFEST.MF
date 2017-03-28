@@ -3,10 +3,10 @@ Export-Package: org.eclipse.papyrus.infra.services.labelprovider,
  org.eclipse.papyrus.infra.services.labelprovider.service,
  org.eclipse.papyrus.infra.services.labelprovider.service.impl
 Require-Bundle: org.eclipse.ui;bundle-version="[3.107.0,4.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
+ org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.1.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: LabelProvider service
 Bundle-Activator: org.eclipse.papyrus.infra.services.labelprovider.Activator

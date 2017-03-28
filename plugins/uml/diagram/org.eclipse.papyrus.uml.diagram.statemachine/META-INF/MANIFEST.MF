@@ -34,7 +34,7 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12
  org.eclipse.ocl.ecore;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.papyrus.editor;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.preferences;visibility:=reexport;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.uml.appearance;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.uml.appearance;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.diagram.navigation;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.service.types;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.hyperlink;bundle-version="[3.0.0,4.0.0)",
@@ -49,11 +49,11 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.gmf.runtime.emf.ui.properties,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.uml.diagram.common,
- org.eclipse.papyrus.infra.gmfdiag.common,
- org.eclipse.papyrus.infra.widgets,
- org.eclipse.papyrus.infra.ui,
- org.eclipse.papyrus.infra.core.sashwindows.di,
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.widgets;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.gmf.runtime.diagram.ui.providers,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
@@ -61,10 +61,10 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12
  org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef,
- org.eclipse.papyrus.extensionpoints.editors,
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;visibility:=reexport
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;visibility:=reexport;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Ant-Version: Apache Ant 1.7.0
 Eclipse-LazyStart: true

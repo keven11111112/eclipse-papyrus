@@ -3,12 +3,12 @@ Export-Package: org.eclipse.papyrus.infra.services.resourceloading,
  org.eclipse.papyrus.infra.services.resourceloading.impl;x-internal:=true,
  org.eclipse.papyrus.infra.services.resourceloading.strategies,
  org.eclipse.papyrus.infra.services.resourceloading.util
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.services.controlmode.history;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)"
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.services.controlmode.history;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.resourceloading.Activator

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[2.0.0,3.0.0)"
+Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[2.1.0,3.0.0)"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: Papyrus Theme

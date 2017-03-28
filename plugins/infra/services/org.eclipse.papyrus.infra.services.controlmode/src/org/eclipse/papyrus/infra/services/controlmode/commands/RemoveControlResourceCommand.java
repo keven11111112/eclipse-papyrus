@@ -143,14 +143,14 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 
 		return superStatus;
 	}
-	
+
 	/**
 	 * Get the source resource.
 	 * 
 	 * @return The source resource.
-	 * @since 1.5
+	 * @since 2.0
 	 */
-	protected Resource getSourceResource(){
+	protected Resource getSourceResource() {
 		return getRequest().getSourceResource(getFileExtension());
 	}
 

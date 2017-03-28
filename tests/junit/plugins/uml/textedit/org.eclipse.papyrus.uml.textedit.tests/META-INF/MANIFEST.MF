@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.emf.ecore;bundle-version="2.11.0",
  org.eclipse.uml2.uml;bundle-version="5.0.0",
  org.eclipse.gmf.runtime.common.ui.services;bundle-version="1.7.0",
  org.eclipse.gmf.runtime.emf.core;bundle-version="1.7.0",
- org.eclipse.papyrus.junit.framework;bundle-version="1.2.0",
+ org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
  org.junit;bundle-version="4.11.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.2.0",
- org.eclipse.papyrus.junit.utils;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.junit.utils;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)"
 Export-Package: org.eclipse.papyrus.uml.textedit.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy

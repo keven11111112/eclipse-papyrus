@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.core.internal.clipboard.CopierFactory;
  * operations in Papyrus. Extensions are registered on the
  * {@code org.eclipse.papyrus.infra.core.copier} extension point.
  * 
- * @since 2.2
+ * @since 3.0
  * 
  * @see EcoreUtil.Copier
  */

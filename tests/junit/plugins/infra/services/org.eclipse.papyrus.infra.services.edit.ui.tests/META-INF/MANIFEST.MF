@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.junit.framework;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.edit.ui;bundle-version="1.2.0",
+ org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.services.edit.ui;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.uml2.uml;bundle-version="5.0.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.7.0",
- org.eclipse.papyrus.infra.services.edit.tests;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.services.edit.tests;bundle-version="[1.2.0,2.0.0)"
 Export-Package: org.eclipse.papyrus.infra.services.edit.ui.dialogs.tests,
  org.eclipse.papyrus.infra.services.edit.ui.tests
 Bundle-Vendor: %providerName

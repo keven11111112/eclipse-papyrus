@@ -99,13 +99,16 @@ public class AdjunctResourceModelSnippet implements IModelSnippet {
 	/**
 	 * This allows to load the model.
 	 * 
-	 * @param model The {@link EMFLogicalModel}.
-	 * @param resourceSet The resource set.
-	 * @param adjunctURI The adjunct URI.
+	 * @param model
+	 *            The {@link EMFLogicalModel}.
+	 * @param resourceSet
+	 *            The resource set.
+	 * @param adjunctURI
+	 *            The adjunct URI.
 	 * 
-	 * @since 2.3
+	 * @since 3.0
 	 */
-	protected void loadResource(final EMFLogicalModel model, final ResourceSet resourceSet, final URI adjunctURI){
+	protected void loadResource(final EMFLogicalModel model, final ResourceSet resourceSet, final URI adjunctURI) {
 		try {
 			resourceSet.getResource(adjunctURI, true);
 		} catch (final Exception e) {
@@ -114,5 +117,5 @@ public class AdjunctResourceModelSnippet implements IModelSnippet {
 					e);
 		}
 	}
-	
+
 }

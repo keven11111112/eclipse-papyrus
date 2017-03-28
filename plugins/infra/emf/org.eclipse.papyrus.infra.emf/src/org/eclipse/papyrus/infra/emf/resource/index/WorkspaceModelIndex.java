@@ -536,7 +536,7 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 		 *            a file proposed for indexing
 		 * @return whether the file should be indexed
 		 *
-		 * @since 2.1
+		 * @since 3.0
 		 */
 		default boolean shouldIndex(IFile file) {
 			return true;
