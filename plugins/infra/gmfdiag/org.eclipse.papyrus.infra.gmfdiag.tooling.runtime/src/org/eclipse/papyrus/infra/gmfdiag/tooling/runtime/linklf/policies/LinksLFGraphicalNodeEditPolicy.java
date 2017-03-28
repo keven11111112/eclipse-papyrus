@@ -29,8 +29,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
@@ -205,9 +205,9 @@ public class LinksLFGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 			INodeEditPart sourceEP = (INodeEditPart) request
 					.getSourceEditPart();
-			NodeFigure sourceFigure = (NodeFigure) sourceEP.getFigure();
-			NodeFigure targetFigure = (NodeFigure) targetEP.getFigure();
-
+			IAnchorableFigure sourceFigure = (IAnchorableFigure) sourceEP.getFigure();
+			IAnchorableFigure targetFigure = (IAnchorableFigure) targetEP.getFigure();
+			
 			ConnectionAnchor updatedSourceAnchor = sourceFigure
 					.getSourceConnectionAnchorAt(updatedSourceLoc);
 			ConnectionAnchor updatedTargetAnchor = targetFigure
@@ -283,7 +283,7 @@ public class LinksLFGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return createCommand;
 	}
 
-	private static abstract class GetAnchorAndBendpoints {
+	private abstract static class GetAnchorAndBendpoints {
 		private PointList myBendpointsHint;
 
 		protected abstract ConnectionAnchor doGetConnectionAnchor(

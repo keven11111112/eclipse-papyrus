@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl,
  org.eclipse.ocl.ecore,
  org.eclipse.gmf.runtime.notation,
- org.eclipse.gmf.runtime.diagram.ui.render
+ org.eclipse.gmf.runtime.diagram.ui.render,
+ org.eclipse.gmf.runtime.draw2d.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.GMFToolingRuntimePlugin
