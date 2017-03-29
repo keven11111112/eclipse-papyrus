@@ -13,7 +13,7 @@
 		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/papyrus/org.eclipse.papyrus</tycho.scmUrl>
 		<jarSignerVersion>1.1.2</jarSignerVersion>
 		<findbugs.version>3.0.1</findbugs.version>
-		<xtext.version>2.7.3</xtext.version>
+		<xtext.version>2.11.0</xtext.version>
 		<java.source.version>1.8</java.source.version>
 		<java.target.version>1.8</java.target.version>
 		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>

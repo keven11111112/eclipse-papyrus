@@ -2,66 +2,15 @@ target "Papyrus Extra" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
-//updateFrom("EMF COMPARE",0) 
-
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201701271543" {
-	org.eclipse.emf.compare.diagram.gmf.source.feature.group
-	org.eclipse.emf.compare.source.feature.group
-	org.eclipse.emf.compare.uml2.source.feature.group
-}
-
-//updateFrom("EMF CDO",0) 
-
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20170131-0606" {
-	org.eclipse.net4j.feature.group
-	org.eclipse.emf.cdo.server.feature.group
-	org.eclipse.emf.cdo.dawn.feature.group
-	org.eclipse.emf.cdo.feature.group
-	org.eclipse.emf.cdo.server.db.feature.group
-}
 
 //updateFrom("M2T ACCELEO",0) 
 
-location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.7/S201701271332" {
+location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.7/S201703131646" {
 	org.eclipse.acceleo.runtime.source.feature.group
 	org.eclipse.acceleo.source.feature.group
 	org.eclipse.acceleo.query.source.feature.group
 	org.eclipse.acceleo.sdk.feature.group
 }
-
-//manualUpdate 
-
-location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
-	org.eclipse.upr.utp.feature.feature.group
-}
-
-//manualUpdate 
-
-location rmf "http://download.eclipse.org/rmf/updates/releases" {
-	org.eclipse.rmf.reqif10.sdk.feature.feature.group
-	org.eclipse.rmf.reqif10.pror.sdk.feature.feature.group
-}
-
-//manualUpdate
-
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20170307180635/repository" {
-	org.apache.commons.io
-	org.apache.commons.io.source
-}
-
-
-//updateFrom("Extended Editing Framework (EEF)",0) 
-
-location eef "http://download.eclipse.org/modeling/emft/eef/updates/releases/1.5/R201601141612/" {
-	org.eclipse.emf.eef.sdk-feature.feature.group
-}
-
-//updateFrom("GEF",0) 
-
-location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952" {
-	org.eclipse.zest.layouts
-}
-
 
 //updateFrom("GMF Tooling",0) 
 
@@ -70,15 +19,3 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 	org.eclipse.gmf.tooling.runtime.feature.group
 	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
 }
-
-
-//Transitive dependencies
-//Graphiti->emf.cdo.dawn, Sphinx->rmf.reqif10
-
-//updateFrom("Graphiti",0)
-
-location graphiti "http://download.eclipse.org/graphiti/updates/milestones/S-0.14.0M5-201701312008/" //
-
-//updateFrom("Sphinx",0)
-
-location sphinx "http://download.eclipse.org/sphinx/previews" //

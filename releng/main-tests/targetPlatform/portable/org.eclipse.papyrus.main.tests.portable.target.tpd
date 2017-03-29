@@ -1,4 +1,16 @@
 target "Papyrus Tests" with source requirements
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
-include "../../../dev/targetPlatform/portable/org.eclipse.papyrus.dev.portable.target.tpd"
+
+
+//updateFrom("GMF Tooling",0) 
+
+location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
+	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
+}
+
+//manualUpdate (org.eclipse.papyrus.tests.feature -> oep.tests.framework) 
+
+location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
+	org.eclipse.upr.utp.feature.feature.group
+}

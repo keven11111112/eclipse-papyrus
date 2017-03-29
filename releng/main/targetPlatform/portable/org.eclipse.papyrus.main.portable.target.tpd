@@ -3,13 +3,13 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201702010226" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201703131617" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
 //updateFrom("EMF TRANSACTION",0)
 
-location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases" {
+location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201703131630" {
 	org.eclipse.emf.transaction.sdk.feature.group
 }
 
@@ -22,7 +22,7 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 
 //manualUpdate
 
-location nebula "http://download.eclipse.org/nebula/releases/1.1.0/" {
+location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
 	org.eclipse.nebula.widgets.richtext.feature.feature.group
 }
 
@@ -34,19 +34,19 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestone
 
 //updateFrom("GMF Runtime",0) 
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201703131642" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M5-201701261030/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M6-201703082000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201701301050" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201703130743" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -57,9 +57,9 @@ location xwt "http://download.eclipse.org/xwt/release-1.2.0" {
 	org.eclipse.xwt.feature.feature.group
 }
 
-//updateFrom("Xtext, Xtend",0) 
+//updateFrom("Xtext, Xtend",0)
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.11.0/" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -86,7 +86,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M4-20161213000057/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M6-20170314000054/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 
@@ -98,13 +98,13 @@ location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-
 
 //updateFrom("EMF VALIDATION",0)
 
-location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases" {
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201703131631" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
 //updateFrom("GMF Notation",0)
 
-location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases" {
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201703131640" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
@@ -116,7 +116,7 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestone
 
 //updateFrom("EMF Query",0) 
 
-location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases" {
+location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/milestones/S201703131629" {
 	org.eclipse.emf.query.sdk.feature.group
 }
 
@@ -128,13 +128,7 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //manualUpdate (Needed by infra.tools and other plugins)
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20170307180635/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/S-builds/S20170306214312/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
 }
-
-//Transitive dependencies
-
-//updateFrom("Mylyn",0)
-
-location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20170124-1946"

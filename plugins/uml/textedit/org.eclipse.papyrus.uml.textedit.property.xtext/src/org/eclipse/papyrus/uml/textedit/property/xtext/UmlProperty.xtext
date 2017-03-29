@@ -85,8 +85,8 @@ IntValue : literalInteger = INT;
 StringValue : literalString = STRING;
 
 enum BooleanLiterals:
-	true = "true" |
-	false = "false"
+	TRUE = "true" |
+	FALSE = "false"
 ;
 
 BooleanValue : literalBoolean = BooleanLiterals;
