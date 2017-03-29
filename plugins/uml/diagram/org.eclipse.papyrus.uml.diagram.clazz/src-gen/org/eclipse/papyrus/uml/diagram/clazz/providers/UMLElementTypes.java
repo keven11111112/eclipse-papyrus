@@ -446,6 +446,31 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType AssociationCompositeDirected_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AssociationCompositeDirected_Edge"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType AssociationComposite_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AssociationComposite_Edge"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType AssociationDirected_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AssociationDirected_Edge"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType AssociationSharedDirected_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AssociationSharedDirected_Edge"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType AssociationShared_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AssociationShared_Edge"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
 	public static final IElementType Association_Edge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Association_Edge"); //$NON-NLS-1$
 	/**
@@ -757,7 +782,17 @@ public class UMLElementTypes {
 			elements.put(Component_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getComponent());
 
 			elements.put(AssociationClass_Edge, UMLPackage.eINSTANCE.getAssociationClass());
+			
+			elements.put(AssociationCompositeDirected_Edge, UMLPackage.eINSTANCE.getAssociation());
+			
+			elements.put(AssociationComposite_Edge, UMLPackage.eINSTANCE.getAssociation());
 
+			elements.put(AssociationDirected_Edge, UMLPackage.eINSTANCE.getAssociation());
+			
+			elements.put(AssociationSharedDirected_Edge, UMLPackage.eINSTANCE.getAssociation());
+			
+			elements.put(AssociationShared_Edge, UMLPackage.eINSTANCE.getAssociation());
+			
 			elements.put(Association_Edge, UMLPackage.eINSTANCE.getAssociation());
 
 			elements.put(Association_BranchEdge, UMLPackage.eINSTANCE.getAssociation());
@@ -898,6 +933,11 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Component_ComponentNestedClassifierLabel);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_TetherEdge);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_Edge);
+			KNOWN_ELEMENT_TYPES.add(AssociationCompositeDirected_Edge);
+			KNOWN_ELEMENT_TYPES.add(AssociationComposite_Edge);
+			KNOWN_ELEMENT_TYPES.add(AssociationDirected_Edge);
+			KNOWN_ELEMENT_TYPES.add(AssociationSharedDirected_Edge);
+			KNOWN_ELEMENT_TYPES.add(AssociationShared_Edge);
 			KNOWN_ELEMENT_TYPES.add(Association_Edge);
 			KNOWN_ELEMENT_TYPES.add(Association_BranchEdge);
 			KNOWN_ELEMENT_TYPES.add(Generalization_Edge);

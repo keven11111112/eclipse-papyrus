@@ -18,6 +18,12 @@ package org.eclipse.papyrus.uml.service.types.tests.suites;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.eclipse.papyrus.uml.service.types.tests.creation.ConnectorReadOnlyTestBug465899;
+import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationCompositeDirectedTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationCompositeTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationDirectedTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationSharedDirectedTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationSharedTest;
+import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreatePureUMLElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteCommentLinkTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteContainmentSubsetTest;
@@ -40,7 +46,13 @@ import org.junit.runners.Suite.SuiteClasses;
 		DeleteTransitionsWithVertexTest.class,
 		DeleteContainmentSubsetTest.class,
 		ConnectorReadOnlyTestBug465899.class,
-		DeleteCommentLinkTest.class
+		DeleteCommentLinkTest.class,
+		CreateAssociationTest.class,
+		CreateAssociationDirectedTest.class,
+		CreateAssociationCompositeTest.class,
+		CreateAssociationCompositeDirectedTest.class,
+		CreateAssociationSharedTest.class,
+		CreateAssociationSharedDirectedTest.class,
 })
 public class AllTests {
 	// JUnit 4 Test Suite

@@ -272,6 +272,16 @@ public class Messages extends NLS {
 	public static String Edges2Group_desc;
 
 	/**
+	* @generated
+	*/
+	public static String Associations2Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Associations2Group_desc;
+
+	/**
 	 * @generated
 	 */
 	public static String Class1CreationTool_title;
@@ -542,18 +552,8 @@ public class Messages extends NLS {
 	public static String Abstraction1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String Association2CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Association2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String AssociationBranch3CreationTool_title;
 
 	/**
@@ -662,8 +662,8 @@ public class Messages extends NLS {
 	public static String InstanceSpecificationLinkCreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InterfaceRealization14CreationTool_title;
 
 	/**
@@ -750,6 +750,46 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String Usage22CreationTool_desc;
+
+	/**
+	* @generated
+	*/
+	public static String DirectedAssociation1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DirectedAssociation1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Association2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Association2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DirectedCompositeAssociation3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DirectedCompositeAssociation3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DirectedSharedAssociation5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DirectedSharedAssociation5CreationTool_desc;
 
 	/**
 	 * @generated

@@ -786,16 +786,6 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an Association"
-				      id="clazz.tool.association"
-				      kind="tool"
-				      label="Association"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
-				</entry>
-				<entry
-				      defineOnly="true"
 				      description="Create an Association Branch"
 				      id="clazz.tool.associationbranch"
 				      kind="tool"
@@ -994,6 +984,46 @@
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
 				</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a Directed Association"
+				      id="clazz.tool.associationdirected"
+				      kind="tool"
+				      label="Association (Directed)"
+				      large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_none_directed.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_none_directed.gif">
+				</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create an Association"
+				      id="clazz.tool.association"
+				      kind="tool"
+				      label="Association"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+				</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a Directed composite Association"
+				      id="clazz.tool.associationcompositedirected"
+				      kind="tool"
+				      label="Composite Association (Directed)"
+				      large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_composite_directed.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_composite_directed.gif">
+				</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a Directed Shared Association"
+				      id="clazz.tool.associationshareddirected"
+				      kind="tool"
+				      label="Shared Association (Directed)"
+				      large_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_shared_directed.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_shared_directed.gif">
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -1147,10 +1177,6 @@
 				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="clazz.tool.association"
-				path="/clazz.group.relationships">
-		  </predefinedEntry>
-		<predefinedEntry
 		        id="clazz.tool.associationbranch"
 				path="/clazz.group.relationships">
 		  </predefinedEntry>
@@ -1229,6 +1255,42 @@
 		<predefinedEntry
 		        id="clazz.tool.usage"
 				path="/clazz.group.relationships">
+		  </predefinedEntry>
+		<entry
+		      description="Associations"
+		      id="clazz.group.relationships.associations"
+		      kind="stack"
+		      label="Associations"
+		      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+		      path="/clazz.group.relationships"
+		      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
+		<predefinedEntry
+		        id="clazz.tool.associationdirected"
+				path="/clazz.group.relationships/clazz.group.relationships.associations">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="clazz.tool.association"
+				path="/clazz.group.relationships/clazz.group.relationships.associations">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="clazz.tool.associationcompositedirected"
+				path="/clazz.group.relationships/clazz.group.relationships.associations">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="clazz.tool.associationcomposite"
+				path="/clazz.group.relationships/clazz.group.relationships.associations">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="clazz.tool.associationshareddirected"
+				path="/clazz.group.relationships/clazz.group.relationships.associations">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="clazz.tool.associationshared"
+				path="/clazz.group.relationships/clazz.group.relationships.associations">
 		  </predefinedEntry>
 		</contribution>
 		<editor id="org.eclipse.papyrus.uml.diagram.clazz"/>

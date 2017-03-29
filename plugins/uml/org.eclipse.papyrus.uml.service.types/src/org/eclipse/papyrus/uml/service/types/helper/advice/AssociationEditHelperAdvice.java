@@ -121,6 +121,26 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		return targetProperty;
 	}
 
+	/**
+	 * This method has to be specialized by subclasses (AggregationKind).
+	 *
+	 * @param sourceProperty
+	 *            The property to configure.
+	 */
+	protected void configureSourceProperty(Property sourceProperty) {
+		// do nothing
+	}
+
+	/**
+	 * This method has to be specialized by subclasses (AggregationKind).
+	 *
+	 * @param targetProperty
+	 *            The property to configure.
+	 */
+	protected void configureTargetProperty(Property targetProperty) {
+		// do nothing
+	}
+
 
 	/**
 	 * Add the source {@link Property} in the correct container.
@@ -135,12 +155,13 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	 *            the association
 	 * @throws UnsupportedOperationException
 	 */
-	protected void addSourceInModel(final Property sourceEnd, Classifier owner, Classifier targetType, Association association) throws UnsupportedOperationException {
+	protected void addSourceInModel(Property sourceEnd, Classifier owner, Classifier targetType, Association association) throws UnsupportedOperationException {
 		boolean added = ClassifierUtils.addOwnedAttribute(owner, sourceEnd);
 
 		if (!added) {
 			association.getOwnedEnds().add(sourceEnd);
 		}
+		sourceEnd.setIsNavigable(false);
 	}
 
 	/**
@@ -162,6 +183,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		if (!added) {
 			association.getOwnedEnds().add(targetEnd);
 		}
+		targetEnd.setIsNavigable(false);
 	}
 
 	/**
@@ -196,7 +218,8 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 				// Create source and target ends
 				Property sourceEnd = createSourceProperty(targetType);
 				Property targetEnd = createTargetProperty(sourceType);
-
+				configureSourceProperty(sourceEnd);
+				configureTargetProperty(targetEnd);
 				// Add association ends references
 				association.getMemberEnds().add(sourceEnd);
 				association.getMemberEnds().add(targetEnd);
@@ -232,7 +255,8 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
 
 		List<EObject> dependentsToKeep = (req.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.DEPENDENTS_TO_KEEP) != null)
-				? (List<EObject>) req.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.DEPENDENTS_TO_KEEP) : new ArrayList<EObject>();
+				? (List<EObject>) req.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.DEPENDENTS_TO_KEEP)
+				: new ArrayList<EObject>();
 
 		Association association = (Association) req.getElementToDestroy();
 		for (Property end : association.getMemberEnds()) {

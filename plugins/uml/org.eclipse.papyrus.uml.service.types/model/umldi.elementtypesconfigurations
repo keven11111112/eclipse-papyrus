@@ -507,6 +507,10 @@
     <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif" xmi:id="_sWw64Nx2EeWVxMf7SXAfhg"/>
     
   <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_f8dpoFYTEeSx49G4xBUj9Q" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
+  <elementTypeConfigurations hint="Association_Edge" identifier="org.eclipse.papyrus.umldi.AssociationDirected_Edge" name="AssociationDirected Edge" xmi:id="_Re1vQBR_EeeYdIsxYO_sHQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.papyrus.uml.service.types" iconPath="/icons/Association_none_directed.gif" xmi:id="_Re1vQRR_EeeYdIsxYO_sHQ"/>
+    
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Q2GJgBRZEeeYdIsxYO_sHQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations hint="Association_Shape" identifier="org.eclipse.papyrus.umldi.Association_Shape" name="Association Shape" xmi:id="_eu4bVtx0EeWVxMf7SXAfhg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif" xmi:id="_r4u7ENx2EeWVxMf7SXAfhg"/>
     
@@ -515,6 +519,22 @@
     <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif" xmi:id="_r8YE8Nx2EeWVxMf7SXAfhg"/>
     
   <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_f8dpoFYTEeSx49G4xBUj9Q" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
+  <elementTypeConfigurations hint="Association_Edge" identifier="org.eclipse.papyrus.umldi.AssociationComposite_Edge" name="AssociationComposite Edge" xmi:id="_u2LSMhO6EeepH5ph_87ypw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association_composite.gif" xmi:id="_u2LSMxO6EeepH5ph_87ypw"/>
+    
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_kCTAEBOSEeeCzb3BUDUQ7g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
+  <elementTypeConfigurations hint="Association_Edge" identifier="org.eclipse.papyrus.umldi.AssociationCompositeDirected_Edge" name="AssociationCompositeDirected Edge" xmi:id="_Re1vQhR_EeeYdIsxYO_sHQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.papyrus.uml.service.types" iconPath="/icons/Association_composite_directed.gif" xmi:id="_Re1vQxR_EeeYdIsxYO_sHQ"/>
+    
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Q2GJhBRZEeeYdIsxYO_sHQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
+  <elementTypeConfigurations hint="Association_Edge" identifier="org.eclipse.papyrus.umldi.AssociationShared_Edge" name="AssociationShared Edge" xmi:id="_u2LSNBO6EeepH5ph_87ypw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association_shared.gif" xmi:id="_u2LSNRO6EeepH5ph_87ypw"/>
+    
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_aZfn0BRYEeeYdIsxYO_sHQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
+  <elementTypeConfigurations hint="Association_Edge" identifier="org.eclipse.papyrus.umldi.AssociationSharedDirected_Edge" name="AssociationSharedDirected Edge" xmi:id="_Re1vRBR_EeeYdIsxYO_sHQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.papyrus.uml.service.types" iconPath="/icons/Association_shared_directed.gif" xmi:id="_Re1vRRR_EeeYdIsxYO_sHQ"/>
+    
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Q2GJiBRZEeeYdIsxYO_sHQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations hint="BehaviorExecutionSpecification_Shape" identifier="org.eclipse.papyrus.umldi.BehaviorExecutionSpecification_Shape" name="Behavior Execution Specification Shape" xmi:id="_eu4bWtx0EeWVxMf7SXAfhg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/BehaviorExecutionSpecification.gif" xmi:id="_r4zzkNx2EeWVxMf7SXAfhg"/>
     

@@ -270,10 +270,20 @@ public class UMLDIElementTypes extends AbstractElementTypeEnumerator {
 	public static final IHintedType ASSOCIATION_BRANCH_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.Association_BranchEdge"); //$NON-NLS-1$
 
 	public static final IHintedType ASSOCIATION_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.Association_Edge"); //$NON-NLS-1$
+	
+	public static final IHintedType ASSOCIATION_DIRECTED_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.AssociationDirected_Edge"); //$NON-NLS-1$
 
 	public static final IHintedType ASSOCIATION_SHAPE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.Association_Shape"); //$NON-NLS-1$
 
 	public static final IHintedType ASSOCIATION_SHAPE_CN = (IHintedType) getElementType("org.eclipse.papyrus.umldi.Association_Shape_CN"); //$NON-NLS-1$
+	
+	public static final IHintedType ASSOCIATION_COMPOSITE_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.AssociationComposite_Edge"); //$NON-NLS-1$
+	
+	public static final IHintedType ASSOCIATION_COMPOSITE_DIRECTED_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.AssociationCompositeDirected_Edge"); //$NON-NLS-1$
+	
+	public static final IHintedType ASSOCIATION_SHARED_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.AssociationShared_Edge"); //$NON-NLS-1$
+	
+	public static final IHintedType ASSOCIATION_SHARED_DIRECTED_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.AssociationSharedDirected_Edge"); //$NON-NLS-1$
 
 	public static final IHintedType BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.BehaviorExecutionSpecification_Shape"); //$NON-NLS-1$
 

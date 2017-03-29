@@ -142,6 +142,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private final static String CLAZZ_TOOL_ASSOCIATION = "clazz.tool.association";//$NON-NLS-1$
 	/**
+	* @generated
+	*/
+	private final static String CLAZZ_TOOL_ASSOCIATIONDIRECTED = "clazz.tool.associationdirected";//$NON-NLS-1$
+	/**
+	* @generated
+	*/
+	private final static String CLAZZ_TOOL_ASSOCIATIONCOMPOSITEDIRECTED = "clazz.tool.associationcompositedirected";//$NON-NLS-1$
+	/**
+	* @generated
+	*/
+	private final static String CLAZZ_TOOL_ASSOCIATIONSHAREDDIRECTED = "clazz.tool.associationshareddirected";//$NON-NLS-1$
+	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ASSOCIATIONBRANCH = "clazz.tool.associationbranch";//$NON-NLS-1$
@@ -314,9 +326,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if (toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
 			return createAbstraction1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
-			return createAssociation2CreationTool();
-		}
 		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
 			return createAssociationBranch3CreationTool();
 		}
@@ -376,6 +385,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if (toolId.equals(CLAZZ_TOOL_USAGE)) {
 			return createUsage22CreationTool();
+		}
+		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONDIRECTED)) {
+			return createDirectedAssociation1CreationTool();
+		}
+		if (toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
+			return createAssociation2CreationTool();
+		}
+		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONCOMPOSITEDIRECTED)) {
+			return createDirectedCompositeAssociation3CreationTool();
+		}
+		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONSHAREDDIRECTED)) {
+			return createDirectedSharedAssociation5CreationTool();
 		}
 		// default return: null
 		return null;
@@ -702,18 +723,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
-	private Tool createAssociation2CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Association_Edge);
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createAssociationBranch3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Association_BranchEdge);
@@ -722,8 +733,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createAssociationClass4CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.AssociationClass_Edge);
@@ -732,8 +743,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createContainmentLink5CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Element_ContainmentEdge);
@@ -742,8 +753,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createContextLink6CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Constraint_ContextEdge);
@@ -752,8 +763,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createDependency7CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Dependency_Edge);
@@ -762,8 +773,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createDependencyBranch8CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Dependency_BranchEdge);
@@ -772,8 +783,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createElementImport9CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ElementImport_Edge);
@@ -782,8 +793,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createGeneralization10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Generalization_Edge);
@@ -792,8 +803,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createGeneralizationSet11CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.GeneralizationSet_Edge);
@@ -822,8 +833,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createInterfaceRealization14CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.InterfaceRealization_Edge);
@@ -832,8 +843,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createLink15CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.Comment_AnnotatedElementEdge);
@@ -845,8 +856,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createPackageImport16CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.PackageImport_Edge);
@@ -855,8 +866,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createPackageMerge17CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.PackageMerge_Edge);
@@ -865,8 +876,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createProfileApplication18CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ProfileApplication_Edge);
@@ -875,8 +886,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createRealization19CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Realization_Edge);
@@ -885,8 +896,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createSubstitution20CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Substitution_Edge);
@@ -895,8 +906,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createTemplateBinding21CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TemplateBinding_Edge);
@@ -905,11 +916,51 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Tool createUsage22CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Usage_Edge);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	* @generated
+	*/
+	private Tool createDirectedAssociation1CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.AssociationDirected_Edge);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	* @generated
+	*/
+	private Tool createAssociation2CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Association_Edge);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	* @generated
+	*/
+	private Tool createDirectedCompositeAssociation3CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.AssociationCompositeDirected_Edge);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	* @generated
+	*/
+	private Tool createDirectedSharedAssociation5CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.AssociationSharedDirected_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
