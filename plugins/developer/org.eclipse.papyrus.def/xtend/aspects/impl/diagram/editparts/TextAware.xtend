@@ -280,19 +280,9 @@ override getLabelIcon(GenCommonBase it,boolean useElementIcon, GenDiagram diagra
 	«generatedMemberComment»
 	protected org.eclipse.swt.graphics.Image getLabelIcon() {
 		«IF useElementIcon»
-		org.eclipse.emf.ecore.EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
-		}
-	«««	START: PapyrusGenCode
-		java.util.List<org.eclipse.gmf.runtime.notation.View> views = org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for (org.eclipse.gmf.runtime.notation.View view : views) {
-			if (org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper.showElementIcon(view)) {
-				return «diagram.getElementTypesQualifiedClassName()».getImage(parserElement.eClass());
-			}
-		}
-		return null;
-	«««	END: PapyrusGenCode
+			«««	START: PapyrusGenCode
+			return org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
+			«««	END: PapyrusGenCode
 		«ELSE»
 		return null;
 		«ENDIF»
