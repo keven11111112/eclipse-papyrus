@@ -34,5 +34,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.views.tests.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %Bundle-Description
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.views.tests
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.views.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

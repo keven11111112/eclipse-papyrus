@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ALF Backend Tests
-Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.backend.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.backend.tests;singleton:=true
 Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.alf.backend.tests.Activator
 Require-Bundle: org.eclipse.core.runtime,

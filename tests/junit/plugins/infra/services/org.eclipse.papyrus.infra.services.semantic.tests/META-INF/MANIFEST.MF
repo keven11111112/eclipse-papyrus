@@ -14,5 +14,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.semantic.tests
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.semantic.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

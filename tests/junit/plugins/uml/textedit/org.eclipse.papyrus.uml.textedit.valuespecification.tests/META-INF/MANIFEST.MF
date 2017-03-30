@@ -20,5 +20,5 @@ Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.valuespecification.tests.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.valuespecification.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.valuespecification.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -43,3 +43,7 @@ Bundle-Activator: org.eclipse.papyrus.infra.ui.Activator
 Bundle-Description: Plugin dedicated to manage generic menus and actions,
  linked to EMF but not to UML nor GMF technologies.
 Bundle-SymbolicName: org.eclipse.papyrus.infra.ui;singleton:=true
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.cache;version="21.0.0",
+ com.google.common.collect;version="21.0.0",
+ com.google.common.util.concurrent;version="21.0.0"

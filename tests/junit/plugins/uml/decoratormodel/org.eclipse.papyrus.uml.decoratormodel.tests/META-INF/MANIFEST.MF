@@ -16,7 +16,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.junit.utils;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
- com.google.guava;bundle-version="21.0.0",
  org.eclipse.core.expressions;bundle-version="3.4.600",
  org.eclipse.papyrus.uml.modelrepair;bundle-version="[2.0.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.uml.decoratormodel.helper.tests,
@@ -31,3 +30,7 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.decoratormodel.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.collect;version="21.0.0",
+ com.google.common.io;version="21.0.0",
+ com.google.common.util.concurrent;version="21.0.0"

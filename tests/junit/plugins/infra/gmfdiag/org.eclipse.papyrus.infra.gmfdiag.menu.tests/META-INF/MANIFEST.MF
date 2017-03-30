@@ -15,5 +15,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: GMF Diagram Menu Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.menu.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.menu.tests
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.menu.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

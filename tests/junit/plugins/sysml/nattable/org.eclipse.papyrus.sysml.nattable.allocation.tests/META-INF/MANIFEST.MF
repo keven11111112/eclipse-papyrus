@@ -26,5 +26,5 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.nattable.allocation.tests.Activator
 Bundle-Description: %Bundle-Description
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable.allocation.tests
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable.allocation.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -94,3 +94,5 @@ Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common;singleton:=true
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.collect;version="21.0.0"

@@ -5,8 +5,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
  org.apache.commons.logging;bundle-version="[1.1.0,2.0.0)",
  org.eclipse.m2m.qvt.oml;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.xtext.xbase.lib;bundle-version="[2.10.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.mwe.utils;bundle-version="[1.3.0,2.0.0)";visibility:=reexport,
- com.google.guava;bundle-version="21.0.0"
+ org.eclipse.emf.mwe.utils;bundle-version="[1.3.0,2.0.0)";visibility:=reexport
 Export-Package: org.eclipse.papyrus.mwe2.utils,
  org.eclipse.papyrus.mwe2.utils.components,
  org.eclipse.papyrus.mwe2.utils.messages
@@ -16,5 +15,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.mwe2.utils.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.mwe2.utils
+Bundle-SymbolicName: org.eclipse.papyrus.mwe2.utils;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

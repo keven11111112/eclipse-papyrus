@@ -41,5 +41,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %Bundle-Description
-Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.clazz.config.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.clazz.config.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

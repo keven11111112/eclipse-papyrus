@@ -26,5 +26,5 @@ Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.tests.Activator
 Bundle-Description: %pluginDescription
-Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

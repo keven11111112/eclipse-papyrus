@@ -18,3 +18,4 @@ Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.properties;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.google.common.base;version="21.0.0"

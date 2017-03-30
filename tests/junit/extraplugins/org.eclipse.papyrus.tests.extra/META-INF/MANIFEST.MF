@@ -17,5 +17,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: Extra plugins Tests (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.tests.extra.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.tests.extra
+Bundle-SymbolicName: org.eclipse.papyrus.tests.extra;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

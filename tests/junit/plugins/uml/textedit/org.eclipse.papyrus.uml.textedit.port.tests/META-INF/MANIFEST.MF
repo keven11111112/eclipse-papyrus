@@ -14,5 +14,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: XText Port Editor Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.port.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.port.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.port.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

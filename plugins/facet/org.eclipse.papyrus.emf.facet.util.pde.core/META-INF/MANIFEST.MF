@@ -12,5 +12,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: Papyrus EMF Facet PDE Core Utils
 Bundle-Activator: org.eclipse.papyrus.emf.facet.util.pde.core.internal.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.pde.core
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.pde.core;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

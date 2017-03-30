@@ -24,7 +24,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.navigator;bundle-version="3.5.0",
  org.eclipse.papyrus.infra.services.validation;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.service.validation;bundle-version="[2.1.0,3.0.0)",
- com.google.guava;bundle-version="21.0.0",
  org.eclipse.papyrus.infra.nattable.common;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.nattable;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.nattable.menu;bundle-version="[1.2.0,2.0.0)",
@@ -43,5 +42,7 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: Papyrus Editor Integration Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.editor.integration.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.editor.integration.tests
+Bundle-SymbolicName: org.eclipse.papyrus.editor.integration.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.collect;version="21.0.0"

@@ -7,7 +7,7 @@ Export-Package: org.eclipse.papyrus.infra.services.controlmode,
  org.eclipse.papyrus.infra.services.controlmode.internal.ui;x-internal:=true,
  org.eclipse.papyrus.infra.services.controlmode.participants,
  org.eclipse.papyrus.infra.services.controlmode.ui,
- org.eclipse.papyrus.infra.services.controlmode.util;uses:="org.eclipse.emf.ecore"
+ org.eclipse.papyrus.infra.services.controlmode.util
 Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.core.expressions;bundle-version="[3.5.0,4.0.0)";visibility:=reexport,
@@ -29,3 +29,6 @@ Bundle-Activator: org.eclipse.papyrus.infra.services.controlmode.ControlModePlug
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.controlmode;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.collect;version="21.0.0",
+ com.google.common.util.concurrent;version="21.0.0"

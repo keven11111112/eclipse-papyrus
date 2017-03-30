@@ -9,5 +9,5 @@ Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.emf.facet.util.jface.ui.internal.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.jface.ui
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.jface.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

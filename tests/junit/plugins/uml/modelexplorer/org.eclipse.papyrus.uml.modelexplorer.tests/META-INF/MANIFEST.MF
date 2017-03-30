@@ -32,5 +32,5 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.tests.Activator
 Bundle-Description: %pluginDescription
-Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

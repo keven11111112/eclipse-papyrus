@@ -79,3 +79,6 @@ Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.collect;version="21.0.0",
+ com.google.common.util.concurrent;version="21.0.0"

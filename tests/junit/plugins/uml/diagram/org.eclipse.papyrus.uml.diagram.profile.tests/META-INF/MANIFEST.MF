@@ -25,5 +25,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: Profile Diagram Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

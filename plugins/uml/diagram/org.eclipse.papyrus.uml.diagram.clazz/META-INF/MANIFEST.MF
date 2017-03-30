@@ -86,4 +86,6 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz; singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz;singleton:=true
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.collect;version="21.0.0"

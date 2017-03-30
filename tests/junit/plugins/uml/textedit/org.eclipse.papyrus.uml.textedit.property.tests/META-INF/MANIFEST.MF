@@ -17,5 +17,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: XText Property editor Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

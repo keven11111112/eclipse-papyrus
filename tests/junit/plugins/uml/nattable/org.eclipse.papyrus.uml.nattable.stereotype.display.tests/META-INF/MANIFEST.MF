@@ -35,5 +35,5 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.stereotype.display.tests.Activator
 Bundle-Description: %Bundle-Description
-Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.stereotype.display.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.stereotype.display.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

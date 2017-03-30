@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit;bundle-version="4.10.0",
  org.eclipse.uml2.uml;bundle-version="5.0.0",
- com.google.guava;bundle-version="21.0.0",
  org.eclipse.papyrus.infra.services.controlmode;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.gmf.runtime.notation;bundle-version="1.7.0",
  org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
@@ -18,3 +17,5 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.ui.emf.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.google.common.base;version="21.0.0",
+ com.google.common.collect;version="21.0.0"

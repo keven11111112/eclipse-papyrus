@@ -5,7 +5,7 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.developer.suite.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.developer.suite.tests
+Bundle-SymbolicName: org.eclipse.papyrus.developer.suite.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,

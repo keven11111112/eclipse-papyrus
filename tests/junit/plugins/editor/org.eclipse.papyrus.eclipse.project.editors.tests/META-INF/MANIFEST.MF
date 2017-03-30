@@ -7,5 +7,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 2.0.0.qualifier
 Bundle-Name: Papyrus Project Editor Tests
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.eclipse.project.editors.tests
+Bundle-SymbolicName: org.eclipse.papyrus.eclipse.project.editors.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.google.common.base;version="21.0.0"

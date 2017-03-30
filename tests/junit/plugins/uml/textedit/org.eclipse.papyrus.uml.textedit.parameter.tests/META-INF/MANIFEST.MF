@@ -15,5 +15,5 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: UML Textedit Parameter Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.tests.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

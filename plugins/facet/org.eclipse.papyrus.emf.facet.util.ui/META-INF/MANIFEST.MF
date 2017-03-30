@@ -34,5 +34,5 @@ Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.emf.facet.util.ui.internal.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.ui
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
