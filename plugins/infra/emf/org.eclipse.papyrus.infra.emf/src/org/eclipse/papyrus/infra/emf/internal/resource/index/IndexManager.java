@@ -105,6 +105,13 @@ public class IndexManager {
 		return INSTANCE;
 	}
 
+	/**
+	 * @return true, if the index manager has already been started
+	 */
+	public boolean isStarted() {
+		return indices != null;
+	}
+
 	public void dispose() {
 		if (indices != null) {
 			wsRoot.getWorkspace().removeResourceChangeListener(workspaceListener);
