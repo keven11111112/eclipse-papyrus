@@ -226,6 +226,12 @@ ActivityDiagram StructuredActivityNode>Compartment{
 	lineLength:0;
 }
 
+/* Some actions of the ActivityDiagram should have rounded corner */
+ActivityDiagram StartClassifierBehaviorAction {
+	radiusWidth:15;
+	radiusHeight:15;
+}
+
 /* For most Activity diagram nodes (e.g. initial, final, fork, decision, ...), 
  * the element icon is displayed next to the actual object. 
  * By default, we prevent this. 
