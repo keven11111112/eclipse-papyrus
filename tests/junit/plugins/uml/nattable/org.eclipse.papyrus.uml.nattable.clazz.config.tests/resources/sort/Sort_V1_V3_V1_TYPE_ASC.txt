@@ -2,8 +2,8 @@
 Class1	N/A
 	
 Attribute1	Type0
-Attribute2	Type1
 Attribute1	Type1
+Attribute2	Type1
 Attribute3	Type2
 Attribute2	Type3
 	
@@ -29,8 +29,8 @@ Parameter1	Type3
 Class2	N/A
 	
 Attribute1	Type0
-Attribute2	Type1
 Attribute1	Type1
+Attribute2	Type1
 Attribute3	Type2
 Attribute2	Type3
 	

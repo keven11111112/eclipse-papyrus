@@ -1,8 +1,8 @@
 Class1	N/A
 Attribute2	Type3
 Attribute3	Type2
-Attribute2	Type1
 Attribute1	Type1
+Attribute2	Type1
 Attribute1	Type0
 NestedClass3	N/A
 NestedClass1	N/A
@@ -22,8 +22,8 @@ Parameter2	Type1
 Class2	N/A
 Attribute2	Type3
 Attribute3	Type2
-Attribute2	Type1
 Attribute1	Type1
+Attribute2	Type1
 Attribute1	Type0
 NestedClass3	N/A
 NestedClass1	N/A
