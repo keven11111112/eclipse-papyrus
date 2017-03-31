@@ -227,6 +227,7 @@ ActivityDiagram StructuredActivityNode>Compartment{
 }
 
 /* Some actions of the ActivityDiagram should have rounded corner */
+ActivityDiagram ClearStructuralFeatureAction,
 ActivityDiagram ReadIsClassifiedObjectAction,
 ActivityDiagram ReclassifyObjectAction,
 ActivityDiagram StartClassifierBehaviorAction,
