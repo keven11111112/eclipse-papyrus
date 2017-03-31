@@ -227,7 +227,8 @@ ActivityDiagram StructuredActivityNode>Compartment{
 }
 
 /* Some actions of the ActivityDiagram should have rounded corner */
-ActivityDiagram StartClassifierBehaviorAction {
+ActivityDiagram StartClassifierBehaviorAction,
+ActivityDiagram StartObjectBehaviorAction {
 	radiusWidth:15;
 	radiusHeight:15;
 }
