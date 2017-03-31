@@ -234,7 +234,8 @@ ActivityDiagram ReadIsClassifiedObjectAction,
 ActivityDiagram ReadLinkAction,
 ActivityDiagram ReclassifyObjectAction,
 ActivityDiagram StartClassifierBehaviorAction,
-ActivityDiagram StartObjectBehaviorAction {
+ActivityDiagram StartObjectBehaviorAction,
+ActivityDiagram TestIdentityAction {
 	radiusWidth:15;
 	radiusHeight:15;
 }
