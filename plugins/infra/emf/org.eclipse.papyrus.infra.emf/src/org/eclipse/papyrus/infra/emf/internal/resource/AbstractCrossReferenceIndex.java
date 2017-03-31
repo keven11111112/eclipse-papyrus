@@ -198,13 +198,13 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 	final <V> V sync(Future<V> future) throws CoreException {
 		try {
 			// use a (long) timeout to avoid eventual deadlocks (in case of resources needing refresh)
-			return future.get(5, TimeUnit.SECONDS);
+			return future.get(30, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			throw new CoreException(Status.CANCEL_STATUS);
 		} catch (ExecutionException e) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to access the resource shard index", e));
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to access the resource shard index", e)); //$NON-NLS-1$
 		} catch (TimeoutException e) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Timeout during access the resource shard index", e));
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Timeout during access the resource shard index", e)); //$NON-NLS-1$
 		}
 	}
 

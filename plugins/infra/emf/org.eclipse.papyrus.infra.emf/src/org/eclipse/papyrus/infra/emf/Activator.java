@@ -19,11 +19,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.ISavedState;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -32,7 +28,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager;
 import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexPersistenceManager;
 import org.eclipse.papyrus.infra.emf.spi.resolver.EObjectResolverService;
 import org.eclipse.papyrus.infra.emf.spi.resolver.IEObjectResolver;
@@ -86,22 +81,6 @@ public class Activator extends Plugin {
 		if ((state != null) && (state.getSaveNumber() != 0)) {
 			saveHelper.initializeSaveDelegates(state, saveDelegates);
 		}
-
-		// Kick off the workspace model indexing system
-		new Job("Initialize workspace model index") {
-			{
-				setSystem(true);
-			}
-
-			@Override
-			protected IStatus run(IProgressMonitor monitor) {
-				// This cannot be done in the IndexManager constructor because
-				// indices that it loads depend on the instance already being set
-				IndexManager.getInstance().startManager();
-
-				return Status.OK_STATUS;
-			}
-		}.schedule();
 	}
 
 	@Override

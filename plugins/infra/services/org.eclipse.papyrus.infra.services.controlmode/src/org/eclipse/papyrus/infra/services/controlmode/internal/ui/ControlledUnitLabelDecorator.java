@@ -27,6 +27,7 @@ import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.infra.emf.internal.resource.CrossReferenceIndex;
+import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager;
 import org.eclipse.papyrus.infra.emf.resource.ICrossReferenceIndex;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
@@ -50,12 +51,7 @@ public class ControlledUnitLabelDecorator extends BaseLabelProvider implements I
 	 */
 	public ControlledUnitLabelDecorator() {
 		super();
-
-		// A very coarse-grained label change event
-		index = CrossReferenceIndex.getInstance();
-		unregisterHandler = CrossReferenceIndex.getInstance().onIndexChanged(
-				__ -> fireLabelProviderChanged(new LabelProviderChangedEvent(this)),
-				CoreExecutors.getUIExecutorService());
+		index = null;
 	}
 
 	@Override
@@ -72,13 +68,32 @@ public class ControlledUnitLabelDecorator extends BaseLabelProvider implements I
 
 	@Override
 	public void decorate(Object element, IDecoration decoration) {
-		if (element instanceof IFile) {
-			decorateFile((IFile) element, decoration);
-		} else if (element instanceof IPapyrusFile) {
-			decorateFile((IPapyrusFile) element, decoration);
+		if (IndexManager.getInstance().isStarted()) {
+			if (element instanceof IFile) {
+				checkIndex();
+				decorateFile((IFile) element, decoration);
+			} else if (element instanceof IPapyrusFile) {
+				checkIndex();
+				decorateFile((IPapyrusFile) element, decoration);
+			}
 		}
 	}
 
+	/**
+	 * check whether index reference is already initialized, register listener
+	 * and initialize index variable
+	 */
+	private void checkIndex() {
+		if (index == null) {
+			index = CrossReferenceIndex.getInstance();
+
+			// A very coarse-grained label change event
+			unregisterHandler = ((CrossReferenceIndex) index).onIndexChanged(
+					__ -> fireLabelProviderChanged(new LabelProviderChangedEvent(this)),
+				CoreExecutors.getUIExecutorService());
+		}
+	}
+	
 	private void decorateFile(IFile file, IDecoration decoration) {
 		ListenableFuture<SubunitKind> futureKind = getSubunitKind(file);
 		if (futureKind.isDone()) {

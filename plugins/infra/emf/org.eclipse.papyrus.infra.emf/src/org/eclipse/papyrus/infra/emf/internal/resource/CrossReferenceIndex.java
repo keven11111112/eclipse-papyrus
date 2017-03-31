@@ -32,6 +32,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager;
 import org.eclipse.papyrus.infra.emf.resource.index.IWorkspaceModelIndexProvider;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex.PersistentIndexHandler;
@@ -84,6 +85,10 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 	}
 
 	public static CrossReferenceIndex getInstance() {
+		if (!IndexManager.getInstance().isStarted()) {
+			// start index manager
+			IndexManager.getInstance().startManager();
+		}
 		return INSTANCE;
 	}
 
