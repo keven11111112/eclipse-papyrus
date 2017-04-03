@@ -22,6 +22,7 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.widgets.util.RevealResultCommand;
@@ -67,8 +68,8 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 	 * @return
 	 */
 	@Override
-	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> advice) {
-		Command buildCommand = super.buildCommand(reference, container, creationMenu, advice);
+	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> advice, IClientContext context) {
+		Command buildCommand = super.buildCommand(reference, container, creationMenu, advice, context);
 
 		if (buildCommand == null || buildCommand == UnexecutableCommand.INSTANCE) {
 			return buildCommand;

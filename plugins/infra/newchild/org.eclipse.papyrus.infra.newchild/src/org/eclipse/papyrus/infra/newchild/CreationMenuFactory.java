@@ -193,54 +193,65 @@ public class CreationMenuFactory {
 	 * @return true if sub-menu has been created
 	 */
 	protected boolean constructMenu(EObject selectedObject, Menu menu, CreationMenu currentCreationMenu, Map<?, ?> adviceCache) {
-		// find the destination owner
-		final EObject target = ElementEditServiceUtils.getTargetFromContext(editingDomain, selectedObject,
-				buildRequest(null, selectedObject, currentCreationMenu, adviceCache));
-		if (target == null) {
-			return false;
+		IClientContext context = null;
+		try {
+			context = TypeContext.getContext(selectedObject);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 
-		// find the feature between children and owner
-		ArrayList<EStructuralFeature> possibleEFeatures = getEreferences(target, currentCreationMenu);
+		if (context != null) {
 
-		if (possibleEFeatures.size() == 1) {
-			Command cmd = buildCommand(null, target, currentCreationMenu, adviceCache);
-			if (cmd.canExecute()) {
-				MenuItem item = new MenuItem(menu, SWT.NONE);
-				fillIcon(currentCreationMenu, item);
-				item.setEnabled(true);
-				item.setText(currentCreationMenu.getLabel());
-				item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
-				return true;
-			}
-			return false;
-		} else if (possibleEFeatures.size() > 1) {
-			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu, SWT.CASCADE);
-			topMenuItem.setText(currentCreationMenu.getLabel());
-			fillIcon(currentCreationMenu, topMenuItem);
-			Menu topMenu = new Menu(menu);
-			topMenuItem.setMenu(topMenu);
-			for (EStructuralFeature eStructuralFeature : possibleEFeatures) {
-
-				Command cmd = buildCommand((EReference) eStructuralFeature, target, currentCreationMenu, adviceCache);
-				if (cmd.canExecute()) {
-					MenuItem item = new MenuItem(topMenu, SWT.NONE);
-					fillIcon(currentCreationMenu, item);
-					item.setEnabled(true);
-					item.setText("As " + eStructuralFeature.getName());
-					item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
-				}
-
-			}
-			if (topMenu.getItemCount() == 0) {
-				topMenu.dispose();
+			// find the destination owner
+			final EObject target = ElementEditServiceUtils.getTargetFromContext(editingDomain, selectedObject,
+					buildRequest(null, selectedObject, currentCreationMenu, adviceCache, context));
+			if (target == null) {
 				return false;
-			} else {
-				return true;
 			}
-		} else {
-			return false;
+
+			// find the feature between children and owner
+			ArrayList<EStructuralFeature> possibleEFeatures = getEreferences(target, currentCreationMenu, context);
+
+			if (possibleEFeatures.size() == 1) {
+				Command cmd = buildCommand(null, target, currentCreationMenu, adviceCache, context);
+				if (cmd.canExecute()) {
+					MenuItem item = new MenuItem(menu, SWT.NONE);
+					fillIcon(currentCreationMenu, item, context);
+					item.setEnabled(true);
+					item.setText(currentCreationMenu.getLabel());
+					item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
+					return true;
+				}
+				return false;
+			} else if (possibleEFeatures.size() > 1) {
+				org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu, SWT.CASCADE);
+				topMenuItem.setText(currentCreationMenu.getLabel());
+				fillIcon(currentCreationMenu, topMenuItem, context);
+				Menu topMenu = new Menu(menu);
+				topMenuItem.setMenu(topMenu);
+				for (EStructuralFeature eStructuralFeature : possibleEFeatures) {
+
+					Command cmd = buildCommand((EReference) eStructuralFeature, target, currentCreationMenu, adviceCache, context);
+					if (cmd.canExecute()) {
+						MenuItem item = new MenuItem(topMenu, SWT.NONE);
+						fillIcon(currentCreationMenu, item, context);
+						item.setEnabled(true);
+						item.setText("As " + eStructuralFeature.getName());
+						item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
+					}
+
+				}
+				if (topMenu.getItemCount() == 0) {
+					topMenu.dispose();
+					return false;
+				} else {
+					return true;
+				}
+			} else {
+				return false;
+			}
 		}
+		return false;
 	}
 
 	/**
@@ -249,7 +260,7 @@ public class CreationMenuFactory {
 	 * @param currentCreationMenu
 	 * @param item
 	 */
-	protected void fillIcon(CreationMenu currentCreationMenu, MenuItem item) {
+	protected void fillIcon(CreationMenu currentCreationMenu, MenuItem item, IClientContext context) {
 		if (currentCreationMenu.getIcon() != null && !"".equals(currentCreationMenu.getIcon())) {
 			URL url;
 			try {
@@ -261,7 +272,7 @@ public class CreationMenuFactory {
 				Activator.log.debug("Impossible to find icon" + e);
 			}
 		} else {
-			createIconFromElementType(currentCreationMenu, item);
+			createIconFromElementType(currentCreationMenu, item, context);
 		}
 	}
 
@@ -272,7 +283,7 @@ public class CreationMenuFactory {
 	 * @param currentCreationMenu
 	 * @return return the list of Ereference that can be calculated
 	 */
-	protected ArrayList<EStructuralFeature> getEreferences(EObject selectedObject, CreationMenu currentCreationMenu) {
+	protected ArrayList<EStructuralFeature> getEreferences(EObject selectedObject, CreationMenu currentCreationMenu, IClientContext context) {
 		ArrayList<EStructuralFeature> possibleEFeatures = new ArrayList<>();
 		EList<EStructuralFeature> featureList = selectedObject.eClass().getEAllStructuralFeatures();
 		Iterator<EStructuralFeature> iterator = featureList.iterator();
@@ -281,7 +292,7 @@ public class CreationMenuFactory {
 			if (eStructuralFeature instanceof EReference) {
 				EReference ref = (EReference) eStructuralFeature;
 				if (ref.isContainment()) {
-					IElementType menuType = getElementType(currentCreationMenu.getElementTypeIdRef());
+					IElementType menuType = getElementType(currentCreationMenu.getElementTypeIdRef(), context);
 					if (menuType != null && isSubClass(ref.getEType(), menuType.getEClass())) {
 						possibleEFeatures.add(eStructuralFeature);
 					}
@@ -319,11 +330,14 @@ public class CreationMenuFactory {
 	 * @param item
 	 *            the current menu
 	 */
-	protected void createIconFromElementType(CreationMenu currentCreationMenu, MenuItem item) {
-		URL iconURL = getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL();
-		if (iconURL != null) {
-			ImageDescriptor imgDesc = ImageDescriptor.createFromURL(iconURL);
-			item.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(imgDesc));
+	protected void createIconFromElementType(CreationMenu currentCreationMenu, MenuItem item, IClientContext context) {
+		IElementType elementType = getElementType(currentCreationMenu.getElementTypeIdRef(), context);
+		if (elementType != null) {
+			URL iconURL = elementType.getIconURL();
+			if (iconURL != null) {
+				ImageDescriptor imgDesc = ImageDescriptor.createFromURL(iconURL);
+				item.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(imgDesc));
+			}
 		}
 	}
 
@@ -341,17 +355,27 @@ public class CreationMenuFactory {
 	 * @return true if the menu can be created
 	 */
 	protected boolean constructMenu(EObject selectedObject, Menu topMenu, CreationMenu currentCreationMenu, EReference reference, Map<?, ?> adviceCache) {
-		boolean oneDisplayedMenu = false;
-		Command cmd = buildCommand(reference, selectedObject, currentCreationMenu, adviceCache);
-		if (cmd.canExecute()) {
-			oneDisplayedMenu = true;
-			MenuItem item = new MenuItem(topMenu, SWT.NONE);
-			fillIcon(currentCreationMenu, item);
-			item.setEnabled(true);
-			item.setText(currentCreationMenu.getLabel());
-			item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
+		IClientContext context = null;
+		try {
+			context = TypeContext.getContext(selectedObject);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
-		return oneDisplayedMenu;
+
+		if (context != null) {
+			boolean oneDisplayedMenu = false;
+			Command cmd = buildCommand(reference, selectedObject, currentCreationMenu, adviceCache, context);
+			if (cmd.canExecute()) {
+				oneDisplayedMenu = true;
+				MenuItem item = new MenuItem(topMenu, SWT.NONE);
+				fillIcon(currentCreationMenu, item, context);
+				item.setEnabled(true);
+				item.setText(currentCreationMenu.getLabel());
+				item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
+			}
+			return oneDisplayedMenu;
+		}
+		return false;
 	}
 
 	/**
@@ -361,8 +385,12 @@ public class CreationMenuFactory {
 	 *            the string that represents the element type
 	 * @return the element type or null
 	 */
-	protected IElementType getElementType(String elementType) {
-		return ElementTypeRegistry.getInstance().getType(elementType);
+	protected IElementType getElementType(String elementType, IClientContext context) {
+
+		IElementType type = ElementTypeRegistry.getInstance().getType(elementType);
+
+		return context.includes(type) ? type : null;
+
 	}
 
 	/**
@@ -376,32 +404,37 @@ public class CreationMenuFactory {
 	 * 
 	 * @return a command that can be executed by the domain
 	 */
-	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache) {
-		IClientContext context;
-		try {
-			context = TypeContext.getContext(container);
-		} catch (ServiceException e) {
-			Activator.log.error(e);
-			return UnexecutableCommand.INSTANCE;
-		}
-		
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
+	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache, IClientContext context) {
+
+
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container, context);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
+		IElementType elementType = getElementType(creationMenu.getElementTypeIdRef(), context);
+		if (elementType == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+
 		ICommand createGMFCommand = null;
 		if (creationMenu instanceof CreateRelationshipMenu) {
-			IElementType elementType = getElementType(creationMenu.getElementTypeIdRef());
-			if (elementType != null) {
-				IElementEditService serviceProvider = ElementEditServiceUtils.getCommandProvider(elementType, context);
-				TreeSelectorDialog dialog = getTargetTreeSelectorDialog(container, serviceProvider, editingDomain, reference, container, elementType);
-				if (dialog != null) {
-					createGMFCommand = new SetTargetAndRelationshipCommand(this.editingDomain, "Create " + elementType.getDisplayName(), serviceProvider, reference, container, elementType, dialog);
-				}
+
+			IElementEditService serviceProvider = ElementEditServiceUtils.getCommandProvider(elementType, context);
+			TreeSelectorDialog dialog = getTargetTreeSelectorDialog(container, serviceProvider, editingDomain, reference, container, elementType);
+			if (dialog != null) {
+				createGMFCommand = new SetTargetAndRelationshipCommand(this.editingDomain, "Create " + elementType.getDisplayName(), serviceProvider, reference, container, elementType, dialog);
 			}
+
 		} else {
-			createGMFCommand = provider.getEditCommand(buildRequest(reference, container, creationMenu, adviceCache));
+			CreateElementRequest request = buildRequest(reference, container, creationMenu, adviceCache, context);
+			if (request != null) {
+				createGMFCommand = provider.getEditCommand(request);
+			} else {
+				return UnexecutableCommand.INSTANCE;
+			}
+
 		}
 
 		if (createGMFCommand != null) {
@@ -417,23 +450,28 @@ public class CreationMenuFactory {
 	 * @return
 	 * 		the creation request to use in this handler
 	 */
-	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache) {
+	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache, IClientContext context) {
 		String elementTypeId = creationMenu.getElementTypeIdRef();
+		IElementType elementtype = getElementType(elementTypeId, context);
+
 		CreateElementRequest request = null;
-		if (reference == null) {
-			if (creationMenu instanceof CreateRelationshipMenu) {
-				request = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(elementTypeId));
+		if (elementtype != null) {
+			if (reference == null) {
+				if (creationMenu instanceof CreateRelationshipMenu) {
+					request = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype);
+				} else {
+					request = new CreateElementRequest(editingDomain, container, elementtype);
+				}
 			} else {
-				request = new CreateElementRequest(editingDomain, container, getElementType(elementTypeId));
+				if (creationMenu instanceof CreateRelationshipMenu) {
+					request = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype, reference);
+				} else {
+					request = new CreateElementRequest(editingDomain, container, elementtype, reference);
+				}
 			}
-		} else {
-			if (creationMenu instanceof CreateRelationshipMenu) {
-				request = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(elementTypeId), reference);
-			} else {
-				request = new CreateElementRequest(editingDomain, container, getElementType(elementTypeId), reference);
-			}
+			request.setParameter(RequestCacheEntries.Cache_Maps, adviceCache);
+
 		}
-		request.setParameter(RequestCacheEntries.Cache_Maps, adviceCache);
 		return request;
 	}
 
@@ -442,22 +480,28 @@ public class CreationMenuFactory {
 	 * @return
 	 * 		the creation request to use in this handler
 	 */
-	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu) {
+	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, IClientContext context) {
 		String typeId = creationMenu.getElementTypeIdRef();
-		if (reference == null) {
-			if (creationMenu instanceof CreateRelationshipMenu) {
-				CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(typeId));
-				return createRelationshipRequest;
+		IElementType elementtype = getElementType(typeId, context);
+
+		if (elementtype != null) {
+			if (reference == null) {
+				if (creationMenu instanceof CreateRelationshipMenu) {
+					CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype);
+					return createRelationshipRequest;
+				} else {
+					return new CreateElementRequest(editingDomain, container, elementtype);
+				}
 			} else {
-				return new CreateElementRequest(editingDomain, container, getElementType(typeId));
+				if (creationMenu instanceof CreateRelationshipMenu) {
+					CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype, reference);
+					return createRelationshipRequest;
+				} else {
+					return new CreateElementRequest(editingDomain, container, elementtype, reference);
+				}
 			}
 		} else {
-			if (creationMenu instanceof CreateRelationshipMenu) {
-				CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(typeId), reference);
-				return createRelationshipRequest;
-			} else {
-				return new CreateElementRequest(editingDomain, container, getElementType(typeId), reference);
-			}
+			return null;
 		}
 
 	}
