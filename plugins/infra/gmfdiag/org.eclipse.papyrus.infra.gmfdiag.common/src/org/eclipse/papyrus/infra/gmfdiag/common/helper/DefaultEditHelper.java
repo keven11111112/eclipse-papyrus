@@ -38,14 +38,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateRelationshipCommandEx;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.utils.CacheRegistry;
 import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 import org.eclipse.papyrus.infra.types.core.notification.AbstractNotifierEditHelper;
 import org.eclipse.papyrus.infra.types.core.utils.AdviceComparator;
+import org.eclipse.ui.progress.IElementCollector;
 
 /**
  * <pre>
@@ -368,11 +372,27 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 
 		if (advices == null) {
 			if (editHelperContext instanceof EObject) {
+				IClientContext context = req.getClientContext();
+				if(context == null) {
+					try {
+						context = TypeContext.getContext(((EObject)editHelperContext));
+						req.setClientContext(context);
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+					}
+				}
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
 				IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching((EObject) editHelperContext, req.getClientContext());
 				Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
 
 			} else if (editHelperContext instanceof IElementType) {
+				if(req.getClientContext() == null) {
+					try {
+						req.setClientContext(TypeContext.getContext(req.getEditingDomain()));
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+					}
+				}
 				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));
 				Arrays.sort(advices, new AdviceComparator((IElementType) editHelperContext, req.getClientContext().getId()));
 
@@ -393,10 +413,26 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 					}
 				} else {
 					if (elementType != null) {
+						if(req.getClientContext() == null) {
+							try {
+								req.setClientContext(TypeContext.getContext(req.getEditingDomain()));
+							} catch (ServiceException e) {
+								Activator.log.error(e);
+							}
+						}
 						advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), elementType);
 						Arrays.sort(advices, new AdviceComparator(elementType, req.getClientContext().getId()));
 					} else if (eObject != null) {
-						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(eObject, req.getClientContext());
+						IClientContext context = req.getClientContext();
+						if(context == null) {
+							try {
+								context = TypeContext.getContext(((EObject)eObject));
+								req.setClientContext(context);
+							} catch (ServiceException e) {
+								Activator.log.error(e);
+							}
+						}
+						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(eObject, context);
 						advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
 						Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
 					}
