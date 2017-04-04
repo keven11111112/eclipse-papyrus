@@ -28,16 +28,20 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.RefreshEditPartCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Listener of internal state transition
+ *  @deprecated this is a bad way to create/synchronize views. Behavior similar to {@link PapyrusCanonicalEditPolicy} should be used instead.
  */
+@Deprecated
 public class InternalStateListener extends AbstractModifcationTriggerListener {
 
 	private static final String DROP_INTERNAL_TRANSITION_COMMAND_LABEL = "Drop internal transition";
@@ -55,6 +59,9 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 		Object newValue = notif.getNewValue();
 		Object notifier = notif.getNotifier();
 		if (newValue instanceof TransitionKind && notifier instanceof EObject) {
+			if(Display.getCurrent()==null) { // UI Thread safe (getDiagramEditPart will be null in this case...)
+				return null;
+			}
 			CompositeCommand cc = new CompositeCommand("Modification command triggered by modification of the kind of the current selected transition");
 			EObject eNotifier = (EObject) notifier;
 			// Handle deletion of the old EditPart
@@ -137,6 +144,9 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 	}
 
 	private Command getCreationCommand(boolean isBecomingInternal, EObject eNotifier) {
+		if(Display.getCurrent() ==null) { // non UI-thread safe (getDiagramEditPart will be null..)
+			return null;
+		}
 		// IGraphicalEditPart
 		if (eNotifier instanceof Transition) {
 			Transition transition = (Transition) eNotifier;
@@ -148,7 +158,9 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 				// get the region
 				dropTarget = getChildByEObject(transition.getContainer(), getDiagramEditPart(), false);
 				// get the compartment
-				dropTarget = dropTarget.getChildBySemanticHint(String.valueOf(RegionCompartmentEditPart.VISUAL_ID));
+				if(dropTarget!=null) {
+					dropTarget = dropTarget.getChildBySemanticHint(String.valueOf(RegionCompartmentEditPart.VISUAL_ID));	
+				}
 			}
 			if (dropTarget != null) {
 				Request request = new DropObjectsRequest();

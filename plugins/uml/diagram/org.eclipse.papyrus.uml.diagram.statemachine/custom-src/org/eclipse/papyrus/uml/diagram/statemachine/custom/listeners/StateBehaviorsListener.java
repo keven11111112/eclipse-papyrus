@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.RefreshEditPartCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -147,8 +148,7 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 	 */
 	protected StateEditPart getContainingEditPart(Object toTest) {
 		// If not EObject found return null;
-		if (toTest instanceof EObject)
-		{
+		if (toTest instanceof EObject && Display.getCurrent() != null)	{
 			IGraphicalEditPart found = getChildByEObject((EObject) toTest, getDiagramEditPart(), false);
 			if (found instanceof StateEditPart) {
 				return (StateEditPart) found;

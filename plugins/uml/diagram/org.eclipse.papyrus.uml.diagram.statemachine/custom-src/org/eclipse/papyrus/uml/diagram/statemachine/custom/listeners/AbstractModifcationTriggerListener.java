@@ -21,14 +21,18 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
-
+/**
+ * @deprecated this is a bad way to create/synchronize views. Behavior similar to {@link PapyrusCanonicalEditPolicy} should be used instead.
+ */
+@Deprecated
 public abstract class AbstractModifcationTriggerListener extends TriggerListener {
 
 	@Override
@@ -78,12 +82,17 @@ public abstract class AbstractModifcationTriggerListener extends TriggerListener
 	 * @return
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
-		IWorkbench wb = PlatformUI.getWorkbench();
-		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
-		IEditorPart editor = page.getActiveEditor();
-		if (editor instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor) editor;
-			return (DiagramEditPart) papyrusEditor.getAdapter(DiagramEditPart.class);
+		if(Display.getCurrent()==null) { // UI-thread safe...
+			return null;
+		}
+		if(PlatformUI.isWorkbenchRunning()) {
+			IWorkbench wb = PlatformUI.getWorkbench();
+			IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
+			IEditorPart editor = page.getActiveEditor();
+			if (editor instanceof IMultiDiagramEditor) {
+				IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor) editor;
+				return (DiagramEditPart) papyrusEditor.getAdapter(DiagramEditPart.class);
+			}	
 		}
 		return null;
 	}
