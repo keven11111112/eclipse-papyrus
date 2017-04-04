@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
@@ -44,7 +45,7 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		final INattableModelManager manager = getNattableModelManager();
 		if (IS_NATTABLE_WIDGET.equals(property) && expectedValue instanceof Boolean) {
-			return expectedValue.equals(manager != null);
+			return expectedValue.equals(null != manager) && ((!(Boolean)expectedValue) || manager.getAdapter(NatTable.class).isFocusControl());
 		}
 		if (manager != null && expectedValue instanceof Boolean) {
 			if (HAS_FEATURE_ROW_HEADER_CONFIGURATION.equals(property)) {
@@ -77,7 +78,7 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 	/**
 	 *
 	 * @return
-	 *         the current nattable model manager or <code>null</code> if not found
+	 * 		the current nattable model manager or <code>null</code> if not found
 	 */
 	protected INattableModelManager getNattableModelManager() {
 		final IWorkbench workbench = PlatformUI.getWorkbench();
