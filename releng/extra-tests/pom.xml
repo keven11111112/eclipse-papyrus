@@ -18,7 +18,6 @@
   <modules>
 	<!-- Extra-tests modules -->
     <module>../../tests/junit/extraplugins/org.eclipse.papyrus.tests.extra</module>
-    <module>../../tests/junit/extraplugins/migration/org.eclipse.papyrus.migration.rsa.tests</module>
 	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.diagram.feature</module>
 	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.feature</module>
 	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.nattable.feature</module>
