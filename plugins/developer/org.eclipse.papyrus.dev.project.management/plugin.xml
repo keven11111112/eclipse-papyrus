@@ -39,6 +39,12 @@
             name="Optimize Bundle Dependencies">
       </command>
       <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.plugins.SingletonBundleHandler"
+            description="Set bundles to be singleton"
+            id="org.eclipse.papyrus.dev.project.management.command.singletonbundle"
+            name="Set bundles to be singleton">
+      </command>
+      <command
             defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.SyncManifestAndPOMVersions"
             description="Ensure that POM versions match their plug-in/feature manifest"
             id="org.eclipse.papyrus.dev.project.management.command.syncPOMVersions"
@@ -126,6 +132,18 @@
          </command>
          <command
                commandId="org.eclipse.papyrus.dev.project.management.command.optimizeDependencies"
+               icon="icons/plugin_mf_obj.gif">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <reference
+                        definitionId="org.eclipse.papyrus.dev.project.management.isPluginProjectOrManifest">
+                  </reference>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.dev.project.management.command.singletonbundle"
                icon="icons/plugin_mf_obj.gif">
             <visibleWhen
                   checkEnabled="false">
