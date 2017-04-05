@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNExpression;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
+import org.eclipse.papyrus.bpmn.BPMNProfile.FlowNode;
 import org.eclipse.papyrus.bpmn.BPMNProfile.SequenceFlow;
 import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
 import org.eclipse.uml2.uml.ControlFlow;
@@ -32,6 +33,8 @@ import org.eclipse.uml2.uml.ControlFlow;
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.SequenceFlowImpl#getBase_ControlFlow <em>Base Control Flow</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.SequenceFlowImpl#isImmediate <em>Is Immediate</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.SequenceFlowImpl#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.SequenceFlowImpl#getSourceRef <em>Source Ref</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.SequenceFlowImpl#getTargetRef <em>Target Ref</em>}</li>
  * </ul>
  *
  * @generated
@@ -198,6 +201,72 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FlowNode getSourceRef() {
+		FlowNode sourceRef = basicGetSourceRef();
+		return sourceRef != null && sourceRef.eIsProxy() ? (FlowNode)eResolveProxy((InternalEObject)sourceRef) : sourceRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FlowNode basicGetSourceRef() {
+		// TODO: implement this method to return the 'Source Ref' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceRef(FlowNode newSourceRef) {
+		// TODO: implement this method to set the 'Source Ref' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FlowNode getTargetRef() {
+		FlowNode targetRef = basicGetTargetRef();
+		return targetRef != null && targetRef.eIsProxy() ? (FlowNode)eResolveProxy((InternalEObject)targetRef) : targetRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FlowNode basicGetTargetRef() {
+		// TODO: implement this method to return the 'Target Ref' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetRef(FlowNode newTargetRef) {
+		// TODO: implement this method to set the 'Target Ref' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean SequenceFlowconditionExpression(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
@@ -284,6 +353,12 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
 			case BPMNProfilePackage.SEQUENCE_FLOW__CONDITION_EXPRESSION:
 				if (resolve) return getConditionExpression();
 				return basicGetConditionExpression();
+			case BPMNProfilePackage.SEQUENCE_FLOW__SOURCE_REF:
+				if (resolve) return getSourceRef();
+				return basicGetSourceRef();
+			case BPMNProfilePackage.SEQUENCE_FLOW__TARGET_REF:
+				if (resolve) return getTargetRef();
+				return basicGetTargetRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -304,6 +379,12 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
 				return;
 			case BPMNProfilePackage.SEQUENCE_FLOW__CONDITION_EXPRESSION:
 				setConditionExpression((BPMNExpression)newValue);
+				return;
+			case BPMNProfilePackage.SEQUENCE_FLOW__SOURCE_REF:
+				setSourceRef((FlowNode)newValue);
+				return;
+			case BPMNProfilePackage.SEQUENCE_FLOW__TARGET_REF:
+				setTargetRef((FlowNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -326,6 +407,12 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
 			case BPMNProfilePackage.SEQUENCE_FLOW__CONDITION_EXPRESSION:
 				setConditionExpression((BPMNExpression)null);
 				return;
+			case BPMNProfilePackage.SEQUENCE_FLOW__SOURCE_REF:
+				setSourceRef((FlowNode)null);
+				return;
+			case BPMNProfilePackage.SEQUENCE_FLOW__TARGET_REF:
+				setTargetRef((FlowNode)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -344,6 +431,10 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
 				return isImmediate != IS_IMMEDIATE_EDEFAULT;
 			case BPMNProfilePackage.SEQUENCE_FLOW__CONDITION_EXPRESSION:
 				return conditionExpression != null;
+			case BPMNProfilePackage.SEQUENCE_FLOW__SOURCE_REF:
+				return basicGetSourceRef() != null;
+			case BPMNProfilePackage.SEQUENCE_FLOW__TARGET_REF:
+				return basicGetTargetRef() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -19,6 +19,7 @@ import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNExpression;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.ResourceAssignmentExpression;
 import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
+import org.eclipse.uml2.uml.OpaqueExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ResourceAssignmentExpressionImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ResourceAssignmentExpressionImpl#getBase_OpaqueExpression <em>Base Opaque Expression</em>}</li>
  * </ul>
  *
  * @generated
@@ -99,6 +101,56 @@ public class ResourceAssignmentExpressionImpl extends BPMNExpressionImpl impleme
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.RESOURCE_ASSIGNMENT_EXPRESSION__EXPRESSION, oldExpression, expression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OpaqueExpression getBase_OpaqueExpression() {
+		if (base_OpaqueExpression != null && base_OpaqueExpression.eIsProxy()) {
+			InternalEObject oldBase_OpaqueExpression = (InternalEObject)base_OpaqueExpression;
+			base_OpaqueExpression = (OpaqueExpression)eResolveProxy(oldBase_OpaqueExpression);
+			if (base_OpaqueExpression != oldBase_OpaqueExpression) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.RESOURCE_ASSIGNMENT_EXPRESSION__BASE_OPAQUE_EXPRESSION, oldBase_OpaqueExpression, base_OpaqueExpression));
+			}
+		}
+		return base_OpaqueExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OpaqueExpression basicGetBase_OpaqueExpression() {
+		return base_OpaqueExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBase_OpaqueExpression(OpaqueExpression newBase_OpaqueExpression) {
+		OpaqueExpression oldBase_OpaqueExpression = base_OpaqueExpression;
+		base_OpaqueExpression = newBase_OpaqueExpression;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.RESOURCE_ASSIGNMENT_EXPRESSION__BASE_OPAQUE_EXPRESSION, oldBase_OpaqueExpression, base_OpaqueExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBase_OpaqueExpression() {
+		return base_OpaqueExpression != null;
 	}
 
 	/**
@@ -181,6 +233,8 @@ public class ResourceAssignmentExpressionImpl extends BPMNExpressionImpl impleme
 		switch (featureID) {
 			case BPMNProfilePackage.RESOURCE_ASSIGNMENT_EXPRESSION__EXPRESSION:
 				return expression != null;
+			case BPMNProfilePackage.RESOURCE_ASSIGNMENT_EXPRESSION__BASE_OPAQUE_EXPRESSION:
+				return isSetBase_OpaqueExpression();
 		}
 		return super.eIsSet(featureID);
 	}

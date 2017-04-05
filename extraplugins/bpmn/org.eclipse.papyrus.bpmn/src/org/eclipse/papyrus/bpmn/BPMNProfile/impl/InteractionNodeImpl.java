@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Element;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.InteractionNodeImpl#getBase_Element <em>Base Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.InteractionNodeImpl#getBase_InteractionNode_Element <em>Base Interaction Node Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.InteractionNodeImpl#getOutgoingConversationLinks <em>Outgoing Conversation Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.InteractionNodeImpl#getIncomingConversationLinks <em>Incoming Conversation Links</em>}</li>
  * </ul>
@@ -35,14 +35,14 @@ import org.eclipse.uml2.uml.Element;
  */
 public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container implements InteractionNode {
 	/**
-	 * The cached value of the '{@link #getBase_Element() <em>Base Element</em>}' reference.
+	 * The cached value of the '{@link #getBase_InteractionNode_Element() <em>Base Interaction Node Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBase_Element()
+	 * @see #getBase_InteractionNode_Element()
 	 * @generated
 	 * @ordered
 	 */
-	protected Element base_Element;
+	protected Element base_InteractionNode_Element;
 
 	/**
 	 * The cached value of the '{@link #getOutgoingConversationLinks() <em>Outgoing Conversation Links</em>}' reference list.
@@ -87,16 +87,16 @@ public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getBase_Element() {
-		if (base_Element != null && base_Element.eIsProxy()) {
-			InternalEObject oldBase_Element = (InternalEObject)base_Element;
-			base_Element = (Element)eResolveProxy(oldBase_Element);
-			if (base_Element != oldBase_Element) {
+	public Element getBase_InteractionNode_Element() {
+		if (base_InteractionNode_Element != null && base_InteractionNode_Element.eIsProxy()) {
+			InternalEObject oldBase_InteractionNode_Element = (InternalEObject)base_InteractionNode_Element;
+			base_InteractionNode_Element = (Element)eResolveProxy(oldBase_InteractionNode_Element);
+			if (base_InteractionNode_Element != oldBase_InteractionNode_Element) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.INTERACTION_NODE__BASE_ELEMENT, oldBase_Element, base_Element));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT, oldBase_InteractionNode_Element, base_InteractionNode_Element));
 			}
 		}
-		return base_Element;
+		return base_InteractionNode_Element;
 	}
 
 	/**
@@ -104,8 +104,8 @@ public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetBase_Element() {
-		return base_Element;
+	public Element basicGetBase_InteractionNode_Element() {
+		return base_InteractionNode_Element;
 	}
 
 	/**
@@ -113,11 +113,11 @@ public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBase_Element(Element newBase_Element) {
-		Element oldBase_Element = base_Element;
-		base_Element = newBase_Element;
+	public void setBase_InteractionNode_Element(Element newBase_InteractionNode_Element) {
+		Element oldBase_InteractionNode_Element = base_InteractionNode_Element;
+		base_InteractionNode_Element = newBase_InteractionNode_Element;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.INTERACTION_NODE__BASE_ELEMENT, oldBase_Element, base_Element));
+			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT, oldBase_InteractionNode_Element, base_InteractionNode_Element));
 	}
 
 	/**
@@ -235,9 +235,9 @@ public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BPMNProfilePackage.INTERACTION_NODE__BASE_ELEMENT:
-				if (resolve) return getBase_Element();
-				return basicGetBase_Element();
+			case BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				if (resolve) return getBase_InteractionNode_Element();
+				return basicGetBase_InteractionNode_Element();
 			case BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS:
 				return getOutgoingConversationLinks();
 			case BPMNProfilePackage.INTERACTION_NODE__INCOMING_CONVERSATION_LINKS:
@@ -256,8 +256,8 @@ public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BPMNProfilePackage.INTERACTION_NODE__BASE_ELEMENT:
-				setBase_Element((Element)newValue);
+			case BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				setBase_InteractionNode_Element((Element)newValue);
 				return;
 			case BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS:
 				getOutgoingConversationLinks().clear();
@@ -278,8 +278,8 @@ public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BPMNProfilePackage.INTERACTION_NODE__BASE_ELEMENT:
-				setBase_Element((Element)null);
+			case BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				setBase_InteractionNode_Element((Element)null);
 				return;
 			case BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS:
 				getOutgoingConversationLinks().clear();
@@ -299,8 +299,8 @@ public abstract class InteractionNodeImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BPMNProfilePackage.INTERACTION_NODE__BASE_ELEMENT:
-				return base_Element != null;
+			case BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				return base_InteractionNode_Element != null;
 			case BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS:
 				return outgoingConversationLinks != null && !outgoingConversationLinks.isEmpty();
 			case BPMNProfilePackage.INTERACTION_NODE__INCOMING_CONVERSATION_LINKS:

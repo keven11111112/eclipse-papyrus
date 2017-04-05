@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -17,12 +18,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
+import org.eclipse.papyrus.bpmn.BPMNProfile.ConversationLink;
 import org.eclipse.papyrus.bpmn.BPMNProfile.ConversationNode;
 import org.eclipse.papyrus.bpmn.BPMNProfile.CorrelationKey;
+import org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode;
 import org.eclipse.papyrus.bpmn.BPMNProfile.MessageFlow;
 import org.eclipse.papyrus.bpmn.BPMNProfile.Participant;
 import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InformationFlow;
 
 /**
@@ -33,6 +39,9 @@ import org.eclipse.uml2.uml.InformationFlow;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ConversationNodeImpl#getBase_InteractionNode_Element <em>Base Interaction Node Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ConversationNodeImpl#getOutgoingConversationLinks <em>Outgoing Conversation Links</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ConversationNodeImpl#getIncomingConversationLinks <em>Incoming Conversation Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ConversationNodeImpl#getBase_InformationFlow <em>Base Information Flow</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ConversationNodeImpl#getMessageFlowRefs <em>Message Flow Refs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ConversationNodeImpl#getCorrelationKeys <em>Correlation Keys</em>}</li>
@@ -41,7 +50,37 @@ import org.eclipse.uml2.uml.InformationFlow;
  *
  * @generated
  */
-public abstract class ConversationNodeImpl extends InteractionNodeImpl implements ConversationNode {
+public abstract class ConversationNodeImpl extends BaseElementImpl implements ConversationNode {
+	/**
+	 * The cached value of the '{@link #getBase_InteractionNode_Element() <em>Base Interaction Node Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBase_InteractionNode_Element()
+	 * @generated
+	 * @ordered
+	 */
+	protected Element base_InteractionNode_Element;
+
+	/**
+	 * The cached value of the '{@link #getOutgoingConversationLinks() <em>Outgoing Conversation Links</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutgoingConversationLinks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConversationLink> outgoingConversationLinks;
+
+	/**
+	 * The cached value of the '{@link #getIncomingConversationLinks() <em>Incoming Conversation Links</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncomingConversationLinks()
+	 * @generated
+	 * @ordered
+	 */
+	protected ConversationLink incomingConversationLinks;
+
 	/**
 	 * The cached value of the '{@link #getBase_InformationFlow() <em>Base Information Flow</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -99,6 +138,116 @@ public abstract class ConversationNodeImpl extends InteractionNodeImpl implement
 	@Override
 	protected EClass eStaticClass() {
 		return BPMNProfilePackage.eINSTANCE.getConversationNode();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element getBase_InteractionNode_Element() {
+		if (base_InteractionNode_Element != null && base_InteractionNode_Element.eIsProxy()) {
+			InternalEObject oldBase_InteractionNode_Element = (InternalEObject)base_InteractionNode_Element;
+			base_InteractionNode_Element = (Element)eResolveProxy(oldBase_InteractionNode_Element);
+			if (base_InteractionNode_Element != oldBase_InteractionNode_Element) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT, oldBase_InteractionNode_Element, base_InteractionNode_Element));
+			}
+		}
+		return base_InteractionNode_Element;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element basicGetBase_InteractionNode_Element() {
+		return base_InteractionNode_Element;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBase_InteractionNode_Element(Element newBase_InteractionNode_Element) {
+		Element oldBase_InteractionNode_Element = base_InteractionNode_Element;
+		base_InteractionNode_Element = newBase_InteractionNode_Element;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT, oldBase_InteractionNode_Element, base_InteractionNode_Element));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ConversationLink> getOutgoingConversationLinks() {
+		if (outgoingConversationLinks == null) {
+			outgoingConversationLinks = new EObjectWithInverseResolvingEList<ConversationLink>(ConversationLink.class, this, BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS, BPMNProfilePackage.CONVERSATION_LINK__SOURCE_REF);
+		}
+		return outgoingConversationLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConversationLink getIncomingConversationLinks() {
+		if (incomingConversationLinks != null && incomingConversationLinks.eIsProxy()) {
+			InternalEObject oldIncomingConversationLinks = (InternalEObject)incomingConversationLinks;
+			incomingConversationLinks = (ConversationLink)eResolveProxy(oldIncomingConversationLinks);
+			if (incomingConversationLinks != oldIncomingConversationLinks) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS, oldIncomingConversationLinks, incomingConversationLinks));
+			}
+		}
+		return incomingConversationLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConversationLink basicGetIncomingConversationLinks() {
+		return incomingConversationLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetIncomingConversationLinks(ConversationLink newIncomingConversationLinks, NotificationChain msgs) {
+		ConversationLink oldIncomingConversationLinks = incomingConversationLinks;
+		incomingConversationLinks = newIncomingConversationLinks;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS, oldIncomingConversationLinks, newIncomingConversationLinks);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncomingConversationLinks(ConversationLink newIncomingConversationLinks) {
+		if (newIncomingConversationLinks != incomingConversationLinks) {
+			NotificationChain msgs = null;
+			if (incomingConversationLinks != null)
+				msgs = ((InternalEObject)incomingConversationLinks).eInverseRemove(this, BPMNProfilePackage.CONVERSATION_LINK__TARGET_REF, ConversationLink.class, msgs);
+			if (newIncomingConversationLinks != null)
+				msgs = ((InternalEObject)newIncomingConversationLinks).eInverseAdd(this, BPMNProfilePackage.CONVERSATION_LINK__TARGET_REF, ConversationLink.class, msgs);
+			msgs = basicSetIncomingConversationLinks(newIncomingConversationLinks, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS, newIncomingConversationLinks, newIncomingConversationLinks));
 	}
 
 	/**
@@ -205,9 +354,52 @@ public abstract class ConversationNodeImpl extends InteractionNodeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingConversationLinks()).basicAdd(otherEnd, msgs);
+			case BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS:
+				if (incomingConversationLinks != null)
+					msgs = ((InternalEObject)incomingConversationLinks).eInverseRemove(this, BPMNProfilePackage.CONVERSATION_LINK__TARGET_REF, ConversationLink.class, msgs);
+				return basicSetIncomingConversationLinks((ConversationLink)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS:
+				return ((InternalEList<?>)getOutgoingConversationLinks()).basicRemove(otherEnd, msgs);
+			case BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS:
+				return basicSetIncomingConversationLinks(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				if (resolve) return getBase_InteractionNode_Element();
+				return basicGetBase_InteractionNode_Element();
+			case BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS:
+				return getOutgoingConversationLinks();
+			case BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS:
+				if (resolve) return getIncomingConversationLinks();
+				return basicGetIncomingConversationLinks();
 			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INFORMATION_FLOW:
 				if (resolve) return getBase_InformationFlow();
 				return basicGetBase_InformationFlow();
@@ -230,6 +422,16 @@ public abstract class ConversationNodeImpl extends InteractionNodeImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				setBase_InteractionNode_Element((Element)newValue);
+				return;
+			case BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS:
+				getOutgoingConversationLinks().clear();
+				getOutgoingConversationLinks().addAll((Collection<? extends ConversationLink>)newValue);
+				return;
+			case BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS:
+				setIncomingConversationLinks((ConversationLink)newValue);
+				return;
 			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INFORMATION_FLOW:
 				setBase_InformationFlow((InformationFlow)newValue);
 				return;
@@ -257,6 +459,15 @@ public abstract class ConversationNodeImpl extends InteractionNodeImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				setBase_InteractionNode_Element((Element)null);
+				return;
+			case BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS:
+				getOutgoingConversationLinks().clear();
+				return;
+			case BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS:
+				setIncomingConversationLinks((ConversationLink)null);
+				return;
 			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INFORMATION_FLOW:
 				setBase_InformationFlow((InformationFlow)null);
 				return;
@@ -281,6 +492,12 @@ public abstract class ConversationNodeImpl extends InteractionNodeImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT:
+				return base_InteractionNode_Element != null;
+			case BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS:
+				return outgoingConversationLinks != null && !outgoingConversationLinks.isEmpty();
+			case BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS:
+				return incomingConversationLinks != null;
 			case BPMNProfilePackage.CONVERSATION_NODE__BASE_INFORMATION_FLOW:
 				return base_InformationFlow != null;
 			case BPMNProfilePackage.CONVERSATION_NODE__MESSAGE_FLOW_REFS:
@@ -291,6 +508,42 @@ public abstract class ConversationNodeImpl extends InteractionNodeImpl implement
 				return participantRefs != null && !participantRefs.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == InteractionNode.class) {
+			switch (derivedFeatureID) {
+				case BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT: return BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT;
+				case BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS: return BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS;
+				case BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS: return BPMNProfilePackage.INTERACTION_NODE__INCOMING_CONVERSATION_LINKS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == InteractionNode.class) {
+			switch (baseFeatureID) {
+				case BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT: return BPMNProfilePackage.CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT;
+				case BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS: return BPMNProfilePackage.CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS;
+				case BPMNProfilePackage.INTERACTION_NODE__INCOMING_CONVERSATION_LINKS: return BPMNProfilePackage.CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

@@ -15,14 +15,12 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfileFactory;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
-import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -1050,8 +1048,6 @@ public class BPMNProfilePackageImpl extends EPackageImpl implements BPMNProfileP
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
 		// Load packages
@@ -1853,6 +1849,24 @@ public class BPMNProfilePackageImpl extends EPackageImpl implements BPMNProfileP
 	 */
 	public EReference getSequenceFlow_ConditionExpression() {
         return (EReference)getSequenceFlow().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSequenceFlow_SourceRef() {
+        return (EReference)getSequenceFlow().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSequenceFlow_TargetRef() {
+        return (EReference)getSequenceFlow().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3738,7 +3752,7 @@ public class BPMNProfilePackageImpl extends EPackageImpl implements BPMNProfileP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInteractionNode_Base_Element() {
+	public EReference getInteractionNode_Base_InteractionNode_Element() {
         return (EReference)getInteractionNode().getEStructuralFeatures().get(0);
 	}
 

@@ -2,12 +2,22 @@
  */
 package org.eclipse.papyrus.bpmn.BPMNProfile.util;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.papyrus.bpmn.BPMNProfile.*;
 
 /**
@@ -4902,6 +4912,179 @@ public class BPMNProfileValidator extends EObjectValidator {
 		// Specialize this to return a resource locator for messages specific to this validator.
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private String getRedefinitionDetail(EClass eClass, String featureName, String key) {
+		List<EClass> eClasses = new ArrayList<EClass>();
+		eClasses.add(eClass);
+		eClasses.addAll(eClass.getEAllSuperTypes());
+		String redefinitionDetail = null;
+		for (Iterator<EClass> eClassesIterator = eClasses.iterator(); redefinitionDetail == null && eClassesIterator.hasNext(); ) {
+			EAnnotation eAnnotation = eClassesIterator.next().getEAnnotation("duplicates");
+			if (eAnnotation != null) {
+				EAnnotation nestedEAnnotation = eAnnotation.getEAnnotation(featureName);
+				if (nestedEAnnotation != null) {
+					redefinitionDetail = nestedEAnnotation.getDetails().get(key);
+				}
+			}
+		}
+		return redefinitionDetail;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int getLowerBound(EObject eObject, EStructuralFeature eStructuralFeature) {
+		String redefinitionDetail = getRedefinitionDetail(eObject.eClass(), eStructuralFeature.getName(), "lowerBound");
+		if (redefinitionDetail != null && redefinitionDetail.length() > 0) {
+			try {
+				return Integer.parseInt(redefinitionDetail);
+			}
+			catch (Exception e) {
+				// do nothing
+			}
+		}
+		return eStructuralFeature.getLowerBound();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected int getUpperBound(EObject eObject, EStructuralFeature eStructuralFeature) {
+		String redefinitionDetail = getRedefinitionDetail(eObject.eClass(), eStructuralFeature.getName(), "upperBound");
+		if (redefinitionDetail != null && redefinitionDetail.length() > 0) {
+			try {
+				return Integer.parseInt(redefinitionDetail);
+			}
+			catch (Exception e) {
+				// do nothing
+			}
+		}
+		return eStructuralFeature.getUpperBound();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean isEcoreString(String key) {
+		return super.isEcoreString(key)
+			|| "_UI_FeatureHasTooFewValues_diagnostic".equals(key)
+			|| "_UI_FeatureHasTooManyValues_diagnostic".equals(key)
+			|| "_UI_RequiredFeatureMustBeSet_diagnostic".equals(key);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean validate_MultiplicityConforms(EObject eObject, EStructuralFeature eStructuralFeature, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		if (eStructuralFeature.isMany()) {
+			if (FeatureMapUtil.isFeatureMap(eStructuralFeature) && ExtendedMetaData.INSTANCE.isDocumentRoot(eObject.eClass())) {
+				result = super.validate_MultiplicityConforms(eObject, eStructuralFeature, diagnostics, context);
+			}
+			else {
+				int lowerBound = getLowerBound(eObject, eStructuralFeature);
+				if (lowerBound > 0) {
+					int size = ((List<?>) eObject.eGet(eStructuralFeature)).size();
+					if (size < lowerBound) {
+						result = false;
+						if (diagnostics != null) {
+							diagnostics.add
+								(createDiagnostic
+									(Diagnostic.ERROR,
+									EObjectValidator.DIAGNOSTIC_SOURCE,
+									EObjectValidator.EOBJECT__EVERY_MULTIPCITY_CONFORMS,
+									"_UI_FeatureHasTooFewValues_diagnostic",
+									new Object [] {
+										getFeatureLabel(eStructuralFeature, context),
+										getObjectLabel(eObject, context),
+										size,
+										lowerBound
+									},
+									new Object [] { eObject, eStructuralFeature },
+									context));
+						}
+					}
+					int upperBound = getUpperBound(eObject, eStructuralFeature);
+					if (upperBound > 0 && size > upperBound) {
+						result = false;
+						if (diagnostics != null) {
+							diagnostics.add
+								(createDiagnostic
+									(Diagnostic.ERROR,
+									EObjectValidator.DIAGNOSTIC_SOURCE,
+									EObjectValidator.EOBJECT__EVERY_MULTIPCITY_CONFORMS,
+									"_UI_FeatureHasTooManyValues_diagnostic",
+									new Object [] {
+										getFeatureLabel(eStructuralFeature, context),
+										getObjectLabel(eObject, context),
+										size,
+										upperBound
+									},
+									new Object [] { eObject, eStructuralFeature },
+									context));
+						}
+					}
+				}
+				else {
+					int upperBound = getUpperBound(eObject, eStructuralFeature);
+					if (upperBound > 0) {
+						int size = ((List<?>) eObject.eGet(eStructuralFeature)).size();
+						if (size > upperBound) {
+							result = false;
+							if (diagnostics != null) {
+								diagnostics.add
+									(createDiagnostic
+										(Diagnostic.ERROR,
+										EObjectValidator.DIAGNOSTIC_SOURCE,
+										EObjectValidator.EOBJECT__EVERY_MULTIPCITY_CONFORMS,
+										"_UI_FeatureHasTooManyValues_diagnostic",
+										new Object [] {
+											getFeatureLabel(eStructuralFeature, context),
+											getObjectLabel(eObject, context),
+											size,
+											upperBound
+										},
+										new Object [] { eObject, eStructuralFeature },
+										context));
+							}
+						}
+					}
+				}
+			}
+		}
+		else if (getLowerBound(eObject, eStructuralFeature) >= 1) {
+			if (eStructuralFeature.isUnsettable() ? !eObject.eIsSet(eStructuralFeature) : eObject.eGet(eStructuralFeature, false) == null) {
+				result = false;
+				if (diagnostics != null) {
+					diagnostics.add
+						(createDiagnostic
+							(Diagnostic.ERROR,
+							EObjectValidator.DIAGNOSTIC_SOURCE,
+							EObjectValidator.EOBJECT__EVERY_MULTIPCITY_CONFORMS,
+							"_UI_RequiredFeatureMustBeSet_diagnostic",
+							new Object [] { getFeatureLabel(eStructuralFeature, context), getObjectLabel(eObject, context) },
+							new Object [] { eObject, eStructuralFeature },
+							context));
+				}
+			}
+		}
+		return result;
 	}
 
 } //BPMNProfileValidator

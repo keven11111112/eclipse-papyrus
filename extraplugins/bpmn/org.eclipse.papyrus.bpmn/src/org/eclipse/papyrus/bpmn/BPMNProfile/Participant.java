@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface Participant extends BaseElement {
+public interface Participant extends BaseElement, InteractionNode {
 	/**
 	 * Returns the value of the '<em><b>Base Property</b></em>' reference.
 	 * <!-- begin-user-doc -->

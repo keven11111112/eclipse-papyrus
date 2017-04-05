@@ -19,6 +19,7 @@ import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNActivity;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BoundaryEvent;
 import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
+import org.eclipse.uml2.uml.AcceptEventAction;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.BoundaryEventImpl#isCancelActivity <em>Cancel Activity</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.BoundaryEventImpl#getAttachedToRef <em>Attached To Ref</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.BoundaryEventImpl#getBase_AcceptEventAction <em>Base Accept Event Action</em>}</li>
  * </ul>
  *
  * @generated
@@ -119,6 +121,56 @@ public class BoundaryEventImpl extends CatchEventImpl implements BoundaryEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public AcceptEventAction getBase_AcceptEventAction() {
+		if (base_AcceptEventAction != null && base_AcceptEventAction.eIsProxy()) {
+			InternalEObject oldBase_AcceptEventAction = (InternalEObject)base_AcceptEventAction;
+			base_AcceptEventAction = (AcceptEventAction)eResolveProxy(oldBase_AcceptEventAction);
+			if (base_AcceptEventAction != oldBase_AcceptEventAction) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.BOUNDARY_EVENT__BASE_ACCEPT_EVENT_ACTION, oldBase_AcceptEventAction, base_AcceptEventAction));
+			}
+		}
+		return base_AcceptEventAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AcceptEventAction basicGetBase_AcceptEventAction() {
+		return base_AcceptEventAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBase_AcceptEventAction(AcceptEventAction newBase_AcceptEventAction) {
+		AcceptEventAction oldBase_AcceptEventAction = base_AcceptEventAction;
+		base_AcceptEventAction = newBase_AcceptEventAction;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.BOUNDARY_EVENT__BASE_ACCEPT_EVENT_ACTION, oldBase_AcceptEventAction, base_AcceptEventAction));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBase_AcceptEventAction() {
+		return base_AcceptEventAction != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean boundaryEventattachedToRef(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
@@ -198,6 +250,8 @@ public class BoundaryEventImpl extends CatchEventImpl implements BoundaryEvent {
 				return cancelActivity != CANCEL_ACTIVITY_EDEFAULT;
 			case BPMNProfilePackage.BOUNDARY_EVENT__ATTACHED_TO_REF:
 				return basicGetAttachedToRef() != null;
+			case BPMNProfilePackage.BOUNDARY_EVENT__BASE_ACCEPT_EVENT_ACTION:
+				return isSetBase_AcceptEventAction();
 		}
 		return super.eIsSet(featureID);
 	}

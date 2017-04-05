@@ -32,6 +32,16 @@
         eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//ActivityGroup"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FlowNode" abstract="true" eSuperTypes="#//FlowElement">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EReference" name="incoming" ordered="false" upperBound="-1"
+          eType="#//SequenceFlow" eOpposite="#//SequenceFlow/targetRef">
+        <eAnnotations source="redefines" references="#//BaseElement/incoming"/>
+      </contents>
+      <contents xsi:type="ecore:EReference" name="outgoing" ordered="false" upperBound="-1"
+          eType="#//SequenceFlow" eOpposite="#//SequenceFlow/sourceRef">
+        <eAnnotations source="redefines" references="#//BaseElement/outgoing"/>
+      </contents>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_ActivityNode" ordered="false"
         eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//ActivityNode"/>
   </eClassifiers>
@@ -315,6 +325,10 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionExpression" ordered="false"
         eType="#//BPMNExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRef" ordered="false"
+        lowerBound="1" eType="#//FlowNode" volatile="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetRef" ordered="false"
+        lowerBound="1" eType="#//FlowNode" volatile="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNExpression" eSuperTypes="#//BaseElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_OpaqueExpression"
@@ -999,6 +1013,17 @@
         eType="#//ItemDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Error" eSuperTypes="#//ItemDefinition">
+    <eAnnotations source="duplicates">
+      <eAnnotations source="structureRef">
+        <details key="eType" value="uml::Class"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="structureRef" ordered="false" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Element">
+        <eAnnotations source="redefines" references="#//ItemDefinition/structureRef"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="self.base_Class"/>
+        </eAnnotations>
+      </contents>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="errorCode" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
   </eClassifiers>
@@ -1082,7 +1107,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="outerParticipantRef" ordered="false"
         lowerBound="1" eType="#//Participant"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Participant" eSuperTypes="#//BaseElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Participant" eSuperTypes="#//BaseElement #//InteractionNode">
     <eOperations name="Participantownership" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="Participant.ownership"/>
@@ -1209,8 +1234,12 @@
         upperBound="-1" eType="#//BPMNInterface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InteractionNode" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Element" ordered="false"
-        lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_InteractionNode_Element"
+        ordered="false" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Element">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="base_Element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingConversationLinks"
         ordered="false" upperBound="-1" eType="#//ConversationLink" eOpposite="#//ConversationLink/sourceRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingConversationLinks"
@@ -1348,7 +1377,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="messageRef" ordered="false"
         eType="#//BPMNMessage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConversationNode" abstract="true" eSuperTypes="#//InteractionNode">
+  <eClassifiers xsi:type="ecore:EClass" name="ConversationNode" abstract="true" eSuperTypes="#//BaseElement #//InteractionNode">
     <eOperations name="ConversationNodeparticipantRefs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="ConversationNode.participantRefs"/>
@@ -1531,6 +1560,15 @@
         eType="#//BPMNProcess" eOpposite="#//BPMNProcess/resources"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceAssignmentExpression" eSuperTypes="#//BPMNExpression">
+    <eAnnotations source="duplicates">
+      <eAnnotations source="base_OpaqueExpression">
+        <details key="lowerBound" value="1"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="base_OpaqueExpression" ordered="false"
+          eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//OpaqueExpression">
+        <eAnnotations source="redefines" references="#//BPMNExpression/base_OpaqueExpression"/>
+      </contents>
+    </eAnnotations>
     <eOperations name="ResourceAssignmentExpressionexpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="ResourceAssignmentExpression.expression"/>
@@ -1719,7 +1757,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Event" ordered="false"
         lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Event"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BPMNActivity" abstract="true" eSuperTypes="#//FlowNode">
+  <eClassifiers xsi:type="ecore:EClass" name="BPMNActivity" abstract="true" eSuperTypes="#//FlowNode #//InteractionNode">
     <eOperations name="BPMNActivityresources" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="BPMNActivity.resources"/>
@@ -1821,6 +1859,15 @@
         upperBound="-1" eType="#//ResourceRole"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoundaryEvent" eSuperTypes="#//CatchEvent">
+    <eAnnotations source="duplicates">
+      <eAnnotations source="base_AcceptEventAction">
+        <details key="lowerBound" value="1"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="base_AcceptEventAction" ordered="false"
+          eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//AcceptEventAction">
+        <eAnnotations source="redefines" references="#//CatchEvent/base_AcceptEventAction"/>
+      </contents>
+    </eAnnotations>
     <eOperations name="boundaryEventattachedToRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="boundaryEvent.attachedToRef"/>
@@ -1862,7 +1909,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataOutputAssociation"
         ordered="false" upperBound="-1" eType="#//DataOutputAssociation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BPMNEvent" abstract="true" eSuperTypes="#//FlowNode">
+  <eClassifiers xsi:type="ecore:EClass" name="BPMNEvent" abstract="true" eSuperTypes="#//FlowNode #//InteractionNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventClass" ordered="false"
         eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="_eventDefinitions" ordered="false"
@@ -1996,6 +2043,17 @@
         lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//CallEvent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Escalation" eSuperTypes="#//ItemDefinition">
+    <eAnnotations source="duplicates">
+      <eAnnotations source="structureRef">
+        <details key="eType" value="uml::Class"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="structureRef" ordered="false" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Element">
+        <eAnnotations source="redefines" references="#//ItemDefinition/structureRef"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="self.base_Class"/>
+        </eAnnotations>
+      </contents>
+    </eAnnotations>
     <eOperations name="EscalationstructureRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="Escalation.structureRef"/>
@@ -2028,6 +2086,18 @@
         lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//CallEvent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BPMNSignal" eSuperTypes="#//ItemDefinition">
+    <eAnnotations source="duplicates">
+      <eAnnotations source="structureRef">
+        <details key="lowerBound" value="1"/>
+        <details key="eType" value="uml::Class"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="structureRef" ordered="false" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Element">
+        <eAnnotations source="redefines" references="#//ItemDefinition/structureRef"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="derivation" value="self.base_Class"/>
+        </eAnnotations>
+      </contents>
+    </eAnnotations>
     <eOperations name="BPMNSignalstructureRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
         <details key="originalName" value="BPMNSignal.structureRef"/>
@@ -2114,7 +2184,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CallEvent" ordered="false"
         lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//CallEvent"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntermediateCatchEvent" eSuperTypes="#//CatchEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntermediateCatchEvent" eSuperTypes="#//CatchEvent">
+    <eAnnotations source="duplicates">
+      <eAnnotations source="base_AcceptEventAction">
+        <details key="lowerBound" value="1"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="base_AcceptEventAction" ordered="false"
+          eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//AcceptEventAction">
+        <eAnnotations source="redefines" references="#//CatchEvent/base_AcceptEventAction"/>
+      </contents>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntermediateThrowEvent" eSuperTypes="#//ThrowEvent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_SendObjectAction"
         ordered="false" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction"/>
@@ -2123,7 +2203,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CallEvent" ordered="false"
         lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//CallEvent"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImplicitThrowEvent" eSuperTypes="#//ThrowEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicitThrowEvent" eSuperTypes="#//ThrowEvent">
+    <eAnnotations source="duplicates">
+      <eAnnotations source="base_CallOperationAction">
+        <details key="lowerBound" value="1"/>
+      </eAnnotations>
+      <contents xsi:type="ecore:EReference" name="base_CallOperationAction" ordered="false"
+          eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction">
+        <eAnnotations source="redefines" references="#//ThrowEvent/base_CallOperationAction"/>
+      </contents>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CancelEventDefinition" eSuperTypes="#//EventDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_CallEvent" ordered="false"
         lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//CallEvent"/>

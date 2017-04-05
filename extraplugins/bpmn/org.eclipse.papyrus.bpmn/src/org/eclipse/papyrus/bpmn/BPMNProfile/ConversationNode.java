@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.InformationFlow;
  * @model abstract="true"
  * @generated
  */
-public interface ConversationNode extends InteractionNode {
+public interface ConversationNode extends BaseElement, InteractionNode {
 	/**
 	 * Returns the value of the '<em><b>Base Information Flow</b></em>' reference.
 	 * <!-- begin-user-doc -->

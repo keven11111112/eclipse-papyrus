@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.Action;
  * @model abstract="true"
  * @generated
  */
-public interface BPMNActivity extends FlowNode {
+public interface BPMNActivity extends FlowNode, InteractionNode {
 	/**
 	 * Returns the value of the '<em><b>Is For Compensation</b></em>' attribute.
 	 * The default value is <code>"false"</code>.

@@ -2328,13 +2328,31 @@ public interface BPMNProfilePackage extends EPackage {
 	int SEQUENCE_FLOW__CONDITION_EXPRESSION = FLOW_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Source Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_FLOW__SOURCE_REF = FLOW_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Target Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_FLOW__TARGET_REF = FLOW_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Sequence Flow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_FLOW_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 3;
+	int SEQUENCE_FLOW_FEATURE_COUNT = FLOW_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Sequence Flowcondition Expression</em>' operation.
@@ -6811,13 +6829,40 @@ public interface BPMNProfilePackage extends EPackage {
 	int PARTICIPANT__INCOMING = BASE_ELEMENT__INCOMING;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT = BASE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTICIPANT__OUTGOING_CONVERSATION_LINKS = BASE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTICIPANT__INCOMING_CONVERSATION_LINKS = BASE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Base Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT__BASE_PROPERTY = BASE_ELEMENT_FEATURE_COUNT + 0;
+	int PARTICIPANT__BASE_PROPERTY = BASE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Process Ref</b></em>' reference.
@@ -6826,7 +6871,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT__PROCESS_REF = BASE_ELEMENT_FEATURE_COUNT + 1;
+	int PARTICIPANT__PROCESS_REF = BASE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Participant Multiplicity</b></em>' reference.
@@ -6835,7 +6880,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT__PARTICIPANT_MULTIPLICITY = BASE_ELEMENT_FEATURE_COUNT + 2;
+	int PARTICIPANT__PARTICIPANT_MULTIPLICITY = BASE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Partner Entity Ref</b></em>' reference list.
@@ -6844,7 +6889,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT__PARTNER_ENTITY_REF = BASE_ELEMENT_FEATURE_COUNT + 3;
+	int PARTICIPANT__PARTNER_ENTITY_REF = BASE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Partner Role Ref</b></em>' reference list.
@@ -6853,7 +6898,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT__PARTNER_ROLE_REF = BASE_ELEMENT_FEATURE_COUNT + 4;
+	int PARTICIPANT__PARTNER_ROLE_REF = BASE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Interface Refs</b></em>' reference list.
@@ -6862,7 +6907,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT__INTERFACE_REFS = BASE_ELEMENT_FEATURE_COUNT + 5;
+	int PARTICIPANT__INTERFACE_REFS = BASE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Participant</em>' class.
@@ -6871,7 +6916,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 6;
+	int PARTICIPANT_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Participantownership</em>' operation.
@@ -6974,13 +7019,13 @@ public interface BPMNProfilePackage extends EPackage {
 	int INTERACTION_NODE = 47;
 
 	/**
-	 * The feature id for the '<em><b>Base Element</b></em>' reference.
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERACTION_NODE__BASE_ELEMENT = 0;
+	int INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
@@ -7836,13 +7881,76 @@ public interface BPMNProfilePackage extends EPackage {
 	int CONVERSATION_NODE = 54;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION_NODE__ID = BASE_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Extension Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION_NODE__EXTENSION_VALUES = BASE_ELEMENT__EXTENSION_VALUES;
+
+	/**
 	 * The feature id for the '<em><b>Base Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE__BASE_ELEMENT = INTERACTION_NODE__BASE_ELEMENT;
+	int CONVERSATION_NODE__BASE_ELEMENT = BASE_ELEMENT__BASE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION_NODE__DOCUMENTATION = BASE_ELEMENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Extension Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION_NODE__EXTENSION_DEFINITIONS = BASE_ELEMENT__EXTENSION_DEFINITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION_NODE__OUTGOING = BASE_ELEMENT__OUTGOING;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION_NODE__INCOMING = BASE_ELEMENT__INCOMING;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT = BASE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
@@ -7851,7 +7959,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS = INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS;
+	int CONVERSATION_NODE__OUTGOING_CONVERSATION_LINKS = BASE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
@@ -7860,7 +7968,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS = INTERACTION_NODE__INCOMING_CONVERSATION_LINKS;
+	int CONVERSATION_NODE__INCOMING_CONVERSATION_LINKS = BASE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Base Information Flow</b></em>' reference.
@@ -7869,7 +7977,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE__BASE_INFORMATION_FLOW = INTERACTION_NODE_FEATURE_COUNT + 0;
+	int CONVERSATION_NODE__BASE_INFORMATION_FLOW = BASE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Message Flow Refs</b></em>' reference list.
@@ -7878,7 +7986,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE__MESSAGE_FLOW_REFS = INTERACTION_NODE_FEATURE_COUNT + 1;
+	int CONVERSATION_NODE__MESSAGE_FLOW_REFS = BASE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Correlation Keys</b></em>' reference list.
@@ -7887,7 +7995,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE__CORRELATION_KEYS = INTERACTION_NODE_FEATURE_COUNT + 2;
+	int CONVERSATION_NODE__CORRELATION_KEYS = BASE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Participant Refs</b></em>' reference list.
@@ -7896,7 +8004,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE__PARTICIPANT_REFS = INTERACTION_NODE_FEATURE_COUNT + 3;
+	int CONVERSATION_NODE__PARTICIPANT_REFS = BASE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Conversation Node</em>' class.
@@ -7905,7 +8013,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE_FEATURE_COUNT = INTERACTION_NODE_FEATURE_COUNT + 4;
+	int CONVERSATION_NODE_FEATURE_COUNT = BASE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Conversation Nodeparticipant Refs</em>' operation.
@@ -7914,7 +8022,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE___CONVERSATION_NODEPARTICIPANT_REFS__DIAGNOSTICCHAIN_MAP = INTERACTION_NODE_OPERATION_COUNT + 0;
+	int CONVERSATION_NODE___CONVERSATION_NODEPARTICIPANT_REFS__DIAGNOSTICCHAIN_MAP = BASE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Conversation Node</em>' class.
@@ -7923,7 +8031,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSATION_NODE_OPERATION_COUNT = INTERACTION_NODE_OPERATION_COUNT + 1;
+	int CONVERSATION_NODE_OPERATION_COUNT = BASE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.CorrelationKeyImpl <em>Correlation Key</em>}' class.
@@ -10554,13 +10662,40 @@ public interface BPMNProfilePackage extends EPackage {
 	int BPMN_ACTIVITY__BASE_ACTIVITY_NODE = FLOW_NODE__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPMN_ACTIVITY__BASE_INTERACTION_NODE_ELEMENT = FLOW_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPMN_ACTIVITY__OUTGOING_CONVERSATION_LINKS = FLOW_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPMN_ACTIVITY__INCOMING_CONVERSATION_LINKS = FLOW_NODE_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__IS_FOR_COMPENSATION = FLOW_NODE_FEATURE_COUNT + 0;
+	int BPMN_ACTIVITY__IS_FOR_COMPENSATION = FLOW_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Start Quantity</b></em>' attribute.
@@ -10569,7 +10704,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__START_QUANTITY = FLOW_NODE_FEATURE_COUNT + 1;
+	int BPMN_ACTIVITY__START_QUANTITY = FLOW_NODE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Completion Quantity</b></em>' attribute.
@@ -10578,7 +10713,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__COMPLETION_QUANTITY = FLOW_NODE_FEATURE_COUNT + 2;
+	int BPMN_ACTIVITY__COMPLETION_QUANTITY = FLOW_NODE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Base Action</b></em>' reference.
@@ -10587,7 +10722,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__BASE_ACTION = FLOW_NODE_FEATURE_COUNT + 3;
+	int BPMN_ACTIVITY__BASE_ACTION = FLOW_NODE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Activity Class</b></em>' reference.
@@ -10596,7 +10731,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__ACTIVITY_CLASS = FLOW_NODE_FEATURE_COUNT + 4;
+	int BPMN_ACTIVITY__ACTIVITY_CLASS = FLOW_NODE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' reference list.
@@ -10605,7 +10740,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__PROPERTIES = FLOW_NODE_FEATURE_COUNT + 5;
+	int BPMN_ACTIVITY__PROPERTIES = FLOW_NODE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' reference.
@@ -10614,7 +10749,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__DEFAULT = FLOW_NODE_FEATURE_COUNT + 6;
+	int BPMN_ACTIVITY__DEFAULT = FLOW_NODE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Boundary Event Refs</b></em>' reference list.
@@ -10623,7 +10758,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__BOUNDARY_EVENT_REFS = FLOW_NODE_FEATURE_COUNT + 7;
+	int BPMN_ACTIVITY__BOUNDARY_EVENT_REFS = FLOW_NODE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Data Input Associations</b></em>' reference list.
@@ -10632,7 +10767,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__DATA_INPUT_ASSOCIATIONS = FLOW_NODE_FEATURE_COUNT + 8;
+	int BPMN_ACTIVITY__DATA_INPUT_ASSOCIATIONS = FLOW_NODE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Data Output Associations</b></em>' reference list.
@@ -10641,7 +10776,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__DATA_OUTPUT_ASSOCIATIONS = FLOW_NODE_FEATURE_COUNT + 9;
+	int BPMN_ACTIVITY__DATA_OUTPUT_ASSOCIATIONS = FLOW_NODE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Loop Characteristics</b></em>' reference.
@@ -10650,7 +10785,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__LOOP_CHARACTERISTICS = FLOW_NODE_FEATURE_COUNT + 10;
+	int BPMN_ACTIVITY__LOOP_CHARACTERISTICS = FLOW_NODE_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Resources</b></em>' reference list.
@@ -10659,7 +10794,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY__RESOURCES = FLOW_NODE_FEATURE_COUNT + 11;
+	int BPMN_ACTIVITY__RESOURCES = FLOW_NODE_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>BPMN Activity</em>' class.
@@ -10668,7 +10803,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 12;
+	int BPMN_ACTIVITY_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>BPMN Activityresources</em>' operation.
@@ -10852,13 +10987,40 @@ public interface BPMNProfilePackage extends EPackage {
 	int BPMN_EVENT__BASE_ACTIVITY_NODE = FLOW_NODE__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPMN_EVENT__BASE_INTERACTION_NODE_ELEMENT = FLOW_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPMN_EVENT__OUTGOING_CONVERSATION_LINKS = FLOW_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPMN_EVENT__INCOMING_CONVERSATION_LINKS = FLOW_NODE_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_EVENT__EVENT_CLASS = FLOW_NODE_FEATURE_COUNT + 0;
+	int BPMN_EVENT__EVENT_CLASS = FLOW_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>event Definitions</b></em>' reference list.
@@ -10867,7 +11029,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_EVENT__EVENT_DEFINITIONS = FLOW_NODE_FEATURE_COUNT + 1;
+	int BPMN_EVENT__EVENT_DEFINITIONS = FLOW_NODE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' reference list.
@@ -10876,7 +11038,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_EVENT__PROPERTIES = FLOW_NODE_FEATURE_COUNT + 2;
+	int BPMN_EVENT__PROPERTIES = FLOW_NODE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Event Definition Refs</b></em>' reference list.
@@ -10885,7 +11047,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_EVENT__EVENT_DEFINITION_REFS = FLOW_NODE_FEATURE_COUNT + 3;
+	int BPMN_EVENT__EVENT_DEFINITION_REFS = FLOW_NODE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>BPMN Event</em>' class.
@@ -10894,7 +11056,7 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPMN_EVENT_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 4;
+	int BPMN_EVENT_FEATURE_COUNT = FLOW_NODE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>BPMN Event</em>' class.
@@ -11022,6 +11184,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int CATCH_EVENT__BASE_ACTIVITY_NODE = BPMN_EVENT__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATCH_EVENT__BASE_INTERACTION_NODE_ELEMENT = BPMN_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATCH_EVENT__OUTGOING_CONVERSATION_LINKS = BPMN_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATCH_EVENT__INCOMING_CONVERSATION_LINKS = BPMN_EVENT__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
@@ -11239,6 +11428,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int BOUNDARY_EVENT__BASE_ACTIVITY_NODE = CATCH_EVENT__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDARY_EVENT__BASE_INTERACTION_NODE_ELEMENT = CATCH_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDARY_EVENT__OUTGOING_CONVERSATION_LINKS = CATCH_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDARY_EVENT__INCOMING_CONVERSATION_LINKS = CATCH_EVENT__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
@@ -13007,6 +13223,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int THROW_EVENT__BASE_ACTIVITY_NODE = BPMN_EVENT__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THROW_EVENT__BASE_INTERACTION_NODE_ELEMENT = BPMN_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THROW_EVENT__OUTGOING_CONVERSATION_LINKS = BPMN_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THROW_EVENT__INCOMING_CONVERSATION_LINKS = BPMN_EVENT__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13213,6 +13456,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int END_EVENT__BASE_ACTIVITY_NODE = THROW_EVENT__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_EVENT__BASE_INTERACTION_NODE_ELEMENT = THROW_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_EVENT__OUTGOING_CONVERSATION_LINKS = THROW_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_EVENT__INCOMING_CONVERSATION_LINKS = THROW_EVENT__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
@@ -13575,6 +13845,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int START_EVENT__BASE_ACTIVITY_NODE = CATCH_EVENT__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_EVENT__BASE_INTERACTION_NODE_ELEMENT = CATCH_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_EVENT__OUTGOING_CONVERSATION_LINKS = CATCH_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_EVENT__INCOMING_CONVERSATION_LINKS = CATCH_EVENT__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
@@ -14229,6 +14526,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int INTERMEDIATE_CATCH_EVENT__BASE_ACTIVITY_NODE = CATCH_EVENT__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMEDIATE_CATCH_EVENT__BASE_INTERACTION_NODE_ELEMENT = CATCH_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMEDIATE_CATCH_EVENT__OUTGOING_CONVERSATION_LINKS = CATCH_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMEDIATE_CATCH_EVENT__INCOMING_CONVERSATION_LINKS = CATCH_EVENT__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14444,6 +14768,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERMEDIATE_THROW_EVENT__BASE_ACTIVITY_NODE = THROW_EVENT__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMEDIATE_THROW_EVENT__BASE_INTERACTION_NODE_ELEMENT = THROW_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMEDIATE_THROW_EVENT__OUTGOING_CONVERSATION_LINKS = THROW_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERMEDIATE_THROW_EVENT__INCOMING_CONVERSATION_LINKS = THROW_EVENT__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
@@ -14788,6 +15139,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int IMPLICIT_THROW_EVENT__BASE_ACTIVITY_NODE = THROW_EVENT__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICIT_THROW_EVENT__BASE_INTERACTION_NODE_ELEMENT = THROW_EVENT__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICIT_THROW_EVENT__OUTGOING_CONVERSATION_LINKS = THROW_EVENT__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICIT_THROW_EVENT__INCOMING_CONVERSATION_LINKS = THROW_EVENT__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Event Class</b></em>' reference.
@@ -16194,6 +16572,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int TASK__BASE_ACTIVITY_NODE = BPMN_ACTIVITY__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__BASE_INTERACTION_NODE_ELEMENT = BPMN_ACTIVITY__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__OUTGOING_CONVERSATION_LINKS = BPMN_ACTIVITY__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__INCOMING_CONVERSATION_LINKS = BPMN_ACTIVITY__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16499,6 +16904,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_TASK__BASE_ACTIVITY_NODE = TASK__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__BASE_INTERACTION_NODE_ELEMENT = TASK__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__OUTGOING_CONVERSATION_LINKS = TASK__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__INCOMING_CONVERSATION_LINKS = TASK__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
@@ -17731,6 +18163,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int MANUAL_TASK__BASE_ACTIVITY_NODE = TASK__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_TASK__BASE_INTERACTION_NODE_ELEMENT = TASK__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_TASK__OUTGOING_CONVERSATION_LINKS = TASK__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANUAL_TASK__INCOMING_CONVERSATION_LINKS = TASK__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18120,6 +18579,24 @@ public interface BPMNProfilePackage extends EPackage {
 	int SUB_CONVERSATION = 114;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_CONVERSATION__ID = CONVERSATION_NODE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Extension Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_CONVERSATION__EXTENSION_VALUES = CONVERSATION_NODE__EXTENSION_VALUES;
+
+	/**
 	 * The feature id for the '<em><b>Base Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18127,6 +18604,51 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int SUB_CONVERSATION__BASE_ELEMENT = CONVERSATION_NODE__BASE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_CONVERSATION__DOCUMENTATION = CONVERSATION_NODE__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Extension Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_CONVERSATION__EXTENSION_DEFINITIONS = CONVERSATION_NODE__EXTENSION_DEFINITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_CONVERSATION__OUTGOING = CONVERSATION_NODE__OUTGOING;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_CONVERSATION__INCOMING = CONVERSATION_NODE__INCOMING;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_CONVERSATION__BASE_INTERACTION_NODE_ELEMENT = CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
@@ -18446,6 +18968,24 @@ public interface BPMNProfilePackage extends EPackage {
 	int CALL_CONVERSATION = 116;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_CONVERSATION__ID = CONVERSATION_NODE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Extension Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_CONVERSATION__EXTENSION_VALUES = CONVERSATION_NODE__EXTENSION_VALUES;
+
+	/**
 	 * The feature id for the '<em><b>Base Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18453,6 +18993,51 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int CALL_CONVERSATION__BASE_ELEMENT = CONVERSATION_NODE__BASE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_CONVERSATION__DOCUMENTATION = CONVERSATION_NODE__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Extension Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_CONVERSATION__EXTENSION_DEFINITIONS = CONVERSATION_NODE__EXTENSION_DEFINITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_CONVERSATION__OUTGOING = CONVERSATION_NODE__OUTGOING;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_CONVERSATION__INCOMING = CONVERSATION_NODE__INCOMING;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_CONVERSATION__BASE_INTERACTION_NODE_ELEMENT = CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
@@ -18591,6 +19176,24 @@ public interface BPMNProfilePackage extends EPackage {
 	int CONVERSATION = 117;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION__ID = CONVERSATION_NODE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Extension Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION__EXTENSION_VALUES = CONVERSATION_NODE__EXTENSION_VALUES;
+
+	/**
 	 * The feature id for the '<em><b>Base Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18598,6 +19201,51 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSATION__BASE_ELEMENT = CONVERSATION_NODE__BASE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION__DOCUMENTATION = CONVERSATION_NODE__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Extension Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION__EXTENSION_DEFINITIONS = CONVERSATION_NODE__EXTENSION_DEFINITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION__OUTGOING = CONVERSATION_NODE__OUTGOING;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION__INCOMING = CONVERSATION_NODE__INCOMING;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSATION__BASE_INTERACTION_NODE_ELEMENT = CONVERSATION_NODE__BASE_INTERACTION_NODE_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
@@ -18797,6 +19445,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int SUB_PROCESS__BASE_ACTIVITY_NODE = BPMN_ACTIVITY__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_PROCESS__BASE_INTERACTION_NODE_ELEMENT = BPMN_ACTIVITY__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_PROCESS__OUTGOING_CONVERSATION_LINKS = BPMN_ACTIVITY__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_PROCESS__INCOMING_CONVERSATION_LINKS = BPMN_ACTIVITY__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
@@ -19151,6 +19826,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int CALL_ACTIVITY__BASE_ACTIVITY_NODE = BPMN_ACTIVITY__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_ACTIVITY__BASE_INTERACTION_NODE_ELEMENT = BPMN_ACTIVITY__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_ACTIVITY__OUTGOING_CONVERSATION_LINKS = BPMN_ACTIVITY__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_ACTIVITY__INCOMING_CONVERSATION_LINKS = BPMN_ACTIVITY__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19474,6 +20176,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int BUSINESS_RULE_TASK__BASE_ACTIVITY_NODE = TASK__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUSINESS_RULE_TASK__BASE_INTERACTION_NODE_ELEMENT = TASK__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUSINESS_RULE_TASK__OUTGOING_CONVERSATION_LINKS = TASK__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUSINESS_RULE_TASK__INCOMING_CONVERSATION_LINKS = TASK__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
@@ -19928,6 +20657,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int AD_HOC_SUB_PROCESS__BASE_ACTIVITY_NODE = SUB_PROCESS__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AD_HOC_SUB_PROCESS__BASE_INTERACTION_NODE_ELEMENT = SUB_PROCESS__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AD_HOC_SUB_PROCESS__OUTGOING_CONVERSATION_LINKS = SUB_PROCESS__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AD_HOC_SUB_PROCESS__INCOMING_CONVERSATION_LINKS = SUB_PROCESS__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20316,6 +21072,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int SCRIPT_TASK__BASE_ACTIVITY_NODE = TASK__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRIPT_TASK__BASE_INTERACTION_NODE_ELEMENT = TASK__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRIPT_TASK__OUTGOING_CONVERSATION_LINKS = TASK__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRIPT_TASK__INCOMING_CONVERSATION_LINKS = TASK__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20668,6 +21451,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int SEND_TASK__BASE_ACTIVITY_NODE = TASK__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEND_TASK__BASE_INTERACTION_NODE_ELEMENT = TASK__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEND_TASK__OUTGOING_CONVERSATION_LINKS = TASK__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEND_TASK__INCOMING_CONVERSATION_LINKS = TASK__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21018,6 +21828,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSACTION__BASE_ACTIVITY_NODE = SUB_PROCESS__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSACTION__BASE_INTERACTION_NODE_ELEMENT = SUB_PROCESS__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSACTION__OUTGOING_CONVERSATION_LINKS = SUB_PROCESS__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSACTION__INCOMING_CONVERSATION_LINKS = SUB_PROCESS__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
@@ -21535,6 +22372,33 @@ public interface BPMNProfilePackage extends EPackage {
 	int RECEIVE_TASK__BASE_ACTIVITY_NODE = TASK__BASE_ACTIVITY_NODE;
 
 	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RECEIVE_TASK__BASE_INTERACTION_NODE_ELEMENT = TASK__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RECEIVE_TASK__OUTGOING_CONVERSATION_LINKS = TASK__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RECEIVE_TASK__INCOMING_CONVERSATION_LINKS = TASK__INCOMING_CONVERSATION_LINKS;
+
+	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21894,6 +22758,33 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_TASK__BASE_ACTIVITY_NODE = TASK__BASE_ACTIVITY_NODE;
+
+	/**
+	 * The feature id for the '<em><b>Base Interaction Node Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TASK__BASE_INTERACTION_NODE_ELEMENT = TASK__BASE_INTERACTION_NODE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Conversation Links</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TASK__OUTGOING_CONVERSATION_LINKS = TASK__OUTGOING_CONVERSATION_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Conversation Links</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TASK__INCOMING_CONVERSATION_LINKS = TASK__INCOMING_CONVERSATION_LINKS;
 
 	/**
 	 * The feature id for the '<em><b>Is For Compensation</b></em>' attribute.
@@ -23286,6 +24177,28 @@ public interface BPMNProfilePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSequenceFlow_ConditionExpression();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.bpmn.BPMNProfile.SequenceFlow#getSourceRef <em>Source Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source Ref</em>'.
+	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.SequenceFlow#getSourceRef()
+	 * @see #getSequenceFlow()
+	 * @generated
+	 */
+	EReference getSequenceFlow_SourceRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.bpmn.BPMNProfile.SequenceFlow#getTargetRef <em>Target Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Ref</em>'.
+	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.SequenceFlow#getTargetRef()
+	 * @see #getSequenceFlow()
+	 * @generated
+	 */
+	EReference getSequenceFlow_TargetRef();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.SequenceFlow#SequenceFlowconditionExpression(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Sequence Flowcondition Expression</em>}' operation.
@@ -25400,15 +26313,15 @@ public interface BPMNProfilePackage extends EPackage {
 	EClass getInteractionNode();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_Element <em>Base Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_InteractionNode_Element <em>Base Interaction Node Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Element</em>'.
-	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_Element()
+	 * @return the meta object for the reference '<em>Base Interaction Node Element</em>'.
+	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_InteractionNode_Element()
 	 * @see #getInteractionNode()
 	 * @generated
 	 */
-	EReference getInteractionNode_Base_Element();
+	EReference getInteractionNode_Base_InteractionNode_Element();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getOutgoingConversationLinks <em>Outgoing Conversation Links</em>}'.

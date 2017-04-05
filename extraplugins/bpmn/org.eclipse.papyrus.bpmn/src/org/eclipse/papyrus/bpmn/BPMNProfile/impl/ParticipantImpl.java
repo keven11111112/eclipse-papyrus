@@ -23,11 +23,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNInterface;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProcess;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
+import org.eclipse.papyrus.bpmn.BPMNProfile.ConversationLink;
+import org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode;
 import org.eclipse.papyrus.bpmn.BPMNProfile.Participant;
 import org.eclipse.papyrus.bpmn.BPMNProfile.ParticipantMultiplicity;
 import org.eclipse.papyrus.bpmn.BPMNProfile.PartnerEntity;
 import org.eclipse.papyrus.bpmn.BPMNProfile.PartnerRole;
 import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -38,6 +41,9 @@ import org.eclipse.uml2.uml.Property;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ParticipantImpl#getBase_InteractionNode_Element <em>Base Interaction Node Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ParticipantImpl#getOutgoingConversationLinks <em>Outgoing Conversation Links</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ParticipantImpl#getIncomingConversationLinks <em>Incoming Conversation Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ParticipantImpl#getBase_Property <em>Base Property</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ParticipantImpl#getProcessRef <em>Process Ref</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.impl.ParticipantImpl#getParticipantMultiplicity <em>Participant Multiplicity</em>}</li>
@@ -49,6 +55,36 @@ import org.eclipse.uml2.uml.Property;
  * @generated
  */
 public class ParticipantImpl extends BaseElementImpl implements Participant {
+	/**
+	 * The cached value of the '{@link #getBase_InteractionNode_Element() <em>Base Interaction Node Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBase_InteractionNode_Element()
+	 * @generated
+	 * @ordered
+	 */
+	protected Element base_InteractionNode_Element;
+
+	/**
+	 * The cached value of the '{@link #getOutgoingConversationLinks() <em>Outgoing Conversation Links</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutgoingConversationLinks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConversationLink> outgoingConversationLinks;
+
+	/**
+	 * The cached value of the '{@link #getIncomingConversationLinks() <em>Incoming Conversation Links</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncomingConversationLinks()
+	 * @generated
+	 * @ordered
+	 */
+	protected ConversationLink incomingConversationLinks;
+
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -122,6 +158,116 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 	@Override
 	protected EClass eStaticClass() {
 		return BPMNProfilePackage.eINSTANCE.getParticipant();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element getBase_InteractionNode_Element() {
+		if (base_InteractionNode_Element != null && base_InteractionNode_Element.eIsProxy()) {
+			InternalEObject oldBase_InteractionNode_Element = (InternalEObject)base_InteractionNode_Element;
+			base_InteractionNode_Element = (Element)eResolveProxy(oldBase_InteractionNode_Element);
+			if (base_InteractionNode_Element != oldBase_InteractionNode_Element) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT, oldBase_InteractionNode_Element, base_InteractionNode_Element));
+			}
+		}
+		return base_InteractionNode_Element;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element basicGetBase_InteractionNode_Element() {
+		return base_InteractionNode_Element;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBase_InteractionNode_Element(Element newBase_InteractionNode_Element) {
+		Element oldBase_InteractionNode_Element = base_InteractionNode_Element;
+		base_InteractionNode_Element = newBase_InteractionNode_Element;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT, oldBase_InteractionNode_Element, base_InteractionNode_Element));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ConversationLink> getOutgoingConversationLinks() {
+		if (outgoingConversationLinks == null) {
+			outgoingConversationLinks = new EObjectWithInverseResolvingEList<ConversationLink>(ConversationLink.class, this, BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS, BPMNProfilePackage.CONVERSATION_LINK__SOURCE_REF);
+		}
+		return outgoingConversationLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConversationLink getIncomingConversationLinks() {
+		if (incomingConversationLinks != null && incomingConversationLinks.eIsProxy()) {
+			InternalEObject oldIncomingConversationLinks = (InternalEObject)incomingConversationLinks;
+			incomingConversationLinks = (ConversationLink)eResolveProxy(oldIncomingConversationLinks);
+			if (incomingConversationLinks != oldIncomingConversationLinks) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS, oldIncomingConversationLinks, incomingConversationLinks));
+			}
+		}
+		return incomingConversationLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConversationLink basicGetIncomingConversationLinks() {
+		return incomingConversationLinks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetIncomingConversationLinks(ConversationLink newIncomingConversationLinks, NotificationChain msgs) {
+		ConversationLink oldIncomingConversationLinks = incomingConversationLinks;
+		incomingConversationLinks = newIncomingConversationLinks;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS, oldIncomingConversationLinks, newIncomingConversationLinks);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncomingConversationLinks(ConversationLink newIncomingConversationLinks) {
+		if (newIncomingConversationLinks != incomingConversationLinks) {
+			NotificationChain msgs = null;
+			if (incomingConversationLinks != null)
+				msgs = ((InternalEObject)incomingConversationLinks).eInverseRemove(this, BPMNProfilePackage.CONVERSATION_LINK__TARGET_REF, ConversationLink.class, msgs);
+			if (newIncomingConversationLinks != null)
+				msgs = ((InternalEObject)newIncomingConversationLinks).eInverseAdd(this, BPMNProfilePackage.CONVERSATION_LINK__TARGET_REF, ConversationLink.class, msgs);
+			msgs = basicSetIncomingConversationLinks(newIncomingConversationLinks, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS, newIncomingConversationLinks, newIncomingConversationLinks));
 	}
 
 	/**
@@ -508,6 +654,12 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingConversationLinks()).basicAdd(otherEnd, msgs);
+			case BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS:
+				if (incomingConversationLinks != null)
+					msgs = ((InternalEObject)incomingConversationLinks).eInverseRemove(this, BPMNProfilePackage.CONVERSATION_LINK__TARGET_REF, ConversationLink.class, msgs);
+				return basicSetIncomingConversationLinks((ConversationLink)otherEnd, msgs);
 			case BPMNProfilePackage.PARTICIPANT__PARTNER_ENTITY_REF:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPartnerEntityRef()).basicAdd(otherEnd, msgs);
 			case BPMNProfilePackage.PARTICIPANT__PARTNER_ROLE_REF:
@@ -524,6 +676,10 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS:
+				return ((InternalEList<?>)getOutgoingConversationLinks()).basicRemove(otherEnd, msgs);
+			case BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS:
+				return basicSetIncomingConversationLinks(null, msgs);
 			case BPMNProfilePackage.PARTICIPANT__PARTNER_ENTITY_REF:
 				return ((InternalEList<?>)getPartnerEntityRef()).basicRemove(otherEnd, msgs);
 			case BPMNProfilePackage.PARTICIPANT__PARTNER_ROLE_REF:
@@ -540,6 +696,14 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT:
+				if (resolve) return getBase_InteractionNode_Element();
+				return basicGetBase_InteractionNode_Element();
+			case BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS:
+				return getOutgoingConversationLinks();
+			case BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS:
+				if (resolve) return getIncomingConversationLinks();
+				return basicGetIncomingConversationLinks();
 			case BPMNProfilePackage.PARTICIPANT__BASE_PROPERTY:
 				if (resolve) return getBase_Property();
 				return basicGetBase_Property();
@@ -568,6 +732,16 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT:
+				setBase_InteractionNode_Element((Element)newValue);
+				return;
+			case BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS:
+				getOutgoingConversationLinks().clear();
+				getOutgoingConversationLinks().addAll((Collection<? extends ConversationLink>)newValue);
+				return;
+			case BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS:
+				setIncomingConversationLinks((ConversationLink)newValue);
+				return;
 			case BPMNProfilePackage.PARTICIPANT__BASE_PROPERTY:
 				setBase_Property((Property)newValue);
 				return;
@@ -601,6 +775,15 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT:
+				setBase_InteractionNode_Element((Element)null);
+				return;
+			case BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS:
+				getOutgoingConversationLinks().clear();
+				return;
+			case BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS:
+				setIncomingConversationLinks((ConversationLink)null);
+				return;
 			case BPMNProfilePackage.PARTICIPANT__BASE_PROPERTY:
 				setBase_Property((Property)null);
 				return;
@@ -631,6 +814,12 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT:
+				return base_InteractionNode_Element != null;
+			case BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS:
+				return outgoingConversationLinks != null && !outgoingConversationLinks.isEmpty();
+			case BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS:
+				return incomingConversationLinks != null;
 			case BPMNProfilePackage.PARTICIPANT__BASE_PROPERTY:
 				return base_Property != null;
 			case BPMNProfilePackage.PARTICIPANT__PROCESS_REF:
@@ -645,6 +834,42 @@ public class ParticipantImpl extends BaseElementImpl implements Participant {
 				return interfaceRefs != null && !interfaceRefs.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == InteractionNode.class) {
+			switch (derivedFeatureID) {
+				case BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT: return BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT;
+				case BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS: return BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS;
+				case BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS: return BPMNProfilePackage.INTERACTION_NODE__INCOMING_CONVERSATION_LINKS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == InteractionNode.class) {
+			switch (baseFeatureID) {
+				case BPMNProfilePackage.INTERACTION_NODE__BASE_INTERACTION_NODE_ELEMENT: return BPMNProfilePackage.PARTICIPANT__BASE_INTERACTION_NODE_ELEMENT;
+				case BPMNProfilePackage.INTERACTION_NODE__OUTGOING_CONVERSATION_LINKS: return BPMNProfilePackage.PARTICIPANT__OUTGOING_CONVERSATION_LINKS;
+				case BPMNProfilePackage.INTERACTION_NODE__INCOMING_CONVERSATION_LINKS: return BPMNProfilePackage.PARTICIPANT__INCOMING_CONVERSATION_LINKS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

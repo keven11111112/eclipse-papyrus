@@ -10,12 +10,12 @@
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="UNION_PROPERTIES" value="REPORT"/>
     <details key="UNTYPED_PROPERTIES" value="REPORT"/>
-    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="DUPLICATE_FEATURES" value="PROCESS"/>
     <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
     <details key="VALIDATION_DELEGATES" value="IGNORE"/>
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
     <details key="COMMENTS" value="PROCESS"/>
-    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
     <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
     <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
     <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
@@ -245,6 +245,10 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute BPMNProfile.ecore#//SequenceFlow/isImmediate"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference BPMNProfile.ecore#//SequenceFlow/conditionExpression"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference BPMNProfile.ecore#//SequenceFlow/sourceRef"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference BPMNProfile.ecore#//SequenceFlow/targetRef"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="BPMNProfile.ecore#//SequenceFlow/SequenceFlowconditionExpression">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="BPMNProfile.ecore#//SequenceFlow/SequenceFlowconditionExpression/diagnostics"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="BPMNProfile.ecore#//SequenceFlow/SequenceFlowconditionExpression/context"/>
@@ -717,7 +721,7 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="BPMNProfile.ecore#//InteractionNode">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference BPMNProfile.ecore#//InteractionNode/base_Element"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference BPMNProfile.ecore#//InteractionNode/base_InteractionNode_Element"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference BPMNProfile.ecore#//InteractionNode/outgoingConversationLinks"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

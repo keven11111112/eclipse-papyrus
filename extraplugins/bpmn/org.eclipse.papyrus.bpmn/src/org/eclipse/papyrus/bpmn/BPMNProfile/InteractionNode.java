@@ -15,7 +15,7 @@ import org.eclipse.uml2.uml.Element;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_Element <em>Base Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_InteractionNode_Element <em>Base Interaction Node Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getOutgoingConversationLinks <em>Outgoing Conversation Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getIncomingConversationLinks <em>Incoming Conversation Links</em>}</li>
  * </ul>
@@ -26,30 +26,31 @@ import org.eclipse.uml2.uml.Element;
  */
 public interface InteractionNode extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Base Element</b></em>' reference.
+	 * Returns the value of the '<em><b>Base Interaction Node Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Element</em>' reference isn't clear,
+	 * If the meaning of the '<em>Base Interaction Node Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base Element</em>' reference.
-	 * @see #setBase_Element(Element)
-	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInteractionNode_Base_Element()
+	 * @return the value of the '<em>Base Interaction Node Element</em>' reference.
+	 * @see #setBase_InteractionNode_Element(Element)
+	 * @see org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage#getInteractionNode_Base_InteractionNode_Element()
 	 * @model required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='base_Element'"
 	 * @generated
 	 */
-	Element getBase_Element();
+	Element getBase_InteractionNode_Element();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_Element <em>Base Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.bpmn.BPMNProfile.InteractionNode#getBase_InteractionNode_Element <em>Base Interaction Node Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Element</em>' reference.
-	 * @see #getBase_Element()
+	 * @param value the new value of the '<em>Base Interaction Node Element</em>' reference.
+	 * @see #getBase_InteractionNode_Element()
 	 * @generated
 	 */
-	void setBase_Element(Element value);
+	void setBase_InteractionNode_Element(Element value);
 
 	/**
 	 * Returns the value of the '<em><b>Outgoing Conversation Links</b></em>' reference list.
