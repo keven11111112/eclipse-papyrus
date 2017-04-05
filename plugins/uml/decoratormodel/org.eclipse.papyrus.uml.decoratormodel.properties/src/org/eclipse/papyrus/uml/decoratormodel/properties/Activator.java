@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.decoratormodel.properties;
 
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -32,6 +33,9 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
+	// The log for this plugin
+	public static LogHelper log;
+
 	/**
 	 * The constructor
 	 */
@@ -42,10 +46,12 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(plugin);
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		log = null;
 		plugin = null;
 		super.stop(context);
 	}
@@ -78,7 +84,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param path
 	 *            The path to the image from the plugin
 	 * @return
-	 *         The Image at the given location, or null if it couldn't be found
+	 * 		The Image at the given location, or null if it couldn't be found
 	 */
 	public Image getImage(String pluginId, String path) {
 		final ImageRegistry registry = getImageRegistry();

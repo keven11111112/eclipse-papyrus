@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.uml.decoratormodel.internal.properties.constraints;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -57,11 +56,11 @@ public class HasExternalizedProfileApplicationsConstraint extends AbstractConstr
 					ListenableFuture<SetMultimap<URI, URI>> appliedProfiles = DecoratorModelIndex.getInstance().getAllAppliedProfilesAsync(EcoreUtil.getURI(package_));
 
 					// Optimistic enablement for responsiveness
-					result = !appliedProfiles.isDone() || !Futures.getChecked(appliedProfiles, CoreException.class).isEmpty();
+					result = !appliedProfiles.isDone() || !Futures.getChecked(appliedProfiles, ProfileApplicationsConstraintException.class).isEmpty();
 				}
-			} catch (CoreException e) {
+			} catch (ProfileApplicationsConstraintException e) {
 				// Oh, well. I guess we won't show this property
-				Activator.getDefault().getLog().log(e.getStatus());
+				Activator.log.error("ProfileApplicationsConstraintException on " + package_, e); //$NON-NLS-1$
 			}
 		}
 
