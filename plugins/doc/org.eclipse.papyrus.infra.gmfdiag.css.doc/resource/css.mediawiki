@@ -92,6 +92,7 @@ Eclipse implements the 2.1 version of the CSS syntax. The available selectors ar
 *'''#myID''': Matches the element with the CSS ID "myID". The CSS ID must be unique among a diagram. To avoid confusing the users, and because this selector doesn't make much sense on diagrams, this selector has been disabled in Papyrus.<br> 
 *'''<nowiki>[property=value]</nowiki>''': Matches the elements which have a property "property" with the value "value". It can also match the properties of Stereotypes<br>
 *'''<nowiki>[appliedStereotypes~="MyStereotype"]</nowiki>''': Matches the elements on which the Stereotype "MyStereotype" is applied. You can use either the Stereotype's name or qualified name (MyProfile::MyPackage::MyStereotype). Note: always use the "~=" operator (Which means "contains"), because UML elements can have more than one applied stereotype.
+*'''<nowiki>[typeAppliedStereotypes~="MyStereotype"]</nowiki>''': Matches the TypedElements with a type which has the Stereotype "MyStereotype" applied. You can use either the Stereotype's name or qualified name (MyProfile::MyPackage::MyStereotype). Note: always use the "~=" operator (Which means "contains"), because UML elements can have more than one applied stereotype.
 * ''':pseudo''': Matches the element on which the pseudo-selector "pseudo" is applied. Pseudo-selectors are typically used for dynamic events, and for filtering some non-semantic properties. In Papyrus, they are used for identifying more precisely the floating labels (When an element has more than one label: see the [#Mask_Label Mask Label] chapter below), and they are also used by the animation framework to specify events (See the Moka documentation)
 
 These selectors can be combined using one of the following combinators:<br> 
@@ -146,6 +147,17 @@ Meaning: The elements with the "Block" stereotype must be displayed in bold.
 
 Meaning: The elements with the "Block" stereotype, and the stereotype property "isEncapsulated" set to true, must be displayed in red.
 
+<source lang="css">Property[typeAppliedStereotypes~="Block"]{
+    fillColor:red;
+}
+
+/* Equivalent: qualified name */
+Property[typeAppliedStereotypes~="SysML::Blocks::Block"]{
+    fillColor:red;
+}</source>
+
+Meaning: The properties, whose type has the "Block" stereotype applied, must be displayed in bold.
+
 All these rules can be combined:
 
 <source lang="css">Class[appliedStereotypes~=Block][appliedStereotypes~=MyCustomStereotype][isEncapsulated=true][myCustomProperty=SomeValue][isAbstract=false]{
@@ -155,7 +167,12 @@ All these rules can be combined:
 	*  the UML Property "isAbstract" is set to false */
 	
 	fillColor:red;
-}</source>
+}
+
+Property[typeAppliedStereotypes~="SysML::Blocks::Block"][appliedStereotypes~=MyCustomStereotype][isStatic=true][myCustomProperty=SomeValue]{
+    fillColor:red;
+}
+</source>
 
 
 == With the Papyrus tooling  ==
