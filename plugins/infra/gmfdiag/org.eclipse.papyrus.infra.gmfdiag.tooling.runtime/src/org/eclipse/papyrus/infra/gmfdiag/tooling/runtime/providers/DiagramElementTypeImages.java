@@ -1,4 +1,4 @@
-package  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers;
+package org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
@@ -9,9 +9,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
 public class DiagramElementTypeImages {
 
@@ -20,7 +22,7 @@ public class DiagramElementTypeImages {
 	private ImageRegistry myImageRegistry;
 
 	public DiagramElementTypeImages(AdapterFactory adapterFactory) {
-		this(adapterFactory, new ImageRegistry());
+		this(adapterFactory, null);
 	}
 
 	public DiagramElementTypeImages(AdapterFactory adapterFactory, ImageRegistry imageRegistry) {
@@ -30,7 +32,7 @@ public class DiagramElementTypeImages {
 
 	public ImageRegistry getImageRegistry() {
 		if (myImageRegistry == null) {
-			myImageRegistry = new ImageRegistry();
+			myImageRegistry = new ImageRegistry(DisplayUtils.getDisplay());
 		}
 		return myImageRegistry;
 	}
@@ -43,7 +45,7 @@ public class DiagramElementTypeImages {
 		if (element == null) {
 			return null;
 		}
-		getImageDescriptor(element); //ensures is cached in registry
+		getImageDescriptor(element); // ensures is cached in registry
 		String key = getImageRegistryKey(element);
 		return getImageRegistry().get(key);
 	}
@@ -66,10 +68,11 @@ public class DiagramElementTypeImages {
 
 	public ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
-			//			ImageDescriptor feelingLucky = getReferenceImageDescritor((EStructuralFeature) element);
-			//			if (feelingLucky != null) {
-			//				return feelingLucky;
-			//			}
+			// ImageDescriptor feelingLucky =
+			// getReferenceImageDescritor((EStructuralFeature) element);
+			// if (feelingLucky != null) {
+			// return feelingLucky;
+			// }
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = findNotAbstractEClassOrSubClass(feature.getEContainingClass());
 			EClass eType = findNotAbstractEClassOrSubClass(feature.getEType());
@@ -103,7 +106,8 @@ public class DiagramElementTypeImages {
 		if (containerInstance == null) {
 			return null;
 		}
-		IItemLabelProvider labelProvider = (IItemLabelProvider) myAdapterFactory.adapt(containerInstance, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) myAdapterFactory.adapt(containerInstance,
+				IItemLabelProvider.class);
 		if (false == labelProvider instanceof CreateChildCommand.Helper) {
 			return null;
 		}
@@ -126,7 +130,8 @@ public class DiagramElementTypeImages {
 			return null;
 		}
 		EClass instantiatable = findNotAbstractEClassOrSubClass((EClass) classifier);
-		return instantiatable == null ? null : instantiatable.getEPackage().getEFactoryInstance().create(instantiatable);
+		return instantiatable == null ? null
+				: instantiatable.getEPackage().getEFactoryInstance().create(instantiatable);
 	}
 
 	protected EClass findNotAbstractEClassOrSubClass(EClassifier classifier) {
