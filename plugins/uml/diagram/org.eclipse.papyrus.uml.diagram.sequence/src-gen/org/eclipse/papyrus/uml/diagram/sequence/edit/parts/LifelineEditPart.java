@@ -46,7 +46,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifeLineLayoutE
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.TimeMarkElementPositionLocator;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.OLDTimeMarkElementPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectLifeLineToGrillingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedResizableShapeEditPolicy;
@@ -194,7 +194,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 
 		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof TimeConstraintEditPart) {
-			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart) childEditPart).getFigure(),
 					locator);
 			return true;
@@ -202,7 +202,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 
 		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof TimeObservationEditPart) {
-			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((TimeObservationEditPart) childEditPart).getFigure(),
 					locator);
 			return true;
@@ -210,7 +210,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 
 		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof DurationConstraintEditPart) {
-			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart) childEditPart).getFigure(),
 					locator);
 			return true;

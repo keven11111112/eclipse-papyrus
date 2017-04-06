@@ -54,7 +54,7 @@ import org.eclipse.uml2.uml.TimeObservation;
 /**
  * This class is used to constrain the position of a Time/Duration related object on a Lifeline.
  */
-public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
+public class OLDTimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 
 	/**
 	 * The edit part which figure is located.
@@ -63,17 +63,17 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	private EditPart editPart = null;
 
 	/** Constructor **/
-	public TimeMarkElementPositionLocator(IFigure parentFigure) {
+	public OLDTimeMarkElementPositionLocator(IFigure parentFigure) {
 		super(parentFigure);
 	}
 
 	/** Constructor **/
-	public TimeMarkElementPositionLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
+	public OLDTimeMarkElementPositionLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
 		super(borderItem, parentFigure, constraint);
 	}
 
 	/** Constructor **/
-	public TimeMarkElementPositionLocator(IFigure parentFigure, int preferredSide) {
+	public OLDTimeMarkElementPositionLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}
 
@@ -141,6 +141,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	 *
 	 * @return <code>Rectangle</code> that is the bounds of the parent dot line.
 	 */
+	@Deprecated
 	protected Rectangle getParentDotLineBorder() {
 		// get the dot line of the lifeline if available
 		for (Object childFig : getParentFigure().getChildren()) {
@@ -163,7 +164,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
 		int[] horizontalGap = getHorizontalGap();
-		Rectangle bounds = getParentDotLineBorder();
+		Rectangle bounds = getParentBorder();
 		int parentFigureXCenter = bounds.getCenter().x;
 		int parentFigureHeight = bounds.height;
 		int parentFigureY = bounds.y;

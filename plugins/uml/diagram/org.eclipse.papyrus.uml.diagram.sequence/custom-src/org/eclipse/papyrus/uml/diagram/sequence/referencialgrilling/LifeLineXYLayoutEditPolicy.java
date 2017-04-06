@@ -108,7 +108,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 			ViewAndElementDescriptor descriptor=(req).getViewAndElementDescriptor();
 			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
 			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)||
-					ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)){
+					ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE) ||ElementUtil.isTypeOf(elementType, UMLDIElementTypes.TIME_CONSTRAINT_SHAPE)){
 				// get the element descriptor
 				CreateElementRequestAdapter requestAdapter =
 						req.getViewAndElementDescriptor().getCreateElementRequestAdapter();

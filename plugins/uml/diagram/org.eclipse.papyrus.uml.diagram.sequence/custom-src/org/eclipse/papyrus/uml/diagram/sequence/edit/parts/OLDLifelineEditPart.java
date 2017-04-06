@@ -109,7 +109,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineSelectionE
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.TimeMarkElementPositionLocator;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.OLDTimeMarkElementPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
@@ -353,21 +353,21 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 		// Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof TimeConstraintEditPart) {
 			// update the locator with edit part reference
-			TimeMarkElementPositionLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
+			OLDTimeMarkElementPositionLocator locator = new OLDTimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			locator.setEditPart(childEditPart);
 			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 		if (childEditPart instanceof TimeObservationEditPart) {
 			// update the locator with edit part reference
-			TimeMarkElementPositionLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
+			OLDTimeMarkElementPositionLocator locator = new OLDTimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			locator.setEditPart(childEditPart);
 			getBorderedFigure().getBorderItemContainer().add(((TimeObservationEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 		if (childEditPart instanceof DurationConstraintEditPart) {
 			// update the locator with edit part reference
-			TimeMarkElementPositionLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
+			OLDTimeMarkElementPositionLocator locator = new OLDTimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			locator.setEditPart(childEditPart);
 			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart) childEditPart).getFigure(), locator);
 			return true;
