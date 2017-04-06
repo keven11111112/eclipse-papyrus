@@ -21,17 +21,16 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.pde.api.tools.internal.IApiXmlConstants;
-import org.eclipse.pde.api.tools.internal.comparator.DeltaXmlVisitor;
 import org.eclipse.pde.api.tools.internal.provisional.comparator.IDelta;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * A specialized {@link DeltaXmlVisitor} that accounts for new
+ * A specialized {@link SafeDeltaXmlVisitor} that accounts for new
  * compatibility scenarios in Java8's interface evoluation
  * capabilities (such as default and static methods).
  */
-public class Java8DeltaXMLVisitor extends DeltaXmlVisitor {
+public class Java8DeltaXMLVisitor extends SafeDeltaXmlVisitor {
 	private static final Map<String, Integer> deltaConstantsDecoder = new HashMap<>();
 
 	private final Element root;
@@ -55,6 +54,7 @@ public class Java8DeltaXMLVisitor extends DeltaXmlVisitor {
 
 		root = getDocument().getDocumentElement();
 	}
+
 
 	/**
 	 * Appends my XML content to a given {@code appendable}.

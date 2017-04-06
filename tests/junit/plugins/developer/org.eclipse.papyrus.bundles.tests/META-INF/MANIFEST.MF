@@ -23,3 +23,4 @@ Bundle-Activator: org.eclipse.papyrus.bundles.tests.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.bundles.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.apache.commons.lang3.text.translate;version="3.1.0"
