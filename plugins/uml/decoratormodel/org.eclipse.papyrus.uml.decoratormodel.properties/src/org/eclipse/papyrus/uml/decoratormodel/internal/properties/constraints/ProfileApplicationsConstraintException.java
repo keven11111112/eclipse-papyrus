@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.uml.decoratormodel.properties.Activator;
 
 public class ProfileApplicationsConstraintException extends CoreException {
-	ProfileApplicationsConstraintException() {
+	public ProfileApplicationsConstraintException() {
 		super(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "ProfileApplicationsConstraintException"));
 	}
 }
