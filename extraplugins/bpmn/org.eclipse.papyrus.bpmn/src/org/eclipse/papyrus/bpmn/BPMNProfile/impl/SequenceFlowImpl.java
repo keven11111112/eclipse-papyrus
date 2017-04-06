@@ -209,13 +209,10 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public FlowNode basicGetSourceRef() {
-		// TODO: implement this method to return the 'Source Ref' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return SequenceFlowCustom.basicGetSourceRef(this);
 	}
 
 	/**
@@ -242,13 +239,10 @@ public class SequenceFlowImpl extends FlowElementImpl implements SequenceFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public FlowNode basicGetTargetRef() {
-		// TODO: implement this method to return the 'Target Ref' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return SequenceFlowCustom.basicGetTargetRef(this);
 	}
 
 	/**
