@@ -17,8 +17,10 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.diagram.common.helper.PortLabelHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -54,6 +56,9 @@ public class MaskManagedNodeEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	@Override
 	public Map<String, String> getMasks() {
+		if (getUMLElement() instanceof Port) 
+			return PortLabelHelper.getInstance().getMasks();
+		
 		return PropertyLabelHelper.getInstance().getMasks();
 	}
 

@@ -66,6 +66,12 @@ public class PortUtil extends PropertyUtil {
 			} else {
 				buffer.append(TypeUtil.UNDEFINED_TYPE_NAME);
 			}
+		} else {
+			if (maskValues.contains(ICustomAppearance.DISP_CONJUGATED)) {
+				if (((Port) property).isConjugated()) {
+					buffer.append("~");
+				}
+			}
 		}
 
 		if (maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
