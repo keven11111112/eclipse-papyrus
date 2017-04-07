@@ -407,7 +407,7 @@
                menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationnavigation/group3">
          </action>
          <menu
-               icon="icons/obj16/Association_composite.gif"
+               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif"
                id="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation"
                label="aggregation"
                path="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend">
@@ -418,7 +418,7 @@
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetNoneAggregationPropertyAction"
                enablesFor="1"
-               icon="icons/obj16/Association_none.gif"
+               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_none.gif"
                id="org.eclipse.papyrus.uml.diagram.clazz.SetNoneAggregationPropertyAction"
                label="none"
                menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
@@ -426,7 +426,7 @@
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetCompositePropertyAction"
                enablesFor="1"
-               icon="icons/obj16/Association_composite.gif"
+               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif"
                id="org.eclipse.papyrus.uml.diagram.clazz.SetCompositePropertyAction"
                label="composite"
                menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
@@ -434,7 +434,7 @@
          <action
                class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetSharedPropertyAction"
                enablesFor="1"
-               icon="icons/obj16/Association_shared.gif"
+               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared.gif"
                id="org.eclipse.papyrus.uml.diagram.clazz.SetSharedPropertyAction"
                label="shared"
                menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
