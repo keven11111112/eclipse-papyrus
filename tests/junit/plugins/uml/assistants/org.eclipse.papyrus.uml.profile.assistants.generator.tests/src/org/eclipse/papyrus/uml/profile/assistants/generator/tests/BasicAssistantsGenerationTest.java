@@ -24,7 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.emf.utils.EMFFunctions;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.filters.CompoundFilter;
 import org.eclipse.papyrus.infra.filters.Filter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
@@ -33,7 +33,6 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtext.xbase.lib.Pair;
@@ -85,7 +84,7 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 		Pair<Stereotype, Class> accessControlledInterface = fixture.getMetaclassExtension("AccessControlled", "Interface");
 		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, null);
 
-		assertThat(transform(popups, EMFFunctions.getFeature(AssistantPackage.Literals.POPUP_ASSISTANT__FILTER, Filter.class)), //
+		assertThat(transform(popups, getFeature(AssistantPackage.Literals.POPUP_ASSISTANT__FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterInterface)));
 	}
 
@@ -100,7 +99,7 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 		Pair<Stereotype, Class> accessControlledInterface = fixture.getMetaclassExtension("AccessControlled", "Interface");
 		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, null);
 
-		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER, Filter.class)), //
+		assertThat(transform(connections, getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterInterface)));
 	}
 
@@ -115,7 +114,7 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 		Pair<Stereotype, Class> accessControlledInterface = fixture.getMetaclassExtension("AccessControlled", "Interface");
 		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, null);
 
-		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER, Filter.class)), //
+		assertThat(transform(connections, getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterInterface)));
 	}
 
@@ -142,7 +141,7 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 				return Integer.valueOf(input);
 			}
 		};
-		return Functions.compose(parse, Functions.compose(suffixFunction(), EMFFunctions.getFeature(AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE_ID, String.class)));
+		return Functions.compose(parse, Functions.compose(suffixFunction(), getFeature(AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE_ID, String.class)));
 	}
 
 	static org.hamcrest.Matcher<Filter> includes(final Filter filter) {
@@ -175,4 +174,14 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 			}
 		};
 	}
+	
+	public static <T> Function<EObject, T> getFeature(final EStructuralFeature feature, final java.lang.Class<T> ofType) {
+		return new Function<EObject, T>() {
+			@Override
+			public T apply(EObject input) {
+				return (input == null) ? null : ofType.cast(input.eGet(feature));
+			}
+		};
+	}
+	
 }

@@ -26,7 +26,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.papyrus.infra.emf.utils.EMFFunctions;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IconEntry;
@@ -43,6 +44,7 @@ import org.eclipse.xtext.xbase.lib.Pair;
 import org.junit.ClassRule;
 import org.junit.Test;
 
+import com.google.common.base.Function;
 import com.google.common.collect.ImmutableSet;
 
 /**
@@ -96,7 +98,7 @@ public class DiagramSpecificElementTypesGenerationTest extends AbstractPapyrusTe
 	public void distinctHintsGenerated() {
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
 		List<SpecializationTypeConfiguration> types = fixture.assertAllSpecializationTypes(userActor);
-		Set<String> hints = ImmutableSet.copyOf(transform(types, EMFFunctions.getFeature(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__HINT, String.class)));
+		Set<String> hints = ImmutableSet.copyOf(transform(types, getFeature(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__HINT, String.class)));
 		assertThat(hints, hasItems(ActorEditPartTN.VISUAL_ID, ActorAsRectangleEditPartTN.VISUAL_ID));
 	}
 
@@ -127,4 +129,13 @@ public class DiagramSpecificElementTypesGenerationTest extends AbstractPapyrusTe
 		// Apply-stereotype advice is not required where it is inherited from semantic supertype
 		fixture.assertNoApplyStereotypeAdvice(userActor);
 	}
+	
+	public static <T> Function<EObject, T> getFeature(final EStructuralFeature feature, final java.lang.Class<T> ofType) {
+		return new Function<EObject, T>() {
+			@Override
+			public T apply(EObject input) {
+				return (input == null) ? null : ofType.cast(input.eGet(feature));
+			}
+		};
+	}	
 }

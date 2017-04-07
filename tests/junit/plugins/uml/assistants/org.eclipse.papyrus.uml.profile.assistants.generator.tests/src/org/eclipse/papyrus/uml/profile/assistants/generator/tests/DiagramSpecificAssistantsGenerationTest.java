@@ -20,11 +20,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.emf.utils.EMFFunctions;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.filters.CompoundFilter;
 import org.eclipse.papyrus.infra.filters.Filter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
@@ -108,7 +106,7 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 		ElementTypeFilter usecaseFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseEditPartTN.VISUAL_ID);
 		ElementTypeFilter usecaseAsRectangleFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseAsRectangleEditPartTN.VISUAL_ID);
 
-		assertThat(transform(popups, EMFFunctions.getFeature(AssistantPackage.Literals.POPUP_ASSISTANT__FILTER, Filter.class)), //
+		assertThat(transform(popups, getFeature(AssistantPackage.Literals.POPUP_ASSISTANT__FILTER, Filter.class)), //
 				hasItems(includes(usecaseFilter), includes(usecaseAsRectangleFilter)));
 	}
 
@@ -123,7 +121,7 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 		Pair<Stereotype, Class> webScenarioUseCase = fixture.getMetaclassExtension("WebScenario", "UseCase");
 		ElementTypeFilter usecaseFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseEditPartTN.VISUAL_ID);
 
-		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER, Filter.class)), //
+		assertThat(transform(connections, getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER, Filter.class)), //
 				hasItems(includes(actorFilter), includes(usecaseFilter)));
 	}
 
@@ -138,7 +136,7 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 		Pair<Stereotype, Class> webScenarioUseCase = fixture.getMetaclassExtension("WebScenario", "UseCase");
 		ElementTypeFilter usecaseFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseEditPartTN.VISUAL_ID);
 
-		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER, Filter.class)), //
+		assertThat(transform(connections, getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER, Filter.class)), //
 				hasItems(includes(actorFilter), includes(usecaseFilter)));
 	}
 
@@ -156,9 +154,18 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 	}
 
 	static Function<EObject, String> visualIDFunction() {
-		return Functions.compose(suffixFunction(), EMFFunctions.getFeature(AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE_ID, String.class));
+		return Functions.compose(suffixFunction(), getFeature(AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE_ID, String.class));
 	}
 
+	public static <T> Function<EObject, T> getFeature(final EStructuralFeature feature, final java.lang.Class<T> ofType) {
+		return new Function<EObject, T>() {
+			@Override
+			public T apply(EObject input) {
+				return (input == null) ? null : ofType.cast(input.eGet(feature));
+			}
+		};
+	}
+	
 	static org.hamcrest.Matcher<Filter> includes(final Filter filter) {
 		return new BaseMatcher<Filter>() {
 			@Override
