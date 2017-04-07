@@ -20,7 +20,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.infra.emf.internal.resource.CrossReferenceIndex;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationRunner;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.junit.BeforeClass;
