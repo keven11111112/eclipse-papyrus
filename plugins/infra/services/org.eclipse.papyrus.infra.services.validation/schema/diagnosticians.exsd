@@ -81,7 +81,45 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="priority" use="default" value="default">
+            <annotation>
+               <documentation>
+                  &lt;p&gt;
+Relative priority of the diagnostician, used to resolve conflicts between multiple contributions that are applicable to the target model element.  The priority scale, from least to most, is
+&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;default&lt;/dt&gt;&lt;dd&gt;a last-resort default diagnostician. This is the default priority for extensions that do not declare it specifically&lt;/dd&gt;
+&lt;dt&gt;lowest&lt;/dt&gt;&lt;dd&gt;the least priority that is not the default, appropriate for a given metamodel/language at the most general level&lt;/dd&gt;
+&lt;dt&gt;low&lt;/dt&gt;&lt;dd&gt;a relatively low priority&lt;/dd&gt;
+&lt;dt&gt;normal&lt;/dt&gt;&lt;dd&gt;a generally preferred diagnostician, especially for a variant of a language/metamodel, such as a UML profile based DSML&lt;/dd&gt;
+&lt;dt&gt;high&lt;/dt&gt;&lt;dd&gt;a higher priority for more specific needs of a specific application of a DSML&lt;/dd&gt;
+&lt;dt&gt;highest&lt;/dt&gt;&lt;dd&gt;urgent override, such as for patching bugs or other deficiencies in another diagnostician&lt;/dd&gt;
+&lt;/dl&gt;
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="default">
+                  </enumeration>
+                  <enumeration value="lowest">
+                  </enumeration>
+                  <enumeration value="low">
+                  </enumeration>
+                  <enumeration value="normal">
+                  </enumeration>
+                  <enumeration value="high">
+                  </enumeration>
+                  <enumeration value="highest">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
       </complexType>
    </element>
+
+
+
+
+
 
 </schema>

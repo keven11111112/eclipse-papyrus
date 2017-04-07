@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,16 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 514955
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.validation.internal;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -41,9 +47,15 @@ public class ValidationRegistry {
 
 	public static final String FILTER = "filter"; //$NON-NLS-1$
 
+	private static final String PRIORITY = "priority"; //$NON-NLS-1$
+
 	public enum HookType {
 		BEFORE, AFTER
 	};
+
+	private enum Priority {
+		DEFAULT, LOWEST, LOW, NORMAL, HIGH, HIGHEST;
+	}
 
 	/**
 	 * Return a diagnostician for an element of a model.
@@ -54,7 +66,7 @@ public class ValidationRegistry {
 	 */
 	public static IPapyrusDiagnostician getDiagnostician(EObject element) {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(ID_DIAGNOSTICIANS);
+		IConfigurationElement[] configElements = sort(reg.getConfigurationElementsFor(ID_DIAGNOSTICIANS));
 		for (IConfigurationElement configElement : configElements) {
 			try {
 				final Object obj = configElement.createExecutableExtension(FILTER);
@@ -73,6 +85,54 @@ public class ValidationRegistry {
 		}
 		// fall back to ecore diagnostician
 		return new EcoreDiagnostician();
+	}
+
+	/**
+	 * Sort an array of extension configuration elements by priority, from highest to lowest.
+	 * 
+	 * @param configElements
+	 *            an array of configuration elements
+	 * 
+	 * @return the sorted array
+	 */
+	private static IConfigurationElement[] sort(IConfigurationElement[] configElements) {
+		Comparator<IConfigurationElement> byPriority = new Comparator<IConfigurationElement>() {
+			private Map<IConfigurationElement, Priority> priorities = new HashMap<IConfigurationElement, ValidationRegistry.Priority>();
+
+			Priority getPriority(IConfigurationElement config) {
+				Priority result = priorities.get(config);
+				if (result == null) {
+					String priorityName = config.getAttribute(PRIORITY);
+					if (priorityName == null) {
+						priorityName = Priority.DEFAULT.name();
+					} else {
+						priorityName = priorityName.toUpperCase();
+					}
+
+					try {
+						result = Priority.valueOf(priorityName);
+					} catch (Exception e) {
+						// No such value? Go with the default
+					}
+					if (result == null) {
+						result = Priority.DEFAULT;
+					}
+
+					priorities.put(config, result);
+				}
+
+				return result;
+			}
+
+			public int compare(IConfigurationElement o1, IConfigurationElement o2) {
+				// Sort from highest to lowest priority
+				return getPriority(o2).compareTo(getPriority(o1));
+			}
+		};
+
+		Arrays.sort(configElements, byPriority);
+
+		return configElements;
 	}
 
 	/**
@@ -100,7 +160,7 @@ public class ValidationRegistry {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Execute validation hooks
 	 * 
@@ -129,8 +189,7 @@ public class ValidationRegistry {
 						}
 					}
 				}
-			}
-			catch (CoreException exception) {
+			} catch (CoreException exception) {
 				Activator.log.error(exception);
 			}
 		}
