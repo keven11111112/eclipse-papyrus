@@ -62,7 +62,7 @@ public class ManifestEditorTest {
 		fixture.getEditor().addDependency("org.eclipse.jface");
 
 		// And try to add one that was there before
-		fixture.getEditor().addDependency("com.google.guava");
+		fixture.getEditor().addDependency("org.eclipse.ui");
 
 		fixture.getEditor().save();
 
@@ -71,8 +71,8 @@ public class ManifestEditorTest {
 		// We have JFace without a version
 		assertThat(one(manifest, "org.eclipse.jface"), not(containsString(";")));
 
-		// And still just the one one Guava with its version
-		assertThat(one(manifest, "com.google.guava"), containsString(";bundle-version=\"21.0.0\""));
+		// And still just the one org.eclipse.ui with its version
+		assertThat(one(manifest, "org.eclipse.ui"), containsString(";bundle-version=\"3.6.0\""));
 	}
 
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")
@@ -384,13 +384,13 @@ public class ManifestEditorTest {
 	public void getRequiredBundles() {
 		List<IRequiredBundleDescription> required = fixture.getEditor().getRequiredBundles();
 
-		assertThat(required.size(), is(5));
+		assertThat(required.size(), is(4));
 		assertThat(required.get(0).getVersionRange(), is(VersionRange.valueOf("[1.2.0,2.0.0)")));
 		assertThat(required.get(1).getName(), is("org.eclipse.papyrus.eclipse.project.editors"));
 		assertThat(required.get(2).isOptional(), is(true));
-		assertThat(required.get(4).getName(), is("org.eclipse.core.resources"));
-		assertThat(required.get(4).getVersionRange(), either(nullValue()).or(is(VersionRange.emptyRange)));
-		assertThat(required.get(4).isExported(), is(true));
+		assertThat(required.get(3).getName(), is("org.eclipse.core.resources"));
+		assertThat(required.get(3).getVersionRange(), either(nullValue()).or(is(VersionRange.emptyRange)));
+		assertThat(required.get(3).isExported(), is(true));
 	}
 
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")
@@ -410,16 +410,16 @@ public class ManifestEditorTest {
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")
 	@Test
 	public void setRequiredBundleExported() {
-		fixture.getEditor().setRequiredBundleExported("com.google.guava", true);
+		fixture.getEditor().setRequiredBundleExported("org.eclipse.papyrus.junit.utils", true);
 		fixture.getEditor().save();
 
-		assertThat(one(getManifest(), "com.google.guava"), containsString(";visibility:=reexport"));
+		assertThat(one(getManifest(), "org.eclipse.papyrus.junit.utils"), containsString(";visibility:=reexport"));
 
 		// And remove it
-		fixture.getEditor().setRequiredBundleExported("com.google.guava", false);
+		fixture.getEditor().setRequiredBundleExported("org.eclipse.papyrus.junit.utils", false);
 		fixture.getEditor().save();
 
-		assertThat(one(getManifest(), "com.google.guava"), not(containsString("visibility:=reexport")));
+		assertThat(one(getManifest(), "org.eclipse.papyrus.junit.utils"), not(containsString("visibility:=reexport")));
 	}
 
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")
@@ -430,11 +430,11 @@ public class ManifestEditorTest {
 		fixture.getEditor().save();
 
 		List<String> manifest = getManifest();
-
-		assertThat(manifest, hasItem(" org.eclipse.papyrus.eclipse.project.editors;bundle-version=\"[2.0.0,3.0.0)\","));
-
+	
+		assertThat(manifest, hasItem("Require-Bundle: org.eclipse.papyrus.junit.utils;bundle-version=\"[1.2.0,2.0.0)\",")); 
+		
 		// This is now the last one (no trailing comma)
-		assertThat(manifest, hasItem(" com.google.guava;bundle-version=\"21.0.0\""));
+		assertThat(manifest, hasItem(" org.eclipse.papyrus.eclipse.project.editors;bundle-version=\"[2.0.0,3.0.0)\""));
 	}
 
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")
