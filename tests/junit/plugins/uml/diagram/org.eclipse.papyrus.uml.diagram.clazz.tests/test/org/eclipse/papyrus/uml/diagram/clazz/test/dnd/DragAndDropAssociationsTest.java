@@ -324,7 +324,7 @@ public class DragAndDropAssociationsTest extends AbstractPapyrusTestCase {
 	 * @return The new Association.
 	 */
 	protected Association createAssociation(final IGraphicalEditPart source, final IGraphicalEditPart target) {
-		createLink(UMLElementTypes.Association_Edge, source, target);
+		createLink(UMLElementTypes.AssociationDirected_Edge, source, target);
 		return findAssociation(source);
 	}
 

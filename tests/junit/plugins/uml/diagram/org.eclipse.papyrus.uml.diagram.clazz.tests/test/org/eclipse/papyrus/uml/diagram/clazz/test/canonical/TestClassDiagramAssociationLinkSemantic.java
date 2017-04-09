@@ -116,7 +116,7 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 	}
 
 	private Association createAssociation(IGraphicalEditPart source, IGraphicalEditPart target) {
-		createLink(UMLElementTypes.Association_Edge, source, target);
+		createLink(UMLElementTypes.AssociationDirected_Edge, source, target);
 		return findAssociation(source);
 	}
 
