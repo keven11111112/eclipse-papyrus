@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.handlers;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -23,6 +22,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 
@@ -32,11 +32,11 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  * @author Laurent Wouters
  */
 public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
-	private URI configuration;
+	private TableConfiguration configuration;
 	private EObject context;
 	private String name;
 
-	public PolicyDefinedTableHandler(URI config, EObject context, String name) {
+	public PolicyDefinedTableHandler(TableConfiguration config, EObject context, String name) {
 		this.configuration = config;
 		this.context = context;
 		this.name = name;
@@ -48,7 +48,7 @@ public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
 	}
 
 	@Override
-	protected URI getTableEditorConfigurationURI() {
+	protected TableConfiguration getTableEditorConfiguration() {
 		return configuration;
 	}
 

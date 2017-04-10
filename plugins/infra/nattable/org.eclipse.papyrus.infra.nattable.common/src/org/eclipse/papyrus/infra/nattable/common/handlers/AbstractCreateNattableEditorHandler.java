@@ -23,11 +23,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -88,9 +85,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 */
 	public String askName() {
 		// we create a new resourceSet to avoid to load unused config in the resourceset in case of Cancel
-		ResourceSet set = new ResourceSetImpl();
-		Resource res = set.getResource(getTableEditorConfigurationURI(), true);
-		TableConfiguration conf = (TableConfiguration) res.getContents().get(0);
+		TableConfiguration conf = getTableEditorConfiguration();
 		String defaultName = conf.getName();
 		// default Value
 		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(NattablePackage.eINSTANCE.getTable(), NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name(), defaultName, getTableContext());
@@ -186,12 +181,12 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 *             The model where to save the TableInstance is not found.
 	 */
 	protected Table createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
-		final ModelSet modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
-		final TableConfiguration configuration = getDefaultTableEditorConfiguration(modelSet);
+		final TableConfiguration configuration = getTableEditorConfiguration();
 		Assert.isNotNull(configuration);
 
 		final Table table = TableHelper.createTable(configuration, null, name, description); // context null here, see bug 410357
 		// Save the model in the associated resource
+		final ModelSet modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
 		final PapyrusNattableModel model = (PapyrusNattableModel) modelSet.getModelChecked(PapyrusNattableModel.MODEL_ID);
 		table.setContext(getTableContext());
 		model.addPapyrusTable(table);
@@ -199,23 +194,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	}
 
 
-	/**
-	 *
-	 * @param resourceSet
-	 *            TODO
-	 * @return
-	 * 		the configuration to use for the new table
-	 */
-	protected TableConfiguration getDefaultTableEditorConfiguration(ResourceSet resourceSet) {
-		final Resource resource = resourceSet.getResource(getTableEditorConfigurationURI(), true);
-		TableConfiguration tableConfiguration = null;
-		if (resource.getContents().get(0) instanceof TableConfiguration) {
-			tableConfiguration = (TableConfiguration) resource.getContents().get(0);
-		}
-		return tableConfiguration;
-	}
-
-	protected abstract URI getTableEditorConfigurationURI();
+	protected abstract TableConfiguration getTableEditorConfiguration();
 
 	/**
 	 * Returns the context used to create the table

@@ -33,15 +33,6 @@ public interface RepresentationFactory extends EFactory {
 	RepresentationFactory eINSTANCE = org.eclipse.papyrus.infra.nattable.representation.impl.RepresentationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Papyrus Sync Table</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Papyrus Sync Table</em>'.
-	 * @generated
-	 */
-	PapyrusSyncTable createPapyrusSyncTable();
-
-	/**
 	 * Returns a new object of class '<em>Papyrus Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

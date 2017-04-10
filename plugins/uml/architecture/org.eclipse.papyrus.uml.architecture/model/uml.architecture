@@ -368,45 +368,50 @@
       </owningRules>
       <childRules xmi:id="_yeY0tXDvEeWh-MssWmCB_A"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusSyncTable" xmi:id="_P3J1cEr7EeSVGbM3cmVSqQ" name="Generic Tree Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable/icons/uml_generic_table.png" implementationID="PapyrusUMLGenericTreeTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_P3J1cEr7EeSVGbM3cmVSqQ" name="Generic Tree Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable/icons/uml_generic_table.png" implementationID="PapyrusUMLGenericTreeTable">
       <modelRules xmi:id="_vZwgkEr7EeSVGbM3cmVSqQ">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
       </modelRules>
       <owningRules xmi:id="_vZwgkUr7EeSVGbM3cmVSqQ">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
       </owningRules>
+      <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable/configs/genericTreeTable.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusSyncTable" xmi:id="_P3J1cEr7EeRVGbM3cmVSqQ" name="Class Tree Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusClassTreeTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_P3J1cEr7EeRVGbM3cmVSqQ" name="Class Tree Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusClassTreeTable">
       <modelRules xmi:id="_vZwgkEr7EeSVGbM3cmVSqQ">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
       <owningRules xmi:id="_vZwgkUr7EeSVGbM3cmVSqQ">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
+      <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusSyncTable" xmi:id="_Uz8agHDuEeWh-MssWmCB_A" name="Generic Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusGenericTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_Uz8agHDuEeWh-MssWmCB_A" name="Generic Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusGenericTable">
       <modelRules xmi:id="_Uz8agXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </modelRules>
       <owningRules xmi:id="_Uz8agnDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </owningRules>
+      <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/configs/generic.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusSyncTable" xmi:id="_WC1q0P4UEeSRsNBVzfUrzA" name="Stereotype Display Tree Table" concerns="_NxfRgMSjEeaCPPhpB0_9OQ" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusStereotypeDisplayTreeTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_WC1q0P4UEeSRsNBVzfUrzA" name="Stereotype Display Tree Table" concerns="_NxfRgMSjEeaCPPhpB0_9OQ" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusStereotypeDisplayTreeTable">
       <modelRules xmi:id="_7k79wP4VEeSRsNBVzfUrzA">
         <element href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View"/>
       </modelRules>
       <owningRules xmi:id="_AJmbwP4WEeSRsNBVzfUrzA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
       </owningRules>
+      <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable.stereotype.display/config/stereotype.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusSyncTable" xmi:id="_wXztQHDwEeWh-MssWmCB_A" name="View Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png" implementationID="PapyrusViewsTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_wXztQHDwEeWh-MssWmCB_A" name="View Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png" implementationID="PapyrusViewsTable">
       <modelRules xmi:id="_wXztQXDwEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </modelRules>
       <owningRules xmi:id="_wXztQnDwEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </owningRules>
+      <configuration href="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/resources/viewpage.nattableconfiguration#/"/>
     </representationKinds>
     <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   </contexts>

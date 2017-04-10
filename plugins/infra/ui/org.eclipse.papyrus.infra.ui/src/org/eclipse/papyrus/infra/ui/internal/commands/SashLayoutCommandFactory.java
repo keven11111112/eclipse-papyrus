@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
@@ -131,13 +132,16 @@ public class SashLayoutCommandFactory {
 	void moveContents(Resource fromResource, Resource toResource) {
 		// Safe copy to allow concurrent modifications
 		for (EObject root : new ArrayList<>(fromResource.getContents())) {
-			if (root instanceof SashWindowsMngr) {
+			if (root instanceof SashWindowsMngr || root instanceof ArchitectureDescriptionPreferences) {
 				EObject toReplace = (EObject) EcoreUtil.getObjectByType(toResource.getContents(), root.eClass());
 				if (toReplace != null) {
 					EcoreUtil.replace(toReplace, root);
 				} else {
 					// This one is expected always to be first
-					toResource.getContents().add(0, root);
+					if (root instanceof SashWindowsMngr)
+						toResource.getContents().add(0, root);
+					else
+						toResource.getContents().add(root);
 				}
 			}
 		}

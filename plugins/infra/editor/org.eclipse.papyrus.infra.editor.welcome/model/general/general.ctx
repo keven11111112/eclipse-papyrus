@@ -24,7 +24,7 @@
   </views>
   <dataContexts xmi:id="_SsmI-cElEeS_u7hIvAIReA" name="welcomeGeneral" label="Welcome">
     <elements xmi:id="_SsmJGsElEeS_u7hIvAIReA" name="PageLayout">
-      <properties xmi:id="_SsmJG8ElEeS_u7hIvAIReA" name="privateLayout" label="Private editor page layout" type="Boolean" multiplicity="1" description="Do not share the layout of editor pages in the *.di file"/>
+      <properties xmi:id="_SsmJG8ElEeS_u7hIvAIReA" name="privateLayout" label="Private editor settings" type="Boolean" multiplicity="1" description="Do not share the editor settings (page layouts, viewpoints) in the *.di file"/>
       <properties xmi:id="_SsmJG9ElEeS_u7hIvAIReA" name="restoreActivePage" label="Remember last active page" type="Boolean" multiplicity="1" description="Remember the last active editor page to restore it when the editor is next opened"/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.editor.welcome/model/environment.xmi#//@modelElementFactories.0"/>

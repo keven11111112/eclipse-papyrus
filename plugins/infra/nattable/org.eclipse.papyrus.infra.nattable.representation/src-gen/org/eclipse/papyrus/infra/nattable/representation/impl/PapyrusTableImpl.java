@@ -17,10 +17,12 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.infra.architecture.representation.impl.PapyrusRepresentationKindImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
 
@@ -39,24 +41,14 @@ import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
  */
 public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements PapyrusTable {
 	/**
-	 * The default value of the '{@link #getConfiguration() <em>Configuration</em>}' attribute.
+	 * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConfiguration()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CONFIGURATION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConfiguration()
-	 * @generated
-	 * @ordered
-	 */
-	protected String configuration = CONFIGURATION_EDEFAULT;
+	protected TableConfiguration configuration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,7 +74,15 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getConfiguration() {
+	public TableConfiguration getConfiguration() {
+		if (configuration != null && configuration.eIsProxy()) {
+			InternalEObject oldConfiguration = (InternalEObject)configuration;
+			configuration = (TableConfiguration)eResolveProxy(oldConfiguration);
+			if (configuration != oldConfiguration) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION, oldConfiguration, configuration));
+			}
+		}
 		return configuration;
 	}
 
@@ -91,8 +91,17 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConfiguration(String newConfiguration) {
-		String oldConfiguration = configuration;
+	public TableConfiguration basicGetConfiguration() {
+		return configuration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConfiguration(TableConfiguration newConfiguration) {
+		TableConfiguration oldConfiguration = configuration;
 		configuration = newConfiguration;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION, oldConfiguration, configuration));
@@ -107,7 +116,8 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
-				return getConfiguration();
+				if (resolve) return getConfiguration();
+				return basicGetConfiguration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,7 +131,7 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
-				setConfiguration((String)newValue);
+				setConfiguration((TableConfiguration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,7 +146,7 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
-				setConfiguration(CONFIGURATION_EDEFAULT);
+				setConfiguration((TableConfiguration)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,25 +161,9 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
-				return CONFIGURATION_EDEFAULT == null ? configuration != null : !CONFIGURATION_EDEFAULT.equals(configuration);
+				return configuration != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (configuration: ");
-		result.append(configuration);
-		result.append(')');
-		return result.toString();
 	}
 
 } //PapyrusTableImpl

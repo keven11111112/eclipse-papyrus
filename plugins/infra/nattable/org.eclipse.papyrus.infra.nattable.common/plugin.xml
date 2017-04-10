@@ -227,12 +227,6 @@
    </helper>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.viewpoints.policy.viewType">
-   <helper
-         class="org.eclipse.papyrus.infra.nattable.common.helper.SyncTableCommandHelper">
-   </helper>
-</extension>
-<extension
       point="org.eclipse.ui.commands">
    <command
          categoryId="org.eclipse.papyrus.infra.nattable.category"

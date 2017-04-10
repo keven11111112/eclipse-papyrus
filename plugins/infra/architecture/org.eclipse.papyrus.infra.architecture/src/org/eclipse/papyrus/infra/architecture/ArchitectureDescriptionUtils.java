@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureCont
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 
 /**
  * An API for manipulating architecture descriptions in a model set
@@ -110,7 +111,7 @@ public class ArchitectureDescriptionUtils {
 	 * @return a collection of architecture viewpoin ids
 	 */
 	public Collection<String> getArchitectureViewpointIds() {
-		ArchitectureDescriptionPreferences preferences = DiModelUtils.getArchitectureDescriptionPreferences(modelSet);
+		ArchitectureDescriptionPreferences preferences = SashModelUtils.getArchitectureDescriptionPreferences(modelSet);
 		if (preferences != null) 
 			return preferences.getViewpointIds();
 		MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getDefaultArchitectureContext();
@@ -251,7 +252,7 @@ public class ArchitectureDescriptionUtils {
 		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
 			@Override
 			protected void doExecute() {
-				ArchitectureDescriptionPreferences preferences = DiModelUtils.getOrAddArchitectureDescriptionPreferences(modelSet);
+				ArchitectureDescriptionPreferences preferences = SashModelUtils.getOrAddArchitectureDescriptionPreferences(modelSet);
 				Arrays.sort(viewpointIds);
 				preferences.eSet(ArchitecturePackage.eINSTANCE.getArchitectureDescriptionPreferences_ViewpointIds(), Arrays.asList(viewpointIds));
 			}

@@ -58,7 +58,6 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
@@ -254,7 +253,7 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 			for (final ViewPrototype proto : PolicyChecker.getFor(selection).getPrototypesFor(selection)) {
 				if (proto.getRepresentationKind() instanceof PapyrusDiagram) {
 					diagramPrototypes.add(proto);
-				} else if (proto.getRepresentationKind() instanceof PapyrusTable || proto.getRepresentationKind() instanceof PapyrusSyncTable) {
+				} else if (proto.getRepresentationKind() instanceof PapyrusTable) {
 					tablePrototypes.add(proto);
 				}
 			}

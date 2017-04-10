@@ -13,9 +13,9 @@
  */
 package org.eclipse.papyrus.infra.nattable.representation;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,124 +67,6 @@ public interface RepresentationPackage extends EPackage {
 	RepresentationPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.representation.impl.RepresentationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusSyncTableImpl <em>Papyrus Sync Table</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusSyncTableImpl
-	 * @see org.eclipse.papyrus.infra.nattable.representation.impl.RepresentationPackageImpl#getPapyrusSyncTable()
-	 * @generated
-	 */
-	int PAPYRUS_SYNC_TABLE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__NAME = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__DESCRIPTION = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__QUALIFIED_NAME = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Language</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__LANGUAGE = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__LANGUAGE;
-
-	/**
-	 * The feature id for the '<em><b>Concerns</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__CONCERNS = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__CONCERNS;
-
-	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__ICON = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__ICON;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__PARENT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Model Rules</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__MODEL_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__MODEL_RULES;
-
-	/**
-	 * The feature id for the '<em><b>Owning Rules</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__OWNING_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__OWNING_RULES;
-
-	/**
-	 * The feature id for the '<em><b>Implementation ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE__IMPLEMENTATION_ID = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__IMPLEMENTATION_ID;
-
-	/**
-	 * The number of structural features of the '<em>Papyrus Sync Table</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE_FEATURE_COUNT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Papyrus Sync Table</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_SYNC_TABLE_OPERATION_COUNT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusTableImpl <em>Papyrus Table</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -192,7 +74,7 @@ public interface RepresentationPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.representation.impl.RepresentationPackageImpl#getPapyrusTable()
 	 * @generated
 	 */
-	int PAPYRUS_TABLE = 1;
+	int PAPYRUS_TABLE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -285,7 +167,7 @@ public interface RepresentationPackage extends EPackage {
 	int PAPYRUS_TABLE__IMPLEMENTATION_ID = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__IMPLEMENTATION_ID;
 
 	/**
-	 * The feature id for the '<em><b>Configuration</b></em>' attribute.
+	 * The feature id for the '<em><b>Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -313,16 +195,6 @@ public interface RepresentationPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable <em>Papyrus Sync Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Papyrus Sync Table</em>'.
-	 * @see org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable
-	 * @generated
-	 */
-	EClass getPapyrusSyncTable();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable <em>Papyrus Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -333,15 +205,15 @@ public interface RepresentationPackage extends EPackage {
 	EClass getPapyrusTable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getConfiguration <em>Configuration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Configuration</em>'.
+	 * @return the meta object for the reference '<em>Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getConfiguration()
 	 * @see #getPapyrusTable()
 	 * @generated
 	 */
-	EAttribute getPapyrusTable_Configuration();
+	EReference getPapyrusTable_Configuration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -367,16 +239,6 @@ public interface RepresentationPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusSyncTableImpl <em>Papyrus Sync Table</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusSyncTableImpl
-		 * @see org.eclipse.papyrus.infra.nattable.representation.impl.RepresentationPackageImpl#getPapyrusSyncTable()
-		 * @generated
-		 */
-		EClass PAPYRUS_SYNC_TABLE = eINSTANCE.getPapyrusSyncTable();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusTableImpl <em>Papyrus Table</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -387,12 +249,12 @@ public interface RepresentationPackage extends EPackage {
 		EClass PAPYRUS_TABLE = eINSTANCE.getPapyrusTable();
 
 		/**
-		 * The meta object literal for the '<em><b>Configuration</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Configuration</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PAPYRUS_TABLE__CONFIGURATION = eINSTANCE.getPapyrusTable_Configuration();
+		EReference PAPYRUS_TABLE__CONFIGURATION = eINSTANCE.getPapyrusTable_Configuration();
 
 	}
 

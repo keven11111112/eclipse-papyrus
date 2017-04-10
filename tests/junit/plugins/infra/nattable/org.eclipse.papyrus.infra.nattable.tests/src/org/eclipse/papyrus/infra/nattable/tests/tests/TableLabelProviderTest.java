@@ -135,7 +135,7 @@ public class TableLabelProviderTest {
 		proto = RepresentationFactory.eINSTANCE.createPapyrusTable();
 		proto.setName("Test Table");
 		proto.setImplementationID("org.eclipse.papyrus.infra.nattable.tests.TestTable");
-		proto.setConfiguration("TestTable");
+		//proto.setConfiguration("TestTable");
 		language.getRepresentationKinds().add(proto);
 		
 		ArchitectureViewpoint viewpoint = ArchitectureFactory.eINSTANCE.createArchitectureViewpoint();

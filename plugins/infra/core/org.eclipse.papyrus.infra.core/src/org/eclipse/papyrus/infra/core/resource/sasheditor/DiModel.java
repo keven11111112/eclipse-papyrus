@@ -22,9 +22,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescription;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
 /**
  * @author dumoulin
@@ -113,7 +116,9 @@ public class DiModel extends AbstractModelWithSharedResource<EObject> implements
 
 	@Override
 	protected boolean isModelRoot(EObject object) {
-		return false; // DiModel is currently an empty model
+		return object instanceof SashWindowsMngr ||
+				object instanceof ArchitectureDescription ||
+				object instanceof ArchitectureDescriptionPreferences;
 	}
 
 	@Override

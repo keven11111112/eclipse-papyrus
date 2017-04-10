@@ -5,7 +5,7 @@
     <stringListValue>ROW_HEADER</stringListValue>
   </styles>
   <creationTester xsi:type="nattabletester:JavaTableTester" tester="org.eclipse.papyrus.uml.nattable.tester.isumlelement"/>
-  <rowHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration" indexStyle="NUMERIC">
+  <rowHeaderAxisConfiguration indexStyle="NUMERIC">
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:ObjectLabelProviderConfiguration"/>
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayType="false" displayMultiplicity="false"/>
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:OperationLabelProviderConfiguration" displayType="false" displayMultiplicity="false"/>
@@ -24,14 +24,14 @@
         <element xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/ownedElement"/>
       </axisUsedAsAxisProvider>
     </ownedAxisConfigurations>
-    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.infra.uml.nattable.tree.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.1 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.2"/>
+    <axisManagers axisManagerId="org.eclipse.papyrus.infra.uml.nattable.tree.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.1 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.2"/>
   </rowHeaderAxisConfiguration>
-  <columnHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration">
+  <columnHeaderAxisConfiguration>
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration"/>
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:OperationLabelProviderConfiguration"/>
-    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.feature.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
-    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.stereotype.property.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
-    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.operation.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.operation.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.1"/>
+    <axisManagers axisManagerId="org.eclipse.papyrus.uml.nattable.feature.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
+    <axisManagers axisManagerId="org.eclipse.papyrus.uml.nattable.stereotype.property.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
+    <axisManagers axisManagerId="org.eclipse.papyrus.uml.nattable.operation.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.operation.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.1"/>
   </columnHeaderAxisConfiguration>
   <columnAxisProviders xsi:type="nattableaxisprovider:SlaveObjectAxisProvider" description="This axis provider provides available columns according to the rows of the table (features of the object displayed on the other axis)" name="UML Feature axis provider">
     <axis xsi:type="nattableaxis:EStructuralFeatureAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0">

@@ -15,11 +15,10 @@ package org.eclipse.papyrus.infra.nattable.common.helper;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.nattable.common.handlers.PolicyDefinedTableHandler;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
@@ -30,16 +29,11 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  * @author Laurent Wouters
  */
 public class TableViewPrototype extends ViewPrototype {
-	private URI configFile;
+	private TableConfiguration configuration;
 
-	public TableViewPrototype(PapyrusTable configuration) {
-		super(configuration);
-		configFile = URI.createURI(configuration.getConfiguration());
-	}
-
-	public TableViewPrototype(PapyrusSyncTable configuration, String file) {
-		super(configuration);
-		configFile = URI.createURI(file);
+	public TableViewPrototype(PapyrusTable prototype) {
+		super(prototype);
+		this.configuration = prototype.getConfiguration();
 	}
 
 	@Override
@@ -54,10 +48,10 @@ public class TableViewPrototype extends ViewPrototype {
 
 	@Override
 	public boolean instantiateOn(EObject owner, String name) {
-		if (configFile == null) {
+		if (configuration == null) {
 			return false;
 		}
-		PolicyDefinedTableHandler handler = new PolicyDefinedTableHandler(configFile, owner, name);
+		PolicyDefinedTableHandler handler = new PolicyDefinedTableHandler(configuration, owner, name);
 		return handler.execute(this);
 	}
 

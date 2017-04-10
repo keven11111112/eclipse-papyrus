@@ -32,11 +32,10 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.swt.graphics.Image;
 
@@ -366,7 +365,6 @@ public abstract class ViewPrototype {
 		{
 			priorities.put(PapyrusDiagram.class, 1);
 			priorities.put(PapyrusTable.class, 2);
-			priorities.put(PapyrusSyncTable.class, 3);
 		}
 
 		private static Integer getPriority(ViewPrototype proto) {

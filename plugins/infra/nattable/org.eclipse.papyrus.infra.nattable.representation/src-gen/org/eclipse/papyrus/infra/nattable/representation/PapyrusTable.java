@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.representation;
 
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,29 +34,29 @@ import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentati
  */
 public interface PapyrusTable extends PapyrusRepresentationKind {
 	/**
-	 * Returns the value of the '<em><b>Configuration</b></em>' attribute.
+	 * Returns the value of the '<em><b>Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Configuration</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Configuration</em>' attribute.
-	 * @see #setConfiguration(String)
+	 * @return the value of the '<em>Configuration</em>' reference.
+	 * @see #setConfiguration(TableConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage#getPapyrusTable_Configuration()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getConfiguration();
+	TableConfiguration getConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getConfiguration <em>Configuration</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getConfiguration <em>Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Configuration</em>' attribute.
+	 * @param value the new value of the '<em>Configuration</em>' reference.
 	 * @see #getConfiguration()
 	 * @generated
 	 */
-	void setConfiguration(String value);
+	void setConfiguration(TableConfiguration value);
 
 } // PapyrusTable

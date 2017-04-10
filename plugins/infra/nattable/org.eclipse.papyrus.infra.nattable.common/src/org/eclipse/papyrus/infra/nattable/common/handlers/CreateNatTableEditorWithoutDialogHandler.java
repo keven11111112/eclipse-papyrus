@@ -51,9 +51,7 @@ public class CreateNatTableEditorWithoutDialogHandler extends CreateNatTableEdit
 	@Override
 	public void runAsTransaction(final ExecutionEvent event) throws ServiceException {
 		// we create a new resourceSet to avoid to load unused config in the resourceset in case of Cancel
-		ResourceSet set = new ResourceSetImpl();
-		Resource res = set.getResource(getTableEditorConfigurationURI(), true);
-		TableConfiguration conf = (TableConfiguration) res.getContents().get(0);
+		TableConfiguration conf = getTableEditorConfiguration();
 		String defaultName = conf.getName();
 		runAsTransaction(event, defaultName);
 	}

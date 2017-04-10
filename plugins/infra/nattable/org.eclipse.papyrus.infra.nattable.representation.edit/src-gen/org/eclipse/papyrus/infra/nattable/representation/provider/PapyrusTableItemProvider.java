@@ -22,7 +22,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.architecture.representation.provider.PapyrusRepresentationKindItemProvider;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
@@ -78,7 +77,7 @@ public class PapyrusTableItemProvider extends PapyrusRepresentationKindItemProvi
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
 				 null,
 				 null));
 	}

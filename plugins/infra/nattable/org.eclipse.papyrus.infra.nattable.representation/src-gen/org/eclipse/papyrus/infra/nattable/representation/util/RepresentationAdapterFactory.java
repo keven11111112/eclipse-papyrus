@@ -84,10 +84,6 @@ public class RepresentationAdapterFactory extends AdapterFactoryImpl {
 	protected RepresentationSwitch<Adapter> modelSwitch =
 		new RepresentationSwitch<Adapter>() {
 			@Override
-			public Adapter casePapyrusSyncTable(PapyrusSyncTable object) {
-				return createPapyrusSyncTableAdapter();
-			}
-			@Override
 			public Adapter casePapyrusTable(PapyrusTable object) {
 				return createPapyrusTableAdapter();
 			}
@@ -122,20 +118,6 @@ public class RepresentationAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable <em>Papyrus Sync Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable
-	 * @generated
-	 */
-	public Adapter createPapyrusSyncTableAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable <em>Papyrus Table</em>}'.

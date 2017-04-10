@@ -417,14 +417,13 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	protected boolean isRootElement(EObject object) {
 		return super.isRootElement(object) && 
 				(object instanceof SashWindowsMngr || 
-				 object instanceof ArchitectureDescription ||
 				 object instanceof ArchitectureDescriptionPreferences);
 	}
 
 	@Override
 	protected boolean isSupportedRoot(EObject object) {
 		return DiPackage.Literals.SASH_WINDOWS_MNGR.isInstance(object) ||
-			  ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION.isInstance(object);
+			  ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES.isInstance(object);
 	}
 
 	//

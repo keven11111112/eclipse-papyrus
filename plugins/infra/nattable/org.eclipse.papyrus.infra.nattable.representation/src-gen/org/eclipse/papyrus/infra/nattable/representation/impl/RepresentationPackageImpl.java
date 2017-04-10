@@ -13,15 +13,17 @@
  */
 package org.eclipse.papyrus.infra.nattable.representation.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.nattable.representation.RepresentationFactory;
 import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
@@ -34,13 +36,6 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
  * @generated
  */
 public class RepresentationPackageImpl extends EPackageImpl implements RepresentationPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass papyrusSyncTableEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,7 +92,9 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		// Initialize simple dependencies
 		ArchitecturePackage.eINSTANCE.eClass();
 		ConstraintsPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+		NattablePackage.eINSTANCE.eClass();
 		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -120,15 +117,6 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPapyrusSyncTable() {
-		return papyrusSyncTableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPapyrusTable() {
 		return papyrusTableEClass;
 	}
@@ -138,8 +126,8 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPapyrusTable_Configuration() {
-		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(0);
+	public EReference getPapyrusTable_Configuration() {
+		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -170,10 +158,8 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		isCreated = true;
 
 		// Create classes and their features
-		papyrusSyncTableEClass = createEClass(PAPYRUS_SYNC_TABLE);
-
 		papyrusTableEClass = createEClass(PAPYRUS_TABLE);
-		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__CONFIGURATION);
+		createEReference(papyrusTableEClass, PAPYRUS_TABLE__CONFIGURATION);
 	}
 
 	/**
@@ -201,20 +187,18 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 
 		// Obtain other dependent packages
 		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage theRepresentationPackage_1 = (org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eNS_URI);
+		NattableconfigurationPackage theNattableconfigurationPackage = (NattableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		papyrusSyncTableEClass.getESuperTypes().add(theRepresentationPackage_1.getPapyrusRepresentationKind());
 		papyrusTableEClass.getESuperTypes().add(theRepresentationPackage_1.getPapyrusRepresentationKind());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(papyrusSyncTableEClass, PapyrusSyncTable.class, "PapyrusSyncTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(papyrusTableEClass, PapyrusTable.class, "PapyrusTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPapyrusTable_Configuration(), ecorePackage.getEString(), "configuration", null, 1, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTable_Configuration(), theNattableconfigurationPackage.getTableConfiguration(), null, "configuration", null, 1, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

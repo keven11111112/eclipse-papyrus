@@ -36,8 +36,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.wizards.CreateNattableFromCatalogWizard;
-import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
@@ -168,7 +167,7 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 							for (int i = 0; i < tablesQuantity; i++) {
 								final String tableNameToCreate = 1 < tablesQuantity ? tableConfigName + "_" + i : tableConfigName; //$NON-NLS-1$
 								// TODO : The following code line must be replaced by TableEditorCreationHelper.getTableConfigurationURI when the API for table creation is merged
-								PolicyDefinedTableHandler handler = new PolicyDefinedTableHandler(getTableConfigurationURI((TableViewPrototype) viewPrototype), context, tableNameToCreate);
+								PolicyDefinedTableHandler handler = new PolicyDefinedTableHandler(getTableConfiguration((TableViewPrototype) viewPrototype), context, tableNameToCreate);
 								handler.execute(viewPrototype);
 							}
 						}
@@ -190,18 +189,12 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	 * @param viewPrototype
 	 *            a view {@link TableViewPrototype}, must not be <code>null</code>
 	 * @return
-	 * 		the {@link URI} of the nattable configuration, or <code>null</code> if not found
+	 * 		a TableConfiguration, or <code>null</code> if not found
 	 */
-	private URI getTableConfigurationURI(final TableViewPrototype viewPrototype) {
+	private TableConfiguration getTableConfiguration(final TableViewPrototype viewPrototype) {
 		if (viewPrototype.getRepresentationKind() instanceof PapyrusTable) {
 			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getRepresentationKind();
-			String uri = papyrusTable.getConfiguration();
-			if (uri != null && uri.length() > 0) {
-				return URI.createURI(uri);
-			}
-		}
-		if (viewPrototype.getRepresentationKind() instanceof PapyrusSyncTable) {
-			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getRepresentationKind()).getImplementationID());
+			return papyrusTable.getConfiguration();
 		}
 		return null;
 	}

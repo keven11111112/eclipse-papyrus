@@ -109,43 +109,4 @@ public class DiModelUtils {
 		return null;
 	}
 
-	/**
-	 * Gets an architecture description preferences element if available in the given model set
-	 * 
-	 * @param modelSet
-	 *            the given model set
-	 * @return an architecture description preferences (can be null)
-	 * @since 3.0
-	 */
-	public static ArchitectureDescriptionPreferences getArchitectureDescriptionPreferences(ModelSet modelSet) {
-		Resource resource = getDiResource(modelSet);
-		if (resource != null) {
-			return (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(
-					resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
-		}
-		return null;
-	}
-
-	/**
-	 * Gets an architecture description preferences element if available in the given model set
-	 * 
-	 * @param modelSet
-	 *            the given model set
-	 * @return an architecture description preferences (can be null)
-	 * @since 3.0
-	 */
-	public static ArchitectureDescriptionPreferences getOrAddArchitectureDescriptionPreferences(ModelSet modelSet) {
-		Resource resource = getDiResource(modelSet);
-		if (resource != null) {
-			ArchitectureDescriptionPreferences preferences = (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(resource.getContents(),
-					ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
-			if (preferences == null) {
-				preferences = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionPreferences();
-				resource.getContents().add(preferences);
-			}
-			return preferences;
-		}
-		return null;
-	}
-
 }

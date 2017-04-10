@@ -85,7 +85,7 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 	private static final Styler BOLD_FONT_STYLER = new Styler() {
 		@Override
 		public void applyStyles(TextStyle textStyle) {
-	        FontDescriptor boldDescriptor = FontDescriptor.createFrom(new FontData()).setStyle(SWT.BOLD);
+	        FontDescriptor boldDescriptor = FontDescriptor.createFrom(new FontData()).setStyle(SWT.ITALIC|SWT.BOLD);
 	        Font boldFont = boldDescriptor.createFont(Display.getCurrent());
 	        textStyle.font = boldFont;
 		}

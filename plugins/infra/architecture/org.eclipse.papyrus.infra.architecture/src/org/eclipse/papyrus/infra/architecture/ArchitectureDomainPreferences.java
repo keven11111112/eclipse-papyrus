@@ -87,6 +87,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * Writes the state of the preferences
 	 */
 	public void write() {
+		getPreferences().put(ArchitectureDomainPreferences.ADDED_MODELS, "");
 		getPreferences().put(ArchitectureDomainPreferences.ADDED_MODELS, String.join(" ", addedModels));
 		getPreferences().put(ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, String.join(",", excludedContexts));
 		if (defaultContext != null)

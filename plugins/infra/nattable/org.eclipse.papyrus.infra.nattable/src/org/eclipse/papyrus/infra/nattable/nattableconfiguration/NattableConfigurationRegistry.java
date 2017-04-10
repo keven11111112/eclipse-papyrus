@@ -82,10 +82,10 @@ public class NattableConfigurationRegistry {
 	 * @param tableType
 	 *            the type of the table
 	 * @return
-	 *         the URI of the configuration to use for this table or <code>null</code> if not found
+	 *         the table configuration or <code>null</code> if not found
 	 */
-	public URI getConfigurationURI(final String tableType) {
-		return this.configsURI.get(tableType).eResource().getURI();
+	public TableConfiguration getConfiguration(final String tableType) {
+		return this.configsURI.get(tableType);
 	}
 
 	/**

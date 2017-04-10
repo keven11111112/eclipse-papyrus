@@ -389,7 +389,7 @@ public class CreationMenuFactory {
 
 		IElementType type = ElementTypeRegistry.getInstance().getType(elementType);
 
-		return context.includes(type) ? type : null;
+		return (type != null && context.includes(type)) ? type : null;
 
 	}
 
@@ -455,23 +455,20 @@ public class CreationMenuFactory {
 		IElementType elementtype = getElementType(elementTypeId, context);
 
 		CreateElementRequest request = null;
-		if (elementtype != null) {
-			if (reference == null) {
-				if (creationMenu instanceof CreateRelationshipMenu) {
-					request = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype);
-				} else {
-					request = new CreateElementRequest(editingDomain, container, elementtype);
-				}
+		if (reference == null) {
+			if (creationMenu instanceof CreateRelationshipMenu) {
+				request = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype);
 			} else {
-				if (creationMenu instanceof CreateRelationshipMenu) {
-					request = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype, reference);
-				} else {
-					request = new CreateElementRequest(editingDomain, container, elementtype, reference);
-				}
+				request = new CreateElementRequest(editingDomain, container, elementtype);
 			}
-			request.setParameter(RequestCacheEntries.Cache_Maps, adviceCache);
-
+		} else {
+			if (creationMenu instanceof CreateRelationshipMenu) {
+				request = new CreateRelationshipRequest(editingDomain, null, container, null, elementtype, reference);
+			} else {
+				request = new CreateElementRequest(editingDomain, container, elementtype, reference);
+			}
 		}
+		request.setParameter(RequestCacheEntries.Cache_Maps, adviceCache);
 		return request;
 	}
 

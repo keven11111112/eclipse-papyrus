@@ -2,9 +2,8 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="representation" nsURI="http://www.eclipse.org/papyrus/infra/nattable/representation"
     nsPrefix="nattablerepresentation">
-  <eClassifiers xsi:type="ecore:EClass" name="PapyrusSyncTable" eSuperTypes="../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.ecore#//PapyrusRepresentationKind"/>
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusTable" eSuperTypes="../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.ecore#//PapyrusRepresentationKind">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="configuration" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.papyrus.infra.nattable.model/model/nattable.ecore#//nattableconfiguration/TableConfiguration"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -21,9 +21,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
@@ -42,7 +39,6 @@ import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
@@ -132,10 +128,8 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		// Calculate the TableConfiguration for the icon and the description of table
 		final Map<ViewPrototype, TableConfiguration> tableConfigurations = new HashMap<ViewPrototype, TableConfiguration>(viewPrototypes.size());
 		for (ViewPrototype viewPrototype : viewPrototypes) {
-			final ResourceSet resourceSet = new ResourceSetImpl();
 			// TODO : The following code line must be replaced by TableEditorCreationHelper.getTableConfigurationURI when the API for table creation is merged
-			final Resource resource = resourceSet.getResource(getTableConfigurationURI((TableViewPrototype) viewPrototype), true);
-			tableConfigurations.put(viewPrototype, (TableConfiguration) resource.getContents().get(0));
+			tableConfigurations.put(viewPrototype, getTableConfiguration((TableViewPrototype) viewPrototype));
 		}
 
 		colCheckbox.setLabelProvider(new ColumnLabelProvider() {
@@ -357,7 +351,7 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 
 		// build a list of all the available prototypes corresponding to the context
 		for (final ViewPrototype proto : PolicyChecker.getFor(context).getAllPrototypes()) {
-			if ((proto.getRepresentationKind() instanceof PapyrusTable || proto.getRepresentationKind() instanceof PapyrusSyncTable)) {
+			if (proto.getRepresentationKind() instanceof PapyrusTable) {
 				if (NattableConfigurationRegistry.INSTANCE.canCreateTable(proto.getImplementation(), context).isOK()) {
 					viewPrototypes.add(proto);
 				}
@@ -378,16 +372,10 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 	 * @return
 	 * 		the {@link URI} of the nattable configuration, or <code>null</code> if not found
 	 */
-	private URI getTableConfigurationURI(final TableViewPrototype viewPrototype) {
+	private TableConfiguration getTableConfiguration(final TableViewPrototype viewPrototype) {
 		if (viewPrototype.getRepresentationKind() instanceof PapyrusTable) {
 			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getRepresentationKind();
-			String uri = papyrusTable.getConfiguration();
-			if (uri != null && uri.length() > 0) {
-				return URI.createURI(uri);
-			}
-		}
-		if (viewPrototype.getRepresentationKind() instanceof PapyrusSyncTable) {
-			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getRepresentationKind()).getImplementationID());
+			return papyrusTable.getConfiguration();
 		}
 		return null;
 	}

@@ -89,8 +89,21 @@ public abstract class AbstractSortTable extends AbstractTableTest {
 	@ActiveTable("ClassTreeTable")
 	public void test_sort_NAME_ASC() {
 		startTest();
+	
+		fixture.flushDisplayEvents();
+		manager.selectAll();
+		((NattableModelManager) manager).copyToClipboard();
+		fixture.flushDisplayEvents();
+		String before = getClipboardContent();
+
 		// we do the sort
 		Assert.assertTrue(natTable.doCommand(new SortColumnCommand(natTable, getNameColumnIndex(), false)));
+
+		fixture.flushDisplayEvents();
+		manager.selectAll();
+		((NattableModelManager) manager).copyToClipboard();
+		fixture.flushDisplayEvents();
+		String after = getClipboardContent();
 
 		endTest(getResultFile_Name_ASC_SORT());
 	}

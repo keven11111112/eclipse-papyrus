@@ -100,29 +100,6 @@ public class RepresentationItemProviderAdapterFactory extends RepresentationAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PapyrusSyncTableItemProvider papyrusSyncTableItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPapyrusSyncTableAdapter() {
-		if (papyrusSyncTableItemProvider == null) {
-			papyrusSyncTableItemProvider = new PapyrusSyncTableItemProvider(this);
-		}
-
-		return papyrusSyncTableItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,7 +221,6 @@ public class RepresentationItemProviderAdapterFactory extends RepresentationAdap
 	 * @generated
 	 */
 	public void dispose() {
-		if (papyrusSyncTableItemProvider != null) papyrusSyncTableItemProvider.dispose();
 		if (papyrusTableItemProvider != null) papyrusTableItemProvider.dispose();
 	}
 
@@ -295,11 +271,6 @@ public class RepresentationItemProviderAdapterFactory extends RepresentationAdap
 			 */
 			@Override
 			public Object caseArchitectureDescriptionLanguage(ArchitectureDescriptionLanguage object) {
-				newChildDescriptors.add
-					(createChildParameter
-						(ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_LANGUAGE__REPRESENTATION_KINDS,
-						 RepresentationFactory.eINSTANCE.createPapyrusSyncTable()));
-
 				newChildDescriptors.add
 					(createChildParameter
 						(ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_LANGUAGE__REPRESENTATION_KINDS,

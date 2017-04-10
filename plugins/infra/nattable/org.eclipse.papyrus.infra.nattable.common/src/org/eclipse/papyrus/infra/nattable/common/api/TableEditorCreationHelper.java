@@ -21,9 +21,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
@@ -40,8 +38,6 @@ import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableMo
 import org.eclipse.papyrus.infra.nattable.internal.common.commands.CreateAndOpenTableEditorCommand;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
-import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
@@ -288,17 +284,8 @@ public class TableEditorCreationHelper {
 			return new Status(IStatus.ERROR, pluginID, ITableEditorStatusCode.TABLE_VIEW_PROTOTYPE_NOT_FOUND, NLS.bind("The View Prototype to create a {0} table has not been found", this.tableType), null); //$NON-NLS-1$
 		}
 
-		// 7. get the table configuration uri
-		URI tableConfigurationURI = getTableConfigurationURI(tableViewPrototype);
-		if (tableConfigurationURI == null) {
-			return new Status(IStatus.ERROR, pluginID, ITableEditorStatusCode.TABLE_CONFIGURATION_URI_NOT_FOUND, NLS.bind("The uri of the file View Prototype to create a {0} table has not been found", this.tableType), null); //$NON-NLS-1$
-		}
-
-		// 8. get the nattable configuration
-		final Resource resource = modelSet.getResource(tableConfigurationURI, true);
-		if (resource.getContents().get(0) instanceof TableConfiguration) {
-			this.tableConfiguration = (TableConfiguration) resource.getContents().get(0);
-		}
+		// 7. get the nattable configuration
+		this.tableConfiguration = getTableConfiguration(tableViewPrototype);
 
 		if (this.tableConfiguration == null) {
 			return new Status(IStatus.ERROR, pluginID, ITableEditorStatusCode.TABLE_CONFIGURATION_NOT_FOUND, NLS.bind("Table configuration not found for the table type {0}", this.tableType), null); //$NON-NLS-1$
@@ -368,19 +355,13 @@ public class TableEditorCreationHelper {
 	 * @param viewPrototype
 	 *            a view {@link TableViewPrototype}, must not be <code>null</code>
 	 * @return
-	 * 		the {@link URI} of the nattable configuration, or <code>null</code> if not found
+	 * 		a TableConfiguration, or <code>null</code> if not found
 	 */
-	protected URI getTableConfigurationURI(TableViewPrototype viewPrototype) {
+	protected TableConfiguration getTableConfiguration(TableViewPrototype viewPrototype) {
 		Assert.isNotNull(viewPrototype);
 		if (viewPrototype.getRepresentationKind() instanceof PapyrusTable) {
 			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getRepresentationKind();
-			String uri = papyrusTable.getConfiguration();
-			if (uri != null && uri.length() > 0) {
-				return URI.createURI(uri);
-			}
-		}
-		if (viewPrototype.getRepresentationKind() instanceof PapyrusSyncTable) {
-			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getRepresentationKind()).getImplementationID());
+			return papyrusTable.getConfiguration();
 		}
 		return null;
 	}
@@ -412,13 +393,12 @@ public class TableEditorCreationHelper {
 					return prototype;
 				}
 				if (implementationID == null || implementationID.isEmpty()) {
-					PapyrusRepresentationKind configuration = prototype.getRepresentationKind();
-					if (configuration instanceof PapyrusTable) {
+					PapyrusRepresentationKind representationKind = prototype.getRepresentationKind();
+					if (representationKind instanceof PapyrusTable) {
 						// we need to load the real table configuration to check the type
-						PapyrusTable papyrusTable = (PapyrusTable) configuration;
-						String configurationURI = papyrusTable.getConfiguration();
-						URI uri = NattableConfigurationRegistry.INSTANCE.getConfigurationURI(tableType);
-						if (configurationURI.equals(uri.toString())) { // to check ?
+						PapyrusTable papyrusTable = (PapyrusTable) representationKind;
+						TableConfiguration configuration = papyrusTable.getConfiguration();
+						if (configuration.getType().equals(tableType)) { // to check ?
 							return prototype;
 						}
 					}

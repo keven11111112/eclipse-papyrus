@@ -18,6 +18,9 @@ package org.eclipse.papyrus.infra.core.resource.sasheditor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
@@ -135,19 +138,70 @@ public class SashModelUtils {
 	}
 
 	/**
+	 * Returns the Sash Resource (.di or *.sash) associated to the model set. May be null.
+	 *
+	 * @param modelSet
+	 * @return
+	 */
+	public static Resource getSashResource(ModelSet modelSet) {
+		SashModel model = getSashModel(modelSet);
+		if (model != null) {
+			return model.getResource();
+		}
+		return null;
+	}
+
+	/**
 	 * @since 2.0
 	 */
 	public static SashWindowsMngr getSashWindowsMngr(ModelSet modelSet) {
 		SashWindowsMngr result = null;
 
-		SashModel model = getSashModel(modelSet);
-		if (model != null) {
-			Resource resource = model.getResource();
-			if (resource != null) {
-				result = (SashWindowsMngr) EcoreUtil.getObjectByType(resource.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
-			}
+		Resource resource = getSashResource(modelSet);
+		if (resource != null) {
+			result = (SashWindowsMngr) EcoreUtil.getObjectByType(resource.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
 		}
 
 		return result;
 	}
+
+	/**
+	 * Gets an architecture description preferences element if available in the given model set
+	 * 
+	 * @param modelSet
+	 *            the given model set
+	 * @return an architecture description preferences (can be null)
+	 * @since 3.0
+	 */
+	public static ArchitectureDescriptionPreferences getArchitectureDescriptionPreferences(ModelSet modelSet) {
+		Resource resource = getSashResource(modelSet);
+		if (resource != null) {
+			return (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(
+					resource.getContents(), ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+		}
+		return null;
+	}
+
+	/**
+	 * Gets an architecture description preferences element if available in the given model set
+	 * 
+	 * @param modelSet
+	 *            the given model set
+	 * @return an architecture description preferences (can be null)
+	 * @since 3.0
+	 */
+	public static ArchitectureDescriptionPreferences getOrAddArchitectureDescriptionPreferences(ModelSet modelSet) {
+		Resource resource = getSashResource(modelSet);
+		if (resource != null) {
+			ArchitectureDescriptionPreferences preferences = (ArchitectureDescriptionPreferences) EcoreUtil.getObjectByType(resource.getContents(),
+					ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_PREFERENCES);
+			if (preferences == null) {
+				preferences = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionPreferences();
+				resource.getContents().add(preferences);
+			}
+			return preferences;
+		}
+		return null;
+	}
+
 }

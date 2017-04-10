@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.viewpoints.policy.DynamicContribution;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
@@ -61,7 +60,7 @@ public class DynamicTablesMenuContribution extends DynamicContribution {
 		// build a list of all the available prototypes
 		List<ViewPrototype> data = new ArrayList<ViewPrototype>();
 		for (final ViewPrototype proto : PolicyChecker.getFor(selection).getPrototypesFor(selection)) {
-			if (!(proto.getRepresentationKind() instanceof PapyrusTable || proto.getRepresentationKind() instanceof PapyrusSyncTable)) {
+			if (!(proto.getRepresentationKind() instanceof PapyrusTable)) {
 				continue;
 			}
 			data.add(proto);

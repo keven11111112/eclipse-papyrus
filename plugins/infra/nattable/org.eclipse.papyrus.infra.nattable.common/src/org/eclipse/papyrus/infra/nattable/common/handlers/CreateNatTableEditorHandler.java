@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
 
 /**
@@ -64,13 +65,13 @@ public class CreateNatTableEditorHandler extends AbstractCreateNattableEditorHan
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.common.handlers.AbstractCreateNattableEditorHandler2#getTableEditorConfigurationURI()
+	 * @see org.eclipse.papyrus.infra.nattable.common.handlers.AbstractCreateNattableEditorHandler2#getTableEditorConfiguration()
 	 *
 	 * @return
 	 */
 	@Override
-	protected URI getTableEditorConfigurationURI() {
-		return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(this.type);
+	protected TableConfiguration getTableEditorConfiguration() {
+		return NattableConfigurationRegistry.INSTANCE.getConfiguration(this.type);
 	}
 
 	/**

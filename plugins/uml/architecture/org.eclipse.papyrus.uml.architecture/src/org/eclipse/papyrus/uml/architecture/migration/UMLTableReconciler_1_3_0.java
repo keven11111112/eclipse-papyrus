@@ -18,12 +18,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDescriptionLanguage;
-import org.eclipse.papyrus.infra.nattable.representation.PapyrusSyncTable;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.nattable.common.reconciler.TableReconciler;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.uml.architecture.UMLArchitectureContextIds;
 
 /**
@@ -47,17 +47,17 @@ public class UMLTableReconciler_1_3_0 extends TableReconciler {
 			RepresentationKind newTableKind = null;
 			if (oldTableKind != null) {
 				if (VIEW_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getSyncTableKind(oldTableKind.getName(), table);
+					newTableKind = getTableKind(oldTableKind.getName(), table);
 				} else if (GENERIC_TREE_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getSyncTableKind(oldTableKind.getName(), table);
+					newTableKind = getTableKind(oldTableKind.getName(), table);
 				} else if (CLASS_TREE_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getSyncTableKind("Class Tree Table", table);
+					newTableKind = getTableKind("Class Tree Table", table);
 				} else if (GENERIC_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getSyncTableKind(oldTableKind.getName(), table);
+					newTableKind = getTableKind(oldTableKind.getName(), table);
 				} else if (STEREO_DISPLAY_TREE_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getSyncTableKind("Stereotype Display Tree Table", table);
+					newTableKind = getTableKind("Stereotype Display Tree Table", table);
 				} else if (oldTableKind.getName() == null) {
-					newTableKind = getSyncTableKind(GENERIC_TABLE, table);
+					newTableKind = getTableKind(GENERIC_TABLE, table);
 				}
 			};
 			
@@ -70,12 +70,12 @@ public class UMLTableReconciler_1_3_0 extends TableReconciler {
 	/**
 	 * Get a sync table that matches the given name and that supports the given table
 	 */
-	protected PapyrusSyncTable getSyncTableKind(String name, Table table) {
+	protected PapyrusTable getTableKind(String name, Table table) {
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 		MergedArchitectureDescriptionLanguage context = (MergedArchitectureDescriptionLanguage) manager.getArchitectureContextById(UMLArchitectureContextIds.UML);
 		for(RepresentationKind pKind : context.getRepresentationKinds()) {
 			if (pKind.getName().equals(name)) {
-				PapyrusSyncTable tKind = (PapyrusSyncTable) pKind;
+				PapyrusTable tKind = (PapyrusTable) pKind;
 				if (tKind.getModelRules().get(0).getElement().isInstance(table.getContext())) {
 					return tKind;
 				}
