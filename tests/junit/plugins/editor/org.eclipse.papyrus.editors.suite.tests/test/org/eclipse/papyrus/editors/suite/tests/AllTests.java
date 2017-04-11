@@ -12,7 +12,7 @@
  *  Christian W. Damus - bugs 399859, 451230, 433206, 463156, 474610, 469188, 485220, 488791, 496598, 508629
  *
  *****************************************************************************/
-package org.eclipse.papyrus.views.suite.tests;
+package org.eclipse.papyrus.editors.suite.tests;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +39,12 @@ public class AllTests {
 
 		/* **************** plugins *********************** */
 
-		/* views */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.modelexplorer.tests.AllTests.class));
+		/* customization */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.eclipse.project.editors.tests.AllTests.class));
 
-		/* toolsmiths */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.properties.toolsmiths.tests.AllTests.class));
+		/* integration */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.editor.integration.tests.AllTests.class));
+
 
 		// end
 	}

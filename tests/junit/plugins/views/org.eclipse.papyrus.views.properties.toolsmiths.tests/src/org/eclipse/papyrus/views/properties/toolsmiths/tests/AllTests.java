@@ -21,10 +21,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ TransformationsTests.class
 
 })
-public class AllTest {
-	
-	public AllTest() {
-		super();
-	}
+
+public class AllTests {
+
+	// JUnit 4 test suite
 
 }
