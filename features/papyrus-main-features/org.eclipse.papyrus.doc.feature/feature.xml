@@ -2,8 +2,12 @@
 <feature
       id="org.eclipse.papyrus.doc.feature"
       label="Papyrus Documentation Feature"
-      version="1.2.0.qualifier"
+      version="3.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
+
+   <description url="https://eclipse.org/papyrus/">
+      This feature regroups the different doc plugins that should be released in the info center.
+   </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
@@ -16,10 +20,6 @@
    <license url="%licenseURL">
       %license
    </license>
-   
-   <description url="https://eclipse.org/papyrus/">
-   	This feature regroups the different doc plugins that should be released in the info center.
-   </description>
 
    <plugin
          id="org.eclipse.papyrus.copypaste.ui.doc"
@@ -205,7 +205,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
 
    <plugin
          id="org.eclipse.papyrus.doctemplate.doc"
