@@ -123,6 +123,7 @@
       <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.22.0/v20170328-0000"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.0.201703140832"/>
       <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.3.0.201703140832"/>
       <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201703140832"/>
     </location>
