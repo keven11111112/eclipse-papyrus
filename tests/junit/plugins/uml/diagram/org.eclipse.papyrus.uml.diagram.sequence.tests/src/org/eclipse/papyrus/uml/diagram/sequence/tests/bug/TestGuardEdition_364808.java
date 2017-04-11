@@ -35,9 +35,9 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -148,7 +148,8 @@ public class TestGuardEdition_364808 extends TestTopNode {
 
 	protected WrappingLabel performEditRequest(InteractionOperandEditPart op) {
 		//Introduced a Guard EditPart for displaying operand label.
-		WrappingLabel label = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
+		if( op instanceof CInteractionOperandEditPart){
+		WrappingLabel label = op.getPrimaryShape().getInteractionConstraintLabel();
 		Rectangle b = label.getBounds().getCopy();
 		label.translateToAbsolute(b);
 		DirectEditRequest req = new DirectEditRequest();
@@ -160,6 +161,8 @@ public class TestGuardEdition_364808 extends TestTopNode {
 			op.performRequest(req);
 		}
 		return label;
+		}
+		return null;
 	}
 
 	private Text findEditor(Composite composite, WrappingLabel label) {

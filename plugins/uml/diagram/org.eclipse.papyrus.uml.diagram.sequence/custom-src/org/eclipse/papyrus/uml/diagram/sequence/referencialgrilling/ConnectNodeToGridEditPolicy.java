@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
@@ -24,11 +25,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Element;
 
@@ -56,6 +61,7 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	}
 
 	/**
+	 * avoid to modify it directly, try to modify call of sub-methods: initListeningXXX
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 *
 	 */
@@ -69,26 +75,69 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 			GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
 			grilling.cleanUnusedRowAndColumn();
 			Node nodeContainer=(Node)(((GraphicalEditPart)getHost()).getNotationView()).eContainer();
-			PrecisionRectangle originPosition= NotationHelper.getAbsoluteBounds(nodeContainer);
 			Element element=(Element) ((GraphicalEditPart)getHost()).resolveSemanticElement();
 			if (grilling!=null){
 				PrecisionRectangle p=NotationHelper.getAbsoluteBounds((Node)((GraphicalEditPart)getHost()).getNotationView());
-				rowStart=grilling.getRowTolisten(originPosition.y+p.y(), element);
-				columnStart=grilling.getColumnTolisten(originPosition.x+p.x(), element);
-				getDiagramEventBroker().addNotificationListener(rowStart, this);
-				getDiagramEventBroker().addNotificationListener(columnStart, this);
-				rowFinish=grilling.getRowTolisten(originPosition.y+p.y()+BoundForEditPart.getHeightFromView(node), element);
-				getDiagramEventBroker().addNotificationListener(rowFinish, this);
-				columnFinish=grilling.getColumnTolisten(originPosition.x+p.x()+BoundForEditPart.getWidthFromView(node), element);
-				getDiagramEventBroker().addNotificationListener(columnFinish, this);
-
-
-
+				initListeningRowStart(grilling,element, p);
+				initListeningColumnStart(grilling, element, p);
+				initListeningRowFinish(node, grilling, element, p);
+				initListeningColumnFinish(node, grilling, element, p);
 			}
 		}catch (NoGrillElementFound e) {
 			UMLDiagramEditorPlugin.log.error(e);
 		}
 
+	}
+	/**
+	 * this method is called during the activate
+	 * It initialize a columnFinish and listen it
+	 * @param grilling the grid manager that allow creating rows
+	 * @param element the semantic element
+	 * @param bounds the absolute position of the current node (the origin of the referencial is the diagram)
+	 * @throws NoGrillElementFound
+	 */
+	protected void initListeningColumnFinish(Node node, GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		columnFinish=grilling.getorCreateColumnTolisten(bounds.x+BoundForEditPart.getWidthFromView(node), element);
+		getDiagramEventBroker().addNotificationListener(columnFinish, this);
+	}
+
+	/**
+	 * this method is called during the activate
+	 * It initialize a rowFinish and listen it
+	 * @param grilling the grid manager that allow creating rows
+	 * @param element the semantic element
+	 * @param bounds the absolute position of the current node (the origin of the referential is the diagram)
+	 * @throws NoGrillElementFound
+	 */
+	protected void initListeningRowFinish(Node node, GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		rowFinish=grilling.getorCreateRowTolisten(bounds.y+BoundForEditPart.getHeightFromView(node), element);
+		getDiagramEventBroker().addNotificationListener(rowFinish, this);
+	}
+
+	/**
+	 * this method is called during the activate
+	 * It initialize a ColumnStart and listen it
+	 * @param grilling the grid manager that allow creating rows
+	 * @param element the semantic element
+	 * @param bounds the absolute position of the current node ( the origin of the referential is the diagram)
+	 * @throws NoGrillElementFound
+	 */
+	protected void initListeningColumnStart(GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		columnStart=grilling.getorCreateColumnTolisten(bounds.x(), element);	
+		getDiagramEventBroker().addNotificationListener(columnStart, this);
+	}
+
+	/**
+	 * this method is called during the activate
+	 * It initialize a rowStart and listen it
+	 * @param grilling the grid manager that allow creating rows
+	 * @param element the semantic element
+	 * @param bounds position of the current node in absolute ( the origin is the diagram)
+	 * @throws NoGrillElementFound
+	 */
+	protected void initListeningRowStart(GrillingManagementEditPolicy grid, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		rowStart=grid.getorCreateRowTolisten(bounds.y, element);
+		getDiagramEventBroker().addNotificationListener(rowStart, this);
 	}
 
 	/* Gets the diagram event broker from the editing domain.
@@ -111,10 +160,23 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	@Override
 	public void deactivate() {
 		getDiagramEventBroker().removeNotificationListener(((EObject)getHost().getModel()), this);
+		if(rowStart!=null){
+			getDiagramEventBroker().removeNotificationListener(rowStart, this);
+		}
+		if(columnStart!=null){
+			getDiagramEventBroker().removeNotificationListener(columnStart, this);
+		}
+		if(rowFinish!=null){
+			getDiagramEventBroker().removeNotificationListener(rowFinish, this);
+		}
+		if(columnFinish!=null){
+			getDiagramEventBroker().removeNotificationListener(columnFinish, this);
+		}
 		super.deactivate();
 	}
 
 	/**
+	 * avoid to modify it directly, try to modify call of sub-methods: updateXXX
 	 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 *
 	 * @param notification
@@ -122,67 +184,235 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	@Override
 	public void notifyChanged(Notification notification) {
 		//Display imprecision
+
 		Node nodeContainer=(Node)(((GraphicalEditPart)getHost()).getNotationView()).eContainer();
-		PrecisionRectangle originPosition= NotationHelper.getAbsoluteBounds(nodeContainer);
-		Bounds currentBounds=(Bounds)	((Node)((GraphicalEditPart)getHost()).getNotationView()).getLayoutConstraint();
+		if( nodeContainer!=null){
+			PrecisionRectangle originPosition= NotationHelper.getAbsoluteBounds(nodeContainer);
+			Bounds currentBounds=(Bounds)	((Node)((GraphicalEditPart)getHost()).getNotationView()).getLayoutConstraint();
 
-		//the ROW has changed so we must update the position of the combined fragment
-		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(rowStart))){
-			//The grill is in absolute
-			//compute next position for View.bound.y	
-			Location boundsRow=(Location)	((Node)rowStart).getLayoutConstraint();
-			int newY=boundsRow.getY()-originPosition.y();
-			updateNodePositionOfControler(currentBounds.getX(), newY);
-		}
-		//the COLUMN has changed so we must update the postion of the combined fragment
-		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(columnStart))){
-			//The grill is in absolute
-			Location boundsColumn=(Location)	((Node)columnStart).getLayoutConstraint();
-			int newX=boundsColumn.getX()-originPosition.x();
-			updateNodePositionOfControler(newX, currentBounds.getY());
-			
-		}
-		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(rowFinish))){
-			//The grill is in absolute
-			Location boundsColumn=(Location)	((Node)rowFinish).getLayoutConstraint();
-			int newHeight=boundsColumn.getY()-originPosition.y()-currentBounds.getY();
-			updateSizeOfControler(currentBounds.getWidth(), newHeight);
-			
-		}
-		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(columnFinish))){
-			//The grill is in absolute
-			Location boundsColumn=(Location)	((Node)columnFinish).getLayoutConstraint();
-			int newX=boundsColumn.getX()-originPosition.x()-currentBounds.getX();
-			updateSizeOfControler(newX, currentBounds.getHeight());
-			
-		}
-		
-		//UPDATE COLUM AND ROW of THE GRID
-		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Bounds && (((EObject)notification.getNotifier()).eContainer().equals(((EObject)getHost().getModel())))){
-			PrecisionRectangle p=NotationHelper.getAbsoluteBounds((Node)((GraphicalEditPart)getHost()).getNotationView());
-
-			if( notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Height())){
-				int newY=p.y+p.height;
-				updatePositionGridAxis(rowFinish, 0, newY);
+			//the ROW has changed so we must update the position of the combined fragment
+			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(rowStart))){
+				//The grid is in absolute
+				//compute next position for View.bound.y	
+				updateYFromAxisNotification(originPosition, currentBounds);
+			}
+			//the COLUMN has changed so we must update the postion of the combined fragment
+			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(columnStart))){
+				//The grill is in absolute
+				updateXFromAxisNotification(originPosition, currentBounds);
 
 			}
-			if( notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Width())){
-				int newX=p.x+p.width;
-				updatePositionGridAxis(columnFinish, newX,0);
+			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(rowFinish))){
+				//The grill is in absolute
+				updateHeightFromAxisNotification(originPosition, currentBounds);
 
 			}
-			if( notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())){
-				//compute next position for RowStart
-				int newY=notification.getNewIntValue()+originPosition.y();
-				updatePositionGridAxis(rowStart, 0, newY);
-					
+			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location && (((EObject)notification.getNotifier()).eContainer().equals(columnFinish))){
+				//The grill is in absolute
+				updateWidthFromAxisNotification(originPosition, currentBounds);
+
 			}
-			if( notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_X())){
-				//compute next position for RowStart
-				int newX=notification.getNewIntValue()+originPosition.x();
-				updatePositionGridAxis(columnStart, newX, 0);
-					
+
+			//UPDATE COLUM AND ROW of THE GRID
+			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Bounds){
+				PrecisionRectangle bounds=NotationHelper.getAbsoluteBounds((Node)((GraphicalEditPart)getHost()).getNotationView());
+
+				if( notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Height())){
+					updateRowFinishFromHeightNotification(bounds);
+					//update acnchors
+					if( (((EObject)notification.getNotifier()).eContainer().equals(((EObject)getHost().getModel())))){
+						Node node=(Node)this.getHost().getModel();
+						java.util.List<Edge> sourceEdge= node.getSourceEdges();
+						for (Edge edge : sourceEdge) {
+							updateAnchorFromHeight(edge,((Node)getHost().getModel()),notification.getNewIntValue()- notification.getOldIntValue());
+						}
+						java.util.List<Edge> targetEdge= node.getTargetEdges();
+						for (Edge edge : targetEdge) {
+							updateAnchorFromHeight(edge,((Node)getHost().getModel()),notification.getNewIntValue()- notification.getOldIntValue());
+						}
+					}
+				}
+				if( notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Width())){
+					updateColumFinishFromWitdhNotification(bounds);
+				}
+				if( notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())){
+					//compute next position for RowStart
+					updateRowStartFromYNotification(bounds);
+					//updateAnchors
+					if (((EObject)notification.getNotifier()).eContainer().equals(((EObject)getHost().getModel()))){
+						Node node=(Node)this.getHost().getModel();
+						java.util.List<Edge> sourceEdge= node.getSourceEdges();
+						for (Edge edge : sourceEdge) {
+							updateAnchorFromY(edge,((Node)getHost().getModel()),notification.getOldIntValue(),notification.getNewIntValue());
+						}
+						java.util.List<Edge> targetEdge= node.getTargetEdges();
+						for (Edge edge : targetEdge) {
+							updateAnchorFromY(edge,((Node)getHost().getModel()),notification.getOldIntValue(),notification.getNewIntValue());
+						}
+					}
+				}
+				if( notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_X())){
+					//compute next position for RowStart
+					updateColumnStartFromXNotification(bounds);
+				}
 			}
 		}
 	}
+
+	/**
+	 * When the bounds of the notation has change the axis must change
+	 * In this case this is the height that has change so rowFinish must change
+	 * @param originPosition the position of the node is the relative position ( relative to the container) 
+	 */
+	protected void updateRowFinishFromHeightNotification(PrecisionRectangle p) {
+		int newY=p.y+p.height;
+		updatePositionGridAxis(rowFinish, 0, newY);
+	}
+
+	/**
+	 * When the bounds of the notation has change the axis must change
+	 * In this case this is the width that has changed so ColumnFinish must change
+	 * @param notationBound the position of the node is the absolute position ( the origin to the referential is the diagram) 
+	 */
+	protected void updateColumFinishFromWitdhNotification(PrecisionRectangle notationBound) {
+		int newX=notationBound.x+notationBound.width;
+		updatePositionGridAxis(columnFinish, newX,0);
+	}
+
+	/**
+	 * When the bounds of the notation has change the axis must change
+	 * In this case this is the position Y that has change so RowStart must change
+	 * @param bounds the position of the node is the absolute position ( the origin to the referential is the diagram) 
+	 */
+	protected void updateRowStartFromYNotification(PrecisionRectangle bounds) {
+		int newY=bounds.y();
+		updatePositionGridAxis(rowStart, 0, newY);
+	}
+
+	/**
+	 * When the bounds of the notation has change the axis must change
+	 * In this case this is the position X that has change so ColumnStart must change
+	@param bounds the position of the node is the absolute position ( the origin to the referential is the diagram) 
+	 */
+	protected void updateColumnStartFromXNotification(PrecisionRectangle bounds) {
+		int newX=bounds.x();
+		updatePositionGridAxis(columnStart, newX, 0);
+	}
+	/**
+	 * When  the axis columnFinish has changed , the width of the controler has to change
+	 * @param originPosition the position of the container in absolute (origin the diagram)
+	 * @param currentBounds the current position of the node (relative to the container)
+	 */
+	protected void updateWidthFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
+		Location boundsColumn=(Location)	((Node)columnFinish).getLayoutConstraint();
+		int newX=boundsColumn.getX()-originPosition.x()-currentBounds.getX();
+		updateSizeOfControler(newX, currentBounds.getHeight());
+	}
+	/**
+	 * When  the axis rowFinish has changed , the height of the controler has to change
+	 * @param originPosition the position of the container in absolute (origin the diagram)
+	 * @param currentBounds the current position of the node (relative to the container)
+	 */
+	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
+		Location boundsColumn=(Location)	((Node)rowFinish).getLayoutConstraint();
+		int newHeight=boundsColumn.getY()-originPosition.y()-currentBounds.getY();
+		updateSizeOfControler(currentBounds.getWidth(), newHeight);
+	}
+	/**
+	 * When  the axis columnStart has changed , the position X of the controler has to change
+	 * @param originPosition the position of the container in absolute (origin the diagram)
+	 * @param currentBounds the current position of the node (relative to the container)
+	 */
+	protected void updateXFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
+		Location boundsColumn=(Location)	((Node)columnStart).getLayoutConstraint();
+		int newX=boundsColumn.getX()-originPosition.x();
+		updateNodePositionOfControler(newX, currentBounds.getY());
+	}
+
+	/**
+	 * When  the axis rowStart has changed , the position Y of the controler has to change
+	 * @param originPosition the position of the container in absolute (origin the diagram)
+	 * @param currentBounds the current position of the node (relative to the container)
+	 */
+	protected void updateYFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
+		Location boundsRow=(Location)	((Node)rowStart).getLayoutConstraint();
+		int newY=boundsRow.getY()-originPosition.y();
+		updateNodePositionOfControler(currentBounds.getX(), newY);
+	}
+
+
+	/**
+	 * this class update the position of anchor after the resize
+	 * @param sourceEdge
+	 * @param eObject
+	 */
+	protected void updateAnchorFromHeight(Edge edge, Node node, int deltaHeight) {
+		IdentityAnchor anchor=null;
+		if (edge.getSource().equals(node)){
+			anchor=(IdentityAnchor)edge.getSourceAnchor();
+		}
+		else{
+			anchor=(IdentityAnchor)edge.getTargetAnchor();
+		}
+		double yPercent=IdentityAnchorHelper.getYPercentage(anchor);
+		double xPercent=IdentityAnchorHelper.getXPercentage(anchor);
+
+		//calculate  bounds from notation
+		PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds(node);
+		double oldSize=bounds.preciseHeight()-deltaHeight;
+		if( oldSize==-1.0){
+			//it is very bad , because this is a default valued given by the figure...
+			if( getHost() instanceof CLifeLineEditPart){
+				oldSize=CLifeLineEditPart.DEFAUT_HEIGHT;
+			}
+		}
+
+		double newPercentY	= (yPercent*oldSize)/(bounds.preciseHeight());
+		if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
+			final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
+			execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+		}
+	}
+	/**
+	 * /**
+	 * this class update the position of anchor after the move
+	 * @param sourceEdge
+	 * @param eObject
+	 */
+	protected void updateAnchorFromY(Edge edge, Node node, int oldY, int newY) {
+		IdentityAnchor anchor=null;
+		if (edge.getSource().equals(node)){
+			anchor=(IdentityAnchor)edge.getSourceAnchor();
+		}
+		else{
+			anchor=(IdentityAnchor)edge.getTargetAnchor();
+		}
+		if(!anchor.getId().trim().equals("")){
+			double yPercent=IdentityAnchorHelper.getYPercentage(anchor);
+			double xPercent=IdentityAnchorHelper.getXPercentage(anchor);
+
+			//calculate  bounds from notation
+			PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds(node);
+			double height=bounds.preciseHeight();
+			if( height==-1.0){
+				//it is very bad , because this is a default valued given by the figure...
+				if( getHost() instanceof CLifeLineEditPart){
+					height=CLifeLineEditPart.DEFAUT_HEIGHT;
+				}
+			}
+
+			double newPercentY	= (oldY-newY)/(height)+yPercent;
+			if(newPercentY<0){
+				newPercentY=0.1;
+			}
+			if(newPercentY>1){
+				newPercentY=0.9;
+			}
+			if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
+				final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
+				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+			}
+		}
+	}
+
 }

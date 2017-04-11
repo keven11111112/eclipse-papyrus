@@ -2264,6 +2264,10 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ResizeOperandEditPolicy"/>
       </compartments>
       <palette>
         <groups

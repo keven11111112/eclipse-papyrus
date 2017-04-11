@@ -45,7 +45,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomCombinedFragmentCombinedFragmentCompartmentEditPart extends CombinedFragmentCombinedFragmentCompartmentEditPart {
+public class OLDCustomCombinedFragmentCombinedFragmentCompartmentEditPart extends CombinedFragmentCombinedFragmentCompartmentEditPart {
 
 	/**
 	 * Children string for notification event type.
@@ -57,7 +57,7 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentEditPart extends C
 	 *
 	 * @param view
 	 */
-	public CustomCombinedFragmentCombinedFragmentCompartmentEditPart(View view) {
+	public OLDCustomCombinedFragmentCombinedFragmentCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -139,7 +139,7 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentEditPart extends C
 					if (type.getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
 						// fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
 						// to relocate both its bounds and combined fragment bounds when operand is added to combined fragment
-						OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CustomCombinedFragmentCombinedFragmentCompartmentEditPart.this, viewDescriptor, compositeCommand);
+						OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(OLDCustomCombinedFragmentCombinedFragmentCompartmentEditPart.this, viewDescriptor, compositeCommand);
 					}
 				}
 				return new ICommandProxy(compositeCommand.reduce());
@@ -154,8 +154,8 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentEditPart extends C
 	@Override
 	protected EditPart createChild(Object model) {
 		EditPart child = super.createChild(model);
-		if (getChildren() == null || getChildren().isEmpty() && child instanceof CustomInteractionOperandEditPart) {
-			((CustomInteractionOperandEditPart) child).setFirstOperand(true);
+		if (getChildren() == null || getChildren().isEmpty() && child instanceof OLDCustomInteractionOperandEditPart) {
+			((OLDCustomInteractionOperandEditPart) child).setFirstOperand(true);
 		}
 		return child;
 	}
@@ -174,11 +174,11 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentEditPart extends C
 					List<?> children = getChildren();
 					if (children != null && children.size() > 1) {
 						Object firstChild = children.get(0);
-						if (firstChild instanceof CustomInteractionOperandEditPart) {
-							CustomInteractionOperandEditPart firstOperandChild = (CustomInteractionOperandEditPart) firstChild;
+						if (firstChild instanceof OLDCustomInteractionOperandEditPart) {
+							OLDCustomInteractionOperandEditPart firstOperandChild = (OLDCustomInteractionOperandEditPart) firstChild;
 							Object firstChildModel = firstOperandChild.getModel();
-							if (firstChildModel != null && firstChildModel.equals(event.getOldValue()) && children.get(1) instanceof CustomInteractionOperandEditPart) {
-								CustomInteractionOperandEditPart secondOperandChild = (CustomInteractionOperandEditPart) children.get(1);
+							if (firstChildModel != null && firstChildModel.equals(event.getOldValue()) && children.get(1) instanceof OLDCustomInteractionOperandEditPart) {
+								OLDCustomInteractionOperandEditPart secondOperandChild = (OLDCustomInteractionOperandEditPart) children.get(1);
 								secondOperandChild.setFirstOperand(true);
 							}
 						}

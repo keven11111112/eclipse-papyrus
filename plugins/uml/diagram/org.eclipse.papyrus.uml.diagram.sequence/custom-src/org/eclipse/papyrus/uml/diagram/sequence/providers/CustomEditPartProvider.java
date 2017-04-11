@@ -64,11 +64,11 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 //			return new CustomConsiderIgnoreFragmentEditPart(view);
 		case CombinedFragmentEditPart.VISUAL_ID:
 			return new CCombinedFragmentEditPart(view);
-	//	case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-		//	return new CCombinedCompartmentEditPart(view);
+		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
+			return new CCombinedFragmentCombinedFragmentCompartmentEditPart(view);
 
-//		case InteractionOperandEditPart.VISUAL_ID:
-//			return new CustomInteractionOperandEditPart(view);
+		case InteractionOperandEditPart.VISUAL_ID:
+			return new CInteractionOperandEditPart(view);
 //		case InteractionUseEditPart.VISUAL_ID:
 //			return new CustomInteractionUseEditPart(view);
 //		case InteractionUseNameEditPart.VISUAL_ID:

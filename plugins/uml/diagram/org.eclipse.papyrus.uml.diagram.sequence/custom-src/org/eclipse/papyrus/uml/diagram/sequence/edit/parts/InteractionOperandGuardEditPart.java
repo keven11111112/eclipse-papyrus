@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -126,7 +127,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
- * @author Jin Liu (jin.liu@soyatec.com)
+ * this  class is used to edit a guard of an interaction operand
  */
 public class InteractionOperandGuardEditPart extends ShapeEditPart implements ITextAwareEditPart {
 
@@ -295,6 +296,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		defaultText = getLabelTextHelper(figure);
 		registerVisuals();
 		refreshVisuals();
+		figure.setBackgroundColor(ColorConstants.red);
 	}
 
 	@Override
@@ -307,8 +309,17 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		return null;
 	}
 
+	/**
+	 * return the interactionoperand
+	 * @return
+	 */
 	protected EObject getParserElement() {
-		return getInteractionOperand(resolveSemanticElement());
+		if(this.getParent() instanceof InteractionOperandEditPart){
+			InteractionOperandEditPart interactionOperandEditPart=(InteractionOperandEditPart)this.getParent();
+			return interactionOperandEditPart.resolveSemanticElement();
+		}
+		return null;
+		//return getInteractionOperand(resolveSemanticElement());
 	}
 
 	protected Image getLabelIcon() {
@@ -515,6 +526,9 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		refreshFontColor();
 		refreshUnderline();
 		refreshStrikeThrough();
+		
+		
+		
 	}
 
 	@Override
@@ -771,6 +785,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		return text;
 	}
 
+	@Deprecated
 	protected static InteractionOperand getInteractionOperand(Object element) {
 		InteractionOperand operand = null;
 		if (element instanceof InteractionConstraint) {
@@ -815,9 +830,12 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 		@Override
 		public String getPrintString(IAdaptable element, int flags) {
-			Object adapter = element.getAdapter(EObject.class);
-			InteractionOperand operand = getInteractionOperand(adapter);
-			return getGuardLabelText(operand, false);
+			EObject operand = (EObject)element.getAdapter(EObject.class);
+			//InteractionOperand operand = getInteractionOperand(adapter);
+			if( operand instanceof InteractionOperand){
+			return getGuardLabelText((InteractionOperand)operand, false);
+			}
+			return "";
 		}
 
 		@Override

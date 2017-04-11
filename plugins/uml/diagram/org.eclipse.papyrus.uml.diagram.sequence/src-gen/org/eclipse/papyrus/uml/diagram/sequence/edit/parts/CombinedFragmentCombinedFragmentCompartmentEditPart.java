@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -40,7 +40,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentS
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ResizeOperandEditPolicy;
 
 /**
  * @generated
@@ -91,7 +93,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GrillingBasedXYLayoutEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeOperandEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
 
@@ -140,6 +142,15 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
 		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+
+		//this code has been added in order to force the refresh of Sub Combined fragment
+		if(children!=null){
+			for (Object child : children) {
+				if( child instanceof EditPart){
+					((EditPart)child).refresh();
+				}
+			}
+		}
 	}
 
 	/**
@@ -149,42 +160,5 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		super.refreshVisuals();
 		refreshBounds();
 	}
-	
-	/**
-	 * @see GraphicalEditPart#setLayoutConstraint(EditPart, IFigure, Object)
-	 */
-	public void setLayoutConstraint(EditPart child, IFigure childFigure,
-			Object constraint) {
-//1 get all childrsize of childreen
-		double size =0.0;
-		Node currentNode = (Node)getNotationView();
-		for (Iterator iterator = currentNode.getChildren().iterator(); iterator.hasNext();) {
-			Node view = (Node) iterator.next();
-			if( view.getLayoutConstraint() instanceof Bounds){
-				if(((Bounds)view.getLayoutConstraint()).getHeight()==-1){
-					size= size+40;
-				}
-				else{
-				size= size+((Bounds)view.getLayoutConstraint()).getHeight();
-				}
-			}
-			
-		}
-		
-		if( currentNode.getLayoutConstraint() instanceof Bounds){
-			Bounds newBounds=((Bounds)currentNode.getLayoutConstraint());
-			if( size>((Bounds)currentNode.getLayoutConstraint()).getHeight()){
-				//executeCommand(new GMFtoGEFCommandWrapper( new SetBoundsCommand(getEditingDomain(), "resize", new EObjectAdapter(currentNode), new Dimension(newBounds.getWidth(),(int)size))));
-			}
-		}
-		
-		
-		
-		PrecisionRectangle bounds=new PrecisionRectangle(getFigure().getBounds());
-		if(constraint instanceof Rectangle){
-			double ratio= ((double)((Rectangle)constraint).height)/bounds.height;
-			System.out.println("Ratio:"+ratio);
-		childFigure.getParent().setConstraint(childFigure, ratio);
-		}
-	}
+
 }

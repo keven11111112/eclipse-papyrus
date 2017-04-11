@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeConstraintLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeObservationLabelEditPart;
@@ -98,7 +98,7 @@ public class PostEditPolicyProvider implements IEditPolicyProvider {
 		// Replace AppliedStereotypeCommentCreationEditPolicy to a custom one.
 		if (editPart instanceof AbstractExecutionSpecificationEditPart || editPart instanceof CustomDestructionOccurrenceSpecificationEditPart || editPart instanceof CustomDurationConstraintEditPart || editPart instanceof CustomDurationConstraintEditPart
 				|| editPart instanceof CustomStateInvariantEditPart || editPart instanceof CustomTimeConstraintLabelEditPart || editPart instanceof CustomTimeObservationLabelEditPart || editPart instanceof AbstractMessageEditPart
-				|| editPart instanceof GeneralOrderingEditPart || editPart instanceof CustomContinuationEditPart || editPart instanceof CustomInteractionOperandEditPart || editPart instanceof GateEditPart) {
+				|| editPart instanceof GeneralOrderingEditPart || editPart instanceof CustomContinuationEditPart || editPart instanceof OLDCustomInteractionOperandEditPart || editPart instanceof GateEditPart) {
 			editPart.installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 		}
 	}

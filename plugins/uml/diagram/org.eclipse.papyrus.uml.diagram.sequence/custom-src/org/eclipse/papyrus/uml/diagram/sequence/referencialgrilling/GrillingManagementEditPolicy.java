@@ -58,6 +58,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGrillingStructureC
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -221,8 +222,10 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 		Collections.sort(new ArrayList<>(rows),RowComparator );
 		Collections.sort(new ArrayList<>(columns),ColumnComparator );
 	}
+
 	/** this class is very specific the the sequence diagram
-	 * this purpose of this method is to ensure the consistency of event in the the represented diagram**/
+	 * this purpose of this method is to ensure the consistency of event in the the represented diagram
+	 * **/
 	public void updateSemanticAfterUpdate(){
 		//1. look for all Lifelines
 		//There are columns.
@@ -243,7 +246,7 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 			for (DecorationNode row : rows) {
 				if ((getRef(row))!=null){
 					for (EObject referedElement : getRef(row)) {
-						if( referedElement instanceof InteractionFragment){
+						if( referedElement instanceof InteractionFragment && (!(referedElement instanceof InteractionOperand))){
 							InteractionFragment interactionFragment=(InteractionFragment)(referedElement);
 							if( lifeline.getCoveredBys().contains(interactionFragment)){
 								covered.add(interactionFragment);
@@ -255,17 +258,42 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 				}
 
 			}
+
+			//3. managment of InteractionOperand
+			//There are columns.
+
+			ArrayList<InteractionOperand> coveredbyInteractionOperand=new ArrayList<InteractionOperand>();
+			for (DecorationNode column : columns) {
+				if ((getRef(column))!=null){
+					for (EObject referedElement : getRef(column)) {
+						if( referedElement instanceof InteractionOperand){
+							if(!(coveredbyInteractionOperand.contains(referedElement))){
+								coveredbyInteractionOperand.add((InteractionOperand)referedElement);
+							}
+							else{
+								coveredbyInteractionOperand.remove((InteractionOperand)referedElement);
+							}
+						}
+						if( referedElement.equals(lifeline)){
+							covered.addAll(coveredbyInteractionOperand);
+						}
+					}
+				}
+
+			}
+
 			if(covered.size()== lifeline.getCoveredBys().size()){
 				System.err.println("equality");
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			}
 			else if( covered.size()<lifeline.getCoveredBys().size()){
 				System.err.println("Event not managed or in being created");
-				covered.addAll(lifeline.getCoveredBys());
+				//covered.addAll(lifeline.getCoveredBys());
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			}
 			else if( covered.size()>lifeline.getCoveredBys().size()){
-				System.err.println("more event that in the lifeline");
+				System.err.println("more event that in the lifeline due to combined fragment");
+				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			}
 		}
 
@@ -273,7 +301,7 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 
 	public void cleanUnusedRowAndColumn(){
 		ArrayList<DecorationNode> unusedDcorationNode= new ArrayList<DecorationNode>();
-		
+
 		if(grillingCompartment!=null){
 			List  persistedChildren=grillingCompartment.getNotationView().getPersistedChildren();
 			for (int i=0;i<persistedChildren.size(); i++){
@@ -352,10 +380,10 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	 * @param notationObject
 	 * @return
 	 */
-	public View getRowTolisten(Node graphic, Element semantic) throws NoGrillElementFound{
+	public View getorCreateRowTolisten(Node graphic, Element semantic) throws NoGrillElementFound{
 		LayoutConstraint layoutConstraint=((Node)graphic).getLayoutConstraint();
 		if(layoutConstraint instanceof Bounds){
-			return getRowTolisten(((Bounds) layoutConstraint).getY(),semantic);
+			return getorCreateRowTolisten(((Bounds) layoutConstraint).getY(),semantic);
 		}
 		throw new NoGrillElementFound();
 	}
@@ -366,7 +394,7 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	 * @param x the position x for the column
 	 * @return the decoration node
 	 */
-	public DecorationNode getColumnTolisten( int x, Element semantic) throws NoGrillElementFound{
+	public DecorationNode getorCreateColumnTolisten( int x, Element semantic) throws NoGrillElementFound{
 		try{
 			DecorationNode column=existCoulumnAtPosition(x);
 		}
@@ -423,7 +451,7 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	 * @param y the position y for the line
 	 * @return the decoration node
 	 */
-	public DecorationNode getRowTolisten( int y, Element semantic) throws NoGrillElementFound{
+	public DecorationNode getorCreateRowTolisten( int y, Element semantic) throws NoGrillElementFound{
 		try{
 			return existRowAtPosition(y, semantic);
 		}
@@ -443,10 +471,10 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	 * @param graphic the graphical element 
 	 * @return
 	 */
-	public View getColumnTolisten( Node graphic, Element semantic ) throws NoGrillElementFound{
+	public View getorCreateColumnTolisten( Node graphic, Element semantic ) throws NoGrillElementFound{
 		LayoutConstraint layoutConstraint=((Node)graphic).getLayoutConstraint();
 		if(layoutConstraint instanceof Bounds){
-			return getColumnTolisten(((Bounds)layoutConstraint).getX(),semantic);
+			return getorCreateColumnTolisten(((Bounds)layoutConstraint).getX(),semantic);
 		}
 		throw new NoGrillElementFound();
 
@@ -543,7 +571,9 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 		if(respectMargin){
 			if( nextdistance<margin){
 				boolean after=false;
-				for (DecorationNode currentRow : rows) {
+				ArrayList<DecorationNode> rowsCopy= new ArrayList<DecorationNode>();
+				rowsCopy.addAll(rows);
+				for (DecorationNode currentRow : rowsCopy) {
 					if( after){
 
 						LayoutConstraint currentConstraint=currentRow.getLayoutConstraint();

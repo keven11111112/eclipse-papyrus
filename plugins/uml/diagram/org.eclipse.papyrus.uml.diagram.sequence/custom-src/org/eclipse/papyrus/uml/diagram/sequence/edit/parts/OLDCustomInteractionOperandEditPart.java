@@ -111,8 +111,9 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @deprecated
  */
-public class CustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart {
+public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -130,7 +131,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 	 *
 	 * @param view
 	 */
-	public CustomInteractionOperandEditPart(View view) {
+	public OLDCustomInteractionOperandEditPart(View view) {
 		super(view);
 	}
 
@@ -174,7 +175,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
+		//installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new GuardConditionDirectEditPolicy());
 		removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 		// display stereotype

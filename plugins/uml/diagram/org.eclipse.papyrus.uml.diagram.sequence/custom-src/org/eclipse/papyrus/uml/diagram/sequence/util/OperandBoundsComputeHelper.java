@@ -69,7 +69,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -780,8 +780,8 @@ public class OperandBoundsComputeHelper {
 				continue;
 			}
 			OLDCustomCombinedFragmentEditPart childCF = (OLDCustomCombinedFragmentEditPart) children.get(i);
-			List<CustomInteractionOperandEditPart> childOperands = childCF.getOperandChildrenEditParts();
-			for (CustomInteractionOperandEditPart childOperand : childOperands) {
+			List<OLDCustomInteractionOperandEditPart> childOperands = childCF.getOperandChildrenEditParts();
+			for (OLDCustomInteractionOperandEditPart childOperand : childOperands) {
 				cc.add(getForcedShiftEnclosedFragmentsCommand(childOperand, movedY, alreadyMovedItems));
 			}
 		}

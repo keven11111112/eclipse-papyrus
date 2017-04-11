@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.CombinedFragment;
  *
  */
 public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
-	public static int DEFAULT_HEIGHT=40;
+	public static int DEFAULT_HEIGHT=60;
 	public static int DEFAULT_WIDTH=40;
 	
 

@@ -89,7 +89,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 					PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewsr);
 					double localY=(bounds.preciseHeight()*ypercent);
 					double absoluteY=localY+bounds.preciseY();
-					rowSource=grilling.getRowTolisten((int)absoluteY,m.getSendEvent());
+					rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m.getSendEvent());
 					getDiagramEventBroker().addNotificationListener(rowTarget, this);
 
 					//target
@@ -98,7 +98,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 					bounds= NotationHelper.getAbsoluteBounds((Node)viewtg);
 					localY=(bounds.preciseHeight()*ypercent);
 					absoluteY=localY+bounds.preciseY();
-					rowTarget=grilling.getRowTolisten((int)absoluteY,m.getReceiveEvent());
+					rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m.getReceiveEvent());
 					getDiagramEventBroker().addNotificationListener(rowTarget, this);
 				}
 
@@ -150,7 +150,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 				try{
 					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
 					if (grilling!=null){
-						rowSource=grilling.getRowTolisten(anchorY,m.getSendEvent());
+						rowSource=grilling.getorCreateRowTolisten(anchorY,m.getSendEvent());
 						getDiagramEventBroker().addNotificationListener(rowSource, this);
 
 					}
@@ -169,7 +169,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 				try{
 					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
 					if (grilling!=null){
-						rowTarget=grilling.getRowTolisten(anchorY, m.getReceiveEvent());
+						rowTarget=grilling.getorCreateRowTolisten(anchorY, m.getReceiveEvent());
 						getDiagramEventBroker().addNotificationListener(rowTarget, this);
 					}
 				}catch (NoGrillElementFound e) {

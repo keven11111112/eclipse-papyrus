@@ -289,13 +289,13 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 		return super.addFixedChild(childEditPart);
 	}
 
-	public List<CustomInteractionOperandEditPart> getOperandChildrenEditParts() {
-		List<CustomInteractionOperandEditPart> children = new LinkedList<CustomInteractionOperandEditPart>();
+	public List<OLDCustomInteractionOperandEditPart> getOperandChildrenEditParts() {
+		List<OLDCustomInteractionOperandEditPart> children = new LinkedList<OLDCustomInteractionOperandEditPart>();
 		IGraphicalEditPart compartment = getChildBySemanticHint(String.valueOf(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
 		if (compartment instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			for (Object ep : compartment.getChildren()) {
-				if (ep instanceof CustomInteractionOperandEditPart) {
-					children.add((CustomInteractionOperandEditPart) ep);
+				if (ep instanceof OLDCustomInteractionOperandEditPart) {
+					children.add((OLDCustomInteractionOperandEditPart) ep);
 				}
 			}
 		}
@@ -342,7 +342,7 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 			 * }
 			 */
 			// update guards on enclosed operands
-			for (CustomInteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
+			for (OLDCustomInteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
 				ioep.updateConstraintLabel();
 			}
 		} else if (UMLPackage.eINSTANCE.getCombinedFragment_Operand().equals(feature)) {

@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 
@@ -81,11 +81,11 @@ public class CombinedFragmentMoveHelper {
 		if (hostEP.getParent() instanceof OLDCustomCombinedFragmentEditPart) {
 			// Select which InteractionOperand we're dropping to
 			OLDCustomCombinedFragmentEditPart hostCFEP = (OLDCustomCombinedFragmentEditPart) hostEP.getParent();
-			List<CustomInteractionOperandEditPart> operands = hostCFEP.getOperandChildrenEditParts();
+			List<OLDCustomInteractionOperandEditPart> operands = hostCFEP.getOperandChildrenEditParts();
 			if (!operands.isEmpty()) {
 				Point location = request.getLocation();
 				parentEP = operands.get(0);
-				for (CustomInteractionOperandEditPart operand : operands) {
+				for (OLDCustomInteractionOperandEditPart operand : operands) {
 					Rectangle bounds = operand.getFigure().getBounds().getCopy();
 					operand.getFigure().translateToAbsolute(bounds);
 					if (bounds.contains(location)) {
@@ -104,10 +104,10 @@ public class CombinedFragmentMoveHelper {
 	public static void adjustNewParentOperands(CompoundCommand cc, Rectangle newParentNewRect, Rectangle newParentOldRect, EditPart hostEP) {
 		Set<Object> alreadyMovedBlocks = new HashSet<Object>();
 		OLDCustomCombinedFragmentEditPart hostCFEP = (OLDCustomCombinedFragmentEditPart) hostEP.getParent();
-		List<CustomInteractionOperandEditPart> operands = hostCFEP.getOperandChildrenEditParts();
+		List<OLDCustomInteractionOperandEditPart> operands = hostCFEP.getOperandChildrenEditParts();
 		int moveUpperYOffset = newParentNewRect.y - newParentOldRect.y;
 		int moveLowerYOffset = newParentNewRect.height - newParentOldRect.height;
-		for (CustomInteractionOperandEditPart operand : operands) {
+		for (OLDCustomInteractionOperandEditPart operand : operands) {
 			Rectangle rectangleOperand = operand.getFigure().getBounds().getCopy();
 			operand.getFigure().translateToAbsolute(rectangleOperand);
 			Bounds operandBounds = OperandBoundsComputeHelper.getEditPartBounds(operand);

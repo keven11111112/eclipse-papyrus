@@ -14,10 +14,13 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 
 public class InteractionOperandFigure extends RoundedCompartmentFigure {
@@ -70,5 +73,30 @@ public class InteractionOperandFigure extends RoundedCompartmentFigure {
 		fInteractionConstraintLabel = new WrappingLabel();
 		fInteractionConstraintLabel.setText("");
 		this.add(fInteractionConstraintLabel, new Rectangle(10,10,200,20));
+	}
+	/**
+	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)
+	 *
+	 * @param wHint
+	 * @param hHint
+	 * @return
+	 */
+	@Override
+	public Dimension getMinimumSize(int wHint, int hHint) {
+		// TODO Auto-generated method stub
+		Dimension dim= super.getMinimumSize(wHint, hHint);
+		//look for combinedFragmentFigure
+		IFigure cfFigure=getParent();
+		while (!(cfFigure instanceof CombinedFragmentFigure)) {
+			cfFigure= cfFigure.getParent();
+		}
+		if (cfFigure==null){
+			return dim;
+		}
+		Rectangle ccfbound=cfFigure.getBounds();
+		if( ccfbound.width!=-1){
+			return new Dimension(ccfbound.width,dim.height );
+		}
+		return dim;
 	}
 }

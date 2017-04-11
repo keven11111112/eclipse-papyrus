@@ -25,6 +25,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -75,6 +76,14 @@ public class GrillingBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResi
 
 			}
 
+		}
+		if( request instanceof CreateViewAndElementRequest){
+			CreateViewAndElementRequest req=(CreateViewAndElementRequest)request;
+			ViewAndElementDescriptor descriptor=(req).getViewAndElementDescriptor();
+			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
+			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_SHAPE)){
+				System.out.println("toto");
+			}
 		}
 		return super.getCreateCommand(request);
 	}

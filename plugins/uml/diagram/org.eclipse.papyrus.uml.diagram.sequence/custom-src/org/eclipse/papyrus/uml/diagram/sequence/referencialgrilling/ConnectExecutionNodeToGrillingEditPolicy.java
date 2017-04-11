@@ -81,13 +81,13 @@ public class ConnectExecutionNodeToGrillingEditPolicy extends GraphicalEditPolic
 			ExecutionSpecification exec=(ExecutionSpecification) ((GraphicalEditPart)getHost()).resolveSemanticElement();
 			if (grilling!=null){
 				PrecisionRectangle p=NotationHelper.getAbsoluteBounds((Node)((GraphicalEditPart)getHost()).getNotationView());
-				rowStart=grilling.getRowTolisten(p.y(), exec.getStart());
+				rowStart=grilling.getorCreateRowTolisten(p.y(), exec.getStart());
 				getDiagramEventBroker().addNotificationListener(rowStart, this);
 				if( bounds.getHeight()!=-1){
-					rowFinish=grilling.getRowTolisten(p.y()+bounds.getHeight(), exec.getFinish());
+					rowFinish=grilling.getorCreateRowTolisten(p.y()+bounds.getHeight(), exec.getFinish());
 				}
 				else{
-					rowFinish=grilling.getRowTolisten(p.y()+CustomActionExecutionSpecificationEditPart.DEFAULT_HEIGHT, exec.getFinish());
+					rowFinish=grilling.getorCreateRowTolisten(p.y()+CustomActionExecutionSpecificationEditPart.DEFAULT_HEIGHT, exec.getFinish());
 				}
 				getDiagramEventBroker().addNotificationListener(rowStart, this);
 
@@ -176,7 +176,6 @@ public class ConnectExecutionNodeToGrillingEditPolicy extends GraphicalEditPolic
 				for (Edge edge : targetEdge) {
 					updateAnchorFromHeight(edge,((Node)getHost().getModel()),notification.getNewIntValue()- notification.getOldIntValue());
 				}
-
 			}
 			if( notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())){
 				
@@ -185,7 +184,7 @@ public class ConnectExecutionNodeToGrillingEditPolicy extends GraphicalEditPolic
 				grilling.dissociateViewToGrill(rowStart, exec.getStart());
 				//Set the coordinate in absolute
 				try {
-					rowStart=grilling.getRowTolisten(p.y(), exec.getStart());
+					rowStart=grilling.getorCreateRowTolisten(p.y(), exec.getStart());
 					getDiagramEventBroker().addNotificationListener(rowStart, this);
 					grilling.updateYpositionForRow((DecorationNode) rowFinish, p.y()+p.height-displayImprecision);
 				} catch (Exception e) {

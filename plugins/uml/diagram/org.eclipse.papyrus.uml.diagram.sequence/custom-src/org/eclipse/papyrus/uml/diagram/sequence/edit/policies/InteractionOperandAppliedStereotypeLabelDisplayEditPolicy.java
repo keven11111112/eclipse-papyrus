@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart.GuardFigure;
 import org.eclipse.swt.graphics.Image;
@@ -33,10 +33,10 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 	@Override
 	protected void refreshStereotypeDisplay() {
 		EditPart host = getHost();
-		if (!(host instanceof CustomInteractionOperandEditPart)) {
+		if (!(host instanceof OLDCustomInteractionOperandEditPart)) {
 			return;
 		}
-		IGraphicalEditPart guard = ((CustomInteractionOperandEditPart) host).getChildBySemanticHint(InteractionOperandGuardEditPart.GUARD_TYPE);
+		IGraphicalEditPart guard = ((OLDCustomInteractionOperandEditPart) host).getChildBySemanticHint(InteractionOperandGuardEditPart.GUARD_TYPE);
 		if (!(guard instanceof InteractionOperandGuardEditPart)) {
 			return;
 		}

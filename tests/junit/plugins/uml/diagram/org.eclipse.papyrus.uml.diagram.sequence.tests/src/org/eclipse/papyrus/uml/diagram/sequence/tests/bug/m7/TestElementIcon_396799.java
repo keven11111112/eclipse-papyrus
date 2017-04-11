@@ -46,7 +46,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -213,7 +212,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 		assertNotNull(compartment);
 		InteractionOperandEditPart operand = (InteractionOperandEditPart) compartment.getChildBySemanticHint("" + InteractionOperandEditPart.VISUAL_ID);
 		assertNotNull(operand);
-		WrappingLabel label = operand instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart) operand).getInteractionConstraintLabel() : operand.getPrimaryShape().getInteractionConstraintLabel();
+		WrappingLabel label =  operand.getPrimaryShape().getInteractionConstraintLabel();
 		testElementIcon(label, operand.getNotationView(), true);
 	}
 

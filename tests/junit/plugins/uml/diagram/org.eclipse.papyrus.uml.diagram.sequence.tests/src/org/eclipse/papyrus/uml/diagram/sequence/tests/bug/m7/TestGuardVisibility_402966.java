@@ -16,43 +16,24 @@ package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.preference.IPreferencePage;
 import org.eclipse.jface.preference.PreferenceDialog;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
-import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperandModelElementFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IPageLayout;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
-import org.eclipse.ui.part.IPage;
-import org.eclipse.ui.views.properties.PropertySheet;
-import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.junit.Test;
 
 /**
@@ -117,7 +98,7 @@ public class TestGuardVisibility_402966 extends AbstractNodeTest {
 
 	public void testGuardVisibility(InteractionOperandEditPart op, boolean visible) {
 		assertNotNull(op);
-		WrappingLabel constraintLabel = op instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)op).getInteractionConstraintLabel() : op.getPrimaryShape().getInteractionConstraintLabel();
+		WrappingLabel constraintLabel =  op.getPrimaryShape().getInteractionConstraintLabel();
 		assertNotNull(constraintLabel);
 		if(visible) {
 			String text = ((ITextAwareEditPart)op).getParser().getPrintString(new EObjectAdapter(op.resolveSemanticElement()), ParserOptions.NONE.intValue());

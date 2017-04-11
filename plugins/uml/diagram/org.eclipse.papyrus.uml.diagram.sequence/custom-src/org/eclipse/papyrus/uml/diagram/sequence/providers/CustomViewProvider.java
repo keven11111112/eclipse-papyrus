@@ -227,9 +227,9 @@ public class CustomViewProvider extends UMLViewProvider {
 		Node compartment = createCompartment(node,UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
 		// Add by default InteractionOperand
-		for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement).getOperands()) {
-			createInteractionOperand_Shape(interactionOperand, compartment, -1,	true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		}
+//		for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement).getOperands()) {
+//			createInteractionOperand_Shape(interactionOperand, compartment, -1,	true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+//		}
 		// initialization for the compartment visibility
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(
 				node, prefStore, "CombinedFragment");

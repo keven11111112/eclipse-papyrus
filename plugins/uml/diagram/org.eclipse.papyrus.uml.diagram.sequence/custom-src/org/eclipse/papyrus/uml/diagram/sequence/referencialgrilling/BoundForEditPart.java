@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017 CEA LIST and others. 
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 
 /**
  * @author PT202707
@@ -24,16 +25,19 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditP
  */
 public class BoundForEditPart {
 
-	protected static Bounds getBounds(Node node){
+	public static Bounds getBounds(Node node){
 		return (Bounds)	node.getLayoutConstraint();
 	}
 	public static int getHeightFromView(Node node){
 		Bounds bounds=BoundForEditPart.getBounds(node);
-		if( bounds.getHeight()!=-1){
+		if( bounds!=null&& bounds.getHeight()!=-1){
 			return bounds.getHeight();
 		}
 		else{
 			if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)){
+				return 40;
+			}
+			if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)){
 				return 40;
 			}
 			return 100;
@@ -42,12 +46,15 @@ public class BoundForEditPart {
 	}
 	public static int getWidthFromView(Node node){
 		Bounds bounds=BoundForEditPart.getBounds(node);
-		if( bounds.getWidth()!=-1){
-			return bounds.getHeight();
+		if(bounds!=null&& bounds.getWidth()!=-1){
+			return bounds.getWidth();
 		}
 		else{
 			if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)){
 				return 40;
+			}
+			if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)){
+				return 100;
 			}
 			return 100;
 		}
