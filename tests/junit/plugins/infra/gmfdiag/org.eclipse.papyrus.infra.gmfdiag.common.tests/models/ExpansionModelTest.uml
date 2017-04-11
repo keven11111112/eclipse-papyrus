@@ -7,4 +7,7 @@
     <nestedClassifier xmi:type="uml:Interface" xmi:id="_DpZwsPMkEeSc2PGFYV7S2w" name="MyNestedInterface"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="__FNz0PMjEeSc2PGFYV7S2w" name="MyOtherClass"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_fNTaAB6pEeeaxZx4sIiwfg" name="Class1">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_f1LSUB6pEeeaxZx4sIiwfg" name="Attribute1"/>
+  </packagedElement>
 </uml:Model>
