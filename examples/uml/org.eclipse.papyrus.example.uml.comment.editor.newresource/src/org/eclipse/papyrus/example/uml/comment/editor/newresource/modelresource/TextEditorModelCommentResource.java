@@ -13,11 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.example.uml.comment.editor.newresource.modelresource;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.infra.core.resource.AbstractDynamicModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
-
 
 public class TextEditorModelCommentResource extends AbstractDynamicModel<PapyrusTextInstance> implements IModel {
 
@@ -31,7 +32,6 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.example.text.TextEditorModelCommentResource"; //$NON-NLS-1$
 
-
 	/**
 	 * 
 	 * Constructor.
@@ -40,7 +40,6 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 	public TextEditorModelCommentResource() {
 
 	}
-
 
 	/**
 	 * Get the file extension used for this model.
@@ -66,12 +65,11 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 		return MODEL_ID;
 	}
 
-
 	/**
 	 * Add a new initialized {@link PapyrusEMFCompareInstance} to the model.
 	 *
 	 * @param compareInstance
-	 *        The compareInstance to add.
+	 *            The compareInstance to add.
 	 */
 	public void addPapyrusTextInstance(PapyrusTextInstance compareInstance) {
 		addModelRoot(compareInstance);
@@ -81,22 +79,37 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 	 * Add a new initialized {@link PapyrusEMFCompareInstance} to the model.
 	 *
 	 * @param compareInstance
-	 *        The compareInstance to add.
+	 *            The compareInstance to add.
 	 */
 	public void removePapyrusTextInstance(PapyrusTextInstance compareInstance) {
 		getResource().getContents().remove(compareInstance);
 	}
 
+	@Override
+	public void loadModel(URI uriWithoutExtension) {
+		// It is a common use case that this resource does not (and will not)
+		// exist
+		if (exists(uriWithoutExtension)) {
+			try {
+				super.loadModel(uriWithoutExtension);
+			} catch (Exception ex) {
+				createModel(uriWithoutExtension);
+			}
+		}
+
+		if (resource == null) {
+			createModel(uriWithoutExtension);
+		}
+	}
 
 	public boolean canPersist(EObject object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
 	public void persist(EObject object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

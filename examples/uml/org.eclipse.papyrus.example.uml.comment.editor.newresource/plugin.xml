@@ -4,9 +4,12 @@
    <extension
          point="org.eclipse.papyrus.infra.core.model">
       <model
-            classname="org.eclipse.papyrus.example.uml.comment.editor.newresource.modelresource.TextEditorModelCommentResource">
+            classname="org.eclipse.papyrus.example.uml.comment.editor.newresource.modelresource.TextEditorModelCommentResource"
+            description="Model for text comment"
+            fileExtension="comment">
       </model>
-   </extension>
+   </extension> 
+   
    <extension
          point="org.eclipse.ui.commands">
       <command

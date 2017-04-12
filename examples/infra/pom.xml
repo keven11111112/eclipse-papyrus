@@ -10,7 +10,7 @@
 	<artifactId>org.eclipse.papyrus.examples.infra</artifactId>
 	<packaging>pom</packaging>
 	<modules>
-		<!-- module>org.eclipse.papyrus.example.infra.servicesregistry.retrieval</module-->
+		<module>org.eclipse.papyrus.example.infra.servicesregistry.retrieval</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences</module>
 	</modules>
 </project>

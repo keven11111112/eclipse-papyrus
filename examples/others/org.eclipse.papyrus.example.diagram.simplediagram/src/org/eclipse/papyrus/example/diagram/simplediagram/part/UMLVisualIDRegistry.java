@@ -5,10 +5,10 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
 

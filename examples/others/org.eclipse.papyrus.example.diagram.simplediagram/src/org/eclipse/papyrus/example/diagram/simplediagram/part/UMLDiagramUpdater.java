@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ModelEditPart;
 import org.eclipse.uml2.uml.Model;

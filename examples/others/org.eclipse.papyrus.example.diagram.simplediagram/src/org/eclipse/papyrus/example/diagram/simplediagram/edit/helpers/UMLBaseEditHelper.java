@@ -1,6 +1,6 @@
 package org.eclipse.papyrus.example.diagram.simplediagram.edit.helpers;
 
-import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 
 /**
  * @generated

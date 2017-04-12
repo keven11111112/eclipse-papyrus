@@ -9,7 +9,7 @@
       </configuration>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.context">
+         point="org.eclipse.papyrus.infra.properties.contexts">
       <context
             contextModel="model/UML/PropertyViewEditorsExample.ctx"
             isCustomizable="true">

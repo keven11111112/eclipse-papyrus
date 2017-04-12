@@ -1,6 +1,6 @@
 package org.eclipse.papyrus.example.diagram.simplediagram.sheet;
 
-import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet.DefaultPropertySection;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
 /**
