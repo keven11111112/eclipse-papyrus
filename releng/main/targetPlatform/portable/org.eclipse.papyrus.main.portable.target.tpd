@@ -24,6 +24,7 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 
 location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
 	org.eclipse.nebula.widgets.richtext.feature.feature.group
+	org.eclipse.nebula.cwt.feature.feature.group
 }
 
 //updateFrom("MDT UML2",0) 
