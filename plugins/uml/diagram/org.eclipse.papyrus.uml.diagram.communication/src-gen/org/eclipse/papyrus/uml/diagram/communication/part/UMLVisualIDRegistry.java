@@ -1,20 +1,19 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.part;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
@@ -23,7 +22,6 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentEditPartC
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationLabelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationStereotypeLabelEditPartCN;
@@ -37,7 +35,6 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineNameEdit
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationStereotypeLabelEditPartCN;
@@ -50,7 +47,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This registry is used to determine which type of visual object should be
  * created for the corresponding Diagram, Node, ChildNode or Link represented
  * by a domain model object.
- *
+ * 
  * @generated
  */
 public class UMLVisualIDRegistry {
@@ -142,9 +139,6 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
 					return InteractionEditPart.VISUAL_ID;
 				}
-				if (NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())) {
-					return ShortCutDiagramEditPart.VISUAL_ID;
-				}
 				break;
 			case InteractionCompartmentEditPart.VISUAL_ID:
 				if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
@@ -194,9 +188,6 @@ public class UMLVisualIDRegistry {
 				if (InteractionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ShortCutDiagramEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
 				break;
 			case InteractionEditPart.VISUAL_ID:
 				if (InteractionNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -206,11 +197,6 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (InteractionCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				break;
-			case ShortCutDiagramEditPart.VISUAL_ID:
-				if (DiagramNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -298,7 +284,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * User can change implementation of this method to handle some specific
 	 * situations not covered by default logic.
-	 *
+	 * 
 	 * @generated
 	 */
 	private static boolean isDiagram(Package element) {
@@ -351,7 +337,6 @@ public class UMLVisualIDRegistry {
 			case CommentEditPartCN.VISUAL_ID:
 			case TimeObservationEditPartCN.VISUAL_ID:
 			case DurationObservationEditPartCN.VISUAL_ID:
-			case ShortCutDiagramEditPart.VISUAL_ID:
 				return true;
 			}
 		}
@@ -414,4 +399,5 @@ public class UMLVisualIDRegistry {
 					.isSemanticLeafVisualID(visualID);
 		}
 	};
+
 }

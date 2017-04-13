@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.providers;
 
@@ -65,7 +65,6 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintBodyEd
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationLabelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationStereotypeLabelEditPartCN;
@@ -79,7 +78,6 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineNameEdit
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationStereotypeLabelEditPartCN;
@@ -88,8 +86,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 	/**
@@ -115,10 +113,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		    if (op.getViewKind() == Node.class)
-		return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		    if (op.getViewKind() == Edge.class)
-		return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+				if (op.getViewKind() == Node.class)
+					return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+				if (op.getViewKind() == Edge.class)
+					return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		*/
 
 		// check Diagram Type should be the class diagram
@@ -145,7 +143,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		* This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
 		* </p>
 		* 
-		* @return the unique identifier of the diagram for which views are provided.
+		 * @return the unique identifier of the diagram for which views are provided.
 		*/
 		return ModelEditPart.MODEL_ID;
 	}
@@ -199,7 +197,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				if (visualID != null) {
 					switch (visualID) {
 					case InteractionEditPart.VISUAL_ID:
-					case ShortCutDiagramEditPart.VISUAL_ID:
 					case LifelineEditPartCN.VISUAL_ID:
 					case ConstraintEditPartCN.VISUAL_ID:
 					case CommentEditPartCN.VISUAL_ID:
@@ -273,8 +270,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			switch (visualID) {
 			case InteractionEditPart.VISUAL_ID:
 				return createInteraction_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case ShortCutDiagramEditPart.VISUAL_ID:
-				return createDiagram_ShortcutShape(domainElement, containerView, index, persisted, preferencesHint);
 			case LifelineEditPartCN.VISUAL_ID:
 				return createLifeline_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case ConstraintEditPartCN.VISUAL_ID:
@@ -344,29 +339,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		createCompartment(node, UMLVisualIDRegistry.getType(InteractionCompartmentEditPart.VISUAL_ID), true, false,
 				false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interaction");
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createDiagram_ShortcutShape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(ShortCutDiagramEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShortCutDiagram");
-		Node diagram_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
-		diagram_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location diagram_NameLabel_Location = (Location) diagram_NameLabel.getLayoutConstraint();
-		diagram_NameLabel_Location.setX(0);
-		diagram_NameLabel_Location.setY(15);
 		return node;
 	}
 
@@ -772,4 +744,5 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
+
 }

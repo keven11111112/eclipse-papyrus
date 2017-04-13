@@ -334,6 +334,7 @@ CommunicationDiagram  TimeObservation > Compartment[kind="symbol"]
 CommunicationDiagram Interaction
 {
 	textAlignment: left;
+	displayHeader: true;
 }
 
 CommunicationDiagram Interaction > Compartment

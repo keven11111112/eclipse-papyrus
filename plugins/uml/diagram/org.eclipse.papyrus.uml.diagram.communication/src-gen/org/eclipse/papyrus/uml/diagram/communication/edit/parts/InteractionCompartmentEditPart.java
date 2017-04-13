@@ -34,7 +34,6 @@ import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompa
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.communication.custom.policies.itemsemantic.CustomInteractionCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.part.Messages;
 
 /**
@@ -85,7 +84,6 @@ public class InteractionCompartmentEditPart extends LinkLFShapeCompartmentEditPa
 
 		installEditPolicy("RemoveOrphanView", new OrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInteractionCompartmentSemanticEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
 

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.providers;
 
@@ -25,14 +25,12 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser;
-import org.eclipse.papyrus.uml.diagram.common.parser.ShortcutDiagramParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.uml.diagram.communication.custom.parser.LifelineCustomParsers;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConstraintNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationLabelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.DurationObservationStereotypeLabelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.InteractionFloatingLabelEditPart;
@@ -86,21 +84,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			interaction_FloatingNameLabel_Parser = parser;
 		}
 		return interaction_FloatingNameLabel_Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ShortcutDiagramParser diagram_NameLabel_Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDiagram_NameLabel_Parser() {
-		if (diagram_NameLabel_Parser == null) {
-			diagram_NameLabel_Parser = new ShortcutDiagramParser();
-		}
-		return diagram_NameLabel_Parser;
 	}
 
 	/**
@@ -291,9 +274,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			case InteractionFloatingLabelEditPart.VISUAL_ID:
 				return getInteraction_FloatingNameLabel_Parser();
 
-			case DiagramNameEditPart.VISUAL_ID:
-				return getDiagram_NameLabel_Parser();
-
 			case LifelineNameEditPart.VISUAL_ID:
 				return getLifeline_NameLabel_Parser();
 			case LifelineFloatingLabelEditPartCN.VISUAL_ID:
@@ -329,7 +309,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
-	 *
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {
@@ -387,7 +366,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		/**
 		 * @generated
 		 */
-		@Override
 		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;
@@ -395,4 +373,5 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
+
 }

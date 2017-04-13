@@ -458,6 +458,54 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML Message */
 	public static final IHintedType MESSAGE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Message"); //$NON-NLS-1$
 
+	/** IElementType for UML COMPLETE_ASYNCH_CALL */
+	public static final IHintedType COMPLETE_ASYNCH_CALL = (IHintedType) getElementType("org.eclipse.papyrus.uml.CompleteAsynchMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML COMPLETE_ASYNCH_SIGNAL */
+	public static final IHintedType COMPLETE_ASYNCH_SIGNAL = (IHintedType) getElementType("org.eclipse.papyrus.uml.CompleteAsynchSignalMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML COMPLETE_CREATE_MESSAGE */
+	public static final IHintedType COMPLETE_CREATE_MESSAGE = (IHintedType) getElementType("org.eclipse.papyrus.uml.CompleteCreateMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML COMPLETE_DELETE_MESSAGE */
+	public static final IHintedType COMPLETE_DELETE_MESSAGE = (IHintedType) getElementType("org.eclipse.papyrus.uml.CompleteDeleteMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML COMPLETE_REPLY */
+	public static final IHintedType COMPLETE_REPLY = (IHintedType) getElementType("org.eclipse.papyrus.uml.CompleteReplyMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML COMPLETE_SYNCH_CALL */
+	public static final IHintedType COMPLETE_SYNCH_CALL = (IHintedType) getElementType("org.eclipse.papyrus.uml.CompleteSynchMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML FOUND_ASYNCH_CALL */
+	public static final IHintedType FOUND_ASYNCH_CALL = (IHintedType) getElementType("org.eclipse.papyrus.uml.FoundAsynchMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML FOUND_ASYNCH_SIGNAL */
+	public static final IHintedType FOUND_ASYNCH_SIGNAL = (IHintedType) getElementType("org.eclipse.papyrus.uml.FoundAsynchSignalMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML FOUND_CREATE_MESSAGE */
+	public static final IHintedType FOUND_CREATE_MESSAGE = (IHintedType) getElementType("org.eclipse.papyrus.uml.FoundCreateMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML FOUND_DELETE_MESSAGE */
+	public static final IHintedType FOUND_DELETE_MESSAGE = (IHintedType) getElementType("org.eclipse.papyrus.uml.FoundDeleteMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML FOUND_REPLY */
+	public static final IHintedType FOUND_REPLY = (IHintedType) getElementType("org.eclipse.papyrus.uml.FoundReplyMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML LOST_ASYNCH_CALL */
+	public static final IHintedType LOST_ASYNCH_CALL = (IHintedType) getElementType("org.eclipse.papyrus.uml.LostAsynchMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML LOST_ASYNCH_SIGNAL */
+	public static final IHintedType LOST_ASYNCH_SIGNAL = (IHintedType) getElementType("org.eclipse.papyrus.uml.LostAsynchSignalMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML LOST_CREATE_MESSAGE */
+	public static final IHintedType LOST_CREATE_MESSAGE = (IHintedType) getElementType("org.eclipse.papyrus.uml.LostCreateMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML LOST_DELETE_MESSAGE */
+	public static final IHintedType LOST_DELETE_MESSAGE = (IHintedType) getElementType("org.eclipse.papyrus.uml.LostDeleteMessage"); //$NON-NLS-1$
+
+	/** IElementType for UML LOST_REPLY */
+	public static final IHintedType LOST_REPLY = (IHintedType) getElementType("org.eclipse.papyrus.uml.LostReplyMessage"); //$NON-NLS-1$
+
 	/** IElementType for UML MessageEnd */
 	public static final IHintedType MESSAGE_END = (IHintedType) getElementType("org.eclipse.papyrus.uml.MessageEnd"); //$NON-NLS-1$
 

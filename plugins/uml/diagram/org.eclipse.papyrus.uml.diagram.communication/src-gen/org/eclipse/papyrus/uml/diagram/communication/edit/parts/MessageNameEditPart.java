@@ -34,7 +34,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
@@ -71,7 +70,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies.MessageNameEditPolicy;
-import org.eclipse.papyrus.uml.diagram.communication.custom.policies.itemsemantic.CustomMessageNameItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
@@ -154,7 +152,6 @@ public class MessageNameEditPart extends PapyrusLabelEditPart
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusLinkLabelDragPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomMessageNameItemSemanticEditPolicy());
 		installEditPolicy("CustomDisplay", new MessageNameEditPolicy());
 	}
 

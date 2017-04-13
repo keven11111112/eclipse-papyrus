@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.navigator;
 
@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 
 	/**
@@ -85,7 +85,6 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorItem) {
 			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(
@@ -97,8 +96,8 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	@Override
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}
+
 }

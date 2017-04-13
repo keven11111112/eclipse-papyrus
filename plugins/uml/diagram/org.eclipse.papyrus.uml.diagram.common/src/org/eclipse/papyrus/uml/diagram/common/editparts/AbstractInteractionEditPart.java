@@ -18,8 +18,9 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * @author Mickael ADAM
- *
+ *Deprecated: use of css instead of hard code to set header and position.
  */
+@Deprecated
 public abstract class AbstractInteractionEditPart extends RoundedCompartmentEditPart {
 
 	/**
@@ -32,9 +33,9 @@ public abstract class AbstractInteractionEditPart extends RoundedCompartmentEdit
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart#getDefaultHasHeader()
-	 *
-	 * @return
 	 */
 	@Override
 	protected boolean getDefaultHasHeader() {
@@ -42,9 +43,10 @@ public abstract class AbstractInteractionEditPart extends RoundedCompartmentEdit
 	}
 
 	/**
+	 * 
+	 * deprecated, use css instead
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#getDefaultNamePosition()
-	 *
-	 * @return
 	 */
 	@Override
 	protected int getDefaultNamePosition() {

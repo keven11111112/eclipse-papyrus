@@ -21,7 +21,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.custom.figures.MessageFigure;
-import org.eclipse.papyrus.uml.diagram.communication.custom.policies.itemsemantic.CustomMessageItemSemanticEditPolicy;
 
 /**
 	 * @generated
@@ -48,7 +47,6 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLinkLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomMessageItemSemanticEditPolicy());
 	}
 
 	/**

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.part;
 
@@ -25,40 +25,34 @@ import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
+	//RS: New Palette generation
 
-	// RS: New Palette generation
-	// Generates the ID for the tool elements
-	// Generate the tool factory (if(ID) createtool...)
+	//Generates the ID for the tool elements
+	//Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
 	private final static String COMMUNICATION_TOOL_LIFELINE = "communication.tool.lifeline";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMMUNICATION_TOOL_COMMENT = "communication.tool.comment";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMMUNICATION_TOOL_CONSTRAINT = "communication.tool.constraint";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMMUNICATION_TOOL_DURATIONOBSERVATION = "communication.tool.durationobservation";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMMUNICATION_TOOL_TIMEOBSERVATION = "communication.tool.timeobservation";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CREATEMESSAGECREATECREATIONTOOL = "createMessageCreateCreationTool";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -74,7 +68,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	@Override
 	public Tool createTool(String toolId) {
 		if (toolId.equals(COMMUNICATION_TOOL_LIFELINE)) {
 			return createLifelineComCreationTool();
@@ -104,7 +97,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	@Override
 	public Object getTemplate(String templateId) {
 
 		// default return: null
@@ -183,4 +175,5 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
+
 }

@@ -42,7 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditP
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
@@ -56,7 +56,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class InteractionEditPart extends AbstractInteractionEditPart {
+public class InteractionEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * @generated

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="" identifier="org.eclipse.papyrus.uml.diagram.communication.custom.elementTypeSet" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="PapyrusUMLCommunicationDiagramCustom" xmi:id="_rWI4YHPzEeSnGJwaJWHCSg" xmi:version="2.0">
-  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.communication.custom.advices.DestroyMessageAdvice" identifier="org.eclipse.papyrus.uml.diagram.communication.DestroyMessageAdvice" inheritance="all" xmi:id="_K2GhIPtCEeWBLbCxWzTFGw" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
-    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc59FFYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
-  </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.communication.custom.advices.MessageHelperAdvice" identifier="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice" inheritance="all" xmi:id="_fxIwoPtCEeWBLbCxWzTFGw" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
-    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc59FFYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
-  </adviceBindingsConfigurations>
-</elementtypesconfigurations:ElementTypeSetConfiguration>

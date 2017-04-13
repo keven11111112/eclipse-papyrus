@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.part;
 
@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
@@ -37,7 +36,6 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.InteractionEditP
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Comment;
@@ -54,10 +52,9 @@ import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * @generated
- */
+	 * @generated
+	 */
 public class UMLDiagramUpdater implements DiagramUpdater {
-
 	/**
 	 * @generated
 	 */
@@ -103,17 +100,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		Resource resource = modelElement.eResource();
-		for (Iterator<EObject> it = getPhantomNodesIterator(resource); it.hasNext();) {
-			EObject childElement = it.next();
-			if (childElement == modelElement) {
-				continue;
-			}
-			if (UMLVisualIDRegistry.getNodeVisualID(view, childElement) == ShortCutDiagramEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, ShortCutDiagramEditPart.VISUAL_ID));
-				continue;
-			}
-		}
 		return result;
 	}
 
@@ -128,13 +114,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Iterator<EObject> getPhantomNodesIterator(Resource resource) {
-		return resource.getAllContents();
-	}
-
-	/**
-	 * @generated
-	 */
 	public List<UMLLinkDescriptor> getContainedLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
 		if (vid != null) {
@@ -143,8 +122,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getPackage_CommunicationDiagram_ContainedLinks(view);
 			case InteractionEditPart.VISUAL_ID:
 				return getInteraction_Shape_ContainedLinks(view);
-			case ShortCutDiagramEditPart.VISUAL_ID:
-				return getDiagram_ShortcutShape_ContainedLinks(view);
 			case LifelineEditPartCN.VISUAL_ID:
 				return getLifeline_Shape_ContainedLinks(view);
 			case ConstraintEditPartCN.VISUAL_ID:
@@ -171,8 +148,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			switch (vid) {
 			case InteractionEditPart.VISUAL_ID:
 				return getInteraction_Shape_IncomingLinks(view);
-			case ShortCutDiagramEditPart.VISUAL_ID:
-				return getDiagram_ShortcutShape_IncomingLinks(view);
 			case LifelineEditPartCN.VISUAL_ID:
 				return getLifeline_Shape_IncomingLinks(view);
 			case ConstraintEditPartCN.VISUAL_ID:
@@ -199,8 +174,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			switch (vid) {
 			case InteractionEditPart.VISUAL_ID:
 				return getInteraction_Shape_OutgoingLinks(view);
-			case ShortCutDiagramEditPart.VISUAL_ID:
-				return getDiagram_ShortcutShape_OutgoingLinks(view);
 			case LifelineEditPartCN.VISUAL_ID:
 				return getLifeline_Shape_OutgoingLinks(view);
 			case ConstraintEditPartCN.VISUAL_ID:
@@ -233,13 +206,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Path_Edge(modelElement));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDiagram_ShortcutShape_ContainedLinks(View view) {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -311,13 +277,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDiagram_ShortcutShape_IncomingLinks(View view) {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -428,13 +387,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Path_Edge(modelElement));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDiagram_ShortcutShape_OutgoingLinks(View view) {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -711,4 +663,5 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				ConnectorTimeObservationEditPart.VISUAL_ID));
 		return result;
 	}
+
 }

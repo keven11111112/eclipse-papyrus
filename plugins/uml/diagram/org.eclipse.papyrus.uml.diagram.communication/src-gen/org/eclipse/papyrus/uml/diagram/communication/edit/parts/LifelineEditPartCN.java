@@ -49,7 +49,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayE
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies.CommunicationGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.communication.custom.policies.itemsemantic.CustomLifelineItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
@@ -91,7 +90,6 @@ public class LifelineEditPartCN extends RoundedCompartmentEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CommunicationGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomLifelineItemSemanticEditPolicyCN());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());

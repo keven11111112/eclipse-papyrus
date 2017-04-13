@@ -40,17 +40,6 @@
 	<extension
 			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 		<editpolicyProvider
-				class="org.eclipse.papyrus.uml.diagram.linklf.providers.CommunicationLinksLFEditPolicyProvider" >
-			<Priority name="Low"/>
-			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">
-				<method name="getType()" value="PapyrusUMLCommunicationDiagram"/>
-			</object>
-		</editpolicyProvider>
-	</extension>
-
-	<extension
-			point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-		<editpolicyProvider
 				class="org.eclipse.papyrus.uml.diagram.linklf.providers.ComponentLinksLFEditPolicyProvider" >
 			<Priority name="Low"/>
 			<object class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)" id="diagram_name">

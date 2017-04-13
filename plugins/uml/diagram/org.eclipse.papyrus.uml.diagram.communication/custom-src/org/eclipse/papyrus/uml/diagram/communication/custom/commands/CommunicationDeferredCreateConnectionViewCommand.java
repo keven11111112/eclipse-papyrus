@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Saadia Dhouib saadia.dhouib@cea.fr  - Initial API and Implementation
  *  Christian W. Damus - bug 462958
+ *  Mickaël ADAM - mickael.adam@all4tec.net - Bug 459678
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.commands;
@@ -17,7 +18,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartViewer;
@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageNameEditPart;
@@ -42,11 +41,11 @@ import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
  * The Class CommunicationDeferredCreateConnectionViewCommand is intended to create a new message link between two lifelines.
  * This class is only used in the case of Drop of a message
  */
+// TODO reactivate one link between 2 lifeline
 public class CommunicationDeferredCreateConnectionViewCommand extends CommonDeferredCreateConnectionViewCommand {
 
 	/** the element for the connection's label semantic element */
 	protected EObject labelElement = null;
-
 
 	/**
 	 * Instantiates a new communication deferred create connection view command.
@@ -97,50 +96,15 @@ public class CommunicationDeferredCreateConnectionViewCommand extends CommonDefe
 		Assert.isNotNull(sourceEditPart);
 		Assert.isNotNull(targetEditPart);
 
-
 		CreateConnectionViewRequest createRequest = new CreateConnectionViewRequest(viewDescriptor);
 		createConnectionCmd = CreateConnectionViewRequest.getCreateCommand(createRequest, sourceEditPart, targetEditPart);
 
 		// Double-check that another drop command didn't already create the edge
 		View messagePath = findCommunicationPath(sourceEditPart, targetEditPart);
-		if (messagePath != null) {
-			// Pretend that we created it
-			createRequest.getConnectionViewDescriptor().setView(messagePath);
-
-			// And create a label, instead
-			if (labelElement != null) {
-				IAdaptable semanticAdapter = new SemanticAdapter(labelElement, null);
-				// Location where the label will be dropped, as in the drop edit policy
-				Point loc = new Point(1, -23);
-				ICommand cmd = new CustomMessageViewCreateCommand(getEditingDomain(), viewer, preferencesHint, loc, semanticAdapter, messagePath);
-				if (cmd.canExecute()) {
-					cmd.execute(null, null);
-				}
-			}
-		} else {
-			if (createConnectionCmd.canExecute()) {
-				createConnectionCmd.execute();
-			}
+		if (createConnectionCmd.canExecute()) {
+			createConnectionCmd.execute();
 		}
 		if (labelElement != null) {
-
-			/*
-			 * Code Commented to no more set the the semantic element of the connector
-			 * 
-			 * //Set element of the connector to Interaction !! This has to be changed in the next release, because it is incoherent !!!
-			 * //If setElement(null) , I can not do the reorient anymore !!
-			 * // View temp = (View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class));
-			 * // if(temp instanceof Connector) {
-			 * // if(((View)((Connector)temp).getTarget().eContainer()).getElement() instanceof Interaction) {
-			 * //
-			 * ((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(((View)((Connector)temp).getTarget().eContainer
-			 * ()).getElement());
-			 * // } else {
-			 * // ((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(null); // in this case, the reorient does
-			 * not work anymore !! :((
-			 * // }
-			 * // }
-			 */
 
 			messagePath = (View) createRequest.getConnectionViewDescriptor().getAdapter(View.class);
 			if (messagePath == null) {
@@ -150,7 +114,7 @@ public class CommunicationDeferredCreateConnectionViewCommand extends CommonDefe
 
 			// set element of the label of the connector to element
 			if (messagePath.getChildren().size() > 1) {
-
+				messagePath.setElement(labelElement);// one link per message. TOFIX
 				for (int i = 0; i < messagePath.getChildren().size(); i++) {
 					View label = (View) (messagePath.getChildren().get(i));
 					if (UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID).equals(label.getType())) {

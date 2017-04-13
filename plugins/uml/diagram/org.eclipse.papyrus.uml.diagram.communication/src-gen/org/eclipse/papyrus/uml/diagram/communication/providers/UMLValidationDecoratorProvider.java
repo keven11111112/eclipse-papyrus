@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.providers;
 
@@ -35,7 +35,6 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	/**
 	 * @generated
 	 */
-	@Override
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
 		if (editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
@@ -59,7 +58,6 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean provides(IOperation operation) {
 		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
@@ -68,4 +66,5 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 		View view = (View) decoratorTarget.getAdapter(View.class);
 		return view != null && ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
+
 }

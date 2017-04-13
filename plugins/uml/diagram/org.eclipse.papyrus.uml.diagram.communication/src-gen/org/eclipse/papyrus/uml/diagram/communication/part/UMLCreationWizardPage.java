@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.part;
 
@@ -39,7 +39,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
 	 * Override to create files with this extension.
-	 *
+	 * 
 	 * @generated
 	 */
 	protected String getExtension() {
@@ -71,7 +71,6 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
@@ -81,7 +80,6 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;

@@ -10,6 +10,8 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *   Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - adapted from sequence diagram
+ * 	Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 459678
+ * 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies;
 
@@ -18,24 +20,17 @@ import java.util.Iterator;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.ConnectionEditPart;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationRequestConstant;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationUtil;
-import org.eclipse.papyrus.uml.diagram.communication.custom.helper.MessageHelper;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN;
 
 /**
  * A specific policy to handle the message : - Message feedback on creation is
@@ -80,39 +75,6 @@ public class CommunicationGraphicalNodeEditPolicy extends GraphicalNodeEditPolic
 	 */
 	private TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
-	}
-
-	/**
-	 * Gets the command.
-	 *
-	 * @param request
-	 *            the request
-	 * @return the command {@inheritDoc}
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if (REQ_CONNECTION_END.equals(request.getType())) {
-			if (request instanceof CreateConnectionViewAndElementRequest) {
-				// default behavior
-				Command c = getConnectionAndRelationshipCompleteCommand((CreateConnectionViewAndElementRequest) request);
-				// case of Message
-				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
-				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
-				if (org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes.Path_Edge.equals(createElementRequest.getElementType())) {
-					EditPart sourceEditPart = ((CreateConnectionViewAndElementRequest) request).getSourceEditPart();
-					EditPart targetEditPart = ((CreateConnectionViewAndElementRequest) request).getTargetEditPart();
-					MessageHelper messageHelper = new MessageHelper(getEditingDomain());
-					// test if source and target are already connected
-					if ((sourceEditPart instanceof LifelineEditPartCN) && (targetEditPart instanceof LifelineEditPartCN)) {
-						if (CommunicationUtil.verifyIfLifelinesEPConnected(sourceEditPart, targetEditPart) != null) {
-							ConnectionEditPart link = CommunicationUtil.verifyIfLifelinesEPConnected(sourceEditPart, targetEditPart);
-							return messageHelper.getCommand((CreateConnectionViewAndElementRequest) request, c, link);
-						}
-					}
-				}
-			}
-		}
-		return super.getCommand(request);
 	}
 
 	/**
