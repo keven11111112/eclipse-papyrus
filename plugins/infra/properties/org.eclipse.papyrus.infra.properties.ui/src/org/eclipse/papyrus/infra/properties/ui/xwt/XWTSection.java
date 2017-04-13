@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 435420, 417409
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 515257
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.xwt;
@@ -123,12 +123,16 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		if (oldSource != source) {
 			if (oldSource != null) {
 				oldSource.removeChangeListener(this);
+				oldSource.autoRelease();
 			}
 
 			this.source = source;
 
-			if (section.getConstraints().size() > 0) {
-				source.addChangeListener(this);
+			if (source != null) {
+				source.retain();
+				if (section.getConstraints().size() > 0) {
+					source.addChangeListener(this);
+				}
 			}
 		}
 	}
@@ -213,10 +217,10 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 
 	@Override
 	public void dispose() {
-		// Dispose the DataSource
+		// Release the DataSource
 		if (source != null) {
 			source.removeChangeListener(this);
-			source.dispose();
+			source.release();
 		}
 
 		// Dispose the SWT Composite

@@ -10,7 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 417409
- *  Christian W. Damus - bugs 455075, 510254
+ *  Christian W. Damus - bugs 455075, 510254, 515257
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.modelelement;
@@ -34,6 +34,7 @@ import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
+import org.eclipse.papyrus.infra.tools.util.ReferenceCounted;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
@@ -62,11 +63,11 @@ import org.eclipse.swt.widgets.Display;
  *
  * @author Camille Letavernier
  */
-public class DataSource implements IChangeListener {
+public class DataSource extends ReferenceCounted<DataSource> implements IChangeListener {
 
-	private final ListenerList changeListeners = new ListenerList(ListenerList.IDENTITY);
+	private final ListenerList<IChangeListener> changeListeners = new ListenerList<>(ListenerList.IDENTITY);
 
-	private final ListenerList dataSourceListeners = new ListenerList(ListenerList.IDENTITY);
+	private final ListenerList<IDataSourceListener> dataSourceListeners = new ListenerList<>(ListenerList.IDENTITY);
 
 	private View view;
 
@@ -84,6 +85,8 @@ public class DataSource implements IChangeListener {
 	 * @see DataSourceFactory#createDataSourceFromSelection(IStructuredSelection, View)
 	 */
 	protected DataSource(View view, IStructuredSelection selection) {
+		super(CoreExecutors.getUIExecutorService());
+
 		this.view = view;
 		this.selection = selection;
 	}
@@ -144,7 +147,7 @@ public class DataSource implements IChangeListener {
 
 	@Override
 	public String toString() {
-		return "[DataSource] " + super.toString(); //$NON-NLS-1$
+		return String.format("DataSource<%08x>(%s)%s", System.identityHashCode(this), view.getName(), selection.toList()); //$NON-NLS-1$
 	}
 
 	/**
@@ -184,6 +187,7 @@ public class DataSource implements IChangeListener {
 				encapsulate(doGetContentProvider(propertyPath));
 			}
 
+			@Override
 			public void dataSourceChanged(DataSourceChangedEvent event) {
 				disposeDelegate();
 				createDelegate();
@@ -236,6 +240,7 @@ public class DataSource implements IChangeListener {
 				}
 			}
 
+			@Override
 			public void dataSourceChanged(DataSourceChangedEvent event) {
 				disposeDelegate();
 			}
@@ -250,10 +255,11 @@ public class DataSource implements IChangeListener {
 				listeners.remove(listener);
 			}
 
+			@Override
 			public void labelProviderChanged(LabelProviderChangedEvent event) {
 				if (!listeners.isEmpty()) {
 					LabelProviderChangedEvent forward = new LabelProviderChangedEvent(this, event.getElements());
-					
+
 					// Listeners will most likely need to interact with the observables provided through me,
 					// so ensure that events are propagated on the UI thread
 					if (Display.getCurrent() != null) {
@@ -265,7 +271,8 @@ public class DataSource implements IChangeListener {
 					}
 				}
 			}
-			
+
+			@Override
 			protected void fireLabelProviderChanged(LabelProviderChangedEvent event) {
 				for (ILabelProviderListener next : listeners) {
 					try {
@@ -364,6 +371,7 @@ public class DataSource implements IChangeListener {
 		dataSourceListeners.remove(listener);
 	}
 
+	@Override
 	public void handleChange(ChangeEvent event) {
 		Object[] listeners = changeListeners.getListeners();
 		for (int i = 0; i < listeners.length; i++) {
@@ -540,6 +548,7 @@ public class DataSource implements IChangeListener {
 	 * Disposes this data source.
 	 * This will dispose all ModelElements and IObservable created by this DataSource
 	 */
+	@Override
 	public void dispose() {
 		for (ModelElement element : elements.values()) {
 			if (element != null) {

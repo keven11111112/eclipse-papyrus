@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,10 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Use URIs to support non-URL-compatible storage (CDO)
- *  Christian W. Damus (CEA) - bug 417409
- *  Christian W. Damus (CEA) - bug 444227
- *  Christian W. Damus - bug 450478
- *  Christian W. Damus - bug 454536
+ *  Christian W. Damus (CEA) - bugs 417409, 444227
+ *  Christian W. Damus - bugs 450478, 454536, 515257
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.runtime;
@@ -151,7 +149,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 		DataSource dataSource = displayedSections.remove(section);
 		if (dataSource != null) {
-			dataSource.dispose();
+			dataSource.release();
 		}
 	}
 
@@ -165,7 +163,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		}
 
 		for (DataSource dataSource : displayedSections.remove(tabID)) {
-			dataSource.dispose();
+			dataSource.release();
 		}
 	}
 
@@ -257,7 +255,13 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	 * @return the previously-recorded data source, if any, for this {@code section} which has now been displaced
 	 */
 	protected DataSource addDataSource(Section section, DataSource dataSource) {
-		return displayedSections.put(section, dataSource);
+		DataSource result = displayedSections.put(section, dataSource.retain());
+
+		if (result != null) {
+			result.autoRelease();
+		}
+
+		return result;
 	}
 
 	protected void addControl(final Section section, Control control) {
@@ -268,7 +272,11 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				// Perhaps the tabbed properties view is disposing a tab that is not shown by the new selection
-				displayedSections.remove(section);
+				DataSource dataSource = displayedSections.remove(section);
+				if (dataSource != null) {
+					dataSource.release();
+				}
+
 				controls.remove(section);
 			}
 		});

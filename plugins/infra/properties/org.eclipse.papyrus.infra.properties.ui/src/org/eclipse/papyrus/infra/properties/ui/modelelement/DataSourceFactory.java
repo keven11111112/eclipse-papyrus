@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 435103
- *  Christian W. Damus (CEA) - bug 417409
+ *  Christian W. Damus (CEA) - bugs 435103, 417409
+ *  Christian W. Damus - bug 515257
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.modelelement;
@@ -55,12 +55,13 @@ public class DataSourceFactory {
 	public DataSource createDataSourceFromSelection(IStructuredSelection selection, View view) {
 		SelectionEntry selectionEntry = new SelectionEntry(selection, view);
 
-		if (!sources.containsKey(selectionEntry)) {
-			DataSource source = new DataSource(view, selection);
-			sources.put(selectionEntry, source);
+		DataSource result = sources.get(selectionEntry);
+		if (result == null) {
+			result = new DataSource(view, selection);
+			sources.put(selectionEntry, result);
 		}
 
-		return sources.get(selectionEntry);
+		return result;
 	}
 
 	public void removeFromCache(IStructuredSelection selection, View view) {
@@ -117,6 +118,7 @@ public class DataSourceFactory {
 			// Bind the context element in a factory for the composite to create sub-elements
 			CompositeModelElement composite = new CompositeModelElement(new CompositeModelElement.BoundModelElementFactory() {
 
+				@Override
 				public ModelElement createModelElement(Object sourceElement) {
 					return createFromSource(sourceElement, contextElement);
 				}
