@@ -21,10 +21,12 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
@@ -39,9 +41,9 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
  */
 public class LifeLineAffixedNodesCreationEditPolicy extends DefaultCreationEditPolicy {
 
-	
-	
-	
+
+
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -72,7 +74,7 @@ public class LifeLineAffixedNodesCreationEditPolicy extends DefaultCreationEditP
 		}
 
 		setBoundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, requestedLocation);
-		
+
 		return setBoundsCommand;
 	}
 
@@ -80,6 +82,17 @@ public class LifeLineAffixedNodesCreationEditPolicy extends DefaultCreationEditP
 		return new CenterLocator(getHostFigure(), PositionConstants.NONE);
 	}
 
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getCreateElementAndViewCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
+		//the code is delegated to the policy in charge of the semantic creation
+		return null;
+	}
 	/**
 	 * {@inheritDoc}
 	 */

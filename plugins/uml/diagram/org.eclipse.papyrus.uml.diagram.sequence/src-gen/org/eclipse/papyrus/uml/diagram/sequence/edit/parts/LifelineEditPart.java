@@ -53,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBase
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifelineCreationEditPolicy;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -86,7 +87,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 
@@ -103,7 +104,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 				new GrillingBasedResizableShapeEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LifeLineGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifeLineAffixedNodesCreationEditPolicy());
+		//installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifeLineAffixedNodesCreationEditPolicy());
 		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifeLineXYLayoutEditPolicy());
 		

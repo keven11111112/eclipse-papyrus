@@ -94,40 +94,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		super.setHost(host);
 		displayEvent= new DisplayEvent(getHost());
 	}
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy#getCreateCommand(org.eclipse.gef.requests.CreateRequest)
-	 *
-	 * @param request
-	 * @return
-	 */
-	@Override
-	protected Command getCreateCommand(CreateRequest request) {
-		// Used during the drop from the model explorer
-		if( request instanceof CreateViewAndElementRequest){
-			CreateViewAndElementRequest req=(CreateViewAndElementRequest)request;
-			ViewAndElementDescriptor descriptor=(req).getViewAndElementDescriptor();
-			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
-			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)||
-					ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE) ||ElementUtil.isTypeOf(elementType, UMLDIElementTypes.TIME_CONSTRAINT_SHAPE)){
-				// get the element descriptor
-				CreateElementRequestAdapter requestAdapter =
-						req.getViewAndElementDescriptor().getCreateElementRequestAdapter();
-				// get the semantic request
-				CreateElementRequest createElementRequest =
-						(CreateElementRequest) requestAdapter.getAdapter(
-								CreateElementRequest.class);
-				View view = (View)getHost().getModel();
-				EObject hostElement = ViewUtil.resolveSemanticElement(view);
-				createElementRequest.setContainer(hostElement.eContainer());
-				createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.COVERED, hostElement);
-				MessageOccurrenceSpecification mos=displayEvent.getMessageEvent(getHostFigure().getParent().getParent(), ((CreateRequest)request).getLocation());
-				if( mos!=null){
-					createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START, mos);
-				}
-			}
-		}
-		return super.getCreateCommand(request);
-	}
+	
 	/* Override to use to deal with causes where the point is UNDERFINED
 	 * we will ask the layout helper to find a location for us
 	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#getConstraintFor(org.eclipse.gef.requests.CreateRequest)
@@ -201,6 +168,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 		super.showLayoutTargetFeedback(request);
 	}
+	
 	/**
 	 * @see org.eclipse.gef.editpolicies.GraphicalEditPolicy#addFeedback(org.eclipse.draw2d.IFigure)
 	 *
