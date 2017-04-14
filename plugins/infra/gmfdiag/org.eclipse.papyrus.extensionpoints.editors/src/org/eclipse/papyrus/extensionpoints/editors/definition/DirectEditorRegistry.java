@@ -118,16 +118,21 @@ public class DirectEditorRegistry {
 	 */
 	public IDirectEditorExtensionPoint getDefaultDirectEditor(String ObjectToEdit) {
 		Iterator<Integer> keyIterator = editorMap.keySet().iterator();
-
+		TreeMap<Integer, IDirectEditorExtensionPoint> directEditorExtensionPoints = new TreeMap<Integer, IDirectEditorExtensionPoint>();
 		while (keyIterator.hasNext()) {
 			Integer index = keyIterator.next();
 			Iterator<IDirectEditorExtensionPoint> iter = editorMap.get(index).iterator();
 			while (iter.hasNext()) {
 				IDirectEditorExtensionPoint directEditorExtensionPoint = iter.next();
 				if (directEditorExtensionPoint.getObjectToEdit().equals(ObjectToEdit)) {
-					return directEditorExtensionPoint;
+					directEditorExtensionPoints.put(directEditorExtensionPoint.getPriority(), directEditorExtensionPoint);
 				}
 
+			}
+			// if the user add a direct editor with highest priority, do not return the default direct editor but the direct editor with highest priority
+			// this will set the highest priority direct editor to the default one
+			if (!directEditorExtensionPoints.isEmpty()) {
+				return directEditorExtensionPoints.firstEntry().getValue();
 			}
 		}
 		return null;
