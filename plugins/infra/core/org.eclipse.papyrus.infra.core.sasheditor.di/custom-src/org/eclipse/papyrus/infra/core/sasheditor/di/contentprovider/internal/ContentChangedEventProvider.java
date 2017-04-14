@@ -198,6 +198,12 @@ public class ContentChangedEventProvider implements IContentChangedProvider {
 			if (msg.getEventType() == Notification.RESOLVE) {
 				return;
 			}
+			
+			// Filter out notification of type SET
+			// We don't need to be notified
+			if(msg.getEventType() == Notification.SET) {
+				return;
+			}
 
 			// W
 			Object sender = msg.getNotifier();
