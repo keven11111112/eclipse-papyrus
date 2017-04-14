@@ -34,11 +34,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandComponentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectInteractionOperandToGridEditPolicy;
@@ -75,6 +73,7 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -90,8 +89,8 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new InteractionOperandLayoutEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new InteractionOperandDragDropEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new InteractionOperandComponentEditPolicy());
-		//installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
-		//installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDSequenceGraphicalNodeEditPolicy());
+		// installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
+		// installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDSequenceGraphicalNodeEditPolicy());
 		installEditPolicy(ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectInteractionOperandToGridEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -134,9 +133,11 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -152,6 +153,7 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure
+	 *
 	 * @generated
 	 */
 	@Override
@@ -170,12 +172,13 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -184,7 +187,9 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	@Override
@@ -200,6 +205,7 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -210,6 +216,7 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -219,6 +226,7 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -226,6 +234,7 @@ public class InteractionOperandEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);

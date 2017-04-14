@@ -66,6 +66,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -107,9 +108,11 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -125,6 +128,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionUseRectangleFigure
+	 *
 	 * @generated
 	 */
 	@Override
@@ -164,6 +168,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -174,6 +179,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -184,6 +190,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
@@ -199,12 +206,13 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -213,7 +221,9 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	@Override
@@ -229,6 +239,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -239,6 +250,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -248,6 +260,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -255,6 +268,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -264,6 +278,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionUseNameEditPart.VISUAL_ID));
 	}

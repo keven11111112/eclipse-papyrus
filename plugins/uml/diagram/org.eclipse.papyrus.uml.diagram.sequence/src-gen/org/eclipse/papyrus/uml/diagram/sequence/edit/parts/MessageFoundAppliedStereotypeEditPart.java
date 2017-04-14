@@ -116,12 +116,14 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 *
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 *
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -156,6 +158,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
 	}
@@ -226,6 +229,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -233,6 +237,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -260,7 +265,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 		if (parserElement == null) {
 			return null;
 		}
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		List<View> views = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (View view : views) {
 			if (AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());
@@ -288,6 +293,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -303,6 +309,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -321,6 +328,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -357,6 +365,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -367,6 +376,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -374,6 +384,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.Message_FoundEdge, getParserElement(), this, VISUAL_ID);
@@ -436,6 +447,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -532,6 +544,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -593,6 +606,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -605,6 +619,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -612,6 +627,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -627,6 +643,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -640,6 +657,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -662,7 +680,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 * 
+	 *
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -673,7 +691,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 * 
+	 *
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -686,7 +704,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 * 
+	 *
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -696,6 +714,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Initializes the extended editor configuration
+	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -714,6 +733,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Updates the preference configuration
+	 *
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -729,10 +749,12 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	* Performs the direct edit usually used by GMF editors.
-	* @param theRequest the direct edit request that starts the direct edit system
-	* @generated
-	*/
+	 * Performs the direct edit usually used by GMF editors.
+	 *
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 * @generated
+	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -764,6 +786,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -804,6 +827,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;

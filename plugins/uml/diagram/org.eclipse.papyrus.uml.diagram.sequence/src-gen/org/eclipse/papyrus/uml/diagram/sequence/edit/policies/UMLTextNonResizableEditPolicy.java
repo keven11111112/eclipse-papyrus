@@ -53,6 +53,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -66,6 +67,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -82,6 +84,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -99,6 +102,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -112,6 +116,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
@@ -229,6 +234,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List<?> createSelectionHandles() {
 		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);

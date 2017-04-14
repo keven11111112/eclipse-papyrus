@@ -68,6 +68,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -110,9 +111,11 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -121,14 +124,17 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new ConstraintFigure();
 	}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure
+	 *
 	 * @generated
 	 */
+	@Override
 	public ConstraintFigure getPrimaryShape() {
 		return (ConstraintFigure) primaryShape;
 	}
@@ -165,6 +171,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -175,6 +182,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -185,6 +193,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
@@ -192,6 +201,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -199,12 +209,13 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -213,9 +224,12 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -228,6 +242,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -238,6 +253,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -247,6 +263,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -254,6 +271,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -263,6 +281,7 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 	}

@@ -64,6 +64,7 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -106,9 +107,10 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -117,6 +119,7 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new CoRegionCombinedFragmentFigure();
 	}
@@ -124,9 +127,10 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.CoRegionCombinedFragmentFigure
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.CoRegionCombinedFragmentFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public CoRegionCombinedFragmentFigure getPrimaryShape() {
 		return (CoRegionCombinedFragmentFigure) primaryShape;
 	}
@@ -134,6 +138,7 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -141,12 +146,13 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -155,9 +161,12 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -165,6 +174,7 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -175,6 +185,7 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -184,6 +195,7 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -191,6 +203,7 @@ public class CombinedFragment2EditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);

@@ -27,6 +27,7 @@ public class UMLNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int category(Object element) {
 		if (element instanceof UMLNavigatorItem) {
 			UMLNavigatorItem item = (UMLNavigatorItem) element;

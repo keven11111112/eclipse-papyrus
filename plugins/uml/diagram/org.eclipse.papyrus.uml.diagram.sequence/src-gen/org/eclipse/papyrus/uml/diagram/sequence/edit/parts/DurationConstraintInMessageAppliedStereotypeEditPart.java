@@ -118,12 +118,14 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 *
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 *
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -147,6 +149,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -159,6 +162,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -171,6 +175,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -245,6 +250,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -252,6 +258,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -278,7 +285,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 		if (parserElement == null) {
 			return null;
 		}
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		List<View> views = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (View view : views) {
 			if (AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());
@@ -306,6 +313,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -321,6 +329,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -339,6 +348,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -374,6 +384,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -384,6 +395,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -391,6 +403,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.DurationConstraint_Shape_CN, getParserElement(), this,
@@ -454,6 +467,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -550,6 +564,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -611,6 +626,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -623,6 +639,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -630,6 +647,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -645,6 +663,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -658,6 +677,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -680,7 +700,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 * 
+	 *
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -691,7 +711,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 
 	/**
 	 * Checks if an extended editor is present.
-	 * 
+	 *
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -704,7 +724,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 
 	/**
 	 * Checks if a default direct edition is available
-	 * 
+	 *
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -714,6 +734,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 
 	/**
 	 * Initializes the extended editor configuration
+	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -732,6 +753,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 
 	/**
 	 * Updates the preference configuration
+	 *
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -747,10 +769,12 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	}
 
 	/**
-	* Performs the direct edit usually used by GMF editors.
-	* @param theRequest the direct edit request that starts the direct edit system
-	* @generated
-	*/
+	 * Performs the direct edit usually used by GMF editors.
+	 *
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 * @generated
+	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -782,6 +806,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -817,6 +842,7 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);

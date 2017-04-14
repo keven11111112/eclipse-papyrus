@@ -52,10 +52,10 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
@@ -74,7 +74,7 @@ public class UMLDiagramEditorUtil {
 	 * @generated
 	 */
 	public static Map<?, ?> getSaveOptions() {
-		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
+		HashMap<String, Object> saveOptions = new HashMap<>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		return saveOptions;
@@ -117,7 +117,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * Runs the wizard in a dialog.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
@@ -135,6 +135,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
+	 *
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
@@ -183,21 +184,23 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	* Create a new instance of domain element associated with canvas.
-	* <!-- begin-user-doc -->
+	 * Create a new instance of domain element associated with canvas.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	* @generated
-	*/
+	 *
+	 * @generated
+	 */
 	private static Package createInitialModel() {
 		return UMLFactory.eINSTANCE.createPackage();
 	}
 
 	/**
-	* Store model element in the resource.
-	* <!-- begin-user-doc -->
+	 * Store model element in the resource.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	* @generated
-	*/
+	 *
+	 * @generated
+	 */
 	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
@@ -275,7 +278,7 @@ public class UMLDiagramEditorUtil {
 		}
 
 		View view = null;
-		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
+		LinkedList<EditPart> editPartHolder = new LinkedList<>();
 		if (hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
 			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
 		} else if (findElementsInDiagramByID(diagramEditPart, targetElement, editPartHolder) > 0) {
@@ -288,6 +291,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 *
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -319,7 +323,7 @@ public class UMLDiagramEditorUtil {
 		 */
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
-				element2ViewMap = new HashMap<EObject, View>();
+				element2ViewMap = new HashMap<>();
 				// map possible notation elements to itself as these can't be found by view.getElement()
 				for (EObject element : elementSet) {
 					if (element instanceof View) {
@@ -363,6 +367,6 @@ public class UMLDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }

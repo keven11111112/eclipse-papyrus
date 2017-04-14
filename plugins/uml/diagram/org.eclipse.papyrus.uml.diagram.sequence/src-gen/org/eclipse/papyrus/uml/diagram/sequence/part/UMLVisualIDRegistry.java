@@ -22,9 +22,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -32,10 +32,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Constraint2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintContextAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
@@ -83,7 +81,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
@@ -706,7 +703,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);

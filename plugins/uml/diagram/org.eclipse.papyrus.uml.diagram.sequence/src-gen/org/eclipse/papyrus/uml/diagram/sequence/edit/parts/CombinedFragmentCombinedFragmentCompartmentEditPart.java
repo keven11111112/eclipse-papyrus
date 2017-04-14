@@ -12,36 +12,26 @@
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import java.util.Iterator;
-
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ResizeOperandEditPolicy;
 
 /**
@@ -64,6 +54,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -71,6 +62,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getCompartmentName() {
 		return Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title;
 	}
@@ -78,6 +70,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -87,6 +80,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -102,6 +96,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -120,6 +115,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -143,11 +139,11 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		Point loc = new Point(x, y);
 		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 
-		//this code has been added in order to force the refresh of Sub Combined fragment
-		if(children!=null){
+		// this code has been added in order to force the refresh of Sub Combined fragment
+		if (children != null) {
 			for (Object child : children) {
-				if( child instanceof EditPart){
-					((EditPart)child).refresh();
+				if (child instanceof EditPart) {
+					((EditPart) child).refresh();
 				}
 			}
 		}
@@ -156,6 +152,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

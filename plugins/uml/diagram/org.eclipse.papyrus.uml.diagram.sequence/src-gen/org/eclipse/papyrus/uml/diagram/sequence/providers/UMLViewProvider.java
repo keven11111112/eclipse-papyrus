@@ -57,9 +57,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstants
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -160,11 +160,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		    if (op.getViewKind() == Node.class)
-		return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		    if (op.getViewKind() == Edge.class)
-		return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		*/
+		 * if (op.getViewKind() == Node.class)
+		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Edge.class)
+		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 */
 
 		// check Diagram Type should be the class diagram
 		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
@@ -185,13 +185,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected String getDiagramProvidedId() {
 		/*
-		* Indicates for which diagram this provider works for.
-		* <p>
-		* This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
-		* </p>
-		* 
-		* @return the unique identifier of the diagram for which views are provided.
-		*/
+		 * Indicates for which diagram this provider works for.
+		 * <p>
+		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+		 * </p>
+		 *
+		 * @return the unique identifier of the diagram for which views are provided.
+		 */
 		return SequenceDiagramEditPart.MODEL_ID;
 	}
 
@@ -234,9 +234,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				//if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
-				//	return false; // visual id for node EClass should match visual id from element type
-				//}
+				// if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
+				// return false; // visual id for node EClass should match visual id from element type
+				// }
 			} else {
 				if (!SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
@@ -292,11 +292,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		//String visualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(elementTypeHint);
-		//org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		//if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement))) {
-		//	return false; // visual id for link EClass should match visual id from element type
-		//}
+		// String visualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(elementTypeHint);
+		// org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
+		// if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement))) {
+		// return false; // visual id for link EClass should match visual id from element type
+		// }
 		return true;
 	}
 
@@ -441,7 +441,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interaction");
@@ -462,7 +462,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ConsiderIgnoreFragmentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
@@ -479,7 +479,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(CombinedFragmentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
@@ -500,7 +500,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(InteractionOperandEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InteractionOperand");
@@ -518,7 +518,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(InteractionUseEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InteractionUse");
@@ -539,7 +539,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ContinuationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Continuation");
@@ -558,7 +558,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(LifelineEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Lifeline");
@@ -576,7 +576,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionExecutionSpecification");
@@ -593,7 +593,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(BehaviorExecutionSpecificationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "BehaviorExecutionSpecification");
@@ -610,7 +610,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(StateInvariantEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StateInvariant");
@@ -631,7 +631,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(CombinedFragment2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
@@ -648,7 +648,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(TimeConstraintEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
@@ -679,7 +679,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(TimeObservationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeObservation");
@@ -709,7 +709,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DurationConstraintEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
@@ -739,7 +739,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DestructionOccurrenceSpecificationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore,
@@ -757,7 +757,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ConstraintEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
@@ -776,7 +776,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(CommentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment");
@@ -794,7 +794,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DurationConstraintInMessageEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
@@ -820,7 +820,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DurationObservationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationObservation");
@@ -844,7 +844,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -856,10 +856,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node message_SynchNameLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageSyncNameEditPart.VISUAL_ID));
 		message_SynchNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_SynchNameLabel_Location = (Location) message_SynchNameLabel.getLayoutConstraint();
@@ -883,7 +883,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -895,10 +895,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node message_AsynchNameLabel = createLabel(edge,
 				UMLVisualIDRegistry.getType(MessageAsyncNameEditPart.VISUAL_ID));
 		message_AsynchNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -924,7 +924,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -936,10 +936,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node message_ReplyNameLabel = createLabel(edge,
 				UMLVisualIDRegistry.getType(MessageReplyNameEditPart.VISUAL_ID));
 		message_ReplyNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -964,7 +964,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -976,10 +976,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node message_CreateNameLabel = createLabel(edge,
 				UMLVisualIDRegistry.getType(MessageCreateNameEditPart.VISUAL_ID));
 		message_CreateNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -1005,7 +1005,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1017,10 +1017,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node message_DeleteNameLabel = createLabel(edge,
 				UMLVisualIDRegistry.getType(MessageDeleteNameEditPart.VISUAL_ID));
 		message_DeleteNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -1046,7 +1046,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1058,10 +1058,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node message_LostNameLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageLostNameEditPart.VISUAL_ID));
 		message_LostNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_LostNameLabel_Location = (Location) message_LostNameLabel.getLayoutConstraint();
@@ -1085,7 +1085,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1097,10 +1097,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node message_FoundNameLabel = createLabel(edge,
 				UMLVisualIDRegistry.getType(MessageFoundNameEditPart.VISUAL_ID));
 		message_FoundNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -1125,7 +1125,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1136,10 +1136,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 
 		return edge;
 	}
@@ -1152,7 +1152,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1163,10 +1163,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 
 		return edge;
 	}
@@ -1179,7 +1179,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1191,10 +1191,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "GeneralOrdering");
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node generalOrdering_StereotypeLabel = createLabel(edge,
 				UMLVisualIDRegistry.getType(GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID));
 		generalOrdering_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -1214,7 +1214,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
-		List<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		List<RelativeBendpoint> points = new ArrayList<>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -1225,10 +1225,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
+		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		// if (routing != null) {
+		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		// }
 		Node constraint_KeywordLabel = createLabel(edge,
 				UMLVisualIDRegistry.getType(ConstraintContextAppliedStereotypeEditPart.VISUAL_ID));
 		constraint_KeywordLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
@@ -1266,9 +1266,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort,
 			boolean canFilter) {
-		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
-		//rv.setShowTitle(showTitle);
-		//rv.setCollapsed(isCollapsed);
+		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
+		// rv.setShowTitle(showTitle);
+		// rv.setCollapsed(isCollapsed);
 		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
 
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -1295,7 +1295,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if (semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		EObject eObject = semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			return EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(eObject), eObject);
 		}
@@ -1309,7 +1309,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if (semanticAdapter == null) {
 			return null;
 		}
-		return (IElementType) semanticAdapter.getAdapter(IElementType.class);
+		return semanticAdapter.getAdapter(IElementType.class);
 	}
 
 	/**

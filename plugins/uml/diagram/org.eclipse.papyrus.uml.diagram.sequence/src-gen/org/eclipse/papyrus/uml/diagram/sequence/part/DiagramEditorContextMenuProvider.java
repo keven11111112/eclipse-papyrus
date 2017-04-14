@@ -41,6 +41,7 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {

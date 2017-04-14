@@ -65,6 +65,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -107,9 +108,11 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -118,20 +121,25 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new ExecutionSpecificationRectangleFigure(this);
-}
+	}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure
+	 *
 	 * @generated
 	 */
+	@Override
 	public ExecutionSpecificationRectangleFigure getPrimaryShape() {
-		return (ExecutionSpecificationRectangleFigure) primaryShape;	}
+		return (ExecutionSpecificationRectangleFigure) primaryShape;
+	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 60);
 		return result;
@@ -140,6 +148,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
@@ -151,12 +160,13 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -165,9 +175,12 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -175,6 +188,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -185,6 +199,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -194,6 +209,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -201,6 +217,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);

@@ -36,12 +36,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -74,6 +71,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -84,8 +82,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
 				new ShowHideCompartmentEditPolicy());
-		//installEditPolicy(ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectNodeToGridEditPolicy());
-		//installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDSequenceGraphicalNodeEditPolicy());
+		// installEditPolicy(ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectNodeToGridEditPolicy());
+		// installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDSequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -119,9 +117,11 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -137,6 +137,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure
+	 *
 	 * @generated
 	 */
 	@Override
@@ -174,6 +175,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -184,6 +186,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -194,6 +197,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			return getPrimaryShape().getCompartmentFigure();
@@ -212,12 +216,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -226,7 +231,9 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	@Override
@@ -242,6 +249,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -252,6 +260,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -261,6 +270,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -268,6 +278,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -277,6 +288,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()

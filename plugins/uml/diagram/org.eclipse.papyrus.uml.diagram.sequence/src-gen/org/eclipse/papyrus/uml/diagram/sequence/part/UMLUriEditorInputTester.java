@@ -22,6 +22,7 @@ public class UMLUriEditorInputTester extends PropertyTester {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
 		if (false == receiver instanceof URIEditorInput) {
 			return false;

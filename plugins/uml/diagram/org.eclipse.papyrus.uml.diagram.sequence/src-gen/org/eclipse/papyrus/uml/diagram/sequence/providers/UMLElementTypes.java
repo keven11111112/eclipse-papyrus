@@ -21,11 +21,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -272,13 +272,13 @@ public class UMLElementTypes {
 
 	/**
 	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap<IElementType, ENamedElement>();
+			elements = new IdentityHashMap<>();
 
 			elements.put(Package_SequenceDiagram, UMLPackage.eINSTANCE.getPackage());
 
@@ -359,7 +359,7 @@ public class UMLElementTypes {
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES = new HashSet<>();
 			KNOWN_ELEMENT_TYPES.add(Package_SequenceDiagram);
 			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
 			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_Shape);

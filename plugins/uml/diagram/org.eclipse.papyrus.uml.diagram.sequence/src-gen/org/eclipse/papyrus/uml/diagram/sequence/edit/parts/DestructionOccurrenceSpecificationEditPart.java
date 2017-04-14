@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2016 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -14,7 +14,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -31,7 +30,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNod
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDDestructionEventComponentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.swt.graphics.Color;
 
@@ -65,6 +63,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -114,6 +113,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure
+	 *
 	 * @generated
 	 */
 	public DestructionEventFigure getPrimaryShape() {
@@ -131,6 +131,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
@@ -142,12 +143,13 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -161,7 +163,9 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -171,6 +175,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -181,6 +186,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -190,6 +196,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -197,6 +204,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);

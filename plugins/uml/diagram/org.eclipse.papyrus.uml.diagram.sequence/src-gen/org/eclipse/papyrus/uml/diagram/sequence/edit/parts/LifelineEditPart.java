@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
@@ -38,19 +37,14 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineAffixedNodesCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifeLineLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.OLDTimeMarkElementPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectLifeLineToGrillingEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedResizableShapeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifelineCreationEditPolicy;
@@ -86,6 +80,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -98,16 +93,16 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(ConnectLifeLineToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT,
+		installEditPolicy(ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT,
 				new ConnectLifeLineToGrillingEditPolicy());
-		installEditPolicy(LayoutEditPolicy.PRIMARY_DRAG_ROLE,
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
 				new GrillingBasedResizableShapeEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LifeLineGraphicalNodeEditPolicy());
-		//installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifeLineAffixedNodesCreationEditPolicy());
+		// installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifeLineAffixedNodesCreationEditPolicy());
 		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifeLineXYLayoutEditPolicy());
-		
+
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -153,9 +148,11 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -164,14 +161,17 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new LifelineFigure();
 	}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure
+	 *
 	 * @generated
 	 */
+	@Override
 	public LifelineFigure getPrimaryShape() {
 		return (LifelineFigure) primaryShape;
 	}
@@ -263,6 +263,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -273,6 +274,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -283,6 +285,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
@@ -293,6 +296,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 250);
 		return result;
@@ -300,12 +304,13 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -314,9 +319,12 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -329,6 +337,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -339,6 +348,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -348,6 +358,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -355,6 +366,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -364,6 +376,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
 	}

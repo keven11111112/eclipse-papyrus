@@ -32,7 +32,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	private Collection<java.lang.Object> myChildren = new LinkedList<java.lang.Object>();
+	private Collection<java.lang.Object> myChildren = new LinkedList<>();
 
 	/**
 	 * @generated
@@ -88,6 +88,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorGroup) {
 			org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorGroup) obj;
@@ -101,6 +102,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}

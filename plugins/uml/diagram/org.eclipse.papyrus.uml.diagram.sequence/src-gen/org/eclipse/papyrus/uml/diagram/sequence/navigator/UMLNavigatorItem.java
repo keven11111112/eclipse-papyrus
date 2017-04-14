@@ -85,6 +85,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem) {
 			return EcoreUtil.getURI(getView()).equals(EcoreUtil
@@ -96,6 +97,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}

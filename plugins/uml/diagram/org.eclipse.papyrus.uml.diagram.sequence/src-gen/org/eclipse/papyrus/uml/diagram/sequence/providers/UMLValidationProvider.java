@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2016 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -100,6 +100,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean selects(Object object) {
 			return isInDefaultEditorContext(object);
 		}
@@ -113,6 +114,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean selects(Object object) {
 			if (isInDefaultEditorContext(object) && object instanceof View) {
 				final String id = UMLVisualIDRegistry.getVisualID((View) object);
@@ -178,6 +180,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public void elementValidated(EObject element, IStatus status) {
 			defaultStrategy.elementValidated(element, status);
 		}
@@ -185,6 +188,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean hasNext() {
 			return defaultStrategy.hasNext();
 		}
@@ -192,6 +196,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean isClientContextChanged() {
 			if (preFetchedNextTarget == null) {
 				preFetchedNextTarget = next();
@@ -203,6 +208,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public EObject next() {
 			EObject nextTarget = preFetchedNextTarget;
 			if (nextTarget == null) {
@@ -215,6 +221,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public void startTraversal(Collection traversalRoots, IProgressMonitor monitor) {
 			defaultStrategy.startTraversal(traversalRoots, monitor);
 		}
@@ -253,6 +260,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public IStatus validate(IValidationContext ctx) {
 			Interaction context = (Interaction) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);
@@ -267,6 +275,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public IStatus validate(IValidationContext ctx) {
 			InteractionOperand context = (InteractionOperand) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);
@@ -281,6 +290,7 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
+		@Override
 		public IStatus validate(IValidationContext ctx) {
 			Node context = (Node) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);

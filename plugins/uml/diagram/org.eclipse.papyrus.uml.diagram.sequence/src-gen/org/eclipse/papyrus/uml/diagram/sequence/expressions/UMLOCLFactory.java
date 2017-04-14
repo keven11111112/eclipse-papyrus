@@ -103,14 +103,14 @@ public class UMLOCLFactory {
 		}
 		if (cached.expressions[index] == null) {
 			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
-					environment == null ? Collections.<String, EClassifier>emptyMap() : environment);
+					environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
 
 	/**
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
-	 * 
+	 *
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context,
@@ -120,11 +120,11 @@ public class UMLOCLFactory {
 
 	/**
 	 * This method will become private in the next release
-	 * 
+	 *
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
-		return getExpression(body, context, Collections.<String, EClassifier>emptyMap());
+		return getExpression(body, context, Collections.<String, EClassifier> emptyMap());
 	}
 
 	/**
@@ -162,6 +162,7 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
+		@Override
 		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
 			if (oclExpression == null) {

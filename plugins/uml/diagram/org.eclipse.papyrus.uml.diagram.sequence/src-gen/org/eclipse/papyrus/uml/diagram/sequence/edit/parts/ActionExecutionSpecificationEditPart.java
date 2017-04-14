@@ -65,6 +65,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -126,11 +127,12 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	}
 
 	/**
-* 
+	 *
 	 * org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public ExecutionSpecificationRectangleFigure getPrimaryShape() {
 		return (ExecutionSpecificationRectangleFigure) primaryShape;
 	}
@@ -138,6 +140,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 60);
 		return result;
@@ -146,6 +149,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
@@ -157,10 +161,10 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -172,9 +176,12 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -182,6 +189,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -192,6 +200,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -201,6 +210,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -208,6 +218,7 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);

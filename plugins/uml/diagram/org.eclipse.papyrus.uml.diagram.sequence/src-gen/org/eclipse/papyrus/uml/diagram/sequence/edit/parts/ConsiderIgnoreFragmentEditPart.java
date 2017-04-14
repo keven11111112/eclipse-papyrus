@@ -64,6 +64,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -81,6 +82,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
@@ -107,9 +109,11 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -118,14 +122,17 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new CombinedFragmentFigure();
 	}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure
+	 *
 	 * @generated
 	 */
+	@Override
 	public CombinedFragmentFigure getPrimaryShape() {
 		return (CombinedFragmentFigure) primaryShape;
 	}
@@ -133,6 +140,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -140,12 +148,13 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -154,9 +163,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -164,6 +176,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -174,6 +187,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -183,6 +197,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -190,6 +205,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);

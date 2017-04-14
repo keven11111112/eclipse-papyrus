@@ -105,6 +105,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLDomainNavigatorItem) {
 			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(
@@ -116,6 +117,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}

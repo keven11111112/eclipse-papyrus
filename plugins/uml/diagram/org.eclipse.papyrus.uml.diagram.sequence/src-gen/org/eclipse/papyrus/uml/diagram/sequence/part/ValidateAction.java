@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2016 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -206,7 +206,7 @@ public class ValidateAction extends Action {
 			return;
 		}
 		final Diagnostic rootStatus = emfValidationStatus;
-		List<Diagnostic> allDiagnostics = new ArrayList<Diagnostic>();
+		List<Diagnostic> allDiagnostics = new ArrayList<>();
 		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(
 				diagramEditPart.getDiagramView(),
 				collectTargetElements(rootStatus, new HashSet<EObject>(), allDiagnostics));

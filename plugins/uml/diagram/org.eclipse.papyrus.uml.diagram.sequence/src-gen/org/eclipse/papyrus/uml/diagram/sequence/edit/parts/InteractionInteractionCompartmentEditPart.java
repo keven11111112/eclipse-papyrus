@@ -27,10 +27,10 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
@@ -56,6 +56,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getCompartmentName() {
 		return Messages.InteractionInteractionCompartmentEditPart_title;
 	}
@@ -63,6 +64,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -72,6 +74,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -84,12 +87,13 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GrillingBasedXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-		
+
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -108,6 +112,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -135,6 +140,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

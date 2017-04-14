@@ -98,6 +98,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
@@ -110,6 +111,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void addPages() {
 		diagramModelFilePage = new UMLCreationWizardPage("DiagramModelFile", getSelection(), //$NON-NLS-1$
 				"PapyrusUMLSequence_diagram"); //$NON-NLS-1$
@@ -138,6 +140,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 

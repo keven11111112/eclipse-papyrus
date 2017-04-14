@@ -71,6 +71,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
@@ -80,6 +81,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;

@@ -28,6 +28,7 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 	 * @generated
 	 */
 
+	@Override
 	protected Class<UMLDiagramEditor> getEditorClass() {
 		return UMLDiagramEditor.class;
 	}
@@ -35,6 +36,7 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getEditorId() {
 		return UMLDiagramEditor.ID;
 	}
@@ -42,6 +44,7 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(IActionBars bars, IWorkbenchPage page) {
 		super.init(bars, page);
 		// print preview
