@@ -734,7 +734,7 @@ public class UMLVisualIDRegistry {
 				return false;
 			case InteractionUseEditPart.VISUAL_ID:
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-			case CCombinedCompartmentEditPart.VISUAL_ID:
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
 			case CommentEditPart.VISUAL_ID:

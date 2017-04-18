@@ -185,37 +185,6 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.sequence.TypeContext">
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Package_SequenceDiagram"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Interaction_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Continuation_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Lifeline_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_CoRegionShape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Constraint_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Comment_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape_CN"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_Shape"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_AsynchEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_ReplyEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_CreateEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_DeleteEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_LostEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_FoundEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Comment_AnnotatedElementEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ConstrainedElementEdge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_Edge"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ContextEdge"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -347,7 +316,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>

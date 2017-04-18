@@ -173,10 +173,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment"/>
@@ -229,12 +225,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandComponentEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
+            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectInteractionOperandToGridEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand"/>
@@ -411,12 +403,32 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="ConnectToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
-            editPolicyQualifiedClassName="referencialgrilling.ConnectToGrillingEditPolicy"/>
+            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectLifeLineToGrillingEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="LayoutEditPolicy.PRIMARY_DRAG_ROLE"
-            editPolicyQualifiedClassName="referencialgrilling.GrillingBasedResizableShapeEditPolicy"/>
+            key="org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedResizableShapeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy.HIGHLIGHT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineXYLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifelineCreationEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
@@ -474,7 +486,7 @@
             editHelperClassName="ActionExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationRectangleFigure">
           <attributes
               xsi:type="gmfgen:ResizeConstraints"
               resizeHandles="5"/>
@@ -518,7 +530,7 @@
             editHelperClassName="BehaviorExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationRectangleFigure">
           <attributes
               xsi:type="gmfgen:ResizeConstraints"
               resizeHandles="5"/>
@@ -951,10 +963,6 @@
           <attributes
               xsi:type="gmfgen:ResizeConstraints"/>
         </viewmap>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionEventComponentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DestructionOccurrenceSpecification"/>
@@ -1347,7 +1355,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.InteractionGraphicalNodeEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
@@ -1412,10 +1420,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.CONNECTION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -1510,16 +1514,16 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.CONNECTION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectEdgeToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectEdgeToGrillingEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">
@@ -1603,10 +1607,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.CONNECTION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -1698,10 +1698,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.CONNECTION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -1796,10 +1792,6 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.CONNECTION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
@@ -1889,10 +1881,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.CONNECTION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -1985,10 +1973,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.CONNECTION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -2241,7 +2225,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="referencialgrilling.GrillingBasedXYLayoutEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedXYLayoutEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7398,7 +7382,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed locator for Lifelines to place element with a time bar"
-        classpath="org.eclipse.papyrus.uml.diagram.sequence.locator.TimeMarkElementPositionLocator"
+        classpath="org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator"
         genChildSideAffixedNode="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"

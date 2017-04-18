@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeObservationHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -308,7 +309,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getContinuation_Shape_ContainedLinks(view);
 			case LifelineEditPart.VISUAL_ID:
 				return getLifeline_Shape_ContainedLinks(view);
-			case CCombinedCompartmentEditPart.VISUAL_ID:
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return getActionExecutionSpecification_Shape_ContainedLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return getBehaviorExecutionSpecification_Shape_ContainedLinks(view);
@@ -375,7 +376,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getContinuation_Shape_IncomingLinks(view);
 			case LifelineEditPart.VISUAL_ID:
 				return getLifeline_Shape_IncomingLinks(view);
-			case CCombinedCompartmentEditPart.VISUAL_ID:
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return getActionExecutionSpecification_Shape_IncomingLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return getBehaviorExecutionSpecification_Shape_IncomingLinks(view);
@@ -442,7 +443,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getContinuation_Shape_OutgoingLinks(view);
 			case LifelineEditPart.VISUAL_ID:
 				return getLifeline_Shape_OutgoingLinks(view);
-			case CCombinedCompartmentEditPart.VISUAL_ID:
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return getActionExecutionSpecification_Shape_OutgoingLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return getBehaviorExecutionSpecification_Shape_OutgoingLinks(view);

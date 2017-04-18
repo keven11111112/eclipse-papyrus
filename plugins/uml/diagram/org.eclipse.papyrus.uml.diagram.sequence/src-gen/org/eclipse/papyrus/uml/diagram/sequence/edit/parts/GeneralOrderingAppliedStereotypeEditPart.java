@@ -131,8 +131,9 @@ public class GeneralOrderingAppliedStereotypeEditPart extends PapyrusLabelEditPa
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(
-				org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID),
+		registerSnapBackPosition(
+				UMLVisualIDRegistry.getType(
+						org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID),
 				new Point(1, -33));
 	}
 

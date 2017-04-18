@@ -21,12 +21,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 
 public class ExecutionSpecificationRectangleFigure extends RoundedCompartmentFigure implements ILifelineInternalFigure { 
 	/**
-	 * 
 	 */
-	private final AbstractExecutionSpecificationEditPart abstractExecutionSpecificationEditPart;
 
-	public ExecutionSpecificationRectangleFigure(AbstractExecutionSpecificationEditPart abstractExecutionSpecificationEditPart) {
-		this.abstractExecutionSpecificationEditPart = abstractExecutionSpecificationEditPart;
+	public ExecutionSpecificationRectangleFigure() {
 		
 	}
 

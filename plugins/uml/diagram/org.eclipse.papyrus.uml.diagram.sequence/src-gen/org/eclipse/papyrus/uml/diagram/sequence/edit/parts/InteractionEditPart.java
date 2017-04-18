@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPa
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.InteractionGraphicalNodeEditPolicy;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -82,7 +83,7 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.InteractionGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InteractionGraphicalNodeEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
 				new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies

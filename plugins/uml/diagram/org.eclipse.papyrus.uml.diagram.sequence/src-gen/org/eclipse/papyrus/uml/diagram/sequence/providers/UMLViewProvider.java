@@ -59,7 +59,6 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -250,7 +249,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case InteractionUseEditPart.VISUAL_ID:
 					case ContinuationEditPart.VISUAL_ID:
 					case LifelineEditPart.VISUAL_ID:
-					case CCombinedCompartmentEditPart.VISUAL_ID:
+					case ActionExecutionSpecificationEditPart.VISUAL_ID:
 					case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 					case StateInvariantEditPart.VISUAL_ID:
 					case TimeConstraintEditPart.VISUAL_ID:
@@ -345,14 +344,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return createContinuation_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case LifelineEditPart.VISUAL_ID:
 				return createLifeline_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case CCombinedCompartmentEditPart.VISUAL_ID:
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return createActionExecutionSpecification_Shape(domainElement, containerView, index, persisted,
 						preferencesHint);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return createBehaviorExecutionSpecification_Shape(domainElement, containerView, index, persisted,
-						preferencesHint);
-			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return createActionExecutionSpecification_Shape(domainElement, containerView, index, persisted,
 						preferencesHint);
 			case StateInvariantEditPart.VISUAL_ID:
 				return createStateInvariant_Shape(domainElement, containerView, index, persisted, preferencesHint);

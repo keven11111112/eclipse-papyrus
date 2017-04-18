@@ -24,8 +24,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -427,7 +427,7 @@ public class UMLElementTypes {
 				return Continuation_Shape;
 			case LifelineEditPart.VISUAL_ID:
 				return Lifeline_Shape;
-			case CCombinedCompartmentEditPart.VISUAL_ID:
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return ActionExecutionSpecification_Shape;
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return BehaviorExecutionSpecification_Shape;

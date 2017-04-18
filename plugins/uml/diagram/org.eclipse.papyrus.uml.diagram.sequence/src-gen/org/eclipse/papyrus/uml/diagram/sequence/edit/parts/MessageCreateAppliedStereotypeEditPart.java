@@ -128,8 +128,9 @@ public class MessageCreateAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(
-				org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart.VISUAL_ID),
+		registerSnapBackPosition(
+				UMLVisualIDRegistry.getType(
+						org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart.VISUAL_ID),
 				new Point(1, -33));
 	}
 

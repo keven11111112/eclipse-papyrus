@@ -25,8 +25,8 @@ import org.eclipse.jface.viewers.ITreePathLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -79,7 +79,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
-import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
@@ -167,7 +166,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InteractionOperand", //$NON-NLS-1$
 					UMLElementTypes.InteractionOperand_Shape);
-		case CCombinedCompartmentEditPart.VISUAL_ID:
+		case ActionExecutionSpecificationEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionExecutionSpecification", //$NON-NLS-1$
 					UMLElementTypes.ActionExecutionSpecification_Shape);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -301,7 +300,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getCombinedFragment_ShapeText(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_ShapeText(view);
-		case CCombinedCompartmentEditPart.VISUAL_ID:
+		case ActionExecutionSpecificationEditPart.VISUAL_ID:
 			return getActionExecutionSpecification_ShapeText(view);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 			return getConsiderIgnoreFragment_ShapeText(view);
@@ -357,7 +356,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getPackage_SequenceDiagramText(View view) {
 		Package domainModelElement = (Package) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = Package_SequenceDiagram"); //$NON-NLS-1$
@@ -419,7 +418,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getBehaviorExecutionSpecification_ShapeText(View view) {
 		BehaviorExecutionSpecification domainModelElement = (BehaviorExecutionSpecification) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = BehaviorExecutionSpecification_Shape"); //$NON-NLS-1$
@@ -433,7 +432,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getCombinedFragment_ShapeText(View view) {
 		CombinedFragment domainModelElement = (CombinedFragment) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = CombinedFragment_Shape"); //$NON-NLS-1$
@@ -447,7 +446,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getInteractionOperand_ShapeText(View view) {
 		InteractionOperand domainModelElement = (InteractionOperand) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = InteractionOperand_Shape"); //$NON-NLS-1$
@@ -461,7 +460,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getActionExecutionSpecification_ShapeText(View view) {
 		ActionExecutionSpecification domainModelElement = (ActionExecutionSpecification) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = ActionExecutionSpecification_Shape"); //$NON-NLS-1$
@@ -475,7 +474,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getConsiderIgnoreFragment_ShapeText(View view) {
 		ConsiderIgnoreFragment domainModelElement = (ConsiderIgnoreFragment) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = ConsiderIgnoreFragment_Shape"); //$NON-NLS-1$
@@ -553,7 +552,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getCombinedFragment_CoRegionShapeText(View view) {
 		CombinedFragment domainModelElement = (CombinedFragment) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = CombinedFragment_CoRegionShape"); //$NON-NLS-1$
@@ -617,7 +616,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getDestructionOccurrenceSpecification_ShapeText(View view) {
 		DestructionOccurrenceSpecification domainModelElement = (DestructionOccurrenceSpecification) view.getElement();
 		if (domainModelElement != null) {
-			return String.valueOf(UMLLabelInternationalization.getInstance().getLabel(domainModelElement));
+			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance()
 					.logError("No domain element for view with visualID = DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$

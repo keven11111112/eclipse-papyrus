@@ -82,8 +82,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
 				new ShowHideCompartmentEditPolicy());
-		// installEditPolicy(ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectNodeToGridEditPolicy());
-		// installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDSequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

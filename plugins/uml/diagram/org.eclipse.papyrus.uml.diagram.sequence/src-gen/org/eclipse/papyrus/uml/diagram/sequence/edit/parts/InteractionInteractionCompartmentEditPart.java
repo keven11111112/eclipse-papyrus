@@ -87,7 +87,6 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GrillingBasedXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-
 	}
 
 	/**

@@ -39,11 +39,11 @@ public class MessageAsyncEditPart extends AbstractMessageEditPart implements ITr
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
-		// installEditPolicy(EditPolicy.CONNECTION_ROLE, new OLDMessageConnectionEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new MessageConnectionLineSegEditPolicy());
-		installEditPolicy(ConnectEdgeToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectEdgeToGrillingEditPolicy());
+		installEditPolicy(ConnectEdgeToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT,
+				new ConnectEdgeToGrillingEditPolicy());
 	}
 
 	/**

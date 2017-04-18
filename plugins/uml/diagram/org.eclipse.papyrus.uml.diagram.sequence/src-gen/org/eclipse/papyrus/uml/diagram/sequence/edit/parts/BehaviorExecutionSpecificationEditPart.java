@@ -123,7 +123,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 */
 	@Override
 	protected IFigure createNodeShape() {
-		return primaryShape = new ExecutionSpecificationRectangleFigure(this);
+		return primaryShape = new ExecutionSpecificationRectangleFigure();
 	}
 
 	/**

@@ -134,8 +134,9 @@ public class DurationObservationAppliedStereotypeEditPart extends PapyrusLabelEd
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(
-				org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart.VISUAL_ID),
+		registerSnapBackPosition(
+				UMLVisualIDRegistry.getType(
+						org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart.VISUAL_ID),
 				new Point(0, 0));
 	}
 

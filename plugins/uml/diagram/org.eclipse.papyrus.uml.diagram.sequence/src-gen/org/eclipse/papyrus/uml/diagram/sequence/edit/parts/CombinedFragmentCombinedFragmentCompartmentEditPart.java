@@ -87,10 +87,10 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeOperandEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
 
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeOperandEditPolicy());
 	}
 
 	/**
@@ -138,15 +138,6 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
 		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
-
-		// this code has been added in order to force the refresh of Sub Combined fragment
-		if (children != null) {
-			for (Object child : children) {
-				if (child instanceof EditPart) {
-					((EditPart) child).refresh();
-				}
-			}
-		}
 	}
 
 	/**

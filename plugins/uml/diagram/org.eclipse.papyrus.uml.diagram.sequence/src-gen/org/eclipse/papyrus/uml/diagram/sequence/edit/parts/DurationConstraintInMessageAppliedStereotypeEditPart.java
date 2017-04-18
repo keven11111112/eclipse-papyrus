@@ -134,8 +134,9 @@ public class DurationConstraintInMessageAppliedStereotypeEditPart extends Papyru
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(
-				org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID),
+		registerSnapBackPosition(
+				UMLVisualIDRegistry.getType(
+						org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID),
 				new Point(0, 0));
 	}
 
