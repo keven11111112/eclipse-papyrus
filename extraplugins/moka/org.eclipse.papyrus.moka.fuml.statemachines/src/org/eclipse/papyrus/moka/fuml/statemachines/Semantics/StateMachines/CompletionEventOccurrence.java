@@ -13,7 +13,12 @@
 
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.uml2.uml.Trigger;
 
 public class CompletionEventOccurrence extends EventOccurrence {
 	
@@ -32,5 +37,33 @@ public class CompletionEventOccurrence extends EventOccurrence {
 	
 	// A reference to the state from which the completion event was generated
 	public StateActivation stateActivation;
+
+	@Override
+	public boolean matchAny(List<Trigger> triggers) {
+		// A completion event can only trigger transition with no
+		// trigger. Hence if the list of trigger that is passed is
+		// empty then the completion event occurrence matches. It does match
+		// otherwise.
+		boolean match = false;
+		if(triggers.size() == 0){
+			match = true;
+		}
+		return match;
+	}
+	
+	@Override
+	public boolean match(Trigger trigger) {
+		// A completion event can only trigger transition with no
+		// trigger. Hence it cannot match a trigger so false is returned
+		// regardless the trigger provided as parameter.
+		return false;
+	}
+
+	@Override
+	public List<ParameterValue> getParameterValues() {
+		// A completion will never have associated values. Hence a
+		// empty list is returned.
+		return new ArrayList<ParameterValue>();
+	}
 
 }
