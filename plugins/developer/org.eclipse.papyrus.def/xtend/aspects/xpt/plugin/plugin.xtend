@@ -85,7 +85,7 @@ import java.io.File
 		ID="«plugin.ID».paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="«plugin.name» Palette"
-		path="«relativePath»«File.separator»«modelID».paletteconfiguration"
+		path="«relativePath»/«modelID».paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">
