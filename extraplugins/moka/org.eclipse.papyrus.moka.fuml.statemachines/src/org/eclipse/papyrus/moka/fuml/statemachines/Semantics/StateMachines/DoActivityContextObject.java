@@ -22,8 +22,8 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Ex
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Operation;
@@ -122,10 +122,10 @@ public class DoActivityContextObject extends Object_ {
 	}
 	
 	@Override
-	public void send(SignalInstance signalInstance) {
+	public void send(EventOccurrence eventOccurrence) {
 		// Delegate the reception of a signal to the state-machine context
 		if(this.context!=null){
-			this.context.send(signalInstance);
+			this.context.send(eventOccurrence);
 		}
 	}
 	
