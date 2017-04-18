@@ -660,7 +660,7 @@
 		ID="org.eclipse.papyrus.uml.diagram.usecase.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="Papyrus useCase editor Plugin Palette"
-		path="models\UseCase.paletteconfiguration"
+		path="models/UseCase.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">

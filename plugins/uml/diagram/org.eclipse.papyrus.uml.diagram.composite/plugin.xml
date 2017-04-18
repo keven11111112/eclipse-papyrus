@@ -1040,7 +1040,7 @@
 		ID="org.eclipse.papyrus.uml.diagram.composite.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="Papyrus Composite Structure Diagram  Palette"
-		path="model\CompositeStructure.paletteconfiguration"
+		path="model/CompositeStructure.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">

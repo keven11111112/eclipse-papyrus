@@ -671,7 +671,7 @@
 		ID="org.eclipse.papyrus.uml.diagram.sequence.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="UML Plugin Palette"
-		path="model\PapyrusUMLSequenceDiagram.paletteconfiguration"
+		path="model/PapyrusUMLSequenceDiagram.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">

@@ -465,7 +465,7 @@
 		ID="org.eclipse.papyrus.uml.diagram.deployment.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="Papyrus Deployment Diagram  Palette"
-		path="model\PapyrusUMLDeploymentDiagram.paletteconfiguration"
+		path="model/PapyrusUMLDeploymentDiagram.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">

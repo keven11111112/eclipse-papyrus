@@ -613,7 +613,7 @@
 		ID="org.eclipse.papyrus.uml.diagram.component.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="Papyrus Component Diagram  Palette"
-		path="model\PapyrusUMLComponentDiagram.paletteconfiguration"
+		path="model/PapyrusUMLComponentDiagram.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">

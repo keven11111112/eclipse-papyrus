@@ -1019,7 +1019,7 @@
 		ID="org.eclipse.papyrus.uml.diagram.clazz.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="PapyrusUMLClassDiagram Palette"
-		path="model\PapyrusUMLClassDiagram.paletteconfiguration"
+		path="model/PapyrusUMLClassDiagram.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">

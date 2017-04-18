@@ -2169,7 +2169,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		ID="org.eclipse.papyrus.uml.diagram.activity.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="Papyrus activity editor Plugin Palette"
-		path="model\PapyrusUMLActivityDiagram.paletteconfiguration"
+		path="model/PapyrusUMLActivityDiagram.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">

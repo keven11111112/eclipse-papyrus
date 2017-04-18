@@ -518,7 +518,7 @@
 		ID="org.eclipse.papyrus.uml.diagram.statemachine.paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
 		name="PapyrusUMLStateMachineDiagram Palette"
-		path="model\PapyrusUMLStateMachineDiagram.paletteconfiguration"
+		path="model/PapyrusUMLStateMachineDiagram.paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">
