@@ -8,7 +8,9 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Micka�l ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common see bug 512343.
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common see bug 512343
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515361
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
 
@@ -635,6 +637,10 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		// look now in the bundle itself.
 		if (entry == null) {
 			entry = bundle.getEntry(path);
+			if (entry == null) {
+				// try it with others files delimiters. See bug 515361
+				entry = bundle.getEntry(path.replace("\\", "/")); //$NON-NLS-1$ //$NON-NLS-2$
+			}
 			// no entry was found in the children fragments, look in the bundle itself
 			if (entry == null) {
 				throw new FileNotFoundException("Loading palette configuration... Impossible to find a resource for path; " + path + " for bundle: " + bundle);
