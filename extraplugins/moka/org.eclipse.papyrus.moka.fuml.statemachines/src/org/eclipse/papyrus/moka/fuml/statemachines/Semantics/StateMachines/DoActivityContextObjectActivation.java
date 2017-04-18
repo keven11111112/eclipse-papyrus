@@ -40,7 +40,7 @@ public class DoActivityContextObjectActivation extends ObjectActivation {
 			if(doActivityObject.owner!=null){
 				doActivityObject.owner.isDoActivityCompleted = true;
 				if(doActivityObject.owner.hasCompleted()){
-					doActivityObject.owner.notifyCompletion();
+					doActivityObject.owner.complete();
 				}
 			}
 		}

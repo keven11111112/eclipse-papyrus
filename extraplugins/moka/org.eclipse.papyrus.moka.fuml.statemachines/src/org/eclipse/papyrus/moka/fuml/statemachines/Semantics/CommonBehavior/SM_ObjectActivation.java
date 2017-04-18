@@ -83,13 +83,11 @@ public class SM_ObjectActivation extends ObjectActivation {
 		return nextEvent;
 	}
 	
-	public void registerCompletionEvent(StateActivation stateActivation){
+	public void register(CompletionEventOccurrence completionEventOccurrence){
 		// A completion event is registered in the completion event pool.
 		// Completion events are always registered at the head of the event pool.
 		// Its final position in the pool depends on the existence of other completion
 		// events already registered in the pool.
-		CompletionEventOccurrence completionEventOccurrence = new CompletionEventOccurrence();
-		completionEventOccurrence.stateActivation = stateActivation;
 		int insertionIndex = 0;
 		boolean insertionPointFound = false;
 		while(!insertionPointFound && insertionIndex < this.eventPool.size()){
@@ -102,11 +100,8 @@ public class SM_ObjectActivation extends ObjectActivation {
 		this._send(new ArrivalSignal());
 	}
 	
-	public void registerDeferredEvent(EventOccurrence eventOccurrence, StateActivation deferringState){
-		// An event occurrence registered as being deferred is registered within the deferred event pool.
-		DeferredEventOccurrence deferredEventOccurrence = new DeferredEventOccurrence();
-		deferredEventOccurrence.constrainingStateActivation = deferringState;
-		deferredEventOccurrence.deferredEventOccurrence = eventOccurrence;
+	public void register(DeferredEventOccurrence deferredEventOccurrence){
+		// Add the deferred event occurrence in deferred event occurrence
 		this.deferredEventPool.add(deferredEventOccurrence);
 	}
 	

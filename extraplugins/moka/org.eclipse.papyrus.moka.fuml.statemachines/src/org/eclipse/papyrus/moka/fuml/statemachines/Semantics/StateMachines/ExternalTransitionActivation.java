@@ -59,7 +59,7 @@ public class ExternalTransitionActivation extends TransitionActivation {
 				if(containingRegionActivation!=null){
 					containingRegionActivation.isCompleted = true;
 					if(targetStateActivation.hasCompleted()){
-						targetStateActivation.notifyCompletion();
+						targetStateActivation.complete();
 					}
 				}
 			}

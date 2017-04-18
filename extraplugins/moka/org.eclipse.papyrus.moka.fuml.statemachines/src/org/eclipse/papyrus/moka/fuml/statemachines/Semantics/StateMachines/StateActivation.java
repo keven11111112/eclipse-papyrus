@@ -69,12 +69,12 @@ public class StateActivation extends VertexActivation {
 		return stateCompleted;
 	}
 	
-	public void notifyCompletion(){
-		// The notification of a completion event consists in sending in the execution
+	public void complete(){
+		// StateActivation completion consists in sending in the execution
 		// context of the state-machine a completion event occurrence. This event is
 		// placed in the pool before any other event
-		Object_ context = this.getExecutionContext();
-		((SM_ObjectActivation)context.objectActivation).registerCompletionEvent(this);
+		CompletionEventOccurrence completionEventOccurrence = new CompletionEventOccurrence();
+		completionEventOccurrence.register(this);
 	}
 	
 	public List<ConnectionPointActivation> getConnectionPointActivation(){
@@ -234,7 +234,7 @@ public class StateActivation extends VertexActivation {
 				}
 				// If state has completed then generate a completion event
 				if(this.hasCompleted()){
-					this.notifyCompletion();
+					this.complete();
 				}
 			}
 		}
@@ -367,7 +367,7 @@ public class StateActivation extends VertexActivation {
 			smExecution.getConfiguration().register(this);
 			// If state has completed then generate a completion event*/
 			if(this.hasCompleted()){
-				this.notifyCompletion();
+				this.complete();
 			}else{
 				// Execute the entry behavior if any
 				this.tryExecuteEntry(eventOccurrence);
@@ -463,10 +463,9 @@ public class StateActivation extends VertexActivation {
 		// Postpone the time at which this event occurrence will be available at the event pool.
 		// The given event occurrence is placed in the deferred event pool and will be released
 		// only when the current state activation will leave the state-machine configuration.
-		Object_ context = this.getExecutionContext();
-		if(context.objectActivation != null){
-			((SM_ObjectActivation)context.objectActivation).registerDeferredEvent(eventOccurrence, this); 
-		}
+		DeferredEventOccurrence deferringEventOccurrence = new DeferredEventOccurrence();
+		deferringEventOccurrence.deferredEventOccurrence = eventOccurrence;
+		deferringEventOccurrence.register(this);
 	}
 	
 	public void releaseDeferredEvents(){

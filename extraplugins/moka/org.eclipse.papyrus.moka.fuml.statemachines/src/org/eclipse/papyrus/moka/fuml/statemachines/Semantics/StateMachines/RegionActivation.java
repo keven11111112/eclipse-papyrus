@@ -260,7 +260,7 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 				StateActivation parentState = (StateActivation) parent; 
 				parentState.regionActivation.remove(this);
 				if(parentState.hasCompleted()){
-					parentState.notifyCompletion();
+					parentState.complete();
 				}
 			}
 		}

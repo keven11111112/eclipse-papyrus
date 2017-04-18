@@ -16,8 +16,10 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Trigger;
 
 public class CompletionEventOccurrence extends EventOccurrence {
@@ -64,6 +66,28 @@ public class CompletionEventOccurrence extends EventOccurrence {
 		// A completion will never have associated values. Hence a
 		// empty list is returned.
 		return new ArrayList<ParameterValue>();
+	}
+	
+	@Override
+	public void sendTo(Reference target) {
+		// Do nothing - the completion event is not sent to a target.
+		// It is registered during the RTC step of the active object that
+		// entered the state from which it was generated. 
+	}
+	
+	@Override
+	public void doSend() {
+		// Do nothing - the completion event is not sent to a target.
+		// It is registered during the RTC step of the active object that
+		// entered the state from which it was generated. 
+	}
+	
+	public void register(StateActivation stateActivation){
+		// Register this completion event occurrence in the event
+		// pool of the context object.
+		this.stateActivation = stateActivation;
+		SM_ObjectActivation objectActivation = (SM_ObjectActivation)stateActivation.getExecutionContext().objectActivation;
+		objectActivation.register(this);
 	}
 
 }
