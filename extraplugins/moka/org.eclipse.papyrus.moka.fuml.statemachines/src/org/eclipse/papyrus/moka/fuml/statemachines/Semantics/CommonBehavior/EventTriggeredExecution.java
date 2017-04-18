@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
@@ -51,8 +52,12 @@ public class EventTriggeredExecution extends Execution {
 		this._beginIsolation();
 		if(this.wrappedExecution.getBehavior().getOwnedParameters().size() > 0){
 			Behavior behavior = this.wrappedExecution.getBehavior();
-			if(this.triggeringEventOccurrence instanceof SignalEventOccurrence){
-				SignalEventOccurrence signalEventOccurrence = (SignalEventOccurrence) this.triggeringEventOccurrence;
+			EventOccurrence currentEventOccurrence = this.triggeringEventOccurrence; 
+			if(this.triggeringEventOccurrence instanceof CS_EventOccurrence){
+				currentEventOccurrence = ((CS_EventOccurrence)this.triggeringEventOccurrence).wrappedEventOccurrence;
+			}
+			if(currentEventOccurrence instanceof SignalEventOccurrence){
+				SignalEventOccurrence signalEventOccurrence = (SignalEventOccurrence) currentEventOccurrence;
 				if(behavior.inputParameters().size() == 1){
 					Parameter parameter = behavior.inputParameters().get(0);
 					ParameterValue parameterValue = new ParameterValue();
@@ -62,8 +67,8 @@ public class EventTriggeredExecution extends Execution {
 					parameterValue.values = values;
 					this.wrappedExecution.setParameterValue(parameterValue);
 				}
-			}else if(this.triggeringEventOccurrence instanceof CallEventOccurrence){
-				CallEventOccurrence callEventOccurrence = (CallEventOccurrence) this.triggeringEventOccurrence;
+			}else if(currentEventOccurrence instanceof CallEventOccurrence){
+				CallEventOccurrence callEventOccurrence = (CallEventOccurrence) currentEventOccurrence;
 				List<Parameter> behaviorInputParameters = behavior.inputParameters();
 				List<ParameterValue> inputParameterValues = callEventOccurrence.execution.getInputParameterValues();
 				if(behaviorInputParameters.size() == inputParameterValues.size()){
@@ -91,11 +96,11 @@ public class EventTriggeredExecution extends Execution {
 		if(this.wrappedExecution != null && this.triggeringEventOccurrence != null){
 			this.initialize();
 			this.wrappedExecution.execute();
-			this.finalize();
+			this.finalize_();
 		}
 	}
 	
-	public void finalize(){
+	public void finalize_(){
 		// Transfer output parameter values (produced by the wrapped execution) back to
 		// the execution associated t the call event.
 		// If an effect, entry or exit Behavior is not just input-conforming, then the
@@ -114,8 +119,12 @@ public class EventTriggeredExecution extends Execution {
 		//    output values and is the last to complete in any execution trace for the RTC
 		//    step consistent with the specified StateMachine semantics.
 		this._beginIsolation();
-		if(this.triggeringEventOccurrence instanceof CallEventOccurrence){
-			CallEventOccurrence callEventOccurrence = (CallEventOccurrence) this.triggeringEventOccurrence;
+		EventOccurrence currentEventOccurrence = this.triggeringEventOccurrence; 
+		if(this.triggeringEventOccurrence instanceof CS_EventOccurrence){
+			currentEventOccurrence = ((CS_EventOccurrence)this.triggeringEventOccurrence).wrappedEventOccurrence;
+		}
+		if(currentEventOccurrence instanceof CallEventOccurrence){
+			CallEventOccurrence callEventOccurrence = (CallEventOccurrence) currentEventOccurrence;
 			Behavior behavior = this.wrappedExecution.getBehavior();
 			List<ParameterValue> outputParameterValues = this.wrappedExecution.getOutputParameterValues();
 			if(behavior.outputParameters().size() == outputParameterValues.size()){

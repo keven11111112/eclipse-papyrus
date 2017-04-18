@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Classes.Kernel.CS_OpaqueExpressionEvaluation;
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
@@ -50,12 +51,16 @@ public class SM_OpaqueExpressionEvaluation extends CS_OpaqueExpressionEvaluation
 		// event occurrence or the input parameters of the call event occurrence
 		// then event occurrence data are passed to this behavior and used
 		// to produce the guard verdict.
+		EventOccurrence currentEventOccurrence = eventOccurrence;
+		if(eventOccurrence instanceof CS_EventOccurrence){
+			currentEventOccurrence = ((CS_EventOccurrence)eventOccurrence).wrappedEventOccurrence;
+		}
 		this.parameterValues.clear();
 		OpaqueExpression expression = (OpaqueExpression)this.specification;
 		if(expression.getBehavior().getOwnedParameters().size() > 0){
 			Behavior behavior = expression.getBehavior();
-			if(eventOccurrence instanceof SignalEventOccurrence){
-				SignalEventOccurrence signalEventOccurrence = (SignalEventOccurrence) eventOccurrence;
+			if(currentEventOccurrence instanceof SignalEventOccurrence){
+				SignalEventOccurrence signalEventOccurrence = (SignalEventOccurrence) currentEventOccurrence;
 				if(behavior.inputParameters().size() == 1){
 					Parameter parameter = behavior.inputParameters().get(0);
 					ParameterValue parameterValue = new ParameterValue();
@@ -65,10 +70,10 @@ public class SM_OpaqueExpressionEvaluation extends CS_OpaqueExpressionEvaluation
 					parameterValue.values = values;
 					this.setParameterValue(parameterValue);
 				}
-			}else if(eventOccurrence instanceof CallEventOccurrence){
-				CallEventOccurrence callEventOccurrence = (CallEventOccurrence) eventOccurrence;
+			}else if(currentEventOccurrence instanceof CallEventOccurrence){
+				CallEventOccurrence callEventOccurrence = (CallEventOccurrence) currentEventOccurrence;
 				List<Parameter> behaviorInputParameters = behavior.inputParameters();
-				List<ParameterValue> inputParameterValues = callEventOccurrence.execution.getInputParameterValues();
+				List<ParameterValue> inputParameterValues = callEventOccurrence.getParameterValues();
 				if(behaviorInputParameters.size() == inputParameterValues.size()){
 					int i = 1;
 					while(i <= behaviorInputParameters.size()){

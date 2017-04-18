@@ -53,7 +53,6 @@ public class DeferredEventOccurrence extends EventOccurrence {
 		// Do nothing - the deferred event is not sent to a target.
 		// It is registered during the RTC step of the active object that
 		// entered the state from which it was generated. 
-		super.sendTo(target);
 	}
 	
 	@Override
@@ -61,7 +60,6 @@ public class DeferredEventOccurrence extends EventOccurrence {
 		// Do nothing - the deferred event is not sent to a target.
 		// It is registered during the RTC step of the active object that
 		// entered the state from which it was generated. 
-		super.doSend();
 	}
 
 }

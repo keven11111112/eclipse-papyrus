@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.CallEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
@@ -42,7 +43,9 @@ public class StateMachineEventAccepter extends EventAccepter{
 		// 1 - The list of transition that can be fired using the given event occurrence is computed
 		// 2 - This list is organized as a different sub-set of transitions that can be fired. One of the
 		//     subset is chosen to be fired. Each transition fires **Concurrently**
-		// 3 - When the RTC step is about to complete a new event accepter for the state-machine
+		// 3 - If the accepted event occurrence is a call event occurrence then there is a explicit
+		//	   "return from call" which enables the caller to continue its execution 
+		// 4 - When the RTC step is about to complete a new event accepter for the state-machine
 		//     is registered at the waiting event accepter list handled by the object activation
 		// Note that there always is a single event accepter for a state-machine (this works differently
 		// than for activities).
@@ -56,11 +59,16 @@ public class StateMachineEventAccepter extends EventAccepter{
 				}
 			}
 		}
-		// If the dispatched event was an CallEventOccurrence then check
-		// if the caller need to be released.
-		// FIXME: This moved on further updates to common behavior semantics
-		if(eventOccurrence instanceof CallEventOccurrence){
-			CallEventOccurrence callEventOccurrence = (CallEventOccurrence) eventOccurrence;
+		CallEventOccurrence callEventOccurrence = null;
+		if(eventOccurrence instanceof CS_EventOccurrence){
+			EventOccurrence wrappedEventOccurrence = ((CS_EventOccurrence)eventOccurrence).wrappedEventOccurrence;
+			if(wrappedEventOccurrence instanceof CallEventOccurrence){
+				callEventOccurrence = (CallEventOccurrence) wrappedEventOccurrence;
+			}
+		}else if(eventOccurrence instanceof CallEventOccurrence){
+			callEventOccurrence = (CallEventOccurrence) eventOccurrence;
+		}
+		if(callEventOccurrence != null){
 			callEventOccurrence.returnFromCall();
 		}
 		Object_ context = this.registrationContext.context;

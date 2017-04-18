@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.registry;
 
+import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.Communications.CS_DispatchOperationOfInterfaceStrategy;
 import org.eclipse.papyrus.moka.composites.Semantics.CommonBehaviors.Communications.CS_NameBased_StructuralFeatureOfInterfaceAccessStrategy;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_DefaultConstructStrategy;
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_DefaultRequestPropagationStrategy;
@@ -28,6 +29,7 @@ public class SM_SemanticStrategyRegistry {
 		locus.factory.setStrategy(new FirstChoiceStrategy());
 		locus.factory.setStrategy(new FIFOGetNextEventStrategy());
 		//locus.factory.setStrategy(new LIFOGetNextEventStrategy());
+		locus.factory.setStrategy(new CS_DispatchOperationOfInterfaceStrategy());
 		locus.factory.setStrategy(new CS_NameBased_StructuralFeatureOfInterfaceAccessStrategy());
 		locus.factory.setStrategy(new CS_DefaultRequestPropagationStrategy());
 		locus.factory.setStrategy(new CS_DefaultConstructStrategy());
