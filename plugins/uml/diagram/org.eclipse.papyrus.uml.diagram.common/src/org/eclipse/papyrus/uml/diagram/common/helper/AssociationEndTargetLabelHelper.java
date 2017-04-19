@@ -60,7 +60,7 @@ public class AssociationEndTargetLabelHelper extends AssociationEndPropertyLabel
 			Property propertyToDisplay = null;
 
 			if (model != null && (model.getElement() instanceof Association)) {
-				propertyToDisplay = AssociationUtil.getSourceFirstEnd((Association) model.getElement());
+				propertyToDisplay = AssociationUtil.getInitialTargetFirstEnd((Association) model.getElement());
 			}
 
 			if (null != propertyToDisplay) {

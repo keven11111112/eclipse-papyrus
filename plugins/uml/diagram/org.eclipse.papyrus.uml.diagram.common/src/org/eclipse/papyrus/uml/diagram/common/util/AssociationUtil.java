@@ -86,30 +86,34 @@ public class AssociationUtil {
 	}
 
 	/**
+	 * Returns the first memberEnd of the association. This memberEnd represents the initial target.
 	 * 
 	 * @param association
-	 * @return
+	 *            The Association.
+	 * @return The first memberEnd.
 	 */
-	public static Property getSourceFirstEnd(final Association association) {
-		Property source = null;
+	public static Property getInitialTargetFirstEnd(final Association association) {
+		Property property = null;
 		List<Property> memberEnds = association.getMemberEnds();
 		if (!memberEnds.isEmpty()) {
-			source = memberEnds.get(0);
+			property = memberEnds.get(0);
 		}
-		return source;
+		return property;
 	}
 
 	/**
+	 * Returns the second memberEnd of the association. This memberEnd represents the initial source.
 	 * 
 	 * @param association
-	 * @return
+	 *            The Association.
+	 * @return The second memberEnd
 	 */
-	public static Property getTargetSecondEnd(final Association association) {
-		Property target = null;
+	public static Property getInitialSourceSecondEnd(final Association association) {
+		Property property = null;
 		List<Property> memberEnds = association.getMemberEnds();
 		if (2 <= memberEnds.size()) {
-			target = memberEnds.get(1);
+			property = memberEnds.get(1);
 		}
-		return target;
+		return property;
 	}
 }

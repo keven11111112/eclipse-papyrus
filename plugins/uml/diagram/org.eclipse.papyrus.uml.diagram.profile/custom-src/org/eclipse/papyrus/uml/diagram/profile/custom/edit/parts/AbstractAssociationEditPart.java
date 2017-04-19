@@ -194,7 +194,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * @return The source member end.
 	 */
 	protected Property getSourceProperty(final Association association) {
-		return AssociationUtil.getSourceFirstEnd(association);
+		return AssociationUtil.getInitialTargetFirstEnd(association);
 	}
 
 	/**
@@ -205,7 +205,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * @return The target member end.
 	 */
 	protected Property getTargetProperty(final Association association) {
-		return AssociationUtil.getTargetSecondEnd(association);
+		return AssociationUtil.getInitialSourceSecondEnd(association);
 	}
 
 	/**

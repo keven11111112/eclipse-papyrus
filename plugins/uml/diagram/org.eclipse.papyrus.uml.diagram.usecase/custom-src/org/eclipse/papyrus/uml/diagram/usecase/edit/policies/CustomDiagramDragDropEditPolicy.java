@@ -120,9 +120,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			Element target = (Element) endtypes.get(0);
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		} else if (endtypes.size() == 2) {
-			// Source link is based on the target property and the target link is based on the source property
-			Element source = AssociationUtil.getTargetSecondEnd((Association) semanticLink).getType();
-			Element target = AssociationUtil.getSourceFirstEnd((Association) semanticLink).getType();
+			Element source = AssociationUtil.getInitialSourceSecondEnd((Association) semanticLink).getType();
+			Element target = AssociationUtil.getInitialTargetFirstEnd((Association) semanticLink).getType();
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		} else {
 			return UnexecutableCommand.INSTANCE;

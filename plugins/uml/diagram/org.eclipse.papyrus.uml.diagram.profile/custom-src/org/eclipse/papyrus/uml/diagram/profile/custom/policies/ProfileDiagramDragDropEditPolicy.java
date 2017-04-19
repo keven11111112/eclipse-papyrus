@@ -158,9 +158,8 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	protected Command dropAssociation(final DropObjectsRequest dropRequest, final Element semanticLink, final String nodeVISUALID) {
 		final List<?> endtypes = new ArrayList<>(ProfileLinkMappingHelper.getInstance().getSource(semanticLink));
 		if (endtypes.size() == 2) {
-			// Source link is based on the target property and the target link is based on the source property
-			Element source = AssociationUtil.getTargetSecondEnd((Association) semanticLink).getType();
-			Element target = AssociationUtil.getSourceFirstEnd((Association) semanticLink).getType();
+			Element source = AssociationUtil.getInitialSourceSecondEnd((Association) semanticLink).getType();
+			Element target = AssociationUtil.getInitialTargetFirstEnd((Association) semanticLink).getType();
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() > 2) {

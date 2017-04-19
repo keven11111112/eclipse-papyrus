@@ -226,8 +226,8 @@ public class CreateOrShowExistingElementHelper {
 						// Check if association is reflexive
 						if (sourceRequest.equals(targetRequest)) {
 							identicalAssociation = false;
-							Property firstEnd = AssociationUtil.getSourceFirstEnd((Association) current);
-							Property secondEnd = AssociationUtil.getTargetSecondEnd((Association) current);
+							Property firstEnd = AssociationUtil.getInitialTargetFirstEnd((Association) current);
+							Property secondEnd = AssociationUtil.getInitialSourceSecondEnd((Association) current);
 							// Compare memebers ends of the current association
 							if (null != firstEnd && null != secondEnd) {
 								if (firstEnd.getType().equals(secondEnd.getType())) {

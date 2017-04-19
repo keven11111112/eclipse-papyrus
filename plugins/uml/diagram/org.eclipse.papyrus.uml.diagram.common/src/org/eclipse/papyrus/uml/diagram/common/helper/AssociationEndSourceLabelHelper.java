@@ -56,7 +56,7 @@ public class AssociationEndSourceLabelHelper extends AssociationEndPropertyLabel
 			Property propertyToDisplay = null;
 
 			if (model != null && (model.getElement() instanceof Association)) {
-				propertyToDisplay = AssociationUtil.getTargetSecondEnd((Association) model.getElement());
+				propertyToDisplay = AssociationUtil.getInitialSourceSecondEnd((Association) model.getElement());
 			}
 
 			if (null != propertyToDisplay) {

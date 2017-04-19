@@ -200,12 +200,10 @@ public class DragAndDropAssociationsTest extends AbstractPapyrusTestCase {
 	 *            The expected target Type.
 	 */
 	protected void checkMemberEnds(final Association association, final Classifier sourceType, final Classifier targetType) {
-		Property sourceEnd = AssociationUtil.getSourceFirstEnd(association);
-		Property targetEnd = AssociationUtil.getTargetSecondEnd(association);
-		// Target End is based on the source type
-		assertEquals(sourceType, targetEnd.getType());
-		// Source End is based on the target type
-		assertEquals(targetType, sourceEnd.getType());
+		Property sourceEnd = AssociationUtil.getInitialSourceSecondEnd(association);
+		Property targetEnd = AssociationUtil.getInitialTargetFirstEnd(association);
+		assertEquals(sourceType, sourceEnd.getType());
+		assertEquals(targetType, targetEnd.getType());
 	}
 
 	/**

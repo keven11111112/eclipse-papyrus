@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 515201
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLLinkDescriptor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Type;
@@ -125,12 +127,12 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				if (ends == null || ends.isEmpty()) {
 					continue;
 				}
-				Object theTarget = ends.size() == 2 ? ends.get(1) : ends.get(0);
+				Object theTarget = ends.size() == 2 ? AssociationUtil.getInitialTargetFirstEnd(link).getType() : AssociationUtil.getInitialSourceSecondEnd(link).getType();
 				if (false == theTarget instanceof Type) {
 					continue;
 				}
 				Type dst = (Type) theTarget;
-				Object theSource = ends.get(0);
+				Object theSource = AssociationUtil.getInitialSourceSecondEnd(link).getType();
 				if (false == theSource instanceof Type) {
 					continue;
 				}
