@@ -37,9 +37,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineResizeAffixedNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -102,6 +104,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifeLineXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new LifeLineResizeAffixedNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

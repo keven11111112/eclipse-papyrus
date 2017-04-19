@@ -33,6 +33,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -55,7 +56,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
@@ -63,7 +63,9 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElement
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.StateInvariantResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.StateInvariantFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
@@ -151,6 +153,7 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 		// install a editpolicy to display stereotypes
 		installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		
 	}
 
 	@Override
@@ -174,6 +177,17 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 				refreshLabels();
 			}
 		}
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart#getPrimaryDragEditPolicy()
+	 *
+	 * @return
+	 */
+	@Override
+	public EditPolicy getPrimaryDragEditPolicy() {
+		
+		return new StateInvariantResizableEditPolicy();
 	}
 
 	/**
@@ -347,306 +361,9 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 	 */
 	@Override
 	protected IFigure createNodeShape() {
-		return primaryShape = new StateInvariantFigure();
+		return primaryShape = new StateInvariantFigure(getMapMode());
 	}
 
-	public class StateInvariantFigure extends ContinuationFigure implements ILabelFigure, IMultilineEditableFigure, IPapyrusNodeUMLElementFigure {
 
-		protected static final String LEFT_BRACE = "{";
-
-		protected static final String RIGHT_BRACE = "}";
-
-		/**
-		 * The transparency of this shape in percent.
-		 * Must be in [0, 100] range.
-		 */
-		private int transparency = 0;
-
-		private FlowPage constraintContentContainer;
-
-		private TextFlowEx constraintContent;
-
-		private CenteredWrappedLabel fFigureContinuationNameLabel;
-
-		private PapyrusWrappingLabel stereotypesLabel;
-
-		private Label stereotypePropertiesLabel;
-
-		private IFigure labelContainer;
-
-		/**
-		 * Constructor.
-		 *
-		 */
-		public StateInvariantFigure() {
-			super();
-			getChildren().clear();
-			setBorder(new MarginBorder(8));
-			RoundedRectangle contents = new RoundedRectangle();
-			contents.setCornerDimensions(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50)));
-			contents.setOutline(false);
-			this.add(contents);
-			// Name figure
-			fFigureContinuationNameLabel = new CenteredWrappedLabel();
-			contents.add(fFigureContinuationNameLabel);
-
-			// Invariant figure
-			constraintContentContainer = new FlowPage();
-			constraintContentContainer.setOpaque(false);
-			constraintContentContainer.setHorizontalAligment(PositionConstants.CENTER);
-			constraintContent = new TextFlowEx("");
-			constraintContentContainer.add(constraintContent);
-			contents.add(constraintContentContainer);
-
-			// Contents layout.
-			ToolbarLayout layout = new ToolbarLayout(false);
-			layout.setStretchMinorAxis(true);
-			layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
-			contents.setLayoutManager(layout);
-			labelContainer = contents;
-		}
-
-		public FlowPage getConstraintContentContainer() {
-			return constraintContentContainer;
-		}
-
-		@Override
-		public CenteredWrappedLabel getFigureContinuationNameLabel() {
-			return fFigureContinuationNameLabel;
-		}
-
-		@Override
-		public IFigure getInvariantFigure() {
-			return this;
-		}
-
-		@Override
-		protected void fillShape(Graphics graphics) {
-			graphics.pushState();
-			applyTransparency(graphics);
-			graphics.fillRoundRectangle(getBounds(), corner.width, corner.height);
-			graphics.popState();
-		}
-
-		/**
-		 * Returns transparency value (belongs to [0, 100] interval)
-		 *
-		 * @return transparency
-		 * @since 1.2
-		 */
-		public int getTransparency() {
-			return transparency;
-		}
-
-		/**
-		 * Sets the transparency if the given parameter is in [0, 100] range
-		 *
-		 * @param transparency
-		 *            The transparency to set
-		 * @since 1.2
-		 */
-		public void setTransparency(int transparency) {
-			if (transparency != this.transparency && transparency >= 0 && transparency <= 100) {
-				this.transparency = transparency;
-				repaint();
-			}
-		}
-
-		/**
-		 * Converts transparency value from percent range [0, 100] to alpha range
-		 * [0, 255] and applies converted value. 0% corresponds to alpha 255 and
-		 * 100% corresponds to alpha 0.
-		 *
-		 * @param g
-		 *            The Graphics used to paint
-		 * @since 1.2
-		 */
-		protected void applyTransparency(Graphics g) {
-			g.setAlpha(255 - transparency * 255 / 100);
-		}
-
-		@Override
-		public void setText(String text) {
-			if (constraintContent != null) {
-				constraintContent.setText(LEFT_BRACE + text + RIGHT_BRACE);
-			}
-		}
-
-		@Override
-		public String getText() {
-			if (constraintContent != null) {
-				return constraintContent.getText();
-			}
-			return null;
-		}
-
-		@Override
-		public void setIcon(Image icon) {
-
-		}
-
-		@Override
-		public Image getIcon() {
-			return null;
-		}
-
-		@Override
-		public Point getEditionLocation() {
-			if (constraintContentContainer != null) {
-				return constraintContentContainer.getLocation();
-			}
-			return null;
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String, org.eclipse.swt.graphics.Image)
-		 *
-		 * @param stereotypes
-		 * @param image
-		 */
-
-		@Override
-		public void setStereotypeDisplay(String stereotypes, Image image) {
-			if (stereotypes == null || stereotypes.trim().equals("")) {
-				if (stereotypesLabel != null) {
-					labelContainer.remove(stereotypesLabel);
-				}
-				stereotypesLabel = null;
-			} else {
-				if (stereotypesLabel == null) {
-					stereotypesLabel = new PapyrusWrappingLabel(stereotypes, image);
-					labelContainer.add(stereotypesLabel, 0);
-				} else {
-					stereotypesLabel.setText(stereotypes);
-					stereotypesLabel.setIcon(image);
-				}
-			}
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
-		 *
-		 * @param stereotypeProperties
-		 */
-
-		@Override
-		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-			if (stereotypeProperties == null || stereotypeProperties.trim().equals("")) {
-				if (stereotypePropertiesLabel != null) {
-					labelContainer.remove(stereotypePropertiesLabel);
-				}
-				stereotypePropertiesLabel = null;
-			} else {
-				if (stereotypePropertiesLabel == null) {
-					stereotypePropertiesLabel = new Label();
-					int index = labelContainer.getChildren().indexOf(stereotypesLabel);
-					labelContainer.add(stereotypePropertiesLabel, index + 1);
-				}
-				stereotypePropertiesLabel.setText(LEFT_BRACE + stereotypeProperties + RIGHT_BRACE);
-			}
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
-		 *
-		 * @param stereotypeProperties
-		 */
-
-		@Override
-		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
-		 *
-		 * @return
-		 */
-
-		@Override
-		public PapyrusWrappingLabel getStereotypesLabel() {
-			return stereotypesLabel;
-		}
-	}
-
-	static class StateInvariantLocator extends CenterLocator {
-
-		public StateInvariantLocator(IFigure parentFigure, int location) {
-			super(parentFigure, location);
-		}
-
-		@Override
-		public void relocate(IFigure borderItem) {
-			Point constraintLocation = getConstraint().getLocation();
-			Dimension size = getSize(borderItem);
-			Point ptNewLocation = new Point(getParentBorder().getCenter().x - size.width / 2, constraintLocation.y);
-			borderItem.setBounds(new Rectangle(ptNewLocation, size));
-		}
-
-		@Override
-		public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
-			Rectangle realLocation = new Rectangle(proposedLocation);
-			Point point = new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, realLocation.y);
-			realLocation.setLocation(point);
-			return realLocation;
-		}
-	};
-
-	public static class StateInvariantResizableEditPolicy extends BorderItemResizableEditPolicy {
-
-		@Override
-		protected Command getResizeCommand(ChangeBoundsRequest request) {
-			IBorderItemEditPart borderItemEP = (IBorderItemEditPart) getHost();
-			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
-			if (borderItemLocator != null) {
-				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-				getHostFigure().translateToAbsolute(rect);
-				rect.translate(request.getMoveDelta());
-				rect.resize(request.getSizeDelta());
-				getHostFigure().translateToRelative(rect);
-				Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
-				if (borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart) borderItemEP.getParent(), borderItemEP, realLocation.getCopy())) {
-					return null;
-				}
-				ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View) getHost().getModel()), realLocation);
-				return new ICommandProxy(moveCommand);
-			}
-			return null;
-		}
-
-		@Override
-		protected Command getMoveCommand(ChangeBoundsRequest request) {
-			IBorderItemEditPart borderItemEP = (IBorderItemEditPart) getHost();
-			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
-			if (borderItemLocator != null) {
-				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-				getHostFigure().translateToAbsolute(rect);
-				rect.translate(request.getMoveDelta());
-				rect.resize(request.getSizeDelta());
-				getHostFigure().translateToRelative(rect);
-				Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
-				if (borderItemEP.getParent() instanceof LifelineEditPart && !restrictInParentBounds((LifelineEditPart) borderItemEP.getParent(), borderItemEP, realLocation.getCopy())) {
-					return null;
-				}
-				Point location = realLocation.getTopLeft();
-				ICommand moveCommand = new SetBoundsCommand(borderItemEP.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View) getHost().getModel()), location);
-				return new ICommandProxy(moveCommand);
-			}
-			return null;
-		}
-
-		private boolean restrictInParentBounds(LifelineEditPart ep, IBorderItemEditPart borderItemEP, Rectangle realLocation) {
-			borderItemEP.getFigure().translateToAbsolute(realLocation);
-			Rectangle bounds = ep.getPrimaryShape().getBounds().getCopy();
-			ep.getPrimaryShape().translateToAbsolute(bounds);
-//			int nameHeight = ep.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
-//			if (realLocation.y - nameHeight < bounds.y) {
-//				return false;
-//			}
-//			if (realLocation.getBottom().y > bounds.getBottom().y) {
-//				return false;
-//			}
-			return true;
-		}
-	}
+	
 }

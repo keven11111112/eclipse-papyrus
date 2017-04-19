@@ -24,10 +24,8 @@ import java.util.Map;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.TreeSearch;
@@ -100,7 +98,6 @@ import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart.StateInvariantLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineHeadImpactLayoutEditPolicy;
@@ -110,18 +107,17 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayou
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.OLDTimeMarkElementPositionLocator;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.StateInvariantLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -1054,8 +1050,8 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 
 				@Override
 				public void run() {
-//					LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater();
-//					updater.update(CustomLifelineEditPart.this);
+					// LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater();
+					// updater.update(CustomLifelineEditPart.this);
 				}
 			});
 		}
@@ -1103,7 +1099,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 		for (Object o : models) {
 			if (o instanceof View) {
 				View view = (View) o;
-				if (LifelineEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view.getType()))  && view.getElement() instanceof Lifeline) {
+				if (LifelineEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view.getType())) && view.getElement() instanceof Lifeline) {
 					return true;
 				}
 			}

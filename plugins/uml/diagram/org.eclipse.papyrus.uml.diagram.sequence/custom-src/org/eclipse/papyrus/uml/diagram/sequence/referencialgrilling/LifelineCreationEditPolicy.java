@@ -50,8 +50,7 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 			CreateViewAndElementRequest req=(CreateViewAndElementRequest)request;
 			ViewAndElementDescriptor descriptor=(req).getViewAndElementDescriptor();
 			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
-			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)||
-					ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE) ||ElementUtil.isTypeOf(elementType, UMLDIElementTypes.TIME_CONSTRAINT_SHAPE)){
+			if (isControlledByLifeline(elementType)){
 				// get the element descriptor
 				CreateElementRequestAdapter requestAdapter =
 						req.getViewAndElementDescriptor().getCreateElementRequestAdapter();
@@ -63,6 +62,7 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 				EObject hostElement = ViewUtil.resolveSemanticElement(view);
 				createElementRequest.setContainer(hostElement.eContainer());
 				createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.COVERED, hostElement);
+				// case of Message Occurence Specification
 				MessageOccurrenceSpecification mos=displayEvent.getMessageEvent(getHostFigure().getParent().getParent(), ((CreateRequest)request).getLocation());
 				if( mos!=null){
 					createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START, mos);
@@ -70,6 +70,32 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 			}
 		}
 		return super.getCreateElementAndViewCommand(request);
+	}
+	
+	/**
+	 * test if the element Type that is normally not a child of the Lifeline should be controlled by the lifeline. 
+	 * Then The lifeline will be set as the parent editpart, but not as the semantic parent. 
+	 * 
+	 * This is the case of most of the affixed node. 
+	 * 
+	 * @param elementType the tested element type
+	 * @return true if the Lifeline should be the 
+	 */
+	protected boolean isControlledByLifeline(IElementType elementType){
+		boolean controlledByLifeline = false;
+		
+		if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)){
+			controlledByLifeline = true;
+		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)) {
+			controlledByLifeline = true;
+		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.TIME_CONSTRAINT_SHAPE)) {
+			controlledByLifeline = true;
+		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.STATE_INVARIANT_SHAPE)){
+			controlledByLifeline = true;
+		} 
+		
+		return controlledByLifeline;
+		
 	}
 	/**
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#setHost(org.eclipse.gef.EditPart)

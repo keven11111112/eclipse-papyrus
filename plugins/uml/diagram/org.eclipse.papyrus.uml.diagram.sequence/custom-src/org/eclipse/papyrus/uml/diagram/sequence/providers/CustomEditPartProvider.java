@@ -85,8 +85,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 //			return new CustomActionExecutionSpecificationEditPart(view);
 //		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 //			return new CustomBehaviorExecutionSpecificationEditPart(view);
-//		case StateInvariantEditPart.VISUAL_ID:
-//			return new CustomStateInvariantEditPart(view);
+		case StateInvariantEditPart.VISUAL_ID:
+			return new CustomStateInvariantEditPart(view);
 //		case CombinedFragment2EditPart.VISUAL_ID:
 //			return new CustomCombinedFragment2EditPart(view);
 //		case TimeConstraintEditPart.VISUAL_ID:
@@ -163,8 +163,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 //			return new ExecutionSpecificationEndEditPart(view);
 //		case MessageEndEditPart.VISUAL_ID:
 //			return new MessageEndEditPart(view);
-//		case StateInvariantLabelEditPart.VISUAL_ID:
-//			return new CustomStateInvariantLabelEditPart(view);
+		case StateInvariantLabelEditPart.VISUAL_ID:
+			return new CustomStateInvariantLabelEditPart(view);
 		}
 		return null;
 	}

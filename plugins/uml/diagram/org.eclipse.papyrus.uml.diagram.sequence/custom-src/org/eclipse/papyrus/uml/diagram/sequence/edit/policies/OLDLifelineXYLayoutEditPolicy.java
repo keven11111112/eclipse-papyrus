@@ -57,7 +57,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2Edit
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart.PreserveAnchorsPositionCommandEx;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart.StateInvariantResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.StateInvariantResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
