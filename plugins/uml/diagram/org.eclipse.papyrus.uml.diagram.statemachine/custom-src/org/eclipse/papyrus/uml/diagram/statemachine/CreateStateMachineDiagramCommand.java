@@ -61,7 +61,8 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 	public final static int defaultY = 30;
 	public final static int defaultWidth = 700;
 	public final static int defaultHeight = 300;
-	public final static int defaultHeader = 13;
+	// Bug 513267: The initial header must be defined to 20 because when it is smaller, a first internal resize increase it automatically to 20 (CustomStateMachineResizeCommand).
+	public final static int defaultHeader = 20;
 
 	@Override
 	protected EClass getBehaviorEClass() {
