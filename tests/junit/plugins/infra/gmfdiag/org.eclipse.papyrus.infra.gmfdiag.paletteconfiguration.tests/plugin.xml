@@ -9,7 +9,7 @@
       </elementTypeSet>
    </extension>
    <extension
-         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
       <paletteDefinition
             ID="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests.paletteDefinition"
             class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
@@ -38,7 +38,7 @@
       </elementTypeSet>
    </extension>
    <extension
-         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
       <paletteDefinition
             ID="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests.fakepaletteDefinition"
             class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
@@ -51,7 +51,7 @@
       </paletteDefinition>
    </extension>
    <extension
-         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+         point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
       <paletteDefinition
             ID="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests.noProfilepaletteDefinition"
             class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"

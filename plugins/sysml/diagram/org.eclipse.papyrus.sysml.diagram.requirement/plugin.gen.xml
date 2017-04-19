@@ -82,7 +82,7 @@
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition"
 	name="SYSML_Requirement">
 	
 	<paletteDefinition ID="SYSML_Requirement"

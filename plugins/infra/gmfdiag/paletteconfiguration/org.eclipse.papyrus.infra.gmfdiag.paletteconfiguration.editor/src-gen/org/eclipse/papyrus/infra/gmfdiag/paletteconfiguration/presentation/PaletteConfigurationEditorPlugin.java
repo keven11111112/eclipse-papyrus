@@ -16,6 +16,7 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
  * This is the central singleton for the PaletteConfiguration editor plugin.
@@ -53,6 +54,7 @@ public final class PaletteConfigurationEditorPlugin extends EMFPlugin {
 	public PaletteConfigurationEditorPlugin() {
 		super(new ResourceLocator[] {
 				EcoreEditPlugin.INSTANCE,
+				TypesConfigurationsEditPlugin.INSTANCE,
 		});
 	}
 

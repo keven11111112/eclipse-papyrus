@@ -33,7 +33,6 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolKind;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
-import org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -186,19 +185,13 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-
-		// Obtain or create and register interdependencies
-		ElementTypesConfigurationsPackageImpl theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI) instanceof ElementTypesConfigurationsPackageImpl
-				? EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI)
-				: ElementTypesConfigurationsPackage.eINSTANCE);
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		thePaletteconfigurationPackage.createPackageContents();
-		theElementTypesConfigurationsPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thePaletteconfigurationPackage.initializePackageContents();
-		theElementTypesConfigurationsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		thePaletteconfigurationPackage.freeze();

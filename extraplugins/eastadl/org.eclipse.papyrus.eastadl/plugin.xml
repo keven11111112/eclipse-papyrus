@@ -617,7 +617,7 @@
   <extension
            id="Eastald_Class_DataTypes"
            name="Eastald_Class_DataTypes"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="DataTypes"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -635,7 +635,7 @@
   <extension
         id="Eastald_Composite_FunctionModeling"
         name="Eastald_Composite_FunctionModeling"
-        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+        point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="FunctionModeling"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -653,7 +653,7 @@
       <extension
            id="Eastald_Class_Timing"
            name="Eastald_Class_Timing"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="Timing"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -671,7 +671,7 @@
      <extension
            id="Eastald_Class_Dependability"
            name="Eastald_Class_Dependability"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
         <paletteDefinition
               ID="Dependability"
               class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -690,7 +690,7 @@
      <extension
            id="Eastald_Class_VerificationValidation"
            name="Eastald_Class_VerificationValidation"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="VerificationValidation"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -708,7 +708,7 @@
  <extension
            id="Eastald_Class_FeatureModeling"
            name="Eastald_Class_FeatureModeling"
-        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+        point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="FeatureModeling"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -726,7 +726,7 @@
       <extension
            id="Eastald_Class_HardwareModeling"
            name="Eastald_Class_HardwareModeling"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="HardwareModeling"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -744,7 +744,7 @@
       <extension
            id="Eastald_Class_Requirements"
            name="Eastald_Class_Requirements"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="Requirements"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -762,7 +762,7 @@
      <extension
            id="Eastald_Class_SystemModeling"
            name="Eastald_Class_SystemModeling"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="SystemModeling"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -780,7 +780,7 @@
      <extension
            id="Eastald_Composite_HardwareModeling"
            name="Eastald_Composite_HardwareModeling"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="HardwareModeling"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -798,7 +798,7 @@
  <extension
         id="Eastald_Class_FunctionModeling"
         name="Eastald_Class_FunctionModeling"
-        point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+        point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="FunctionModeling"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -817,7 +817,7 @@
  <extension
            id="Eastald_Composite_SystemModeling"
            name="Eastald_Composite_SystemModeling"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="SystemModeling"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -836,7 +836,7 @@
   <extension
            id="Eastald_Class_GenericConstraints"
            name="Eastald_Class_GenericConstraints"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"> 
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition"> 
            <paletteDefinition
            ID="GenericConstraints"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -855,7 +855,7 @@
      <extension
            id="Eastald_Composite_ErrorModel"
            name="Eastald_Composite_ErrorModel"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
      <paletteDefinition
            ID="ErrorModel"
            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
@@ -873,7 +873,7 @@
      <extension
            id="Eastadl_Class_Variability"
            name="Eastadl_Class_Variability"
-           point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+           point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
         <paletteDefinition
               ID="Variability"
               class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"

@@ -10,7 +10,7 @@
     testsDirectory="/org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests/src-gen"
     testSuiteClass="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests.PaletteConfigurationAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types">
   <foreignModel>PaletteConfiguration.ecore</foreignModel>
   <genPackages prefix="Paletteconfiguration" basePackage="org.eclipse.papyrus.infra.gmfdiag"
       resource="XML" disposableProviderFactory="true" multipleEditorPages="false"
@@ -46,80 +46,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//IconDescriptor/iconPath"/>
     </genClasses>
     <genClasses ecoreClass="PaletteConfiguration.ecore#//ElementDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//ElementDescriptor/elementTypeId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PaletteConfiguration.ecore#//ElementDescriptor/graphicalHints"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PaletteConfiguration.ecore#//ElementDescriptor/elementType"/>
     </genClasses>
     <genClasses ecoreClass="PaletteConfiguration.ecore#//SeparatorConfiguration"/>
     <genClasses image="false" ecoreClass="PaletteConfiguration.ecore#//LeafConfiguration"/>
-  </genPackages>
-  <genPackages prefix="ElementTypesConfigurations" basePackage="org.eclipse.papyrus.infra"
-      ecorePackage="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//InheritanceKind">
-      <genEnumLiterals ecoreEnumLiteral="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//InheritanceKind/none"/>
-      <genEnumLiterals ecoreEnumLiteral="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//InheritanceKind/all"/>
-    </genEnums>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/elementTypeConfigurations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/adviceBindingsConfigurations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/metamodelNsURI"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeConfiguration/hint"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeConfiguration/kind"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeConfiguration/iconEntry"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//IconEntry">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//IconEntry/iconPath"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//IconEntry/bundleId"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ConfigurationElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ConfigurationElement/description"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractMatcherConfiguration"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AdviceConfiguration">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AdviceConfiguration/before"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AdviceConfiguration/after"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/containerConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/matcherConfiguration"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/inheritance"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/editHelperAdviceConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/containerConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/matcherConfiguration"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/specializedTypes"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ContainerConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ContainerConfiguration/containerMatcherConfiguration"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ContainerConfiguration/eContainmentFeatures"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration/eClass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration/editHelperClassName"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractEditHelperAdviceConfiguration">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AbstractEditHelperAdviceConfiguration/target"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//EditHelperAdviceConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//EditHelperAdviceConfiguration/editHelperAdviceClassName"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AdviceBindingConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//AdviceBindingConfiguration/editHelperAdviceClassName"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//MatcherConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//MatcherConfiguration/matcherClassName"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//IdentifiedConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//IdentifiedConfiguration/identifier"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//NamedConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//NamedConfiguration/name"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ExternallyRegisteredType"/>
-    <genClasses ecoreClass="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ExternallyRegisteredAdvice"/>
   </genPackages>
 </genmodel:GenModel>

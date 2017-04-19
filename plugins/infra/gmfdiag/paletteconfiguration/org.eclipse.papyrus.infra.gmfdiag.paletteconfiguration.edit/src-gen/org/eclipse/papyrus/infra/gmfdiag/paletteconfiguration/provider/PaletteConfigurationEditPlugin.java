@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
  * This is the central singleton for the PaletteConfiguration edit plugin.
@@ -52,6 +53,7 @@ public final class PaletteConfigurationEditPlugin extends EMFPlugin {
 	public PaletteConfigurationEditPlugin() {
 		super(new ResourceLocator[] {
 				EcoreEditPlugin.INSTANCE,
+				TypesConfigurationsEditPlugin.INSTANCE,
 		});
 	}
 
