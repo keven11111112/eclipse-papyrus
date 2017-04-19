@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 454891
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 515459
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  
  *****************************************************************************/
@@ -22,6 +22,7 @@ import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -30,7 +31,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
@@ -171,12 +173,23 @@ public class GMFModelElement extends EMFModelElement {
 				}
 			};
 		}
+
+		ILabelProvider result = null;
 		try {
-			return ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, source).getLabelProvider();
+			// If the object is deleted, then there is no label-provider service for it
+			ResourceSet rset = EMFHelper.getResourceSet(source);
+			if (rset != null) {
+				result = ServiceUtilsForResourceSet.getInstance().getService(LabelProviderService.class, rset).getLabelProvider();
+			}
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
-			return new LabelProvider();
 		}
+
+		if (result == null) {
+			result = new LabelProvider();
+		}
+
+		return result;
 	}
 
 	/**
