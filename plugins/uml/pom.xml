@@ -50,5 +50,6 @@
 		<module>tools</module>
 		<module>xtext</module>
 		<module>internationalization</module>
+		<module>m2m</module>
 	</modules>
 </project>

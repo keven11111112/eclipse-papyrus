@@ -129,6 +129,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.uml.internationalization.feature"
          version="0.0.0"/>
+		 
+   <includes
+         id="org.eclipse.papyrus.uml.m2m.qvto.feature"
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.papyrus.infra.nattable.feature"

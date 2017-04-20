@@ -16,6 +16,12 @@ location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4
 	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
 }
 
+//manualUpdate
+
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
+	org.eclipse.emf.compare.ide.ui.feature.group lazy
+}
+
 //updateFrom("oomph",0) 
 
 location oomph "http://download.eclipse.org/oomph/drops/milestone/S20170307-122318-1.7.0-M4" {
