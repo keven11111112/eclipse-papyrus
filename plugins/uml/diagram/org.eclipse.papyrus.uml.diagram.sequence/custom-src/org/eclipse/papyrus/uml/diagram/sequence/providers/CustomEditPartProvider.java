@@ -26,10 +26,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomGeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
@@ -172,8 +174,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		// return new CustomMessageName7EditPart(view);
 		// case CommentAnnotatedElementEditPart.VISUAL_ID:
 		// return new CustomCommentAnnotatedElementEditPart(view);
-		// case GeneralOrderingEditPart.VISUAL_ID:
-		// return new CustomGeneralOrderingEditPart(view);
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return new CustomGeneralOrderingEditPart(view);
 		// case ExecutionSpecificationEndEditPart.VISUAL_ID:
 		// return new ExecutionSpecificationEndEditPart(view);
 		// case MessageEndEditPart.VISUAL_ID:
