@@ -29,6 +29,14 @@ OpaqueAction > Compartment[kind="symbol"] {
     visible:false;
 }
 
+StructuredActivityNode > Compartment[kind="symbol"]{
+	visible: false;
+}
+
+ActivityParameterNode  Compartment[kind="symbol"]{
+	visible: false;
+}
+
 * > Compartment[kind="symbol"] {
     visible:true;    
 }

@@ -11,8 +11,8 @@
    height="1.7583696"
    version="1.1"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="ManualTask.svg">
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="ManualTask2.svg">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -21,6 +21,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -33,27 +34,35 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="997"
-     inkscape:window-height="851"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
      id="namedview10"
-     showgrid="false"
+     showgrid="true"
      width="8px"
-     inkscape:zoom="13.882353"
-     inkscape:cx="1.5982334"
-     inkscape:cy="7.8227815"
-     inkscape:window-x="601"
-     inkscape:window-y="73"
-     inkscape:window-maximized="0"
+     inkscape:zoom="256"
+     inkscape:cx="0.97871923"
+     inkscape:cy="1.0445675"
+     inkscape:window-x="1912"
+     inkscape:window-y="525"
+     inkscape:window-maximized="1"
      inkscape:current-layer="svg2"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     borderlayer="false" />
+     borderlayer="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3126"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
   <defs
      id="defs4" />
   <g
-     transform="matrix(0.13413262,0,0,0.11771512,0.08802453,-0.01471439)"
+     transform="matrix(0.09856062,0,0,0.08649705,0.07911631,0.10760863)"
      id="g6">
     <path
        d="M -0.17,3.94 C 0.12,2.33 0.94,1.08 1.98,0.64 l 5.51,0 c 0.34,0.22 0.55,0.73 0.55,1.3 0,0.56 -0.21,1.07 -0.55,1.29 l -3.67,0 9.34,0 c 0.41,0.26 0.67,0.86 0.67,1.54 0,0.68 -0.26,1.28 -0.67,1.54 l -6.43,0 6.43,0 c 0.41,0.25 0.67,0.85 0.67,1.53 0,0.68 -0.26,1.28 -0.67,1.54 l -5.82,0 5.05,0 c 0.51,0 0.92,0.63 0.92,1.41 0,0.78 -0.41,1.42 -0.92,1.42 l -5.2,0 4.13,0 c 0.42,0 0.77,0.53 0.77,1.18 0,0.65 -0.35,1.18 -0.77,1.18 l -10.11,0 C 0.89,14.64 0.56,14.5 0.3,14.19 0.04,13.88 -0.13,13.42 -0.17,12.92 z"
