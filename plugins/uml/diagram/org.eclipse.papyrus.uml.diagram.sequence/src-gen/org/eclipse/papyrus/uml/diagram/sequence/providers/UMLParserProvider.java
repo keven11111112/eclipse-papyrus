@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInM
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseName2EditPart;
@@ -397,6 +398,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser gate_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGate_NameLabel_Parser() {
+		if (gate_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			gate_NameLabel_Parser = parser;
+		}
+		return gate_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser message_SynchNameLabel_Parser;
 
 	/**
@@ -676,6 +694,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getDurationObservation_NameLabel_Parser();
 			case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
 				return getDurationObservation_StereotypeLabel_Parser();
+
+			case GateNameEditPart.VISUAL_ID:
+				return getGate_NameLabel_Parser();
 
 			case MessageSyncNameEditPart.VISUAL_ID:
 				return getMessage_SynchNameLabel_Parser();

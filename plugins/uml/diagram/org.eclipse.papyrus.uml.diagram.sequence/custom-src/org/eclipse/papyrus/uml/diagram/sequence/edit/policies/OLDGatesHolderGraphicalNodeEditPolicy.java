@@ -55,10 +55,10 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateElementAndViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateElementAndViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.ReconnectToGateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
@@ -75,7 +75,7 @@ import org.eclipse.uml2.uml.Message;
  * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class GatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
+public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
@@ -87,13 +87,13 @@ public class GatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNode
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
 		ConnectionEditPart connection = request.getConnectionEditPart();
 		EditPart source = connection.getSource();
-		if (source instanceof GateEditPart) {
+		if (source instanceof OLDGateEditPart) {
 			if (getHost() == source.getParent()) {
-				return getMoveGateCommand((GateEditPart) source, request);
+				return getMoveGateCommand((OLDGateEditPart) source, request);
 			} else if (isReconnectMessage(request) && !isRedirectFailed(request)) {
 				Point location = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
 				CompositeCommand result = new CompositeCommand("");
-				CreateGateElementAndViewCommand createGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), getHost(), location);
+				OLDCreateGateElementAndViewCommand createGateCommand = new OLDCreateGateElementAndViewCommand(getEditingDomain(), getHost(), location);
 				createGateCommand.setCreateInnerCFGate(getHost() instanceof CombinedFragmentEditPart);
 				result.add(createGateCommand);
 				ReconnectToGateCommand reconnectTargetCommand = new ReconnectToGateCommand(getEditingDomain(), getHost().getViewer(), createGateCommand.getResult(), request);
@@ -109,8 +109,8 @@ public class GatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNode
 	 * @param request
 	 * @return
 	 */
-	protected Command getMoveGateCommand(GateEditPart gateEditPart, ReconnectRequest request) {
-		Rectangle newBounds = new Rectangle(request.getLocation(), GateEditPart.DEFAULT_SIZE);
+	protected Command getMoveGateCommand(OLDGateEditPart gateEditPart, ReconnectRequest request) {
+		Rectangle newBounds = new Rectangle(request.getLocation(), OLDGateEditPart.DEFAULT_SIZE);
 		IFigure hostFigure = getHostFigure();
 		hostFigure.translateToRelative(newBounds);
 		GateLocator locator = new GateLocator(hostFigure);
@@ -129,13 +129,13 @@ public class GatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNode
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
 		ConnectionEditPart connection = request.getConnectionEditPart();
 		EditPart target = connection.getTarget();
-		if (target instanceof GateEditPart) {
+		if (target instanceof OLDGateEditPart) {
 			if (getHost() == target.getParent()) {
-				return getMoveGateCommand((GateEditPart) target, request);
+				return getMoveGateCommand((OLDGateEditPart) target, request);
 			} else if (isReconnectMessage(request) && !isRedirectFailed(request)) {
 				Point location = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
 				CompositeCommand result = new CompositeCommand("");
-				CreateGateElementAndViewCommand createGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), getHost(), location);
+				OLDCreateGateElementAndViewCommand createGateCommand = new OLDCreateGateElementAndViewCommand(getEditingDomain(), getHost(), location);
 				createGateCommand.setCreateInnerCFGate(getHost() instanceof CombinedFragmentEditPart);
 				result.add(createGateCommand);
 				ReconnectToGateCommand reconnectTargetCommand = new ReconnectToGateCommand(getEditingDomain(), getHost().getViewer(), createGateCommand.getResult(), request);
@@ -183,7 +183,7 @@ public class GatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNode
 		CompoundCommand cc = new CompoundCommand(DiagramUIMessages.Command_CreateRelationship_Label);
 		// 1. Create Target Gate
 		Point targetLocation = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
-		CreateGateElementAndViewCommand createTargetGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), getHost(), targetLocation);
+		OLDCreateGateElementAndViewCommand createTargetGateCommand = new OLDCreateGateElementAndViewCommand(getEditingDomain(), getHost(), targetLocation);
 		createTargetGateCommand.setCreateInnerCFGate(true);
 		createTargetGateCommand.setVolatiled(!(getHost() instanceof InteractionEditPart));
 		cc.add(new ICommandProxy(createTargetGateCommand));
@@ -201,7 +201,7 @@ public class GatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNode
 					location = (Point) locationData;
 				}
 				Point sourceLocation = GateHelper.computeGateLocation(location, ep.getFigure(), null);
-				CreateGateElementAndViewCommand createSourceGateCommand = new CreateGateElementAndViewCommand(getEditingDomain(), sourceViewAdapter, sourceLocation);
+				OLDCreateGateElementAndViewCommand createSourceGateCommand = new OLDCreateGateElementAndViewCommand(getEditingDomain(), sourceViewAdapter, sourceLocation);
 				createSourceGateCommand.setCreateInnerCFGate(true);
 				createSourceGateCommand.setVolatiled(!(sourceEditPart instanceof InteractionEditPart));
 				cc.add(new ICommandProxy(createSourceGateCommand));

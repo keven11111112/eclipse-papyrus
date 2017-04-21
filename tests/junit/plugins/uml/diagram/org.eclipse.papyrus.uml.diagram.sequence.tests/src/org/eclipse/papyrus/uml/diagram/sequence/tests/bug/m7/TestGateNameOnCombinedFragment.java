@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -121,10 +121,10 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		assertNotNull("Message creation between Lifeline and CombinedFragment", messageEditPart);
 
 		//5. Check Gate name
-		IGraphicalEditPart gateEditPart = cfEditPart.getChildBySemanticHint(GateEditPart.GATE_TYPE);
+		IGraphicalEditPart gateEditPart = cfEditPart.getChildBySemanticHint(OLDGateEditPart.GATE_TYPE);
 		assertNotNull("Gate created", gateEditPart);
-		assertTrue("Gate created successfully", gateEditPart instanceof GateEditPart);
-		Gate gate = (Gate)((GateEditPart)gateEditPart).resolveSemanticElement();
+		assertTrue("Gate created successfully", gateEditPart instanceof OLDGateEditPart);
+		Gate gate = (Gate)((OLDGateEditPart)gateEditPart).resolveSemanticElement();
 		Message message = (Message)messageEditPart.resolveSemanticElement();
 		assertEquals("Gate name", gateNamePrefix + message.getLabel(), gate.getLabel());
 	}
@@ -150,16 +150,16 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		testFixedGateName("Gate3", false, false);
 	}
 
-	private GateEditPart createGate(EditPart parent, Point location) {
+	private OLDGateEditPart createGate(EditPart parent, Point location) {
 		CreateRequest request = new CreateRequest(RequestConstants.REQ_CREATE);
 		request.setFactory(new CreationFactory() {
 
 			public Object getObjectType() {
-				return GateEditPart.GATE_TYPE;
+				return OLDGateEditPart.GATE_TYPE;
 			}
 
 			public Object getNewObject() {
-				return GateEditPart.GATE_TYPE;
+				return OLDGateEditPart.GATE_TYPE;
 			}
 		});
 		request.setLocation(location);
@@ -168,18 +168,18 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		assertTrue("executable of create gate command", command.canExecute());
 		getDiagramCommandStack().execute(command);
 		waitForComplete();
-		GateEditPart gateEditPart = getPrimaryGateEditPart(parent);
+		OLDGateEditPart gateEditPart = getPrimaryGateEditPart(parent);
 		assertNotNull("created gate", gateEditPart);
 		return gateEditPart;
 	}
 
-	protected GateEditPart getPrimaryGateEditPart(EditPart parent) {
+	protected OLDGateEditPart getPrimaryGateEditPart(EditPart parent) {
 		@SuppressWarnings("rawtypes")
 		List children = parent.getChildren();
 		for(int i = children.size() - 1; i >= 0; i--) {
 			Object child = children.get(i);
-			if(child instanceof GateEditPart) {
-				GateEditPart gateEp = (GateEditPart)child;
+			if(child instanceof OLDGateEditPart) {
+				OLDGateEditPart gateEp = (OLDGateEditPart)child;
 				Gate gate = (Gate)gateEp.resolveSemanticElement();
 				if(!(GateHelper.isInnerCFGate(gate))) {
 					return gateEp;
@@ -230,7 +230,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		assertNotNull("CombinedFragment creation", cfEditPart);
 		//1.1 Create Gate on CombinedFragment
 		Rectangle cfBounds = SequenceUtil.getAbsoluteBounds(cfEditPart);
-		GateEditPart gateEditPart = createGate(cfEditPart, new Point(cfBounds.right() - 1, cfBounds.y + cfBounds.height / 2));
+		OLDGateEditPart gateEditPart = createGate(cfEditPart, new Point(cfBounds.right() - 1, cfBounds.y + cfBounds.height / 2));
 		assertNotNull("Gate on CombinedFragment creation", gateEditPart);
 
 		Gate gate = (Gate)gateEditPart.resolveSemanticElement();

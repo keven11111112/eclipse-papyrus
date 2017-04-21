@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.StereotypeInteractionFigure;
@@ -73,19 +73,19 @@ public class InteractionHeadImpactLayoutEditPolicy extends AbstractHeadImpactLay
 		// 1. move gate
 		{
 			List children = getHost().getChildren();
-			List<GateEditPart> gates = new ArrayList<GateEditPart>();
+			List<OLDGateEditPart> gates = new ArrayList<OLDGateEditPart>();
 			for (Object object : children) {
-				if (object instanceof GateEditPart) {
-					gates.add((GateEditPart) object);
+				if (object instanceof OLDGateEditPart) {
+					gates.add((OLDGateEditPart) object);
 				}
 			}
 			if (!gates.isEmpty()) {
 				Rectangle rect = getBoundsRect();
-				for (GateEditPart gateEditPart : gates) {
+				for (OLDGateEditPart gateEditPart : gates) {
 					Node view = (Node) gateEditPart.getNotationView();
 					Location location = (Location) view.getLayoutConstraint();
 					Point pt = new Point(location.getX(), location.getY());
-					if (pt.x == rect.x - GateEditPart.DEFAULT_SIZE.width / 2 || pt.x == rect.right() - GateEditPart.DEFAULT_SIZE.width / 2) {
+					if (pt.x == rect.x - OLDGateEditPart.DEFAULT_SIZE.width / 2 || pt.x == rect.right() - OLDGateEditPart.DEFAULT_SIZE.width / 2) {
 						commands.appendIfCanExecute(new GMFtoEMFCommandWrapper(new SetBoundsCommand(getEditingDomain(), "Move gate", gateEditPart, pt.getTranslated(0, resizeDelta))));
 					}
 				}

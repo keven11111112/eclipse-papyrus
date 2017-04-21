@@ -63,7 +63,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionHeadImpactLayoutEditPolicy;
@@ -168,7 +168,7 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 		// Fixed bugs: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134 and https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InteractionGraphicalNodeEditPolicy());
 		// Create gate: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
-		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
+		installEditPolicy("Gate Creation Edit Policy", new OLDGateCreationEditPolicy());
 		// Ordering fragments after creation, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new InteractionFragmentsCreationEditPolicy());
 		// Install custom PrimaryDragEditPolicy to preserve anchors for lost and found.
@@ -600,8 +600,8 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.remove(((InteractionInteractionCompartmentEditPart) childEditPart).getFigure());
 			return true;
-		} else if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart) childEditPart).getFigure());
+		} else if (childEditPart instanceof OLDGateEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OLDGateEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -617,8 +617,8 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), new GateLocator((GateEditPart) childEditPart, getFigure()));
+		if (childEditPart instanceof OLDGateEditPart) {
+			getBorderedFigure().getBorderItemContainer().add(((OLDGateEditPart) childEditPart).getFigure(), new GateLocator((OLDGateEditPart) childEditPart, getFigure()));
 			return true;
 		}
 		return super.addFixedChild(childEditPart);

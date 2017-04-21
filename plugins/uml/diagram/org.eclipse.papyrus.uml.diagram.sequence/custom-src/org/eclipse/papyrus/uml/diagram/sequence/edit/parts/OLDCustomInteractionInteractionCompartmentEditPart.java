@@ -18,20 +18,20 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDCombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionInteractionCompartmentEditPart extends InteractionInteractionCompartmentEditPart {
+public class OLDCustomInteractionInteractionCompartmentEditPart extends InteractionInteractionCompartmentEditPart {
 
 	/**
 	 * Constructor.
 	 *
 	 * @param view
 	 */
-	public CustomInteractionInteractionCompartmentEditPart(View view) {
+	public OLDCustomInteractionInteractionCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -41,7 +41,7 @@ public class CustomInteractionInteractionCompartmentEditPart extends Interaction
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new OLDCombinedFragmentCreationEditPolicy());
 		removeEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE);
 	}
 

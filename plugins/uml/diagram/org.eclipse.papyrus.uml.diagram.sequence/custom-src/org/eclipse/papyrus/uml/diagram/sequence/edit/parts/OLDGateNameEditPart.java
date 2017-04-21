@@ -65,7 +65,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyrusEditPart {
+public class OLDGateNameEditPart extends BorderItemLabelEditPart implements IPapyrusEditPart {
 
 	public static final String GATE_NAME_TYPE = "Gate_Name";
 
@@ -78,7 +78,7 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 	 *
 	 * @param view
 	 */
-	public GateNameEditPart(View view) {
+	public OLDGateNameEditPart(View view) {
 		super(view);
 	}
 
@@ -117,8 +117,8 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 		if (location.x == 0 && location.y == 0) {
 			Dimension size = getSize();
 			EditPart parent = getParent();
-			if (parent instanceof GateEditPart) {
-				GateEditPart gateEditPart = ((GateEditPart) parent);
+			if (parent instanceof OLDGateEditPart) {
+				OLDGateEditPart gateEditPart = ((OLDGateEditPart) parent);
 				EObject elt = gateEditPart.resolveSemanticElement();
 				Dimension preferredSize = getFigure().getPreferredSize(size.width, size.height);
 				IBorderItemLocator locator = gateEditPart.getBorderItemLocator();
@@ -128,28 +128,28 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 						if (gateEditPart.getTargetConnections().isEmpty()) {
 							location.x = -preferredSize.width - 1;
 						} else {
-							location.x = GateEditPart.DEFAULT_SIZE.width + 1;
+							location.x = OLDGateEditPart.DEFAULT_SIZE.width + 1;
 						}
 						if (elt instanceof Gate && GateHelper.isInnerCFGate((Gate) elt)) {
-							location.y = GateEditPart.DEFAULT_SIZE.height - 2;// move fown
+							location.y = OLDGateEditPart.DEFAULT_SIZE.height - 2;// move fown
 						} else {
-							location.y = -GateEditPart.DEFAULT_SIZE.height + 2;// move up
+							location.y = -OLDGateEditPart.DEFAULT_SIZE.height + 2;// move up
 						}
 					} else if (PositionConstants.RIGHT == alignment) {
 						if (gateEditPart.getSourceConnections().isEmpty()) {
-							location.x = GateEditPart.DEFAULT_SIZE.width + 1;
+							location.x = OLDGateEditPart.DEFAULT_SIZE.width + 1;
 						} else {
 							location.x = -preferredSize.width - 1;
 						}
 						if (elt instanceof Gate && GateHelper.isInnerCFGate((Gate) elt)) {
-							location.y = GateEditPart.DEFAULT_SIZE.height - 2;// move fown
+							location.y = OLDGateEditPart.DEFAULT_SIZE.height - 2;// move fown
 						} else {
-							location.y = -GateEditPart.DEFAULT_SIZE.height + 2;// move up
+							location.y = -OLDGateEditPart.DEFAULT_SIZE.height + 2;// move up
 						}
 					} else if (PositionConstants.TOP == alignment) {
-						location.y = -GateEditPart.DEFAULT_SIZE.height - 1;
+						location.y = -OLDGateEditPart.DEFAULT_SIZE.height - 1;
 					} else if (PositionConstants.BOTTOM == alignment) {
-						location.y = GateEditPart.DEFAULT_SIZE.height + 1;
+						location.y = OLDGateEditPart.DEFAULT_SIZE.height + 1;
 					}
 				}
 			}

@@ -39,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrence
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -189,6 +190,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Gate_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Gate_Shape"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Message_SynchEdge"); //$NON-NLS-1$
 	/**
@@ -322,6 +328,8 @@ public class UMLElementTypes {
 
 			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
 
+			elements.put(Gate_Shape, UMLPackage.eINSTANCE.getGate());
+
 			elements.put(Message_SynchEdge, UMLPackage.eINSTANCE.getMessage());
 
 			elements.put(Message_AsynchEdge, UMLPackage.eINSTANCE.getMessage());
@@ -380,6 +388,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
 			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape_CN);
 			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(Gate_Shape);
 			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
 			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
 			KNOWN_ELEMENT_TYPES.add(Message_ReplyEdge);
@@ -451,6 +460,8 @@ public class UMLElementTypes {
 				return DurationConstraint_Shape_CN;
 			case DurationObservationEditPart.VISUAL_ID:
 				return DurationObservation_Shape;
+			case GateEditPart.VISUAL_ID:
+				return Gate_Shape;
 			case MessageSyncEditPart.VISUAL_ID:
 				return Message_SynchEdge;
 			case MessageAsyncEditPart.VISUAL_ID:

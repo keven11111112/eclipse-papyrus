@@ -82,7 +82,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart.GuardFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDCombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandAppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
@@ -759,9 +759,9 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 			return null;
 		}
 		if (request instanceof ReconnectRequest) {
-			if (REQ_RECONNECT_SOURCE.equals(request.getType()) && ((ReconnectRequest) request).getConnectionEditPart().getSource() instanceof GateEditPart) {
+			if (REQ_RECONNECT_SOURCE.equals(request.getType()) && ((ReconnectRequest) request).getConnectionEditPart().getSource() instanceof OLDGateEditPart) {
 				return getParent().getParent().getCommand(request);
-			} else if (REQ_RECONNECT_TARGET.equals(request.getType()) && ((ReconnectRequest) request).getConnectionEditPart().getTarget() instanceof GateEditPart) {
+			} else if (REQ_RECONNECT_TARGET.equals(request.getType()) && ((ReconnectRequest) request).getConnectionEditPart().getTarget() instanceof OLDGateEditPart) {
 				return getParent().getParent().getCommand(request);
 			}
 		}

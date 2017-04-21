@@ -71,7 +71,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
@@ -92,7 +92,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrence
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -1060,7 +1060,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				org.eclipse.gef.GraphicalEditPart parent = (org.eclipse.gef.GraphicalEditPart) lookForEditPart(owner);
 				if (parent != null) {
 					Point gateLocation = GateHelper.computeGateLocation(location, parent.getFigure(), null);
-					return new CreateGateViewCommand(getEditingDomain(), parent, gateLocation, new EObjectAdapter(gate));
+					return new OLDCreateGateViewCommand(getEditingDomain(), parent, gateLocation, new EObjectAdapter(gate));
 				}
 			}
 		}
@@ -1416,7 +1416,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				}
 			}
 			// find possible source location on Gate
-			else if (sourceEditPart instanceof GateEditPart) {
+			else if (sourceEditPart instanceof OLDGateEditPart) {
 				possibleSourceLocations = SequenceUtil.getAbsoluteBounds(sourceEditPart);
 			}
 			// find location constraints for target
@@ -1427,7 +1427,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				}
 			}
 			// find possible target location on Gate
-			else if (targetEditPart instanceof GateEditPart) {
+			else if (targetEditPart instanceof OLDGateEditPart) {
 				possibleTargetLocations = SequenceUtil.getAbsoluteBounds(sourceEditPart);
 			}
 			// deduce a possibility

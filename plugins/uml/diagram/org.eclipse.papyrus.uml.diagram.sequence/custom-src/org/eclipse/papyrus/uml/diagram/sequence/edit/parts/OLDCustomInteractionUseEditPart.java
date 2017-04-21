@@ -42,8 +42,8 @@ import org.eclipse.papyrus.infra.internationalization.common.utils.International
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GatesHolderGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGatesHolderGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionUseRectangleFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
@@ -63,7 +63,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionUseEditPart extends InteractionUseEditPart {
+public class OLDCustomInteractionUseEditPart extends InteractionUseEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -75,7 +75,7 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 	 *
 	 * @param view
 	 */
-	public CustomInteractionUseEditPart(View view) {
+	public OLDCustomInteractionUseEditPart(View view) {
 		super(view);
 	}
 
@@ -124,8 +124,8 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 		super.createDefaultEditPolicies();
 		// installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GatesHolderGraphicalNodeEditPolicy());
-		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDGatesHolderGraphicalNodeEditPolicy());
+		installEditPolicy("Gate Creation Edit Policy", new OLDGateCreationEditPolicy());
 		// install a editpolicy to display stereotypes
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 	}
@@ -148,10 +148,6 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 
 	@Override
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart) childEditPart).getFigure());
-			return true;
-		}
 		return super.removeFixedChild(childEditPart);
 	}
 
@@ -163,10 +159,6 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 	 */
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), new GateLocator((GateEditPart) childEditPart, getFigure()));
-			return true;
-		}
 		return super.addFixedChild(childEditPart);
 	}
 
@@ -322,7 +314,7 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 				@Override
 				public void run() {
 					LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater();
-					updater.update(CustomInteractionUseEditPart.this);
+					updater.update(OLDCustomInteractionUseEditPart.this);
 				}
 			});
 		}

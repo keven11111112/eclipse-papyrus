@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
@@ -202,8 +202,8 @@ public class LifelineHeadUtil {
 							if (movedEditParts.contains(object)) {
 								continue;
 							}
-							if (object instanceof GateEditPart) {
-								GateEditPart gate = (GateEditPart) object;
+							if (object instanceof OLDGateEditPart) {
+								OLDGateEditPart gate = (OLDGateEditPart) object;
 								Command command = getVerticalMoveShapeCommand(gate, moveDelta, false);
 								commands.appendIfCanExecute(command);
 								movedEditParts.add(gate);
@@ -256,8 +256,8 @@ public class LifelineHeadUtil {
 		for (Object object : sourceConnections) {
 			ConnectionEditPart conn = (ConnectionEditPart) object;
 			EditPart target = conn.getTarget();
-			if (target instanceof GateEditPart) {
-				Command command = getVerticalMoveShapeCommand((GateEditPart) target, moveDelta, false);
+			if (target instanceof OLDGateEditPart) {
+				Command command = getVerticalMoveShapeCommand((OLDGateEditPart) target, moveDelta, false);
 				commands.appendIfCanExecute(command);
 				movedEditParts.add(target);
 			} else if (object instanceof MessageLostEditPart) {
@@ -271,8 +271,8 @@ public class LifelineHeadUtil {
 			if (conn instanceof MessageFoundEditPart) {
 				Command command = getMoveAnchorCommand(conn, moveDelta, true);
 				commands.appendIfCanExecute(command);
-			} else if (conn.getSource() instanceof GateEditPart) {
-				Command command = getVerticalMoveShapeCommand((GateEditPart) conn.getSource(), moveDelta, false);
+			} else if (conn.getSource() instanceof OLDGateEditPart) {
+				Command command = getVerticalMoveShapeCommand((OLDGateEditPart) conn.getSource(), moveDelta, false);
 				commands.appendIfCanExecute(command);
 				movedEditParts.add(conn.getSource());
 			}

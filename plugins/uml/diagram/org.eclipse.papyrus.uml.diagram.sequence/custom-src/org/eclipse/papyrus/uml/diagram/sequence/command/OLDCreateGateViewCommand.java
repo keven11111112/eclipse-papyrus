@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -50,7 +50,7 @@ import org.eclipse.uml2.uml.InteractionUse;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CreateGateViewCommand extends AbstractTransactionalCommand {
+public class OLDCreateGateViewCommand extends AbstractTransactionalCommand {
 
 	protected IAdaptable containerViewAdapter;
 
@@ -69,7 +69,7 @@ public class CreateGateViewCommand extends AbstractTransactionalCommand {
 	 * @param label
 	 * @param affectedFiles
 	 */
-	public CreateGateViewCommand(TransactionalEditingDomain domain, IAdaptable containerViewAdapter, Point location, IAdaptable gateAdapter) {
+	public OLDCreateGateViewCommand(TransactionalEditingDomain domain, IAdaptable containerViewAdapter, Point location, IAdaptable gateAdapter) {
 		super(domain, "Create Gate", null);
 		this.containerViewAdapter = containerViewAdapter;
 		this.location = location;
@@ -151,7 +151,7 @@ public class CreateGateViewCommand extends AbstractTransactionalCommand {
 				View innerGateView = GateHelper.createView(containerView, innerGate);
 				if (location != null) {
 					ViewUtil.setStructuralFeatureValue(innerGateView, NotationPackage.eINSTANCE.getLocation_X(), Integer.valueOf(location.x));
-					ViewUtil.setStructuralFeatureValue(innerGateView, NotationPackage.eINSTANCE.getLocation_Y(), Integer.valueOf(location.y + GateEditPart.DEFAULT_SIZE.height + 2));
+					ViewUtil.setStructuralFeatureValue(innerGateView, NotationPackage.eINSTANCE.getLocation_Y(), Integer.valueOf(location.y + OLDGateEditPart.DEFAULT_SIZE.height + 2));
 				}
 			}
 		}
@@ -218,7 +218,7 @@ public class CreateGateViewCommand extends AbstractTransactionalCommand {
 		Rectangle bounds = getBounds(interactionView);
 		Point location = bounds.getLocation();
 		int index = interaction.getFormalGates().indexOf(formalGate);
-		location.y = GateEditPart.DEFAULT_SIZE.height * 2 * (index + 1);
+		location.y = OLDGateEditPart.DEFAULT_SIZE.height * 2 * (index + 1);
 		if (onRightSide) {
 			location.x = bounds.right();
 		}

@@ -1270,10 +1270,10 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	}
 
 	public int getAdjustedHeight() {
-		if (false == getParent() instanceof CustomInteractionInteractionCompartmentEditPart) {
+		if (false == getParent() instanceof OLDCustomInteractionInteractionCompartmentEditPart) {
 			return -1;
 		}
-		CustomInteractionInteractionCompartmentEditPart parentEP = (CustomInteractionInteractionCompartmentEditPart) getParent();
+		OLDCustomInteractionInteractionCompartmentEditPart parentEP = (OLDCustomInteractionInteractionCompartmentEditPart) getParent();
 		OldCustomInteractionEditPart grandParent = (OldCustomInteractionEditPart) parentEP.getParent();
 		final Bounds bounds = (Bounds) ((Shape) getModel()).getLayoutConstraint();
 		final Bounds boundsGrandParent = (Bounds) ((Shape) grandParent.getModel()).getLayoutConstraint();

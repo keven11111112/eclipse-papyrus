@@ -18,7 +18,7 @@ import static org.junit.Assert.assertNotNull;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -74,22 +74,22 @@ public class InteractionStereotypesTest extends BaseStereotypesTest {
 
 	@Test
 	public void testDisplayStereotypeInCompartment() {
-		checkConnectionHorizontally(messageWithGate, GateEditPart.DEFAULT_SIZE.height / 2);
+		checkConnectionHorizontally(messageWithGate, OLDGateEditPart.DEFAULT_SIZE.height / 2);
 		checkConnectionHorizontally(messageFound, 1);
 		checkConnectionHorizontally(messageLost, 1);
 		doTestDisplayStereotypeInCompartment(interaction, interaction);
-		checkConnectionHorizontally(messageWithGate, GateEditPart.DEFAULT_SIZE.height / 2);
+		checkConnectionHorizontally(messageWithGate, OLDGateEditPart.DEFAULT_SIZE.height / 2);
 		checkConnectionHorizontally(messageFound, 1);
 		checkConnectionHorizontally(messageLost, 1);
 	}
 
 	@Test
 	public void testDisplayStereotypeWithBrace() {
-		checkConnectionHorizontally(messageWithGate, GateEditPart.DEFAULT_SIZE.height / 2);
+		checkConnectionHorizontally(messageWithGate, OLDGateEditPart.DEFAULT_SIZE.height / 2);
 		checkConnectionHorizontally(messageFound, 1);
 		checkConnectionHorizontally(messageLost, 1);
 		doTestDisplayStereotypeWithBrace(interaction, interaction);
-		checkConnectionHorizontally(messageWithGate, GateEditPart.DEFAULT_SIZE.height / 2);
+		checkConnectionHorizontally(messageWithGate, OLDGateEditPart.DEFAULT_SIZE.height / 2);
 		checkConnectionHorizontally(messageFound, 1);
 		checkConnectionHorizontally(messageLost, 1);
 	}

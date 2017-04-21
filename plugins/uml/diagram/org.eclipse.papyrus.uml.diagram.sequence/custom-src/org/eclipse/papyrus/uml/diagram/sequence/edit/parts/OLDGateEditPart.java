@@ -57,7 +57,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateModelElementFactory;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -69,7 +69,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class GateEditPart extends AbstractBorderEditPart implements IBorderItemEditPart {
+public class OLDGateEditPart extends AbstractBorderEditPart implements IBorderItemEditPart {
 
 	public static final String GATE_TYPE = "Gate";
 
@@ -90,7 +90,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	 *
 	 * @param view
 	 */
-	public GateEditPart(View view) {
+	public OLDGateEditPart(View view) {
 		super(view);
 	}
 
@@ -161,7 +161,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GateGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDGateGraphicalNodeEditPolicy());
 	}
 
 	@Override
@@ -193,7 +193,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if (child instanceof GateNameEditPart) {
+				if (child instanceof OLDGateNameEditPart) {
 					return new ExternalLabelPrimaryDragRoleEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -234,11 +234,11 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (childEditPart instanceof GateNameEditPart) {
+		if (childEditPart instanceof OLDGateNameEditPart) {
 			// BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			// locator.setBorderItemOffset(new Dimension(-20, 0));
 			ExternalLabelPositionLocator locator = new ExternalLabelPositionLocator(getMainFigure());
-			getContentPaneFor((GateNameEditPart) childEditPart).add(((GateNameEditPart) childEditPart).getFigure(), locator);
+			getContentPaneFor((OLDGateNameEditPart) childEditPart).add(((OLDGateNameEditPart) childEditPart).getFigure(), locator);
 			return;
 		}
 		super.addChildVisual(childEditPart, index);
@@ -261,8 +261,8 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	 */
 	@Override
 	protected void removeChildVisual(EditPart child) {
-		if (child instanceof GateNameEditPart) {
-			getContentPaneFor((GateNameEditPart) child).remove(((GateNameEditPart) child).getFigure());
+		if (child instanceof OLDGateNameEditPart) {
+			getContentPaneFor((OLDGateNameEditPart) child).remove(((OLDGateNameEditPart) child).getFigure());
 			return;
 		}
 		super.removeChildVisual(child);
@@ -279,7 +279,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 			int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 			Point loc = new Point(x, y);
 			getBorderItemLocator().setConstraint(new Rectangle(loc, DEFAULT_SIZE));
-			GateNameEditPart labelEditPart = getLabelEditPart();
+			OLDGateNameEditPart labelEditPart = getLabelEditPart();
 			if (labelEditPart != null) {
 				labelEditPart.refreshBounds();
 			}
@@ -341,7 +341,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 			Iterator iterator = modelChildren.iterator();
 			while (iterator.hasNext()) {
 				View next = (View) iterator.next();
-				if (GateNameEditPart.GATE_NAME_TYPE.equals(next.getType())) {
+				if (OLDGateNameEditPart.GATE_NAME_TYPE.equals(next.getType())) {
 					iterator.remove();
 					break;
 				}
@@ -354,7 +354,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	 * Refresh the label of Gate.
 	 */
 	protected void refreshGateLabel() {
-		GateNameEditPart labelEditPart = getLabelEditPart();
+		OLDGateNameEditPart labelEditPart = getLabelEditPart();
 		if (labelEditPart != null) {
 			labelEditPart.refreshLabel();
 		}
@@ -367,7 +367,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	@Override
 	protected void refreshSourceConnections() {
 		super.refreshSourceConnections();
-		GateNameEditPart labelEditPart = getLabelEditPart();
+		OLDGateNameEditPart labelEditPart = getLabelEditPart();
 		if (labelEditPart != null) {
 			labelEditPart.refreshBounds();
 		}
@@ -380,7 +380,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 	@Override
 	protected void refreshTargetConnections() {
 		super.refreshTargetConnections();
-		GateNameEditPart labelEditPart = getLabelEditPart();
+		OLDGateNameEditPart labelEditPart = getLabelEditPart();
 		if (labelEditPart != null) {
 			labelEditPart.refreshBounds();
 		}
@@ -398,10 +398,10 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 		return super.getPrimaryChildEditPart();
 	}
 
-	public GateNameEditPart getLabelEditPart() {
-		IGraphicalEditPart labelEditPart = getChildBySemanticHint(GateNameEditPart.GATE_NAME_TYPE);
-		if (labelEditPart instanceof GateNameEditPart) {
-			return (GateNameEditPart) labelEditPart;
+	public OLDGateNameEditPart getLabelEditPart() {
+		IGraphicalEditPart labelEditPart = getChildBySemanticHint(OLDGateNameEditPart.GATE_NAME_TYPE);
+		if (labelEditPart instanceof OLDGateNameEditPart) {
+			return (OLDGateNameEditPart) labelEditPart;
 		}
 		return null;
 	}

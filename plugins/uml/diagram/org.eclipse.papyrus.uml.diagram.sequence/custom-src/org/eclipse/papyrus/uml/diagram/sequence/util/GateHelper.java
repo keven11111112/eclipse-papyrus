@@ -44,8 +44,8 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -93,13 +93,13 @@ public class GateHelper {
 			return null;
 		}
 		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setType(GateEditPart.GATE_TYPE);
+		node.setType(OLDGateEditPart.GATE_TYPE);
 		node.setElement(gate);
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		ViewUtil.insertChildView(containerView, node, ViewUtil.APPEND, true);
 		// label
 		DecorationNode label = NotationFactory.eINSTANCE.createDecorationNode();
-		label.setType(GateNameEditPart.GATE_NAME_TYPE);
+		label.setType(OLDGateNameEditPart.GATE_NAME_TYPE);
 		// Add possible to move the label.
 		label.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		ViewUtil.insertChildView(node, label, ViewUtil.APPEND, true);
@@ -368,11 +368,11 @@ public class GateHelper {
 			return pt;
 		}
 		Point location = pt.getCopy();
-		Rectangle bounds = new Rectangle(location, GateEditPart.DEFAULT_SIZE);
+		Rectangle bounds = new Rectangle(location, OLDGateEditPart.DEFAULT_SIZE);
 		hostFigure.translateToRelative(bounds);
 		GateLocator locator = new GateLocator(hostFigure);
 		Rectangle validLocation = locator.getValidLocation(bounds, gateFigure);
-		return validLocation.getLocation().getTranslated(0, -GateEditPart.DEFAULT_SIZE.height / 2 - 1);
+		return validLocation.getLocation().getTranslated(0, -OLDGateEditPart.DEFAULT_SIZE.height / 2 - 1);
 	}
 
 	public static void updateGateName(TransactionalEditingDomain editingDomain, final Gate gate, final String newName) {

@@ -50,7 +50,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -74,7 +74,7 @@ import org.eclipse.uml2.uml.MessageEnd;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNodeEditPolicy {
+public class InteractionGraphicalNodeEditPolicy extends OLDGatesHolderGraphicalNodeEditPolicy {
 
 	/**
 	 * Constructor.
@@ -166,7 +166,7 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 								return null;
 							}
 						};
-						CreateGateViewCommand createGateCommand = new CreateGateViewCommand(editingDomain, sourceEditPart, location, gateAdaptor);
+						OLDCreateGateViewCommand createGateCommand = new OLDCreateGateViewCommand(editingDomain, sourceEditPart, location, gateAdaptor);
 						cc.add(new ICommandProxy(createGateCommand));
 						SetConnectionEndsCommand resetSourceCommand = new SetConnectionEndsCommand(editingDomain, null);
 						resetSourceCommand.setEdgeAdaptor(edgeAdaptor);

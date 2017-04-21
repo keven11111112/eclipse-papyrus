@@ -37,11 +37,7 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 	}
 
 	protected IGraphicalEditPart createCustomEditPart(View view) {
-		if (GateEditPart.GATE_TYPE.equals(view.getType())) {
-			return new GateEditPart(view);
-		} else if (GateNameEditPart.GATE_NAME_TYPE.equals(view.getType())) {
-			return new GateNameEditPart(view);
-		} else if (InteractionOperandGuardEditPart.GUARD_TYPE.equals(view.getType())) {
+		if (InteractionOperandGuardEditPart.GUARD_TYPE.equals(view.getType())) {
 			return new InteractionOperandGuardEditPart(view);
 		} else if (BehaviorExecutionSpecificationBehaviorEditPart.BEHAVIOR_TYPE.equals(view.getType())) {
 			return new BehaviorExecutionSpecificationBehaviorEditPart(view);

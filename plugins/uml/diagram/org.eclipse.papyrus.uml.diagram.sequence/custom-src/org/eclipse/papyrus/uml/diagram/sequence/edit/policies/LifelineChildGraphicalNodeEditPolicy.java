@@ -42,7 +42,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
@@ -308,7 +308,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 							}
 						};
 						TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-						CreateGateViewCommand createGateCommand = new CreateGateViewCommand(editingDomain, sourceEP, location, gateAdapter);
+						OLDCreateGateViewCommand createGateCommand = new OLDCreateGateViewCommand(editingDomain, sourceEP, location, gateAdapter);
 						cc.add(new ICommandProxy(createGateCommand));
 						SetConnectionEndsCommand resetSourceCommand = new SetConnectionEndsCommand(editingDomain, null);
 						resetSourceCommand.setEdgeAdaptor(edgeAdapter);

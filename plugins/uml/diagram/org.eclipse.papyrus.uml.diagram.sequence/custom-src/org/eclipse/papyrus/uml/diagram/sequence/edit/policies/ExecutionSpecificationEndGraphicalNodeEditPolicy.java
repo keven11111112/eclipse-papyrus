@@ -64,7 +64,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.ChangeEdgeTargetCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateElementAndNodeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
@@ -259,7 +259,7 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		ConnectionAnchor sourceAnchor = getActualSourceConnectionAnchor(request);
 		ConnectionAnchor targetAnchor = getSourceConnectionAnchor(targetEditPart, request);
 		Point sourceLocation = sourceAnchor.getLocation(targetAnchor.getReferencePoint()).getCopy();
-		if (sourceEP instanceof GateEditPart) {
+		if (sourceEP instanceof OLDGateEditPart) {
 			// Changing target for Gates changes anchor location - we're taking care of it
 			org.eclipse.draw2d.geometry.Rectangle gateBounds = sourceEP.getFigure().getBounds().getCopy();
 			sourceEP.getFigure().translateToAbsolute(gateBounds);

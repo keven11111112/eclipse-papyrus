@@ -70,7 +70,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -1325,8 +1325,8 @@ public class OperandBoundsComputeHelper {
 			Point start = SequenceUtil.getAbsoluteEdgeExtremity(message, true);
 			Point end = SequenceUtil.getAbsoluteEdgeExtremity(message, false);
 			Rectangle bounds = new Rectangle(start, end);
-			if (message.getSource() instanceof GateEditPart || message.getTarget() instanceof GateEditPart) {
-				bounds.expand(0, Math.round((GateEditPart.DEFAULT_SIZE.height - bounds.height) / 2.0));
+			if (message.getSource() instanceof OLDGateEditPart || message.getTarget() instanceof OLDGateEditPart) {
+				bounds.expand(0, Math.round((OLDGateEditPart.DEFAULT_SIZE.height - bounds.height) / 2.0));
 			}
 			if (bounds.height < EXECUTION_VERTICAL_MARGIN) {
 				bounds.height = EXECUTION_VERTICAL_MARGIN;
@@ -1635,8 +1635,8 @@ public class OperandBoundsComputeHelper {
 				if (message != null) {
 					Edge edge = (Edge) message.getModel();
 					Connection msgFigure = message.getConnectionFigure();
-					if (message.getSource() instanceof GateEditPart) {
-						GateEditPart gate = (GateEditPart) message.getSource();
+					if (message.getSource() instanceof OLDGateEditPart) {
+						OLDGateEditPart gate = (OLDGateEditPart) message.getSource();
 						Location layout = (Location) ((Shape) gate.getNotationView()).getLayoutConstraint();
 						Point location = new Point(layout.getX(), layout.getY());
 						location.y += moveDelta;
@@ -1650,8 +1650,8 @@ public class OperandBoundsComputeHelper {
 							commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfSourceAnchor)));
 						}
 					}
-					if (message.getTarget() instanceof GateEditPart) {
-						GateEditPart gate = (GateEditPart) message.getTarget();
+					if (message.getTarget() instanceof OLDGateEditPart) {
+						OLDGateEditPart gate = (OLDGateEditPart) message.getTarget();
 						Location layout = (Location) ((Shape) gate.getNotationView()).getLayoutConstraint();
 						Point location = new Point(layout.getX(), layout.getY());
 						location.y += moveDelta;

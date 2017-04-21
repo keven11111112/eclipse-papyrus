@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.InteractionFragment;
  * @author mvelten
  *
  */
-public class CombinedFragmentCreationEditPolicy extends DefaultCreationEditPolicy {
+public class OLDCombinedFragmentCreationEditPolicy extends DefaultCreationEditPolicy {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -198,7 +198,7 @@ public class CombinedFragmentCreationEditPolicy extends DefaultCreationEditPolic
 		CreateRequest createReq = (CreateRequest) request;
 		try {
 			Object newObjectType = createReq.getNewObjectType();
-			return GateEditPart.GATE_TYPE.equals(newObjectType);
+			return OLDGateEditPart.GATE_TYPE.equals(newObjectType);
 		} catch (Exception e) {
 			// There's no CreationFactory set.
 			return false;

@@ -22,7 +22,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
  */
 public class GateLocator extends AdvancedBorderItemLocator {
 
-	private GateEditPart gateEditPart;
+	private OLDGateEditPart gateEditPart;
 
 	private Integer alignment;
 
@@ -43,7 +43,7 @@ public class GateLocator extends AdvancedBorderItemLocator {
 		super(parentFigure);
 	}
 
-	public GateLocator(GateEditPart gateEditPart, IFigure parentFigure) {
+	public GateLocator(OLDGateEditPart gateEditPart, IFigure parentFigure) {
 		super(parentFigure);
 		this.gateEditPart = gateEditPart;
 	}
@@ -190,7 +190,7 @@ public class GateLocator extends AdvancedBorderItemLocator {
 		// Ensure the constraint is same as the model.
 		int x = ((Integer) gateEditPart.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) gateEditPart.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		Rectangle constraint = new Rectangle(x, y, GateEditPart.DEFAULT_SIZE.width, GateEditPart.DEFAULT_SIZE.height);
+		Rectangle constraint = new Rectangle(x, y, OLDGateEditPart.DEFAULT_SIZE.width, OLDGateEditPart.DEFAULT_SIZE.height);
 		return constraint;
 	}
 }

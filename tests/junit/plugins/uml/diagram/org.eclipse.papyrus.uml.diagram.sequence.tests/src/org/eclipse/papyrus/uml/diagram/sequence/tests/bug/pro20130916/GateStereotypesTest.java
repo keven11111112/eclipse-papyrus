@@ -24,7 +24,7 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.CreationFactory;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.uml2.uml.Gate;
 import org.junit.Before;
@@ -35,7 +35,7 @@ import org.junit.Test;
  */
 public class GateStereotypesTest extends BaseStereotypesTest {
 
-	private GateEditPart gate;
+	private OLDGateEditPart gate;
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest#setUp()
@@ -50,16 +50,16 @@ public class GateStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(gate);
 	}
 
-	private GateEditPart createGate(EditPart parent, Point location) {
+	private OLDGateEditPart createGate(EditPart parent, Point location) {
 		CreateRequest request = new CreateRequest(RequestConstants.REQ_CREATE);
 		request.setFactory(new CreationFactory() {
 
 			public Object getObjectType() {
-				return GateEditPart.GATE_TYPE;
+				return OLDGateEditPart.GATE_TYPE;
 			}
 
 			public Object getNewObject() {
-				return GateEditPart.GATE_TYPE;
+				return OLDGateEditPart.GATE_TYPE;
 			}
 		});
 		request.setLocation(location);
@@ -68,18 +68,18 @@ public class GateStereotypesTest extends BaseStereotypesTest {
 		assertTrue("executable of create gate command", command.canExecute());
 		getDiagramCommandStack().execute(command);
 		waitForComplete();
-		GateEditPart gateEditPart = getPrimaryGateEditPart(parent);
+		OLDGateEditPart gateEditPart = getPrimaryGateEditPart(parent);
 		assertNotNull("created gate", gateEditPart);
 		return gateEditPart;
 	}
 
-	protected GateEditPart getPrimaryGateEditPart(EditPart parent) {
+	protected OLDGateEditPart getPrimaryGateEditPart(EditPart parent) {
 		@SuppressWarnings("rawtypes")
 		List children = parent.getChildren();
 		for(int i = children.size() - 1; i >= 0; i--) {
 			Object child = children.get(i);
-			if(child instanceof GateEditPart) {
-				GateEditPart gateEp = (GateEditPart)child;
+			if(child instanceof OLDGateEditPart) {
+				OLDGateEditPart gateEp = (OLDGateEditPart)child;
 				Gate gate = (Gate)gateEp.resolveSemanticElement();
 				if(!(GateHelper.isInnerCFGate(gate))) {
 					return gateEp;

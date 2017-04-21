@@ -32,8 +32,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Constraint2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintContextAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
@@ -46,6 +48,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLab
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -81,6 +85,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
@@ -327,262 +332,279 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
 				.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
-		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if (SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = PackageEditPart.VISUAL_ID;
+				containerVisualID = SequenceDiagramEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
-		switch (containerVisualID) {
-		case PackageEditPart.VISUAL_ID:
-			if (InteractionEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
+		if (containerVisualID != null) {
+			switch (containerVisualID) {
+			case SequenceDiagramEditPart.VISUAL_ID:
+				if (InteractionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case InteractionEditPart.VISUAL_ID:
+				if (InteractionNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (InteractionInteractionCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationConstraintInMessageEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (GateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case CombinedFragmentEditPart.VISUAL_ID:
+				if (CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (GateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case InteractionOperandEditPart.VISUAL_ID:
+				if (InteractionUseEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (CombinedFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ContinuationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case InteractionUseEditPart.VISUAL_ID:
+				if (InteractionUseNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (InteractionUseName2EditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (GateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ContinuationEditPart.VISUAL_ID:
+				if (ContinuationNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case LifelineEditPart.VISUAL_ID:
+				if (LifelineNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (StateInvariantEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (CombinedFragment2EditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (TimeConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (TimeObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DestructionOccurrenceSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case StateInvariantEditPart.VISUAL_ID:
+				if (StateInvariantNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (StateInvariantLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case CombinedFragment2EditPart.VISUAL_ID:
+				if (GateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case TimeConstraintEditPart.VISUAL_ID:
+				if (TimeConstraintLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (TimeConstraintAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case TimeObservationEditPart.VISUAL_ID:
+				if (TimeObservationLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (TimeObservationAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case DurationConstraintEditPart.VISUAL_ID:
+				if (DurationConstraintLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationConstraintAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ConstraintEditPart.VISUAL_ID:
+				if (ConstraintNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (Constraint2EditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case CommentEditPart.VISUAL_ID:
+				if (CommentBodyEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case DurationConstraintInMessageEditPart.VISUAL_ID:
+				if (DurationConstraintInMessageLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case DurationObservationEditPart.VISUAL_ID:
+				if (DurationObservationLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationObservationAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case GateEditPart.VISUAL_ID:
+				if (GateNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
+				if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (CombinedFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (LifelineEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (InteractionUseEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (CommentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
+				if (InteractionOperandEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageSyncEditPart.VISUAL_ID:
+				if (MessageSyncNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (MessageSyncAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageAsyncEditPart.VISUAL_ID:
+				if (MessageAsyncNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (MessageAsyncAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageReplyEditPart.VISUAL_ID:
+				if (MessageReplyNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (MessageReplyAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageCreateEditPart.VISUAL_ID:
+				if (MessageCreateNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (MessageCreateAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageDeleteEditPart.VISUAL_ID:
+				if (MessageDeleteNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (MessageDeleteAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageLostEditPart.VISUAL_ID:
+				if (MessageLostNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (MessageLostAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageFoundEditPart.VISUAL_ID:
+				if (MessageFoundNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (MessageFoundAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case GeneralOrderingEditPart.VISUAL_ID:
+				if (GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ContextLinkEditPart.VISUAL_ID:
+				if (ConstraintContextAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
 			}
-			break;
-		case InteractionEditPart.VISUAL_ID:
-			if (InteractionNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (InteractionInteractionCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DurationConstraintInMessageEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DurationObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case CombinedFragmentEditPart.VISUAL_ID:
-			if (CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case InteractionOperandEditPart.VISUAL_ID:
-			if (InteractionUseEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (CombinedFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (ContinuationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case InteractionUseEditPart.VISUAL_ID:
-			if (InteractionUseNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (InteractionUseName2EditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case ContinuationEditPart.VISUAL_ID:
-			if (ContinuationNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case LifelineEditPart.VISUAL_ID:
-			if (LifelineEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (LifelineNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (CCombinedCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (StateInvariantEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (CombinedFragment2EditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (TimeConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (TimeObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DurationConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DestructionOccurrenceSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case StateInvariantEditPart.VISUAL_ID:
-			if (StateInvariantNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case TimeConstraintEditPart.VISUAL_ID:
-			if (TimeConstraintLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (TimeConstraintAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case TimeObservationEditPart.VISUAL_ID:
-			if (TimeObservationLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (TimeObservationAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case DurationConstraintEditPart.VISUAL_ID:
-			if (DurationConstraintLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DurationConstraintAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case ConstraintEditPart.VISUAL_ID:
-			if (ConstraintNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (Constraint2EditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case CommentEditPart.VISUAL_ID:
-			if (CommentBodyEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case DurationConstraintInMessageEditPart.VISUAL_ID:
-			if (DurationConstraintInMessageLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case DurationObservationEditPart.VISUAL_ID:
-			if (DurationObservationLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DurationObservationAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (CombinedFragmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (LifelineEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (InteractionUseEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (ConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (CommentEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (TimeObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (DurationObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-			if (InteractionOperandEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case MessageSyncEditPart.VISUAL_ID:
-			if (MessageSyncNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (MessageSyncAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case MessageAsyncEditPart.VISUAL_ID:
-			if (MessageAsyncNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (MessageAsyncAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case MessageReplyEditPart.VISUAL_ID:
-			if (MessageReplyNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (MessageReplyAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case MessageCreateEditPart.VISUAL_ID:
-			if (MessageCreateNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (MessageCreateAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case MessageDeleteEditPart.VISUAL_ID:
-			if (MessageDeleteNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (MessageDeleteAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case MessageLostEditPart.VISUAL_ID:
-			if (MessageLostNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (MessageLostAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case MessageFoundEditPart.VISUAL_ID:
-			if (MessageFoundNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			if (MessageFoundAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
-		case GeneralOrderingEditPart.VISUAL_ID:
-			if (GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-				return true;
-			}
-			break;
 		}
 		return false;
 	}
@@ -732,7 +754,6 @@ public class UMLVisualIDRegistry {
 			switch (visualID) {
 			case SequenceDiagramEditPart.VISUAL_ID:
 				return false;
-			case InteractionUseEditPart.VISUAL_ID:
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -740,13 +761,13 @@ public class UMLVisualIDRegistry {
 			case CommentEditPart.VISUAL_ID:
 			case ContinuationEditPart.VISUAL_ID:
 			case StateInvariantEditPart.VISUAL_ID:
-			case CombinedFragment2EditPart.VISUAL_ID:
 			case TimeConstraintEditPart.VISUAL_ID:
 			case TimeObservationEditPart.VISUAL_ID:
 			case DurationConstraintEditPart.VISUAL_ID:
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
 			case DurationObservationEditPart.VISUAL_ID:
+			case GateEditPart.VISUAL_ID:
 				return true;
 			}
 		}

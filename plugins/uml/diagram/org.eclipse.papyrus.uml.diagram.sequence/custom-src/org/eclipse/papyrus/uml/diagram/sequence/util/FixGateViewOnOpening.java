@@ -42,9 +42,9 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -119,15 +119,15 @@ public class FixGateViewOnOpening {
 			int index = indexOfGate(gate);
 			if (index != -1) {
 				if (gate == message.getReceiveEvent()) {
-					location = new Point(rect.x, rect.y + GateEditPart.DEFAULT_SIZE.height * index + 2);
+					location = new Point(rect.x, rect.y + OLDGateEditPart.DEFAULT_SIZE.height * index + 2);
 				} else if (gate == message.getSendEvent()) {
-					location = new Point(rect.right(), rect.y + GateEditPart.DEFAULT_SIZE.height * index + 2);
+					location = new Point(rect.right(), rect.y + OLDGateEditPart.DEFAULT_SIZE.height * index + 2);
 				}
 			}
 		}
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
 		CompositeCommand fixCommands = new CompositeCommand("Fix Gate View");
-		CreateGateViewCommand command = new CreateGateViewCommand(editingDomain, new EObjectAdapter(parent), location, new EObjectAdapter(gate));
+		OLDCreateGateViewCommand command = new OLDCreateGateViewCommand(editingDomain, new EObjectAdapter(parent), location, new EObjectAdapter(gate));
 		fixCommands.add(command);
 		if (message != null && edge != null) {
 			SetConnectionEndsCommand redirectCommand = new SetConnectionEndsCommand(editingDomain, "Reset Message End");

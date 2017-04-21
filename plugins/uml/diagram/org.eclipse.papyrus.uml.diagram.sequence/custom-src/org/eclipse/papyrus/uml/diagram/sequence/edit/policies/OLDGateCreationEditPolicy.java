@@ -29,8 +29,8 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateElementAndViewCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateElementAndViewCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.Control;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class GateCreationEditPolicy extends LayoutEditPolicy {
+public class OLDGateCreationEditPolicy extends LayoutEditPolicy {
 
 	private static final String GATE_LOCATION_DATA = "Gate location data";
 
@@ -49,7 +49,7 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 	 * Constructor.
 	 *
 	 */
-	public GateCreationEditPolicy() {
+	public OLDGateCreationEditPolicy() {
 	}
 
 	/**
@@ -103,13 +103,13 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 		if (gateFeedback == null) {
 			gateFeedback = new RectangleFigure();
 			((RectangleFigure) gateFeedback).setLineWidth(2);
-			gateFeedback.setSize(GateEditPart.DEFAULT_SIZE);
+			gateFeedback.setSize(OLDGateEditPart.DEFAULT_SIZE);
 			getFeedbackLayer().add(gateFeedback);
 		}
 		GateLocator locator = new GateLocator(getHostFigure());
 		Rectangle proposedLocation = new Rectangle();
 		proposedLocation.setLocation(request.getLocation());
-		proposedLocation.setSize(GateEditPart.DEFAULT_SIZE);
+		proposedLocation.setSize(OLDGateEditPart.DEFAULT_SIZE);
 		getHostFigure().translateToRelative(proposedLocation);
 		Rectangle rect = locator.getValidLocation(proposedLocation, gateFeedback);
 		getHostFigure().translateToAbsolute(rect);
@@ -159,7 +159,7 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 		CreateRequest createReq = (CreateRequest) request;
 		try {
 			Object newObjectType = createReq.getNewObjectType();
-			return GateEditPart.GATE_TYPE.equals(newObjectType);
+			return OLDGateEditPart.GATE_TYPE.equals(newObjectType);
 		} catch (Exception e) {
 			// There's no CreationFactory set.
 			return false;
@@ -216,7 +216,7 @@ public class GateCreationEditPolicy extends LayoutEditPolicy {
 	 * Create Gate Element and View.
 	 */
 	protected Command getCreateGateCommand(Point location) {
-		return new ICommandProxy(new CreateGateElementAndViewCommand(getEditingDomain(), getHost(), location));
+		return new ICommandProxy(new OLDCreateGateElementAndViewCommand(getEditingDomain(), getHost(), location));
 	}
 
 	private TransactionalEditingDomain getEditingDomain() {

@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.Gate;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CreateGateElementAndViewCommand extends CreateGateViewCommand {
+public class OLDCreateGateElementAndViewCommand extends OLDCreateGateViewCommand {
 
 	private boolean createInnerCFGate;
 
@@ -44,7 +44,7 @@ public class CreateGateElementAndViewCommand extends CreateGateViewCommand {
 	 * @param label
 	 * @param affectedFiles
 	 */
-	public CreateGateElementAndViewCommand(TransactionalEditingDomain domain, IAdaptable parentAdapter, Point location) {
+	public OLDCreateGateElementAndViewCommand(TransactionalEditingDomain domain, IAdaptable parentAdapter, Point location) {
 		super(domain, parentAdapter, location, new ObjectAdapter());
 	}
 

@@ -84,6 +84,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLab
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -259,6 +261,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case ConstraintEditPart.VISUAL_ID:
 					case CommentEditPart.VISUAL_ID:
 					case DurationObservationEditPart.VISUAL_ID:
+					case GateEditPart.VISUAL_ID:
 					case CombinedFragment2EditPart.VISUAL_ID:
 					case DurationConstraintInMessageEditPart.VISUAL_ID:
 						if (domainElement == null || !visualID
@@ -373,6 +376,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						preferencesHint);
 			case DurationObservationEditPart.VISUAL_ID:
 				return createDurationObservation_Shape(domainElement, containerView, index, persisted, preferencesHint);
+			case GateEditPart.VISUAL_ID:
+				return createGate_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			}
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -829,6 +834,29 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.getLayoutConstraint();
 		durationObservation_StereotypeLabel_Location.setX(0);
 		durationObservation_StereotypeLabel_Location.setY(-22);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createGate_Shape(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(GateEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Gate");
+		Node gate_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(GateNameEditPart.VISUAL_ID));
+		gate_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location gate_NameLabel_Location = (Location) gate_NameLabel.getLayoutConstraint();
+		gate_NameLabel_Location.setX(25);
+		gate_NameLabel_Location.setY(3);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Gate");
 		return node;
 	}
 

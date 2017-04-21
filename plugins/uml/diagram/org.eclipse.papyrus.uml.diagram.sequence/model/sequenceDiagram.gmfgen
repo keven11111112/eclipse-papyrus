@@ -100,8 +100,8 @@
           editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
-          key="referencialgrilling.GrillingManagementEditPolicy.GRILLING_MANAGEMENT"
-          editPolicyQualifiedClassName="referencialgrilling.GrillingManagementEditPolicy"/>
+          key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy.GRILLING_MANAGEMENT"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
@@ -155,6 +155,7 @@
           itemSemanticEditPolicyClassName="CombinedFragmentItemSemanticEditPolicy"
           notationViewFactoryClassName="CombinedFragmentViewFactory"
           canonicalEditPolicyClassName="CombinedFragmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.18"
           compartments="/0/@diagram/@compartments.1"
           graphicalNodeEditPolicyClassName="CombinedFragmentGraphicalNodeEditPolicy"
           createCommandClassName="CombinedFragmentCreateCommand"
@@ -242,6 +243,7 @@
           itemSemanticEditPolicyClassName="InteractionUseItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionUseViewFactory"
           canonicalEditPolicyClassName="InteractionUseCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.18"
           graphicalNodeEditPolicyClassName="InteractionUseGraphicalNodeEditPolicy"
           createCommandClassName="InteractionUseCreateCommand"
           containers="/0/@diagram/@childNodes.2 /0/@diagram/@compartments.0">
@@ -638,6 +640,7 @@
           itemSemanticEditPolicyClassName="CombinedFragment2ItemSemanticEditPolicy"
           notationViewFactoryClassName="CombinedFragmentViewFactory"
           canonicalEditPolicyClassName="CombinedFragment2CanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.18"
           graphicalNodeEditPolicyClassName="CombinedFragment2GraphicalNodeEditPolicy"
           createCommandClassName="CombinedFragment2CreateCommand"
           containers="/0/@diagram/@childNodes.5">
@@ -1331,13 +1334,72 @@
               parser="/0/@labelParsers/@implementations.9"/>
         </labels>
       </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3025"
+          editPartClassName="GateEditPart"
+          itemSemanticEditPolicyClassName="GateItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="GateCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="GateGraphicalNodeEditPolicy"
+          createCommandClassName="GateCreateCommand"
+          containers="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.0">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Gate_Shape"
+            displayName="Gate"
+            definedExternally="true"
+            editHelperClassName="GateEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AffixedNamedElementFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="16"
+              height="16"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedNodeEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Gate"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/formalGate"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/formalGate"/>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5024"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.1">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
       <topLevelNodes
           visualID="2001"
           editPartClassName="InteractionEditPart"
           itemSemanticEditPolicyClassName="InteractionItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionViewFactory"
           canonicalEditPolicyClassName="InteractionCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17"
+          childNodes="/0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18"
           compartments="/0/@diagram/@compartments.0"
           graphicalNodeEditPolicyClassName="InteractionGraphicalNodeEditPolicy"
           createCommandClassName="InteractionCreateCommand">
@@ -2371,11 +2433,12 @@
               genNodes="/0/@diagram/@childNodes.12 /0/@diagram/@childNodes.16"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Destruction Event"
-              description="Create a Destruction Event"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif"
-              genNodes="/0/@diagram/@childNodes.13"/>
+              title="Gate"
+              description="New create a gate"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif"
+              createMethodName="createNEWGateCreationTool"
+              genNodes="/0/@diagram/@childNodes.18"/>
         </groups>
         <groups
             title="Edges"
@@ -7314,7 +7377,7 @@
           uses="/0/@diagram/@links.10/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.5/@labels.0/@modelFacet"
@@ -7445,6 +7508,34 @@
         genView="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.5"
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
+        comment="specific locator to move Gate name"
+        classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
+        genExternalNodeLabel="/0/@diagram/@childNodes.18/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocator"
+        comment="specific locator to move gates"
+        classpath="org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator"
+        genChildSideAffixedNode="/0/@diagram/@childNodes.18"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="add superclass for floating Label"
+        genView="/0/@diagram/@childNodes.18/@labels.0"
+        name="FloatingLabelEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
+        externalNodeLabels="/0/@diagram/@childNodes.18/@labels.0"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="precise the super class of the GateEditPart"
+        genView="/0/@diagram/@childNodes.18"
+        name="GateEditPart superclass"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
   <papyrusgmfgenextension:VisualIDOverride
       genView="/0/@diagram"
@@ -7674,5 +7765,13 @@
           genView="/0/@diagram/@links.10/@labels.0"
           visualID="Constraint_KeywordLabel"/>
     </child>
+    <child
+        genView="/0/@diagram/@childNodes.18"
+        visualID="Gate_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.18/@labels.0"
+          visualID="Gate_NameLabel"/>
+    </child>
+    <child/>
   </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

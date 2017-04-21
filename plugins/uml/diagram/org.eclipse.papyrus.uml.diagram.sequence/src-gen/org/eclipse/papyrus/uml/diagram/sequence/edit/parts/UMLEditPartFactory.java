@@ -148,6 +148,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
 				return new DurationObservationAppliedStereotypeEditPart(view);
 
+			case GateEditPart.VISUAL_ID:
+				return new GateEditPart(view);
+
+			case GateNameEditPart.VISUAL_ID:
+				return new GateNameEditPart(view);
+
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				return new InteractionInteractionCompartmentEditPart(view);
 

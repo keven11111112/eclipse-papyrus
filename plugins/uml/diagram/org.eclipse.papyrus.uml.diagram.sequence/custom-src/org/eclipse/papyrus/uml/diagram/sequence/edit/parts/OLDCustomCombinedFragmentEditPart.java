@@ -97,8 +97,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper.CombinedFragmentAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentHeadImpactLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GatesHolderGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGatesHolderGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
@@ -198,8 +198,8 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new CombinedFragmentDirectEditPolicy());
 		// Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GatesHolderGraphicalNodeEditPolicy());
-		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new OLDGatesHolderGraphicalNodeEditPolicy());
+		installEditPolicy("Gate Creation Edit Policy", new OLDGateCreationEditPolicy());
 		// install a editpolicy to display stereotypes
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// ignore impact layout when head changed.
@@ -267,8 +267,8 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.remove(((CombinedFragmentCombinedFragmentCompartmentEditPart) childEditPart).getFigure());
 			return true;
-		} else if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart) childEditPart).getFigure());
+		} else if (childEditPart instanceof OLDGateEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OLDGateEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -282,8 +282,8 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 	 */
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), new GateLocator((GateEditPart) childEditPart, getFigure()));
+		if (childEditPart instanceof OLDGateEditPart) {
+			getBorderedFigure().getBorderItemContainer().add(((OLDGateEditPart) childEditPart).getFigure(), new GateLocator((OLDGateEditPart) childEditPart, getFigure()));
 			return true;
 		}
 		return super.addFixedChild(childEditPart);
