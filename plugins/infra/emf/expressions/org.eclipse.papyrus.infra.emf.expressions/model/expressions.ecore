@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expressions" nsURI="http://www.eclipse.org/papyrus/expressions"
+    nsPrefix="expressions">
+  <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <details key="originalName" value="Expressions"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="IBasicExpressionElement" abstract="true"
+      interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Basic Element for this Model. &#xD;&#xA;All elements must have a Name and a Description"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IExpression" abstract="true" interface="true"
+      eSuperTypes="#//IBasicExpressionElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This interface must be extended to provide expression. &#xD;&#xA;It is templated by the type of the object to evaluate (CONTEXT_TYPE) and by the return of the evaluate operation (RETURN_TYPE)"/>
+    </eAnnotations>
+    <eTypeParameters name="CONTEXT_TYPE"/>
+    <eTypeParameters name="RETURN_TYPE"/>
+    <eOperations name="evaluate" ordered="false" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This method evaluate an object of type CONTEXT_TYPE and return an object of type RETURN_TYPE."/>
+      </eAnnotations>
+      <eGenericType eTypeParameter="#//IExpression/RETURN_TYPE"/>
+      <eParameters name="context" ordered="false" lowerBound="1">
+        <eGenericType eTypeParameter="#//IExpression/CONTEXT_TYPE"/>
+      </eParameters>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionCatalog" eSuperTypes="#//IBasicExpressionElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The catalog allows to store predefined expressions.&#xD;&#xA;The class ExpressionCatalogRegistry allows to find all registered Catalog throw the dedicated extension point."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" ordered="false"
+        upperBound="-1" eType="#//IExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Bool" instanceClassName="java.lang.Boolean">
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details key="originalName" value="Boolean"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass" instanceClassName="org.eclipse.emf.ecore.EClass"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EObject" instanceClassName="org.eclipse.emf.ecore.EObject"
+      abstract="true" interface="true"/>
+  <eSubpackages name="booleanexpressionspackage" nsURI="http://www.eclipse.org/papyrus/expressions/eobjectbooleanexpressions"
+      nsPrefix="booleanexpressionspackage">
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details key="originalName" value="BooleanExpressionsPackage"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//booleanexpressionspackage/IBooleanEObjectExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Make an OR between all owned and referenced IBooleanExpressions.&#xD;&#xA;If ownedExpressions.size()==0 and referencedExpressions.size()==0, we return FALSE&#xD;&#xA;otherwize we return the OR between all owned and referenced expressions"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpressions" ordered="false"
+          upperBound="-1" eType="#//booleanexpressionspackage/IBooleanEObjectExpression"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpressions"
+          ordered="false" upperBound="-1" eType="#//booleanexpressionspackage/IBooleanEObjectExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IBooleanEObjectExpression" abstract="true"
+        interface="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The common type to use for all BooleanExpression evaluating EObject&#xD;&#xA;&#xD;&#xA;"/>
+      </eAnnotations>
+      <eGenericSuperTypes eClassifier="#//booleanexpressionspackage/IBooleanExpression">
+        <eTypeArguments eClassifier="#//EObject"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IBooleanExpression" abstract="true"
+        interface="true">
+      <eTypeParameters name="IBooleanExpression_REDEFINED_CONTEXT_TYPE">
+        <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details key="originalName" value="REDEFINED_CONTEXT_TYPE"/>
+        </eAnnotations>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="#//IExpression">
+        <eTypeArguments eTypeParameter="#//booleanexpressionspackage/IBooleanExpression/IBooleanExpression_REDEFINED_CONTEXT_TYPE"/>
+        <eTypeArguments eClassifier="#//Bool"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//booleanexpressionspackage/IBooleanEObjectExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Make an AND between all owned and referenced IBooleanExpression.&#xD;&#xA;If ownedExpressions.size()==0 and referencedExpressions.size()==0, we return TRUE&#xD;&#xA;otherwize we return the OR between all owned and referenced expressions"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpressions" ordered="false"
+          upperBound="-1" eType="#//booleanexpressionspackage/IBooleanEObjectExpression"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpressions"
+          ordered="false" upperBound="-1" eType="#//booleanexpressionspackage/IBooleanEObjectExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NotExpression" eSuperTypes="#//booleanexpressionspackage/IBooleanEObjectExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Make a not on an IBooleanExpression&#xD;&#xA;If ownedExpression==NULL and referencedExpression==NULL we return FALSE&#xD;&#xA;If ownedExpression&lt;>NULL and referencedExpression&lt;>NULL we return the result for ownedExpression. The referencedExpression is ignored&#xD;&#xA;In other case we return the evaluation of the non NULL expression"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" ordered="false"
+          eType="#//booleanexpressionspackage/IBooleanEObjectExpression" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpression"
+          ordered="false" eType="#//booleanexpressionspackage/IBooleanEObjectExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LiteralTrueExpression" eSuperTypes="#//booleanexpressionspackage/IBooleanEObjectExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Returns always TRUE"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LiteralFalseExpression" eSuperTypes="#//booleanexpressionspackage/IBooleanEObjectExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Returns always false"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReferenceBooleanExpression" eSuperTypes="#//booleanexpressionspackage/IBooleanEObjectExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This expression allows to reference an expression defined in another model.&#xD;&#xA;If there is no expression referenced we return TRUE."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpression"
+          ordered="false" eType="#//booleanexpressionspackage/IBooleanEObjectExpression"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

@@ -22,6 +22,7 @@
 		<!--  Features -->
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.emf.expressions.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.nattable.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>		
