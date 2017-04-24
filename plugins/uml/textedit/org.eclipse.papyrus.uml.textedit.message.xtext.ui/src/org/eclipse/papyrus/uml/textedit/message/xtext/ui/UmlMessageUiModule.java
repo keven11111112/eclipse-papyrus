@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.message.xtext.ui;
 
+import org.eclipse.papyrus.uml.xtext.integration.PapyrusDefaultAutoEditStrategyProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -29,5 +31,15 @@ public class UmlMessageUiModule extends org.eclipse.papyrus.uml.textedit.message
 	 */
 	public UmlMessageUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.xtext.ui.DefaultUiModule#bindAbstractEditStrategyProvider()
+	 */
+	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return PapyrusDefaultAutoEditStrategyProvider.class;
 	}
 }
