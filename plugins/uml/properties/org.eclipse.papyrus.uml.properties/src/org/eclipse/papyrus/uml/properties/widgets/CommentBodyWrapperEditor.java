@@ -15,12 +15,11 @@ package org.eclipse.papyrus.uml.properties.widgets;
 
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor;
+import org.eclipse.papyrus.infra.ui.Activator;
+import org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
-import org.eclipse.papyrus.uml.diagram.common.preferences.RichtextPreferencePage;
-import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -41,7 +40,7 @@ public class CommentBodyWrapperEditor extends AbstractPropertyEditor {
 	 *            the style
 	 */
 	public CommentBodyWrapperEditor(Composite parent, int style) {
-		if (Platform.getPreferencesService().getBoolean("org.eclipse.papyrus.uml.diagram.common", RichtextPreferencePage.USE_CK_EDITOR, false, null)) {
+		if (Platform.getPreferencesService().getBoolean(Activator.PLUGIN_ID, RichtextPreferencePage.USE_CK_EDITOR, false, null)) {
 			richTextEditor = new CommentBodyRichTextEditor(parent, style);
 			normalEditor = null;
 		} else {

@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
+import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
+import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.utils.EMFContants;
@@ -95,6 +97,21 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 	 */
 	@Override
 	public void configureCellEditor(IConfigRegistry configRegistry, Object axis, String configLabel) {
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, getCellPainter(configRegistry, axis, configLabel), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, getCellEditor(configRegistry, axis, configLabel), DisplayMode.EDIT, configLabel);
+		// I believe that we don't need converters because we are working with the standard type --String.
+		// configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, null, DisplayMode.EDIT, configLabel);
+	}
+
+	/**
+	 * This allows to get the cell painter to use for the table.
+	 * 
+	 * @return The cell painter.
+	 * 
+	 * @since 3.0
+	 */
+	protected ICellPainter getCellPainter(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
+
 		final INattableModelManager nattableManager = configRegistry.getConfigAttribute(
 				NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE,
 				DisplayMode.NORMAL,
@@ -111,9 +128,17 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 		// TODO: using wordWrapping when upgrade to the new NatTable version
 		// textPainter.setWordWrapping(true);
 
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, textPainter, DisplayMode.NORMAL, configLabel);
-		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new MultiLineTextCellEditorEx(true), DisplayMode.EDIT, configLabel);
-		// I believe that we don't need converters because we are working with the standard type --String.
-		// configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, null, DisplayMode.EDIT, configLabel);
+		return textPainter;
+	}
+
+	/**
+	 * This allows to get the cell editor to use for the table.
+	 * 
+	 * @return The cell editor.
+	 * 
+	 * @since 3.0
+	 */
+	protected ICellEditor getCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
+		return new MultiLineTextCellEditorEx(true);
 	}
 }

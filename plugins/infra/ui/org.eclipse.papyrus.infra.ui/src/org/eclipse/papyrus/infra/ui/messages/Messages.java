@@ -38,6 +38,12 @@ public class Messages extends NLS {
 	public static String AbstractStringValueConverter_TheStringValueXCantBeResolved;
 
 	public static String AbstractStringValueConverter_TheStringXIsNotValidToCreateY;
+
+	public static String RichtextPreferencePage_Description;
+
+	public static String RichtextPreferencePage_FirstBooleanEditorName;
+
+	public static String RichtextPreferencePage_SecondBooleanEditorName;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

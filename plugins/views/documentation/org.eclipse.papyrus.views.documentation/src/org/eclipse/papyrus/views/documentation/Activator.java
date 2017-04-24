@@ -17,8 +17,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
-import org.eclipse.papyrus.uml.diagram.common.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.views.documentation.preferences.DocumentationViewPreferences;
 import org.eclipse.papyrus.views.documentation.views.DocumentationView;
 import org.eclipse.ui.IViewPart;
@@ -195,7 +195,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Returns the 'UseRichText' preferences from uml.common
 	 */
 	public boolean getUseRichTextSetting() {
-		return org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getPreferenceStore().getBoolean(RichtextPreferencePage.USE_CK_EDITOR);
+		return org.eclipse.papyrus.infra.ui.Activator.getDefault().getPreferenceStore().getBoolean(RichtextPreferencePage.USE_CK_EDITOR);
 	}
 
 	/**

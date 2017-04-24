@@ -43,8 +43,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.properties.ui.widgets.TabbedPropertyTitle;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.infra.widgets.util.PapyrusSelectionService;
-import org.eclipse.papyrus.uml.diagram.common.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.papyrus.uml.types.core.commands.SetStereotypeValueCommand;
@@ -195,7 +195,7 @@ public class DocumentationView extends ViewPart {
 	 */
 	IPropertyChangeListener richTextPreferenceListener = event -> {
 		if (RichtextPreferencePage.USE_CK_EDITOR == event.getProperty()) {
-			useRichText = org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getPreferenceStore().getBoolean(RichtextPreferencePage.USE_CK_EDITOR);
+			useRichText = org.eclipse.papyrus.infra.ui.Activator.getDefault().getPreferenceStore().getBoolean(RichtextPreferencePage.USE_CK_EDITOR);
 			if (useRichText) {
 				if (null != richtextEditor && !richtextEditor.isDisposed()) {
 					richtextEditor.setText(text);
@@ -465,7 +465,7 @@ public class DocumentationView extends ViewPart {
 		getViewSite().getPage().addPartListener(new SaveAtPartFocusLostListener());
 
 		// Add listener on richtext preference
-		org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getPreferenceStore().addPropertyChangeListener(richTextPreferenceListener);
+		org.eclipse.papyrus.infra.ui.Activator.getDefault().getPreferenceStore().addPropertyChangeListener(richTextPreferenceListener);
 	}
 
 	/**
@@ -781,7 +781,7 @@ public class DocumentationView extends ViewPart {
 			PapyrusSelectionService.getInstance().removeSelectionChangedListener(selectionChangeListener);
 		}
 		if (null != richTextPreferenceListener) {
-			org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getPreferenceStore().removePropertyChangeListener(richTextPreferenceListener);
+			org.eclipse.papyrus.infra.ui.Activator.getDefault().getPreferenceStore().removePropertyChangeListener(richTextPreferenceListener);
 		}
 		super.dispose();
 	}

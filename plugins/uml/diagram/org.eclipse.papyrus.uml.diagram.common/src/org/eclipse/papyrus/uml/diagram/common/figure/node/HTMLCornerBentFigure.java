@@ -37,9 +37,9 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.nebula.widgets.richtext.painter.ResourceHelper;
+import org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.parser.HTMLCleaner;
-import org.eclipse.papyrus.uml.diagram.common.preferences.RichtextPreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -1127,7 +1127,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	private boolean useHtmlRenderer() {
 		if (useHtmlRenderer == null) {
 			useHtmlRenderer = false;
-			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			IPreferenceStore store = org.eclipse.papyrus.infra.ui.Activator.getDefault().getPreferenceStore();
 			if (store != null) {
 				useHtmlRenderer = store.getBoolean(RichtextPreferencePage.USE_HTML_RENDERER);
 			}

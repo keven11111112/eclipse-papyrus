@@ -14,16 +14,21 @@
 package org.eclipse.papyrus.uml.nattable.richtext.celleditor.config;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
+import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.extension.nebula.richtext.RichTextCellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.BackgroundPainter;
+import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.PaddingDecorator;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration;
+import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.ui.Activator;
+import org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.uml.nattable.richtext.celleditor.RichTextCellEditorWithUMLReferences;
 import org.eclipse.papyrus.uml.nattable.richtext.celleditor.config.messages.Messages;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -31,7 +36,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * This class provides the configuration to use to display and edit richtext in the table.
  */
-public class RichTextCellEditorConfiguration implements ICellAxisConfiguration {
+public class RichTextCellEditorConfiguration extends SingleStringCellEditorConfiguration {
 
 	/**
 	 * the id of this editor.
@@ -74,16 +79,43 @@ public class RichTextCellEditorConfiguration implements ICellAxisConfiguration {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration#configureCellEditor(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void configureCellEditor(IConfigRegistry configRegistry, Object axis, String configLabel) {
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, getCellPainter(configRegistry, axis, configLabel), DisplayMode.NORMAL, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, getCellEditor(configRegistry, axis, configLabel), DisplayMode.EDIT, configLabel);
+ 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration#getCellEditor(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object, java.lang.String)
+	 */
+	@Override
+	protected ICellEditor getCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
+		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		if (store.getBoolean(RichtextPreferencePage.USE_CK_EDITOR)) {
+			return new RichTextCellEditorWithUMLReferences();
+		}
+		return super.getCellEditor(configRegistry, axis, configLabel);
+	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#configureCellEditor(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object, java.lang.String)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration#getCellPainter(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object, java.lang.String)
 	 */
 	@Override
-	public void configureCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new BackgroundPainter(new PaddingDecorator(new RichTextCellPainter(), 2, 5, 2, 5)), DisplayMode.NORMAL, configLabel);
-		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new RichTextCellEditorWithUMLReferences(), DisplayMode.NORMAL, configLabel);
+	protected ICellPainter getCellPainter(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
+		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		if (store.getBoolean(RichtextPreferencePage.USE_HTML_RENDERER)) {
+			return new BackgroundPainter(new PaddingDecorator(new RichTextCellPainter(), 2, 5, 2, 5));
+		}
+		return super.getCellPainter(configRegistry, axis, configLabel);
 	}
 
 }

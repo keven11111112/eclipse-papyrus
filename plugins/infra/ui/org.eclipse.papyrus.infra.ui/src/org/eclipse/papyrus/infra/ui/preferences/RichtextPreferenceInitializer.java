@@ -9,20 +9,18 @@
  * Contributors:
  *  Shuai Li (CEA LIST) shuai.li@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.preferences;
+package org.eclipse.papyrus.infra.ui.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.infra.ui.Activator;
 
 
 /**
  * This preference initializer initializes Stereotype strategy preferences
  * 
- * @deprecated since 3.0. Use {@link org.eclipse.papyrus.infra.ui.preferences.RichtextPreferenceInitializer} instead.
- * 
+ * @since 2.0
  */
-@Deprecated
 public class RichtextPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**

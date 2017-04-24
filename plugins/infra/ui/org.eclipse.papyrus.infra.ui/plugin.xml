@@ -543,6 +543,9 @@
        <initializer
              class="org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences$Initializer">
        </initializer>
+       <initializer
+	         class="org.eclipse.papyrus.infra.ui.preferences.RichtextPreferenceInitializer">
+	   </initializer>
     </extension>
     <extension
           point="org.eclipse.ui.preferencePages">
@@ -552,6 +555,12 @@
              id="org.eclipse.papyrus.infra.core.editorPrefs"
              name="Editor">
        </page>
+       <page
+	         category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+	         class="org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage"
+	         id="org.eclipse.papyrus.infra.ui.RichtextPreferencePage"
+	         name="Rich text">
+	   </page>
     </extension>
     
    <extension
