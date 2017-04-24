@@ -102,7 +102,7 @@ import xpt.Common_qvto
  	 * Add stack configuration.
  	 */
  	def addStackConfiguration(ToolGroup it) '''
-<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF» label="Stack">
+<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF» label="«title»">
 	«FOR entry : entries»
 		«IF entry instanceof ToolEntry && isValidTool(entry as AbstractToolEntry)»
 			«addToolConfiguration(entry as ToolEntry)»

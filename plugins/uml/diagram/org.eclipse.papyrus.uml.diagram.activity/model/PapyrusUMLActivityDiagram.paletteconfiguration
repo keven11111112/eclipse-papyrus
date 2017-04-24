@@ -11,7 +11,7 @@
 		label="Nodes"
 		description="">
 		<icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.activitygroup" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.activitygroup" label="ActivityGroup">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.activitygroup.activitypartition" 
 				label="Activity Partition"
@@ -35,7 +35,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.controlnodes" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.controlnodes" label="ControlNodes">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.controlnodes.initialnode" 
 				label="Initial node"
@@ -114,7 +114,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.constraints" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.constraints" label="Constraints">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.constraints.localpreconditionconstraint" 
 				label="Local Precondition Constraint"
@@ -204,7 +204,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.pins" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.pins" label="Pins">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.pins.outputpin" 
 				label="Output Pin"
@@ -740,7 +740,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.expansionregions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.expansionregions" label="ExpansionRegions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.expansionregions.expansionregion" 
 				label="Expansion Region"
@@ -775,7 +775,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.invocationactions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.invocationactions" label="InvocationActions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.invocationactions.broadcastsignalaction" 
 				label="Broadcast Signal Action"
@@ -843,7 +843,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.objectactions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.objectactions" label="ObjectActions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.objectactions.createobjectaction" 
 				label="Create Object Action"
@@ -900,7 +900,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.structuredactions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.structuredactions" label="StructuredActions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.structuredactions.structuredactivitynode" 
 				label="Structured Activity Node"
@@ -946,7 +946,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.structuralfeatureactions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.structuralfeatureactions" label="StructuralFeatureActions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.structuralfeatureactions.readstructuralfeatureaction" 
 				label="Read Structural Feature Action"
@@ -981,7 +981,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.variableactions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.variableactions" label="VariableActions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.variableactions.addvariablevalueaction" 
 				label="Add Variable Value Action"
@@ -1005,7 +1005,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.miscellaneousactions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.miscellaneousactions" label="MiscellaneousActions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.miscellaneousactions.opaqueaction" 
 				label="Opaque Action"
@@ -1073,7 +1073,7 @@
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
-		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.linkactions" label="Stack">
+		<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="activity.nodes.linkactions" label="LinkActions">
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.linkactions.createlinkaction" 
 				label="Create Link Action"

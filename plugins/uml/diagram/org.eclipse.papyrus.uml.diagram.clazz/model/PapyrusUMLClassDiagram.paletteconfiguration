@@ -284,7 +284,7 @@
   </drawerConfigurations>
   <drawerConfigurations id="clazz.group.relationships" label="Edges" description="Edges">
     <icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
-    <ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="Stack_1491989135318" label="Stack">
+    <ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="clazz.tool.associations" label="Associations">
       <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationdirected" label="Association (Directed)" description="Create a Directed Association" kind="ConnectionTool" toolClassName="">
         <icon pluginID="org.eclipse.papyrus.uml.service.types" iconPath="/icons/Association_none_directed.gif"/>
         <elementDescriptors>
