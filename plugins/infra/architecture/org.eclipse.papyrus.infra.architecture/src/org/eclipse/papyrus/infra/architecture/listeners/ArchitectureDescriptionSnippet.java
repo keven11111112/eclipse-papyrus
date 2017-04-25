@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.architecture.listeners;
 import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 
 /**
  * A model snippet to install the architecture description adapter in the DI model
@@ -27,7 +28,7 @@ public class ArchitectureDescriptionSnippet implements IModelSetSnippet {
 	/**
 	 * The installed adapter
 	 */
-	private ArchitectureDescriptionAdapter adapter;
+	private ArchitectureDescriptionAdapter adapter = new ArchitectureDescriptionAdapter();
 	
 	/**
 	 * Installs the architecture adapter model snippet on the given model set
@@ -39,7 +40,11 @@ public class ArchitectureDescriptionSnippet implements IModelSetSnippet {
 	@Override
 	public void start(ModelSet modelSet) {
 		DiModel diModel = (DiModel) modelSet.getModel(DiModel.DI_MODEL_ID);
-		diModel.getResource().eAdapters().add(adapter = new ArchitectureDescriptionAdapter());
+		if (diModel != null)
+			diModel.getResource().eAdapters().add(adapter);
+		SashModel sashModel = (SashModel) modelSet.getModel(SashModel.MODEL_ID);
+		if (sashModel != null)
+			sashModel.getResource().eAdapters().add(adapter);
 	}
 
 	/**
@@ -52,6 +57,10 @@ public class ArchitectureDescriptionSnippet implements IModelSetSnippet {
 	@Override
 	public void dispose(ModelSet modelSet) {
 		DiModel diModel = (DiModel) modelSet.getModel(DiModel.DI_MODEL_ID);
-		diModel.getResource().eAdapters().remove(adapter);
+		if (diModel != null)
+			diModel.getResource().eAdapters().remove(adapter);
+		SashModel sashModel = (SashModel) modelSet.getModel(SashModel.MODEL_ID);
+		if (sashModel != null)
+			sashModel.getResource().eAdapters().remove(adapter);
 	}
 }

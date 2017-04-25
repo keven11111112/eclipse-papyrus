@@ -69,8 +69,8 @@ public class ArchitectureDescriptionNotifier {
 	 * @param notification the change event
 	 */
 	public void fireArchitectureContextChanged(Notification notification) {
-		for (IArchitectureDescriptionListener policyCheckerListener : listeners) {
-			policyCheckerListener.architectureContextChanged(notification);
+		for (IArchitectureDescriptionListener listener : listeners) {
+			listener.architectureContextChanged(notification);
 		}
 	}
 
@@ -80,8 +80,8 @@ public class ArchitectureDescriptionNotifier {
 	 * @param notification the change event
 	 */
 	public void fireArchitectureViewpointsChanged(Notification notification) {
-		for (IArchitectureDescriptionListener policyCheckerListener : listeners) {
-			policyCheckerListener.architectureViewpointsChanged(notification);
+		for (IArchitectureDescriptionListener listener : listeners) {
+			listener.architectureViewpointsChanged(notification);
 		}
 	}
 
