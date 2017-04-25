@@ -3,5 +3,7 @@
    <topic label="Writing Documentation for Papyrus" >
       <link toc="target/site/generated-eclipse-help/doctemplate-toc.xml"/>
       <anchor id="docTemplate"/>
+      <topic href="target/site/generated-eclipse-help/video.html" label="Video">
+      </topic>
    </topic>
 </toc>
