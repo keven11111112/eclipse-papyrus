@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus - bug 399859
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage buttons visibility and enable. 
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.TreeCollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.util.PapyrusSelectionService;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -402,7 +404,7 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 	 */
 	@Override
 	public void widgetSelected(SelectionEvent e) {
-		if (e.widget == null) {
+		if (e.widget == null || e.widget.isDisposed()) {
 			return;
 		}
 		try {
@@ -423,7 +425,9 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 			// do nothing, this exception occurs whenever one of the actions above
 			// gets canceled
 		}
-		updateControls();
+		if (!isDisposed()) {
+			updateControls();
+		}
 	}
 
 	/**
@@ -643,6 +647,24 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 		if (null != treeViewer) {
 			PapyrusSelectionService.getInstance().unsetSelectionProvider(treeViewer);
 		}
+		if (null != tree) {
+			this.tree.removeSelectionListener(this);
+		}
+		if (null != add) {
+			this.add.removeSelectionListener(this);
+		}
+		if (null != edit) {
+			this.edit.removeSelectionListener(this);
+		}
+		if (null != up) {
+			this.up.removeSelectionListener(this);
+		}
+		if (null != down) {
+			this.down.removeSelectionListener(this);
+		}
+		if (null != remove) {
+			this.remove.removeSelectionListener(this);
+		}
 		super.dispose();
 	}
 
@@ -784,4 +806,5 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 		// nothing to do here
 
 	}
+
 }

@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.infra.widgets.selectors.NullSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -114,6 +116,9 @@ public class MultipleStringFileEditor extends MultipleValueEditor<IElementSelect
 	 */
 	@Override
 	public void widgetSelected(SelectionEvent e) {
+		if (e.widget.isDisposed()) {
+			return;
+		}
 		super.widgetSelected(e);
 		if (e.widget == browseFileSystem) {
 			browseFileSystem();
@@ -225,4 +230,18 @@ public class MultipleStringFileEditor extends MultipleValueEditor<IElementSelect
 		this.filterNames.addAll(Arrays.asList(filterNames));
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.editors.MultipleValueEditor#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		if (null != this.browseFileSystem) {
+			this.browseFileSystem.removeSelectionListener(this);
+		}
+		if (null != this.browseWorkspace) {
+			this.browseWorkspace.removeSelectionListener(this);
+		}
+		super.dispose();
+	}
 }
