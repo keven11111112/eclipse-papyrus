@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  * Contributors:
  *  CEA List - initial API and implementation
  *  Nizar GUEDIDI (CEA LIST) - Bug 345889 - [ClassDiagram] Compartment for properties and operations are not implemented yet for primitive type
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515409
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
@@ -47,7 +47,7 @@ public class PrimitiveTypeFigure extends RoundedCompartmentFigure {
 	 * Default Constructor
 	 */
 	public PrimitiveTypeFigure() {
-		super(COMPARTMENT, "PrimitiveType");
+		super(COMPARTMENT, "Primitive");
 	}
 
 	/**
