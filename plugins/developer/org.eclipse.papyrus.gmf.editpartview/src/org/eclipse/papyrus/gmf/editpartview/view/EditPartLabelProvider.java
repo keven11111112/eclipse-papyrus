@@ -60,18 +60,20 @@ public class EditPartLabelProvider implements ITableLabelProvider, ITableColorPr
 			GraphicalEditPart editPart = (GraphicalEditPart) element;
 			IFigure figure = editPart.getContentPane();
 			Object model = editPart.getAdapter(EObject.class);
-			switch (columnIndex) {
-			case 0:
-				return editPart.getClass().getSimpleName();
-			case 1:
-				if (model instanceof NamedElement) {
-					return UMLLabelInternationalization.getInstance().getLabel((NamedElement) model);
+			if (null != figure) {
+				switch (columnIndex) {
+				case 0:
+					return editPart.getClass().getSimpleName();
+				case 1:
+					if (model instanceof NamedElement) {
+						return UMLLabelInternationalization.getInstance().getLabel((NamedElement) model);
+					}
+					return "not a named element";
+				case 2:
+					return figure.getClass().getSimpleName();
+				case 3:
+					return figure.getBounds().toString();
 				}
-				return "not a named element";
-			case 2:
-				return figure.getClass().getSimpleName();
-			case 3:
-				return figure.getBounds().toString();
 			}
 		}
 		return "cannot display it: " + element;

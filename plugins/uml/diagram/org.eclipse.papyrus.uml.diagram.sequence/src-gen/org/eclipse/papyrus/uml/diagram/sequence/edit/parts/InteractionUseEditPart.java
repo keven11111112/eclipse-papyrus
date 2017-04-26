@@ -166,6 +166,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		}
 		if (childEditPart instanceof InteractionUseName2EditPart) {
 			((InteractionUseName2EditPart) childEditPart).setLabel(getPrimaryShape().getCenterLabel());
+
 			return true;
 		}
 

@@ -508,6 +508,16 @@ SequenceDiagram Interaction {
 	textAlignment:"left";
 	displayHeader:true;
 }
+
+SequenceDiagram InteractionUse {
+	textAlignment:"center";
+	leftMarginLabel: 5;
+	topMarginLabel: 5;
+	rightMarginLabel: 5;
+	bottomMarginLabel: 5;
+	displayHeader:true;
+}
+
 SequenceDiagram Interaction > Compartment{
 	displayBorder:false;
 }
