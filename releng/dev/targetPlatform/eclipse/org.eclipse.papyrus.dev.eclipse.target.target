@@ -113,6 +113,10 @@
       <repository id="upr" location="file:/home/data/httpd/download.eclipse.org/upr/0.9RC1/update/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.compare.ide.ui.feature.group" version="0.0.0"/>
+      <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/releases/latest"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.oomph.version.feature.group" version="1.7.0.v20170201-1645"/>
       <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.7.0.v20170104-1401"/>
       <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.7.0.v20170104-1401"/>

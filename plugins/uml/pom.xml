@@ -47,5 +47,6 @@
 		<module>textedit</module>
 		<module>tools</module>
 		<module>xtext</module>
+		<module>m2m</module>
 	</modules>
 </project>

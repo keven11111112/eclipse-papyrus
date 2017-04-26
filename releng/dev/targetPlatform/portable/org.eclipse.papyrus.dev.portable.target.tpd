@@ -11,6 +11,12 @@ location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4
 	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
 }
 
+//manualUpdate
+
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
+	org.eclipse.emf.compare.ide.ui.feature.group lazy
+}
+
 //manualUpdate 
 
 location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
