@@ -49,12 +49,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated NOT expressions -->
       <!--editor
-            id="org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.presentation.EObjectBooleanExpressionsEditorID"
-            name="%_UI_EObjectBooleanExpressionsEditor_label"
-            icon="icons/full/obj16/EObjectBooleanExpressionsModelFile.gif"
-            extensions="eobjectbooleanexpressions"
-            class="org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.presentation.EObjectBooleanExpressionsEditor"
-            contributorClass="org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.presentation.EObjectBooleanExpressionsActionBarContributor">
+            id="org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.presentation.BooleanExpressionsEditorID"
+            name="%_UI_BooleanExpressionsEditor_label"
+            icon="icons/full/obj16/BooleanExpressionsModelFile.gif"
+            extensions="booleanexpressions"
+            class="org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.presentation.BooleanExpressionsEditor"
+            contributorClass="org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.presentation.BooleanExpressionsActionBarContributor">
       </editor-->
    </extension>
 

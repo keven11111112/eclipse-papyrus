@@ -20,8 +20,8 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:ReferenceDialog input="{Binding}"
-			property="expressions:booleanexpressionspackage:NotExpression:ownedExpression"></ppe:ReferenceDialog>
+			property="expressions:booleanexpressions:NotExpression:ownedExpression"></ppe:ReferenceDialog>
 		<ppe:ReferenceDialog input="{Binding}"
-			property="expressions:booleanexpressionspackage:NotExpression:referencedExpression"></ppe:ReferenceDialog>
+			property="expressions:booleanexpressions:NotExpression:referencedExpression"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

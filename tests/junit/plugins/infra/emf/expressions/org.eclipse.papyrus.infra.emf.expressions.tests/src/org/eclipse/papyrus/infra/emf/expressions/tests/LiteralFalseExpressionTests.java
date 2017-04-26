@@ -14,8 +14,8 @@ package org.eclipse.papyrus.infra.emf.expressions.tests;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.EObjectBooleanExpressionsFactory;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.LiteralFalseExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.LiteralFalseExpression;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,7 +28,7 @@ public class LiteralFalseExpressionTests {
 	 */
 	@Test
 	public void LiteralFalseExpression_Test1() {
-		final LiteralFalseExpression falseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression falseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
 		Assert.assertFalse(falseExp.evaluate(this.dummyObject));
 	}
 
@@ -37,7 +37,7 @@ public class LiteralFalseExpressionTests {
 	 */
 	@Test
 	public void LiteralFalseExpression_Test2() {
-		final LiteralFalseExpression falseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression falseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
 		Assert.assertFalse(falseExp.evaluate(null));
 	}
 

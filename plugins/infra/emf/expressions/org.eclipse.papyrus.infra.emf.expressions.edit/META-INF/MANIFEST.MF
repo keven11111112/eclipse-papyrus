@@ -8,7 +8,7 @@ Bundle-Activator: org.eclipse.papyrus.infra.emf.expressions.provider.Expressions
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.provider,
+Export-Package: org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.provider,
  org.eclipse.papyrus.infra.emf.expressions.provider
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=greedy,
  org.eclipse.papyrus.infra.emf.expressions;visibility:=reexport,

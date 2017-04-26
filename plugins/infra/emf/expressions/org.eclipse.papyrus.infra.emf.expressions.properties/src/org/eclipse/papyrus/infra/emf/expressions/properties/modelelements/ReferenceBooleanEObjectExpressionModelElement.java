@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.emf.expressions.properties.modelelements;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.EObjectBooleanExpressionsPackage;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 import org.eclipse.papyrus.infra.emf.expressions.properties.provider.ExpressionCatalogContentProvider;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -25,11 +25,6 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
  *
  */
 public class ReferenceBooleanEObjectExpressionModelElement extends EMFModelElement {
-
-	/**
-	 * The managed feature
-	 */
-	private String REFERENCED_EXPRESSION = "referencedExpression";// $NON-NLS-0$
 
 	/**
 	 * Constructor.
@@ -59,8 +54,8 @@ public class ReferenceBooleanEObjectExpressionModelElement extends EMFModelEleme
 	 */
 	@Override
 	public IStaticContentProvider getContentProvider(final String propertyPath) {
-		if (REFERENCED_EXPRESSION.equals(propertyPath)) {
-			return new ExpressionCatalogContentProvider(EObjectBooleanExpressionsPackage.eINSTANCE.getReferenceBooleanExpression_ReferencedExpression());
+		if (BooleanExpressionsPackage.eINSTANCE.getReferenceBooleanExpression_ReferencedExpression().getName().equals(propertyPath)) {
+			return new ExpressionCatalogContentProvider(BooleanExpressionsPackage.eINSTANCE.getReferenceBooleanExpression_ReferencedExpression());
 		}
 		return super.getContentProvider(propertyPath);
 	}

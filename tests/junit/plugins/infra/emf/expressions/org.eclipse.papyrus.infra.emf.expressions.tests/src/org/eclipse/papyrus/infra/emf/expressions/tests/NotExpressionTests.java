@@ -14,10 +14,10 @@ package org.eclipse.papyrus.infra.emf.expressions.tests;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.EObjectBooleanExpressionsFactory;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.LiteralFalseExpression;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.LiteralTrueExpression;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.NotExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.LiteralFalseExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.LiteralTrueExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.NotExpression;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -44,7 +44,7 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test1_1() {
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		Assert.assertFalse(notExp.evaluate(this.dummyObject));
 	}
 
@@ -67,7 +67,7 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test1_2() {
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		Assert.assertFalse(notExp.evaluate(null));
 	}
 
@@ -90,8 +90,8 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test2_1() {
-		final LiteralTrueExpression trueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralTrueExpression trueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(trueExp);
 		Assert.assertFalse(notExp.evaluate(this.dummyObject));
 	}
@@ -115,8 +115,8 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test2_2() {
-		final LiteralTrueExpression trueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralTrueExpression trueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(trueExp);
 		Assert.assertFalse(notExp.evaluate(null));
 	}
@@ -140,8 +140,8 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test3_1() {
-		final LiteralFalseExpression falseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralFalseExpression falseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(falseExp);
 		Assert.assertTrue(notExp.evaluate(this.dummyObject));
 	}
@@ -165,8 +165,8 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test3_2() {
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(ownedFalseExp);
 		Assert.assertTrue(notExp.evaluate(null));
 	}
@@ -191,9 +191,9 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test4_1() {
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression refTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression refTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(ownedFalseExp);
 		notExp.setReferencedExpression(refTrueExp);
 		Assert.assertTrue(notExp.evaluate(this.dummyObject));
@@ -218,9 +218,9 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test4_2() {
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression refTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression refTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(ownedFalseExp);
 		notExp.setReferencedExpression(refTrueExp);
 		Assert.assertTrue(notExp.evaluate(null));
@@ -245,9 +245,9 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test4_3() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression refFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression refFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(ownedTrueExp);
 		notExp.setReferencedExpression(refFalseExp);
 		Assert.assertFalse(notExp.evaluate(this.dummyObject));
@@ -272,9 +272,9 @@ public class NotExpressionTests {
 	 */
 	@Test
 	public void NotExpression_Test4_4() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression refFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final NotExpression notExp = EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression refFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final NotExpression notExp = BooleanExpressionsFactory.eINSTANCE.createNotExpression();
 		notExp.setOwnedExpression(ownedTrueExp);
 		notExp.setReferencedExpression(refFalseExp);
 		Assert.assertFalse(notExp.evaluate(null));

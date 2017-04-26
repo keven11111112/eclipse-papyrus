@@ -38,7 +38,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionCatalog;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
 
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.EObjectBooleanExpressionsFactory;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.emf.expressions.ExpressionCatalog} object.
@@ -228,32 +228,32 @@ public class ExpressionCatalogItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
-				 EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression()));
+				 BooleanExpressionsFactory.eINSTANCE.createOrExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
-				 EObjectBooleanExpressionsFactory.eINSTANCE.createAndExpression()));
+				 BooleanExpressionsFactory.eINSTANCE.createAndExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
-				 EObjectBooleanExpressionsFactory.eINSTANCE.createNotExpression()));
+				 BooleanExpressionsFactory.eINSTANCE.createNotExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
-				 EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression()));
+				 BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
-				 EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression()));
+				 BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
-				 EObjectBooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression()));
+				 BooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression()));
 	}
 
 	/**

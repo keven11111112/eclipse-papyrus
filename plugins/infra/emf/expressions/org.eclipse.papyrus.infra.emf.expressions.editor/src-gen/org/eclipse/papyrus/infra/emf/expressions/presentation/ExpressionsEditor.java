@@ -166,8 +166,7 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import org.eclipse.papyrus.infra.emf.expressions.provider.ExpressionsItemProviderAdapterFactory;
 
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.provider.EObjectBooleanExpressionsItemProviderAdapterFactory;
-
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.provider.BooleanExpressionsItemProviderAdapterFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -711,7 +710,7 @@ public class ExpressionsEditor
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ExpressionsItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new EObjectBooleanExpressionsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new BooleanExpressionsItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

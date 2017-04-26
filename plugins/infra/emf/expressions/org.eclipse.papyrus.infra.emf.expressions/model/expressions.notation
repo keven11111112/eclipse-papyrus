@@ -217,7 +217,7 @@
   <css:ModelStyleSheets xmi:id="_pOVMsBUqEee_D4EhwjboOQ">
     <stylesheets xmi:type="css:StyleSheetReference" xmi:id="_pOWa0BUqEee_D4EhwjboOQ" path="/org.eclipse.papyrus.infra.emf.expressions/model/custom.css"/>
   </css:ModelStyleSheets>
-  <notation:Diagram xmi:id="_E-Du8BXiEee_D4EhwjboOQ" type="PapyrusUMLClassDiagram" name="EObjectBooleanExpression" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_E-Du8BXiEee_D4EhwjboOQ" type="PapyrusUMLClassDiagram" name="BooleanExpressionClassDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_SokXIBXiEee_D4EhwjboOQ" type="Class_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_Sok-MBXiEee_D4EhwjboOQ" type="Class_NameLabel"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_Sok-MRXiEee_D4EhwjboOQ" type="Class_FloatingNameLabel">

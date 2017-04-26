@@ -15,10 +15,10 @@ package org.eclipse.papyrus.infra.emf.expressions.tests;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.EObjectBooleanExpressionsFactory;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.LiteralFalseExpression;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.LiteralTrueExpression;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.OrExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.LiteralFalseExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.LiteralTrueExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.OrExpression;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -50,7 +50,7 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test1() {
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		Assert.assertFalse(orExp.evaluate(this.dummyObject));
 	}
 
@@ -73,7 +73,7 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test2() {
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		Assert.assertFalse(orExp.evaluate(null));
 	}
 
@@ -96,8 +96,8 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test3() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedTrueExp);
 		Assert.assertTrue(orExp.evaluate(this.dummyObject));
 	}
@@ -121,8 +121,8 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test4() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedTrueExp);
 		Assert.assertTrue(orExp.evaluate(null));
 	}
@@ -146,8 +146,8 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test5() {
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedFalseExp);
 		Assert.assertFalse(orExp.evaluate(this.dummyObject));
 	}
@@ -171,8 +171,8 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test6() {
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedFalseExp);
 		Assert.assertFalse(orExp.evaluate(null));
 	}
@@ -197,9 +197,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test7() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression refTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression refTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedTrueExp);
 		orExp.getReferencedExpressions().add(refTrueExp);
 		Assert.assertTrue(orExp.evaluate(this.dummyObject));
@@ -224,9 +224,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test8() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression refTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression refTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedTrueExp);
 		orExp.getReferencedExpressions().add(refTrueExp);
 		Assert.assertTrue(orExp.evaluate(null));
@@ -252,9 +252,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test9() {
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression refTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression refTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedFalseExp);
 		orExp.getReferencedExpressions().add(refTrueExp);
 		Assert.assertTrue(orExp.evaluate(this.dummyObject));
@@ -279,9 +279,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test10() {
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression refTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression refTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedFalseExp);
 		orExp.getReferencedExpressions().add(refTrueExp);
 		Assert.assertTrue(orExp.evaluate(null));
@@ -306,9 +306,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test11() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression refFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression refFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedTrueExp);
 		orExp.getReferencedExpressions().add(refFalseExp);
 		Assert.assertTrue(orExp.evaluate(this.dummyObject));
@@ -333,9 +333,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test12() {
-		final LiteralTrueExpression ownedTrueExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression refFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralTrueExpression ownedTrueExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression refFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedTrueExp);
 		orExp.getReferencedExpressions().add(refFalseExp);
 		Assert.assertTrue(orExp.evaluate(null));
@@ -362,9 +362,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test13() {
-		final LiteralFalseExpression refFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralFalseExpression refFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedFalseExp);
 		orExp.getReferencedExpressions().add(refFalseExp);
 		Assert.assertFalse(orExp.evaluate(this.dummyObject));
@@ -389,9 +389,9 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test14() {
-		final LiteralFalseExpression refFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression ownedFalseExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final LiteralFalseExpression refFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression ownedFalseExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(ownedFalseExp);
 		orExp.getReferencedExpressions().add(refFalseExp);
 		Assert.assertFalse(orExp.evaluate(null));
@@ -421,12 +421,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test15() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -456,12 +456,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test16() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -492,12 +492,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test17() {
-		final LiteralFalseExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -527,12 +527,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test18() {
-		final LiteralFalseExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -562,12 +562,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test19() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -597,12 +597,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test20() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -633,12 +633,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test21() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -669,12 +669,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test22() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralTrueExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -705,12 +705,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test23() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -741,12 +741,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test24() {
-		final LiteralTrueExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralTrueExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
-		final LiteralFalseExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralTrueExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralTrueExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+		final LiteralFalseExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -776,12 +776,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test25() {
-		final LiteralFalseExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);
@@ -811,12 +811,12 @@ public class OrExpressionTests {
 	 */
 	@Test
 	public void OrExpression_Test26() {
-		final LiteralFalseExpression firstOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression secondOwnedExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression firstRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
-		final LiteralFalseExpression secondRefExp = EObjectBooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression firstOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression secondOwnedExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression firstRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
+		final LiteralFalseExpression secondRefExp = BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression();
 
-		final OrExpression orExp = EObjectBooleanExpressionsFactory.eINSTANCE.createOrExpression();
+		final OrExpression orExp = BooleanExpressionsFactory.eINSTANCE.createOrExpression();
 		orExp.getOwnedExpressions().add(firstOwnedExp);
 		orExp.getOwnedExpressions().add(secondOwnedExp);
 		orExp.getReferencedExpressions().add(firstRefExp);

@@ -55,37 +55,37 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="expressions.ecore#//EClass"/>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="expressions.ecore#//EObject"/>
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="EObjectBooleanExpressions"
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="BooleanExpressions"
         basePackage="org.eclipse.papyrus.infra.emf.expressions" disposableProviderFactory="true"
         generateExampleClass="false" multipleEditorPages="false" generateModelWizard="false"
-        ecorePackage="expressions.ecore#//booleanexpressionspackage">
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressionspackage/OrExpression">
+        extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="expressions.ecore#//booleanexpressions">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressions/OrExpression">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-            createChild="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressionspackage/OrExpression/ownedExpressions"/>
+            createChild="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressions/OrExpression/ownedExpressions"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressionspackage/OrExpression/referencedExpressions"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressions/OrExpression/referencedExpressions"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="expressions.ecore#//booleanexpressionspackage/IBooleanEObjectExpression"/>
-      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="expressions.ecore#//booleanexpressionspackage/IBooleanExpression">
-        <genTypeParameters ecoreTypeParameter="expressions.ecore#//booleanexpressionspackage/IBooleanExpression/IBooleanExpression_REDEFINED_CONTEXT_TYPE"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="expressions.ecore#//booleanexpressions/IBooleanEObjectExpression"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="expressions.ecore#//booleanexpressions/IBooleanExpression">
+        <genTypeParameters ecoreTypeParameter="expressions.ecore#//booleanexpressions/IBooleanExpression/IBooleanExpression_REDEFINED_CONTEXT_TYPE"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressionspackage/AndExpression">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressions/AndExpression">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-            createChild="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressionspackage/AndExpression/ownedExpressions"/>
+            createChild="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressions/AndExpression/ownedExpressions"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressionspackage/AndExpression/referencedExpressions"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressions/AndExpression/referencedExpressions"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressionspackage/NotExpression">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressions/NotExpression">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-            createChild="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressionspackage/NotExpression/ownedExpression"/>
+            createChild="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressions/NotExpression/ownedExpression"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressionspackage/NotExpression/referencedExpression"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressions/NotExpression/referencedExpression"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressionspackage/LiteralTrueExpression"/>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressionspackage/LiteralFalseExpression"/>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressionspackage/ReferenceBooleanExpression">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressions/LiteralTrueExpression"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressions/LiteralFalseExpression"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="expressions.ecore#//booleanexpressions/ReferenceBooleanExpression">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressionspackage/ReferenceBooleanExpression/referencedExpression"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference expressions.ecore#//booleanexpressions/ReferenceBooleanExpression/referencedExpression"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

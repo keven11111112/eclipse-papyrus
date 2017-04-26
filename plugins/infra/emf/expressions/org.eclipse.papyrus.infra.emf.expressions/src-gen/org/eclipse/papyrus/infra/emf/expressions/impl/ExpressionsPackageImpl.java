@@ -30,9 +30,9 @@ import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
 import org.eclipse.papyrus.infra.emf.expressions.IBasicExpressionElement;
 import org.eclipse.papyrus.infra.emf.expressions.IExpression;
 
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.EObjectBooleanExpressionsPackage;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.impl.EObjectBooleanExpressionsPackageImpl;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.BooleanExpressionsPackageImpl;
 
 import org.eclipse.uml2.types.TypesPackage;
 
@@ -135,15 +135,15 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		EObjectBooleanExpressionsPackageImpl theEObjectBooleanExpressionsPackage = (EObjectBooleanExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EObjectBooleanExpressionsPackage.eNS_URI) instanceof EObjectBooleanExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EObjectBooleanExpressionsPackage.eNS_URI) : EObjectBooleanExpressionsPackage.eINSTANCE);
+		BooleanExpressionsPackageImpl theBooleanExpressionsPackage = (BooleanExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI) instanceof BooleanExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI) : BooleanExpressionsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theExpressionsPackage.createPackageContents();
-		theEObjectBooleanExpressionsPackage.createPackageContents();
+		theBooleanExpressionsPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theExpressionsPackage.initializePackageContents();
-		theEObjectBooleanExpressionsPackage.initializePackageContents();
+		theBooleanExpressionsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theExpressionsPackage.freeze();
@@ -314,11 +314,11 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EObjectBooleanExpressionsPackage theEObjectBooleanExpressionsPackage = (EObjectBooleanExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(EObjectBooleanExpressionsPackage.eNS_URI);
+		BooleanExpressionsPackage theBooleanExpressionsPackage = (BooleanExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Add subpackages
-		getESubpackages().add(theEObjectBooleanExpressionsPackage);
+		getESubpackages().add(theBooleanExpressionsPackage);
 
 		// Create type parameters
 		ETypeParameter iExpressionEClass_CONTEXT_TYPE = addETypeParameter(iExpressionEClass, "CONTEXT_TYPE"); //$NON-NLS-1$

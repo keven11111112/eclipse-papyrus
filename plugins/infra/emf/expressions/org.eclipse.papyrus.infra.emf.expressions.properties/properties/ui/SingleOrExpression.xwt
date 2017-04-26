@@ -20,8 +20,8 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
-			property="expressions:booleanexpressionspackage:OrExpression:ownedExpressions"></ppe:MultiReference>
+			property="expressions:booleanexpressions:OrExpression:ownedExpressions"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
-			property="expressions:booleanexpressionspackage:OrExpression:referencedExpressions"></ppe:MultiReference>
+			property="expressions:booleanexpressions:OrExpression:referencedExpressions"></ppe:MultiReference>
 	</Composite>
 </Composite>

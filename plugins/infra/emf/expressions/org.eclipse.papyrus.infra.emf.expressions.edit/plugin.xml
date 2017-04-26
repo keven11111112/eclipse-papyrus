@@ -34,8 +34,8 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated expressions -->
       <factory
-            uri="http://www.eclipse.org/papyrus/expressions/eobjectbooleanexpressions"
-            class="org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.provider.EObjectBooleanExpressionsItemProviderAdapterFactory"
+            uri="http://www.eclipse.org/papyrus/expressions/booleanexpressions"
+            class="org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.provider.BooleanExpressionsItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -43,4 +43,5 @@
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
+
 </plugin>

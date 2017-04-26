@@ -20,8 +20,8 @@
    <extension
          point="org.eclipse.emf.ecore.factory_override">
       <factory
-            class="org.eclipse.papyrus.infra.emf.expressions.eobjectbooleanexpressions.custom.CustomEObjectBooleanExpressionsFactory"
-            uri="http://www.eclipse.org/papyrus/expressions/eobjectbooleanexpressions">
+            class="org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.custom.CustomBooleanExpressionsFactory"
+            uri="http://www.eclipse.org/papyrus/expressions/booleanexpressions">
       </factory>
    </extension>
 
@@ -36,8 +36,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated expressions -->
       <package
-            uri="http://www.eclipse.org/papyrus/expressions/eobjectbooleanexpressions"
-            class="org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.EObjectBooleanExpressionsPackage"
+            uri="http://www.eclipse.org/papyrus/expressions/booleanexpressions"
+            class="org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage"
             genModel="model/expressions.genmodel"/>
    </extension>
 

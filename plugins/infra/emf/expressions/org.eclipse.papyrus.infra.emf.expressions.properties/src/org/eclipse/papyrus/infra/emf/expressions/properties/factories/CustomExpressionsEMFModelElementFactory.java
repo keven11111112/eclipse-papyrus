@@ -14,7 +14,8 @@
 package org.eclipse.papyrus.infra.emf.expressions.properties.factories;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressionspackage.ReferenceBooleanExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.ReferenceBooleanExpression;
+import org.eclipse.papyrus.infra.emf.expressions.properties.Activator;
 import org.eclipse.papyrus.infra.emf.expressions.properties.modelelements.ReferenceBooleanEObjectExpressionModelElement;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
@@ -37,6 +38,11 @@ public class CustomExpressionsEMFModelElementFactory extends EMFModelElementFact
 	 */
 	@Override
 	protected EMFModelElement doCreateFromSource(Object sourceElement, DataContextElement context) {
+		final EObject source = EMFHelper.getEObject(sourceElement);
+		if (null == source) {
+			Activator.log.warn("Unable to resolve the selected element to an EObject"); //$NON-NLS-1$
+			return null;
+		}
 		if (sourceElement instanceof ReferenceBooleanExpression) {
 			return new ReferenceBooleanEObjectExpressionModelElement((EObject) sourceElement, EMFHelper.resolveEditingDomain(sourceElement));
 		}
