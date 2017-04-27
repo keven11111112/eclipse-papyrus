@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2018 Atos Origin.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,12 +11,14 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Pauline DEVILLE (CEA LIST) - Bug 381704
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.commands;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -29,13 +31,13 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.uml2.uml.Constraint;
 
 /**
@@ -61,6 +63,28 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	/** The type of local condition to create */
 	private IHintedType type;
 
+	private TransactionalEditingDomain editingDomain;
+
+	/**
+	 * Constructor a new action to create the local condition and corresponding
+	 * views.
+	 *
+	 * @param conditionType
+	 *            the type of the local condition : precondition
+	 *            (Constraint_LocalPreconditionShape) or postcondition (Constraint_LocalPostconditionShape)
+	 * @param graphicalParent
+	 *            the parent edit part which graphically contains the condition
+	 * @param containerAction
+	 *            the action which owns the local condition to create
+	 * @param actionPart
+	 *            the part of the action owning the condition
+	 * @deprecated since 3.4
+	 */
+	@Deprecated
+	public CreateActionLocalConditionViewCommand(IHintedType conditionType, ActivityActivityContentCompartmentEditPart graphicalParent, EObject containerAction, EditPart actionPart) {
+		this(null, conditionType, graphicalParent, containerAction, actionPart);
+	}
+
 	/**
 	 * Constructor a new action to create the local condition and corresponding
 	 * views.
@@ -75,11 +99,12 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 * @param actionPart
 	 *            the part of the action owning the condition
 	 */
-	public CreateActionLocalConditionViewCommand(IHintedType conditionType, ActivityActivityContentCompartmentEditPart graphicalParent, EObject containerAction, EditPart actionPart) {
+	public CreateActionLocalConditionViewCommand(TransactionalEditingDomain editingDomain, IHintedType conditionType, ActivityActivityContentCompartmentEditPart graphicalParent, EObject containerAction, EditPart actionPart) {
 		elementCreationCommand = getElementCreationCommand(containerAction, conditionType, graphicalParent);
 		compartment = graphicalParent;
 		linkedActionEditPart = actionPart;
 		type = conditionType;
+		this.editingDomain = editingDomain;
 	}
 
 	/**
@@ -164,12 +189,20 @@ public class CreateActionLocalConditionViewCommand extends Command {
 			viewsCreationCommand.add(nodeCreationCommand);
 			// try and recover the created edit part, then create the link
 			if (linkedActionEditPart != null && getLinkType() != null) {
+
 				IAdaptable targetAdapter = extractResult(nodeCreationCommand);
 				if (targetAdapter != null) {
 					IAdaptable sourceAdapter = new SemanticAdapter(null, linkedActionEditPart.getModel());
 					// descriptor of the link
 					CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getLinkType(), getLinkType().getSemanticHint(), compartment.getDiagramPreferencesHint());
-					CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(EditorUtils.getTransactionalEditingDomain(), getLinkType().getSemanticHint(), sourceAdapter, targetAdapter, compartment.getViewer(),
+
+					// TODO: To remove when the deprecated constructor will be removed
+					TransactionalEditingDomain usedEditingDomain = editingDomain;
+					if (null == usedEditingDomain) {
+						usedEditingDomain = EditorUtils.getTransactionalEditingDomain();
+					}
+
+					CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(usedEditingDomain, getLinkType().getSemanticHint(), sourceAdapter, targetAdapter, compartment.getViewer(),
 							compartment.getDiagramPreferencesHint(), linkdescriptor, null);
 					aLinkCommand.setElement((EObject) constraint);
 					viewsCreationCommand.add(new ICommandProxy(aLinkCommand));

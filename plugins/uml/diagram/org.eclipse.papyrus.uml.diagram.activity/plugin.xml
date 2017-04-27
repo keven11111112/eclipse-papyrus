@@ -2104,5 +2104,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 </extension>
 
 
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
+   <visualChildrenStrategy
+         class="org.eclipse.papyrus.uml.diagram.activity.canonical.ConstraintVisualChildrenStrategy"
+         priority="20">
+      <enablement>
+         <with
+               variable="element">
+            <instanceof
+                  value="org.eclipse.uml2.uml.ActivityNode">
+            </instanceof>
+         </with>
+      </enablement>
+   </visualChildrenStrategy>
+</extension>
 
 </plugin>
