@@ -8,19 +8,19 @@
     testsDirectory="/org.eclipse.papyrus.infra.gmfdiag.representation.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     editPluginID="org.eclipse.papyrus.infra.gmfdiag.representation.edit" editorPluginID="org.eclipse.papyrus.infra.gmfdiag.representation.editor"
-    usedGenPackages="../../org.eclipse.papyrus.infra.core.architecture/model/Architecture.genmodel#//architecture ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.genmodel#//representation"
+    usedGenPackages="../../org.eclipse.papyrus.infra.core.architecture/model/Architecture.genmodel#//architecture ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration/model/PaletteConfiguration.genmodel#//paletteconfiguration ../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.genmodel#//representation"
     operationReflection="true" importOrganizing="true">
   <foreignModel>GmfDiagRepresentation.ecore</foreignModel>
   <genPackages prefix="Representation" basePackage="org.eclipse.papyrus.infra.gmfdiag"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="GmfDiagRepresentation.ecore#/">
     <genDataTypes ecoreDataType="GmfDiagRepresentation.ecore#//ElementType"/>
     <genClasses ecoreClass="GmfDiagRepresentation.ecore#//PapyrusDiagram">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute GmfDiagRepresentation.ecore#//PapyrusDiagram/customPalette"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute GmfDiagRepresentation.ecore#//PapyrusDiagram/customStyle"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference GmfDiagRepresentation.ecore#//PapyrusDiagram/childRules"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference GmfDiagRepresentation.ecore#//PapyrusDiagram/paletteRules"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference GmfDiagRepresentation.ecore#//PapyrusDiagram/assistantRules"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute GmfDiagRepresentation.ecore#//PapyrusDiagram/creationCommandClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference GmfDiagRepresentation.ecore#//PapyrusDiagram/palettes"/>
     </genClasses>
     <genClasses ecoreClass="GmfDiagRepresentation.ecore#//ChildRule">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference GmfDiagRepresentation.ecore#//ChildRule/element"/>

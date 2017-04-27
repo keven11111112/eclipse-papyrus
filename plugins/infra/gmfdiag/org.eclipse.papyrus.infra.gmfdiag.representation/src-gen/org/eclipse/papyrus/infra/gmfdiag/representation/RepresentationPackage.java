@@ -43,7 +43,7 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "representation";
+	String eNAME = "representation"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -51,7 +51,7 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/infra/gmfdiag/representation";
+	String eNS_URI = "http://www.eclipse.org/papyrus/infra/gmfdiag/representation"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -59,7 +59,7 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "gmfdiagrepresentation";
+	String eNS_PREFIX = "gmfdiagrepresentation"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
@@ -170,22 +170,13 @@ public interface RepresentationPackage extends EPackage {
 	int PAPYRUS_DIAGRAM__IMPLEMENTATION_ID = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__IMPLEMENTATION_ID;
 
 	/**
-	 * The feature id for the '<em><b>Custom Palette</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_DIAGRAM__CUSTOM_PALETTE = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Custom Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM__CUSTOM_STYLE = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 1;
+	int PAPYRUS_DIAGRAM__CUSTOM_STYLE = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Child Rules</b></em>' containment reference list.
@@ -194,7 +185,7 @@ public interface RepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM__CHILD_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 2;
+	int PAPYRUS_DIAGRAM__CHILD_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Palette Rules</b></em>' containment reference list.
@@ -203,7 +194,7 @@ public interface RepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM__PALETTE_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 3;
+	int PAPYRUS_DIAGRAM__PALETTE_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Assistant Rules</b></em>' containment reference list.
@@ -212,7 +203,7 @@ public interface RepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM__ASSISTANT_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 4;
+	int PAPYRUS_DIAGRAM__ASSISTANT_RULES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Creation Command Class</b></em>' attribute.
@@ -221,7 +212,16 @@ public interface RepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 5;
+	int PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Palettes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_DIAGRAM__PALETTES = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Papyrus Diagram</em>' class.
@@ -492,17 +492,6 @@ public interface RepresentationPackage extends EPackage {
 	EClass getPapyrusDiagram();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCustomPalette <em>Custom Palette</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Custom Palette</em>'.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCustomPalette()
-	 * @see #getPapyrusDiagram()
-	 * @generated
-	 */
-	EAttribute getPapyrusDiagram_CustomPalette();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCustomStyle <em>Custom Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -556,6 +545,17 @@ public interface RepresentationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPapyrusDiagram_CreationCommandClass();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getPalettes <em>Palettes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Palettes</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getPalettes()
+	 * @see #getPapyrusDiagram()
+	 * @generated
+	 */
+	EReference getPapyrusDiagram_Palettes();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule <em>Child Rule</em>}'.
@@ -751,14 +751,6 @@ public interface RepresentationPackage extends EPackage {
 		EClass PAPYRUS_DIAGRAM = eINSTANCE.getPapyrusDiagram();
 
 		/**
-		 * The meta object literal for the '<em><b>Custom Palette</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PAPYRUS_DIAGRAM__CUSTOM_PALETTE = eINSTANCE.getPapyrusDiagram_CustomPalette();
-
-		/**
 		 * The meta object literal for the '<em><b>Custom Style</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -797,6 +789,14 @@ public interface RepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS = eINSTANCE.getPapyrusDiagram_CreationCommandClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Palettes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAPYRUS_DIAGRAM__PALETTES = eINSTANCE.getPapyrusDiagram_Palettes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.ChildRuleImpl <em>Child Rule</em>}' class.

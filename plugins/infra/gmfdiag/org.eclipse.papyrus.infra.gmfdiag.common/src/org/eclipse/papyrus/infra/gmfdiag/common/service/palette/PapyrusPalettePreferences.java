@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
+ *  MickaÃ«l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
@@ -451,7 +451,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 				return XMLMemento.createWriteRoot(EXTENDED_PALETTE_WORKSPACE_DEFINITIONS);
 			}
 		} catch (WorkbenchException e) {
-			Activator.getInstance().logError(Messages.PapyrusPalettePreferences_Error_ImpossibleToReadPreferences, e); //$NON-NLS-1$
+			Activator.getInstance().logError(Messages.PapyrusPalettePreferences_Error_ImpossibleToReadPreferences, e);
 		}
 		return null;
 	}

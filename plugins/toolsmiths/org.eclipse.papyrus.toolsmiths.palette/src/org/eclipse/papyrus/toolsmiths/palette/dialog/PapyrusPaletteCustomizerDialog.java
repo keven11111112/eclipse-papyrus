@@ -41,7 +41,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -224,40 +223,33 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	 * @return the listener
 	 */
 	protected ISelectionChangedListener createSelectionChangedListener() {
-		return new ISelectionChangedListener() {
+		return event -> {
+			// retrieve element selected
+			Object selectedElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
 
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			public void selectionChanged(final SelectionChangedEvent event) {
-				// retrieve element selected
-				Object selectedElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
+			// Plug-in contribution palette
+			if (selectedElement instanceof PapyrusPaletteService.ExtendedProviderDescriptor) {
+				IProvider provider = ((PapyrusPaletteService.ExtendedProviderDescriptor) selectedElement).getProvider();
 
-				// Plug-in contribution palette
-				if (selectedElement instanceof PapyrusPaletteService.ExtendedProviderDescriptor) {
-					IProvider provider = ((PapyrusPaletteService.ExtendedProviderDescriptor) selectedElement).getProvider();
-
-					// Modelconfiguration model definition
-					if (provider instanceof ExtendedPluginPaletteProvider) {
-						paletteButtonsMap.get(DELETE_PALETTE_BUTTON_ID).setEnabled(false);
-						paletteButtonsMap.get(EDIT_PALETTE_BUTTON_ID).setEnabled(true);
-						paletteButtonsMap.get(RESTORE_DEFAULT_PALETTE_BUTTON_ID).setEnabled(isRedefined((ExtendedProviderDescriptor) selectedElement));
-						paletteButtonsMap.get(EXPORT_DEFAULT_PALETTE_BUTTON_ID).setEnabled(true);
-					}
-				} else
-				// Local Palette configuration model
-				if (selectedElement instanceof PapyrusPaletteService.LocalExtendedProviderDescriptor) {
-					paletteButtonsMap.get(DELETE_PALETTE_BUTTON_ID).setEnabled(true);
-					paletteButtonsMap.get(EDIT_PALETTE_BUTTON_ID).setEnabled(true);
-					paletteButtonsMap.get(RESTORE_DEFAULT_PALETTE_BUTTON_ID).setEnabled(false);
-					paletteButtonsMap.get(EXPORT_DEFAULT_PALETTE_BUTTON_ID).setEnabled(true);
-				} else {
+				// Modelconfiguration model definition
+				if (provider instanceof ExtendedPluginPaletteProvider) {
 					paletteButtonsMap.get(DELETE_PALETTE_BUTTON_ID).setEnabled(false);
-					paletteButtonsMap.get(EDIT_PALETTE_BUTTON_ID).setEnabled(false);
-					paletteButtonsMap.get(RESTORE_DEFAULT_PALETTE_BUTTON_ID).setEnabled(false);
-					paletteButtonsMap.get(EXPORT_DEFAULT_PALETTE_BUTTON_ID).setEnabled(false);
+					paletteButtonsMap.get(EDIT_PALETTE_BUTTON_ID).setEnabled(true);
+					paletteButtonsMap.get(RESTORE_DEFAULT_PALETTE_BUTTON_ID).setEnabled(isRedefined((ProviderDescriptor) selectedElement));
+					paletteButtonsMap.get(EXPORT_DEFAULT_PALETTE_BUTTON_ID).setEnabled(true);
 				}
+			} else
+			// Local Palette configuration model
+			if (selectedElement instanceof PapyrusPaletteService.LocalExtendedProviderDescriptor) {
+				paletteButtonsMap.get(DELETE_PALETTE_BUTTON_ID).setEnabled(true);
+				paletteButtonsMap.get(EDIT_PALETTE_BUTTON_ID).setEnabled(true);
+				paletteButtonsMap.get(RESTORE_DEFAULT_PALETTE_BUTTON_ID).setEnabled(false);
+				paletteButtonsMap.get(EXPORT_DEFAULT_PALETTE_BUTTON_ID).setEnabled(true);
+			} else {
+				paletteButtonsMap.get(DELETE_PALETTE_BUTTON_ID).setEnabled(false);
+				paletteButtonsMap.get(EDIT_PALETTE_BUTTON_ID).setEnabled(false);
+				paletteButtonsMap.get(RESTORE_DEFAULT_PALETTE_BUTTON_ID).setEnabled(false);
+				paletteButtonsMap.get(EXPORT_DEFAULT_PALETTE_BUTTON_ID).setEnabled(false);
 			}
 		};
 	}
@@ -569,10 +561,11 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	 */
 	protected void editSelectedPalette(IStructuredSelection selection) {
 		if (null != selection) {
-			if (selection.getFirstElement() instanceof PapyrusPaletteService.WorkspaceExtendedProviderDescriptor || selection.getFirstElement() instanceof PapyrusPaletteService.LocalExtendedProviderDescriptor) {
-				editPaletteConfiguration((ProviderDescriptor) selection.getFirstElement());
-			} else if (selection.getFirstElement() instanceof PapyrusPaletteService.ExtendedProviderDescriptor) {
-				editExtendedPalette((PapyrusPaletteService.ExtendedProviderDescriptor) selection.getFirstElement());
+			Object descriptor = selection.getFirstElement();
+			if (descriptor instanceof PapyrusPaletteService.WorkspaceExtendedProviderDescriptor || descriptor instanceof PapyrusPaletteService.LocalExtendedProviderDescriptor) {
+				editPaletteConfiguration((ProviderDescriptor) descriptor);
+			} else if (descriptor instanceof PapyrusPaletteService.ExtendedProviderDescriptor) {
+				editExtendedPalette((PapyrusPaletteService.ExtendedProviderDescriptor) descriptor);
 			}
 		}
 	}
@@ -627,7 +620,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	 *            the exttended provider desciptor to test
 	 * @return true if redefined
 	 */
-	public Boolean isRedefined(final ExtendedProviderDescriptor descriptor) {
+	public Boolean isRedefined(final ProviderDescriptor descriptor) {
 		// check the file in plugin state area.
 		String contributionID = descriptor.getContributionID();
 		String paletteRedefinition = PapyrusPalettePreferences.getPaletteRedefinition(contributionID);

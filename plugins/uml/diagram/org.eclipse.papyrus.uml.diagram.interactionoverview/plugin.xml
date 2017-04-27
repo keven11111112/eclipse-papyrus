@@ -647,20 +647,4 @@
       </visualTypeProvider>
    </extension>
    
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
-	<paletteDefinition
-		ID="org.eclipse.papyrus.uml.diagram.interactionoverview.paletteconfiguration" 
-		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
-		name="Papyrus activity editor Plugin Palette" 
-		path="palettes/PapyrusInteractionOverviewDiagram.paletteconfiguration"
-		provider="Eclipse Modeling Project">
-		<Priority
-			name="Lowest">
-		</Priority>
-		<!-- Specify diagram this palette tools relate to -->
-		<editor
-			id="org.eclipse.papyrus.uml.diagram.interactionoverview">
-		</editor>
-	</paletteDefinition>
-</extension>
 </plugin>

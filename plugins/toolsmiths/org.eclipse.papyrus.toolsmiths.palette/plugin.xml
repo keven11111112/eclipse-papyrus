@@ -72,7 +72,7 @@
    <extension
          point="org.eclipse.papyrus.infra.gmfdiag.common.paletteCustomization">
       <customizer
-            customizerDialog="org.eclipse.papyrus.customization.palette.dialog.PapyrusPaletteCustomizerDialog">
+            customizerDialog="org.eclipse.papyrus.toolsmiths.palette.dialog.PapyrusPaletteCustomizerDialog">
       </customizer>
    </extension>
 </plugin>

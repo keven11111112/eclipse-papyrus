@@ -20,11 +20,11 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.papyrus.infra.core.architecture.ADElement;
-import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
-
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.architecture.representation.Rule;
+
+import org.eclipse.papyrus.infra.core.architecture.ADElement;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 
 import org.eclipse.papyrus.infra.gmfdiag.representation.*;
 

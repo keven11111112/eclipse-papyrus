@@ -1013,23 +1013,6 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
-	<?gmfgen generated="true"?>
-	<paletteDefinition
-		ID="org.eclipse.papyrus.uml.diagram.clazz.paletteconfiguration"
-		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
-		name="PapyrusUMLClassDiagram Palette"
-		path="model/PapyrusUMLClassDiagram.paletteconfiguration"
-		provider="Eclipse Modeling Project">
-		<Priority
-			name="Lowest">
-		</Priority>
-		<!-- Specify diagram to which this palette tool relates -->
-		<editor
-			id="org.eclipse.papyrus.uml.diagram.clazz">
-		</editor>
-	</paletteDefinition>
-</extension>
 
 
 

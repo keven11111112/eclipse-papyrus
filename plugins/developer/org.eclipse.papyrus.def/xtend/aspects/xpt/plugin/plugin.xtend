@@ -74,7 +74,7 @@ import java.io.File
 		«xptActionExtension.Main(it.editorGen)»
 		«additions(it)»
 		«notationTypesMap(editorGen)»
-		«paletteConfiguration(editorGen)»
+«««		«paletteConfiguration(editorGen)»
 		</plugin>
 	'''
 	

@@ -17,19 +17,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.infra.architecture.representation.impl.PapyrusRepresentationKindImpl;
-
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.representation.AssistantRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PaletteRule;
@@ -37,48 +33,26 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Papyrus Diagram</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Papyrus
+ * Diagram</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.PapyrusDiagramImpl#getCustomPalette <em>Custom Palette</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.PapyrusDiagramImpl#getCustomStyle <em>Custom Style</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.PapyrusDiagramImpl#getChildRules <em>Child Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.PapyrusDiagramImpl#getPaletteRules <em>Palette Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.PapyrusDiagramImpl#getAssistantRules <em>Assistant Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.PapyrusDiagramImpl#getCreationCommandClass <em>Creation Command Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.PapyrusDiagramImpl#getPalettes <em>Palettes</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements PapyrusDiagram {
 	/**
-	 * The default value of the '{@link #getCustomPalette() <em>Custom Palette</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCustomPalette()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CUSTOM_PALETTE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCustomPalette() <em>Custom Palette</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCustomPalette()
-	 * @generated
-	 * @ordered
-	 */
-	protected String customPalette = CUSTOM_PALETTE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getCustomStyle() <em>Custom Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCustomStyle()
 	 * @generated
 	 * @ordered
@@ -87,8 +61,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 
 	/**
 	 * The cached value of the '{@link #getCustomStyle() <em>Custom Style</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCustomStyle()
 	 * @generated
 	 * @ordered
@@ -97,8 +70,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 
 	/**
 	 * The cached value of the '{@link #getChildRules() <em>Child Rules</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getChildRules()
 	 * @generated
 	 * @ordered
@@ -107,8 +79,8 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 
 	/**
 	 * The cached value of the '{@link #getPaletteRules() <em>Palette Rules</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getPaletteRules()
 	 * @generated
 	 * @ordered
@@ -117,8 +89,8 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 
 	/**
 	 * The cached value of the '{@link #getAssistantRules() <em>Assistant Rules</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getAssistantRules()
 	 * @generated
 	 * @ordered
@@ -126,9 +98,10 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	protected EList<AssistantRule> assistantRules;
 
 	/**
-	 * The cached value of the '{@link #getCreationCommandClass() <em>Creation Command Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getCreationCommandClass() <em>Creation
+	 * Command Class</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getCreationCommandClass()
 	 * @generated
 	 * @ordered
@@ -136,8 +109,16 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	protected Class<?> creationCommandClass;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPalettes() <em>Palettes</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getPalettes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PaletteConfiguration> palettes;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected PapyrusDiagramImpl() {
@@ -145,8 +126,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -155,29 +135,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getCustomPalette() {
-		return customPalette;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCustomPalette(String newCustomPalette) {
-		String oldCustomPalette = customPalette;
-		customPalette = newCustomPalette;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE, oldCustomPalette, customPalette));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getCustomStyle() {
@@ -185,8 +143,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setCustomStyle(String newCustomStyle) {
@@ -197,8 +154,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<ChildRule> getChildRules() {
@@ -209,8 +165,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<PaletteRule> getPaletteRules() {
@@ -221,8 +176,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<AssistantRule> getAssistantRules() {
@@ -233,8 +187,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Class<?> getCreationCommandClass() {
@@ -242,8 +195,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setCreationCommandClass(Class<?> newCreationCommandClass) {
@@ -254,8 +206,18 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<PaletteConfiguration> getPalettes() {
+		if (palettes == null) {
+			palettes = new EObjectResolvingEList<PaletteConfiguration>(PaletteConfiguration.class, this, RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES);
+		}
+		return palettes;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -272,15 +234,12 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE:
-				return getCustomPalette();
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_STYLE:
 				return getCustomStyle();
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CHILD_RULES:
@@ -291,22 +250,20 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 				return getAssistantRules();
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
 				return getCreationCommandClass();
+			case RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES:
+				return getPalettes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE:
-				setCustomPalette((String)newValue);
-				return;
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_STYLE:
 				setCustomStyle((String)newValue);
 				return;
@@ -325,21 +282,21 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
 				setCreationCommandClass((Class<?>)newValue);
 				return;
+			case RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES:
+				getPalettes().clear();
+				getPalettes().addAll((Collection<? extends PaletteConfiguration>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE:
-				setCustomPalette(CUSTOM_PALETTE_EDEFAULT);
-				return;
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_STYLE:
 				setCustomStyle(CUSTOM_STYLE_EDEFAULT);
 				return;
@@ -355,20 +312,20 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
 				setCreationCommandClass((Class<?>)null);
 				return;
+			case RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES:
+				getPalettes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE:
-				return CUSTOM_PALETTE_EDEFAULT == null ? customPalette != null : !CUSTOM_PALETTE_EDEFAULT.equals(customPalette);
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_STYLE:
 				return CUSTOM_STYLE_EDEFAULT == null ? customStyle != null : !CUSTOM_STYLE_EDEFAULT.equals(customStyle);
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CHILD_RULES:
@@ -379,13 +336,14 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 				return assistantRules != null && !assistantRules.isEmpty();
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
 				return creationCommandClass != null;
+			case RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES:
+				return palettes != null && !palettes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -393,9 +351,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (customPalette: "); //$NON-NLS-1$
-		result.append(customPalette);
-		result.append(", customStyle: "); //$NON-NLS-1$
+		result.append(" (customStyle: "); //$NON-NLS-1$
 		result.append(customStyle);
 		result.append(", creationCommandClass: "); //$NON-NLS-1$
 		result.append(creationCommandClass);
@@ -403,4 +359,4 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 		return result.toString();
 	}
 
-} //PapyrusDiagramImpl
+} // PapyrusDiagramImpl

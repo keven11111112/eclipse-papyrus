@@ -3,7 +3,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="representation" nsURI="http://www.eclipse.org/papyrus/infra/gmfdiag/representation"
     nsPrefix="gmfdiagrepresentation">
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusDiagram" eSuperTypes="../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.ecore#//PapyrusRepresentationKind">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="customPalette" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="customStyle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="childRules" upperBound="-1"
         eType="#//ChildRule" containment="true">
@@ -28,6 +27,8 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="palettes" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration/model/PaletteConfiguration.ecore#//PaletteConfiguration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChildRule" eSuperTypes="../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.ecore#//Rule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>

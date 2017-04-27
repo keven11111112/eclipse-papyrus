@@ -61,33 +61,11 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCustomPalettePropertyDescriptor(object);
 			addCustomStylePropertyDescriptor(object);
 			addCreationCommandClassPropertyDescriptor(object);
+			addPalettesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Custom Palette feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCustomPalettePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusDiagram_customPalette_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customPalette_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_PALETTE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -130,6 +108,28 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Palettes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPalettesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusDiagram_palettes_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_palettes_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__PALETTES,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -200,7 +200,6 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PapyrusDiagram.class)) {
-			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_PALETTE:
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CUSTOM_STYLE:
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

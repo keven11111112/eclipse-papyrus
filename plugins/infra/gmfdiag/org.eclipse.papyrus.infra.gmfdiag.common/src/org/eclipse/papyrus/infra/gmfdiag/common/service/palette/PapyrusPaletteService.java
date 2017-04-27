@@ -27,12 +27,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
@@ -66,9 +68,12 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteService;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.SelectionToolEx;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.XMLPaletteProviderConfiguration.EditorDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
@@ -80,6 +85,11 @@ import org.osgi.framework.Bundle;
  * It replaces the standard palette service. It provides better preferences management, and better customization possibilities.
  */
 public class PapyrusPaletteService extends PaletteService implements IPaletteProvider, IPapyrusPaletteConstant, IPreferenceChangeListener {
+
+	/**
+	 * Extension point is of palette providers.
+	 */
+	public static final String PALETTE_PROVIDERS = "paletteProviders"; //$NON-NLS-1$
 
 	/**
 	 * A descriptor for palette providers defined by a configuration element.
@@ -225,11 +235,6 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				if (isHidden(o)) {
 					return false;
 				}
-
-				// TODO find a way to manage it
-				// if (!PaletteUtil.areRequiredProfileApplied(part, this)) {
-				// return false;
-				// }
 
 				return true;
 			}
@@ -426,7 +431,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 			// Needs to add a / to have a correct path or the concatenation will be false.
 			if (!filePath.startsWith("/") || !filePath.startsWith("\\")) {//$NON-NLS-1$ //$NON-NLS-2$
-				filePath = File.separator + filePath;
+				filePath = IPath.SEPARATOR + filePath;
 			}
 
 			return realId + filePath;
@@ -659,6 +664,9 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 	}
 
+	/**
+	 * ProviderDescriptor for workspace palette model.
+	 */
 	public static class WorkspaceExtendedProviderDescriptor extends LocalProviderDescriptor {
 		/**
 		 * @param description
@@ -680,10 +688,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 	}
 
+
+
 	/**
-	 * 
 	 * Provider Descriptor for extended palette defined locally (ie not in workspace)
-	 *
 	 */
 	public static class LocalExtendedProviderDescriptor extends LocalProviderDescriptor {
 		/**
@@ -761,6 +769,35 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
+	 * Add providers for palettes based on model declared in architecture.
+	 */
+	protected void configureArchitectureExtendedPalettes() {
+
+		// remove all local descriptors
+		for (org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor descriptor : getProviders()) {
+			if (descriptor instanceof ArchitectureExtendedProviderDescriptor) {
+				removeProvider(descriptor);
+			}
+		}
+
+		// get all PapyrusDiagram declare in architecture
+		List<PapyrusDiagram> papyrusDiagrams = ArchitectureDomainManager.getInstance().getVisibleArchitectureContexts().stream()
+				.filter(MergedArchitectureDescriptionLanguage.class::isInstance)
+				.map(MergedArchitectureDescriptionLanguage.class::cast)
+				.flatMap(adl -> adl.getRepresentationKinds().stream())
+				.filter(PapyrusDiagram.class::isInstance)
+				.map(PapyrusDiagram.class::cast)
+				.filter(d -> !d.getPalettes().isEmpty())
+				.collect(Collectors.toList());
+
+
+		for (PapyrusDiagram diagram : papyrusDiagrams) {
+			ArchitectureExtendedProviderDescriptor descriptor = new ArchitectureExtendedProviderDescriptor(diagram);
+			addProvider(ProviderPriority.MEDIUM, descriptor);
+		}
+	}
+
+	/**
 	 * add providers for workspace palettes based on model
 	 */
 	protected void configureRedefinedPalettes() {
@@ -785,11 +822,12 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	 * Configure providers.
 	 */
 	private static void configureProviders() {
-		getInstance().configureProviders(DiagramUIPlugin.getPluginId(), "paletteProviders"); //$NON-NLS-1$
+		getInstance().configureProviders(DiagramUIPlugin.getPluginId(), PALETTE_PROVIDERS);
 		getInstance().configureProviders(Activator.ID, PALETTE_DEFINITION);
 		getInstance().configureWorkspaceExtendedPalettes();
 		getInstance().configureLocalExtendedPalettes();
 		getInstance().configureRedefinedPalettes();
+		getInstance().configureArchitectureExtendedPalettes();
 	}
 
 	/**
@@ -1099,6 +1137,14 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			// refresh available palette table viewer
 			providerChanged(new ProviderChangeEvent(this));
 		}
+	}
+
+	/**
+	 * Notification that the architecture have changed.
+	 */
+	public void architectureChanged() {
+		getInstance().configureArchitectureExtendedPalettes();
+		providerChanged(new ProviderChangeEvent(getInstance()));
 	}
 
 	/**

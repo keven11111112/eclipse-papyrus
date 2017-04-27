@@ -390,22 +390,5 @@
          </visualTypeProvider>
    </extension>
 
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
-	<?gmfgen generated="true"?>
-	<paletteDefinition
-		ID="org.eclipse.papyrus.uml.diagram.communication.paletteconfiguration"
-		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
-		name="org.eclipse.papyrus.uml.diagram.communication Palette"
-		path="model/PapyrusUMLCommunicationDiagram.paletteconfiguration"
-		provider="Eclipse Modeling Project">
-		<Priority
-			name="Lowest">
-		</Priority>
-		<!-- Specify diagram to which this palette tool relates -->
-		<editor
-			id="org.eclipse.papyrus.uml.diagram.communication">
-		</editor>
-	</paletteDefinition>
-</extension>
 
 </plugin>

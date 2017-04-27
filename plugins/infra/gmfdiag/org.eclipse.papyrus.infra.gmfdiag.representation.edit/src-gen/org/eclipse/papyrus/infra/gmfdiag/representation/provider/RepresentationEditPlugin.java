@@ -17,10 +17,12 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
 
 import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureEditPlugin;
 
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.PaletteConfigurationEditPlugin;
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
@@ -57,7 +59,9 @@ public final class RepresentationEditPlugin extends EMFPlugin {
 		  (new ResourceLocator [] {
 		     ArchitectureEditPlugin.INSTANCE,
 		     ConstraintsEditPlugin.INSTANCE,
+		     EcoreEditPlugin.INSTANCE,
 		     TypesConfigurationsEditPlugin.INSTANCE,
+		     PaletteConfigurationEditPlugin.INSTANCE,
 		     org.eclipse.papyrus.infra.architecture.representation.provider.RepresentationEditPlugin.INSTANCE,
 		   });
 	}

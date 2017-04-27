@@ -484,5 +484,11 @@
          </dependsOn>
       </service>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.architecture.listeners">
+      <listener
+            class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ArchitectureForPaletteServiceListener">
+      </listener>
+   </extension>
 
 </plugin>

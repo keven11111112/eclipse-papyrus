@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.representation;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,12 +27,12 @@ import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentati
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCustomPalette <em>Custom Palette</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCustomStyle <em>Custom Style</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getChildRules <em>Child Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getPaletteRules <em>Palette Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getAssistantRules <em>Assistant Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCreationCommandClass <em>Creation Command Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getPalettes <em>Palettes</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram()
@@ -39,32 +40,6 @@ import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentati
  * @generated
  */
 public interface PapyrusDiagram extends PapyrusRepresentationKind {
-	/**
-	 * Returns the value of the '<em><b>Custom Palette</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Custom Palette</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Custom Palette</em>' attribute.
-	 * @see #setCustomPalette(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_CustomPalette()
-	 * @model
-	 * @generated
-	 */
-	String getCustomPalette();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCustomPalette <em>Custom Palette</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Custom Palette</em>' attribute.
-	 * @see #getCustomPalette()
-	 * @generated
-	 */
-	void setCustomPalette(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Custom Style</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -161,5 +136,21 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * @generated
 	 */
 	void setCreationCommandClass(Class<?> value);
+
+	/**
+	 * Returns the value of the '<em><b>Palettes</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Palettes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Palettes</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_Palettes()
+	 * @model
+	 * @generated
+	 */
+	EList<PaletteConfiguration> getPalettes();
 
 } // PapyrusDiagram
