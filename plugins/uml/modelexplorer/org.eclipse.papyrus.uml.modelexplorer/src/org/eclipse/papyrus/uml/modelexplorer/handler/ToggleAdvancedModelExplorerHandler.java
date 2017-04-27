@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434635
+ *  Christian W. Damus - bug 515913
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.handler;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.infra.emf.CustomizationComparator;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Event;
@@ -87,11 +89,27 @@ public class ToggleAdvancedModelExplorerHandler extends AbstractHandler {
 
 						} else {
 							// Simple view
-							if (customizationManager.getManagedCustomizations().contains(simpleUMLCustomization)) {
+							List<Customization> enabledCustomizations = customizationManager.getManagedCustomizations();
+
+							if (enabledCustomizations.contains(simpleUMLCustomization)) {
 								return null; // No change
 							}
 
-							customizationManager.getManagedCustomizations().add(0, simpleUMLCustomization);
+							// Insert it in the latest plausible location by rank, accounting for
+							// the possibility that the user explicitly re-ordered customizations
+							// so that they are not actually sorted in rank order, but assuming
+							// that probably the most significant customizations are near the
+							// head of the list
+							CustomizationComparator compare = new CustomizationComparator();
+							int insertAt = enabledCustomizations.size();
+							for (; insertAt > 0; insertAt--) {
+								Customization here = enabledCustomizations.get(insertAt - 1);
+								if (compare.compare(here, simpleUMLCustomization) <= 0) {
+									// Insert after this one
+									break;
+								}
+							}
+							enabledCustomizations.add(insertAt, simpleUMLCustomization);
 						}
 
 						// Save the current state of the customizations

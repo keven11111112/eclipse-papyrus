@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,181 +9,81 @@
  *    Nicolas Bros (Mia-Software) - Bug 374758 - [Table] repair the table
  *    Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *    Thomas Cicognani (Soft-Maint) - Bug 420192 - UnsupportedOperationException in a usefull method
+ *    Christian W. Damus - bug 515913
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 
 /** Represents a list of {@link Customization}s that exists as a subset of a delegate list of {@link FacetSet}s. */
-public class CustomizationsDelegatingList implements List<Customization> {
+public class CustomizationsDelegatingList extends BasicEList<Customization> {
+	private static final long serialVersionUID = 1L;
+
 	private final List<FacetSet> delegate;
 
 	public CustomizationsDelegatingList(final List<FacetSet> delegate) {
+		super(customizations(delegate));
 		this.delegate = delegate;
 	}
 
-	public int size() {
-		return this.delegate.size();
-	}
-
-	public boolean isEmpty() {
-		return this.delegate.isEmpty();
-	}
-
-	public boolean contains(final Object element) {
-		return element instanceof Customization && this.delegate.contains(element);
-	}
-
-	public Iterator<Customization> iterator() {
-		ArrayList<Customization> tmp = new ArrayList<Customization>();
-		for (Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
-			FacetSet facetSet = iterator.next();
-			if (facetSet instanceof Customization) {
-				tmp.add((Customization) facetSet);
-			}
-
+	@Override
+	protected void didAdd(int index, Customization newObject) {
+		// Insert at the corresponding location in the delegate
+		if (index > 0) {
+			index = delegate.indexOf(get(index - 1)) + 1;
 		}
 
-
-		return tmp.iterator();
+		delegate.add(index, newObject);
 	}
 
-	public Object[] toArray() {
-		ArrayList<Customization> tmp = new ArrayList<Customization>();
-		for (Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
-			FacetSet facetSet = iterator.next();
-			if (facetSet instanceof Customization) {
-				tmp.add((Customization) facetSet);
-			}
+	@Override
+	protected void didSet(int index, Customization newObject, Customization oldObject) {
+		index = delegate.indexOf(oldObject);
+		delegate.set(index, newObject);
+	}
 
+	@Override
+	protected void didRemove(int index, Customization oldObject) {
+		delegate.remove(oldObject);
+	}
+
+	@Override
+	protected void didClear(int size, Object[] oldObjects) {
+		delegate.removeAll(Arrays.asList(oldObjects));
+	}
+
+	@Override
+	protected void didMove(int index, Customization movedObject, int oldIndex) {
+		// Move to the corresponding location in the delegate
+		if (index > 0) {
+			index = delegate.indexOf(get(index - 1)) + 1;
 		}
-
-
-		return tmp.toArray();
-	}
-
-	public <T> T[] toArray(final T[] a) {
-		ArrayList<Customization> tmp = new ArrayList<Customization>();
-		for (Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
-			FacetSet facetSet = iterator.next();
-			if (facetSet instanceof Customization) {
-				tmp.add((Customization) facetSet);
-			}
-
-		}
-
-
-		return tmp.toArray(a);
-	}
-
-	public boolean add(final Customization o) {
-		return this.delegate.add(o);
-	}
-
-	public boolean remove(final Object element) {
-		return this.delegate.remove(element);
-	}
-
-	public boolean containsAll(final Collection<?> c) {
-		ArrayList<Customization> tmp = new ArrayList<Customization>();
-		for (Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
-			FacetSet facetSet = iterator.next();
-			if (facetSet instanceof Customization) {
-				tmp.add((Customization) facetSet);
-			}
-
-		}
-		return tmp.containsAll(c);
-	}
-
-	public boolean addAll(final Collection<? extends Customization> c) {
-		return this.delegate.addAll(c);
-	}
-
-	public boolean addAll(final int index, final Collection<? extends Customization> c) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public boolean removeAll(final Collection<?> c) {
-		return this.delegate.removeAll(c);
-	}
-
-	public boolean retainAll(final Collection<?> c) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public void clear() {
-		final ListIterator<FacetSet> listIterator = this.delegate.listIterator();
-		while (listIterator.hasNext()) {
-			final FacetSet facetSet = listIterator.next();
-			if (facetSet instanceof Customization) {
-				listIterator.remove();
-			}
-		}
-	}
-
-	public Customization get(final int index) {
-		ArrayList<Customization> tmp = new ArrayList<Customization>();
-		for (Iterator<FacetSet> iterator = this.delegate.iterator(); iterator.hasNext();) {
-			FacetSet facetSet = iterator.next();
-			if (facetSet instanceof Customization) {
-				tmp.add((Customization) facetSet);
-			}
-
-		}
-		return tmp.get(index);
-	}
-
-	public Customization set(final int index, final Customization element) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public void add(final int index, final Customization element) {
-		if (index == 0) {
-			this.delegate.add(0, element);
+		if (delegate instanceof EList<?>) {
+			((EList<FacetSet>) delegate).move(index, movedObject);
 		} else {
-			// FIXME implement
-			throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
+			// Do it the hard way
+			delegate.remove(movedObject);
+			delegate.add(index, movedObject);
 		}
 	}
 
-	public Customization remove(final int index) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public int indexOf(final Object element) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public int lastIndexOf(final Object element) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public ListIterator<Customization> listIterator() {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public ListIterator<Customization> listIterator(final int index) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
-	}
-
-	public List<Customization> subList(final int fromIndex, final int toIndex) {
-		// FIXME implement
-		throw new UnsupportedOperationException("not implemented"); //$NON-NLS-1$
+	/**
+	 * Obtains the subset of a list of facet-sets that are customizations.
+	 * 
+	 * @param facetSets
+	 *            the superset
+	 * @return the subset of customizations
+	 */
+	protected static List<Customization> customizations(List<FacetSet> facetSets) {
+		return facetSets.stream()
+				.filter(Customization.class::isInstance).map(Customization.class::cast)
+				.collect(Collectors.toList());
 	}
 }
