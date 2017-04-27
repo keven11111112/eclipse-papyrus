@@ -69,6 +69,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 	}
+
 	/**
 	 * assure that a specification change gets handled by the constraint body.
 	 */
@@ -111,7 +112,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 	protected void refreshLabelsFont(Font font) {
 		super.refreshLabelsFont(font);
 		if (getPrimaryShape() instanceof ConstraintFigure) {
-			((ConstraintFigure) getPrimaryShape()).getTextFlow().setFont(font);
+			((ConstraintFigure) getPrimaryShape()).getPageFlow().setFont(font);
 		}
 	}
 

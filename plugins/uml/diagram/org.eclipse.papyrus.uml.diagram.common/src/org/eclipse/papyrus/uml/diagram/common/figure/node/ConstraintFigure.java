@@ -40,7 +40,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	protected static final String RIGHT_BRACE = "}";
 
-	protected TextFlowEx textFlow;
+	// protected TextFlowEx textFlow;
 
 	private WrappingLabel nameLabel;
 
@@ -50,7 +50,8 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	private int depth = 0;
 
 	/** main flow page */
-	protected FlowPage page;
+	protected WrappingLabel page;
+
 
 	/**
 	 * Calculate the partial qualified name with a specified depth.
@@ -130,6 +131,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		return null;
 	}
 
+
 	public ConstraintFigure() {
 		this(null);
 	}
@@ -141,16 +143,13 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(PositionConstants.MIDDLE);
-		add(nameLabel);
+		this.add(nameLabel);
 		initTagLabel(tagLabel);
-		page = new FlowPage();
+
+		page = new PapyrusWrappingLabel("");
 		page.setOpaque(false);
-
+		page.setTextWrap(true);
 		this.add(page);
-
-		textFlow = new TextFlowEx("");
-		page.add(textFlow);
-
 	}
 
 	/**
@@ -191,7 +190,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 */
 	@Override
 	public void setDepth(int depth) {
-		
+
 
 	}
 
@@ -214,7 +213,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 */
 	@Override
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
-		
+
 
 	}
 
@@ -257,23 +256,15 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	@Override
 	public void setText(String text) {
 		// generates new ones
-		textFlow.setText(LEFT_BRACE + text + RIGHT_BRACE);
-	}
-
-	/**
-	 *
-	 * @return the textflow of the constraint that contain the string of the
-	 *         specification
-	 */
-	public TextFlowEx getTextFlow() {
-		return textFlow;
+		// textFlow.setText(LEFT_BRACE + text + RIGHT_BRACE);
+		page.setText(LEFT_BRACE + text + RIGHT_BRACE);
 	}
 
 	/**
 	 *
 	 * @return the container of the text flow
 	 */
-	public FlowPage getPageFlow() {
+	public WrappingLabel getPageFlow() {
 		return page;
 
 	}
@@ -286,7 +277,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 */
 	@Override
 	public String getText() {
-		return textFlow.getText();
+		return page.getText();
 	}
 
 	/**
@@ -351,25 +342,25 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	@Override
 	public void removeStereotypeLabel() {
-		
+
 
 	}
 
 	@Override
 	public void restoreStereotypeLabel() {
-		
+
 
 	}
 
 	@Override
 	public void restoreTaggedLabel() {
-		
+
 
 	}
 
 	@Override
 	public void removeTaggedLabel() {
-		
+
 
 	}
 
