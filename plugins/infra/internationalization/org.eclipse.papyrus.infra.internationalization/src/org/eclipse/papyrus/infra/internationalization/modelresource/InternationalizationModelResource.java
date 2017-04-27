@@ -491,7 +491,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 		// Create the resource needed
 		final Resource resultResource = modelSet.createResource(propertiesURI);
-		configureResource(propertiesURI, resultResource, locale);
+		configureResource(resourceURI, resultResource, locale);
 		// Load the resource if not already loaded
 		if (!resultResource.isLoaded()) {
 			try {
