@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
@@ -44,6 +46,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.impl.NattablecellPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.NattablecelleditorPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
@@ -54,6 +58,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestylePackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.NattabletesterPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.impl.NattablewrapperPackageImpl;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -200,6 +207,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+		ExpressionsPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
@@ -211,6 +220,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) : NattablecellPackage.eINSTANCE);
 		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
 		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
+		NattablecelleditorPackageImpl theNattablecelleditorPackage = (NattablecelleditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecelleditorPackage.eNS_URI) instanceof NattablecelleditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecelleditorPackage.eNS_URI) : NattablecelleditorPackage.eINSTANCE);
+		NattablewrapperPackageImpl theNattablewrapperPackage = (NattablewrapperPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablewrapperPackage.eNS_URI) instanceof NattablewrapperPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablewrapperPackage.eNS_URI) : NattablewrapperPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattableaxisconfigurationPackage.createPackageContents();
@@ -223,6 +234,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		theNattablecellPackage.createPackageContents();
 		theNattableproblemPackage.createPackageContents();
 		theNattablestylePackage.createPackageContents();
+		theNattablecelleditorPackage.createPackageContents();
+		theNattablewrapperPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattableaxisconfigurationPackage.initializePackageContents();
@@ -235,6 +248,8 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		theNattablecellPackage.initializePackageContents();
 		theNattableproblemPackage.initializePackageContents();
 		theNattablestylePackage.initializePackageContents();
+		theNattablecelleditorPackage.initializePackageContents();
+		theNattablewrapperPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -648,6 +663,15 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTreeFillingConfiguration_FilterRule() {
+		return (EReference)treeFillingConfigurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EEnum getAxisIndexStyle() {
 		return axisIndexStyleEEnum;
@@ -732,6 +756,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		createEAttribute(treeFillingConfigurationEClass, TREE_FILLING_CONFIGURATION__DEPTH);
 		createEReference(treeFillingConfigurationEClass, TREE_FILLING_CONFIGURATION__LABEL_PROVIDER);
 		createEAttribute(treeFillingConfigurationEClass, TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT);
+		createEReference(treeFillingConfigurationEClass, TREE_FILLING_CONFIGURATION__FILTER_RULE);
 
 		// Create enums
 		axisIndexStyleEEnum = createEEnum(AXIS_INDEX_STYLE);
@@ -765,6 +790,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		NattablelabelproviderPackage theNattablelabelproviderPackage = (NattablelabelproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
 		NattableaxisPackage theNattableaxisPackage = (NattableaxisPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		BooleanExpressionsPackage theBooleanExpressionsPackage = (BooleanExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -835,6 +861,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		initEAttribute(getTreeFillingConfiguration_Depth(), theEcorePackage.getEInt(), "depth", null, 0, 1, TreeFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTreeFillingConfiguration_LabelProvider(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), null, "labelProvider", null, 1, 1, TreeFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTreeFillingConfiguration_LabelProviderContext(), ecorePackage.getEString(), "labelProviderContext", null, 1, 1, TreeFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTreeFillingConfiguration_FilterRule(), theBooleanExpressionsPackage.getIBooleanEObjectExpression(), null, "filterRule", null, 0, 1, TreeFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(axisIndexStyleEEnum, AxisIndexStyle.class, "AxisIndexStyle"); //$NON-NLS-1$

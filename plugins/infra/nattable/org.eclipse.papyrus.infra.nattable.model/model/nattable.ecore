@@ -189,6 +189,18 @@
             value="Cells of the table. They are used when the value to display can't be deduced of&#xD;&#xA;the intersection of the row and the column."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="ownedCellEditorConfigurations"
+        eType="#//nattablecelleditor/ICellEditorConfiguration"
+        containment="true">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="In some case (Matrix Table for example), the table can have celleditor configuration."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eSubpackages
       name="nattableconfiguration"
@@ -414,6 +426,19 @@
               value="This value can't be null. References the Axis Provider to use by default for columns."/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures
+          xsi:type="ecore:EReference"
+          name="ownedCellEditorConfigurations"
+          eType="#//nattablecelleditor/ICellEditorConfiguration"
+          transient="true"
+          containment="true">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="In some case (Matrix Table for example), the table can have celleditor configuration."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers
         xsi:type="ecore:EEnum"
@@ -482,6 +507,19 @@
           <details
               key="documentation"
               value="if true, the slave won't be updated when the elements owned by the master will be changed."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures
+          xsi:type="ecore:EReference"
+          name="sources"
+          upperBound="-1"
+          eType="#//nattablewrapper/IWrapper"
+          containment="true">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="This field is used by Matrix Table. it replaces the context of the table as provider for the axis."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -1113,7 +1151,10 @@
               value="This field references the feature of the context of the table in which the created element will be added."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="axisIdentifier" eType="#//nattableaxis/IAxis"
+      <eStructuralFeatures
+          xsi:type="ecore:EReference"
+          name="axisIdentifier"
+          eType="#//nattableaxis/IAxis"
           containment="true"/>
     </eClassifiers>
     <eClassifiers
@@ -1180,6 +1221,18 @@
           name="labelProviderContext"
           lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures
+          xsi:type="ecore:EReference"
+          name="filterRule"
+          eType="ecore:EClass ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//booleanexpressions/IBooleanEObjectExpression"
+          containment="true">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="This field is used to filter the elements to show for this depth. &#xD;&#xA;Only element matching the filter will be returned."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages
@@ -2046,6 +2099,177 @@
           name="eObjectValue"
           upperBound="-1"
           eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages
+      name="nattablecelleditor"
+      nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattablecelleditor"
+      nsPrefix="nattablecelleditor">
+    <eClassifiers
+        xsi:type="ecore:EClass"
+        name="ICellEditorConfiguration"
+        abstract="true"
+        interface="true"
+        eSuperTypes="#//nattablestyle/StyledElement">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="Common interface for all cell editor configuration."/>
+      </eAnnotations>
+      <eStructuralFeatures
+          xsi:type="ecore:EAttribute"
+          name="cellEditorId"
+          lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          iD="true">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="The id of the celleditor."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers
+        xsi:type="ecore:EClass"
+        name="GenericRelationshipMatrixCellEditorConfiguration"
+        eSuperTypes="#//nattablecelleditor/IMatrixCellEditorConfiguration">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="Concret implementation of IMatrixRelationshipCellEditorConfiguration"/>
+      </eAnnotations>
+      <eStructuralFeatures
+          xsi:type="ecore:EAttribute"
+          name="direction"
+          eType="#//nattablecelleditor/MatrixRelationShipDirection"
+          defaultValueLiteral="FROM_ROW_TO_COLUMN"/>
+      <eStructuralFeatures
+          xsi:type="ecore:EReference"
+          name="cellContentsFilter"
+          eType="ecore:EClass ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//booleanexpressions/IBooleanEObjectExpression">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="This field allows to the user to filter the contents of the cells."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures
+          xsi:type="ecore:EReference"
+          name="editedElement"
+          eType="ecore:EClass ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeConfiguration">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="This field allows to define the kind of element to edit in the cell."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers
+        xsi:type="ecore:EEnum"
+        name="MatrixRelationShipDirection">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="This Enumeration is used to define the direction of the relationship to display in the cell. &#xD;&#xA;In case of directed relationship and NONE selected, the cell won't be editable.&#xD;&#xA;In case of non directed relationship and a direction selected, we will use get(0) and get(1) to define a fake orientation."/>
+      </eAnnotations>
+      <eLiterals
+          name="NONE"
+          literal="NONE"/>
+      <eLiterals
+          name="FROM_ROW_TO_COLUMN"
+          value="1"
+          literal="FROM_ROW_TO_COLUMN"/>
+      <eLiterals
+          name="FROM_COLUMN_TO_ROW"
+          value="2"
+          literal="FROM_COLUMN_TO_ROW"/>
+    </eClassifiers>
+    <eClassifiers
+        xsi:type="ecore:EClass"
+        name="IMatrixCellEditorConfiguration"
+        abstract="true"
+        interface="true"
+        eSuperTypes="#//nattablecelleditor/ICellEditorConfiguration">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="Common interface for all Matrix cell editor."/>
+      </eAnnotations>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages
+      name="nattablewrapper"
+      nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattablewrapper"
+      nsPrefix="nattablewrapper">
+    <eClassifiers
+        xsi:type="ecore:EClass"
+        name="IWrapper"
+        abstract="true"
+        interface="true"
+        eSuperTypes="#//nattablestyle/StyledElement">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="Common interface for all wrapped. The wrapper is used to be able to reference an&#xD;&#xA;object which is not necessary an EObject. In this case, it could be referenced by as string."/>
+      </eAnnotations>
+      <eOperations
+          name="getElement"
+          lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="This method returns the wrapped element, but without solving it."/>
+        </eAnnotations>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers
+        xsi:type="ecore:EClass"
+        name="EObjectWrapper"
+        eSuperTypes="#//nattablewrapper/IWrapper">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="This class allows to wrap EObject."/>
+      </eAnnotations>
+      <eStructuralFeatures
+          xsi:type="ecore:EReference"
+          name="element"
+          lowerBound="1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    </eClassifiers>
+    <eClassifiers
+        xsi:type="ecore:EClass"
+        name="IdWrapper"
+        eSuperTypes="#//nattablewrapper/IWrapper">
+      <eAnnotations
+          source="http://www.eclipse.org/emf/2002/GenModel">
+        <details
+            key="documentation"
+            value="This class allows to reference an object identified by a string."/>
+      </eAnnotations>
+      <eStructuralFeatures
+          xsi:type="ecore:EAttribute"
+          name="element"
+          lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations
+            source="http://www.eclipse.org/emf/2002/GenModel">
+          <details
+              key="documentation"
+              value="The wrapped element is referenced by a String"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

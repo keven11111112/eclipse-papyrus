@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
@@ -167,6 +168,7 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER);
+			childrenFeatures.add(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE);
 		}
 		return childrenFeatures;
 	}
@@ -225,6 +227,7 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -301,6 +304,36 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
 				 NattableaxisFactory.eINSTANCE.createAxisGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
+				 BooleanExpressionsFactory.eINSTANCE.createOrExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
+				 BooleanExpressionsFactory.eINSTANCE.createAndExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
+				 BooleanExpressionsFactory.eINSTANCE.createNotExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
+				 BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
+				 BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
+				 BooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression()));
 	}
 
 	/**

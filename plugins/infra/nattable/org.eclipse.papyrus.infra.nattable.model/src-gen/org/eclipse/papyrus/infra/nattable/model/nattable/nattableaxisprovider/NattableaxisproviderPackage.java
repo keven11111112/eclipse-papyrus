@@ -361,13 +361,22 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE = AXIS_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Sources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMASTER_AXIS_PROVIDER__SOURCES = AXIS_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>IMaster Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMASTER_AXIS_PROVIDER_FEATURE_COUNT = AXIS_PROVIDER_FEATURE_COUNT + 1;
+	int IMASTER_AXIS_PROVIDER_FEATURE_COUNT = AXIS_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -724,6 +733,15 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int MASTER_OBJECT_AXIS_PROVIDER__DISCONNECT_SLAVE = IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE;
 
 	/**
+	 * The feature id for the '<em><b>Sources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MASTER_OBJECT_AXIS_PROVIDER__SOURCES = IMASTER_AXIS_PROVIDER__SOURCES;
+
+	/**
 	 * The number of structural features of the '<em>Master Object Axis Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -826,6 +844,17 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getIMasterAxisProvider_DisconnectSlave();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#getSources <em>Sources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sources</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#getSources()
+	 * @see #getIMasterAxisProvider()
+	 * @generated
+	 */
+	EReference getIMasterAxisProvider_Sources();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}'.
@@ -937,6 +966,14 @@ public interface NattableaxisproviderPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE = eINSTANCE.getIMasterAxisProvider_DisconnectSlave();
+
+		/**
+		 * The meta object literal for the '<em><b>Sources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMASTER_AXIS_PROVIDER__SOURCES = eINSTANCE.getIMasterAxisProvider_Sources();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}' class.

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.impl.NattablePackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
@@ -28,6 +29,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.impl.NattablecellPackageImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.NattablecelleditorPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.NattableconfigurationPackageImpl;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.NattablelabelproviderPackage;
@@ -40,6 +43,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Abstract
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.impl.NattablewrapperPackageImpl;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,6 +115,8 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+		ExpressionsPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
@@ -120,6 +128,8 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) : NattablecellPackage.eINSTANCE);
 		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
 		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
+		NattablecelleditorPackageImpl theNattablecelleditorPackage = (NattablecelleditorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecelleditorPackage.eNS_URI) instanceof NattablecelleditorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecelleditorPackage.eNS_URI) : NattablecelleditorPackage.eINSTANCE);
+		NattablewrapperPackageImpl theNattablewrapperPackage = (NattablewrapperPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablewrapperPackage.eNS_URI) instanceof NattablewrapperPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablewrapperPackage.eNS_URI) : NattablewrapperPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theNattabletesterPackage.createPackageContents();
@@ -132,6 +142,8 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		theNattablecellPackage.createPackageContents();
 		theNattableproblemPackage.createPackageContents();
 		theNattablestylePackage.createPackageContents();
+		theNattablecelleditorPackage.createPackageContents();
+		theNattablewrapperPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theNattabletesterPackage.initializePackageContents();
@@ -144,6 +156,8 @@ public class NattabletesterPackageImpl extends EPackageImpl implements Nattablet
 		theNattablecellPackage.initializePackageContents();
 		theNattableproblemPackage.initializePackageContents();
 		theNattablestylePackage.initializePackageContents();
+		theNattablecelleditorPackage.initializePackageContents();
+		theNattablewrapperPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theNattabletesterPackage.freeze();

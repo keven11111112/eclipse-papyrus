@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.ICellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Abstract
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getRowAxisProviders <em>Row Axis Providers</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getDefaultRowAxisProvider <em>Default Row Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getDefaultColumnAxisProvider <em>Default Column Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}</li>
  * </ul>
  *
  * @generated
@@ -182,6 +184,16 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 * @ordered
 	 */
 	protected AbstractAxisProvider defaultColumnAxisProvider;
+
+	/**
+	 * The cached value of the '{@link #getOwnedCellEditorConfigurations() <em>Owned Cell Editor Configurations</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedCellEditorConfigurations()
+	 * @generated
+	 * @ordered
+	 */
+	protected ICellEditorConfiguration ownedCellEditorConfigurations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -517,6 +529,49 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ICellEditorConfiguration getOwnedCellEditorConfigurations() {
+		return ownedCellEditorConfigurations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedCellEditorConfigurations(ICellEditorConfiguration newOwnedCellEditorConfigurations, NotificationChain msgs) {
+		ICellEditorConfiguration oldOwnedCellEditorConfigurations = ownedCellEditorConfigurations;
+		ownedCellEditorConfigurations = newOwnedCellEditorConfigurations;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS, oldOwnedCellEditorConfigurations, newOwnedCellEditorConfigurations);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedCellEditorConfigurations(ICellEditorConfiguration newOwnedCellEditorConfigurations) {
+		if (newOwnedCellEditorConfigurations != ownedCellEditorConfigurations) {
+			NotificationChain msgs = null;
+			if (ownedCellEditorConfigurations != null)
+				msgs = ((InternalEObject)ownedCellEditorConfigurations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS, null, msgs);
+			if (newOwnedCellEditorConfigurations != null)
+				msgs = ((InternalEObject)newOwnedCellEditorConfigurations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS, null, msgs);
+			msgs = basicSetOwnedCellEditorConfigurations(newOwnedCellEditorConfigurations, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS, newOwnedCellEditorConfigurations, newOwnedCellEditorConfigurations));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -530,6 +585,8 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 				return ((InternalEList<?>)getColumnAxisProviders()).basicRemove(otherEnd, msgs);
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS:
 				return ((InternalEList<?>)getRowAxisProviders()).basicRemove(otherEnd, msgs);
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS:
+				return basicSetOwnedCellEditorConfigurations(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -564,6 +621,8 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER:
 				if (resolve) return getDefaultColumnAxisProvider();
 				return basicGetDefaultColumnAxisProvider();
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS:
+				return getOwnedCellEditorConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -609,6 +668,9 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER:
 				setDefaultColumnAxisProvider((AbstractAxisProvider)newValue);
 				return;
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS:
+				setOwnedCellEditorConfigurations((ICellEditorConfiguration)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -651,6 +713,9 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER:
 				setDefaultColumnAxisProvider((AbstractAxisProvider)null);
 				return;
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS:
+				setOwnedCellEditorConfigurations((ICellEditorConfiguration)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -683,6 +748,8 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 				return defaultRowAxisProvider != null;
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER:
 				return defaultColumnAxisProvider != null;
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS:
+				return ownedCellEditorConfigurations != null;
 		}
 		return super.eIsSet(featureID);
 	}

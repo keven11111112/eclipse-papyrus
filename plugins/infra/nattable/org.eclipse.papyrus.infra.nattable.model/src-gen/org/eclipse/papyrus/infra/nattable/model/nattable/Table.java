@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.ICellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement;
 
@@ -47,11 +48,12 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCells <em>Cells</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='currentRowAxisInHistory currentColumnAxisInHistory currentAxisProvidersTypes'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot currentRowAxisInHistory='rowAxisProvidersHistory->includes(currentRowAxisProvider)' currentColumnAxisInHistory='columnAxisProvidersHistory->includes(currentColumnAxisProvider)' currentAxisProvidersTypes='not (currentRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and currentColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot currentRowAxisInHistory='rowAxisProvidersHistory-&gt;includes(currentRowAxisProvider)' currentColumnAxisInHistory='columnAxisProvidersHistory-&gt;includes(currentColumnAxisProvider)' currentAxisProvidersTypes='not (currentRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and currentColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))'"
  * @generated
  */
 public interface Table extends TableNamedElement {
@@ -336,4 +338,29 @@ public interface Table extends TableNamedElement {
 	 * @generated
 	 */
 	EList<Cell> getCells();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Cell Editor Configurations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * In some case (Matrix Table for example), the table can have celleditor configuration.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Cell Editor Configurations</em>' containment reference.
+	 * @see #setOwnedCellEditorConfigurations(ICellEditorConfiguration)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_OwnedCellEditorConfigurations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ICellEditorConfiguration getOwnedCellEditorConfigurations();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Cell Editor Configurations</em>' containment reference.
+	 * @see #getOwnedCellEditorConfigurations()
+	 * @generated
+	 */
+	void setOwnedCellEditorConfigurations(ICellEditorConfiguration value);
 } // Table

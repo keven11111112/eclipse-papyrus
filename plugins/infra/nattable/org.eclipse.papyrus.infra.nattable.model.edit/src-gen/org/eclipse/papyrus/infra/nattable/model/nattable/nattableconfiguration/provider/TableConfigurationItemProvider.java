@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.NattabletesterFactory;
@@ -193,6 +194,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION);
 			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS);
 			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS);
+			childrenFeatures.add(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -258,6 +260,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION:
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS:
 			case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS:
+			case NattableconfigurationPackage.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -309,6 +312,11 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 			(createChildParameter
 				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS,
 				 NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS,
+				 NattablecelleditorFactory.eINSTANCE.createGenericRelationshipMatrixCellEditorConfiguration()));
 	}
 
 	/**

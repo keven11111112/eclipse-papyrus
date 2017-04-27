@@ -96,4 +96,20 @@
             genModel="model/nattable.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattablecelleditor"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated nattable -->
+      <package
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattablewrapper"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperPackage"
+            genModel="model/nattable.genmodel"/>
+   </extension>
+
 </plugin>

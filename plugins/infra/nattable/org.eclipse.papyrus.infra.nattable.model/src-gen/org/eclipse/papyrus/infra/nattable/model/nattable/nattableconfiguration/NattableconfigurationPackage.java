@@ -307,13 +307,22 @@ public interface NattableconfigurationPackage extends EPackage {
 	int TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER = TABLE_NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Owned Cell Editor Configurations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS = TABLE_NAMED_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Table Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_CONFIGURATION_FEATURE_COUNT = TABLE_NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int TABLE_CONFIGURATION_FEATURE_COUNT = TABLE_NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -523,6 +532,17 @@ public interface NattableconfigurationPackage extends EPackage {
 	EReference getTableConfiguration_DefaultColumnAxisProvider();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Cell Editor Configurations</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getOwnedCellEditorConfigurations()
+	 * @see #getTableConfiguration()
+	 * @generated
+	 */
+	EReference getTableConfiguration_OwnedCellEditorConfigurations();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,6 +691,14 @@ public interface NattableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER = eINSTANCE.getTableConfiguration_DefaultColumnAxisProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Cell Editor Configurations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_CONFIGURATION__OWNED_CELL_EDITOR_CONFIGURATIONS = eINSTANCE.getTableConfiguration_OwnedCellEditorConfigurations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration <em>Cell Editor Declaration</em>}' enum.

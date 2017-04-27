@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.ICellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.AbstractTableTester;
 
 /**
@@ -43,11 +44,12 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Abstract
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowAxisProviders <em>Row Axis Providers</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider <em>Default Row Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider <em>Default Column Axis Provider</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableConfiguration()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='defaultRowAxisProviderExistsInCollection defaultColumnAxisProviderExistsInCollection defaultAxisProvidersTypes typeNonNullNonEmpty iconPath'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot defaultRowAxisProviderExistsInCollection='rowAxisProviders->includes(defaultRowAxisProvider)' defaultColumnAxisProviderExistsInCollection='columnAxisProviders->includes(defaultColumnAxisProvider)' typeNonNullNonEmpty='not (type.oclIsUndefined() or type = \'\')' iconPath='not (iconPath.oclIsUndefined() or iconPath = \'\')' defaultAxisProvidersTypes='not (defaultRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and defaultColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot defaultRowAxisProviderExistsInCollection='rowAxisProviders-&gt;includes(defaultRowAxisProvider)' defaultColumnAxisProviderExistsInCollection='columnAxisProviders-&gt;includes(defaultColumnAxisProvider)' typeNonNullNonEmpty='not (type.oclIsUndefined() or type = \'\')' iconPath='not (iconPath.oclIsUndefined() or iconPath = \'\')' defaultAxisProvidersTypes='not (defaultRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and defaultColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))'"
  * @generated
  */
 public interface TableConfiguration extends TableNamedElement {
@@ -289,4 +291,29 @@ public interface TableConfiguration extends TableNamedElement {
 	 * @generated
 	 */
 	void setDefaultColumnAxisProvider(AbstractAxisProvider value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Cell Editor Configurations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * In some case (Matrix Table for example), the table can have celleditor configuration.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Cell Editor Configurations</em>' containment reference.
+	 * @see #setOwnedCellEditorConfigurations(ICellEditorConfiguration)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableConfiguration_OwnedCellEditorConfigurations()
+	 * @model containment="true" transient="true"
+	 * @generated
+	 */
+	ICellEditorConfiguration getOwnedCellEditorConfigurations();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Cell Editor Configurations</em>' containment reference.
+	 * @see #getOwnedCellEditorConfigurations()
+	 * @generated
+	 */
+	void setOwnedCellEditorConfigurations(ICellEditorConfiguration value);
 } // TableConfiguration

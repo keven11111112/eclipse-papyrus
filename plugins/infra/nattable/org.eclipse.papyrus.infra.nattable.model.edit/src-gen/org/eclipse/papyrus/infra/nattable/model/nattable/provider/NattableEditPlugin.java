@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.papyrus.infra.emf.expressions.provider.ExpressionsEditPlugin;
+import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
  * This is the central singleton for the Nattable edit plugin.
@@ -50,6 +52,8 @@ public final class NattableEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     EcoreEditPlugin.INSTANCE,
+		     TypesConfigurationsEditPlugin.INSTANCE,
+		     ExpressionsEditPlugin.INSTANCE,
 		   });
 	}
 

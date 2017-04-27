@@ -294,4 +294,60 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.presentation.NattablecelleditorModelWizardID"
+            name="%_UI_NattablecelleditorModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.presentation.NattablecelleditorModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattablecelleditorModelFile.gif">
+         <description>%_UI_NattablecelleditorModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.presentation.NattablecelleditorEditorID"
+            name="%_UI_NattablecelleditorEditor_label"
+            icon="icons/full/obj16/NattablecelleditorModelFile.gif"
+            extensions="nattablecelleditor"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.presentation.NattablecelleditorEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.presentation.NattablecelleditorActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated nattable -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.presentation.NattablewrapperModelWizardID"
+            name="%_UI_NattablewrapperModelWizard_label"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.presentation.NattablewrapperModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NattablewrapperModelFile.gif">
+         <description>%_UI_NattablewrapperModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated nattable -->
+      <editor
+            id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.presentation.NattablewrapperEditorID"
+            name="%_UI_NattablewrapperEditor_label"
+            icon="icons/full/obj16/NattablewrapperModelFile.gif"
+            extensions="nattablewrapper"
+            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.presentation.NattablewrapperEditor"
+            contributorClass="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.presentation.NattablewrapperActionBarContributor">
+      </editor>
+   </extension>
+
 </plugin>

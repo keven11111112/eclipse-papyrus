@@ -12,6 +12,9 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IMaster Axis Provider</b></em>'.
@@ -27,6 +30,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave <em>Disconnect Slave</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#getSources <em>Sources</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getIMasterAxisProvider()
@@ -59,4 +63,19 @@ public interface IMasterAxisProvider extends AxisProvider {
 	 * @generated
 	 */
 	void setDisconnectSlave(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Sources</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This field is used by Matrix Table. it replaces the context of the table as provider for the axis.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Sources</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage#getIMasterAxisProvider_Sources()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<IWrapper> getSources();
 } // IMasterAxisProvider

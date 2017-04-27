@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration;
 
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProvider <em>Label Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProviderContext <em>Label Provider Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getFilterRule <em>Filter Rule</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getTreeFillingConfiguration()
@@ -162,4 +164,30 @@ public interface TreeFillingConfiguration extends IFillingConfiguration {
 	 * @generated
 	 */
 	void setLabelProviderContext(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Filter Rule</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This field is used to filter the elements to show for this depth. 
+	 * Only element matching the filter will be returned.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Filter Rule</em>' containment reference.
+	 * @see #setFilterRule(IBooleanEObjectExpression)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getTreeFillingConfiguration_FilterRule()
+	 * @model containment="true"
+	 * @generated
+	 */
+	IBooleanEObjectExpression getFilterRule();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getFilterRule <em>Filter Rule</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Filter Rule</em>' containment reference.
+	 * @see #getFilterRule()
+	 * @generated
+	 */
+	void setFilterRule(IBooleanEObjectExpression value);
 } // TreeFillingConfiguration

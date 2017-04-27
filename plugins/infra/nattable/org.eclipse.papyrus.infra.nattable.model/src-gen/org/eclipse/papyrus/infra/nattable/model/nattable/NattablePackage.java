@@ -225,13 +225,22 @@ public interface NattablePackage extends EPackage {
 	int TABLE__CELLS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Owned Cell Editor Configurations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 12;
+
+	/**
 	 * The number of structural features of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 12;
+	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -421,6 +430,17 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_Cells();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Cell Editor Configurations</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getOwnedCellEditorConfigurations()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EReference getTable_OwnedCellEditorConfigurations();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -549,5 +569,13 @@ public interface NattablePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE__CELLS = eINSTANCE.getTable_Cells();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Cell Editor Configurations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS = eINSTANCE.getTable_OwnedCellEditorConfigurations();
 	}
 } // NattablePackage

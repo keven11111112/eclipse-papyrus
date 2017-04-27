@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getDepth <em>Depth</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getLabelProvider <em>Label Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getFilterRule <em>Filter Rule</em>}</li>
  * </ul>
  *
  * @generated
@@ -112,6 +114,16 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 * @ordered
 	 */
 	protected String labelProviderContext = LABEL_PROVIDER_CONTEXT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getFilterRule() <em>Filter Rule</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilterRule()
+	 * @generated
+	 * @ordered
+	 */
+	protected IBooleanEObjectExpression filterRule;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -308,11 +320,56 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IBooleanEObjectExpression getFilterRule() {
+		return filterRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFilterRule(IBooleanEObjectExpression newFilterRule, NotificationChain msgs) {
+		IBooleanEObjectExpression oldFilterRule = filterRule;
+		filterRule = newFilterRule;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE, oldFilterRule, newFilterRule);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFilterRule(IBooleanEObjectExpression newFilterRule) {
+		if (newFilterRule != filterRule) {
+			NotificationChain msgs = null;
+			if (filterRule != null)
+				msgs = ((InternalEObject)filterRule).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE, null, msgs);
+			if (newFilterRule != null)
+				msgs = ((InternalEObject)newFilterRule).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE, null, msgs);
+			msgs = basicSetFilterRule(newFilterRule, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE, newFilterRule, newFilterRule));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
 				return basicSetAxisUsedAsAxisProvider(null, msgs);
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE:
+				return basicSetFilterRule(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -337,6 +394,8 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 				return basicGetLabelProvider();
 			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				return getLabelProviderContext();
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE:
+				return getFilterRule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -363,6 +422,9 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 				return;
 			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				setLabelProviderContext((String)newValue);
+				return;
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE:
+				setFilterRule((IBooleanEObjectExpression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -391,6 +453,9 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				setLabelProviderContext(LABEL_PROVIDER_CONTEXT_EDEFAULT);
 				return;
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE:
+				setFilterRule((IBooleanEObjectExpression)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -413,6 +478,8 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 				return labelProvider != null;
 			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 				return LABEL_PROVIDER_CONTEXT_EDEFAULT == null ? labelProviderContext != null : !LABEL_PROVIDER_CONTEXT_EDEFAULT.equals(labelProviderContext);
+			case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__FILTER_RULE:
+				return filterRule != null;
 		}
 		return super.eIsSet(featureID);
 	}

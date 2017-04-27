@@ -5,7 +5,7 @@
     editorDirectory="/org.eclipse.papyrus.infra.nattable.model.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.nattable.model"
     modelName="Nattable" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.nattable.model.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.genmodel#//expressions"
     operationReflection="true" importOrganizing="true">
   <foreignModel>nattable.ecore</foreignModel>
   <genPackages prefix="Nattable" basePackage="org.eclipse.papyrus.infra.nattable.model"
@@ -23,6 +23,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/currentRowAxisProvider"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/currentColumnAxisProvider"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/cells"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/ownedCellEditorConfigurations"/>
     </genClasses>
     <nestedGenPackages prefix="Nattableconfiguration" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
         disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattableconfiguration">
@@ -48,6 +49,7 @@
             ecoreFeature="ecore:EReference nattable.ecore#//nattableconfiguration/TableConfiguration/defaultRowAxisProvider"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattableconfiguration/TableConfiguration/defaultColumnAxisProvider"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattableconfiguration/TableConfiguration/ownedCellEditorConfigurations"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattableaxisprovider" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
@@ -57,6 +59,7 @@
       </genClasses>
       <genClasses image="false" ecoreClass="nattable.ecore#//nattableaxisprovider/IMasterAxisProvider">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattableaxisprovider/IMasterAxisProvider/disconnectSlave"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattableaxisprovider/IMasterAxisProvider/sources"/>
       </genClasses>
       <genClasses image="false" ecoreClass="nattable.ecore#//nattableaxisprovider/ISlaveAxisProvider"/>
       <genClasses image="false" ecoreClass="nattable.ecore#//nattableaxisprovider/AxisProvider">
@@ -147,6 +150,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattableaxisconfiguration/TreeFillingConfiguration/labelProvider"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattableaxisconfiguration/TreeFillingConfiguration/labelProviderContext"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattableaxisconfiguration/TreeFillingConfiguration/filterRule"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattabletester" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
@@ -321,6 +325,38 @@
       <genClasses ecoreClass="nattable.ecore#//nattablestyle/EObjectListValueStyle">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattablestyle/EObjectListValueStyle/eObjectValue"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Nattablecelleditor" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
+        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattablecelleditor">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection">
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/NONE"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/FROM_ROW_TO_COLUMN"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/FROM_COLUMN_TO_ROW"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="nattable.ecore#//nattablecelleditor/ICellEditorConfiguration">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattablecelleditor/ICellEditorConfiguration/cellEditorId"/>
+      </genClasses>
+      <genClasses ecoreClass="nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/direction"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/cellContentsFilter"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/editedElement"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="nattable.ecore#//nattablecelleditor/IMatrixCellEditorConfiguration"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Nattablewrapper" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
+        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattablewrapper">
+      <genClasses image="false" ecoreClass="nattable.ecore#//nattablewrapper/IWrapper">
+        <genOperations ecoreOperation="nattable.ecore#//nattablewrapper/IWrapper/getElement"/>
+      </genClasses>
+      <genClasses ecoreClass="nattable.ecore#//nattablewrapper/EObjectWrapper">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference nattable.ecore#//nattablewrapper/EObjectWrapper/element"/>
+      </genClasses>
+      <genClasses ecoreClass="nattable.ecore#//nattablewrapper/IdWrapper">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattablewrapper/IdWrapper/element"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>
