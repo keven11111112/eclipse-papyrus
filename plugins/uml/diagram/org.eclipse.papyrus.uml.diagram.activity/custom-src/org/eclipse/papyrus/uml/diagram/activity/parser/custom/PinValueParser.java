@@ -244,6 +244,6 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getValuePin_Value().equals(feature) || UMLPackage.eINSTANCE.getActionInputPin_FromAction().equals(feature)
-				|| UMLPackage.eINSTANCE.getVariableAction_Variable().equals(feature) || UMLPackage.eINSTANCE.getValueSpecificationAction_Value().equals(feature) || ValueSpecification.class.isAssignableFrom(feature.getContainerClass());
+				|| UMLPackage.eINSTANCE.getVariableAction_Variable().equals(feature) || UMLPackage.eINSTANCE.getValueSpecificationAction_Value().equals(feature) || (feature != null && ValueSpecification.class.isAssignableFrom(feature.getContainerClass()));
 	}
 }

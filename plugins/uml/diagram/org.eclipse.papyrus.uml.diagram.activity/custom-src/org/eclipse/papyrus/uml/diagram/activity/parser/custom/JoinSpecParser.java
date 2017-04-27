@@ -181,6 +181,6 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 		if (feature == null){
 			return false;
 		}
-		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getJoinNode_JoinSpec().equals(feature) || ValueSpecification.class.isAssignableFrom(feature.getContainerClass());
+		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getJoinNode_JoinSpec().equals(feature) || (feature != null && ValueSpecification.class.isAssignableFrom(feature.getContainerClass()));
 	}
 }

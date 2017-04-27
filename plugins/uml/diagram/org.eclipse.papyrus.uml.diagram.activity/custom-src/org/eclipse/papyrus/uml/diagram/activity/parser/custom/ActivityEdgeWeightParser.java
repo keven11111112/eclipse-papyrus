@@ -186,6 +186,6 @@ public class ActivityEdgeWeightParser extends MessageFormatParser implements ISe
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		return UMLPackage.eINSTANCE.getActivityEdge_Weight().equals(feature) || ValueSpecification.class.isAssignableFrom(feature.getContainerClass());
+		return UMLPackage.eINSTANCE.getActivityEdge_Weight().equals(feature) || (feature != null && ValueSpecification.class.isAssignableFrom(feature.getContainerClass()));
 	}
 }
