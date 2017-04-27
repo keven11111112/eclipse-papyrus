@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Override of the paintCell() method
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515735
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.painter;
 
@@ -23,12 +23,9 @@ import org.eclipse.nebula.widgets.nattable.style.CellStyleUtil;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.style.IStyle;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
@@ -75,7 +72,7 @@ public class CustomizedCellPainter extends CellPainterWithUnderlinedError {
 	}
 
 	/**
-	 * Overridden to show, additionally to the contents of a cell, a vertical arrow pointing down in case there are masked lines
+	 * Overridden to show, additionally to the contents of a cell, a vertical arrow pointing down in case there are masked lines.
 	 *
 	 * @see org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter#paintCell(org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell, org.eclipse.swt.graphics.GC, org.eclipse.swt.graphics.Rectangle,
 	 *      org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
@@ -106,20 +103,17 @@ public class CustomizedCellPainter extends CellPainterWithUnderlinedError {
 
 			int yStartPos = rectangle.y + CellStyleUtil.getVerticalAlignmentPadding(cellStyle, rectangle, contentHeight);
 			String[] lines = text.split("\n"); //$NON-NLS-1$
-			for (String line : lines) {
-				int lineContentWidth = Math.min(getLengthFromCache(gc, line), rectangle.width);
-
+			for (int lineIndex = 0; lineIndex < lines.length; lineIndex ++) {
 				Image im = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("org.eclipse.papyrus.infra.nattable", "/icons/arrow_down_end.png"); //$NON-NLS-1$ //$NON-NLS-2$
-				gc.drawText(line, rectangle.x + CellStyleUtil.getHorizontalAlignmentPadding(cellStyle, rectangle, lineContentWidth) + spacing, yStartPos + spacing, SWT.DRAW_TRANSPARENT | SWT.DRAW_DELIMITER);
 
-				// We test if, given the current cell size and text position, we should display the down pointing arrow.
+				// If the current text position passes the cell bounds, we should display the down pointing arrow
 				if (contentHeight > rectangle.height && yStartPos + fontHeight > rectangle.height + rectangle.y) {
 					int yDownRowIcon = rectangle.y + rectangle.height - im.getBounds().height;
 					int xDownRowIcon = rectangle.x + rectangle.width - im.getBounds().width;
 					gc.drawImage(im, xDownRowIcon, yDownRowIcon);
 				}
 
-				// after every line calculate the y start pos new
+				// After each line, increase the y start position of the text
 				yStartPos += fontHeight;
 			}
 		}
