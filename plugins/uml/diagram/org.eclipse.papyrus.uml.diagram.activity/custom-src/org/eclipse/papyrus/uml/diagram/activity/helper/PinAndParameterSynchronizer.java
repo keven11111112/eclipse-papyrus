@@ -403,7 +403,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		boolean multiplicity = UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(modifiedFeature) || UMLPackage.eINSTANCE.getMultiplicityElement_Lower().equals(modifiedFeature)
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(modifiedFeature) || UMLPackage.eINSTANCE.getMultiplicityElement_Upper().equals(modifiedFeature)
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(modifiedFeature);
-		boolean inAValueSpecification = ValueSpecification.class.isAssignableFrom(modifiedFeature.getContainerClass());
+		boolean inAValueSpecification = modifiedFeature != null && ValueSpecification.class.isAssignableFrom(modifiedFeature.getContainerClass());
 		return type || ordering || multiplicity || inAValueSpecification;
 	}
 

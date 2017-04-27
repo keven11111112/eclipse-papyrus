@@ -185,6 +185,6 @@ public class EdgeGuardParser extends MessageFormatParser implements ISemanticPar
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		return UMLPackage.eINSTANCE.getActivityEdge_Guard().equals(feature) || ValueSpecification.class.isAssignableFrom(feature.getContainerClass());
+		return UMLPackage.eINSTANCE.getActivityEdge_Guard().equals(feature) || (feature != null && ValueSpecification.class.isAssignableFrom(feature.getContainerClass()));
 	}
 }
