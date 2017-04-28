@@ -15,10 +15,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
@@ -51,6 +53,10 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	/** main flow page */
 	protected WrappingLabel page;
+
+	/** separate the name label from the body */
+	private boolean drawSeparator = false;
+
 
 
 	/**
@@ -150,6 +156,51 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		page.setOpaque(false);
 		page.setTextWrap(true);
 		this.add(page);
+
+	}
+
+	/**
+	 * Draw a separator between the name figure and the body's.
+	 * 
+	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
+	 *
+	 * @param graphics
+	 */
+	@Override
+	public void paint(Graphics graphics) {
+		super.paint(graphics);
+
+		if (!drawSeparator) {
+			return;
+		}
+
+		Rectangle figureBounds = this.getBounds();
+		Rectangle pageBounds = page.getBounds();
+		graphics.pushState();
+		graphics.setForegroundColor(getForegroundColor());
+		graphics.setLineWidth(1);
+
+		graphics.drawLine(new Point(figureBounds.x, pageBounds.y), new Point(figureBounds.x + figureBounds.width, pageBounds.y));
+		graphics.popState();
+
+	}
+
+	/**
+	 * Checks if the separator is wanted.
+	 * 
+	 * @return true, if it is
+	 */
+	public boolean isSeparated() {
+		return drawSeparator;
+	}
+
+	/**
+	 * Set the separator option
+	 * 
+	 * @param isSeparated
+	 */
+	public void setSeparated(boolean isSeparated) {
+		this.drawSeparator = isSeparated;
 	}
 
 	/**
