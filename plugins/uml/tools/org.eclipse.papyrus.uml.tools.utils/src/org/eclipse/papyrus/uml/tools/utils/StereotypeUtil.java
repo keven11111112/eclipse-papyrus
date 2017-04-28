@@ -627,10 +627,13 @@ public class StereotypeUtil {
 			ArrayList<String> baseElements = new ArrayList<String>();
 			if (values != null) {
 				for (int k = 0; k < values.size(); k++) {
-					if (withQualifiedName) {
-						baseElements.add(((NamedElement) UMLUtil.getBaseElement(values.get(k))).getQualifiedName());
-					} else {
-						baseElements.add(((NamedElement) UMLUtil.getBaseElement(values.get(k))).getName());
+					Element base = UMLUtil.getBaseElement(values.get(k));
+					if (base instanceof NamedElement) {
+						if (withQualifiedName) {
+							baseElements.add(((NamedElement) base).getQualifiedName());
+						} else {
+							baseElements.add(((NamedElement) base).getName());
+						}
 					}
 				}
 			}
