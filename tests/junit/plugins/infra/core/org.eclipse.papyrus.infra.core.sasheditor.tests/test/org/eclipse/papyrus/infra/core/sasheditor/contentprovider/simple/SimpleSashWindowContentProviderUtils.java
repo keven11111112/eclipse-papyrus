@@ -16,8 +16,11 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple;
 
 import java.util.Map;
 
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.MessagePartModel;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
+import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.Page;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PanelTerm;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.WindowTerm;
@@ -120,8 +123,37 @@ public class SimpleSashWindowContentProviderUtils implements ISashWindowsContent
 	}
 
 	/**
+	 * Create a new page (i.e. its model) in the associated contentProvider.
+	 * 
+	 * @param page The page name to create.
+	 * @return The model of the created page
+	 * @throws PagesModelException
+	 */
+	public IPageModel createNewPage(Page page) throws PagesModelException {
+
+		IPageModel newPageModel = new MessagePartModel( page.getName(), page.getName());
+		contentProvider.addPage(newPageModel);	
+		return newPageModel;
+	}
+
+	/**
+	 * Create a new page (i.e. its model) in the associated contentProvider.
+	 * 
+	 * The new page model is created in the currently selected folder ({@link SimpleSashWindowsContentProvider#getCurrentTabFolder()}.
+	 * @param page The page name to create.
+	 * @return The model of the created page
+	 * @throws PagesModelException
+	 */
+	public IPageModel createNewPage(String pageName) throws PagesModelException {
+
+		IPageModel newPageModel = new MessagePartModel( pageName, pageName);
+		contentProvider.addPage(newPageModel);	
+		return newPageModel;
+	}
+
+	/**
 	 * Get element in the model.
-	 * Each model element whose corresponding model query part as a name is added to the result map.
+	 * Each model element whose corresponding model query part has a name is added to the result map.
 	 * The element is then accessible with the name set in the query part.
 	 * 
 	 * @param query

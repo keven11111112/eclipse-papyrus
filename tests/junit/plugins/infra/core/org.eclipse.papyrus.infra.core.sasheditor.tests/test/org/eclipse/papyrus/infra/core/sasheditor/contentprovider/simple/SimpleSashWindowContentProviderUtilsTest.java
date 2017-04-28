@@ -111,5 +111,30 @@ public class SimpleSashWindowContentProviderUtilsTest {
 		assertNotNull("found p2", res.get("p2"));
 		assertTrue("right type", res.get("p2") instanceof IPageModel );
 	}
+	
+	/**
+	 * Test method for {@link SimpleSashWindowContentProviderUtils#createNewPage(String)}.
+	 * @throws PagesModelException 
+	 */
+	@Test
+	public void testCreateNewPage() throws PagesModelException {
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
+		
+		assertNotNull("helper created", helper);
+		// Create a query
+		IModelExp expr = vSash( folder( "f1", page("p1")), folder( "f2", page("p2")));
+		// Try to create the model
+		helper.createModel(expr);
+		
+		// Query model
+		Map<String, Object> res = helper.queryModel(expr);
+		assertNull("not found", res.get("NewPage"));
+		
+		// Test method
+		IPageModel pageModel = helper.createNewPage("NewPage");
+		assertNotNull("model created", pageModel);
+		
+	}
 
 }

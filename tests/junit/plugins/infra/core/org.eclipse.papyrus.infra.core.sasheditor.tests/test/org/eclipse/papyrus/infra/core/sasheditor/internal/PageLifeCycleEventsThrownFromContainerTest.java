@@ -3,6 +3,9 @@
  */
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
+import static org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesModelFactory.folder;
+import static org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesModelFactory.page;
+import static org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesModelFactory.vSash;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -13,9 +16,12 @@ import java.util.List;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowContentProviderUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.MessagePartModel;
+import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
+import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
@@ -333,4 +339,40 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 		// Deactivated is no sent
 	}
 
+	/**
+	 * Test the life cycle of the events when an editor is closed.
+	 * @throws PagesModelException 
+	 * 
+	 */
+	@Test
+	public void testEventCloseLifeCycle() throws PagesModelException {
+
+		// Create content provider
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
+
+		// define how to populate contentProvider
+		IModelExp expr = vSash(folder("f1", page("p11"), page("p12")), folder("f2", page("p21")));
+		// Try to create the model
+		helper.createModel(expr);
+
+
+		// Create the SashWindowsContainer
+		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
+
+		// Create listener and attach it
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
+		container.addPageLifeCycleListener(listener);
+
+		// creates Pages in the sashContainer 
+		container.refreshTabs();
+
+		// refresh traces
+		listener.resetChangeCount();
+		listener.resetTraces();
+
+		// Now test the lifeCycle by closing a page
+		helper.createNewPage("pNew");
+	}
+	
 }
