@@ -18,17 +18,11 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 
 public class CustomActivityEditPart extends ActivityEditPart {
@@ -59,23 +53,6 @@ public class CustomActivityEditPart extends ActivityEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart#createNodePlate()
-	 *
-	 * @return
-	 */
-	@Override
-	protected NodeFigure createNodePlate() {
-		String prefElementId = "Activity";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
-		// DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(-20, -20);
-		return result;
 	}
 
 	/**
