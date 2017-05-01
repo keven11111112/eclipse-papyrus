@@ -33,7 +33,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Element;
 
@@ -184,7 +183,9 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	@Override
 	public void notifyChanged(Notification notification) {
 		//Display imprecision
-
+if(notification.getEventType()==Notification.REMOVE){
+	return;
+}
 		Node nodeContainer=(Node)(((GraphicalEditPart)getHost()).getNotationView()).eContainer();
 		if( nodeContainer!=null){
 			PrecisionRectangle originPosition= NotationHelper.getAbsoluteBounds(nodeContainer);
@@ -359,15 +360,9 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 
 		//calculate  bounds from notation
 		PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds(node);
-		double oldSize=bounds.preciseHeight()-deltaHeight;
-		if( oldSize==-1.0){
-			//it is very bad , because this is a default valued given by the figure...
-			if( getHost() instanceof CLifeLineEditPart){
-				oldSize=CLifeLineEditPart.DEFAUT_HEIGHT;
-			}
-		}
+		double oldHeight=BoundForEditPart.getHeightFromView(node)-deltaHeight;
 
-		double newPercentY	= (yPercent*oldSize)/(bounds.preciseHeight());
+		double newPercentY	= (yPercent*oldHeight)/(bounds.preciseHeight());
 		if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
 			final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
 			execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
@@ -392,14 +387,7 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 			double xPercent=IdentityAnchorHelper.getXPercentage(anchor);
 
 			//calculate  bounds from notation
-			PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds(node);
-			double height=bounds.preciseHeight();
-			if( height==-1.0){
-				//it is very bad , because this is a default valued given by the figure...
-				if( getHost() instanceof CLifeLineEditPart){
-					height=CLifeLineEditPart.DEFAUT_HEIGHT;
-				}
-			}
+			double height=BoundForEditPart.getHeightFromView(node);
 
 			double newPercentY	= (oldY-newY)/(height)+yPercent;
 			if(newPercentY<0){

@@ -13,9 +13,6 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
-import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -38,7 +35,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
@@ -46,7 +43,7 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  *
  */
-public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
+public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
 
 	protected GrillingEditpart grillingCompartment=null;
 
@@ -61,7 +58,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 	 * Constructor.
 	 *
 	 */
-	public ConnectEdgeToGrillingEditPolicy() {
+	public ConnectMessageToGridEditPolicy() {
 	}
 
 	/**
@@ -89,7 +86,11 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 					PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewsr);
 					double localY=(bounds.preciseHeight()*ypercent);
 					double absoluteY=localY+bounds.preciseY();
-					rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m.getSendEvent());
+					if(m.getSendEvent()==null){
+						rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m);
+					}else{
+						rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m.getSendEvent());
+					}
 					getDiagramEventBroker().addNotificationListener(rowTarget, this);
 
 					//target
@@ -98,7 +99,11 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 					bounds= NotationHelper.getAbsoluteBounds((Node)viewtg);
 					localY=(bounds.preciseHeight()*ypercent);
 					absoluteY=localY+bounds.preciseY();
-					rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m.getReceiveEvent());
+					if(m.getReceiveEvent()==null){
+					rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m);}
+					else{
+						rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m.getReceiveEvent());
+					}
 					getDiagramEventBroker().addNotificationListener(rowTarget, this);
 				}
 
@@ -141,16 +146,20 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
 		if( diagramEditPart!=null){
 			//CREATION
-			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_SourceAnchor().equals(notification.getFeature())){
+			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_SourceAnchor().equals(notification.getFeature())&& notification.getNewValue()!=null){
 				IdentityAnchor anchor=(IdentityAnchor)notification.getNewValue();
 				ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
 				Message m= (Message)connectionEditPart.resolveSemanticElement();
-				CLifeLineEditPart sourceEditpart=(CLifeLineEditPart)connectionEditPart.getSource();
+				NamedElementEditPart sourceEditpart=(NamedElementEditPart)connectionEditPart.getSource();
 				int anchorY=computeAnchorPositionNotation(anchor, sourceEditpart);
 				try{
 					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
 					if (grilling!=null){
-						rowSource=grilling.getorCreateRowTolisten(anchorY,m.getSendEvent());
+						if(m.getSendEvent()==null){
+							rowSource=grilling.getorCreateRowTolisten(anchorY,m);
+						}else{
+							rowSource=grilling.getorCreateRowTolisten(anchorY,m.getSendEvent());
+						}
 						getDiagramEventBroker().addNotificationListener(rowSource, this);
 
 					}
@@ -160,16 +169,21 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 			}
 
 			//CREATION
-			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_TargetAnchor().equals(notification.getFeature())){
+			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_TargetAnchor().equals(notification.getFeature()) && notification.getNewValue()!=null){
 				IdentityAnchor anchor=(IdentityAnchor)notification.getNewValue();
 				ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
-				CLifeLineEditPart editpart=(CLifeLineEditPart)connectionEditPart.getTarget();
+				NamedElementEditPart editpart=(NamedElementEditPart)connectionEditPart.getTarget();
 				Message m= (Message)connectionEditPart.resolveSemanticElement();
 				int anchorY=computeAnchorPositionNotation(anchor, editpart);
 				try{
 					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
 					if (grilling!=null){
+						if(m.getReceiveEvent()==null){
+							rowTarget=grilling.getorCreateRowTolisten(anchorY, m);
+						}
+						else{
 						rowTarget=grilling.getorCreateRowTolisten(anchorY, m.getReceiveEvent());
+						}
 						getDiagramEventBroker().addNotificationListener(rowTarget, this);
 					}
 				}catch (NoGrillElementFound e) {
@@ -182,7 +196,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 				Edge edge= (Edge)connectionEditPart.getNotationView();
 				if( notification.getNotifier().equals(edge.getSourceAnchor())&& rowSource!=null){
 					IdentityAnchor anchor=(IdentityAnchor)edge.getSourceAnchor();
-					CLifeLineEditPart sourceEditpart=(CLifeLineEditPart)connectionEditPart.getSource();
+					NamedElementEditPart sourceEditpart=(NamedElementEditPart)connectionEditPart.getSource();
 					int anchorY=computeAnchorPositionNotation(anchor, sourceEditpart);
 					/////////////////////////////////////////////////////						
 					System.out.println("A mouve done for "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to source "+anchorY);
@@ -194,7 +208,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 				}
 				if( notification.getNotifier().equals(edge.getTargetAnchor())&& rowTarget!=null){
 					IdentityAnchor anchor=(IdentityAnchor)edge.getTargetAnchor();
-					CLifeLineEditPart editpart=(CLifeLineEditPart)connectionEditPart.getTarget();
+					NamedElementEditPart editpart=(NamedElementEditPart)connectionEditPart.getTarget();
 					int anchorY=computeAnchorPositionNotation(anchor, editpart);
 					/////////////////////////////////////////////////////						
 					System.out.println("A mouve done for "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to target "+anchorY);
@@ -223,13 +237,9 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 
 						//calculate  bounds from notation
 						PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewsr);
+						bounds.height=BoundForEditPart.getHeightFromView((Node)viewsr);
 						Location boundsRow=(Location)	((Node)rowSource).getLayoutConstraint();
-						if( bounds.height==-1.0){
-							//it is very bad , because this is a default valued given by the figure...
-							if(connectionEditPart.getSource() instanceof CLifeLineEditPart){
-								bounds.height=CLifeLineEditPart.DEFAUT_HEIGHT;
-							}
-						}
+
 						Integer intergerY= new Integer(boundsRow.getY());
 						double newY= intergerY.doubleValue();
 						double localY=(newY-bounds.preciseY());
@@ -265,12 +275,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 					double xpercent=IdentityAnchorHelper.getXPercentage(targetAchor);
 					//margin calculus
 					PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewtg);
-					if( bounds.height==-1.0){
-						//it is very bad , because this is a default valued given by the figure...
-						if(connectionEditPart.getTarget() instanceof CLifeLineEditPart){
-							bounds.height=CLifeLineEditPart.DEFAUT_HEIGHT;
-						}
-					}
+					bounds.height=BoundForEditPart.getHeightFromView((Node)viewtg);
 					Location boundsRow=(Location)	((Node)rowTarget).getLayoutConstraint();
 
 					Integer intergerY= new Integer(boundsRow.getY());
@@ -300,13 +305,7 @@ public class ConnectEdgeToGrillingEditPolicy extends GraphicalEditPolicyEx imple
 		double yPercent=IdentityAnchorHelper.getYPercentage(anchor);
 		Node node=(Node)nodeEditPart.getNotationView();
 		PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds(node);
-		double height=bounds.preciseHeight();
-		if( height==-1.0){
-			//it is very bad , because this is a default valued given by the figure...
-			if(nodeEditPart instanceof CLifeLineEditPart){
-				height=CLifeLineEditPart.DEFAUT_HEIGHT;
-			}
-		}
+		double height=BoundForEditPart.getHeightFromView(node);
 		int anchorY= (int) (height*yPercent)+bounds.y;
 		return anchorY;
 	} 

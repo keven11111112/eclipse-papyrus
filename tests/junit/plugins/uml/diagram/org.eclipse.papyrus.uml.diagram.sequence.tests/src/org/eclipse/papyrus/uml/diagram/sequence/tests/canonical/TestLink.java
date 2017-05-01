@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -215,8 +216,8 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	public void testDestroy(IElementType type, ILinkTestProvider provider) {
 
 		//DESTROY SEMANTIC+ VIEW
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getEdgesSize() == 1);
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST,1, provider.getEdgesSize() );
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, 1,source.getSourceConnections().size());
 
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command command = ((ConnectionEditPart)source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
@@ -225,19 +226,19 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getEdgesSize() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getSemanticChildrenSize() == 4);
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION,0, provider.getEdgesSize());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION,0, source.getSourceConnections().size() );
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 4,provider.getSemanticChildrenSize());
 
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getDiagramCommandStack().canUndo() == true);
 		getEMFCommandStack().undo();
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, provider.getEdgesSize() == 1);
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, source.getSourceConnections().size() == 1);
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO,1, provider.getEdgesSize() );
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO,1, source.getSourceConnections().size());
 
 		getEMFCommandStack().redo();
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getEdgesSize() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_REDO, source.getSourceConnections().size() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_REDO, provider.getSemanticChildrenSize() == 4);
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO,0, provider.getEdgesSize());
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO,0, source.getSourceConnections().size() );
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO,4, provider.getSemanticChildrenSize());
 	}
 
 

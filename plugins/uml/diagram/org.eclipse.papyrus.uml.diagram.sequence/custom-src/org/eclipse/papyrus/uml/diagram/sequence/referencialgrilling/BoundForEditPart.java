@@ -16,8 +16,11 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
  * @author PT202707
@@ -35,10 +38,13 @@ public class BoundForEditPart {
 		}
 		else{
 			if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)){
-				return 40;
+				return CCombinedFragmentEditPart.DEFAULT_HEIGHT;
 			}
 			if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)){
 				return 40;
+			}
+			if(node.getType().equals(LifelineEditPart.VISUAL_ID)){
+				return CLifeLineEditPart.DEFAUT_HEIGHT;
 			}
 			return 100;
 		}
@@ -51,10 +57,13 @@ public class BoundForEditPart {
 		}
 		else{
 			if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)){
-				return 40;
+				return CCombinedFragmentEditPart.DEFAULT_HEIGHT;
 			}
 			if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)){
 				return 100;
+			}
+			if(node.getType().equals(LifelineEditPart.VISUAL_ID)){
+				return CLifeLineEditPart.DEFAUT_WIDTH;
 			}
 			return 100;
 		}

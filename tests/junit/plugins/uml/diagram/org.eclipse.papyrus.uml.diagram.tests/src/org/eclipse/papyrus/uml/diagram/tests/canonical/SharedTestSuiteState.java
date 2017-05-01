@@ -150,7 +150,7 @@ public class SharedTestSuiteState implements TestRule {
 
 		return !canShareState
 				? base
-				: houseKeeper.apply(base, method("apply", Statement.class, Description.class), this); //$NON-NLS-1$
+						: houseKeeper.apply(base, method("apply", Statement.class, Description.class), this); //$NON-NLS-1$
 	}
 
 	private FrameworkMethod method(String name, Class<?>... parameterType) {
@@ -196,22 +196,22 @@ public class SharedTestSuiteState implements TestRule {
 		if (!file.exists()) {
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			modelSet.createModels(fileURI);
-			
+
 			final String contextId;
 			if (fileURI.lastSegment().matches(".*\\.profile\\.(di|uml)"))
 				contextId = UMLArchitectureContextIds.Profile;
 			else
 				contextId = UMLArchitectureContextIds.UML;
-			
+
 			final List<String> viewpointIds = new ArrayList<String>();
 			MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getArchitectureContextById(contextId);
 			for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
 				viewpointIds.add(viewpoint.getId());
 			}
-			
+
 			ArchitectureDescriptionUtils utils = new ArchitectureDescriptionUtils(modelSet);
 			Command c = utils.createNewModel(contextId, viewpointIds.toArray(new String[0]));
-			
+
 			TransactionalEditingDomain ted = modelSet.getTransactionalEditingDomain();
 			ted.getCommandStack().execute(c);
 
@@ -323,10 +323,14 @@ public class SharedTestSuiteState implements TestRule {
 			protected void doExecute() {
 				// Destroy any other diagrams that were created, CSS stylesheets, etc.
 				List<EObject> toDestroy = Lists.newArrayList();
-				Iterators.addAll(toDestroy, diagram.eResource().getAllContents());
+				if( diagram.eResource()!=null){
+					Iterators.addAll(toDestroy, diagram.eResource().getAllContents());
+				}
 
 				UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
+				if( uml.getResource()!=null){
 				Iterators.addAll(toDestroy, uml.getResource().getAllContents());
+				}
 
 				toDestroy.removeAll(preserve);
 
@@ -343,7 +347,7 @@ public class SharedTestSuiteState implements TestRule {
 		testCase.diResourceSet = modelSet;
 	}
 
-	void setupTest() throws Exception {
+	public void setupTest() throws Exception {
 		if (!canShareState) {
 			testCase.doSetUp();
 		}

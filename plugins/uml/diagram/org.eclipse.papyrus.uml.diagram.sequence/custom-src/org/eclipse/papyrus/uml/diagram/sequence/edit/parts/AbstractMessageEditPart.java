@@ -34,7 +34,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraph
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectEdgeToGrillingEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectMessageToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectLifeLineToGrillingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
@@ -248,7 +248,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MessageLabelEditPolicy());
 		// Ordering Message Occurrence Specification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
 		installEditPolicy(InteractionFragmentsOrderingEditPolicy.ORDERING_ROLE, new InteractionFragmentsOrderingEditPolicy());
-		installEditPolicy(ConnectLifeLineToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectEdgeToGrillingEditPolicy());
+		installEditPolicy(ConnectLifeLineToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectMessageToGridEditPolicy());
 		
 	}
 

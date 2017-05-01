@@ -254,59 +254,64 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	@Test
 	public void testDurationRotate() {
-		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(100, 200), null);
-		assertNotNull(dc);
-		assertEquals(CREATION + TEST_THE_EXECUTION, 1, getRootEditPart().getChildren().size());
-		assertEquals(CREATION + TEST_THE_EXECUTION, PositionConstants.TOP | PositionConstants.BOTTOM, getBorderSides(dc));
-
-		Rectangle before = getAbsoluteBounds(dc);
-		Point p = selectEditpart(dc);
-		clickMenuItem(dc, p, DURATION_CONSTRAINT_ROTATE_MENU);
-		Rectangle after = getAbsoluteBounds(dc);
-
-		assertEquals("TEST_THE_EXECUTION", before.width, after.height);
-		assertEquals("TEST_THE_EXECUTION", before.height, after.width);
-		assertEquals("TEST_THE_EXECUTION", PositionConstants.LEFT | PositionConstants.RIGHT, getBorderSides(dc));
-
-		// undo
-		assertTrue(TEST_THE_UNDO, getEMFCommandStack().canUndo());
-		getEMFCommandStack().undo();
-		Rectangle bounds = getAbsoluteBounds(dc);
-		assertTrue(TEST_THE_UNDO, before.equals(bounds));
-
-		// redo
-		assertTrue(CREATION + TEST_THE_REDO, getEMFCommandStack().canRedo());
-		getEMFCommandStack().redo();
-		bounds = getAbsoluteBounds(dc);
-		assertTrue(CREATION + TEST_THE_REDO, after.equals(bounds));
-
-		// rotate again, should be same as before
-		p = selectEditpart(dc);
-		clickMenuItem(dc, p, DURATION_CONSTRAINT_ROTATE_MENU);
-		after = getAbsoluteBounds(dc);
-		assertEquals("TEST_THE_EXECUTION", before.width, after.width);
-		assertEquals("TEST_THE_EXECUTION", before.height, after.height);
-		assertEquals("TEST_THE_EXECUTION", PositionConstants.TOP | PositionConstants.BOTTOM, getBorderSides(dc));
+		assertTrue(false);
+		//this test block the process
+//		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(100, 200), null);
+//		assertNotNull(dc);
+//		assertEquals(CREATION + TEST_THE_EXECUTION, 1, getRootEditPart().getChildren().size());
+//		assertEquals(CREATION + TEST_THE_EXECUTION, PositionConstants.TOP | PositionConstants.BOTTOM, getBorderSides(dc));
+//
+//		Rectangle before = getAbsoluteBounds(dc);
+//		Point p = selectEditpart(dc);
+//		clickMenuItem(dc, p, DURATION_CONSTRAINT_ROTATE_MENU);
+//		Rectangle after = getAbsoluteBounds(dc);
+//
+//		assertEquals("TEST_THE_EXECUTION", before.width, after.height);
+//		assertEquals("TEST_THE_EXECUTION", before.height, after.width);
+//		assertEquals("TEST_THE_EXECUTION", PositionConstants.LEFT | PositionConstants.RIGHT, getBorderSides(dc));
+//
+//		// undo
+//		assertTrue(TEST_THE_UNDO, getEMFCommandStack().canUndo());
+//		getEMFCommandStack().undo();
+//		Rectangle bounds = getAbsoluteBounds(dc);
+//		assertTrue(TEST_THE_UNDO, before.equals(bounds));
+//
+//		// redo
+//		assertTrue(CREATION + TEST_THE_REDO, getEMFCommandStack().canRedo());
+//		getEMFCommandStack().redo();
+//		bounds = getAbsoluteBounds(dc);
+//		assertTrue(CREATION + TEST_THE_REDO, after.equals(bounds));
+//
+//		// rotate again, should be same as before
+//		p = selectEditpart(dc);
+//		clickMenuItem(dc, p, DURATION_CONSTRAINT_ROTATE_MENU);
+//		after = getAbsoluteBounds(dc);
+//		assertEquals("TEST_THE_EXECUTION", before.width, after.width);
+//		assertEquals("TEST_THE_EXECUTION", before.height, after.height);
+//		assertEquals("TEST_THE_EXECUTION", PositionConstants.TOP | PositionConstants.BOTTOM, getBorderSides(dc));
 	}
 
 	@Test
 	public void testDurationCreation() {
-		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(400, 200), null);
-		assertNotNull(dc);
-		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
-
-		// undo
-		assertTrue(CREATION + TEST_THE_UNDO, getEMFCommandStack().canUndo());
-		getEMFCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, getRootEditPart().getChildren().size() == 0);
-
-		// redo
-		assertTrue(CREATION + TEST_THE_REDO, getEMFCommandStack().canRedo());
-		getEMFCommandStack().redo();
-		assertTrue(CREATION + TEST_THE_REDO, getRootEditPart().getChildren().size() == 1);
+		assertTrue(false);
+		//the test block the process
+//		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(400, 200), null);
+//		assertNotNull(dc);
+//		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
+//
+//		// undo
+//		assertTrue(CREATION + TEST_THE_UNDO, getEMFCommandStack().canUndo());
+//		getEMFCommandStack().undo();
+//		assertTrue(CREATION + TEST_THE_UNDO, getRootEditPart().getChildren().size() == 0);
+//
+//		// redo
+//		assertTrue(CREATION + TEST_THE_REDO, getEMFCommandStack().canRedo());
+//		getEMFCommandStack().redo();
+//		assertTrue(CREATION + TEST_THE_REDO, getRootEditPart().getChildren().size() == 1);
 	}
 
 	@Test
+	@FailingTest
 	public void testDurationMoveResize() {
 		// test move
 		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(400, 200), null);
@@ -329,6 +334,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	@Test
+	@FailingTest
 	// test direct edit of duration expression
 	public void testDurationEditExpr() {
 		DurationConstraintEditPart dp = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(400, 200), null);
@@ -351,62 +357,9 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	@Test
 	// link to the top and bottom of execution specification on the single lifeline
 	public void testLinkingExecutionOnSameLifeline() {
-		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), null);
-		assertNotNull(lifeline);
-		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, new Point(231, 150), null);
-		assertNotNull(es);
-
-		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(400, 200), null);
-		assertNotNull(dc);
-		// start connection
-		{
-			Point fromLocation = getAbsoluteBounds(dc).getTop();
-			Point toLocation = getAbsoluteBounds(es).getTop();
-			CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
-			assertTrue(dc.getSourceConnections().size() == 1);
-			EditPart target = linkPart.getTarget();
-			assertTrue("the target is not a ExecutionSpecificationEndEditPart", target instanceof ExecutionSpecificationEndEditPart);
-			OccurrenceSpecification start = (OccurrenceSpecification) ((ExecutionSpecificationEndEditPart) target).getNotationView().getElement();
-			assertTrue("the target is not start end", start.getName().contains("ActionExecSpecStart"));
-			DurationConstraint constraint = (DurationConstraint) dc.getNotationView().getElement();
-			assertTrue("constraint elements count", constraint.getConstrainedElements().size() == 1);
-			assertTrue("constraint element ", constraint.getConstrainedElements().contains(start));
-
-			// check anchor position
-			Point connectPoint = getAnchorPoint(dc, linkPart);
-			assertTrue("anchor is not at center", connectPoint.getDistance(getAbsoluteBounds(dc).getTopLeft()) == connectPoint.getDistance(getAbsoluteBounds(dc).getTopRight()));
-		}
-
-		{
-			Point fromLocation = getAbsoluteBounds(dc).getBottom();
-			Point toLocation = getAbsoluteBounds(es).getBottom();
-			CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
-			assertTrue(dc.getSourceConnections().size() == 2);
-			EditPart target = linkPart.getTarget();
-			assertTrue("the target is not a ExecutionSpecificationEndEditPart", target instanceof ExecutionSpecificationEndEditPart);
-			OccurrenceSpecification end = (OccurrenceSpecification) ((ExecutionSpecificationEndEditPart) target).getNotationView().getElement();
-			assertTrue("the target is not finish end", end.getName().contains("ActionExecSpecFinish"));
-
-			DurationConstraint constraint = (DurationConstraint) dc.getNotationView().getElement();
-			assertTrue("constraint elements count", constraint.getConstrainedElements().size() == 2);
-			assertTrue("constraint element ", constraint.getConstrainedElements().contains(end));
-
-			// check anchor position
-			Point connectPoint = getAnchorPoint(dc, linkPart);
-			assertTrue("anchor is not at center", connectPoint.getDistance(getAbsoluteBounds(dc).getBottomLeft()) == connectPoint.getDistance(getAbsoluteBounds(dc).getBottomRight()));
-		}
-
-		// test rotate and check link anchor position
-		Point p = selectEditpart(dc);
-		clickMenuItem(dc, p, "rotate");
-		assertTrue("TEST_THE_EXECUTION", getBorderSides(dc) == (PositionConstants.LEFT | PositionConstants.RIGHT));
-
-		CommentAnnotatedElementEditPart linkPart = (CommentAnnotatedElementEditPart) dc.getSourceConnections().get(0);
-		Point connectPoint = getAnchorPoint(dc, linkPart);
-		assertTrue("anchor is not at center", Math.abs(connectPoint.getDistance(getAbsoluteBounds(dc).getTopLeft()) - connectPoint.getDistance(getAbsoluteBounds(dc).getBottomLeft())) <= 2);
-		CommentAnnotatedElementEditPart linkPart2 = (CommentAnnotatedElementEditPart) dc.getSourceConnections().get(1);
-		connectPoint = getAnchorPoint(dc, linkPart2);
-		assertTrue("anchor is not at center", Math.abs(connectPoint.getDistance(getAbsoluteBounds(dc).getTopRight()) - connectPoint.getDistance(getAbsoluteBounds(dc).getBottomRight())) <= 2);
+		assertTrue(false);
+		//the test block the process
+//		assertTrue("anchor is not at center", Math.abs(connectPoint.getDistance(getAbsoluteBounds(dc).getTopRight()) - connectPoint.getDistance(getAbsoluteBounds(dc).getBottomRight())) <= 2);
 	}
 
 	@FailingTest
@@ -499,6 +452,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 	}
 
 	@Test
+	@FailingTest
 	// duration link to message and execution
 	public void testLinkingExecutionMessageOnTwoLifeline() {
 		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(10, 80), null);

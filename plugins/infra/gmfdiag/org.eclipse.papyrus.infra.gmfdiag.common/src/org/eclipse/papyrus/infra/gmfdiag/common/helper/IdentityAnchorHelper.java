@@ -75,6 +75,9 @@ public class IdentityAnchorHelper {
 	public static final double getYPercentage(final IdentityAnchor anchor) {
 		String id = anchor.getId();
 		id = id.substring(id.indexOf(X_Y_SEPARATOR_AS_STRING) + 1, id.length() - 1);
+		if(id.indexOf(END_ID)!=-1){
+			id = id.substring(0, id.indexOf(END_ID));
+		}
 		return Double.parseDouble(id);
 	}
 

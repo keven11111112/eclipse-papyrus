@@ -141,6 +141,10 @@ public class ConnectExecutionNodeToGrillingEditPolicy extends GraphicalEditPolic
 		}
 
 		Node nodeContainer=(Node)(((GraphicalEditPart)getHost()).getNotationView()).eContainer();
+		if(nodeContainer==null){
+			//during remove, Unset notification...
+			return;
+		}
 		PrecisionRectangle originPosition= NotationHelper.getAbsoluteBounds(nodeContainer);
 		Bounds bounds=(Bounds)	((Node)((GraphicalEditPart)getHost()).getNotationView()).getLayoutConstraint();
 

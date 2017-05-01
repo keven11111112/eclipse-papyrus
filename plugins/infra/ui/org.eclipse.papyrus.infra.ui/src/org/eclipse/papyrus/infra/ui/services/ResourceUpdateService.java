@@ -144,7 +144,7 @@ public class ResourceUpdateService implements IService, IPartListener {
 							IReloadableEditor.ReloadReason reason = reopen ? IReloadableEditor.ReloadReason.RESOURCES_CHANGED : IReloadableEditor.ReloadReason.RESOURCES_DELETED;
 
 							DirtyPolicy dirtyPolicy = DirtyPolicy.getDefault();
-							if (!reopen && !editor.isDirty()) {
+							if (!reopen && !editor.isDirty()&& modelSet!=null) {
 								// Check whether we're deleting one of our own resources. If so, just close
 								URI principalURI = modelSet.getURIWithoutExtension();
 								for (Resource next : triggeringResources) {

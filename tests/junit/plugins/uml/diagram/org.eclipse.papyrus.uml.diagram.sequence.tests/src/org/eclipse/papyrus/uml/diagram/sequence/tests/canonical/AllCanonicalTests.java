@@ -24,7 +24,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 // top nodes
-TestSequenceDiagramTopNode.class,
+TestSequenceDiagramInsideInteraction.class,
+TestInteractionAffixedChildNode.class,
 // child nodes
 TestSequenceDiagramChildNode.class,
 //test links

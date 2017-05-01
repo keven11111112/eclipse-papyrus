@@ -359,17 +359,17 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 
 		if( notification.getEventType()==Notification.ADD){
 			updateRowsAndColumns();
-			updateSemanticAfterUpdate();
+			//updateSemanticAfterUpdate();
 		}
 		if( notification.getEventType()==Notification.REMOVE && (!(notification.getNotifier() instanceof EAnnotation))&&(!(notification.getNotifier().equals(grillingCompartment.getNotationView())))){
 			cleanUnusedRowAndColumn();
 			updateRowsAndColumns();
-			updateSemanticAfterUpdate();
+			//updateSemanticAfterUpdate();
 		}
 		if( notification.getEventType()==Notification.SET ){
 			cleanUnusedRowAndColumn();
 			updateRowsAndColumns();
-			updateSemanticAfterUpdate();
+			//updateSemanticAfterUpdate();
 		}
 
 	}
