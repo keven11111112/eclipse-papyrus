@@ -26,7 +26,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.m2m.qvto.common.blackboxes"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes"; //$NON-NLS-1$
 
 	/**
 	 * The shared instance.
