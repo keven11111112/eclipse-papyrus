@@ -16,12 +16,17 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
@@ -35,9 +40,9 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolKind;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ToolConfigurationImpl#getKind <em>Kind</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ToolConfigurationImpl#getElementDescriptors <em>Element Descriptors</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ToolConfigurationImpl#getToolClassName <em>Tool Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ToolConfigurationImpl#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ToolConfigurationImpl#getElementDescriptors <em>Element Descriptors</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ToolConfigurationImpl#getToolClassName <em>Tool Class Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,7 +52,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -58,7 +62,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -69,7 +72,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	 * The cached value of the '{@link #getElementDescriptors() <em>Element Descriptors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getElementDescriptors()
 	 * @generated
 	 * @ordered
@@ -80,7 +82,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	 * The default value of the '{@link #getToolClassName() <em>Tool Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getToolClassName()
 	 * @generated
 	 * @ordered
@@ -91,7 +92,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	 * The cached value of the '{@link #getToolClassName() <em>Tool Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getToolClassName()
 	 * @generated
 	 * @ordered
@@ -101,7 +101,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ToolConfigurationImpl() {
@@ -111,7 +110,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,7 +120,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ToolKind getKind() {
@@ -132,7 +129,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setKind(ToolKind newKind) {
@@ -145,7 +141,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ElementDescriptor> getElementDescriptors() {
@@ -158,7 +153,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getToolClassName() {
@@ -168,7 +162,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setToolClassName(String newToolClassName) {
@@ -181,14 +174,13 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
-			return ((InternalEList<?>) getElementDescriptors()).basicRemove(otherEnd, msgs);
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
+				return ((InternalEList<?>)getElementDescriptors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -196,18 +188,17 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
-			return getKind();
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
-			return getElementDescriptors();
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
-			return getToolClassName();
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
+				return getKind();
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
+				return getElementDescriptors();
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
+				return getToolClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -215,23 +206,22 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
-			setKind((ToolKind) newValue);
-			return;
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
-			getElementDescriptors().clear();
-			getElementDescriptors().addAll((Collection<? extends ElementDescriptor>) newValue);
-			return;
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
-			setToolClassName((String) newValue);
-			return;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
+				setKind((ToolKind)newValue);
+				return;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
+				getElementDescriptors().clear();
+				getElementDescriptors().addAll((Collection<? extends ElementDescriptor>)newValue);
+				return;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
+				setToolClassName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -239,21 +229,20 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
-			setKind(KIND_EDEFAULT);
-			return;
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
-			getElementDescriptors().clear();
-			return;
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
-			setToolClassName(TOOL_CLASS_NAME_EDEFAULT);
-			return;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
+				getElementDescriptors().clear();
+				return;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
+				setToolClassName(TOOL_CLASS_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,18 +250,17 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
-			return kind != KIND_EDEFAULT;
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
-			return elementDescriptors != null && !elementDescriptors.isEmpty();
-		case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
-			return TOOL_CLASS_NAME_EDEFAULT == null ? toolClassName != null : !TOOL_CLASS_NAME_EDEFAULT.equals(toolClassName);
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
+				return kind != KIND_EDEFAULT;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
+				return elementDescriptors != null && !elementDescriptors.isEmpty();
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__TOOL_CLASS_NAME:
+				return TOOL_CLASS_NAME_EDEFAULT == null ? toolClassName != null : !TOOL_CLASS_NAME_EDEFAULT.equals(toolClassName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -280,13 +268,11 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (kind: ");
@@ -297,4 +283,4 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 		return result.toString();
 	}
 
-} // ToolConfigurationImpl
+} //ToolConfigurationImpl

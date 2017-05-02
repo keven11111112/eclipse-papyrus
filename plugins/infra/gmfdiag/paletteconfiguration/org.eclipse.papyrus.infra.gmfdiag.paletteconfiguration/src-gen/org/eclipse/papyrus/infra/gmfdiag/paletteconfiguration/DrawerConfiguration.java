@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getDrawerConfiguration()
@@ -40,7 +40,6 @@ public interface DrawerConfiguration extends Configuration {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Owned Configurations</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getDrawerConfiguration_OwnedConfigurations()
 	 * @model containment="true" required="true"

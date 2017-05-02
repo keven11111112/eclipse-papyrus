@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfiguration;
 
@@ -27,7 +28,6 @@ public class SeparatorConfigurationImpl extends LeafConfigurationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SeparatorConfigurationImpl() {
@@ -37,7 +37,6 @@ public class SeparatorConfigurationImpl extends LeafConfigurationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -45,4 +44,4 @@ public class SeparatorConfigurationImpl extends LeafConfigurationImpl implements
 		return PaletteconfigurationPackage.Literals.SEPARATOR_CONFIGURATION;
 	}
 
-} // SeparatorConfigurationImpl
+} //SeparatorConfigurationImpl

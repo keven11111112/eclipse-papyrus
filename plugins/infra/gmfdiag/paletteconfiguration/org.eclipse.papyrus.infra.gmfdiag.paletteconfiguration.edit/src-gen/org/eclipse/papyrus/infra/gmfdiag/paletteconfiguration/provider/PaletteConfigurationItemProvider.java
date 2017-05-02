@@ -18,11 +18,14 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationFactory;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
@@ -31,7 +34,6 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Paletteconfigurati
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PaletteConfigurationItemProvider extends ConfigurationItemProvider {
@@ -39,7 +41,6 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PaletteConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +51,6 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,21 +67,22 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	 * This adds a property descriptor for the Required Profiles feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addRequiredProfilesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_PaletteConfiguration_requiredProfiles_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_PaletteConfiguration_requiredProfiles_feature", "_UI_PaletteConfiguration_type"),
-				PaletteconfigurationPackage.Literals.PALETTE_CONFIGURATION__REQUIRED_PROFILES,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PaletteConfiguration_requiredProfiles_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PaletteConfiguration_requiredProfiles_feature", "_UI_PaletteConfiguration_type"),
+				 PaletteconfigurationPackage.Literals.PALETTE_CONFIGURATION__REQUIRED_PROFILES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,7 +91,6 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,7 +105,6 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,7 +119,6 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	 * This returns PaletteConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,22 +130,22 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PaletteConfiguration) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_PaletteConfiguration_type") : getString("_UI_PaletteConfiguration_type") + " " + label;
+		String label = ((PaletteConfiguration)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PaletteConfiguration_type") :
+			getString("_UI_PaletteConfiguration_type") + " " + label;
 	}
-
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,12 +153,12 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PaletteConfiguration.class)) {
-		case PaletteconfigurationPackage.PALETTE_CONFIGURATION__REQUIRED_PROFILES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case PaletteconfigurationPackage.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__REQUIRED_PROFILES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -170,15 +168,16 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(PaletteconfigurationPackage.Literals.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS,
-				PaletteconfigurationFactory.eINSTANCE.createDrawerConfiguration()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS,
+				 PaletteconfigurationFactory.eINSTANCE.createDrawerConfiguration()));
 	}
 
 }

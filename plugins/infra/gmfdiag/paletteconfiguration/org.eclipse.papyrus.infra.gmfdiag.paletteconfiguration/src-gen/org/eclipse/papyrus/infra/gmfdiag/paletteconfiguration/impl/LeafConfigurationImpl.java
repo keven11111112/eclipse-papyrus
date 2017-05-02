@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.LeafConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 
@@ -27,7 +28,6 @@ public abstract class LeafConfigurationImpl extends ChildConfigurationImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LeafConfigurationImpl() {
@@ -37,7 +37,6 @@ public abstract class LeafConfigurationImpl extends ChildConfigurationImpl imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -45,4 +44,4 @@ public abstract class LeafConfigurationImpl extends ChildConfigurationImpl imple
 		return PaletteconfigurationPackage.Literals.LEAF_CONFIGURATION;
 	}
 
-} // LeafConfigurationImpl
+} //LeafConfigurationImpl

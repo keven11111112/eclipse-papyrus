@@ -13,7 +13,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 
 /**
@@ -25,8 +27,8 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor#getGraphicalHints <em>Graphical Hints</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor#getElementType <em>Element Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor#getGraphicalHints <em>Graphical Hints</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor#getElementType <em>Element Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getElementDescriptor()
@@ -43,7 +45,6 @@ public interface ElementDescriptor extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Graphical Hints</em>' attribute list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getElementDescriptor_GraphicalHints()
 	 * @model
@@ -59,7 +60,6 @@ public interface ElementDescriptor extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Element Type</em>' reference.
 	 * @see #setElementType(ElementTypeConfiguration)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getElementDescriptor_ElementType()
@@ -72,9 +72,7 @@ public interface ElementDescriptor extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor#getElementType <em>Element Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Element Type</em>' reference.
+	 * @param value the new value of the '<em>Element Type</em>' reference.
 	 * @see #getElementType()
 	 * @generated
 	 */

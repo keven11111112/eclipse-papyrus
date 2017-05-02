@@ -23,9 +23,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getKind <em>Kind</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getElementDescriptors <em>Element Descriptors</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getToolClassName <em>Tool Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getElementDescriptors <em>Element Descriptors</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getToolClassName <em>Tool Class Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getToolConfiguration()
@@ -43,7 +43,6 @@ public interface ToolConfiguration extends LeafConfiguration {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolKind
 	 * @see #setKind(ToolKind)
@@ -57,9 +56,7 @@ public interface ToolConfiguration extends LeafConfiguration {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getKind <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Kind</em>' attribute.
+	 * @param value the new value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolKind
 	 * @see #getKind()
 	 * @generated
@@ -75,7 +72,6 @@ public interface ToolConfiguration extends LeafConfiguration {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Element Descriptors</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getToolConfiguration_ElementDescriptors()
 	 * @model containment="true"
@@ -91,7 +87,6 @@ public interface ToolConfiguration extends LeafConfiguration {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Tool Class Name</em>' attribute.
 	 * @see #setToolClassName(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getToolConfiguration_ToolClassName()
@@ -104,9 +99,7 @@ public interface ToolConfiguration extends LeafConfiguration {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration#getToolClassName <em>Tool Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Tool Class Name</em>' attribute.
+	 * @param value the new value of the '<em>Tool Class Name</em>' attribute.
 	 * @see #getToolClassName()
 	 * @generated
 	 */

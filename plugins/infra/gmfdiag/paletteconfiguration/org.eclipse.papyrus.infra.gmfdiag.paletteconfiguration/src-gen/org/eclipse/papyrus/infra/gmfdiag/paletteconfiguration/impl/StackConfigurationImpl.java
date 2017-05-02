@@ -15,11 +15,15 @@ package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.LeafConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration;
@@ -32,7 +36,7 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.StackConfigurationImpl#getOwnedConfigurations <em>Owned Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.StackConfigurationImpl#getOwnedConfigurations <em>Owned Configurations</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,7 +46,6 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	 * The cached value of the '{@link #getOwnedConfigurations() <em>Owned Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getOwnedConfigurations()
 	 * @generated
 	 * @ordered
@@ -52,7 +55,6 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StackConfigurationImpl() {
@@ -62,7 +64,6 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +74,6 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<LeafConfiguration> getOwnedConfigurations() {
@@ -86,14 +86,13 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
-			return ((InternalEList<?>) getOwnedConfigurations()).basicRemove(otherEnd, msgs);
+			case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
+				return ((InternalEList<?>)getOwnedConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -101,14 +100,13 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
-			return getOwnedConfigurations();
+			case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
+				return getOwnedConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,17 +114,16 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
-			getOwnedConfigurations().clear();
-			getOwnedConfigurations().addAll((Collection<? extends LeafConfiguration>) newValue);
-			return;
+			case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
+				getOwnedConfigurations().clear();
+				getOwnedConfigurations().addAll((Collection<? extends LeafConfiguration>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -134,15 +131,14 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
-			getOwnedConfigurations().clear();
-			return;
+			case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
+				getOwnedConfigurations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -150,16 +146,15 @@ public class StackConfigurationImpl extends ChildConfigurationImpl implements St
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
-			return ownedConfigurations != null && !ownedConfigurations.isEmpty();
+			case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
+				return ownedConfigurations != null && !ownedConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} // StackConfigurationImpl
+} //StackConfigurationImpl

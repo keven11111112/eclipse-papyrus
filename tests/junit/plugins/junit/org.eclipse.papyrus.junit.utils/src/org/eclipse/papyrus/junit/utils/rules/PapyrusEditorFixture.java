@@ -1145,7 +1145,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	public void flushDisplayEvents() {
 		for (;;) {
 			try {
-				if (!Display.getCurrent().readAndDispatch()) {
+				if (Display.getCurrent()!=null && !Display.getCurrent().readAndDispatch()) {
 					break;
 				}
 			} catch (Exception e) {

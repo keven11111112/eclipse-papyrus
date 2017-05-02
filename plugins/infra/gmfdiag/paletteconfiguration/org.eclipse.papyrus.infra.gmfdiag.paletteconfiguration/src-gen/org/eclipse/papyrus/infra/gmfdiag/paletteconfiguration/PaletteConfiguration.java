@@ -23,8 +23,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration#getDrawerConfigurations <em>Drawer Configurations</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration#getRequiredProfiles <em>Required Profiles</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration#getDrawerConfigurations <em>Drawer Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration#getRequiredProfiles <em>Required Profiles</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getPaletteConfiguration()
@@ -41,7 +41,6 @@ public interface PaletteConfiguration extends Configuration {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Drawer Configurations</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getPaletteConfiguration_DrawerConfigurations()
 	 * @model containment="true" required="true"
@@ -58,7 +57,6 @@ public interface PaletteConfiguration extends Configuration {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Required Profiles</em>' attribute list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getPaletteConfiguration_RequiredProfiles()
 	 * @model

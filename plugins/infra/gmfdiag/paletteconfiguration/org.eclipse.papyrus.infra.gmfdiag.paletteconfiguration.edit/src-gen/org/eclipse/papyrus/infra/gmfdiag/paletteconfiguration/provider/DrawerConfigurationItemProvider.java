@@ -18,9 +18,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationFactory;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
@@ -29,7 +32,6 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Paletteconfigurati
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
@@ -37,7 +39,6 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DrawerConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +49,6 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +66,6 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +80,6 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +94,6 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 	 * This returns DrawerConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,22 +105,22 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DrawerConfiguration) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_DrawerConfiguration_type") : getString("_UI_DrawerConfiguration_type") + " " + label;
+		String label = ((DrawerConfiguration)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DrawerConfiguration_type") :
+			getString("_UI_DrawerConfiguration_type") + " " + label;
 	}
-
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,9 +128,9 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DrawerConfiguration.class)) {
-		case PaletteconfigurationPackage.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case PaletteconfigurationPackage.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -143,21 +140,26 @@ public class DrawerConfigurationItemProvider extends ConfigurationItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
-				PaletteconfigurationFactory.eINSTANCE.createToolConfiguration()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
+				 PaletteconfigurationFactory.eINSTANCE.createToolConfiguration()));
 
-		newChildDescriptors.add(createChildParameter(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
-				PaletteconfigurationFactory.eINSTANCE.createStackConfiguration()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
+				 PaletteconfigurationFactory.eINSTANCE.createStackConfiguration()));
 
-		newChildDescriptors.add(createChildParameter(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
-				PaletteconfigurationFactory.eINSTANCE.createSeparatorConfiguration()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
+				 PaletteconfigurationFactory.eINSTANCE.createSeparatorConfiguration()));
 	}
 
 }

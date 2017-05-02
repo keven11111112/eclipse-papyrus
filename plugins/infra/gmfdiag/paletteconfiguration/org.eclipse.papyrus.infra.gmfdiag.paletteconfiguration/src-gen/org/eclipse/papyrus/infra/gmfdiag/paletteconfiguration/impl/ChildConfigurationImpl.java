@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 
@@ -27,7 +28,6 @@ public abstract class ChildConfigurationImpl extends ConfigurationImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ChildConfigurationImpl() {
@@ -37,7 +37,6 @@ public abstract class ChildConfigurationImpl extends ConfigurationImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -45,4 +44,4 @@ public abstract class ChildConfigurationImpl extends ConfigurationImpl implement
 		return PaletteconfigurationPackage.Literals.CHILD_CONFIGURATION;
 	}
 
-} // ChildConfigurationImpl
+} //ChildConfigurationImpl
