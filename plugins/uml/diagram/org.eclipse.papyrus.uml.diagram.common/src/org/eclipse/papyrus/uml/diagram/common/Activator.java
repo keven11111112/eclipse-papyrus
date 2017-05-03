@@ -43,7 +43,6 @@ import org.eclipse.papyrus.uml.diagram.common.providers.AlternativeUMLItemProvid
 import org.eclipse.papyrus.uml.diagram.common.util.ColorManager;
 import org.eclipse.papyrus.uml.diagram.common.util.FontManager;
 import org.eclipse.papyrus.uml.diagram.internal.common.services.UMLGraphicalDeletionHelper;
-import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.graphics.Image;

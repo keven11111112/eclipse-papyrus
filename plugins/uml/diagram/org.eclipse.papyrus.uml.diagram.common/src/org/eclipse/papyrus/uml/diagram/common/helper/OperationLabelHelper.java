@@ -10,7 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) - Bug 359270
- *
+ *  Benoît Maggi (CEA LIST) - Bug 516045 ClassCastException when opening a diagram 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
 
@@ -18,9 +18,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.OperationUtil;
 import org.eclipse.uml2.uml.Operation;
@@ -82,13 +85,17 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	 */
 	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
-		Collection<String> displayValue = ICustomAppearance.DEFAULT_UML_OPERATION;
-
-		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if (policy != null) {
-			displayValue = policy.getCurrentDisplayValue();
+		String elementLabel = ""; //$NON-NLS-1$
+		Operation umlElement = getUMLElement(editPart);
+		if (umlElement != null) {
+			Collection<String> displayValue = ICustomAppearance.DEFAULT_UML_OPERATION;
+			IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+			if (policy != null) {
+				displayValue = policy.getCurrentDisplayValue();
+			}			
+			elementLabel = OperationUtil.getCustomLabel(umlElement, displayValue);
 		}
-		return OperationUtil.getCustomLabel(getUMLElement(editPart), displayValue);
+		return elementLabel;
 	}
 
 	/**
@@ -105,7 +112,20 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	 */
 	@Override
 	public Operation getUMLElement(GraphicalEditPart editPart) {
-		return (Operation) ((View) editPart.getModel()).getElement();
+		Operation operation = null;
+		Object model = editPart.getModel();
+		if (model instanceof View) {
+			View view = (View) model;
+			EObject element = view.getElement();
+			if (element instanceof Operation) {
+				operation = (Operation) element;
+			} else {
+				Activator.log.warn("Operation Label Helper should only be applied on operation. " //$NON-NLS-1$
+						+ "Probably something else is present in the operation compartment, check: "+EcoreUtil.getID(view)+ //$NON-NLS-1$
+						" or "+EcoreUtil.getIdentification(view)); //$NON-NLS-1$
+			}
+		}
+		return operation;
 	}
 
 }
