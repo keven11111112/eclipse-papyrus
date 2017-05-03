@@ -72,7 +72,7 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	private static final int DEFAULT_SHADOW_WIDTH = 4;
 
 	/** The namedStyle Listener */
-	private IChangeListener namedStyleListener = new IChangeListener() {
+	protected IChangeListener namedStyleListener = new IChangeListener() {
 
 		@Override
 		public void handleChange(ChangeEvent event) {

@@ -14,15 +14,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
-import org.eclipse.draw2d.BorderLayout;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RectangularShadowBorder;
 
 /**
@@ -30,28 +30,14 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RectangularShadowBorde
  */
 public class CombinedFragmentFigure extends StereotypeInteractionFigure {
 
+
+	/**
+	 * Height of the Bracket in case of CoRegion in Pixel
+	 */
+	private static final int BRACKET_HEIGHT = 30;
 	private WrappingLabel titleLabel;
 	private RectangleFigure header;
-
-//	@Override
-//	protected void createContents() {
-//		super.createContents();
-//		setShadow(false);
-//		interactionContentPane.setOutline(false);
-//		interactionContentPane.setOpaque(false);
-//		interactionContentPane.setBorder(null);
-//	}
-
-//	@Override
-//	protected RectangleFigure createHeader() {
-//		header = super.createHeader();
-//		titleLabel = new PapyrusWrappingLabel();
-//		titleLabel.setAlignment(PositionConstants.RIGHT);
-//		titleLabel.setBorder(new MarginBorder(3, 0, 0, 3));
-//		titleLabel.setTextWrap(false);
-//		header.add(titleLabel, BorderLayout.RIGHT);
-//		return header;
-//	}
+	private boolean coRegion;
 
 	public WrappingLabel getTitleLabel() {
 		return titleLabel;
@@ -60,11 +46,11 @@ public class CombinedFragmentFigure extends StereotypeInteractionFigure {
 	public IFigure getHeaderContainer() {
 		return header;
 	}
-	
+
 	@Override
 	public void setShadow(boolean shadow) {
 		final int BORDER_WIDTH = 3;
-		
+
 		if (!shadow) {
 			super.setShadow(shadow);
 		} else {
@@ -88,5 +74,79 @@ public class CombinedFragmentFigure extends StereotypeInteractionFigure {
 			parent = parent.getParent();
 		}
 	}
-	
+
+
+	/**
+	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
+	 *
+	 * @param graphics
+	 */
+	@Override
+	public void paint(Graphics graphics) {
+		if (isCoregion()) {
+			Rectangle CBbounds = this.getBounds();
+
+			graphics.pushState();
+
+			Rectangle clipRectangle = new Rectangle();
+			graphics.getClip(clipRectangle);
+			graphics.setClip(clipRectangle.expand(2, 2));
+
+			graphics.setLineWidth(getLineWidth());
+			graphics.setLineStyle(getLineStyle());
+			graphics.setForegroundColor(getForegroundColor());
+			graphics.setBackgroundColor(getBackgroundColor());
+
+
+
+			// Top Bracket Creation
+			PointList list = new PointList();
+			Point topLeft = CBbounds.getTopLeft().getCopy().getTranslated(0, BRACKET_HEIGHT);
+			Point topRight = CBbounds.getTopRight().getCopy().getTranslated(0, BRACKET_HEIGHT);
+
+			list.addPoint(topRight);
+			list.addPoint(CBbounds.getTopRight().getCopy());
+			list.addPoint(CBbounds.getTopLeft().getCopy());
+			list.addPoint(topLeft);
+
+			graphics.drawPolyline(list);
+
+			// Bottom Bracket Creation
+			list = new PointList();
+
+			Point bottomLeft = CBbounds.getBottomLeft().getCopy().getTranslated(0, -BRACKET_HEIGHT);
+			Point bottomRight = CBbounds.getBottomRight().getCopy().getTranslated(0, -BRACKET_HEIGHT);
+
+			list.addPoint(bottomRight);
+			list.addPoint(CBbounds.getBottomRight().getCopy());
+			list.addPoint(CBbounds.getBottomLeft().getCopy());
+			list.addPoint(bottomLeft);
+
+			graphics.drawPolyline(list);
+
+			this.setPreferredSize(new Dimension(40, 100));
+			graphics.popState();
+		} else {
+			super.paint(graphics);
+		}
+	}
+
+
+	/**
+	 * @return
+	 */
+	public boolean isCoregion() {
+
+		return this.coRegion;
+
+	}
+
+	/**
+	 * @return
+	 */
+	public void setCoregion(boolean coregion) {
+		this.coRegion = coregion;
+
+	}
+
 }

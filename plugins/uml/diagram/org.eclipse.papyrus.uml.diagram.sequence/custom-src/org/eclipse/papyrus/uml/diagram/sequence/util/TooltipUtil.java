@@ -40,7 +40,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorLabelProvider;
@@ -312,7 +312,7 @@ public class TooltipUtil {
 		 */
 		@Override
 		public String getTooltipName() {
-			if (editPart instanceof CombinedFragment2EditPart) {
+			if (editPart instanceof CCombinedFragmentEditPart && ((CCombinedFragmentEditPart) editPart).isCoregion()) {
 				return "Co Region";
 			}
 			EObject semanticElement = getSemanticElement(editPart);
@@ -401,7 +401,7 @@ public class TooltipUtil {
 			}
 			descBuf.append(label);
 			descBuf.append("\n");
-			if (semanticElement instanceof CombinedFragment && !(editPart instanceof CombinedFragment2EditPart)) {
+			if (semanticElement instanceof CombinedFragment && !((editPart instanceof CCombinedFragmentEditPart) && ((CCombinedFragmentEditPart) editPart).isCoregion())) {
 				descBuf.append("operator: ");
 				InteractionOperatorKind operator = ((CombinedFragment) semanticElement).getInteractionOperator();
 				if (operator != null) {

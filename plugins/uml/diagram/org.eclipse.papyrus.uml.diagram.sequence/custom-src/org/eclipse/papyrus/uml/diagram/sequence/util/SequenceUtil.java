@@ -67,12 +67,11 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
@@ -281,7 +280,7 @@ public class SequenceUtil {
 			List<View> views = DiagramEditPartsUtil.findViews(fragment, lifelineEditPart.getViewer());
 			for (View view : views) {
 				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
-				boolean isCombinedFragment = part instanceof CombinedFragmentEditPart || part instanceof CombinedFragment2EditPart;
+				boolean isCombinedFragment = part instanceof CombinedFragmentEditPart;
 				boolean isContinuation = part instanceof ContinuationEditPart;
 				boolean isInteractionOperand = part instanceof InteractionOperandEditPart;
 				boolean isInteractionUse = part instanceof InteractionUseEditPart;
@@ -669,10 +668,7 @@ public class SequenceUtil {
 					}
 				}
 			}
-			// CoRegion
-			if (child instanceof CombinedFragment2EditPart) {
-				completeOccurrencesMapWithMessages((GraphicalEditPart) child, occurrences);
-			}
+
 		}
 		// messages to and from the lifeline
 		completeOccurrencesMapWithMessages(lifelineEditPart, occurrences);
@@ -1030,7 +1026,7 @@ public class SequenceUtil {
 	 * @param ignoreSet
 	 *            a set of ift to ignore.
 	 * @return
-	 *         a set containing ift at least partially covered by the rectangle.
+	 * 		a set containing ift at least partially covered by the rectangle.
 	 */
 	@SuppressWarnings("unchecked")
 	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {
@@ -1056,7 +1052,7 @@ public class SequenceUtil {
 							coveredInteractionFragments.add(es.getStart());
 							coveredInteractionFragments.add(es.getFinish());
 						}
-					} 
+					}
 				}
 			} else if (ep instanceof ConnectionEditPart) {
 				ConnectionEditPart cep = (ConnectionEditPart) ep;
@@ -1375,7 +1371,7 @@ public class SequenceUtil {
 		int maxDeltaWithMiddle = 0;
 		for (Object child : children) {
 			// children executions
-			if (child instanceof CCombinedCompartmentEditPart || child instanceof BehaviorExecutionSpecificationEditPart || child instanceof CombinedFragment2EditPart) {
+			if (child instanceof CCombinedCompartmentEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
 				GraphicalEditPart childPart = (GraphicalEditPart) child;
 				Rectangle absoluteBounds = getAbsoluteBounds(childPart);
 				// enlarge absolute bounds to contain also the right and bottom edges.
@@ -1508,8 +1504,6 @@ public class SequenceUtil {
 			return ((InteractionOperandEditPart) containerPart).getContentPane();
 		} else if (containerPart instanceof CombinedFragmentEditPart) {
 			return ((CombinedFragmentEditPart) containerPart).getContentPane();
-		} else if (containerPart instanceof CombinedFragment2EditPart) {
-			return ((CombinedFragment2EditPart) containerPart).getContentPane();
 		} else if (containerPart instanceof ContinuationEditPart) {
 			return ((ContinuationEditPart) containerPart).getContentPane();
 		} else if (containerPart instanceof InteractionUseEditPart) {
@@ -1653,7 +1647,8 @@ public class SequenceUtil {
 		if (editPart instanceof DurationObservationEditPart) {
 			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		}
-		if (editPart instanceof MessageSyncEditPart || editPart instanceof MessageAsyncEditPart || editPart instanceof MessageReplyEditPart || editPart instanceof MessageCreateEditPart || editPart instanceof MessageDeleteEditPart || editPart instanceof MessageLostEditPart
+		if (editPart instanceof MessageSyncEditPart || editPart instanceof MessageAsyncEditPart || editPart instanceof MessageReplyEditPart || editPart instanceof MessageCreateEditPart || editPart instanceof MessageDeleteEditPart
+				|| editPart instanceof MessageLostEditPart
 				|| editPart instanceof MessageFoundEditPart) {
 			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		} else if (editPart instanceof MessageSyncNameEditPart || editPart instanceof MessageAsyncNameEditPart || editPart instanceof MessageReplyNameEditPart || editPart instanceof MessageCreateNameEditPart || editPart instanceof MessageDeleteNameEditPart

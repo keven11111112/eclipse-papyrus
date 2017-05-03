@@ -792,9 +792,9 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		// Execution specification handling
-		if (editPart instanceof AbstractExecutionSpecificationEditPart || editPart instanceof CombinedFragment2EditPart) {
-			return getPrimaryShape().getFigureLifelineDotLineFigure();
-		}
+		// if (editPart instanceof AbstractExecutionSpecificationEditPart || editPart instanceof CombinedFragment2EditPart) {
+		// return getPrimaryShape().getFigureLifelineDotLineFigure();
+		// }
 		return super.getContentPaneFor(editPart);
 	}
 

@@ -27,7 +27,6 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
@@ -184,9 +183,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		case StateInvariantEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?StateInvariant", //$NON-NLS-1$
 					UMLElementTypes.StateInvariant_Shape);
-		case CombinedFragment2EditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?CombinedFragment", //$NON-NLS-1$
-					UMLElementTypes.CombinedFragment_CoRegionShape);
 		case TimeConstraintEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?TimeConstraint", //$NON-NLS-1$
 					UMLElementTypes.TimeConstraint_Shape);
@@ -312,8 +308,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getContinuation_ShapeText(view);
 		case StateInvariantEditPart.VISUAL_ID:
 			return getStateInvariant_ShapeText(view);
-		case CombinedFragment2EditPart.VISUAL_ID:
-			return getCombinedFragment_CoRegionShapeText(view);
+
 		case TimeConstraintEditPart.VISUAL_ID:
 			return getTimeConstraint_ShapeText(view);
 		case TimeObservationEditPart.VISUAL_ID:
@@ -546,19 +541,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		}
 	}
 
-	/**
-	 * @generated
-	 */
-	private String getCombinedFragment_CoRegionShapeText(View view) {
-		CombinedFragment domainModelElement = (CombinedFragment) view.getElement();
-		if (domainModelElement != null) {
-			return String.valueOf(domainModelElement.getName());
-		} else {
-			UMLDiagramEditorPlugin.getInstance()
-					.logError("No domain element for view with visualID = CombinedFragment_CoRegionShape"); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
+
 
 	/**
 	 * @generated

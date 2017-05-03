@@ -41,7 +41,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
@@ -81,7 +80,7 @@ public class OLDGateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			 */
 			String semanticHint = viewRequest.getConnectionViewAndElementDescriptor().getSemanticHint();
 			// Ignore CoRegion.
-			if (!(sourceEP instanceof CombinedFragment2EditPart) && (((IHintedType) (UMLElementTypes.Message_AsynchEdge)).getSemanticHint().equals(semanticHint) || ((IHintedType) (UMLElementTypes.Message_ReplyEdge)).getSemanticHint().equals(semanticHint))) {
+			if ((((IHintedType) (UMLElementTypes.Message_AsynchEdge)).getSemanticHint().equals(semanticHint) || ((IHintedType) (UMLElementTypes.Message_ReplyEdge)).getSemanticHint().equals(semanticHint))) {
 				if (source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse) {
 					CompoundCommand cc = new CompoundCommand("Redirect to Gate");
 					Point location = null;

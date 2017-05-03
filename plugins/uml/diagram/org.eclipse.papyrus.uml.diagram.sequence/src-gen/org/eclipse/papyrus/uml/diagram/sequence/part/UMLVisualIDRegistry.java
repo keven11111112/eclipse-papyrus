@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
@@ -237,7 +237,7 @@ public class UMLVisualIDRegistry {
 					return StateInvariantEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
-					return CombinedFragment2EditPart.VISUAL_ID;
+					return CCombinedFragmentEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
 					return TimeConstraintEditPart.VISUAL_ID;
@@ -251,11 +251,6 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification()
 						.isSuperTypeOf(domainElement.eClass())) {
 					return DestructionOccurrenceSpecificationEditPart.VISUAL_ID;
-				}
-				break;
-			case CombinedFragment2EditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getGate().isSuperTypeOf(domainElement.eClass())) {
-					return GateEditPart.VISUAL_ID;
 				}
 				break;
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
@@ -383,9 +378,6 @@ public class UMLVisualIDRegistry {
 				if (StateInvariantEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (CombinedFragment2EditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
 				if (TimeConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
@@ -404,11 +396,6 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (StateInvariantLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				break;
-			case CombinedFragment2EditPart.VISUAL_ID:
-				if (GateEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;

@@ -2394,13 +2394,6 @@
               genNodes="/0/@diagram/@childNodes.14"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="CoRegion"
-              description="Create a CoRegion"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
-              genNodes="/0/@diagram/@childNodes.9"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
               title="Duration Observation"
               description="Create a Duration Observation on a Message"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
@@ -7768,6 +7761,5 @@
           genView="/0/@diagram/@childNodes.18/@labels.0"
           visualID="Gate_NameLabel"/>
     </child>
-    <child/>
   </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

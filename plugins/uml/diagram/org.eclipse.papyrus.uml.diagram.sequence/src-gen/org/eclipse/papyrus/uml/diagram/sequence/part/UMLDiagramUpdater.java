@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -129,8 +128,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getInteractionUse_Shape_SemanticChildren(view);
 			case LifelineEditPart.VISUAL_ID:
 				return getLifeline_Shape_SemanticChildren(view);
-			case CombinedFragment2EditPart.VISUAL_ID:
-				return getCombinedFragment_CoRegionShape_SemanticChildren(view);
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				return getInteraction_SubfragmentCompartment_SemanticChildren(view);
 			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
@@ -254,11 +251,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 						if (ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
 							result.add(new UMLNodeDescriptor(ae, visualID));
 						}
-					} else if (CombinedFragment2EditPart.VISUAL_ID.equals(visualID)) {
-						CombinedFragment ae = (CombinedFragment) nextValue;
-						if (ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
-							result.add(new UMLNodeDescriptor(ae, visualID));
-						}
 					}
 				}
 			}
@@ -310,13 +302,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getCombinedFragment_CoRegionShape_SemanticChildren(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
 	@Override
 	public List<UMLLinkDescriptor> getContainedLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
@@ -344,8 +329,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getBehaviorExecutionSpecification_Shape_ContainedLinks(view);
 			case StateInvariantEditPart.VISUAL_ID:
 				return getStateInvariant_Shape_ContainedLinks(view);
-			case CombinedFragment2EditPart.VISUAL_ID:
-				return getCombinedFragment_CoRegionShape_ContainedLinks(view);
 			case TimeConstraintEditPart.VISUAL_ID:
 				return getTimeConstraint_Shape_ContainedLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
@@ -413,8 +396,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getBehaviorExecutionSpecification_Shape_IncomingLinks(view);
 			case StateInvariantEditPart.VISUAL_ID:
 				return getStateInvariant_Shape_IncomingLinks(view);
-			case CombinedFragment2EditPart.VISUAL_ID:
-				return getCombinedFragment_CoRegionShape_IncomingLinks(view);
 			case TimeConstraintEditPart.VISUAL_ID:
 				return getTimeConstraint_Shape_IncomingLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
@@ -482,8 +463,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getBehaviorExecutionSpecification_Shape_OutgoingLinks(view);
 			case StateInvariantEditPart.VISUAL_ID:
 				return getStateInvariant_Shape_OutgoingLinks(view);
-			case CombinedFragment2EditPart.VISUAL_ID:
-				return getCombinedFragment_CoRegionShape_OutgoingLinks(view);
 			case TimeConstraintEditPart.VISUAL_ID:
 				return getTimeConstraint_Shape_OutgoingLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
@@ -634,15 +613,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		return result;
 	}
 
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_CoRegionShape_ContainedLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment) view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
-		return result;
-	}
+
 
 	/**
 	 * @generated
@@ -997,26 +968,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		return result;
 	}
 
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_CoRegionShape_IncomingLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
-		return result;
-	}
+
 
 	/**
 	 * @generated
@@ -1536,21 +1488,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		return result;
 	}
 
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_CoRegionShape_OutgoingLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment) view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
-		return result;
-	}
+
 
 	/**
 	 * @generated

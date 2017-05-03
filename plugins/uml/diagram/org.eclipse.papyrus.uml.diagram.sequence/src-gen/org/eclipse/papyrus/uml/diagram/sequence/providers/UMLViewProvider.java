@@ -59,7 +59,6 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -262,7 +261,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case CommentEditPart.VISUAL_ID:
 					case DurationObservationEditPart.VISUAL_ID:
 					case GateEditPart.VISUAL_ID:
-					case CombinedFragment2EditPart.VISUAL_ID:
 					case DurationConstraintInMessageEditPart.VISUAL_ID:
 						if (domainElement == null || !visualID
 								.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
@@ -355,9 +353,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						preferencesHint);
 			case StateInvariantEditPart.VISUAL_ID:
 				return createStateInvariant_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case CombinedFragment2EditPart.VISUAL_ID:
-				return createCombinedFragment_CoRegionShape(domainElement, containerView, index, persisted,
-						preferencesHint);
 			case TimeConstraintEditPart.VISUAL_ID:
 				return createTimeConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case TimeObservationEditPart.VISUAL_ID:
@@ -622,22 +617,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return node;
 	}
 
-	/**
-	 * @generated
-	 */
-	public Node createCombinedFragment_CoRegionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(CombinedFragment2EditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
-		return node;
-	}
 
 	/**
 	 * @generated

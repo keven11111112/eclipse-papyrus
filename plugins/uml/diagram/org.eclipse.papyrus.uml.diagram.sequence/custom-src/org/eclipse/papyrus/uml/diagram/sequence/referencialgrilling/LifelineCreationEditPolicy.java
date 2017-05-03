@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  */
 public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 	protected DisplayEvent displayEvent;
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getCreateElementAndViewCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest)
 	 *
@@ -46,57 +47,59 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 		// Used during the drop from the model explorer
-		if( request instanceof CreateViewAndElementRequest){
-			CreateViewAndElementRequest req=(CreateViewAndElementRequest)request;
-			ViewAndElementDescriptor descriptor=(req).getViewAndElementDescriptor();
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
+			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
 			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
-			if (isControlledByLifeline(elementType)){
+			if (isControlledByLifeline(elementType)) {
 				// get the element descriptor
-				CreateElementRequestAdapter requestAdapter =
-						req.getViewAndElementDescriptor().getCreateElementRequestAdapter();
+				CreateElementRequestAdapter requestAdapter = req.getViewAndElementDescriptor().getCreateElementRequestAdapter();
 				// get the semantic request
-				CreateElementRequest createElementRequest =
-						(CreateElementRequest) requestAdapter.getAdapter(
-								CreateElementRequest.class);
-				View view = (View)getHost().getModel();
+				CreateElementRequest createElementRequest = (CreateElementRequest) requestAdapter.getAdapter(
+						CreateElementRequest.class);
+				View view = (View) getHost().getModel();
 				EObject hostElement = ViewUtil.resolveSemanticElement(view);
 				createElementRequest.setContainer(hostElement.eContainer());
 				createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.COVERED, hostElement);
 				// case of Message Occurence Specification
-				MessageOccurrenceSpecification mos=displayEvent.getMessageEvent(getHostFigure().getParent().getParent(), ((CreateRequest)request).getLocation());
-				if( mos!=null){
+				MessageOccurrenceSpecification mos = displayEvent.getMessageEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
+				if (mos != null) {
 					createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START, mos);
 				}
 			}
 		}
 		return super.getCreateElementAndViewCommand(request);
 	}
-	
+
 	/**
-	 * test if the element Type that is normally not a child of the Lifeline should be controlled by the lifeline. 
-	 * Then The lifeline will be set as the parent editpart, but not as the semantic parent. 
+	 * test if the element Type that is normally not a child of the Lifeline should be controlled by the lifeline.
+	 * Then The lifeline will be set as the parent editpart, but not as the semantic parent.
 	 * 
-	 * This is the case of most of the affixed node. 
+	 * This is the case of most of the affixed node.
 	 * 
-	 * @param elementType the tested element type
-	 * @return true if the Lifeline should be the 
+	 * @param elementType
+	 *            the tested element type
+	 * @return true if the Lifeline should be the
 	 */
-	protected boolean isControlledByLifeline(IElementType elementType){
+	protected boolean isControlledByLifeline(IElementType elementType) {
 		boolean controlledByLifeline = false;
-		
-		if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)){
+
+		if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)) {
 			controlledByLifeline = true;
 		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)) {
 			controlledByLifeline = true;
 		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.TIME_CONSTRAINT_SHAPE)) {
 			controlledByLifeline = true;
-		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.STATE_INVARIANT_SHAPE)){
+		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.STATE_INVARIANT_SHAPE)) {
 			controlledByLifeline = true;
-		} 
-		
+		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_CO_REGION_SHAPE)) {
+			controlledByLifeline = true;
+		}
+
 		return controlledByLifeline;
-		
+
 	}
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#setHost(org.eclipse.gef.EditPart)
 	 *
@@ -106,14 +109,15 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 	public void setHost(EditPart host) {
 		// TODO Auto-generated method stub
 		super.setHost(host);
-		displayEvent= new DisplayEvent(getHost());
+		displayEvent = new DisplayEvent(getHost());
 	}
-	/** 
-	 * Return the host's figure. 
-	 * The super calls getFigure().  This is a problem when used with shapecompartments.  Instead,
-	 * return getContextPane().  In shape comaprtments this will return the correct containing figure.
+
+	/**
+	 * Return the host's figure.
+	 * The super calls getFigure(). This is a problem when used with shapecompartments. Instead,
+	 * return getContextPane(). In shape comaprtments this will return the correct containing figure.
 	 */
 	protected IFigure getHostFigure() {
-		return ((GraphicalEditPart)getHost()).getContentPane();
+		return ((GraphicalEditPart) getHost()).getContentPane();
 	}
 }

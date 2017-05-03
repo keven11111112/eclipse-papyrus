@@ -8,17 +8,19 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Céline Janssens (celine.janssens@all4tec.net) - Add Coregion  functionnality
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 
 /**
  * @author PT202707
@@ -26,9 +28,9 @@ import org.eclipse.uml2.uml.CombinedFragment;
  *
  */
 public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
-	public static int DEFAULT_HEIGHT=60;
-	public static int DEFAULT_WIDTH=40;
-	
+	public static int DEFAULT_HEIGHT = 60;
+	public static int DEFAULT_WIDTH = 40;
+
 
 	/**
 	 * Constructor.
@@ -38,7 +40,7 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 	public CCombinedFragmentEditPart(View view) {
 		super(view);
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 *
@@ -46,43 +48,48 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		// TODO Auto-generated method stub
+
 		super.handleNotificationEvent(event);
-		getPrimaryShape().setName(((CombinedFragment)this.resolveSemanticElement()).getInteractionOperator().getLiteral());
+		getPrimaryShape().setName(((CombinedFragment) this.resolveSemanticElement()).getInteractionOperator().getLiteral());
 	}
-	
-	
-//	/**
-//	 * Modify it to avoid scrollbar
-//	 */
-//	protected boolean addFixedChild(EditPart childEditPart) {
-//
-//		if (childEditPart instanceof CCombinedCompartmentEditPart) {
-//			IFigure pane = getPrimaryShape().getCompartmentFigure();
-//			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-//			pane.add(((CCombinedCompartmentEditPart) childEditPart).getFigure());
-//			return true;
-//		}
-//
-//		return false;
-//	}
-//
-//	/**
-//	 * @generated
-//	 */
-//	protected boolean removeFixedChild(EditPart childEditPart) {
-//		if (childEditPart instanceof CCombinedCompartmentEditPart) {
-//			IFigure pane = getPrimaryShape().getCompartmentFigure();
-//			pane.remove(((CCombinedCompartmentEditPart) childEditPart).getFigure());
-//			return true;
-//		}
-//		return false;
-//	}
-//	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-//		if (editPart instanceof CCombinedCompartmentEditPart) {
-//			return getPrimaryShape().getCompartmentFigure();
-//		}
-//		return getContentPane();
-//	}
+
+
+	/**
+	 * Get the Notation Value of the CoRegion boolean
+	 * 
+	 * @return true if the Combined Fragment should be displayed as a CoRegion with Brackets.
+	 *         This is the case if the Operator is Parallel and if the combinedFragment covers only 1 lifeline
+	 */
+	public boolean isCoregion() {
+
+		boolean coregion = false;
+		Element umlElement = getUMLElement();
+
+		if ((umlElement instanceof CombinedFragment) && !(umlElement instanceof ConsiderIgnoreFragment)) {
+
+			InteractionOperatorKind interactionOperator = ((CombinedFragment) umlElement).getInteractionOperator();
+			if (InteractionOperatorKind.PAR_LITERAL.getLiteral() == interactionOperator.getLiteral()) {
+				if (((CombinedFragment) umlElement).getCovereds().size() == 1) {
+					coregion = true;
+				}
+			}
+		}
+
+		return coregion;
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#refresh()
+	 *
+	 *      Refresh the CoRegion Value
+	 */
+	@Override
+	public void refresh() {
+
+		((CombinedFragmentFigure) getPrimaryShape()).setCoregion(isCoregion());
+		super.refresh();
+
+	}
 
 }

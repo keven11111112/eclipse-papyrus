@@ -74,10 +74,9 @@ import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
@@ -172,8 +171,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(InteractionEditPart.VISUAL_ID);
 		elementsVisualId.add(InteractionOperandEditPart.VISUAL_ID);
 		elementsVisualId.add(CombinedFragmentEditPart.VISUAL_ID);
-		// CoRegion
-		elementsVisualId.add(CombinedFragment2EditPart.VISUAL_ID);
 		elementsVisualId.add(CommentAnnotatedElementEditPart.VISUAL_ID);
 		elementsVisualId.add(ConsiderIgnoreFragmentEditPart.VISUAL_ID);
 		elementsVisualId.add(ContinuationEditPart.VISUAL_ID);
@@ -396,8 +393,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropIntervalConstraintInLifeline((IntervalConstraint) semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
 				return dropTimeObservationInLifeline((TimeObservation) semanticElement, nodeVISUALID, location);
-			case CombinedFragment2EditPart.VISUAL_ID:
-				return dropCoRegion((CombinedFragment) semanticElement, nodeVISUALID, location);
 			case CommentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
 				if (semanticElement instanceof DurationConstraint) {
@@ -1148,39 +1143,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * Get the command to drop an code region node
-	 *
-	 * @param combinedFragment
-	 * @param nodeVISUALID
-	 * @param location
-	 * @return
-	 */
-	private Command dropCoRegion(CombinedFragment combinedFragment, String nodeVISUALID, Point location) {
-		List<View> existingViews = DiagramEditPartsUtil.findViews(combinedFragment, getViewer());
-		// only allow one view instance of a single element by diagram
-		if (existingViews.isEmpty()) {
-			IGraphicalEditPart hostEditpart = (IGraphicalEditPart) getHost();
-			EObject element = hostEditpart.getNotationView().getElement();
-			if (element instanceof Lifeline) {
-				IHintedType type = ((IHintedType) getUMLElementType(nodeVISUALID));
-				String semanticHint = null;
-				if (type != null) {
-					semanticHint = type.getSemanticHint();
-				}
-				IAdaptable elementAdapter = new EObjectAdapter(combinedFragment);
-				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, semanticHint, ViewUtil.APPEND, true, getDiagramPreferencesHint());
-				CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-				createViewRequest.setLocation(location);
-				// "ask" the host for a command associated with the CreateViewRequest
-				Command command = getHost().getCommand(createViewRequest);
-				// set the viewdescriptor as result
-				// it then can be used as an adaptable to retrieve the View
-				return new ICommandProxy(new CommandProxyWithResult(command, descriptor));
-			}
-		}
-		return UnexecutableCommand.INSTANCE;
-	}
 
 	/**
 	 * Get the advised bounds to drop an execution specification

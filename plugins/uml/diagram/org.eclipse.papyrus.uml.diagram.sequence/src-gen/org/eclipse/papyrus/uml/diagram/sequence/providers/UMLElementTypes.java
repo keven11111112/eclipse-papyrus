@@ -26,7 +26,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
@@ -442,8 +441,6 @@ public class UMLElementTypes {
 				return BehaviorExecutionSpecification_Shape;
 			case StateInvariantEditPart.VISUAL_ID:
 				return StateInvariant_Shape;
-			case CombinedFragment2EditPart.VISUAL_ID:
-				return CombinedFragment_CoRegionShape;
 			case TimeConstraintEditPart.VISUAL_ID:
 				return TimeConstraint_Shape;
 			case TimeObservationEditPart.VISUAL_ID:
