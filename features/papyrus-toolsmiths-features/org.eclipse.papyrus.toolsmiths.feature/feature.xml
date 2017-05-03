@@ -33,7 +33,7 @@
    <!--Palette-->
 
    <plugin
-         id="org.eclipse.papyrus.customization.palette"
+         id="org.eclipse.papyrus.toolsmiths.palette"
          download-size="0"
          install-size="0"
          version="0.0.0"
