@@ -10,7 +10,7 @@
             finalPerspective="org.eclipse.papyrus.infra.core.perspective"
             icon="icons/soaml16x16.png"
             id="org.eclipse.papyrus.wizards.createsoamlmodel"
-            name="SoaML Model">
+            name="%wizardModel">
          <description>
             New SoaML Project
          </description>
@@ -21,7 +21,7 @@
             finalPerspective="org.eclipse.papyrus.infra.core.perspective"
             icon="icons/SoaML_new_Project32x32.gif"
             id="org.eclipse.papyrus.soaml.diagram.ui.createsoamlwizard"
-            name="SoaML Project"
+            name="%wizardProject"
             project="true">
          <description>
             New SoaML Project

@@ -12,7 +12,7 @@
 	<category
 		id="org.eclipse.papyrus.examples"
 		parentCategory="org.eclipse.ui.Examples"
-		name="Papyrus examples">
+		name="Papyrus Example">
 	</category>
 	<wizard
          category="org.eclipse.papyrus.wizards.category"

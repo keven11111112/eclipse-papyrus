@@ -50,7 +50,7 @@
             hasPages="true"
             icon="icons/wizard_icon.png"
             id="org.eclipse.papyrus.customization.nattableconfiguration.createconfigurationproject"
-            name="Create Papyrus Table Configuration Project"
+            name="%wizardTableConfProject"
             preferredPerspectives="org.eclipse.papyrus.infra.core.perspective"
             project="true">
       </wizard>
@@ -60,9 +60,8 @@
             hasPages="true"
             icon="icons/wizard_icon.png"
             id="org.eclipse.papyrus.customization.nattableconfiguration.createandeditconfigurationfile"
-            name="Create Papyrus Table Configuration File"
-            preferredPerspectives="org.eclipse.papyrus.infra.core.perspective"
-            project="true">
+            name="%wizardTableConfFile"
+            preferredPerspectives="org.eclipse.papyrus.infra.core.perspective">
       </wizard>
    </extension>
 
