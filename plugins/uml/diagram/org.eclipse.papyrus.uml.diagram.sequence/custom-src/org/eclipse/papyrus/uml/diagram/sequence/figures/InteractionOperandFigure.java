@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
+import javax.swing.text.StyleConstants.ColorConstants;
+
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
@@ -69,7 +71,6 @@ public class InteractionOperandFigure extends RoundedCompartmentFigure {
 	}
 
 	private void createContents() {
-		IMapMode mapMode = SequenceMapModeUtil.getMapModel(this);
 		fInteractionConstraintLabel = new WrappingLabel();
 		fInteractionConstraintLabel.setText("");
 		this.add(fInteractionConstraintLabel, new Rectangle(10,10,200,20));

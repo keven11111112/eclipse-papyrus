@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -112,6 +113,7 @@ public class TestGuardEdition_364808 extends TestTopNode {
 	@Test
 	public void testEditLoop() {
 		InteractionOperandEditPart op = setupOperand();
+		
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		changeOperatorKind(cep, (CombinedFragment)cep.resolveSemanticElement(), InteractionOperatorKind.LOOP_LITERAL);
 
@@ -130,9 +132,9 @@ public class TestGuardEdition_364808 extends TestTopNode {
 		// verify
 		CombinedFragment cf = (CombinedFragment)((CombinedFragmentEditPart)getRootEditPart().getChildren().get(0)).resolveSemanticElement();
 		InteractionConstraint guard = cf.getOperands().get(0).getGuard();
-		assertTrue(EDIT + TEST_THE_EXECUTION, "a < b".equals(((LiteralString)guard.getSpecification()).getValue()));
-		assertTrue(EDIT + TEST_THE_EXECUTION, ((LiteralInteger)guard.getMaxint()).getValue() == 10);
-		assertTrue(EDIT + TEST_THE_EXECUTION, ((LiteralInteger)guard.getMinint()).getValue() == 1);
+		assertEquals(EDIT + TEST_THE_EXECUTION, "a < b",((LiteralString)guard.getSpecification()).getValue());
+		assertEquals(EDIT + TEST_THE_EXECUTION,10, ((LiteralInteger)guard.getMaxint()).getValue());
+		assertEquals(EDIT + TEST_THE_EXECUTION,1, ((LiteralInteger)guard.getMinint()).getValue());
 		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains("1,10"));
 		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains("a < b"));
 	}
@@ -141,6 +143,8 @@ public class TestGuardEdition_364808 extends TestTopNode {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
+
 		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
 		waitForComplete();
 		return op;

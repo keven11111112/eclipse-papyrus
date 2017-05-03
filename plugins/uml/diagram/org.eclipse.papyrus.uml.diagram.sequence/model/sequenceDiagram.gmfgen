@@ -1582,10 +1582,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.CONNECTION_BENDPOINTS_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectEdgeToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectEdgeToGrillingEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">

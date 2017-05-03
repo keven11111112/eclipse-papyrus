@@ -102,6 +102,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -115,6 +116,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.InteractionConstraint;
@@ -127,7 +129,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
- * this  class is used to edit a guard of an interaction operand
+ * this class is used to edit a guard of an interaction operand
  */
 public class InteractionOperandGuardEditPart extends ShapeEditPart implements ITextAwareEditPart {
 
@@ -153,6 +155,8 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 	public InteractionOperandGuardEditPart(View view) {
 		super(view);
 	}
+
+
 
 	@Override
 	protected void createDefaultEditPolicies() {
@@ -311,15 +315,16 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	/**
 	 * return the interactionoperand
+	 * 
 	 * @return
 	 */
 	protected EObject getParserElement() {
-		if(this.getParent() instanceof InteractionOperandEditPart){
-			InteractionOperandEditPart interactionOperandEditPart=(InteractionOperandEditPart)this.getParent();
+		if (this.getParent() instanceof InteractionOperandEditPart) {
+			InteractionOperandEditPart interactionOperandEditPart = (InteractionOperandEditPart) this.getParent();
 			return interactionOperandEditPart.resolveSemanticElement();
 		}
 		return null;
-		//return getInteractionOperand(resolveSemanticElement());
+		// return getInteractionOperand(resolveSemanticElement());
 	}
 
 	protected Image getLabelIcon() {
@@ -414,15 +419,15 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			WrappingLabel primaryLabel = getPrimaryFigure().getPrimaryLabel();
+			WrappingLabel primaryLabel = getPrimaryFigure();
 			CellEditorLocator locator = new TextCellEditorLocator(primaryLabel);
 			setManager(new MultilineLabelDirectEditManager(this, TextCellEditorEx.class, locator));
 		}
 		return manager;
 	}
 
-	public GuardFigure getPrimaryFigure() {
-		return (GuardFigure) getFigure();
+	public WrappingLabel getPrimaryFigure() {
+		return (WrappingLabel) getFigure();
 	}
 
 	protected void setManager(DirectEditManager manager) {
@@ -516,6 +521,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		default:
 			break;
 		}
+
 	}
 
 	@Override
@@ -526,11 +532,20 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		refreshFontColor();
 		refreshUnderline();
 		refreshStrikeThrough();
-		
-		
-		
-	}
 
+
+
+	}
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#notifyChanged(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		// TODO Auto-generated method stub
+		super.notifyChanged(notification);
+	}
 	@Override
 	public void refreshBounds() {
 		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
@@ -558,7 +573,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
 		}
-		refreshBounds();
+
 	}
 
 	protected void refreshUnderline() {
@@ -598,6 +613,8 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	@Override
 	protected void addSemanticListeners() {
+
+		super.addSemanticListeners();
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
 			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
@@ -611,6 +628,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	@Override
 	protected void removeSemanticListeners() {
+		super.resolveSemanticElement();
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
@@ -724,12 +742,18 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		} else {
 			refreshLabel();
 		}
+		refresh();
 		super.handleNotificationEvent(event);
 	}
 
 	@Override
 	protected IFigure createFigure() {
-		GuardFigure label = new GuardFigure();
+		WrappingLabel label=null;
+		if(getParent() instanceof InteractionOperandEditPart){
+			InteractionOperandFigure fig=((InteractionOperandEditPart)getParent()).getPrimaryShape();
+			label=	fig.getInteractionConstraintLabel();
+		}
+		//GuardFigure label = new GuardFigure();
 		// WrappingLabel label = new WrappingLabel();
 		defaultText = getLabelTextHelper(label);
 		return label;
@@ -808,10 +832,9 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		@Override
 		public List getSemanticElementsBeingParsed(EObject element) {
 			List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
-			if (element instanceof InteractionOperand) {
-				InteractionOperand op = (InteractionOperand) element;
+			if (element instanceof InteractionConstraint) {
+				InteractionConstraint op = (InteractionConstraint) element;
 				semanticElementsBeingParsed.add(op);
-				semanticElementsBeingParsed.add(op.getGuard());
 			}
 			return semanticElementsBeingParsed;
 		}
@@ -830,10 +853,10 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 		@Override
 		public String getPrintString(IAdaptable element, int flags) {
-			EObject operand = (EObject)element.getAdapter(EObject.class);
-			//InteractionOperand operand = getInteractionOperand(adapter);
-			if( operand instanceof InteractionOperand){
-			return getGuardLabelText((InteractionOperand)operand, false);
+			EObject operand = (EObject) element.getAdapter(EObject.class);
+			// InteractionOperand operand = getInteractionOperand(adapter);
+			if (operand instanceof InteractionOperand) {
+				return getGuardLabelText((InteractionOperand) operand, false);
 			}
 			return "";
 		}
@@ -897,6 +920,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			CombinedFragment enclosingCF = (CombinedFragment) interactionOperand.getOwner();
+			interactionOperand.setName(interactionOperand.getName());
 			InteractionOperatorKind cfOperator = enclosingCF.getInteractionOperator();
 			if (InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)) {
 				if (text.contains("]") && text.contains("[")) {
@@ -933,167 +957,167 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 			return CommandResult.newOKCommandResult();
 		}
 
-		private LiteralInteger createLiteralInteger(int val) {
-			LiteralInteger li = UMLFactory.eINSTANCE.createLiteralInteger();
-			li.setValue(val);
-			return li;
-		}
+	private LiteralInteger createLiteralInteger(int val) {
+		LiteralInteger li = UMLFactory.eINSTANCE.createLiteralInteger();
+		li.setValue(val);
+		return li;
+	}
 
-		private void setIntValue(ValueSpecification spec, int val) {
-			if (spec instanceof LiteralInteger) {
-				((LiteralInteger) spec).setValue(val);
-			}
-		}
-
-		private int parseInt(String string, int defaultInt) {
-			try {
-				return Integer.parseInt(string);
-			} catch (NumberFormatException e) {
-			}
-			return defaultInt;
+	private void setIntValue(ValueSpecification spec, int val) {
+		if (spec instanceof LiteralInteger) {
+			((LiteralInteger) spec).setValue(val);
 		}
 	}
 
-	public class GuardFigure extends Figure implements ILabelFigure, IPapyrusNodeUMLElementFigure {
-
-		private WrappingLabel primaryLabel;
-
-		private PapyrusWrappingLabel stereotypeLabel;
-
-		private WrappingLabel stereotypePropertiesInBraceContent;
-
-		/**
-		 * Constructor.
-		 *
-		 */
-		public GuardFigure() {
-			ToolbarLayout layout = new ToolbarLayout(false);
-			layout.setStretchMinorAxis(true);
-			setLayoutManager(layout);
-			primaryLabel = new WrappingLabel();
-			primaryLabel.setTextWrap(true);
-			primaryLabel.setAlignment(PositionConstants.CENTER);
-			this.add(primaryLabel);
+	private int parseInt(String string, int defaultInt) {
+		try {
+			return Integer.parseInt(string);
+		} catch (NumberFormatException e) {
 		}
+		return defaultInt;
+	}
+}
 
-		public WrappingLabel getPrimaryLabel() {
-			return primaryLabel;
-		}
+public class GuardFigure extends Figure implements ILabelFigure, IPapyrusNodeUMLElementFigure {
 
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String, org.eclipse.swt.graphics.Image)
-		 *
-		 * @param stereotypes
-		 * @param image
-		 */
+	private WrappingLabel primaryLabel;
 
-		@Override
-		public void setStereotypeDisplay(String stereotypes, Image image) {
-			if ((stereotypes == null || stereotypes.trim().equals("")) && image == null) {
-				if (stereotypeLabel != null) {
-					remove(stereotypeLabel);
-				}
-				stereotypeLabel = null;
-			} else {
-				if (stereotypeLabel == null) {
-					stereotypeLabel = new PapyrusWrappingLabel();
-					add(stereotypeLabel, 0);
-				}
-				stereotypeLabel.setText(stereotypes);
-				stereotypeLabel.setIcon(image);
+	private PapyrusWrappingLabel stereotypeLabel;
+
+	private WrappingLabel stereotypePropertiesInBraceContent;
+
+	/**
+	 * Constructor.
+	 *
+	 */
+	public GuardFigure() {
+		ToolbarLayout layout = new ToolbarLayout(false);
+		layout.setStretchMinorAxis(true);
+		setLayoutManager(layout);
+		primaryLabel = new WrappingLabel();
+		primaryLabel.setTextWrap(true);
+		primaryLabel.setAlignment(PositionConstants.CENTER);
+		this.add(primaryLabel);
+	}
+
+	public WrappingLabel getPrimaryLabel() {
+		return primaryLabel;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String, org.eclipse.swt.graphics.Image)
+	 *
+	 * @param stereotypes
+	 * @param image
+	 */
+
+	@Override
+	public void setStereotypeDisplay(String stereotypes, Image image) {
+		if ((stereotypes == null || stereotypes.trim().equals("")) && image == null) {
+			if (stereotypeLabel != null) {
+				remove(stereotypeLabel);
 			}
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
-		 *
-		 * @param stereotypeProperties
-		 */
-
-		@Override
-		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-			if (stereotypeProperties == null || stereotypeProperties.trim().equals("")) {
-				if (stereotypePropertiesInBraceContent != null) {
-					remove(stereotypePropertiesInBraceContent);
-				}
-				stereotypePropertiesInBraceContent = null;
-			} else {
-				if (stereotypePropertiesInBraceContent == null) {
-					stereotypePropertiesInBraceContent = new WrappingLabel();
-					stereotypePropertiesInBraceContent.setOpaque(false);
-					int index = getChildren().indexOf(stereotypeLabel);
-					this.add(stereotypePropertiesInBraceContent, index + 1);
-				}
-				stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
+			stereotypeLabel = null;
+		} else {
+			if (stereotypeLabel == null) {
+				stereotypeLabel = new PapyrusWrappingLabel();
+				add(stereotypeLabel, 0);
 			}
-
+			stereotypeLabel.setText(stereotypes);
+			stereotypeLabel.setIcon(image);
 		}
+	}
 
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
-		 *
-		 * @param stereotypeProperties
-		 */
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
+	 *
+	 * @param stereotypeProperties
+	 */
 
-		@Override
-		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
-		 *
-		 * @return
-		 */
-
-		@Override
-		public PapyrusWrappingLabel getStereotypesLabel() {
-			return stereotypeLabel;
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
-		 *
-		 * @param text
-		 */
-
-		@Override
-		public void setText(String text) {
-			primaryLabel.setText(text);
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getText()
-		 *
-		 * @return
-		 */
-
-		@Override
-		public String getText() {
-			return primaryLabel.getText();
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
-		 *
-		 * @param icon
-		 */
-
-		@Override
-		public void setIcon(Image icon) {
-			primaryLabel.setIcon(icon);
-		}
-
-		/**
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getIcon()
-		 *
-		 * @return
-		 */
-
-		@Override
-		public Image getIcon() {
-			return primaryLabel.getIcon();
+	@Override
+	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+		if (stereotypeProperties == null || stereotypeProperties.trim().equals("")) {
+			if (stereotypePropertiesInBraceContent != null) {
+				remove(stereotypePropertiesInBraceContent);
+			}
+			stereotypePropertiesInBraceContent = null;
+		} else {
+			if (stereotypePropertiesInBraceContent == null) {
+				stereotypePropertiesInBraceContent = new WrappingLabel();
+				stereotypePropertiesInBraceContent.setOpaque(false);
+				int index = getChildren().indexOf(stereotypeLabel);
+				this.add(stereotypePropertiesInBraceContent, index + 1);
+			}
+			stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
 		}
 
 	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
+	 *
+	 * @param stereotypeProperties
+	 */
+
+	@Override
+	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
+
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
+	 *
+	 * @return
+	 */
+
+	@Override
+	public PapyrusWrappingLabel getStereotypesLabel() {
+		return stereotypeLabel;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
+	 *
+	 * @param text
+	 */
+
+	@Override
+	public void setText(String text) {
+		primaryLabel.setText(text);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getText()
+	 *
+	 * @return
+	 */
+
+	@Override
+	public String getText() {
+		return primaryLabel.getText();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
+	 *
+	 * @param icon
+	 */
+
+	@Override
+	public void setIcon(Image icon) {
+		primaryLabel.setIcon(icon);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getIcon()
+	 *
+	 * @return
+	 */
+
+	@Override
+	public Image getIcon() {
+		return primaryLabel.getIcon();
+	}
+
+}
 }

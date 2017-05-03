@@ -12,7 +12,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageAsync;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectMessageToGridEditPolicy;
 
 /**
  * @generated
@@ -42,8 +41,6 @@ public class MessageAsyncEditPart extends AbstractMessageEditPart implements ITr
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new MessageConnectionLineSegEditPolicy());
-		installEditPolicy(ConnectMessageToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT,
-				new ConnectMessageToGridEditPolicy());
 	}
 
 	/**

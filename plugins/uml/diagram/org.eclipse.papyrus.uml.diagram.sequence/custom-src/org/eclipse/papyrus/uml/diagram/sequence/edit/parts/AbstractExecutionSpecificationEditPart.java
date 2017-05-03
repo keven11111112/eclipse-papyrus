@@ -126,7 +126,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(ConnectExecutionNodeToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectExecutionNodeToGrillingEditPolicy());
+		//installEditPolicy(ConnectExecutionNodeToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectExecutionNodeToGrillingEditPolicy());
 		installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 	}
 

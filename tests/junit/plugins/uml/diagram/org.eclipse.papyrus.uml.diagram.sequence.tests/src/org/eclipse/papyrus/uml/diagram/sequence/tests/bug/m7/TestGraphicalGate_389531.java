@@ -382,73 +382,9 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		assertEquals("Suggestion name of message4", message3.getName(), message4.getName());
 	}
 
-	/**
-	 * Gates should be created automatically.
-	 * 1. message1: Interaction --> Lifeline
-	 * 2. message2: Lifeline --> Interaction
-	 */
-	@Test
-	public void testGateCreateWithMessageAsyncOnInteraction() {
-		InteractionEditPart interaction = (InteractionEditPart) getRootEditPart().getParent();
-		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
-		Rectangle lifelineBounds = getAbsoluteBounds(lifeline);
-		// 1. message1
-		Point endLocation = lifelineBounds.getCenter();
-		Point startLocation = new Point(0, endLocation.y);
-		MessageAsyncEditPart message1ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, interaction.getViewer(), startLocation, interaction, endLocation, lifeline);
-		assertNotNull("message1: Interaction --> Lifeline", message1ep);
-		Message message1 = (Message) message1ep.resolveSemanticElement();
-		Gate gate1 = (Gate) message1.getSendEvent();
-		OLDGateEditPart gate1EditPart = getGateEditPart(interaction, gate1);
-		assertNotNull("Gate created", gate1EditPart);
-		// assertEquals("Gate name", "in_" + message1.getName(), getGateName(gate1EditPart));
-		// 2. message2
-		startLocation = endLocation.getTranslated(0, 50);
-		endLocation = new Point(0, startLocation.y);
-		MessageAsyncEditPart message2ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, interaction.getViewer(), startLocation, lifeline, endLocation, interaction);
-		assertNotNull("message2: Lifeline --> Interaction", message2ep);
-		Message message2 = (Message) message2ep.resolveSemanticElement();
-		Gate gate2 = (Gate) message2.getReceiveEvent();
-		OLDGateEditPart gate2EditPart = getGateEditPart(interaction, gate2);
-		assertNotNull("Gate created", gate2EditPart);
-		// the name of gate on Interaction will not be changed.
-		assertEquals("Gate name", gate2.getName(), getGateName(gate2EditPart));
-	}
+	
 
-	/**
-	 * 1. message1: Lifeline1 --> InteractionUse
-	 * 2. message2: InteractionUse --> Lifeline2
-	 */
-	@Test
-	public void testGateCreateWithMessageAsyncOnInteractionUse() {
-		LifelineEditPart lifeline1 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(100, 400));
-		LifelineEditPart lifeline2 = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(600, 100), new Dimension(100, 400));
-		InteractionUseEditPart interactionUse = (InteractionUseEditPart) createNode(UMLElementTypes.InteractionUse_Shape, getRootEditPart(), new Point(300, 200), new Dimension(200, 100));
-		InteractionEditPart iep = (InteractionEditPart) getRootEditPart().getParent();
-		// set refersTo value.
-		updateValue(getEditingDomain(), interactionUse.resolveSemanticElement(), UMLPackage.Literals.INTERACTION_USE__REFERS_TO, iep.resolveSemanticElement());
-		// 1. message1
-		Point endLocation = getAbsoluteBounds(lifeline1).getCenter();
-		Point startLocation = new Point(getAbsoluteBounds(interactionUse).x, endLocation.y);
-		MessageAsyncEditPart message1ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline1, endLocation, interactionUse);
-		assertNotNull("message1: Lifeline1 --> InteractionUse", message1ep);
-		Message message1 = (Message) message1ep.resolveSemanticElement();
-		Gate gate1 = (Gate) message1.getReceiveEvent();
-		OLDGateEditPart gate1EditPart = getGateEditPart(interactionUse, gate1);
-		assertNotNull("Gate created", gate1EditPart);
-		assertEquals("Gate name", "in_" + message1.getName(), getGateName(gate1EditPart));
-		// 2. message2
-		endLocation = getAbsoluteBounds(lifeline2).getCenter();
-		startLocation = new Point(getAbsoluteBounds(interactionUse).right(), endLocation.y);
-		MessageAsyncEditPart message2ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, interactionUse.getViewer(), startLocation, interactionUse, endLocation, lifeline2);
-		assertNotNull("message2: InteractionUse --> Lifeline2", message2ep);
-		Message message2 = (Message) message2ep.resolveSemanticElement();
-		Gate gate2 = (Gate) message2.getSendEvent();
-		OLDGateEditPart gate2EditPart = getGateEditPart(interactionUse, gate2);
-		assertNotNull("Gate created", gate2EditPart);
-		// assertEquals("Gate name", "out_" + message2.getName(), getGateName(gate2EditPart));
-	}
-
+	
 	@Test
 	public void testGateCreateWithMessageReplyOnGate() {
 		OLDGateEditPart gateEditPart = createGateWithParent(UMLElementTypes.CombinedFragment_Shape, new Point(20, 100), new Dimension(100, 200), false);

@@ -13,18 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.part;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
-import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -82,7 +77,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
@@ -94,12 +88,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationApplie
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.expressions.UMLOCLFactory;
-import org.eclipse.uml2.uml.DurationConstraint;
-import org.eclipse.uml2.uml.DurationObservation;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -171,164 +160,132 @@ public class UMLVisualIDRegistry {
 
 	/**
 	 * Generated not for add lifelines on lifeline
+	 * installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	 *
-	 * @generated NOT (update at each gmf change) lifeline, handle duration constraint/observation on message
+	 * @generated
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
 				.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			return null;
+		if (!SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
+			return "";
 		}
 		String containerVisualID;
-		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if (SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = PackageEditPart.VISUAL_ID;
+				containerVisualID = SequenceDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
-		switch (containerVisualID) {
-		case PackageEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
-				return InteractionEditPart.VISUAL_ID;
-			}
-			break;
-		case InteractionEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
-				return DurationConstraintInMessageEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
-				return DurationObservationEditPart.VISUAL_ID;
-			}
-			break;
-		case InteractionOperandEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())) {
-				return InteractionUseEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())) {
-				return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
-				return CombinedFragmentEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getContinuation().isSuperTypeOf(domainElement.eClass())) {
-				return ContinuationEditPart.VISUAL_ID;
-			}
-			break;
-		case LifelineEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return CCombinedCompartmentEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getStateInvariant().isSuperTypeOf(domainElement.eClass())) {
-				return StateInvariantEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
-				return CombinedFragment2EditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
-				return TimeConstraintEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())) {
-				return TimeObservationEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
-				// handle duration constraint/observation on message
-				List<Element> occurrences = ((DurationConstraint) domainElement).getConstrainedElements();
-				if (occurrences.size() >= 2 && occurrences.get(0) instanceof OccurrenceSpecification
-						&& occurrences.get(1) instanceof OccurrenceSpecification) {
-					if (DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification) occurrences.get(0),
-							(OccurrenceSpecification) occurrences.get(1))) {
-						return DurationConstraintInMessageEditPart.VISUAL_ID;
-					}
+		if (containerVisualID != null) {
+			switch (containerVisualID) {
+			case SequenceDiagramEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+					return InteractionEditPart.VISUAL_ID;
 				}
-				return DurationConstraintEditPart.VISUAL_ID;
-			}
-			// handle duration constraint/observation on message
-			if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
-				List<NamedElement> occurrences = ((DurationObservation) domainElement).getEvents();
-				if (occurrences.size() >= 2 && occurrences.get(0) instanceof OccurrenceSpecification
-						&& occurrences.get(1) instanceof OccurrenceSpecification) {
-					if (DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification) occurrences.get(0),
-							(OccurrenceSpecification) occurrences.get(1))) {
-						return DurationObservationEditPart.VISUAL_ID;
-					}
+				break;
+			case InteractionEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return DurationConstraintInMessageEditPart.VISUAL_ID;
 				}
+				if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
+					return DurationObservationEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getGate().isSuperTypeOf(domainElement.eClass())) {
+					return GateEditPart.VISUAL_ID;
+				}
+				break;
+			case CombinedFragmentEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getGate().isSuperTypeOf(domainElement.eClass())) {
+					return GateEditPart.VISUAL_ID;
+				}
+				break;
+			case InteractionOperandEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())) {
+					return InteractionUseEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())) {
+					return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+					return CombinedFragmentEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getContinuation().isSuperTypeOf(domainElement.eClass())) {
+					return ContinuationEditPart.VISUAL_ID;
+				}
+				break;
+			case InteractionUseEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getGate().isSuperTypeOf(domainElement.eClass())) {
+					return GateEditPart.VISUAL_ID;
+				}
+				break;
+			case LifelineEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
+					return ActionExecutionSpecificationEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
+					return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getStateInvariant().isSuperTypeOf(domainElement.eClass())) {
+					return StateInvariantEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+					return CombinedFragment2EditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return TimeConstraintEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())) {
+					return TimeObservationEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return DurationConstraintEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification()
+						.isSuperTypeOf(domainElement.eClass())) {
+					return DestructionOccurrenceSpecificationEditPart.VISUAL_ID;
+				}
+				break;
+			case CombinedFragment2EditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getGate().isSuperTypeOf(domainElement.eClass())) {
+					return GateEditPart.VISUAL_ID;
+				}
+				break;
+			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())) {
+					return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
+					return CombinedFragmentEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+					return LifelineEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())) {
+					return InteractionUseEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return ConstraintEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+					return CommentEditPart.VISUAL_ID;
+				}
+				break;
+			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())) {
+					return InteractionOperandEditPart.VISUAL_ID;
+				}
+				break;
 			}
-			if (UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return DestructionOccurrenceSpecificationEditPart.VISUAL_ID;
-			}
-			// lifeline : add lifelines on lifeline
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
-				return LifelineEditPart.VISUAL_ID;
-			}
-			break;
-		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())) {
-				return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
-				return CombinedFragmentEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
-				return LifelineEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())) {
-				return InteractionOperandEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())) {
-				return InteractionUseEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
-				return ConstraintEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
-				return CommentEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())) {
-				return TimeObservationEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
-				return DurationObservationEditPart.VISUAL_ID;
-			}
-			break;
-		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())) {
-				return InteractionOperandEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getContinuation().isSuperTypeOf(domainElement.eClass())) {
-				return ContinuationEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())) {
-				return CombinedFragmentEditPart.VISUAL_ID;
-			}
-			break;
-		// handle duration constraint/observation on message
-		case MessageSyncEditPart.VISUAL_ID:
-		case MessageAsyncEditPart.VISUAL_ID:
-		case MessageReplyEditPart.VISUAL_ID:
-		case MessageCreateEditPart.VISUAL_ID:
-		case MessageDeleteEditPart.VISUAL_ID:
-		case MessageLostEditPart.VISUAL_ID:
-		case MessageFoundEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
-				return DurationConstraintInMessageEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
-				return DurationObservationEditPart.VISUAL_ID;
-			}
-			break;
 		}
-		return null;
+		return "";
 	}
 
 	/**

@@ -36,10 +36,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
+import org.eclipse.uml2.uml.Lifeline;
 import org.junit.Test;
 
 /**
@@ -75,7 +77,7 @@ public class TestMessageCreate_379661 extends TestLink {
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
-		RectangleFigure fig = lifeline2.getPrimaryShape().getFigureLifelineNameContainerFigure();
+		LifelineFigure fig = lifeline2.getPrimaryShape();
 		Rectangle bounds = fig.getBounds().getCopy();
 		fig.translateToAbsolute(bounds);
 
@@ -101,7 +103,7 @@ public class TestMessageCreate_379661 extends TestLink {
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
-		IFigure fig = lifeline2.getPrimaryShape().getFigureLifelineDotLineFigure();
+		IFigure fig = lifeline2.getPrimaryShape();
 		Rectangle bounds = fig.getBounds().getCopy();
 		fig.translateToAbsolute(bounds);
 
@@ -126,7 +128,7 @@ public class TestMessageCreate_379661 extends TestLink {
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
-		IFigure fig = lifeline2.getPrimaryShape().getFigureLifelineDotLineFigure();
+		LifelineFigure fig = lifeline2.getPrimaryShape();
 		Rectangle bounds = fig.getBounds().getCopy();
 		fig.translateToAbsolute(bounds);
 

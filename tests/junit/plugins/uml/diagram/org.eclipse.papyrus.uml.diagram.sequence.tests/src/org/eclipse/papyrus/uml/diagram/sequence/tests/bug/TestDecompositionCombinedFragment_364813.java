@@ -152,10 +152,9 @@ public class TestDecompositionCombinedFragment_364813 extends TestTopNode {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(200, 120), new Dimension(200, 200));
 
 		Interaction interaction = (Interaction) getRootSemanticModel();
-		OLDLifelineEditPart lifeline1 = (OLDLifelineEditPart) getRootEditPart().getChildren().get(0);
+		LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(2);
 		Classifier p = interaction.getNestedClassifier("Person");
 		changeRepresents(lifeline1, p.getFeature("company"));
-		assertTrue(CREATION + INITIALIZATION_TEST, !lifeline1.isInlineMode());
 		assertTrue(CREATION + INITIALIZATION_TEST, lifeline1.getChildren().size() == 1);
 
 		waitForComplete();
@@ -166,7 +165,6 @@ public class TestDecompositionCombinedFragment_364813 extends TestTopNode {
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getChildren().size() == 3);
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getChildren().get(1) instanceof LifelineEditPart);
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getChildren().get(2) instanceof LifelineEditPart);
-		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.isInlineMode());
 
 		waitForComplete();
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(1);

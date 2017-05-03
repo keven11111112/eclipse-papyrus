@@ -79,32 +79,38 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				IdentityAnchor targetAnchor=(IdentityAnchor)edge.getSourceAnchor();
 				if( sourceAnchor!=null && targetAnchor!=null){
 
-					//source
-					View viewsr=edge.getSource();
-					Message m= (Message)connectionEditPart.resolveSemanticElement();
-					double ypercent=IdentityAnchorHelper.getYPercentage(sourceAnchor);
-					PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewsr);
-					double localY=(bounds.preciseHeight()*ypercent);
-					double absoluteY=localY+bounds.preciseY();
-					if(m.getSendEvent()==null){
-						rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m);
-					}else{
-						rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m.getSendEvent());
-					}
-					getDiagramEventBroker().addNotificationListener(rowTarget, this);
 
-					//target
-					View viewtg=edge.getTarget();
-					ypercent=IdentityAnchorHelper.getYPercentage(targetAnchor);
-					bounds= NotationHelper.getAbsoluteBounds((Node)viewtg);
-					localY=(bounds.preciseHeight()*ypercent);
-					absoluteY=localY+bounds.preciseY();
-					if(m.getReceiveEvent()==null){
-					rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m);}
-					else{
-						rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m.getReceiveEvent());
+					//source
+					if(sourceAnchor.getId()!=null&& !(sourceAnchor.getId().equals(""))){
+						View viewsr=edge.getSource();
+						Message m= (Message)connectionEditPart.resolveSemanticElement();
+						double ypercent=IdentityAnchorHelper.getYPercentage(sourceAnchor);
+						PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewsr);
+						double localY=(bounds.preciseHeight()*ypercent);
+						double absoluteY=localY+bounds.preciseY();
+						if(m.getSendEvent()==null){
+							rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m);
+						}else{
+							rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m.getSendEvent());
+						}
+
+						getDiagramEventBroker().addNotificationListener(rowSource, this);
 					}
-					getDiagramEventBroker().addNotificationListener(rowTarget, this);
+					//target
+					if(targetAnchor.getId()!=null&& !(targetAnchor.getId().equals(""))){
+						View viewtg=edge.getTarget();
+						double ypercent=IdentityAnchorHelper.getYPercentage(targetAnchor);
+						Message m= (Message)connectionEditPart.resolveSemanticElement();
+						PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewtg);
+						double localY=(bounds.preciseHeight()*ypercent);
+						double absoluteY=localY+bounds.preciseY();
+						if(m.getReceiveEvent()==null){
+							rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m);}
+						else{
+							rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m.getReceiveEvent());
+						}
+						getDiagramEventBroker().addNotificationListener(rowTarget, this);
+					}
 				}
 
 			}
@@ -148,46 +154,50 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 			//CREATION
 			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_SourceAnchor().equals(notification.getFeature())&& notification.getNewValue()!=null){
 				IdentityAnchor anchor=(IdentityAnchor)notification.getNewValue();
-				ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
-				Message m= (Message)connectionEditPart.resolveSemanticElement();
-				NamedElementEditPart sourceEditpart=(NamedElementEditPart)connectionEditPart.getSource();
-				int anchorY=computeAnchorPositionNotation(anchor, sourceEditpart);
-				try{
-					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-					if (grilling!=null){
-						if(m.getSendEvent()==null){
-							rowSource=grilling.getorCreateRowTolisten(anchorY,m);
-						}else{
-							rowSource=grilling.getorCreateRowTolisten(anchorY,m.getSendEvent());
-						}
-						getDiagramEventBroker().addNotificationListener(rowSource, this);
+				if(anchor.getId()!=null&& !(anchor.getId().equals(""))){
+					ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
+					Message m= (Message)connectionEditPart.resolveSemanticElement();
+					NamedElementEditPart sourceEditpart=(NamedElementEditPart)connectionEditPart.getSource();
+					int anchorY=computeAnchorPositionNotation(anchor, sourceEditpart);
+					try{
+						GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+						if (grilling!=null){
+							if(m.getSendEvent()==null){
+								rowSource=grilling.getorCreateRowTolisten(anchorY,m);
+							}else{
+								rowSource=grilling.getorCreateRowTolisten(anchorY,m.getSendEvent());
+							}
+							getDiagramEventBroker().addNotificationListener(rowSource, this);
 
+						}
+					}catch (NoGrillElementFound e) {
+						UMLDiagramEditorPlugin.log.error(e);
 					}
-				}catch (NoGrillElementFound e) {
-					UMLDiagramEditorPlugin.log.error(e);
 				}
 			}
 
 			//CREATION
 			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_TargetAnchor().equals(notification.getFeature()) && notification.getNewValue()!=null){
 				IdentityAnchor anchor=(IdentityAnchor)notification.getNewValue();
-				ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
-				NamedElementEditPart editpart=(NamedElementEditPart)connectionEditPart.getTarget();
-				Message m= (Message)connectionEditPart.resolveSemanticElement();
-				int anchorY=computeAnchorPositionNotation(anchor, editpart);
-				try{
-					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-					if (grilling!=null){
-						if(m.getReceiveEvent()==null){
-							rowTarget=grilling.getorCreateRowTolisten(anchorY, m);
+				if(anchor.getId()!=null&& !(anchor.getId().equals(""))){
+					ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
+					NamedElementEditPart editpart=(NamedElementEditPart)connectionEditPart.getTarget();
+					Message m= (Message)connectionEditPart.resolveSemanticElement();
+					int anchorY=computeAnchorPositionNotation(anchor, editpart);
+					try{
+						GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+						if (grilling!=null){
+							if(m.getReceiveEvent()==null){
+								rowTarget=grilling.getorCreateRowTolisten(anchorY, m);
+							}
+							else{
+								rowTarget=grilling.getorCreateRowTolisten(anchorY, m.getReceiveEvent());
+							}
+							getDiagramEventBroker().addNotificationListener(rowTarget, this);
 						}
-						else{
-						rowTarget=grilling.getorCreateRowTolisten(anchorY, m.getReceiveEvent());
-						}
-						getDiagramEventBroker().addNotificationListener(rowTarget, this);
+					}catch (NoGrillElementFound e) {
+						UMLDiagramEditorPlugin.log.error(e);
 					}
-				}catch (NoGrillElementFound e) {
-					UMLDiagramEditorPlugin.log.error(e);
 				}
 			}
 			//A move has been done by the user

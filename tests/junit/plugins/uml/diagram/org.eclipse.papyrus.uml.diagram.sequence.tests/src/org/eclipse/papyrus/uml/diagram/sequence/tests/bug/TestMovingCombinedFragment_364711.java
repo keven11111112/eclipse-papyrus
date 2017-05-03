@@ -69,7 +69,7 @@ public class TestMovingCombinedFragment_364711 extends TestTopNode {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 20));
 		final LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), SequenceUtil.getAbsoluteBounds(lifelineEP).getCenter().getTranslated(-210, 70));
-		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(1);
+		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete(); // wait for updating covered field
 
 		Point moveDelta = new Point(50, 0);
@@ -101,7 +101,7 @@ public class TestMovingCombinedFragment_364711 extends TestTopNode {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(70, 20));
 		final LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), SequenceUtil.getAbsoluteBounds(lifelineEP).getCenter().getTranslated(-2, 70));
-		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(1);
+		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete(); // wait for updating covered field
 
 		Point moveDelta = new Point(-30, 0);

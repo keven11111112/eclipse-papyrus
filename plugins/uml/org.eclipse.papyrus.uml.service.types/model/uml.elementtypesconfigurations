@@ -550,7 +550,7 @@
     <iconEntry xmi:id="_Sctvw1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InteractionFragment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InteractionFragment"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SctvxFYCEeS0WsAAtVmToA" identifier="org.eclipse.papyrus.uml.InteractionOperand" name="UML::InteractionOperand" hint="UML::InteractionOperand" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SctvxFYCEeS0WsAAtVmToA" identifier="org.eclipse.papyrus.uml.InteractionOperand" name="UML::InteractionOperand" hint="UML::InteractionOperand" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.InteractionOperandEditHelper">
     <iconEntry xmi:id="_SctvxVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InteractionOperand.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InteractionOperand"/>
   </elementTypeConfigurations>

@@ -92,6 +92,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrence
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -205,8 +206,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
+		//elementsVisualId.add(GateEditPart.VISUAL_ID);
 		// handle nodes on messages (no visual ID detected for them)
-		elementsVisualId.add(null);
+		//elementsVisualId.add(null);
 		return elementsVisualId;
 	}
 

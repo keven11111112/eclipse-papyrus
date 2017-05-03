@@ -1,5 +1,4 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -27,7 +26,6 @@ public class InteractionEditHelper extends ElementEditHelper {
 	 */
 	@Override
 	protected ICommand getEditContextCommand(GetEditContextRequest req) {
-		System.err.println("Ici");
 		return super.getEditContextCommand(req);
 	}
 

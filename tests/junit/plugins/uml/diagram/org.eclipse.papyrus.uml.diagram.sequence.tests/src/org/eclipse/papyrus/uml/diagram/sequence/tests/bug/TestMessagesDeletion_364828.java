@@ -254,7 +254,7 @@ public class TestMessagesDeletion_364828 extends TestLink {
 
 		public Point getConnectionSourceLocation(EditPart part) {
 			if(part instanceof LifelineEditPart) {
-				IFigure f = ((LifelineEditPart)part).getPrimaryShape().getFigureLifelineDotLineFigure();
+				IFigure f = ((LifelineEditPart)part).getPrimaryShape();
 				return getCenter(f);
 			}
 			if(part instanceof AbstractExecutionSpecificationEditPart || part instanceof InteractionEditPart) { // found message
@@ -265,7 +265,7 @@ public class TestMessagesDeletion_364828 extends TestLink {
 
 		public Point getConnectionTargetLocation(EditPart part) {
 			if(part instanceof LifelineEditPart) {
-				IFigure f = ((LifelineEditPart)part).getPrimaryShape().getFigureLifelineDotLineFigure();
+				IFigure f = ((LifelineEditPart)part).getPrimaryShape();
 				return getCenter(f);
 			}
 			if(part instanceof AbstractExecutionSpecificationEditPart || part instanceof InteractionEditPart) {
@@ -280,7 +280,7 @@ public class TestMessagesDeletion_364828 extends TestLink {
 		}
 
 		public Point getChildLocation(GraphicalEditPart parentEditPart) {
-			IFigure f = ((LifelineEditPart)parentEditPart).getPrimaryShape().getFigureLifelineDotLineFigure();
+			IFigure f = ((LifelineEditPart)parentEditPart).getPrimaryShape();
 			return getCenter(f).translate(0, 1);
 		}
 

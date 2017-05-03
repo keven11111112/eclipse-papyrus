@@ -77,10 +77,10 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 		testToManageChildNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifelineProvider);
 	}
 
-	@Test
-	public void testToManageDestructionOccurrence() {
-		testToManageChildNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifelineProvider);
-	}
+//	@Test
+//	public void testToManageDestructionOccurrence() {
+//		testToManageChildNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifelineProvider);
+//	}
 
 	@Test
 	public void testToManageCoRegion() {

@@ -92,8 +92,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeOperandEditPolicy());
-		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY,new BorderDisplayEditPolicy());
-		
+		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
 
 	/**

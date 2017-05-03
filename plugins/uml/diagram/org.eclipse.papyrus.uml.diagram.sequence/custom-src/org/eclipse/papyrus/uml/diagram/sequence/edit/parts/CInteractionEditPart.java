@@ -62,7 +62,7 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
 		ConnectionAnchor sourceAnchor = createAnchor(request, UMLDIElementTypes.MESSAGE_FOUND_EDGE, MessageFoundEditPart.VISUAL_ID, MessageFoundEditPart.class);
-		System.err.println("getSourceConnectionAnchor "+((AnchorHelper.InnerPointAnchor)(sourceAnchor)).getTerminal());
+		
 		if (sourceAnchor == null) {
 			sourceAnchor = super.getSourceConnectionAnchor(request);
 		}

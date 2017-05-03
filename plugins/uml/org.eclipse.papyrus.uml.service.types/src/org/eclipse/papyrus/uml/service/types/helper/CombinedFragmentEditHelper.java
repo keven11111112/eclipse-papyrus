@@ -50,10 +50,6 @@ public class CombinedFragmentEditHelper extends ElementEditHelper {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				CombinedFragment combinedFragment = (CombinedFragment) req.getElementToConfigure();
-				InteractionOperand operand = UMLFactory.eINSTANCE.createInteractionOperand();
-				combinedFragment.getOperands().add(operand);
-				operand.setName(NamedElementUtil.getDefaultNameWithIncrement(operand, operand.getOwner().eContents()));
-
 				return CommandResult.newOKCommandResult(combinedFragment);
 			}
 		};

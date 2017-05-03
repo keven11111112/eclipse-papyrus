@@ -173,6 +173,7 @@ public class TestInteractionConstraint_382966 extends TestTopNode {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
 		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
 		waitForComplete();
 		return op;

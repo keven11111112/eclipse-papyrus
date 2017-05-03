@@ -18,6 +18,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -36,7 +37,7 @@ public class CInteractionOperandEditPart extends InteractionOperandEditPart {
 
 	public static int DEFAULT_HEIGHT=40;
 	public static int DEFAULT_WIDHT=100;
-	
+
 	/**
 	 * Constructor.
 	 *
@@ -45,7 +46,7 @@ public class CInteractionOperandEditPart extends InteractionOperandEditPart {
 	public CInteractionOperandEditPart(View view) {
 		super(view);
 	}
-	
+
 	/**
 	 * this method has been overloaded in order to set InteractionOperand transparent
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart#refreshVisuals()
@@ -57,6 +58,32 @@ public class CInteractionOperandEditPart extends InteractionOperandEditPart {
 		getPrimaryShape().setTransparency(100);
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#refresh()
+	 *
+	 */
+	@Override
+	public void refresh() {
+		if( children!=null){
+			for (Object object : children) {
+				if( object instanceof GraphicalEditPart){
+					//((GraphicalEditPart)object).refresh();
+				}
+			}
+		}
+		super.refresh();
+
+	}
+	/**
+	 * @see org.eclipse.gef.editparts.AbstractEditPart#removeEditPartListener(org.eclipse.gef.EditPartListener)
+	 *
+	 * @param listener
+	 */
+	@Override
+	public void removeEditPartListener(EditPartListener listener) {
+		// TODO Auto-generated method stub
+		super.removeEditPartListener(listener);
+	}
 	/**
 	 * this method method has been overloaded because of a mistake in the gmfgen.
 	 * so we has to implement addition of sub-figures inside the primary figure...

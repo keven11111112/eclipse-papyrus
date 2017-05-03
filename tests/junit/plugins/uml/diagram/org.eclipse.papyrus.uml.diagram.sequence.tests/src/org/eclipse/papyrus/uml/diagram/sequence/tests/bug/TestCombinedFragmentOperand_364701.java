@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -77,13 +78,13 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		// add operand
 		{
 			createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
-			assertTrue(CREATION + TEST_THE_EXECUTION, cfp.getChildren().size() == 2);
+			assertEquals(CREATION + TEST_THE_EXECUTION,1, cfp.getChildren().size());
 
 			getDiagramCommandStack().undo();
-			assertTrue(CREATION + TEST_THE_UNDO, cfp.getChildren().size() == 1);
+			assertEquals(CREATION + TEST_THE_UNDO,0, cfp.getChildren().size());
 
 			getDiagramCommandStack().redo();
-			assertTrue(CREATION + TEST_THE_REDO, cfp.getChildren().size() == 2);
+			assertEquals(CREATION + TEST_THE_REDO,1, cfp.getChildren().size());
 		}
 
 		{ // delete operand
@@ -95,18 +96,18 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 			assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 			getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 			waitForComplete();
-			assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, cfp.getChildren().size() == 1);
+			assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION,0, cfp.getChildren().size());
 
 			getEMFCommandStack().undo();
-			assertTrue(DESTROY_DELETION + TEST_THE_UNDO, cfp.getChildren().size() == 2);
+			assertEquals(DESTROY_DELETION + TEST_THE_UNDO,1, cfp.getChildren().size());
 
 			getEMFCommandStack().redo();
-			assertTrue(DESTROY_DELETION + TEST_THE_REDO, cfp.getChildren().size() == 1);
+			assertEquals(DESTROY_DELETION + TEST_THE_REDO,0, cfp.getChildren().size());
 		}
 		getEMFCommandStack().undo();
 
 		{ // delete view
-			assertTrue(VIEW_DELETION + INITIALIZATION_TEST, cfp.getChildren().size() == 2);
+			assertEquals(VIEW_DELETION + INITIALIZATION_TEST,1, cfp.getChildren().size());
 			InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 			Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 			Command command = op.getCommand(deleteViewRequest);
@@ -115,13 +116,13 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 			assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 
 			getDiagramCommandStack().execute(command);
-			assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, cfp.getChildren().size() == 1);
+			assertEquals(VIEW_DELETION + TEST_THE_EXECUTION,0, cfp.getChildren().size());
 
 			getDiagramCommandStack().undo();
-			assertTrue(VIEW_DELETION + TEST_THE_UNDO, cfp.getChildren().size() == 2);
+			assertEquals(VIEW_DELETION + TEST_THE_UNDO,1, cfp.getChildren().size());
 
 			getDiagramCommandStack().redo();
-			assertTrue(VIEW_DELETION + TEST_THE_REDO, cfp.getChildren().size() == 1);
+			assertEquals(VIEW_DELETION + TEST_THE_REDO,0, cfp.getChildren().size());
 		}
 	}
 
@@ -129,24 +130,26 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(30, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
-		assertTrue(CREATION + INITIALIZATION_TEST, cfp.getChildren().size() == 1);
+		assertEquals(CREATION + INITIALIZATION_TEST,0, cfp.getChildren().size());
 		return cfp;
 	}
 
 	@Test
 	public void testOperandResizeHeight() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
+		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
 		waitForComplete();
 		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
+		Rectangle boundCreation = getAbsoluteBounds(op);
 		// resize operand north
 		{
 			Dimension deltaSize = new Dimension(0, 30);
 			Rectangle before = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + INITIALIZATION_TEST, before.height() == getAbsoluteBounds(cfp).height());
+			assertEquals(OPERAND_RESIZE + INITIALIZATION_TEST, before.height(),30);
 
 			resizeNorth(op, deltaSize);
 			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.height() == getAbsoluteBounds(cfp).height());
+			assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION, after.height(),getAbsoluteBounds(cfp).height());
 		}
 
 		// resize operand south
@@ -180,6 +183,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	@Test
 	public void testOperandResizeWidth() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
+		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
 		waitForComplete();
 		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 
