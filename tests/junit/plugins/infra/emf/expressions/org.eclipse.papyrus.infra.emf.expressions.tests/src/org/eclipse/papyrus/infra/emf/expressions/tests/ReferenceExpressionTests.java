@@ -22,10 +22,7 @@ import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.ReferenceBoo
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * @author VL222926
- *
- */
+
 public class ReferenceExpressionTests {
 
 	private EObject dummyObject = EcoreFactory.eINSTANCE.createEClass();
@@ -48,6 +45,7 @@ public class ReferenceExpressionTests {
 		ReferenceBooleanExpression exp = BooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression();
 		Assert.assertTrue(exp.evaluate(this.dummyObject));
 	}
+
 	/**
 	 * {@link ReferenceBooleanExpression} must return <code>true</code> when
 	 * <ul>
@@ -76,7 +74,7 @@ public class ReferenceExpressionTests {
 	 * </ul>
 	 * <li>referencedExpression is</li>
 	 * <ul>
-	 * <li>{@link  LiteralTrueExpression}</li>
+	 * <li>{@link LiteralTrueExpression}</li>
 	 * </ul>
 	 * </ul>
 	 */
@@ -97,7 +95,7 @@ public class ReferenceExpressionTests {
 	 * </ul>
 	 * <li>referencedExpression is</li>
 	 * <ul>
-	 * <li>{@link  LiteralTrueExpression}</li>
+	 * <li>{@link LiteralTrueExpression}</li>
 	 * </ul>
 	 * </ul>
 	 */
@@ -118,7 +116,7 @@ public class ReferenceExpressionTests {
 	 * </ul>
 	 * <li>referencedExpression is</li>
 	 * <ul>
-	 * <li>{@link  LiteralFalseExpression}</li>
+	 * <li>{@link LiteralFalseExpression}</li>
 	 * </ul>
 	 * </ul>
 	 */
@@ -139,7 +137,7 @@ public class ReferenceExpressionTests {
 	 * </ul>
 	 * <li>referencedExpression is</li>
 	 * <ul>
-	 * <li>{@link  LiteralFalseExpression}</li>
+	 * <li>{@link LiteralFalseExpression}</li>
 	 * </ul>
 	 * </ul>
 	 */

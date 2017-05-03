@@ -13,7 +13,7 @@
 	<packaging>pom</packaging>
     
     <name>Papyrus EMF Expressions Infrastructure</name>
-	<description>Plug-ins proving Expressions Framework.</description>
+	<description>Plug-ins providing Expressions Framework.</description>
 
 	<modules>
 		<module>org.eclipse.papyrus.infra.emf.expressions</module>
@@ -22,4 +22,3 @@
 		<module>org.eclipse.papyrus.infra.emf.expressions.properties</module>
 	</modules>
 </project>
-L

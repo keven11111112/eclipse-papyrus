@@ -25,6 +25,7 @@
 	<module>alf</module>
 	<module>assistants</module>
 	<module>decoratormodel</module>
+	<module>expressions</module>
 	<module>internationalization</module>
 	<module>modelexplorer</module>
 	<module>profile</module>

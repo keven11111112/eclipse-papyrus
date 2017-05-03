@@ -268,9 +268,21 @@
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
-  <dataContexts xmi:id="_6U4QsCdvEeeoAJG6t_MwCA" name="custom expressions" label="custom expressions">
+  <dataContexts xmi:id="_6U4QsCdvEeeoAJG6t_MwCA" name="customexpressions" label="custom expressions">
     <elements xmi:id="_Jq6mkCdwEeeoAJG6t_MwCA" name="CustomReferenceBooleanExpression" supertypes="_TD6UsCq7EeeggtQf9kdCWQ">
-      <properties xmi:id="_X_kX8CdwEeeoAJG6t_MwCA" name="referencedExpression" type="Reference"/>
+      <properties xmi:id="_X_kX8CdwEeeoAJG6t_MwCA" name="referencedExpression" label="Referenced Expression" type="Reference"/>
+    </elements>
+    <elements xmi:id="_25jG8C8-EeexfKc2E3OwJQ" name="CustomAndExpression" supertypes="_TD6UqCq7EeeggtQf9kdCWQ">
+      <properties xmi:id="_6mc2gC8-EeexfKc2E3OwJQ" name="ownedExpressions" label="Owned Expressions" type="Reference" multiplicity="-1"/>
+      <properties xmi:id="_80D9kC8-EeexfKc2E3OwJQ" name="referencedExpressions" label="Referenced Expressions" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements xmi:id="_BosxQC8_EeexfKc2E3OwJQ" name="CustomOrExpression" supertypes="_TD6Uoyq7EeeggtQf9kdCWQ">
+      <properties xmi:id="_BotYUC8_EeexfKc2E3OwJQ" name="ownedExpressions" label="Owned Expressions" type="Reference" multiplicity="-1"/>
+      <properties xmi:id="_BotYUS8_EeexfKc2E3OwJQ" name="referencedExpressions" label="Referenced Expressions" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements xmi:id="_F-Dn8C8_EeexfKc2E3OwJQ" name="CustomNotExpression" supertypes="_TD6Uqyq7EeeggtQf9kdCWQ">
+      <properties xmi:id="_F-Dn8S8_EeexfKc2E3OwJQ" name="ownedExpression" label="Owned Expression" type="Reference" description="This field can be null, in this case we evaluate Referenced Expression."/>
+      <properties xmi:id="_F-Dn8i8_EeexfKc2E3OwJQ" name="referencedExpression" label="Referenced Expression" type="Reference" description="This field is evaluated only when Owned Expression is not null.&#xD;&#xA;This field can be null."/>
     </elements>
     <modelElementFactory href="Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>

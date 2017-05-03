@@ -41,6 +41,7 @@
 		<module>assistants</module>
 		<module>decoratormodel</module>
 		<module>diagram</module>
+		<module>expressions</module>
 		<module>modelexplorer</module>
 		<module>nattable</module>
 		<module>newchild</module>

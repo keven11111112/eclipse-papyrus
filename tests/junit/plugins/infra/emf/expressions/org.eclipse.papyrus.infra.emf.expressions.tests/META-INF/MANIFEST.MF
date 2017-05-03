@@ -5,7 +5,9 @@ Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.expressions.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.papyrus.infra.emf.expressions;bundle-version="1.0.0",
- org.junit;bundle-version="4.12.0",
- org.eclipse.papyrus.junit.framework
+Require-Bundle: org.eclipse.papyrus.infra.emf.expressions;bundle-version="[1.0.0,2.0.0)",
+ org.junit;bundle-version="[4.12.0,5.0.0)",
+ org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,3.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.infra.emf.expressions.tests
+Bundle-Description: JUnits Tests for the EMF Expressions Framework.

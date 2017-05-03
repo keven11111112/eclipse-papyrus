@@ -1,0 +1,43 @@
+/**
+ * Copyright (c) 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ */
+
+package org.eclipse.papyrus.uml.expressions.umlexpressions.custom;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsTypeOfExpressionImpl;
+
+/**
+ * 
+ * Override the default implementation of the generated class
+ *
+ */
+public class CustomIsTypeOfExpression extends IsTypeOfExpressionImpl {
+
+	/**
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsInstanceOfExpressionImpl#evaluate(org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param context
+	 * @return
+	 */
+	@Override
+	public Boolean evaluate(final EObject context) {
+		boolean result = false;
+		// check about element is not required for this expression
+		if (null != context) {
+			if (null != this.umlEClass) {
+				result = umlEClass == context.eClass();
+			}
+		}
+		return Boolean.valueOf(result);
+	}
+}

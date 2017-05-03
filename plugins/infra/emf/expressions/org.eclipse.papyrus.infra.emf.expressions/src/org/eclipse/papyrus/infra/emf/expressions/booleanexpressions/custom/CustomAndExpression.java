@@ -16,23 +16,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.AndExpressionImpl;
 
-public class CustomAndExpression extends AndExpressionImpl{
-	
+public class CustomAndExpression extends AndExpressionImpl {
+
 	@Override
 	public Boolean evaluate(EObject context) {
-		for(IBooleanExpression<EObject> current : getOwnedExpressions()) {
-			if(Boolean.FALSE.equals(current.evaluate(context))){
-				return Boolean.FALSE;
-			}
-		}
-		
-		for(IBooleanExpression<EObject> current : getReferencedExpressions()) {
-			if(Boolean.FALSE.equals(current.evaluate(context))){
+		for (IBooleanExpression<EObject> current : getOwnedExpressions()) {
+			if (Boolean.FALSE.equals(current.evaluate(context))) {
 				return Boolean.FALSE;
 			}
 		}
 
-		
+		for (IBooleanExpression<EObject> current : getReferencedExpressions()) {
+			if (Boolean.FALSE.equals(current.evaluate(context))) {
+				return Boolean.FALSE;
+			}
+		}
+
+
 		return Boolean.TRUE;
 	}
 }

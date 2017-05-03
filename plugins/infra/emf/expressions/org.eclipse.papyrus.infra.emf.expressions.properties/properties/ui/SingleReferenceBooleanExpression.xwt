@@ -20,6 +20,6 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:ReferenceDialog input="{Binding}"
-			property="custom expressions:CustomReferenceBooleanExpression:referencedExpression"></ppe:ReferenceDialog>
+			property="customexpressions:CustomReferenceBooleanExpression:referencedExpression"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

@@ -16,21 +16,21 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.NotExpressionImpl;
 
 
-public class CustomNotExpression extends NotExpressionImpl{
-	
+public class CustomNotExpression extends NotExpressionImpl {
+
 	@Override
 	public Boolean evaluate(EObject context) {
-		//1. we evaluate the own expression first
-		if(null!=ownedExpression) {
+		// 1. we evaluate the own expression first
+		if (null != ownedExpression) {
 			return !ownedExpression.evaluate(context);
 		}
-		
-		//2. we evaluate the referenced expression
-		if(null!=referencedExpression) {
+
+		// 2. we evaluate the referenced expression
+		if (null != referencedExpression) {
 			return !referencedExpression.evaluate(context);
 		}
-		
-		//3. we return the default value
+
+		// 3. we return the default value
 		return Boolean.FALSE;
 	}
 }

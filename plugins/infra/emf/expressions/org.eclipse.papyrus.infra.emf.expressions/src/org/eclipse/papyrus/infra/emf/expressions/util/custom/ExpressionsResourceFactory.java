@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource.Factory;
 public class ExpressionsResourceFactory implements Factory {
 
 	public ExpressionsResourceFactory() {
-		//nothing to do
+		// nothing to do
 	}
 
 	@Override

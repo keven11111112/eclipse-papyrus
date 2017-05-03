@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_IqN7MCTWEeehXLEpOVl1Ig" name="UMLExpressions" URI="http://www.eclipse.org/papyrus/umlexpressions">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_yNBqgCTXEeehXLEpOVl1Ig" annotatedElement="_7sVTACTWEeehXLEpOVl1Ig">
+      <body>This expression to use to ckech if a UML object is stereotyped with the expected stereotype.&#xD;
+The evaluate method returns TRUE when the object is stereotyped by the stereotype identified by its qualified and when the stereotype comes from a profile with the sasme URI profile has expected.&#xD;
+URI profile field is not mandatory for the test.</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_wCQFoCslEeeV_fNySaALnw" annotatedElement="_okQDACslEeeV_fNySaALnw">
+      <body>This expressions tests is stereotypes are applied on the object.&#xD;
+The evaluate method returns TRUE if at least one Stereotype is applied on the object.&#xD;
+The evaluate method returns FALSE if no Stereotype is applied on the object.&#xD;
+The evaluate method returns FALSE when the argument is NULL.&#xD;
+The evaluate method returns FALSE when the argument is not an instance of UML::Element</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_1o9dQCzXEeeKOdJYr-htag" annotatedElement="_dbFkACzXEeeKOdJYr-htag">
+      <body>&lt;p>The evaluate methods returns True if the argument&amp;nbsp;has the&amp;nbsp;same type thant the excepted metaclass.&lt;/p>
+
+&lt;p>If the metaclass is not defined, the evaluate method returns False.&lt;/p>
+</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_-wdX0CzYEeeKOdJYr-htag" annotatedElement="_89wEECzYEeeKOdJYr-htag">
+      <body>&lt;p>The evaluate methods returns True if the arguments is an instance of the expected metaclass.&lt;/p>
+
+&lt;p>If the metaclass is not defined, the evaluate method returns False.&lt;/p>
+</body>
+    </ownedComment>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_xqIOQCTWEeehXLEpOVl1Ig">
+      <importedPackage xmi:type="uml:Model" href="pathmap://EXPRESSIONS//expressions.uml#_s7iicBUjEee_D4EhwjboOQ"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7sVTACTWEeehXLEpOVl1Ig" name="IsStereotypedWithExpression">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_SfFSECTXEeehXLEpOVl1Ig" name="stereotypeQualifiedName">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_lGfisCslEeeV_fNySaALnw" annotatedElement="_SfFSECTXEeehXLEpOVl1Ig">
+          <body>The qualified name of the required stereotype.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-hoACTXEeehXLEpOVl1Ig"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-3mQCTXEeehXLEpOVl1Ig" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_iz_xECskEeeV_fNySaALnw" name="profileURI">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_niiHUCslEeeV_fNySaALnw" annotatedElement="_iz_xECskEeeV_fNySaALnw">
+          <body>The URI of the profile owning the stereotype.&#xD;
+The URI can be null or empty. In this case, we don't check the URI of the profile providing the Stereotype.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lXEKwCskEeeV_fNySaALnw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lXS0QCskEeeV_fNySaALnw" value="1"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_DgADoCTXEeehXLEpOVl1Ig" client="_7sVTACTWEeehXLEpOVl1Ig">
+        <supplier xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+        <contract xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_okQDACslEeeV_fNySaALnw" name="HasAppliedStereotypesExpression">
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_sBu2gCslEeeV_fNySaALnw" client="_okQDACslEeeV_fNySaALnw">
+        <supplier xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+        <contract xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dbFkACzXEeeKOdJYr-htag" name="IsTypeOfExpression">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_jWvDECzXEeeKOdJYr-htag" name="umlEClass">
+        <type xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_LWXU4BoAEee5_t3XPJ6rjA"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wvOuMCzXEeeKOdJYr-htag"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wvlTgCzXEeeKOdJYr-htag" value="1"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_vxKjcCzXEeeKOdJYr-htag" client="_dbFkACzXEeeKOdJYr-htag">
+        <supplier xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+        <contract xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_89wEECzYEeeKOdJYr-htag" name="IsKindOfExpression">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_HrIz0CzZEeeKOdJYr-htag" name="umlEClass">
+        <type xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_LWXU4BoAEee5_t3XPJ6rjA"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HrIz0SzZEeeKOdJYr-htag"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HrIz0izZEeeKOdJYr-htag" value="1"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_fi8WcCzZEeeKOdJYr-htag" client="_89wEECzYEeeKOdJYr-htag">
+        <supplier xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+        <contract xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_roK2YCTXEeehXLEpOVl1Ig">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_roMrkCTXEeehXLEpOVl1Ig" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_AMYE0CTZEeehXLEpOVl1Ig" base_Package="_IqN7MCTWEeehXLEpOVl1Ig" packageName="umlexpressions" nsPrefix="umlexpressions" basePackage="org.eclipse.papyrus.uml.expressions" prefix="UMLExpressions"/>
+</xmi:XMI>

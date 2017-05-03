@@ -1,14 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
- * 
+ * Copyright (c) 2017 CEA LIST.
+ *
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.expressions.properties.modelelements;
@@ -16,13 +17,13 @@ package org.eclipse.papyrus.infra.emf.expressions.properties.modelelements;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.ReferenceBooleanExpression;
 import org.eclipse.papyrus.infra.emf.expressions.properties.provider.ExpressionCatalogContentProvider;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 
 /**
- * @author VL222926
- *
+ * ModelElement for {@link ReferenceBooleanExpression}
  */
 public class ReferenceBooleanEObjectExpressionModelElement extends EMFModelElement {
 

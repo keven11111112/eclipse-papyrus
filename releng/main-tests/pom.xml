@@ -29,6 +29,7 @@
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.assistants.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.diagram.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.expressions.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.nattable.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.tools.feature</module>

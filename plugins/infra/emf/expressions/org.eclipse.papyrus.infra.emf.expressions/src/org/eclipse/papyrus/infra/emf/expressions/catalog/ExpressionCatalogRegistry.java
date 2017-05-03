@@ -42,7 +42,7 @@ public class ExpressionCatalogRegistry {
 	 * the field used to register the expressions model file contributing to this extension point
 	 */
 	public static final String FILE_ATTRIBUTE = "file"; //$NON-NLS-1$
-	
+
 	/**
 	 * The list of the registered catalog
 	 */
@@ -72,10 +72,9 @@ public class ExpressionCatalogRegistry {
 		for (final IConfigurationElement iConfigurationElement : configElements) {
 			Object file = iConfigurationElement.getAttribute(FILE_ATTRIBUTE);
 			IContributor contributor = iConfigurationElement.getContributor();
-			
-			// we build the uri for the file
-			URI uri = URI.createPlatformPluginURI(contributor.getName() + "/" + file.toString(), true);
 
+			// we build the uri for the file
+			URI uri = URI.createPlatformPluginURI(contributor.getName() + "/" + file.toString(), true); //$NON-NLS-1$
 			Resource res = this.resourceSet.getResource(uri, true);
 			if (res.getContents().size() > 0) {
 				EObject first = res.getContents().get(0);

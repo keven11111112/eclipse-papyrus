@@ -19,17 +19,15 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-	AndExpressionTests.class,
-	LiteralFalseExpressionTests.class,
-	LiteralTrueExpressionTests.class,
-	NotExpressionTests.class,
-	OrExpressionTests.class,
-	ReferenceExpressionTests.class
+		AndExpressionTests.class,
+		LiteralFalseExpressionTests.class,
+		LiteralTrueExpressionTests.class,
+		NotExpressionTests.class,
+		OrExpressionTests.class,
+		ReferenceExpressionTests.class
 })
-/**
- * @author VL222926
- *
- */
+
+
 public class AllTests {
 	// JUnit 4 test suite
 

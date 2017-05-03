@@ -23,10 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-/**
- * @author VL222926
- *
- */
+
 public class AndExpressionTests {
 
 	private EObject dummyObject = EcoreFactory.eINSTANCE.createEClass();

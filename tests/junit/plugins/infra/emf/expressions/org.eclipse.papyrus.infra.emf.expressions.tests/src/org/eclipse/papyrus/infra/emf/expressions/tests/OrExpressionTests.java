@@ -23,10 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-/**
- * @author VL222926
- *
- */
+
 public class OrExpressionTests {
 
 	private EObject dummyObject = EcoreFactory.eINSTANCE.createEClass();
@@ -161,7 +158,7 @@ public class OrExpressionTests {
 	 * </ul>
 	 * <li>ownedExpressions</li>
 	 * <ul>
-	 * <li>{@link LiteralFalseExpression}</li> 
+	 * <li>{@link LiteralFalseExpression}</li>
 	 * </ul>
 	 * <li>referencedExpressions</li>
 	 * <ul>
@@ -754,7 +751,7 @@ public class OrExpressionTests {
 
 		Assert.assertTrue(orExp.evaluate(null));
 	}
-	
+
 	/**
 	 * {@link OrExpression} must return <code>false</code> when
 	 * <ul>

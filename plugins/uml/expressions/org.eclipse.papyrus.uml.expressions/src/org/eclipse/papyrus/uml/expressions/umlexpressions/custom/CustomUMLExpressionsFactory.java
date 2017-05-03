@@ -1,0 +1,69 @@
+/**
+ * Copyright (c) 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ */
+package org.eclipse.papyrus.uml.expressions.umlexpressions.custom;
+
+import org.eclipse.papyrus.uml.expressions.umlexpressions.HasAppliedStereotypesExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl;
+
+/**
+ * 
+ * Override the default implementation of the generated class
+ *
+ */
+public class CustomUMLExpressionsFactory extends UMLExpressionsFactoryImpl {
+
+	/**
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl#createIsStereotypedWithExpression()
+	 *
+	 * @return
+	 */
+	@Override
+	public IsStereotypedWithExpression createIsStereotypedWithExpression() {
+		return new CustomIsStereotypedWithExpression();
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl#createHasAppliedStereotypesExpression()
+	 *
+	 * @return
+	 */
+	@Override
+	public HasAppliedStereotypesExpression createHasAppliedStereotypesExpression() {
+		return new CustomHasAppliedStereotypesExpression();
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl#createIsKindOfExpression()
+	 *
+	 * @return
+	 */
+	@Override
+	public IsKindOfExpression createIsKindOfExpression() {
+		return new CustomIsKindOfExpression();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl#createIsTypeOfExpression()
+	 *
+	 * @return
+	 */
+	@Override
+	public IsTypeOfExpression createIsTypeOfExpression() {
+		return new CustomIsTypeOfExpression();
+	}
+}
