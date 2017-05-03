@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<ElementCreationMenuModel:Folder xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" label="New Child" xmi:id="_-5Z5sN90EeOzMY8AIRUeqQ" xmi:version="2.0">
-  <menu displayAllRoles="false" label="AcceptCallAction" xmi:id="_02pvoN-mEeOG_N6WMq4D6g" xsi:type="ElementCreationMenuModel:CreationMenu">
-    <elementType href="platform:/resource/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScQcs1YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
-  </menu>
-</ElementCreationMenuModel:Folder>
