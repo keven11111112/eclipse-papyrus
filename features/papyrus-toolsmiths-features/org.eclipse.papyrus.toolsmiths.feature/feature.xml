@@ -98,8 +98,18 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+         
 
-	<!--UML properties-->
+   <!--EMF Expressions-->      
+         
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.expressions"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/> 
+
+   <!--UML properties-->
 
    <plugin
          id="org.eclipse.papyrus.uml.types.ui.properties"

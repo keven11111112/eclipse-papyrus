@@ -16,6 +16,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsStereotypedWithExpressionImpl;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.utils.UMLExpressionsUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -41,7 +42,8 @@ public class CustomIsStereotypedWithExpression extends IsStereotypedWithExpressi
 				final Stereotype current = iter.next();
 				if (this.stereotypeQualifiedName.equals(current.getQualifiedName())) {
 					if (null != this.profileURI && !this.profileURI.isEmpty()) {
-						result = profileURI.equals(current.getProfile().getURI());
+						// we use the uri of the top profile, because often the subprofiles don't have defined uri
+						result = profileURI.equals(UMLExpressionsUtils.getTopProfileURI(current));
 					} else {
 						result = true;
 					}
