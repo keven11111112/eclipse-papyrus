@@ -164,7 +164,10 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 
 		// the good test, but the result depends of the screen size (if there is a scrollbar, it doesn't work)
 		// Assert.assertEquals("The number of columns is not the excpected one", NB_COLUMNS, columnCount); //$NON-NLS-1$
-		generateMapInitializationFortestNattableTooltipProviderTests();
+
+
+		// to generate the java code in the console to initialize the tests
+		// generateMapInitializationFortestNattableTooltipProviderTests();
 
 		diagnostic = cmd.getDiagnostic();
 	}
