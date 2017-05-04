@@ -345,7 +345,53 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 	 * 
 	 */
 	@Test
-	public void testEventCloseLifeCycle() throws PagesModelException {
+	public void testPageClosedEventLifeCycle() throws PagesModelException {
+
+		// Create content provider
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
+
+		// define how to populate contentProvider
+		IModelExp expr = vSash(folder("f1", page("p11"), page("p12")), folder("f2", page("p21"), page("p22"), page("p23")));
+		// Try to create the model
+		helper.createModel(expr);
+
+
+		// Create the SashWindowsContainer
+		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
+
+		// Create listener and attach it
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
+		container.addPageLifeCycleListener(listener);
+
+		// creates Pages in the sashContainer 
+		container.refreshTabs();
+
+		// refresh traces
+		listener.resetChangeCount();
+		listener.resetTraces();
+
+		// Now test the lifeCycle by closing a page
+		helper.removePage("p22");
+		// Do refresh. This fire events
+		container.refreshTabs();
+				
+		// check events (there is more than the 2 expected)
+		assertEquals("event fired", 2, listener.getEventCount());
+		int i = 0;
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_CLOSED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
+		
+	}
+
+	/**
+	 * Test the life cycle of the events when an editor, which is the last one of a folder, is closed.
+	 * The associated folder should also be closed by the container.
+	 * @throws PagesModelException 
+	 * 
+	 */
+	@Test
+	public void testPageClosedEventLifeCycleWhenLastPageOfFolder() throws PagesModelException {
 
 		// Create content provider
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
@@ -372,7 +418,17 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 		listener.resetTraces();
 
 		// Now test the lifeCycle by closing a page
-		helper.createNewPage("pNew");
+		helper.removePage("p21");
+		// Do refresh. This fire events
+		container.refreshTabs();
+				
+		// check events (there is more than the 2 expected)
+		assertEquals("event fired", 2, listener.getEventCount());
+		int i = 0;
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_CLOSED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
+		
 	}
 	
+
 }

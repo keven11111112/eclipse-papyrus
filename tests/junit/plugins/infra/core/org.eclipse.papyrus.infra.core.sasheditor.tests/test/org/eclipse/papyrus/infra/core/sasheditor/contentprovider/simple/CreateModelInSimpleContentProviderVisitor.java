@@ -124,6 +124,7 @@ public class CreateModelInSimpleContentProviderVisitor extends SimpleContentProv
 		else /*if (panel instanceof Folder)*/ {
 			TabFolderModel folder = new TabFolderModel(contentProvider);
 			folder.setParent(parent);
+			contentProvider.setCurrentFolder(folder);
 			return folder;
 		}
 		

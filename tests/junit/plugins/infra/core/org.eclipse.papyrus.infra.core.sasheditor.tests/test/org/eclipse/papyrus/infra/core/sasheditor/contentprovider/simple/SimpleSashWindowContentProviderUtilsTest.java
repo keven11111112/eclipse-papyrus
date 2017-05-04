@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
+import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
 
 import static org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesModelFactory.*;
@@ -113,6 +114,27 @@ public class SimpleSashWindowContentProviderUtilsTest {
 	}
 	
 	/**
+	 * Test method for {@link SimpleSashWindowContentProviderUtils#lookupPageByName(String)}.
+	 * @throws PagesModelException 
+	 */
+	@Test
+	public void testLookupPageByName() throws PagesModelException {
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
+		
+		assertNotNull("helper created", helper);
+		// Create a query
+		IModelExp expr = vSash( folder( "f1", page("p1"), page("p2")), folder( "f2", page("p3"), page("p4"), page("p5")));
+		// Try to create the model
+		helper.createModel(expr);
+		
+		// Do tests
+		assertNotNull("p1 found", helper.lookupPageByName("p1"));
+		assertNotNull("p1 found", helper.lookupPageByName("p4"));
+	}
+	
+	
+	/**
 	 * Test method for {@link SimpleSashWindowContentProviderUtils#createNewPage(String)}.
 	 * @throws PagesModelException 
 	 */
@@ -123,17 +145,42 @@ public class SimpleSashWindowContentProviderUtilsTest {
 		
 		assertNotNull("helper created", helper);
 		// Create a query
-		IModelExp expr = vSash( folder( "f1", page("p1")), folder( "f2", page("p2")));
+		IModelExp expr = vSash( folder( "f1", page("p1"), page("p2")), folder( "f2", page("p3"), page("p4"), page("p5")));
 		// Try to create the model
 		helper.createModel(expr);
 		
-		// Query model
-		Map<String, Object> res = helper.queryModel(expr);
-		assertNull("not found", res.get("NewPage"));
+		// Do Tests
+		IPageModel newPage = helper.createNewPage("newPage");
+		assertNotNull("page found", helper.lookupPageByName("p4"));
+		assertNotNull("page found", helper.lookupPageByName("newPage"));
 		
-		// Test method
-		IPageModel pageModel = helper.createNewPage("NewPage");
-		assertNotNull("model created", pageModel);
+	}
+
+	/**
+	 * Test method for {@link SimpleSashWindowContentProviderUtils#createNewPage(String)}.
+	 * @throws PagesModelException 
+	 */
+	@Test
+	public void testRemovePageByName() throws PagesModelException {
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+		SimpleSashWindowContentProviderUtils helper = new SimpleSashWindowContentProviderUtils(contentProvider);
+		
+		assertNotNull("helper created", helper);
+		// Create a query
+		IModelExp expr = vSash( folder( "f1", page("p1"), page("p2")), folder( "f2", page("p3"), page("p4"), page("p5")));
+		// Try to create the model
+		helper.createModel(expr);
+		
+		// Do Tests
+		helper.removePage("p2");
+		assertNotNull("page found", helper.lookupPageByName("p4"));
+		try {
+			helper.lookupPageByName("p2");
+			fail("Page is removed");
+		}
+		catch (NotFoundException e) {
+			// Exception is expected
+		}
 		
 	}
 

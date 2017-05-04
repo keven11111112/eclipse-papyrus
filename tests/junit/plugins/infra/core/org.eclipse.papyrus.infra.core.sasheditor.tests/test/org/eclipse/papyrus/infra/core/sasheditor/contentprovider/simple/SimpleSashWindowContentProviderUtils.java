@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.MessagePartModel;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
+import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.Page;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PanelTerm;
@@ -152,6 +153,21 @@ public class SimpleSashWindowContentProviderUtils implements ISashWindowsContent
 	}
 
 	/**
+	 * Remove the specified Page model if it exist.
+	 * The {@link IPageModel} to remove is lookked up by its page name.
+	 * 
+	 * @param pageName Name of the page to remove.
+	 * 
+	 * @throws PagesModelException
+	 */
+	public void removePage( String pageName) throws PagesModelException {
+
+		IPageModel page = lookupPageByName(pageName);
+			
+		contentProvider.removePage(page);
+	}
+	
+	/**
 	 * Get element in the model.
 	 * Each model element whose corresponding model query part has a name is added to the result map.
 	 * The element is then accessible with the name set in the query part.
@@ -177,6 +193,109 @@ public class SimpleSashWindowContentProviderUtils implements ISashWindowsContent
 		query.accept(visitor, first);
 		
 		return visitor.getResult();
+	}
+
+	/**
+	 * Lookup a page by its name.
+	 * Only check elements of type {@link MessagePartModel} .
+	 * 
+	 * @param modelName
+	 * @return
+	 * @throws NotFoundException
+	 */
+	public IPageModel lookupPageByName( String modelName ) throws NotFoundException {
+		if( modelName == null) {
+			throw new NotFoundException("Null name not allowed.");
+		}
+		
+		AbstractModel root = getFirstPanelModel();
+		Object result = lookupModelByName(modelName, root, IPageModel.class);
+		if( result == null) {
+			throw new NotFoundException(modelName);
+		}
+		return (IPageModel)result;
+	}
+	
+	/**
+	 * Get a model element by its name.
+	 * Only check elements of type {@link MessagePartModel} and {@link TabFolderModelWithName}.
+	 * 
+	 * @param modelName
+	 * @return
+	 * @throws NotFoundException
+	 */
+	public Object lookupModelByName( String modelName ) throws NotFoundException {
+		AbstractModel root = getFirstPanelModel();
+		Object result = lookupModelByName(modelName, root, Object.class);
+		if( result == null) {
+			throw new NotFoundException(modelName);
+		}
+		return result;
+	}
+	
+	/**
+	 * @param modelName
+	 * @param from
+	 * @return
+	 */
+	private Object lookupModelByName(String modelName, Object from, Class expectedType) {
+		if( from instanceof TabFolderModel) {
+			TabFolderModel tabFolderModel = (TabFolderModel)from;
+			return lookupModelByName( modelName, tabFolderModel, expectedType);
+		}
+		else {
+			// This is a sash
+			SashPanelModel sashPanelModel = (SashPanelModel)from;
+			return lookupModelByName( modelName, sashPanelModel, expectedType);
+		}
+	}
+
+	/**
+	 * @param modelName
+	 * @param sashPanelModel
+	 * @return
+	 */
+	private Object lookupModelByName(String modelName, SashPanelModel sashPanelModel, Class expectedType) {
+
+		for( Object model : sashPanelModel.getChildren()) {
+			Object result = lookupModelByName( modelName, model, expectedType);
+			if(result != null) {
+				return result;
+			}
+		}
+
+		// not found
+		return null;
+	}
+
+	/**
+	 * @param modelName
+	 * @param tabFolderModel
+	 * @return found model, or null
+	 */
+	private Object lookupModelByName(String modelName, TabFolderModel tabFolderModel, Class expectedType) {
+		
+
+		// First check the folder name
+		if( expectedType.isInstance(tabFolderModel) && tabFolderModel instanceof TabFolderModelWithName ) {
+			TabFolderModelWithName tabFolderModelWithName = (TabFolderModelWithName)tabFolderModel;
+			if(modelName.equals(tabFolderModelWithName.getName()) ) {
+				return tabFolderModel;
+			}
+		}
+		// Lookup in each tabs in folder
+		for( IPageModel cur : tabFolderModel.getChildren()) {
+			// Check type and name
+			if( expectedType.isInstance(cur) && cur instanceof MessagePartModel ) {
+				MessagePartModel messagePartModel = (MessagePartModel)cur;
+				if(modelName.equals(messagePartModel.getTabTitle()) ) {
+					return messagePartModel;
+				}
+			}
+			
+		}
+		// Not found
+		return null;
 	}
 
 	/**
