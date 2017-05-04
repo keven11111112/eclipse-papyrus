@@ -753,6 +753,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			if (modelElement instanceof UMLNotationModelElement) {
 				EditPart part = ((UMLNotationModelElement) modelElement).getEditPart();
 				eClass = EMFHelper.getEObject(part).eClass();
+			} else if (modelElement instanceof EMFModelElement) {
+				eClass = ((EMFModelElement) modelElement).getSource().eClass();
 			}
 			b.append("_"); //$NON-NLS-1$
 			b.append(eClass.getName());
