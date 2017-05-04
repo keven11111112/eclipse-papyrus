@@ -9,12 +9,6 @@
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.uml.diagram.education.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml.diagram.education.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.uml.diagram.education.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml.diagram.education.feature.source" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>

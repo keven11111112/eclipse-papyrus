@@ -35,10 +35,6 @@
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.ui</module>
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.common</module>
 		
-		<!-- Papyrus 4 Education -->
-		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
-
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
 
 		<!-- SysML 1.1 -->
