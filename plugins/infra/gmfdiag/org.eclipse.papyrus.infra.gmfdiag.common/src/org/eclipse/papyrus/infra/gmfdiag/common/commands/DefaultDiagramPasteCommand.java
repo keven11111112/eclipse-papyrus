@@ -15,43 +15,45 @@ package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.clipboard.ICopierFactory;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.core.internal.clipboard.CopierFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.VisualTypeService;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.CopyPasteUtil;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 
 
 /**
@@ -59,11 +61,7 @@ import org.eclipse.swt.widgets.Display;
  */
 public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 
-	// TODO: should be provided configurable in prefs
-	private static final int DEFAULT_AVOID_SUPERPOSITION_Y = 10;
 
-	// TODO: should be provided configurable in prefs
-	private static final int DEFAULT_AVOID_SUPERPOSITION_X = 10;
 
 	/** the new container for the shape */
 	protected View container = null;
@@ -94,9 +92,9 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 		this.container = (View) targetEditPart.getModel();
 		this.targetEditPart = targetEditPart;
 
-		EcoreUtil.Copier copier = ICopierFactory.getInstance(editingDomain.getResourceSet()).get();
+		EcoreUtil.Copier copier = new CopierFactory(editingDomain.getResourceSet()).get();
 
-		List<EObject> rootElementInClipboard = EcoreUtil.filterDescendants(filterEObject(papyrusClipboard));
+		List<EObject> rootElementInClipboard = EcoreUtil.filterDescendants(CopyPasteUtil.filterEObject(papyrusClipboard));
 		copier.copyAll(rootElementInClipboard);
 		copier.copyReferences();
 		viewList.addAll(EcoreUtil.filterDescendants(copier.values()));
@@ -108,7 +106,7 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 		}
 
 		// Inform the clipboard of the element created (used by strategies)
-		Map<Object, EObject> transtypeCopier = transtypeCopier(copier);
+		Map<Object, EObject> transtypeCopier = CopyPasteUtil.transtypeCopier(copier);
 		papyrusClipboard.addAllInternalToTargetCopy(transtypeCopier);
 		List<EObject> semanticRootList = EcoreUtil.filterDescendants(semanticList);
 		MoveRequest moveRequest = new MoveRequest(container.getElement(), semanticRootList);
@@ -134,7 +132,7 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 				allDropCommand.execute();
 			}
 		} else if (viewList != null && !viewList.isEmpty()) {
-			shiftLayoutList(container, viewList);
+			createAndShiftViews(targetEditPart, viewList);
 		}
 		return editCommand.getCommandResult();
 	}
@@ -149,14 +147,14 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 	protected void constructDropRequest(GraphicalEditPart targetEditPart, List<EObject> objectToDrop) {
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		if (container instanceof Diagram) {
-			Point cursorPosition = getCursorPosition(targetEditPart);
+			Point cursorPosition = CopyPasteUtil.getCursorPosition(targetEditPart);
 			allDropCommand = new CompoundCommand("Drop all semantics elements on diagram"); //$NON-NLS-1$
 			for (EObject eObject : objectToDrop) {
 				dropObjectsRequest.setObjects(Collections.singletonList(eObject));
 				dropObjectsRequest.setLocation(cursorPosition);
 				Command command = targetEditPart.getCommand(dropObjectsRequest);
 				allDropCommand.add(command);
-				cursorPosition = shiftLayout(cursorPosition);
+				cursorPosition = CopyPasteUtil.shiftLayout(cursorPosition);
 			}
 		} else if (!(container instanceof Diagram)) {
 			Rectangle bounds = targetEditPart.getFigure().getBounds();
@@ -166,51 +164,26 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 			dropObjectsRequest.setLocation(center);
 			Command command = targetEditPart.getCommand(dropObjectsRequest);
 			if (command == null) {
-				command = lookForCommandInSubContainer(targetEditPart, objectToDrop);
+				command = CopyPasteUtil.lookForCommandInSubContainer(targetEditPart, objectToDrop);
 			}
 			allDropCommand.add(command);
 		}
 	}
 
 
-	/**
-	 * Look in sub container for a dropcommand
-	 *
-	 * @param targetEditPart
-	 * @param objectToDrop
-	 * @return
-	 */
-	protected Command lookForCommandInSubContainer(GraphicalEditPart targetEditPart, List<EObject> objectToDrop) {
-		List children = targetEditPart.getChildren();
-		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
-		for (Object object : children) {
-			if (object instanceof GraphicalEditPart) {
-				GraphicalEditPart graphicalEditPart = (GraphicalEditPart) object;
-				Point center = graphicalEditPart.getFigure().getBounds().getCenter();
-				dropObjectsRequest.setLocation(center);
-				dropObjectsRequest.setObjects(objectToDrop);
-				Command command = graphicalEditPart.getCommand(dropObjectsRequest);
-				if (command != null) {
-					return command;
-				}
-			}
-		}
-		return null;
-	}
-
 
 
 
 	/**
-	 * Shift the layout of all duplicate Views
+	 * Create and shift the layout of all duplicate Views
 	 *
 	 * @param values
 	 */
 	// TODO : move it in a View utility class
-	private void shiftLayoutList(View container, Collection<EObject> values) {
+	private void createAndShiftViews(GraphicalEditPart targetEditPart, Collection<EObject> values) {
 		// Collection values = duplicatedObject.values();
 		Iterator<EObject> iterator = values.iterator();
-		// for each view, a container is set if it is null
+		// for each view, a create view command is executed
 		// if this is a shape a new position is set in order to avoid overlap
 		while (iterator.hasNext()) {
 			Object object = iterator.next();
@@ -219,75 +192,56 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 				if (object instanceof Shape) {
 					LayoutConstraint layoutConstraint = ((Shape) object).getLayoutConstraint();
 					if (layoutConstraint instanceof Bounds) {
-						((Bounds) layoutConstraint).setX(((Bounds) layoutConstraint).getX() + DEFAULT_AVOID_SUPERPOSITION_X);
-						((Bounds) layoutConstraint).setY(((Bounds) layoutConstraint).getY() + DEFAULT_AVOID_SUPERPOSITION_Y);
+						((Bounds) layoutConstraint).setX(((Bounds) layoutConstraint).getX() + CopyPasteUtil.DEFAULT_AVOID_SUPERPOSITION_X);
+						((Bounds) layoutConstraint).setY(((Bounds) layoutConstraint).getY() + CopyPasteUtil.DEFAULT_AVOID_SUPERPOSITION_Y);
 					}
 				}
-				if (duplicatedView.eContainer() == null && container != null) {
-					ViewUtil.insertChildView(container, duplicatedView, ViewUtil.APPEND, true);
+				if (duplicatedView.eContainer() == null && targetEditPart != null) {
+
+					// ViewUtil.insertChildView is very dangerous it inserts the view without any verification
+					// it is preferable to create a view request and see if the UMLProvider allows the view creation
+
+					// ViewUtil.insertChildView(container, duplicatedView, ViewUtil.APPEND, true);
+
+					Command command = createViewCommand(targetEditPart, duplicatedView);
+					if (command != null && command.canExecute()) {
+						command.execute();
+					} else {
+						GraphicalEditPart subtargetEditPart = CopyPasteUtil.lookForTargetEditPart(targetEditPart, duplicatedView);
+						command = createViewCommand(subtargetEditPart, duplicatedView);
+						if (command != null && command.canExecute()) {
+							command.execute();
+						}
+					}
 				}
 			}
 		}
 	}
 
 
-	// TODO : move it in a View utility class
-	/**
-	 * Shift position to avoid overlap
-	 *
-	 * @param point
-	 * @return
-	 */
-	protected Point shiftLayout(Point point) {
-		return new Point(point.x + DEFAULT_AVOID_SUPERPOSITION_X, point.y + DEFAULT_AVOID_SUPERPOSITION_Y);
-	}
 
 	/**
-	 * @param targetEditPart
+	 * 
+	 * @param editpart
+	 * @param duplicatedView
 	 * @return
 	 */
-	// TODO : move it in utility class
-	protected Point getCursorPosition(GraphicalEditPart targetEditPart) {
-		Display display = Display.getDefault();
-		org.eclipse.swt.graphics.Point cursorLocation = display.getCursorLocation();
-		EditPartViewer viewer = targetEditPart.getViewer();
-		Control control = viewer.getControl();
-		org.eclipse.swt.graphics.Point point = control.toControl(cursorLocation);
-		FigureCanvas figureCanvas = (FigureCanvas) control;
-		Point location = figureCanvas.getViewport().getViewLocation();
-		return new Point(point.x + location.x, point.y + location.y);
+	private Command createViewCommand(IGraphicalEditPart editpart, View duplicatedView) {
+
+		IAdaptable adapter = new EObjectAdapter(duplicatedView.getElement());
+		PreferencesHint prefs = ((IDiagramPreferenceSupport) targetEditPart.getRoot()).getPreferencesHint();
+		String visualid = null;
+		ViewDescriptor descriptor = null;
+		visualid = VisualTypeService.getInstance().getNodeType((View) editpart.getModel(), duplicatedView.getElement());
+		descriptor = new ViewDescriptor(adapter, Node.class, visualid, prefs);		
+		CreateViewRequest request = new CreateViewRequest(descriptor);
+		Command command = editpart.getCommand(request);
+
+		return command;
 	}
 
 
-	/**
-	 * @param collection
-	 * @return
-	 */
-	// TODO : move it in utility class
-	protected Collection<EObject> filterEObject(Collection<Object> collection) {
-		List<EObject> eobjectList = new ArrayList<EObject>();
-		for (Object object : collection) {
-			if (object instanceof EObject) {
-				eobjectList.add((EObject) object);
-			}
-		}
-		return eobjectList;
-	}
 
-
-	/**
-	 * @param copier
-	 * @return
-	 */
-	// TODO : move it in utility class
-	protected Map<Object, EObject> transtypeCopier(EcoreUtil.Copier copier) {
-		Map<Object, EObject> map = new HashMap<Object, EObject>();
-		Set<Entry<EObject, EObject>> entrySet = copier.entrySet();
-		for (Entry<EObject, EObject> entry : entrySet) {
-			map.put(entry.getKey(), entry.getValue());
-		}
-		return map;
-	}
 
 
 }

@@ -16,20 +16,24 @@ package org.eclipse.papyrus.infra.gmfdiag.common.commands.tests;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultDiagramCopyCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultDiagramPasteCommand;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts.CustomClassCompositeEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
 import org.eclipse.uml2.uml.NamedElement;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -38,7 +42,7 @@ import org.junit.Test;
  */
 @PluginResource("models/ExpansionModelTest.di")
 @ActiveDiagram("NewDiagram")
-public class DefaultDiagramPasteCommandTest {
+public class DefaultDiagramPasteCommandTest{
 
 	private final PapyrusEditorFixture editor = new PapyrusEditorFixture();
 
@@ -69,7 +73,37 @@ public class DefaultDiagramPasteCommandTest {
 				.map(NamedElement::getName)
 				.filter(containsString(myClass.getName())::matches)
 				.collect(Collectors.toList());
-		assertThat(typeNamesLikeMyClass.size(), is(2));
+		Assert.assertThat(typeNamesLikeMyClass.size(), is(2));
 	}
+	
+	@Test
+	public void pasteProperty() {
+		
+		editor.openDiagram("CompositeDiagram");
+		org.eclipse.uml2.uml.Class myClass = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Class1");
+		IGraphicalEditPart classEditPart = (IGraphicalEditPart) editor.findEditPart(myClass);
+		View classNotationView = classEditPart.getNotationView();
+		Assert.assertEquals("the Type of class editpart is not correct", CustomClassCompositeEditPart.VISUAL_ID, classNotationView.getType());
+		
+		
+		org.eclipse.uml2.uml.Property myProperty = (org.eclipse.uml2.uml.Property) myClass.getOwnedAttributes().get(0);
+		IGraphicalEditPart propertyEditPart = (IGraphicalEditPart) editor.findEditPart(myProperty);
+		View compartment = ((IGraphicalEditPart) propertyEditPart.getParent()).getNotationView();
+		Assert.assertEquals("The property view is located in the compatment view ", ClassCompositeCompartmentEditPart.VISUAL_ID, compartment.getType());
+		
+		Command copy = new DefaultDiagramCopyCommand(editor.getEditingDomain(), clipboard, singletonList(propertyEditPart));
+		fixture.execute(copy);
+		ICommand paste = new DefaultDiagramPasteCommand(editor.getEditingDomain(), "Paste", clipboard, (GraphicalEditPart) classEditPart);
+		fixture.execute(paste);
+	
+		// Find the copied property and verify that it was copied in in the compartment view
+		org.eclipse.uml2.uml.Property myCopiedProperty = (org.eclipse.uml2.uml.Property) myClass.getOwnedAttributes().get(1); // the copied property
+		IGraphicalEditPart copiedEditPart = (IGraphicalEditPart) editor.findEditPart(myCopiedProperty);
+		View propertyContainerView = ((IGraphicalEditPart) copiedEditPart.getParent()).getNotationView();
+		Assert.assertEquals("The property view is copied in the compatment view ", ClassCompositeCompartmentEditPart.VISUAL_ID, propertyContainerView.getType());
+	}
+	
+	
 
+	
 }
