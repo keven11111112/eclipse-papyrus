@@ -16,15 +16,12 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated test-exceptions -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT test-exceptions -->
       <wizard
             id="org.eclipse.papyrus.tests.framework.exceptions.presentation.ExceptionsModelWizardID"
             name="%_UI_ExceptionsModelWizard_label"
             class="org.eclipse.papyrus.tests.framework.exceptions.presentation.ExceptionsModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
             icon="icons/full/obj16/ExceptionsModelFile.gif">
          <description>%_UI_ExceptionsModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

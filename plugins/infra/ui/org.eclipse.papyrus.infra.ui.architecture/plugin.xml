@@ -18,15 +18,12 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated Architecture -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT Architecture -->
       <wizard
             id="org.eclipse.papyrus.infra.ui.architecture.ArchitectureModelWizardID"
             name="%_UI_ArchitectureModelWizard_label"
             class="org.eclipse.papyrus.infra.ui.architecture.editor.ArchitectureModelWizard"
-            category="org.eclipse.papyrus.wizards.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
             icon="icons/full/obj16/ArchitectureModelFile.gif">
          <description>%_UI_ArchitectureModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

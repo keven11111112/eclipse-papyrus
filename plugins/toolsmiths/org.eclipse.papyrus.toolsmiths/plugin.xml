@@ -19,8 +19,9 @@
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
+         <!-- @generated NOT -->
       <wizard
-            category="org.eclipse.papyrus.wizards.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.toolsmiths.category"
             class="org.eclipse.papyrus.toolsmiths.wizard.CreateNewCustomizationPluginWizard"
             icon="icons/16-config.png"
             id="org.eclipse.papyrus.toolsmiths.wizard"

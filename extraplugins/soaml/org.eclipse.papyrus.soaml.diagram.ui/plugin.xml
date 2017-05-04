@@ -3,9 +3,10 @@
 <plugin>
    <extension
          point="org.eclipse.ui.newWizards">
+          <!-- @generated NOT -->
       <wizard
             canFinishEarly="false"
-            category="org.eclipse.papyrus.wizards.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.components.category"
             class="org.eclipse.papyrus.soaml.diagram.ui.NewSoamlModelWizard"
             finalPerspective="org.eclipse.papyrus.infra.core.perspective"
             icon="icons/soaml16x16.png"

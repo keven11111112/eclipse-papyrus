@@ -5,15 +5,6 @@
 <extension-point id="newModelStorageProviders" name="New Model Storage Providers" schema="schema/newModelStorageProviders.exsd"/>
 
 <extension point="org.eclipse.ui.newWizards">
-	<category 
-		id="org.eclipse.papyrus.wizards.category"
-    	name="Papyrus">
-	</category>
-	<category
-		id="org.eclipse.papyrus.examples"
-		parentCategory="org.eclipse.ui.Examples"
-		name="Papyrus Example">
-	</category>
 	<wizard
          category="org.eclipse.papyrus.wizards.category"
          class="org.eclipse.papyrus.uml.diagram.wizards.wizards.NewPapyrusProjectWizard"

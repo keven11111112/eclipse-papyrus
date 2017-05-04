@@ -560,11 +560,11 @@
    </extension>
 
 <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <wizard
          name="%newWizardName"
          icon="icons/obj16/UMLDiagramFile.gif"
-         category="org.eclipse.ui.Examples"
+         category="org.eclipse.papyrus.examples"
          class="org.eclipse.papyrus.example.diagram.simplediagram.part.UMLCreationWizard"
          id="org.eclipse.papyrus.example.diagram.simplediagram.part.UMLCreationWizardID">
          <description>%newWizardDesc</description>  

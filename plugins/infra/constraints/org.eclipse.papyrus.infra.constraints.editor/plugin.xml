@@ -11,16 +11,23 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+   	 <!-- @generated NOT -->
       <wizard
             id="org.eclipse.papyrus.infra.constraints.presentation.ConstraintsModelWizardID"
             name="%_UI_ConstraintsModelWizard_label"
             class="org.eclipse.papyrus.infra.constraints.presentation.ConstraintsModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
             icon="icons/full/obj16/ConstraintsModelFile.gif">
          <description>%_UI_ConstraintsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+      <wizard
+            id="org.eclipse.papyrus.infra.constraints.environment.presentation.EnvironmentModelWizardID"
+            name="%_UI_EnvironmentModelWizard_label"
+            class="org.eclipse.papyrus.infra.constraints.environment.presentation.EnvironmentModelWizard"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            icon="icons/full/obj16/EnvironmentModelFile.gif">
+         <description>%_UI_EnvironmentModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
@@ -34,21 +41,6 @@
             class="org.eclipse.papyrus.infra.constraints.presentation.ConstraintsEditor"
             contributorClass="org.eclipse.papyrus.infra.constraints.presentation.ConstraintsActionBarContributor">
       </editor>
-   </extension>
-
-   <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="org.eclipse.papyrus.infra.constraints.environment.presentation.EnvironmentModelWizardID"
-            name="%_UI_EnvironmentModelWizard_label"
-            class="org.eclipse.papyrus.infra.constraints.environment.presentation.EnvironmentModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/EnvironmentModelFile.gif">
-         <description>%_UI_EnvironmentModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">

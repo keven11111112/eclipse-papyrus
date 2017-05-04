@@ -16,15 +16,12 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated assistant -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT assistant -->
       <wizard
             id="org.eclipse.papyrus.infra.gmfdiag.assistant.presentation.AssistantModelWizardID"
             name="%_UI_AssistantModelWizard_label"
             class="org.eclipse.papyrus.infra.gmfdiag.assistant.presentation.AssistantModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
             icon="icons/full/obj16/AssistantModelFile.gif">
          <description>%_UI_AssistantModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

@@ -489,16 +489,39 @@
          point="org.eclipse.ui.exportWizards">
       <category
             id="org.eclipse.papyrus.infra.core.exportcategory"
-            name="Papyrus">
+            name="%wizardCategoryExportPapyrus">
       </category>
    </extension>
    <extension
          point="org.eclipse.ui.importWizards">
       <category
             id="org.eclipse.papyrus.infra.core.importcategory"
-            name="Papyrus">
+            name="%wizardCategoryImportPapyrus">
       </category>
    </extension>
+   <extension point="org.eclipse.ui.newWizards">
+		<category 
+			id="org.eclipse.papyrus.wizards.category"
+    		name="%wizardCategoryPapyrus">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.addons.category"
+    		name="%wizardCategoryAddons" parentCategory="org.eclipse.papyrus.wizards.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.components.category"
+    		name="%wizardCategoryComponents" parentCategory="org.eclipse.papyrus.wizards.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.toolsmiths.category"
+    		name="%wizardCategoryToolsmiths" parentCategory="org.eclipse.papyrus.wizards.category">
+		</category>
+		<category
+			id="org.eclipse.papyrus.examples"
+			parentCategory="org.eclipse.ui.Examples"
+			name="%wizardCategoryExamples">
+		</category>
+	</extension>
 
    <extension
          point="org.eclipse.papyrus.infra.ui.papyrusContentOutline">

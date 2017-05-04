@@ -5,8 +5,9 @@
    <extension-point id="org.eclipse.papyrus.customization.properties.generation.layout" name="%extension-point.layoutgenerator" schema="schema/org.eclipse.papyrus.customization.properties.generation.layout.exsd"/>
    <extension
          point="org.eclipse.ui.newWizards">
+         <!-- @generated NOT -->
       <wizard
-            category="org.eclipse.papyrus.wizards.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
             class="org.eclipse.papyrus.customization.properties.generation.wizard.CreateContextWizard"
             icon="icons/new_customization.png"
             id="org.eclipse.papyrus.customization.properties.generation.wizard"
