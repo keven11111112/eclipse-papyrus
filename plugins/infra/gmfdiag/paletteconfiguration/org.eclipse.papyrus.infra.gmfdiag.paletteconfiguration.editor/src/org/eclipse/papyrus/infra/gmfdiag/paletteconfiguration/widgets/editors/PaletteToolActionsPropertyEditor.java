@@ -35,7 +35,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.common.ui.dialogs.PopupDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -44,11 +44,12 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteRessourcesConstants;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.messages.Messages;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.ToolConfigurationItemProvider;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
@@ -63,12 +64,10 @@ import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
-import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.extensionpoints.IAdviceKindExtensionPoint;
 import org.eclipse.papyrus.infra.types.core.factories.impl.AbstractAdviceBindingFactory;
-import org.eclipse.papyrus.infra.types.core.factories.impl.MetamodelTypeFactory;
-import org.eclipse.papyrus.infra.types.core.factories.impl.SpecializationTypeFactory;
+import org.eclipse.papyrus.infra.types.core.utils.ElementTypeConfigurationUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -81,6 +80,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -139,9 +139,6 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 
 	/** List of actions descriptor */
 	private List<ActionDescriptor> actionsDesciptors = new ArrayList<ActionDescriptor>();
-
-	/** Element type set configuration model for ui level. */
-	private ElementTypeSetConfiguration elementTypeSetConfigurationUI;
 
 	/** Element type set configuration model for semantic level. */
 	private ElementTypeSetConfiguration elementTypeSetConfigurationSemantic;
@@ -236,6 +233,7 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 			actionsComposite.setLayout(layout);
 			GridData data = new GridData(SWT.FILL, SWT.FILL, false, true);
 			data.widthHint = 215;
+			data.heightHint = 178;
 			actionsComposite.setLayoutData(data);
 		}
 
@@ -632,25 +630,17 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 			List<AbstractAdviceBindingConfiguration> actions = new ArrayList<AbstractAdviceBindingConfiguration>();
 
 			// If there is element descriptors in selected tool configuration
-			if (!toolSource.getElementDescriptors().isEmpty() && null != elementTypeSetConfigurationSemantic && null != elementTypeSetConfigurationUI) {
+			if (!toolSource.getElementDescriptors().isEmpty() && null != elementTypeSetConfigurationSemantic) {
 				// String elementTypeId_UI = toolSource.getElementDescriptors().get(0).getElementTypeId();
 				ElementTypeConfiguration elementType = toolSource.getElementDescriptors().get(0).getElementType();
 				if (elementType instanceof SpecializationTypeConfiguration) {
 					// Gets specialized types
-					EList<ElementTypeConfiguration> elementTypesSem = ((SpecializationTypeConfiguration) elementType).getSpecializedTypes();
+					editingDomain.getResourceSet().getLoadOptions().put(SOURCE_ECLASS, ElementTypeConfigurationUtil.getFirstCreatedElementEClass((SpecializationTypeConfiguration) elementType));
 
-					// for each gets advice configuration
-					for (ElementTypeConfiguration elementTypeConfiguration : elementTypesSem) {
-						IHintedType createElementType = null;
-						if (elementTypeConfiguration instanceof SpecializationTypeConfiguration) {
-							createElementType = new SpecializationTypeFactory().createElementType((SpecializationTypeConfiguration) elementTypeConfiguration);
-						} else if (elementTypeConfiguration instanceof MetamodelTypeConfiguration) {
-							createElementType = new MetamodelTypeFactory().createElementType((MetamodelTypeConfiguration) elementTypeConfiguration);
-						}
-
-						editingDomain.getResourceSet().getLoadOptions().put(SOURCE_ECLASS, createElementType.getEClass());
-						actions.addAll(elementTypeSetConfigurationSemantic.getAdviceBindingsConfigurations().stream().filter(p -> null != p.getTarget() && p.getTarget().equals(elementTypeConfiguration)).collect(Collectors.toList()));
-					}
+					// Get All advice(actions) which have the target as the elementType of the Element descriptor.
+					actions.addAll(elementTypeSetConfigurationSemantic.getAdviceBindingsConfigurations().stream()
+							.filter(p -> null != p.getTarget() && ElementTypeConfigurationUtil.isTypeOf(elementType, p.getTarget()))
+							.collect(Collectors.toList()));
 				}
 			}
 			return actions.toArray();
@@ -719,6 +709,7 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 	public void setInput(final DataSource input) {
 		this.input = input;
 		initialize();
+
 	}
 
 	/**
@@ -746,8 +737,8 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 			ModelElement modelElement = input.getModelElement(property);
 			if (modelElement instanceof EMFModelElement) {
 				setEditingDomain((AdapterFactoryEditingDomain) ((EMFModelElement) modelElement).getDomain());
-				setElementTypeModels();
 				setToolSource(modelElement);
+				setElementTypeModels();
 				initActionsViewer();
 			}
 		}
@@ -770,24 +761,70 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 	 */
 	protected void setElementTypeModels() {
 		// Look for element types Models on the resource set
-		Object UIRessource = editingDomain.getResourceSet().getLoadOptions().get(PaletteRessourcesConstants.ELEMENTTYPE_UI_RESSOURCE_IDENTIFIER);
 		Object SemanticRessource = editingDomain.getResourceSet().getLoadOptions().get(PaletteRessourcesConstants.ELEMENTTYPE_SEMENTIC_RESSOURCE_IDENTIFIER);
 
-		EObject UIModel = null;
-		if (UIRessource instanceof Resource && !((Resource) UIRessource).getContents().isEmpty()) {
-			UIModel = ((Resource) UIRessource).getContents().get(0);
-		}
 		EObject SemanticModel = null;
 		if (SemanticRessource instanceof Resource && !((Resource) SemanticRessource).getContents().isEmpty()) {
 			SemanticModel = ((Resource) SemanticRessource).getContents().get(0);
 		}
 
-		if (SemanticModel instanceof ElementTypeSetConfiguration && UIModel instanceof ElementTypeSetConfiguration) {
-			elementTypeSetConfigurationUI = (ElementTypeSetConfiguration) UIModel;
+		if (SemanticModel instanceof ElementTypeSetConfiguration) {
 			elementTypeSetConfigurationSemantic = (ElementTypeSetConfiguration) SemanticModel;
-			setReadOnly(false);
 		} else {
-			setReadOnly(true);
+			// We are in the "standealone editor" context
+			// we search not readonly elementType then ask to the user to choose the file.
+
+			// gets writable element types referred by the selected tools
+			List<ElementTypeConfiguration> writableElementTypes = toolSource.getElementDescriptors().stream()
+					.map(ed -> ed.getElementType())
+					.filter(elt -> !EMFHelper.isReadOnly(elt))
+					.collect(Collectors.toList());
+
+			List<ElementTypeConfiguration> elementTypes = new ArrayList<ElementTypeConfiguration>();
+			elementTypes.addAll(writableElementTypes);
+			do {
+				elementTypes = elementTypes.stream()
+						.filter(SpecializationTypeConfiguration.class::isInstance)
+						.map(SpecializationTypeConfiguration.class::cast)
+						.flatMap(elt -> elt.getSpecializedTypes().stream())
+						.map(ElementTypeConfiguration.class::cast)
+						.filter(elt -> !EMFHelper.isReadOnly(elt))
+						.collect(Collectors.toList());
+				writableElementTypes.addAll(elementTypes);
+
+			} while (!elementTypes.isEmpty());
+
+			List<ElementTypeSetConfiguration> elementTypeSetConfiguration = writableElementTypes.stream()
+					.map(elt -> elt.eContainer())
+					.filter(ElementTypeSetConfiguration.class::isInstance)
+					.map(ElementTypeSetConfiguration.class::cast)
+					.distinct()
+					.collect(Collectors.toList());
+
+			LabelProvider labelProvider = new LabelProvider() {
+				public String getText(Object element) {
+					String text;
+					if (element instanceof ElementTypeSetConfiguration) {
+						text = ((ElementTypeSetConfiguration) element).getIdentifier();
+					} else {
+						text = super.getText(element);
+					}
+					return text;
+
+				};
+			};
+			PopupDialog dialog = new PopupDialog(Display.getCurrent().getActiveShell(), elementTypeSetConfiguration, labelProvider);
+			dialog.setMessage(Messages.PaletteToolActionsPropertyEditor_selectElementTypeSetModelMessage);
+			dialog.setTitle(Messages.PaletteToolActionsPropertyEditor_selectElementTypeSetModelTitle);
+			dialog.open();
+			Object[] result = dialog.getResult();
+			if (null != result && 0 < result.length) {
+				elementTypeSetConfigurationSemantic = (ElementTypeSetConfiguration) result[0];
+				editingDomain.getResourceSet().getLoadOptions().put(PaletteRessourcesConstants.ELEMENTTYPE_SEMENTIC_RESSOURCE_IDENTIFIER, elementTypeSetConfigurationSemantic.eResource());
+				setReadOnly(false);
+			} else {
+				setReadOnly(true);
+			}
 		}
 	}
 

@@ -62,7 +62,7 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Paletteconfigurati
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.messages.Messages;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.CustomPaletteconfigurationItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 import org.eclipse.swt.SWT;

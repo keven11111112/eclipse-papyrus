@@ -24,9 +24,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
@@ -35,8 +32,6 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredCreateConnectionViewCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -55,7 +50,6 @@ import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.ConnectionToolPreferences;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.LayoutUtils;
@@ -63,6 +57,7 @@ import org.w3c.dom.Node;
 
 /**
  * Connection tool that adds stereotype application after creation actions.
+ * 
  * @since 3.0
  */
 public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnectionTool {
@@ -153,16 +148,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	@Override
 	protected void createConnection() {
 		List<?> selectedEditParts = getCurrentViewer().getSelectedEditParts();
-		List<EObject> eobjects = new ArrayList<EObject>();
-		List<NotificationListener> listeners = new ArrayList<NotificationListener>();
-		DiagramEventBroker eventBroker = null;
 		final EditPartViewer viewer = getCurrentViewer();
 		// only attempt to create connection if there are two shapes selected
 		if (!selectedEditParts.isEmpty()) {
 			IGraphicalEditPart targetEditPart = (IGraphicalEditPart) selectedEditParts.get(selectedEditParts.size() - 1);
 
-			// allow add the listener only one time the target
-			boolean done = false;
 			for (int i = 0; i < selectedEditParts.size(); i++) {
 				IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) selectedEditParts.get(i);
 				if (i != 0) {
@@ -196,18 +186,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 					setTargetRequest(connectionRequest);
 
-					// inits the listener
-					View eObject = targetEditPart.getAdapter(View.class);
-
-					NotificationListener listener = null;
-
 					Command command = targetEditPart.getCommand(connectionRequest);
 
 					if (command != null) {
 						Command completeCommand = getCompleteCommand(command);
-
 						setCurrentCommand(completeCommand);
-
 						executeCurrentCommand();
 					}
 
@@ -250,25 +233,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			return false;
 		}
 
-		// inits the listener
-		View eObject = getTargetEditPart().getAdapter(View.class);
-		DiagramEventBroker eventBroker = null;
-		NotificationListener listener = null;
-		boolean requiresPostCommitRun = true;
 		final EditPartViewer currentViewer = getCurrentViewer();
-
-		// adds the listener
-		if (requiresPostCommitRun) {
-			// register a listener to have information about element creation
-			// retrieves editing domain
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
-			eventBroker = DiagramEventBroker.getInstance(domain);
-
-
-			if (eventBroker != null &&listener!=null) {
-				eventBroker.addNotificationListener(eObject, listener);
-			}
-		}
 
 		Command endCommand = getCommand();
 
@@ -278,10 +243,6 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			setCurrentCommand(completeCommand);
 
 			executeCurrentCommand();
-		}
-
-		if (requiresPostCommitRun && eventBroker != null) {
-			eventBroker.removeNotificationListener(eObject, listener);
 		}
 
 		selectAddedObject(currentViewer, DiagramCommandStack.getReturnValues(endCommand));

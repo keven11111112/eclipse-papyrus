@@ -13,7 +13,7 @@ package org.eclipse.papyrus.uml.properties.widgets;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
@@ -59,7 +59,7 @@ public class StereotypeQualifyNamePropertyEditor extends AbstractPropertyEditor 
 
 			EMFHelper.resolveEditingDomain(input.getSelection().getFirstElement());
 			if (modelElement instanceof EMFModelElement) {
-				TransactionalEditingDomain domain = (TransactionalEditingDomain) ((EMFModelElement) modelElement).getDomain();
+				EditingDomain domain = (EditingDomain) ((EMFModelElement) modelElement).getDomain();
 				Object eClass = domain.getResourceSet().getLoadOptions().get(SOURCE_ECLASS);
 				if (eClass instanceof EClass) {
 					try {

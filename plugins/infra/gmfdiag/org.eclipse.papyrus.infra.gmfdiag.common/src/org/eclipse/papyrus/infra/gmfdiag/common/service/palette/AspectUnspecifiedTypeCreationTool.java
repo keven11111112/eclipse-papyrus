@@ -35,8 +35,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedAdapter;
@@ -56,6 +54,7 @@ import org.eclipse.swt.SWT;
 
 /**
  * Creation tool for papyrus.
+ * 
  * @since 3.0
  */
 public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTool {
@@ -83,20 +82,13 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	@Override
 	protected void performCreation(int button) {
 		antiScroll = true;
-		// EObject to listen
-		View eObject = getTargetEditPart().getAdapter(View.class);
-		DiagramEventBroker eventBroker = null;
-		NotificationListener listener = null;
 		final EditPartViewer currentViewer = getCurrentViewer();
-
 
 		Command command = getCurrentCommand();
 
 		if (command != null) {
 			Command completeCommand = getCompleteCommand(command);
-
 			setCurrentCommand(completeCommand);
-
 			executeCurrentCommand();
 		}
 

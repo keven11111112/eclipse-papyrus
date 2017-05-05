@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.WorkspaceExtende
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.messages.Messages;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
