@@ -13,7 +13,6 @@
  */
 package org.eclipse.papyrus.infra.core.architecture.merged;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -43,7 +42,7 @@ public class MergedADElement {
 	/**
 	 * the architecture elements that represent merge increments of this element
 	 */
-	protected Collection<ADElement> elements;
+	protected Set<ADElement> elements;
 	
 	/**
 	 * Create a new '<em><b>Merged AD Element</b></em>'.

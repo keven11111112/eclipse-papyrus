@@ -37,11 +37,11 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.ToolTip;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedADElement;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -200,7 +200,10 @@ public class ArchitectureContextComposite extends Composite {
 				selectedViewpoints.clear();
 				for (String contextId : selectedContexts) {
 					MergedArchitectureContext context = manager.getArchitectureContextById(contextId);
-					for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
+					Collection<MergedArchitectureViewpoint> viewpoints = context.getDefaultViewpoints();
+					if (viewpoints.isEmpty())
+						viewpoints = context.getViewpoints();
+					for (MergedArchitectureViewpoint viewpoint : viewpoints) {
 						selectedViewpoints.add(viewpoint.getId());
 					}
 				}

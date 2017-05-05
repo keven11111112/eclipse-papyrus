@@ -16,7 +16,9 @@ package org.eclipse.papyrus.infra.architecture;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -114,9 +116,12 @@ public class ArchitectureDescriptionUtils {
 		ArchitectureDescriptionPreferences preferences = SashModelUtils.getArchitectureDescriptionPreferences(modelSet);
 		if (preferences != null) 
 			return preferences.getViewpointIds();
-		MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getDefaultArchitectureContext();
-		List<String> viewpointIds = new ArrayList<String>();
-		for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
+		MergedArchitectureContext context = getArchitectureContext();
+		Collection<MergedArchitectureViewpoint> viewpoints = context.getDefaultViewpoints();
+		if (viewpoints.isEmpty())
+			viewpoints = context.getViewpoints();
+		Set<String> viewpointIds = new LinkedHashSet<String>();
+		for (MergedArchitectureViewpoint viewpoint : viewpoints) {
 			viewpointIds.add(viewpoint.getId());
 		}
 		return viewpointIds;

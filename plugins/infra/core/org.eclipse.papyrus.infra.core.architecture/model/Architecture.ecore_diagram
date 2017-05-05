@@ -100,7 +100,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_jpuwMreqEearJ4erliAKEg"/>
     </children>
     <element xmi:type="ecore:EClass" href="Architecture.ecore#//ArchitectureViewpoint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jptiEbeqEearJ4erliAKEg" x="513" y="486"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jptiEbeqEearJ4erliAKEg" x="513" y="486" width="172"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_jpvXQLeqEearJ4erliAKEg" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_jpvXQreqEearJ4erliAKEg" type="5001"/>
@@ -311,7 +311,7 @@
   <edges xmi:type="notation:Connector" xmi:id="_jwkYALeqEearJ4erliAKEg" type="4004" source="_jptiELeqEearJ4erliAKEg" target="_jpWVsLeqEearJ4erliAKEg" routing="Rectilinear">
     <styles xmi:type="notation:FontStyle" xmi:id="_jwkYAbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwkYAreqEearJ4erliAKEg" points="[10, -59, 290, 423]$[10, -419, 290, 63]$[-236, -419, 44, 63]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwkYAreqEearJ4erliAKEg" points="[31, -59, 353, 423]$[31, -419, 353, 63]$[-278, -419, 44, 63]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy1o5LeqEearJ4erliAKEg" id="(0.7672413793103449,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy1o5beqEearJ4erliAKEg" id="(0.6666666666666666,0.0)"/>
   </edges>
@@ -331,20 +331,20 @@
   <edges xmi:type="notation:Connector" xmi:id="_jwrswLeqEearJ4erliAKEg" type="4004" source="_jpvXQLeqEearJ4erliAKEg" target="_jpWVsLeqEearJ4erliAKEg" routing="Rectilinear">
     <styles xmi:type="notation:FontStyle" xmi:id="_jwrswbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwrswreqEearJ4erliAKEg" points="[29, 0, 78, 482]$[29, 40, 78, 522]$[290, 40, 339, 522]$[290, -437, 339, 45]$[17, -437, 66, 45]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwrswreqEearJ4erliAKEg" points="[29, 0, 78, 482]$[29, 40, 78, 522]$[344, 40, 393, 522]$[344, -437, 393, 45]$[17, -437, 66, 45]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy2P8reqEearJ4erliAKEg" id="(0.49523809523809526,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy2P87eqEearJ4erliAKEg" id="(0.5,0.0)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_jwuwELeqEearJ4erliAKEg" type="4003" source="_jpv-VreqEearJ4erliAKEg" target="_jptiELeqEearJ4erliAKEg" routing="Rectilinear">
     <children xmi:type="notation:DecorationNode" xmi:id="_jwuwE7eqEearJ4erliAKEg" type="6002">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_jwuwFLeqEearJ4erliAKEg" x="101" y="31"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_jwuwFLeqEearJ4erliAKEg" x="171" y="31"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_jwuwFbeqEearJ4erliAKEg" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_jwuwFreqEearJ4erliAKEg" x="27" y="19"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_jwuwFreqEearJ4erliAKEg" x="24" y="28"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_jwuwEbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="Architecture.ecore#//ArchitectureContext/viewpoints"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwuwEreqEearJ4erliAKEg" points="[100, -46, -26, -211]$[136, -46, 10, -211]$[136, 165, 10, 0]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwuwEreqEearJ4erliAKEg" points="[100, -69, -55, -261]$[208, -69, 53, -261]$[208, 192, 53, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jyylkLeqEearJ4erliAKEg" id="(0.4953271028037383,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jyylkbeqEearJ4erliAKEg" id="(0.5344827586206896,0.0)"/>
   </edges>
@@ -361,5 +361,17 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jw02sreqEearJ4erliAKEg" points="[-32, -52, 64, 180]$[-32, -109, 64, 123]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jyzzsbeqEearJ4erliAKEg" id="(0.7851239669421488,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jyzzsreqEearJ4erliAKEg" id="(0.4953271028037383,0.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_nPrvwDGnEeeThtX0CLDTfA" type="4002" source="_jpv-VreqEearJ4erliAKEg" target="_jptiELeqEearJ4erliAKEg" routing="Rectilinear">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nPsW0DGnEeeThtX0CLDTfA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_nPsW0TGnEeeThtX0CLDTfA" x="124" y="46"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nPsW0jGnEeeThtX0CLDTfA" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_nPsW0zGnEeeThtX0CLDTfA" x="11" y="28"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_nPrvwTGnEeeThtX0CLDTfA" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="Architecture.ecore#//ArchitectureContext/defaultViewpoints"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nPrvwjGnEeeThtX0CLDTfA" points="[22, 3, -41, -263]$[58, 3, -5, -263]$[58, 237, -5, -29]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nPxPUDGnEeeThtX0CLDTfA" id="(0.8888888888888888,0.6341463414634146)"/>
   </edges>
 </notation:Diagram>

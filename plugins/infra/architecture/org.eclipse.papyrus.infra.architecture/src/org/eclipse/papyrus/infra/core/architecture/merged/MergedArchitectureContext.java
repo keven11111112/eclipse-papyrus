@@ -160,6 +160,26 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 		return Collections.unmodifiableCollection(viewpoints.values());
 	}
 
+	/**
+	 * Gets the context's default viewpoints
+	 * 
+	 * @return a merged collection of viewpoints
+	 */
+	public Collection<MergedArchitectureViewpoint> getDefaultViewpoints() {
+		Map<String, MergedArchitectureViewpoint> viewpoints = new HashMap<String, MergedArchitectureViewpoint>();
+		for (ADElement element : elements) {
+			ArchitectureContext context = (ArchitectureContext) element;
+			for (ArchitectureViewpoint viewpoint : context.getDefaultViewpoints()) {
+				MergedArchitectureViewpoint merged = viewpoints.get(viewpoint.getName());
+				if (merged == null) {
+					viewpoints.put(viewpoint.getName(), merged = new MergedArchitectureViewpoint(this));
+				}
+				merged.merge(viewpoint);
+			}
+		}
+		return Collections.unmodifiableCollection(viewpoints.values());
+	}
+
 	/*
 	 * Gets the merge increment that has an icon value
 	 */

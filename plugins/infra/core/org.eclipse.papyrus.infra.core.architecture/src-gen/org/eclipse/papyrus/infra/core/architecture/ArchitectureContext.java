@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getViewpoints <em>Viewpoints</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDefaultViewpoints <em>Default Viewpoints</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getElementTypes <em>Element Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDomain <em>Domain</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getId <em>Id</em>}</li>
@@ -57,6 +58,22 @@ public interface ArchitectureContext extends ADElement {
 	 * @generated
 	 */
 	EList<ArchitectureViewpoint> getViewpoints();
+
+	/**
+	 * Returns the value of the '<em><b>Default Viewpoints</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Viewpoints</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Viewpoints</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_DefaultViewpoints()
+	 * @model
+	 * @generated
+	 */
+	EList<ArchitectureViewpoint> getDefaultViewpoints();
 
 	/**
 	 * Returns the value of the '<em><b>Element Types</b></em>' reference list.

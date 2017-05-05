@@ -19,6 +19,7 @@ import java.net.URL;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
@@ -54,6 +55,7 @@ public final class ArchitectureEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     TypesConfigurationsEditPlugin.INSTANCE,
+		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 

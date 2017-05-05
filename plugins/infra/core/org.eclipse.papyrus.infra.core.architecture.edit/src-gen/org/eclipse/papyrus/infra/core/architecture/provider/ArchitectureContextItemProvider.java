@@ -58,6 +58,7 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDefaultViewpointsPropertyDescriptor(object);
 			addElementTypesPropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
 			addIconPropertyDescriptor(object);
@@ -66,6 +67,28 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 			addConversionCommandClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Default Viewpoints feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefaultViewpointsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ArchitectureContext_defaultViewpoints_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_defaultViewpoints_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

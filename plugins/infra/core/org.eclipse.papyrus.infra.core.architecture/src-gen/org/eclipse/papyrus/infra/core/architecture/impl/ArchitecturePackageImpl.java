@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
@@ -167,6 +168,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		// Initialize simple dependencies
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theArchitecturePackage.createPackageContents();
@@ -440,7 +442,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArchitectureContext_ElementTypes() {
+	public EReference getArchitectureContext_DefaultViewpoints() {
 		return (EReference)architectureContextEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -449,8 +451,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_Id() {
-		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(3);
+	public EReference getArchitectureContext_ElementTypes() {
+		return (EReference)architectureContextEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -458,7 +460,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_Icon() {
+	public EAttribute getArchitectureContext_Id() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -467,7 +469,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_ExtensionPrefix() {
+	public EAttribute getArchitectureContext_Icon() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -476,7 +478,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_CreationCommandClass() {
+	public EAttribute getArchitectureContext_ExtensionPrefix() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -485,7 +487,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_ConversionCommandClass() {
+	public EAttribute getArchitectureContext_CreationCommandClass() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -494,8 +496,17 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getArchitectureContext_ConversionCommandClass() {
+		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getArchitectureContext_Domain() {
-		return (EReference)architectureContextEClass.getEStructuralFeatures().get(2);
+		return (EReference)architectureContextEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -606,6 +617,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		architectureContextEClass = createEClass(ARCHITECTURE_CONTEXT);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__VIEWPOINTS);
+		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__ELEMENT_TYPES);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__DOMAIN);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__ID);
@@ -699,6 +711,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		initEClass(architectureContextEClass, ArchitectureContext.class, "ArchitectureContext", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getArchitectureContext_Viewpoints(), this.getArchitectureViewpoint(), this.getArchitectureViewpoint_Context(), "viewpoints", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getArchitectureContext_DefaultViewpoints(), this.getArchitectureViewpoint(), null, "defaultViewpoints", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureContext_ElementTypes(), theElementTypesConfigurationsPackage.getElementTypeSetConfiguration(), null, "elementTypes", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureContext_Domain(), this.getArchitectureDomain(), this.getArchitectureDomain_Contexts(), "domain", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getArchitectureContext_Id(), ecorePackage.getEString(), "id", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

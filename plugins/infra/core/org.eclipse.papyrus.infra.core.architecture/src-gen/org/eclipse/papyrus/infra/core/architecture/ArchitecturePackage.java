@@ -251,13 +251,22 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT__VIEWPOINTS = AD_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Default Viewpoints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS = AD_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Element Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__ELEMENT_TYPES = AD_ELEMENT_FEATURE_COUNT + 1;
+	int ARCHITECTURE_CONTEXT__ELEMENT_TYPES = AD_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Domain</b></em>' container reference.
@@ -266,7 +275,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__DOMAIN = AD_ELEMENT_FEATURE_COUNT + 2;
+	int ARCHITECTURE_CONTEXT__DOMAIN = AD_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -275,7 +284,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__ID = AD_ELEMENT_FEATURE_COUNT + 3;
+	int ARCHITECTURE_CONTEXT__ID = AD_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Icon</b></em>' attribute.
@@ -284,7 +293,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__ICON = AD_ELEMENT_FEATURE_COUNT + 4;
+	int ARCHITECTURE_CONTEXT__ICON = AD_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Extension Prefix</b></em>' attribute.
@@ -293,7 +302,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__EXTENSION_PREFIX = AD_ELEMENT_FEATURE_COUNT + 5;
+	int ARCHITECTURE_CONTEXT__EXTENSION_PREFIX = AD_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Creation Command Class</b></em>' attribute.
@@ -302,7 +311,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 6;
+	int ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Command Class</b></em>' attribute.
@@ -311,7 +320,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 7;
+	int ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -320,7 +329,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 8;
+	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Context</em>' class.
@@ -376,6 +385,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE__VIEWPOINTS = ARCHITECTURE_CONTEXT__VIEWPOINTS;
+
+	/**
+	 * The feature id for the '<em><b>Default Viewpoints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__DEFAULT_VIEWPOINTS = ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS;
 
 	/**
 	 * The feature id for the '<em><b>Element Types</b></em>' reference list.
@@ -842,6 +860,15 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_FRAMEWORK__VIEWPOINTS = ARCHITECTURE_CONTEXT__VIEWPOINTS;
 
 	/**
+	 * The feature id for the '<em><b>Default Viewpoints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK__DEFAULT_VIEWPOINTS = ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS;
+
+	/**
 	 * The feature id for the '<em><b>Element Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1298,6 +1325,17 @@ public interface ArchitecturePackage extends EPackage {
 	EReference getArchitectureContext_Viewpoints();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDefaultViewpoints <em>Default Viewpoints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Default Viewpoints</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDefaultViewpoints()
+	 * @see #getArchitectureContext()
+	 * @generated
+	 */
+	EReference getArchitectureContext_DefaultViewpoints();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getElementTypes <em>Element Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1688,6 +1726,14 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ARCHITECTURE_CONTEXT__VIEWPOINTS = eINSTANCE.getArchitectureContext_Viewpoints();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Viewpoints</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS = eINSTANCE.getArchitectureContext_DefaultViewpoints();
 
 		/**
 		 * The meta object literal for the '<em><b>Element Types</b></em>' reference list feature.

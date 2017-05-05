@@ -55,6 +55,8 @@
       eSuperTypes="#//ADElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewpoints" upperBound="-1"
         eType="#//ArchitectureViewpoint" containment="true" eOpposite="#//ArchitectureViewpoint/context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultViewpoints" upperBound="-1"
+        eType="#//ArchitectureViewpoint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypes" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"

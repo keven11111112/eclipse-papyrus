@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getViewpoints <em>Viewpoints</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getDefaultViewpoints <em>Default Viewpoints</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getElementTypes <em>Element Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getDomain <em>Domain</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getId <em>Id</em>}</li>
@@ -64,6 +65,16 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * @ordered
 	 */
 	protected EList<ArchitectureViewpoint> viewpoints;
+
+	/**
+	 * The cached value of the '{@link #getDefaultViewpoints() <em>Default Viewpoints</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultViewpoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ArchitectureViewpoint> defaultViewpoints;
 
 	/**
 	 * The cached value of the '{@link #getElementTypes() <em>Element Types</em>}' reference list.
@@ -184,6 +195,18 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			viewpoints = new EObjectContainmentWithInverseEList<ArchitectureViewpoint>(ArchitectureViewpoint.class, this, ArchitecturePackage.ARCHITECTURE_CONTEXT__VIEWPOINTS, ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT);
 		}
 		return viewpoints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ArchitectureViewpoint> getDefaultViewpoints() {
+		if (defaultViewpoints == null) {
+			defaultViewpoints = new EObjectResolvingEList<ArchitectureViewpoint>(ArchitectureViewpoint.class, this, ArchitecturePackage.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS);
+		}
+		return defaultViewpoints;
 	}
 
 	/**
@@ -403,6 +426,8 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 		switch (featureID) {
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__VIEWPOINTS:
 				return getViewpoints();
+			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS:
+				return getDefaultViewpoints();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ELEMENT_TYPES:
 				return getElementTypes();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN:
@@ -433,6 +458,10 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__VIEWPOINTS:
 				getViewpoints().clear();
 				getViewpoints().addAll((Collection<? extends ArchitectureViewpoint>)newValue);
+				return;
+			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS:
+				getDefaultViewpoints().clear();
+				getDefaultViewpoints().addAll((Collection<? extends ArchitectureViewpoint>)newValue);
 				return;
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ELEMENT_TYPES:
 				getElementTypes().clear();
@@ -471,6 +500,9 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__VIEWPOINTS:
 				getViewpoints().clear();
 				return;
+			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS:
+				getDefaultViewpoints().clear();
+				return;
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ELEMENT_TYPES:
 				getElementTypes().clear();
 				return;
@@ -506,6 +538,8 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 		switch (featureID) {
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__VIEWPOINTS:
 				return viewpoints != null && !viewpoints.isEmpty();
+			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS:
+				return defaultViewpoints != null && !defaultViewpoints.isEmpty();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ELEMENT_TYPES:
 				return elementTypes != null && !elementTypes.isEmpty();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN:
