@@ -36,7 +36,6 @@ public class ActivePageHistoryTracker implements IPageLifeCycleEventsListener {
 	 */
 	@Override
 	public void pageChanged(IPage newPage) {
-		// TODO Auto-generated method stub
 		System.out.println("pageChanged - " + newPage.getPageTitle());
 	}
 
@@ -114,7 +113,6 @@ public class ActivePageHistoryTracker implements IPageLifeCycleEventsListener {
 	 * @return The last active page, or null if none is set in history.
 	 */
 	public IPage lastActivePage() {
-		// TODO Auto-generated method stub
 		return history.peekFirst();
 	}
 	
