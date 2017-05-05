@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 497571
  *   
  *****************************************************************************/
 
@@ -61,7 +62,8 @@ public abstract class AbstractBooleanFilterRowComboBoxCellEditorFilterConfigurat
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new DefaultBooleanDisplayConverter(), DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(NattableConfigAttributes.MATCHER_EDITOR_FACTORY, createMatcherFactory(), DisplayMode.NORMAL, configLabel);
-		configRegistry.registerConfigAttribute(IFilterConfiguration.FILTER_VALUE_TO_MATCH_MANAGER, createBooleanFilterLoader());
+		configRegistry.registerConfigAttribute(IFilterConfiguration.FILTER_VALUE_TO_MATCH_MANAGER, createBooleanFilterLoader(), DisplayMode.NORMAL, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, getDataValidator(configRegistry), DisplayMode.NORMAL, configLabel);
 	}
 
 	/**
@@ -97,7 +99,7 @@ public abstract class AbstractBooleanFilterRowComboBoxCellEditorFilterConfigurat
 	 * @return
 	 */
 	public String getConfigurationDescription() {
-		return "This configuration provides an Combo with checkbox to filter boolean values. Known values are true, false and N/A"; //$//$NON-NLS-1$
+		return "This configuration provides an Combo with checkbox to filter boolean values. Known values are true, false and N/A"; // $//$NON-NLS-1$
 	}
 
 	public static class BooleanFilterValueToMatchManager extends AbstractFilterValueToMatchManager {

@@ -11,7 +11,7 @@
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus (CEA) - bug 430880
  *  Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
- *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
+ *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077, 497571
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
  *****************************************************************************/
@@ -54,6 +54,7 @@ import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
+import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowDataLayer;
 //import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowHeaderComposite;
 import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
@@ -104,6 +105,7 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeRowHeaderDataPro
 import org.eclipse.papyrus.infra.nattable.display.converter.ObjectNameAndPathDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.export.file.command.PapyrusFileExportCommand;
 import org.eclipse.papyrus.infra.nattable.fillhandle.config.PapyrusFillHandleConfiguration;
+import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.layer.FilterRowHeaderComposite;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
@@ -881,6 +883,33 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						// column from left to right
 						if (start >= 0 && start < end && columnReorderEvent.isReorderToLeftEdge()) {
 							end--;
+						}
+
+						// When a column is moved, we need to reconfigure the columns impacted by the move because the cell editors, filters, validators, ...
+						// are managed with config attribute specifying the column index (managed by NatTable)
+						// We need to make it before the move for the filter for example.
+
+						// First step: Configure the moved column
+						// The end index with the start column element
+						final StringBuilder movedConfigAttribute = new StringBuilder(FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX);
+						movedConfigAttribute.append(Integer.valueOf(end).toString());
+						FilterConfigurationRegistry.INSTANCE.configureFilter(natTable.getConfigRegistry(), getColumnElement(start), movedConfigAttribute.toString());
+
+						// Second step: Configure the existing column that need to be recalculated because of the move.
+						if (start < end) {
+							// If the start is less than the end, the column element is moved to the left (targetIndex = sourceIndex - 1)
+							for (int i = start; i < end; i++) {
+								StringBuilder configAttribute = new StringBuilder(FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX);
+								configAttribute.append(Integer.valueOf(i).toString());
+								FilterConfigurationRegistry.INSTANCE.configureFilter(natTable.getConfigRegistry(), getColumnElement(i + 1), configAttribute.toString());
+							}
+						} else {
+							// If the start is greater than the end, the column element is moved to the right (targetIndex = sourceIndex + 1)
+							for (int i = end + 1; i >= start; i--) {
+								StringBuilder configAttribute = new StringBuilder(FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX);
+								configAttribute.append(Integer.valueOf(i).toString());
+								FilterConfigurationRegistry.INSTANCE.configureFilter(natTable.getConfigRegistry(), getColumnElement(i - 1), configAttribute.toString());
+							}
 						}
 
 						final IAxis axisToMove = allAxis.get(start);

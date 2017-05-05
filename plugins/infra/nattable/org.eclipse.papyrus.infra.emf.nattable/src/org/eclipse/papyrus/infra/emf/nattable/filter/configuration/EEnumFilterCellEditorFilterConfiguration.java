@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 497571
  *   
  *****************************************************************************/
 
@@ -31,6 +32,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IColumnAccessor;
+import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.filterrow.combobox.FilterRowComboBoxCellEditor;
@@ -41,6 +43,7 @@ import org.eclipse.papyrus.infra.nattable.filter.IFilterValueToMatchManager;
 import org.eclipse.papyrus.infra.nattable.filter.IPapyrusMatcherEditorFactory;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.AbstractFilterValueToMatchManager;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
+import org.eclipse.papyrus.infra.nattable.filter.validator.EnumFilterDataValidator;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
@@ -88,7 +91,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         a list containing the possible Enumerator for the axis
+	 * 		a list containing the possible Enumerator for the axis
 	 */
 	protected List<Enumerator> getLiteral(IConfigRegistry configRegistry, Object axis) {
 		Object representedElement = AxisUtils.getRepresentedElement(axis);
@@ -126,10 +129,16 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(NattableConfigAttributes.FILTER_VALUE_TO_MATCH_MANAGER, createFilterValueToMatchManager(getConfigurationId(), literals), DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, getDataValidator(configRegistry, literals), DisplayMode.NORMAL, configLabel);
 	}
 
-	protected IPapyrusMatcherEditorFactory<Object> createPapyrusMatcherFactory(){
-		return  new IPapyrusMatcherEditorFactory<Object>() {
+	/**
+	 * This allows to create the papyrus matcher factory.
+	 * 
+	 * @return The create papyrus matcher factory.
+	 */
+	protected IPapyrusMatcherEditorFactory<Object> createPapyrusMatcherFactory() {
+		return new IPapyrusMatcherEditorFactory<Object>() {
 
 			@Override
 			public EventList<MatcherEditor<Object>> instantiateMatcherEditors(IColumnAccessor<Object> columnAccessor, Integer columnIndex, Object wantedValue, IConfigRegistry configRegistry) {
@@ -139,6 +148,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 			}
 		};
 	}
+
 	/**
 	 * 
 	 * @param filterConfiguration
@@ -146,10 +156,26 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 	 * @param literals
 	 *            the available literals
 	 * @return
-	 *         the filter value manager for the managed axis
+	 * 		the filter value manager for the managed axis
 	 */
 	protected IFilterValueToMatchManager createFilterValueToMatchManager(String filterConfiguration, List<Enumerator> literals) {
 		return new EnumeratorFilterValueToMatchManager(filterConfiguration, literals);
+	}
+
+	/**
+	 * This allows to get the data validator to use.
+	 * 
+	 * @param configRegistry
+	 *            The config registry.
+	 * @param literals
+	 *            The list of authorized literals.
+	 * 
+	 * @return The data validator to use.
+	 * 
+	 * @since 3.0
+	 */
+	protected IDataValidator getDataValidator(final IConfigRegistry configRegistry, final List<Enumerator> literals) {
+		return new EnumFilterDataValidator(literals);
 	}
 
 	/**
@@ -180,12 +206,12 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 	 *
 	 */
 	public static class EnumeratorFilterValueToMatchManager extends AbstractFilterValueToMatchManager {
-	
+
 		/**
 		 * a list with the available literal
 		 */
 		protected final List<Enumerator> literals;
-	
+
 		/**
 		 * Constructor.
 		 *
@@ -198,8 +224,8 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 			super(filterConfigurationId);
 			this.literals = literals;
 		}
-	
-	
+
+
 		/**
 		 * @see org.eclipse.papyrus.infra.nattable.filter.IFilterValueToMatchManager#getValueToMatch(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object)
 		 *
@@ -246,7 +272,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 			}
 			return null;
 		}
-	
+
 		/**
 		 * @see org.eclipse.papyrus.infra.nattable.filter.configuration.AbstractFilterValueToMatchManager#getSaveValueToMatchCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, org.eclipse.nebula.widgets.nattable.config.IConfigRegistry,
 		 *      java.lang.Object, java.lang.Object)
@@ -280,7 +306,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 					keyStyle.setName(FILTER_VALUE_TO_MATCH);
 					cc.append(AddCommand.create(domain, iaxis, NattablestylePackage.eINSTANCE.getNamedStyle(), keyStyle));
 				}
-	
+
 				List<String> values = new ArrayList<String>();
 				for (Object tmp : coll) {
 					Assert.isTrue(tmp instanceof Enumerator || ICellManager.NOT_AVALAIBLE.equals(tmp));
@@ -318,6 +344,6 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 			}
 			return cc;
 		}
-	
+
 	}
 }
