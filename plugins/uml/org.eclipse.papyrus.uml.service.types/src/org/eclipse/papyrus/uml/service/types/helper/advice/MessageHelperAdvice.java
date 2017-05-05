@@ -42,9 +42,12 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -116,10 +119,10 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		if  ((!(target instanceof Lifeline))&&(!(target instanceof Interaction))){
+		if  ((!(source instanceof Lifeline))&&(!(source instanceof Interaction))&&(!(source instanceof Gate))&&(!(source instanceof ExecutionSpecification))){
 			return UnexecutableCommand.INSTANCE;
 		}
-		if ((!(target instanceof Lifeline))&&(!(target instanceof Interaction))){
+		if ((!(target instanceof Lifeline))&&(!(target instanceof Interaction))&&(!(target instanceof Gate))&&(!(target instanceof ExecutionSpecification))){
 			return UnexecutableCommand.INSTANCE;
 		}
 		return new ConfigureElementCommand(request) {
@@ -208,10 +211,23 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 			 * @param source
 			 */
 			private void createSenEvent(final Message message, final Element source, final MessageEnd previous) {
+				if( source instanceof Gate){
+					message.setSendEvent((Gate)source);
+				}
+				else if(source instanceof ExecutionSpecification){
+					if(((ExecutionSpecification)source).getCovereds().size()>0){
+						Lifeline  lifeline=((ExecutionSpecification)source).getCovereds().get(0);
+						MessageEnd sendEvent = createMessageEnd(message,lifeline,previous);
+						sendEvent.setName(message.getName()+"SendEvent");
+						message.setSendEvent(sendEvent);
+					}
+				}
+				else if( source instanceof Lifeline){
 				// Create source and target ends
 				MessageEnd sendEvent = createMessageEnd(message,(Lifeline)source,previous);
 				sendEvent.setName(message.getName()+"SendEvent");
 				message.setSendEvent(sendEvent);
+				}
 			}
 
 			/**
@@ -219,9 +235,22 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 			 * @param target
 			 */
 			private void createReceiveEvent(final Message message, final Element target, final MessageEnd previous) {
+				if( target instanceof Gate){
+					message.setReceiveEvent((Gate)target);
+				}
+				else if(target instanceof ExecutionSpecification){
+					if(((ExecutionSpecification)target).getCovereds().size()>0){
+						Lifeline  lifeline=((ExecutionSpecification)target).getCovereds().get(0);
+						MessageEnd receiveEvent = createMessageEnd(message,lifeline,previous);
+						receiveEvent.setName(message.getName()+"ReceiveEvent");
+						message.setReceiveEvent(receiveEvent);
+					}
+				}
+				else if( target instanceof Lifeline){
 				MessageEnd receiveEvent = createMessageEnd(message,(Lifeline) target, previous);
 				receiveEvent.setName(message.getName()+"ReceiveEvent");
 				message.setReceiveEvent(receiveEvent);
+				}
 			}
 		};
 	}

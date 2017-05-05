@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -98,26 +99,25 @@ public class TestMessagesDeletion_364828 extends TestLink {
 		CreateConnectionViewRequest req = createConnectionViewRequest(linkType, source, target, provider);
 		Command command = target.getCommand(req);
 		assertNotNull(CREATION + COMMAND_NULL, command);
-		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		getDiagramCommandStack().execute(command);
 
 		// delete message link
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getEdgesSize() == 1);
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getMessageEndCount(interaction.getFragments()) == 2);
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST,1, provider.getEdgesSize());
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST,2, getMessageEndCount(interaction.getFragments()));
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command delCommand = ((ConnectionEditPart)source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, delCommand);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, delCommand != UnexecutableCommand.INSTANCE);
-		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, delCommand.canExecute() == true);
+		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, delCommand.canExecute());
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(delCommand));
-		int fragmentsAfterMessageDeletion = (linkType.equals(UMLElementTypes.Message_DeleteEdge)) ? 1 : 0;
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getMessageEndCount(interaction.getFragments()) == fragmentsAfterMessageDeletion);
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION,0, getMessageEndCount(interaction.getFragments()));
 
 		getEMFCommandStack().undo();
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getMessageEndCount(interaction.getFragments()) == 2);
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO,2, getMessageEndCount(interaction.getFragments()));
 
 		getEMFCommandStack().redo();
-		assertTrue(DESTROY_DELETION + TEST_THE_REDO, getMessageEndCount(interaction.getFragments()) == fragmentsAfterMessageDeletion);
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO,0, getMessageEndCount(interaction.getFragments()));
 	}
 
 	private int getMessageEndCount(EList<InteractionFragment> fragments) {
@@ -138,12 +138,12 @@ public class TestMessagesDeletion_364828 extends TestLink {
 
 	@Test
 	public void testMessageSync_4003() {
-		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, executionProvider);
+		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, lifelineProvider);
 	}
 
 	@Test
 	public void testMessageReply_4005() {
-		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, executionProvider);
+		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, lifelineProvider);
 	}
 
 	@Test

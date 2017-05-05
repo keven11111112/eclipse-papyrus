@@ -134,99 +134,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		return cfp;
 	}
 
-	@Test
-	public void testOperandResizeHeight() {
-		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
-		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
-		waitForComplete();
-		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
-		Rectangle boundCreation = getAbsoluteBounds(op);
-		// resize operand north
-		{
-			Dimension deltaSize = new Dimension(0, 30);
-			Rectangle before = getAbsoluteBounds(op);
-			assertEquals(OPERAND_RESIZE + INITIALIZATION_TEST, before.height(),30);
-
-			resizeNorth(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION, after.height(),getAbsoluteBounds(cfp).height());
-		}
-
-		// resize operand south
-		{
-			Dimension deltaSize = new Dimension(0, 20);
-			resizeSouth(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.height() == getAbsoluteBounds(cfp).height());
-		}
-
-		// resize operand north
-		{
-			Dimension deltaSize = new Dimension(0, -20);
-			Rectangle before = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + INITIALIZATION_TEST, before.height() == getAbsoluteBounds(cfp).height());
-
-			resizeNorth(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.height() == getAbsoluteBounds(cfp).height());
-		}
-
-		// resize operand south
-		{
-			Dimension deltaSize = new Dimension(0, -20);
-			resizeSouth(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.height() == getAbsoluteBounds(cfp).height());
-		}
-	}
-
-	@Test
-	public void testOperandResizeWidth() {
-		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
-		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
-		waitForComplete();
-		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
-
-		// resize operand east
-		{
-			Dimension deltaSize = new Dimension(100, 0);
-			Rectangle before = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + INITIALIZATION_TEST, before.width() == getAbsoluteBounds(cfp).width());
-			resizeEast(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());
-		}
-
-		Rectangle hostLocation = ((IGraphicalEditPart) cfp.getParent()).getFigure().getBounds();
-		// resize operand west
-		{
-			Dimension deltaSize = new Dimension(hostLocation.x, 0);
-			Rectangle before = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + INITIALIZATION_TEST, before.width() == getAbsoluteBounds(cfp).width());
-			resizeWest(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());
-		}
-
-		// resize operand east
-		{
-			Dimension deltaSize = new Dimension(-20, 0);
-			Rectangle before = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + INITIALIZATION_TEST, before.width() == getAbsoluteBounds(cfp).width());
-			resizeEast(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());
-		}
-
-		// resize operand west
-		{
-			Dimension deltaSize = new Dimension(-20, 0);
-			resizeWest(op, deltaSize);
-			Rectangle after = getAbsoluteBounds(op);
-			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());
-		}
-	}
-
+	
 	protected void resizeEast(IGraphicalEditPart op, Dimension deltaSize) {
 		Point p = getRight(op);
 		ChangeBoundsRequest req = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
@@ -279,22 +187,22 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 	private void manageResizeCommnad(IGraphicalEditPart op, Dimension deltaSize, Command c) {
 		assertNotNull(OPERAND_RESIZE + COMMAND_NULL, c);
-		assertTrue(OPERAND_RESIZE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, c.canExecute() == true);
+		assertTrue(OPERAND_RESIZE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, c.canExecute() );
 		Rectangle before = getAbsoluteBounds(op);
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(c));
 		waitForComplete();
 
 		Rectangle after = getAbsoluteBounds(op);
-		assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() - before.width() == deltaSize.width());
-		assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.height() - before.height() == deltaSize.height());
+		assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION,deltaSize.width(), after.width() - before.width());
+		assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION,deltaSize.height(), after.height() - before.height());
 
 		getEMFCommandStack().undo();
 		waitForComplete();
-		assertTrue(OPERAND_RESIZE + TEST_THE_UNDO, before.equals(getAbsoluteBounds(op)));
+		assertEquals(OPERAND_RESIZE + TEST_THE_UNDO, before,getAbsoluteBounds(op));
 
 		getEMFCommandStack().redo();
 		waitForComplete();
-		assertTrue(OPERAND_RESIZE + TEST_THE_REDO, after.equals(getAbsoluteBounds(op)));
+		assertEquals(OPERAND_RESIZE + TEST_THE_REDO, after,getAbsoluteBounds(op));
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {

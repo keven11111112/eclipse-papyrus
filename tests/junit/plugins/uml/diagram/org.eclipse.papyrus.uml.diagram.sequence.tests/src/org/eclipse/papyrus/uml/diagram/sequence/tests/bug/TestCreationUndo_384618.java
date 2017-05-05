@@ -217,8 +217,8 @@ public class TestCreationUndo_384618 extends TestLink {
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline2, new Point(331, 200), new Dimension(20, 60));
 		waitForComplete();
 
-		IGraphicalEditPart source = (IGraphicalEditPart)lifeline1.getChildren().get(1);
-		IGraphicalEditPart target = (IGraphicalEditPart)lifeline2.getChildren().get(1);
+		IGraphicalEditPart source = (IGraphicalEditPart)lifeline1;
+		IGraphicalEditPart target = (IGraphicalEditPart)lifeline2;
 
 		createLink(UMLElementTypes.Message_ReplyEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, -28));
 		waitForComplete();

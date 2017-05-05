@@ -179,52 +179,21 @@ public class GrillingBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResi
 			Object constraint) {
 		Rectangle newBounds = (Rectangle) constraint;
 		View shapeView = (View) child.getModel();
+		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
+		GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+		if (grilling!=null){
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+			ICommand boundsCommand = 
+					new SetBoundsCommand(editingDomain,
+							DiagramUIMessages.SetLocationCommand_Label_Resize,
+							new EObjectAdapter(shapeView),
+							newBounds); 
 
-		
-			View row=null;
-			View column=null;
-			//test the move of a lifeline 
-			DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
-			GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-			if (grilling!=null){
-				//row=grilling.getRowTolisten((Node) ((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)child).getNotationView(),(Element) ((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)child).resolveSemanticElement());
-				//column=grilling.getColumnTolisten((Node)((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)child).getNotationView(),(Element) ((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)child).resolveSemanticElement());
-				//				Location boundsRow=(Location)	((Node)row).getLayoutConstraint();
-				//				if(child instanceof LifelineEditPart){
-				//					// in the case of a life line iit is impossible to let the user move vertically
-				//					//newBounds.y=boundsRow.getY();
-				//				}
+			CompoundCommand compoundCommand= new CompoundCommand();
+			compoundCommand.add( new ICommandProxy(boundsCommand));
+			return compoundCommand;
+		}
 
-
-
-				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-						.getEditingDomain();
-
-
-				ICommand boundsCommand = 
-						new SetBoundsCommand(editingDomain,
-								DiagramUIMessages.SetLocationCommand_Label_Resize,
-								new EObjectAdapter(shapeView),
-								newBounds); 
-
-				ICommand boundsrowsCommand = 
-						new SetBoundsCommand(editingDomain,
-								DiagramUIMessages.SetLocationCommand_Label_Resize,
-								new EObjectAdapter(row),
-								new Point(0,newBounds.y)); 
-				//update columns
-				ICommand boundsColumnsCommand = 
-						new SetBoundsCommand(editingDomain,
-								DiagramUIMessages.SetLocationCommand_Label_Resize,
-								new EObjectAdapter(column),
-								new Point(newBounds.x,0)); 
-				CompoundCommand compoundCommand= new CompoundCommand();
-				compoundCommand.add( new ICommandProxy(boundsCommand));
-				compoundCommand.add( new ICommandProxy(boundsrowsCommand));
-				compoundCommand.add( new ICommandProxy(boundsColumnsCommand));
-				return compoundCommand;
-			}
-		
 		return super.createChangeConstraintCommand(child, constraint);
 	}
 

@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -68,7 +69,8 @@ public class TestNestedCombinedFragment_364795 extends TestTopNode {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(300, 200));
 		waitForComplete(); // wait for updating covered field
 		CombinedFragmentEditPart parentCFP = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-		createNode(UMLElementTypes.InteractionOperand_Shape, parentCFP, new Point(50, 100), new Dimension(100, 100));
+		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp=(CombinedFragmentCombinedFragmentCompartmentEditPart)((GraphicalEditPart)parentCFP.getChildren().get(0));
+		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
 		InteractionOperandEditPart oep = (InteractionOperandEditPart)((GraphicalEditPart)parentCFP.getChildren().get(0)).getChildren().get(0);
 
 		// create child combined fragment

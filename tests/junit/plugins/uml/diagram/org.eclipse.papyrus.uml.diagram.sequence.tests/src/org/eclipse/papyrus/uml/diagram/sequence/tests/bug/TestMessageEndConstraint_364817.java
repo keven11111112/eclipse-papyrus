@@ -99,12 +99,12 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 
 	@Test
 	public void testMessageSync_4003() {
-		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
+		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, null);
 	}
 
 	@Test
 	public void testMessageReply_4005() {
-		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
+		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, null);
 	}
 
 	@Test
