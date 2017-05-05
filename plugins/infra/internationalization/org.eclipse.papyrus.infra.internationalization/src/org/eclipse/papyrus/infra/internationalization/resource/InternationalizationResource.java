@@ -28,9 +28,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.commands.AddToResourceCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.internationalization.Activator;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationEntry;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationFactory;
@@ -113,10 +115,36 @@ public class InternationalizationResource extends XMIResourceImpl {
 			}
 
 			if (getResourceSet() instanceof ModelSet) {
+				
+				// Load the locale save option if exist
+				final Object needUnsafe = options != null
+						&& options.containsKey(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
+								? options.get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
+								: defaultLoadOptions != null
+										? defaultLoadOptions
+												.get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
+										: null;
+			
 				// Add the library to the resource
-				final GMFtoEMFCommandWrapper command = new GMFtoEMFCommandWrapper(new AddToResourceCommand(
-						((ModelSet) getResourceSet()).getTransactionalEditingDomain(), this, library));
-				command.execute();
+				if (needUnsafe instanceof Boolean && (Boolean)needUnsafe) {
+					try {
+						// We need to do this by unsafe for the fake resources
+						GMFUnsafe.write(((ModelSet) getResourceSet()).getTransactionalEditingDomain(), new Runnable() {
+							
+							@Override
+							public void run() {
+								getContents().add(library);
+								
+							}
+						});
+					} catch (InterruptedException | RollbackException e) {
+						Activator.log.error(e);
+					}
+				}else {
+					final GMFtoEMFCommandWrapper command = new GMFtoEMFCommandWrapper(new AddToResourceCommand(
+							((ModelSet) getResourceSet()).getTransactionalEditingDomain(), this, library));
+					command.execute();
+				}
 			} else {
 				// Workaround for the non ModelSet resource set.
 				final ResourceSet resourceSet = getResourceSet();

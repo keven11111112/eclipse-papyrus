@@ -390,6 +390,12 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					resource = modelSet.createResource(newResourceURI);
 					configureResource(initialResourceURI, resource, locale);
 					
+					if (resource instanceof InternationalizationResource) {
+						final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resource)
+								.getDefaultLoadOptions();
+						defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT, true);
+					}
+					
 					try {
 						resource.load(null);
 					} catch (IOException e) {
@@ -1315,6 +1321,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			preferencePartLabelSynchronizers = null;
 		}
 
+		resource = null;
 		super.unload();
 	}
 

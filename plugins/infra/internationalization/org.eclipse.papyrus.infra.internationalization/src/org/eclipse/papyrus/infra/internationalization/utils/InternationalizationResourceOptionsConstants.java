@@ -46,5 +46,10 @@ public class InternationalizationResourceOptionsConstants {
 	 * The uri of the resource without locale extension.
 	 */
 	public static final String LOAD_OPTION_URI = "internationalizationURI"; //$NON-NLS-1$
+	
+	/**
+	 * The load option to determinate if the create content must be added by unsafe transaction or not.
+	 */
+	public static final String LOAD_OPTION_UNSAFE_ADD_CONTENT = "unsafeAddCommand"; //$NON-NLS-1$
 
 }
