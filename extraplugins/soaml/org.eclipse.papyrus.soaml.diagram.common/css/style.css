@@ -1,5 +1,0 @@
-Property {maskLabel:name; elementIcon:false;}
-Property[type] {maskLabel:name type; }
-Port>Label {maskLabel:name; elementIcon:flase;}
-Port>Label:stereotype{visible: false;}
-Class {elementIcon:false;}
