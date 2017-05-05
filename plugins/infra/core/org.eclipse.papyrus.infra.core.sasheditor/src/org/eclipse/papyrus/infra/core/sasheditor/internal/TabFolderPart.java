@@ -875,8 +875,6 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 		// Disable redraw
 		CTabFolder folder = getTabFolder();
 		folder.setRedraw(false);
-		// Remember active page
-		int activePageIndex = getActivePage();
 
 		// Iterate over the minimum common size
 		// Synchronize each tab with the requested model
@@ -888,7 +886,6 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 			if (!curTab.isTabItemFor(curModel)) {
 				resetTabItem(curTab, partLists, curModel);
 				// end
-				activePageIndex = index;
 			} else {
 				// Change curTab state
 				curTab.getChildPart().unchanged();
@@ -904,8 +901,6 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 				createTabItem(partLists, curModel, i);
 				// end
 			}
-			// Set the last as active
-			activePageIndex = newModels.size() - 1;
 		} else if (index < currentTabItems.size()) {
 			// There is too much tabs, remove them
 			List<TabItemPart> toRemove = new ArrayList<TabItemPart>();
@@ -920,10 +915,6 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 				removeTabItem(curTab);
 				// end
 			}
-			// Set the active page as the last part if needed
-			if (activePageIndex >= currentTabItems.size()) {
-				activePageIndex = currentTabItems.size() - 1;
-			}
 		}
 
 
@@ -931,23 +922,19 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 		// folder.setSelection(activePageIndex);
 		folder.redraw();
 
+		int activePageIndex = getActivePage();
 		if (activePageIndex >= 0) {
-			// System.err.println("setActivePage(" + activePageIndex + ") : " + this);
 			// Set the activeTab has visible.
 			// Do it here because otherwise the active tab could be not visible.
 			// This come from an undefined bug setting the tab.isVisible(false) in some case.
 			folder.getItem(activePageIndex).getControl().setVisible(true);
-			setSelection(activePageIndex);
 		} else {
 			// Check if there is item in the CTabFolder.
 			// If true, we have a trouble
 			if (getTabFolder().getItemCount() > 0) {
-				// System.err.println("Active page not set while synchronizing !");
 				// We have items, but none is selected.
 				// Select the first one.
-				if (getTabFolder().getSelectionIndex() < 0) {
-					setSelection(0);
-				}
+				setSelection(0);
 			}
 		}
 		// folder.update();

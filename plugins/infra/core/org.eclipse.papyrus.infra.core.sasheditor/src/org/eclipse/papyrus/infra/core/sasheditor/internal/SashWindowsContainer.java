@@ -79,6 +79,12 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	private ActivePageTracker activePageTracker;
 
 	/**
+	 * Tracker maintaining the history of the active pages.
+	 * @since 2.0.0
+	 */
+	private ActivePageHistoryTracker activePageHistoryTracker;
+	
+	/**
 	 * Event provider firing Pages life cycle events to registered listeners. Inner parts call the fireXxxEvents
 	 * when appropriate.
 	 */
@@ -184,6 +190,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// Folder list view
 		initTabFolderListManager();
+		// Start the active page history tracker
+		activePageHistoryTracker = new ActivePageHistoryTracker();
+		lifeCycleEventProvider.addListener(activePageHistoryTracker);
+
 	}
 
 	/**
@@ -302,7 +312,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// clean up properties to help GC
 		activePageTracker = null;
-
+		activePageHistoryTracker = null;
 		container = null;
 		contentProvider = null;
 		dragOverListener = null;
@@ -726,8 +736,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// System.out.println("start synchronize2() ------------------------");
 		// showTilesStatus();
 
-		// Get the currently selected folder
+		// Get the currently selected page and folder
 		PagePart oldActivePage = getActivePage();
+		TabFolderPart oldActiveFolder = (oldActivePage!=null?oldActivePage.getParent():null);
 
 		// Do refresh
 		container.setRedraw(false);
@@ -744,11 +755,18 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		garbageMaps.garbage();
 
 		// set active page if needed
-		setActivePageAndSelection(checkAndGetActivePage(oldActivePage, garbageMaps));
+		PagePart nextActivePage = checkAndGetActivePage(oldActivePage, oldActiveFolder, garbageMaps);
+		setActivePageAndSelection(nextActivePage);
 
 		// Reenable SWT and force layout
 		container.setRedraw(true);
 		container.layout(true, true);
+		
+		// Check focus
+		PagePart activePage = getActivePage();
+		if( activePage != null && oldActiveFolder != activePage.getParent() ) {
+			getActivePage().setFocus();
+		}
 		// System.out.println("end synchronize2() ------------------------");
 		// showTilesStatus();
 	}
@@ -830,17 +848,24 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * Check if the oldActivePage still alive, and set it if needed.
-	 * If the oldActivePage is null, set an active page if one exist.
-	 * If the oldActivePage still alive, let it as the active one. If it is
-	 * disposed, get arbitrarily an active page if one exist.
+	 * Try to find the page that should now be set as active.
+	 * 
+	 * The next active page is:
+	 * <ul>
+	 *   <li>if a page has been created, set it as active</li>
+	 *   <li>otherwise, if the old active page still alive, set it as active</li>
+	 *   <li>otherwise, check if the last active tabfolder still alive, if yes, ask it for the currently selected tab, and set the corresponding page as active. </li>
+	 *   <li>If all of the previous fail, get a tabfolder, and set its active tabs as active page</li>
+	 * </ul>
 	 *
-	 * @param oldActivePage
-	 * @param partLists
-	 * @param garbageMaps
+	 * @param oldActivePage The last active page (before refreshing)
+	 * @param oldActiveFolder The last active tabFolder (before refreshing)
+	 * @param partLists Lists of modified Parts
 	 * @return A valid active page or null if none exists.
+	 * 
+	 * @since 2.0.0
 	 */
-	private PagePart checkAndGetActivePage(PagePart oldActivePage, PartLists partLists) {
+	private PagePart checkAndGetActivePage(PagePart oldActivePage, TabFolderPart oldActiveFolder, PartLists partLists) {
 
 		// Check if there is a created page
 		PagePart activePage = partLists.getFirstCreatedPage();
@@ -854,8 +879,22 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			return oldActivePage;
 		}
 
+		// Old active page nor more exists, and none is created.
+		// Lookup in history
+		activePage = (PagePart)activePageHistoryTracker.lastActivePage();
+		if (activePage != null) {
+			// There is a previous active page, use it
+			return activePage;
+		}		
+		
+		// No previous active page were found, try from tabfolder
+		if(oldActiveFolder==null || oldActiveFolder.isOrphaned() || oldActiveFolder.isUnchecked() ) {
+			// Last active folder is disabled. Search for a new  active folder
+			oldActiveFolder = lookupFirstValidFolder();
+		}
+		
 		// Get an active page if any
-		return lookupFirstValidPage();
+		return oldActiveFolder.getVisiblePagePart();
 	}
 
 	/**
