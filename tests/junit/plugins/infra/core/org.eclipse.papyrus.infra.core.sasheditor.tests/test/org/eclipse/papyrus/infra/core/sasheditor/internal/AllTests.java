@@ -24,7 +24,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	PageLifeCycleEventsThrownFromContainerTest.class, 
 	SashWindowsContainerTest.class ,
 	SashWindowsContainerDisposeCalledTest.class,
-	SashWindowsContainerMemoryLeakTest.class
+	SashWindowsContainerMemoryLeakTest.class,
+	ActiveHistoryTrackerBehaviorTest.class
 	})
 public class AllTests {
 
