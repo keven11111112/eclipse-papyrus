@@ -16,6 +16,9 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionName
 
 
 
+/**
+ * @since 3.0
+ */
 public class CustomActivityPartitionNameEditPart extends ActivityPartitionNameEditPart {
 	/**
 	 * Constructor.

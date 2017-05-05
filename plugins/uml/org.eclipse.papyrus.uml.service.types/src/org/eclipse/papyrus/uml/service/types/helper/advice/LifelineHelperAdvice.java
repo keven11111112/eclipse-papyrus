@@ -44,7 +44,8 @@ import org.eclipse.uml2.uml.PartDecomposition;
 public class LifelineHelperAdvice extends AbstractEditHelperAdvice {
 
 
-	/** A request parameter indicating the connectable element that a lifeline represents. */
+	/** A request parameter indicating the connectable element that a lifeline represents. 
+	 * @since 3.0*/
 	public static final String REPRESENTS = "Lifeline::represents"; //$NON-NLS-1$
 
 	/**

@@ -27,6 +27,9 @@ public class AdviceComparator implements Comparator<IEditHelperAdvice> {
 	protected Collection<OrientedGraph<String>> dependencies;
 
 
+	/**
+	 * @since 3.0
+	 */
 	public AdviceComparator(IElementType[] types, String contextId) {
 		this.dependencies = new ArrayList<OrientedGraph<String>>();
 		for (IElementType iElementType : types) {
@@ -34,6 +37,9 @@ public class AdviceComparator implements Comparator<IEditHelperAdvice> {
 		}
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public AdviceComparator(IElementType elementType, String contextId) {
 		this.dependencies = new ArrayList<OrientedGraph<String>>();
 		this.dependencies.add(ElementTypeSetConfigurationRegistry.getInstance().getAdvicesDeps(elementType.getId(), contextId));

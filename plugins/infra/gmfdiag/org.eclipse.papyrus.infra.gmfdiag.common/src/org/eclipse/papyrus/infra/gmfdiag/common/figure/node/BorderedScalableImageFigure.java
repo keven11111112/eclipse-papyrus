@@ -39,6 +39,9 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 		this(renderedImage, useDefaultImageSize, useOriginalColors, antiAlias, true);
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public BorderedScalableImageFigure(RenderedImage renderedImage, boolean useDefaultImageSize, boolean useOriginalColors, boolean antiAlias, boolean isModificationPreferredSize) {
 		super(renderedImage, useDefaultImageSize, useOriginalColors, antiAlias);
 		// set a layout manager to override maintain ratio behavior

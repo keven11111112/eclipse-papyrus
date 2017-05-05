@@ -24,6 +24,9 @@ public class Messages extends NLS {
 
 	public static String RenameTableHandler_RenameAnExistingTable;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String RenameTableHandler_Label_DialogTitle;
 
 	static {

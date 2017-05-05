@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences;
 /**
  * 
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
+ * @since 3.0
  * 
  */
 public interface IAutomatedModelCompletionPreferencesConstants {

@@ -19,6 +19,7 @@ import org.eclipse.xtext.ui.editor.model.TerminalsTokenTypeToPartitionMapper;
 
 /**
  * The Papyrus default auto edit strategy provider which deny the partition deletion that is not correctly managed in Papyrus XText editor.
+ * @since 2.0
  */
 public class PapyrusDefaultAutoEditStrategyProvider extends DefaultAutoEditStrategyProvider {
 

@@ -20,6 +20,7 @@ import org.eclipse.papyrus.views.modelexplorer.Activator;
 
 /**
  * A tester use to test if the CustomizableUMLLabel facet model is loaded.
+ * @since 2.0
  */
 public class UMLLabelCustomizableTester extends PropertyTester {
 

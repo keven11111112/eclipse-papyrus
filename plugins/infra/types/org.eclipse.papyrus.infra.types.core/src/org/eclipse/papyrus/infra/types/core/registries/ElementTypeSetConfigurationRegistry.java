@@ -71,7 +71,8 @@ public class ElementTypeSetConfigurationRegistry {
 
 	private volatile static ElementTypeSetConfigurationRegistry elementTypeSetConfigurationRegistry;
 
-	/** Set of registered client contexts */
+	/** Set of registered client contexts 
+	 * @since 3.0*/
 	protected Set<IClientContext> clientContexts = null;
 
 	/** Map of retrieved elementType sets, key is their identifier */
@@ -186,6 +187,9 @@ public class ElementTypeSetConfigurationRegistry {
 		return loadElementTypeSetConfigurations(clientContextID, Collections.singleton(elementTypeSetConfiguration));
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public OrientedGraph<String> getAdvicesDeps(String elementTypeID, String clientContextID) {
 		Map<String, OrientedGraph<String>> allDependencies = advicesDeps.get(clientContextID);
 		if (allDependencies == null) {
@@ -519,6 +523,9 @@ public class ElementTypeSetConfigurationRegistry {
 		return existingDefinitions;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	protected void readElementTypeSetConfigurationModelsFromArchitectureDomainManager(Map<String, Set<ElementTypeSetConfiguration>> map) {
 		ArchitectureDomainMerger merger = ArchitectureDomainManager.getInstance().getMerger();
 		for (MergedArchitectureDomain domain : merger.getDomains()) {
@@ -531,6 +538,9 @@ public class ElementTypeSetConfigurationRegistry {
 		}
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	protected void listenToArchitectureDomainManager() {
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 		manager.addListener(new ArchitectureDomainManager.Listener() {

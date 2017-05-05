@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * A query to get the Name as StyledString. The label is styled with preferences.
+ * @since 2.0
  */
 public class GetComplexStyledName implements IJavaQuery2<Element, StyledString> {
 

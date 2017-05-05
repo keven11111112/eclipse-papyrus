@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 /**
  * This class provide several convenience methods to tag a table with a version number 
  * or retrieve this version number.
+ * @since 3.0
  */
 public class TableVersioningUtils {
 

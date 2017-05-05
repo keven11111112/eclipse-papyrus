@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * This class is used to create a Property Editor based on the DataType.
+ * @since 2.0
  */
 public class DataTypeEditor extends AbstractPropertyEditor {
 

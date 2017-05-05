@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
  * Table migration between version of Papyrus.
+ * @since 3.0
  */
 public class TableReconcileHelper {
 	

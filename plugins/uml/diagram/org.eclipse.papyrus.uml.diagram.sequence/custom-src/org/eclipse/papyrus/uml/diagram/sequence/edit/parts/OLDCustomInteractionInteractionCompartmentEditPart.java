@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @since 3.0
  */
 public class OLDCustomInteractionInteractionCompartmentEditPart extends InteractionInteractionCompartmentEditPart {
 

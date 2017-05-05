@@ -33,6 +33,9 @@ public class CustomizationsDelegatingList extends BasicEList<Customization> {
 		this.delegate = delegate;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	protected void didAdd(int index, Customization newObject) {
 		// Insert at the corresponding location in the delegate
@@ -43,22 +46,34 @@ public class CustomizationsDelegatingList extends BasicEList<Customization> {
 		delegate.add(index, newObject);
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	protected void didSet(int index, Customization newObject, Customization oldObject) {
 		index = delegate.indexOf(oldObject);
 		delegate.set(index, newObject);
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	protected void didRemove(int index, Customization oldObject) {
 		delegate.remove(oldObject);
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	protected void didClear(int size, Object[] oldObjects) {
 		delegate.removeAll(Arrays.asList(oldObjects));
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	protected void didMove(int index, Customization movedObject, int oldIndex) {
 		// Move to the corresponding location in the delegate
@@ -80,6 +95,7 @@ public class CustomizationsDelegatingList extends BasicEList<Customization> {
 	 * @param facetSets
 	 *            the superset
 	 * @return the subset of customizations
+	 * @since 3.0
 	 */
 	protected static List<Customization> customizations(List<FacetSet> facetSets) {
 		return facetSets.stream()

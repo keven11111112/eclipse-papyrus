@@ -143,6 +143,7 @@ import com.google.inject.Injector;
 /**
  *
  * Papyrus specific search page
+ * @since 2.0
  *
  */
 public class PapyrusSearchPage extends DialogPage implements ISearchPage, IReplacePage {

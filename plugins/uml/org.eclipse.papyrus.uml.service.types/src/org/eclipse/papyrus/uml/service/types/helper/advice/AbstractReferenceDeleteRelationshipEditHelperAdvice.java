@@ -66,6 +66,7 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 	 *            the visual id
 	 * @return
 	 * 		the EReference represented by the view with this visual id
+	 * @since 3.0
 	 */
 	protected EReference getFeature(String visualId, IClientContext context) {
 		List<IElementType> elementTypes = ElementTypeRegistryUtils.getElementTypesBySemanticHint(visualId, context.getId());

@@ -32,6 +32,9 @@ import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLPackage;
 
+/**
+ * @since 3.0
+ */
 public class LifelineEditHelper extends ElementEditHelper {
 
 	/**

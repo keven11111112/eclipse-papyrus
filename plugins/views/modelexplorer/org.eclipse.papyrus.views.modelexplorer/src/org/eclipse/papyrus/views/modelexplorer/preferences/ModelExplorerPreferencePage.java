@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * Preference page for model explorer.
+ * @since 3.0
  */
 public class ModelExplorerPreferencePage extends AbstractPapyrusPreferencePage {
 

@@ -24,8 +24,14 @@ public interface IAdviceKindExtensionPoint {
 
 	public static final String CONFIGURATION_CLASS = "configurationClass";//$NON-NLS-1$
 
+	/**
+	 * @since 3.0
+	 */
 	public static final String DESCRIPTION = "description";//$NON-NLS-1$
 
+	/**
+	 * @since 3.0
+	 */
 	public static final String ICON = "icon";//$NON-NLS-1$
 
 }

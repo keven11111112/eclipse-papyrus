@@ -191,6 +191,9 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		return result;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public void clearCache() {
 		visibleElement.clear();
 		visibleParent.clear();

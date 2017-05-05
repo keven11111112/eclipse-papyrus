@@ -260,6 +260,7 @@ public class CreationMenuFactory {
 	 *
 	 * @param currentCreationMenu
 	 * @param item
+	 * @since 3.0
 	 */
 	protected void fillIcon(CreationMenu currentCreationMenu, MenuItem item, IClientContext context) {
 		if (currentCreationMenu.getIcon() != null && !"".equals(currentCreationMenu.getIcon())) {
@@ -283,6 +284,7 @@ public class CreationMenuFactory {
 	 * @param selectedObject
 	 * @param currentCreationMenu
 	 * @return return the list of Ereference that can be calculated
+	 * @since 3.0
 	 */
 	protected ArrayList<EStructuralFeature> getEreferences(EObject selectedObject, CreationMenu currentCreationMenu, IClientContext context) {
 		ArrayList<EStructuralFeature> possibleEFeatures = new ArrayList<>();
@@ -293,7 +295,7 @@ public class CreationMenuFactory {
 			if (eStructuralFeature instanceof EReference) {
 				EReference ref = (EReference) eStructuralFeature;
 				if (ref.isContainment()) {
-					IElementType menuType = getElementType(currentCreationMenu.getElementType(),context);
+					IElementType menuType = getElementType(currentCreationMenu.getElementType(), context);
 					if (menuType != null && isSubClass(ref.getEType(), menuType.getEClass())) {
 						possibleEFeatures.add(eStructuralFeature);
 					}
@@ -330,9 +332,10 @@ public class CreationMenuFactory {
 	 * @param currentCreationMenu
 	 * @param item
 	 *            the current menu
+	 * @since 3.0
 	 */
 	protected void createIconFromElementType(CreationMenu currentCreationMenu, MenuItem item, IClientContext context) {
-		IElementType elementType = getElementType(currentCreationMenu.getElementType(),context);
+		IElementType elementType = getElementType(currentCreationMenu.getElementType(), context);
 		if (elementType != null) {
 			URL iconURL = elementType.getIconURL();
 			if (iconURL != null) {
@@ -378,13 +381,14 @@ public class CreationMenuFactory {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * get the IelementType from a EReference with context check
 	 *
 	 * @param elementType
 	 *            the string that represents the element type
 	 * @return the element type or null
+	 * @since 3.0
 	 * 
 	 */
 	protected IElementType getElementType(ElementTypeConfiguration elementTypeConfiguration, IClientContext context) {
@@ -404,6 +408,7 @@ public class CreationMenuFactory {
 	 * @param adviceCache
 	 * 
 	 * @return a command that can be executed by the domain
+	 * @since 3.0
 	 */
 	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache, IClientContext context) {
 
@@ -413,7 +418,7 @@ public class CreationMenuFactory {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		IElementType elementType = getElementType(creationMenu.getElementType(),context);
+		IElementType elementType = getElementType(creationMenu.getElementType(), context);
 		if (elementType == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -450,9 +455,10 @@ public class CreationMenuFactory {
 	 * @param adviceCache
 	 * @return
 	 * 		the creation request to use in this handler
+	 * @since 3.0
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache, IClientContext context) {
-		IElementType elementtype = getElementType(creationMenu.getElementType(),context);
+		IElementType elementtype = getElementType(creationMenu.getElementType(), context);
 
 		CreateElementRequest request = null;
 		if (reference == null) {
@@ -476,9 +482,10 @@ public class CreationMenuFactory {
 	 *
 	 * @return
 	 * 		the creation request to use in this handler
+	 * @since 3.0
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, IClientContext context) {
-		IElementType elementtype = getElementType(creationMenu.getElementType(),context);
+		IElementType elementtype = getElementType(creationMenu.getElementType(), context);
 
 		if (elementtype != null) {
 			if (reference == null) {

@@ -21,6 +21,9 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 
+/**
+ * @since 2.0
+ */
 public class DialogDisplayUtils {
 	/**
 	 * Returns the active workbench shell

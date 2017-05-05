@@ -67,6 +67,7 @@ public abstract class AbstractAdviceBindingFactory<T extends AbstractAdviceBindi
 
 	/**
 	 * @return an instance of the defined advice binding configuration
+	 * @since 3.0
 	 */
 	abstract public AbstractAdviceBindingConfiguration createAdviceBindingConfiguration();
 }

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.utils;
 
 /**
  * This allows to define the table resource constants needed.
+ * @since 3.0
  */
 public class TableResourceConstants {
 

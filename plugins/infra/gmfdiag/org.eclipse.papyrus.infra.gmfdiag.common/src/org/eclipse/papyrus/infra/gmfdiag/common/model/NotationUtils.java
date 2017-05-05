@@ -436,6 +436,7 @@ public class NotationUtils {
 	 * @param defaultDouble
 	 *            the default double
 	 * @return double corresponding to the property
+	 * @since 3.0
 	 */
 	public static double getDoubleValue(final View view, final String property, final double defaultDouble) {
 		double value = defaultDouble;

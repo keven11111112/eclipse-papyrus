@@ -120,6 +120,7 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	 * This allows to set the label of a table.
 	 * 
 	 * @param label The new label.
+	 * @since 3.0
 	 */
 	public void setTableLabel(final String label);
 	

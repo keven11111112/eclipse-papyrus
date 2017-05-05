@@ -16,6 +16,7 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 
 /**
  * An interface to add the possibility to fire programmatically double click and element such as viewer.
+ * @since 3.0
  */
 public interface IFireDoubleClick {
 

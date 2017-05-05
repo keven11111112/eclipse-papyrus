@@ -30,6 +30,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
  * Pins of CreateLinkAction should be create and update automatically
+ * @since 3.0
  *
  */
 public class LinkEndCreationDataEditHelperAdvice extends AbstractEditHelperAdvice {

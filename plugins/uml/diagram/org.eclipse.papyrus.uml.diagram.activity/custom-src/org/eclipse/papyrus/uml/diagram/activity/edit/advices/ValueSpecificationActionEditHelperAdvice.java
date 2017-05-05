@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.ValueSpecificationAction;
 /**
  * 
  * Pin of ValueSpecificationAction should be create and update automatically
+ * @since 3.0
  *
  */
 public class ValueSpecificationActionEditHelperAdvice extends AbstractEditHelperAdvice {

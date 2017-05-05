@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * The Class CreateViewCommand.
+ * @since 3.0
  */
 public class CreateViewCommand extends CreateCommand {
 

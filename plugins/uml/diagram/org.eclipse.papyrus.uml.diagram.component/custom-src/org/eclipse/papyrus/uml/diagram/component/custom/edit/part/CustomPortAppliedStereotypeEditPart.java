@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextSelectionE
 
 /**
  * The custom edit policy for the port applied stereotype.
+ * @since 3.0
  */
 public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEditPart {
 

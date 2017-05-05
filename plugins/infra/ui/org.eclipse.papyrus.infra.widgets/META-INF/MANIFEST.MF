@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.databinding;bundle-version="[1.6.0,2.0.0)";visi
  org.eclipse.e4.ui.model.workbench;bundle-version="[1.2.0,3.0.0)",
  org.eclipse.e4.core.contexts;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.emf.edit.ui;bundle-version="[2.12.0,3.0.0)",
- org.eclipse.papyrus.infra.constraints;bundle-version="[3.0.0,4.0.0)"
+ org.eclipse.papyrus.infra.constraints;bundle-version="[2.0.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.infra.widgets,
  org.eclipse.papyrus.infra.widgets.creation,
  org.eclipse.papyrus.infra.widgets.databinding,

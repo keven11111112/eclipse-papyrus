@@ -97,24 +97,27 @@ public class NotationHelper {
 	}
 
 	/**
-	 * get the absolute position form the notation 
-	 * @param node the current node
+	 * get the absolute position form the notation
+	 * 
+	 * @param node
+	 *            the current node
 	 * @return
+	 * @since 3.0
 	 */
-	public static PrecisionRectangle getAbsoluteBounds(Node node){
-		if(node.getLayoutConstraint() instanceof Bounds){
-			PrecisionRectangle bounds= new PrecisionRectangle( ((Bounds)node.getLayoutConstraint()).getX(),((Bounds)node.getLayoutConstraint()).getY(),((Bounds)node.getLayoutConstraint()).getWidth(), ((Bounds)node.getLayoutConstraint()).getHeight());
+	public static PrecisionRectangle getAbsoluteBounds(Node node) {
+		if (node.getLayoutConstraint() instanceof Bounds) {
+			PrecisionRectangle bounds = new PrecisionRectangle(((Bounds) node.getLayoutConstraint()).getX(), ((Bounds) node.getLayoutConstraint()).getY(), ((Bounds) node.getLayoutConstraint()).getWidth(), ((Bounds) node.getLayoutConstraint()).getHeight());
 			EObject currentView = (EObject) node.eContainer();
-			while (currentView!=null){
-			
-			if (currentView instanceof Node){
-				Point ptCurrenview= new Point( ((Bounds)((Node)currentView).getLayoutConstraint()).getX(),((Bounds)((Node)currentView).getLayoutConstraint()).getY());
-				bounds.translate(ptCurrenview);
+			while (currentView != null) {
+
+				if (currentView instanceof Node) {
+					Point ptCurrenview = new Point(((Bounds) ((Node) currentView).getLayoutConstraint()).getX(), ((Bounds) ((Node) currentView).getLayoutConstraint()).getY());
+					bounds.translate(ptCurrenview);
 				}
-			currentView= currentView.eContainer();
+				currentView = currentView.eContainer();
 			}
 			return bounds;
-		}
-		else return null;
+		} else
+			return null;
 	}
 }

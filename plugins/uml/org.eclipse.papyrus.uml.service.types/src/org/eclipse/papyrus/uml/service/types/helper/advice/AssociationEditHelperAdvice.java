@@ -126,6 +126,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	 *
 	 * @param sourceProperty
 	 *            The property to configure.
+	 * @since 3.0
 	 */
 	protected void configureSourceProperty(Property sourceProperty) {
 		// do nothing
@@ -136,6 +137,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	 *
 	 * @param targetProperty
 	 *            The property to configure.
+	 * @since 3.0
 	 */
 	protected void configureTargetProperty(Property targetProperty) {
 		// do nothing

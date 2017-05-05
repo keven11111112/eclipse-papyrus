@@ -61,6 +61,7 @@ public class DependencyDiamonViewCreateCommand extends AbstractCustomCommand {
 	 *            the preference hint of the diagram
 	 * @param point
 	 *            the location of the future association node
+	 * @since 3.0
 	 */
 	public DependencyDiamonViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
 		super(domain, "AssociationClassViewCreateCommand", null); //$NON-NLS-1$

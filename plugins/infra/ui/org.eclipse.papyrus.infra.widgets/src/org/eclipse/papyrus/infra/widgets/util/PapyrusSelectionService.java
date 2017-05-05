@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 
 /**
  * Selection Service for Papyrus widget. Usually for widget instantiate with xwt where we can't use SelectionService like MultipleValueEditor.
+ * @since 3.0
  */
 public class PapyrusSelectionService implements ISelectionChangedListener, ISelectionProvider {
 

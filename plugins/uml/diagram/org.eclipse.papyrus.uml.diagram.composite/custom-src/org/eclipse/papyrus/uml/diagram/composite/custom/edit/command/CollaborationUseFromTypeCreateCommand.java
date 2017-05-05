@@ -42,6 +42,9 @@ public class CollaborationUseFromTypeCreateCommand extends EditElementCommand {
 
 	protected SemanticAdapter semanticAdapter;
 
+	/**
+	 * @since 3.0
+	 */
 	public CollaborationUseFromTypeCreateCommand(CreateElementRequest req, StructuredClassifier owner, Collaboration collaboration, SemanticAdapter semanticAdapter) {
 		super(req.getLabel(), null, req);
 		this.owner = owner;

@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
  *
  *****************************************************************************/
 
@@ -42,6 +42,7 @@ import org.eclipse.ui.XMLMemento;
 
 /**
  * Customizer for the palette viewer
+ * @since 3.0
  */
 public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 

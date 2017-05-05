@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.commands.Ster
 import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
 
 /**
+ * @since 3.0
  *
  */
 public class StereotypeDisplayDiagramReconciler_1_2_0 extends DiagramReconciler {

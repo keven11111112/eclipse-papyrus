@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * A dialog to explore all available Profiles.
+ * @since 3.0
  */
 public class ProfileExplorerDialog extends StereotypeExplorerDialog {
 

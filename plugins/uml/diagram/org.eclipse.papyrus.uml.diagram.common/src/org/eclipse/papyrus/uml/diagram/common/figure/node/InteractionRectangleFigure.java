@@ -40,11 +40,13 @@ public class InteractionRectangleFigure extends RoundedCompartmentFigure {
 	public InteractionRectangleFigure() {
 		this(null);
 	}
+
 	/**
 	 * Create a new Classifier figure with the given tag
 	 *
 	 * @param tagLabel
 	 *            a String that will be displayed at the top of the figure
+	 * @since 3.0
 	 */
 	public InteractionRectangleFigure(String tagLabel) {
 		super(COMPARTMENT, tagLabel);
@@ -54,6 +56,7 @@ public class InteractionRectangleFigure extends RoundedCompartmentFigure {
 	 * Get the attribute's compartment figure
 	 *
 	 * @return
+	 * @since 3.0
 	 */
 	public IFigure getCompartmentFigure() {
 		return getCompartment(INTERACTION_COMPARTMENT);

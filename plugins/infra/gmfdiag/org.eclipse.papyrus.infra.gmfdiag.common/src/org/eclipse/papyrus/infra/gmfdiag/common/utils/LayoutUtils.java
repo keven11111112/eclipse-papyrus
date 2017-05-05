@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * This class provides utilities for the layout actions
+ * @since 3.0
  */
 public class LayoutUtils {
 

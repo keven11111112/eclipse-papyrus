@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
  * Messages class to access to externalised strings.
  * 
  * @author Gabriel Pascual
+ * @since 2.0
  *
  */
 public class Messages {

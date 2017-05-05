@@ -39,6 +39,9 @@ public class DefaultElementTypeIconProvider extends AbstractProvider implements 
 		return myElementTypes;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public final DiagramElementTypeImages getElementTypeImages() {
 		return myElementTypes.getElementTypeImages();
 	}

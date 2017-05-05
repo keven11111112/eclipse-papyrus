@@ -408,6 +408,7 @@ public class StringMatcherEditorFactory<T> implements IPapyrusMatcherEditorFacto
 	 *
 	 * @param <E>
 	 *            Type of filtered object.
+	 * @since 3.0
 	 */
 	public class PapyrusTextMatcherEditor<E> extends TextMatcherEditor<E> {
 

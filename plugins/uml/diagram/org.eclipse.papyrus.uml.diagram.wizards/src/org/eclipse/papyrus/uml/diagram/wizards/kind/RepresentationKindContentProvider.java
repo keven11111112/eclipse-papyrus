@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 /**
  * The ContentProvider for DiagramCategory table.
  * Returns available diagram kinds for the given diagram category(ies).
+ * @since 3.0
  */
 public class RepresentationKindContentProvider implements IStructuredContentProvider {
 

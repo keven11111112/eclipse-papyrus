@@ -31,6 +31,9 @@ public abstract class DiagramElementTypes {
 		this(new DiagramElementTypeImages(adapterFactory));
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public DiagramElementTypes(DiagramElementTypeImages images) {
 		myImages = images;
 	}
@@ -41,6 +44,9 @@ public abstract class DiagramElementTypes {
 
 	public abstract ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter);
 
+	/**
+	 * @since 3.0
+	 */
 	public DiagramElementTypeImages getElementTypeImages() {
 		return myImages;
 	}

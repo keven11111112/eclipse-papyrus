@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
 /**
  * This class is used to add behavior to reorient the lollipop or the required interface representation
+ * @since 3.0
  *
  */
 public class CustomInterfaceEditPart extends InterfaceEditPart {

@@ -27,6 +27,9 @@ import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
+/**
+ * @since 3.0
+ */
 public class ActivityPartitionLabelHelper extends StereotypedElementLabelHelper {
 
 	public static final String SHOW_REPRESENT_NAME = "representsName"; //$NON-NLS-1$

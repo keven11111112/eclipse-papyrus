@@ -230,7 +230,7 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 				if (matcherCreator != null) {
 					if (value instanceof Collection<?>) {
 						Collection<?> coll = (Collection<?>) value;
-						if(!coll.isEmpty()){
+						if (!coll.isEmpty()) {
 							Iterator<?> iter = coll.iterator();
 							CompositeMatcherEditor<Object> composite = new CompositeMatcherEditor<Object>();
 							composite.setMode(CompositeMatcherEditor.OR);
@@ -272,6 +272,7 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 	 *            The existing matcher editors.
 	 * @param filterIndexToObjectMap
 	 *            The map of filters by columns.
+	 * @since 3.0
 	 */
 	protected void clearMarcherEditors(final CompositeMatcherEditor<Object> rootMatcherEditor, final Map<Integer, Object> filterIndexToObjectMap) {
 		final Iterator<MatcherEditor<Object>> subMatchersEditor = rootMatcherEditor.getMatcherEditors().iterator();
@@ -325,6 +326,7 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 	 * @param filterIndexToObjectMap
 	 *            The filters map.
 	 * @return <code>true</code> if the composite matcher editor already exist and is the same than in the filters map, <code>false</code> otherwise.
+	 * @since 3.0
 	 */
 	@SuppressWarnings("rawtypes")
 	protected boolean isCompositeSubMatcherExist(final CompositeMatcherEditor<Object> subCompositeMatcher, final Map<Integer, Object> filterIndexToObjectMap) {
@@ -360,7 +362,7 @@ public class PapyrusFilterStrategy implements IFilterStrategy<Object>, IDisposab
 
 				matchingMode = ((PapyrusTextMatcherEditor) matcherEditor).getPapyrusMode();
 			}
-			
+
 			if (matcherEditor instanceof PapyrusThresholdMatcherEditor) {
 				if (-1 == columnIndex) {
 					columnIndex = ((PapyrusThresholdMatcherEditor) matcherEditor).getColumnIndex();

@@ -32,6 +32,9 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.PackageableElement;
 
+/**
+ * @since 3.0
+ */
 public class InteractionCompartmentDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDescriptor> {
 
 	/**

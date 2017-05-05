@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 
 /**
  * this class is used to display an interface Realization as UML or as fill line for lollipop
+ * @since 3.0
  *
  */
 public class CustomUsageEditPart extends UsageEditPart {

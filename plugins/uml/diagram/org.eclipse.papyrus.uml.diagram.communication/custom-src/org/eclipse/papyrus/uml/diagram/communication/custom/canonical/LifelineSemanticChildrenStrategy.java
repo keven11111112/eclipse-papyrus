@@ -32,6 +32,7 @@ import com.google.common.collect.Lists;
 
 /**
  * Custom semantic-children strategy for lifelines in communication diagrams.
+ * @since 3.0
  */
 public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildrenStrategy {
 

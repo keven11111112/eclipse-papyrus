@@ -143,6 +143,9 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 
 		IElementType elementType;
 
+		/**
+		 * @since 3.0
+		 */
 		public CustomVertexCreateElementCommand(TransactionalEditingDomain domain, ViewDescriptor viewDescriptor, IElementType elementType, IAdaptable adaptable, String label) {
 			super(domain, label, null);
 			this.adaptable = adaptable;
@@ -152,6 +155,9 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 			setResult(CommandResult.newOKCommandResult(viewDescriptor));
 		}
 
+		/**
+		 * @since 3.0
+		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			// adapt the view at execution time
@@ -183,6 +189,9 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 		}
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public Command getCustomCreateCommand(Request request, CreateRequest createReq, IElementType elementType, String semanticHint) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);

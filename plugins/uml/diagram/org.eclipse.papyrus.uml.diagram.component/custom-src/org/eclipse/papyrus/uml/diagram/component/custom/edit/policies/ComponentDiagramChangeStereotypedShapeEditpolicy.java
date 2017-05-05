@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * the goal of this class is to allow changing the aspect of an element by taking in account its stereotype
+ * @since 3.0
  *
  */
 public class ComponentDiagramChangeStereotypedShapeEditpolicy extends ChangeStereotypedShapeEditPolicy {

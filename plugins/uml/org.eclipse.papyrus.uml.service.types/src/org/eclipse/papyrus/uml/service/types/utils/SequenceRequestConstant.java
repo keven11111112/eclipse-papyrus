@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.service.types.utils;
 
 /**
  * Constants used in the sequence diagram
+ * @since 3.0
  */
 public interface SequenceRequestConstant {
 

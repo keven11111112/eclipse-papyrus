@@ -24,6 +24,7 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 /**
  *
  * Implementation for an ObservableValue associated to a IntValueStyle and a IPreferenceStore.
+ * @since 3.0
  *
  */
 public class CustomIntStyleWithStoreObservableValue extends CustomIntStyleObservableValue {

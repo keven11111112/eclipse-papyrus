@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.ui.editorsfactory.AbstractGetEditorIconQuery;
 
 /**
  * Return the label of the corresponding table.
+ * @since 3.0
  */
 public class GetTableLabel extends AbstractGetEditorIconQuery implements IJavaQuery2<Table, String> {
 

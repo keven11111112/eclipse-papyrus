@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.DefaultNamedEleme
 
 /**
  * this class has been specialized in order to manage reconnection of multidependency
+ * @since 3.0
  *
  */
 public class CustomDefaultNamedElementItemSemanticEditPolicy extends DefaultNamedElementItemSemanticEditPolicy {

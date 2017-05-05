@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.TypedElement;
  * Supports type applied stereotypes and stereotype properties
  *
  * @author Shuai Li
+ * @since 2.0
  *
  */
 public class GMFUMLTypedElementAdapter extends GMFUMLElementAdapter {

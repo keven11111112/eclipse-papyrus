@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaäl ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common and remove aspect actions framework, see bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common and remove aspect actions framework, see bug 512343.
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
 
@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 
 /**
  * Interface that describes a palette.
+ * @since 3.0
  */
 public interface IPaletteDescription {
 

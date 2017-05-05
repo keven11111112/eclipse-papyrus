@@ -189,6 +189,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * Checks if the separator is wanted.
 	 * 
 	 * @return true, if it is
+	 * @since 3.0
 	 */
 	public boolean isSeparated() {
 		return drawSeparator;
@@ -198,6 +199,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * Set the separator option
 	 * 
 	 * @param isSeparated
+	 * @since 3.0
 	 */
 	public void setSeparated(boolean isSeparated) {
 		this.drawSeparator = isSeparated;
@@ -314,6 +316,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	/**
 	 *
 	 * @return the container of the text flow
+	 * @since 3.0
 	 */
 	public WrappingLabel getPageFlow() {
 		return page;

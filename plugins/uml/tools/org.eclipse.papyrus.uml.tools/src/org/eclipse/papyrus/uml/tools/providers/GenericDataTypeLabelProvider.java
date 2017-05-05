@@ -39,11 +39,34 @@ import org.eclipse.swt.graphics.Image;
  */
 public class GenericDataTypeLabelProvider extends EMFLabelProvider implements IFilteredLabelProvider {
 
+	/**
+	 * @since 3.0
+	 */
 	public static final String SEPARATOR = ","; //$NON-NLS-1$
+	
+	/**
+	 * @since 3.0
+	 */
 	public static final String DATATYPE_START = "("; //$NON-NLS-1$
+	
+	/**
+	 * @since 3.0
+	 */
 	public static final String DATATYPE_END = ")"; //$NON-NLS-1$
+	
+	/**
+	 * @since 3.0
+	 */
 	public static final String COLLECTION_START = "{"; //$NON-NLS-1$
+	
+	/**
+	 * @since 3.0
+	 */
 	public static final String COLLECTION_END = "}"; //$NON-NLS-1$
+	
+	/**
+	 * @since 3.0
+	 */
 	public static final String EQUALS = "="; //$NON-NLS-1$
 
 	/**
@@ -119,6 +142,7 @@ public class GenericDataTypeLabelProvider extends EMFLabelProvider implements IF
 	 *            the object for which we want the label
 	 * @return
 	 * 		the label for the given value
+	 * @since 3.0
 	 */
 	protected String getLabel(final LabelProviderService service, final Object object) {
 		final StringBuilder builder = new StringBuilder();
@@ -156,6 +180,7 @@ public class GenericDataTypeLabelProvider extends EMFLabelProvider implements IF
 	 *            a datatype instance
 	 * @return
 	 * 		the label provider service found or <code>null</code> otherwise
+	 * @since 3.0
 	 */
 	protected LabelProviderService getLabelProviderService(final EObject dataTypeInstance) {
 		ServicesRegistry registry = null;

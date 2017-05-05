@@ -176,6 +176,7 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 	 * @param objectToUncontrol
 	 *            the object to uncontrol
 	 * @return the target resrource
+	 * @since 2.0
 	 */
 	protected Resource getTargetResrource(EObject objectToUncontrol) {
 		return getRequest().getModelSet().getAssociatedResource(objectToUncontrol, getFileExtension(), true);

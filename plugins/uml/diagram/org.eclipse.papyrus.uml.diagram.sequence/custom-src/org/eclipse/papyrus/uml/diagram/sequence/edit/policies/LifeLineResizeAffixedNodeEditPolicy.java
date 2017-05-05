@@ -19,7 +19,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AllowResizeAffixedNod
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 
 /**
- * @author Céline JANSSENS
+ * @since 3.0
  *
  */
 public class LifeLineResizeAffixedNodeEditPolicy extends AllowResizeAffixedNodeAlignmentEditPolicy {
@@ -36,7 +36,7 @@ public class LifeLineResizeAffixedNodeEditPolicy extends AllowResizeAffixedNodeA
 			return new StateInvariantResizableEditPolicy();
 		}
 		return super.createChildEditPolicy(child);
-			
+
 	}
-	
+
 }

@@ -21,15 +21,11 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.InteractionOperand;
 
 /**
- * @author PT202707
- *
+ * @since 3.0
  */
 public class InteractionOperandEditHelper extends ElementEditHelper {
 
@@ -46,7 +42,7 @@ public class InteractionOperandEditHelper extends ElementEditHelper {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				InteractionOperand interactionOperand = (InteractionOperand) req.getElementToConfigure();
-				InteractionConstraint guard= interactionOperand.createGuard("guard");
+				InteractionConstraint guard = interactionOperand.createGuard("guard");
 				return CommandResult.newOKCommandResult(interactionOperand);
 			}
 		};

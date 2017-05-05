@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * 
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
+ * @since 3.0
  *
  */
 public class AutomatedModelCompletionPreferenceDescriptor {

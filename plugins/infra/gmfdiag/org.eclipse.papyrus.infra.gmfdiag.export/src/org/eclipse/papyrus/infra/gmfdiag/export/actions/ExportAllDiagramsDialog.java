@@ -42,6 +42,7 @@ public class ExportAllDiagramsDialog extends Dialog {
 	 *            the parent shell
 	 * @param initialOutputDirectory
 	 *            the initial output directory
+	 * @since 2.0
 	 */
 	public ExportAllDiagramsDialog(Shell parentShell, IResource initialOuputDirectory) {
 		super(parentShell);

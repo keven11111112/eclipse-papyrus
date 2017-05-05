@@ -24,6 +24,7 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 /**
  *
  * Implementation for an ObservableValue associated to a BooleanValueStyle and a IPreferenceStore.
+ * @since 3.0
  *
  */
 public class CustomBooleanStyleWithStoreObservableValue extends CustomBooleanStyleObservableValue {

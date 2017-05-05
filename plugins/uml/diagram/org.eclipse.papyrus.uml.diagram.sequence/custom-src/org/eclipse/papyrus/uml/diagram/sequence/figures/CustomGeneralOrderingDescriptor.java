@@ -32,7 +32,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author Céline JANSSENS
+ * @since 3.0
  *
  */
 public class CustomGeneralOrderingDescriptor extends GeneralOrderingDescriptor implements IPapyrusUMLElementFigure {

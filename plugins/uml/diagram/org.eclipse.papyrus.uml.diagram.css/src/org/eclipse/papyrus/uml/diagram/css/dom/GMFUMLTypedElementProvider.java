@@ -23,6 +23,7 @@ import org.w3c.dom.Element;
  * Provides a specialization of GMFElementAdapter for UML TypedElements
  *
  * @author Shuai Li
+ * @since 2.0
  */
 @SuppressWarnings("restriction")
 // e4 CSS

@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Control;
 
 /**
  * A CellEditor uses to set multiple values of an object.
+ * @since 2.0
  */
 public class MultipleCellEditor extends DialogCellEditor {
 

@@ -59,6 +59,7 @@ public class ValueSpecificationUtil {
 	 *
 	 * @param specification The Value specification.
 	 * @param useInternationalization Boolean to determinate if the internationalization must be used for the string representation.
+	 * @since 3.0
 	 */
 	public static String getSpecificationValue(final ValueSpecification specification, final boolean useInternationalization) {
 		String value = ""; //$NON-NLS-1$

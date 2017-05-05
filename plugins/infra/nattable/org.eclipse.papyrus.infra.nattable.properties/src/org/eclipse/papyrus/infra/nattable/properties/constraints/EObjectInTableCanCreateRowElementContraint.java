@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.utils.CreatableEObjectAxisUtils;
 /**
  * The java constraint to define the constraint to create the paste properties from the active nattable editor.
  * 
- * @since 3.0
+ * @since 2.2
  */
 public class EObjectInTableCanCreateRowElementContraint extends EObjectInTableHasTreeFillingConfigurationConstraint {
 

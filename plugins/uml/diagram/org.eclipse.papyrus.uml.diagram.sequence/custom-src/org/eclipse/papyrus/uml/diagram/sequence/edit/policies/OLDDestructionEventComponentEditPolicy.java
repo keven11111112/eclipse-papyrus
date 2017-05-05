@@ -23,6 +23,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
 
 /**
  * This edit policy also deletes time/duration edit parts which are linked with the deleted edit part.
+ * 
+ * @since 3.0
  */
 public class OLDDestructionEventComponentEditPolicy extends ComponentEditPolicy {
 

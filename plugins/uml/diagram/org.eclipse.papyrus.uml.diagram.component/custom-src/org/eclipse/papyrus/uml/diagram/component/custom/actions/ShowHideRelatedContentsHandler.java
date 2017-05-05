@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedConten
 
 /**
  * Handler for the {@link ShowHideRelatedContentsAction}.
+ * @since 3.0
  */
 public class ShowHideRelatedContentsHandler extends AbstractShowHideHandler {
 

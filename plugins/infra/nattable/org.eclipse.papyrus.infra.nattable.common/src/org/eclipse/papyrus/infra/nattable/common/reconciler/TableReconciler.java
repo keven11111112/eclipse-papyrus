@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
  * <p/>
  * If the suitable reconcilers are found, all of them are asked to update table instance before the first table opening. Planned modifications are provided as an {@link ICommand} instance that allows user to roll-back them all at once.
  * <p/>
+ * @since 3.0
  */
 public abstract class TableReconciler implements IExecutableExtension {
 

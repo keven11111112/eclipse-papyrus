@@ -849,6 +849,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * Instantiate a new {@link DragSourceListener}.
 	 *
 	 * @return The Drag Listener.
+	 * @since 3.0
 	 */
 	protected DragSourceListener createDragListener() {
 		return new NatTableDragSourceListener(this, natTable, table);

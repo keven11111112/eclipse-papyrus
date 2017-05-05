@@ -13,6 +13,9 @@
 
 package org.eclipse.papyrus.uml.service.types.helper;
 
+/**
+ * @since 3.0
+ */
 public class BehaviorExecutionSpecificationEditHelper extends ExecutionSpecificationEditHelper {
 
 

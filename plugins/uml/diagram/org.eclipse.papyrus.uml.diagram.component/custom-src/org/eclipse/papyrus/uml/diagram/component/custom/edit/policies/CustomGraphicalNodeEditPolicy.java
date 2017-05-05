@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
  * This class is used to launch command to create associationClass
  *
  * @author Patrick Tessier
+ * @since 3.0
  */
 public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	/** The ID for the additional parameter SOURCE_PARENT used in creation request. */

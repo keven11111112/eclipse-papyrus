@@ -70,6 +70,7 @@ public class Activator extends AbstractUIPlugin {
 	 *
 	 * @param message
 	 *            the message to log
+	 * @since 2.1
 	 */
 	public static void debug(String message) {
 		getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, IStatus.OK, message, null));

@@ -80,8 +80,14 @@ public class CommandIds {
 
 	public static final String COMMAND_HIERARCHIC_DISPLAY_STYLE = "org.eclipse.papyrus.infra.nattable.table.hierarchic.style";////$NON-NLS-1$
 
+	/**
+	 * @since 3.0
+	 */
 	public static final String COMMAND_WRAP_TEXT = "org.eclipse.papyrus.infra.nattable.wraptext"; //$NON-NLS-1$
 
+	/**
+	 * @since 3.0
+	 */
 	public static final String COMMAND_AUTO_RESIZE_CELL_HEIGHT = "org.eclipse.papyrus.infra.nattable.autoresize.cellheight"; //$NON-NLS-1$
 
 }

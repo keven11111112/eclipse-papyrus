@@ -16,6 +16,7 @@ import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocat
 /**
  * Lets the user move a Label anywhere inside its containing compartment, but don't let the label stick out of the
  * compartment.
+ * @since 1.3
  */
 public class LabelInCompartmentLocator extends ExternalLabelPositionLocator {
 

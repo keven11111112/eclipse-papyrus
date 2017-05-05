@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.StartClassifierBehaviorAction;
 /**
  * 
  * Pin of StartClassifierBehaviorAction should be create and update automatically
+ * @since 3.0
  * 
  */
 public class StartClassifierBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice {

@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Element;
  * Existing Associations (created in previous Papyrus version and which have no nature set)
  * are treated as UML Associations.
  * </pre>
+ * @since 3.0
  */
 public class AssociationMatcher implements IElementMatcher {
 

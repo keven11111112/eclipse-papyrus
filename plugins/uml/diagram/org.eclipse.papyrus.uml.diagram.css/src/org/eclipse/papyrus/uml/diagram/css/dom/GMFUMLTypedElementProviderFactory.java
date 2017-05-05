@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.css.dom.GMFUMLElementProviderFactory;
  * IElementProvider Factory for Diagrams related to UML TypedElements
  *
  * @author Shuai Li
+ * @since 2.0
  *
  */
 public class GMFUMLTypedElementProviderFactory extends GMFUMLElementProviderFactory {

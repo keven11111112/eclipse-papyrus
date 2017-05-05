@@ -92,39 +92,81 @@ public class Messages extends NLS {
 	public static String PastePreferencesPage_KeepReferenceDescription;
 
 	// Palette UI //
-	/** LAbel for the standard group */
+	/** LAbel for the standard group 
+	 * @since 3.0*/
 	public static String StandardGroup_Label;
 
-	/** label for the palette action in the palette viewer menu */
+	/** label for the palette action in the palette viewer menu 
+	 * @since 3.0*/
 	public static String Palette_Action_Label;
 
-	/** tooltip for the palette action in the palette viewer menu */
+	/** tooltip for the palette action in the palette viewer menu 
+	 * @since 3.0*/
 	public static String Palette_Action_Tooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PaletteUtil_ErrorMessage_CantReadLocalDefinitionOfFile;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PaletteUtil_ErrorMessage_NoLocalDefinition;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PaletteUtil_ErrorMessage_NoRedefinitionFoundWithId;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PaletteUtil_ErrorMessage_PaletteNullOnContribution;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PapyrusPalettePreferences_Error_ImpossibleToFindPalette;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PapyrusPalettePreferences_Error_ImpossibleToFindPaletteInWS;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PapyrusPalettePreferences_Error_ImpossibleToReadPreferences;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String PapyrusPalettePreferences_ErrorDuringCreation;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String LocalExtendedPaletteProvider_Error_ImpossibleToLoadRessource;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String WorkspaceExtendedPaletteProvider_ImpossibleToReadResourcePalette;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String ResizeBindingPreferencePage_PageTitle;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String ResizeBindingPreferencePage_PageDescription;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String ResizeBindingPreferencePage_HoldingShiftToRecalculateAnchorPositionWhenResizing;
 
 	static {

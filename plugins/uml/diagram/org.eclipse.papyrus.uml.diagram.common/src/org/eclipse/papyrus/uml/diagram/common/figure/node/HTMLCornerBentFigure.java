@@ -461,6 +461,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 *            the parent block flow which will contain the created block
 	 * @param styles
 	 *            stack of styles to be applied
+	 * @since 3.0
 	 */
 	protected void generateBlocksForSpanNode(final Node node, final BlockFlow parentFlow, final Stack<Styles> styles) {
 		NodeList childrenNodes = node.getChildNodes();
@@ -810,6 +811,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 *            the parent block flow which will contain the created block
 	 * @param styles
 	 *            the stack of styles
+	 * @since 3.0
 	 */
 	protected void generateBlocksFromStrikeThroughNode(final Node node, final BlockFlow parentFlow, final Stack<Styles> styles) {
 		NodeList childrenNodes = node.getChildNodes();
@@ -1008,6 +1010,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 
 	/**
 	 * Valid HTML tags enumeration
+	 * @since 3.0
 	 */
 	protected enum HTMLTags {
 
@@ -1017,7 +1020,13 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		h5(""), // sub sub section heading //$NON-NLS-1$
 		strong(""), // bold character //$NON-NLS-1$
 		b(""), // bold character //$NON-NLS-1$
+		/**
+		 * @since 3.0
+		 */
 		em(""), // italic //$NON-NLS-1$
+		/**
+		 * @since 3.0
+		 */
 		s(""), // strike through //$NON-NLS-1$
 		u(""), // underline //$NON-NLS-1$
 		sub(""), // subscript //$NON-NLS-1$
@@ -1027,6 +1036,9 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		p(""), // paragraph //$NON-NLS-1$
 		br(""), // new line //$NON-NLS-1$
 		font(""), // specific font //$NON-NLS-1$
+		/**
+		 * @since 3.0
+		 */
 		span(""); //$NON-NLS-1$
 
 		/** additional data for this enum */
@@ -1061,7 +1073,15 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * Styles to apply to the text
 	 */
 	protected enum Styles {
-		strong, header3, header4, header5, underline, italic, code, subscript, supscript, quote, font(new HashMap<String, Object>()), strikeThrough, color;
+		strong, header3, header4, header5, underline, italic, code, subscript, supscript, quote, font(new HashMap<String, Object>()), 
+		/**
+		 * @since 3.0
+		 */
+		strikeThrough, 
+		/**
+		 * @since 3.0
+		 */
+		color;
 
 		/** additional data */
 		private Map<String, Object> data;

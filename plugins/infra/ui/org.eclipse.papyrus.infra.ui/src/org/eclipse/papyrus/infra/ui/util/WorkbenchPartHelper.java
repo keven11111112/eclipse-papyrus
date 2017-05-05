@@ -38,6 +38,7 @@ public class WorkbenchPartHelper {
 	/**
 	 * @return
 	 * 		The current {@link IWorkbenchPage} or <code>null</code> if not found
+	 * @since 2.0
 	 */
 	public static final IWorkbenchPage getCurrentActiveWorkbenchPage() {
 		final IWorkbench workbench = PlatformUI.getWorkbench();

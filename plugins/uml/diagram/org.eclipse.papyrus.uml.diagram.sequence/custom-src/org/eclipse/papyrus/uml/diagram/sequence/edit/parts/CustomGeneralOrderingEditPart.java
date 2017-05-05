@@ -52,6 +52,9 @@ public class CustomGeneralOrderingEditPart extends GeneralOrderingEditPart imple
 		return new CustomGeneralOrderingDescriptor(getMapMode());
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	public CustomGeneralOrderingDescriptor getPrimaryShape() {
 

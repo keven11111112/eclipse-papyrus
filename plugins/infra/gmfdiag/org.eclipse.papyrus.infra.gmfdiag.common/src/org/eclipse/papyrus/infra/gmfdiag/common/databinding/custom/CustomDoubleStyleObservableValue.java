@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  *
  * Implementation for an ObservableValue associated to a GMF custom style (DoubleValueStyle).
+ * @since 3.0
  *
  */
 public class CustomDoubleStyleObservableValue extends AbstractCustomStyleObservableValue {

@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Edit helper advice for {@link StartObjectBehaviorAction}
+ * @since 3.0
  */
 public class InputPinStartObjectBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice {
 

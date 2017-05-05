@@ -26,6 +26,7 @@ import org.eclipse.ui.navigator.CommonViewer;
 
 /**
  * Handler to collapse all children at selected element.
+ * @since 3.0
  */
 public class CollapseAllHandler extends AbstractHandler {
 

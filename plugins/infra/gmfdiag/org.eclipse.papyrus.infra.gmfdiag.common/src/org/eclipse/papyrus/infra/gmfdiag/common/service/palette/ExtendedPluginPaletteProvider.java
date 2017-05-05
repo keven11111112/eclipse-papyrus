@@ -78,6 +78,7 @@ import org.osgi.framework.Bundle;
 
 /**
  * Palette provider with enhanced elements types
+ * @since 3.0
  */
 public class ExtendedPluginPaletteProvider extends AbstractProvider implements IPaletteProvider, IProfileDependantPaletteProvider {
 

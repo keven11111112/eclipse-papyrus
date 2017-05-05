@@ -58,9 +58,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateElementAndViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.ReconnectToGateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
@@ -74,6 +74,7 @@ import org.eclipse.uml2.uml.Message;
  *
  * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @since 3.0
  */
 public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
 

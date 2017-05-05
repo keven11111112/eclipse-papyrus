@@ -36,6 +36,9 @@ public class DiagramPrototype extends ViewPrototype {
 	protected final String category;
 	protected final AbstractPapyrusGmfCreateDiagramCommandHandler command;
 
+	/**
+	 * @since 3.0
+	 */
 	public DiagramPrototype(PapyrusDiagram configuration, String category, AbstractPapyrusGmfCreateDiagramCommandHandler command) {
 		super(configuration);
 		this.category = category;
@@ -137,6 +140,9 @@ public class DiagramPrototype extends ViewPrototype {
 		return ((Diagram) view).getElement();
 	}
 	
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	public PapyrusDiagram getRepresentationKind() {
 		return (PapyrusDiagram) representationKind;

@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.InteractionOperand;
 
 /**
  * Command to move Operand fragments.
+ * @since 3.0
  */
 public class MoveOperandFragmentsCommand extends EditElementCommand {
 

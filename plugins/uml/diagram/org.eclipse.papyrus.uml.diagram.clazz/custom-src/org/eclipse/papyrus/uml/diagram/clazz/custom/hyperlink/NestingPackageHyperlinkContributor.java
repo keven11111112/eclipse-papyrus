@@ -39,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
  * the nesting package of the double-clicked package.
  * 
  * @author Shuai Li
+ * @since 3.0
  *
  */
 public class NestingPackageHyperlinkContributor implements HyperlinkContributor {

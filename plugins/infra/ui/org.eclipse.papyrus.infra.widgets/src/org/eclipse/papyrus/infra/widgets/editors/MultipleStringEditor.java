@@ -104,6 +104,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	 *            Indicates if the values should be unique.
 	 * @param label
 	 *            The editor's label
+	 * @since 3.0
 	 */
 	public MultipleStringEditor(Composite parent, int style, T selector, boolean ordered, boolean unique, String label) {
 		super(parent, style, selector, ordered, unique, label);
@@ -121,6 +122,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	 *            The List's style
 	 * @param selector
 	 *            The Element selector for the dialog's left-pane. Used to select values or enter new ones.
+	 * @since 3.0
 	 */
 	public MultipleStringEditor(Composite parent, int style, T selector) {
 		super(parent, style, selector);
@@ -140,6 +142,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	 *            The Element selector for the dialog's left-pane. Used to select values or enter new ones.
 	 * @param label
 	 *            The editor's label
+	 * @since 3.0
 	 */
 	public MultipleStringEditor(Composite parent, int style, T selector, String label) {
 		super(parent, style, selector, label);

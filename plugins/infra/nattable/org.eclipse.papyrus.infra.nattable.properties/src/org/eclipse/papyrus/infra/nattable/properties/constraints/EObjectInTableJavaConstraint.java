@@ -23,7 +23,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * The java constraint to check if the table from the active nattable editor.
  * 
- * @since 3.0
+ * @since 2.2
  */
 public class EObjectInTableJavaConstraint implements JavaQuery {
 

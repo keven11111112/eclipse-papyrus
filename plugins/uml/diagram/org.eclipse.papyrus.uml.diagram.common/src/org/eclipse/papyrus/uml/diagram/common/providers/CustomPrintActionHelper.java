@@ -31,6 +31,7 @@ import org.eclipse.ui.IEditorPart;
  * Provides basic printing functionality. This does a print from a default print
  * dialog.
  * Customization of <code>DefaultPrintActionHelper</code>
+ * @since 3.0
  *
  */
 public class CustomPrintActionHelper {

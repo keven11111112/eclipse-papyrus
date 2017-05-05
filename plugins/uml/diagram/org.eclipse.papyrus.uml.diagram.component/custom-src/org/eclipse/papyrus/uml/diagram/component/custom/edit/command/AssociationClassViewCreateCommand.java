@@ -40,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider;
 
 /**
  * Custom class to create the associationClass node.
+ * @since 3.0
  *
  */
 public class AssociationClassViewCreateCommand extends AbstractTransactionalCommand {

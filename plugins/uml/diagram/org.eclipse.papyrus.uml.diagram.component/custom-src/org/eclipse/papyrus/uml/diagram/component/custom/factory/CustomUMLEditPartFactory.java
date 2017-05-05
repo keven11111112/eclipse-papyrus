@@ -40,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 
 /**
  * Custom EditPartFactory
+ * @since 3.0
  *
  */
 public class CustomUMLEditPartFactory extends UMLEditPartFactory {

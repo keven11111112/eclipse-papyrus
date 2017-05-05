@@ -27,6 +27,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 
 /**
  * Structured ObservableValue.
+ * @since 2.0
  */
 public class EObjectStructuredObservableValue extends EMFObservableValue {
 

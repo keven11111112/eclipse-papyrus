@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * An item label provider that delegates to an adapter factory and rewrites the result for UML element labels.
  * If the adapter factory needs to be disposed (which is usually the case for item-provider factories), then
  * this is the responsibility of the client that creates the delegating label provider.
+ * @since 3.0
  */
 public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvider {
 

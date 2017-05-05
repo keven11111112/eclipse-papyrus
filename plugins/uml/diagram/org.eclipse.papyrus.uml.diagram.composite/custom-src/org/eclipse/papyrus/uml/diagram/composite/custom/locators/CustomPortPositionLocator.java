@@ -34,6 +34,9 @@ public class CustomPortPositionLocator extends PortPositionLocator {
 
 	protected RoundedBorderNamedElementEditPart portEditPart = null;
 	
+	/**
+	 * @since 3.0
+	 */
 	public CustomPortPositionLocator(IFigure parentFigure, RoundedBorderNamedElementEditPart childEditPart) {
 		super(parentFigure);
 		portEditPart = childEditPart;

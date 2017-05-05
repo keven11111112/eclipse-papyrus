@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EPackage;
  * Helper class for the ProfileHelper extension point
  *
  * @author Laurent Wouters
+ * @since 2.0
  */
 public class ProfileUtils {
 	/**

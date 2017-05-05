@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.tools.profile.definition;
 
 /**
  * the differents type of label that can compose an UML Label.
+ * @since 3.0
  */
 public enum LabelTypesEnum {
 

@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * {@link WorkspaceModelIndex} for {@link Profile} model.
+ * @since 3.0
  *
  */
 public class ProfileWorkspaceModelIndex {

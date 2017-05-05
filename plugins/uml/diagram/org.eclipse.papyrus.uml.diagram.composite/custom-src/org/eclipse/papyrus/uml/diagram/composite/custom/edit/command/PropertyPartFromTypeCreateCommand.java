@@ -44,6 +44,9 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 
 	protected SemanticAdapter semanticAdapter;
 
+	/**
+	 * @since 3.0
+	 */
 	public PropertyPartFromTypeCreateCommand(CreateElementRequest req, StructuredClassifier owner, Type type, SemanticAdapter semanticAdapter) {
 		super(req.getLabel(), null, req);
 		this.owner = owner;

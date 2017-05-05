@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider;
 
 /**
  * this is the specific command in charge to transform an element editpart into a shape_namedElement Editpart
+ * @since 3.0
  *
  */
 public class ElementToStereotypedShape extends RecordingCommand {

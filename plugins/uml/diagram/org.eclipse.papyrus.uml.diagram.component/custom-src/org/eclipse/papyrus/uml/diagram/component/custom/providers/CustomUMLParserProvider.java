@@ -18,6 +18,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedS
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLParserProvider;
 
+/**
+ * @since 3.0
+ */
 public class CustomUMLParserProvider extends UMLParserProvider {
 
 	public CustomUMLParserProvider() {

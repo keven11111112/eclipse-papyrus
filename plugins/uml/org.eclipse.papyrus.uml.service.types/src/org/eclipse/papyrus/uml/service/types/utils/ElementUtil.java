@@ -132,6 +132,7 @@ public class ElementUtil {
 
 	/**
 	 * @return true element is type of type to match
+	 * @since 3.0
 	 */
 	public static boolean isTypeOf(IElementType element, IElementType typeTomatch) {
 		if (typeTomatch.equals(element)) {

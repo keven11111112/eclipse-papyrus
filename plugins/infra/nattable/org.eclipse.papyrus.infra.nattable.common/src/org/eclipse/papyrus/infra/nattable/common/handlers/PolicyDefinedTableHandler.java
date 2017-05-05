@@ -36,6 +36,9 @@ public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
 	private EObject context;
 	private String name;
 
+	/**
+	 * @since 3.0
+	 */
 	public PolicyDefinedTableHandler(TableConfiguration config, EObject context, String name) {
 		this.configuration = config;
 		this.context = context;

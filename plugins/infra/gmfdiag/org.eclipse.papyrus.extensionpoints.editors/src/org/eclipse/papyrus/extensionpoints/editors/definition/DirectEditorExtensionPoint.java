@@ -66,6 +66,9 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 		init();
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected void init() {
 		// It was not already computed,
 		// returns the new Collection of DirectEditorExtensionPoint
@@ -93,6 +96,9 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 		directEditorProvider.init(configurations);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public final synchronized static DirectEditorExtensionPoint getInstance() {
 		if (DirectEditorExtensionPoint.instance == null) {
 			DirectEditorExtensionPoint.instance = new DirectEditorExtensionPoint();

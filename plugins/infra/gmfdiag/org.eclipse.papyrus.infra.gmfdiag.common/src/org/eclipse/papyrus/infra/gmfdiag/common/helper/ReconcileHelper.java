@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtil
 
 /**
  * Diagram migration between version of Papyrus.
+ * @since 3.0
  */
 public class ReconcileHelper {
 	

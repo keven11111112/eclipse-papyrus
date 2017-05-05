@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * Command to rename a label of a {@link NamedElement}.
+ * @since 1.3
  */
 public class RenameNamedElementLabelCommand extends RenameLabelCommand {
 

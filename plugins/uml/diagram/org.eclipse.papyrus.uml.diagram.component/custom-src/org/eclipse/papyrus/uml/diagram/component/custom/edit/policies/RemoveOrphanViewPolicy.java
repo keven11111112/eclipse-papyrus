@@ -28,6 +28,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
  *
  * See RemoveOrphanViewPolicy in Class Diagram
  * </pre>
+ * @since 3.0
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 

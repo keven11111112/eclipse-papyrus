@@ -71,7 +71,11 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	/** The Constant DEFAULT_SHADOW_WIDTH. */
 	private static final int DEFAULT_SHADOW_WIDTH = 4;
 
-	/** The namedStyle Listener */
+	/**
+	 * The namedStyle Listener
+	 * 
+	 * @since 3.0
+	 */
 	protected IChangeListener namedStyleListener = new IChangeListener() {
 
 		@Override

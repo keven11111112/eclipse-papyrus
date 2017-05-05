@@ -98,6 +98,9 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 		return result;
 	}
 
+	/**
+	 * @since 2.1
+	 */
 	protected List<String> findClassesFromSelector(Selector selector) {
 		List<String> result = new LinkedList<String>();
 		if (selector instanceof ConditionalSelector) {
@@ -112,6 +115,9 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 		return result;
 	}
 
+	/**
+	 * @since 2.1
+	 */
 	protected List<String> findClassesFromSelector(ConditionalSelector selector) {
 		List<String> result = new LinkedList<String>();
 
@@ -129,6 +135,9 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 		return result;
 	}
 
+	/**
+	 * @since 2.1
+	 */
 	protected List<String> findClassesFromCondition(Condition condition) {
 		if (condition instanceof CSSClassConditionImpl) {
 			return Collections.singletonList(((CSSClassConditionImpl) condition).getValue());

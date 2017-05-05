@@ -18,6 +18,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableResourceConstants;
 
 /**
  * The table resource helper needed to install the table support for the '*.table' files resources.
+ * @since 3.0
  */
 public class TableResourceHelper {
 

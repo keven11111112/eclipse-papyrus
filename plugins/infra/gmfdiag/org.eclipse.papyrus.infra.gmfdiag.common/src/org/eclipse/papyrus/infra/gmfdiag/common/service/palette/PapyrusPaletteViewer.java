@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * Extended Palette Viewer, to have a new customize dialog
+ * @since 3.0
  */
 public class PapyrusPaletteViewer extends PaletteViewerEx {
 

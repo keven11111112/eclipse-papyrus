@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 
 /**
  * Figure for Composite representation of InformationItem.
+ * @since 3.0
  */
 public class InformationItemFigure extends RoundedCompartmentFigure {
 

@@ -24,6 +24,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * Figure for Required interface. It draws an half circle.
+ * @since 3.0
  */
 public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements IPapyrusNodeUMLElementFigure {
 

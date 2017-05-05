@@ -44,6 +44,7 @@ import org.eclipse.uml2.uml.InteractionFragment;
  * when creating a new combined fragment.
  *
  * @author mvelten
+ * @since 3.0
  *
  */
 public class OLDCombinedFragmentCreationEditPolicy extends DefaultCreationEditPolicy {

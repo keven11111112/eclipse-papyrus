@@ -24,6 +24,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 
 
 
+/**
+ * @since 3.0
+ */
 public class CustomPortEditPart extends PortEditPart {
 
 	public CustomPortEditPart(View view) {

@@ -14,23 +14,21 @@
 package org.eclipse.papyrus.uml.diagram.sequence;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
  * This figure is used in order to allow a link to follow the shape of the lifeLine
  * see getPolygonPoints()
+ * 
+ * @since 3.0
  *
  */
-public  class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
+public class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
 
 	/**
 	 * Constructor.
@@ -38,13 +36,14 @@ public  class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
 	 * @param hostEP
 	 * @param width
 	 * @param height
-	 * @param lifelineEditPart TODO
+	 * @param lifelineEditPart
+	 *            TODO
 	 */
-	public	LifelineNodePlate(org.eclipse.gef.GraphicalEditPart hostEP, int width, int height) {
+	public LifelineNodePlate(org.eclipse.gef.GraphicalEditPart hostEP, int width, int height) {
 		super(hostEP, width, height);
 		withLinkLFEnabled();
-		followSVGPapyrusPath=true;
-		
+		followSVGPapyrusPath = true;
+
 	}
 
 	/**
@@ -52,7 +51,7 @@ public  class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
 	 */
 	@Override
 	public PointList getPolygonPoints() {
-		return ((NodeFigure)this.getChildren().get(0)).getPolygonPoints();
+		return ((NodeFigure) this.getChildren().get(0)).getPolygonPoints();
 	}
 
 	protected ConnectionAnchor createAnchor(PrecisionPoint p) {

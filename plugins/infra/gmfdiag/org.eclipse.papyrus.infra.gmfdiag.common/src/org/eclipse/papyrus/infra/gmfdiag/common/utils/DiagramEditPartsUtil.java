@@ -1007,6 +1007,9 @@ public class DiagramEditPartsUtil {
 		return isReadOnly;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	protected static ILabelProvider labelProvider;
 
 	/**
@@ -1015,6 +1018,7 @@ public class DiagramEditPartsUtil {
 	 * @param parserElement the parserElement, typically the (model) element of an edit part
 	 * @param viewer the edit part viewer
 	 * @return the icon element
+	 * @since 3.0
 	 */
 	public static Image getIcon(EObject parserElement, EditPartViewer viewer) {
 		// EObject parserElement = getParserElement();

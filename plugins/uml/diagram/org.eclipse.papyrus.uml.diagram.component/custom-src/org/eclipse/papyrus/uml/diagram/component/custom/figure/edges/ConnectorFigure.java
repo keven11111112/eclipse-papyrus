@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * Figure for Connector representation.
+ * @since 3.0
  */
 public class ConnectorFigure extends UMLEdgeFigure {
 

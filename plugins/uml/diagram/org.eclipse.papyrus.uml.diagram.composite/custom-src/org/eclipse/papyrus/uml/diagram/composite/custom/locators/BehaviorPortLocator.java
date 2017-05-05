@@ -28,6 +28,7 @@ public class BehaviorPortLocator extends PortPositionLocator {
 	 * Constructor.
 	 *
 	 * @param parentFigure
+	 * @since 3.0
 	 */
 	public BehaviorPortLocator(IFigure parentFigure) {
 		super(parentFigure);

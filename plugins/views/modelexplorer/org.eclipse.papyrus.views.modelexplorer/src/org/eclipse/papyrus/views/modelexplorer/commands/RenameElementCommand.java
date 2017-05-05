@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * Command to rename an element.
+ * @since 3.0
  */
 public class RenameElementCommand extends InteractiveCommandWrapper {
 

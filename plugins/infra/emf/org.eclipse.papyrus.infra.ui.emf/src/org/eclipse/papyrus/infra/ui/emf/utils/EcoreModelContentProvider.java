@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.Viewer;
  * Represents a content provider for a hierarchy of Ecore objects
  *
  * @author Laurent Wouters
+ * @since 2.0
  */
 public class EcoreModelContentProvider implements ITreeContentProvider {
 	/**

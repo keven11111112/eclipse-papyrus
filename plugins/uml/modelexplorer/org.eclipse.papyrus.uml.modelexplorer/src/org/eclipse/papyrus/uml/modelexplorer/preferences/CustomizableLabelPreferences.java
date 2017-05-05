@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.modelexplorer.preferences;
 
 /**
  * The CustomizableLabel Preferences keys.
+ * @since 2.0
  */
 public interface CustomizableLabelPreferences {
 

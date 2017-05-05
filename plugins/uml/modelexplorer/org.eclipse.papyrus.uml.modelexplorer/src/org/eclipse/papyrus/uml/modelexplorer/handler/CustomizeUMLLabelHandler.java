@@ -31,6 +31,7 @@ import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
  * Than handler to display dialog to customize UML Label.
+ * @since 2.0
  */
 public class CustomizeUMLLabelHandler extends AbstractHandler {
 

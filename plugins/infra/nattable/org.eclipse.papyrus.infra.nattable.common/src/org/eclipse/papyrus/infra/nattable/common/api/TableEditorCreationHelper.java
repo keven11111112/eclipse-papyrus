@@ -356,6 +356,7 @@ public class TableEditorCreationHelper {
 	 *            a view {@link TableViewPrototype}, must not be <code>null</code>
 	 * @return
 	 * 		a TableConfiguration, or <code>null</code> if not found
+	 * @since 3.0
 	 */
 	protected TableConfiguration getTableConfiguration(TableViewPrototype viewPrototype) {
 		Assert.isNotNull(viewPrototype);

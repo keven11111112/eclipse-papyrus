@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * The cell editor for the DataType with a dialog.
+ * @since 3.0
  */
 public class DatatypeDialogCellEditor extends AbstractUMLMultiValueCellEditor {
 

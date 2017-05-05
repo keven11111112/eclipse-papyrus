@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 
 /**
  * Composite Diagram Reconciler from 1.0.0 to 1.1.0
+ * @since 3.0
  */
 public class CompositeReconciler_1_1_0 extends DiagramReconciler {
 

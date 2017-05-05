@@ -14,6 +14,7 @@ package org.eclipse.papyrus.views.modelexplorer.preferences;
 
 /**
  * Interface to define preference constants for the expand Action.
+ * @since 3.0
  */
 public interface IExpandPreferenceConstants {
 

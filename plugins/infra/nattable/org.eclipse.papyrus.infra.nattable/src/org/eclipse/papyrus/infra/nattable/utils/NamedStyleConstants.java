@@ -141,11 +141,13 @@ public class NamedStyleConstants {
 
 	/**
 	 * A {@link BooleanValueStyle} used to enable wrap text in the NatTable.
+	 * @since 3.0
 	 */
 	public static final String WRAP_TEXT = "wrapText"; //$NON-NLS-1$
 
 	/**
 	 * A {@link BooleanValueStyle} used to enable auto-resize cell height in the NatTable.
+	 * @since 3.0
 	 */
 	public static final String AUTO_RESIZE_CELL_HEIGHT = "autoResizeCellHeight"; //$NON-NLS-1$
 }

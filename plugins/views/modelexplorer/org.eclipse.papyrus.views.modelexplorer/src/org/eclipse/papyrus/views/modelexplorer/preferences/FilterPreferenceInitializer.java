@@ -18,6 +18,7 @@ import org.eclipse.papyrus.views.modelexplorer.Activator;
 
 /**
  * This preference initializer for filter preferences.
+ * @since 3.0
  */
 public class FilterPreferenceInitializer extends AbstractPreferenceInitializer {
 

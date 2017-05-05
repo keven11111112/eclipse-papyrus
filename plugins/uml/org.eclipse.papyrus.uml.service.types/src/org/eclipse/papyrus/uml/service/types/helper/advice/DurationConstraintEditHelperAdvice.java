@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @author Céline JANSSENS
+ * @since 3.0
  *
  */
 public class DurationConstraintEditHelperAdvice extends AbstractEditHelperAdvice {

@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
 
@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 /**
  * Interface implemented by all palette providers that requires some profiles
  * applied to be shown
+ * @since 3.0
  */
 public interface IProfileDependantPaletteProvider extends IPaletteProvider {
 

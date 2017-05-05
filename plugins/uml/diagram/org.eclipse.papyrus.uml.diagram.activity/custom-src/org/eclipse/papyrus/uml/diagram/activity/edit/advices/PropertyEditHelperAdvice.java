@@ -50,6 +50,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  * 
  * Call pin derivation command on modification of a property
+ * @since 3.0
  */
 public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 

@@ -46,6 +46,7 @@ public interface IViewTypeHelper {
 	 * @param configuration
 	 *            A view configuration element
 	 * @return The associated prototype
+	 * @since 2.0
 	 */
 	ViewPrototype getPrototypeFor(PapyrusRepresentationKind configuration);
 

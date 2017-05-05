@@ -86,6 +86,7 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	/**
 	 * The cell editor which allow to use the dialog reference selection.
 	 * It must be used when the text completion can't reach the value.
+	 * @since 3.0
 	 */
 	protected AbstractDialogCellEditor referenceValueCellEditor;
 

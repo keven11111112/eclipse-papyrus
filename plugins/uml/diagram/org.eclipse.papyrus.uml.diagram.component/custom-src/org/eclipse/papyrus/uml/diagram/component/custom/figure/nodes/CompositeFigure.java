@@ -26,6 +26,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * Figure for Composite representation of Class.
+ * @since 3.0
  */
 public class CompositeFigure extends RoundedCompartmentFigure {
 

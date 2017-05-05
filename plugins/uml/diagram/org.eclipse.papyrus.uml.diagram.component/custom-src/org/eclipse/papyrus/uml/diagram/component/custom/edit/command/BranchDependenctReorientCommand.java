@@ -23,6 +23,7 @@ import org.eclipse.uml2.uml.Package;
 
 /**
  * because of the nature of this relation the test about can execute has to be change
+ * @since 3.0
  *
  */
 public class BranchDependenctReorientCommand extends DependencyBranchReorientCommand {

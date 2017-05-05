@@ -29,6 +29,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * Select and delete pops up menu command.
+ * @since 3.0
  */
 public class SelectAndDeleteCommand extends PopupMenuCommand {
 

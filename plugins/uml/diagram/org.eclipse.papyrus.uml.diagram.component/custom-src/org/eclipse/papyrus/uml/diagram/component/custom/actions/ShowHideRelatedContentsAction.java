@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.component.custom.messages.Messages;
 
 /**
  * The Class ShowHideRelatedContentsAction.
+ * @since 3.0
  */
 public class ShowHideRelatedContentsAction extends ShowHideContentsAction {
 

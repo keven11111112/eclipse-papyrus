@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Control;
 
 /**
  * A ReferenceFactory used to instantiate EObjects.
+ * @since 2.0
  */
 public class EObjectDirectEditingValueFactory extends EcorePropertyEditorFactory {
 

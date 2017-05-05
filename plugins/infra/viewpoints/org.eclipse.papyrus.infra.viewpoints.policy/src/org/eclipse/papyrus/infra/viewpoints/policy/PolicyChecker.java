@@ -71,6 +71,9 @@ public class PolicyChecker {
 	 */
 	private static final int RESULT_DENY = -1;
 
+	/**
+	 * @since 2.0
+	 */
 	public static PolicyChecker getFor(EObject object) {
 		if (object.eResource() != null)
 			return getFor(object.eResource());
@@ -78,6 +81,9 @@ public class PolicyChecker {
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
 	}
 	
+	/**
+	 * @since 2.0
+	 */
 	public static PolicyChecker getFor(Resource resource) {
 		if (resource.getResourceSet() != null)
 			return getFor(resource.getResourceSet());
@@ -85,6 +91,9 @@ public class PolicyChecker {
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static PolicyChecker getFor(ResourceSet resourceSet) {
 		if (resourceSet instanceof ModelSet)
 			return getFor((ModelSet) resourceSet);
@@ -92,11 +101,17 @@ public class PolicyChecker {
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static PolicyChecker getFor(ModelSet modelSet) {
 		Collection<MergedArchitectureViewpoint> viewpoints = new ArchitectureDescriptionUtils(modelSet).getArchitectureViewpoints();
 		return getFor(viewpoints);
 	}
 	
+	/**
+	 * @since 2.0
+	 */
 	public static PolicyChecker getFor(MergedArchitectureContext context) {
 		if (context == null) {
 			return new PolicyChecker(Collections.emptyList());
@@ -104,6 +119,9 @@ public class PolicyChecker {
 		return new PolicyChecker(context.getViewpoints());
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static PolicyChecker getFor(Collection<MergedArchitectureViewpoint> viewpoints) {
 		return new PolicyChecker(viewpoints);
 	}
@@ -122,6 +140,7 @@ public class PolicyChecker {
 	 * Gets the viewpoint enforced by this object
 	 *
 	 * @return The enforced viewpoint
+	 * @since 2.0
 	 */
 	public Collection<MergedArchitectureViewpoint> getViewpoints() {
 		return viewpoints;
@@ -289,6 +308,7 @@ public class PolicyChecker {
 	 * @param config
 	 *            A view description element
 	 * @return <code>true</code> if the element is part of the current viewpoint
+	 * @since 2.0
 	 */
 	public boolean isInViewpoint(PapyrusRepresentationKind kind) {
 		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
@@ -372,6 +392,7 @@ public class PolicyChecker {
 	 * @param owner
 	 *            The view's owner
 	 * @return The owning rule
+	 * @since 2.0
 	 */
 	public OwningRule getOwningRuleFor(ViewPrototype prototype, EObject owner) {
 		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(owner);
@@ -390,6 +411,7 @@ public class PolicyChecker {
 	 * @param root
 	 *            The root element
 	 * @return The matching view, or <code>null</code> if none was found
+	 * @since 2.0
 	 */
 	protected PapyrusRepresentationKind getRepresentationKindFrom(String implem, EObject owner, EObject root) {
 		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {

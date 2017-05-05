@@ -40,22 +40,28 @@ import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
  */
 public class RemoveControlResourceCommand extends AbstractControlResourceCommand {
 
-	/** The Constant PREVIOUS_RESOURCE_ERROR. */
+	/** The Constant PREVIOUS_RESOURCE_ERROR. 
+	 * @since 2.0*/
 	protected static final String PREVIOUS_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.previous.resource.error"); //$NON-NLS-1$
 
-	/** The Constant TARGET_RESOURCE_ERROR. */
+	/** The Constant TARGET_RESOURCE_ERROR. 
+	 * @since 2.0*/
 	protected static final String TARGET_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.target.resource.error"); //$NON-NLS-1$
 
-	/** The Constant RESOURCE_ERROR. */
+	/** The Constant RESOURCE_ERROR. 
+	 * @since 2.0*/
 	protected static final String RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.resource.error"); //$NON-NLS-1$
 
-	/** The Constant RESOURCESET_ERROR. */
+	/** The Constant RESOURCESET_ERROR. 
+	 * @since 2.0*/
 	protected static final String RESOURCESET_ERROR = Messages.getString("RemoveControlResourceCommand.resourceset.error"); //$NON-NLS-1$
 
-	/** The Constant CONTROL_OBJECT_ERROR. */
+	/** The Constant CONTROL_OBJECT_ERROR. 
+	 * @since 2.0*/
 	protected static final String CONTROL_OBJECT_ERROR = Messages.getString("RemoveControlResourceCommand.object.error"); //$NON-NLS-1$
 
-	/** The Constant UNCONTROL_COMMAND_TITLE. */
+	/** The Constant UNCONTROL_COMMAND_TITLE. 
+	 * @since 2.0*/
 	protected static final String UNCONTROL_COMMAND_TITLE = Messages.getString("RemoveControlResourceCommand.command.title"); //$NON-NLS-1$
 
 	/**

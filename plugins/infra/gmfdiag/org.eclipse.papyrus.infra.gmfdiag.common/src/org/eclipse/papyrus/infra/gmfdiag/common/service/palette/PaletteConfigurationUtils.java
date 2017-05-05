@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Mickaäl ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common, see bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common, see bug 512343.
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
 
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util.Paletteconfig
 
 /**
  * Utility class for {@link PaletteConfiguration} elements.
+ * @since 3.0
  */
 public class PaletteConfigurationUtils {
 

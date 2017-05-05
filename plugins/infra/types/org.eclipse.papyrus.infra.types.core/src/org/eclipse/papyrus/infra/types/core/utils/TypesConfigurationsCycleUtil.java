@@ -64,6 +64,9 @@ public class TypesConfigurationsCycleUtil {
 		}
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	static public Map<String, OrientedGraph<String>> getDependenciesAmongAdvices(Collection<AdviceConfiguration> adviceConfigurations) {
 		Map<String, OrientedGraph<String>> adviceDependencies = new HashMap<String, OrientedGraph<String>>();
 		for (AdviceConfiguration adviceConfiguration : adviceConfigurations) {

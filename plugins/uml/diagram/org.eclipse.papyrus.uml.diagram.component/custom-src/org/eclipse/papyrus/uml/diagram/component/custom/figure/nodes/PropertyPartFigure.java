@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.CompartmentFigure;
 
 /**
  * Figure for Composite representation of Class.
+ * @since 3.0
  */
 public class PropertyPartFigure extends CompartmentFigure {
 

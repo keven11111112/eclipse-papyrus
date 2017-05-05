@@ -27,6 +27,7 @@ import org.eclipse.ui.navigator.CommonViewer;
 
 /**
  * Handler to expand all children at selected element.
+ * @since 3.0
  */
 public class ExpandAllHandler extends AbstractHandler {
 

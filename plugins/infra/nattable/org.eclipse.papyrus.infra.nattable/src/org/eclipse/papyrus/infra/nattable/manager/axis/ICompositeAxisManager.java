@@ -49,6 +49,7 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 *            the config registry used to find the label provider
 	 * @param isRowsSort
 	 *            Boolean to determinate if this is a rows sort.
+	 * @since 3.0
 	 */
 	public void sortAxisByName(final boolean alpabeticOrder, final IConfigRegistry iConfigRegistry, final boolean isRowsSort);
 

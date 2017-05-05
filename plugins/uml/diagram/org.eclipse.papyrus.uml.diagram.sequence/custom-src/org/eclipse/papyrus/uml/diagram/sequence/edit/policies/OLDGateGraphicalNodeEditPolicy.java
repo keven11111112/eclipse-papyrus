@@ -57,6 +57,7 @@ import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @since 3.0
  */
 @SuppressWarnings("unchecked")
 public class OLDGateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {

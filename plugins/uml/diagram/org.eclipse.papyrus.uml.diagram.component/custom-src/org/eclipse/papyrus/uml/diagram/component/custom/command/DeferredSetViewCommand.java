@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 /**
  * this command is used to set a value of a view during the execution
  * as deferred command
+ * @since 3.0
  *
  */
 public class DeferredSetViewCommand extends AbstractTransactionalCommand {

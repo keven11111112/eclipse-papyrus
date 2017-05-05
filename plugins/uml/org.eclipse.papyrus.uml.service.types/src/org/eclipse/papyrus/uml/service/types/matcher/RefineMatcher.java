@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Abstraction} is a {@link Refine}
+ * @since 3.0
  */
 public class RefineMatcher implements IElementMatcher {
 

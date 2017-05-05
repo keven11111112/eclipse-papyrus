@@ -58,6 +58,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 
 	/**
 	 * The editing domain.
+	 * @since 3.0
 	 */
 	protected EditingDomain domain;
 

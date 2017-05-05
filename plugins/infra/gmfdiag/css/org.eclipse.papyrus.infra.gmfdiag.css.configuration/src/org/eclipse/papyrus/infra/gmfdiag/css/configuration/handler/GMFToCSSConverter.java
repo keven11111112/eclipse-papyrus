@@ -93,6 +93,9 @@ public class GMFToCSSConverter {
 		return getExpression(stringValue);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public List<CssTok> convert(Double doubleValue) {
 		NumberTok numberValue = CSSFactory.eINSTANCE.createNumberTok();
 		numberValue.setVal(doubleValue);

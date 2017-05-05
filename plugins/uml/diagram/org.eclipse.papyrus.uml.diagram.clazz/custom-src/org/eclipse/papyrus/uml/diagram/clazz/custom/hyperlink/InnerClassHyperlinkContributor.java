@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.Element;
  * inner classes of the class
  * 
  * @author Shuai Li
+ * @since 3.0
  *
  */
 public class InnerClassHyperlinkContributor implements HyperlinkContributor {

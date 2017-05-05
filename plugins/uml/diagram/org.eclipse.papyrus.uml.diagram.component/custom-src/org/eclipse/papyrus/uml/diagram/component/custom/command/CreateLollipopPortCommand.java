@@ -40,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider;
 
 /**
  * this class is used to create the lollipop interface from a port
+ * @since 3.0
  *
  */
 public class CreateLollipopPortCommand extends RecordingCommand {

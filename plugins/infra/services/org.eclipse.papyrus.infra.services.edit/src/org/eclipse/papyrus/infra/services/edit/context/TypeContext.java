@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.services.edit.messages.Messages;
  * An API that allows getting a GMF client context that corresponds to an architecture context
  * that is applied to a Papyrus model set or one of its owned objects.
  * </pre>
+ * @since 3.0
  */
 public class TypeContext {
 

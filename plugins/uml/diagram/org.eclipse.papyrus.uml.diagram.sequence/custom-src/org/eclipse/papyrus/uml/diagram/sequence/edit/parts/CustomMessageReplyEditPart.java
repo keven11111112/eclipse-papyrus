@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.MessageSort;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @since 3.0
  */
 public class CustomMessageReplyEditPart extends MessageReplyEditPart {
 

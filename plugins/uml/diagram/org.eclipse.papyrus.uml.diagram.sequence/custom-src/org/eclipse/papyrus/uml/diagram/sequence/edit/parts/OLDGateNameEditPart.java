@@ -64,6 +64,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 2. Add displaying stereotypes.
  *
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @since 3.0
  */
 public class OLDGateNameEditPart extends BorderItemLabelEditPart implements IPapyrusEditPart {
 

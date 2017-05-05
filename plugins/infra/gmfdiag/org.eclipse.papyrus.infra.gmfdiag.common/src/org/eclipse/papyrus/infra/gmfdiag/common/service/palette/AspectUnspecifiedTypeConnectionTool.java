@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST)
  *  Mathieu Velten (Atos) mathieu.velten@atos.net - use commands instead of running code in post commit
  *  Philippe ROLAND (Atos) philippe.roland@atos.net - Implemented PreActions
- *  Mickaäl ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.com and remove aspect actions framework, see bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.com and remove aspect actions framework, see bug 512343.
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
@@ -63,6 +63,7 @@ import org.w3c.dom.Node;
 
 /**
  * Connection tool that adds stereotype application after creation actions.
+ * @since 3.0
  */
 public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnectionTool {
 

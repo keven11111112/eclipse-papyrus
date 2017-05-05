@@ -19,6 +19,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * This allows to add a detail into the annotation.
+ * @since 3.0
  */
 public class AddEAnnotationDetailCommand extends RecordingCommand {
 

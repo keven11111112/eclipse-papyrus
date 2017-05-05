@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
+ * @since 3.0
  *
  */
 public class KeywordObservableValue extends AbstractObservableValue implements IObserving, ReferenceCountedObservable {

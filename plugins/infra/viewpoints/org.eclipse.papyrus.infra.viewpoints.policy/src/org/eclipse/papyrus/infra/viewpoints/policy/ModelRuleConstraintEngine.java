@@ -56,6 +56,9 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 		fireConstraintsChanged();
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public boolean matchesRule(ModelRule rule, EObject element) {
 		Collection<EObject> selection = Collections.singletonList(element);
 		List<Constraint> constraints = getConstraintsFor(rule);
@@ -80,6 +83,7 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 	 * @param rule
 	 *            the rule to check
 	 * @return the list of constraints for the specified rule or an empty list if no rule is registered for the rule
+	 * @since 2.0
 	 */
 	protected List<Constraint> getConstraintsFor(ModelRule rule) {
 		if (!modelRule2Constraints.containsKey(rule)) {
@@ -95,6 +99,7 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 	 * @param rule
 	 *            the rule that contains the constraints
 	 * @return the list of constraints for the given rule or an empty list if no constraints were found for the given rule
+	 * @since 2.0
 	 */
 	protected List<Constraint> initializeConstraints(ModelRule rule) {
 		List<ConstraintDescriptor> descriptors = rule.getConstraints();

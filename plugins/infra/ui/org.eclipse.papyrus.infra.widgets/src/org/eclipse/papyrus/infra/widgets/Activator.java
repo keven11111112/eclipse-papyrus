@@ -30,6 +30,7 @@ import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
+ * @since 3.0
  */
 public class Activator extends AbstractUIPlugin {
 
@@ -44,11 +45,13 @@ public class Activator extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.widgets"; //$NON-NLS-1$
 
 
-	/** The Constant UML_VIS_ICONS_16x16. */
+	/** The Constant UML_VIS_ICONS_16x16. 
+	 * @since 3.0*/
 	public static final String UML_VIS_ICONS_16x16 = "icons/obj16/"; //$NON-NLS-1$
 
 
-	/** Default image. */
+	/** Default image. 
+	 * @since 3.0*/
 	public static final String DEFAULT_IMAGE = "icons/PapyrusLogo16x16.gif"; //$NON-NLS-1$
 
 	/**
@@ -133,6 +136,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param key
 	 *            the key of the image
 	 * @return the Image
+	 * @since 3.0
 	 */
 	public static Image getImageFromKey(final String key) {
 		String image_id = key;
@@ -162,6 +166,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param localPath
 	 *            the relative path
 	 * @return the path as {@link String}.
+	 * @since 3.0
 	 */
 	public static String getPath(final String plugin, final String localPath) {
 		return PLUGIN_PROTOCOL + plugin + localPath;
@@ -173,6 +178,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param initialValue
 	 *            the initial value from which the bundle has to be retrieved
 	 * @return the bundle id
+	 * @since 3.0
 	 */
 	public static String retrieveBundleId(final String initialValue) {
 		String result = null;
@@ -216,6 +222,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param initialValue
 	 *            the initial value from which the lacal path has to be retrieved
 	 * @return the local path
+	 * @since 3.0
 	 */
 	public static String retrieveLocalPath(final String initialValue) {
 		String result = "";
@@ -381,41 +388,50 @@ public class Activator extends AbstractUIPlugin {
 	/** the default value for the use of live validation in filter. */
 	private static final Boolean DEFAULT_FILTER_LIVE_VALIDATION_VALUE = true; // $NON-NLS-1$
 
-	/** The max level to expand action preference. */
+	/** The max level to expand action preference. 
+	 * @since 3.0*/
 	public static final String PREF_MAX_LEVEL_TO_EXPAND = "maxLevelToExpand"; //$NON-NLS-1$
 
-	/** The default value of the expand action preference. */
+	/** The default value of the expand action preference. 
+	 * @since 3.0*/
 	public static final int DEFAULT_MAX_LEVEL_TO_EXPAND_VALUE = 15;
 
-	/** The preference for the replacement of stereotype delimiters. */
+	/** The preference for the replacement of stereotype delimiters. 
+	 * @since 3.0*/
 	public static final String PREF_FILTER_STEREOTYPE_REPLACED = "replaceStrereotypeDelimiter"; //$NON-NLS-1$
 
-	/** the default value for the replacement of stereotype delimiters. */
+	/** the default value for the replacement of stereotype delimiters. 
+	 * @since 3.0*/
 	public static final boolean DEFAULT_FILTER_STEREOTYPE_REPLACED_VALUE = true;
 
 	/**
 	 * The left stereotype delimiter
+	 * @since 3.0
 	 */
 	public static final String ST_LEFT = "\u00AB";//$NON-NLS-1$
 
 	/**
 	 * The right stereotype delimiter
+	 * @since 3.0
 	 */
 	public static final String ST_RIGHT = "\u00BB";//$NON-NLS-1$
 
 	/**
 	 * The right stereotype delimiter to be replaced in Text
+	 * @since 3.0
 	 */
 	public static final String ST_RIGHT_BEFORE = ">>";//$NON-NLS-1$
 
 	/**
 	 * The left stereotype delimiter to be replaced in fields
+	 * @since 3.0
 	 */
 	public static final String ST_LEFT_BEFORE = "<<";//$NON-NLS-1$
 
 
 	/**
 	 * Gets the preferences for the validation kind of filter field.
+	 * @since 3.0
 	 */
 	public static boolean isFilterValidateOnDelay() {
 		return ModelExplorerPreferences.getBoolean(PREF_FILTER_LIVE_VALIDATION, DEFAULT_FILTER_LIVE_VALIDATION_VALUE);
@@ -423,6 +439,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Gets the preferences for the validation delay.
+	 * @since 3.0
 	 */
 	public static int getValidationDelay() {
 		return ModelExplorerPreferences.getInt(PREF_FILTER_VALIDATION_DELAY, DEFAULT_VALIDATION_DELAY_VALUE);
@@ -430,6 +447,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Gets the preferences for the max level to expand value.
+	 * @since 3.0
 	 */
 	public static int getMaxLevelToExpandValue() {
 		return ModelExplorerPreferences.getInt(PREF_MAX_LEVEL_TO_EXPAND, DEFAULT_MAX_LEVEL_TO_EXPAND_VALUE);
@@ -437,6 +455,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Gets the preferences for the stereotype delimiter replacement.
+	 * @since 3.0
 	 */
 	public static boolean isStereotypeDelimitersReplaced() {
 		return ModelExplorerPreferences.getBoolean(PREF_FILTER_STEREOTYPE_REPLACED, DEFAULT_FILTER_STEREOTYPE_REPLACED_VALUE);

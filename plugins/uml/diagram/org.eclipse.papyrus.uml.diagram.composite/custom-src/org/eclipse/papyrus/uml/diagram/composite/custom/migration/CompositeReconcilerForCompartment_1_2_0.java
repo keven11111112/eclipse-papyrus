@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartm
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
+ * @since 3.0
  */
 public class CompositeReconcilerForCompartment_1_2_0 extends ReconcilerForCompartment {
 

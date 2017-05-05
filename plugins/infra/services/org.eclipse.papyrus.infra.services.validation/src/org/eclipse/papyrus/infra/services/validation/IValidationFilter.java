@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * This interface is used to identify whether a diagnostician or validation hook is applicable
  * for a given element
+ * @since 3.0
  */
 public interface IValidationFilter {
 	/**

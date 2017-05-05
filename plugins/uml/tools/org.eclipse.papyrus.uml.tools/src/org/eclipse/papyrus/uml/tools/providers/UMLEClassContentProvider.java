@@ -23,6 +23,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This contents provider provides all UML EClass from UMLPackage
+ * 
+ * @since 3.0
  *
  */
 public class UMLEClassContentProvider implements IStaticContentProvider {

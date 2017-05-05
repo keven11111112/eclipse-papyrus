@@ -397,6 +397,7 @@ public class PaletteUtil {
 	 * @param papyrusProviderDesc
 	 *            the current provider descriptor to test
 	 * @return <code>true</code> if all required profile are present
+	 * @since 3.0
 	 */
 	public static boolean areRequiredProfileApplied(IEditorPart part, PapyrusPaletteService.ProviderDescriptor papyrusProviderDesc) {
 		if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
@@ -453,6 +454,7 @@ public class PaletteUtil {
 	 * @param provider
 	 *            The profile-dependent palette provider
 	 * @return <code>true</code> if all required profile are present
+	 * @since 3.0
 	 */
 	public static boolean areRequiredProfileApplied(Diagram diagram, IProfileDependantPaletteProvider provider) {
 		EObject element = diagram.getElement();

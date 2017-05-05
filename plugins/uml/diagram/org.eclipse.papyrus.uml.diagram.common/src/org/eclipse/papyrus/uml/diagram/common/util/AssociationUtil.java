@@ -91,6 +91,7 @@ public class AssociationUtil {
 	 * @param association
 	 *            The Association.
 	 * @return The first memberEnd.
+	 * @since 3.0
 	 */
 	public static Property getInitialTargetFirstEnd(final Association association) {
 		Property property = null;
@@ -107,6 +108,7 @@ public class AssociationUtil {
 	 * @param association
 	 *            The Association.
 	 * @return The second memberEnd
+	 * @since 3.0
 	 */
 	public static Property getInitialSourceSecondEnd(final Association association) {
 		Property property = null;

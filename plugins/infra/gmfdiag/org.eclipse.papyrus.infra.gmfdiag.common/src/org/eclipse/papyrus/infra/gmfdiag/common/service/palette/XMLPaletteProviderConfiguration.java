@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
  *
  *****************************************************************************/
 
@@ -23,6 +23,7 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * A provider configuration for the PapyrusPaletteService.
+ * @since 3.0
  */
 public class XMLPaletteProviderConfiguration extends AbstractProviderConfiguration {
 

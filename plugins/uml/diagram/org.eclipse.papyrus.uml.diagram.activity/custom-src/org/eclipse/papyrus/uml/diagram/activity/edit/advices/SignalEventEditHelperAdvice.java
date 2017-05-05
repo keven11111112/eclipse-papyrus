@@ -39,6 +39,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  *
  * Call pin derivation command on modification of a signalEvent
+ * @since 3.0
  */
 public class SignalEventEditHelperAdvice extends AbstractEditHelperAdvice {
 

@@ -24,6 +24,9 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEd
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Element;
 
+/**
+ * @since 3.0
+ */
 public class ActivityPartitionLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	@Override

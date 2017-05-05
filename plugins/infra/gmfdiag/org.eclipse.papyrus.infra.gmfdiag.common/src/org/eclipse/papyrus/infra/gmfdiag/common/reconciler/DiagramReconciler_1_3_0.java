@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
 /**
  * Diagram reconciler form 1.2.0 to 1.3.0 that replaces the old PapyrusViewStyle
  * by the new PapyrusDiagramStyle
+ * @since 3.0
  */
 public abstract class DiagramReconciler_1_3_0 extends DiagramReconciler {
 

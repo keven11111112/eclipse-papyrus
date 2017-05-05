@@ -17,6 +17,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * Initializer for the resize binding preference page.
+ * @since 3.0
  */
 public class ResizeBindingPreferenceInitializer extends AbstractPreferenceInitializer {
 

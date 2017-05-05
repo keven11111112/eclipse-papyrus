@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Céline Jansens - Initial API and implementation
+ *   Cï¿½line Jansens - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -34,8 +34,9 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElement
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author Céline JANSSENS
  * Class extracted from the Custom State Invariant edit part
+ * 
+ * @since 3.0
  *
  */
 public class StateInvariantFigure extends ContinuationFigure implements ILabelFigure, IMultilineEditableFigure, IPapyrusNodeUMLElementFigure {

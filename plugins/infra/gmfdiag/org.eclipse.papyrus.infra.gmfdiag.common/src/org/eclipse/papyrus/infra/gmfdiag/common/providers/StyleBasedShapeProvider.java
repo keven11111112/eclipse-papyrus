@@ -45,6 +45,9 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 
 	protected static final String STYLE_PROPERTY = "svgFile"; //$NON-NLS-1$
 
+	/**
+	 * @since 3.0
+	 */
 	protected static final String IMAGE_PATH_PROPERTY = "imagePath"; //$NON-NLS-1$
 
 	private ProviderNotificationManager manager;

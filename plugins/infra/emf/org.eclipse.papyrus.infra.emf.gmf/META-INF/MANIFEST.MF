@@ -4,7 +4,7 @@ Export-Package: org.eclipse.papyrus.infra.emf.gmf.command,
  org.eclipse.papyrus.infra.emf.internal.gmf;x-internal:=true
 Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.9.0,2.0.0)",
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="[2.1.0,3.0.0)",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.gmf.runtime.common.core;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
  org.eclipse.emf.workspace;bundle-version="[1.5.0,2.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName

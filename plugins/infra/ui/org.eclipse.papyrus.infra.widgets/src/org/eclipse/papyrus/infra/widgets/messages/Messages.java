@@ -23,12 +23,24 @@ public class Messages extends NLS {
 	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.widgets.messages.messages"; //$NON-NLS-1$
 
+	/**
+	 * @since 3.0
+	 */
 	public static String AbstractFilteredContentProvider_CaseSensitiveLabel;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String AbstractFilteredContentProvider_CaseSensitiveTooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String AbstractFilteredContentProvider_FilterFieldTooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String IconValueEditor_WaitingOneIconButFound;
 
 	public static String BooleanInputValidator_NotABoolean;
@@ -140,18 +152,39 @@ public class Messages extends NLS {
 	/** the Enum radio_ no value */
 	public static String EnumRadio_NoValue;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String FilteredContentProvider_CaseSensitiveLabel;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String FilteredContentProvider_CaseSensitiveTooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String FilteredContentProvider_CollapseAllTooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String FilteredContentProvider_ExpandAllTooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String FlatFilteredContentProvider_sortButtonTooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String FlattenableFilteredContentProvider_flatButtonAsFlatTooltip;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String FlattenableFilteredContentProvider_flatButtonAsTreeTooltip;
 
 	public static String FlattenableRestrictedFilteredContentProvider_AllPossibleContentsMessage;
@@ -175,26 +208,59 @@ public class Messages extends NLS {
 
 	public static String StringFileSelector_BrowseWorkspace;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String BundleIconExplorerDialog_Bundle;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String BundleIconExplorerDialog_CantFindBundleIdMessage;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String StringWithClearEditor_ClearFilter;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String BundleIconExplorerDialog_Message;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String BundleIconExplorerDialog_Title;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String BundleIconExplorerDialog_UnknownFileName;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String BundleExplorerDialog_DialogMessage;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String BundleExplorerDialog_PlugInSelectionTitle;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String TreeReferenceValueEditor_NameColumnProperty;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String TreeReferenceValueEditor_NameColumnValue;
 
+	/**
+	 * @since 3.0
+	 */
 	public static String TreeSelectorDialog_defaultTabLabel;
 
 	static {

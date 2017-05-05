@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageNodePlateFigure
 
 /**
  * The Class ContainmentCircleOnPackageLocator.
+ * @since 3.0
  */
 @Deprecated //Unused: PortPositionLocator used instead
 public class ContainmentCircleOnPackageLocator extends BorderItemLocator {

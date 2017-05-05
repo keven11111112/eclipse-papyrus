@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateCon
  * This class is used to create a connection view
  *
  * @author Patrick Tessier
+ * @since 3.0
  */
 public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCreateConnectionViewCommand {
 	/**

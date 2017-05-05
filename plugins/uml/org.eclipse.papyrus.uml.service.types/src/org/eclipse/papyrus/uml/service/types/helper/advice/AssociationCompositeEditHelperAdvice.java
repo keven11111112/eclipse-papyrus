@@ -18,6 +18,8 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * Association Composite edit helper advice.
+ * 
+ * @since 3.0
  */
 public class AssociationCompositeEditHelperAdvice extends AssociationEditHelperAdvice {
 

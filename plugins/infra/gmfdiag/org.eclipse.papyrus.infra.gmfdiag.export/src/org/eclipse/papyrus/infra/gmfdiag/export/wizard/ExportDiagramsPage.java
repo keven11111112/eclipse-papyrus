@@ -34,6 +34,7 @@ public class ExportDiagramsPage extends WizardPage {
 
 	/**
 	 * Create the wizard.
+	 * @since 2.0
 	 */
 	public ExportDiagramsPage(IResource outputDirectory) {
 		super(Messages.ExportDiagramsPage_0);

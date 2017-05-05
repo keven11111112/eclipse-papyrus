@@ -50,7 +50,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -71,7 +70,7 @@ public class CustomViewProvider extends UMLViewProvider {
 			return false;
 		}
 		String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-		if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) { 
+		if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) {
 			// avoid to
 			// modify
 			// UMLVisualIDRegistry.getNodeVisualID(View,
@@ -91,9 +90,9 @@ public class CustomViewProvider extends UMLViewProvider {
 		}
 		String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 		if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) { // avoid to
-																// modify
-																// UMLVisualIDRegistry.getNodeVisualID(View,
-																// EObject)
+			// modify
+			// UMLVisualIDRegistry.getNodeVisualID(View,
+			// EObject)
 			if (InteractionInteractionCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry
 					.getVisualID(op.getContainerView()))) {
 				return true;
@@ -139,7 +138,8 @@ public class CustomViewProvider extends UMLViewProvider {
 				prefStore, "TimeObservation");
 		Node timeObservation_NameLabel = createLabel(node,
 				UMLVisualIDRegistry
-						.getType(TimeObservationLabelEditPart.VISUAL_ID), true);
+						.getType(TimeObservationLabelEditPart.VISUAL_ID),
+				true);
 		timeObservation_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location timeObservation_NameLabel_Location = (Location) timeObservation_NameLabel.getLayoutConstraint();
@@ -207,12 +207,13 @@ public class CustomViewProvider extends UMLViewProvider {
 	}
 
 	/**
-	 *  This class has bee overloaded in order to set the combined fragment under the lifelines 
+	 * This class has bee overloaded in order to set the combined fragment under the lifelines
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.providers.UMLViewProvider#createCombinedFragment_Shape(org.eclipse.emf.ecore.EObject, org.eclipse.gmf.runtime.notation.View, int, boolean, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint)
 	 */
 	@Override
 	public Node createCombinedFragment_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		int position=LifelinePosition(containerView);
+		int position = LifelinePosition(containerView);
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CombinedFragmentEditPart.VISUAL_ID));
@@ -224,36 +225,40 @@ public class CustomViewProvider extends UMLViewProvider {
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "CombinedFragment");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
-		Node compartment = createCompartment(node,UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID),
+		Node compartment = createCompartment(node, UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
 		// Add by default InteractionOperand
-//		for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement).getOperands()) {
-//			createInteractionOperand_Shape(interactionOperand, compartment, -1,	true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-//		}
+		// for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement).getOperands()) {
+		// createInteractionOperand_Shape(interactionOperand, compartment, -1, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		// }
 		// initialization for the compartment visibility
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(
 				node, prefStore, "CombinedFragment");
 		return node;
 	}
+
 	/**
-	 * @param containerView the view that can contains lifeline representation 	
-	 *  @return the position of the first lifeline in the notation
+	 * @param containerView
+	 *            the view that can contains lifeline representation
+	 * @return the position of the first lifeline in the notation
+	 * @since 3.0
 	 * 
 	 */
-	protected int LifelinePosition(View containerView){
+	protected int LifelinePosition(View containerView) {
 		@SuppressWarnings("unchecked")
-		List<Object> children= containerView.getChildren();
-		int i=0;
-		while (i<children.size()){
-			if(children.get(i) instanceof View){
-				if( ((View)children.get(i)).getElement() instanceof Lifeline){
-				return i;}
+		List<Object> children = containerView.getChildren();
+		int i = 0;
+		while (i < children.size()) {
+			if (children.get(i) instanceof View) {
+				if (((View) children.get(i)).getElement() instanceof Lifeline) {
+					return i;
+				}
 			}
 			i++;
 		}
 		return i;
 	}
-	
+
 
 	@Override
 	public Node createDurationConstraint_Shape_CN(EObject domainElement,
@@ -420,9 +425,8 @@ public class CustomViewProvider extends UMLViewProvider {
 	public Node createBehaviorExecutionSpecification_Shape(
 			EObject domainElement, View containerView, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
-		Node node = super
-				.createBehaviorExecutionSpecification_Shape(domainElement,
-						containerView, index, persisted, preferencesHint);
+		Node node = super.createBehaviorExecutionSpecification_Shape(domainElement,
+				containerView, index, persisted, preferencesHint);
 		// Add a label for Behavior.
 		Node label = createLabel(node,
 				BehaviorExecutionSpecificationBehaviorEditPart.BEHAVIOR_TYPE);
@@ -432,7 +436,7 @@ public class CustomViewProvider extends UMLViewProvider {
 		label.setLayoutConstraint(location);
 		return node;
 	}
-	
-	
+
+
 
 }

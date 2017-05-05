@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.TestIdentityAction;
 /**
  * 
  * Pins of TestIdentityAction should be create automatically
+ * @since 3.0
  * 
  */
 public class TestIdentityActionEditHelperAdvice extends AbstractEditHelperAdvice {

@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 /**
  * The java constraint to check if the table from the active nattable editor has tree filling configuration for the first depth.
  * 
- * @since 3.0
+ * @since 2.2
  */
 public class EObjectInTableHasTreeFillingConfigurationConstraint extends EObjectInTableJavaConstraint {
 

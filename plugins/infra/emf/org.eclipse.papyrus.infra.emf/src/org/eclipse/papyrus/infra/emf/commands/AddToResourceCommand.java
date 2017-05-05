@@ -47,6 +47,7 @@ public class AddToResourceCommand extends AbstractTransactionalCommand {
 	 *            the resource
 	 * @param toAdd
 	 *            the object to add to the resource
+	 * @since 3.0
 	 */
 	public AddToResourceCommand(final TransactionalEditingDomain domain, final Resource resource, final EObject toAdd) {
 		super(domain, "Add an object to a resource", null);

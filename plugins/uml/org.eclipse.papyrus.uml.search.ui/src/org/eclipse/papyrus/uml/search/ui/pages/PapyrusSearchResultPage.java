@@ -46,6 +46,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  *
  * Papyrus specific search results page
+ * @since 2.0
  *
  */
 public class PapyrusSearchResultPage extends AbstractTextSearchViewPage {

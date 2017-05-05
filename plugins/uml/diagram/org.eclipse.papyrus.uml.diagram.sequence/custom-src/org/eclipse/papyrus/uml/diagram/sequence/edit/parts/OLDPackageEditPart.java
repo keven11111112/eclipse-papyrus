@@ -28,6 +28,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @since 3.0
  */
 public class OLDPackageEditPart extends SequenceDiagramEditPart {
 

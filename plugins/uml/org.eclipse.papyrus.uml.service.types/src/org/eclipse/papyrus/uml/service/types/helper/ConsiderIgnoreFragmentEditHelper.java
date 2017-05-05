@@ -24,6 +24,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 
+/**
+ * @since 3.0
+ */
 public class ConsiderIgnoreFragmentEditHelper extends CombinedFragmentEditHelper {
 
 

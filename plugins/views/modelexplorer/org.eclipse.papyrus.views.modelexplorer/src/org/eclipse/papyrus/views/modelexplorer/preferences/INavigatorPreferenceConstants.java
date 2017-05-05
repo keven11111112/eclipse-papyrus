@@ -28,6 +28,7 @@ public interface INavigatorPreferenceConstants {
 	
 	/**
 	 * If this preferences is set to true. Then the model explorer will expand node on double click.
+	 * @since 3.0
 	 */
 	public static final String PREF_EXPAND_NODE_ON_DOUBLE_CLICK = "org.eclipse.papyrus.modelexplorer.ModelExplorerView.expandOnDoubleClick"; //$NON-NLS-1$
 }

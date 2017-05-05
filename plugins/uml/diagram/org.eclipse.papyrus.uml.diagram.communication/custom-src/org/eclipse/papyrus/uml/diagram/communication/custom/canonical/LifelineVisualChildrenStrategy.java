@@ -26,6 +26,7 @@ import com.google.common.collect.Lists;
 
 /**
  * Custom visual-children strategy for lifelines in communication diagrams.
+ * @since 3.0
  */
 public class LifelineVisualChildrenStrategy implements IVisualChildrenStrategy {
 

@@ -19,6 +19,8 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * Association Composite Directed edit helper advice.
+ * 
+ * @since 3.0
  */
 public class AssociationCompositeDirectedEditHelperAdvice extends AssociationCompositeEditHelperAdvice {
 

@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternati
 
 /**
  * Offer a strategy for the internationalization of pasted objects.
+ * @since 3.0
  */
 public class InternationalizationPasteStrategy extends AbstractPasteStrategy implements IPasteStrategy {
 	

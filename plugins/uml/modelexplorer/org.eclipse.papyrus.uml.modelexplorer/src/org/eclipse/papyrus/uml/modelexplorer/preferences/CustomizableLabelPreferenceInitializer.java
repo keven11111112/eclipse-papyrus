@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.tools.profile.definition.LabelTypesEnum;
 
 /**
  * Initializer for UML label customization preferences in Model Explorer.
+ * @since 2.0
  */
 public class CustomizableLabelPreferenceInitializer extends AbstractPreferenceInitializer {
 

@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
 
 /**
  * LabelProvider used to show feature name and EObject of an EObjectObservaleValue.
+ * @since 2.0
  *
  */
 public class EObjectObservableValueLabelProvider extends DelegatingStyledCellLabelProvider {

@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * The Stereotype qualify name property Editor.
+ * @since 3.0
  */
 public class StereotypeQualifyNamePropertyEditor extends AbstractPropertyEditor {
 

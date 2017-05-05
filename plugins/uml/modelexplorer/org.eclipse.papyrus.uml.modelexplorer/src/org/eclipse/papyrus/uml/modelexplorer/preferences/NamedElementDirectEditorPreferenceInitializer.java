@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  * 
  * This preference initializer initializes the preferences for the direct editor of NamedElement.
+ * @since 2.0
  *
  */
 public class NamedElementDirectEditorPreferenceInitializer extends AbstractPreferenceInitializer {

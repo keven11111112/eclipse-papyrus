@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.ValueSpecificationAction;
 /**
  * 
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
+ * @since 3.0
  * 
  */
 public class ActivityAutomatedModelCompletionPreferencePage extends AbstractAutomatedModelCompletionPreferencesPage {

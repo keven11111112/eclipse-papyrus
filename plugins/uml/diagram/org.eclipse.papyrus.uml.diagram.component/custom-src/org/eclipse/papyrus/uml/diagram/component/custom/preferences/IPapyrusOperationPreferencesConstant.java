@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.component.custom.preferences;
 
 /**
  * Constants for {@link Operation} preferences.
+ * @since 3.0
  */
 public interface IPapyrusOperationPreferencesConstant {
 

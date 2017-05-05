@@ -21,6 +21,7 @@ import org.eclipse.swt.graphics.TextStyle;
 
 /**
  * The Enum of Styler used for UML label customization.
+ * @since 3.0
  */
 public enum LabelStylersEnum {
 

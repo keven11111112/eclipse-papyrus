@@ -10,6 +10,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes;
 
+/**
+ * @since 3.0
+ */
 public class InterfaceAsCercle_nameLabel extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {
 	public InterfaceAsCercle_nameLabel() {
 		this.setText("");

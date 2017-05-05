@@ -76,6 +76,7 @@ import org.eclipse.uml2.uml.TypedElement;
 /**
  * This class provides an implementation for specific behavior of Drag and Drop
  * in the Composite Diagram.
+ * @since 3.0
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 	/**

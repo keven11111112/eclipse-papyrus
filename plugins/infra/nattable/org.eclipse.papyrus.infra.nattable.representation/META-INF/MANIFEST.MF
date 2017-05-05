@@ -13,7 +13,7 @@ Export-Package: org.eclipse.papyrus.infra.nattable.representation,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.papyrus.infra.core.architecture;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.constraints;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.constraints;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.types;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.nattable.model;visibility:=reexport,
  org.eclipse.papyrus.infra.architecture.representation;bundle-version="[1.0.0,2.0.0)";visibility:=reexport

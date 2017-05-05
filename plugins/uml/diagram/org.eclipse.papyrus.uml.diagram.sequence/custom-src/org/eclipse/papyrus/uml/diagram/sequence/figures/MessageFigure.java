@@ -53,10 +53,10 @@ public abstract class MessageFigure extends UMLEdgeFigure {
 	public MessageFigure(IMapMode mapMode) {
 		this.mapMode = mapMode;
 		createContents();
-		if(createTargetDecoration()!=null){
+		if (createTargetDecoration() != null) {
 			setTargetDecoration(createTargetDecoration());
 		}
-		if(createSourceDecoration()!=null){
+		if (createSourceDecoration() != null) {
 			setSourceDecoration(createSourceDecoration());
 		}
 	}
@@ -64,10 +64,10 @@ public abstract class MessageFigure extends UMLEdgeFigure {
 	@Override
 	public void resetStyle() {
 		super.resetStyle();
-		if(createTargetDecoration()!=null){
+		if (createTargetDecoration() != null) {
 			setTargetDecoration(createTargetDecoration());
 		}
-		if(createSourceDecoration()!=null){
+		if (createSourceDecoration() != null) {
 			setSourceDecoration(createSourceDecoration());
 		}
 	}
@@ -97,6 +97,10 @@ public abstract class MessageFigure extends UMLEdgeFigure {
 	}
 
 	protected abstract RotatableDecoration createTargetDecoration();
+
+	/**
+	 * @since 3.0
+	 */
 	protected abstract RotatableDecoration createSourceDecoration();
 
 	@Override

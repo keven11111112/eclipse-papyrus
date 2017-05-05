@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 
 /**
  * Custom variant. Provides elementType for @see AbstractConstraintEditPart
+ * @since 3.0
  */
 public class CustomConstraintEditPartCN extends ConstraintEditPartCN {
 

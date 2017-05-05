@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaäl ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common, see bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common, see bug 512343.
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
@@ -20,6 +20,7 @@ import org.eclipse.jface.action.IMenuManager;
 
 /**
  * Specific context menu provider for Papyrus diagrams
+ * @since 3.0
  */
 public class PapyrusPaletteContextMenuProvider extends PaletteContextMenuProvider {
 

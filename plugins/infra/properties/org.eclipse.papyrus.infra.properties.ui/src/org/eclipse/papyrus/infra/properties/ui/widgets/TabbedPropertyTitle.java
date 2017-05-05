@@ -34,6 +34,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
  * The title in the tabbed property sheet page.
  *
  * @author Anthony Hunter
+ * @since 2.0
  */
 public class TabbedPropertyTitle
 		extends Composite {

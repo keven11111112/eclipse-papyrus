@@ -21,7 +21,8 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 
-/** This advice does nothing because the actual semantic command are done somewhere else. */
+/** This advice does nothing because the actual semantic command are done somewhere else. 
+ * @since 1.3*/
 public class StateDefinitionHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * A simple hook that can be executed before and after validation commands. A possible
  * use for the former is to register additional constraints.
+ * @since 3.0
  *
  */
 public interface IValidationHook {

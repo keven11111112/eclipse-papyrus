@@ -74,6 +74,7 @@ public class OneFileUtils {
 	 * @param fileName
 	 *            The initial file name.
 	 * @return The base of the di to search in the parent container.
+	 * @since 2.1
 	 */
 	protected static String getFileNameForDi(final String fileName) {
 		String result = fileName;

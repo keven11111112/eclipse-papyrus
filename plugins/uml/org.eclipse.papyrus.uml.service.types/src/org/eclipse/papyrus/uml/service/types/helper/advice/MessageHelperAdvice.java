@@ -342,6 +342,7 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 	 * @param knownReferencer
 	 *            the known referencer
 	 * @return true if the known referencer is the only referencer.
+	 * @since 3.0
 	 */
 	public static boolean isSharedEvent(MessageEnd usedObject, EObject knownReferencer) {
 		EPackage mmPackage = usedObject.eClass().getEPackage();

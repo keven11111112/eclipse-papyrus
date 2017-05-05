@@ -18,6 +18,7 @@ import org.eclipse.papyrus.views.modelexplorer.Activator;
 
 /**
  * This preference initializer for expand preferences.
+ * @since 3.0
  */
 public class ExpandPreferenceInitializer extends AbstractPreferenceInitializer {
 

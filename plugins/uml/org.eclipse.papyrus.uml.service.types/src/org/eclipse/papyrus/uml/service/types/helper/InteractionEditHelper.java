@@ -16,6 +16,9 @@ package org.eclipse.papyrus.uml.service.types.helper;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 
+/**
+ * @since 3.0
+ */
 public class InteractionEditHelper extends ElementEditHelper {
 
 	/**

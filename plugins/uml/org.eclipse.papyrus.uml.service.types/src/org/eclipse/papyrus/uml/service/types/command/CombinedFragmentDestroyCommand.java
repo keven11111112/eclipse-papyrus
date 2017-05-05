@@ -24,6 +24,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 
+/**
+ * @since 3.0
+ */
 public class CombinedFragmentDestroyCommand extends AbstractTransactionalCommand {
 
 	private IElementEditService provider;

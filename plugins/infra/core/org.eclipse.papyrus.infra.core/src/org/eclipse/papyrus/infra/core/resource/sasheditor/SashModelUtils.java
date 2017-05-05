@@ -142,6 +142,7 @@ public class SashModelUtils {
 	 *
 	 * @param modelSet
 	 * @return
+	 * @since 3.0
 	 */
 	public static Resource getSashResource(ModelSet modelSet) {
 		SashModel model = getSashModel(modelSet);

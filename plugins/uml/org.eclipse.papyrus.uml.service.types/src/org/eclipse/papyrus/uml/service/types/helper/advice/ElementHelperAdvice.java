@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
  * <pre>
  * This HelperAdvice prohibits the move command of elements into a proxy element.
  * </pre>
+ * @since 3.0
  */
 public class ElementHelperAdvice extends AbstractEditHelperAdvice {
 

@@ -115,7 +115,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/** Select kind of new diagram the wizard must create. */
 	private SelectRepresentationKindPage selectRepresentationKindPage;
 
-	/** The select architecture context page. */
+	/**
+	 * The select architecture context page.
+	 * 
+	 * @since 3.0
+	 */
 	protected SelectArchitectureContextPage selectArchitectureContextPage;
 
 	/** Current workbench. */
@@ -284,8 +288,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @param contextId
 	 *            the architecture context id
 	 * @param viewpointIds
-	 * 			  the architecture viewpoint ids
+	 *            the architecture viewpoint ids
 	 * @return true, if successful
+	 * @since 3.0
 	 */
 	protected boolean createAndOpenPapyrusModel(URI newURI, String contextId, String[] viewpointIds) {
 
@@ -389,6 +394,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * Gets the selected context ids.
 	 *
 	 * @return the context ids
+	 * @since 3.0
 	 */
 	protected String[] getSelectedContexts() {
 		SelectArchitectureContextPage page = getSelectArchitectureContextPage();
@@ -402,6 +408,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * Gets the viewpoint ids.
 	 *
 	 * @return the viewpoint ids
+	 * @since 3.0
 	 */
 	protected String[] getSelectedViewpoints() {
 		SelectArchitectureContextPage page = getSelectArchitectureContextPage();
@@ -415,6 +422,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * Gets the viewpoint ids.
 	 *
 	 * @return the viewpoint ids
+	 * @since 3.0
 	 */
 	protected String[] getSelectedViewpoints(String contextId) {
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
@@ -427,7 +435,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		selectedViewpoints.retainAll(availableViewpoints);
 		return selectedViewpoints.toArray(new String[0]);
 	}
-	
+
 	private SelectArchitectureContextPage getSelectArchitectureContextPage() {
 		return (selectArchitectureContextPage != null)
 				? selectArchitectureContextPage
@@ -466,6 +474,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * Creates the select architecture context page.
 	 *
 	 * @return the select architecture context page
+	 * @since 3.0
 	 */
 	protected SelectArchitectureContextPage createSelectArchitectureContextPage() {
 		return new SelectArchitectureContextPage();
@@ -475,6 +484,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * Creates the select representation kind page.
 	 *
 	 * @return the select representation kind page
+	 * @since 3.0
 	 */
 	protected SelectRepresentationKindPage createSelectRepresentationKindPage() {
 		return new SelectRepresentationKindPage(new ContextProvider() {
@@ -501,6 +511,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *            the architecture context id
 	 * @param viewpointIds
 	 *            the architecture viewpoint ids
+	 * @since 3.0
 	 */
 	protected void initDomainModel(ModelSet modelSet, String contextId, String[] viewpointIds) {
 
@@ -577,8 +588,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	protected void initDomainModelFromTemplate(ModelSet modelSet) {
 		getCommandStack(modelSet).execute(
-				new InitFromTemplateCommand(modelSet.getTransactionalEditingDomain(), modelSet, selectRepresentationKindPage.getTemplatePluginId(), selectRepresentationKindPage.getTemplatePath(), selectRepresentationKindPage.getNotationTemplatePath(), selectRepresentationKindPage
-						.getDiTemplatePath()));
+				new InitFromTemplateCommand(modelSet.getTransactionalEditingDomain(), modelSet, selectRepresentationKindPage.getTemplatePluginId(), selectRepresentationKindPage.getTemplatePath(), selectRepresentationKindPage.getNotationTemplatePath(),
+						selectRepresentationKindPage
+								.getDiTemplatePath()));
 	}
 
 	/**
@@ -590,6 +602,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *            the architecture context id
 	 * @param viewpointIds
 	 *            the architecture viewpoint ids
+	 * @since 3.0
 	 */
 	protected void createEmptyDomainModel(ModelSet modelSet, String contextId, String[] viewpointIds) {
 		try {
@@ -731,7 +744,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			for (int i = 0; i < creationCommands.size(); i++) {
 				RepresentationKind kind = creationCommands.get(i);
 				if (kind instanceof PapyrusRepresentationKind) {
-					ViewPrototype proto = ViewPrototype.get((PapyrusRepresentationKind)kind);
+					ViewPrototype proto = ViewPrototype.get((PapyrusRepresentationKind) kind);
 					proto.instantiateOn(root, diagramName.get(i));
 				}
 			}
@@ -744,6 +757,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @param contextId
 	 *            the architecture context id
 	 * @return the repersentation kinds for
+	 * @since 3.0
 	 */
 	protected List<RepresentationKind> getRepresentationKindsFor(String contextId) {
 		return selectRepresentationKindPage.getSelectedRepresentationKinds(contextId);
@@ -788,6 +802,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @param newCategories
 	 *            the new categories
 	 * @return the i status
+	 * @since 3.0
 	 */
 	public IStatus architectureContextChanged(String... newContexts) {
 		return getSelectedStorageProvider().validateArchitectureContexts(newContexts);

@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.com and remove aspect actions framework, see bug 512343.
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.com and remove aspect actions framework, see bug 512343.
  *
  *****************************************************************************/
 
@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * Entry that uses the functionality of another entry.
+ * @since 3.0
  */
 public class AspectCreationEntry extends CombinedTemplateCreationEntry implements Cloneable {
 

@@ -18,6 +18,7 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * Specialization of the link mapping helper for the timing diagram
+ * @since 1.3
  */
 public class TimingDiagramLinkMappingHelper implements ILinkMappingHelper {
 

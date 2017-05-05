@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * The property editor for Icon with popup.
+ * @since 2.0
  */
 public class IconPropertyEditor extends AbstractPropertyEditor {
 

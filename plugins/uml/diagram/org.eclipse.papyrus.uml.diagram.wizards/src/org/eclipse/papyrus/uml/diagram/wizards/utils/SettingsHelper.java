@@ -37,6 +37,7 @@ public class SettingsHelper {
 	 * Gets the saved architecture contexts.
 	 *
 	 * @return the saved architecture contexts
+	 * @since 3.0
 	 */
 	public String[] getArchitectureContexts() {
 		String[] contexts = mySettings.getArray(ARCHITECTURE_CONTEXTS);
@@ -48,6 +49,7 @@ public class SettingsHelper {
 	 *
 	 * @param contexts
 	 *            the architecture contexts
+	 * @since 3.0
 	 */
 	public void saveArchitectureContexts(String[] contexts) {
 		mySettings.put(ARCHITECTURE_CONTEXTS, contexts);

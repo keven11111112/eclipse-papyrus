@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * The observable value for the label of the {@link NamedElement}.
+ * @since 3.0
  */
 @SuppressWarnings("rawtypes")
 public class UMLLabelObservableValue extends AbstractObservableValue implements IObserving, ReferenceCountedObservable {
