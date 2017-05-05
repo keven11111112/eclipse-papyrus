@@ -11,4 +11,5 @@
 	<groupId>org.eclipse.papyrus</groupId>
 	<version>2.0.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
+	<description>Used for versioning purposes during API baseline check by the Oomph Version Management tool for Papyrus' Main product bundles and features</description>
 </project>
