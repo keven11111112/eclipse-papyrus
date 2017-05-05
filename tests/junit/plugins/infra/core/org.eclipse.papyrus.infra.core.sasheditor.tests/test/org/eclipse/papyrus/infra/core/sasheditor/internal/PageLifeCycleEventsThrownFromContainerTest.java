@@ -174,6 +174,9 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 		int i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_OPENED, listener.getTraces().get(i++));
+		
+		// Next test is convenient when debugging (because it output what is sent), but it is hard to write
+		assertEquals("expected events", "[pageAboutToBeOpened, pageOpened, pageActivated]", listener.getTraces().toString());
 	}
 
 	/**
@@ -247,6 +250,8 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 		assertTrue("event fired", 2 <= listener.getEventCount());
 		int i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
+		//
+		
 	}
 
 	/**
@@ -367,16 +372,22 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 		// creates Pages in the sashContainer 
 		container.refreshTabs();
 
+		// Set current active page (to force a pageActivated after closing)
+		container.selectPage(container.lookupModelPage(helper.lookupPageByName("p12")));
+		
 		// refresh traces
 		listener.resetChangeCount();
 		listener.resetTraces();
 
 		// Now test the lifeCycle by closing a page
-		helper.removePage("p22");
+		helper.removePage("p12");
 		// Do refresh. This fire events
 		container.refreshTabs();
 				
 		// check events (there is more than the 2 expected)
+		// Next test is convenient when debugging (because it output what is sent), but it is hard to write
+		assertEquals("expected events", "[pageClosed, pageActivated]", listener.getTraces().toString());
+
 		assertEquals("event fired", 2, listener.getEventCount());
 		int i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_CLOSED, listener.getTraces().get(i++));
@@ -413,6 +424,9 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 		// creates Pages in the sashContainer 
 		container.refreshTabs();
 
+		// Set current active page (to force a pageActivated after closing)
+		container.selectPage(container.lookupModelPage(helper.lookupPageByName("p21")));
+
 		// refresh traces
 		listener.resetChangeCount();
 		listener.resetTraces();
@@ -423,6 +437,9 @@ public class PageLifeCycleEventsThrownFromContainerTest /* extends AbstractPapyr
 		container.refreshTabs();
 				
 		// check events (there is more than the 2 expected)
+		// Next test is convenient when debugging (because it output what is sent), but it is hard to write
+		assertEquals("expected events", "[pageClosed, pageActivated]", listener.getTraces().toString());
+		
 		assertEquals("event fired", 2, listener.getEventCount());
 		int i = 0;
 		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_CLOSED, listener.getTraces().get(i++));

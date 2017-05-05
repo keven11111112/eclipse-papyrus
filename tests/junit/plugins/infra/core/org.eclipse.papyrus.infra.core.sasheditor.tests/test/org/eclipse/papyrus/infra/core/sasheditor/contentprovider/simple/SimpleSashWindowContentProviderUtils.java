@@ -315,5 +315,13 @@ public class SimpleSashWindowContentProviderUtils implements ISashWindowsContent
 		// In this implementation, the root is always of type AbstractPanelModel
 		return (AbstractPanelModel)contentProvider.getRootModel();
 	}
+
+	/**
+	 * @param string
+	 */
+	public void setActivePage(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

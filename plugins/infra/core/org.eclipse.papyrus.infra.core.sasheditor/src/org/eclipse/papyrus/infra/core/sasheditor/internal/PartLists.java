@@ -102,7 +102,7 @@ public class PartLists {
 
 		// Remove orphaned part (no more used)
 		for (PagePart part : pageParts) {
-			if (part.isOrphaned()) {
+			if (part.isOrphaned() || part.isUnchecked() ) {
 				part.garbage();
 			}
 		}

@@ -274,12 +274,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * <li>properties are cleaned in order to help the GC</li>
 	 * <li>swt controls are not disposed again</li>
 	 * </ul>
-	 * <li></li>
-	 * <li></li>
-	 * <li></li>
-	 * <li></li>
-	 * <li></li>
-	 * </ul>
 	 *
 	 */
 	public void dispose() {
@@ -308,6 +302,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// clean up properties to help GC
 		activePageTracker = null;
+
 		container = null;
 		contentProvider = null;
 		dragOverListener = null;
@@ -365,6 +360,36 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	// pageChanged(childPart);
 	// }
 
+	/**
+	 * Method to request to change the currently active page. 
+	 * The currently active page is changed only if we are not currently synchronizing the tabs 
+	 * (currently in a call to {@link #refreshTabsInternal()}.
+	 * 
+	 * This method is called by {@link TabFolderPart#pageChange(int)} when a UI change is detected.
+	 * Such UI change can happen:
+	 * <ul>
+	 *   <li>when a tab is removed. This usually happen inside the call of {@link #refreshTabsInternal()}</li>
+	 *   <li>when user select another tab in sashwindows</li>
+	 * </ul>
+	 * 
+	 * If we are currently refreshing the tabs, we do nothing. The cactive page will be set at the end of {@link #refreshTabsInternal()}.
+	 * 
+	 * Otherwise, the page is changed by calling {@link #setActivePage(PagePart)}
+	 * 
+	 * @param childPart The new page to set
+	 * @since 2.0.0
+	 */
+	protected void setActivePageRequest(PagePart newChildPart) {
+
+		if( isRefreshing.get() ) {
+			// The page change comes from a PagePart removing. 
+			// skip 
+			return;
+		} 
+
+		setActivePage(newChildPart);
+	}
+	
 	/**
 	 * Set the active page. The current active page will be the specified page. Throw events indicating that
 	 * the current ActivePage has changed. <br>

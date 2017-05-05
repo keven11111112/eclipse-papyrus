@@ -111,9 +111,11 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	@Override
 	public void dispose() {
 
-		// detachListeners(editorControl, true);
-		// dispose the SWT root control
-		editorControl.dispose();
+		if( !editorControl.isDisposed() ) {
+			// detachListeners(editorControl, true);
+			// dispose the SWT root control
+			editorControl.dispose();
+		}
 		// clean up properties to help GC
 		partModel = null;
 		rawModel = null;

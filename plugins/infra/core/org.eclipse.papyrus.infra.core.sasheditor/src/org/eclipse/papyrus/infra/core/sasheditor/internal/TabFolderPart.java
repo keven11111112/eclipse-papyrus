@@ -336,7 +336,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 			return;
 		}
 
-		getSashWindowContainer().setActivePage(currentTabItems.get(newPageIndex).childPart);
+		getSashWindowContainer().setActivePageRequest(currentTabItems.get(newPageIndex).childPart);
 	}
 
 	/**

@@ -442,13 +442,15 @@ public class EditorPart extends PagePart implements IEditorPage {
 	@Override
 	public void dispose() {
 
-		detachListeners(editorControl, true);
-		// dispose the SWT root control
-		// This should also trigger the disposal of associated editor.
-		editorControl.dispose();
-		// Dispose the editor.
-		// disposeEditorPart();
-
+		if( !editorControl.isDisposed() ) {
+			detachListeners(editorControl, true);
+			// dispose the SWT root control
+			// This should also trigger the disposal of associated editor.
+			editorControl.dispose();
+			// Dispose the editor.
+			// disposeEditorPart();
+		}
+		
 		// clean up properties to help GC
 		editorModel = null;
 		// editorPart = null;
