@@ -26,7 +26,6 @@
 		<plugin name="org.eclipse.papyrus.tests.framework.edit" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.tests.framework.editor" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.dev.types" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.developer.profile" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.junit.feature" version="2.0.0">
 		<plugin name="org.eclipse.papyrus.junit.framework" version="1.2.0"/>
@@ -50,7 +49,6 @@
 	<plugin name="org.eclipse.papyrus.dev.tests.framework.ui" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.dev.types" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.dev.view.services.edit.request" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.developer.profile" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.editpartview" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.editpoliciesstates" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.figureview" version="1.2.0"/>
