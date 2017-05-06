@@ -46,15 +46,15 @@ public class StringResolutionProblemWrapperCellManager implements IUnsetValueCel
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean handles(Object columnElement, Object rowElement) {
-		return this.wrappedCellManager.handles(columnElement, rowElement);
+	public boolean handles(Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		return this.wrappedCellManager.handles(columnElement, rowElement, tableManager);
 	}
 
 	/**
@@ -122,15 +122,15 @@ public class StringResolutionProblemWrapperCellManager implements IUnsetValueCel
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object columnElement, Object rowElement) {
-		return this.wrappedCellManager.isCellEditable(columnElement, rowElement);
+	public boolean isCellEditable(Object columnElement, Object rowElement, INattableModelManager tableManager) {
+		return this.wrappedCellManager.isCellEditable(columnElement, rowElement, tableManager);
 	}
 
 	/**
@@ -196,20 +196,20 @@ public class StringResolutionProblemWrapperCellManager implements IUnsetValueCel
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map, java.lang.String)
-	 *
-	 * @param tableManager
 	 * @param existingConverters
 	 * @param multiValueSeparator
+	 * @param tableManager
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(java.util.Map, java.lang.String, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
 	 * @return
 	 */
 	@Override
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator) {
-		return this.wrappedCellManager.getOrCreateStringValueConverterClass(tableManager, existingConverters, multiValueSeparator);
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator, INattableModelManager tableManager) {
+		return this.wrappedCellManager.getOrCreateStringValueConverterClass(existingConverters, multiValueSeparator, tableManager);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
@@ -217,24 +217,24 @@ public class StringResolutionProblemWrapperCellManager implements IUnsetValueCel
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object columnElement, Object rowElement, Map<?, ?> sharedMap) {
-		return this.wrappedCellManager.isCellEditable(columnElement, rowElement, sharedMap);
+	public boolean isCellEditable(Object columnElement, Object rowElement, Map<?, ?> sharedMap, INattableModelManager tableManager) {
+		return this.wrappedCellManager.isCellEditable(columnElement, rowElement, sharedMap, tableManager);
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
-	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
+	 *      java.util.Map, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @param valueAsString
 	 * @param valueConverter
-	 * @param tableManager
 	 * @param sharedMap
+	 * @param tableManager
 	 */
 	@Override
-	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueConverter, INattableModelManager tableManager, Map<?, ?> sharedMap) {
-		this.wrappedCellManager.setStringValue(columnElement, rowElement, valueAsString, valueConverter, tableManager, sharedMap);
+	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueConverter, Map<?, ?> sharedMap, INattableModelManager tableManager) {
+		this.wrappedCellManager.setStringValue(columnElement, rowElement, valueAsString, valueConverter, sharedMap, tableManager);
 		CellHelper.createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, valueConverter.getConvertedValue(), sharedMap);
 	}
 

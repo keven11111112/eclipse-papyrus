@@ -65,14 +65,14 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean handles(final Object columnElement, final Object rowElement) {
+	public boolean handles(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		return organizeAndResolvedObjects(columnElement, rowElement, null) != null;
 	}
 
@@ -131,14 +131,14 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final EObject object = (EObject) objects.get(0);
 		final EStructuralFeature feature = (EStructuralFeature) objects.get(1);
@@ -319,15 +319,15 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map, java.lang.String)
-	 *
-	 * @param tableManager
 	 * @param existingConverters
 	 * @param multiValueSeparator
+	 * @param tableManager
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getOrCreateStringValueConverterClass(java.util.Map, java.lang.String, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
 	 * @return
 	 */
 	@Override
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator) {
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator, INattableModelManager tableManager) {
 		AbstractStringValueConverter converter = existingConverters.get(EMFStringValueConverter.class);
 		if (converter == null) {
 			converter = new EMFStringValueConverter(tableManager.getTable().getContext(), multiValueSeparator);
@@ -378,17 +378,17 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
-	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
+	 *      java.util.Map, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @param valueAsString
 	 * @param valueConverter
-	 * @param tableManager
 	 * @param sharedMap
+	 * @param tableManager
 	 */
 	@Override
-	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap) {
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final Map<?, ?> sharedMap, final INattableModelManager tableManager) {
 		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
 		final EObject editedObject = (EObject) objects.get(0);
 		final EStructuralFeature editedFeature = (EStructuralFeature) objects.get(1);
@@ -433,7 +433,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 */
 	@Override
 	public Command getUnsetCellValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
-		if (isCellEditable(columnElement, rowElement)) {
+		if (isCellEditable(columnElement, rowElement, tableManager)) {
 			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 			final EObject elementToEdit = (EObject) objects.get(0);
 			final EStructuralFeature editedFeature = (EStructuralFeature) objects.get(1);

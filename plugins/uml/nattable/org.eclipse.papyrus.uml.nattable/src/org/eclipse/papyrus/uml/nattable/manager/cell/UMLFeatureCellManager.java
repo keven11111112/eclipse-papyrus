@@ -32,15 +32,15 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean handles(final Object columnElement, final Object rowElement) {
-		boolean answer = super.handles(columnElement, rowElement);
+	public boolean handles(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
+		boolean answer = super.handles(columnElement, rowElement, tableManager);
 		if (answer) {
 			final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement, null);
 			answer = objects.get(0) instanceof Element;
@@ -50,15 +50,15 @@ public class UMLFeatureCellManager extends EMFFeatureValueCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map, java.lang.String)
-	 *
-	 * @param tableManager
 	 * @param existingConverters
 	 * @param multiValueSeparator
+	 * @param tableManager
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#getOrCreateStringValueConverterClass(java.util.Map, java.lang.String, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
 	 * @return
 	 */
 	@Override
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator) {
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator, INattableModelManager tableManager) {
 		AbstractStringValueConverter converter = existingConverters.get(UMLStringValueConverter.class);
 		if (converter == null) {
 			converter = new UMLStringValueConverter(tableManager.getTable().getContext(), multiValueSeparator);

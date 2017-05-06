@@ -27,26 +27,26 @@ public class TreeFillingConfigurationCellManager extends AbstractCellManager imp
 
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean handles(Object columnElement, Object rowElement) {
+	public boolean handles(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		return rowElement instanceof ITreeItemAxis && ((ITreeItemAxis) rowElement).getElement() instanceof TreeFillingConfiguration;
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object columnElement, Object rowElement) {
+	public boolean isCellEditable(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		return false;
 	}
 

@@ -392,10 +392,10 @@ public class PasteEObjectAxisInTableCommandProvider implements PasteNattableComm
 				}
 
 
-				final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap);
+				final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap, tableManager);
 				if (isEditable) {
-					final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR);
-					CellManagerFactory.INSTANCE.setStringValue(columnObject, rowObject, valueAsString, converter, tableManager, sharedMap);
+					final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR, tableManager);
+					CellManagerFactory.INSTANCE.setStringValue(columnObject, rowObject, valueAsString, converter, sharedMap, tableManager);
 				}
 			}
 
@@ -616,10 +616,10 @@ public class PasteEObjectAxisInTableCommandProvider implements PasteNattableComm
 							}
 
 
-							final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
+							final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, tableManager);
 
 							if (isEditable) {
-								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR);
+								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR, tableManager);
 								final Command setValueCommand = CellManagerFactory.INSTANCE.getSetStringValueCommand(contextEditingDomain, columnObject, rowObject, valueAsString, converter, tableManager);
 								if (setValueCommand != null && setValueCommand.canExecute()) {
 									setValueCommand.execute();

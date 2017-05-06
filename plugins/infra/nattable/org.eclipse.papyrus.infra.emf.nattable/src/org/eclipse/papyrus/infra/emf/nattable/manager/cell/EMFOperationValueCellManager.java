@@ -45,11 +45,11 @@ public class EMFOperationValueCellManager extends AbstractCellManager {
 	protected final static String NO_PARAMETER_MESSAGE = "N/A: This operation requires some parameters"; //$NON-NLS-1$
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 */
 	@Override
-	public boolean handles(Object columnElement, Object rowElement) {
+	public boolean handles(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		return organizeAndResolvedObjects(columnElement, rowElement, null) != null;
 
 	}
@@ -112,11 +112,11 @@ public class EMFOperationValueCellManager extends AbstractCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 */
 	@Override
-	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		return false;
 	}
 

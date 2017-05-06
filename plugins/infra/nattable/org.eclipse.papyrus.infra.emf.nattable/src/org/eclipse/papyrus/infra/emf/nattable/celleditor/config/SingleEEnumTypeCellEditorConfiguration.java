@@ -62,7 +62,8 @@ public class SingleEEnumTypeCellEditorConfiguration implements ICellAxisConfigur
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.ICellAxisEditorConfiguration#handles(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object)
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
 	 *
 	 * @param table
 	 * @param axisElement

@@ -373,7 +373,7 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 			final Object rowElement = AxisUtils.getRepresentedElement(tableManager.getRowElement(index));
 			final Object columnElement = AxisUtils.getRepresentedElement(tableManager.getColumnElement(currentCell.getColumnIndex()));
 
-			final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement);
+			final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, tableManager);
 
 			if (isEditable) {
 				rowDiff++;
@@ -408,7 +408,7 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 			final Object rowElement = AxisUtils.getRepresentedElement(tableManager.getRowElement(currentCell.getRowIndex()));
 			final Object columnElement = AxisUtils.getRepresentedElement(tableManager.getColumnElement(index));
 
-			final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement);
+			final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, tableManager);
 
 			if (isEditable) {
 				columnDiff++;

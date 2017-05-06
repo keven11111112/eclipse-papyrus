@@ -192,10 +192,10 @@ public class PasteEObjectAxisInNattableCommandProvider extends AbstractPasteEObj
 				final Object columnObject = currentAxis;
 				final Object rowObject = createdElement;
 
-				final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap);
+				final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap, tableManager);
 				if (isEditable) {
-					final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, this.pasteHelper.getMultiValueSeparator());
-					CellManagerFactory.INSTANCE.setStringValue(columnObject, rowObject, valueAsString, converter, tableManager, sharedMap);
+					final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, existingConverters, this.pasteHelper.getMultiValueSeparator(), tableManager);
+					CellManagerFactory.INSTANCE.setStringValue(columnObject, rowObject, valueAsString, converter, sharedMap, tableManager);
 				}
 			}
 
@@ -427,10 +427,10 @@ public class PasteEObjectAxisInNattableCommandProvider extends AbstractPasteEObj
 								rowObject = createdElement;
 							}
 
-							final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
+							final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, tableManager);
 
 							if (isEditable) {
-								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
+								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, existingConverters, pasteHelper.getMultiValueSeparator(), tableManager);
 								final Command setValueCommand = CellManagerFactory.INSTANCE.getSetStringValueCommand(contextEditingDomain, columnObject, rowObject, valueAsString, converter, tableManager);
 								final IStatus commandStatus = getStatusCommand(setValueCommand);
 								if (!commandStatus.isOK()) {

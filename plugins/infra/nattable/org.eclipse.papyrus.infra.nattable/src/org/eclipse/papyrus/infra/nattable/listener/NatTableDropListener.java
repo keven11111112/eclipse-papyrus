@@ -153,7 +153,7 @@ public class NatTableDropListener implements DropTargetListener {
 			int columnIndex = this.dropKindValue.getColumnIndex();
 			final Object rowElement = this.manager.getRowElement(rowIndex);
 			final Object columnElement = this.manager.getColumnElement(columnIndex);
-			if (CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement)) {
+			if (CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, this.manager)) {
 				final TransactionalEditingDomain domain = getEditingDomain();
 				final Command cmd = getDropSetValueCommand(domain, droppedElements);
 				if (cmd!=null && cmd.canExecute()) {
@@ -206,7 +206,7 @@ public class NatTableDropListener implements DropTargetListener {
 		int columnIndex = this.dropKindValue.getColumnIndex();
 		final Object rowElement = this.manager.getRowElement(rowIndex);
 		final Object columnElement = this.manager.getColumnElement(columnIndex);
-		if (CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement)) {
+		if (CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, this.manager)) {
 			Object newValue = null;
 			final Object currentValue = CellManagerFactory.INSTANCE.getCrossValueIgnoringProblems(columnElement, rowElement, this.manager);
 			if (currentValue instanceof Collection<?>) {

@@ -86,14 +86,14 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
-	 *
-	 * @param rowElement
 	 * @param columnElement
+	 * @param rowElement
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
+	 *
 	 * @return
 	 */
 	@Override
-	public boolean handles(Object rowElement, Object columnElement) {
+	public boolean handles(Object rowElement, Object columnElement, INattableModelManager tableManager) {
 		return organizeAndResolvedObjects(columnElement, rowElement) != null;
 	}
 
@@ -129,15 +129,15 @@ public class ModelViewsCellManager extends AbstractCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
-	 *
-	 * @param rowElement
 	 * @param columnElement
+	 * @param rowElement
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
+	 *
 	 * @return
 	 *         <code>true</code> excepted if the edited feature is isOpen
 	 */
 	@Override
-	public boolean isCellEditable(Object rowElement, Object columnElement) {
+	public boolean isCellEditable(Object rowElement, Object columnElement, INattableModelManager tableManager) {
 		final List<Object> objects = organizeAndResolvedObjects(columnElement, rowElement);
 		final String featureName = ((String) objects.get(1)).replace(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		return featureName.equals(Utils.VIEW_NAME);

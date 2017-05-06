@@ -40,6 +40,7 @@ import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig;
 import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -106,7 +107,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.AbstractEMFSingleFeatureSingleEditorConfig#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.celleditor.config.AbstractEMFSingleFeatureSingleEditorConfig#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object, INattableModelManager)
 	 *
 	 * @param table
 	 * @param axisElement

@@ -19,7 +19,7 @@ public class TableSelectionProviderCellManager implements ICellManager {
 	private final static String SELECTION_VIEW = "gmf_custom:/diagramSelectionView"; // $NON-NLS-0$
 
 	@Override
-	public boolean handles(Object columnElement, Object rowElement) {
+	public boolean handles(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		return SELECTION_VIEW.equals(AxisUtils.getRepresentedElement(columnElement));
 
 	}
@@ -54,14 +54,14 @@ public class TableSelectionProviderCellManager implements ICellManager {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object columnElement, Object rowElement) {
+	public boolean isCellEditable(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 
 		return false;
 	}
@@ -102,21 +102,21 @@ public class TableSelectionProviderCellManager implements ICellManager {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map, java.lang.String)
-	 *
-	 * @param tableManager
 	 * @param existingConverters
 	 * @param multiValueSeparator
+	 * @param tableManager
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(java.util.Map, java.lang.String, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *
 	 * @return
 	 */
 	@Override
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator) {
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, String multiValueSeparator, INattableModelManager tableManager) {
 
 		return null;
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
@@ -124,24 +124,24 @@ public class TableSelectionProviderCellManager implements ICellManager {
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(Object columnElement, Object rowElement, Map<?, ?> sharedMap) {
+	public boolean isCellEditable(Object columnElement, Object rowElement, Map<?, ?> sharedMap, INattableModelManager tableManager) {
 
 		return false;
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
-	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
+	 *      java.util.Map, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @param valueAsString
 	 * @param valueConverter
-	 * @param tableManager
 	 * @param sharedMap
+	 * @param tableManager
 	 */
 	@Override
-	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueConverter, INattableModelManager tableManager, Map<?, ?> sharedMap) {
+	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueConverter, Map<?, ?> sharedMap, INattableModelManager tableManager) {
 		// nothing to do
 
 	}

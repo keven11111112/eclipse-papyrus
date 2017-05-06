@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vicnent Lorenzo (CEA LIST) Bugs 516247, 515806
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
@@ -50,9 +50,12 @@ public interface ICellManager {
 	 *            the column element as described in the model (you must ignore the invert axis)
 	 * @param rowElement
 	 *            the row element as described in the model (you must ignore the invert axis)
+	 * @param tableManager
+	 *            the current table manager
 	 * @return
+	 * @since 3.0 : tableManager arguments added
 	 */
-	public boolean handles(final Object columnElement, final Object rowElement);
+	public boolean handles(final Object columnElement, final Object rowElement, final INattableModelManager tableManager);
 
 
 	/**
@@ -64,7 +67,7 @@ public interface ICellManager {
 	 * @param tableManager
 	 *            the table manager
 	 * @return
-	 *         the value of the cell or {@value #NOT_AVALAIBLE} if the cell is meaningless for the couple of parameters
+	 * 		the value of the cell or {@value #NOT_AVALAIBLE} if the cell is meaningless for the couple of parameters
 	 *
 	 *         THIS METHOD MUST NOT BE USED IN REPLACEMENT OF A SPECIFIC LABEL PROVIDER
 	 */
@@ -92,10 +95,13 @@ public interface ICellManager {
 	 *            the column element as described in the model (you must ignore the invert axis)
 	 * @param rowElement
 	 *            the row element as described in the model (you must ignore the invert axis)
+	 * @param tableManager
+	 *            the current table manager
 	 * @return
-	 *         <code>true</code> if the intersection of the 2 objects is editable
+	 * 		<code>true</code> if the intersection of the 2 objects is editable
+	 * @since 3.0 tableManager arguments added
 	 */
-	public boolean isCellEditable(final Object columnElement, final Object rowElement);
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final INattableModelManager tableManager);
 
 	/**
 	 *
@@ -109,7 +115,7 @@ public interface ICellManager {
 	 *            the new value to set to the intersection of these 2 objects
 	 * @param tableManager
 	 * @return
-	 *         the command to set the value or <code>null</code>
+	 * 		the command to set the value or <code>null</code>
 	 */
 	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager);
 
@@ -131,16 +137,17 @@ public interface ICellManager {
 
 	/**
 	 *
-	 * @param tableManager
-	 *            the table manager
 	 * @param existingConverters
 	 *            a map with the existing converters, to avoid to create them too often
 	 * @param multiValueSeparator
 	 *            the separator used for multi values
+	 * @param tableManager
+	 *            the table manager
 	 * @return
-	 *         the class to use to converter the string into values. If the method create them, the method must add it to the map existingConverters
+	 * 		the class to use to converter the string into values. If the method create them, the method must add it to the map existingConverters
+	 * @since 3.0 argument order changed
 	 */
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator);
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator, final INattableModelManager tableManager);
 
 	/**
 	 * This method is used when we are pasting element in detached mode
@@ -151,10 +158,13 @@ public interface ICellManager {
 	 *            the row element as described in the model (you must ignore the invert axis)
 	 * @param sharedMap
 	 *            a map with shared elements
+	 * @param tableManager
+	 *            the current table manager
 	 * @return
-	 *         <code>true</code> if the intersection of the 2 objects is editable
+	 * 		<code>true</code> if the intersection of the 2 objects is editable
+	 * @since 3.0 tableManager arguments added
 	 */
-	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap);
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap, final INattableModelManager tableManager);
 
 	/**
 	 * This method is used when we are pasting elements in detached mode
@@ -167,12 +177,13 @@ public interface ICellManager {
 	 *            the value as string
 	 * @param valueConverter
 	 *            the value converter to use
-	 * @param tableManager
-	 *            the table manager
 	 * @param sharedMap
 	 *            a map with shared elements. The method may read/add elements to the shared map. These contributions will be managed by a paste post
 	 *            action or by the paste manager itself
+	 * @param tableManager
+	 *            the table manager
+	 * @since 3.0 argument order changed
 	 *
 	 */
-	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap);
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final Map<?, ?> sharedMap, final INattableModelManager tableManager);
 }

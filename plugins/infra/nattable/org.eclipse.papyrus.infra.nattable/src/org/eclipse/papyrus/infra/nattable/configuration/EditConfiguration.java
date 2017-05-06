@@ -89,7 +89,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 		public boolean isEditable(final int columnIndex, final int rowIndex) {
 			final Object rowElement = manager.getRowElement(rowIndex);
 			final Object columnElement = manager.getColumnElement(columnIndex);
-			return CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement);
+			return CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, this.manager);
 		}
 	}
 }

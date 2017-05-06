@@ -71,14 +71,14 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean handles(final Object columnElement, final Object rowElement) {
+	public boolean handles(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		return organizeAndResolvedObjects(columnElement, rowElement, null) != null;
 	}
 
@@ -136,14 +136,14 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.nattable.manager.cell.UMLFeatureCellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final Element el = (Element) umlObjects.get(0);
 		final String id = (String) umlObjects.get(1);
@@ -164,7 +164,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map, INattableModelManager)
 	 *
 	 * @param columnElement
 	 * @param rowElement
@@ -172,7 +172,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 * @return
 	 */
 	@Override
-	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap, INattableModelManager tableManager) {
 		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
 		final Element el = (Element) umlObjects.get(0);
 		final String id = (String) umlObjects.get(1);
@@ -376,14 +376,14 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 *            the value as string
 	 * @param valueConverter
 	 *            the value converter to use
-	 * @param tableManager
-	 *            the table manager
 	 * @param sharedMap
 	 *            a map with shared elements. The method may read/add elements to the shared map. These contributions will be managed by a paste post
 	 *            action or by the paste manager itself
+	 * @param tableManager
+	 *            the table manager
 	 */
 	@Override
-	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueSolver, INattableModelManager tableManager, Map<?, ?> sharedMap) {
+	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueSolver, Map<?, ?> sharedMap, INattableModelManager tableManager) {
 		// commented to fix bug 480894: [Table]pasting an empty string in a stereotype property colonne throws a java.lang.IllegalStateException
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=480894
 		// if (valueAsString == null || valueAsString.isEmpty()) {
@@ -516,7 +516,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 */
 	@Override
 	public Command getUnsetCellValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, INattableModelManager tableManager) {
-		if (isCellEditable(columnElement, rowElement)) {
+		if (isCellEditable(columnElement, rowElement, tableManager)) {
 			final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
 			final Element el = (Element) umlObjects.get(0);
 			final String id = (String) umlObjects.get(1);

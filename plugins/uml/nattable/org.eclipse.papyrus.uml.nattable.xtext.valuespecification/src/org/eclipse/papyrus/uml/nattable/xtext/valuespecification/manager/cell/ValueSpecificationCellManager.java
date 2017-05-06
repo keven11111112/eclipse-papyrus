@@ -139,10 +139,10 @@ public class ValueSpecificationCellManager extends EMFFeatureValueCellManager {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 */
 	@Override
-	public boolean handles(final Object columnElement, final Object rowElement) {
+	public boolean handles(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		boolean result = false;
 		Object row = AxisUtils.getRepresentedElement(rowElement);
 		Object column = AxisUtils.getRepresentedElement(columnElement);

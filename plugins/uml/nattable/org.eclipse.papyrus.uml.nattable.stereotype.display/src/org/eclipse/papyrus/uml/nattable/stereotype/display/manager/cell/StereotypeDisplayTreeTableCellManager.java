@@ -38,10 +38,10 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#handles(java.lang.Object, java.lang.Object, INattableModelManager)
 	 */
 	@Override
-	public boolean handles(final Object columnElement, final Object rowElement) {
+	public boolean handles(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		boolean handles = false;
 		Object element = AxisUtils.getRepresentedElement(columnElement);
 		if (element instanceof String) {
@@ -130,10 +130,10 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 */
 	@Override
-	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, INattableModelManager tableManager) {
 		boolean result = true;
 
 		// Disable the isVisible for the properties
@@ -186,21 +186,21 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map, java.lang.String)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getOrCreateStringValueConverterClass(java.util.Map, java.lang.String, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 */
 	@Override
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final INattableModelManager tableManager, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters,
-			final String multiValueSeparator) {
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator,
+			final INattableModelManager tableManager) {
 		return null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map)
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, java.util.Map, INattableModelManager)
 	 */
 	@Override
-	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap, INattableModelManager tableManager) {
 		return false;
 	}
 
@@ -208,10 +208,10 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
-	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
+	 *      java.util.Map, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 */
 	@Override
-	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap) {
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final Map<?, ?> sharedMap, final INattableModelManager tableManager) {
 		// Nothing to do
 	}
 

@@ -78,7 +78,7 @@ public final class CellManagerFactory {
 			final Integer order = new Integer(iConfigurationElement.getAttribute(ORDER));
 			try {
 				final ICellManager solver = (ICellManager) iConfigurationElement.createExecutableExtension(CLASS_MANAGER);
-				if(!this.managersMap.containsKey(order)){
+				if (!this.managersMap.containsKey(order)) {
 					this.managersMap.put(order, new HashSet<ICellManager>());
 				}
 				this.managersMap.get(order).add(new StringResolutionProblemWrapperCellManager(solver));
@@ -96,31 +96,12 @@ public final class CellManagerFactory {
 	 * @param rowElement
 	 *            the row element as described in the model (you must ignore the invert axis)
 	 * @return
-	 *         the value to display in the cell
+	 * 		the value to display in the cell
 	 */
 	public Object getCrossValue(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
 			return cellManager.getValue(columnElement, rowElement, tableManager);
-		} else {
-			return CELL_MANAGER_NOT_FOUND;
-		}
-	}
-	
-	/**
-	 *
-	 * @param columnElement
-	 *            the column element as described in the model (you must ignore the invert axis)
-	 *
-	 * @param rowElement
-	 *            the row element as described in the model (you must ignore the invert axis)
-	 * @return
-	 *         the value to display in the cell
-	 */
-	public Object getCrossValueIgnoringProblems(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
-		if (cellManager != null) {
-			return ((StringResolutionProblemWrapperCellManager)cellManager).getValueIgnoringCellProblem(columnElement, rowElement, tableManager);
 		} else {
 			return CELL_MANAGER_NOT_FOUND;
 		}
@@ -133,19 +114,39 @@ public final class CellManagerFactory {
 	 *
 	 * @param rowElement
 	 *            the row element as described in the model (you must ignore the invert axis)
+	 * @return
+	 * 		the value to display in the cell
+	 */
+	public Object getCrossValueIgnoringProblems(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
+		if (cellManager != null) {
+			return ((StringResolutionProblemWrapperCellManager) cellManager).getValueIgnoringCellProblem(columnElement, rowElement, tableManager);
+		} else {
+			return CELL_MANAGER_NOT_FOUND;
+		}
+	}
+
+	/**
+	 *
+	 * @param columnElement
+	 *            the column element as described in the model (you must ignore the invert axis)
+	 * @param rowElement
+	 *            the row element as described in the model (you must ignore the invert axis)
+	 * @param tableManager
+	 *            the current table manager
 	 *
 	 * @return
-	 *         the cell manager
+	 * 		the cell manager
 	 */
-	private ICellManager getCellManager(final Object columnElement, final Object rowElement) {
+	private ICellManager getCellManager(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
 		ICellManager result = null;
 		final Iterator<Integer> orders = this.managersMap.keySet().iterator();
-		while(orders.hasNext() && null == result){
+		while (orders.hasNext() && null == result) {
 			final Integer integer = orders.next();
 			final Iterator<ICellManager> cellManagers = this.managersMap.get(integer).iterator();
-			while(cellManagers.hasNext() && null == result){
+			while (cellManagers.hasNext() && null == result) {
 				final ICellManager current = cellManagers.next();
-				if (current.handles(columnElement, rowElement)) {
+				if (current.handles(columnElement, rowElement, tableManager)) {
 					result = current;
 				}
 			}
@@ -159,14 +160,16 @@ public final class CellManagerFactory {
 	 *            the column element as described in the model (you must ignore the invert axis)
 	 * @param rowElement
 	 *            the row element as described in the model (you must ignore the invert axis)
-	 *
+	 * @param tableManager
+	 *            the current table manager
 	 * @return
-	 *         <code>true</code> if the cell is editable
+	 * 		<code>true</code> if the cell is editable
+	 * @since 3.0 add tableManager argument
 	 */
-	public boolean isCellEditable(final Object columnElement, final Object rowElement) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
-			return cellManager.isCellEditable(columnElement, rowElement);
+			return cellManager.isCellEditable(columnElement, rowElement, tableManager);
 		}
 		return false;
 
@@ -187,7 +190,7 @@ public final class CellManagerFactory {
 	 *            the table manager
 	 */
 	public void setCellValue(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
 			cellManager.setValue(domain, columnElement, rowElement, newValue, tableManager);
 		} else {
@@ -210,11 +213,11 @@ public final class CellManagerFactory {
 	 * @param tableManager
 	 *            the table manager
 	 * @return
-	 *         the command to set the value
+	 * 		the command to set the value
 	 */
 	public Command getSetStringValueCommand(final TransactionalEditingDomain editingDomain, final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter stringResolvers,
 			final INattableModelManager tableManager) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
 			return cellManager.getSetStringValueCommand(editingDomain, columnElement, rowElement, valueAsString, stringResolvers, tableManager);
 		} else {
@@ -228,18 +231,19 @@ public final class CellManagerFactory {
 	 *            the columnElement
 	 * @param rowElement
 	 *            the rowElement
-	 * @param tableManager
-	 *            the table manager
 	 * @param existingConverters
 	 *            the map of the existing converters (to avoid to create same too many times
+	 * @param tableManager
+	 *            the table manager
 	 * @return
-	 *         the converter to use, or null if not found
+	 * 		the converter to use, or null if not found
+	 * @since 3.0 : change the arguments order
 	 */
-	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final Object columnElement, final Object rowElement, INattableModelManager tableManager,
-			final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters, final String multiValueSeparator) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+	public AbstractStringValueConverter getOrCreateStringValueConverterClass(final Object columnElement, final Object rowElement, final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters,
+			final String multiValueSeparator, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
-			return cellManager.getOrCreateStringValueConverterClass(tableManager, existingConverters, multiValueSeparator);
+			return cellManager.getOrCreateStringValueConverterClass(existingConverters, multiValueSeparator, tableManager);
 		}
 		return null;
 	}
@@ -255,16 +259,17 @@ public final class CellManagerFactory {
 	 *            the value as string
 	 * @param valueConverter
 	 *            the value converter to use
-	 * @param tableManager
-	 *            the table manager
 	 * @param sharedMap
 	 *            a map with shared elements. The method may read/add elements to the shared map. These contributions will be managed by a paste post
 	 *            action or by the paste manager itself
+	 * @param tableManager
+	 *            the table manager
+	 * @since 3.0 change parameter order
 	 */
-	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager, final Map<?, ?> sharedMap) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final Map<?, ?> sharedMap, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
-			cellManager.setStringValue(columnElement, rowElement, valueAsString, valueConverter, tableManager, sharedMap);
+			cellManager.setStringValue(columnElement, rowElement, valueAsString, valueConverter, sharedMap, tableManager);
 		} else {
 			throw new UnsupportedOperationException(CELL_MANAGER_NOT_FOUND);
 		}
@@ -278,13 +283,16 @@ public final class CellManagerFactory {
 	 *            the row element
 	 * @param sharedMap
 	 *            a map with shared elements
+	 * @param tableManager
+	 *            the current table manager
 	 * @return
-	 *         <code>true</code> if the cell is editable
+	 * 		<code>true</code> if the cell is editable
+	 * @since 3.0 add tableManager argument
 	 */
-	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+	public boolean isCellEditable(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
-			return cellManager.isCellEditable(columnElement, rowElement, sharedMap);
+			return cellManager.isCellEditable(columnElement, rowElement, sharedMap, tableManager);
 		}
 		return false;
 
@@ -303,10 +311,10 @@ public final class CellManagerFactory {
 	 * @param tableManager
 	 *            the table manager
 	 * @return
-	 *         the command to use to do the set value. It is used by the DnD from the ModelExplorer
+	 * 		the command to use to do the set value. It is used by the DnD from the ModelExplorer
 	 */
 	public Command getSetCellValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager != null) {
 			return cellManager.getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
 		}
@@ -322,16 +330,16 @@ public final class CellManagerFactory {
 	 * @param tableManager
 	 *            the table manager
 	 * @return
-	 *         a collection of all values for the intersection of the columnElement and the row element.
+	 * 		a collection of all values for the intersection of the columnElement and the row element.
 	 */
 	public final Collection<?> getCrossValueAsCollection(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
 		Object value = CellManagerFactory.INSTANCE.getCrossValue(columnElement, rowElement, tableManager);
 		Collection<?> collection = Collections.emptyList();
 		if (value instanceof Collection<?>) {
 			collection = (Collection<?>) value;
-		}else if (value instanceof Object[]) {
+		} else if (value instanceof Object[]) {
 			collection = Arrays.asList(value);
-		}else if (null != value) {
+		} else if (null != value) {
 			collection = Collections.singletonList(value);
 		}
 		return collection;
@@ -351,7 +359,7 @@ public final class CellManagerFactory {
 	 *            unset the cell value if possible (reset to default value)
 	 */
 	public final void unsetCellValue(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager instanceof IUnsetValueCellManager) {
 			((IUnsetValueCellManager) cellManager).unsetCellValue(domain, columnElement, rowElement, tableManager);
 		}
@@ -371,7 +379,7 @@ public final class CellManagerFactory {
 	 * 		the command to unset the cell value (reset to default value
 	 */
 	public final Command getUnsetCellValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
-		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		final ICellManager cellManager = getCellManager(columnElement, rowElement, tableManager);
 		if (cellManager instanceof IUnsetValueCellManager) {
 			return ((IUnsetValueCellManager) cellManager).getUnsetCellValueCommand(domain, columnElement, rowElement, tableManager);
 		}

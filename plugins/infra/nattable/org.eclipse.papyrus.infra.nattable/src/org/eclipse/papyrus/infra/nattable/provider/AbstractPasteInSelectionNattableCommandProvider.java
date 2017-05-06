@@ -1061,9 +1061,9 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 								final Object columnElement = AxisUtils.getRepresentedElement(tableManager.getColumnElement(realColumnIndex));
 
 								// Edit the value if this is editable
-								final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
+								final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap, tableManager);
 								if (isEditable) {
-									final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
+									final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, existingConverters, pasteHelper.getMultiValueSeparator(), tableManager);
 
 									// Get the converted value (to compare with the new one
 									final Command command = CellManagerFactory.INSTANCE.getSetStringValueCommand(tableEditingDomain, columnElement, rowElement, valueAsString, converter, tableManager);
@@ -1382,9 +1382,9 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 										final Object columnElement = getColumnElement(realColumnIndex);
 
 										// Edit the value if this is editable
-										final boolean isEditable = null == sharedMap ? CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement) : CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
+										final boolean isEditable = null == sharedMap ? CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, tableManager) : CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap, tableManager);
 										if (isEditable) {
-											final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
+											final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, existingConverters, pasteHelper.getMultiValueSeparator(), tableManager);
 
 											// Get the converted value (to compare with the new one)
 											if (!createdElement || attachedMode) {
@@ -1399,7 +1399,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 												}
 											} else {
 												try {
-													CellManagerFactory.INSTANCE.setStringValue(columnElement, rowElement, valueAsString, converter, tableManager, sharedMap);
+													CellManagerFactory.INSTANCE.setStringValue(columnElement, rowElement, valueAsString, converter, sharedMap, tableManager);
 												} catch (final Exception e) {
 													Activator.log.error("Cannot set value '" + valueAsString + "' for element '" + rowElement + "' and feature '" + columnElement + "'", e);
 													multiStatus.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot set value '" + valueAsString + "' for element '" + rowElement + "' and feature '" + columnElement + "'"));
@@ -1623,9 +1623,9 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 
 							if (!(rowElement instanceof TreeFillingConfiguration)) {
 								// Edit the value if this is editable
-								final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
+								final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap, tableManager);
 								if (isEditable) {
-									final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
+									final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, existingConverters, pasteHelper.getMultiValueSeparator(), tableManager);
 
 									// Get the converted value (to compare with the new one
 									final Command command = CellManagerFactory.INSTANCE.getSetStringValueCommand(tableEditingDomain, columnElement, rowElement, valueAsString, converter, tableManager);
