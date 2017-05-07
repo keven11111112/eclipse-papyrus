@@ -10,13 +10,13 @@
       <details key="documentation" value="This expression to use to ckech if a UML object is stereotyped with the expected stereotype.&#xD;&#xA;The evaluate method returns TRUE when the object is stereotyped by the stereotype identified by its qualified and when the stereotype comes from a profile with the sasme URI profile has expected.&#xD;&#xA;URI profile field is not mandatory for the test."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotypeQualifiedName"
-        ordered="false" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+        ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The qualified name of the required stereotype."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileURI" ordered="false"
-        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The URI of the profile owning the stereotype.&#xD;&#xA;The URI can be null or empty. In this case, we don't check the URI of the profile providing the Stereotype."/>
       </eAnnotations>
@@ -32,13 +32,13 @@
       <details key="documentation" value="&lt;p>The evaluate methods returns True if the argument&amp;nbsp;has the&amp;nbsp;same type thant the excepted metaclass.&lt;/p>&#xA;&#xA;&lt;p>If the metaclass is not defined, the evaluate method returns False.&lt;/p>&#xA;"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="umlEClass" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//EClass"/>
+        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IsKindOfExpression" eSuperTypes="../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//booleanexpressions/IBooleanEObjectExpression">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>The evaluate methods returns True if the arguments is an instance of the expected metaclass.&lt;/p>&#xA;&#xA;&lt;p>If the metaclass is not defined, the evaluate method returns False.&lt;/p>&#xA;"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="umlEClass" ordered="false"
-        eType="ecore:EClass ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//EClass"/>
+        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
 </ecore:EPackage>

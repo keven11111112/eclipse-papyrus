@@ -57,6 +57,16 @@
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
+            description="Ecore Metamodel Library "
+            iconpath="icons/ecore.gif"
+            name="Ecore Metamodel"
+            path="pathmap://ECORE_METAMODEL_LIBRARY/Ecore.uml"
+            provider="Eclipse Modeling Project">
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
             description="Standard XML primitive types Library "
             iconpath="icons/xml.gif"
             name="XMLPrimitiveTypes"
@@ -95,4 +105,12 @@
             provider="Eclipse Modeling Project">
       </metamodel>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://ECORE_METAMODEL_LIBRARY/"
+            target="platform:/plugin/org.eclipse.papyrus.uml.extensionpoints/model/">
+      </mapping>
+   </extension>
+
 </plugin>

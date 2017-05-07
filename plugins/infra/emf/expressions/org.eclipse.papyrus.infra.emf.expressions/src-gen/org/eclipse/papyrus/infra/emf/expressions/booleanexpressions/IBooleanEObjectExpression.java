@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage#getIBooleanEObjectExpression()
- * @model interface="true" abstract="true" superTypes="org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanExpression&lt;org.eclipse.papyrus.infra.emf.expressions.EObject&gt;"
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface IBooleanEObjectExpression extends IBooleanExpression<EObject> {

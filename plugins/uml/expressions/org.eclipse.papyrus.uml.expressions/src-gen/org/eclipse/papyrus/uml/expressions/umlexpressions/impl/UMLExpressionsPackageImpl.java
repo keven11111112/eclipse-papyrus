@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
@@ -25,7 +26,6 @@ import org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpre
 import org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsFactory;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage;
-import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 
 		// Initialize simple dependencies
 		ExpressionsPackage.eINSTANCE.eClass();
-		TypesPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theUMLExpressionsPackage.createPackageContents();
@@ -265,8 +265,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 
 		// Obtain other dependent packages
 		BooleanExpressionsPackage theBooleanExpressionsPackage = (BooleanExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
-		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -280,16 +279,16 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(isStereotypedWithExpressionEClass, IsStereotypedWithExpression.class, "IsStereotypedWithExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getIsStereotypedWithExpression_StereotypeQualifiedName(), theTypesPackage.getString(), "stereotypeQualifiedName", null, 0, 1, IsStereotypedWithExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getIsStereotypedWithExpression_ProfileURI(), theTypesPackage.getString(), "profileURI", null, 0, 1, IsStereotypedWithExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIsStereotypedWithExpression_StereotypeQualifiedName(), ecorePackage.getEString(), "stereotypeQualifiedName", null, 0, 1, IsStereotypedWithExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIsStereotypedWithExpression_ProfileURI(), ecorePackage.getEString(), "profileURI", null, 0, 1, IsStereotypedWithExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(hasAppliedStereotypesExpressionEClass, HasAppliedStereotypesExpression.class, "HasAppliedStereotypesExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(isTypeOfExpressionEClass, IsTypeOfExpression.class, "IsTypeOfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIsTypeOfExpression_UmlEClass(), theExpressionsPackage.getEClass(), null, "umlEClass", null, 0, 1, IsTypeOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIsTypeOfExpression_UmlEClass(), theEcorePackage.getEClass(), null, "umlEClass", null, 0, 1, IsTypeOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(isKindOfExpressionEClass, IsKindOfExpression.class, "IsKindOfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIsKindOfExpression_UmlEClass(), theExpressionsPackage.getEClass(), null, "umlEClass", null, 0, 1, IsKindOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIsKindOfExpression_UmlEClass(), theEcorePackage.getEClass(), null, "umlEClass", null, 0, 1, IsKindOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

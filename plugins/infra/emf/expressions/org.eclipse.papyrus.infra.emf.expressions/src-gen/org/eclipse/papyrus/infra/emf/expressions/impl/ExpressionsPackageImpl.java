@@ -14,14 +14,13 @@ package org.eclipse.papyrus.infra.emf.expressions.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionCatalog;
@@ -33,8 +32,6 @@ import org.eclipse.papyrus.infra.emf.expressions.IExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.BooleanExpressionsPackageImpl;
-
-import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,27 +60,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	private EClass expressionCatalogEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eClassEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass eObjectEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType boolEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -132,7 +108,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		isInited = true;
 
 		// Initialize simple dependencies
-		TypesPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		BooleanExpressionsPackageImpl theBooleanExpressionsPackage = (BooleanExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI) instanceof BooleanExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI) : BooleanExpressionsPackage.eINSTANCE);
@@ -222,33 +198,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEClass() {
-		return eClassEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEObject() {
-		return eObjectEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType getBool() {
-		return boolEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ExpressionsFactory getExpressionsFactory() {
 		return (ExpressionsFactory)getEFactoryInstance();
 	}
@@ -281,13 +230,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
 		expressionCatalogEClass = createEClass(EXPRESSION_CATALOG);
 		createEReference(expressionCatalogEClass, EXPRESSION_CATALOG__EXPRESSIONS);
-
-		eClassEClass = createEClass(ECLASS);
-
-		eObjectEClass = createEClass(EOBJECT);
-
-		// Create data types
-		boolEDataType = createEDataType(BOOL);
 	}
 
 	/**
@@ -315,7 +257,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
 		// Obtain other dependent packages
 		BooleanExpressionsPackage theBooleanExpressionsPackage = (BooleanExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theBooleanExpressionsPackage);
@@ -332,8 +273,8 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iBasicExpressionElementEClass, IBasicExpressionElement.class, "IBasicExpressionElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getIBasicExpressionElement_Name(), theTypesPackage.getString(), "name", null, 1, 1, IBasicExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getIBasicExpressionElement_Description(), theTypesPackage.getString(), "description", null, 1, 1, IBasicExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIBasicExpressionElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, IBasicExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIBasicExpressionElement_Description(), ecorePackage.getEString(), "description", null, 1, 1, IBasicExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iExpressionEClass, IExpression.class, "IExpression", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -344,14 +285,12 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEOperation(op, g1);
 
 		initEClass(expressionCatalogEClass, ExpressionCatalog.class, "ExpressionCatalog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getExpressionCatalog_Expressions(), this.getIExpression(), null, "expressions", null, 0, -1, ExpressionCatalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(eClassEClass, EClass.class, "EClass", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(eObjectEClass, EObject.class, "EObject", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		// Initialize data types
-		initEDataType(boolEDataType, Boolean.class, "Bool", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(this.getIExpression());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEReference(getExpressionCatalog_Expressions(), g1, null, "expressions", null, 0, -1, ExpressionCatalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -374,12 +313,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "originalName", "Expressions" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (boolEDataType, 
-		   source, 
-		   new String[] {
-			 "originalName", "Boolean" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

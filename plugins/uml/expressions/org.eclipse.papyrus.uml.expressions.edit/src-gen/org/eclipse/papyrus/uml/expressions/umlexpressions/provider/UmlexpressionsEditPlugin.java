@@ -16,6 +16,7 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.papyrus.infra.emf.expressions.provider.ExpressionsEditPlugin;
 
 /**
@@ -51,6 +52,7 @@ public final class UmlexpressionsEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     ExpressionsEditPlugin.INSTANCE,
+		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 

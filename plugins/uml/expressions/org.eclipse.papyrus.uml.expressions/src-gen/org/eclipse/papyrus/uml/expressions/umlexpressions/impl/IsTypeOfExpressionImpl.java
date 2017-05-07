@@ -161,7 +161,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	public EClass getUmlEClass() {
-		if (umlEClass != null && ((EObject)umlEClass).eIsProxy()) {
+		if (umlEClass != null && umlEClass.eIsProxy()) {
 			InternalEObject oldUmlEClass = (InternalEObject)umlEClass;
 			umlEClass = (EClass)eResolveProxy(oldUmlEClass);
 			if (umlEClass != oldUmlEClass) {

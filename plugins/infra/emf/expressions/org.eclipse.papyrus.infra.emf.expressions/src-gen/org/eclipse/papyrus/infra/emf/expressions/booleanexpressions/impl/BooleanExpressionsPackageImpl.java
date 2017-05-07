@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
@@ -34,8 +35,6 @@ import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.OrExpression
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.ReferenceBooleanExpression;
 
 import org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl;
-
-import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -147,7 +146,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		isInited = true;
 
 		// Initialize simple dependencies
-		TypesPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
@@ -380,6 +379,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Create type parameters
@@ -390,13 +390,13 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		// Add supertypes to classes
 		orExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 		EGenericType g1 = createEGenericType(this.getIBooleanExpression());
-		EGenericType g2 = createEGenericType(theExpressionsPackage.getEObject());
+		EGenericType g2 = createEGenericType(theEcorePackage.getEObject());
 		g1.getETypeArguments().add(g2);
 		iBooleanEObjectExpressionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theExpressionsPackage.getIExpression());
 		g2 = createEGenericType(iBooleanExpressionEClass_IBooleanExpression_REDEFINED_CONTEXT_TYPE);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theExpressionsPackage.getBool());
+		g2 = createEGenericType(ecorePackage.getEBooleanObject());
 		g1.getETypeArguments().add(g2);
 		iBooleanExpressionEClass.getEGenericSuperTypes().add(g1);
 		andExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());

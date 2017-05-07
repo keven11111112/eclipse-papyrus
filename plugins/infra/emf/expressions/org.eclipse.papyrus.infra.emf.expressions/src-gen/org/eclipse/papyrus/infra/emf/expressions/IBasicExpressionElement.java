@@ -48,7 +48,7 @@ public interface IBasicExpressionElement extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage#getIBasicExpressionElement_Name()
-	 * @model id="true" dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model id="true" required="true" ordered="false"
 	 * @generated
 	 */
 	String getName();
@@ -74,7 +74,7 @@ public interface IBasicExpressionElement extends EObject {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage#getIBasicExpressionElement_Description()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	String getDescription();

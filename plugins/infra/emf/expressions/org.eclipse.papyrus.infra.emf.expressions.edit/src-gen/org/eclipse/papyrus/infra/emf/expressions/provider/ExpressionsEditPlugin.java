@@ -16,6 +16,7 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.osgi.framework.BundleActivator;
 
 /**
@@ -50,6 +51,7 @@ public final class ExpressionsEditPlugin extends EMFPlugin {
 	public ExpressionsEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 

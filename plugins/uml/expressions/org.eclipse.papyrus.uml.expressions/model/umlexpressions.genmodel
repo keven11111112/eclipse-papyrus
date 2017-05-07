@@ -7,7 +7,7 @@
     editorDirectory="/org.eclipse.papyrus.uml.expressions.editor/src-gen" modelPluginID="org.eclipse.papyrus.uml.expressions"
     modelName="Umlexpressions" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.uml.expressions.tests/src-gen" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="8.0" copyrightFields="false" providerRootExtendsClass="" usedGenPackages="../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.genmodel#//expressions ../../org.eclipse.uml2.types/model/Types.genmodel#//types"
+    complianceLevel="8.0" copyrightFields="false" providerRootExtendsClass="" usedGenPackages="../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.genmodel#//expressions ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     operationReflection="true" importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>

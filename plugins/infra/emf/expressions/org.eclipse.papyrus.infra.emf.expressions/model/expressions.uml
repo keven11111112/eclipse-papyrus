@@ -13,8 +13,12 @@ It is templated by the type of the object to evaluate (CONTEXT_TYPE) and by the 
       <body>The catalog allows to store predefined expressions.&#xD;
 The class ExpressionCatalogRegistry allows to find all registered Catalog throw the dedicated extension point.</body>
     </ownedComment>
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_As1GMBUlEee_D4EhwjboOQ">
-      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_-IgbIDMnEeeGI8mhpM0GYw" annotatedElement="_s7iicBUjEee_D4EhwjboOQ">
+      <body>We don';t use the UML Primitives Types, because using it, the generated Ecore model has a dependency on Types.ecore and the generated code has a dependency on uml.&#xD;
+</body>
+    </ownedComment>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_LaZ7YDVfEeehgM33eB4DQQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://ECORE_METAMODEL_LIBRARY/Ecore.uml#_SeWiQMX_EduPJbEsMYXjUQ"/>
     </packageImport>
     <packagedElement xmi:type="uml:Interface" xmi:id="_T6J2sBUlEee_D4EhwjboOQ" name="IExpression">
       <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_mhY58BVZEee_D4EhwjboOQ" name="RedefinableTemplateSignature1" parameter="_nHnzgBVZEee_D4EhwjboOQ _quFj4BVZEee_D4EhwjboOQ">
@@ -47,9 +51,6 @@ The class ExpressionCatalogRegistry allows to find all registered Catalog throw 
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_9NsigBVIEee_D4EhwjboOQ" name="expressioncatalog" type="_eYkocBVIEee_D4EhwjboOQ" association="_9NqtUBVIEee_D4EhwjboOQ"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_XMj8MBrDEeedD7ZlFnJTGw" name="Boolean"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_LWXU4BoAEee5_t3XPJ6rjA" name="EClass"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_fLCccBoEEeetAMClMbO5iQ" name="EObject"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_0cNGMBXhEee_D4EhwjboOQ" name="BooleanExpressions" URI="http://www.eclipse.org/papyrus/expressions/booleanexpressions">
       <ownedComment xmi:type="uml:Comment" xmi:id="_GlUW0Bn3EeeYEuQJkmbFAA" annotatedElement="_2GdzIBXiEee_D4EhwjboOQ">
         <body>Make an OR between all owned and referenced IBooleanExpressions.&#xD;
@@ -84,7 +85,9 @@ If there is no expression referenced we return TRUE.</body>
       </ownedComment>
       <packagedElement xmi:type="uml:Interface" xmi:id="_P-MkYBVaEee_D4EhwjboOQ" name="IBooleanEObjectExpression">
         <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_laXLABVaEee_D4EhwjboOQ" signature="_XpdZsBtqEeeNbZVCoqtPGQ">
-          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_ah-0EBtsEeeNbZVCoqtPGQ" actual="_fLCccBoEEeetAMClMbO5iQ" formal="_7vGyMBtqEeeNbZVCoqtPGQ"/>
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_ah-0EBtsEeeNbZVCoqtPGQ" formal="_7vGyMBtqEeeNbZVCoqtPGQ">
+            <actual xmi:type="uml:Class" href="pathmap://ECORE_METAMODEL_LIBRARY/Ecore.uml#_SeWijsX_EduPJbEsMYXjUQ"/>
+          </parameterSubstitution>
         </templateBinding>
         <generalization xmi:type="uml:Generalization" xmi:id="_KMXTMBVbEee_D4EhwjboOQ" general="_yFQYgBtpEeeNbZVCoqtPGQ"/>
       </packagedElement>
@@ -179,7 +182,9 @@ If there is no expression referenced we return TRUE.</body>
       <packagedElement xmi:type="uml:Interface" xmi:id="_yFQYgBtpEeeNbZVCoqtPGQ" name="IBooleanExpression">
         <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_1nV_MBtpEeeNbZVCoqtPGQ" signature="_mhY58BVZEee_D4EhwjboOQ">
           <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_Q9vQ0CQ3EeeuT_H16Quvkg" actual="_A4OoIBtrEeeNbZVCoqtPGQ" formal="_nHnzgBVZEee_D4EhwjboOQ"/>
-          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_HlVOwBtqEeeNbZVCoqtPGQ" actual="_XMj8MBrDEeedD7ZlFnJTGw" formal="_quFj4BVZEee_D4EhwjboOQ"/>
+          <parameterSubstitution xmi:type="uml:TemplateParameterSubstitution" xmi:id="_HlVOwBtqEeeNbZVCoqtPGQ" formal="_quFj4BVZEee_D4EhwjboOQ">
+            <actual xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBooleanObject"/>
+          </parameterSubstitution>
         </templateBinding>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_XpdZsBtqEeeNbZVCoqtPGQ" name="RedefinableTemplateSignature1" parameter="_7vGyMBtqEeeNbZVCoqtPGQ">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_7vGyMBtqEeeNbZVCoqtPGQ" parameteredElement="_A4OoIBtrEeeNbZVCoqtPGQ"/>
@@ -190,16 +195,10 @@ If there is no expression referenced we return TRUE.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_-hQYgBqgEeex7OKxnYgv8Q" name="IBasicExpressionElement">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_6fy8MBUkEee_D4EhwjboOQ" name="name">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <qualifier xmi:type="uml:Property" xmi:id="_E_P9oBUlEee_D4EhwjboOQ" name="name">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        </qualifier>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_FzQ0gBUlEee_D4EhwjboOQ" name="description" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        <qualifier xmi:type="uml:Property" xmi:id="_FzQ0gRUlEee_D4EhwjboOQ" name="name">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        </qualifier>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
       </ownedAttribute>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_03hsUBVJEee_D4EhwjboOQ">
@@ -211,8 +210,5 @@ If there is no expression referenced we return TRUE.</body>
   </uml:Model>
   <Ecore:EPackage xmi:id="_4JTR0Bn5EeeYEuQJkmbFAA" base_Package="_s7iicBUjEee_D4EhwjboOQ" packageName="expressions" nsPrefix="expressions" basePackage="org.eclipse.papyrus.infra.emf" prefix="Expressions"/>
   <Ecore:EPackage xmi:id="_-wytwBn6EeeYEuQJkmbFAA" base_Package="_0cNGMBXhEee_D4EhwjboOQ" packageName="booleanexpressions" nsPrefix="booleanexpressions" basePackage="org.eclipse.papyrus.infra.emf.expressions" prefix="BooleanExpressions"/>
-  <Ecore:EClass xmi:id="_MZPHIBoAEee5_t3XPJ6rjA" instanceClassName="org.eclipse.emf.ecore.EClass" base_Interface="_LWXU4BoAEee5_t3XPJ6rjA" className="EClass"/>
-  <Ecore:EClass xmi:id="_hGYHwBoEEeetAMClMbO5iQ" instanceClassName="org.eclipse.emf.ecore.EObject" base_Interface="_fLCccBoEEeetAMClMbO5iQ" className="EObject"/>
   <Ecore:EAttribute xmi:id="_YGSR8BqhEeex7OKxnYgv8Q" base_Property="_6fy8MBUkEee_D4EhwjboOQ" isID="true"/>
-  <Ecore:EDataType xmi:id="_Z29F4BrDEeedD7ZlFnJTGw" instanceClassName="java.lang.Boolean" base_PrimitiveType="_XMj8MBrDEeedD7ZlFnJTGw" dataTypeName="Bool"/>
 </xmi:XMI>

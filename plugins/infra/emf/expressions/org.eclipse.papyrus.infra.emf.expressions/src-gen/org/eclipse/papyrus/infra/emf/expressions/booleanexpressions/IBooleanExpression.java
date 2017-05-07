@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.emf.expressions.IExpression;
  *
  *
  * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage#getIBooleanExpression()
- * @model interface="true" abstract="true" superTypes="org.eclipse.papyrus.infra.emf.expressions.IExpression&lt;IBooleanExpression_REDEFINED_CONTEXT_TYPE, org.eclipse.papyrus.infra.emf.expressions.Bool&gt;"
+ * @model interface="true" abstract="true" superTypes="org.eclipse.papyrus.infra.emf.expressions.IExpression&lt;IBooleanExpression_REDEFINED_CONTEXT_TYPE, org.eclipse.emf.ecore.EBooleanObject&gt;"
  * @generated
  */
 public interface IBooleanExpression<IBooleanExpression_REDEFINED_CONTEXT_TYPE> extends IExpression<IBooleanExpression_REDEFINED_CONTEXT_TYPE, Boolean> {

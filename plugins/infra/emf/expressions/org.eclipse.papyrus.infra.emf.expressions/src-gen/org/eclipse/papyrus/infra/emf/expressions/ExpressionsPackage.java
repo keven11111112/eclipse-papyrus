@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.emf.expressions;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -31,6 +30,10 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * We don';t use the UML Primitives Types, because using it, the generated Ecore model has a dependency on Types.ecore and the generated code has a dependency on uml.
+ * 
+ * <!-- end-model-doc -->
  * @see org.eclipse.papyrus.infra.emf.expressions.ExpressionsFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='Expressions'"
@@ -226,73 +229,6 @@ public interface ExpressionsPackage extends EPackage {
 	int EXPRESSION_CATALOG_OPERATION_COUNT = IBASIC_EXPRESSION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EClass
-	 * @see org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl#getEClass()
-	 * @generated
-	 */
-	int ECLASS = 3;
-
-	/**
-	 * The number of structural features of the '<em>EClass</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ECLASS_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>EClass</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ECLASS_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ecore.EObject <em>EObject</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EObject
-	 * @see org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl#getEObject()
-	 * @generated
-	 */
-	int EOBJECT = 4;
-
-	/**
-	 * The number of structural features of the '<em>EObject</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>EObject</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EOBJECT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '<em>Bool</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see java.lang.Boolean
-	 * @see org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl#getBool()
-	 * @generated
-	 */
-	int BOOL = 5;
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.emf.expressions.IBasicExpressionElement <em>IBasic Expression Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,40 +300,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExpressionCatalog_Expressions();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EClass</em>'.
-	 * @see org.eclipse.emf.ecore.EClass
-	 * @model instanceClass="org.eclipse.emf.ecore.EClass"
-	 * @generated
-	 */
-	EClass getEClass();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ecore.EObject <em>EObject</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>EObject</em>'.
-	 * @see org.eclipse.emf.ecore.EObject
-	 * @model instanceClass="org.eclipse.emf.ecore.EObject"
-	 * @generated
-	 */
-	EClass getEObject();
-
-	/**
-	 * Returns the meta object for data type '{@link java.lang.Boolean <em>Bool</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Bool</em>'.
-	 * @see java.lang.Boolean
-	 * @model instanceClass="java.lang.Boolean"
-	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='Boolean'"
-	 * @generated
-	 */
-	EDataType getBool();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -483,36 +385,6 @@ public interface ExpressionsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXPRESSION_CATALOG__EXPRESSIONS = eINSTANCE.getExpressionCatalog_Expressions();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.ecore.EClass
-		 * @see org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl#getEClass()
-		 * @generated
-		 */
-		EClass ECLASS = eINSTANCE.getEClass();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.ecore.EObject <em>EObject</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.ecore.EObject
-		 * @see org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl#getEObject()
-		 * @generated
-		 */
-		EClass EOBJECT = eINSTANCE.getEObject();
-
-		/**
-		 * The meta object literal for the '<em>Bool</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see java.lang.Boolean
-		 * @see org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl#getBool()
-		 * @generated
-		 */
-		EDataType BOOL = eINSTANCE.getBool();
 
 	}
 

@@ -2,6 +2,9 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expressions" nsURI="http://www.eclipse.org/papyrus/expressions"
     nsPrefix="expressions">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="We don';t use the UML Primitives Types, because using it, the generated Ecore model has a dependency on Types.ecore and the generated code has a dependency on uml.&#xD;&#xA;"/>
+  </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
     <details key="originalName" value="Expressions"/>
   </eAnnotations>
@@ -11,10 +14,9 @@
       <details key="documentation" value="Basic Element for this Model. &#xD;&#xA;All elements must have a Name and a Description"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
-        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"
-        iD="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
-        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IExpression" abstract="true" interface="true"
       eSuperTypes="#//IBasicExpressionElement">
@@ -38,17 +40,13 @@
       <details key="documentation" value="The catalog allows to store predefined expressions.&#xD;&#xA;The class ExpressionCatalogRegistry allows to find all registered Catalog throw the dedicated extension point."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" ordered="false"
-        upperBound="-1" eType="#//IExpression" containment="true"/>
+        upperBound="-1" containment="true">
+      <eGenericType eClassifier="#//IExpression">
+        <eTypeArguments/>
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="Bool" instanceClassName="java.lang.Boolean">
-    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <details key="originalName" value="Boolean"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass" instanceClassName="org.eclipse.emf.ecore.EClass"
-      abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EObject" instanceClassName="org.eclipse.emf.ecore.EObject"
-      abstract="true" interface="true"/>
   <eSubpackages name="booleanexpressions" nsURI="http://www.eclipse.org/papyrus/expressions/booleanexpressions"
       nsPrefix="booleanexpressions">
     <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -70,7 +68,7 @@
         <details key="documentation" value="The common type to use for all BooleanExpression evaluating EObject&#xD;&#xA;&#xD;&#xA;"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="#//booleanexpressions/IBooleanExpression">
-        <eTypeArguments eClassifier="#//EObject"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IBooleanExpression" abstract="true"
@@ -82,7 +80,7 @@
       </eTypeParameters>
       <eGenericSuperTypes eClassifier="#//IExpression">
         <eTypeArguments eTypeParameter="#//booleanexpressions/IBooleanExpression/IBooleanExpression_REDEFINED_CONTEXT_TYPE"/>
-        <eTypeArguments eClassifier="#//Bool"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">

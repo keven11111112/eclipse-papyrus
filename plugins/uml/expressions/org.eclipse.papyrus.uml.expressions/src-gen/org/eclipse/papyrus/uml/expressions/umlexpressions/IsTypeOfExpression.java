@@ -51,7 +51,7 @@ public interface IsTypeOfExpression extends IBooleanEObjectExpression {
 	 * @return the value of the '<em>Uml EClass</em>' reference.
 	 * @see #setUmlEClass(EClass)
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage#getIsTypeOfExpression_UmlEClass()
-	 * @model type="org.eclipse.papyrus.infra.emf.expressions.EClass" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EClass getUmlEClass();

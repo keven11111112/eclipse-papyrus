@@ -52,7 +52,7 @@ public interface IsStereotypedWithExpression extends IBooleanEObjectExpression {
 	 * @return the value of the '<em>Stereotype Qualified Name</em>' attribute.
 	 * @see #setStereotypeQualifiedName(String)
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage#getIsStereotypedWithExpression_StereotypeQualifiedName()
-	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getStereotypeQualifiedName();
@@ -78,7 +78,7 @@ public interface IsStereotypedWithExpression extends IBooleanEObjectExpression {
 	 * @return the value of the '<em>Profile URI</em>' attribute.
 	 * @see #setProfileURI(String)
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage#getIsStereotypedWithExpression_ProfileURI()
-	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getProfileURI();

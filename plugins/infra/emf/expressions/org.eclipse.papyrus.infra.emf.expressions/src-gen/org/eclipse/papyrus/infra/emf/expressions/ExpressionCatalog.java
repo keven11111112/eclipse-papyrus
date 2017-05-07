@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ExpressionCatalog extends IBasicExpressionElement {
 	/**
 	 * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.emf.expressions.IExpression}.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.emf.expressions.IExpression}<code>&lt;?, ?&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expressions</em>' containment reference list isn't clear,
@@ -50,6 +50,6 @@ public interface ExpressionCatalog extends IBasicExpressionElement {
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<IExpression> getExpressions();
+	EList<IExpression<?, ?>> getExpressions();
 
 } // ExpressionCatalog

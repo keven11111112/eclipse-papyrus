@@ -33,7 +33,7 @@ The evaluate method returns FALSE when the argument is not an instance of UML::E
         <ownedComment xmi:type="uml:Comment" xmi:id="_lGfisCslEeeV_fNySaALnw" annotatedElement="_SfFSECTXEeehXLEpOVl1Ig">
           <body>The qualified name of the required stereotype.</body>
         </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-hoACTXEeehXLEpOVl1Ig"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-3mQCTXEeehXLEpOVl1Ig" value="1"/>
       </ownedAttribute>
@@ -42,7 +42,7 @@ The evaluate method returns FALSE when the argument is not an instance of UML::E
           <body>The URI of the profile owning the stereotype.&#xD;
 The URI can be null or empty. In this case, we don't check the URI of the profile providing the Stereotype.</body>
         </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lXEKwCskEeeV_fNySaALnw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lXS0QCskEeeV_fNySaALnw" value="1"/>
       </ownedAttribute>
@@ -59,7 +59,7 @@ The URI can be null or empty. In this case, we don't check the URI of the profil
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_dbFkACzXEeeKOdJYr-htag" name="IsTypeOfExpression">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_jWvDECzXEeeKOdJYr-htag" name="umlEClass">
-        <type xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_LWXU4BoAEee5_t3XPJ6rjA"/>
+        <type xmi:type="uml:Class" href="pathmap://ECORE_METAMODEL_LIBRARY/Ecore.uml#_SeWizcX_EduPJbEsMYXjUQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wvOuMCzXEeeKOdJYr-htag"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wvlTgCzXEeeKOdJYr-htag" value="1"/>
       </ownedAttribute>
@@ -70,7 +70,7 @@ The URI can be null or empty. In this case, we don't check the URI of the profil
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_89wEECzYEeeKOdJYr-htag" name="IsKindOfExpression">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_HrIz0CzZEeeKOdJYr-htag" name="umlEClass">
-        <type xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_LWXU4BoAEee5_t3XPJ6rjA"/>
+        <type xmi:type="uml:Class" href="pathmap://ECORE_METAMODEL_LIBRARY/Ecore.uml#_SeWizcX_EduPJbEsMYXjUQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HrIz0SzZEeeKOdJYr-htag"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HrIz0izZEeeKOdJYr-htag" value="1"/>
       </ownedAttribute>

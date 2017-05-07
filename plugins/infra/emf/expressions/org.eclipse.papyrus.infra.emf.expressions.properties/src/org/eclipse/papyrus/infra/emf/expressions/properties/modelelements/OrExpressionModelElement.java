@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.infra.emf.expressions.properties.modelelements;
 
-import org.eclipse.core.internal.expressions.OrExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.OrExpression;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;

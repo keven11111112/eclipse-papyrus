@@ -18,7 +18,6 @@ Export-Package: org.eclipse.papyrus.infra.emf.expressions,
  org.eclipse.papyrus.infra.emf.expressions.util.custom
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)";resolution:=optional;x-installation:=greedy,
  org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)",
- org.eclipse.uml2.types;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.emf.ecore.xmi;bundle-version="[2.12.0,3.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-Description: %Bundle-Description 

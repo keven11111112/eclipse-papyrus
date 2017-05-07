@@ -96,7 +96,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IExpression> expressions;
+	protected EList<IExpression<?, ?>> expressions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,9 +164,9 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IExpression> getExpressions() {
+	public EList<IExpression<?, ?>> getExpressions() {
 		if (expressions == null) {
-			expressions = new EObjectContainmentEList<IExpression>(IExpression.class, this, ExpressionsPackage.EXPRESSION_CATALOG__EXPRESSIONS);
+			expressions = new EObjectContainmentEList<IExpression<?, ?>>(IExpression.class, this, ExpressionsPackage.EXPRESSION_CATALOG__EXPRESSIONS);
 		}
 		return expressions;
 	}
@@ -220,7 +220,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 				return;
 			case ExpressionsPackage.EXPRESSION_CATALOG__EXPRESSIONS:
 				getExpressions().clear();
-				getExpressions().addAll((Collection<? extends IExpression>)newValue);
+				getExpressions().addAll((Collection<? extends IExpression<?, ?>>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

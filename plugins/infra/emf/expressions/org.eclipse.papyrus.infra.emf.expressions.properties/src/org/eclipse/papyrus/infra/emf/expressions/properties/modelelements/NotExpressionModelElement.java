@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.NotExpression;
 import org.eclipse.papyrus.infra.emf.expressions.properties.provider.ExpressionCatalogContentProvider;
 import org.eclipse.papyrus.infra.emf.expressions.properties.utils.BooleanEObjectExpressionPropertyEditorFactory;
 import org.eclipse.papyrus.infra.emf.expressions.properties.utils.ExpressionsConstants;
