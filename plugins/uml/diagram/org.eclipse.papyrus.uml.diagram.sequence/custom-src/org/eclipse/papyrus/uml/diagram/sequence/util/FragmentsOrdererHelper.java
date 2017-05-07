@@ -68,7 +68,6 @@ public class FragmentsOrdererHelper {
 		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.ActionExecutionSpecification_Shape).getSemanticHint());
 		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.BehaviorExecutionSpecification_Shape).getSemanticHint());
 		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.CombinedFragment_Shape).getSemanticHint());
-		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.CombinedFragment_CoRegionShape).getSemanticHint());
 		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.InteractionUse_Shape).getSemanticHint());
 		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.StateInvariant_Shape).getSemanticHint());
 	}

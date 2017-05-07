@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *   Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tools;
 
@@ -22,26 +22,29 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.swt.widgets.Display;
 
 /**
  * Tool to create Message Connection for sequence diagram.
+ * it is used for lost and found messages
  */
-public class MessageConnectionTool extends SequenceSpecificConnectionTool {
+public class MessageLostFoundConnectionTool extends SequenceSpecificConnectionTool {
 
 	/**
 	 * Constructor.
 	 *
 	 * @param elementTypes
 	 */
-	public MessageConnectionTool(final List<IElementType> elementTypes) {
+	public MessageLostFoundConnectionTool(final List<IElementType> elementTypes) {
 		super(elementTypes);
 	}
 
@@ -63,6 +66,45 @@ public class MessageConnectionTool extends SequenceSpecificConnectionTool {
 		}
 	}
 
+	/**
+	 * Updates the target editpart and returns <code>true</code> if the target
+	 * changes. The target is updated by using the target conditional and the
+	 * target request. If the target has been locked, this method does nothing
+	 * and returns <code>false</code>.
+	 * 
+	 * @return <code>true</code> if the target was changed
+	 */
+	protected boolean updateTargetUnderMouse() {
+		if (!isTargetLocked()) {
+			EditPart editPart = null;
+			if (getCurrentViewer() != null)
+				editPart = getCurrentViewer().findObjectAtExcluding(
+						getLocation(), getExclusionSet(),
+						getTargetingConditional());
+			if( editPart instanceof InteractionInteractionCompartmentEditPart){
+				editPart = getCurrentViewer().findObjectAtExcluding(
+						getLocation(), getExclusionSet(),
+						getTargetingConditional());
+				editPart= editPart.getParent();
+			}
+			if (editPart != null)
+				editPart = editPart.getTargetEditPart(getTargetRequest());
+			boolean changed = getTargetEditPart() != editPart;
+			setTargetEditPart(editPart);
+			return changed;
+		} else
+			return false;
+	}
+	/**
+	 * Queries the target editpart for a command.
+	 * 
+	 * @see org.eclipse.gef.tools.AbstractTool#getCommand()
+	 */
+	protected Command getCommand() {
+		if (getTargetEditPart() == null)
+			return null;
+		return getTargetEditPart().getCommand(getTargetRequest());
+	}
 	/**
 	 * {@inheritDoc}
 	 * 

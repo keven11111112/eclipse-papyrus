@@ -43,7 +43,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorLabelProvider;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
@@ -380,7 +379,7 @@ public class TooltipUtil {
 			// } else {
 			descBuf.append("name: ");
 			// }
-			UMLNavigatorLabelProvider labelProvider = new UMLNavigatorLabelProvider();
+			org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider labelProvider = new org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider();
 			Object model = editPart.getModel();
 			String label = null;
 			View topNodeView = getTopNodeView(model, semanticElement);

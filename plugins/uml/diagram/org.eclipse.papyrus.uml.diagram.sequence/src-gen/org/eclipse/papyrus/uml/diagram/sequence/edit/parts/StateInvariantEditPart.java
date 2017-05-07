@@ -135,6 +135,7 @@ public class StateInvariantEditPart extends AbstractBorderItemEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

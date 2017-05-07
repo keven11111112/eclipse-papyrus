@@ -58,7 +58,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.EllipseFigure;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -146,8 +146,8 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		//System.out.println("LifeLineBounds On Screen:"+parentBound);
 		if( drep instanceof DiagramRootEditPart){
 			double spacing = ((DiagramRootEditPart)drep).getGridSpacing();
-			if(request instanceof CreateAspectUnspecifiedTypeRequest){
-				IElementType elementType = (IElementType)((CreateAspectUnspecifiedTypeRequest)request).getElementTypes().get(0);
+			if(request instanceof org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest){
+				IElementType elementType = (IElementType)((org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest)request).getElementTypes().get(0);
 				if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)||
 						ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)){
 					((CreateRequest)request).setLocation(new Point((parentBound.x+(parentBound.width/2)-AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH/2),((CreateRequest)request).getLocation().y));

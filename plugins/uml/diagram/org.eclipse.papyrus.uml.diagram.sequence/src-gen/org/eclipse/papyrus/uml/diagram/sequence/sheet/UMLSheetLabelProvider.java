@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.BaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorGroup;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Image;
@@ -35,9 +34,6 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	@Override
 	public String getText(Object element) {
 		element = unwrap(element);
-		if (element instanceof UMLNavigatorGroup) {
-			return ((UMLNavigatorGroup) element).getGroupName();
-		}
 		IElementType etype = getElementType(getView(element));
 		return etype == null ? "" : etype.getDisplayName();
 	}

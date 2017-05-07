@@ -55,7 +55,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
@@ -648,12 +648,12 @@ public class OLDSequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 	}
 
 	protected boolean isCreateConnectionRequest(Request request, IElementType type) {
-		if (request instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
-			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
-			if (types.contains(type)) {
-				return true;
-			}
-		}
+//		if (request instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
+//			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
+//			if (types.contains(type)) {
+//				return true;
+//			}
+//		}
 		if (request instanceof CreateConnectionViewRequest) {
 			String requestHint = ((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint();
 			if (((IHintedType) type).getSemanticHint().equals(requestHint)) {

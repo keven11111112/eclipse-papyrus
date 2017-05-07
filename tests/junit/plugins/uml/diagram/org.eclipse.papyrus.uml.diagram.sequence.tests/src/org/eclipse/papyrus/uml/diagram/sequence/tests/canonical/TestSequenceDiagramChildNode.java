@@ -82,12 +82,7 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 //		testToManageChildNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifelineProvider);
 //	}
 
-	@Test
-	public void testToManageCoRegion() {
-		semanticChild = false;
-		testToManageChildNode(UMLElementTypes.CombinedFragment_CoRegionShape, lifelineProvider);
-		semanticChild = true;
-	}
+
 
 	@Test
 	public void testToManageStateInvariant() {

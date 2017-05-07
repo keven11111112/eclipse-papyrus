@@ -166,6 +166,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageSyncAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageSyncAppliedStereotypeEditPart(view);
 
+
 			case MessageAsyncEditPart.VISUAL_ID:
 				return new MessageAsyncEditPart(view);
 
@@ -174,6 +175,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case MessageAsyncAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageAsyncAppliedStereotypeEditPart(view);
+
 
 			case MessageReplyEditPart.VISUAL_ID:
 				return new MessageReplyEditPart(view);
@@ -184,6 +186,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageReplyAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageReplyAppliedStereotypeEditPart(view);
 
+
 			case MessageCreateEditPart.VISUAL_ID:
 				return new MessageCreateEditPart(view);
 
@@ -192,6 +195,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case MessageCreateAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageCreateAppliedStereotypeEditPart(view);
+
 
 			case MessageDeleteEditPart.VISUAL_ID:
 				return new MessageDeleteEditPart(view);
@@ -202,6 +206,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageDeleteAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageDeleteAppliedStereotypeEditPart(view);
 
+
 			case MessageLostEditPart.VISUAL_ID:
 				return new MessageLostEditPart(view);
 
@@ -210,6 +215,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case MessageLostAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageLostAppliedStereotypeEditPart(view);
+
 
 			case MessageFoundEditPart.VISUAL_ID:
 				return new MessageFoundEditPart(view);
@@ -220,17 +226,21 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageFoundAppliedStereotypeEditPart(view);
 
+
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
+
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
+
 
 			case GeneralOrderingEditPart.VISUAL_ID:
 				return new GeneralOrderingEditPart(view);
 
 			case GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralOrderingAppliedStereotypeEditPart(view);
+
 
 			case ContextLinkEditPart.VISUAL_ID:
 				return new ContextLinkEditPart(view);
@@ -256,7 +266,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
@@ -298,7 +309,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
 			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);

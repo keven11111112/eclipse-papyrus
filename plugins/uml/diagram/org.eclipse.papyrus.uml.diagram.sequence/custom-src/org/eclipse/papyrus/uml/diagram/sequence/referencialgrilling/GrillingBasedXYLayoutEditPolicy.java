@@ -42,7 +42,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
-import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -132,33 +132,6 @@ public class GrillingBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResi
 	 */
 	@Override
 	protected void showLayoutTargetFeedback(Request request) {
-		// feed back during the creation from the palette
-		if(request instanceof CreateAspectUnspecifiedTypeRequest){
-			//			if(((CreateAspectUnspecifiedTypeRequest)request).getElementTypes().contains(UMLDIElementTypes.LIFELINE_SHAPE)){
-			//				DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
-			//				GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-			//				if (grilling!=null){
-			//					View row=null;
-			//					row=grilling.getRowTolisten(grilling.firstY);
-			//					Location boundsRow=(Location)	((Node)row).getLayoutConstraint();
-			//					if( boundsRow!=null){
-			//						PrecisionRectangle ptOnScreen=new PrecisionRectangle(0,boundsRow.getY(),0,0);
-			//						if( ((CreateRequest)request).isSnapToEnabled()){
-			//							SimpleSnapHelper.snapAPoint(ptOnScreen, getHost().getRoot());
-			//						}
-			//						getHostFigure().translateToAbsolute(ptOnScreen);
-			//						//((CreateRequest)request).getLocation().setY(ptOnScreen.y);
-			//((CreateRequest)request).setSize(new Dimension(100,CLifeLineEditPart.DEFAUT_HEIGHT));
-
-			//
-		}
-
-
-		//
-		//
-		//				}
-		//			}
-		//		}
 		super.showLayoutTargetFeedback(request);
 	}
 

@@ -164,6 +164,7 @@ public class DurationConstraintInMessageEditPart extends NodeEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

@@ -86,8 +86,7 @@ public class UMLValidationProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive
-					&& SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+			return constraintsActive && SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}
@@ -173,7 +172,9 @@ public class UMLValidationProvider {
 		 */
 		CtxSwitchStrategy(IBatchValidator validator) {
 			this.defaultStrategy = validator.getDefaultTraversalStrategy();
-			this.contextSwitchingIdentifiers = new String[] { LifelineEditPart.VISUAL_ID };
+			this.contextSwitchingIdentifiers = new String[] {
+					LifelineEditPart.VISUAL_ID
+			};
 			Arrays.sort(this.contextSwitchingIdentifiers);
 		}
 
@@ -233,8 +234,7 @@ public class UMLValidationProvider {
 			if (nextTarget != null && currentTarget != null) {
 				if (nextTarget instanceof View) {
 					final String id = UMLVisualIDRegistry.getVisualID((View) nextTarget);
-					String nextSemanticId = (id != null && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0)
-							? id : null;
+					String nextSemanticId = (id != null && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : null;
 					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId)
 							|| (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
 						this.ctxChanged = true;

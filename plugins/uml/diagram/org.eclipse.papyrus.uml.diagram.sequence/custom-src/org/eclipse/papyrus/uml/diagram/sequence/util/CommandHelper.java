@@ -50,7 +50,6 @@ import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
-import org.eclipse.papyrus.uml.diagram.sequence.tools.SequenceSpecificConnectionTool;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -336,7 +335,6 @@ public class CommandHelper {
 	}
 
 	private static void clearConnectionFeedback() {
-		SequenceSpecificConnectionTool conTool = null;
 		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (editor instanceof CoreMultiDiagramEditor) {
 			editor = ((CoreMultiDiagramEditor) editor).getActiveEditor();
@@ -345,10 +343,6 @@ public class CommandHelper {
 				DiagramEditPart diagramEP = de.getDiagramEditPart();
 				EditDomain domain = diagramEP.getRoot().getViewer().getEditDomain();
 				Tool tool = domain.getActiveTool();
-				if (tool instanceof SequenceSpecificConnectionTool) {
-					conTool = (SequenceSpecificConnectionTool) tool;
-					conTool.clearConnectionFeedback();
-				}
 			}
 		}
 	}

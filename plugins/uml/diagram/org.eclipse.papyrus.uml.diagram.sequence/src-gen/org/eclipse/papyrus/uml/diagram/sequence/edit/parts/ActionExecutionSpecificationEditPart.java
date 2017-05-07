@@ -154,7 +154,8 @@ public class ActionExecutionSpecificationEditPart extends AbstractExecutionSpeci
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
 			ResizableEditPolicy ep = (ResizableEditPolicy) result;
-			ep.setResizeDirections(PositionConstants.NORTH | PositionConstants.SOUTH);
+			ep.setResizeDirections(
+					PositionConstants.NORTH | PositionConstants.SOUTH);
 		}
 		return result;
 	}

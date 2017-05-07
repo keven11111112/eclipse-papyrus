@@ -158,6 +158,7 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 		//Create CombinedFragment
 		CombinedFragmentEditPart combinedFragment = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(50, 300), new Dimension(500, 200));
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragment.getChildBySemanticHint(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID + "");
+		createNode(UMLElementTypes.InteractionOperand_Shape, compartment, new Point(50, 100), new Dimension(100, 100));
 		InteractionOperandEditPart firstOperand = (InteractionOperandEditPart)compartment.getPrimaryChildEditPart();
 		InteractionOperandEditPart secondOperand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_Shape, compartment, SequenceUtil.getAbsoluteBounds(combinedFragment).getCenter(), null);
 

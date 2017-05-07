@@ -106,7 +106,6 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	private static final String BEHAVIOR_EXECUTION_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.BehaviorExecutionSpecification_Shape).getSemanticHint();
 
-	private static final String CO_REGION_HINT = ((IHintedType) UMLElementTypes.CombinedFragment_CoRegionShape).getSemanticHint();
 
 	private static final String DESTRUCTION_OCCURANCE_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_Shape).getSemanticHint();
 
@@ -187,12 +186,6 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				}
 				if (ACTION_EXECUTION_SPECIFICATION_HINT.equals(semanticHint) || BEHAVIOR_EXECUTION_SPECIFICATION_HINT.equals(semanticHint)) {
 					Command cmd = getCommandForExecutionSpecificationCreation(cvr, viewDescriptor);
-					if (cmd != null) {
-						return cmd;
-					}
-				}
-				if (CO_REGION_HINT.equals(semanticHint)) {
-					Command cmd = getCommandForCoRegionCreation(cvr, viewDescriptor);
 					if (cmd != null) {
 						return cmd;
 					}

@@ -15,17 +15,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence;
 
-import java.text.Collator;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.gef.palette.PaletteContainer;
-import org.eclipse.gef.palette.PaletteEntry;
-import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -111,8 +103,8 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(getDiagram()));
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
-			String title = "Problem opening";
-			String msg = "Cannot open input element:";
+			String title = "Problem opening"; //$NON-NLS-1$
+			String msg = "Cannot open input element:"; //$NON-NLS-1$
 			Shell shell = getSite().getShell();
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}
@@ -144,36 +136,4 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 		return "org.eclipse.papyrus.uml.diagram.sequence.EditingDomain";
 	}
 
-	@Override
-	protected void applyCustomizationsToPalette(PaletteRoot paletteRoot) {
-		super.applyCustomizationsToPalette(paletteRoot);
-		// Sort Nodes of Palette
-		List children = paletteRoot.getChildren();
-		if (children.size() > 2) {
-			Object nodes = children.get(1);
-			if (nodes instanceof PaletteContainer) {
-				doSort((PaletteContainer) nodes);
-			}
-		}
-	}
-
-	@SuppressWarnings("unchecked")
-	private void doSort(PaletteContainer nodes) {
-		if (nodes == null) {
-			return;
-		}
-		List children = nodes.getChildren();
-		Collections.sort(children, new Comparator<PaletteEntry>() {
-
-			@Override
-			public int compare(PaletteEntry o1, PaletteEntry o2) {
-				String l1 = o1.getLabel();
-				String l2 = o2.getLabel();
-				if (l1 != null && l2 != null) {
-					return Collator.getInstance().compare(l1, l2);
-				}
-				return 0;
-			}
-		});
-	}
 }

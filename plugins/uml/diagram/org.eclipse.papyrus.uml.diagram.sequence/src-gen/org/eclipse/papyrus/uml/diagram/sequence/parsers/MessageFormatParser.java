@@ -117,8 +117,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 */
 	protected MessageFormat getEditorProcessor() {
 		if (editorProcessor == null) {
-			editorProcessor = new MessageFormat(
-					getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
+			editorProcessor = new MessageFormat(getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
 		}
 		return editorProcessor;
 	}
@@ -156,8 +155,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 */
 	protected MessageFormat getEditProcessor() {
 		if (editProcessor == null) {
-			editProcessor = new MessageFormat(
-					getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
+			editProcessor = new MessageFormat(getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
 		}
 		return editProcessor;
 	}
@@ -168,8 +166,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
 		EObject element = adapter.getAdapter(EObject.class);
-		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0))
-				.toString();
+		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
@@ -180,8 +177,12 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.UNEDITABLE,
-					NLS.bind(Messages.MessageFormatParser_InvalidInputError, new Integer(pos.getErrorIndex())));
+			return new ParserEditStatus(
+					UMLDiagramEditorPlugin.ID,
+					IParserEditStatus.UNEDITABLE,
+					NLS.bind(
+							Messages.MessageFormatParser_InvalidInputError,
+							new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}
@@ -216,12 +217,10 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 
 		// If the feature to edit is the name, check that this is not really the internationalization to edit and not the name
 		if (feature.equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
-			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element)
-					&& null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
 				final ModelSet modelSet = (ModelSet) element.eResource().getResourceSet();
 				if (null != modelSet) {
-					result = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(
-							modelSet.getTransactionalEditingDomain(), (NamedElement) element, (String) value, null));
+					result = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), (NamedElement) element, (String) value, null));
 				}
 			}
 		}
@@ -239,8 +238,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 		Object result = null;
 
 		if (element instanceof NamedElement && feature.equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
-			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element)
-					&& null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
 				result = UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element);
 			}
 		}

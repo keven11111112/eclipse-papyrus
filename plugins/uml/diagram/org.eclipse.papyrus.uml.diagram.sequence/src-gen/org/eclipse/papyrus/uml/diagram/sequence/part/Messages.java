@@ -374,52 +374,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String CoRegion11CreationTool_title;
+	public static String DurationObservation11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CoRegion11CreationTool_desc;
+	public static String DurationObservation11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation12CreationTool_title;
+	public static String TimeConstraint12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation12CreationTool_desc;
+	public static String TimeConstraint12CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeConstraint13CreationTool_title;
+	public static String TimeObservation13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeConstraint13CreationTool_desc;
+	public static String TimeObservation13CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation14CreationTool_title;
+	public static String DurationConstraint14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation14CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String DurationConstraint15CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String DurationConstraint15CreationTool_desc;
+	public static String DurationConstraint14CreationTool_desc;
 
 	/**
 	 * @generated
@@ -555,366 +545,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String CommandName_OpenDiagram;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Package_SequenceDiagram_links;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Interaction_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Interaction_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Lifeline_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Lifeline_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InteractionUse_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InteractionUse_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BehaviorExecutionSpecification_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BehaviorExecutionSpecification_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_CombinedFragment_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_CombinedFragment_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InteractionOperand_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InteractionOperand_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ActionExecutionSpecification_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ActionExecutionSpecification_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ConsiderIgnoreFragment_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ConsiderIgnoreFragment_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Constraint_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Constraint_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Comment_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Comment_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Continuation_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Continuation_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_StateInvariant_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_StateInvariant_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_CombinedFragment_CoRegionShape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_CombinedFragment_CoRegionShape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_TimeConstraint_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_TimeConstraint_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_TimeObservation_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_TimeObservation_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationConstraint_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationConstraint_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DestructionOccurrenceSpecification_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DestructionOccurrenceSpecification_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationConstraint_Shape_CN_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationConstraint_Shape_CN_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationObservation_Shape_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationObservation_Shape_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_SynchEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_SynchEdge_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_SynchEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_SynchEdge_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_AsynchEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_AsynchEdge_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_AsynchEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_AsynchEdge_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_ReplyEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_ReplyEdge_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_ReplyEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_ReplyEdge_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_CreateEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_CreateEdge_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_CreateEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_CreateEdge_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_DeleteEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_DeleteEdge_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_DeleteEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_DeleteEdge_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_LostEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_LostEdge_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_LostEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_LostEdge_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_FoundEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_FoundEdge_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_FoundEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Message_FoundEdge_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Comment_AnnotatedElementEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Comment_AnnotatedElementEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Constraint_ConstrainedElementEdge_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Constraint_ConstrainedElementEdge_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorActionProvider_OpenDiagramActionName;
 
 	/**
 	 * @generated

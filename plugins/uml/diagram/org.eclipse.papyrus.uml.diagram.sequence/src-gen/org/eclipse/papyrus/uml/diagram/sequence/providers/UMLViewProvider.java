@@ -199,8 +199,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return SequenceDiagramEditPart.MODEL_ID.equals(op.getSemanticHint())
-				&& UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != null
+		return SequenceDiagramEditPart.MODEL_ID.equals(op.getSemanticHint()) && UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != null
 				&& !UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())).isEmpty();
 	}
 
@@ -262,8 +261,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case DurationObservationEditPart.VISUAL_ID:
 					case GateEditPart.VISUAL_ID:
 					case DurationConstraintInMessageEditPart.VISUAL_ID:
-						if (domainElement == null || !visualID
-								.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
+						if (domainElement == null || !visualID.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
 							return false; // visual id in semantic hint should match visual id for domain element
 						}
 						break;
@@ -288,8 +286,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		if (elementTypeHint == null
-				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
+		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
 		// String visualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(elementTypeHint);
@@ -333,8 +330,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			case InteractionEditPart.VISUAL_ID:
 				return createInteraction_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				return createConsiderIgnoreFragment_Shape(domainElement, containerView, index, persisted,
-						preferencesHint);
+				return createConsiderIgnoreFragment_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case CombinedFragmentEditPart.VISUAL_ID:
 				return createCombinedFragment_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case InteractionOperandEditPart.VISUAL_ID:
@@ -346,11 +342,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			case LifelineEditPart.VISUAL_ID:
 				return createLifeline_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return createActionExecutionSpecification_Shape(domainElement, containerView, index, persisted,
-						preferencesHint);
+				return createActionExecutionSpecification_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-				return createBehaviorExecutionSpecification_Shape(domainElement, containerView, index, persisted,
-						preferencesHint);
+				return createBehaviorExecutionSpecification_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case StateInvariantEditPart.VISUAL_ID:
 				return createStateInvariant_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case TimeConstraintEditPart.VISUAL_ID:
@@ -360,15 +354,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			case DurationConstraintEditPart.VISUAL_ID:
 				return createDurationConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-				return createDestructionOccurrenceSpecification_Shape(domainElement, containerView, index, persisted,
-						preferencesHint);
+				return createDestructionOccurrenceSpecification_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case ConstraintEditPart.VISUAL_ID:
 				return createConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case CommentEditPart.VISUAL_ID:
 				return createComment_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return createDurationConstraint_Shape_CN(domainElement, containerView, index, persisted,
-						preferencesHint);
+				return createDurationConstraint_Shape_CN(domainElement, containerView, index, persisted, preferencesHint);
 			case DurationObservationEditPart.VISUAL_ID:
 				return createDurationObservation_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case GateEditPart.VISUAL_ID:
@@ -391,33 +383,25 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		if (vid != null) {
 			switch (vid) {
 			case MessageSyncEditPart.VISUAL_ID:
-				return createMessage_SynchEdge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createMessage_SynchEdge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case MessageAsyncEditPart.VISUAL_ID:
-				return createMessage_AsynchEdge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createMessage_AsynchEdge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case MessageReplyEditPart.VISUAL_ID:
-				return createMessage_ReplyEdge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createMessage_ReplyEdge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case MessageCreateEditPart.VISUAL_ID:
-				return createMessage_CreateEdge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createMessage_CreateEdge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case MessageDeleteEditPart.VISUAL_ID:
-				return createMessage_DeleteEdge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createMessage_DeleteEdge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case MessageLostEditPart.VISUAL_ID:
-				return createMessage_LostEdge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createMessage_LostEdge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case MessageFoundEditPart.VISUAL_ID:
-				return createMessage_FoundEdge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createMessage_FoundEdge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return createComment_AnnotatedElementEdge(containerView, index, persisted, preferencesHint);
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return createConstraint_ConstrainedElementEdge(containerView, index, persisted, preferencesHint);
 			case GeneralOrderingEditPart.VISUAL_ID:
-				return createGeneralOrdering_Edge(getSemanticElement(semanticAdapter), containerView, index, persisted,
-						preferencesHint);
+				return createGeneralOrdering_Edge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 			case ContextLinkEditPart.VISUAL_ID:
 				return createConstraint_ContextEdge(containerView, index, persisted, preferencesHint);
 			}
@@ -442,8 +426,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interaction");
 		Node interaction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(InteractionNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(InteractionInteractionCompartmentEditPart.VISUAL_ID), false,
-				false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(InteractionInteractionCompartmentEditPart.VISUAL_ID), false, false, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interaction");
 		return node;
 	}
@@ -479,9 +462,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
-		createCompartment(node,
-				UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false,
-				false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "CombinedFragment");
 		return node;
 	}
@@ -518,10 +499,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InteractionUse");
-		Node interactionUse_NameLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(InteractionUseNameEditPart.VISUAL_ID));
-		Node interactionUse_TypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(InteractionUseName2EditPart.VISUAL_ID));
+		Node interactionUse_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(InteractionUseNameEditPart.VISUAL_ID));
+		Node interactionUse_TypeLabel = createLabel(node, UMLVisualIDRegistry.getType(InteractionUseName2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -539,8 +518,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Continuation");
-		Node continuation_NameLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(ContinuationNameEditPart.VISUAL_ID));
+		Node continuation_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ContinuationNameEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -610,13 +588,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StateInvariant");
-		Node stateInvariant_NameLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
-		Node stateInvariant_ConstraintLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(StateInvariantLabelEditPart.VISUAL_ID));
+		Node stateInvariant_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
+		Node stateInvariant_ConstraintLabel = createLabel(node, UMLVisualIDRegistry.getType(StateInvariantLabelEditPart.VISUAL_ID));
 		return node;
 	}
-
 
 	/**
 	 * @generated
@@ -632,18 +607,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
-		Node timeConstraint_ConstraintLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeConstraintLabelEditPart.VISUAL_ID));
+		Node timeConstraint_ConstraintLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintLabelEditPart.VISUAL_ID));
 		timeConstraint_ConstraintLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location timeConstraint_ConstraintLabel_Location = (Location) timeConstraint_ConstraintLabel
-				.getLayoutConstraint();
+		Location timeConstraint_ConstraintLabel_Location = (Location) timeConstraint_ConstraintLabel.getLayoutConstraint();
 		timeConstraint_ConstraintLabel_Location.setX(0);
 		timeConstraint_ConstraintLabel_Location.setY(15);
-		Node timeConstraint_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID));
+		Node timeConstraint_StereotypeLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID));
 		timeConstraint_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location timeConstraint_StereotypeLabel_Location = (Location) timeConstraint_StereotypeLabel
-				.getLayoutConstraint();
+		Location timeConstraint_StereotypeLabel_Location = (Location) timeConstraint_StereotypeLabel.getLayoutConstraint();
 		timeConstraint_StereotypeLabel_Location.setX(0);
 		timeConstraint_StereotypeLabel_Location.setY(-22);
 		return node;
@@ -663,17 +634,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeObservation");
-		Node timeObservation_NameLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
+		Node timeObservation_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
 		timeObservation_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location timeObservation_NameLabel_Location = (Location) timeObservation_NameLabel.getLayoutConstraint();
 		timeObservation_NameLabel_Location.setX(0);
 		timeObservation_NameLabel_Location.setY(15);
-		Node timeObservation_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
+		Node timeObservation_StereotypeLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
 		timeObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location timeObservation_StereotypeLabel_Location = (Location) timeObservation_StereotypeLabel
-				.getLayoutConstraint();
+		Location timeObservation_StereotypeLabel_Location = (Location) timeObservation_StereotypeLabel.getLayoutConstraint();
 		timeObservation_StereotypeLabel_Location.setX(0);
 		timeObservation_StereotypeLabel_Location.setY(-22);
 		return node;
@@ -693,17 +661,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
-		Node durationConstraint_BodyLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintLabelEditPart.VISUAL_ID));
+		Node durationConstraint_BodyLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintLabelEditPart.VISUAL_ID));
 		durationConstraint_BodyLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location durationConstraint_BodyLabel_Location = (Location) durationConstraint_BodyLabel.getLayoutConstraint();
 		durationConstraint_BodyLabel_Location.setX(0);
 		durationConstraint_BodyLabel_Location.setY(15);
-		Node durationConstraint_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID));
+		Node durationConstraint_StereotypeLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID));
 		durationConstraint_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location durationConstraint_StereotypeLabel_Location = (Location) durationConstraint_StereotypeLabel
-				.getLayoutConstraint();
+		Location durationConstraint_StereotypeLabel_Location = (Location) durationConstraint_StereotypeLabel.getLayoutConstraint();
 		durationConstraint_StereotypeLabel_Location.setX(0);
 		durationConstraint_StereotypeLabel_Location.setY(-22);
 		return node;
@@ -722,8 +687,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore,
-				"DestructionOccurrenceSpecification");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DestructionOccurrenceSpecification");
 		return node;
 	}
 
@@ -778,13 +742,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
-		Node durationConstraint_BodyLabel_CN = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintInMessageLabelEditPart.VISUAL_ID));
-		Node durationConstraint_StereotypeLabel_CN = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID));
+		Node durationConstraint_BodyLabel_CN = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintInMessageLabelEditPart.VISUAL_ID));
+		Node durationConstraint_StereotypeLabel_CN = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID));
 		durationConstraint_StereotypeLabel_CN.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location durationConstraint_StereotypeLabel_CN_Location = (Location) durationConstraint_StereotypeLabel_CN
-				.getLayoutConstraint();
+		Location durationConstraint_StereotypeLabel_CN_Location = (Location) durationConstraint_StereotypeLabel_CN.getLayoutConstraint();
 		durationConstraint_StereotypeLabel_CN_Location.setX(0);
 		durationConstraint_StereotypeLabel_CN_Location.setY(-22);
 		return node;
@@ -804,13 +765,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationObservation");
-		Node durationObservation_NameLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationObservationLabelEditPart.VISUAL_ID));
-		Node durationObservation_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationObservationAppliedStereotypeEditPart.VISUAL_ID));
+		Node durationObservation_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationLabelEditPart.VISUAL_ID));
+		Node durationObservation_StereotypeLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationAppliedStereotypeEditPart.VISUAL_ID));
 		durationObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location durationObservation_StereotypeLabel_Location = (Location) durationObservation_StereotypeLabel
-				.getLayoutConstraint();
+		Location durationObservation_StereotypeLabel_Location = (Location) durationObservation_StereotypeLabel.getLayoutConstraint();
 		durationObservation_StereotypeLabel_Location.setX(0);
 		durationObservation_StereotypeLabel_Location.setY(-22);
 		return node;
@@ -868,8 +826,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location message_SynchNameLabel_Location = (Location) message_SynchNameLabel.getLayoutConstraint();
 		message_SynchNameLabel_Location.setX(1);
 		message_SynchNameLabel_Location.setY(-13);
-		Node message_SynchStereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageSyncAppliedStereotypeEditPart.VISUAL_ID));
+		Node message_SynchStereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageSyncAppliedStereotypeEditPart.VISUAL_ID));
 		message_SynchStereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_SynchStereotypeLabel_Location = (Location) message_SynchStereotypeLabel.getLayoutConstraint();
 		message_SynchStereotypeLabel_Location.setX(1);
@@ -902,17 +859,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
-		Node message_AsynchNameLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageAsyncNameEditPart.VISUAL_ID));
+		Node message_AsynchNameLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageAsyncNameEditPart.VISUAL_ID));
 		message_AsynchNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_AsynchNameLabel_Location = (Location) message_AsynchNameLabel.getLayoutConstraint();
 		message_AsynchNameLabel_Location.setX(1);
 		message_AsynchNameLabel_Location.setY(-13);
-		Node message_AsynchStereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageAsyncAppliedStereotypeEditPart.VISUAL_ID));
+		Node message_AsynchStereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageAsyncAppliedStereotypeEditPart.VISUAL_ID));
 		message_AsynchStereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location message_AsynchStereotypeLabel_Location = (Location) message_AsynchStereotypeLabel
-				.getLayoutConstraint();
+		Location message_AsynchStereotypeLabel_Location = (Location) message_AsynchStereotypeLabel.getLayoutConstraint();
 		message_AsynchStereotypeLabel_Location.setX(1);
 		message_AsynchStereotypeLabel_Location.setY(-33);
 
@@ -943,14 +897,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
-		Node message_ReplyNameLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageReplyNameEditPart.VISUAL_ID));
+		Node message_ReplyNameLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageReplyNameEditPart.VISUAL_ID));
 		message_ReplyNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_ReplyNameLabel_Location = (Location) message_ReplyNameLabel.getLayoutConstraint();
 		message_ReplyNameLabel_Location.setX(1);
 		message_ReplyNameLabel_Location.setY(-13);
-		Node message_ReplyStereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageReplyAppliedStereotypeEditPart.VISUAL_ID));
+		Node message_ReplyStereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageReplyAppliedStereotypeEditPart.VISUAL_ID));
 		message_ReplyStereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_ReplyStereotypeLabel_Location = (Location) message_ReplyStereotypeLabel.getLayoutConstraint();
 		message_ReplyStereotypeLabel_Location.setX(1);
@@ -983,17 +935,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
-		Node message_CreateNameLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageCreateNameEditPart.VISUAL_ID));
+		Node message_CreateNameLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageCreateNameEditPart.VISUAL_ID));
 		message_CreateNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_CreateNameLabel_Location = (Location) message_CreateNameLabel.getLayoutConstraint();
 		message_CreateNameLabel_Location.setX(1);
 		message_CreateNameLabel_Location.setY(-13);
-		Node message_CreateStereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageCreateAppliedStereotypeEditPart.VISUAL_ID));
+		Node message_CreateStereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageCreateAppliedStereotypeEditPart.VISUAL_ID));
 		message_CreateStereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location message_CreateStereotypeLabel_Location = (Location) message_CreateStereotypeLabel
-				.getLayoutConstraint();
+		Location message_CreateStereotypeLabel_Location = (Location) message_CreateStereotypeLabel.getLayoutConstraint();
 		message_CreateStereotypeLabel_Location.setX(1);
 		message_CreateStereotypeLabel_Location.setY(-33);
 
@@ -1024,17 +973,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
-		Node message_DeleteNameLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageDeleteNameEditPart.VISUAL_ID));
+		Node message_DeleteNameLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageDeleteNameEditPart.VISUAL_ID));
 		message_DeleteNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_DeleteNameLabel_Location = (Location) message_DeleteNameLabel.getLayoutConstraint();
 		message_DeleteNameLabel_Location.setX(1);
 		message_DeleteNameLabel_Location.setY(-13);
-		Node message_DeleteStereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageDeleteAppliedStereotypeEditPart.VISUAL_ID));
+		Node message_DeleteStereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageDeleteAppliedStereotypeEditPart.VISUAL_ID));
 		message_DeleteStereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location message_DeleteStereotypeLabel_Location = (Location) message_DeleteStereotypeLabel
-				.getLayoutConstraint();
+		Location message_DeleteStereotypeLabel_Location = (Location) message_DeleteStereotypeLabel.getLayoutConstraint();
 		message_DeleteStereotypeLabel_Location.setX(1);
 		message_DeleteStereotypeLabel_Location.setY(-33);
 
@@ -1070,8 +1016,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location message_LostNameLabel_Location = (Location) message_LostNameLabel.getLayoutConstraint();
 		message_LostNameLabel_Location.setX(1);
 		message_LostNameLabel_Location.setY(-13);
-		Node message_LostStereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageLostAppliedStereotypeEditPart.VISUAL_ID));
+		Node message_LostStereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageLostAppliedStereotypeEditPart.VISUAL_ID));
 		message_LostStereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_LostStereotypeLabel_Location = (Location) message_LostStereotypeLabel.getLayoutConstraint();
 		message_LostStereotypeLabel_Location.setX(1);
@@ -1104,14 +1049,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
-		Node message_FoundNameLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageFoundNameEditPart.VISUAL_ID));
+		Node message_FoundNameLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageFoundNameEditPart.VISUAL_ID));
 		message_FoundNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_FoundNameLabel_Location = (Location) message_FoundNameLabel.getLayoutConstraint();
 		message_FoundNameLabel_Location.setX(1);
 		message_FoundNameLabel_Location.setY(-13);
-		Node message_FoundStereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(MessageFoundAppliedStereotypeEditPart.VISUAL_ID));
+		Node message_FoundStereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageFoundAppliedStereotypeEditPart.VISUAL_ID));
 		message_FoundStereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location message_FoundStereotypeLabel_Location = (Location) message_FoundStereotypeLabel.getLayoutConstraint();
 		message_FoundStereotypeLabel_Location.setX(1);
@@ -1198,11 +1141,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
-		Node generalOrdering_StereotypeLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID));
+		Node generalOrdering_StereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID));
 		generalOrdering_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location generalOrdering_StereotypeLabel_Location = (Location) generalOrdering_StereotypeLabel
-				.getLayoutConstraint();
+		Location generalOrdering_StereotypeLabel_Location = (Location) generalOrdering_StereotypeLabel.getLayoutConstraint();
 		generalOrdering_StereotypeLabel_Location.setX(1);
 		generalOrdering_StereotypeLabel_Location.setY(-33);
 
@@ -1232,8 +1173,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
-		Node constraint_KeywordLabel = createLabel(edge,
-				UMLVisualIDRegistry.getType(ConstraintContextAppliedStereotypeEditPart.VISUAL_ID));
+		Node constraint_KeywordLabel = createLabel(edge, UMLVisualIDRegistry.getType(ConstraintContextAppliedStereotypeEditPart.VISUAL_ID));
 		constraint_KeywordLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location constraint_KeywordLabel_Location = (Location) constraint_KeywordLabel.getLayoutConstraint();
 		constraint_KeywordLabel_Location.setX(0);
@@ -1319,10 +1259,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fontConstant = PreferencesConstantsHelper.getElementConstant(elementName,
-				PreferencesConstantsHelper.FONT);
-		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName,
-				PreferencesConstantsHelper.COLOR_FONT);
+		String fontConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.FONT);
+		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
 
 		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (viewFontStyle != null) {
@@ -1341,37 +1279,36 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	private void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String lineColorConstant = PreferencesConstantsHelper.getElementConstant(elementName,
-				PreferencesConstantsHelper.COLOR_LINE);
+		String lineColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(store, lineColorConstant);
-		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-				FigureUtilities.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities.RGBToInteger(lineRGB));
 	}
 
 	/**
 	 * @generated
 	 */
 	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fillColorConstant = PreferencesConstantsHelper.getElementConstant(elementName,
-				PreferencesConstantsHelper.COLOR_FILL);
-		String gradientColorConstant = PreferencesConstantsHelper.getElementConstant(elementName,
-				PreferencesConstantsHelper.COLOR_GRADIENT);
-		String gradientPolicyConstant = PreferencesConstantsHelper.getElementConstant(elementName,
-				PreferencesConstantsHelper.GRADIENT_POLICY);
+		String fillColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FILL);
+		String gradientColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_GRADIENT);
+		String gradientPolicyConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.GRADIENT_POLICY);
+
 
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
-		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
 
-		FillStyle fillStyle = (FillStyle) view.getStyle(NotationPackage.Literals.FILL_STYLE);
-		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
+
+		FillStyle fillStyle = (FillStyle) view
+				.getStyle(NotationPackage.Literals.FILL_STYLE);
+		fillStyle
+				.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
 
 		;
 		if (store.getBoolean(gradientPolicyConstant)) {
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
 					store.getString(gradientColorConstant));
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
-			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
+			fillStyle
+					.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
 }

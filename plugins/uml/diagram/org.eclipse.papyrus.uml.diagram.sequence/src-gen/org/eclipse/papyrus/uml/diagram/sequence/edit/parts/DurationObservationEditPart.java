@@ -164,6 +164,7 @@ public class DurationObservationEditPart extends NodeEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

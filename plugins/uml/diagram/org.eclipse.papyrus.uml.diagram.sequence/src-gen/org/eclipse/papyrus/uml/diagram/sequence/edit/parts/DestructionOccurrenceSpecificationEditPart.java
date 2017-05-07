@@ -136,7 +136,8 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
 			ResizableEditPolicy ep = (ResizableEditPolicy) result;
-			ep.setResizeDirections(PositionConstants.NONE);
+			ep.setResizeDirections(
+					PositionConstants.NONE);
 		}
 		return result;
 	}
