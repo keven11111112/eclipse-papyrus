@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation, Bug 502160, 494531
- *  Christian W. Damus - bugs 493858, 493853
+ *  Christian W. Damus - bugs 493858, 493853, 516310
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bugs 494537, 504745
  *  
  *****************************************************************************/
@@ -109,6 +109,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * 
 	 * @deprecated since 3.0. Use TableResourceFactory.
 	 */
+	@Deprecated
 	private static final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 
 	static {
@@ -129,6 +130,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * 
 	 * @deprecated since 3.0. Use TableResourceConstants.TABLE_FILE_EXTENSION.
 	 */
+	@Deprecated
 	@SuppressWarnings("unused")
 	private static final String FILE_EXTENSION = "table";//$NON-NLS-1$
 
@@ -255,6 +257,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @return The table configuration URI.
 	 * @deprecated since 2.0, use getTableConfigurationUri instead
 	 */
+	@Deprecated
 	public String getTableURI() {
 		return getTableConfigurationURI();
 	}
@@ -627,7 +630,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	@Override
 	public void updateLabel(final String label) {
 		if (showLabel) {
-			((Group) self).setText(getLabel());
+			self.setText(getLabel());
 		}
 	}
 
@@ -723,9 +726,9 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @since 2.0
 	 */
 	protected URI createTableURI(final EObject sourceElement, final TableConfiguration tableConfiguration) {
-		// If the source element is an EClass, the table configuration file name
+		// If the source element has an EClass, the table configuration file name
 		// will be suffixed by the name of its eClass
-		setRegisterTableConfigurationByEClass(null != sourceElement && sourceElement.eClass() instanceof EClass);
+		setRegisterTableConfigurationByEClass((sourceElement != null) && (sourceElement.eClass() != null));
 
 		IPath preferencePath = Activator.getDefault().getStateLocation();
 		// we create a folder to save the tables used by the property view and we start to create the name of the model owning the table
@@ -734,18 +737,15 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		// we continue to build the path, adding the good suffix to the name of the model
 		final StringBuilder b = new StringBuilder().append(preferencePath.toPortableString());
 		if (this.registerTableConfigurationByEClass) {
-			final ModelElement modelElement = input.getModelElement(propertyPath);
+			ModelElement modelElement = input.getModelElement(propertyPath);
 			EClass eClass = null;
 			if (modelElement instanceof CompositeModelElement) {
 				CompositeModelElement compoModelElement = (CompositeModelElement) modelElement;
-				Iterator<ModelElement> iter = compoModelElement.getSubElements().iterator();
-				while (eClass == null && iter.hasNext()) {
-					ModelElement tmp = iter.next();
-					if (tmp instanceof UMLNotationModelElement) {
-						EditPart part = ((UMLNotationModelElement) tmp).getEditPart();
-						eClass = EMFHelper.getEObject(part).eClass();
-					} else if (tmp instanceof EMFModelElement) {
-						eClass = ((EMFModelElement) tmp).getSource().eClass();
+				for (ModelElement next : compoModelElement.getSubElements()) {
+					if ((next instanceof UMLNotationModelElement)
+							|| (next instanceof EMFModelElement)) {
+						modelElement = next;
+						break;
 					}
 				}
 			}
@@ -754,11 +754,18 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 				EditPart part = ((UMLNotationModelElement) modelElement).getEditPart();
 				eClass = EMFHelper.getEObject(part).eClass();
 			} else if (modelElement instanceof EMFModelElement) {
-				eClass = ((EMFModelElement) modelElement).getSource().eClass();
+				EObject source = ((EMFModelElement) modelElement).getSource();
+				if (source != null) {
+					eClass = source.eClass();
+				}
 			}
-			b.append("_"); //$NON-NLS-1$
-			b.append(eClass.getName());
+
+			if (eClass != null) {
+				b.append("_"); //$NON-NLS-1$
+				b.append(eClass.getName());
+			}
 		}
+
 		URI newURI = URI.createFileURI(b.toString()).appendFileExtension(TableResourceConstants.TABLE_FILE_EXTENSION);
 		return newURI;
 	}
@@ -952,6 +959,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		if (null == this.nattableDisposeListener) {
 			this.nattableDisposeListener = new DisposeListener() {
 
+				@Override
 				public void widgetDisposed(DisposeEvent e) {
 					disposeListener();
 				}
@@ -1003,6 +1011,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @since 2.0
 	 * @deprecated since 3.0
 	 */
+	@Deprecated
 	protected CompoundCommand getDisposeTableCommand(final TransactionalEditingDomain domain, final Table table) {
 		CompoundCommand disposeCommand = new CompoundCommand("Command used to clean the table before disposing it"); //$NON-NLS-1$
 		disposeCommand.append(SetCommand.create(domain, table, NattablePackage.eINSTANCE.getTable_Context(), null));
@@ -1042,6 +1051,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		if (dataSourceListener == null) {
 			dataSourceListener = new IDataSourceListener() {
 
+				@Override
 				public void dataSourceChanged(final DataSourceChangedEvent event) {
 					// bug 494537 - The diagram selection changed, but the property view has not been disposed
 					disposeListener();
