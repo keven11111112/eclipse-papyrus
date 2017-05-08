@@ -31,7 +31,7 @@ import org.junit.runners.Suite.SuiteClasses;
 																																																																																			 * class
 																																																																																			 * ,
 																																																																																			 */
- TestAdvancedDragDrop_364696.class, TestGuardEdition_364808.class, TestObservationLink_364826.class })
+ TestAdvancedDragDrop_364696.class, TestGuardEdition_364808.class })
 public class BugTests {
 
 }

@@ -193,31 +193,7 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 		assertNotSame("should not same: execution start", umlMsg.getReceiveEvent(), umlExecution.getStart());
 	}
 
-	@Test
-	public void testDeleteMessage() {
-		AbstractExecutionSpecificationEditPart execution1 = createExecutionSpecificationWithLifeline(new Point(100, 100), null);
-		AbstractExecutionSpecificationEditPart execution2 = createExecutionSpecificationWithLifeline(new Point(300, 100), null);
-		//1. create message: execution1.start ----message----> execution2.start
-		ExecutionSpecificationEndEditPart source = findEndEditPart(execution1, true);
-		ExecutionSpecificationEndEditPart target = findEndEditPart(execution2, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
-		assertNotNull("Message", message);
-		Message umlMsg = (Message)message.resolveSemanticElement();
-		ExecutionSpecification umlExecution1 = (ExecutionSpecification)execution1.resolveSemanticElement();
-		ExecutionSpecification umlExecution2 = (ExecutionSpecification)execution2.resolveSemanticElement();
-		checkExecutionEnds(umlExecution1, (OccurrenceSpecification)umlMsg.getSendEvent(), umlExecution1.getFinish());
-		checkExecutionEnds(umlExecution2, (OccurrenceSpecification)umlMsg.getReceiveEvent(), umlExecution2.getFinish());
-
-		//2. delete the message
-		GroupRequest deleteReq = new GroupRequest(RequestConstants.REQ_DELETE);
-		deleteReq.setEditParts(message);
-		Command command = message.getCommand(deleteReq);
-		assertNotNull("delete command", command);
-		assertTrue("command can be executed", command.canExecute());
-		getDiagramCommandStack().execute(command);
-		checkExecutionValid(umlExecution1);
-		checkExecutionValid(umlExecution2);
-	}
+	
 
 	@Test
 	public void testDeleteSourceExecution() {
