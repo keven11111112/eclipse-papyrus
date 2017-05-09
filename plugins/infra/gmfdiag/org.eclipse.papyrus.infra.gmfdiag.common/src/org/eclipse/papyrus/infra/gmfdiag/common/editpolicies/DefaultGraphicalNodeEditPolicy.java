@@ -75,8 +75,13 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		View targetView = (View) request.getTargetEditPart().getModel();
 		createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_TARGET_VIEW, targetView);
-		createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, request.getLocation().getCopy());
+		if (request.getLocation()!=null) {
+			createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, request.getLocation().getCopy());
+		}
+		else {
+			createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, null);
 
+		}
 		// see bug 430702: [Diagram] Moving source of a link moves the target too, we need to store in the parameters :
 		// - the source point
 		// - the target point
@@ -102,8 +107,8 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 		return defaultCommand;
 	}
-	
-	
+
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -120,9 +125,9 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 					createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW, sourceView);
 				}	
 			}
-			
+
 		}
-		
+
 
 		return super.getConnectionAndRelationshipCreateCommand(request);
 	}
@@ -137,8 +142,8 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return null;
 		}
 		CreateConnectionViewRequest req = (CreateConnectionViewRequest) request;
-		
-		
+
+
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
 		Diagram diagramView = ((View) getHost().getModel()).getDiagram();
 
@@ -151,7 +156,12 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		// see bug 430702: [Diagram] Moving source of a link moves the target too, we need to store the source point to fix this bug.
 		@SuppressWarnings("unchecked")
 		Map<Object, Object> parameters = req.getExtendedData();
-		parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, request.getLocation().getCopy());
+		if(request.getLocation()!=null) {
+			parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, request.getLocation().getCopy());
+		}
+		else {
+			parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, null);
+		}
 
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
 		sceCommand.setEdgeAdaptor(getViewAdapter());
@@ -181,7 +191,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
 		final Command reconnectCmd = super.getReconnectSourceCommand(request);
-		
+
 		if (reconnectCmd != null && reconnectCmd.canExecute()) {
 			final CompoundCommand cc = new CompoundCommand();
 			cc.add(reconnectCmd);
@@ -213,7 +223,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	}
 
 
-	
+
 	/**
 	 *
 	 * @return
