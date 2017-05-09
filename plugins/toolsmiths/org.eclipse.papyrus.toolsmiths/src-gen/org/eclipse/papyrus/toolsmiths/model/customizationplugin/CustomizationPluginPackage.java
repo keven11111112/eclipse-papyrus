@@ -261,13 +261,31 @@ public interface CustomizationPluginPackage extends EPackage {
 	int MODEL_TEMPLATE__ID = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Di file</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TEMPLATE__DI_FILE = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Notation file</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_TEMPLATE__NOTATION_FILE = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Model Template</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_TEMPLATE_FEATURE_COUNT = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 3;
+	int MODEL_TEMPLATE_FEATURE_COUNT = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.PaletteImpl <em>Palette</em>}' class.
@@ -629,6 +647,28 @@ public interface CustomizationPluginPackage extends EPackage {
 	EAttribute getModelTemplate_Id();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getDi_file <em>Di file</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Di file</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getDi_file()
+	 * @see #getModelTemplate()
+	 * @generated
+	 */
+	EAttribute getModelTemplate_Di_file();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getNotation_file <em>Notation file</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Notation file</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getNotation_file()
+	 * @see #getModelTemplate()
+	 * @generated
+	 */
+	EAttribute getModelTemplate_Notation_file();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette <em>Palette</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -914,6 +954,22 @@ public interface CustomizationPluginPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_TEMPLATE__ID = eINSTANCE.getModelTemplate_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Di file</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_TEMPLATE__DI_FILE = eINSTANCE.getModelTemplate_Di_file();
+
+		/**
+		 * The meta object literal for the '<em><b>Notation file</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_TEMPLATE__NOTATION_FILE = eINSTANCE.getModelTemplate_Notation_file();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.PaletteImpl <em>Palette</em>}' class.

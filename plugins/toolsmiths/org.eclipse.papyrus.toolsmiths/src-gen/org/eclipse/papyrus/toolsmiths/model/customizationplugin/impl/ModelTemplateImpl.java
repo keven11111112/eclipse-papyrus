@@ -32,6 +32,8 @@ import org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate;
  *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ModelTemplateImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ModelTemplateImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ModelTemplateImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ModelTemplateImpl#getDi_file <em>Di file</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ModelTemplateImpl#getNotation_file <em>Notation file</em>}</li>
  * </ul>
  *
  * @generated
@@ -96,6 +98,46 @@ public class ModelTemplateImpl extends FileBasedCustomizableElementImpl implemen
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDi_file() <em>Di file</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDi_file()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DI_FILE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDi_file() <em>Di file</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDi_file()
+	 * @generated
+	 * @ordered
+	 */
+	protected String di_file = DI_FILE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getNotation_file() <em>Notation file</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNotation_file()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NOTATION_FILE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNotation_file() <em>Notation file</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNotation_file()
+	 * @generated
+	 * @ordered
+	 */
+	protected String notation_file = NOTATION_FILE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,6 +226,48 @@ public class ModelTemplateImpl extends FileBasedCustomizableElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDi_file() {
+		return di_file;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDi_file(String newDi_file) {
+		String oldDi_file = di_file;
+		di_file = newDi_file;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CustomizationPluginPackage.MODEL_TEMPLATE__DI_FILE, oldDi_file, di_file));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNotation_file() {
+		return notation_file;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNotation_file(String newNotation_file) {
+		String oldNotation_file = notation_file;
+		notation_file = newNotation_file;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CustomizationPluginPackage.MODEL_TEMPLATE__NOTATION_FILE, oldNotation_file, notation_file));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -193,6 +277,10 @@ public class ModelTemplateImpl extends FileBasedCustomizableElementImpl implemen
 				return getName();
 			case CustomizationPluginPackage.MODEL_TEMPLATE__ID:
 				return getId();
+			case CustomizationPluginPackage.MODEL_TEMPLATE__DI_FILE:
+				return getDi_file();
+			case CustomizationPluginPackage.MODEL_TEMPLATE__NOTATION_FILE:
+				return getNotation_file();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,6 +301,12 @@ public class ModelTemplateImpl extends FileBasedCustomizableElementImpl implemen
 				return;
 			case CustomizationPluginPackage.MODEL_TEMPLATE__ID:
 				setId((String)newValue);
+				return;
+			case CustomizationPluginPackage.MODEL_TEMPLATE__DI_FILE:
+				setDi_file((String)newValue);
+				return;
+			case CustomizationPluginPackage.MODEL_TEMPLATE__NOTATION_FILE:
+				setNotation_file((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,6 +329,12 @@ public class ModelTemplateImpl extends FileBasedCustomizableElementImpl implemen
 			case CustomizationPluginPackage.MODEL_TEMPLATE__ID:
 				setId(ID_EDEFAULT);
 				return;
+			case CustomizationPluginPackage.MODEL_TEMPLATE__DI_FILE:
+				setDi_file(DI_FILE_EDEFAULT);
+				return;
+			case CustomizationPluginPackage.MODEL_TEMPLATE__NOTATION_FILE:
+				setNotation_file(NOTATION_FILE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -253,6 +353,10 @@ public class ModelTemplateImpl extends FileBasedCustomizableElementImpl implemen
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case CustomizationPluginPackage.MODEL_TEMPLATE__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case CustomizationPluginPackage.MODEL_TEMPLATE__DI_FILE:
+				return DI_FILE_EDEFAULT == null ? di_file != null : !DI_FILE_EDEFAULT.equals(di_file);
+			case CustomizationPluginPackage.MODEL_TEMPLATE__NOTATION_FILE:
+				return NOTATION_FILE_EDEFAULT == null ? notation_file != null : !NOTATION_FILE_EDEFAULT.equals(notation_file);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -273,6 +377,10 @@ public class ModelTemplateImpl extends FileBasedCustomizableElementImpl implemen
 		result.append(name);
 		result.append(", id: "); //$NON-NLS-1$
 		result.append(id);
+		result.append(", di_file: "); //$NON-NLS-1$
+		result.append(di_file);
+		result.append(", notation_file: "); //$NON-NLS-1$
+		result.append(notation_file);
 		result.append(')');
 		return result.toString();
 	}

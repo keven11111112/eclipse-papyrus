@@ -25,6 +25,8 @@ package org.eclipse.papyrus.toolsmiths.model.customizationplugin;
  *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getId <em>Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getDi_file <em>Di file</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getNotation_file <em>Notation file</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage#getModelTemplate()
@@ -109,5 +111,57 @@ public interface ModelTemplate extends FileBasedCustomizableElement {
 	 * @generated
 	 */
 	void setId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Di file</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Di file</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Di file</em>' attribute.
+	 * @see #setDi_file(String)
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage#getModelTemplate_Di_file()
+	 * @model
+	 * @generated
+	 */
+	String getDi_file();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getDi_file <em>Di file</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Di file</em>' attribute.
+	 * @see #getDi_file()
+	 * @generated
+	 */
+	void setDi_file(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Notation file</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Notation file</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Notation file</em>' attribute.
+	 * @see #setNotation_file(String)
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage#getModelTemplate_Notation_file()
+	 * @model
+	 * @generated
+	 */
+	String getNotation_file();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.ModelTemplate#getNotation_file <em>Notation file</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Notation file</em>' attribute.
+	 * @see #getNotation_file()
+	 * @generated
+	 */
+	void setNotation_file(String value);
 
 } // ModelTemplate

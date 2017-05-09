@@ -11,6 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.factory;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 import org.eclipse.papyrus.toolsmiths.messages.Messages;
@@ -22,6 +26,9 @@ import org.w3c.dom.Element;
 
 
 public class ModelTemplateExtensionFactory extends FileBasedExtensionFactory {
+	
+	public static final String MODEL_TEMPLATE_ROOT_FOLDER = new String("modelTemplate"); 
+	
 
 	public ModelTemplateExtensionFactory() {
 		super(Messages.ModelTemplateExtensionFactory_ModelTemplate, "org.eclipse.papyrus.uml.diagram.wizards.templates", "file", "template", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -49,8 +56,14 @@ public class ModelTemplateExtensionFactory extends FileBasedExtensionFactory {
 			if (element.getLanguage() != null) {
 				extension.setAttribute("language", element.getLanguage()); //$NON-NLS-1$
 			}
-
-			// TODO: Papyrus now handles *.di and *.notation files
+			
+			if (element.getLanguage() != null) {
+				extension.setAttribute("di_file", getFilePath(element.getDi_file())); //$NON-NLS-1$
+			}
+			if (element.getLanguage() != null) {
+				extension.setAttribute("notation_file", getFilePath(element.getNotation_file())); //$NON-NLS-1$
+			}          
+		    
 		}
 
 		return extension;
@@ -58,10 +71,20 @@ public class ModelTemplateExtensionFactory extends FileBasedExtensionFactory {
 
 	@Override
 	protected String getTargetPath(FileBasedCustomizableElement element) {
-		return "/modelTemplate/" + getFileName(element); //$NON-NLS-1$
+		return getFilePath(element.getFile()); //$NON-NLS-1$
 	}
 
+	protected String getFilePath(String file) {
+		return File.separator+MODEL_TEMPLATE_ROOT_FOLDER+File.separator + getFileName(file);
+	}
+	
 	public EClass getCustomizableElementClass() {
 		return CustomizationPluginPackage.eINSTANCE.getModelTemplate();
+	}
+	
+	protected void copyFile(FileBasedCustomizableElement element, IPluginEditor editor) throws FileNotFoundException, IOException {
+		copyFile(element.getFile(), getFilePath(((ModelTemplate)element).getFile()), editor);
+		copyFile(((ModelTemplate)element).getDi_file(), getFilePath(((ModelTemplate)element).getDi_file()), editor);
+		copyFile(((ModelTemplate)element).getNotation_file(), getFilePath(((ModelTemplate)element).getNotation_file()), editor);
 	}
 }

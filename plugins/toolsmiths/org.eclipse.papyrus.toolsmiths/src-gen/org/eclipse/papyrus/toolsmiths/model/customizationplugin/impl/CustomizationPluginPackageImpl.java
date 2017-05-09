@@ -300,6 +300,24 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getModelTemplate_Di_file() {
+		return (EAttribute)modelTemplateEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModelTemplate_Notation_file() {
+		return (EAttribute)modelTemplateEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPalette() {
 		return paletteEClass;
 	}
@@ -467,6 +485,8 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		createEAttribute(modelTemplateEClass, MODEL_TEMPLATE__LANGUAGE);
 		createEAttribute(modelTemplateEClass, MODEL_TEMPLATE__NAME);
 		createEAttribute(modelTemplateEClass, MODEL_TEMPLATE__ID);
+		createEAttribute(modelTemplateEClass, MODEL_TEMPLATE__DI_FILE);
+		createEAttribute(modelTemplateEClass, MODEL_TEMPLATE__NOTATION_FILE);
 
 		paletteEClass = createEClass(PALETTE);
 
@@ -545,6 +565,8 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		initEAttribute(getModelTemplate_Language(), ecorePackage.getEString(), "language", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getModelTemplate_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getModelTemplate_Id(), ecorePackage.getEString(), "id", null, 1, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelTemplate_Di_file(), ecorePackage.getEString(), "di_file", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelTemplate_Notation_file(), ecorePackage.getEString(), "notation_file", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(paletteEClass, Palette.class, "Palette", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
