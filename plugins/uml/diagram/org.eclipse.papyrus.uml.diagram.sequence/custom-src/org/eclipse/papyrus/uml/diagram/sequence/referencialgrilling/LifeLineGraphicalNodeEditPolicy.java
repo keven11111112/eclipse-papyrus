@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.SnapUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -126,7 +127,16 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			return compoundCommand;
 		}
 
-
+		if(request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_ASYNCH_EDGE.getSemanticHint()) ||
+				request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_SYNCH_EDGE.getSemanticHint())) {
+			// in the case of messages of sort: synchCall, asynchCall or asynchSignal
+			// an execution specification may be created at target
+			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg= new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart)request.getTargetEditPart());
+			CompoundCommand compoundCommand= new CompoundCommand();
+			compoundCommand.add(cmd);
+			compoundCommand.add(new EMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
+			return compoundCommand;
+		}
 
 		if(request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_FOUND_EDGE.getSemanticHint())){
 			// in the case of the found message, because the serialization is very specific , we must call basic editpolicy of GMF

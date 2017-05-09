@@ -40,5 +40,6 @@ public class CustomDiagramPreferenceInitializer extends DiagramPreferenceInitial
 		CustomConsiderIgnoreFragmentPreferencePage.initDefaults(store);
 		CustomDestructionOccurrenceSpecificationPreferencePage.initDefaults(store);
 		CustomInteractionOperandPreferencePage.initDefaults(store);
+		CustomDiagramGeneralPreferencePage.initSpecificDefaults(store);
 	}
 }

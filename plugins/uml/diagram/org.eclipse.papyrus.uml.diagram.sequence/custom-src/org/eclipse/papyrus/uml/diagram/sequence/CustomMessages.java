@@ -83,4 +83,27 @@ public class CustomMessages extends NLS {
 	 *
 	 */
 	public static String Warning_ResizeInteractionOperandTxt;
+	
+	/**
+	 * Preference messages
+	 */
+	public static String DiagramsPreferencePage_notificationGroup_label = "Automatic creations";
+	
+	public static String DiagramsPreferencePage_executionSpecificationWithSyncMsg_label = "When creating a synchronous message, also create:";
+	
+	public static String DiagramsPreferencePage_executionSpecificationWithAsyncMsg_label = "When creating an asynchronous message, also create:";
+
+	public static String DiagramsPreferencePage_createBehaviorExecutionSpecification = "A Behavior Execution Specification";
+	
+	public static String DiagramsPreferencePage_createActionExecutionSpecification = "An Action Execution Specification";
+	
+	public static String DiagramsPreferencePage_createNoExecutionSpecification = "Nothing";
+	
+	/**
+	 * the preferences 
+	 */
+	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG = "org.eclipse.papyrus.uml.diagram.sequence.executionSpecificationWithSyncMsg"; 
+	
+	public static String PREF_EXECUTION_SPECIFICATION_ASYNC_MSG = "org.eclipse.papyrus.uml.diagram.sequence.executionSpecificationWithAsyncMsg"; //$NON-NLS-1$
+
 }
