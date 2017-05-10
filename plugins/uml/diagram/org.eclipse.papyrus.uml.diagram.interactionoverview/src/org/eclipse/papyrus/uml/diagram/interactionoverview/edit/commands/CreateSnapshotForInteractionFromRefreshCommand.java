@@ -41,13 +41,22 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.URIUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 
 
 public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTransactionalCommand {
+
+	/**
+	 * @since 3.0
+	 */
+	protected static final String ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING = "org.eclipse.papyrus.uml.diagram.timing";
+
+	/**
+	 * @since 3.0
+	 */
+	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram";
 
 	protected View callBehaviorView;
 
@@ -124,8 +133,8 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 	protected PreferencesHint getReferenceHint(final String type) {
 		if (SequenceDiagramEditPart.MODEL_ID.equals(type)) {
 			return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
-		} else if (TimingDiagramEditPart.MODEL_ID.equals(type)) {
-			return org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+		} else if (PAPYRUS_UML_TIMING_DIAGRAM.equals(type)) {
+			return  new PreferencesHint(ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING);
 		} else if (InteractionOverviewDiagramEditPart.MODEL_ID.equals(type)) {
 			return Activator.DIAGRAM_PREFERENCES_HINT;
 		} else if (ModelEditPart.MODEL_ID.equals(type)) {

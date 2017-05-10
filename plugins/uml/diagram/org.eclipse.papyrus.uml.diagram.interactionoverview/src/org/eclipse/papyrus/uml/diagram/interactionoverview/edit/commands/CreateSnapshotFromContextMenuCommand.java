@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.EditPartUtils;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
@@ -32,7 +33,6 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.figures.InteractionWi
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.DiagramContentProvider;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil;
-import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.CallBehaviorAction;

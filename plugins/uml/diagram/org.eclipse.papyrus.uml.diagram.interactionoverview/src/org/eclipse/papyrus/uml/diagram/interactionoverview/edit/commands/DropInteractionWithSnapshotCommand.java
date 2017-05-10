@@ -23,10 +23,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.util.ViewUtils;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.CustomViewProvider;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil.CallBehaviorActionType;
-import org.eclipse.papyrus.uml.diagram.timing.custom.utils.ViewUtils;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 
 public class DropInteractionWithSnapshotCommand extends
@@ -61,8 +61,6 @@ public class DropInteractionWithSnapshotCommand extends
 		// select the new callBehaviorAction View
 		parentEditPart.refresh();
 		ViewUtils.selectInViewer(callBehaviorActionNode, parentEditPart.getViewer());
-		EditPartViewer viewer = parentEditPart.getViewer();
-		GraphicalEditPart newEditPart = (GraphicalEditPart) viewer.getEditPartRegistry().get(callBehaviorActionNode);
 		return CommandResult.newOKCommandResult(callBehaviorActionNode);
 	}
 

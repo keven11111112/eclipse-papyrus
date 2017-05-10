@@ -189,8 +189,10 @@ public class CreateDiagramImage {
 	}
 
 	private static boolean isValidLifelineEditPart(final GraphicalEditPart graphicalEditPart) {
-		if (graphicalEditPart instanceof LifelineEditPart || graphicalEditPart instanceof LifelineEditPartCN || graphicalEditPart instanceof org.eclipse.papyrus.uml.diagram.timing.edit.parts.LifelineEditPart) {
-			return true;
+		if(graphicalEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart ) {
+			if(((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart) graphicalEditPart).resolveSemanticElement() instanceof Lifeline){
+				return true;
+			}
 		}
 		return false;
 	}

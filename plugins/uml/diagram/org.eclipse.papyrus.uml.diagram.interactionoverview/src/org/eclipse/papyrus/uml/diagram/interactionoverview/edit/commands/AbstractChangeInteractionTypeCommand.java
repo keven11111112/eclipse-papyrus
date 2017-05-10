@@ -29,7 +29,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil.CallBehaviorActionType;
-import org.eclipse.papyrus.uml.diagram.timing.custom.utils.ViewUtils;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 
 public abstract class AbstractChangeInteractionTypeCommand extends
@@ -71,9 +70,7 @@ public abstract class AbstractChangeInteractionTypeCommand extends
 
 		// select the new callBehaviorAction View
 		parentEditPart.refresh();
-		ViewUtils.selectInViewer(callBehaviorActionNode, parentEditPart.getViewer());
-		EditPartViewer viewer = parentEditPart.getViewer();
-		GraphicalEditPart newEditPart = (GraphicalEditPart) viewer.getEditPartRegistry().get(callBehaviorActionNode);
+		org.eclipse.papyrus.uml.diagram.common.util.ViewUtils.selectInViewer(callBehaviorActionNode, parentEditPart.getViewer());
 		return CommandResult.newOKCommandResult(callBehaviorActionNode);
 	}
 

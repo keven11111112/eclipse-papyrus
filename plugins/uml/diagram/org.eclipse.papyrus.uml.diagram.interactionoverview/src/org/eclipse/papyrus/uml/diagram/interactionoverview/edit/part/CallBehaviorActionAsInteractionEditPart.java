@@ -25,12 +25,12 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.RefreshCommandForUndo;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.CreateSnapshotForInteractionFromRefreshCommand;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.figures.InteractionWithSnapshotFigure;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil;
-import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForUndo;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 

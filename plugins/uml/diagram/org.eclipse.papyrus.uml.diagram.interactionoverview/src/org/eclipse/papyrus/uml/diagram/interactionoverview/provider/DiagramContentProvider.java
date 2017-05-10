@@ -25,7 +25,6 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.InteractionOverviewDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Interaction;
 
@@ -37,6 +36,10 @@ import org.eclipse.uml2.uml.Interaction;
 @Deprecated
 public class DiagramContentProvider extends MoDiscoContentProvider implements IHierarchicContentProvider {
 
+	/**
+	 * @since 3.0
+	 */
+	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram";
 	private final Interaction interaction;
 
 	public DiagramContentProvider(final Interaction interation) {
@@ -83,7 +86,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 				return true;
 			}
 			// timing Diagram
-		} else if (diagram.getType().equals(TimingDiagramEditPart.MODEL_ID)) {
+		} else if (PAPYRUS_UML_TIMING_DIAGRAM.equals(diagram.getType())) {
 			return true;
 			// InteractionOverviewDiagram
 		} else if (diagram.getType().equals(InteractionOverviewDiagramEditPart.MODEL_ID)) {

@@ -19,12 +19,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.RefreshCommandForDo;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.AddHyperlinkDiagram;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands.CreateSnapshotForInteractionFromViewDescriptorCommand;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
-import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForDo;
 
 
 public class ActivityContentCompartmentCreationEditPolicy extends PapyrusCreationEditPolicy {

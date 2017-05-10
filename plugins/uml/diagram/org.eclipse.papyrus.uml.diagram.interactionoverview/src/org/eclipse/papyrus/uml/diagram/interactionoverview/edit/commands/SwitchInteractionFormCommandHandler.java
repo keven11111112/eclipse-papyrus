@@ -21,12 +21,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.RefreshCommandForDo;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.RefreshCommandForUndo;
 import org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomInteractionUseEditPartCN;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
-import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForDo;
-import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForUndo;
 
 public class SwitchInteractionFormCommandHandler extends GraphicalCommandHandler {
 
