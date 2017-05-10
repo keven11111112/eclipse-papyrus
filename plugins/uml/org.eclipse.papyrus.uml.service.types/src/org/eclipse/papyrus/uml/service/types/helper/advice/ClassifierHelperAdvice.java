@@ -381,7 +381,7 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 				if (null != containerView) {
 					EObject containerSemanticElement = ViewUtil.resolveSemanticElement(containerView);
 					if (containerSemanticElement instanceof Classifier) {
-						if (!containerSemanticElement.equals(targetContainer)) {
+						if (!containerSemanticElement.equals(targetContainer) && containerSemanticElement != property) {
 							EList<Classifier> allParents = ((Classifier) containerSemanticElement).allParents();
 							if (!allParents.contains(targetContainer)) {
 								viewsToDestroy.add(view);
