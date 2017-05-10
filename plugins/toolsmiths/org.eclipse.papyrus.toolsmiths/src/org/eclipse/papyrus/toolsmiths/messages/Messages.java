@@ -17,6 +17,8 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.messages.messages"; //$NON-NLS-1$
 
+	public static String PaletteFactory_Palette;
+
 	public static String UICustomExtensionFactory_UICustom;
 
 	public static String ModelTemplateExtensionFactory_ModelTemplate;

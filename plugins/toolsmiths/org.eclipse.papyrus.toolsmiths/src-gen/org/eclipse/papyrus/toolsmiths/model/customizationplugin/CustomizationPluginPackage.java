@@ -307,13 +307,67 @@ public interface CustomizationPluginPackage extends EPackage {
 	int PALETTE__FILE = FILE_BASED_CUSTOMIZABLE_ELEMENT__FILE;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE__ID = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Clazz</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE__CLAZZ = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE__NAME = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Provider</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE__PROVIDER = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Priority Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE__PRIORITY_NAME = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Editor Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE__EDITOR_ID = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Palette</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PALETTE_FEATURE_COUNT = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 0;
+	int PALETTE_FEATURE_COUNT = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl <em>Profile</em>}' class.
@@ -679,6 +733,72 @@ public interface CustomizationPluginPackage extends EPackage {
 	EClass getPalette();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getID()
+	 * @see #getPalette()
+	 * @generated
+	 */
+	EAttribute getPalette_ID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getClazz <em>Clazz</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clazz</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getClazz()
+	 * @see #getPalette()
+	 * @generated
+	 */
+	EAttribute getPalette_Clazz();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getName()
+	 * @see #getPalette()
+	 * @generated
+	 */
+	EAttribute getPalette_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getProvider <em>Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Provider</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getProvider()
+	 * @see #getPalette()
+	 * @generated
+	 */
+	EAttribute getPalette_Provider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getPriorityName <em>Priority Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Priority Name</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getPriorityName()
+	 * @see #getPalette()
+	 * @generated
+	 */
+	EAttribute getPalette_PriorityName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getEditorId <em>Editor Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Editor Id</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette#getEditorId()
+	 * @see #getPalette()
+	 * @generated
+	 */
+	EAttribute getPalette_EditorId();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.Profile <em>Profile</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -980,6 +1100,54 @@ public interface CustomizationPluginPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PALETTE = eINSTANCE.getPalette();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PALETTE__ID = eINSTANCE.getPalette_ID();
+
+		/**
+		 * The meta object literal for the '<em><b>Clazz</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PALETTE__CLAZZ = eINSTANCE.getPalette_Clazz();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PALETTE__NAME = eINSTANCE.getPalette_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Provider</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PALETTE__PROVIDER = eINSTANCE.getPalette_Provider();
+
+		/**
+		 * The meta object literal for the '<em><b>Priority Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PALETTE__PRIORITY_NAME = eINSTANCE.getPalette_PriorityName();
+
+		/**
+		 * The meta object literal for the '<em><b>Editor Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PALETTE__EDITOR_ID = eINSTANCE.getPalette_EditorId();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.ProfileImpl <em>Profile</em>}' class.

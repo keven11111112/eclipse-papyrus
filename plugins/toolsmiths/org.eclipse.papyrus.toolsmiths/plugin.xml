@@ -47,6 +47,9 @@
             factory="org.eclipse.papyrus.toolsmiths.factory.ModelTemplateExtensionFactory">
       </factory>
       <factory
+            factory="org.eclipse.papyrus.toolsmiths.factory.PaletteExtensionFactory">
+      </factory>
+      <factory
             factory="org.eclipse.papyrus.toolsmiths.factory.ProfileExtensionFactory">
       </factory>
       <factory

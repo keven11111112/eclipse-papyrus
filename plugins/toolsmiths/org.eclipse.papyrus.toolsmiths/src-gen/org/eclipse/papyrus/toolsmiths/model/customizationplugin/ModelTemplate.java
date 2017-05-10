@@ -123,7 +123,7 @@ public interface ModelTemplate extends FileBasedCustomizableElement {
 	 * @return the value of the '<em>Di file</em>' attribute.
 	 * @see #setDi_file(String)
 	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage#getModelTemplate_Di_file()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getDi_file();
@@ -149,7 +149,7 @@ public interface ModelTemplate extends FileBasedCustomizableElement {
 	 * @return the value of the '<em>Notation file</em>' attribute.
 	 * @see #setNotation_file(String)
 	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationPluginPackage#getModelTemplate_Notation_file()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getNotation_file();

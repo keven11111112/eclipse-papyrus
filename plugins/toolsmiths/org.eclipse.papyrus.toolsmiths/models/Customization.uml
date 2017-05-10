@@ -59,6 +59,24 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_euAb-i8xEeel4ff6F-Bn2A" name="Palette">
       <generalization xmi:type="uml:Generalization" xmi:id="_euAb-y8xEeel4ff6F-Bn2A" general="_euAb6S8xEeel4ff6F-Bn2A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_j_jIgDWIEeegraI1hOIC3w" name="ID">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_pl0NcDWIEeegraI1hOIC3w" name="clazz">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_uTHDADWIEeegraI1hOIC3w" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_u5QdADWIEeegraI1hOIC3w" name="provider">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vrJ0ADWIEeegraI1hOIC3w" name="priorityName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wL5JkDWIEeegraI1hOIC3w" name="editorId">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_euAb_C8xEeel4ff6F-Bn2A" name="Profile">
       <generalization xmi:type="uml:Generalization" xmi:id="_euAb_S8xEeel4ff6F-Bn2A" general="_euAb6S8xEeel4ff6F-Bn2A"/>

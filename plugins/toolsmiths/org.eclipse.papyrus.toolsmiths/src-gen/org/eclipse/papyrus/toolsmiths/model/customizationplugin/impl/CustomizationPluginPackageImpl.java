@@ -327,6 +327,60 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPalette_ID() {
+		return (EAttribute)paletteEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPalette_Clazz() {
+		return (EAttribute)paletteEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPalette_Name() {
+		return (EAttribute)paletteEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPalette_Provider() {
+		return (EAttribute)paletteEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPalette_PriorityName() {
+		return (EAttribute)paletteEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPalette_EditorId() {
+		return (EAttribute)paletteEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProfile() {
 		return profileEClass;
 	}
@@ -489,6 +543,12 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		createEAttribute(modelTemplateEClass, MODEL_TEMPLATE__NOTATION_FILE);
 
 		paletteEClass = createEClass(PALETTE);
+		createEAttribute(paletteEClass, PALETTE__ID);
+		createEAttribute(paletteEClass, PALETTE__CLAZZ);
+		createEAttribute(paletteEClass, PALETTE__NAME);
+		createEAttribute(paletteEClass, PALETTE__PROVIDER);
+		createEAttribute(paletteEClass, PALETTE__PRIORITY_NAME);
+		createEAttribute(paletteEClass, PALETTE__EDITOR_ID);
 
 		profileEClass = createEClass(PROFILE);
 		createEAttribute(profileEClass, PROFILE__QUALIFIEDNAMES);
@@ -565,10 +625,16 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		initEAttribute(getModelTemplate_Language(), ecorePackage.getEString(), "language", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getModelTemplate_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getModelTemplate_Id(), ecorePackage.getEString(), "id", null, 1, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelTemplate_Di_file(), ecorePackage.getEString(), "di_file", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelTemplate_Notation_file(), ecorePackage.getEString(), "notation_file", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelTemplate_Di_file(), ecorePackage.getEString(), "di_file", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelTemplate_Notation_file(), ecorePackage.getEString(), "notation_file", null, 0, 1, ModelTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(paletteEClass, Palette.class, "Palette", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getPalette_ID(), ecorePackage.getEString(), "ID", null, 1, 1, Palette.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPalette_Clazz(), ecorePackage.getEString(), "clazz", null, 1, 1, Palette.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPalette_Name(), ecorePackage.getEString(), "name", null, 1, 1, Palette.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPalette_Provider(), ecorePackage.getEString(), "provider", null, 1, 1, Palette.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPalette_PriorityName(), ecorePackage.getEString(), "priorityName", null, 1, 1, Palette.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPalette_EditorId(), ecorePackage.getEString(), "editorId", null, 1, 1, Palette.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(profileEClass, Profile.class, "Profile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getProfile_Qualifiednames(), ecorePackage.getEString(), "qualifiednames", null, 0, 1, Profile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
