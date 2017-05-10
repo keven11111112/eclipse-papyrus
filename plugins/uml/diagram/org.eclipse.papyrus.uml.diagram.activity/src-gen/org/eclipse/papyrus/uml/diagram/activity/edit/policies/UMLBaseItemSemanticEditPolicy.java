@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
@@ -49,15 +48,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.tools.utils.ObjectFlowUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ControlFlow;
@@ -534,178 +532,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * modify the generation to call explicitly custom helper
 		 *
-		 * @generated NOT
+		 * @generated
 		 */
 		public boolean canExistObjectFlow_Edge(Activity container, ObjectFlow linkInstance, ActivityNode source,
 				ActivityNode target) {
 			try {
-				if (source instanceof Action) {
-					// rule validateObjectFlow_validateNoActions
-					// rule workaround by addition of pins in case of Action
-					if (!CustomObjectFlowEditHelper.canStartNewObjectFlow((Action) source)) {
-						return false;
-					}
-				}
-				if (source instanceof InputPin) {
-					// rule validateInputPin_validateOutgoingEdgesStructuredOnly
-					if (source.getOwner() instanceof StructuredActivityNode) {
-						if (target != null && !source.getOwner().equals(target.getInStructuredNode())) {
-							return false;
-						}
-					} else {
-						return false;
-					}
-				}
-				if (source instanceof InitialNode) {
-					// rule validateInitialNode_validateControlEdges
+				if (!ObjectFlowUtil.canExistObjectFlow(container, linkInstance, source, target)) {
 					return false;
-				}
-				if (source instanceof FinalNode) {
-					// rule validateFinalNode_validateNoOutgoingEdges
-					return false;
-				}
-				if (source instanceof JoinNode) {
-					// rule validateJoinNode_validateOneOutgoingEdge
-					if (!source.getOutgoings().isEmpty()) {
-						return false;
-					}
-					/*
-					 * rule validateJoinNode_validateIncomingObjectFlow :
-					 * We do not prevent creation of an outgoing ObjectFlow even if there is no incoming ObjectFlow.
-					 * We let the possibility that the user intends to add an incoming ObjectFlow later.
-					 */
-				}
-				if (source instanceof ForkNode) {
-					// rule validateForkNode_validateEdges on source Fork node
-					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					ActivityEdge incomingControlFlow = source.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no ObjectFlow
-						return false;
-					}
-				}
-				if (source instanceof MergeNode) {
-					// rule validateMergeNode_validateOneOutgoingEdge
-					if (!source.getOutgoings().isEmpty()) {
-						return false;
-					}
-					// rule validateMergeNode_validateEdges on source Merge node
-					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					ActivityEdge incomingControlFlow = source.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no ObjectFlow
-						return false;
-					}
-				}
-				if (source instanceof DecisionNode) {
-					// rule validateDecisionNode_validateEdges on source Decision node
-					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					ActivityEdge incomingControlFlow = source.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no ObjectFlow
-						return false;
-					}
-				}
-				if (source instanceof ActivityParameterNode) {
-					// rule validateActivityParameterNode_validateIncomingOrOutgoing
-					EList<ActivityEdge> incomings = source.getIncomings();
-					if (!incomings.isEmpty()) {
-						return false;
-					}
-				}
-				if (target instanceof Action) {
-					// rule validateObjectFlow_validateNoActions
-					// rule workaround by addition of pins in case of Action
-					if (!CustomObjectFlowEditHelper.canEndNewObjectFlow((Action) target)) {
-						return false;
-					}
-				}
-				if (target instanceof OutputPin) {
-					// rule validateOutputPin_validateIncomingEdgesStructuredOnly
-					if (target.getOwner() instanceof StructuredActivityNode) {
-						if (source != null && !target.getOwner().equals(source.getInStructuredNode())) {
-							return false;
-						}
-					} else {
-						return false;
-					}
-				}
-				if (target instanceof InitialNode) {
-					// rule validateInitialNode_validateNoIncomingEdges
-					return false;
-				}
-				if (target instanceof JoinNode) {
-					// rule validateJoinNode_validateIncomingObjectFlow
-					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null) {
-						// the outgoing edge is a ControlFlow which means there must be no incoming ObjectFlow
-						return false;
-					}
-				}
-				if (target instanceof ForkNode) {
-					// rule validateForkNode_validateOneIncomingEdge
-					if (!target.getIncomings().isEmpty()) {
-						return false;
-					}
-					// rule validateForkNode_validateEdges on target Fork node
-					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					ActivityEdge incomingControlFlow = target.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no ObjectFlow
-						return false;
-					}
-				}
-				if (target instanceof MergeNode) {
-					// rule validateMergeNode_validateEdges on target Merge node
-					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					ActivityEdge incomingControlFlow = target.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
-						// there is a ControlFlow which means there must be no ObjectFlow
-						return false;
-					}
-				}
-				if (target instanceof DecisionNode) {
-					// rule validateDecisionNode_validateIncomingOutgoingEdges
-					if (target.getIncomings().size() >= 2) {
-						// no more than two incoming edges
-						return false;
-					}
-					// rule validateDecisionNode_validateEdges on target Decision node
-					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					ActivityEdge incomingControlFlow = target.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
-						/*
-						 * There is a ControlFlow which means there must be no
-						 * ObjectFlow but the decision flow itself.
-						 * We let the user insert up to one ObjectFlow for being
-						 * able to select the decision flow among existing
-						 * input flows.
-						 */
-						if (target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow()) != null) {
-							// there is already an object flow which is intended to become the decision flow
-							return false;
-						}
-					}
-				}
-				if (target instanceof ActivityParameterNode) {
-					// rule validateActivityParameterNode_validateIncomingOrOutgoing
-					EList<ActivityEdge> outgoings = target.getOutgoings();
-					if (!outgoings.isEmpty()) {
-						return false;
-					}
 				}
 				return true;
 			} catch (Exception e) {

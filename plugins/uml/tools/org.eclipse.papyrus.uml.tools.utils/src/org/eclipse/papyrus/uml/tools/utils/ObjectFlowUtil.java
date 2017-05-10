@@ -81,11 +81,8 @@ public class ObjectFlowUtil {
 	public static boolean canExistObjectFlow(Activity container, ObjectFlow linkInstance, ActivityNode source, ActivityNode target) {
 		try {
 			if (source instanceof Action) {
-				// rule validateObjectFlow_validateNoActions
-				// rule workaround by addition of pins in case of Action
-				if (!ObjectFlowUtil.canStartNewObjectFlow((Action) source)) {
-					return false;
-				}
+				// UMl2.5 - 15.7.22.6 constraint: no_executable_nodes
+				return false;
 			}
 			if (source instanceof InputPin) {
 				// rule validateInputPin_validateOutgoingEdgesStructuredOnly
@@ -155,11 +152,8 @@ public class ObjectFlowUtil {
 				}
 			}
 			if (target instanceof Action) {
-				// rule validateObjectFlow_validateNoActions
-				// rule workaround by addition of pins in case of Action
-				if (!ObjectFlowUtil.canEndNewObjectFlow((Action) target)) {
-					return false;
-				}
+				// UMl2.5 - 15.7.22.6 constraint: no_executable_nodes
+				return false;
 			}
 			if (target instanceof OutputPin) {
 				// rule validateOutputPin_validateIncomingEdgesStructuredOnly
