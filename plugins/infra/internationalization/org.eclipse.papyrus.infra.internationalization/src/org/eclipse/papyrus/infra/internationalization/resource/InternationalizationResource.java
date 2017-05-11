@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.internationalization.resource;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
@@ -24,6 +25,7 @@ import java.util.Vector;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
@@ -140,7 +142,7 @@ public class InternationalizationResource extends XMIResourceImpl {
 					} catch (InterruptedException | RollbackException e) {
 						Activator.log.error(e);
 					}
-				}else {
+				} else {
 					final GMFtoEMFCommandWrapper command = new GMFtoEMFCommandWrapper(new AddToResourceCommand(
 							((ModelSet) getResourceSet()).getTransactionalEditingDomain(), this, library));
 					command.execute();
@@ -224,6 +226,67 @@ public class InternationalizationResource extends XMIResourceImpl {
 			}
 		}
 		setModified(false);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#doUnload()
+	 */
+	@Override
+	protected void doUnload() {
+
+		Iterator<EObject> allContents = getAllProperContents(unloadingContents);
+
+		// This guard is needed to ensure that clear doesn't make the resource become loaded.
+		//
+		if (!getContents().isEmpty()) {
+			// Load the locale save option if exist
+			final Object needUnsafe = getDefaultLoadOptions() != null
+					&& getDefaultLoadOptions().containsKey(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
+							? getDefaultLoadOptions().get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
+							: defaultLoadOptions != null
+									? defaultLoadOptions
+											.get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
+									: null;
+
+			// Add the library to the resource
+			if (needUnsafe instanceof Boolean && (Boolean) needUnsafe) {
+				try {
+					// We need to do this by unsafe for the fake resources
+					GMFUnsafe.write(((ModelSet) getResourceSet()).getTransactionalEditingDomain(), new Runnable() {
+
+						@Override
+						public void run() {
+							getContents().clear();
+
+						}
+					});
+				} catch (InterruptedException | RollbackException e) {
+					Activator.log.error(e);
+				}
+			} else {
+				getContents().clear();
+			}
+		}
+		getErrors().clear();
+		getWarnings().clear();
+
+		while (allContents.hasNext()) {
+			unloaded((InternalEObject) allContents.next());
+		}
+
+		if (idToEObjectMap != null) {
+			idToEObjectMap.clear();
+		}
+
+		if (eObjectToIDMap != null) {
+			eObjectToIDMap.clear();
+		}
+
+		if (eObjectToExtensionMap != null) {
+			eObjectToExtensionMap.clear();
+		}
 	}
 
 	/**

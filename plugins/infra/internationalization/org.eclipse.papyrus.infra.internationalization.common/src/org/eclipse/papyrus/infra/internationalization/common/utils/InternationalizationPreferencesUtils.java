@@ -46,7 +46,7 @@ public class InternationalizationPreferencesUtils {
 	public static IPreferenceStore getPreferenceStore(final EObject eObject) {
 		URI resourceURI = eObject.eResource().getURI();
 		final ResourceSet resourceSet = eObject.eResource().getResourceSet();
-		if (resourceSet instanceof ModelSet) {
+		if (resourceSet instanceof ModelSet && null != ((ModelSet) resourceSet).getURIWithoutExtension()) {
 			resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 		}
 		return getPreferenceStore(resourceURI);
@@ -114,7 +114,7 @@ public class InternationalizationPreferencesUtils {
 	public static void setInternationalizationPreference(final EObject eObject, final boolean value) {
 		URI resourceURI = eObject.eResource().getURI();
 		final ResourceSet resourceSet = eObject.eResource().getResourceSet();
-		if (resourceSet instanceof ModelSet) {
+		if (resourceSet instanceof ModelSet && null != ((ModelSet) resourceSet).getURIWithoutExtension()) {
 			resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 		}
 		setInternationalizationPreference(resourceURI, value);
@@ -162,7 +162,7 @@ public class InternationalizationPreferencesUtils {
 		if (null != eObject && null != eObject.eResource()) {
 			URI resourceURI = eObject.eResource().getURI();
 			final ResourceSet resourceSet = eObject.eResource().getResourceSet();
-			if (resourceSet instanceof ModelSet) {
+			if (resourceSet instanceof ModelSet && null != ((ModelSet) resourceSet).getURIWithoutExtension()) {
 				resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 			}
 			result = getInternationalizationPreference(resourceURI);
@@ -236,7 +236,7 @@ public class InternationalizationPreferencesUtils {
 		if (null != eObject && null != eObject.eResource()) {
 			URI resourceURI = eObject.eResource().getURI();
 			final ResourceSet resourceSet = eObject.eResource().getResourceSet();
-			if (resourceSet instanceof ModelSet) {
+			if (resourceSet instanceof ModelSet && null != ((ModelSet) resourceSet).getURIWithoutExtension()) {
 				resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 			}
 			result = getLocalePreference(resourceURI);
@@ -276,7 +276,7 @@ public class InternationalizationPreferencesUtils {
 	public static void setLanguagePreference(final EObject eObject, final String language) {
 		URI resourceURI = eObject.eResource().getURI();
 		final ResourceSet resourceSet = eObject.eResource().getResourceSet();
-		if (resourceSet instanceof ModelSet) {
+		if (resourceSet instanceof ModelSet && null != ((ModelSet) resourceSet).getURIWithoutExtension()) {
 			resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 		}
 		setLanguagePreference(resourceURI, language);

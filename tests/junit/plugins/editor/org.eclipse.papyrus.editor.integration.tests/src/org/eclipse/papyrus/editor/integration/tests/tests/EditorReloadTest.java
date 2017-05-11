@@ -350,7 +350,7 @@ public class EditorReloadTest extends AbstractPapyrusTest {
 
 		// On opening, the table is visible because it's the last tab in its folder
 		Set<String> visible = getVisiblePages(sashContainer);
-		assertThat(visible, is((Set<String>)ImmutableSet.of("classes", "classes_table")));
+		assertThat(visible, is((Set<String>)ImmutableSet.of("activity", "classes")));
 
 		// So, activate the activity diagram
 		editorFixture.activateDiagram(employmentEditor, "activity");

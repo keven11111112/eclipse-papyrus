@@ -380,6 +380,11 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			if (!resource.isLoaded()) {
 				// If this is a read-only resource, create a fake resource to get the internationalization content and read the needed entries
 				if(modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
+					
+					// Unload the resource and remove the created resource from the map
+					unload(resource);
+					getResources().remove(resource);
+
 					final URI initialResourceURI = resource.getURI();
 					final String lastSegment = initialResourceURI.lastSegment();
 					URI newResourceURI = modelSet.getURIWithoutExtension();
@@ -387,7 +392,13 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					newResourceURI = newResourceURI.appendSegment(lastSegment);
 					
 					// Create the resource with the ResourceSet but this one need to be removed from the ResourceSet
-					resource = modelSet.createResource(newResourceURI);
+					// Look for the resource
+					resource = getResourceSet().getResource(newResourceURI, false);
+
+					// Check if model is loaded.
+					if (null == resource) {
+						resource = modelSet.createResource(newResourceURI);
+					}
 					configureResource(initialResourceURI, resource, locale);
 					
 					if (resource instanceof InternationalizationResource) {
@@ -401,9 +412,6 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					} catch (IOException e) {
 						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
 					}
-					
-					// Remove the resource from the ResourceSet because this is only needed to read and not save the resource
-					modelSet.getResources().remove(resource);
 					
 					// And add the temporary resource to the list of resources to not save
 					resourcesToNotSave.add(resource);
@@ -439,10 +447,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		final Resource resource = this.resource;
 
 		// Fill the properties by locale map
-		if (null == propertiesByLocale.get(resourceURI)) {
-			propertiesByLocale.put(resourceURI, new HashMap<Locale, Resource>());
-		}
-		propertiesByLocale.get(resourceURI).put(locale, resource);
+		configureResource(resourceURI, resource, locale);
 
 		// Calculate the internationalization content
 		loadInternationalizationContent(uri, locale);
@@ -1282,7 +1287,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			if (null != initialUri) {
 				unload(initialUri);
 			}
-			resource.unload();
+			unload(resource);
 		}
 
 		// Remove adapters
@@ -1320,6 +1325,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			preferencePartLabelSynchronizers.clear();
 			preferencePartLabelSynchronizers = null;
 		}
+		
+		resourcesToNotSave.clear();
+		resourcesToNotSave = null;
 
 		resource = null;
 		super.unload();
@@ -1357,7 +1365,13 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					entriesIterator.remove();
 				}
 			}
+			
+			if(propertiesByLocale.get(initialUri).isEmpty()) {
+				propertiesByLocale.remove(initialUri);
+			}
 		}
+		
+		resource.unload();
 	}
 
 	/**
