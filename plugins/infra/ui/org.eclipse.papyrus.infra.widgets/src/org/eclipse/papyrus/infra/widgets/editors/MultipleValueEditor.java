@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,50 +9,22 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
- *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bugs 399859, 516526
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage buttons visibility and enable. 
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import org.eclipse.core.databinding.observable.ChangeEvent;
-import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITreeSelection;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.window.Window;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.widgets.Activator;
-import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
-import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.TreeCollectionContentProvider;
-import org.eclipse.papyrus.infra.widgets.util.PapyrusSelectionService;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
 
 /**
  * An editor for multivalued fields.
@@ -61,9 +33,9 @@ import org.eclipse.swt.widgets.TreeItem;
  * @param <T>
  *
  */
-public class MultipleValueEditor<T extends IElementSelector> extends AbstractListEditor implements SelectionListener, IChangeListener, DisposeListener {
+public class MultipleValueEditor<T extends IElementSelector> extends AbstractMultipleValueEditor<T> {
 
-	public static final int MANY = -1;
+	private final int style;
 
 	/**
 	 * The viewer displaying the current values from
@@ -75,71 +47,6 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 	 * The tree associated to the viewer
 	 */
 	protected Tree tree;
-
-	/**
-	 * A Composite containing the different control buttons
-	 * (Add, remove, ...)
-	 */
-	protected Composite controlsSection;
-
-	/**
-	 * The Add control
-	 */
-	protected Button add;
-
-	/**
-	 * The Remove control
-	 */
-	protected Button remove;
-
-	/**
-	 * The Up control
-	 */
-	protected Button up;
-
-	/**
-	 * The Down control
-	 */
-	protected Button down;
-
-	/**
-	 * The edit control
-	 */
-	protected Button edit;
-
-	/**
-	 * The element selector for this editor's dialog
-	 */
-	protected T selector;
-
-	/**
-	 * Indicates whether the underlying is ordered
-	 */
-	protected boolean ordered;
-
-	/**
-	 * Indicates whether the underlying contains unique values
-	 */
-	protected boolean unique;
-
-	/**
-	 * The factory for creating and editing values from
-	 * this editor
-	 */
-	protected ReferenceValueFactory referenceFactory;
-
-	/**
-	 * Indicates if this editor is readOnly
-	 */
-	protected boolean readOnly;
-
-	private boolean directCreation;
-
-	/**
-	 * Indicates the maximum number of values selected.
-	 */
-	protected int upperBound;
-
 
 	/**
 	 *
@@ -161,124 +68,11 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 	 *            The label for this editor. If null, the label isn't created.
 	 */
 	public MultipleValueEditor(Composite parent, int style, T selector, boolean ordered, boolean unique, String label) {
-		this(parent, style, selector, ordered, unique, label, MANY);
-	}
+		super(parent, selector, ordered, unique, label);
 
-	/**
-	 *
-	 * Constructor.
-	 *
-	 * @param parent
-	 *            The Composite in which this Editor should be displayed
-	 * @param style
-	 *            This editor's tree style
-	 * @param selector
-	 *            The element selector for this editor's dialog
-	 * @param ordered
-	 *            Specify if the observed collection is ordered. If true, Up and Down controls are displayed.
-	 * @param unique
-	 *            Specify if the observed collection values are unique.
-	 * @param label
-	 *            The label for this editor. If null, the label isn't created.
-	 * @param upperBound
-	 *            The maximum number of values that must appear.
-	 */
-	public MultipleValueEditor(Composite parent, int style, T selector, boolean ordered, boolean unique, String label, int upperBound) {
-		super(parent, label);
-		Assert.isNotNull(selector, "The Element Selector must be specified for a MultipleValueEditor"); //$NON-NLS-1$
+		this.style = style;
 
-		setLayout(new GridLayout(label == null ? 1 : 2, false));
-
-		controlsSection = new Composite(this, SWT.NONE);
-		controlsSection.setLayout(new FillLayout());
-		controlsSection.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
-
-		tree = new Tree(this, style | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
-		GridData treeData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		treeData.horizontalSpan = 2;
-		treeData.minimumHeight = 80;
-		tree.setLayoutData(treeData);
-
-		tree.addSelectionListener(this);
-
-		treeViewer = new TreeViewer(tree);
-		treeViewer.setContentProvider(TreeCollectionContentProvider.instance);
-		PapyrusSelectionService.getInstance().setSelectionProvider(treeViewer);
-
-		createListControls();
-
-		this.selector = selector;
-
-		setLabelProvider(new LabelProvider());
-		setUpperBound(upperBound);
-		this.ordered = ordered;
-		this.unique = unique;
-		updateControls();
-	}
-
-	/**
-	 * Creates the dialog for this editor
-	 *
-	 * @param parent
-	 *            The Composite in which the dialog should be displayed
-	 * @param selector
-	 *            The element selector for this dialog
-	 * @param ordered
-	 *            Specify if the observed collection is ordered. If true, Up and Down controls are displayed.
-	 * @param unique
-	 *            Specify if the observed collection values are unique.
-	 * @param label
-	 *            The editor's label.
-	 * @return The new dialog for this editor
-	 */
-	protected MultipleValueSelectorDialog createMultipleValueSelectorDialog(Composite parent, IElementSelector selector, boolean ordered, boolean unique, String label) {
-		return new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique, ordered);
-	}
-
-	@Override
-	protected GridData getLabelLayoutData() {
-		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		return data;
-	}
-
-	public void setSelector(T selector) {
-		this.selector = selector;
-	}
-
-	protected void updateControls() {
-
-		boolean enableAddAction = true;
-		if (directCreation) {
-			if (referenceFactory == null || !referenceFactory.canCreateObject()) {
-				enableAddAction = false;
-			}
-		}
-
-		add.setEnabled(!readOnly && enableAddAction);
-		remove.setEnabled(!readOnly);
-
-		if (ordered) {
-			up.setVisible(true);
-			down.setVisible(true);
-			up.setEnabled(!readOnly);
-			down.setEnabled(!readOnly);
-		} else {
-			up.setVisible(false);
-			down.setVisible(false);
-		}
-
-		if (edit != null) {
-			edit.setEnabled(this.referenceFactory != null && referenceFactory.canEdit() && !readOnly);
-		}
-
-		if (modelProperty != null && this.upperBound != MANY) {
-			if (modelProperty.size() >= this.upperBound) {
-				add.setEnabled(false);
-			}
-		}
-
-		updateButtons();
-
+		createContents();
 	}
 
 	/**
@@ -331,286 +125,68 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 	}
 
 	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param parent
+	 *            The Composite in which this Editor should be displayed
+	 * @param style
+	 *            This editor's tree style
+	 * @param selector
+	 *            The element selector for this editor's dialog
+	 * @param ordered
+	 *            Specify if the observed collection is ordered. If true, Up and Down controls are displayed.
+	 * @param unique
+	 *            Specify if the observed collection values are unique.
+	 * @param label
+	 *            The label for this editor. If null, the label isn't created.
+	 * @param upperBound
+	 *            The maximum number of values that must appear.
+	 */
+	public MultipleValueEditor(Composite parent, int style, T selector, boolean ordered, boolean unique, String label, int upperBound) {
+		super(parent, selector, ordered, unique, label, upperBound);
+
+		this.style = style;
+
+		createContents();
+	}
+
+	@Override
+	protected Control createContents(Composite parent) {
+		tree = new Tree(parent, style | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
+
+		tree.addSelectionListener(this);
+
+		treeViewer = new TreeViewer(tree);
+		treeViewer.setContentProvider(TreeCollectionContentProvider.instance);
+
+		return tree;
+	}
+
+	@Override
+	protected ISelectionProvider getSelectionProvider(Control contentControl) {
+		return treeViewer;
+	}
+
+	@Override
+	protected void setInput(IObservableList modelProperty) {
+		treeViewer.setInput(modelProperty);
+	}
+
+	/**
 	 * Sets the label provider for this editor
 	 *
 	 * @param labelProvider
 	 *            The label provider for this editor
 	 */
+	@Override
 	public void setLabelProvider(IBaseLabelProvider labelProvider) {
 		treeViewer.setLabelProvider(labelProvider);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected void doBinding() {
-		// We don't do a real Databinding in this case
-		treeViewer.setInput(modelProperty);
-		modelProperty.addChangeListener(this);
-	}
-
-	/**
-	 * @param ordered
-	 */
-	public void setOrdered(boolean ordered) {
-		this.ordered = ordered;
-
-		updateControls();
-	}
-
-	/**
-	 * @param unique
-	 */
-	public void setUnique(boolean unique) {
-		this.unique = unique;
-
-		updateControls();
-	}
-
-	/**
-	 * Creates the Add/Remove controls,
-	 * and the Up/Down controls if the collection is ordered
-	 *
-	 * @param ordered
-	 */
-	protected void createListControls() {
-		up = createButton(Activator.getDefault().getImage("/icons/Up_12x12.gif"), Messages.MultipleValueEditor_MoveSelectedElementsUp); //$NON-NLS-1$
-		down = createButton(Activator.getDefault().getImage("/icons/Down_12x12.gif"), Messages.MultipleValueEditor_MoveSelectedElementsDown); //$NON-NLS-1$
-		add = createButton(Activator.getDefault().getImage("/icons/Add_12x12.gif"), Messages.MultipleValueEditor_AddElements); //$NON-NLS-1$
-		remove = createButton(Activator.getDefault().getImage("/icons/Delete_12x12.gif"), Messages.MultipleValueEditor_RemoveSelectedElements); //$NON-NLS-1$
-		edit = createButton(Activator.getDefault().getImage("/icons/Edit_12x12.gif"), Messages.MultipleValueEditor_EditSelectedValue); //$NON-NLS-1$
-	}
-
-	protected Button createButton(Image image, String toolTipText) {
-		Button button = new Button(controlsSection, SWT.PUSH);
-		button.setImage(image);
-		button.addSelectionListener(this);
-		button.setToolTipText(toolTipText);
-		return button;
-	}
-
-	@Override
-	public Object getEditableType() {
-		return Collection.class;
-	}
-
-	/**
-	 * Handle events occuring on controls
-	 *
-	 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-	 *
-	 * @param e
-	 */
-	@Override
-	public void widgetSelected(SelectionEvent e) {
-		if (e.widget == null || e.widget.isDisposed()) {
-			return;
-		}
-		try {
-			if (e.widget == add) {
-				if (this.upperBound == MANY || modelProperty.size() < this.upperBound) {
-					addAction();
-				}
-			} else if (e.widget == remove) {
-				removeAction();
-			} else if (e.widget == up) {
-				upAction();
-			} else if (e.widget == down) {
-				downAction();
-			} else if (e.widget == edit) {
-				editAction();
-			}
-		} catch (OperationCanceledException canceledException) {
-			// do nothing, this exception occurs whenever one of the actions above
-			// gets canceled
-		}
-		if (!isDisposed()) {
-			updateControls();
-		}
-	}
-
-	/**
-	 * Handle add Action
-	 */
-	protected void addAction() {
-		final Object context = getContextElement();
-
-		if (directCreation) {
-			if (referenceFactory != null && referenceFactory.canCreateObject()) {
-				getOperationExecutor(context).execute(new Runnable() {
-
-					@Override
-					public void run() {
-						Object newElement = referenceFactory.createObject(MultipleValueEditor.this, context);
-						if (newElement != null) {
-							modelProperty.add(newElement);
-							commit();
-						}
-					}
-				}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
-			}
-
-			return;
-		}
-
-		getOperationExecutor(context).execute(new Runnable() {
-
-			@Override
-			public void run() {
-				String dialogLabel = label == null ? null : label.getText();
-				MultipleValueSelectorDialog dialog = createMultipleValueSelectorDialog(getParent(), selector, ordered, unique, dialogLabel);
-				dialog.setLabelProvider((ILabelProvider) treeViewer.getLabelProvider());
-				dialog.setFactory(referenceFactory);
-				dialog.setUpperBound(upperBound);
-				dialog.setContextElement(context);
-
-				if (modelProperty != null) {
-					dialog.setInitialSelections(modelProperty.toArray());
-				} else {
-					dialog.setInitialSelections(new Object[0]);
-				}
-
-				int returnCode = dialog.open();
-				if (returnCode == Window.CANCEL) {
-					// Clear out the element selector in case we open this dialog again
-					selector.clearTemporaryElements();
-
-					// Roll back whatever has been done, so far
-					throw new OperationCanceledException();
-				}
-
-				modelProperty.clear();
-
-				Object[] result = dialog.getResult();
-				if (result == null) {
-					return;
-				}
-
-				modelProperty.addAll(Arrays.asList(result));
-
-				commit();
-			}
-		}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
-	}
-
-	@Override
-	protected void commit() {
-		super.commit();
-		if (!isDisposed()) {
-			treeViewer.refresh();
-		}
-	}
-
-	/**
-	 * Handle remove Action
-	 */
-	protected void removeAction() {
-		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
-		for (Object value : selection.toArray()) {
-			modelProperty.remove(value);
-		}
-		treeViewer.setSelection(null);
-
-		commit();
-	}
-
-	/**
-	 * Handle up Action
-	 */
-	protected void upAction() {
-		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
-		for (Object o : selection.toArray()) {
-			int oldIndex = modelProperty.indexOf(o);
-			if (oldIndex > 0) {
-				modelProperty.move(oldIndex, oldIndex - 1);
-			}
-		}
-
-		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
-		treeViewer.setSelection(selectionCopy);
-
-		commit();
-	}
-
-	/**
-	 * Handle down Action
-	 */
-	protected void downAction() {
-		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
-
-		int maxIndex = modelProperty.size() - 1;
-
-		Object[] selectionArray = selection.toArray();
-		for (int i = selectionArray.length - 1; i >= 0; i--) {
-			Object o = selectionArray[i];
-			int oldIndex = modelProperty.indexOf(o);
-			if (-1 != oldIndex && oldIndex < maxIndex) {
-				modelProperty.move(oldIndex, oldIndex + 1);
-			}
-		}
-
-		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
-		treeViewer.setSelection(selectionCopy);
-
-		commit();
-	}
-
-	/**
-	 * Handle edit Action
-	 */
-	protected void editAction() {
-		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
-
-		if (selection.size() != 1) {
-			return;
-		}
-
-		TreeItem selectedItem = treeViewer.getTree().getSelection()[0];
-		Tree parentTree = selectedItem.getParent();
-
-		final int index = parentTree.indexOf(selectedItem);
-		final Object currentValue = selection.getFirstElement();
-
-		getOperationExecutor(currentValue).execute(new Runnable() {
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public void run() {
-				Object newValue = referenceFactory.edit(MultipleValueEditor.this.edit, currentValue);
-
-				if (newValue != currentValue && newValue != null) {
-					modelProperty.remove(index);
-					modelProperty.add(index, newValue);
-
-					// commit(); // The commit only occurs in the case where we modify the list (We don't commit direct edition on objects)
-				}
-
-				commit();
-			}
-		}, NLS.bind(Messages.MultipleValueEditor_editOperation, labelText));
-	}
-
-	/**
-	 * Sets the {@link ReferenceValueFactory} for this editor. The {@link ReferenceValueFactory} is used to create
-	 * new instances and edit existing ones.
-	 *
-	 * @param factory
-	 *            The {@link ReferenceValueFactory} to be used by this editor
-	 */
-	public void setFactory(ReferenceValueFactory factory) {
-		this.referenceFactory = factory;
-		updateControls();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void widgetDefaultSelected(SelectionEvent e) {
-		if ((e.widget == tree) && (edit != null) && edit.isEnabled()) {
-			editAction();
-		}
+	public IBaseLabelProvider getLabelProvider() {
+		return treeViewer.getLabelProvider();
 	}
 
 	/**
@@ -622,189 +198,17 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 		return treeViewer;
 	}
 
-	/**
-	 * Refreshes the viewer when a change occurs on the ObservableList
-	 * TODO : Problem : a change occurring on an element of the list is not sent here
-	 * TODO : When undoing a command, the change event is not received (Although it modifies the list itself)
-	 *
-	 * @see org.eclipse.core.databinding.observable.IChangeListener#handleChange(org.eclipse.core.databinding.observable.ChangeEvent)
-	 *
-	 * @param event
-	 */
-	@Override
-	public void handleChange(ChangeEvent event) {
-		if (!isDisposed()) {
-			treeViewer.refresh();
-		}
-	}
-
 	@Override
 	public void dispose() {
-		if (null != modelProperty) {
-			modelProperty.removeChangeListener(this);
-		}
-
-		if (null != treeViewer) {
-			PapyrusSelectionService.getInstance().unsetSelectionProvider(treeViewer);
-		}
 		if (null != tree) {
 			this.tree.removeSelectionListener(this);
 		}
-		if (null != add) {
-			this.add.removeSelectionListener(this);
-		}
-		if (null != edit) {
-			this.edit.removeSelectionListener(this);
-		}
-		if (null != up) {
-			this.up.removeSelectionListener(this);
-		}
-		if (null != down) {
-			this.down.removeSelectionListener(this);
-		}
-		if (null != remove) {
-			this.remove.removeSelectionListener(this);
-		}
 		super.dispose();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setReadOnly(boolean readOnly) {
-		this.readOnly = readOnly;
-		updateControls();
-		// tree.setEnabled(!readOnly);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isReadOnly() {
-		return !tree.isEnabled();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setLabel(String label) {
-		if (this.label == null) {
-			setLayout(new GridLayout(2, false));
-		}
-		super.setLabel(label);
-	}
-
-	@Override
-	public void setToolTipText(String text) {
-		tree.setToolTipText(text);
-		super.setLabelToolTipText(text);
-	}
-
-	@Override
-	public void setModelObservable(IObservableList modelProperty) {
-		super.setModelObservable(modelProperty);
-		updateControls();
 	}
 
 	@Override
 	public void refreshValue() {
 		treeViewer.refresh();
-	}
-
-	/**
-	 * Sets the direct creation mode.
-	 * If direct creation is set to true, the {@link ReferenceValueFactory#createObject(org.eclipse.swt.widgets.Control)} method will be called when
-	 * to add button is pressed.
-	 * Otherwise, the dialog will be used.
-	 *
-	 * @param directCreation
-	 */
-	public void setDirectCreation(boolean directCreation) {
-		this.directCreation = directCreation;
-		updateControls();
-	}
-
-	/**
-	 * Adds a ISelectionChangedListener to this widget
-	 *
-	 * @param listener
-	 */
-	public void addSelectionChangedListener(ISelectionChangedListener listener) {
-		treeViewer.addSelectionChangedListener(listener);
-	}
-
-	/**
-	 * Removes a ISelectionChangedListener from this widget
-	 *
-	 * @param listener
-	 */
-	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
-		treeViewer.removeSelectionChangedListener(listener);
-	}
-
-	/**
-	 * Set the maximum number of values selected.
-	 *
-	 * @param upperBound
-	 */
-	public void setUpperBound(int upperBound) {
-		this.upperBound = upperBound;
-	}
-
-	public void updateButtons() {
-		/* Disable the button 'add' if the upperBound is reached */
-		if (this.upperBound != MANY) {
-			if (modelProperty.size() >= this.upperBound) {
-				add.setEnabled(false);
-			} else {
-				add.setEnabled(true);
-			}
-		}
-
-		// manage enable button according to the selection
-
-		Object selection = getFirstSelection();
-		if (null == selection) {
-			up.setEnabled(false);
-			down.setEnabled(false);
-			remove.setEnabled(false);
-			if (null != edit) {
-				edit.setEnabled(false);
-			}
-		} else if (null != modelProperty) {
-			int index = modelProperty.indexOf(selection);
-			if (0 == index || -1 == index) {
-				up.setEnabled(false);
-			}
-			if (modelProperty.size() == index + 1 || -1 == index) {
-				down.setEnabled(false);
-			}
-		}
-
-
-	}
-
-	/**
-	 * @return
-	 * 
-	 */
-	private Object getFirstSelection() {
-		Object firstSelection = null;
-		ISelection selection = treeViewer.getSelection();
-		if (selection instanceof ITreeSelection) {
-			firstSelection = ((ITreeSelection) selection).getFirstElement();
-
-		}
-		return firstSelection;
-	}
-
-	@Override
-	public void changeColorField() {
-		// nothing to do here
-
 	}
 
 }

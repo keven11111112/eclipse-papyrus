@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 516526
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -21,14 +22,14 @@ import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * An editor for multivalued references. This editor should be used when
+ * A partial implementation of an editor for multivalued references. This editor should be used when
  * there is enough vertical space available. If the vertical space is limited,
  * CompactMultipleReferenceEditor should be used instead.
  *
  * @author Camille Letavernier
- *
+ * @since 3.0
  */
-public class MultipleReferenceEditor extends MultipleValueEditor<ReferenceSelector> implements IMultipleReferenceEditor {
+public abstract class AbstractMultipleReferenceEditor extends AbstractMultipleValueEditor<ReferenceSelector> implements IMultipleReferenceEditor {
 
 	protected IStaticContentProvider contentProvider;
 
@@ -38,17 +39,20 @@ public class MultipleReferenceEditor extends MultipleValueEditor<ReferenceSelect
 	 *
 	 * @param parent
 	 *            The composite in which this editor is created
-	 * @param style
-	 *            The style for this editor's list
 	 * @param ordered
 	 *            True if the list should be ordered
 	 * @param unique
 	 *            True if the list values should be unique
 	 * @param label
 	 *            The label for this editor
+	 * @param contentControlCreator
+	 *            a function that creates the content control
 	 */
-	public MultipleReferenceEditor(Composite parent, int style, boolean ordered, boolean unique, String label) {
-		super(parent, style, new ReferenceSelector(unique), ordered, unique, label);
+	protected AbstractMultipleReferenceEditor(Composite parent,
+			boolean ordered, boolean unique, String label) {
+
+		super(parent, new ReferenceSelector(unique), ordered, unique, label);
+
 		// Default providers
 		setProviders(EmptyContentProvider.instance, new WrappedLabelProvider());
 	}
@@ -59,13 +63,13 @@ public class MultipleReferenceEditor extends MultipleValueEditor<ReferenceSelect
 	 *
 	 * @param parent
 	 *            The composite in which this editor is created
-	 * @param style
-	 *            The style for this editor's list
 	 * @param label
 	 *            The label for this editor
+	 * @param contentControlCreator
+	 *            a function that creates the content control
 	 */
-	public MultipleReferenceEditor(Composite parent, int style, String label) {
-		this(parent, style, false, false, label);
+	protected AbstractMultipleReferenceEditor(Composite parent, String label) {
+		this(parent, false, false, label);
 	}
 
 	/**
@@ -74,11 +78,11 @@ public class MultipleReferenceEditor extends MultipleValueEditor<ReferenceSelect
 	 *
 	 * @param parent
 	 *            The composite in which this editor is created
-	 * @param style
-	 *            The style for this editor's list
+	 * @param contentControlCreator
+	 *            a function that creates the content control
 	 */
-	public MultipleReferenceEditor(Composite parent, int style) {
-		this(parent, style, false, false, null);
+	protected AbstractMultipleReferenceEditor(Composite parent) {
+		this(parent, false, false, null);
 	}
 
 	@Override
@@ -94,7 +98,7 @@ public class MultipleReferenceEditor extends MultipleValueEditor<ReferenceSelect
 		if (labelProvider != null) {
 			selector.setLabelProvider(labelProvider);
 
-			super.setLabelProvider(labelProvider);
+			setLabelProvider(labelProvider);
 		}
 	}
 
