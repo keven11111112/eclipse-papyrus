@@ -34,10 +34,7 @@ public  class TestInteractionAffixedChildNode extends AbstractTestSequenceAffixe
 	public void testToManageDurationConstraint() {
 		testToManageChildNode(UMLElementTypes.DurationConstraint_Shape 	,1);
 	}
-	@Test
-	public void testToManageDurationObservation() {
-		testToManageChildNode(UMLElementTypes.DurationObservation_Shape	,1);
-	}
+	
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateSequenceDiagramCommand();

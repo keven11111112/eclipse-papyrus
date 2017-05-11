@@ -1209,7 +1209,7 @@
           canonicalEditPolicyClassName="DurationObservationCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="DurationObservationGraphicalNodeEditPolicy"
           createCommandClassName="DurationObservationCreateCommand"
-          containers="/0/@diagram/@topLevelNodes.0">
+          containers="/0/@diagram/@compartments.0">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1253,7 +1253,8 @@
             visualID="5016"
             editPartClassName="DurationObservationLabelEditPart"
             itemSemanticEditPolicyClassName="DurationObservationLabelItemSemanticEditPolicy"
-            notationViewFactoryClassName="DurationObservationLabelViewFactory">
+            notationViewFactoryClassName="DurationObservationLabelViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1357,7 +1358,7 @@
           itemSemanticEditPolicyClassName="InteractionItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionViewFactory"
           canonicalEditPolicyClassName="InteractionCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.15 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.17"
+          childNodes="/0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17"
           compartments="/0/@diagram/@compartments.0"
           graphicalNodeEditPolicyClassName="InteractionGraphicalNodeEditPolicy"
           createCommandClassName="InteractionCreateCommand">
@@ -2230,7 +2231,7 @@
           itemSemanticEditPolicyClassName="InteractionInteractionCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionInteractionCompartmentViewFactory"
           canonicalEditPolicyClassName="InteractionInteractionCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.16"
           title="InteractionCompartment"
           canCollapse="false"
           needsTitle="false"

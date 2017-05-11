@@ -180,7 +180,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(ConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(Constraint2EditPart.VISUAL_ID);
 		elementsVisualId.add(ConstraintConstrainedElementEditPart.VISUAL_ID);
-		elementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
@@ -372,6 +371,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// handle gate creation
 		if (semanticElement instanceof Gate) {
 			return dropGate((Gate) semanticElement, location);
+		}
+		if (semanticElement instanceof DurationObservation) {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, semanticElement, dropRequest));
 		}
 		// handle specifically the case when node is on a message
 		Command cmd = handleNodeOnMessage(semanticElement, nodeVISUALID, linkVISUALID, location);

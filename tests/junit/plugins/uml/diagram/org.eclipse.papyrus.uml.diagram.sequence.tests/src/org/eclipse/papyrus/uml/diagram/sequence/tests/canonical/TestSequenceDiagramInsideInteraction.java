@@ -13,12 +13,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
@@ -97,7 +109,7 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 	@Override
 	protected boolean isSemanticTest() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Test
@@ -128,6 +140,11 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 		testToManageNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, UMLPackage.eINSTANCE.getConsiderIgnoreFragment(),UMLElementTypes.Interaction_Shape, false);
 	}
 
+	@Test
+	public void testToManageDurationObservation() {
+	
+		testToManageNode(UMLElementTypes.DurationObservation_Shape,UMLPackage.eINSTANCE.getDurationObservation(),UMLElementTypes.Interaction_Shape	,false);
+	}
 	/**
 	 * Test to manage comment.
 	 */
@@ -139,6 +156,48 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 	@Test
 	public void testToManageInteractionUse() {
 		testToManageNode(UMLElementTypes.InteractionUse_Shape, UMLPackage.eINSTANCE.getInteractionUse(),UMLElementTypes.Interaction_Shape, false);
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractTestNode#testDrop(org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.emf.ecore.EClass, int, int, int)
+	 *
+	 * @param type
+	 * @param eClass
+	 * @param expectedGraphicalChildren
+	 * @param expectedSemanticChildren
+	 * @param addedGraphicalChildren
+	 */
+	@Override
+	public void testDrop(IElementType type, EClass eClass, int expectedGraphicalChildren, int expectedSemanticChildren, int addedGraphicalChildren) {
+		if(eClass.equals(UMLPackage.eINSTANCE.getDurationObservation())) {
+			// DROP
+			assertEquals(DROP + INITIALIZATION_TEST, expectedGraphicalChildren, getRootView().getChildren().size());
+			DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
+			ArrayList<Element> list = new ArrayList<Element>();
+			for (Element element : getRootSemanticModel().getModel().getOwnedElements()) {
+				if (element != null && element.eClass().equals(eClass)) {
+					list.add(element);
+				}
+			}
+			dropObjectsRequest.setObjects(list);
+			dropObjectsRequest.setLocation(new Point(40, 40));
+			Command command = getContainerEditPart().getCommand(dropObjectsRequest);
+			assertNotNull(DROP + COMMAND_NULL, command);
+			assertTrue(DROP + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+			assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
+			// execute the drop
+			executeOnUIThread(command);
+			Assert.assertEquals(DROP + TEST_THE_EXECUTION, expectedGraphicalChildren + addedGraphicalChildren, getRootView().getChildren().size());
+			// undo the drop
+			undoOnUIThread();
+			Assert.assertEquals(DROP + TEST_THE_UNDO, expectedGraphicalChildren, getRootView().getChildren().size());
+			// redo the drop
+			redoOnUIThread();
+			Assert.assertEquals(DROP + TEST_THE_REDO, expectedGraphicalChildren + addedGraphicalChildren, getRootView().getChildren().size());
+		}
+		else {
+		super.testDrop(type, eClass, expectedGraphicalChildren, expectedSemanticChildren, addedGraphicalChildren);
+		}
 	}
 	
 	/**

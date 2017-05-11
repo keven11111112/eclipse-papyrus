@@ -12,7 +12,7 @@ Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
+Require-Bundle: org.eclipse.ui.navigator;visibility:=reexport;bundle-version="[3.6.0,4.0.0)",
  org.eclipse.ui.navigator.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide;bundle-version="[1.7.0,2.0.0)",
@@ -22,10 +22,10 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.gmf.runtime.diagram.ui.providers.ide;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.papyrus.uml.service.types;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.appearance;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.validation;bundle-version="[1.8.0,2.0.0)";visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12.0,3.0.0)",
+ org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12.0,3.0.0)",
+ org.eclipse.emf.ecore.edit;visibility:=reexport;bundle-version="[2.9.0,3.0.0)",
+ org.eclipse.emf.validation;visibility:=reexport;bundle-version="[1.8.0,2.0.0)",
  org.apache.batik.dom.svg;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.util;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.svggen;bundle-version="[1.6.0,1.7.0)",
@@ -64,7 +64,9 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.papyrus.uml.diagram.stereotype.edition,
  org.eclipse.papyrus.infra.properties,
  org.eclipse.papyrus.infra.properties.ui,
- org.eclipse.papyrus.uml.diagram.menu
+ org.eclipse.papyrus.uml.diagram.menu,
+ org.eclipse.draw2d;visibility:=reexport,
+ org.eclipse.gmf.runtime.notation;visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-Version: 3.0.0.qualifier
 Bundle-ManifestVersion: 2

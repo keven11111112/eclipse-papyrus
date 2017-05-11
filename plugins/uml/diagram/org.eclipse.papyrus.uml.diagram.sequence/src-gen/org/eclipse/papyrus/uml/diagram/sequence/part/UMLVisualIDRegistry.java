@@ -192,9 +192,6 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 					return DurationConstraintInMessageEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
-					return DurationObservationEditPart.VISUAL_ID;
-				}
 				if (UMLPackage.eINSTANCE.getGate().isSuperTypeOf(domainElement.eClass())) {
 					return GateEditPart.VISUAL_ID;
 				}
@@ -265,6 +262,9 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 					return CommentEditPart.VISUAL_ID;
 				}
+				if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
+					return DurationObservationEditPart.VISUAL_ID;
+				}
 				break;
 			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
 				if (UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())) {
@@ -309,9 +309,6 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (DurationConstraintInMessageEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				if (DurationObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				if (GateEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -465,6 +462,9 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (CommentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
