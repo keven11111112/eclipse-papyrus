@@ -100,8 +100,8 @@
           editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
-          key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy.GRILLING_MANAGEMENT"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy"/>
+          key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy.GRILLING_MANAGEMENT"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
@@ -226,7 +226,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandComponentEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
+            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectInteractionOperandToGridEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -405,8 +405,8 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectLifeLineToGrillingEditPolicy"/>
+            key="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectPointToGridEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE"
@@ -2246,7 +2246,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedXYLayoutEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridBasedXYLayoutEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"

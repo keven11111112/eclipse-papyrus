@@ -14,7 +14,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingEditpart;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -62,7 +62,7 @@ public class CreateGrillingStructureCommand extends RecordingCommand {
 		Node line= NotationFactory.eINSTANCE.createDecorationNode();
 		Location linelocation=NotationFactory.eINSTANCE.createLocation();
 		linelocation.setY(Y_SPACE);
-		line.setType(GrillingManagementEditPolicy.COLUMN+"0");
+		line.setType(GridManagementEditPolicy.COLUMN+"0");
 		line.setLayoutConstraint(linelocation);
 		ViewUtil.insertChildView(compartment, line, ViewUtil.APPEND, true);
 

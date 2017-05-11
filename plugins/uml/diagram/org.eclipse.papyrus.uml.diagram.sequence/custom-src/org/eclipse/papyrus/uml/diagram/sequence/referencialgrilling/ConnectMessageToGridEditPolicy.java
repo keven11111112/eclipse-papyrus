@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -20,10 +21,12 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -41,19 +44,19 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- *
+ * this editpolicy is used to manage messages by the grid
  */
 public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
 
 	protected GrillingEditpart grillingCompartment=null;
 
 	public static String CONNECT_TO_GRILLING_MANAGEMENT="CONNECT_TO_GRILLING_MANAGEMENT";
+	protected int displayImprecision=2;
 
 
 	private View rowSource;
 
 	private View rowTarget;
-	private boolean canUpdateGrill=true;
 	/**
 	 * Constructor.
 	 *
@@ -61,6 +64,23 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 	public ConnectMessageToGridEditPolicy() {
 	}
 
+	
+	/**
+	 * update an axis of the grid from coordinate X or Y
+	 * @param axis the axis to update
+	 * @param x the coordinate x
+	 * @param y the coordinate y
+	 */
+	protected void updatePositionGridAxis(DecorationNode axis, int x, int y) {
+		Location currentBounds=(Location)	axis.getLayoutConstraint();
+		if(x<currentBounds.getX()-displayImprecision||x>currentBounds.getX()+displayImprecision){
+			execute( new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Column", new EObjectAdapter(axis), new Point(x,y)));
+
+		}
+		if(y<currentBounds.getY()-displayImprecision||y>currentBounds.getY()+displayImprecision){
+			execute( new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update row", new EObjectAdapter(axis), new Point(x,y)));
+		}
+	}
 	/**
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 *
@@ -71,7 +91,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 		getDiagramEventBroker().addNotificationListener(((EObject)getHost().getModel()), this);
 		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
 		try{
-			GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
 			if (grilling!=null){
 				ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
 				Edge edge=(Edge)connectionEditPart.getModel();
@@ -89,9 +109,9 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 						double localY=(bounds.preciseHeight()*ypercent);
 						double absoluteY=localY+bounds.preciseY();
 						if(m.getSendEvent()==null){
-							rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m);
+							rowSource=grilling.createRowTolisten((int)absoluteY,m);
 						}else{
-							rowSource=grilling.getorCreateRowTolisten((int)absoluteY,m.getSendEvent());
+							rowSource=grilling.createRowTolisten((int)absoluteY,m.getSendEvent());
 						}
 
 						getDiagramEventBroker().addNotificationListener(rowSource, this);
@@ -105,9 +125,9 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 						double localY=(bounds.preciseHeight()*ypercent);
 						double absoluteY=localY+bounds.preciseY();
 						if(m.getReceiveEvent()==null){
-							rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m);}
+							rowTarget=grilling.createRowTolisten((int)absoluteY,m);}
 						else{
-							rowTarget=grilling.getorCreateRowTolisten((int)absoluteY,m.getReceiveEvent());
+							rowTarget=grilling.createRowTolisten((int)absoluteY,m.getReceiveEvent());
 						}
 						getDiagramEventBroker().addNotificationListener(rowTarget, this);
 					}
@@ -160,12 +180,14 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					NamedElementEditPart sourceEditpart=(NamedElementEditPart)connectionEditPart.getSource();
 					int anchorY=computeAnchorPositionNotation(anchor, sourceEditpart);
 					try{
-						GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+						GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
 						if (grilling!=null){
-							if(m.getSendEvent()==null){
-								rowSource=grilling.getorCreateRowTolisten(anchorY,m);
-							}else{
-								rowSource=grilling.getorCreateRowTolisten(anchorY,m.getSendEvent());
+							if( rowSource==null) {
+								if(m.getSendEvent()==null){
+									rowSource=grilling.createRowTolisten(anchorY,m);
+								}else{
+									rowSource=grilling.createRowTolisten(anchorY,m.getSendEvent());
+								}
 							}
 							getDiagramEventBroker().addNotificationListener(rowSource, this);
 
@@ -185,13 +207,15 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					Message m= (Message)connectionEditPart.resolveSemanticElement();
 					int anchorY=computeAnchorPositionNotation(anchor, editpart);
 					try{
-						GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+						GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
 						if (grilling!=null){
-							if(m.getReceiveEvent()==null){
-								rowTarget=grilling.getorCreateRowTolisten(anchorY, m);
-							}
-							else{
-								rowTarget=grilling.getorCreateRowTolisten(anchorY, m.getReceiveEvent());
+							if( rowTarget==null) {
+								if(m.getReceiveEvent()==null){
+									rowTarget=grilling.createRowTolisten(anchorY, m);
+								}
+								else{
+									rowTarget=grilling.createRowTolisten(anchorY, m.getReceiveEvent());
+								}
 							}
 							getDiagramEventBroker().addNotificationListener(rowTarget, this);
 						}
@@ -211,10 +235,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					/////////////////////////////////////////////////////						
 					System.out.println("A mouve done for "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to source "+anchorY);
 					/////////////////////////////////////////////////////					
-					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-					if (grilling!=null){
-						grilling.updateYpositionForRow((DecorationNode)rowSource, anchorY);
-					}
+					updatePositionGridAxis((DecorationNode)rowSource, 0, anchorY);
 				}
 				if( notification.getNotifier().equals(edge.getTargetAnchor())&& rowTarget!=null){
 					IdentityAnchor anchor=(IdentityAnchor)edge.getTargetAnchor();
@@ -223,19 +244,16 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					/////////////////////////////////////////////////////						
 					System.out.println("A mouve done for "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to target "+anchorY);
 					/////////////////////////////////////////////////////	
-					GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-					if (grilling!=null){
-						grilling.updateYpositionForRow((DecorationNode)rowTarget, anchorY);
-					}
+					updatePositionGridAxis((DecorationNode)rowTarget, 0, anchorY);
 				}
 
 			}
 
 
-			//a ROW has changed at Source
+			//a ROW AXIS has changed at Source
 			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location &&(((EObject)notification.getNotifier()).eContainer().equals(rowSource)) ){
 
-				GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+				GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
 				if (grilling!=null){
 					if(Math.abs(notification.getOldIntValue()-notification.getNewIntValue())>grilling.threshold){
 						ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost();
@@ -272,10 +290,10 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					}
 				}
 			}
-		}
+		
 		//a ROW has changed at target
 		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location &&(((EObject)notification.getNotifier()).eContainer().equals(rowTarget)) ){
-			GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
 			if (grilling!=null){
 				if(Math.abs(notification.getOldIntValue()-notification.getNewIntValue())>grilling.threshold){
 					ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost();
@@ -308,6 +326,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					}
 				}
 			}
+		}
 		}
 	}
 

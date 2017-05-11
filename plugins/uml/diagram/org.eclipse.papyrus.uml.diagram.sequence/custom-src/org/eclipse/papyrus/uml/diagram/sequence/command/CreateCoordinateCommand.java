@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingEditpart;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -64,24 +64,20 @@ public class CreateCoordinateCommand extends RecordingCommand {
 		//create One line
 		Node coordinate= NotationFactory.eINSTANCE.createDecorationNode();
 		Location linelocation=NotationFactory.eINSTANCE.createLocation();
-
+		
 		coordinate.setType(name);
-		if (name.startsWith(GrillingManagementEditPolicy.COLUMN)){
+		if (name.startsWith(GridManagementEditPolicy.COLUMN)){
 			linelocation.setX(position);
 		}
-		if (name.startsWith(GrillingManagementEditPolicy.ROW)){
+		if (name.startsWith(GridManagementEditPolicy.ROW)){
 			linelocation.setY(position);
+			System.out.println(">>>Create row at "+position);
 		}
 		coordinate.setLayoutConstraint(linelocation);
 		if( semantic!=null){
-			//create EAnnotation
-			EAnnotation eAnnotation =EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(GrillingManagementEditPolicy.GRILL_CONNECTION);
-			eAnnotation.getReferences().add(semantic);
-			coordinate.getEAnnotations().add(eAnnotation);
-			ViewUtil.insertChildView(compartment, coordinate, ViewUtil.APPEND, true);
+			coordinate.setElement(semantic);
 		}
-
+		ViewUtil.insertChildView(compartment, coordinate, ViewUtil.APPEND, true);
 	}
 
 

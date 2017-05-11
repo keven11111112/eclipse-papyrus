@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
  */
 public class ContentDiagramListener extends EContentAdapter {
 
-	protected GrillingManagementEditPolicy grillingManagementEditPolicy;
+	protected GridManagementEditPolicy grillingManagementEditPolicy;
 	/**
 	 * Constructor.
 	 *
 	 */
-	public ContentDiagramListener(GrillingManagementEditPolicy grillingManagementEditPolicy) {
+	public ContentDiagramListener(GridManagementEditPolicy grillingManagementEditPolicy) {
 		this.grillingManagementEditPolicy= grillingManagementEditPolicy;
 	}
 	/**

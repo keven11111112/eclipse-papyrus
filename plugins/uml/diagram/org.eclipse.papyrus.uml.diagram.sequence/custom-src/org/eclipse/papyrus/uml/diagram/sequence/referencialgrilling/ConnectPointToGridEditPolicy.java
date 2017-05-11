@@ -20,11 +20,10 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * This editPolicy is specific for the Lifeline
- * The size of the lifeline is not taken is account
+ * This editPolicy is specific to register the position top left of the rectangle
  *
  */
-public class ConnectLifeLineToGrillingEditPolicy extends ConnectNodeToGridEditPolicy {
+public class ConnectPointToGridEditPolicy extends ConnectRectangleToGridEditPolicy {
 
 	protected GrillingEditpart grillingCompartment=null;
 
@@ -36,7 +35,7 @@ public class ConnectLifeLineToGrillingEditPolicy extends ConnectNodeToGridEditPo
 	 * Constructor.
 	 *
 	 */
-	public ConnectLifeLineToGrillingEditPolicy() {
+	public ConnectPointToGridEditPolicy() {
 	}
 
 
@@ -51,7 +50,7 @@ public class ConnectLifeLineToGrillingEditPolicy extends ConnectNodeToGridEditPo
 	 * @throws NoGrillElementFound
 	 */
 	@Override
-	protected void initListeningColumnFinish(Node node, GrillingManagementEditPolicy grilling,  Element element, PrecisionRectangle p) throws NoGrillElementFound {
+	protected void initListeningColumnFinish(Node node, GridManagementEditPolicy grilling,  Element element, PrecisionRectangle p) throws NoGrillElementFound {
 		//the ColumnFinish is not listen
 	}
 	
@@ -66,7 +65,7 @@ public class ConnectLifeLineToGrillingEditPolicy extends ConnectNodeToGridEditPo
 	 * @throws NoGrillElementFound
 	 */
 	@Override
-	protected void initListeningRowFinish(Node node, GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle p) throws NoGrillElementFound {
+	protected void initListeningRowFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle p) throws NoGrillElementFound {
 		//the RowFinish is not listen
 	}
 

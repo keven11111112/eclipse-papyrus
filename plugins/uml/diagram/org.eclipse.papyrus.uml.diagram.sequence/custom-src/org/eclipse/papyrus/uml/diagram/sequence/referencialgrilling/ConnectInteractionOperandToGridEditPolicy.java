@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.Element;
  * this editpolicy is overloaded because the width of the interaction operand is managed by the editpartparent
  *
  */
-public class ConnectInteractionOperandToGridEditPolicy  extends ConnectNodeToGridEditPolicy{
+public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangleToGridEditPolicy{
 
 	private CombinedFragmentEditPart combinedFragmentEditPart;
 
@@ -70,10 +70,10 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectNodeToGri
 	 * @throws NoGrillElementFound
 	 */
 	@Override
-	protected void initListeningColumnFinish(Node node, GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+	protected void initListeningColumnFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
 		if(combinedFragmentEditPart!=null){
 			Node cfNode=(Node)combinedFragmentEditPart.getNotationView();
-			columnFinish=grilling.getorCreateColumnTolisten(bounds.x+BoundForEditPart.getWidthFromView(cfNode), element);
+			columnFinish=grilling.createColumnTolisten(bounds.x+BoundForEditPart.getWidthFromView(cfNode), element);
 			getDiagramEventBroker().addNotificationListener(columnFinish, this);
 		}
 	}

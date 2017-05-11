@@ -13,16 +13,25 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
+
 /**
- * this class overload classical, becuase tha width of a interaction operand is the width of the combined fragment
+ * @author PT202707
+ *
  */
-public class InteractionOperandToGridEditPolicy extends ConnectRectangleToGridEditPolicy {
+public class CommandExecutionNotification extends NotificationImpl {
 
 	/**
 	 * Constructor.
 	 *
+	 * @param eventType
+	 * @param oldBooleanValue
+	 * @param newBooleanValue
 	 */
-	public InteractionOperandToGridEditPolicy() {
-		super();
+	public CommandExecutionNotification(int eventType, boolean oldBooleanValue, boolean newBooleanValue) {
+		super(eventType, oldBooleanValue, newBooleanValue);
 	}
+
+
 }

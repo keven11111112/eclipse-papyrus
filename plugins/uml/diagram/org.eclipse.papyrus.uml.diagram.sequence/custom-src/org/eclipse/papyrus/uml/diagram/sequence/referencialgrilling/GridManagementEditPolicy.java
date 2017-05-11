@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,31 +20,25 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.TreeSet;
 
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -55,24 +48,21 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEd
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateCoordinateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGrillingStructureCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyToSetMoveLinesListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * @author PT202707
+ * This edit policy is used to manage the referential grid of the sequence diagram
  *
  */
-public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy{ 
-
-
+public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy{ 
 	public static final String GRILL_CONNECTION = "Grill Connection";
-
-
 	protected GrillingEditpart grillingCompartment=null;
 
 
@@ -82,9 +72,35 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 
 	public int threshold=10;
 	public int margin=50;
-	public int firstY=30;
-	public int firstX=100;
 	public boolean respectMargin=true;
+	public boolean moveAllLinesAtSamePosition=false;
+	
+	public ArrayList<DecorationNode> rows= new ArrayList<DecorationNode>();
+	public ArrayList<DecorationNode> columns= new ArrayList<DecorationNode>();
+
+	//ok if the creation a X is free
+	public boolean CREATION_X_FREE=true;
+	/**if the CREATION_X_FREE == false COLUMN are created at fixed position**/ 
+	public int X_SPACING=100;
+	private ContentDiagramListener contentDiagramListener;
+	private CommandStackListener commandStackListener;
+
+	/**
+	 * @return the moveAllLinesAtSamePosition
+	 */
+	public boolean isMoveAllLinesAtSamePosition() {
+		return moveAllLinesAtSamePosition;
+	}
+
+	/**
+	 * @param moveAllLinesAtSamePosition the moveAllLinesAtSamePosition to set
+	 */
+	public void setMoveAllLinesAtSamePosition(boolean moveAllLinesAtSamePosition) {
+
+		System.out.println(">> set moveAllLinesAtSamePosition="+moveAllLinesAtSamePosition);
+		this.moveAllLinesAtSamePosition = moveAllLinesAtSamePosition;
+	}
+
 	/**
 	 * @return the respectMargin
 	 */
@@ -103,14 +119,6 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 
 	public boolean strictRespectMargin=true;
 
-	public int getNextY(){
-		if(rows.size()>0){
-			DecorationNode row=	rows.last();
-			LayoutConstraint layoutConstraint=row.getLayoutConstraint();
-			return ((Location)layoutConstraint).getY()+margin;
-		}
-		return firstY;
-	}
 
 
 
@@ -140,20 +148,14 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 		}
 	};
 
-	public TreeSet<DecorationNode> rows= new TreeSet<DecorationNode>(RowComparator);
-	public TreeSet<DecorationNode> columns= new TreeSet<DecorationNode>(ColumnComparator);
-
-	//ok if the creation a X is free
-	public boolean CREATION_X_FREE=true;
-	/**if the CREATION_X_FREE == false COLUMN are created at fixed position**/ 
-	public int X_SPACING=100;
+	
 
 
 	/**
 	 * Constructor.
 	 *
 	 */
-	public GrillingManagementEditPolicy() {
+	public GridManagementEditPolicy() {
 	}
 
 	/**
@@ -164,8 +166,12 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	public void activate() {
 		super.activate();
 		getDiagramEventBroker().addNotificationListener(((EObject)getHost().getModel()), this);
-		ContentDiagramListener contentDiagramListener=new ContentDiagramListener(this);
+		contentDiagramListener = new ContentDiagramListener(this);
+		commandStackListener =new GridCommandStackListener(this);
 		((EObject)getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
+		getDiagramEditPart(getHost()).getEditingDomain().getCommandStack().addCommandStackListener(commandStackListener);
+		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, new KeyToSetMoveLinesListener(this,SWT.SHIFT,false));
+		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new KeyToSetMoveLinesListener(this,SWT.SHIFT,true));
 		refreshGrillingStructure();
 	}
 	/**
@@ -193,7 +199,7 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 			}
 			i++;
 		}
-		cleanUnusedRowAndColumn();
+		//cleanUnusedRowAndColumn();
 		updateRowsAndColumns();
 	}
 
@@ -299,33 +305,8 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 
 	}
 
-	public void cleanUnusedRowAndColumn(){
-		ArrayList<DecorationNode> unusedDcorationNode= new ArrayList<DecorationNode>();
 
-		if(grillingCompartment!=null){
-			List  persistedChildren=grillingCompartment.getNotationView().getPersistedChildren();
-			for (int i=0;i<persistedChildren.size(); i++){
-				if(persistedChildren.get(i) instanceof DecorationNode ){
-					DecorationNode  decorationNode=(DecorationNode)persistedChildren.get(i);
-					EAnnotation eAnnotation =decorationNode.getEAnnotation(GRILL_CONNECTION);
-					if(eAnnotation==null){
-						unusedDcorationNode.add(decorationNode);
-					}
-					if( eAnnotation!=null){
-						if(eAnnotation.getReferences().size()==0){
-							unusedDcorationNode.add(decorationNode);
-						}
-					}
-				}
-			}
-			if(unusedDcorationNode.size()>0){
-				execute(new RemoveCommand(((IGraphicalEditPart) getHost()).getEditingDomain(),
-						grillingCompartment.getNotationView(),NotationPackage.eINSTANCE.getView_PersistedChildren(),unusedDcorationNode));
-			}
-		}
-	}
-
-	/* Gets the diagram event broker from the editing domain.
+	/** Gets the diagram event broker from the editing domain.
 	 *
 	 * @return the diagram event broker
 	 */
@@ -338,7 +319,7 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	}
 	/**
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
-	 *
+	 * 
 	 */
 	@Override
 	public void deactivate() {
@@ -353,40 +334,42 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		//		if( notification.getEventType()==Notification.UNSET ){
-		//			updateSemanticAfterUpdate();
-		//		}
+		if( notification instanceof CommandExecutionNotification) {
+			//after a command execution moveAllLinesAtSamePosition is set to false
+			// we must explicitly set to true if we want to move it as a line
+			setMoveAllLinesAtSamePosition(true);
+			System.out.println("executed Commmand");
+		}
+		else {
 
-		if( notification.getEventType()==Notification.ADD){
-			updateRowsAndColumns();
-			//updateSemanticAfterUpdate();
-		}
-		if( notification.getEventType()==Notification.REMOVE && (!(notification.getNotifier() instanceof EAnnotation))&&(!(notification.getNotifier().equals(grillingCompartment.getNotationView())))){
-			cleanUnusedRowAndColumn();
-			updateRowsAndColumns();
-			//updateSemanticAfterUpdate();
-		}
-		if( notification.getEventType()==Notification.SET ){
-			cleanUnusedRowAndColumn();
-			updateRowsAndColumns();
-			//updateSemanticAfterUpdate();
-		}
+			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location){
+				updateRowsAndColumns();
+				if((((EObject)notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject)notification.getNotifier()).eContainer()))){
+					if(notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
+						//when we move line we disconnect listeners to avoid problems of infinite loop
+						if( moveAllLinesAtSamePosition) {
+							ArrayList<DecorationNode> rowlist=getRowAtPosition(notification.getOldIntValue());
+							((EObject)getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
+							
+							//maybe we must move other lines
+							//it exist other lines
+							if( rows.size()>rowlist.size()) {
+								updateYpositionForRow((DecorationNode)(((EObject)notification.getNotifier()).eContainer()),notification.getOldIntValue());
+							}
+							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
+								DecorationNode axis = (DecorationNode) iterator.next();
+								execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0,notification.getNewIntValue())));
 
+							}
+							((EObject)getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
+						}
+
+					}
+				}
+			}
+		}
 	}
 
-	/**
-	 * the get row to listen form the semanntic and the node 
-	 * @param graphic the notation representation of the semantic element
-	 * @param notationObject
-	 * @return
-	 */
-	public View getorCreateRowTolisten(Node graphic, Element semantic) throws NoGrillElementFound{
-		LayoutConstraint layoutConstraint=((Node)graphic).getLayoutConstraint();
-		if(layoutConstraint instanceof Bounds){
-			return getorCreateRowTolisten(((Bounds) layoutConstraint).getY(),semantic);
-		}
-		throw new NoGrillElementFound();
-	}
 
 
 	/**
@@ -394,159 +377,56 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 	 * @param x the position x for the column
 	 * @return the decoration node
 	 */
-	public DecorationNode getorCreateColumnTolisten( int x, Element semantic) throws NoGrillElementFound{
-		try{
-			DecorationNode column=existCoulumnAtPosition(x);
-		}
-		catch (NoGrillElementFound e) {
-			execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(),((BasicCompartment)grillingCompartment.getNotationView()),COLUMN+columns.size(), semantic,x));
-		}	
-
-		return	existCoulumnAtPosition(x);
+	public DecorationNode createColumnTolisten( int x, Element semantic) throws NoGrillElementFound{
+		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(),((BasicCompartment)grillingCompartment.getNotationView()),COLUMN+columns.size(), semantic,x));
+		return getLastCreatedAxis();	
 	}
-	/**
-	 * This method allow toadd in teh the notation which object listen column or row 
-	 * @param grillElement a row or a column
-	 * @param source the graphical representation
-	 */
-	protected void associateViewToGrill(View grillElement, EObject source){
-		if( grillElement.getEAnnotation(GRILL_CONNECTION)==null){
-			EAnnotation eAnnotation =EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(GRILL_CONNECTION);
 
-			ArrayList<EAnnotation> arrayList= new  ArrayList<EAnnotation>();
-			arrayList.add(eAnnotation);
-			execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), grillElement, EcorePackage.eINSTANCE.getEModelElement_EAnnotations(), arrayList));
-
-		}
-
-		EAnnotation eAnnotation=grillElement.getEAnnotation(GRILL_CONNECTION);
-		ArrayList<EObject> refs= new  ArrayList<EObject>();
-		refs.addAll(eAnnotation.getReferences());
-		refs.add(source);
-		execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), eAnnotation, EcorePackage.eINSTANCE.getEAnnotation_References(), refs));
-
-
-	}
-	/**
-	 * This method allow toadd in teh the notation which object listen column or row 
-	 * @param grillElement a row or a column
-	 * @param source the graphical representation
-	 */
-	public void dissociateViewToGrill(View grillElement, EObject source){
-		if( grillElement.getEAnnotation(GRILL_CONNECTION)==null){
-			return;
-		}
-
-		EAnnotation eAnnotation=grillElement.getEAnnotation(GRILL_CONNECTION);
-		ArrayList<EObject> refs= new  ArrayList<EObject>();
-		refs.addAll(eAnnotation.getReferences());
-		refs.remove(source);
-		execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), eAnnotation, EcorePackage.eINSTANCE.getEAnnotation_References(), refs));
-
-
-	}
 	/**
 	 * get the decoration node that represents a line from a position (absolute)
 	 * @param y the position y for the line
 	 * @return the decoration node
 	 */
-	public DecorationNode getorCreateRowTolisten( int y, Element semantic) throws NoGrillElementFound{
-		try{
-			return existRowAtPosition(y, semantic);
-		}
-		catch (NoGrillElementFound e) {
-			execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(),((BasicCompartment)grillingCompartment.getNotationView()),ROW+rows.size(), semantic,y));
-			DecorationNode row= existRowAtPosition(y, semantic);
-			updateYpositionForRow(row, y);
-			return row;
-		}
+	public DecorationNode createRowTolisten( int y, Element semantic) throws NoGrillElementFound{
+		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(),((BasicCompartment)grillingCompartment.getNotationView()),ROW+rows.size(), semantic,y));
+		DecorationNode row= getLastCreatedAxis();
+		return row;
 
 	}
 
-
-
-	/**
-	 * the get the Column to listen by taking account the  semantic and the Node 
-	 * @param graphic the graphical element 
-	 * @return
-	 */
-	public View getorCreateColumnTolisten( Node graphic, Element semantic ) throws NoGrillElementFound{
-		LayoutConstraint layoutConstraint=((Node)graphic).getLayoutConstraint();
-		if(layoutConstraint instanceof Bounds){
-			return getorCreateColumnTolisten(((Bounds)layoutConstraint).getX(),semantic);
+	/** 
+	 * @return get the last created Axis
+	 * **/
+	public DecorationNode getLastCreatedAxis() throws NoGrillElementFound{
+		BasicCompartment grid=((BasicCompartment)grillingCompartment.getNotationView());
+		if(grid.getChildren().size()==0) {
+			throw new NoGrillElementFound();
 		}
-		throw new NoGrillElementFound();
-
-	}
-
-
-
-
-
-	/**
-	 * 
-	 * @param x the position y where we look for a column
-	 * @return the column that exists at the position [x- threshold, x+threshold]
-	 */
-	public DecorationNode existCoulumnAtPosition(int x) throws NoGrillElementFound{
-		for (Iterator<DecorationNode> iterator = columns.iterator(); iterator.hasNext();) {
-			DecorationNode currentColumn =  iterator.next();
-			int Xposition=getPositionX(currentColumn);
-			if( Xposition-threshold<=x&& x<=Xposition+threshold){
-				return currentColumn;
-			}
-
+		else {
+			return (DecorationNode)grid.getChildren().get(grid.getChildren().size()-1);
 		}
-		throw new NoGrillElementFound();
+
 	}
 
 
 	/**
 	 * 
 	 * @param y the position y where we look for a row
-	 * @return the row that exists at the position [y- threshold, y+threshold]s
+	 * @return the rows that exists at the position [y- threshold, y+threshold]s
 	 */
-	public DecorationNode existRowAtPosition(int y,EObject source) throws NoGrillElementFound{
+	public ArrayList<DecorationNode> getRowAtPosition(int y){
+		ArrayList<DecorationNode> sameLines= new ArrayList<DecorationNode>();
 		for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
 			DecorationNode currentRow =  iterator.next();
 			int Yposition=getPositionY(currentRow);
 			if( Yposition-threshold<=y&& y<=Yposition+threshold){
-				associateViewToGrill(currentRow, source);
-				return currentRow;
+				sameLines.add(currentRow);
 			}
 
 		}
-		throw new NoGrillElementFound();
+		return sameLines;
 	}
-
-	/**
-	 * 
-	 * @param y the position y where we look for a row
-	 * @return the row that exists at the position [y- threshold, y+threshold]s
-	 */
-	public DecorationNode existRowAtPosition(int y) throws NoGrillElementFound{
-		for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
-			DecorationNode currentRow =  iterator.next();
-			int Yposition=getPositionY(currentRow);
-			if( Yposition-threshold<=y&& y<=Yposition+threshold){
-				return currentRow;
-			}
-
-		}
-		throw new NoGrillElementFound();
-	}
-	/**
-	 * @param decorationNode
-	 * @return the postion X for a decoration Node
-	 */
-	public int getPositionX(DecorationNode  decorationNode){
-		LayoutConstraint constraint=decorationNode.getLayoutConstraint();
-		if( constraint instanceof Location){
-			return ((Location)constraint).getX();
-		}
-		return 0;
-	}
+	
 	/**
 	 * @param decorationNode
 	 * @return the Position Y for a decoration node
@@ -558,55 +438,58 @@ public class GrillingManagementEditPolicy extends GraphicalEditPolicyEx implemen
 		}
 		return 0;
 	}
-	public  void updateYpositionForRow(DecorationNode  decorationNode, int y){
-
-		LayoutConstraint constraint=decorationNode.getLayoutConstraint();
 
 
-		int nextdistance=getDistanceWithNextRow(decorationNode,y);
-		int margin = getGridSpacing();
-		if( constraint instanceof Location){
-			execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), constraint, NotationPackage.eINSTANCE.getLocation_Y(), y));
+	protected  void updateYpositionForRow(DecorationNode  movedRow, int y){
+		LayoutConstraint newconstraint=movedRow.getLayoutConstraint();
+		DecorationNode nextRow=getDistanceWithNextRow(movedRow,y);
+		if( nextRow==null) {
+			return;
 		}
-		if(respectMargin){
-			if( nextdistance<margin){
-				boolean after=false;
-				ArrayList<DecorationNode> rowsCopy= new ArrayList<DecorationNode>();
-				rowsCopy.addAll(rows);
-				for (DecorationNode currentRow : rowsCopy) {
-					if( after){
-
-						LayoutConstraint currentConstraint=currentRow.getLayoutConstraint();
-						if( constraint instanceof Location){
-							execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), currentConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location)currentConstraint).getY()+margin));
-						}
-					}
-					if( currentRow.equals(decorationNode)){
-						after=true;
-					}
-
+		LayoutConstraint nextConstraint=nextRow.getLayoutConstraint();
+		int nextDistance=((Location)nextConstraint).getY()-((Location)newconstraint).getY();
+		int margin = getGridSpacing();
+		if( nextDistance<margin){
+			ArrayList<DecorationNode> rowsCopy= new ArrayList<DecorationNode>();
+			rowsCopy.addAll(rows);
+			for (int i=rowsCopy.indexOf(nextRow); i<rowsCopy.size();i++) {
+				LayoutConstraint aConstraint=rowsCopy.get(i).getLayoutConstraint();
+				if( aConstraint instanceof Location){
+					execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), aConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location)aConstraint).getY()+margin));
 				}
 			}
 		}
 	}
 
-	public int getDistanceWithNextRow(DecorationNode currentRow, int currentRowPosition){
+	/**
+	 * 
+	 * @param currentRow
+	 * @param currentRowPosition
+	 * @return get the next row that has not the same position
+	 */
+	protected DecorationNode getDistanceWithNextRow(DecorationNode currentRow, int currentRowPosition){
 		Object[] arrayRow= rows.toArray();
 		List<Object> orderedRows= Arrays.asList(arrayRow);
 		int index=orderedRows.indexOf(currentRow);
 		if(index==orderedRows.size()-1){
-			return 0;
+			return null;
 		}
 		else{
 
 			LayoutConstraint currentConstraint=currentRow.getLayoutConstraint();
-			LayoutConstraint nextConstraint=((DecorationNode)orderedRows.get(index+1)).getLayoutConstraint();
-			if( currentConstraint instanceof Location){
-				return ((Location)nextConstraint).getY()-currentRowPosition;
-			}
+			DecorationNode nextRow=null;
+			//look for the next row
+			for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
+				DecorationNode aRow =  iterator.next();
+				int Yposition=getPositionY(aRow);
+				if(  currentRowPosition+threshold<Yposition&& (!aRow.equals(currentRow))){
+					nextRow=aRow;
+					return nextRow;
+				}
 
+			}
+			return nextRow;
 		}
-		return 0;
 	}
 
 	protected int getGridSpacing(){

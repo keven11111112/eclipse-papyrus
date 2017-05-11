@@ -66,7 +66,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/** manage only for FOUND message**/
 	private GraphicalNodeEditPolicy graphicalNodeEditPolicy=null;
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionCreateCommand(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *
@@ -75,7 +75,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-		  
+
 		MessageEnd end=getPreviousEventFromPosition(request.getLocation());
 		if( end!=null){
 			Map<String, Object> extendedData = request.getExtendedData();
@@ -107,7 +107,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			Rectangle relativePt=new Rectangle(0,request.getLocation().y,0,0);
 			getHostFigure().getParent().translateToRelative(relativePt);
 			NodeEditPart nodeEP=(NodeEditPart)request.getTargetEditPart();
-			
+
 			Bounds bounds=((Bounds)((Node)nodeEP.getModel()).getLayoutConstraint());
 
 			SetBoundsCommand setBoundsCommand=new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update column", new EObjectAdapter( ((GraphicalEditPart)nodeEP).getNotationView()),
@@ -162,12 +162,12 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		LifelineEditPart lifelineEditPart= (LifelineEditPart)getHost();
 		Lifeline lifeline=(Lifeline) lifelineEditPart.resolveSemanticElement();
 		try{
-			GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
 			for (DecorationNode row : grilling.rows) {
-				Point currentPoint=GrillingManagementEditPolicy.getLocation(row);
+				Point currentPoint=GridManagementEditPolicy.getLocation(row);
 				if( currentPoint.y<point.y){
-					if( GrillingManagementEditPolicy.getRef(row)!=null){
-						for ( EObject referedElement : GrillingManagementEditPolicy.getRef(row)) {
+					if( GridManagementEditPolicy.getRef(row)!=null){
+						for ( EObject referedElement : GridManagementEditPolicy.getRef(row)) {
 							if( referedElement instanceof View && ((View)referedElement).getElement() instanceof Message){
 								Message message=(Message)((View)referedElement).getElement();
 								MessageEnd receiveEvent=message.getReceiveEvent();
@@ -222,16 +222,18 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 
 	protected FeedbackHelper getFeedbackHelper(CreateConnectionRequest request) {
-		ConnectionAnchor targetAnchor = ((NodeEditPart)request.getTargetEditPart()).getTargetConnectionAnchor(request);
-		if(DiagramEditPartsUtil.isSnapToGridActive(getHost())){
-			//This part is very peculiar for lost and found message because the anchor is not standard.
-			if( targetAnchor instanceof AnchorHelper.InnerPointAnchor){
-				PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor)targetAnchor).getTerminal());
-				PrecisionRectangle ptOnScreen=new PrecisionRectangle(pt.x,  pt.y,0,0);
-				SimpleSnapHelper.snapAPoint(ptOnScreen,getHost().getRoot());
-				computeTargetPosition(request, new PrecisionPoint(ptOnScreen.x, ptOnScreen.y));
-			}
+		if(request.getTargetEditPart() instanceof NodeEditPart ){
+			ConnectionAnchor targetAnchor = ((NodeEditPart)request.getTargetEditPart()).getTargetConnectionAnchor(request);
+			if(DiagramEditPartsUtil.isSnapToGridActive(getHost())){
+				//This part is very peculiar for lost and found message because the anchor is not standard.
+				if( targetAnchor instanceof AnchorHelper.InnerPointAnchor){
+					PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor)targetAnchor).getTerminal());
+					PrecisionRectangle ptOnScreen=new PrecisionRectangle(pt.x,  pt.y,0,0);
+					SimpleSnapHelper.snapAPoint(ptOnScreen,getHost().getRoot());
+					computeTargetPosition(request, new PrecisionPoint(ptOnScreen.x, ptOnScreen.y));
+				}
 
+			}
 		}
 		return super.getFeedbackHelper(request);
 	}

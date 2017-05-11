@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.Element;
  * X, Y, X+Width, Y+HEIGHT
  *
  */
-public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
+public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
 
 	protected GrillingEditpart grillingCompartment=null;
 
@@ -56,7 +56,7 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	 * Constructor.
 	 *
 	 */
-	public ConnectNodeToGridEditPolicy() {
+	public ConnectRectangleToGridEditPolicy() {
 	}
 
 	/**
@@ -71,8 +71,8 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
 		Node node=((Node)((GraphicalEditPart)getHost()).getNotationView());
 		try{
-			GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-			grilling.cleanUnusedRowAndColumn();
+			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			//grilling.cleanUnusedRowAndColumn();
 			Node nodeContainer=(Node)(((GraphicalEditPart)getHost()).getNotationView()).eContainer();
 			Element element=(Element) ((GraphicalEditPart)getHost()).resolveSemanticElement();
 			if (grilling!=null){
@@ -95,8 +95,8 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	 * @param bounds the absolute position of the current node (the origin of the referencial is the diagram)
 	 * @throws NoGrillElementFound
 	 */
-	protected void initListeningColumnFinish(Node node, GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		columnFinish=grilling.getorCreateColumnTolisten(bounds.x+BoundForEditPart.getWidthFromView(node), element);
+	protected void initListeningColumnFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		columnFinish=grilling.createColumnTolisten(bounds.x+BoundForEditPart.getWidthFromView(node), element);
 		getDiagramEventBroker().addNotificationListener(columnFinish, this);
 	}
 
@@ -108,8 +108,8 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	 * @param bounds the absolute position of the current node (the origin of the referential is the diagram)
 	 * @throws NoGrillElementFound
 	 */
-	protected void initListeningRowFinish(Node node, GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		rowFinish=grilling.getorCreateRowTolisten(bounds.y+BoundForEditPart.getHeightFromView(node), element);
+	protected void initListeningRowFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		rowFinish=grilling.createRowTolisten(bounds.y+BoundForEditPart.getHeightFromView(node), element);
 		getDiagramEventBroker().addNotificationListener(rowFinish, this);
 	}
 
@@ -121,8 +121,8 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	 * @param bounds the absolute position of the current node ( the origin of the referential is the diagram)
 	 * @throws NoGrillElementFound
 	 */
-	protected void initListeningColumnStart(GrillingManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		columnStart=grilling.getorCreateColumnTolisten(bounds.x(), element);	
+	protected void initListeningColumnStart(GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		columnStart=grilling.createColumnTolisten(bounds.x(), element);	
 		getDiagramEventBroker().addNotificationListener(columnStart, this);
 	}
 
@@ -134,8 +134,8 @@ public class ConnectNodeToGridEditPolicy extends ConnectToGridEditPolicy impleme
 	 * @param bounds position of the current node in absolute ( the origin is the diagram)
 	 * @throws NoGrillElementFound
 	 */
-	protected void initListeningRowStart(GrillingManagementEditPolicy grid, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		rowStart=grid.getorCreateRowTolisten(bounds.y, element);
+	protected void initListeningRowStart(GridManagementEditPolicy grid, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
+		rowStart=grid.createRowTolisten(bounds.y, element);
 		getDiagramEventBroker().addNotificationListener(rowStart, this);
 	}
 

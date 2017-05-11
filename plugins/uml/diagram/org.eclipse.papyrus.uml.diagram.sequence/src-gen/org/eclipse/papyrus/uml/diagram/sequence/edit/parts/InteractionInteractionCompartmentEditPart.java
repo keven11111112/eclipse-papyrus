@@ -34,7 +34,7 @@ import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompa
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingBasedXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridBasedXYLayoutEditPolicy;
 
 /**
  * @generated
@@ -85,7 +85,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GrillingBasedXYLayoutEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GridBasedXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 

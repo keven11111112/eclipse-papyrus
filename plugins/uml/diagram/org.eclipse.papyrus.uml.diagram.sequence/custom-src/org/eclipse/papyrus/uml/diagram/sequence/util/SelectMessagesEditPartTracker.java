@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.selection.SelectSeveralLinksEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -43,11 +42,8 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 		@Override
 		public void handleEvent(Event event) {
 			// in case the SHIFT key is released, the creation mode goes back to normal
-			if (event.keyCode == SWT.ALT) {
+			if (event.keyCode == SWT.SHIFT) {
 				allowReoder = true;
-				if(grill!=null){
-					grill.setRespectMargin(false);
-				}
 			}
 		}
 
@@ -57,11 +53,8 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 		@Override
 		public void handleEvent(Event event) {
 			// in case the SHIFT key is released, the creation mode goes back to normal
-			if (event.keyCode == SWT.ALT) {
+			if (event.keyCode == SWT.SHIFT) {
 				allowReoder = false;
-				if(grill!=null){
-					grill.setRespectMargin(true);
-				}
 			}
 		}
 
@@ -76,10 +69,6 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 	@Override
 	public void activate() {
 		super.activate();
-		DiagramEditPart diagramEditPart=getDiagramEditPart(getSourceEditPart());
-		if( diagramEditPart!=null){
-			grill = (GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-		}
 	}
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.selection.SelectSeveralLinksEditPartTracker#handleButtonDown(int)
@@ -167,7 +156,6 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, KeyUPListener);
 	}
 	private boolean allowReoder=false;
-	protected GrillingManagementEditPolicy grill;
 
 
 
