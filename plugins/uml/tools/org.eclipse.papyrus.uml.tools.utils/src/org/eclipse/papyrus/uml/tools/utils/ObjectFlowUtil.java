@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.uml.tools.utils;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
@@ -45,11 +44,11 @@ public class ObjectFlowUtil {
 	 *            the action to start from
 	 * @return whether action accept new output pin
 	 */
-	public static boolean canStartNewObjectFlow(Action action) {
+	public static boolean canStartNewObjectFlowByAddingPin(Action action) {
 		// CallOperationAction and CallBehaviorAction have pre-defined pins which are all represented.
 		// SendObjectAction have only two input pins which are all represented.
 		// SendSignalAction has only pre-defined input pins which are all represented.
-		return (action instanceof OpaqueAction) || (action instanceof AcceptEventAction);
+		return action instanceof OpaqueAction;
 	}
 
 	/**
@@ -59,7 +58,7 @@ public class ObjectFlowUtil {
 	 *            the action to end to
 	 * @return whether action accept new input pin
 	 */
-	public static boolean canEndNewObjectFlow(Action action) {
+	public static boolean canEndNewObjectFlowByAddingPin(Action action) {
 		// CallOperationAction and CallBehaviorAction have pre-defined pins which are all represented.
 		// SendObjectAction have only two input pins which are all represented.
 		// SendSignalAction has only pre-defined input pins which are all represented.
@@ -81,8 +80,11 @@ public class ObjectFlowUtil {
 	public static boolean canExistObjectFlow(Activity container, ObjectFlow linkInstance, ActivityNode source, ActivityNode target) {
 		try {
 			if (source instanceof Action) {
-				// UMl2.5 - 15.7.22.6 constraint: no_executable_nodes
-				return false;
+				// rule validateObjectFlow_validateNoActions
+				// rule workaround by addition of pins in case of Action
+				if (!ObjectFlowUtil.canStartNewObjectFlowByAddingPin((Action) source)) {
+					return false;
+				}
 			}
 			if (source instanceof InputPin) {
 				// rule validateInputPin_validateOutgoingEdgesStructuredOnly
@@ -152,8 +154,11 @@ public class ObjectFlowUtil {
 				}
 			}
 			if (target instanceof Action) {
-				// UMl2.5 - 15.7.22.6 constraint: no_executable_nodes
-				return false;
+				// rule validateObjectFlow_validateNoActions
+				// rule workaround by addition of pins in case of Action
+				if (!ObjectFlowUtil.canEndNewObjectFlowByAddingPin((Action) target)) {
+					return false;
+				}
 			}
 			if (target instanceof OutputPin) {
 				// rule validateOutputPin_validateIncomingEdgesStructuredOnly
@@ -245,7 +250,7 @@ public class ObjectFlowUtil {
 	 */
 	public static boolean insertPinForStartingNewObjectFlow(ActivityNode node) {
 		if (node instanceof Action) {
-			return canStartNewObjectFlow((Action) node);
+			return canStartNewObjectFlowByAddingPin((Action) node);
 		}
 		return false;
 	}
@@ -259,7 +264,7 @@ public class ObjectFlowUtil {
 	 */
 	public static boolean insertPinForEndingNewObjectFlow(ActivityNode node) {
 		if (node instanceof Action) {
-			return canEndNewObjectFlow((Action) node);
+			return canEndNewObjectFlowByAddingPin((Action) node);
 		}
 		return false;
 	}
@@ -275,8 +280,6 @@ public class ObjectFlowUtil {
 	public static void insertOutputPin(Action parentAction, OutputPin outputPin) {
 		if (parentAction instanceof OpaqueAction) {
 			((OpaqueAction) parentAction).getOutputValues().add(outputPin);
-		} else if (parentAction instanceof AcceptEventAction) {
-			((AcceptEventAction) parentAction).getResults().add(outputPin);
 		}
 	}
 

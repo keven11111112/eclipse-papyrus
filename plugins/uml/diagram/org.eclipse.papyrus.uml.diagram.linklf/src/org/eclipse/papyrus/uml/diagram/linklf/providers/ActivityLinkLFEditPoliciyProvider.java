@@ -15,16 +15,15 @@ package org.eclipse.papyrus.uml.diagram.linklf.providers;
 
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateLinkObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.uml.diagram.linklf.policy.graphicalnode.LinksLFObjectFlowWithPinsCreationEditPolicies;
 
 public class ActivityLinkLFEditPoliciyProvider extends LinksLFEditPolicyProvider {
 
 	@Override
 	protected void installGraphicalNodeEditPolicy(INodeEditPart nodeEP) {
-		if (nodeEP instanceof CreateLinkObjectActionEditPart) {
-			nodeEP.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-					new LinksLFObjectFlowWithPinsCreationEditPolicies());
+		if (nodeEP instanceof OpaqueActionEditPart) {
+			nodeEP.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LinksLFObjectFlowWithPinsCreationEditPolicies());
 		} else {
 			super.installGraphicalNodeEditPolicy(nodeEP);
 		}

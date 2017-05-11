@@ -20,20 +20,18 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
@@ -41,9 +39,12 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.policies.LinksLFGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ObjectFlow;
@@ -214,33 +215,24 @@ public class LinksLFObjectFlowWithPinsCreationEditPolicies extends LinksLFGraphi
 						if (actNode.equals(view.getElement())) {
 							return view;
 						}
-					}
-					// refresh view children which have not been created yet.
-					EditPolicy policy = getHost().getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);
-					if (policy instanceof CanonicalEditPolicy) {
-						CanonicalEditPolicy canonical = (CanonicalEditPolicy) policy;
-						if (!canonical.isEnabled()) {
-							canonical.setEnable(true);
-							canonical.refresh();
-							canonical.setEnable(false);
-						} else {
-							canonical.refresh();
-						}
-					}
-					// recover the appropriate child view
-					for (Object childPart : getHost().getChildren()) {
-						if (childPart instanceof EditPart) {
-							Object containedView = ((EditPart) childPart).getModel();
-							if (containedView instanceof View) {
-								if (actNode.equals(((View) containedView).getElement())) {
-									return (View) containedView;
-								}
-							}
+						// if there is no existing view we create it
+						Node node = ViewService.createNode(view, actNode, UMLVisualIDRegistry.getType(UMLVisualIDRegistry.getNodeVisualID(view, actNode)), UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+						if (node != null) {
+							return node;
 						}
 					}
 				}
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if (connectionFeedback != null) {
+			removeFeedback(connectionFeedback);
+			feedbackHelper = null;
+			connectionFeedback = null;
+		}
 	}
 }

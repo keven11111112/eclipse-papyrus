@@ -40,7 +40,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramCha
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -96,7 +95,6 @@ public class CreateLinkObjectActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ObjectFlowWithPinsCreationEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -158,6 +156,7 @@ public class CreateLinkObjectActionEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	*Papyrus codeGen
+	 * 
 	*@generated
 	**/
 	protected void handleNotificationEvent(Notification event) {
@@ -187,6 +186,7 @@ public class CreateLinkObjectActionEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
+	 * 
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
@@ -334,7 +334,9 @@ public class CreateLinkObjectActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

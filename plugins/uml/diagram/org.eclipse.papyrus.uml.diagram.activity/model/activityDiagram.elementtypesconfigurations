@@ -87,4 +87,7 @@
   <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_oJutwOI1EeaaNdBqN0EQ0A" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.BehaviorEditHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.BehaviorEditHelperAdvice">
     <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Behavior"/>
   </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_qpSuUDYlEeeGB7-cMZyxlQ" description="Create pin between an ObjectFlow and an action (if it is authorized)" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ObjectFlowEditHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ObjectFlowEditHelperAdvice">
+    <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.ObjectFlow"/>
+  </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
