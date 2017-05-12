@@ -22,22 +22,17 @@ import org.junit.Test;
  * this class is used to test element as affixed node of the interaction
  *
  */
-public  class TestInteractionAffixedChildNode extends AbstractTestSequenceAffixedChildNode{
+public class TestInteractionAffixedChildNode extends AbstractTestSequenceAffixedChildNode {
 
-	
+
 	@Test
 	public void testToManageGate() {
-		testToManageChildNode(UMLElementTypes.Gate_Shape,1);
+		testToManageChildNode(UMLElementTypes.Gate_Shape, 1);
 	}
 
-	@Test
-	public void testToManageDurationConstraint() {
-		testToManageChildNode(UMLElementTypes.DurationConstraint_Shape 	,1);
-	}
-	
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateSequenceDiagramCommand();
+		return new CreateSequenceDiagramCommand();
 	}
 
 }
