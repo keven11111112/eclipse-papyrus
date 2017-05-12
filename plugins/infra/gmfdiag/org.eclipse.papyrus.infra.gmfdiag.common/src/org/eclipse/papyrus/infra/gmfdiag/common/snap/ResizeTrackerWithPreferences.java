@@ -1,3 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2017 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 516559
+ *   
+ *****************************************************************************/
+
 package org.eclipse.papyrus.infra.gmfdiag.common.snap;
 
 import org.eclipse.draw2d.IFigure;
@@ -42,7 +56,7 @@ public class ResizeTrackerWithPreferences extends ResizeTracker {
 		super.activate();
 		if (getOwner() != null) {
 			if (getTargetEditPart() != null) {
-				localSnapToHelper = (SnapToHelper) getTargetEditPart().getAdapter(SnapToHelper.class);
+				localSnapToHelper = getTargetEditPart().getAdapter(SnapToHelper.class);
 			}
 
 			IFigure figure = getOwner().getFigure();
@@ -73,8 +87,8 @@ public class ResizeTrackerWithPreferences extends ResizeTracker {
 		request.setCenteredResize(getCurrentInput().isModKeyDown(SnapUtils.MODIFIER_CENTERED_RESIZE));
 		request.setSnapToEnabled(!getCurrentInput().isModKeyDown(SnapUtils.MODIFIER_NO_SNAPPING));
 
-		if (request.isConstrainedResize() && getOwner() != null) {
-			request.setConstrainedResize(true);
+		if (!request.isConstrainedResize() && getOwner() != null) {
+			request.setConstrainedResize(false);
 
 			int origHeight = getOwner().getFigure().getBounds().height;
 			int origWidth = getOwner().getFigure().getBounds().width;
@@ -184,7 +198,7 @@ public class ResizeTrackerWithPreferences extends ResizeTracker {
 	/**
 	 *
 	 * @return
-	 *         <code>true</code> if the current resize must be constrained and <code>false</code> if not
+	 * 		<code>true</code> if the current resize must be constrained and <code>false</code> if not
 	 */
 	private final boolean isConstrainedResizeAccordingToPreference() {
 		IPreferenceStore store = Activator.getInstance().getPreferenceStore();
