@@ -30,6 +30,7 @@ import org.eclipse.papyrus.toolsmiths.model.customizationplugin.Palette;
 import org.eclipse.papyrus.toolsmiths.model.customizationplugin.Profile;
 import org.eclipse.papyrus.toolsmiths.model.customizationplugin.PropertyView;
 import org.eclipse.papyrus.toolsmiths.model.customizationplugin.PropertyViewEnvironment;
+import org.eclipse.papyrus.toolsmiths.model.customizationplugin.TableConfiguration;
 import org.eclipse.papyrus.toolsmiths.model.customizationplugin.UICustom;
 import org.eclipse.papyrus.toolsmiths.model.customizationplugin.UMLModel;
 
@@ -116,6 +117,13 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 	 * @generated
 	 */
 	private EClass propertyViewEnvironmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -498,6 +506,24 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTableConfiguration() {
+		return tableConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableConfiguration_Type() {
+		return (EAttribute)tableConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CustomizationPluginFactory getCustomizationPluginFactory() {
 		return (CustomizationPluginFactory)getEFactoryInstance();
 	}
@@ -566,6 +592,9 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		constraintsEnvironmentEClass = createEClass(CONSTRAINTS_ENVIRONMENT);
 
 		propertyViewEnvironmentEClass = createEClass(PROPERTY_VIEW_ENVIRONMENT);
+
+		tableConfigurationEClass = createEClass(TABLE_CONFIGURATION);
+		createEAttribute(tableConfigurationEClass, TABLE_CONFIGURATION__TYPE);
 	}
 
 	/**
@@ -605,6 +634,7 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		umlModelEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 		constraintsEnvironmentEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 		propertyViewEnvironmentEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
+		tableConfigurationEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(customizationConfigurationEClass, CustomizationConfiguration.class, "CustomizationConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -652,6 +682,9 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		initEClass(constraintsEnvironmentEClass, ConstraintsEnvironment.class, "ConstraintsEnvironment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(propertyViewEnvironmentEClass, PropertyViewEnvironment.class, "PropertyViewEnvironment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(tableConfigurationEClass, TableConfiguration.class, "TableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTableConfiguration_Type(), ecorePackage.getEString(), "type", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

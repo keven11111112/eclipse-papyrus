@@ -59,6 +59,9 @@
             factory="org.eclipse.papyrus.toolsmiths.factory.UICustomExtensionFactory">
       </factory>
       <factory
+            factory="org.eclipse.papyrus.toolsmiths.factory.TableExtensionFactory">
+      </factory>
+      <factory
             factory="org.eclipse.papyrus.toolsmiths.factory.UMLModelExtensionFactory">
       </factory>
       <factory

@@ -122,6 +122,10 @@ public class CustomizationPluginAdapterFactory extends AdapterFactoryImpl {
 				return createPropertyViewEnvironmentAdapter();
 			}
 			@Override
+			public Adapter caseTableConfiguration(TableConfiguration object) {
+				return createTableConfigurationAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -292,6 +296,20 @@ public class CustomizationPluginAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyViewEnvironmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.TableConfiguration <em>Table Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.TableConfiguration
+	 * @generated
+	 */
+	public Adapter createTableConfigurationAdapter() {
 		return null;
 	}
 

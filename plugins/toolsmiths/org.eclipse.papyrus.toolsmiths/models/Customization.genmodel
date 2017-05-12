@@ -80,5 +80,8 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="Customization.ecore#//ConstraintsEnvironment"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="Customization.ecore#//PropertyViewEnvironment"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="Customization.ecore#//TableConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Customization.ecore#//TableConfiguration/type"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

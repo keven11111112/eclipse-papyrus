@@ -113,6 +113,15 @@ public interface CustomizationPluginFactory extends EFactory {
 	PropertyViewEnvironment createPropertyViewEnvironment();
 
 	/**
+	 * Returns a new object of class '<em>Table Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Configuration</em>'.
+	 * @generated
+	 */
+	TableConfiguration createTableConfiguration();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -564,6 +564,44 @@ public interface CustomizationPluginPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.TableConfigurationImpl <em>Table Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.TableConfigurationImpl
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.CustomizationPluginPackageImpl#getTableConfiguration()
+	 * @generated
+	 */
+	int TABLE_CONFIGURATION = 11;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__FILE = FILE_BASED_CUSTOMIZABLE_ELEMENT__FILE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION__TYPE = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Table Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONFIGURATION_FEATURE_COUNT = FILE_BASED_CUSTOMIZABLE_ELEMENT_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.CustomizationConfiguration <em>Customization Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -938,6 +976,27 @@ public interface CustomizationPluginPackage extends EPackage {
 	EClass getPropertyViewEnvironment();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.TableConfiguration <em>Table Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table Configuration</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.TableConfiguration
+	 * @generated
+	 */
+	EClass getTableConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.TableConfiguration#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.TableConfiguration#getType()
+	 * @see #getTableConfiguration()
+	 * @generated
+	 */
+	EAttribute getTableConfiguration_Type();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1260,6 +1319,24 @@ public interface CustomizationPluginPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROPERTY_VIEW_ENVIRONMENT = eINSTANCE.getPropertyViewEnvironment();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.TableConfigurationImpl <em>Table Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.TableConfigurationImpl
+		 * @see org.eclipse.papyrus.toolsmiths.model.customizationplugin.impl.CustomizationPluginPackageImpl#getTableConfiguration()
+		 * @generated
+		 */
+		EClass TABLE_CONFIGURATION = eINSTANCE.getTableConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_CONFIGURATION__TYPE = eINSTANCE.getTableConfiguration_Type();
 
 	}
 

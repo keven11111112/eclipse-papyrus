@@ -75,6 +75,7 @@ public class CustomizationPluginFactoryImpl extends EFactoryImpl implements Cust
 			case CustomizationPluginPackage.UML_MODEL: return createUMLModel();
 			case CustomizationPluginPackage.CONSTRAINTS_ENVIRONMENT: return createConstraintsEnvironment();
 			case CustomizationPluginPackage.PROPERTY_VIEW_ENVIRONMENT: return createPropertyViewEnvironment();
+			case CustomizationPluginPackage.TABLE_CONFIGURATION: return createTableConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -168,6 +169,16 @@ public class CustomizationPluginFactoryImpl extends EFactoryImpl implements Cust
 	public PropertyViewEnvironment createPropertyViewEnvironment() {
 		PropertyViewEnvironmentImpl propertyViewEnvironment = new PropertyViewEnvironmentImpl();
 		return propertyViewEnvironment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableConfiguration createTableConfiguration() {
+		TableConfigurationImpl tableConfiguration = new TableConfigurationImpl();
+		return tableConfiguration;
 	}
 
 	/**

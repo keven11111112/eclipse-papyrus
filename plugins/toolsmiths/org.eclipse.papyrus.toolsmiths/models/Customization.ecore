@@ -56,4 +56,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintsEnvironment" eSuperTypes="#//FileBasedCustomizableElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyViewEnvironment" eSuperTypes="#//FileBasedCustomizableElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableConfiguration" eSuperTypes="#//FileBasedCustomizableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
