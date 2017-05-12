@@ -94,6 +94,8 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 			controlledByLifeline = true;
 		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_CO_REGION_SHAPE)) {
 			controlledByLifeline = true;
+		} else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.DURATION_CONSTRAINT_SHAPE)) {
+			controlledByLifeline = true;
 		}
 
 		return controlledByLifeline;

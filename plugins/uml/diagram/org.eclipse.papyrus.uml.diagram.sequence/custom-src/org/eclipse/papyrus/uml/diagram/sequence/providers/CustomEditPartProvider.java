@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
@@ -33,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAp
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -140,8 +142,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new CustomDurationObservationEditPart(view);
 		case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
 			return new CustomDurationObservationAppliedStereotypeEditPart(view);
-		// case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-		// return new CustomInteractionInteractionCompartmentEditPart(view);
+		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
+			return new CInteractionInteractionCompartmentEditPart(view);
 		// case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
 		// return new CustomCombinedFragmentCombinedFragmentCompartmentEditPart(view);
 		// case MessageSyncEditPart.VISUAL_ID:
