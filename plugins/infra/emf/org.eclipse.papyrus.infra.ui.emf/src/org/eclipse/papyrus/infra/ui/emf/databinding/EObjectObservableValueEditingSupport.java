@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Initial API and implementation
- *
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515491
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.ui.emf.databinding;
@@ -108,12 +108,12 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 
 	/**
 	 * Create a cell editor which opened a dialog to select multiple value.
-	 * 
-	 * @return The CellEditor.
+	 *
+	 * @return The CellEditor
 	 */
 	private CellEditor createMultipleCellEditor(EStructuralFeature feature, EObjectObservableValue element) {
 		EClassifier eType = feature.getEType();
-		MultipleCellEditor multiEditor = new MultipleCellEditor(((TreeViewer) getViewer()).getTree(), ((EObjectObservableValue) element).getObserved(), feature);
+		MultipleCellEditor multiEditor = new MultipleCellEditor(((TreeViewer) getViewer()).getTree(), element.getObserved(), feature);
 		if (eType instanceof EEnum) {
 			ReferenceSelector referenceSelector = new ReferenceSelector(true);
 			referenceSelector.setContentProvider(new AbstractStaticContentProvider() {
@@ -150,14 +150,16 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 	 */
 	@Override
 	protected Object getValue(final Object element) {
+
 		if (element instanceof EObjectObservableValue) {
-			EStructuralFeature feature = (EStructuralFeature) ((EObjectObservableValue) element).getValueType();
+			EObjectObservableValue observableValue = (EObjectObservableValue) element;
+			EStructuralFeature feature = (EStructuralFeature) observableValue.getValueType();
 			if (feature instanceof EReference) {
 				return null;
-				// return getReferenceValue((EReference) feature);
 			}
 			EClassifier eType = feature.getEType();
-			Object object = ((EObjectObservableValue) element).getValue();
+			Object object = observableValue.getValue();
+
 			if (feature.isMany()) {
 				return object;
 			} else {
@@ -215,19 +217,22 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 	@Override
 	protected void setValue(final Object element, final Object value) {
 		if (element instanceof EObjectObservableValue) {
-			EStructuralFeature feature = (EStructuralFeature) ((EObjectObservableValue) element).getValueType();
+			EObjectObservableValue observableValue = (EObjectObservableValue) element;
+
+			EStructuralFeature feature = (EStructuralFeature) observableValue.getValueType();
 			if (feature instanceof EReference) {
 				// setReferenceValue(element, value);
 			} else {
 				EClassifier eType = feature.getEType();
 				if (eType instanceof EEnum) {
-					setEnumerationValue((EObjectObservableValue) element, value);
+					setEnumerationValue(observableValue, value);
 				} else {
 					String eTypeName = eType.getName();
 					if (eTypeName.equals("Boolean")) { //$NON-NLS-1$
-						setBooleanValue((EObjectObservableValue) element, value);
-					} else {
-						((EObjectObservableValue) element).setValue(value);
+						setBooleanValue(observableValue, value);
+					} else if (!observableValue.getValue().equals(value)) {
+						// Just set the new value if it is different from the current one
+						observableValue.setValue(value);
 					}
 				}
 			}
@@ -238,7 +243,7 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 
 	/**
 	 * This allows to set the enumeration value.
-	 * 
+	 *
 	 * @param element
 	 *            The element to manage.
 	 * @param value
@@ -249,12 +254,6 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 		EStructuralFeature feature = (EStructuralFeature) element.getValueType();
 		EEnum eType = (EEnum) feature.getEType();
 		List<EEnumLiteral> literals = eType.getELiterals();
-
-		List<String> proposals = new ArrayList<>();
-		for (int i = 0; i < literals.size(); i++) {
-			// i+1 because there is already the "" string
-			proposals.add(i, literals.get(i).getLiteral());
-		}
 
 		if (null == value) {
 			element.setValue(null);
@@ -276,13 +275,14 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 				element.setValue(literalsToSet);
 
 			} else {
-				// retrieve the index of the current value in the list
+				// Retrieve the index of the current value in the list
 				int index = (Integer) value;
-				if (index >= 0 && index < literals.size()) {
+
+				// Just set the new value if it is different from the old one
+				if (index >= 0 && index < literals.size() && !element.getValue().toString().equals(literals.get(index).getLiteral())) {
 					element.setValue(literals.get(index));
 				}
 			}
-
 		}
 	}
 
@@ -300,14 +300,19 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 			element.setValue(value);
 		} else {
 			if (null == value) {
-				// Do Nothing
-				// propertiesToUpdate.remove(featureName);
+				// Do nothing
 			} else if (value.equals(0)) {
-				element.setValue(Boolean.valueOf(booleanProposals[0]));
+				// Just set the new value if it is differ from the old one
+				if (!element.getValue().toString().equals(this.booleanProposals[0])) {
+					element.setValue(Boolean.valueOf(this.booleanProposals[0]));
+				}
 			} else if (value.equals(1)) {
-				element.setValue(Boolean.valueOf(booleanProposals[1]));
+				// Just set the new value if it is differ from the old one
+				if (!element.getValue().toString().equals(this.booleanProposals[1])) {
+					element.setValue(Boolean.valueOf(this.booleanProposals[1]));
+				}
 			} else {
-				Activator.log.error("impossible to set boolean value " + value, null); //$NON-NLS-1$
+				Activator.log.error("Impossible to set boolean value " + value, null); //$NON-NLS-1$
 			}
 		}
 	}
