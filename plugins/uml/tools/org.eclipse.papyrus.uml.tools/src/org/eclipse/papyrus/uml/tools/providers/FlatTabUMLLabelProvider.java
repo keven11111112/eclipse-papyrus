@@ -48,6 +48,7 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * The label provider used for the flat tab of treeSelectorDialalog in uml context. It's provide a button to display qualify name.
+ * @since 3.0
  */
 public class FlatTabUMLLabelProvider implements IGraphicalLabelProvider, IStyledLabelProvider, IDependableLabelProvider {
 
