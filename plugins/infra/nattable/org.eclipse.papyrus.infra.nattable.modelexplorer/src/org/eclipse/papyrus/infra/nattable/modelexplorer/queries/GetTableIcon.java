@@ -11,14 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer.queries;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.papyrus.emf.facet.custom.ui.ImageUtils;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.ui.editorsfactory.AbstractGetEditorIconQuery;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;

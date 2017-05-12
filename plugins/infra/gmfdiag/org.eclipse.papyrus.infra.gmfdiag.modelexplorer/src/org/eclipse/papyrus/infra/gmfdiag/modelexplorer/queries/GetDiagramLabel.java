@@ -8,7 +8,7 @@
  *
  *  Contributors:
  *    Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *
+ *    Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 516471
  */
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 
@@ -33,7 +33,11 @@ public class GetDiagramLabel extends AbstractGetEditorIconQuery implements IJava
 	 */
 	public String evaluate(final Diagram source, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
 		final String label = LabelInternationalization.getInstance().getDiagramLabel(source);
+		/*
+		bug 516471 : we must not display the EClass name
 		return label == null || label.length() == 0 ? NotationEditPlugin.INSTANCE.getString("_UI_Diagram_type", true) : //$NON-NLS-1$
 				NotationEditPlugin.INSTANCE.getString("_UI_Diagram_type", true) + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		*/
+		return label == null || label.length() == 0 ? NotationEditPlugin.INSTANCE.getString("_UI_Diagram_type", true) : label;//$NON-NLS-1$
 	}
 }
