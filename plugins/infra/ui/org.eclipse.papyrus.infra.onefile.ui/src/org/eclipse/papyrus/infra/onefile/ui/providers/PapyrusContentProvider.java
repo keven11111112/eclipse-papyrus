@@ -26,6 +26,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.onefile.internal.ui.Activator;
@@ -86,11 +87,17 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 					}
 				} else {
 					IResource[] members = null;
+					IContainer container = null;
 					if (inputElement instanceof IContainer) {
-						IContainer container = (IContainer) inputElement;
-						if (container.isAccessible()) {
-							members = container.members();
-						}
+						container = (IContainer) inputElement;
+					}
+					else if (inputElement instanceof IAdaptable) {
+						// containers in CDT projects (and maybe others) are not instances of IContainer
+						// but can adapt to it.
+						container = ((IAdaptable) inputElement).getAdapter(IContainer.class);
+					}
+					if (container != null && container.isAccessible()) {
+						members = container.members();
 					}
 					if (members != null) {
 						for (IResource r : members) {
