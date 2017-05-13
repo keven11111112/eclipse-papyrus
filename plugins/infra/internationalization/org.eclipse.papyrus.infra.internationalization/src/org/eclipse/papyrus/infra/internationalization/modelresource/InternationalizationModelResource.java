@@ -1327,7 +1327,6 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		}
 		
 		resourcesToNotSave.clear();
-		resourcesToNotSave = null;
 
 		resource = null;
 		super.unload();
