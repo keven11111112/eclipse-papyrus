@@ -76,10 +76,10 @@ public abstract class AbstractInternationalizationTest extends AbstractPapyrusTe
 	 *             The caught exception.
 	 */
 	public void checkNoLabels() throws Exception {
-		Assert.assertEquals("The diagram label is not the expected one.", "Diagram ClassDiagram",
+		Assert.assertEquals("The diagram label is not the expected one.", "ClassDiagram",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The table label is not the expected one.", "Table GenericTable0",
+		Assert.assertEquals("The table label is not the expected one.", "GenericTable0",
 				labelProvider.getText(table));
 	}
 
@@ -90,10 +90,10 @@ public abstract class AbstractInternationalizationTest extends AbstractPapyrusTe
 	 *             The caught exception.
 	 */
 	public void checkFrenchLabels() throws Exception {
-		Assert.assertEquals("The diagram label is not the expected one.", "Diagram MonDiagrammeDeClasse",
+		Assert.assertEquals("The diagram label is not the expected one.", "MonDiagrammeDeClasse",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The table label is not the expected one.", "Table MaTableGenerique",
+		Assert.assertEquals("The table label is not the expected one.", "MaTableGenerique",
 				labelProvider.getText(table));
 	}
 
@@ -104,10 +104,10 @@ public abstract class AbstractInternationalizationTest extends AbstractPapyrusTe
 	 *             The caught exception.
 	 */
 	public void checkEnglishLabels() throws Exception {
-		Assert.assertEquals("The diagram label is not the expected one.", "Diagram MyClassDiagram",
+		Assert.assertEquals("The diagram label is not the expected one.", "MyClassDiagram",
 				labelProvider.getText(diagram));
 
-		Assert.assertEquals("The table label is not the expected one.", "Table MyGenericTable",
+		Assert.assertEquals("The table label is not the expected one.", "MyGenericTable",
 				labelProvider.getText(table));
 	}
 }
