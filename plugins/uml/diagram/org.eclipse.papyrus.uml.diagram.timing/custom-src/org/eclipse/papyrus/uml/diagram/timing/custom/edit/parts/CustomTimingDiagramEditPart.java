@@ -10,6 +10,9 @@ package org.eclipse.papyrus.uml.diagram.timing.custom.edit.parts;
 
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -19,6 +22,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.InteractionEditPartTN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 
 public class CustomTimingDiagramEditPart extends TimingDiagramEditPart {
 
@@ -43,5 +48,23 @@ public class CustomTimingDiagramEditPart extends TimingDiagramEditPart {
 			}
 		}
 		return true;
+	}
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart#createFigure()
+	 *
+	 * @return
+	 */
+	@Override
+	protected IFigure createFigure() {
+		IFigure fig= super.createFigure();
+		String message="This diagram is not available, it will be fixed for the next service release.";
+		org.eclipse.draw2d.Label label = new org.eclipse.draw2d.Label(message);
+		label.setBackgroundColor(ColorConstants.lightBlue);
+		label.setOpaque(true);
+		label.setBounds(new Rectangle(20,20,600,40));
+		fig.add(label);
+		return fig;
+		
+		
 	}
 }
