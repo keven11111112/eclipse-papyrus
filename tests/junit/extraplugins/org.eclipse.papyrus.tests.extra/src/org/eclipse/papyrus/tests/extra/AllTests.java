@@ -32,10 +32,6 @@ public class AllTests {
 		/* Bundle tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
 
-		if (System.getProperty("no.SysML.tests") == null) {
-			// SysML tests
-			suiteClasses.addAll(AllSysMLTests.suiteClasses);
-		}
 
 		/* **************** plugins *********************** */
 

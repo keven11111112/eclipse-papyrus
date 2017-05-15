@@ -21,7 +21,6 @@
 		<module>developer</module>
 		<module>editor</module>
 		<module>infra</module>
-		<!-- <module>sysml</module> -->
 		<module>uml</module>
 		<module>views</module>
 		

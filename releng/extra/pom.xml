@@ -17,15 +17,6 @@
 	
 	<modules>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.feature</module>
-
-		<!-- SysML 1.1 -->
-		<module>../../plugins/sysml</module> <!-- Deprecated component moved to extraplugin for Neon. To be removed in Oxygen -->
-		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.diagram.feature</module>
-		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.feature</module>
-		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.modelexplorer.feature</module>
-		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.nattable.feature</module>
-		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.properties.feature</module>
-
 		<module>site</module>
 		<module>targetPlatform</module>
 	</modules>

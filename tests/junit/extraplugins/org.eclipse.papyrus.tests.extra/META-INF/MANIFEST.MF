@@ -2,14 +2,7 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.bundles.tests;bundle-version="[1.2.0,2.0.0)",
- org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.sysml.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.sysml.diagram.blockdefinition.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.sysml.diagram.internalblock.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.sysml.diagram.parametric.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.sysml.modelexplorer.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.sysml.nattable.allocation.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.sysml.service.types.tests;bundle-version="[1.2.0,2.0.0)"
+ org.junit;bundle-version="4.10.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

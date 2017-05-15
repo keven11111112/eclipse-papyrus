@@ -292,39 +292,6 @@
 		<plugin name="org.eclipse.papyrus.sdk" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.eclipse.project.editors" version="2.0.0"/>
 	</feature>
-	<feature name="org.eclipse.papyrus.sysml.architecture.feature" version="1.0.0">
-		<plugin name="org.eclipse.papyrus.sysml.architecture" version="1.0.0"/>
-	</feature>
-	<feature name="org.eclipse.papyrus.sysml.diagram.feature" version="3.0.0">
-		<plugin name="org.eclipse.papyrus.sysml.diagram.blockdefinition" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.diagram.common" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.diagram.requirement" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.diagram.ui" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.diagram.internalblock" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.diagram.parametric" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.diagram.css" version="1.2.0"/>
-	</feature>
-	<feature name="org.eclipse.papyrus.sysml.feature" version="2.0.0">
-		<plugin name="org.eclipse.papyrus.sysml" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.architecture" version="1.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.service.types" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.edit" version="1.2.0"/>
-	</feature>
-	<feature name="org.eclipse.papyrus.sysml.modelexplorer.feature" version="1.2.0">
-		<plugin name="org.eclipse.papyrus.sysml.modelexplorer" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.architecture" version="1.0.0"/>
-	</feature>
-	<feature name="org.eclipse.papyrus.sysml.nattable.feature" version="2.0.0">
-		<plugin name="org.eclipse.papyrus.sysml.nattable" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.nattable.requirement" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.nattable.requirement.config" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.nattable.allocation" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.nattable.allocation.config" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.sysml.nattable.menu" version="1.2.0"/>
-	</feature>
-	<feature name="org.eclipse.papyrus.sysml.properties.feature" version="1.2.0">
-		<plugin name="org.eclipse.papyrus.sysml.properties" version="1.2.0"/>
-	</feature>
 	<feature name="org.eclipse.papyrus.uml.alf.feature" version="3.0.0">
 		<plugin name="org.eclipse.papyrus.uml.alf.common" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.alf.common.ui" version="2.0.0"/>
@@ -710,25 +677,6 @@
 	<plugin name="org.eclipse.papyrus.releng.main.release" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.req.reqif.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.sdk" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.architecture" version="1.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.diagram.blockdefinition" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.diagram.common" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.diagram.css" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.diagram.internalblock" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.diagram.parametric" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.diagram.requirement" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.diagram.ui" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.edit" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.modelexplorer" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.nattable" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.nattable.allocation" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.nattable.allocation.config" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.nattable.menu" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.nattable.requirement" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.nattable.requirement.config" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.properties" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.sysml.service.types" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.toolsmiths.palette" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.alf" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.alf.common" version="2.0.0"/>
