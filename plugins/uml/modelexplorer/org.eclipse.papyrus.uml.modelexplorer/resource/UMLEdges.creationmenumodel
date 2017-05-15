@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ElementCreationMenuModel:Folder xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" label="New Relationship" xmi:id="_-5Z5sN90EeOzMY8AIRUeqQ" xmi:version="2.0">
   <menu displayAllRoles="false" label="Abstraction" xmi:id="_SYf_wN-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScP1oVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Abstraction" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Association" xmi:id="_SYf_1d-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_f8dpoFYTEeSx49G4xBUj9Q" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Association" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="ComponentRealization" xmi:id="_SYf_wd-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Scbb6lYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.ComponentRealization" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Connector" xmi:id="_SYf_wt-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SccC9VYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Connector" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Control Flow" xmi:id="_SYf_1d-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SccDF1YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.ControlFlow" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Dependency" xmi:id="_SYf_w9-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SccqG1YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Dependency" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Deployment" xmi:id="_SYf_xN-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SccqJVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Deployment" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="ElementImport" xmi:id="_SYf_xd-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Dx12sJzPEeSEObywEoz_Cw" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.ElementImport" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Extend" xmi:id="_SYf_xt-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_kV8SgFrNEeSNSq3G9Z6fKQ" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Extend" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Extension" visible="true" xmi:id="_SYf_1d-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScjXoVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Extension" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Generalization" xmi:id="_SYf_x9-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Scma8FYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Generalization" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Include" xmi:id="_SYf_yN-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScnCClYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Include" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="InformationFlow" xmi:id="_SYf_yd-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ZLpUILgeEeSANYuUIb1qQA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.InformationFlow" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="InterfaceRealization" xmi:id="_SYf_yt-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScuW21YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.InterfaceRealization" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Manifestation" xmi:id="_SYf_y9-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc59ClYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Manifestation" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="PackageImport" xmi:id="_SYf_zN-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_8kkk8GN5EeSrwvaW5Is9PQ" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.PackageImport" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="PackageMerge" xmi:id="_SYf_zd-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_5VbKkGOIEeSw8rz5ZQEURQ" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.PackageMerge" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="ProfileApplication" visible="false" xmi:id="_SYf_zt-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc-OhFYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.ProfileApplication" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="ProtocolConformance" xmi:id="_SYf_z9-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc-1eFYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.ProtocolConformance" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Realization" xmi:id="_SYf_0N-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdADq1YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Realization" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Refine" xmi:id="_SYf_0d-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_UGdZ8GslEeSELtwF_9-6fg" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Refine" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Substitution" xmi:id="_SYf_0t-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdGxU1YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Substitution" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="TemplateBinding" xmi:id="_SYf_09-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdHYW1YCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.TemplateBinding" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Trace" xmi:id="_SYf_1N-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_JPmakGskEeSELtwF_9-6fg" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Trace" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
   <menu displayAllRoles="false" label="Usage" xmi:id="_SYf_1d-uEeOoWMUBUZPOjA" xsi:type="ElementCreationMenuModel:CreateRelationshipMenu">
-    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdLCxVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+    <elementType href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Usage" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </menu>
 </ElementCreationMenuModel:Folder>

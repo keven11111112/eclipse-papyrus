@@ -19,12 +19,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bjdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bj9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Class_Shape_CN"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -35,7 +35,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q0dx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Property_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -46,7 +46,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qm9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Port_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -57,12 +57,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4br9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Collaboration_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4brdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Collaboration_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -73,7 +73,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4b99x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ConnectableElement_CollaborationRoleShape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -84,7 +84,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bm9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.CollaborationUse_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -95,12 +95,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bu9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Comment_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4budx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Comment_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -111,12 +111,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cE9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Constraint_Shape"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cF9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Constraint_Shape_CN"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -127,7 +127,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63ddx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.TimeObservation_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -138,7 +138,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CMNx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DurationObservation_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -149,12 +149,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5C3Nx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InformationItem_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5C2tx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InformationItem_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -165,7 +165,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Qgdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Parameter_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -176,12 +176,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bENx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Activity_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bDtx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Activity_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -192,12 +192,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5pU9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Interaction_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5pUdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Interaction_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -208,12 +208,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q69x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ProtocolStateMachine_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6Q6dx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ProtocolStateMachine_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -224,12 +224,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63J9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.StateMachine_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63Jdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.StateMachine_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -240,12 +240,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CvNx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.FunctionBehavior_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5Cutx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.FunctionBehavior_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -256,12 +256,12 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5qE9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.OpaqueBehavior_Shape_CN"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5qEdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.OpaqueBehavior_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -272,7 +272,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63R9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.StringExpression_PackagedElementShape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 	</drawerConfigurations>
@@ -289,22 +289,22 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4bt9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cA9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63c9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.TimeObservation_EventEdge"/>
 			</elementDescriptors>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5CLtx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DurationObservation_EventEdge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -315,7 +315,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4b_dx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Connector_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -326,7 +326,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cPdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Dependency_RoleBindingEdge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -337,7 +337,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5Cytx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Generalization_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -348,7 +348,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6RHtx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Realization_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -359,7 +359,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63T9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Substitution_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -370,7 +370,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu3zwNx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Abstraction_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -381,7 +381,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu63gdx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Usage_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -392,7 +392,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu4cO9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Dependency_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -403,7 +403,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu6ROtx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Representation_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -414,7 +414,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5Cztx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InformationFlow_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -425,7 +425,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5po9x0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Manifestation_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -436,7 +436,7 @@
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5B9tx0EeWVxMf7SXAfhg"/>
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Deployment_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 	</drawerConfigurations>

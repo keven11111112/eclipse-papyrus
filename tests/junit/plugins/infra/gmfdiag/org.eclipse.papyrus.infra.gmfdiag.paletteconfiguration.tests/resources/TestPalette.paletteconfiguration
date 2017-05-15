@@ -3,7 +3,7 @@
   <drawerConfigurations id="TestPaletteNodesDrawer" label="TestPaletteConfigurationNodes" description="Test Paletteconfiguration Nodes">
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="testpalettemodel.StoOnClass" label="StoOnClass" description="Create a Class With StoOnClass" toolClassName="">
       <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests/resources/TestPalette.elementtypesconfigurations#_ubJcsaeUEeSUR5jX0TaAcA"/>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests/resources/TestPalette.elementtypesconfigurations#org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests"/>
       </elementDescriptors>
     </ownedConfigurations>
   </drawerConfigurations>
