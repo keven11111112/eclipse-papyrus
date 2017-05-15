@@ -17,15 +17,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Viewport;
-import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
@@ -34,14 +30,15 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
- * @author PT202707
+ * this class is used to display event of messages or event of execution specifications
  *
  */
 public class DisplayEvent {
@@ -59,15 +56,14 @@ public class DisplayEvent {
 	}
 	/**
 	 * if the position is the same a an event it return the event.
-	 * @param container
+	 * @param container the figure container
 	 * @param locationOntheScreen
-	 * @return
+	 * @return the event under the position
 	 */
 	public MessageOccurrenceSpecification getMessageEvent(IFigure container, Point locationOntheScreen){
 		Point LocationAbsolute= locationOntheScreen.getCopy();
 		IFigure editPartFigure=((GraphicalEditPart)editpart).getFigure();
 		editPartFigure.getParent().translateToRelative(LocationAbsolute);
-		Point locationRelativeToLifleLine= locationOntheScreen.getCopy().translate(editPartFigure.getBounds().getTopLeft().negate());
 		Rectangle recLoacal=new Rectangle(50,200,100,100);
 
 		IFigure fig=editPartFigure;
@@ -76,6 +72,7 @@ public class DisplayEvent {
 
 		//display all events from messages
 		Node node=(Node)editpart.getModel();
+		@SuppressWarnings("unchecked")
 		java.util.List<Edge> sourceEdge= node.getSourceEdges();
 		for (Edge edge : sourceEdge) {
 			MessageOccurrenceSpecification m=getMessageEvent((NodeEditPart)editpart, node, edge, LocationAbsolute);
@@ -83,6 +80,7 @@ public class DisplayEvent {
 				return m;
 			}
 		}
+		@SuppressWarnings("unchecked")
 		java.util.List<Edge> targetEdge= node.getTargetEdges();
 		for (Edge edge : targetEdge) {
 			MessageOccurrenceSpecification m=getMessageEvent((NodeEditPart)editpart, node, edge, LocationAbsolute);
@@ -90,12 +88,72 @@ public class DisplayEvent {
 				return m;
 			}
 		}
-		
+
+		return null;
+
+	}
+	/**
+	 * if the position is the same a an event it return the event.
+	 * @param container the figure container
+	 * @param locationOntheScreen
+	 * @return the event under the position
+	 */
+	public OccurrenceSpecification getActionExecutionSpecificationEvent(IFigure container, Point locationOntheScreen){
+		Point LocationAbsolute= locationOntheScreen.getCopy();
+		IFigure editPartFigure=((GraphicalEditPart)editpart).getFigure();
+		editPartFigure.getParent().translateToRelative(LocationAbsolute);
+		Rectangle recLoacal=new Rectangle(50,200,100,100);
+
+		IFigure fig=editPartFigure;
+		Point ptOnscreen=recLoacal.getTopLeft().translate(fig.getBounds().getTopLeft());
+		fig.getParent().translateToAbsolute(ptOnscreen);
+
+		//display all events from messages
+		Node node=(Node)editpart.getModel();
+
+		for (Object part : editpart.getChildren()) {
+			if(part instanceof AbstractExecutionSpecificationEditPart) {
+				OccurrenceSpecification occurrenceSpecification=getEventFromExecutionSpecification((NodeEditPart)editpart, (AbstractExecutionSpecificationEditPart)part, LocationAbsolute);
+				if (occurrenceSpecification!=null) {
+					return occurrenceSpecification;
+				}
+			}
+
+		}
 		return null;
 
 	} 
 
-	public MessageOccurrenceSpecification getMessageEvent(NodeEditPart container,Node node, Edge edge, Point currentPosition){
+	/**
+	 * @param lifelinedEditPArt
+	 * @param part the execution specification editpart
+	 * @param locationAbsolute the position of the mouse
+	 */
+	protected OccurrenceSpecification getEventFromExecutionSpecification(NodeEditPart lifelineEditPart, AbstractExecutionSpecificationEditPart executionSpecEditPart, Point locationAbsolute) {
+		Node executionNode=(Node)	executionSpecEditPart.getNotationView();
+		ExecutionSpecification executionSpecification= (ExecutionSpecification)executionSpecEditPart.resolveSemanticElement();
+		IFigure lifelineFigure= lifelineEditPart.getFigure();
+		double y=((Bounds)executionNode.getLayoutConstraint()).getY();
+		if(lifelineFigure.getBounds().y+(int)y-8<locationAbsolute.y() &&locationAbsolute.y()<lifelineFigure.getBounds().y+(int)y+8){
+			return executionSpecification.getStart();
+		}
+
+		y=((Bounds)executionNode.getLayoutConstraint()).getY()+BoundForEditPart.getHeightFromView(executionNode);
+		if(lifelineFigure.getBounds().y+(int)y-8<locationAbsolute.y() &&locationAbsolute.y()<lifelineFigure.getBounds().y+(int)y+8){
+			return executionSpecification.getFinish();
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param container the container edipart
+	 * @param node the node where edge are connected
+	 * @param edge the current edge
+	 * @param currentPosition the position of the mouse
+	 * @return
+	 */
+	protected MessageOccurrenceSpecification getMessageEvent(NodeEditPart container,Node node, Edge edge, Point currentPosition){
 		IdentityAnchor anchor=null;
 		if (edge.getSource().equals(node)){
 			anchor=(IdentityAnchor)edge.getSourceAnchor();
@@ -106,16 +164,8 @@ public class DisplayEvent {
 		double yPercent=IdentityAnchorHelper.getYPercentage(anchor);
 
 		//calculate  bounds from notation
-		double height=0;
-		if(node.getLayoutConstraint() instanceof Bounds){
-			height=((Bounds)node.getLayoutConstraint()).getHeight();
-		}
-		if( height==-1.0){
-			//it is very bad , because this is a default valued given by the figure...
-			if( editpart instanceof CLifeLineEditPart){
-				height=CLifeLineEditPart.DEFAUT_HEIGHT;
-			}
-		}
+		double height=BoundForEditPart.getHeightFromView(node);
+
 		double posY=yPercent*height;
 		IFigure lifelineFigure=((GraphicalEditPart)editpart).getFigure();
 		if(lifelineFigure.getBounds().y+(int)posY-8<currentPosition.y() &&currentPosition.y()<lifelineFigure.getBounds().y+(int)posY+8){
@@ -132,38 +182,62 @@ public class DisplayEvent {
 	}
 	/**
 	 * 
-	 * @param container
+	 * @param container the figure container where we want display event
 	 * @param location position on the screen
 	 */
 	public void  addFigureEvent(IFigure container, Point locationOntheScreen){
 		Point LocationAbsolute= locationOntheScreen.getCopy();
 		IFigure editPartFigure=((GraphicalEditPart)editpart).getFigure();
 		editPartFigure.getParent().translateToRelative(LocationAbsolute);
-		Point locationRelativeToLifleLine= locationOntheScreen.getCopy().translate(editPartFigure.getBounds().getTopLeft().negate());
 		Rectangle recLoacal=new Rectangle(50,200,100,100);
 
 		IFigure fig=editPartFigure;
 		Point ptOnscreen=recLoacal.getTopLeft().translate(fig.getBounds().getTopLeft());
-		System.out.println("Position: "+fig.getBounds()+":"+recLoacal.getTopLeft().translate(fig.getBounds().getTopLeft()));
 		fig.getParent().translateToAbsolute(ptOnscreen);
-
-
-		System.out.println("Shadow position:"+locationOntheScreen+" calulatedPostion (50,200) on screen"+ptOnscreen);
 
 		//display all events from messages
 		Node node=(Node)editpart.getModel();
-		java.util.List<Edge> sourceEdge= node.getSourceEdges();
+		@SuppressWarnings("unchecked")
+		java.util.List<Edge>  sourceEdge= node.getSourceEdges();
 		for (Edge edge : sourceEdge) {
 			displayEventFromMessages((NodeEditPart)editpart, node, edge, LocationAbsolute);
 		}
+		@SuppressWarnings("unchecked")
 		java.util.List<Edge> targetEdge= node.getTargetEdges();
 		for (Edge edge : targetEdge) {
 			displayEventFromMessages((NodeEditPart)editpart, node, edge, LocationAbsolute);
 		}
 
+		for (Object part : editpart.getChildren()) {
+			if(part instanceof AbstractExecutionSpecificationEditPart) {
+				displayEventFromExecutionSpecification((NodeEditPart)editpart, (AbstractExecutionSpecificationEditPart)part, LocationAbsolute);
+			}
+
+		}
+
 	}
 
-	public void displayEventFromMessages(NodeEditPart container,Node node, Edge edge, Point CurrentPosition){
+	/**
+	 * @param lifelineEditPart the lifeline editpart
+	 * @param executionSpecEditPart the execution specification 
+	 * @param locationAbsolute the position of the mouse
+	 */
+	protected void displayEventFromExecutionSpecification(NodeEditPart lifelineEditPart, AbstractExecutionSpecificationEditPart executionSpecEditPart, Point locationAbsolute) {
+		Node executionNode=(Node)	executionSpecEditPart.getNotationView();
+		double posY=((Bounds)executionNode.getLayoutConstraint()).getY();
+		addAnEvent(lifelineEditPart.getFigure(), posY, ColorConstants.white, locationAbsolute);
+		posY=((Bounds)executionNode.getLayoutConstraint()).getY()+BoundForEditPart.getHeightFromView(executionNode);
+		addAnEvent(lifelineEditPart.getFigure(), posY, ColorConstants.white, locationAbsolute);
+	}
+
+	/**
+	 * 
+	 * @param container the container editpart
+	 * @param node the node where is connected the edge
+	 * @param edge the edge where want to display anchor
+	 * @param CurrentPosition the position of the mouse
+	 */
+	protected void displayEventFromMessages(NodeEditPart container,Node node, Edge edge, Point currentPosition){
 		IdentityAnchor anchor=null;
 		if (edge.getSource().equals(node)){
 			anchor=(IdentityAnchor)edge.getSourceAnchor();
@@ -175,29 +249,22 @@ public class DisplayEvent {
 
 		//calculate  bounds from notation
 		double height=0;
-		if(node.getLayoutConstraint() instanceof Bounds){
-			height=((Bounds)node.getLayoutConstraint()).getHeight();
-		}
-		if( height==-1.0){
-			//it is very bad , because this is a default valued given by the figure...
-			if( editpart instanceof CLifeLineEditPart){
-				height=CLifeLineEditPart.DEFAUT_HEIGHT;
-			}
-		}
+		height=BoundForEditPart.getHeightFromView(node);
+
 		double posY=yPercent*height;
-		addAnEvent(container.getFigure(), posY, ColorConstants.white, CurrentPosition);
+		addAnEvent(container.getFigure(), posY, ColorConstants.white, currentPosition);
 
 
 
 	}
 
 	/**
-	 * @param container
-	 * @param location
-	 * @param containerBounds
-	 * @param ellipseFigure
+	 * @param container the figure container that will contain the event
+	 * @param y the location to display the event
+	 * @param color the color of the event 
+	 * @param currentPosition the current position of the mouse to know if we display in green
 	 */
-	private void addAnEvent(IFigure container, double y, Color color, Point currentPosition) {
+	protected void addAnEvent(IFigure container, double y, Color color, Point currentPosition) {
 		EventFig ellipseFigure= new EventFig();
 		IFigure lifelineFigure=((GraphicalEditPart)editpart).getFigure();
 		//code without grid
@@ -215,6 +282,10 @@ public class DisplayEvent {
 		container.add(ellipseFigure);
 	}
 
+	/**
+	 * use to remove all event from the figures
+	 * @param container the container figure
+	 */
 	public void  removeFigureEvent(IFigure container){
 		ArrayList<IFigure> eventFigureList=new ArrayList<IFigure>();
 		for (Object iFigure : container.getChildren()) {
@@ -222,8 +293,8 @@ public class DisplayEvent {
 				eventFigureList.add((IFigure)iFigure);
 			}
 		}
-		for (Iterator iterator = eventFigureList.iterator(); iterator.hasNext();) {
-			IFigure iFigure = (IFigure) iterator.next();
+		for (Iterator<IFigure> iterator = eventFigureList.iterator(); iterator.hasNext();) {
+			IFigure iFigure = iterator.next();
 			container.remove(iFigure);
 		}
 	}

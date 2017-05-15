@@ -33,7 +33,9 @@ public interface SequenceRequestConstant {
 	/** when you create a message, sometimes you create after another event for the target **/
 	public static final String SECOND_PREVIOUS_EVENT = "second previous event"; //$NON-NLS-1$
 
-
+	public static final String MESSAGE_SENTEVENT_REPLACE_EXECUTIONEVENT = "MESSAGE_SENTEVENT_REPLACE_EXECUTIONEVENT";
+	public static final String MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT  = "MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT";
+	
 	/** the start of Execution specification can be replace by an event of a message */
 	public static final String REPLACE_EXECUTION_SPECIFICATION_START = "REPLACE_EXECUTION_SPECIFICATION_START"; //$NON-NLS-1$
 	/** the finish of Execution specification can be replace by an event of a message */

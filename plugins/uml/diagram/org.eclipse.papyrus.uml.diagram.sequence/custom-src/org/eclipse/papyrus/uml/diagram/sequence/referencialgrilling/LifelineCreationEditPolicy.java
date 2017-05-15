@@ -109,7 +109,6 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 	 */
 	@Override
 	public void setHost(EditPart host) {
-		// TODO Auto-generated method stub
 		super.setHost(host);
 		displayEvent = new DisplayEvent(getHost());
 	}

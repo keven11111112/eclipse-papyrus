@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import java.util.Map;
 
+import javax.swing.text.StyleConstants.ColorConstants;
+
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -23,11 +25,14 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.FeedbackHelper;
 import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.tools.AbstractTool.Input;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -58,14 +63,18 @@ import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  *This class overload all creation of link between lifelines
+ *pay attention : this editpolicy launch a display of event during the mouve of the mouse
  */
 public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPolicy implements IGrillingEditpolicy{
 
 	/** manage only for FOUND message**/
 	private GraphicalNodeEditPolicy graphicalNodeEditPolicy=null;
+	private DisplayEvent displayEvent;
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionCreateCommand(org.eclipse.gef.requests.CreateConnectionRequest)
@@ -75,14 +84,51 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-
+		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
 		MessageEnd end=getPreviousEventFromPosition(request.getLocation());
 		if( end!=null){
 			Map<String, Object> extendedData = request.getExtendedData();
 			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.PREVIOUS_EVENT,end);
 			request.setExtendedData(extendedData);
 		}
+		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure(), ((CreateRequest) request).getLocation());
+		//add a param if we must replace an event of the execution specification
+		if (os != null) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.MESSAGE_SENTEVENT_REPLACE_EXECUTIONEVENT, os);
+			request.setExtendedData(extendedData);
+		}
 		return super.getConnectionCreateCommand(request);
+	}
+	/**
+	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#eraseTargetConnectionFeedback(org.eclipse.gef.requests.DropRequest)
+	 *
+	 * @param request
+	 */
+	@Override
+	protected void eraseTargetConnectionFeedback(DropRequest request) {
+		super.eraseTargetConnectionFeedback(request);
+		displayEvent.removeFigureEvent(getHostFigure());
+	}
+	/**
+	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#eraseCreationFeedback(org.eclipse.gef.requests.CreateConnectionRequest)
+	 *
+	 * @param request
+	 */
+	@Override
+	protected void eraseCreationFeedback(CreateConnectionRequest request) {
+		super.eraseCreationFeedback(request);
+		displayEvent= new DisplayEvent(getHost());
+	}
+	/**
+	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#setHost(org.eclipse.gef.EditPart)
+	 *
+	 * @param host
+	 */
+	@Override
+	public void setHost(EditPart host) {
+		super.setHost(host);
+		displayEvent= new DisplayEvent(getHost());
 	}
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionAndRelationshipCompleteCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest)
@@ -92,6 +138,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
+		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
 		Command cmd= super.getConnectionAndRelationshipCompleteCommand(request);
 		MessageEnd end=getPreviousEventFromPosition(request.getLocation());
 		if( end!=null){
@@ -99,7 +146,13 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.SECOND_PREVIOUS_EVENT,end);
 			request.setExtendedData(extendedData);
 		}
-
+		//add a param if we must replace an event of the execution specification
+		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
+		if (os != null) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT, os);
+			request.setExtendedData(extendedData);
+		}
 		//
 		// in the case of a create message
 		//  the target of the message is translated in Y to the position Y of the message
@@ -235,6 +288,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 			}
 		}
+		
 		return super.getFeedbackHelper(request);
 	}
 
