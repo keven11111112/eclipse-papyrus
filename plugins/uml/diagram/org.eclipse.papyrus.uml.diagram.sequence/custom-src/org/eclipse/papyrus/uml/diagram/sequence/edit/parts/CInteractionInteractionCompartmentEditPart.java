@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
 /**
- * @author Céline JANSSENS
+ * @author Cï¿½line JANSSENS
  *
  */
 public class CInteractionInteractionCompartmentEditPart extends InteractionInteractionCompartmentEditPart {
@@ -35,7 +35,6 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 	 */
 	public CInteractionInteractionCompartmentEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -46,32 +45,17 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		Command cmd = null;
-		if (understandsRequest(request)) {
-			cmd = super.getCommand(request);
-		}
-		return cmd;
-	}
-
-	/**
-	 * @see org.eclipse.gef.editparts.AbstractEditPart#understandsRequest(org.eclipse.gef.Request)
-	 *
-	 * @param req
-	 * @return
-	 */
-	@Override
-	public boolean understandsRequest(Request req) {
-		boolean understand = super.understandsRequest(req);
-		if (understand && req instanceof CreateViewAndElementRequest && req.getType().equals(REQ_CREATE)) {
-			CreateViewAndElementRequest request = (CreateViewAndElementRequest) req;
-			ViewAndElementDescriptor descriptor = request.getViewAndElementDescriptor();
+		if ( request instanceof CreateViewAndElementRequest && request.getType().equals(REQ_CREATE)) {
+			CreateViewAndElementRequest createrequest = (CreateViewAndElementRequest) request;
+			ViewAndElementDescriptor descriptor = createrequest.getViewAndElementDescriptor();
 			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
 			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.DURATION_CONSTRAINT_SHAPE)) {
-				understand = false;
+				return null;
 			}
 
 
 		}
-		return understand;
+		return super.getCommand(request);
 	}
+
 }
