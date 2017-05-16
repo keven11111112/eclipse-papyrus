@@ -132,7 +132,7 @@ public class UMLInternationalizationKeyResolver extends InternationalizationKeyR
 			// Use the shortest qualified name for the control mode if needed
 			boolean shortestQualifiedNameUsed = false;
 
-			if (superElementInSameResource.eContainer() != null) {
+			if (null != superElementInSameResource && null != superElementInSameResource.eContainer()) {
 				List<String> shortestQualifiedNames = NameResolutionUtils.getShortestQualifiedNames(
 						(NamedElement) entry.getKey(), (Namespace) superElementInSameResource.eContainer(), false);
 				if (!shortestQualifiedNames.isEmpty()) {
