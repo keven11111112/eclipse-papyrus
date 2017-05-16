@@ -79,6 +79,8 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		executionSpecificationWithSyncMsg = new RadioGroupFieldEditor(CustomMessages.PREF_EXECUTION_SPECIFICATION_SYNC_MSG, 
 				CustomMessages.DiagramsPreferencePage_executionSpecificationWithSyncMsg_label, 1,
 				new String[][] {
+						{ CustomMessages.DiagramsPreferencePage_createBehaviorExecutionSpecificationAndReply, "CHOICE_BEHAVIOR_AND_REPLY" },
+						{ CustomMessages.DiagramsPreferencePage_createActionExecutionSpecificationAndReply, "CHOICE_ACTION_AND_REPLY" }, 
 						{ CustomMessages.DiagramsPreferencePage_createBehaviorExecutionSpecification, "CHOICE_BEHAVIOR" }, 
 						{ CustomMessages.DiagramsPreferencePage_createActionExecutionSpecification, "CHOICE_ACTION" }, 
 						{ CustomMessages.DiagramsPreferencePage_createNoExecutionSpecification, "CHOICE_NONE" }

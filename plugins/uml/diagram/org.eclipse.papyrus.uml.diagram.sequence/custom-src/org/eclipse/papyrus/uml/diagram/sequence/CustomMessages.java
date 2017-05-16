@@ -86,27 +86,32 @@ public class CustomMessages extends NLS {
 
 	/**
 	 * Preference messages
-	 */
-	public static String DiagramsPreferencePage_notificationGroup_label = "Automatic creations";
+	 *@since 3.0
+	 **/
+	public static String DiagramsPreferencePage_notificationGroup_label;
+	
+	public static String DiagramsPreferencePage_executionSpecificationWithSyncMsg_label;
+	
+	public static String DiagramsPreferencePage_executionSpecificationWithAsyncMsg_label;
 
-	public static String DiagramsPreferencePage_executionSpecificationWithSyncMsg_label = "When creating a synchronous message, also create:";
+	public static String DiagramsPreferencePage_createBehaviorExecutionSpecificationAndReply;
+	
+	public static String DiagramsPreferencePage_createBehaviorExecutionSpecification;
 
-	public static String DiagramsPreferencePage_executionSpecificationWithAsyncMsg_label = "When creating an asynchronous message, also create:";
-
-	public static String DiagramsPreferencePage_createBehaviorExecutionSpecification = "A Behavior Execution Specification";
-
-	public static String DiagramsPreferencePage_createActionExecutionSpecification = "An Action Execution Specification";
-
-	public static String DiagramsPreferencePage_createNoExecutionSpecification = "Nothing";
+	public static String DiagramsPreferencePage_createActionExecutionSpecificationAndReply;
+	
+	public static String DiagramsPreferencePage_createActionExecutionSpecification;
+	
+	public static String DiagramsPreferencePage_createNoExecutionSpecification;
 
 	/**
 	 * the preferences
 	 */
-	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG = "org.eclipse.papyrus.uml.diagram.sequence.executionSpecificationWithSyncMsg";
+	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG; 
+	
+	public static String PREF_EXECUTION_SPECIFICATION_ASYNC_MSG; //$NON-NLS-1$
 
-	public static String PREF_EXECUTION_SPECIFICATION_ASYNC_MSG = "org.eclipse.papyrus.uml.diagram.sequence.executionSpecificationWithAsyncMsg"; //$NON-NLS-1$
-
-	/** trace massages */
+	/** trace messages */
 	public static String SEQUENCE_DEBUG = "SequenceDebug"; // //$NON-NLS-0$
 
 	public static String SEQUENCE_DEBUG_REFERENCEGRID = "SequenceDebugGrid"; // //$NON-NLS-0$
