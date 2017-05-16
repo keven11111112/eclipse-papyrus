@@ -136,7 +136,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 * This contains the resources created to manage the initial read-only resources replaced by 'fake' resources.
 	 */
 	protected Set<Resource> resourcesToNotSave = new HashSet<Resource>();
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -371,7 +371,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				resource = modelSet.createResource(resourceBundleAndURI.getUri());
 
 				configureResource(uri, resource, locale);
-				
+
 				// call registered snippets
 				startSnippets();
 			}
@@ -379,18 +379,19 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			// Load the resource if not already loaded
 			if (!resource.isLoaded()) {
 				// If this is a read-only resource, create a fake resource to get the internationalization content and read the needed entries
-				if(modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
-					
-					// Unload the resource and remove the created resource from the map
+				if (modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
+
+					// Unload the resource and remove the created resource from the map and from the resource set
 					unload(resource);
 					getResources().remove(resource);
+					modelSet.getResources().remove(resource);
 
 					final URI initialResourceURI = resource.getURI();
 					final String lastSegment = initialResourceURI.lastSegment();
 					URI newResourceURI = modelSet.getURIWithoutExtension();
 					newResourceURI = newResourceURI.trimSegments(1);
 					newResourceURI = newResourceURI.appendSegment(lastSegment);
-					
+
 					// Create the resource with the ResourceSet but this one need to be removed from the ResourceSet
 					// Look for the resource
 					resource = getResourceSet().getResource(newResourceURI, false);
@@ -400,22 +401,24 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 						resource = modelSet.createResource(newResourceURI);
 					}
 					configureResource(initialResourceURI, resource, locale);
-					
+
 					if (resource instanceof InternationalizationResource) {
 						final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resource)
 								.getDefaultLoadOptions();
 						defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT, true);
 					}
-					
+
 					try {
 						resource.load(null);
 					} catch (IOException e) {
 						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
 					}
-					
+
 					// And add the temporary resource to the list of resources to not save
 					resourcesToNotSave.add(resource);
-				}else {
+					// The resource set don't need to have this file anymore
+					modelSet.getResources().remove(resource);
+				} else {
 					try {
 						resource.load(null);
 					} catch (IOException e) {
@@ -576,7 +579,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			command.execute();
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -586,14 +589,14 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	public void setModelURI(final URI uriWithoutExtension) {
 		// Compute model URI
 		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
-				
+
 		for (final Resource resource : getResources()) {
-			if(!resourcesToNotSave.contains(resource)) {
+			if (!resourcesToNotSave.contains(resource)) {
 				updateURI(resource, uriWithoutExtension);
 			}
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -604,26 +607,26 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		// Get the initial URI and locale for the resource
 		final URI initialURI = getInitialURIForResource(resource);
 		final Locale locale = getLocaleForResource(resource);
-		
+
 		// Calculate the new URI with the correct name (depending to locale)
 		URI newBaseURI = newURIwithoutExtension.trimFileExtension();
-		if(null == locale || !locale.toString().isEmpty()){
+		if (null == locale || !locale.toString().isEmpty()) {
 			String lastSegment = newBaseURI.lastSegment();
 			lastSegment = lastSegment + LocaleNameResolver.UNDERSCORE + locale.toString();
 			newBaseURI = newBaseURI.trimSegments(1);
 			newBaseURI = newBaseURI.appendSegment(lastSegment);
 		}
 		newBaseURI = newBaseURI.appendFileExtension(getModelFileExtension());
-		
+
 		// Set the new URI
 		resource.setURI(newBaseURI);
-		
+
 		// Remove the old resource URI from map
 		propertiesByLocale.get(initialURI).remove(locale);
-		if(propertiesByLocale.get(initialURI).isEmpty()){
+		if (propertiesByLocale.get(initialURI).isEmpty()) {
 			propertiesByLocale.remove(initialURI);
 		}
-		
+
 		// Add the new resource URI from map
 		if (null == propertiesByLocale.get(resourceURI)) {
 			propertiesByLocale.put(resourceURI, new HashMap<Locale, Resource>());
@@ -640,7 +643,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	public void saveModel() throws IOException {
 		// Save into the properties files
 		for (final Resource resource : getResources()) {
-			if(!resourcesToNotSave.contains(resource)) {
+			if (!resourcesToNotSave.contains(resource)) {
 				saveResource(resource);
 			}
 		}
@@ -655,7 +658,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *             The input output file exception.
 	 */
 	protected void saveResource(final Resource resource) throws IOException {
-		if(!resourcesToNotSave.contains(resource)) {
+		if (!resourcesToNotSave.contains(resource)) {
 			Map<Object, Object> saveOptions = null;
 			if (resource instanceof XMLResource) {
 				saveOptions = ((XMLResource) resource).getDefaultSaveOptions();
@@ -1251,9 +1254,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected static EObject getParentEObject(final EObject eObject) {
 		EObject parentEObject = eObject;
 		if (eObject instanceof Table) {
-			if(null != ((Table) eObject).getOwner()){
+			if (null != ((Table) eObject).getOwner()) {
 				parentEObject = ((Table) eObject).getOwner();
-			}else{
+			} else {
 				parentEObject = ((Table) eObject).getContext();
 			}
 		} else if (eObject instanceof Diagram) {
@@ -1325,7 +1328,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			preferencePartLabelSynchronizers.clear();
 			preferencePartLabelSynchronizers = null;
 		}
-		
+
 		resourcesToNotSave.clear();
 
 		resource = null;
@@ -1364,12 +1367,12 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					entriesIterator.remove();
 				}
 			}
-			
-			if(propertiesByLocale.get(initialUri).isEmpty()) {
+
+			if (propertiesByLocale.get(initialUri).isEmpty()) {
 				propertiesByLocale.remove(initialUri);
 			}
 		}
-		
+
 		resource.unload();
 	}
 
