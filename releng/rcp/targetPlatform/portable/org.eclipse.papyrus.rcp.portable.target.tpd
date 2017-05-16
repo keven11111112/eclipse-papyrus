@@ -10,7 +10,7 @@ location egit "http://download.eclipse.org/egit/updates-4.6" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M6-201703082000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M7-201705120500/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -18,7 +18,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20170328-0000" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.23.0/v20170419-0302" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -29,7 +29,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20170328-0000" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201703140832" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201705111548" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }

@@ -70,4 +70,4 @@ location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20170328-0000" // oomph
+location mylyn "http://download.eclipse.org/mylyn/drops/3.23.0/v20170419-0302" // oomph
