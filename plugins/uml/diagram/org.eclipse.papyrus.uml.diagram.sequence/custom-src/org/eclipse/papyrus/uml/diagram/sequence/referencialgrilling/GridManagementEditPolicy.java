@@ -97,7 +97,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 */
 	public void setMoveAllLinesAtSamePosition(boolean moveAllLinesAtSamePosition) {
 
-		System.out.println(">> set moveAllLinesAtSamePosition="+moveAllLinesAtSamePosition);
+		////System.out.println(">> set moveAllLinesAtSamePosition="+moveAllLinesAtSamePosition);
 		this.moveAllLinesAtSamePosition = moveAllLinesAtSamePosition;
 	}
 
@@ -289,16 +289,16 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			}
 
 			if(covered.size()== lifeline.getCoveredBys().size()){
-				System.err.println("equality");
+				////System.err.println("equality");
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			}
 			else if( covered.size()<lifeline.getCoveredBys().size()){
-				System.err.println("Event not managed or in being created");
+				////System.err.println("Event not managed or in being created");
 				//covered.addAll(lifeline.getCoveredBys());
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			}
 			else if( covered.size()>lifeline.getCoveredBys().size()){
-				System.err.println("more event that in the lifeline due to combined fragment");
+				////System.err.println("more event that in the lifeline due to combined fragment");
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			}
 		}
@@ -338,7 +338,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			//after a command execution moveAllLinesAtSamePosition is set to false
 			// we must explicitly set to true if we want to move it as a line
 			setMoveAllLinesAtSamePosition(true);
-			System.out.println("executed Commmand");
+			//System.out.println("executed Commmand");
 		}
 		else {
 

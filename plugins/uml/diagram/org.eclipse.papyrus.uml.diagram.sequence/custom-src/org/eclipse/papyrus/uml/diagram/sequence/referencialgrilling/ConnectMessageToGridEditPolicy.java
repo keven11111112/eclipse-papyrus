@@ -64,7 +64,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 	public ConnectMessageToGridEditPolicy() {
 	}
 
-	
+
 	/**
 	 * update an axis of the grid from coordinate X or Y
 	 * @param axis the axis to update
@@ -74,10 +74,12 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 	protected void updatePositionGridAxis(DecorationNode axis, int x, int y) {
 		Location currentBounds=(Location)	axis.getLayoutConstraint();
 		if(x<currentBounds.getX()-displayImprecision||x>currentBounds.getX()+displayImprecision){
+			//System.out.println("+---->ACTION: modifiy AXIS to x="+x+" y="+y);
 			execute( new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Column", new EObjectAdapter(axis), new Point(x,y)));
 
 		}
 		if(y<currentBounds.getY()-displayImprecision||y>currentBounds.getY()+displayImprecision){
+			//System.out.println("+---->ACTION: modifiy AXIS to x="+x+" y="+y);
 			execute( new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update row", new EObjectAdapter(axis), new Point(x,y)));
 		}
 	}
@@ -139,7 +141,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 		}
 	}
 
-	/* Gets the diagram event broker from the editing domain.
+	/** Gets the diagram event broker from the editing domain.
 	 *
 	 * @return the diagram event broker
 	 */
@@ -173,6 +175,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 		if( diagramEditPart!=null){
 			//CREATION
 			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_SourceAnchor().equals(notification.getFeature())&& notification.getNewValue()!=null){
+				//System.out.println("+ EVENT :CREATION add SourceAnchor "+notification.getNotifier());
 				IdentityAnchor anchor=(IdentityAnchor)notification.getNewValue();
 				if(anchor.getId()!=null&& !(anchor.getId().equals(""))){
 					ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
@@ -200,6 +203,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 			//CREATION
 			if( notification.getNotifier().equals(((EObject)getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_TargetAnchor().equals(notification.getFeature()) && notification.getNewValue()!=null){
+				//System.out.println("+ EVENT: CREATION add targetAnchor "+notification.getNotifier());
 				IdentityAnchor anchor=(IdentityAnchor)notification.getNewValue();
 				if(anchor.getId()!=null&& !(anchor.getId().equals(""))){
 					ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
@@ -226,24 +230,21 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 			}
 			//A move has been done by the user
 			if( notification.getEventType()==Notification.SET&&  notification.getNotifier() instanceof IdentityAnchor ){
+				//System.out.println("+EVENT IdentificationAnchor change "+notification.getNotifier());
 				ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost(); 
 				Edge edge= (Edge)connectionEditPart.getNotationView();
 				if( notification.getNotifier().equals(edge.getSourceAnchor())&& rowSource!=null){
 					IdentityAnchor anchor=(IdentityAnchor)edge.getSourceAnchor();
 					NamedElementEditPart sourceEditpart=(NamedElementEditPart)connectionEditPart.getSource();
 					int anchorY=computeAnchorPositionNotation(anchor, sourceEditpart);
-					/////////////////////////////////////////////////////						
-					System.out.println("A mouve done for "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to source "+anchorY);
-					/////////////////////////////////////////////////////					
+					//System.out.println("+--> SOURCE change for "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" to "+anchorY+ " ");
 					updatePositionGridAxis((DecorationNode)rowSource, 0, anchorY);
 				}
 				if( notification.getNotifier().equals(edge.getTargetAnchor())&& rowTarget!=null){
 					IdentityAnchor anchor=(IdentityAnchor)edge.getTargetAnchor();
 					NamedElementEditPart editpart=(NamedElementEditPart)connectionEditPart.getTarget();
 					int anchorY=computeAnchorPositionNotation(anchor, editpart);
-					/////////////////////////////////////////////////////						
-					System.out.println("A mouve done for "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to target "+anchorY);
-					/////////////////////////////////////////////////////	
+					//System.out.println("+-->TARGET change "+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" to "+anchorY+ " ");
 					updatePositionGridAxis((DecorationNode)rowTarget, 0, anchorY);
 				}
 
@@ -252,81 +253,59 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 			//a ROW AXIS has changed at Source
 			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location &&(((EObject)notification.getNotifier()).eContainer().equals(rowSource)) ){
-
+				//System.out.println("+ EVENT source Axis modified :" +notification);
 				GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
 				if (grilling!=null){
 					if(Math.abs(notification.getOldIntValue()-notification.getNewIntValue())>grilling.threshold){
 						ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost();
-
 						Edge edge=(Edge)connectionEditPart.getModel();
 						IdentityAnchor sourceAchor=(IdentityAnchor)edge.getSourceAnchor();
 						View viewsr=edge.getSource();
-						double xpercent=IdentityAnchorHelper.getXPercentage(sourceAchor);
-
-						//calculate  bounds from notation
-						PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewsr);
-						bounds.height=BoundForEditPart.getHeightFromView((Node)viewsr);
-						Location boundsRow=(Location)	((Node)rowSource).getLayoutConstraint();
-
-						Integer intergerY= new Integer(boundsRow.getY());
-						double newY= intergerY.doubleValue();
-						double localY=(newY-bounds.preciseY());
-
-						double newPercentY	= localY/bounds.preciseHeight();
-
-						///////////////////////////////////////////////////////////
-						System.out.println("A row change done for the source"+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to "+newY+"-->"+localY+" percent : old: "+ sourceAchor+" new "+newPercentY);
-						/////////////////////////////////////////////////////////////////////////////////////////	
-						if(newPercentY>1){
-							newPercentY=0.99;
-						}
-						if(newPercentY<0){
-							newPercentY=0.01;
-						}
-						if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
-							final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xpercent, newPercentY);
-							execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), sourceAchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
-						}
+						modifyAnchor(sourceAchor,(Node)viewsr,(DecorationNode) rowSource);
 					}
 				}
 			}
-		
-		//a ROW has changed at target
-		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location &&(((EObject)notification.getNotifier()).eContainer().equals(rowTarget)) ){
-			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
-			if (grilling!=null){
-				if(Math.abs(notification.getOldIntValue()-notification.getNewIntValue())>grilling.threshold){
-					ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost();
-					Edge edge=(Edge)connectionEditPart.getModel();
-					IdentityAnchor targetAchor=(IdentityAnchor)edge.getTargetAnchor();
-					View viewtg=edge.getTarget();
-					double xpercent=IdentityAnchorHelper.getXPercentage(targetAchor);
-					//margin calculus
-					PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds((Node)viewtg);
-					bounds.height=BoundForEditPart.getHeightFromView((Node)viewtg);
-					Location boundsRow=(Location)	((Node)rowTarget).getLayoutConstraint();
 
-					Integer intergerY= new Integer(boundsRow.getY());
-					double newY= intergerY.doubleValue();
-					double localY=(newY-bounds.preciseY());
-					double newPercentY	= localY/bounds.preciseHeight();
-					///////////////////////////////////////////////////////////
-					System.out.println("A row change done for the target"+((NamedElement)connectionEditPart.resolveSemanticElement()).getName()+" by the user to "+newY+"-->"+localY+" percent : old: "+ targetAchor+" new "+newPercentY);
-					/////////////////////////////////////////////////////////////////////////////////////////	
-
-					if(newPercentY>1){
-						newPercentY=0.99;
-					}
-					if(newPercentY<0){
-						newPercentY=0.01;
-					}
-					if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
-						final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xpercent, newPercentY);
-						execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), targetAchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+			//a ROW has changed at target
+			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Location &&(((EObject)notification.getNotifier()).eContainer().equals(rowTarget)) ){
+			//	System.out.println("+ EVENT target axis modified:" +notification);
+				GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+				if (grilling!=null){
+					if(Math.abs(notification.getOldIntValue()-notification.getNewIntValue())>grilling.threshold){
+						ConnectionEditPart connectionEditPart= (ConnectionEditPart)getHost();
+						Edge edge=(Edge)connectionEditPart.getModel();
+						IdentityAnchor targetAchor=(IdentityAnchor)edge.getTargetAnchor();
+						View viewtg=edge.getTarget();
+						modifyAnchor( targetAchor, (Node)viewtg,(DecorationNode)rowTarget);
 					}
 				}
 			}
 		}
+	}
+
+	protected void modifyAnchor( IdentityAnchor anchor, Node connectedView, DecorationNode axis) {
+		double xpercent=IdentityAnchorHelper.getXPercentage(anchor);
+		PrecisionRectangle bounds= NotationHelper.getAbsoluteBounds(connectedView);
+		bounds.height=BoundForEditPart.getHeightFromView(connectedView);
+		Location boundsRow=(Location)	((Node)axis).getLayoutConstraint();
+		Integer intergerY= new Integer(boundsRow.getY());
+		double newY= intergerY.doubleValue();
+		double localY=(newY-bounds.preciseY());
+
+		double newPercentY	= localY/bounds.preciseHeight();
+		double oldPercentY=IdentityAnchorHelper.getYPercentage(anchor);
+		if( Math.abs(oldPercentY-newPercentY)>0.05) {
+			if(newPercentY>1){
+				newPercentY=0.99;
+			}
+			if(newPercentY<0){
+				newPercentY=0.01;
+			}
+			if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
+				final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xpercent, newPercentY);
+				//System.out.println("+---->ACTION: modify anchor to precentY="+newPercentY);
+				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+			}
 		}
 	}
 

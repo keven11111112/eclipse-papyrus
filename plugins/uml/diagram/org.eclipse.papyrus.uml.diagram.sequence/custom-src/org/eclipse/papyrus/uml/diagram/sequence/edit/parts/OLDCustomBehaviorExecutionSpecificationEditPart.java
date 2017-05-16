@@ -36,7 +36,6 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
@@ -53,10 +52,8 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.BehaviorDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -329,13 +326,7 @@ public class OLDCustomBehaviorExecutionSpecificationEditPart extends BehaviorExe
 			location.setY(16);
 			behaviorLabel.setLayoutConstraint(location);
 			behaviorLabel.setType(BehaviorExecutionSpecificationBehaviorEditPart.BEHAVIOR_TYPE);
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new DummyCommand() {
-
-				@Override
-				public void execute() {
-					ViewUtil.insertChildView(view, behaviorLabel, ViewUtil.APPEND, true);
-				}
-			}, true);
+			
 			modelChildren.add(behaviorLabel);
 		}
 		return modelChildren;

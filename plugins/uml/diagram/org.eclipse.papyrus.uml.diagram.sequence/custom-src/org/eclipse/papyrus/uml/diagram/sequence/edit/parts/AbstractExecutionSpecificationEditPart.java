@@ -55,7 +55,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	public static int DEFAUT_HEIGHT=100;
 	public static int DEFAUT_WIDTH=20;
 	
-	private List<ExecutionSpecificationEndEditPart> executionSpecificationEndParts;
+	//private List<ExecutionSpecificationEndEditPart> executionSpecificationEndParts;
 
 	public AbstractExecutionSpecificationEditPart(View view) {
 		super(view);
@@ -63,9 +63,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 
 	@Override
 	public List getChildren() {
-		if (executionSpecificationEndParts == null) {
-			initExecutionSpecificationEndEditPart();
-		}
+		//if (executionSpecificationEndParts == null) {
+		//	initExecutionSpecificationEndEditPart();
+		//}
 		return super.getChildren();
 	}
 
@@ -74,17 +74,17 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		if (!(element instanceof ExecutionSpecification)) {
 			return;
 		}
-		executionSpecificationEndParts = new ArrayList<ExecutionSpecificationEndEditPart>();
+		//executionSpecificationEndParts = new ArrayList<ExecutionSpecificationEndEditPart>();
 		ExecutionSpecification execution = (ExecutionSpecification) element;
-		final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
-		executionSpecificationEndParts.add(startPart);
-		final ExecutionSpecificationEndEditPart finishPart = new ExecutionSpecificationEndEditPart(execution.getFinish(), this, new RelativeLocator(getFigure(), PositionConstants.SOUTH));
-		executionSpecificationEndParts.add(finishPart);
+		//final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
+		//executionSpecificationEndParts.add(startPart);
+		//final ExecutionSpecificationEndEditPart finishPart = new ExecutionSpecificationEndEditPart(execution.getFinish(), this, new RelativeLocator(getFigure(), PositionConstants.SOUTH));
+		//executionSpecificationEndParts.add(finishPart);
 		Diagram diagram = ((View) this.getModel()).getDiagram();
-		startPart.rebuildLinks(diagram);
-		finishPart.rebuildLinks(diagram);
-		addChild(startPart, -1);
-		addChild(finishPart, -1);
+		//startPart.rebuildLinks(diagram);
+		//finishPart.rebuildLinks(diagram);
+		//addChild(startPart, -1);
+		//addChild(finishPart, -1);
 	}
 
 	static class FillParentLocator implements Locator {

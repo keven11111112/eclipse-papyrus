@@ -265,7 +265,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			eventBroker = DiagramEventBroker.getInstance(domain);
 
 
-			if (eventBroker != null) {
+			if (eventBroker != null &&listener!=null) {
 				eventBroker.addNotificationListener(eObject, listener);
 			}
 		}

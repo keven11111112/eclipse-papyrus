@@ -55,17 +55,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 		return svgNodePlate;
 	}
 	
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getCommand(org.eclipse.gef.Request)
-	 *
-	 * @param _request
-	 * @return
-	 */
-	@Override
-	public Command getCommand(Request _request) {
-		// TODO Auto-generated method stub
-		return super.getCommand(_request);
-	}
+	
 	
 	@Override
 	public void setLayoutConstraint(EditPart child, IFigure childFigure, Object constraint) {

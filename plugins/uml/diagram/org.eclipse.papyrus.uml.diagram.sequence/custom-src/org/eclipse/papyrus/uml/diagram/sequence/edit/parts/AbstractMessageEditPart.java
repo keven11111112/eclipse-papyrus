@@ -198,56 +198,13 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		return null;
 	}
 
-	@Override
-	public List getChildren() {
-		if (messageEventParts == null) {
-			initMessageEventPart();
-		}
-		return super.getChildren();
-	}
 
-	protected void initMessageEventPart() {
-		messageEventParts = new ArrayList();
-
-		String id = String.valueOf(MessageEndEditPart.VISUAL_ID);
-		List list = this.getModelChildren();
-		for (Object o : list) {
-			if (o instanceof Shape) {
-				Shape s = (Shape) o;
-				if (s.getType().equals(id))
-				{
-					return; // if the model already persist, do not create it again
-				}
-			}
-		}
-
-		EObject element = this.resolveSemanticElement();
-		if (!(element instanceof Message)) {
-			return;
-		}
-		Message message = (Message) element;
-		UMLEdgeFigure edgeFigure = (UMLEdgeFigure) this.getFigure();
-		Diagram diagram = ((View) this.getModel()).getDiagram();
-		if (!(message.getSendEvent() instanceof Gate)) {
-			final MessageEndEditPart sendEventPart = new MessageEndEditPart(message.getSendEvent(), this, new ConnectionLocator(edgeFigure, ConnectionLocator.SOURCE));
-			messageEventParts.add(sendEventPart);
-			sendEventPart.rebuildLinks(diagram);
-			addChild(sendEventPart, -1);
-		}
-		if (!(message.getReceiveEvent() instanceof Gate)) {
-			final MessageEndEditPart receiveEventPart = new MessageEndEditPart(message.getReceiveEvent(), this, new ConnectionLocator(edgeFigure, ConnectionLocator.TARGET));
-			messageEventParts.add(receiveEventPart);
-			receiveEventPart.rebuildLinks(diagram);
-			addChild(receiveEventPart, -1);
-		}
-	}
-
+	
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MessageLabelEditPolicy());
 		// Ordering Message Occurrence Specification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
-		installEditPolicy(InteractionFragmentsOrderingEditPolicy.ORDERING_ROLE, new InteractionFragmentsOrderingEditPolicy());
 		installEditPolicy(ConnectPointToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectMessageToGridEditPolicy());
 		
 	}

@@ -152,27 +152,6 @@ public abstract class AnnotatedLinkEditPart extends org.eclipse.papyrus.infra.gm
 			set.add(targetConnection);
 			getSourceAndTargetConnections(set, next);
 		}
-		// For message edit part, we need to collect all connections from message ends.
-		if (connectionEditPart instanceof AbstractMessageEditPart) {
-			List children = ((AbstractMessageEditPart) connectionEditPart).getChildren();
-			for (Object object : children) {
-				if (!(object instanceof MessageEndEditPart)) {
-					continue;
-				}
-				for (Iterator i = ((MessageEndEditPart) object).getSourceConnections().iterator(); i.hasNext();) {
-					org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart) i.next();
-					Connection sourceConnection = (Connection) next.getFigure();
-					set.add(sourceConnection);
-					getSourceAndTargetConnections(set, next);
-				}
-				for (Iterator i = ((MessageEndEditPart) object).getTargetConnections().iterator(); i.hasNext();) {
-					org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart) i.next();
-					Connection targetConnection = (Connection) next.getFigure();
-					set.add(targetConnection);
-					getSourceAndTargetConnections(set, next);
-				}
-			}
-		}
 	}
 
 	@Override

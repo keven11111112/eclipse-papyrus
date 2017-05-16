@@ -15,28 +15,22 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import java.util.Map;
 
-import javax.swing.text.StyleConstants.ColorConstants;
-
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.FeedbackHelper;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
-import org.eclipse.gef.tools.AbstractTool.Input;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
@@ -50,20 +44,15 @@ import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.snap.SnapUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
-import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -75,6 +64,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	/** manage only for FOUND message**/
 	private GraphicalNodeEditPolicy graphicalNodeEditPolicy=null;
 	private DisplayEvent displayEvent;
+
+
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionCreateCommand(org.eclipse.gef.requests.CreateConnectionRequest)
@@ -184,6 +175,10 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 				request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_SYNCH_EDGE.getSemanticHint())) {
 			// in the case of messages of sort: synchCall, asynchCall or asynchSignal
 			// an execution specification may be created at target
+			DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
+			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			grid.setMoveAllLinesAtSamePosition(false);
+
 			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg= new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart)request.getTargetEditPart());
 			CompoundCommand compoundCommand= new CompoundCommand();
 			compoundCommand.add(cmd);
@@ -194,15 +189,29 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		if(request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_FOUND_EDGE.getSemanticHint())){
 			// in the case of the found message, because the serialization is very specific , we must call basic editpolicy of GMF
 			// so we create an new instance of the GraphicalNode editpolicy and we delegate the operation.
-			if( graphicalNodeEditPolicy==null){
-				graphicalNodeEditPolicy =new GraphicalNodeEditPolicy();
-				graphicalNodeEditPolicy.setHost(getHost());
-			}
-			return graphicalNodeEditPolicy.getCommand(request);
+			return getBasicGraphicalNodeEditPolicy().getCommand(request);
 		}
 
 
 		return cmd;
+	}
+
+
+	protected GraphicalNodeEditPolicy getBasicGraphicalNodeEditPolicy() {
+		if( graphicalNodeEditPolicy==null){
+			graphicalNodeEditPolicy =new GraphicalNodeEditPolicy();
+			graphicalNodeEditPolicy.setHost(getHost());
+		}
+		return graphicalNodeEditPolicy;
+	}
+
+	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
+		return getBasicGraphicalNodeEditPolicy().getCommand(request);
+	}
+
+
+	protected Command getReconnectTargetCommand(ReconnectRequest request) {
+		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
 	/**
@@ -216,20 +225,22 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		Lifeline lifeline=(Lifeline) lifelineEditPart.resolveSemanticElement();
 		try{
 			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
-			for (DecorationNode row : grilling.rows) {
-				Point currentPoint=GridManagementEditPolicy.getLocation(row);
-				if( currentPoint.y<point.y){
-					if( GridManagementEditPolicy.getRef(row)!=null){
-						for ( EObject referedElement : GridManagementEditPolicy.getRef(row)) {
-							if( referedElement instanceof View && ((View)referedElement).getElement() instanceof Message){
-								Message message=(Message)((View)referedElement).getElement();
-								MessageEnd receiveEvent=message.getReceiveEvent();
-								if(lifeline.getCoveredBys().contains(receiveEvent) ){
-									previous=receiveEvent;
-								}
-								MessageEnd sendEvent=message.getSendEvent();
-								if(lifeline.getCoveredBys().contains(sendEvent) ){
-									previous=sendEvent;
+			if(grilling!=null) {
+				for (DecorationNode row : grilling.rows) {
+					Point currentPoint=GridManagementEditPolicy.getLocation(row);
+					if( currentPoint.y<point.y){
+						if( GridManagementEditPolicy.getRef(row)!=null){
+							for ( EObject referedElement : GridManagementEditPolicy.getRef(row)) {
+								if( referedElement instanceof View && ((View)referedElement).getElement() instanceof Message){
+									Message message=(Message)((View)referedElement).getElement();
+									MessageEnd receiveEvent=message.getReceiveEvent();
+									if(lifeline.getCoveredBys().contains(receiveEvent) ){
+										previous=receiveEvent;
+									}
+									MessageEnd sendEvent=message.getSendEvent();
+									if(lifeline.getCoveredBys().contains(sendEvent) ){
+										previous=sendEvent;
+									}
 								}
 							}
 						}
@@ -288,7 +299,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 			}
 		}
-		
+
 		return super.getFeedbackHelper(request);
 	}
 

@@ -25,7 +25,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -37,12 +36,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.StateInvariantResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.StateInvariantFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
@@ -182,13 +179,7 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 			final View view = getNotationView();
 			final DecorationNode guardNode = NotationFactory.eINSTANCE.createDecorationNode();
 			guardNode.setType(UMLVisualIDRegistry.getType(StateInvariantLabelEditPart.VISUAL_ID));
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new DummyCommand() {
-
-				@Override
-				public void execute() {
-					ViewUtil.insertChildView(view, guardNode, ViewUtil.APPEND, true);
-				}
-			}, true);
+			
 			modelChildren.add(guardNode);
 		}
 		return modelChildren;

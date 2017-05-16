@@ -80,9 +80,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart.GuardFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDCombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandAppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
@@ -441,13 +439,7 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 				if (view.getElement() instanceof InteractionOperand) {
 					guardNode.setElement(((InteractionOperand) view.getElement()).getGuard());
 				}
-				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new DummyCommand() {
-
-					@Override
-					public void execute() {
-						ViewUtil.insertChildView(view, guardNode, ViewUtil.APPEND, true);
-					}
-				}, true);
+				
 				modelChildren.add(guardNode);
 			}
 		}
