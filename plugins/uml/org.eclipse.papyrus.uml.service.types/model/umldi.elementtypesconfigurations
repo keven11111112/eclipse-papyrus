@@ -1030,7 +1030,7 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.Diagram_ShortcutShape" identifier="org.eclipse.papyrus.umldi.Diagram_ShortcutShape" name="Diagram Shortcut Shape" hint="Diagram_ShortcutShape">
     <iconEntry xmi:id="_sRs0sNx2EeWVxMf7SXAfhg" iconPath="/icons/full/obj16/Diagram.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypes xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/notation.elementtypesconfigurations#org.eclipse.papyrus.uml.Abstraction"/>
+    <specializedTypes xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/notation.elementtypesconfigurations#org.eclipse.papyrus.gmfdiag.common.Diagram"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape" identifier="org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape" name="Duration Constraint Local Postcondition Shape" hint="DurationConstraint_LocalPostconditionShape">
     <iconEntry xmi:id="_r9thsNx2EeWVxMf7SXAfhg" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
