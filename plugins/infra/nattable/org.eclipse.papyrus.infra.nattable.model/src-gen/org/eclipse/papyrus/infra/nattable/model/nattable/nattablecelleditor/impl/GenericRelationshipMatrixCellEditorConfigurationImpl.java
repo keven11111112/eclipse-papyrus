@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.imp
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -87,7 +88,7 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	protected MatrixRelationShipDirection direction = DIRECTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCellContentsFilter() <em>Cell Contents Filter</em>}' reference.
+	 * The cached value of the '{@link #getCellContentsFilter() <em>Cell Contents Filter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCellContentsFilter()
@@ -173,14 +174,6 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @generated
 	 */
 	public IBooleanEObjectExpression getCellContentsFilter() {
-		if (cellContentsFilter != null && cellContentsFilter.eIsProxy()) {
-			InternalEObject oldCellContentsFilter = (InternalEObject)cellContentsFilter;
-			cellContentsFilter = (IBooleanEObjectExpression)eResolveProxy(oldCellContentsFilter);
-			if (cellContentsFilter != oldCellContentsFilter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER, oldCellContentsFilter, cellContentsFilter));
-			}
-		}
 		return cellContentsFilter;
 	}
 
@@ -189,8 +182,14 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IBooleanEObjectExpression basicGetCellContentsFilter() {
-		return cellContentsFilter;
+	public NotificationChain basicSetCellContentsFilter(IBooleanEObjectExpression newCellContentsFilter, NotificationChain msgs) {
+		IBooleanEObjectExpression oldCellContentsFilter = cellContentsFilter;
+		cellContentsFilter = newCellContentsFilter;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER, oldCellContentsFilter, newCellContentsFilter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -199,10 +198,17 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @generated
 	 */
 	public void setCellContentsFilter(IBooleanEObjectExpression newCellContentsFilter) {
-		IBooleanEObjectExpression oldCellContentsFilter = cellContentsFilter;
-		cellContentsFilter = newCellContentsFilter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER, oldCellContentsFilter, cellContentsFilter));
+		if (newCellContentsFilter != cellContentsFilter) {
+			NotificationChain msgs = null;
+			if (cellContentsFilter != null)
+				msgs = ((InternalEObject)cellContentsFilter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER, null, msgs);
+			if (newCellContentsFilter != null)
+				msgs = ((InternalEObject)newCellContentsFilter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER, null, msgs);
+			msgs = basicSetCellContentsFilter(newCellContentsFilter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER, newCellContentsFilter, newCellContentsFilter));
 	}
 
 	/**
@@ -249,6 +255,20 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER:
+				return basicSetCellContentsFilter(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_EDITOR_ID:
@@ -256,8 +276,7 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__DIRECTION:
 				return getDirection();
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER:
-				if (resolve) return getCellContentsFilter();
-				return basicGetCellContentsFilter();
+				return getCellContentsFilter();
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT:
 				if (resolve) return getEditedElement();
 				return basicGetEditedElement();

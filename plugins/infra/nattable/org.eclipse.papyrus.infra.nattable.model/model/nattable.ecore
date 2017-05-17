@@ -2149,7 +2149,8 @@
       <eStructuralFeatures
           xsi:type="ecore:EReference"
           name="cellContentsFilter"
-          eType="ecore:EClass ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//booleanexpressions/IBooleanEObjectExpression">
+          eType="ecore:EClass ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//booleanexpressions/IBooleanEObjectExpression"
+          containment="true">
         <eAnnotations
             source="http://www.eclipse.org/emf/2002/GenModel">
           <details

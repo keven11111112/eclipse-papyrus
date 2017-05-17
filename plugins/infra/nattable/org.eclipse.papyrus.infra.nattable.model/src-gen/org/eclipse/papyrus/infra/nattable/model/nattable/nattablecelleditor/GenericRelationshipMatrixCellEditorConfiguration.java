@@ -70,25 +70,25 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	void setDirection(MatrixRelationShipDirection value);
 
 	/**
-	 * Returns the value of the '<em><b>Cell Contents Filter</b></em>' reference.
+	 * Returns the value of the '<em><b>Cell Contents Filter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * This field allows to the user to filter the contents of the cells.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Cell Contents Filter</em>' reference.
+	 * @return the value of the '<em>Cell Contents Filter</em>' containment reference.
 	 * @see #setCellContentsFilter(IBooleanEObjectExpression)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration_CellContentsFilter()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	IBooleanEObjectExpression getCellContentsFilter();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getCellContentsFilter <em>Cell Contents Filter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getCellContentsFilter <em>Cell Contents Filter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cell Contents Filter</em>' reference.
+	 * @param value the new value of the '<em>Cell Contents Filter</em>' containment reference.
 	 * @see #getCellContentsFilter()
 	 * @generated
 	 */
