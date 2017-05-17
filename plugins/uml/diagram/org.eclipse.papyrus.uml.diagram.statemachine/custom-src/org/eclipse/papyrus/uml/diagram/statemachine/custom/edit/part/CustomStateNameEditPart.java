@@ -75,11 +75,15 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-
 		StateFigure stateFigure = ((StateEditPart) getParent()).getPrimaryShape();
-		State state = (State) ((View) getModel()).getElement();
-
+		
 		View stateLabelView = (View) getModel();
+		if(!(stateLabelView.getElement() instanceof State)) {
+			return;
+		}
+		
+		State state = (State) stateLabelView.getElement();
+		
 		View stateView = (View) stateLabelView.eContainer();
 		if (stateView == null) {
 			return;
