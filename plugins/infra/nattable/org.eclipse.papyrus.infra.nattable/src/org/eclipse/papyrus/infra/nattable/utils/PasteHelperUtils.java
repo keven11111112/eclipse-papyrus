@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.utils;
 import java.io.Reader;
 import java.util.Map;
 
+import org.eclipse.papyrus.editor.Activator;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
@@ -168,9 +169,7 @@ public class PasteHelperUtils {
 					if (minDepth > ((TreeFillingConfiguration) selectedRows.get(rowIndex)).getDepth()) {
 						minDepth = ((TreeFillingConfiguration) selectedRows.get(rowIndex)).getDepth();
 					}
-				} else {
-					System.out.println(selectedRows.get(rowIndex));
-				}
+				} 
 			}
 		}
 

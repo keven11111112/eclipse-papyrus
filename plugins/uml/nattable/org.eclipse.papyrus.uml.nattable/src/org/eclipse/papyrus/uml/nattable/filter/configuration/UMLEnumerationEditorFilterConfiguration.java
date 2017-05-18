@@ -225,7 +225,7 @@ public class UMLEnumerationEditorFilterConfiguration extends EEnumFilterCellEdit
 				return null;
 			}
 			IAxis iaxis = (IAxis) axis;
-			CompoundCommand cc = new CompoundCommand("Set Filter Value Command");
+			CompoundCommand cc = new CompoundCommand("Set Filter Value Command"); //$NON-NLS-1$
 			NamedStyle keyStyle = getValueToMatchStyle(iaxis);
 			if (newValue instanceof Collection<?>) {
 				Collection<?> coll = (Collection<?>) newValue;

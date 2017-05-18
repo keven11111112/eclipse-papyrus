@@ -36,12 +36,12 @@ import org.eclipse.uml2.uml.Property;
 public class CreateRowStereotypePropertyMenuFactory extends AbstractCreateStereotypePropertyMenuFactory {
 
 	/** the label of the menu */
-	public static final String MENU_LABEL = "Select Stereotype Properties Rows";
+	public static final String MENU_LABEL = "Select Stereotype Properties Rows"; //$NON-NLS-1$
 
 	/**
 	 * the path of the icon to use for this menu
 	 */
-	private static final String ICON_PATH = "/icons/stereotypePropertyRow.gif";
+	private static final String ICON_PATH = "/icons/stereotypePropertyRow.gif"; //$NON-NLS-1$
 
 	/**
 	 *

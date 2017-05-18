@@ -195,19 +195,19 @@ public class RowConfigurationWizardPage extends AbstractAxisConfigurationWizardP
 				final Menu menu = new Menu(addAxisConfiguration);
 				final MenuItem treeFillingItem = new MenuItem(menu, SWT.NONE);
 				treeFillingItem.setText(Messages.RowConfigurationWizardPage_treeFillingConfigurationLabel);
-				treeFillingItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("TreeFillingConfiguration")); //$NON-NLS-1$ //$NON-NLS-2$
+				treeFillingItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("TreeFillingConfiguration")); //$NON-NLS-1$
 				treeFillingItem.addSelectionListener(selectionListener);
 				final MenuItem pasteEObjectItem = new MenuItem(menu, SWT.NONE);
 				pasteEObjectItem.setText(Messages.RowConfigurationWizardPage_pasteConfigurationLabel);
-				pasteEObjectItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("PasteEObjectConfiguration")); //$NON-NLS-1$ //$NON-NLS-2$
+				pasteEObjectItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("PasteEObjectConfiguration")); //$NON-NLS-1$
 				pasteEObjectItem.addSelectionListener(selectionListener);
 				final MenuItem featureAxisItem = new MenuItem(menu, SWT.NONE);
 				featureAxisItem.setText(Messages.RowConfigurationWizardPage_featureAxisLabel);
-				featureAxisItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("FeatureAxisConfiguration")); //$NON-NLS-1$ //$NON-NLS-2$
+				featureAxisItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("FeatureAxisConfiguration")); //$NON-NLS-1$
 				featureAxisItem.addSelectionListener(selectionListener);
 				final MenuItem featureValueFillingItem = new MenuItem(menu, SWT.NONE);
 				featureValueFillingItem.setText(Messages.RowConfigurationWizardPage_eStructuralFeatureValueFillingConfigurationLabel);
-				featureValueFillingItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("EStructuralFeatureValueFillingConfiguration")); //$NON-NLS-1$ //$NON-NLS-2$
+				featureValueFillingItem.setData(E_CLASS, NattableaxisconfigurationPackage.eINSTANCE.getEClassifier("EStructuralFeatureValueFillingConfiguration")); //$NON-NLS-1$
 				featureValueFillingItem.addSelectionListener(selectionListener);
 
 				menu.setVisible(true);
@@ -220,7 +220,7 @@ public class RowConfigurationWizardPage extends AbstractAxisConfigurationWizardP
 							display.sleep();
 						}
 					} catch (Throwable ex) {
-						System.out.println(ex);
+						Activator.log.error(ex);
 					}
 				}
 				if (!display.isDisposed()) {

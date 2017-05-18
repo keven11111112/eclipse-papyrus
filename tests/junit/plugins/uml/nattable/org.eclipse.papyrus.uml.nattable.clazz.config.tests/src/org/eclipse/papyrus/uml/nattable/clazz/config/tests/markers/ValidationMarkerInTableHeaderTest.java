@@ -394,6 +394,8 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 
 	/**
 	 * This method can be used to generate the map initialization for the test method {@link #testNattableTooltipProvider()}
+	 * This method must not be called during the tests execution
+	 * 
 	 */
 	public void generateMapInitializationFortestNattableTooltipProviderTests() {
 		final NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
@@ -419,6 +421,10 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 				// code to generate the values to check
 				if (provider.shouldCreateToolTip(event)) {
 					String txt = provider.getText(event);
+					
+					//these sysout are used to generate the body of the method initializeMapForToolTipTests.
+					//Please don't comment/remove them
+					
 					System.out.println(NLS.bind("createToolTip.put(\"{0}\", true); //$NON-NLS-1$", new Object[] { key, rowPosition })); //$NON-NLS-1$
 					txt = txt.replaceAll("\n", "\\\\n"); //$NON-NLS-1$ //$NON-NLS-2$
 					System.out.println(NLS.bind("valuesToCheck.put(\"{0}\", \"{1}\"); //$NON-NLS-1$ //$NON-NLS-2$", new Object[] { key, txt })); //$NON-NLS-1$

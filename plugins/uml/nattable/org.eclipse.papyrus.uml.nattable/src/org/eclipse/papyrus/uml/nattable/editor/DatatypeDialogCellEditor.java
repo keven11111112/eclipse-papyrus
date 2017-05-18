@@ -124,7 +124,7 @@ public class DatatypeDialogCellEditor extends AbstractUMLMultiValueCellEditor {
 	 */
 	@Override
 	protected Object createDialog(final EObject realEditedObject, final EStructuralFeature realFeature, final Stereotype stereotype, final ResourceSet resourceSet) {
-		return new EObjectTreeDialog(Display.getDefault().getActiveShell(), realEditedObject, realFeature, "DataType Edition") { // $NON-NLS-1$
+		return new EObjectTreeDialog(Display.getDefault().getActiveShell(), realEditedObject, realFeature, "DataType Edition") { //$NON-NLS-1$
 			@Override
 			protected void okPressed() {
 				super.okPressed();

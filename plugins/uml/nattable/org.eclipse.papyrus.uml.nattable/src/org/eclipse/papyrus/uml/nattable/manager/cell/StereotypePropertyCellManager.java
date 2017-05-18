@@ -274,7 +274,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		EStructuralFeature steApFeature = null;
 		if (prop != null) {
 			if (stereotypes.isEmpty()) {
-				if (newValue == null || newValue.isEmpty() || newValue.equalsIgnoreCase(org.eclipse.papyrus.infra.nattable.utils.Constants.NOT_AVALAIBLE)) { // $NON-NLS-1$
+				if (newValue == null || newValue.isEmpty() || newValue.equalsIgnoreCase(org.eclipse.papyrus.infra.nattable.utils.Constants.NOT_AVALAIBLE)) {
 					// Don't apply the stereotype if there's no value to set.
 					return null;
 				}
@@ -382,6 +382,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 * @param tableManager
 	 *            the table manager
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueSolver, Map<?, ?> sharedMap, INattableModelManager tableManager) {
 		// commented to fix bug 480894: [Table]pasting an empty string in a stereotype property colonne throws a java.lang.IllegalStateException
@@ -405,7 +406,6 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 					final String postActionId = Constants.POST_ACTION_APPLY_STEREOTYPE_PREFIX + ((NamedElement) element).getQualifiedName();
 
 					// we register a special post actions to conclude the stereotype application
-					@SuppressWarnings("unchecked")
 					final Collection<String> postActionIds = (Collection<String>) sharedMap.get(org.eclipse.papyrus.infra.nattable.utils.Constants.ADDITIONAL_POST_ACTIONS_TO_CONCLUDE_PASTE_KEY);
 					postActionIds.add(postActionId);
 					// we do the post action : we apply the streotype
