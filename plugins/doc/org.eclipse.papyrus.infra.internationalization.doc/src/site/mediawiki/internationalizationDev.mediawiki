@@ -134,6 +134,7 @@ The <code>UMLLabelInternationalization</code> class contains following needed me
 |}
 
 == Internationalization preferences ==
+===Preferences for internationalization usability===
 Two preferences are managed in the Papyrus model:
 * useInternationalization: Boolean to determinate if the internationalization must be used
 * language: String to define the selected language for the internationalization
@@ -144,12 +145,22 @@ The preferences are stored as EAnnotation:
 * in the metadata in this is not a private storage
 
 
-[[Image:images/InternationalizationPreferences.png|frame|none|Internationalization preferences management]]
+[[Image:images/InternationalizationPreferencesForModel.png|frame|none|Internationalization model preferences management]]
 
 
 Those preferences are managed in a <code>PreferenceStore</code> in the activator of org.eclipse.papyrus.infra.internationalization.common plugin.
 
 The <code>PapyrusProjectScope</code> allows to manage the preferences for the Eclipse project with Papyrus model name.
+
+===Preferences for internationalization activation===
+Two preferences are managed for the internationalization activation:
+* Load internationalization files for model
+* Load internationalization of external files (profiles, imported packages)
+
+[[Image:images/InternationalizationPreferences.png|frame|none|Internationalization preferences management]]
+
+Thoses preferences are stored in the <code>PreferenceStore</code> in the activator of org.eclipse.papyrus.infra.internationalization.common plugin and are managed by the org.eclipse.papyrus.infra.internationalization.common plugin.
+
 
 == Control mode ==
 The sub-models are managed with the properties files.

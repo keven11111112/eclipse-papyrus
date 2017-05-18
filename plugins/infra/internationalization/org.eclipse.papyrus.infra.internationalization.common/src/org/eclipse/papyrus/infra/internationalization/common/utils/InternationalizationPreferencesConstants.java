@@ -38,4 +38,14 @@ public class InternationalizationPreferencesConstants {
 	 */
 	public static final String LANGUAGE_PREFERENCE = "language"; //$NON-NLS-1$
 	
+	/**
+	 * The preference constant to determinate if the internationalization must be used or not.
+	 */
+	public static final String LOAD_INTERNATIONALIZATION = "loadInternationalization"; //$NON-NLS-1$
+	
+	/**
+	 * The preference constant to determinate if the internationalization of the external files must be used or not.
+	 */
+	public static final String LOAD_INTERNATIONALIZATION_OF_EXTERNAL_FILES = "loadInternationalizationofExternalFiles"; //$NON-NLS-1$
+	
 }

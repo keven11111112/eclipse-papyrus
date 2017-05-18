@@ -8,10 +8,10 @@
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
-	<ppe:BooleanCheckbox input="{Binding}"
-		property="welcomeInternationalization:Internationalization:privateStorage"></ppe:BooleanCheckbox>
-	<ppe:BooleanCheckbox input="{Binding}"
-		property="welcomeInternationalization:Internationalization:useInternationalization"></ppe:BooleanCheckbox>
+	<ppewi:BooleanInternationalizationCheckbox input="{Binding}"
+		property="welcomeInternationalization:Internationalization:privateStorage"></ppewi:BooleanInternationalizationCheckbox>
+	<ppewi:BooleanInternationalizationCheckbox input="{Binding}"
+		property="welcomeInternationalization:Internationalization:useInternationalization"></ppewi:BooleanInternationalizationCheckbox>
 	<ppewi:LanguageDialog input="{Binding}"
 		property="welcomeInternationalization:Internationalization:language"></ppewi:LanguageDialog>
 </Composite>

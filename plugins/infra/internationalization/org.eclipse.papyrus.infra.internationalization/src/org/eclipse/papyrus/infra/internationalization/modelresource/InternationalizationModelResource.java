@@ -144,20 +144,22 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		super();
 		propertiesByLocale = new HashMap<URI, Map<Locale, Resource>>();
 
-		Activator.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
-
-			@Override
-			public void propertyChange(final PropertyChangeEvent event) {
-				if (event.getProperty().equals(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE)) {
-					Iterator<Resource> resourcesIterator = new HashSet<Resource>(getResources()).iterator();
-					while (resourcesIterator.hasNext()) {
-						final Resource resource = resourcesIterator.next();
-						loadModel(getInitialURIForResource(resource).trimFileExtension());
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			Activator.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+	
+				@Override
+				public void propertyChange(final PropertyChangeEvent event) {
+					if (event.getProperty().equals(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE)) {
+						Iterator<Resource> resourcesIterator = new HashSet<Resource>(getResources()).iterator();
+						while (resourcesIterator.hasNext()) {
+							final Resource resource = resourcesIterator.next();
+							loadModel(getInitialURIForResource(resource).trimFileExtension());
+						}
 					}
 				}
-			}
-
-		});
+	
+			});
+		}
 		deletedObjects = new HashSet<EObject>();
 		adapters = new HashMap<EObject, Adapter>();
 	}
@@ -203,35 +205,37 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *            have to bo loaded or not.
 	 */
 	public void loadModel(final URI uriWithoutExtension, final boolean needToLoadOtherProperties) {
-		// Compute model URI
-		final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
-
-		if (needToBeLoaded(uri)) {
-
-			resourceURI = uri;
-
-			final Locale locale = InternationalizationPreferencesUtils.getLocalePreference(uriWithoutExtension);
-
-			try {
-
-				resource = loadResource(uri, locale);
-
-				// We need to do even if the resource is null
-				if (needToLoadOtherProperties) {
-					resourceURI = uri;
-
-					String existingResourceLoadedName = "";
-					if (null != resource) {
-						existingResourceLoadedName = resource.getURI().lastSegment();
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			// Compute model URI
+			final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
+	
+			if (needToBeLoaded(uri)) {
+	
+				resourceURI = uri;
+	
+				final Locale locale = InternationalizationPreferencesUtils.getLocalePreference(uriWithoutExtension);
+	
+				try {
+	
+					resource = loadResource(uri, locale);
+	
+					// We need to do even if the resource is null
+					if (needToLoadOtherProperties) {
+						resourceURI = uri;
+	
+						String existingResourceLoadedName = "";
+						if (null != resource) {
+							existingResourceLoadedName = resource.getURI().lastSegment();
+						}
+	
+						// We need to load other properties files in the same
+						// folders
+						loadOthersPropertiesFiles(uri, existingResourceLoadedName);
 					}
-
-					// We need to load other properties files in the same
-					// folders
-					loadOthersPropertiesFiles(uri, existingResourceLoadedName);
+	
+				} catch (final Exception ex) {
+					Activator.log.error(ex);
 				}
-
-			} catch (final Exception ex) {
-				Activator.log.error(ex);
 			}
 		}
 	}
@@ -372,14 +376,16 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 				configureResource(uri, resource, locale);
 
-				// call registered snippets
-				startSnippets();
+				if(InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
+					// call registered snippets
+					startSnippets();
+				}
 			}
 
 			// Load the resource if not already loaded
 			if (!resource.isLoaded()) {
 				// If this is a read-only resource, create a fake resource to get the internationalization content and read the needed entries
-				if (modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
+				if (InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded() && modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
 
 					// Unload the resource and remove the created resource from the map and from the resource set
 					unload(resource);
@@ -428,7 +434,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			}
 
 			loadInternationalizationContent(uri, locale);
-		} else {
+		} else if(InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
 			// call registered snippets
 			startSnippets();
 		}
@@ -443,24 +449,26 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	@Override
 	public void createModel(final URI uriWithoutExtension) {
-		super.createModel(uriWithoutExtension);
-
-		final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
-		final Locale locale = InternationalizationPreferencesUtils.getLocalePreference(this.resource.getURI());
-		final Resource resource = this.resource;
-
-		// Fill the properties by locale map
-		configureResource(resourceURI, resource, locale);
-
-		// Calculate the internationalization content
-		loadInternationalizationContent(uri, locale);
-
-		resource.setModified(true);
-
-		try {
-			saveResource(resource);
-		} catch (final IOException e) {
-			Activator.log.error(e);
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			super.createModel(uriWithoutExtension);
+	
+			final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
+			final Locale locale = InternationalizationPreferencesUtils.getLocalePreference(this.resource.getURI());
+			final Resource resource = this.resource;
+	
+			// Fill the properties by locale map
+			configureResource(resourceURI, resource, locale);
+	
+			// Calculate the internationalization content
+			loadInternationalizationContent(uri, locale);
+	
+			resource.setModified(true);
+	
+			try {
+				saveResource(resource);
+			} catch (final IOException e) {
+				Activator.log.error(e);
+			}
 		}
 	}
 
@@ -881,108 +889,111 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			final Locale locale) {
 		Command resultCommand = null;
 
-		// Get the resource where add/modify the entry corresponding to the key
-		Resource resource = getResourceForURIAndLocale(uri, locale);
-		if (null == resource) {
-			resource = getResourceForURIAndLocale(uri, new Locale("")); //$NON-NLS-1$
-		}
-
-		final InternationalizationLibrary library = getModelRoot(resource);
-
-		if (null != library) {
-			final Iterator<InternationalizationEntry> entries = library.getEntries().iterator();
-
-			// Search on existing entries if the key already exists.
-			// In this case, just modify the value
-			while (entries.hasNext() && null == resultCommand) {
-				final InternationalizationEntry entry = entries.next();
-				if (entry.getKey().equals(key)) {
-					if (null == value || value.isEmpty()) {
-						// If the value is null or empty, remove the entry
-						resultCommand = new CompoundCommand("Remove entry"); //$NON-NLS-1$
-						((CompoundCommand) resultCommand).append(new RemoveCommand(domain, library,
-								InternationalizationPackage.eINSTANCE.getInternationalizationLibrary_Entries(), entry));
-						if (entry.getKey() instanceof EObject) {
-							Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
-							if (null != setNameValueCommand) {
-								((CompoundCommand) resultCommand).append(setNameValueCommand);
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+		
+			// Get the resource where add/modify the entry corresponding to the key
+			Resource resource = getResourceForURIAndLocale(uri, locale);
+			if (null == resource) {
+				resource = getResourceForURIAndLocale(uri, new Locale("")); //$NON-NLS-1$
+			}
+	
+			final InternationalizationLibrary library = getModelRoot(resource);
+	
+			if (null != library) {
+				final Iterator<InternationalizationEntry> entries = library.getEntries().iterator();
+	
+				// Search on existing entries if the key already exists.
+				// In this case, just modify the value
+				while (entries.hasNext() && null == resultCommand) {
+					final InternationalizationEntry entry = entries.next();
+					if (entry.getKey().equals(key)) {
+						if (null == value || value.isEmpty()) {
+							// If the value is null or empty, remove the entry
+							resultCommand = new CompoundCommand("Remove entry"); //$NON-NLS-1$
+							((CompoundCommand) resultCommand).append(new RemoveCommand(domain, library,
+									InternationalizationPackage.eINSTANCE.getInternationalizationLibrary_Entries(), entry));
+							if (entry.getKey() instanceof EObject) {
+								Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
+								if (null != setNameValueCommand) {
+									((CompoundCommand) resultCommand).append(setNameValueCommand);
+								}
 							}
-						}
-						resource.setModified(true);
-					} else {
-						resultCommand = new CompoundCommand("Set entry value"); //$NON-NLS-1$
-						((CompoundCommand) resultCommand).append(new SetCommand(domain, entry,
-								InternationalizationPackage.eINSTANCE.getInternationalizationEntry_Value(), value));
-						if (entry.getKey() instanceof EObject) {
-							Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
-							if (null != setNameValueCommand) {
-								((CompoundCommand) resultCommand).append(setNameValueCommand);
+							resource.setModified(true);
+						} else {
+							resultCommand = new CompoundCommand("Set entry value"); //$NON-NLS-1$
+							((CompoundCommand) resultCommand).append(new SetCommand(domain, entry,
+									InternationalizationPackage.eINSTANCE.getInternationalizationEntry_Value(), value));
+							if (entry.getKey() instanceof EObject) {
+								Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
+								if (null != setNameValueCommand) {
+									((CompoundCommand) resultCommand).append(setNameValueCommand);
+								}
 							}
+							resource.setModified(true);
 						}
-						resource.setModified(true);
 					}
 				}
 			}
-		}
-
-		// If the key does not exist, create an entry
-		if (null == resultCommand && null != value && !value.isEmpty()) {
-			final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
-					.createInternationalizationEntry();
-			entry.setKey(key);
-			entry.setValue(value);
-
-			if (null == resource) {
-				// If the resource does not exist, create it and add entry to
-				// the library
-				resultCommand = new CompoundCommand("Create entry"); //$NON-NLS-1$
-				((CompoundCommand) resultCommand).append(new CreatePropertiesResourceCommand(uri, entry,
-						InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key))));
-				Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
-				if (null != setNameValueCommand) {
-					((CompoundCommand) resultCommand).append(setNameValueCommand);
+	
+			// If the key does not exist, create an entry
+			if (null == resultCommand && null != value && !value.isEmpty()) {
+				final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
+						.createInternationalizationEntry();
+				entry.setKey(key);
+				entry.setValue(value);
+	
+				if (null == resource) {
+					// If the resource does not exist, create it and add entry to
+					// the library
+					resultCommand = new CompoundCommand("Create entry"); //$NON-NLS-1$
+					((CompoundCommand) resultCommand).append(new CreatePropertiesResourceCommand(uri, entry,
+							InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key))));
+					Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
+					if (null != setNameValueCommand) {
+						((CompoundCommand) resultCommand).append(setNameValueCommand);
+					}
+				} else {
+					resultCommand = new CompoundCommand("Create entry"); //$NON-NLS-1$
+					((CompoundCommand) resultCommand).append(new AddCommand(domain, library,
+							InternationalizationPackage.eINSTANCE.getInternationalizationLibrary_Entries(), entry));
+					Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
+					if (null != setNameValueCommand) {
+						((CompoundCommand) resultCommand).append(setNameValueCommand);
+					}
+					resource.setModified(true);
 				}
-			} else {
-				resultCommand = new CompoundCommand("Create entry"); //$NON-NLS-1$
-				((CompoundCommand) resultCommand).append(new AddCommand(domain, library,
-						InternationalizationPackage.eINSTANCE.getInternationalizationLibrary_Entries(), entry));
-				Command setNameValueCommand = getSetNameValueCommand(domain, (EObject) entry.getKey());
-				if (null != setNameValueCommand) {
-					((CompoundCommand) resultCommand).append(setNameValueCommand);
-				}
-				resource.setModified(true);
-			}
-
-			// If the created entry is an entry corresponding to an object who's
-			// depending to Editor part, we need to create the
-			// PartLabelSynchronizer
-			if (null != editorPartByEObject && editorPartByEObject.containsKey(key)) {
-				if (null != resultCommand) {
-					final Command tmpCommand = resultCommand;
-					resultCommand = new CompoundCommand("Change label value"); //$NON-NLS-1$
-					((CompoundCommand) resultCommand).append(tmpCommand);
-					((CompoundCommand) resultCommand).append(new AbstractCommand() {
-
-						@Override
-						public void execute() {
-							addPartLabelSynchronizerForEntry(key, entry);
-						}
-
-						@Override
-						protected boolean prepare() {
-							return true;
-						}
-
-						@Override
-						public void undo() {
-							// Do nothing
-						}
-
-						@Override
-						public void redo() {
-							// Do nothing
-						}
-					});
+	
+				// If the created entry is an entry corresponding to an object who's
+				// depending to Editor part, we need to create the
+				// PartLabelSynchronizer
+				if (null != editorPartByEObject && editorPartByEObject.containsKey(key)) {
+					if (null != resultCommand) {
+						final Command tmpCommand = resultCommand;
+						resultCommand = new CompoundCommand("Change label value"); //$NON-NLS-1$
+						((CompoundCommand) resultCommand).append(tmpCommand);
+						((CompoundCommand) resultCommand).append(new AbstractCommand() {
+	
+							@Override
+							public void execute() {
+								addPartLabelSynchronizerForEntry(key, entry);
+							}
+	
+							@Override
+							protected boolean prepare() {
+								return true;
+							}
+	
+							@Override
+							public void undo() {
+								// Do nothing
+							}
+	
+							@Override
+							public void redo() {
+								// Do nothing
+							}
+						});
+					}
 				}
 			}
 		}
@@ -1004,54 +1015,57 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	public void setValue(final URI uri, final EObject key, final String value, final Locale locale) {
 
-		// Get the resource where add/modify the entry corresponding to the key
-		Resource resource = getResourceForURIAndLocale(uri, locale);
-		if (null == resource) {
-			// If the resource does not exist, create it
-			resource = createResource(uri,
-					InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key)));
-		}
-
-		final InternationalizationLibrary library = getModelRoot(resource);
-
-		final Iterator<InternationalizationEntry> entries = library.getEntries().iterator();
-		boolean hasFound = false;
-
-		// Search on existing entries if the key already exists.
-		// In this case, just modify the value
-		while (entries.hasNext() && !hasFound) {
-			final InternationalizationEntry entry = entries.next();
-			if (entry.getKey().equals(key)) {
-				if (null == value || value.isEmpty()) {
-					// If the value is null or empty, remove the entry
-					entries.remove();
-				} else {
-					entry.setValue(value);
-					if (entry.getKey() instanceof EObject) {
-						setNameValue((EObject) entry.getKey());
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			
+			// Get the resource where add/modify the entry corresponding to the key
+			Resource resource = getResourceForURIAndLocale(uri, locale);
+			if (null == resource) {
+				// If the resource does not exist, create it
+				resource = createResource(uri,
+						InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key)));
+			}
+	
+			final InternationalizationLibrary library = getModelRoot(resource);
+	
+			final Iterator<InternationalizationEntry> entries = library.getEntries().iterator();
+			boolean hasFound = false;
+	
+			// Search on existing entries if the key already exists.
+			// In this case, just modify the value
+			while (entries.hasNext() && !hasFound) {
+				final InternationalizationEntry entry = entries.next();
+				if (entry.getKey().equals(key)) {
+					if (null == value || value.isEmpty()) {
+						// If the value is null or empty, remove the entry
+						entries.remove();
+					} else {
+						entry.setValue(value);
+						if (entry.getKey() instanceof EObject) {
+							setNameValue((EObject) entry.getKey());
+						}
 					}
+					hasFound = true;
 				}
-				hasFound = true;
 			}
-		}
-
-		// If the key does not exist, create an entry
-		if (!hasFound && null != value && !value.isEmpty()) {
-			final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
-					.createInternationalizationEntry();
-			entry.setKey(key);
-			entry.setValue(value);
-			library.getEntries().add(entry);
-			setNameValue(entry);
-
-			// If the created entry is an entry corresponding to an object who's
-			// depending to Editor part, we need to create the
-			// PartLabelSynchronizer
-			if (editorPartByEObject.containsKey(key)) {
-				addPartLabelSynchronizerForEntry(key, entry);
+	
+			// If the key does not exist, create an entry
+			if (!hasFound && null != value && !value.isEmpty()) {
+				final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
+						.createInternationalizationEntry();
+				entry.setKey(key);
+				entry.setValue(value);
+				library.getEntries().add(entry);
+				setNameValue(entry);
+	
+				// If the created entry is an entry corresponding to an object who's
+				// depending to Editor part, we need to create the
+				// PartLabelSynchronizer
+				if (editorPartByEObject.containsKey(key)) {
+					addPartLabelSynchronizerForEntry(key, entry);
+				}
 			}
+			resource.setModified(true);
 		}
-		resource.setModified(true);
 	}
 
 	/**
@@ -1068,26 +1082,29 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected Command getSetNameValueCommand(final EditingDomain domain, final EObject eObject) {
 		Command result = null;
 
-		// Change name for diagram
-		if (domain instanceof TransactionalEditingDomain) {
-			if (eObject instanceof Diagram) {
-				result = new GMFtoEMFCommandWrapper(new ResetNameTransactionalCommand(
-						(TransactionalEditingDomain) domain, eObject, NotationPackage.eINSTANCE.getDiagram_Name()));
-
-				// Change name for table
-			} else if (eObject instanceof Table) {
-				result = new GMFtoEMFCommandWrapper(
-						new ResetNameTransactionalCommand((TransactionalEditingDomain) domain, eObject,
-								NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name()));
-			}
-		} else {
-			if (eObject instanceof Diagram) {
-				result = new ResetNameCommand(domain, eObject, NotationPackage.eINSTANCE.getDiagram_Name());
-
-				// Change name for table
-			} else if (eObject instanceof Table) {
-				result = new ResetNameCommand(domain, eObject,
-						NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name());
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			
+			// Change name for diagram
+			if (domain instanceof TransactionalEditingDomain) {
+				if (eObject instanceof Diagram) {
+					result = new GMFtoEMFCommandWrapper(new ResetNameTransactionalCommand(
+							(TransactionalEditingDomain) domain, eObject, NotationPackage.eINSTANCE.getDiagram_Name()));
+	
+					// Change name for table
+				} else if (eObject instanceof Table) {
+					result = new GMFtoEMFCommandWrapper(
+							new ResetNameTransactionalCommand((TransactionalEditingDomain) domain, eObject,
+									NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name()));
+				}
+			} else {
+				if (eObject instanceof Diagram) {
+					result = new ResetNameCommand(domain, eObject, NotationPackage.eINSTANCE.getDiagram_Name());
+	
+					// Change name for table
+				} else if (eObject instanceof Table) {
+					result = new ResetNameCommand(domain, eObject,
+							NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name());
+				}
 			}
 		}
 

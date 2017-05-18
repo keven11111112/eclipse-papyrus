@@ -226,7 +226,7 @@ public class LanguageDialog extends AbstractValueEditor implements SelectionList
 	 */
 	@Override
 	public void setReadOnly(final boolean readOnly) {
-		this.readOnly = readOnly;
+		this.readOnly = readOnly || !InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded();
 		updateControls();
 	}
 

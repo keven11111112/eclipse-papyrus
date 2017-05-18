@@ -34,6 +34,43 @@ import org.eclipse.papyrus.infra.internationalization.common.Activator;
  * change the internationalization preference value.
  */
 public class InternationalizationPreferencesUtils {
+	
+	/**
+	 * This allows to get the load of internationalization preference value.
+	 * 
+	 * @return <code>true</code> if the internationalization need to be loaded, <code>false</code> otherwise.
+	 */
+	public static boolean isInternationalizationNeedToBeLoaded() {
+		boolean result = false;
+		
+		IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
+		if(null != preferenceStore) {
+			if(preferenceStore.contains(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION)) {
+				result = preferenceStore.getBoolean(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION);
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * This allows to get the load of internationalization of external files preference value.
+	 * 
+	 * @return <code>true</code> if the internationalization of external files need to be loaded, <code>false</code> otherwise.
+	 */
+	public static boolean isInternationalizationExternalFilesNeedToBeLoaded() {
+		boolean result = false;
+		
+		IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
+		if(null != preferenceStore) {
+			if(preferenceStore.contains(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION_OF_EXTERNAL_FILES)) {
+				result = preferenceStore.getBoolean(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION_OF_EXTERNAL_FILES);
+			}
+		}
+		
+		return result;
+	}
+	
 
 	/**
 	 * Get the preference store for the project containing the {@link EObject}

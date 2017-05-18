@@ -5,5 +5,11 @@
 -->
 
 <plugin>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesInitializer">
+      </initializer>
+   </extension>
 
 </plugin>

@@ -30,6 +30,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.infra.internationalization.ui.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -149,7 +150,7 @@ public class InternationalizationDialog extends TrayDialog {
 	 */
 	protected void createUseInternationalization(final Composite parent) {
 		useInternationalizationButton = new Button(parent, SWT.CHECK);
-		useInternationalizationButton.setText("Use internationalization");
+		useInternationalizationButton.setText(Messages.InternationalizationDialog_UseInternationalizationLabel);
 	}
 
 	/**

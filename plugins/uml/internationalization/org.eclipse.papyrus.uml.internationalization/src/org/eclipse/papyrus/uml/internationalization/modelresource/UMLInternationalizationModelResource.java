@@ -20,6 +20,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.internationalization.commands.ResetNameCommand;
 import org.eclipse.papyrus.infra.internationalization.commands.ResetNameTransactionalCommand;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.modelresource.InternationalizationModelResource;
 import org.eclipse.papyrus.infra.internationalization.utils.InternationalizationKeyResolver;
 import org.eclipse.papyrus.uml.internationalization.utils.UMLInternationalizationKeyResolver;
@@ -57,17 +58,20 @@ public class UMLInternationalizationModelResource extends InternationalizationMo
 	@Override
 	protected Command getSetNameValueCommand(final EditingDomain domain, final EObject eObject) {
 		Command result = null;
-
-		// Change name for named element
-		if (eObject instanceof NamedElement) {
-			if (domain instanceof TransactionalEditingDomain) {
-				result = new GMFtoEMFCommandWrapper(new ResetNameTransactionalCommand(
-						(TransactionalEditingDomain) domain, eObject, UMLPackage.eINSTANCE.getNamedElement_Name()));
+		
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+	
+			// Change name for named element
+			if (eObject instanceof NamedElement) {
+				if (domain instanceof TransactionalEditingDomain) {
+					result = new GMFtoEMFCommandWrapper(new ResetNameTransactionalCommand(
+							(TransactionalEditingDomain) domain, eObject, UMLPackage.eINSTANCE.getNamedElement_Name()));
+				} else {
+					result = new ResetNameCommand(domain, eObject, UMLPackage.eINSTANCE.getNamedElement_Name());
+				}
 			} else {
-				result = new ResetNameCommand(domain, eObject, UMLPackage.eINSTANCE.getNamedElement_Name());
+				result = super.getSetNameValueCommand(domain, eObject);
 			}
-		} else {
-			result = super.getSetNameValueCommand(domain, eObject);
 		}
 
 		return result;

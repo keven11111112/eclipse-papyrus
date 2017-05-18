@@ -19,5 +19,14 @@
          </state-->
       </command>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.internationalization.ui.preferences.pages.InternationalizationPreferencePage"
+            id="org.eclipse.papyrus.infra.internationalization.ui.internationalizationPreferencePage"
+            name="Internationalization">
+      </page>
+   </extension>
 
 </plugin>
