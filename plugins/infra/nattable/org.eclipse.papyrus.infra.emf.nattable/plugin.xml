@@ -86,6 +86,10 @@
           id="org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager"
           manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EOperationAxisManager">
     </axisManager>
+    <axisManager
+          id="org.eclipse.papyrus.infra.emf.nattable.axis.column.eobject.matrix.manager"
+          manager="org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectColumnMatrixAxisManager">
+    </axisManager>
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.nattable.cellmanager">

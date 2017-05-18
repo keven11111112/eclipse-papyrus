@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.MatrixTableWidgetModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -58,6 +59,9 @@ public class NattableModelManagerFactory {
 	 * @since 3.0
 	 */
 	public INattableModelManager createNatTableModelManager(final Table table, final ISelectionExtractor selectionExtractor, final boolean initializeListeners) {
+		if(TableHelper.isMatrixTreeTable(table)) {
+			return new MatrixTableWidgetModelManager(table, selectionExtractor, initializeListeners);
+		}
 		if (TableHelper.isTreeTable(table)) {
 			return new TreeNattableModelManager(table,selectionExtractor, initializeListeners);
 		}

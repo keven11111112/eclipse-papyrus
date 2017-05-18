@@ -33,10 +33,8 @@ public class CustomIsTypeOfExpression extends IsTypeOfExpressionImpl {
 	public Boolean evaluate(final EObject context) {
 		boolean result = false;
 		// check about element is not required for this expression
-		if (null != context) {
-			if (null != this.umlEClass) {
-				result = umlEClass == context.eClass();
-			}
+		if (null != context && null != getUmlEClass()) {
+			result = getUmlEClass() == context.eClass();
 		}
 		return Boolean.valueOf(result);
 	}

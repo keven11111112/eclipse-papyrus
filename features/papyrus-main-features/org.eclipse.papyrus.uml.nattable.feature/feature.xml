@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.nattable.feature"
-      label="Papyrus UML Table - New Version"
+      label="Papyrus UML Table"
       version="3.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
+
+   <description url="https://eclipse.org/papyrus/">
+      Papyrus Nattable are a set of plugins dedicated to manage tables in relation with models.
+   </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST
@@ -17,10 +21,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-   
-   <description url="https://eclipse.org/papyrus/">
-   	Papyrus Nattable are a set of plugins dedicated to manage tables in relation with models.
-   </description>
 
    <plugin
          id="org.eclipse.papyrus.uml.nattable"
@@ -43,6 +43,20 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.eclipse.papyrus.uml.nattable.matrix"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.uml.nattable.properties"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
    <plugin
          id="org.eclipse.papyrus.uml.nattable.menu"
          download-size="0"

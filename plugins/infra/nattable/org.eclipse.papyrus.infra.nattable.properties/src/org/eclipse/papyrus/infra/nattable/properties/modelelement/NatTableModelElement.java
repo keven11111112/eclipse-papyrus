@@ -250,7 +250,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 */
 	private void removeListeners() {
 		// COLUMNS MANAGEMENT
-		// we add a listener on the columnHeaderAxisConfiguration
+		// we remove the listener on the columnHeaderAxisConfiguration
 		if (columnHeaderAxisConfiguration != null) {
 			columnHeaderAxisConfiguration.eAdapters().remove(tableListener);
 		}
@@ -258,20 +258,20 @@ public class NatTableModelElement extends EMFModelElement {
 
 
 		if (this.columnLabelProviderConfigurations != null) {
-			// we add listener on all column label configurations
+			// we remove the listener on all column label configurations
 			for (final ILabelProviderConfiguration conf : columnLabelProviderConfigurations) {
 				conf.eAdapters().remove(tableListener);
 			}
 		}
 
 		// ROW MANAGEMENT
-		// we add a listener on the rowHeaderAxisConfiguration
+		// we remove the listener on the rowHeaderAxisConfiguration
 		if (rowHeaderAxisConfiguration != null) {
 			rowHeaderAxisConfiguration.eAdapters().remove(tableListener);
 		}
 
 		if (this.rowLabelProviderConfigurations != null) {
-			// we add listener on all column label configurations
+			// we remove the listener on all row label configurations
 			for (final ILabelProviderConfiguration conf : rowLabelProviderConfigurations) {
 				conf.eAdapters().remove(tableListener);
 			}

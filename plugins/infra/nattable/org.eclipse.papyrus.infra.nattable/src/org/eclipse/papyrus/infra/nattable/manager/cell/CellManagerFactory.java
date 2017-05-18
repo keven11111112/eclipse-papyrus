@@ -13,11 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -58,6 +60,11 @@ public final class CellManagerFactory {
 	private final Map<Integer, Collection<ICellManager>> managersMap;
 
 	/**
+	 * The list of registered axis manager
+	 */
+	private final List<IGenericMatrixRelationshipCellManager> matrixManagers;
+
+	/**
 	 * The cell manager factory
 	 */
 	public static final CellManagerFactory INSTANCE = new CellManagerFactory();
@@ -69,6 +76,7 @@ public final class CellManagerFactory {
 	 */
 	private CellManagerFactory() {
 		this.managersMap = new TreeMap<Integer, Collection<ICellManager>>();
+		this.matrixManagers = new ArrayList<IGenericMatrixRelationshipCellManager>();
 		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for (final IConfigurationElement iConfigurationElement : configElements) {
@@ -80,6 +88,9 @@ public final class CellManagerFactory {
 				final ICellManager solver = (ICellManager) iConfigurationElement.createExecutableExtension(CLASS_MANAGER);
 				if (!this.managersMap.containsKey(order)) {
 					this.managersMap.put(order, new HashSet<ICellManager>());
+				}
+				if (solver instanceof IGenericMatrixRelationshipCellManager) {
+					this.matrixManagers.add((IGenericMatrixRelationshipCellManager) solver);
 				}
 				this.managersMap.get(order).add(new StringResolutionProblemWrapperCellManager(solver));
 			} catch (final CoreException e) {
@@ -384,5 +395,14 @@ public final class CellManagerFactory {
 			return ((IUnsetValueCellManager) cellManager).getUnsetCellValueCommand(domain, columnElement, rowElement, tableManager);
 		}
 		return null;
+	}
+
+	/**
+	 * @return
+	 * 		the list of known {@link IGenericMatrixRelationshipCellManager}. Warning, this method ignores the order defined by the user
+	 * @since 3.0
+	 */
+	public List<IGenericMatrixRelationshipCellManager> getRegisteredGenericMatrixRelationshipCellManager() {
+		return matrixManagers;
 	}
 }

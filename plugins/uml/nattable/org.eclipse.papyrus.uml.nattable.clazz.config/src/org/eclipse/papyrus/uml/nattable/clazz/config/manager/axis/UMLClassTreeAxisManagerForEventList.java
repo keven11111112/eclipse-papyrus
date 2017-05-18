@@ -38,8 +38,8 @@ public class UMLClassTreeAxisManagerForEventList extends UMLElementTreeAxisManag
 	 * @return
 	 */
 	@Override
-	public boolean isAllowedContents(Object objectToTest,
-			Object semanticParent, TreeFillingConfiguration conf, int depth) {
+	public boolean isAllowedContents(Object objectToTest, Object semanticParent, TreeFillingConfiguration conf, int depth) {
+		//TODO : must be changed using filter rule
 		if (depth == 0) {
 			return objectToTest instanceof Class;
 		}

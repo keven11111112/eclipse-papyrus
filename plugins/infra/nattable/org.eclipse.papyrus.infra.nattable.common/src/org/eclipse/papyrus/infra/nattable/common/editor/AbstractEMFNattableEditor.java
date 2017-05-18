@@ -40,6 +40,7 @@ import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.helper.TableReconcileHelper;
 import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
+import org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
@@ -237,6 +238,12 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	public Object getAdapter(@SuppressWarnings("rawtypes") final Class adapter) {
 		if (adapter == INattableModelManager.class) {
 			return this.tableManager;
+		}
+		if(adapter == IMatrixTableWidgetManager.class) {
+			if(this.tableManager instanceof IMatrixTableWidgetManager) {
+				return this.tableManager;
+			}
+			return null;
 		}
 
 		// Give direct access to the Table model element

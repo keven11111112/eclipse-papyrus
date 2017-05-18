@@ -564,23 +564,36 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		if (columnAxisManager) {
 			return super.createAxisManager(representations, contentProvider, columnAxisManager);
 		} else {
-			CompositeTreeAxisManagerForEventList compositeAxisManager = new CompositeTreeAxisManagerForEventList(horizontalFilterList);
-			final List<IAxisManagerForEventList> managers = new ArrayList<IAxisManagerForEventList>();
-			for (AxisManagerRepresentation current : representations) {
-				final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(current);
-				Assert.isTrue(manager instanceof IAxisManagerForEventList);
-				manager.init(this, current, contentProvider);
-				managers.add((IAxisManagerForEventList) manager);
-
-			}
-			compositeAxisManager.init(this, null, contentProvider);
-			DatumTreeFormat treeFormat = getTreeFormat();
-			treeFormat.setTreeComparatorProvider(compositeAxisManager);
-			this.expansionModel.setAxisManager(compositeAxisManager);
-			((CompositeAxisManagerForEventList) compositeAxisManager).setSubManagers(managers);
-			return compositeAxisManager;
+			return createTreeAxisManager(representations, contentProvider, columnAxisManager);
 		}
 
+	}
+	
+	/**
+	 * 
+	 * @param representations
+	 * @param contentProvider
+	 * @param columnAxisManager
+	 * @return
+	 * 		the Composite axis manager used to manage Tree
+	 * @since 3.0
+	 */
+	protected ICompositeAxisManager createTreeAxisManager(List<AxisManagerRepresentation> representations, AbstractAxisProvider contentProvider, boolean columnAxisManager) {
+		CompositeTreeAxisManagerForEventList compositeAxisManager = new CompositeTreeAxisManagerForEventList(horizontalFilterList);
+		final List<IAxisManagerForEventList> managers = new ArrayList<IAxisManagerForEventList>();
+		for (AxisManagerRepresentation current : representations) {
+			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(current);
+			Assert.isTrue(manager instanceof IAxisManagerForEventList);
+			manager.init(this, current, contentProvider);
+			managers.add((IAxisManagerForEventList) manager);
+
+		}
+		compositeAxisManager.init(this, null, contentProvider);
+		DatumTreeFormat treeFormat = getTreeFormat();
+		treeFormat.setTreeComparatorProvider(compositeAxisManager);
+		this.expansionModel.setAxisManager(compositeAxisManager);
+		((CompositeAxisManagerForEventList) compositeAxisManager).setSubManagers(managers);
+		return compositeAxisManager;
 	}
 
 	/**

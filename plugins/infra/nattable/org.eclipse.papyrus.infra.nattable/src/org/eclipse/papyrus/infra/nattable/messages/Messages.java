@@ -490,6 +490,12 @@ public class Messages extends NLS {
 	 */
 	public static String ExportTableDialog_OverrideConfirmMessasgeDialogText;
 
+	public static String MatrixRelationshipDirectionLabelProvider_None;
+
+	public static String MatrixRelationshipDirectionLabelProvider_RowToColumn;
+
+	public static String MatrixRelationshipDirectionLabelProvider_ColumnToRow;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

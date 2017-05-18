@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractTreeAxisManagerForEventList;
@@ -116,10 +117,14 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 	 */
 	@Override
 	public boolean isAllowedContents(Object objectToTest, Object semanticParent, TreeFillingConfiguration conf, int depth) {
+		boolean result = false;
 		if (objectToTest instanceof EObject) {
-			return true;
+			if (null != conf && null != conf.getFilterRule() && conf.getFilterRule() instanceof IBooleanEObjectExpression) {
+				return ((IBooleanEObjectExpression) conf.getFilterRule()).evaluate((EObject) objectToTest).booleanValue();
+			}
+			result = true;
 		}
-		return false;
+		return result;
 	}
 
 	/**
@@ -152,7 +157,7 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 	 * @param notification
 	 *            a notification
 	 * @return
-	 *         <code>true</code> if the notification must be ignored
+	 * 		<code>true</code> if the notification must be ignored
 	 */
 	protected boolean ignoreEvent(final Notification notification) {
 		boolean res = super.ignoreEvent(notification);

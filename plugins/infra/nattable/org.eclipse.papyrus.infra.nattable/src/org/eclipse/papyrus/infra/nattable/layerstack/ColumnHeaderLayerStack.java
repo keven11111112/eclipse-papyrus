@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
 import org.eclipse.papyrus.infra.nattable.sort.PapyrusCompositeGlazedListSortModel;
-import org.eclipse.papyrus.infra.nattable.sort.PapyrusGlazedListsSortModel;
 import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
 
 /**

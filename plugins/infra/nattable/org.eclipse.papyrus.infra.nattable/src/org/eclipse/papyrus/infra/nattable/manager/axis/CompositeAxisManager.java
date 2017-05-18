@@ -80,7 +80,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	protected void axisManagerHasChanged(final Notification notification) {
-		if (notification.isTouch()) {
+		if (notification.isTouch() || NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis()!=notification.getFeature()) {
 			return;
 		}
 		final List<Object> newListValue = new ArrayList<Object>(this.managedObject);

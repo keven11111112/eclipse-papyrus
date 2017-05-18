@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Listener;
 /**
  * Abstract Observable Value to update axis configuration
  *
- * @author vl222926
+ * @since 2.2
  *
  */
 public abstract class AbstractConfigurationElementObservableValue extends AbstractObservableValue implements Listener {
@@ -42,7 +42,7 @@ public abstract class AbstractConfigurationElementObservableValue extends Abstra
 	/**
 	 * the last value of the managed feature
 	 */
-	private Object oldValue;
+	protected Object oldValue;
 
 	/**
 	 *

@@ -204,7 +204,7 @@
         <widget href="ui/EObjectInTreeTable.xwt#/"/>
       </sections>
     </tabs>
-    <tabs xmi:id="_bYfDCJLDEeWbp4A9_-WIrQ" label="Appearance" id="TableAppearance" category="org.eclipse.papyrus" afterTab="_bYd04ZLDEeWbp4A9_-WIrQ" priority="12">
+    <tabs xmi:id="_bYfDCJLDEeWbp4A9_-WIrQ" label="Appearance" id="TableAppearance" category="org.eclipse.papyrus" afterTab="_bYd04ZLDEeWbp4A9_-WIrQ" priority="13">
       <sections xmi:id="_hIAtIJQtEeWx9KtEop_Tug" name="SingleNormalTableAppearance" sectionFile="ui/SingleNormalTableAppearance.xwt">
         <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_2SAlsJQtEeWx9KtEop_Tug" name="isNormalTable">
           <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.0"/>
@@ -282,7 +282,7 @@
         <widget href="ui/EObjectInTableRowObjectLabelProviderConfiguration.xwt#/"/>
       </sections>
     </tabs>
-    <tabs xmi:id="_bYfDFpLDEeWbp4A9_-WIrQ" label="Paste" id="Paste In Table" category="org.eclipse.papyrus" afterTab="_bYfDCJLDEeWbp4A9_-WIrQ" priority="13">
+    <tabs xmi:id="_bYfDFpLDEeWbp4A9_-WIrQ" label="Paste" id="Paste In Table" category="org.eclipse.papyrus" afterTab="_bYfDCJLDEeWbp4A9_-WIrQ" priority="14">
       <sections xmi:id="_bYfDF5LDEeWbp4A9_-WIrQ" name="CanPasteEObjectColumnSection" sectionFile="ui/CanPasteEObjectColumnSection.xwt">
         <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_bYfDGJLDEeWbp4A9_-WIrQ" name="canPasteColumnEObjectConstraint">
           <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>

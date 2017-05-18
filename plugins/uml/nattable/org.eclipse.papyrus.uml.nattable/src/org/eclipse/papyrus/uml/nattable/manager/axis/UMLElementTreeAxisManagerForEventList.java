@@ -55,9 +55,9 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 	 */
 	@Override
 	public boolean isAllowedContents(Object objectToTest, Object semanticParent, TreeFillingConfiguration conf, int depth) {
-		return objectToTest instanceof Element;
+		return objectToTest instanceof Element && super.isAllowedContents(objectToTest, semanticParent, conf, depth);
 	}
-	
+
 	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canCreateAxisElement(java.lang.String)
@@ -219,7 +219,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 			if (values.isEmpty()) {
 				if (confRep != null) {
 					ITreeItemAxis toDestroy = getITreeItemAxisRepresentingObject(confRep.getChildren(), baseElement);
-					if(null != toDestroy){
+					if (null != toDestroy) {
 						removeObject(toDestroy);
 					}
 				}
@@ -254,7 +254,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 	 * @param notification
 	 *            a notification
 	 * @return
-	 *         <code>true</code> if the notification concerns a stereotype application
+	 * 		<code>true</code> if the notification concerns a stereotype application
 	 */
 	protected boolean isStereotypeApplicationNotification(final Notification notification) {
 		Object notifier = notification.getNotifier();

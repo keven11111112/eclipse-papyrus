@@ -25,6 +25,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
@@ -122,6 +125,20 @@ public class TableHelper {
 			IntListValueStyle copy = EcoreUtil.copy(style);
 			table.getStyles().add(copy);
 		}
+		
+		
+		if(isMatrixTreeTable(table)) {
+			if(null!=configuration.getOwnedCellEditorConfigurations()) {
+				table.setOwnedCellEditorConfigurations(EcoreUtil.copy(configuration.getOwnedCellEditorConfigurations()));
+			}else {
+				//we can do it because currently, we only have one possible type for that!
+				GenericRelationshipMatrixCellEditorConfiguration conf = NattablecelleditorFactory.eINSTANCE.createGenericRelationshipMatrixCellEditorConfiguration();
+				conf.setCellEditorId("GenericRelationshipMatrixEditorConfiguration"); //$NON-NLS-1$
+				table.setOwnedCellEditorConfigurations(conf);
+			}
+			Assert.isNotNull(table.getOwnedCellEditorConfigurations(), "A matrix must own a CellEditorConfiguration"); //$NON-NLS-1$
+		}
+		
 		return table;
 	}
 
@@ -348,6 +365,21 @@ public class TableHelper {
 			path.add(0, parent);
 			parent = parent.getParent();
 		}
+	}
+	
+	/**
+	 * 
+	 * @param table
+	 * a table 
+	 * @return
+	 * <code>true</code> if the table is a matrix. That is to say
+	 * @since 3.0
+	 */
+	public static final boolean isMatrixTreeTable(final Table table) {
+		final AbstractAxisProvider rowsAxisProvider = table.getCurrentRowAxisProvider();
+		final AbstractAxisProvider columnsAxisProvider = table.getCurrentColumnAxisProvider();
+		return isTreeTable(table) && rowsAxisProvider instanceof IMasterAxisProvider && columnsAxisProvider instanceof IMasterAxisProvider;
+
 	}
 
 }
