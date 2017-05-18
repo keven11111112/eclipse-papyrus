@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeTo
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
-import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -47,8 +46,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ExtendedProviderDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
-import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
-import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
 
@@ -147,11 +144,10 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 			ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
 			IEditorPart part = o.getEditor();
 			if (part instanceof DiagramEditorWithFlyOutPalette) {
-				String diagramName = getDiagram().getName(); // name is the key of modelkind
-				if (diagramName != null) {
-					Diagram diagramPalette = ((DiagramEditorWithFlyOutPalette) part).getDiagram();
-					PapyrusDiagramStyle papyrusDiagramStyle = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPapyrusDiagramStyle(diagramPalette);
-					if (papyrusDiagramStyle != null && diagramName.equals(papyrusDiagramStyle.getDiagramKind().getName())) {
+				String diagramId = getDiagram().getImplementationID(); // implementation id is the key of modelkind
+				if (null != diagramId) {
+					Diagram currentDiagram = ((DiagramEditorWithFlyOutPalette) part).getDiagram();
+					if (currentDiagram != null && diagramId.equals(currentDiagram.getType())) {
 						if (!isHidden(o)) {
 							ModelSet modelSet = null;
 							try {
