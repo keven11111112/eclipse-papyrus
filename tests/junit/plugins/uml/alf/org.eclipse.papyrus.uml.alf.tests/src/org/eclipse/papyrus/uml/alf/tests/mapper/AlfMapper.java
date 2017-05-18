@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.papyrus.uml.alf.AlfStandaloneSetup;
 import org.eclipse.papyrus.uml.alf.MappingError;
+import org.eclipse.papyrus.uml.alf.tests.Activator;
 import org.eclipse.papyrus.uml.alf.tests.mapper.AlfMapper;
 import org.eclipse.papyrus.uml.alf.tests.utils.RegisteredItemLoader;
 import org.eclipse.papyrus.uml.alf.tests.utils.RegisteredItemLoader.RequiredElementsNames;
@@ -44,8 +45,7 @@ import org.eclipse.xtext.resource.XtextResourceSet;
 public class AlfMapper extends org.eclipse.papyrus.uml.alf.AlfMapper {
 
 	public AlfMapper() throws Exception {
-		String base = CommonPlugin.getPlugin() == null ?
-				System.getProperty("qvt.base") + "/" : "platform:/plugin/";
+		String base = CommonPlugin.getPlugin() == null ? System.getProperty("qvt.base") + "/" : "platform:/plugin/";
 		this.executor = new TransformationExecutor(
 				URIConverter.INSTANCE.normalize(URI.createURI(base + QVT_PATH)));
 
@@ -119,12 +119,12 @@ public class AlfMapper extends org.eclipse.papyrus.uml.alf.AlfMapper {
 				AlfMapper mapper = new AlfMapper();
 
 				String path = inputDirectory + fileName + ".alf";
-				System.out.println("Reading from " + path + "...");
+				Activator.log.trace(Activator.ALF_MAPPER_TRACE, "Reading from " + path + "...");
 				inputResource = mapper.getResource(path);
 
 				path = outputDirectory + fileName + ".uml";
 				if (args.length > 4 && args[4].equals("-merge")) {
-					System.out.println("Reading from " + path + "...");
+					Activator.log.trace(Activator.ALF_MAPPER_TRACE, "Reading from " + path + "...");
 					outputResource = mapper.getResource(path);
 
 					Package model = (Package) outputResource.getContents().get(0);
@@ -142,13 +142,13 @@ public class AlfMapper extends org.eclipse.papyrus.uml.alf.AlfMapper {
 					outputResource.getContents().addAll(uml);
 				}
 
-				System.out.println("Writing to " + path + "...");
+				Activator.log.trace(Activator.ALF_MAPPER_TRACE, "Writting to " + path + "...");
 				outputResource.save(null);
 
 
 			} catch (MappingError e) {
 				ExecutionDiagnostic diagnostic = e.getDiagnostic();
-				System.out.println(BasicDiagnostic.toIStatus(diagnostic));
+				Activator.log.trace(Activator.ALF_MAPPER_TRACE, BasicDiagnostic.toIStatus(diagnostic).toString());
 				diagnostic.printStackTrace(new PrintWriter(System.out));
 			} catch (Exception e) {
 				e.printStackTrace();

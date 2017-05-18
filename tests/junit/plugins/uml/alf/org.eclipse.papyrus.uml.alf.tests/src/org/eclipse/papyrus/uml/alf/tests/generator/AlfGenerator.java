@@ -33,6 +33,7 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.papyrus.uml.alf.AlfStandaloneSetup;
 import org.eclipse.papyrus.uml.alf.MappingError;
+import org.eclipse.papyrus.uml.alf.tests.Activator;
 import org.eclipse.papyrus.uml.alf.tests.generator.AlfGenerator;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.xtext.resource.SaveOptions;
@@ -42,10 +43,8 @@ import com.google.inject.Injector;
 
 public class AlfGenerator {
 
-	static final public String QVT_PATH =
-			"org.eclipse.papyrus.uml.alf.to.fuml/transformation/UML2Alf.qvto";
-	static final private SaveOptions options =
-			SaveOptions.newBuilder().format().noValidation().getOptions();
+	static final public String QVT_PATH = "org.eclipse.papyrus.uml.alf.to.fuml/transformation/UML2Alf.qvto";
+	static final private SaveOptions options = SaveOptions.newBuilder().format().noValidation().getOptions();
 
 
 	protected TransformationExecutor executor;
@@ -55,8 +54,7 @@ public class AlfGenerator {
 	protected ResourceSet resourceSet;
 
 	public AlfGenerator() {
-		String base = CommonPlugin.getPlugin() == null ?
-				System.getProperty("qvt.base") + "/" : "platform:/plugin/";
+		String base = CommonPlugin.getPlugin() == null ? System.getProperty("qvt.base") + "/" : "platform:/plugin/";
 		this.executor = new TransformationExecutor(
 				URIConverter.INSTANCE.normalize(URI.createURI(base + QVT_PATH)));
 
@@ -74,8 +72,7 @@ public class AlfGenerator {
 		ModelExtent input = new BasicModelExtent(uml);
 		ModelExtent output = new BasicModelExtent();
 
-		ExecutionDiagnostic diagnostic =
-				this.executor.execute(this.context, input, output);
+		ExecutionDiagnostic diagnostic = this.executor.execute(this.context, input, output);
 
 		if (diagnostic.getSeverity() == Diagnostic.OK) {
 			return output.getContents();
@@ -131,20 +128,20 @@ public class AlfGenerator {
 				AlfGenerator generator = new AlfGenerator();
 
 				String path = inputDirectory + fileName + ".uml";
-				System.out.println("Reading from " + path + "...");
+				Activator.log.trace(Activator.ALF_GENERATOR_TRACE, "Reading from " + path + "...");
 				inputResource = generator.getResource(path);
 
 				path = outputDirectory + fileName + ".alf";
 				String text = generator.generate(inputResource.getContents());
 
-				System.out.println("Writing to " + path + "...");
+				Activator.log.trace(Activator.ALF_GENERATOR_TRACE, "Writing to " + path + "...");
 				output = new PrintWriter(new FileWriter(path));
 				output.print(text);
 
 			} catch (MappingError e) {
 				ExecutionDiagnostic diagnostic = e.getDiagnostic();
 				if (diagnostic != null) {
-					System.out.println(BasicDiagnostic.toIStatus(diagnostic));
+					Activator.log.trace(Activator.ALF_GENERATOR_TRACE, BasicDiagnostic.toIStatus(diagnostic).toString());
 					diagnostic.printStackTrace(new PrintWriter(System.out));
 				} else {
 					e.getCause().printStackTrace();
