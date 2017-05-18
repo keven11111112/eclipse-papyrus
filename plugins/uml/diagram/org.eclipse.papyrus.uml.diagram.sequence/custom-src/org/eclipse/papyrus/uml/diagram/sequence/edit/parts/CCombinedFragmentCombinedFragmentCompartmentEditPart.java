@@ -22,6 +22,8 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 
 /**
@@ -81,7 +83,7 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 			if (ratio >= 1.0) {
 				ratio = 0.95;
 			}
-			System.out.println("ratio" + ratio);
+			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG, "ratio" + ratio); //$NON-NLS-1$
 			childFigure.getParent().setConstraint(childFigure, ratio);
 		}
 	}

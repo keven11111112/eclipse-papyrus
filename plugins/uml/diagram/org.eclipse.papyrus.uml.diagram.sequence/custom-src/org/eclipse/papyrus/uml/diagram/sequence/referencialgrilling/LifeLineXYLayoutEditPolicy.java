@@ -59,9 +59,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstra
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.EllipseFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
@@ -71,9 +73,10 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * This class is used to manage node element in the compartment by using grill system.
  *
  */
-public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy implements IGrillingEditpolicy{
+public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy implements IGrillingEditpolicy {
 
 	protected DisplayEvent displayEvent;
+
 	/**
 	 * Constructor.
 	 *
@@ -92,44 +95,47 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	public void setHost(EditPart host) {
 		// TODO Auto-generated method stub
 		super.setHost(host);
-		displayEvent= new DisplayEvent(getHost());
+		displayEvent = new DisplayEvent(getHost());
 	}
-	
-	/* Override to use to deal with causes where the point is UNDERFINED
+
+	/*
+	 * Override to use to deal with causes where the point is UNDERFINED
 	 * we will ask the layout helper to find a location for us
+	 * 
 	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#getConstraintFor(org.eclipse.gef.requests.CreateRequest)
 	 */
 	protected Object getConstraintFor(CreateRequest request) {
 		// Used during the creation from the palette
 		Object constraint = super.getConstraintFor(request);
-		if(request instanceof CreateViewAndElementRequest){
-			CreateViewAndElementRequest req=(CreateViewAndElementRequest)request;
-			ViewAndElementDescriptor descriptor=(req).getViewAndElementDescriptor();
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
+			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
 			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
-			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)||
-					ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)){
-				Rectangle parentBound=getHostFigure().getBounds();
-				if(constraint instanceof Rectangle){
-					Rectangle constraintRect= (Rectangle)constraint;
-					RootEditPart drep=getHost().getRoot();
-					if( drep instanceof DiagramRootEditPart){
+			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE) ||
+					ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)) {
+				Rectangle parentBound = getHostFigure().getBounds();
+				if (constraint instanceof Rectangle) {
+					Rectangle constraintRect = (Rectangle) constraint;
+					RootEditPart drep = getHost().getRoot();
+					if (drep instanceof DiagramRootEditPart) {
 
-						double spacing = ((DiagramRootEditPart)drep).getGridSpacing();
-						if( constraintRect.height==-1){
-							constraintRect.height=AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT;
+						double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
+						if (constraintRect.height == -1) {
+							constraintRect.height = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT;
 						}
-						constraintRect.width= AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH;
-						constraintRect.x=(parentBound.width/2)-(constraintRect.width/2);
-						if(DiagramEditPartsUtil.isSnapToGridActive(getHost())){
-							int modulo= AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT/(int)spacing;
-							constraintRect.height=modulo*(int)spacing;
+						constraintRect.width = AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH;
+						constraintRect.x = (parentBound.width / 2) - (constraintRect.width / 2);
+						if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
+							int modulo = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT / (int) spacing;
+							constraintRect.height = modulo * (int) spacing;
 						}
 					}
 				}
 			}
 		}
-		return constraint;	
+		return constraint;
 	}
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#showLayoutTargetFeedback(org.eclipse.gef.Request)
 	 *
@@ -140,35 +146,35 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 
 		// feed back during the creation from the palette
-		RootEditPart drep=getHost().getRoot();
-		Rectangle parentBound=getHostFigure().getBounds().getCopy();
+		RootEditPart drep = getHost().getRoot();
+		Rectangle parentBound = getHostFigure().getBounds().getCopy();
 		getHostFigure().getParent().translateToAbsolute(parentBound);
-		//System.out.println("LifeLineBounds On Screen:"+parentBound);
-		if( drep instanceof DiagramRootEditPart){
-			double spacing = ((DiagramRootEditPart)drep).getGridSpacing();
-			if(request instanceof org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest){
-				IElementType elementType = (IElementType)((org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest)request).getElementTypes().get(0);
-				if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE)||
-						ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)){
-					((CreateRequest)request).setLocation(new Point((parentBound.x+(parentBound.width/2)-AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH/2),((CreateRequest)request).getLocation().y));
-					int modulo= AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT/(int)spacing;
-					((CreateRequest)request).setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH,modulo*(int)spacing));
+		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "LifeLineBounds On Screen:" + parentBound);//$NON-NLS-1$
+		if (drep instanceof DiagramRootEditPart) {
+			double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
+			if (request instanceof org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest) {
+				IElementType elementType = (IElementType) ((org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest) request).getElementTypes().get(0);
+				if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE) ||
+						ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)) {
+					((CreateRequest) request).setLocation(new Point((parentBound.x + (parentBound.width / 2) - AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH / 2), ((CreateRequest) request).getLocation().y));
+					int modulo = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT / (int) spacing;
+					((CreateRequest) request).setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH, modulo * (int) spacing));
 
 
-					displayEvent.addFigureEvent(getHostFigure().getParent().getParent(), ((CreateRequest)request).getLocation());
+					displayEvent.addFigureEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
 				}
 
 			}
 
-			if(request instanceof ChangeBoundsRequest){
-				//test
-				((ChangeBoundsRequest)request).setMoveDelta(new Point(0, ((ChangeBoundsRequest)request).getMoveDelta().y));
+			if (request instanceof ChangeBoundsRequest) {
+				// test
+				((ChangeBoundsRequest) request).setMoveDelta(new Point(0, ((ChangeBoundsRequest) request).getMoveDelta().y));
 			}
 		}
 
 		super.showLayoutTargetFeedback(request);
 	}
-	
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.GraphicalEditPolicy#addFeedback(org.eclipse.draw2d.IFigure)
 	 *
@@ -181,6 +187,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 
 	}
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.GraphicalEditPolicy#removeFeedback(org.eclipse.draw2d.IFigure)
 	 *
@@ -194,14 +201,16 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 	}
 
-	/** 
+	/**
 	 * Called in response to a <tt>REQ_RESIZE_CHILDREN</tt> request.
 	 * 
 	 * This implementation creates a <tt>SetPropertyCommand</i> and sets
 	 * the <tt>ID_BOUNDS</tt> property value to the supplied constraints.
 	 * 
-	 * @param child the element being resized.
-	 * @param constraint the elements new bounds.
+	 * @param child
+	 *            the element being resized.
+	 * @param constraint
+	 *            the elements new bounds.
 	 * @return {@link SetBoundsCommand}
 	 */
 	protected Command createChangeConstraintCommand(
@@ -210,18 +219,18 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		Rectangle newBounds = (Rectangle) constraint;
 		View shapeView = (View) child.getModel();
 
-		if( child instanceof AbstractExecutionSpecificationEditPart){
-			RootEditPart drep=getHost().getRoot();
-			if( drep instanceof DiagramRootEditPart){
-				double spacing = ((DiagramRootEditPart)drep).getGridSpacing();
-				Rectangle parentBound=getHostFigure().getBounds();
-				newBounds.setLocation(new Point((parentBound.width/2)-(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH/2),newBounds.getLocation().y));
-				if( newBounds.height==-1){
-					newBounds.height=AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT;
+		if (child instanceof AbstractExecutionSpecificationEditPart) {
+			RootEditPart drep = getHost().getRoot();
+			if (drep instanceof DiagramRootEditPart) {
+				double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
+				Rectangle parentBound = getHostFigure().getBounds();
+				newBounds.setLocation(new Point((parentBound.width / 2) - (AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH / 2), newBounds.getLocation().y));
+				if (newBounds.height == -1) {
+					newBounds.height = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT;
 				}
-				if(DiagramEditPartsUtil.isSnapToGridActive(getHost())){
-					int modulo= newBounds.height/(int)spacing;
-					newBounds.setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH,modulo*(int)spacing));
+				if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
+					int modulo = newBounds.height / (int) spacing;
+					newBounds.setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH, modulo * (int) spacing));
 				}
 
 			}
@@ -229,13 +238,12 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
 				.getEditingDomain();
-		ICommand boundsCommand = 
-				new SetBoundsCommand(editingDomain,
-						DiagramUIMessages.SetLocationCommand_Label_Resize,
-						new EObjectAdapter(shapeView),
-						newBounds); 
-		CompoundCommand compoundCommand= new CompoundCommand();
-		compoundCommand.add( new ICommandProxy(boundsCommand));
+		ICommand boundsCommand = new SetBoundsCommand(editingDomain,
+				DiagramUIMessages.SetLocationCommand_Label_Resize,
+				new EObjectAdapter(shapeView),
+				newBounds);
+		CompoundCommand compoundCommand = new CompoundCommand();
+		compoundCommand.add(new ICommandProxy(boundsCommand));
 
 		return compoundCommand;
 	}

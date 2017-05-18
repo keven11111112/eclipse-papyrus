@@ -22,6 +22,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingEditpart;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -51,9 +53,9 @@ public class CreateCoordinateCommand extends RecordingCommand {
 	public CreateCoordinateCommand(TransactionalEditingDomain domain, BasicCompartment compartment, String name, Element semantic, int position) {
 		super(domain, "create Grilling Structure");
 		this.compartment = compartment;
-		this.name= name;
-		this.position=position;
-		this.semantic=semantic;
+		this.name = name;
+		this.position = position;
+		this.semantic = semantic;
 
 	}
 
@@ -61,20 +63,20 @@ public class CreateCoordinateCommand extends RecordingCommand {
 	@Override
 	public void doExecute() {
 
-		//create One line
-		Node coordinate= NotationFactory.eINSTANCE.createDecorationNode();
-		Location linelocation=NotationFactory.eINSTANCE.createLocation();
-		
+		// create One line
+		Node coordinate = NotationFactory.eINSTANCE.createDecorationNode();
+		Location linelocation = NotationFactory.eINSTANCE.createLocation();
+
 		coordinate.setType(name);
-		if (name.startsWith(GridManagementEditPolicy.COLUMN)){
+		if (name.startsWith(GridManagementEditPolicy.COLUMN)) {
 			linelocation.setX(position);
 		}
-		if (name.startsWith(GridManagementEditPolicy.ROW)){
+		if (name.startsWith(GridManagementEditPolicy.ROW)) {
 			linelocation.setY(position);
-			System.out.println(">>>Create row at "+position);
+			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG, ">>>Create row at " + position); //$NON-NLS-1$
 		}
 		coordinate.setLayoutConstraint(linelocation);
-		if( semantic!=null){
+		if (semantic != null) {
 			coordinate.setElement(semantic);
 		}
 		ViewUtil.insertChildView(compartment, coordinate, ViewUtil.APPEND, true);

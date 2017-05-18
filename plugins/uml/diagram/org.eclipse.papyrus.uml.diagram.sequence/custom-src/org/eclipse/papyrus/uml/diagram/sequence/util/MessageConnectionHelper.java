@@ -15,6 +15,8 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
@@ -49,7 +51,7 @@ public class MessageConnectionHelper {
 			if (!covereds.isEmpty()) {
 				target = covereds.get(0);
 			}
-		} else if (receiveEvent instanceof Gate 
+		} else if (receiveEvent instanceof Gate
 				// special handling of SyncMessages due to #425666
 				&& MessageSort.SYNCH_CALL_LITERAL != message.getMessageSort()) {
 			target = ((Gate) receiveEvent).getOwner();
@@ -86,7 +88,7 @@ public class MessageConnectionHelper {
 		}
 		return canExist(message, getMessageSource(message), newTarget);
 	}
-	
+
 	public static boolean canExist(Message message, Element source, Element target) {
 		MessageSort messageSort = null;
 		if (message != null) {
@@ -153,7 +155,7 @@ public class MessageConnectionHelper {
 			buf.append("null");
 		}
 		buf.append("]");
-		System.out.println(new String(buf));
+		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_UTIL, buf.toString());// $NON-NLS-1$
 	}
 
 	public static boolean canExistReplyMessage(Message message, Element source, Element target) {
@@ -175,7 +177,7 @@ public class MessageConnectionHelper {
 		// Not available for StateInvariant.
 		if (source instanceof StateInvariant || target instanceof StateInvariant) {
 			return false;
-		}		
+		}
 		return true;
 	}
 
