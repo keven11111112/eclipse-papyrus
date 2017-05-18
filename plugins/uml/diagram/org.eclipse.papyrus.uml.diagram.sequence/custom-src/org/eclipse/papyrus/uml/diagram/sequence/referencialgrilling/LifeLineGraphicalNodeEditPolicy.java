@@ -167,7 +167,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			DropDestructionOccurenceSpecification dropDestructionOccurenceSpecification= new DropDestructionOccurenceSpecification(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart)request.getTargetEditPart(),relativePt.getTopLeft());
 			CompoundCommand compoundCommand= new CompoundCommand();
 			compoundCommand.add(cmd);
-			compoundCommand.add(new EMFtoGEFCommandWrapper(dropDestructionOccurenceSpecification));
+			compoundCommand.add(new GMFtoGEFCommandWrapper(dropDestructionOccurenceSpecification));
 			return compoundCommand;
 		}
 
@@ -182,7 +182,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg= new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart)request.getTargetEditPart());
 			CompoundCommand compoundCommand= new CompoundCommand();
 			compoundCommand.add(cmd);
-			compoundCommand.add(new EMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
+			compoundCommand.add(new GMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
 			return compoundCommand;
 		}
 

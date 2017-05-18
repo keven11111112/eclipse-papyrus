@@ -15,19 +15,23 @@ package org.eclipse.papyrus.uml.diagram.sequence.command;
 
 import java.util.ArrayList;
 
-import org.eclipse.draw2d.Figure;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Message;
@@ -37,7 +41,7 @@ import org.eclipse.uml2.uml.MessageEnd;
  *this class is used to drop the representation of the DestructionOccurrenceSpecification from the request in charge to create the message delete
  *
  */
-public class DropDestructionOccurenceSpecification extends RecordingCommand {
+public class DropDestructionOccurenceSpecification extends AbstractTransactionalCommand {
 
 	private CreateConnectionViewAndElementRequest request;
 	private EditPart graphicalContainer;
@@ -50,31 +54,37 @@ public class DropDestructionOccurenceSpecification extends RecordingCommand {
 	 * @param graphicalContainer for example the lifeline that will contain the representation of the event
 	 */
 	public DropDestructionOccurenceSpecification(TransactionalEditingDomain domain, CreateConnectionViewAndElementRequest request, EditPart graphicalContainer, Point absolutePosition) {
-		super(domain);
+		super(domain, CustomMessages.Commands_DropDestructionOccurenceSpecification_Label, null);
 		this.request=request;
 		this.graphicalContainer= graphicalContainer;
 		this.absolutePosition=absolutePosition;
 	}
 
+
 	/**
-	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 *
+	 * @param monitor
+	 * @param info
+	 * @return
+	 * @throws ExecutionException
 	 */
 	@Override
-	protected void doExecute() {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		CommandResult commandresult = null;
 		//1. look for the message
 		Message deleteMessage=getDeleteMessage();
 		if( deleteMessage==null){
-			return;
+			return commandresult;
 		}
 		//2. look for the Destruction occurrence
 		DestructionOccurrenceSpecification destructionOccurrenceSpecification=getDestructionOccurrence(deleteMessage);
 		if( destructionOccurrenceSpecification==null){
-			return;
+			return commandresult;
 		}
 		//3. drop the Destruction Occurrence
 		dropDestructionOccurrence(destructionOccurrenceSpecification);
-		
+		return CommandResult.newOKCommandResult();
 	}
 
 	/**
@@ -92,7 +102,7 @@ public class DropDestructionOccurenceSpecification extends RecordingCommand {
 		destructionOccurrenceListToDrop.add(destructionOccurrenceSpecification);
 		dropDestructionOccurrenceRequest.setObjects(destructionOccurrenceListToDrop);
 		
-		//give teh psotion form the layer its is not relative
+		//give the position from the layer it is not relative
 		Command command=graphicalContainer.getCommand(dropDestructionOccurrenceRequest);
 		command.execute();
 	}
@@ -123,5 +133,7 @@ public class DropDestructionOccurenceSpecification extends RecordingCommand {
 		}
 		return deleteMessage;
 	}
+
+
 
 }

@@ -13,6 +13,9 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.command;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -22,6 +25,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
@@ -29,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
@@ -44,7 +49,7 @@ import org.eclipse.uml2.uml.Message;
  * from the request in charge of creating a message between lifelines
  * according to the preferences for this message sort
  */
-public class CreateExecutionSpecificationWithMessage extends RecordingCommand {
+public class CreateExecutionSpecificationWithMessage extends AbstractTransactionalCommand {
 
 	protected CreateConnectionViewAndElementRequest request;
 	protected EditPart graphicalContainer;
@@ -59,7 +64,7 @@ public class CreateExecutionSpecificationWithMessage extends RecordingCommand {
 	 * @param graphicalContainer the lifeline that will contain the event representation
 	 */
 	public CreateExecutionSpecificationWithMessage(TransactionalEditingDomain domain, CreateConnectionViewAndElementRequest request, EditPart graphicalContainer) {
-		super(domain);
+		super(domain, CustomMessages.Commands_CreateExecutionSpecification_Label, null);
 		this.request=request;
 		this.graphicalContainer= graphicalContainer;
 		
@@ -69,25 +74,29 @@ public class CreateExecutionSpecificationWithMessage extends RecordingCommand {
 	}
 
 	/**
-	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 *
+	 * @param monitor
+	 * @param info
+	 * @return
+	 * @throws ExecutionException
 	 */
 	@Override
-	protected void doExecute() {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		//1. look for the message triggering the creation of the execution specification
 		Message message=getMessage();
 		if( message==null){
-			return;
+			throw new ExecutionException("null message");
 		}
 		//2. retrieve preferences to apply
 		// according to the message sort
 		retrievePreferences();
 		if( type==null || preference=="CHOICE_NONE") {
-			return;
+			throw new ExecutionException("undefined preference");
 		}
 		//3. create execution specification at target
 		createExecutionSpecification();
-		
+		return CommandResult.newOKCommandResult();
 	}
 
 	
@@ -185,5 +194,6 @@ public class CreateExecutionSpecificationWithMessage extends RecordingCommand {
 			this.createReply = true;
 		}
 	}
+
 
 }
