@@ -39,7 +39,7 @@ public class LoadExpansionModel extends AbstractPapyrusTest {
 
 	@Test
 	public void load_DiagramExpansion() {
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("NullExpansion.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("NullExpansion.expansionmodel");
 		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 0", 0, diagramExpansionsRegistry.mapChildreen.size());
 
@@ -47,7 +47,7 @@ public class LoadExpansionModel extends AbstractPapyrusTest {
 
 	@Test
 	public void load_BadDiagramExpansion() {
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("BadContextExpansion.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("BadContextExpansion.expansionmodel");
 
 		// This model is not valid so it is not loaded
 		Assert.assertEquals("Size ot the registry must be equals to 0", 0, diagramExpansionsRegistry.getDiagramExpansions().size());
@@ -56,7 +56,7 @@ public class LoadExpansionModel extends AbstractPapyrusTest {
 
 	@Test
 	public void load_BadProviderDiagramExpansion() {
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("BadProviderForExpansion.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("BadProviderForExpansion.expansionmodel");
 
 		// This model is not valid so it is not loaded
 		Assert.assertEquals("Size ot the registry must be equals to 0", 0, diagramExpansionsRegistry.getDiagramExpansions().size());
@@ -65,7 +65,7 @@ public class LoadExpansionModel extends AbstractPapyrusTest {
 
 	@Test
 	public void load_BadelementTypeDiagramExpansion() {
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("BadElementTypeForExpansion.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("BadElementTypeForExpansion.expansionmodel");
 
 		// This model is not valid so it is not loaded
 		Assert.assertEquals("Size ot the registry must be equals to 0", 0, diagramExpansionsRegistry.getDiagramExpansions().size());

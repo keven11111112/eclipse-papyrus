@@ -91,7 +91,7 @@ public class ExpansionAddChildLabel extends AbstractEditorTest {
 	@Test
 	public void load_DiagramExpansion() {
 		// loading
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddChildLabel.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddChildLabel.expansionmodel");
 		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 1", 1, diagramExpansionsRegistry.mapChildreen.size());
 

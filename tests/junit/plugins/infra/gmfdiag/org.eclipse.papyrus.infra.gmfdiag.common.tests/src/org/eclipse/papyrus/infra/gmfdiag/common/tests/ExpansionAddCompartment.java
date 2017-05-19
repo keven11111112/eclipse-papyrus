@@ -78,7 +78,7 @@ public class ExpansionAddCompartment extends AbstractEditorTest {
 	@Test
 	public void load_DiagramExpansion() {
 		// loading
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddCompartment.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddCompartment.expansionmodel");
 		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 1", 1, diagramExpansionsRegistry.mapChildreen.size());
 

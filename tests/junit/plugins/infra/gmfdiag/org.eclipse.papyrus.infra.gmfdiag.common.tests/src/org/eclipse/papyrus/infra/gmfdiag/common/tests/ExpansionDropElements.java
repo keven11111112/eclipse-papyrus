@@ -81,7 +81,7 @@ public class ExpansionDropElements extends AbstractEditorTest {
 	@Test
 	public void testDropInsidecontainer() {
 		// loading
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddChildLabel.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddChildLabel.expansionmodel");
 		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 1", 1, diagramExpansionsRegistry.mapChildreen.size());
 
@@ -139,7 +139,7 @@ public class ExpansionDropElements extends AbstractEditorTest {
 	@Test
 	public void testDropInsideBadcontainer() {
 		// loading
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddChildLabel.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddChildLabel.expansionmodel");
 		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 1", 1, diagramExpansionsRegistry.mapChildreen.size());
 

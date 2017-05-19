@@ -83,7 +83,7 @@ public class ExpansionAddLink extends AbstractEditorTest {
 		openDiagram(editor, "NewDiagram");
 
 		// loading
-		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddLink.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddLink.expansionmodel");
 		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 1", 1, diagramExpansionsRegistry.mapChildreen.size());
 
