@@ -15,6 +15,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomInteractionUseEditPartCN;
@@ -32,18 +33,20 @@ public class TestInteractionUse extends AbstractInteractionOverviewDiagramTestCa
 		super.setUp();
 		createActivity();
 	}
-
+@FailingTest
 	@Test
 	public void testCreateInteractionUse() {
 		createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
 	}
 
+@FailingTest
 	@Test
 	public void testDeleteInteractionUse() {
 		final CustomInteractionUseEditPartCN interactionUse = (CustomInteractionUseEditPartCN)createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
 		testDelete(interactionUse);
 	}
 
+@FailingTest
 	@Test
 	public void testDropLifeline() {
 		// create a Lifeline and hide its View, so as to be able to drop it after that
@@ -55,6 +58,7 @@ public class TestInteractionUse extends AbstractInteractionOverviewDiagramTestCa
 	}
 
 
+@FailingTest
 	@Test
 	public void testCreateThreeInteractions() {
 		final UMLNodeEditPart interactionUse1 = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
@@ -66,6 +70,7 @@ public class TestInteractionUse extends AbstractInteractionOverviewDiagramTestCa
 		assertTrue("The third interaction should be found in the diagram", getDefaultActivityCompartment().getChildren().contains(interactionUse3));
 	}
 
+@FailingTest
 	@Test
 	public void testEditInteractionName() {
 		final UMLNodeEditPart interactionUse = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);

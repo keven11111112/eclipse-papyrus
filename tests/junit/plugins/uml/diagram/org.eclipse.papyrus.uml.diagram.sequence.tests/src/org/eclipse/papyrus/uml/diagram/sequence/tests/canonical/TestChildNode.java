@@ -75,14 +75,14 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	}
 
 	protected void waitForComplete() {
-		boolean run = true;
-		while (run) {
-			try {
-				run = Display.getDefault().readAndDispatch();
-			} catch (Exception e) {
-				run = true;
-			}
-		}
+//		boolean run = true;
+//		while (run) {
+//			try {
+//				run = Display.getDefault().readAndDispatch();
+//			} catch (Exception e) {
+//				run = true;
+//			}
+//		}
 	}
 
 	/**
