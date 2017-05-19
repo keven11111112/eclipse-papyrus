@@ -16,7 +16,6 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -99,7 +98,6 @@ public class DurationConstraintFigure extends RectangleFigure {
 
 		this.setFill(false);
 		this.setOutline(false);
-		this.setPreferredSize(new Dimension(40, 100));
 		this.setBorder(createBorder());
 		graphics.popState();
 

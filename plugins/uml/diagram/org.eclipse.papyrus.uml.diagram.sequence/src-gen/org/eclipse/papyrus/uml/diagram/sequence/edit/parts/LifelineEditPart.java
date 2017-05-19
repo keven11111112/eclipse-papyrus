@@ -43,6 +43,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragD
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineResizeAffixedNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.DurationConstraintLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectPointToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy;
@@ -219,7 +220,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 
 		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof DurationConstraintEditPart) {
-			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new DurationConstraintLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
