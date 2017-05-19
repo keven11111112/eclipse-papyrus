@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012, 2014 Mia-Software, CEA, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2017 Mia-Software, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *    Christian W. Damus (CEA) - bug 440795
  *    Christian W. Damus (CEA) - bug 441857
  *    Sebastien Gabel (Esterel Technologies) - Bug 438931 - Non deterministic order of the facet references defined in custom file
- *    Christian W. Damus - bug 451683
+ *    Christian W. Damus - bugs 451683, 509742
  *
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.custom.ui.internal;
@@ -21,6 +21,7 @@ package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.core.exception.CustomizationException;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
@@ -50,6 +52,8 @@ import org.eclipse.papyrus.emf.facet.util.core.Logger;
 @SuppressWarnings("deprecation")
 // @SuppressWarnings("deprecation") : Bug 380229 - [deprecated] ICustomizedContentProvider
 public class CustomizedTreeContentProvider implements ICustomizedTreeContentProvider, ICustomizedContentProvider {
+
+	private static final Comparator<EStructuralFeature> BY_RANK = CustomizedTreeContentProvider::compareRanks;
 
 	private final ICustomizationManager customManager;
 	private final IContentPropertiesHandler contentHandler;
@@ -211,7 +215,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	}
 
 	public Object[] getChildren(final EObjectTreeElement treeElement) {
-		Collection<EStructuralFeature> facetFeatures;
+		List<EStructuralFeature> facetFeatures;
 		try {
 			facetFeatures = FacetUtils.getETypedElements(treeElement.getEObject(), EStructuralFeature.class, customManager.getFacetManager());
 		} catch (FacetManagerException e) {
@@ -219,10 +223,57 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 			Logger.logError(e, Activator.getDefault());
 		}
 
+		// Where is the zero rank at which we insert native model features?
+		int zeroPoint = getZeroRank(facetFeatures);
+		List<EStructuralFeature> priorityFeatures = facetFeatures.subList(0, zeroPoint);
+		List<EStructuralFeature> otherFeatures = facetFeatures.subList(zeroPoint, facetFeatures.size());
+
 		final Collection<TreeElement> children = new ArrayList<TreeElement>();
-		createAttributes(treeElement, facetFeatures, children);
-		createReferences(treeElement, facetFeatures, children);
+		createAttributes(treeElement, priorityFeatures, otherFeatures, children);
+		createReferences(treeElement, priorityFeatures, otherFeatures, children);
 		return children.toArray();
+	}
+
+	/**
+	 * Finds the index in a rank-sorted list of facet-features of the first feature defined
+	 * by a facet-set of rank zero or greater (facet-sets that are not customizations are
+	 * deemed to have rank zero).
+	 * 
+	 * @param facetFeatures
+	 *            a list of facet features
+	 * @return the index of the first feature of non-negative rank, or the size of the
+	 *         list if all have negative rank (or {@code 0} if the list is empty)
+	 */
+	private int getZeroRank(List<EStructuralFeature> facetFeatures) {
+		// The actual ordering is suspectible to user intervention, so it is possible
+		// that the binary search will not find the best insertion point because the
+		// list may not actually be sorted. But, it will find something and hopefully
+		// that will be near the middle-ish
+		int search = Collections.binarySearch(facetFeatures, null, BY_RANK);
+
+		// We know that 'null' is not in the list, so the search result is the insertion point
+		return -(1 + search);
+	}
+
+	static int compareRanks(EStructuralFeature o1, EStructuralFeature o2) {
+		// the 'null' key (by definition the insertion point) has a magic
+		// rank between -1 and 0
+		if (o1 == null) {
+			return (rank(o2) >= 0) ? +1 : -1;
+		} else if (o2 == null) {
+			return (rank(o1) < 0) ? -1 : +1;
+		} else {
+			return rank(o1) - rank(o2);
+		}
+	}
+
+	static int rank(EStructuralFeature eStructuralFeature) {
+		EObject eClass = eStructuralFeature.eContainer();
+		EObject ePackage = eClass.eContainer();
+
+		return (ePackage instanceof Customization)
+				? ((Customization) ePackage).getRank()
+				: 0;
 	}
 
 	public Object[] getChildren(final EAttributeTreeElement attributeProxy) {
@@ -378,15 +429,31 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 
 
 
-	private void createReferences(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<TreeElement> children) {
+	private void createReferences(final EObjectTreeElement treeElement,
+			Collection<EStructuralFeature> priorityFacetFeatures, Collection<EStructuralFeature> otherFacetFeatures,
+			Collection<TreeElement> children) {
 		final EObject eObject = treeElement.getEObject();
 
+		// High-priority (negative rank) features, first
+		if (!priorityFacetFeatures.isEmpty()) {
+			for (EStructuralFeature next : priorityFacetFeatures) {
+				if (next instanceof EReference) {
+					createReference(treeElement, eObject, (EReference) next, children);
+				}
+			}
+		}
+
+		// Filtered native model references have implicit zero rank
 		for (EReference next : getVisibleReferences(eObject)) {
 			createReference(treeElement, eObject, next, children);
 		}
-		for (EStructuralFeature next : facetFeatures) {
-			if (next instanceof EReference) {
-				createReference(treeElement, eObject, (EReference) next, children);
+
+		// Lower priority (positive rank) features follow
+		if (!otherFacetFeatures.isEmpty()) {
+			for (EStructuralFeature next : otherFacetFeatures) {
+				if (next instanceof EReference) {
+					createReference(treeElement, eObject, (EReference) next, children);
+				}
 			}
 		}
 	}
@@ -406,15 +473,32 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		}
 	}
 
-	private void createAttributes(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<TreeElement> children) {
+	private void createAttributes(final EObjectTreeElement treeElement,
+			Collection<EStructuralFeature> priorityFacetFeatures, Collection<EStructuralFeature> otherFacetFeatures,
+			Collection<TreeElement> children) {
+
 		final EObject eObject = treeElement.getEObject();
 
+		// High-priority (negative rank) features, first
+		if (!priorityFacetFeatures.isEmpty()) {
+			for (EStructuralFeature next : priorityFacetFeatures) {
+				if (next instanceof EAttribute) {
+					createAttribute(treeElement, eObject, (EAttribute) next, children);
+				}
+			}
+		}
+
+		// Filtered native model attributes have implicit zero rank
 		for (EAttribute next : getVisibleAttributes(eObject)) {
 			createAttribute(treeElement, eObject, next, children);
 		}
-		for (EStructuralFeature next : facetFeatures) {
-			if (next instanceof EAttribute) {
-				createAttribute(treeElement, eObject, (EAttribute) next, children);
+
+		// Lower priority (positive rank) features follow
+		if (!otherFacetFeatures.isEmpty()) {
+			for (EStructuralFeature next : otherFacetFeatures) {
+				if (next instanceof EAttribute) {
+					createAttribute(treeElement, eObject, (EAttribute) next, children);
+				}
 			}
 		}
 	}

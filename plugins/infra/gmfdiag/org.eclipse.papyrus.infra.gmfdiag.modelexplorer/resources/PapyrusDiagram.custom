@@ -11,7 +11,7 @@
     name="PapyrusDiagram"
     documentation="Display contained diagram and their icons"
     mustBeLoadedByDefault="true"
-    rank="1">
+    rank="-1000">
   <eClassifiers
       xsi:type="custom:EClassCustomization"
       name="Diagram"
