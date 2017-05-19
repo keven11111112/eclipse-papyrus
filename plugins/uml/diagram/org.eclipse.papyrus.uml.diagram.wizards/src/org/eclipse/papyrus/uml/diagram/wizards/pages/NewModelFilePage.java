@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2013 Obeo.
+ * Copyright (c) 2008, 2017 Obeo, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - initial API and implementation
  *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
+ *     Christian W. Damus - bug 471453
  *
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
@@ -42,7 +43,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
  *
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class NewModelFilePage extends WizardNewFileCreationPage {
+public class NewModelFilePage extends WizardNewFileCreationPage implements INewPapyrusModelPage {
 
 	/** The Constant DEFAULT_NAME. */
 	public static final String DEFAULT_NAME = Messages.NewModelFilePage_default_diagram_name;
@@ -52,6 +53,8 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "NewPapyrusModel"; //$NON-NLS-1$
+
+	private NewModelWizardData wizardData;
 
 	/**
 	 * Instantiates a new new model file page.
@@ -99,6 +102,22 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		setPageComplete(validatePage());
 
 
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	@Override
+	public void setNewModelWizardData(NewModelWizardData wizardData) {
+		this.wizardData = wizardData;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	@Override
+	public NewModelWizardData getNewModelWizardData() {
+		return wizardData;
 	}
 
 	/**
@@ -157,9 +176,18 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		}
 
 		if (containerFullPath == null) {
-			containerFullPath = new Path(""); //$NON-NLS-1$
+			containerFullPath = Path.EMPTY;
 		}
-		if (fileName == null || fileName.trim().length() == 0) {
+
+		// First, try the same name as the container for a reasonable default
+		if ((fileName == null) || fileName.trim().isEmpty()) {
+			IPath testPath = containerFullPath.isEmpty() ? null : containerFullPath.append(containerFullPath.lastSegment()).addFileExtension(extension);
+			if (!ResourcesPlugin.getWorkspace().getRoot().exists(testPath)) {
+				fileName = testPath.removeFileExtension().lastSegment();
+			}
+		}
+
+		if ((fileName == null) || fileName.trim().isEmpty()) {
 			fileName = DEFAULT_NAME;
 		}
 
@@ -191,6 +219,15 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	protected IStatus validateLinkedResource() {
 		return Status.OK_STATUS; // Disable this method to avoid NPE (Because we override #createAdvancedControls)
+	}
+
+	@Override
+	protected boolean validatePage() {
+		if (wizardData != null) {
+			wizardData.setModelFileName(getFileName());
+		}
+
+		return super.validatePage();
 	}
 
 	@Override

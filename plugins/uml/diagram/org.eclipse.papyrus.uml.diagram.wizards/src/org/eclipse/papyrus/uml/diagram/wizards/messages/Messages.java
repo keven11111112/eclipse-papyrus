@@ -104,20 +104,32 @@ public class Messages extends NLS {
 	public static String NewModelFilePage_set_a_container;
 
 
-	/** The Select diagram category page_cannot_find_category. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram category page_cannot_find_category.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectArchitectureContextPage_cannot_find_category;
 
-	/** The Select diagram category page_diagram_language_group. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram category page_diagram_language_group.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectArchitectureContextPage_diagram_language_group;
 
-	/** The Select diagram category page_select_language. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram category page_select_language.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectArchitectureContextPage_select_language;
 
-	/** The Select diagram category page_select_one_category. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram category page_select_one_category.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectArchitectureContextPage_select_one_category;
 
 	/**
@@ -125,32 +137,46 @@ public class Messages extends NLS {
 	 */
 	public static String SelectRepresentationKindPage_0;
 
-	/** The Select diagram kind page_default_diagram_name. 
-	 * @since 3.0*/
-	public static String SelectRepresentationKindPage_default_diagram_name;
-
-	/** The Select diagram kind page_diagram_name_group. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram kind page_diagram_name_group.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectRepresentationKindPage_diagram_name_group;
 
-	/** The Select diagram kind page_diagram_name_is_empty. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram kind page_diagram_name_is_empty.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectRepresentationKindPage_diagram_name_is_empty;
 
-	/** The Select diagram kind page_load_template_group. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram kind page_load_template_group.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectRepresentationKindPage_load_template_group;
 
-	/** The Select diagram kind page_page_desc. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram kind page_page_desc.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectRepresentationKindPage_page_desc;
 
-	/** The Select diagram kind page_page_title. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram kind page_page_title.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectRepresentationKindPage_page_title;
 
-	/** The Select diagram kind page_remember_current_selection_text. 
-	 * @since 3.0*/
+	/**
+	 * The Select diagram kind page_remember_current_selection_text.
+	 * 
+	 * @since 3.0
+	 */
 	public static String SelectRepresentationKindPage_remember_current_selection_text;
 
 	/** The Select diagram kind page_remember_current_selection_tooltip. */
@@ -164,7 +190,7 @@ public class Messages extends NLS {
 	 * @since 3.0
 	 */
 	public static String SelectRepresentationKindPage_select_kind_group;
-	
+
 	/**
 	 * @since 3.0
 	 */
@@ -246,8 +272,6 @@ public class Messages extends NLS {
 
 
 	public static String PapyrusProjectCreationPage_0;
-
-	public static String PapyrusProjectCreationPage_1;
 
 	public static String PapyrusProjectCreationPage_3;
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2016 Obeo, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2017 Obeo, CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *     Christian W. Damus (CEA) - create models by URI, not IFile (CDO)
  *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
- *     Christian W. Damus - bug 490936
+ *     Christian W. Damus - bugs 490936, 471453
  *
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.wizards;
@@ -64,8 +64,9 @@ import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.command.InitFromTemplateCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.command.NewPapyrusModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.INewPapyrusModelPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelWizardData;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ContextProvider;
@@ -139,6 +140,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	protected IWizardPage newProjectPage;
 
+	private final NewModelWizardData wizardData = new NewModelWizardData();
+
 	protected static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.uml.diagram.wizards.templates"; //$NON-NLS-1$
 
 	/**
@@ -188,6 +191,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		endProviderPageIndex = getPageCount();
 
 		addPageIfNotNull(selectRepresentationKindPage);
+
+		INewPapyrusModelPage newModelPage = getNewModelPage();
+		if (newModelPage != null) {
+			newModelPage.setNewModelWizardData(wizardData);
+		}
 	}
 
 	protected void setNewProjectPage(IWizardPage page) {
@@ -487,7 +495,17 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @since 3.0
 	 */
 	protected SelectRepresentationKindPage createSelectRepresentationKindPage() {
-		return new SelectRepresentationKindPage(new ContextProvider() {
+		SelectRepresentationKindPage result = doCreateSelectRepresentationKindPage();
+		result.setNewModelWizardData(wizardData);
+		return result;
+	}
+
+	protected SelectRepresentationKindPage doCreateSelectRepresentationKindPage() {
+		return new SelectRepresentationKindPage(createContextProvider());
+	}
+
+	protected ContextProvider createContextProvider() {
+		return new ContextProvider() {
 
 			@Override
 			public String[] getCurrentContexts() {
@@ -499,7 +517,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				return getSelectedViewpoints();
 			}
 
-		});
+		};
 	}
 
 	/**
@@ -984,17 +1002,28 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			result = allPages[i].isPageComplete();
 		}
 
-		// This takes care of the case problems when creating a model with the same name but different case
-		for (IWizardPage page : allPages) {
-			if (page instanceof NewModelFilePage) {
-				return page.canFlipToNextPage();
-			}
-			if (page instanceof PapyrusProjectCreationPage) {
-				return page.canFlipToNextPage();
+		if (result) {
+			// This takes care of the case problems when creating a model with the same name but different case
+			IWizardPage page = getNewModelPage();
+			if (page != null) {
+				result = page.canFlipToNextPage();
 			}
 		}
 
 		return result;
+	}
+
+	private INewPapyrusModelPage getNewModelPage() {
+		return getPage(INewPapyrusModelPage.class);
+	}
+
+	protected <P extends IWizardPage> P getPage(Class<P> type) {
+		for (IWizardPage next : getPages()) {
+			if (type.isInstance(next)) {
+				return type.cast(next);
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -1016,6 +1045,4 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		// this.getClass().getName().equals(anObject)
 		return true;
 	}
-
-
 }

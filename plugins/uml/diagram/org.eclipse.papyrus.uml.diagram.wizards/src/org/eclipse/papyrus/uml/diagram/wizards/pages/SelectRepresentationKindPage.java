@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2017 Obeo, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,18 @@
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - improved look&feel
  *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
+ *     Christian W. Damus - bug 471453
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
@@ -31,10 +35,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindLabelProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.RepresentationKindComposite;
@@ -68,6 +72,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 
 	/** The diagram name text field. */
 	private Text nameText;
+	private boolean nameTextModified;
 
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
@@ -85,6 +90,9 @@ public class SelectRepresentationKindPage extends WizardPage {
 
 	/** The my creation command registry. */
 	private final ICreationCommandRegistry myCreationCommandRegistry;
+
+	private NewModelWizardData wizardData;
+	private IValueChangeListener<String> defaultModelNameListener;
 
 	private static EObject modelRoot;
 
@@ -146,7 +154,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 		modelTemplateComposite.setLayout(new GridLayout());
 		modelTemplateComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		createModelTemplateComposite(modelTemplateComposite);
-		
+
 		fillInTables(getContexts(), getViewpoints());
 
 		Composite profileChooserComposite = new Composite(pageComposite, SWT.NONE);
@@ -287,7 +295,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 		return myContextProvider.getCurrentViewpoints();
 	}
 
-	
+
 	/**
 	 * Gets the diagram name.
 	 *
@@ -323,7 +331,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 		for (MergedArchitectureViewpoint viewpoint : context.getViewpoints())
 			allowedKinds.addAll(viewpoint.getRepresentationKinds());
 		List<RepresentationKind> selectedKinds = new ArrayList<RepresentationKind>();
-		for (RepresentationKind kind : getSelectedRepresentationKinds()) { 	
+		for (RepresentationKind kind : getSelectedRepresentationKinds()) {
 			if (allowedKinds.contains(kind))
 				selectedKinds.add(kind);
 		}
@@ -393,7 +401,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 		Group group = createGroup(composite, Messages.SelectRepresentationKindPage_diagram_name_group);
 		nameText = new Text(group, SWT.BORDER);
 		nameText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		nameText.setText(Messages.SelectRepresentationKindPage_default_diagram_name);
+		nameText.setText(getDefaultModelName().getValue());
 
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() > 0) {
@@ -444,6 +452,10 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @return true, if successful
 	 */
 	private boolean validatePage() {
+		if (!Objects.equals(nameText.getText(), getDefaultModelName().getValue())) {
+			nameTextModified = true;
+		}
+
 		IStatus profileStatus = profileChooserComposite.getProfileDefinitionStatus();
 		if (!profileStatus.isOK()) {
 			this.setErrorMessage(profileStatus.getMessage());
@@ -518,4 +530,45 @@ public class SelectRepresentationKindPage extends WizardPage {
 
 	}
 
+	public void setNewModelWizardData(NewModelWizardData wizardData) {
+		if (this.wizardData == wizardData) {
+			return;
+		}
+
+		if ((getDefaultModelName() != null) && (defaultModelNameListener != null)) {
+			getDefaultModelName().removeValueChangeListener(defaultModelNameListener);
+		}
+
+		this.wizardData = wizardData;
+
+		if (getDefaultModelName() != null) {
+			getDefaultModelName().addValueChangeListener(getDefaultModelNameListener());
+			updateDefaultModelName();
+		}
+	}
+
+	protected IObservableValue<String> getDefaultModelName() {
+		return (wizardData == null) ? null : wizardData.getDefaultModelName();
+	}
+
+	private IValueChangeListener<String> getDefaultModelNameListener() {
+		if (defaultModelNameListener == null) {
+			defaultModelNameListener = event -> updateDefaultModelName(event.diff.getNewValue());
+		}
+
+		return defaultModelNameListener;
+	}
+
+	protected void updateDefaultModelName(String newName) {
+		if ((nameText != null) && !nameTextModified) {
+			nameText.setText(newName);
+			nameText.selectAll();
+		}
+	}
+
+	private void updateDefaultModelName() {
+		if (getDefaultModelName() != null) {
+			updateDefaultModelName(getDefaultModelName().getValue());
+		}
+	}
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
+ *  Christian W. Damus - bug 471453
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.wizards;
@@ -26,7 +27,6 @@ import org.eclipse.papyrus.uml.diagram.wizards.command.PapyrusModelFromExistingD
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage.ContextProvider;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IWorkbench;
@@ -91,24 +91,13 @@ public class InitModelWizard extends CreateModelWizard {
 	 * @return the select diagram kind page {@inheritDoc}
 	 */
 	@Override
-	protected SelectRepresentationKindPage createSelectRepresentationKindPage() {
+	protected SelectRepresentationKindPage doCreateSelectRepresentationKindPage() {
 		if (isCreateFromExistingDomainModel()) {
-			return new SelectRepresentationKindPage(false, new ContextProvider() {
-
-				@Override
-				public String[] getCurrentContexts() {
-					return getSelectedContexts();
-				}
-
-				@Override
-				public String[] getCurrentViewpoints() {
-					return getSelectedViewpoints();
-				}
-
-			}, SelectRepresentationKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
+			return new SelectRepresentationKindPage(false, createContextProvider(),
+					SelectRepresentationKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
 		}
-		;
-		return super.createSelectRepresentationKindPage();
+
+		return super.doCreateSelectRepresentationKindPage();
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,12 @@
  *
  * Contributors:
  * Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com  - Initial API and implementation
+ * Christian W. Damus - bug 471453
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
+
+import java.util.Objects;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -27,25 +30,34 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 
-public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
+public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage implements INewPapyrusModelPage {
 
 	private Text fileName;
+
+	private boolean fileNameEdited;
 
 	private Listener fileNameModifyListener = new Listener() {
 
 		@Override
 		public void handleEvent(Event e) {
+			if (!Objects.equals(fileName.getText(), getProjectName())) {
+				fileNameEdited = true;
+			}
+
+			if (wizardData != null) {
+				wizardData.setModelFileName(fileName.getText());
+			}
+
 			boolean valid = canFlipToNextPage();
 			setPageComplete(valid);
-
 		}
 	};
+
+	private NewModelWizardData wizardData;
 
 	public PapyrusProjectCreationPage(String pageName) {
 		super(pageName);
 	}
-
-
 
 	@Override
 	public void createControl(Composite parent) {
@@ -58,7 +70,6 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 		Group group = createGroup(composite, Messages.PapyrusProjectCreationPage_0);
 		fileName = new Text(group, SWT.BORDER);
 		fileName.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		fileName.setText(Messages.PapyrusProjectCreationPage_1);
 		fileName.addListener(SWT.Modify, fileNameModifyListener);
 		setPageComplete(false);
 	}
@@ -84,13 +95,36 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 		return group;
 	}
 
+	/**
+	 * @since 3.0
+	 */
+	@Override
+	public void setNewModelWizardData(NewModelWizardData wizardData) {
+		this.wizardData = wizardData;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	@Override
+	public NewModelWizardData getNewModelWizardData() {
+		return wizardData;
+	}
+
 	@Override
 	protected boolean validatePage() {
-		if (fileName != null) {
-			if (fileName.getText().equals("")) { //$NON-NLS-1$
+		String projectName = getProjectName();
+
+		if ((fileName != null) && fileNameEdited) {
+			if (fileName.getText().trim().isEmpty()) {
 				this.setErrorMessage(Messages.PapyrusProjectCreationPage_3);
 				return false;
 			}
+		} else if ((fileName != null) && (projectName != null)
+				&& !Objects.equals(fileName.getText(), projectName)) {
+
+			// Default file name is the project name
+			fileName.setText(getProjectName());
 		}
 
 		return super.validatePage();
