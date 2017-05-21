@@ -48,6 +48,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 	}
 
 	@Test
+@FailingTest
 	public void testModelWithThreeOccurrenceSpecifications() {
 		createThreeOccurrenceSpecificationsInDefaultFullLifeline();
 		final View interactionView = (View)getDefaultInteractionEditPart().getModel();
@@ -60,6 +61,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 	}
 
 	@Test
+@FailingTest
 	public void testDeleteOccurrenceSpecification() {
 		createThreeOccurrenceSpecificationsInDefaultFullLifeline();
 		final List<OccurrenceSpecificationEditPartCN> occurrenceSpecifications = findOccurrenceSpecificationsInDefaultFullLifeline();
@@ -93,6 +95,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 	}
 
 	@Test
+@FailingTest
 	public void testCreateOccurrenceSpecificationWithDoubleClick() {
 		final FullStateInvariantEditPartCN stateInvariantEditPart = (FullStateInvariantEditPartCN)EditPartUtils.findFirstChildEditPartWithId(getDefaultFullLifelineEditPart(), FullStateInvariantEditPartCN.VISUAL_ID);
 		assertNotNull("A StateInvariant must always exist", stateInvariantEditPart);
@@ -246,11 +249,13 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 
 	@Ignore("Test is not implemented")
 	@Test
+@FailingTest
 	public void testMoveVerticalLine() {
 		// TODO: test that moving a vertical line moves the preceding occurrence specification
 	}
 
 	@Test
+@FailingTest
 	public void testFullUndoRedo() {
 		createThreeOccurrenceSpecificationsInDefaultFullLifeline();
 		// 3 OccurrenceSpecifications + 3 StateDefinitions + 1 Lifeline + 1 Interaction

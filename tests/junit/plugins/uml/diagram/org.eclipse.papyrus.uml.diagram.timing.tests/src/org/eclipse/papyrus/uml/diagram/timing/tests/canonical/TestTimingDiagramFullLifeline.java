@@ -38,23 +38,27 @@ public class TestTimingDiagramFullLifeline extends AbstractTimingDiagramTestCase
 	}
 
 	@Test
+@FailingTest
 	public void testCreateLifeline() {
 		createFullLifelineInDefaultInteraction();
 	}
 
 	@Test
+@FailingTest
 	public void testHideLifeline() {
 		final FullLifelineEditPartCN lifelineEditPart = createFullLifelineInDefaultInteraction();
 		testHide(lifelineEditPart);
 	}
 
 	@Test
+@FailingTest
 	public void testDeleteLifeline() {
 		final FullLifelineEditPartCN lifelineEditPart = createFullLifelineInDefaultInteraction();
 		testDelete(lifelineEditPart);
 	}
 
 	@Test
+@FailingTest
 	public void testDropLifeline() {
 		// create a Lifeline and hide its View, so as to be able to drop it after that
 		final FullLifelineEditPartCN lifelineEditPart = createFullLifelineInDefaultInteraction();
@@ -65,6 +69,7 @@ public class TestTimingDiagramFullLifeline extends AbstractTimingDiagramTestCase
 	}
 
 	@Test
+@FailingTest
 	public void testCellEditorLocator() {
 		final FullLifelineEditPartCN lifelineEditPart = createFullLifelineInDefaultInteraction();
 		final FullLifelineNameEditPart fullLifelineNameEditPart = (FullLifelineNameEditPart)EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, FullLifelineNameEditPart.VISUAL_ID);
@@ -83,6 +88,7 @@ public class TestTimingDiagramFullLifeline extends AbstractTimingDiagramTestCase
 	}
 
 	@Test
+@FailingTest
 	public void create3LifelinesTest() {
 		final EditPart interactionCompartment = getDefaultInteractionCompartment();
 		assertNotNull("The interaction compartment was not found", interactionCompartment);

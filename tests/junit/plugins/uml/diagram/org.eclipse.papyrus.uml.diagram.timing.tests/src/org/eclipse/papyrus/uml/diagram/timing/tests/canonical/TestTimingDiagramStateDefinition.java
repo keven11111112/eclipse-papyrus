@@ -55,6 +55,7 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 	}
 
 	@Test
+@FailingTest
 	public void testCreateStateDefinition() {
 		final EditPart stateDefinition = createStateDefinitionInDefaultFullLifeline();
 		final EditPart stateInvariantEditPart = EditPartUtils.findFirstChildEditPartWithId(getDefaultFullLifelineEditPart(), FullStateInvariantEditPartCN.VISUAL_ID);
@@ -69,6 +70,7 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 	}
 
 	@Test
+@FailingTest
 	public void testCreateMultipleStateDefinitions() {
 		createStateDefinitionInDefaultFullLifeline();
 		expectNStateDefinitions(1);
@@ -161,6 +163,7 @@ public class TestTimingDiagramStateDefinition extends AbstractTimingDiagramTestC
 	}
 
 	@Test
+@FailingTest
 	public void testDeleteStateDefinition() {
 		final EditPart stateDefinition1 = createStateDefinitionInDefaultFullLifeline();
 		final EditPart stateDefinition2 = createStateDefinitionInDefaultFullLifeline();

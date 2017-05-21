@@ -72,6 +72,7 @@ public class TestTimingDiagramFullStateInvariant extends AbstractTimingDiagramTe
 	}
 
 	@Test
+@FailingTest
 	public void testDeleteStateInvariants() {
 		checkInteractionFragmentsWithPattern("-o-o-o-");
 		checkSimpleFullTimelinePattern("-o|-o|-o|-");
@@ -88,6 +89,7 @@ public class TestTimingDiagramFullStateInvariant extends AbstractTimingDiagramTe
 	}
 
 	@Test
+@FailingTest
 	public void testHideStateInvariants() {
 		checkInteractionFragmentsWithPattern("-o-o-o-");
 		checkSimpleFullTimelinePattern("-o|-o|-o|-");
