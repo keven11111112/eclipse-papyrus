@@ -13,6 +13,9 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
@@ -39,7 +42,8 @@ public class KeyToSetMoveLinesListener  implements Listener{
 	@Override
 	public void handleEvent(Event event) {
 		if (event.keyCode == keyboard) {
-			gridManagementEditPolicy.setMoveAllLinesAtSamePosition(moveAllLines);
+			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(gridManagementEditPolicy, moveAllLines);
+			((GraphicalEditPart)gridManagementEditPolicy.getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(setMoveAllLineAtSamePositionCommand);
 		}
 	}
 }

@@ -342,8 +342,8 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		if (notification instanceof CommandExecutionNotification) {
 			// after a command execution moveAllLinesAtSamePosition is set to false
 			// we must explicitly set to true if we want to move it as a line
-			setMoveAllLinesAtSamePosition(true);
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "executed Command");//$NON-NLS-1$
+			//setMoveAllLinesAtSamePosition(true);
+			//UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "executed Command");//$NON-NLS-1$
 		} else {
 
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location) {

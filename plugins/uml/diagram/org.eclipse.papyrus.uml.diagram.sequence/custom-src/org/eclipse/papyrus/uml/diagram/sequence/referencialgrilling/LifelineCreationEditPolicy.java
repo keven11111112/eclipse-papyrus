@@ -18,15 +18,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
@@ -35,7 +38,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * This editPolicy has in charge to redirect creation of element to interaction
  *
  */
-public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
+public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implements IGrillingEditpolicy {
 	protected DisplayEvent displayEvent;
 
 	/**
@@ -67,6 +70,17 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy {
 					createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START, mos);
 				}
 			}
+		}
+		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
+		GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+		if (grid!=null){
+			CompoundCommand cmd= new CompoundCommand();
+			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid, false);
+			cmd.add(setMoveAllLineAtSamePositionCommand);
+			cmd.add(super.getCreateElementAndViewCommand(request));
+			setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand( grid, true);
+			cmd.add(setMoveAllLineAtSamePositionCommand);	
+			return cmd;
 		}
 		return super.getCreateElementAndViewCommand(request);
 	}

@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNod
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
@@ -177,12 +178,14 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			// an execution specification may be created at target
 			DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
 			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
-			grid.setMoveAllLinesAtSamePosition(false);
-
 			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg= new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart)request.getTargetEditPart());
 			CompoundCommand compoundCommand= new CompoundCommand();
+			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid,false);
+			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
 			compoundCommand.add(cmd);
 			compoundCommand.add(new GMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
+			setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid, true);
+			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
 			return compoundCommand;
 		}
 

@@ -60,6 +60,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.EllipseFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -149,7 +150,6 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		RootEditPart drep = getHost().getRoot();
 		Rectangle parentBound = getHostFigure().getBounds().getCopy();
 		getHostFigure().getParent().translateToAbsolute(parentBound);
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "LifeLineBounds On Screen:" + parentBound);//$NON-NLS-1$
 		if (drep instanceof DiagramRootEditPart) {
 			double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
 			if (request instanceof org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest) {
@@ -249,6 +249,26 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	}
 
 
-
+ /**
+ * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy#getCreateCommand(org.eclipse.gef.requests.CreateRequest)
+ *
+ * @param request
+ * @return
+ */
+@Override
+protected Command getCreateCommand(CreateRequest request) {
+	DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
+	GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+	if (grid!=null){
+		CompoundCommand cmd= new CompoundCommand();
+		SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid, false);
+		cmd.add(setMoveAllLineAtSamePositionCommand);
+		cmd.add(super.getCreateCommand(request));
+		setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand( grid, true);
+		cmd.add(setMoveAllLineAtSamePositionCommand);	
+		return cmd;
+	}
+	return super.getCreateCommand(request);
+}
 
 }

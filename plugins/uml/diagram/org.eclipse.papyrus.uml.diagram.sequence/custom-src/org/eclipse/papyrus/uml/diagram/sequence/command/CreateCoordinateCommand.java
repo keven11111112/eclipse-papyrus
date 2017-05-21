@@ -73,7 +73,7 @@ public class CreateCoordinateCommand extends RecordingCommand {
 		}
 		if (name.startsWith(GridManagementEditPolicy.ROW)) {
 			linelocation.setY(position);
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG, ">>>Create row at " + position); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, ">>>Create row at " + position); //$NON-NLS-1$
 		}
 		coordinate.setLayoutConstraint(linelocation);
 		if (semantic != null) {
