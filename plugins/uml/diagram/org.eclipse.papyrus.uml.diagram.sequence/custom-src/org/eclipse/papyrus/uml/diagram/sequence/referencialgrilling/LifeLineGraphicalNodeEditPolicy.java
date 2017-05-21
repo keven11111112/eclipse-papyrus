@@ -156,10 +156,17 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			Bounds bounds=((Bounds)((Node)nodeEP.getModel()).getLayoutConstraint());
 
 			SetBoundsCommand setBoundsCommand=new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update column", new EObjectAdapter( ((GraphicalEditPart)nodeEP).getNotationView()),
-					new Point(bounds.getX(),relativePt.y ));
+					new Point(bounds.getX(),relativePt.y-5));
 			CompoundCommand compoundCommand= new CompoundCommand();
+			DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
+			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid,false);
+			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
 			compoundCommand.add(cmd);
 			compoundCommand.add(new GMFtoGEFCommandWrapper(setBoundsCommand));
+			setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid,true);
+			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+			
 			return compoundCommand;
 		}
 		if(request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_DELETE_EDGE.getSemanticHint())){
