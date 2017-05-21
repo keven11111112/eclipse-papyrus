@@ -23,10 +23,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.uml2.uml.Element;
@@ -101,6 +104,8 @@ public class TestSequenceDiagramLink extends TestLink {
 
 	@Test
 	public void testToManageMessageAsync_4004() {
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		store.setValue(CustomMessages.PREF_EXECUTION_SPECIFICATION_ASYNC_MSG, "CHOICE_NONE");
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_AsynchEdge, lifelineProvider, true);
 	}
 

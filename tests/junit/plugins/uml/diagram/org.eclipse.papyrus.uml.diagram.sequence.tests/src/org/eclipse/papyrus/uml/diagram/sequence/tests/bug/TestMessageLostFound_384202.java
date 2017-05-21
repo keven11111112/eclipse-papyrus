@@ -220,6 +220,9 @@ public class TestMessageLostFound_384202 extends TestLink {
 				Dimension delta = anchorOwningFigure.getBounds().getLocation().getDifference(partFigure.getBounds().getLocation());
 				// get position from anchor id
 				String oldTerminal = ((IdentityAnchor)idAnchor).getId();
+				if( oldTerminal.indexOf(",")==-1) {
+					assertTrue("The resulted anchor is bad build", false);
+					}
 				PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
 				int xPos = linkedPartBounds.x + delta.width + (int)Math.round(anchorOwningFigure.getBounds().width * pp.preciseX);
 				int yPos = linkedPartBounds.y + delta.height + (int)Math.round(anchorOwningFigure.getBounds().height * pp.preciseY);

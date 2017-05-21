@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -57,5 +59,17 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 		}
 		return super.getCommand(request);
 	}
-
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart#getTargetEditPart(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if( request instanceof ReconnectRequest) {
+			return this.getParent();
+		}
+		return super.getTargetEditPart(request);
+	}
 }
