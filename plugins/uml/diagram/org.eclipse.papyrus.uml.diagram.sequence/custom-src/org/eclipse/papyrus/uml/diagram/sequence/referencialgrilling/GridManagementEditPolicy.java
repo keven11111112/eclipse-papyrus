@@ -46,11 +46,11 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateCoordinateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGrillingStructureCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyToSetMoveLinesListener;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
@@ -64,13 +64,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  */
 public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
-	public static final String GRILL_CONNECTION = "Grill Connection";
-	protected GrillingEditpart grillingCompartment = null;
+	public static final String GRID_CONNECTION = "Grid Connection"; //$NON-NLS-1$
+	protected GrillingEditpart gridCompartment = null;
 
 
-	public static String GRILLING_MANAGEMENT = "GRILLING_MANAGEMENT";
-	public static String COLUMN = "COLUMN_";
-	public static String ROW = "ROW_";
+	public static String GRID_MANAGEMENT = "GRID_MANAGEMENT"; //$NON-NLS-1$
+	public static String COLUMN = "COLUMN_"; //$NON-NLS-1$
+	public static String ROW = "ROW_"; //$NON-NLS-1$
 
 	public int threshold = 5;
 	/**
@@ -116,7 +116,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 */
 	public void setMoveAllLinesAtSamePosition(boolean moveAllLinesAtSamePosition) {
 
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, ">> set moveAllLinesAtSamePosition=" + moveAllLinesAtSamePosition);//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, ">> set moveAllLinesAtSamePosition=" + moveAllLinesAtSamePosition);//$NON-NLS-1$
 		this.moveAllLinesAtSamePosition = moveAllLinesAtSamePosition;
 	}
 
@@ -201,22 +201,22 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	private void refreshGrillingStructure() {
 		EditPart host = getHost();
 		int i = 0;
-		while (grillingCompartment == null && i < host.getChildren().size()) {
+		while (gridCompartment == null && i < host.getChildren().size()) {
 			if (host.getChildren().get(i) instanceof GrillingEditpart) {
-				grillingCompartment = (GrillingEditpart) (host.getChildren().get(i));
+				gridCompartment = (GrillingEditpart) (host.getChildren().get(i));
 			}
 			i++;
 		}
-		if (grillingCompartment == null) {
+		if (gridCompartment == null) {
 			CreateGrillingStructureCommand createGrillingStructureCommand = new CreateGrillingStructureCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), (View) getHost().getModel());
 			// Record for undo if possible, otherwise unprotected
 			execute(createGrillingStructureCommand);
 
 
 		}
-		while (grillingCompartment == null && i < host.getChildren().size()) {
+		while (gridCompartment == null && i < host.getChildren().size()) {
 			if (host.getChildren().get(i) instanceof GrillingEditpart) {
-				grillingCompartment = (GrillingEditpart) (host.getChildren().get(i));
+				gridCompartment = (GrillingEditpart) (host.getChildren().get(i));
 			}
 			i++;
 		}
@@ -232,10 +232,10 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 		rows.clear();
 		columns.clear();
-		if (grillingCompartment != null) {
-			for (int j = 0; j < grillingCompartment.getNotationView().getChildren().size(); j++) {
-				if (grillingCompartment.getNotationView().getChildren().get(j) instanceof DecorationNode) {
-					DecorationNode decorationNode = (DecorationNode) grillingCompartment.getNotationView().getChildren().get(j);
+		if (gridCompartment != null) {
+			for (int j = 0; j < gridCompartment.getNotationView().getChildren().size(); j++) {
+				if (gridCompartment.getNotationView().getChildren().get(j) instanceof DecorationNode) {
+					DecorationNode decorationNode = (DecorationNode) gridCompartment.getNotationView().getChildren().get(j);
 					if (decorationNode.getType().startsWith(ROW)) {
 						rows.add(decorationNode);
 
@@ -248,10 +248,10 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		}
 		Collections.sort(rows, RowComparator);
 		Collections.sort(columns, ColumnComparator);
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "____ROWS_____");//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "____ROWS_____");//$NON-NLS-1$
 
 		for (int i=0; i<rows.size();i++) {
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "row "+i +" y="+getPositionY(rows.get(i)));//$NON-NLS-1$
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "row "+i +" y="+getPositionY(rows.get(i)));//$NON-NLS-1$ //$NON-NLS-2$
 
 		}
 	}
@@ -316,14 +316,14 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			}
 
 			if (covered.size() == lifeline.getCoveredBys().size()) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "equality");//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "equality");//$NON-NLS-1$
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			} else if (covered.size() < lifeline.getCoveredBys().size()) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "Event not managed or being created");//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "Event not managed or being created");//$NON-NLS-1$
 				// covered.addAll(lifeline.getCoveredBys());
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			} else if (covered.size() > lifeline.getCoveredBys().size()) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "more event than in the lifeline due to combined fragment");//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "more event than in the lifeline due to combined fragment");//$NON-NLS-1$
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			}
 		}
@@ -384,7 +384,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 							}
 							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
 								DecorationNode axis = (DecorationNode) iterator.next();
-								execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
+								execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue()))); //$NON-NLS-1$
 
 							}
 							((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
@@ -406,7 +406,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 * @return the decoration node
 	 */
 	public DecorationNode createColumnTolisten(int x, Element semantic) throws NoGrillElementFound {
-		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) grillingCompartment.getNotationView()), COLUMN + columns.size(), semantic, x));
+		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) gridCompartment.getNotationView()), COLUMN + columns.size(), semantic, x));
 		refreshGrillingStructure();
 		return getLastCreatedAxis();
 	}
@@ -419,7 +419,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 * @return the decoration node
 	 */
 	public DecorationNode createRowTolisten(int y, Element semantic) throws NoGrillElementFound {
-		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) grillingCompartment.getNotationView()), ROW + rows.size(), semantic, y));
+		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) gridCompartment.getNotationView()), ROW + rows.size(), semantic, y));
 		DecorationNode row = getLastCreatedAxis();
 		refreshGrillingStructure();
 		return row;
@@ -430,7 +430,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 * @return get the last created Axis
 	 **/
 	public DecorationNode getLastCreatedAxis() throws NoGrillElementFound {
-		BasicCompartment grid = ((BasicCompartment) grillingCompartment.getNotationView());
+		BasicCompartment grid = ((BasicCompartment) gridCompartment.getNotationView());
 		if (grid.getChildren().size() == 0) {
 			throw new NoGrillElementFound();
 		} else {
@@ -540,7 +540,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	}
 
 	public static List<EObject> getRef(DecorationNode current) {
-		EAnnotation eAnnotation = current.getEAnnotation(GRILL_CONNECTION);
+		EAnnotation eAnnotation = current.getEAnnotation(GRID_CONNECTION);
 		if (eAnnotation == null) {
 			return null;
 		} else {

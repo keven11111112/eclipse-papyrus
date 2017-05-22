@@ -34,6 +34,7 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
@@ -182,7 +183,7 @@ public class TestCreationUndo_384618 extends TestLink {
 	@Test
 	public void testMessageSync() {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		store.setValue(CustomMessages.PREF_EXECUTION_SPECIFICATION_SYNC_MSG, "CHOICE_NONE");
+		store.setValue(CustomDiagramGeneralPreferencePage.PREF_EXECUTION_SPECIFICATION_SYNC_MSG, "CHOICE_NONE");
 		
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));

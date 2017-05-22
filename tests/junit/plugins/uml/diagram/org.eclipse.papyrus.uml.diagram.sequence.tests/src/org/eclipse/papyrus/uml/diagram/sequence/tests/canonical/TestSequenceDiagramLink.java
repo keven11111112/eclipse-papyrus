@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.uml2.uml.Element;
@@ -105,7 +106,7 @@ public class TestSequenceDiagramLink extends TestLink {
 	@Test
 	public void testToManageMessageAsync_4004() {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		store.setValue(CustomMessages.PREF_EXECUTION_SPECIFICATION_ASYNC_MSG, "CHOICE_NONE");
+		store.setValue(CustomDiagramGeneralPreferencePage.PREF_EXECUTION_SPECIFICATION_ASYNC_MSG, "CHOICE_NONE");
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_AsynchEdge, lifelineProvider, true);
 	}
 

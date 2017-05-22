@@ -155,7 +155,7 @@ public class MessageConnectionHelper {
 			buf.append("null");
 		}
 		buf.append("]");
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_UTIL, buf.toString());// $NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_UTIL, buf.toString());// $NON-NLS-1$
 	}
 
 	public static boolean canExistReplyMessage(Message message, Element source, Element target) {

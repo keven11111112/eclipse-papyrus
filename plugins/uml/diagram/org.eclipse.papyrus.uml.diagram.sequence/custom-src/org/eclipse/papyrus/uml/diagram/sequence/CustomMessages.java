@@ -17,6 +17,7 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
+ * @since 3.0
  */
 public class CustomMessages extends NLS {
 
@@ -43,9 +44,6 @@ public class CustomMessages extends NLS {
 
 	public static String CommandHelper_CreateMessage;
 	
-	public static String Commands_DropDestructionOccurenceSpecification_Label;
-
-	public static String Commands_CreateExecutionSpecification_Label;
 	/**
 	 * Error message for when an error occurs in FragmentOrderingKeeper evaluation.
 	 */
@@ -87,38 +85,5 @@ public class CustomMessages extends NLS {
 	 */
 	public static String Warning_ResizeInteractionOperandTxt;
 
-	/**
-	 * Preference messages
-	 *@since 3.0
-	 **/
-	public static String DiagramsPreferencePage_notificationGroup_label;
-	
-	public static String DiagramsPreferencePage_executionSpecificationWithSyncMsg_label;
-	
-	public static String DiagramsPreferencePage_executionSpecificationWithAsyncMsg_label;
-
-	public static String DiagramsPreferencePage_createBehaviorExecutionSpecificationAndReply;
-	
-	public static String DiagramsPreferencePage_createBehaviorExecutionSpecification;
-
-	public static String DiagramsPreferencePage_createActionExecutionSpecificationAndReply;
-	
-	public static String DiagramsPreferencePage_createActionExecutionSpecification;
-	
-	public static String DiagramsPreferencePage_createNoExecutionSpecification;
-
-	/**
-	 * the preferences
-	 */
-	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG; 
-	
-	public static String PREF_EXECUTION_SPECIFICATION_ASYNC_MSG; //$NON-NLS-1$
-
-	/** trace messages */
-	public static String SEQUENCE_DEBUG = "SequenceDebug"; // //$NON-NLS-0$
-
-	public static String SEQUENCE_DEBUG_REFERENCEGRID = "SequenceDebugGrid"; // //$NON-NLS-0$
-
-	public static String SEQUENCE_DEBUG_UTIL = "SequenceDebugUtil"; // //$NON-NLS-0$
 
 }

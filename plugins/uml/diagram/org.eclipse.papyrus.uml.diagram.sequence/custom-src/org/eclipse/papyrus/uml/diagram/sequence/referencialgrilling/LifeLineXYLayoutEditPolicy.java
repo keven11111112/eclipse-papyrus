@@ -41,6 +41,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
@@ -70,7 +72,6 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	 */
 	@Override
 	public void setHost(EditPart host) {
-		// TODO Auto-generated method stub
 		super.setHost(host);
 		displayEvent = new DisplayEvent(getHost());
 	}
@@ -146,6 +147,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		RootEditPart drep = getHost().getRoot();
 		Rectangle parentBound = getHostFigure().getBounds().getCopy();
 		getHostFigure().getParent().translateToAbsolute(parentBound);
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "LifeLineBounds On Screen:" + parentBound); //$NON-NLS-1$
 		if (drep instanceof DiagramRootEditPart) {
 			double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
 			if (request instanceof org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest) {
@@ -254,7 +256,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grid != null) {
 			CompoundCommand cmd = new CompoundCommand();
 			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);

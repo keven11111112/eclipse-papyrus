@@ -36,7 +36,7 @@ public class GridBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedE
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
 		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
-		GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+		GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grid!=null){
 			CompoundCommand cmd= new CompoundCommand();
 			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid, false);

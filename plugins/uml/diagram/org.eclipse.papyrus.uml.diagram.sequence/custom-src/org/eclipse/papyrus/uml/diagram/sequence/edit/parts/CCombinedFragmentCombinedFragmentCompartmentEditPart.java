@@ -22,9 +22,9 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 
 /**
  * This class has been modified for 2 reasons:
@@ -83,7 +83,7 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 			if (ratio >= 1.0) {
 				ratio = 0.95;
 			}
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG, ((Rectangle) childConstraint).height +"--> ratio" + ratio); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, ((Rectangle) childConstraint).height +"--> ratio" + ratio); //$NON-NLS-1$
 			childFigure.getParent().setConstraint(childFigure, ratio);
 		}
 	}

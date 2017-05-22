@@ -31,8 +31,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -54,7 +54,7 @@ public class DropDestructionOccurenceSpecification extends AbstractTransactional
 	 * @param graphicalContainer for example the lifeline that will contain the representation of the event
 	 */
 	public DropDestructionOccurenceSpecification(TransactionalEditingDomain domain, CreateConnectionViewAndElementRequest request, EditPart graphicalContainer, Point absolutePosition) {
-		super(domain, CustomMessages.Commands_DropDestructionOccurenceSpecification_Label, null);
+		super(domain, Messages.Commands_DropDestructionOccurenceSpecification_Label, null);
 		this.request=request;
 		this.graphicalContainer= graphicalContainer;
 		this.absolutePosition=absolutePosition;

@@ -76,7 +76,7 @@ public class GrillingEditpart extends GraphicalEditPart {
 			getFigure().setBounds(new Rectangle (0,0,50,1000));
 			((ReferencialGrid)getFigure()).cleanAllLines();
 			DiagramEditPart diagramEditPart=(DiagramEditPart)this.getParent();
-			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 			for (int i=0; i<grid.rows.size();i++) {
 				if( grid.rows.get(i)!=null) {
 					Location location= (Location)grid.rows.get(i).getLayoutConstraint();

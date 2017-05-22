@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.selection.SelectSeveralLinksEditPartTracker;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.SWT;
@@ -183,13 +182,13 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 			Dimension computedDelta = getLocation().getDifference(getStartLocation());
 			delta = null;
 			if (computedDelta.height < 0) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_UTIL, "Move " + computedDelta.height + " MinDistancetop" + MinDistancetop);//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_UTIL, "Move " + computedDelta.height + " MinDistancetop" + MinDistancetop);//$NON-NLS-1$
 				if (MinDistancetop + computedDelta.height < 0) {
 					computedDelta.height = -MinDistancetop;
 					delta = computedDelta.getCopy();
 				}
 			} else {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_UTIL, "Move " + computedDelta.height + " MinDistancebottom" + MinDistancebottom);//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_UTIL, "Move " + computedDelta.height + " MinDistancebottom" + MinDistancebottom);//$NON-NLS-1$
 				if (MinDistancebottom - computedDelta.height - 10 < 0) {
 					computedDelta.height = MinDistancebottom - 10;
 					delta = computedDelta.getCopy();

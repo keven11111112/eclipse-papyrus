@@ -39,7 +39,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEd
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
@@ -49,9 +49,9 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
 
-	protected GrillingEditpart grillingCompartment = null;
+	protected GrillingEditpart gridCompartment = null;
 
-	public static String CONNECT_TO_GRILLING_MANAGEMENT = "CONNECT_TO_GRILLING_MANAGEMENT";
+	public static String CONNECT_TO_GRID_MANAGEMENT = "CONNECT_TO_GRID_MANAGEMENT"; //$NON-NLS-1$
 	protected int displayImprecision = 2;
 
 
@@ -80,13 +80,13 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 	protected void updatePositionGridAxis(DecorationNode axis, int x, int y) {
 		Location currentBounds = (Location) axis.getLayoutConstraint();
 		if (x < currentBounds.getX() - displayImprecision || x > currentBounds.getX() + displayImprecision) {
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS to x=" + x + " y=" + y);//$NON-NLS-1$
-			execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Column", new EObjectAdapter(axis), new Point(x, y)));
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS to x=" + x + " y=" + y);//$NON-NLS-1$ //$NON-NLS-2$
+			execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Column", new EObjectAdapter(axis), new Point(x, y))); //$NON-NLS-1$
 
 		}
 		if (y < currentBounds.getY() - displayImprecision || y > currentBounds.getY() + displayImprecision) {
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS to x=" + x + " y=" + y);//$NON-NLS-1$
-			execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update row", new EObjectAdapter(axis), new Point(x, y)));
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS to x=" + x + " y=" + y);//$NON-NLS-1$ //$NON-NLS-2$
+			execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update row", new EObjectAdapter(axis), new Point(x, y))); //$NON-NLS-1$
 		}
 	}
 
@@ -100,7 +100,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 		getDiagramEventBroker().addNotificationListener(((EObject) getHost().getModel()), this);
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
 		try {
-			GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 			if (grilling != null) {
 				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 				Edge edge = (Edge) connectionEditPart.getModel();
@@ -183,7 +183,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 		if (diagramEditPart != null) {
 			// CREATION
 			if (notification.getNotifier().equals(((EObject) getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_SourceAnchor().equals(notification.getFeature()) && notification.getNewValue() != null) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT :CREATION add SourceAnchor " + notification.getNotifier());//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT :CREATION add SourceAnchor " + notification.getNotifier());//$NON-NLS-1$
 				IdentityAnchor anchor = (IdentityAnchor) notification.getNewValue();
 				if (anchor.getId() != null && !(anchor.getId().equals(""))) {
 					ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
@@ -191,7 +191,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					NamedElementEditPart sourceEditpart = (NamedElementEditPart) connectionEditPart.getSource();
 					int anchorY = computeAnchorPositionNotation(anchor, sourceEditpart);
 					try {
-						GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+						GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 						if (grilling != null) {
 							if (rowSource == null) {
 								if (m.getSendEvent() == null) {
@@ -211,7 +211,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 			// CREATION
 			if (notification.getNotifier().equals(((EObject) getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_TargetAnchor().equals(notification.getFeature()) && notification.getNewValue() != null) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: CREATION add targetAnchor " + notification.getNotifier());//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: CREATION add targetAnchor " + notification.getNotifier());//$NON-NLS-1$
 				IdentityAnchor anchor = (IdentityAnchor) notification.getNewValue();
 				if (anchor.getId() != null && !(anchor.getId().equals(""))) {
 					ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
@@ -219,7 +219,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					Message m = (Message) connectionEditPart.resolveSemanticElement();
 					int anchorY = computeAnchorPositionNotation(anchor, editpart);
 					try {
-						GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+						GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 						if (grilling != null) {
 							if (rowTarget == null) {
 								if (m.getReceiveEvent() == null) {
@@ -236,28 +236,28 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				}
 			}
 			if (notification.getEventType() == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source())) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT Source change " + notification.getNotifier());//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT Source change " + notification.getNotifier());//$NON-NLS-1$
 				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 				Edge edge = (Edge) connectionEditPart.getNotationView();
 				if (edge.getSourceAnchor()!=null && rowSource != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
 					NamedElementEditPart sourceEditpart = (NamedElementEditPart) connectionEditPart.getSource();
 					int anchorY = computeAnchorPositionNotation(anchor, sourceEditpart);
-					UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowSource, 0, anchorY);
 				}
 				
 			}
 			
 			if (notification.getEventType() == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT target change " + notification.getNotifier());//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT target change " + notification.getNotifier());//$NON-NLS-1$
 				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 				Edge edge = (Edge) connectionEditPart.getNotationView();
 				if (edge.getTargetAnchor()!=null && rowTarget != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
 					NamedElementEditPart targetEditpart = (NamedElementEditPart) connectionEditPart.getTarget();
 					int anchorY = computeAnchorPositionNotation(anchor, targetEditpart);
-					UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowTarget, 0, anchorY);
 				}
 				
@@ -265,21 +265,21 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 			
 			// A move has been done by the user
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof IdentityAnchor) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT IdentificationAnchor change " + notification.getNotifier());//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT IdentificationAnchor change " + notification.getNotifier());//$NON-NLS-1$
 				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 				Edge edge = (Edge) connectionEditPart.getNotationView();
 				if (notification.getNotifier().equals(edge.getSourceAnchor()) && rowSource != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
 					NamedElementEditPart sourceEditpart = (NamedElementEditPart) connectionEditPart.getSource();
 					int anchorY = computeAnchorPositionNotation(anchor, sourceEditpart);
-					UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowSource, 0, anchorY);
 				}
 				if (notification.getNotifier().equals(edge.getTargetAnchor()) && rowTarget != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
 					NamedElementEditPart editpart = (NamedElementEditPart) connectionEditPart.getTarget();
 					int anchorY = computeAnchorPositionNotation(anchor, editpart);
-					UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+-->TARGET change " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+-->TARGET change " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowTarget, 0, anchorY);
 				}
 
@@ -288,8 +288,8 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 			// a ROW AXIS has changed at Source
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(rowSource))) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT source Axis modified :" + notification);//$NON-NLS-1$
-				GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT source Axis modified :" + notification);//$NON-NLS-1$
+				GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 				if (grilling != null) {
 					if (Math.abs(notification.getOldIntValue() - notification.getNewIntValue()) > grilling.threshold) {
 						ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
@@ -303,8 +303,8 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 			// a ROW has changed at target
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(rowTarget))) {
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT target Axis modified :" + notification);//$NON-NLS-1$
-				GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT target Axis modified :" + notification);//$NON-NLS-1$
+				GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 				if (grilling != null) {
 					if (Math.abs(notification.getOldIntValue() - notification.getNewIntValue()) > grilling.threshold) {
 						ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
@@ -332,7 +332,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 		double oldPosition=oldPercentY*bounds.preciseHeight();
 		double newPosition=newPercentY*bounds.preciseHeight();
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-		GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+		GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grilling != null) {
 		if (Math.abs(oldPosition - newPosition) >grilling.threshold ) {
 			if (newPercentY > 1) {
@@ -343,7 +343,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 			}
 			if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
 				final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xpercent, newPercentY);
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modify anchor to precentY=" + newPercentY);//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modify anchor to precentY=" + newPercentY);//$NON-NLS-1$
 				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
 			}
 		}

@@ -57,7 +57,7 @@ public class SequenceDiagramEditPart extends PapyrusDiagramEditPart {
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.PackageCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-		installEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT, new GridManagementEditPolicy());
+		installEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT, new GridManagementEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 }

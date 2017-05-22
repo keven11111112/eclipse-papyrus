@@ -159,7 +159,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					new Point(bounds.getX(),relativePt.y-5));
 			CompoundCommand compoundCommand= new CompoundCommand();
 			DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
-			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid,false);
 			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
 			compoundCommand.add(cmd);
@@ -184,7 +184,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			// in the case of messages of sort: synchCall, asynchCall or asynchSignal
 			// an execution specification may be created at target
 			DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
-			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg= new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart)request.getTargetEditPart());
 			CompoundCommand compoundCommand= new CompoundCommand();
 			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid,false);
@@ -234,7 +234,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		LifelineEditPart lifelineEditPart= (LifelineEditPart)getHost();
 		Lifeline lifeline=(Lifeline) lifelineEditPart.resolveSemanticElement();
 		try{
-			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 			if(grilling!=null) {
 				for (DecorationNode row : grilling.rows) {
 					Point currentPoint=GridManagementEditPolicy.getLocation(row);

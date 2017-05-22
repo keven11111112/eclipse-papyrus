@@ -22,7 +22,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingEditpart;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.uml2.uml.Element;
@@ -51,7 +52,7 @@ public class CreateCoordinateCommand extends RecordingCommand {
 	 *            The EditPart view of the Compartment
 	 */
 	public CreateCoordinateCommand(TransactionalEditingDomain domain, BasicCompartment compartment, String name, Element semantic, int position) {
-		super(domain, "create Grilling Structure");
+		super(domain, "create Grilling Structure"); //$NON-NLS-1$
 		this.compartment = compartment;
 		this.name = name;
 		this.position = position;
@@ -73,7 +74,7 @@ public class CreateCoordinateCommand extends RecordingCommand {
 		}
 		if (name.startsWith(GridManagementEditPolicy.ROW)) {
 			linelocation.setY(position);
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, ">>>Create row at " + position); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, ">>>Create row at " + position); //$NON-NLS-1$
 		}
 		coordinate.setLayoutConstraint(linelocation);
 		if (semantic != null) {

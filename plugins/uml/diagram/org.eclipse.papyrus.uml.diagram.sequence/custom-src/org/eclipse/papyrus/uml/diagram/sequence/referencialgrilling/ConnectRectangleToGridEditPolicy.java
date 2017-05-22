@@ -33,8 +33,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -46,7 +46,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	protected GrillingEditpart grillingCompartment=null;
 
-	public static String CONNECT_TO_GRILLING_MANAGEMENT="CONNECT_TO_GRILLING_MANAGEMENT";
+	public static String CONNECT_TO_GRILLING_MANAGEMENT="CONNECT_TO_GRILLING_MANAGEMENT"; //$NON-NLS-1$
 
 	protected DecorationNode rowStart=null;
 	protected DecorationNode rowFinish=null;
@@ -73,7 +73,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
 		Node node=((Node)((GraphicalEditPart)getHost()).getNotationView());
 		try{
-			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 			Node nodeContainer=(Node)(((GraphicalEditPart)getHost()).getNotationView()).eContainer();
 			Element element=(Element) ((GraphicalEditPart)getHost()).resolveSemanticElement();
 			if (grilling!=null){
@@ -218,11 +218,11 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 			//UPDATE COLUM AND ROW of THE GRID
 			if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Bounds){
 				PrecisionRectangle bounds=NotationHelper.getAbsoluteBounds((Node)((GraphicalEditPart)getHost()).getNotationView());
-				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: BOUNDS change " +notification.getNewValue());//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: BOUNDS change " +notification.getNewValue());//$NON-NLS-1$
 				
 				if( notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Height())){
 					updateRowFinishFromHeightNotification(bounds);
-					//update acnchors
+					//update anchors
 					if( (((EObject)notification.getNotifier()).eContainer().equals(((EObject)getHost().getModel())))){
 						Node node=(Node)this.getHost().getModel();
 						java.util.List<Edge> sourceEdge= node.getSourceEdges();
@@ -280,7 +280,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateColumFinishFromWitdhNotification(PrecisionRectangle notationBound) {
 		int newX=notationBound.x+notationBound.width;
 		updatePositionGridAxis(columnFinish, newX,0);
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS to  x=" + newX);//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS to  x=" + newX);//$NON-NLS-1$
 		
 	}
 
@@ -308,7 +308,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateColumnStartFromXNotification(PrecisionRectangle bounds) {
 		int newX=bounds.x();
 		updatePositionGridAxis(columnStart, newX, 0);
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS START to  x=" + newX);//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS START to  x=" + newX);//$NON-NLS-1$
 		
 	}
 	/**
@@ -319,7 +319,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateWidthFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
 		Location boundsColumn=(Location)	((Node)columnFinish).getLayoutConstraint();
 		int newX=boundsColumn.getX()-originPosition.x()-currentBounds.getX();
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " +newX);//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " +newX);//$NON-NLS-1$
 		
 		updateSizeOfControler(newX, currentBounds.getHeight());
 	}
@@ -331,7 +331,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
 		Location boundsColumn=(Location)	((Node)rowFinish).getLayoutConstraint();
 		int newHeight=boundsColumn.getY()-originPosition.y()-currentBounds.getY()-margin;
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " +newHeight);//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " +newHeight);//$NON-NLS-1$
 		
 		updateSizeOfControler(currentBounds.getWidth(), newHeight);
 	}
@@ -343,7 +343,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateXFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
 		Location boundsColumn=(Location)	((Node)columnStart).getLayoutConstraint();
 		int newX=boundsColumn.getX()-originPosition.x();
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS COLUMN START change " +newX);//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS COLUMN START change " +newX);//$NON-NLS-1$
 		
 		updateNodePositionOfControler(newX, currentBounds.getY());
 	}
@@ -356,7 +356,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateYFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
 		Location boundsRow=(Location)	((Node)rowStart).getLayoutConstraint();
 		int newY=boundsRow.getY()-originPosition.y()-margin;
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW START change " +newY);//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW START change " +newY);//$NON-NLS-1$
 		updateNodePositionOfControler(currentBounds.getX(), newY);
 		
 		if( rowFinish!=null) {
@@ -405,7 +405,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		else{
 			anchor=(IdentityAnchor)edge.getTargetAnchor();
 		}
-		if(!anchor.getId().trim().equals("")){
+		if(!anchor.getId().trim().equals("")){ //$NON-NLS-1$
 			double yPercent=IdentityAnchorHelper.getYPercentage(anchor);
 			double xPercent=IdentityAnchorHelper.getXPercentage(anchor);
 
