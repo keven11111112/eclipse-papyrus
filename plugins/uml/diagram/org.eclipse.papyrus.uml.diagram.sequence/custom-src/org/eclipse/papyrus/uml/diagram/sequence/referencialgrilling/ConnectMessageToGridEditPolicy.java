@@ -235,6 +235,34 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 					}
 				}
 			}
+			if (notification.getEventType() == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source())) {
+				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT Source change " + notification.getNotifier());//$NON-NLS-1$
+				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
+				Edge edge = (Edge) connectionEditPart.getNotationView();
+				if (edge.getSourceAnchor()!=null && rowSource != null) {
+					IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
+					NamedElementEditPart sourceEditpart = (NamedElementEditPart) connectionEditPart.getSource();
+					int anchorY = computeAnchorPositionNotation(anchor, sourceEditpart);
+					UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$
+					updatePositionGridAxis((DecorationNode) rowSource, 0, anchorY);
+				}
+				
+			}
+			
+			if (notification.getEventType() == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) {
+				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT target change " + notification.getNotifier());//$NON-NLS-1$
+				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
+				Edge edge = (Edge) connectionEditPart.getNotationView();
+				if (edge.getTargetAnchor()!=null && rowTarget != null) {
+					IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
+					NamedElementEditPart targetEditpart = (NamedElementEditPart) connectionEditPart.getTarget();
+					int anchorY = computeAnchorPositionNotation(anchor, targetEditpart);
+					UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$
+					updatePositionGridAxis((DecorationNode) rowTarget, 0, anchorY);
+				}
+				
+			}
+			
 			// A move has been done by the user
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof IdentityAnchor) {
 				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT IdentificationAnchor change " + notification.getNotifier());//$NON-NLS-1$

@@ -13,11 +13,19 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import javax.swing.text.StyleConstants.ColorConstants;
+
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.Location;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.ReferencialGrid;
 
 /**
  * @author PT202707
@@ -43,8 +51,8 @@ public class GrillingEditpart extends GraphicalEditPart {
 	 */
 	@Override
 	protected void setVisibility(boolean vis) {
-		// TODO Auto-generated method stub
 		super.setVisibility(false);
+		//super.setVisibility(true);
 	}
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#createFigure()
@@ -53,7 +61,30 @@ public class GrillingEditpart extends GraphicalEditPart {
 	 */
 	@Override
 	protected IFigure createFigure() {
-		// TODO Auto-generated method stub
-		return new RectangleFigure();
+		Figure fig= new ReferencialGrid();
+
+		return fig;
+	}
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refreshVisuals()
+	 *
+	 */
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		if(getNotationView().isVisible()) {
+			getFigure().setBounds(new Rectangle (0,0,50,1000));
+			((ReferencialGrid)getFigure()).cleanAllLines();
+			DiagramEditPart diagramEditPart=(DiagramEditPart)this.getParent();
+			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+			for (int i=0; i<grid.rows.size();i++) {
+				if( grid.rows.get(i)!=null) {
+					Location location= (Location)grid.rows.get(i).getLayoutConstraint();
+					if( location!=null) {
+						((ReferencialGrid)getFigure()).displayLine(location.getY());
+					}
+				}
+			}
+		}
 	}
 }

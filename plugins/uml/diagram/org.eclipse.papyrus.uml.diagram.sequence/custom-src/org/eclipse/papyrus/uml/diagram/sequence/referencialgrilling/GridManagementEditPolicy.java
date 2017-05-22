@@ -385,6 +385,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 */
 	public DecorationNode createColumnTolisten(int x, Element semantic) throws NoGrillElementFound {
 		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) grillingCompartment.getNotationView()), COLUMN + columns.size(), semantic, x));
+		refreshGrillingStructure();
 		return getLastCreatedAxis();
 	}
 
@@ -398,6 +399,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public DecorationNode createRowTolisten(int y, Element semantic) throws NoGrillElementFound {
 		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) grillingCompartment.getNotationView()), ROW + rows.size(), semantic, y));
 		DecorationNode row = getLastCreatedAxis();
+		refreshGrillingStructure();
 		return row;
 
 	}
@@ -531,4 +533,6 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		}
 	}
 
+
+	
 }

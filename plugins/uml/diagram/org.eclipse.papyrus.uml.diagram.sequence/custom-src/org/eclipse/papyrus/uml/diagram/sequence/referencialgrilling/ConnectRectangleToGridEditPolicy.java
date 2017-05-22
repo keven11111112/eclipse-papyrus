@@ -364,6 +364,9 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW START change " +newY);//$NON-NLS-1$
 		updateNodePositionOfControler(currentBounds.getX(), newY);
 		
+		if( rowFinish!=null) {
+			updatePositionGridAxis(rowFinish, 0, boundsRow.getY()+BoundForEditPart.getHeightFromView((Node)((GraphicalEditPart)getHost()).getNotationView()));
+		}
 	}
 
 
