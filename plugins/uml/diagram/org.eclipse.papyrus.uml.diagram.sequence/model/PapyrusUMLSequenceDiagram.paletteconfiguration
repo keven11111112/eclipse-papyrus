@@ -229,6 +229,20 @@
             href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Gate_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
+     <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="createConsiderIgnoreFragment16CreationTool"
+        label="Consider Ignore Fragment"
+        description="Create a Consider Ignore Fragment">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/ConsiderIgnoreFragment.gif"/>
+      <elementDescriptors>
+        <elementType
+            xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+            href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ConsiderIgnoreFragment_Shape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="createEdges2Group"

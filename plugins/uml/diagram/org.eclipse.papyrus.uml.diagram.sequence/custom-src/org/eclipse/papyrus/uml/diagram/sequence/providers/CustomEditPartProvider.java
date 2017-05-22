@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionOperandEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomGeneralOrderingEditPart;
@@ -79,8 +80,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new GrillingEditpart(view);
 		// case InteractionNameEditPart.VISUAL_ID:
 		// return new CustomInteractionNameEditPart(view);
-		// case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-		// return new CustomConsiderIgnoreFragmentEditPart(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return new CCombinedFragmentEditPart(view);
 		case CombinedFragmentEditPart.VISUAL_ID:
 			return new CCombinedFragmentEditPart(view);
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:

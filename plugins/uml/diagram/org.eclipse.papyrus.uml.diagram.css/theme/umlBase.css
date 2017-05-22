@@ -530,6 +530,16 @@ SequenceDiagram CombinedFragment {
 	textAlignment:"left";
 	displayHeader:true;
 }
+
 SequenceDiagram CombinedFragment > Compartment{
+	displayBorder:false;
+}
+
+SequenceDiagram ConsiderIgnoreFragment {
+	textAlignment:"left";
+	displayHeader:true;
+}
+
+SequenceDiagram ConsiderIgnoreFragment > Compartment {
 	displayBorder:false;
 }

@@ -330,7 +330,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			case InteractionEditPart.VISUAL_ID:
 				return createInteraction_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				return createConsiderIgnoreFragment_Shape(domainElement, containerView, index, persisted, preferencesHint);
+				return createCombinedFragment_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case CombinedFragmentEditPart.VISUAL_ID:
 				return createCombinedFragment_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case InteractionOperandEditPart.VISUAL_ID:
