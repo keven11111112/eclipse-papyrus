@@ -230,8 +230,14 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 				}
 			}
 		}
-		Collections.sort(new ArrayList<>(rows), RowComparator);
-		Collections.sort(new ArrayList<>(columns), ColumnComparator);
+		Collections.sort(rows, RowComparator);
+		Collections.sort(columns, ColumnComparator);
+		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "____ROWS_____");//$NON-NLS-1$
+
+		for (int i=0; i<rows.size();i++) {
+			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "row "+i +" y="+getPositionY(rows.get(i)));//$NON-NLS-1$
+
+		}
 	}
 
 	/**
@@ -450,9 +456,9 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	}
 
 
-	protected void updateYpositionForRow(DecorationNode movedRow, int y) {
+	protected void updateYpositionForRow(DecorationNode movedRow, int oldPosition) {
 		LayoutConstraint newconstraint = movedRow.getLayoutConstraint();
-		DecorationNode nextRow = getDistanceWithNextRow(movedRow, y);
+		DecorationNode nextRow = getDistanceWithNextRowBeforeMoving(movedRow, oldPosition);
 		if (nextRow == null) {
 			return;
 		}
@@ -463,9 +469,11 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			ArrayList<DecorationNode> rowsCopy = new ArrayList<DecorationNode>();
 			rowsCopy.addAll(rows);
 			for (int i = rowsCopy.indexOf(nextRow); i < rowsCopy.size(); i++) {
-				LayoutConstraint aConstraint = rowsCopy.get(i).getLayoutConstraint();
-				if (aConstraint instanceof Location) {
-					execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), aConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location) aConstraint).getY() + margin));
+				if(!(rowsCopy.get(i).equals(movedRow))) {
+					LayoutConstraint aConstraint = rowsCopy.get(i).getLayoutConstraint();
+					if (aConstraint instanceof Location) {
+						execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), aConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location) aConstraint).getY() + margin));
+					}
 				}
 			}
 		}
@@ -477,28 +485,22 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 * @param currentRowPosition
 	 * @return get the next row that has not the same position
 	 */
-	protected DecorationNode getDistanceWithNextRow(DecorationNode currentRow, int currentRowPosition) {
+	protected DecorationNode getDistanceWithNextRowBeforeMoving(DecorationNode currentRow, int oldPosition) {
 		Object[] arrayRow = rows.toArray();
 		List<Object> orderedRows = Arrays.asList(arrayRow);
-		int index = orderedRows.indexOf(currentRow);
-		if (index == orderedRows.size() - 1) {
-			return null;
-		} else {
-
-			LayoutConstraint currentConstraint = currentRow.getLayoutConstraint();
-			DecorationNode nextRow = null;
-			// look for the next row
-			for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
-				DecorationNode aRow = iterator.next();
-				int Yposition = getPositionY(aRow);
-				if (currentRowPosition + threshold < Yposition && (!aRow.equals(currentRow))) {
-					nextRow = aRow;
-					return nextRow;
-				}
-
+		DecorationNode nextRow = null;
+		// look for the next row
+		for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
+			DecorationNode aRow = iterator.next();
+			int Yposition = getPositionY(aRow);
+			if (oldPosition  < Yposition && (!aRow.equals(currentRow))) {
+				nextRow = aRow;
+				return nextRow;
 			}
-			return nextRow;
+
 		}
+		return nextRow;
+
 	}
 
 	protected int getGridSpacing() {
@@ -534,5 +536,5 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	}
 
 
-	
+
 }

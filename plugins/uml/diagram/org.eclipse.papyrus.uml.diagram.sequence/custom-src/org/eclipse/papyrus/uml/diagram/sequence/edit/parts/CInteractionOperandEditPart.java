@@ -81,7 +81,6 @@ public class CInteractionOperandEditPart extends InteractionOperandEditPart {
 	 */
 	@Override
 	public void removeEditPartListener(EditPartListener listener) {
-		// TODO Auto-generated method stub
 		super.removeEditPartListener(listener);
 	}
 	/**

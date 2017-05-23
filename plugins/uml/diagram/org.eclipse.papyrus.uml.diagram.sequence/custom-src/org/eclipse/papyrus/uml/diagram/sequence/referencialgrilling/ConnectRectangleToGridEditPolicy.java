@@ -52,6 +52,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected DecorationNode rowFinish=null;
 	protected DecorationNode columnStart=null;
 	protected DecorationNode columnFinish=null;
+	protected int margin = 0;
 
 	/**
 	 * Constructor.
@@ -73,7 +74,6 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		Node node=((Node)((GraphicalEditPart)getHost()).getNotationView());
 		try{
 			GridManagementEditPolicy grilling=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
-			//grilling.cleanUnusedRowAndColumn();
 			Node nodeContainer=(Node)(((GraphicalEditPart)getHost()).getNotationView()).eContainer();
 			Element element=(Element) ((GraphicalEditPart)getHost()).resolveSemanticElement();
 			if (grilling!=null){
@@ -110,7 +110,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	 * @throws NoGrillElementFound
 	 */
 	protected void initListeningRowFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		rowFinish=grilling.createRowTolisten(bounds.y+BoundForEditPart.getHeightFromView(node), element);
+		rowFinish=grilling.createRowTolisten(bounds.y+BoundForEditPart.getHeightFromView(node)+margin, element);
 		getDiagramEventBroker().addNotificationListener(rowFinish, this);
 	}
 
@@ -136,7 +136,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	 * @throws NoGrillElementFound
 	 */
 	protected void initListeningRowStart(GridManagementEditPolicy grid, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		rowStart=grid.createRowTolisten(bounds.y, element);
+		rowStart=grid.createRowTolisten(bounds.y+margin, element);
 		getDiagramEventBroker().addNotificationListener(rowStart, this);
 	}
 
@@ -270,9 +270,6 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateRowFinishFromHeightNotification(PrecisionRectangle p) {
 		int newY=p.y+p.height;
 		updatePositionGridAxis(rowFinish, 0, newY);
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS FINISH to  y=" + newY);//$NON-NLS-1$
-		
-		
 	}
 
 	/**
@@ -294,14 +291,12 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	 */
 	protected void updateRowStartFromYNotification(PrecisionRectangle bounds) {
 		
-		int newY=bounds.y();
+		int newY=bounds.y()+margin;
 		updatePositionGridAxis(rowStart, 0, newY);
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS START to  y=" + newY);//$NON-NLS-1$
 		
 		if(rowFinish!=null) {
 			newY=bounds.y+bounds.height;
 			updatePositionGridAxis(rowFinish, 0, newY);
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS FINISH to  y=" + newY);//$NON-NLS-1$
 		}
 	}
 
@@ -360,12 +355,12 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	 */
 	protected void updateYFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
 		Location boundsRow=(Location)	((Node)rowStart).getLayoutConstraint();
-		int newY=boundsRow.getY()-originPosition.y();
+		int newY=boundsRow.getY()-originPosition.y()-margin;
 		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW START change " +newY);//$NON-NLS-1$
 		updateNodePositionOfControler(currentBounds.getX(), newY);
 		
 		if( rowFinish!=null) {
-			updatePositionGridAxis(rowFinish, 0, boundsRow.getY()+BoundForEditPart.getHeightFromView((Node)((GraphicalEditPart)getHost()).getNotationView()));
+			updatePositionGridAxis(rowFinish, 0, boundsRow.getY()+BoundForEditPart.getHeightFromView((Node)((GraphicalEditPart)getHost()).getNotationView())-margin);
 		}
 	}
 

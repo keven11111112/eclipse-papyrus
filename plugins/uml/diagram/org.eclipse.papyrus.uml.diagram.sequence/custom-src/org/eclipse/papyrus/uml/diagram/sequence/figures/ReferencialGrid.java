@@ -49,12 +49,8 @@ public class ReferencialGrid extends RectangleFigure {
 		graphics.setForegroundColor(ColorConstants.green);
 		graphics.setLineWidth(2);
 		graphics.drawLine(100,100, 200, 200);
-		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID,"+---> display Grid");//$NON-NLS-1$
 		for (int i = 0; i < lines.size(); i++) {
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "line ="+ lines.get(i));//$NON-NLS-1$
 			graphics.drawLine(0,lines.get(i)+postionofGrid, 50, lines.get(i)+postionofGrid);
-			
-			
 		}
 		graphics.popState();
 	}

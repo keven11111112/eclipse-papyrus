@@ -28,6 +28,8 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
  * This class is  a class that contains method to set position to the grid
@@ -77,10 +79,12 @@ public abstract class ConnectToGridEditPolicy extends GraphicalEditPolicyEx impl
 	protected void updatePositionGridAxis(DecorationNode axis, int x, int y) {
 		Location currentBounds=(Location)	axis.getLayoutConstraint();
 		if(x<currentBounds.getX()-displayImprecision||x>currentBounds.getX()+displayImprecision){
+			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS FINISH to  x=" + x);//$NON-NLS-1$
 			execute( new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Column", new EObjectAdapter(axis), new Point(x,y)));
 
 		}
 		if(y<currentBounds.getY()-displayImprecision||y>currentBounds.getY()+displayImprecision){
+			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS FINISH to  y=" + y);//$NON-NLS-1$
 			execute( new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update row", new EObjectAdapter(axis), new Point(x,y)));
 		}
 	}
