@@ -21,7 +21,10 @@ import static org.eclipse.uml2.uml.ParameterDirectionKind.IN_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.OUT_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.IObservable;
@@ -37,6 +40,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.InternationalizationConstants;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
@@ -73,8 +77,10 @@ import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -176,6 +182,24 @@ public class UMLModelElement extends EMFModelElement {
 		if (feature == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
 			return new ConstrainedElementContentProvider(source, feature);
 		}
+		if (feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
+			ResourceSet resourceSet = domain == null ? null : domain.getResourceSet();
+			return new UMLContentProvider(source, feature, null, resourceSet) {
+				/**
+				 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#isValidValue(java.lang.Object)
+				 *
+				 * @param element
+				 * @return
+				 */
+				@Override
+				public boolean isValidValue(Object element) {
+					element = EMFHelper.getEObject(element);
+					// according to the UML norm 2.5, section 17.4.3.1
+					// The signature of a Message refers to either an Operation or a Signal. 
+					return element instanceof Operation || element instanceof Signal;
+				}
+			};
+		}
 
 		ResourceSet resourceSet = domain == null ? null : domain.getResourceSet();
 		return new UMLContentProvider(source, feature, null, resourceSet);
@@ -212,6 +236,10 @@ public class UMLModelElement extends EMFModelElement {
 					directions.add(IN_LITERAL);
 					directions.add(INOUT_LITERAL);
 					return new MessageValueSpecificationFactory(reference, (Message) source, directions);
+				case DELETE_MESSAGE_LITERAL:
+				case CREATE_MESSAGE_LITERAL:
+				default:
+					break;
 				}
 			}
 		}
@@ -226,6 +254,24 @@ public class UMLModelElement extends EMFModelElement {
 
 		if (reference == UMLPackage.eINSTANCE.getConnector_Type() && source instanceof Connector) {
 			factory = new ConnectorTypeEditorFactory(reference);
+		} else if (reference == UMLPackage.eINSTANCE.getMessage_Signature()) {
+			factory = new UMLPropertyEditorFactory(reference) {
+
+				/**
+				 * @see org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory#getAvailableEClasses()
+				 *
+				 * @return
+				 */
+				@Override
+				protected List<EClass> getAvailableEClasses() {
+					// according to the UML norm 2.5, section 17.4.3.1
+					// The signature of a Message refers to either an Operation or a Signal. 
+					final List<EClass> eClasses = new ArrayList<EClass>();
+					eClasses.add(UMLPackage.eINSTANCE.getOperation());
+					eClasses.add(UMLPackage.eINSTANCE.getSignal());
+					return eClasses;
+				}
+			};
 		} else {
 			factory = new UMLPropertyEditorFactory(reference);
 		}

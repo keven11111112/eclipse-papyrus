@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.properties.creation;
 import java.util.Collection;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -26,9 +27,16 @@ import org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFacto
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.properties.Activator;
+import org.eclipse.papyrus.uml.tools.providers.UMLEClassLabelProvider;
+import org.eclipse.swt.graphics.Image;
 
 
 public class UMLPropertyEditorFactory extends EcorePropertyEditorFactory {
+
+	/**
+	 * the label provider used to get the image and the label in the creation popup menu
+	 */
+	private UMLEClassLabelProvider provider = new UMLEClassLabelProvider();
 
 	public UMLPropertyEditorFactory(EReference referenceIn) {
 		super(referenceIn);
@@ -79,4 +87,14 @@ public class UMLPropertyEditorFactory extends EcorePropertyEditorFactory {
 		}
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory#getImage(org.eclipse.emf.ecore.EClass)
+	 *
+	 * @param eClass
+	 * @return
+	 */
+	@Override
+	protected Image getImage(final EClass eClass) {
+		return this.provider.getImage(eClass);
+	}
 }

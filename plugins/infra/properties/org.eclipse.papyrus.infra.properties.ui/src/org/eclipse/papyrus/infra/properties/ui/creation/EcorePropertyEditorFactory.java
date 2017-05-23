@@ -35,17 +35,22 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EClassNameComparator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.properties.internal.ui.messages.Messages;
 import org.eclipse.papyrus.infra.properties.ui.providers.CreateInFeatureContentProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.ui.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
@@ -117,6 +122,13 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 * Store information about where each object should be added on validation
 	 */
 	protected Map<EObject, CreateIn> createIn = new HashMap<EObject, CreateIn>();
+
+	/**
+	 * used to get image to display in the creation menu
+	 * 
+	 * @since 2.0
+	 */
+	protected LabelProviderService labelProviderService;
 
 	/**
 	 *
@@ -347,7 +359,8 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		final Menu menu = new Menu(widget);
 		for (EClass eClass : availableClasses) {
 			final MenuItem item = new MenuItem(menu, SWT.NONE);
-			item.setText(eClass.getName());
+			item.setText(getText(eClass));
+			item.setImage(getImage(eClass));
 			item.setData("eClass", eClass); //$NON-NLS-1$
 			item.addSelectionListener(new SelectionListener() {
 
@@ -389,6 +402,40 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 		return eClass;
 	}
+
+	/**
+	 * 
+	 * @param eClass
+	 *            an eclass
+	 * @return
+	 * 		the image to display in the creation menu
+	 * @since 2.0
+	 * 
+	 */
+	protected Image getImage(final EClass eClass) {
+		if (null == this.labelProviderService) {
+			this.labelProviderService = new LabelProviderServiceImpl();
+		}
+		final ILabelProvider provider = this.labelProviderService.getLabelProvider(eClass);
+		if (null != provider) {
+			return provider.getImage(eClass);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param eClass
+	 *            an eclass
+	 * @return
+	 * 		the text to display
+	 * @since 2.0
+	 * 
+	 */
+	protected String getText(final EClass eClass) {
+		return eClass.getName();
+	}
+
 
 	/**
 	 * @return

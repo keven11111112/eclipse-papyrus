@@ -17,8 +17,13 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:EnumCombo input="{Binding}" property="UML:Message:messageSort"
-			readOnly="true"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}" property="UML:Message:messageSort"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}" property="UML:Message:signature"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>
 		<Composite.layout>
