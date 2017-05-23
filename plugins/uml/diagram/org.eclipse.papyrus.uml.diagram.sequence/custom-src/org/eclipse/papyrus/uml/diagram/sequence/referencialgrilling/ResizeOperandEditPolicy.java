@@ -102,10 +102,12 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy  implements Aut
 			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.INTERACTION_OPERAND_SHAPE)){
 				Node combinedFragmentNode = (Node)((GraphicalEditPart)(getHost().getParent())).getNotationView();
 				//we add a new Operand so we add the default height
-				int newHeight = getComputedCombinedFragmentHeight()+CInteractionOperandEditPart.DEFAULT_HEIGHT;
+				int height=((Bounds)combinedFragmentNode.getLayoutConstraint()).getHeight();
+				if( getHost().getChildren().size()>0) {
+				int newHeight = height+CInteractionOperandEditPart.DEFAULT_HEIGHT;
 				
 				return new ICommandProxy(new SetBoundsCommand(getEditingDomain(), "set dimension", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), (int)newHeight)));
-				
+				}
 			}
 		}
 		if( RequestConstants.REQ_RESIZE_CHILDREN.equals(request.getType())){
@@ -137,13 +139,9 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy  implements Aut
 						View nextView=getNextView((GraphicalEditPart)currentEditPart);
 						Dimension size= new Dimension(BoundForEditPart.getWidthFromView((Node)nextView), BoundForEditPart.getHeightFromView((Node)nextView));
 						size.expand(changeBoundsRequest.getSizeDelta().width*-1, changeBoundsRequest.getSizeDelta().height*-1);
-						//compute the position of the next view
-						Bounds currentNodeBounds=(Bounds)((Node)((GraphicalEditPart) currentEditPart).getNotationView()).getLayoutConstraint();
-						int nextViewY=currentNodeBounds.getY()+ BoundForEditPart.getHeightFromView(((Node)((GraphicalEditPart) currentEditPart).getNotationView()));
-						nextViewY= nextViewY+changeBoundsRequest.getSizeDelta().height;
-						
-						Rectangle rectangle= new Rectangle(new Point(0,nextViewY), size);
-						SetBoundsCommand setBoundsCommand= new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(nextView), rectangle);
+						Point locationNext=new Point(((Bounds)((Node)nextView).getLayoutConstraint()).getX(),((Bounds)((Node)nextView).getLayoutConstraint()).getY());
+						locationNext.y=locationNext.y+ changeBoundsRequest.getSizeDelta().height;
+						SetBoundsCommand setBoundsCommand= new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(nextView), new Rectangle (locationNext,size));
 						compositeCommand.add(setBoundsCommand);
 					}
 				}
@@ -155,6 +153,11 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy  implements Aut
 				if( istheFirstDisplayedOperand((GraphicalEditPart)currentEditPart)){
 					compositeCommand.add(getMoveCompartmentCommand(changeBoundsRequest));
 					compositeCommand.add( new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(((GraphicalEditPart) currentEditPart).getNotationView()), new Point(0,0)));
+					for(int i=1;i<getHost().getChildren().size();i++) {
+						GraphicalEditPart graphicalEditPart= (GraphicalEditPart)getHost().getChildren().get(i);
+						int y=((Bounds)((Node)graphicalEditPart.getNotationView()).getLayoutConstraint()).getY()-changeBoundsRequest.getMoveDelta().y;
+						compositeCommand.add( new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(((Node)graphicalEditPart.getNotationView())), new Point(0,y)));
+					}
 					
 				}
 				else{
@@ -163,11 +166,6 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy  implements Aut
 					Dimension size= new Dimension(BoundForEditPart.getWidthFromView((Node)previousView), BoundForEditPart.getHeightFromView((Node)previousView));
 					size.expand(changeBoundsRequest.getSizeDelta().width*-1, changeBoundsRequest.getSizeDelta().height*-1);
 					SetBoundsCommand setBoundsCommand= new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(previousView), size);
-					compositeCommand.add(setBoundsCommand);
-					Bounds previousNodeBounds=(Bounds)((Node)previousView).getLayoutConstraint();
-					Bounds currentNodeBounds=(Bounds)((Node)((GraphicalEditPart) currentEditPart).getNotationView()).getLayoutConstraint();
-					int nextViewY=previousNodeBounds.getY()+ BoundForEditPart.getHeightFromView((Node)previousView)+ changeBoundsRequest.getSizeDelta().height;
-					setBoundsCommand= new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(((GraphicalEditPart) currentEditPart).getNotationView()), new Point(0,nextViewY));
 					compositeCommand.add(setBoundsCommand);
 				}
 			}
@@ -185,7 +183,9 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy  implements Aut
 		Node shapeView=(Node)((GraphicalEditPart)currentEditPart).getNotationView();
 		Dimension size= new Dimension(BoundForEditPart.getWidthFromView(shapeView), BoundForEditPart.getHeightFromView(shapeView));
 		size.expand(changeBoundsRequest.getSizeDelta().width, changeBoundsRequest.getSizeDelta().height);
-		SetBoundsCommand setBoundsCommand= new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(shapeView), size);
+		Point location= new Point(0,((Bounds)shapeView.getLayoutConstraint()).getY()+changeBoundsRequest.getMoveDelta().y);
+		Rectangle rect= new Rectangle(location, size);
+		SetBoundsCommand setBoundsCommand= new SetBoundsCommand(editingDomain, "Resize Operands", new EObjectAdapter(shapeView), rect);
 		compositeCommand.add(setBoundsCommand);
 	}
 

@@ -88,41 +88,8 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 		}
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningRowFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy, org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
-	 *
-	 * @param node
-	 * @param grilling
-	 * @param element
-	 * @param bounds
-	 * @throws NoGrillElementFound
-	 */
-	@Override
-	protected void initListeningRowFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateHeightFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
-	 *
-	 * @param originPosition
-	 * @param currentBounds
-	 */
-	@Override
-	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateRowFinishFromHeightNotification(org.eclipse.draw2d.geometry.PrecisionRectangle)
-	 *
-	 * @param p
-	 */
-	@Override
-	protected void updateRowFinishFromHeightNotification(PrecisionRectangle p) {
-	}
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#updateColumFinishFromWitdhNotification(org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
@@ -151,14 +118,5 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 			}
 		}
 	}
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#updateWidthFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
-	 *
-	 * @param originPosition
-	 * @param currentBounds
-	 */
-	@Override
-	protected void updateWidthFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		//do nothing
-	}
+	
 }

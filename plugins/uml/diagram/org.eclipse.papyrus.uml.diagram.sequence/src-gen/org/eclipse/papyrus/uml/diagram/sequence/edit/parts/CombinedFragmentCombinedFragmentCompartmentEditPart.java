@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPo
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ResizeOperandEditPolicy;
@@ -95,6 +96,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeOperandEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedCreationEditPolicy());
 	}
 
 	/**

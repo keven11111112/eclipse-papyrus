@@ -77,13 +77,13 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 			Object childConstraint) {
 		EditPart parentEditPart = this.getParent();
 		// compute the ratio for each children
-		int parentHeight = BoundForEditPart.getHeightFromView((Node) parentEditPart.getModel());
+		int parentHeight = BoundForEditPart.getHeightFromView((Node) parentEditPart.getModel())-27;
 		if (childConstraint instanceof Rectangle) {
 			double ratio = ((double) ((Rectangle) childConstraint).height) / parentHeight;
 			if (ratio >= 1.0) {
 				ratio = 0.95;
 			}
-			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG, "ratio" + ratio); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG, ((Rectangle) childConstraint).height +"--> ratio" + ratio); //$NON-NLS-1$
 			childFigure.getParent().setConstraint(childFigure, ratio);
 		}
 	}

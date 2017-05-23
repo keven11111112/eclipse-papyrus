@@ -268,7 +268,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	 * @param originPosition the position of the node is the relative position ( relative to the container) 
 	 */
 	protected void updateRowFinishFromHeightNotification(PrecisionRectangle p) {
-		int newY=p.y+p.height;
+		int newY=p.y+p.height+margin;
 		updatePositionGridAxis(rowFinish, 0, newY);
 	}
 
@@ -295,7 +295,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		updatePositionGridAxis(rowStart, 0, newY);
 		
 		if(rowFinish!=null) {
-			newY=bounds.y+bounds.height;
+			newY=bounds.y+bounds.height+margin;
 			updatePositionGridAxis(rowFinish, 0, newY);
 		}
 	}
@@ -330,7 +330,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	 */
 	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
 		Location boundsColumn=(Location)	((Node)rowFinish).getLayoutConstraint();
-		int newHeight=boundsColumn.getY()-originPosition.y()-currentBounds.getY();
+		int newHeight=boundsColumn.getY()-originPosition.y()-currentBounds.getY()-margin;
 		UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " +newHeight);//$NON-NLS-1$
 		
 		updateSizeOfControler(currentBounds.getWidth(), newHeight);
