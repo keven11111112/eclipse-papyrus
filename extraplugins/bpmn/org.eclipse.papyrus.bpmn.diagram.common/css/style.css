@@ -19,13 +19,15 @@ ObjectFlow > Label{
 	visible:false;
 }
 
+/*
 OpaqueAction{
 	rightMarginLabel : 2;
 	leftMarginLabel : 30;
     topMarginLabel : 10;
     isNameWrap : true;
 }
-OpaqueAction > Compartment[kind="symbol"] {
+*/
+[appliedStereotypes~="BPMNProfile::Task"] > Compartment[kind="symbol"] {
     visible:false;
 }
 
@@ -33,9 +35,6 @@ StructuredActivityNode > Compartment[kind="symbol"]{
 	visible: false;
 }
 
-ActivityParameterNode  Compartment[kind="symbol"]{
-	visible: false;
-}
 
 * > Compartment[kind="symbol"] {
     visible:true;    
@@ -52,7 +51,6 @@ ActivityParameterNode  Compartment[kind="symbol"]{
 	elementIcon : false;
 	displayTags :false;
 }
-
 
 
 [appliedStereotypes~="BPMNProfile::Task"]
@@ -80,24 +78,25 @@ ActivityParameterNode  Compartment[kind="symbol"]{
 	displayTags: false;
 }
 
-[appliedStereotypes~="BPMNProfile::GlobalTask"]{
-	fillColor: white;	
-	displayTags: false;
-}
-
 [appliedStereotypes~="BPMNProfile::CallActivity"]{
 	fillColor: white;	
 	displayTags: false;
 }
  
 [appliedStereotypes~="BPMNProfile::ManualTask"]{
+	leftMarginLabel : 30;
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ManualTask.svg";
 	shapeVisibility: true;
 }
 
+[appliedStereotypes~="BPMNProfile::ManualTask"] > Compartment[kind="symbol"] {
+    visible:false;
+}
+
 [appliedStereotypes~="BPMNProfile::ReceiveTask"]{
+	leftMarginLabel : 30;
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ReceiveTask.svg";
@@ -105,6 +104,7 @@ ActivityParameterNode  Compartment[kind="symbol"]{
 }
 
 [appliedStereotypes~="BPMNProfile::UserTask"]{
+	leftMarginLabel : 30;
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/UserTask.svg";
@@ -112,6 +112,7 @@ ActivityParameterNode  Compartment[kind="symbol"]{
 }
 
 [appliedStereotypes~="BPMNProfile::ScriptTask"]{
+	leftMarginLabel : 30;
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ScriptTask.svg";
@@ -119,6 +120,7 @@ ActivityParameterNode  Compartment[kind="symbol"]{
 }
 
 [appliedStereotypes~="BPMNProfile::BusinessRuleTask"]{
+	leftMarginLabel : 30;
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/BusinessRuleTask.svg";
@@ -126,6 +128,7 @@ ActivityParameterNode  Compartment[kind="symbol"]{
 }
 
 [appliedStereotypes~="BPMNProfile::SendTask"]{
+	leftMarginLabel : 30;
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/SendTask.svg";
@@ -133,6 +136,7 @@ ActivityParameterNode  Compartment[kind="symbol"]{
 }
 
 [appliedStereotypes~="BPMNProfile::ServiceTask"]{
+	leftMarginLabel : 30;
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ServiceTask.svg";
@@ -386,10 +390,18 @@ ActivityParameterNode[appliedStereotypes~="BPMNProfile::DataOutput"] {
 	elementIcon:false;
 }
 
+ActivityParameterNode[appliedStereotypes~="BPMNProfile::DataOutput"]  Compartment[kind="symbol"]{
+	visible: false;
+}
+
 ActivityParameterNode[appliedStereotypes~="BPMNProfile::DataInput"] {
 	transparency:0.0;
 	lineWidth:1.0;
 	elementIcon:false;
+}
+
+ActivityParameterNode[appliedStereotypes~="BPMNProfile::DataInput"]  Compartment[kind="symbol"]{
+	visible: false;
 }
 
 [appliedStereotypes~="BPMNProfile::DataInput"] > Label {
