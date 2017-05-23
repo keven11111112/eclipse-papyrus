@@ -23,6 +23,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -299,8 +300,12 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 		final Iterator<View> viewToDestroyIterator = viewsToDestroy.iterator();
 		while (viewToDestroyIterator.hasNext()) {
 			final View view = viewToDestroyIterator.next();
-			final DeleteCommand destroyViewsCommand = new DeleteCommand(request.getEditingDomain(), view);
-			moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
+			final TransactionalEditingDomain editingDomain = request.getEditingDomain();
+			// Need to selectively delete the views as we do not want to delete the moved view
+			if (!view.equals(request.getParameter(RequestParameterConstants.AFFECTED_VIEW))) {
+				final DeleteCommand destroyViewsCommand = new DeleteCommand(editingDomain, view);
+				moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
+			}
 		}
 
 		return moveCommand;

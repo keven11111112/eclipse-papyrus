@@ -22,6 +22,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 
 public abstract class ResizeableListCompartmentEditPart extends ListCompartmentEditPart {
 
@@ -64,6 +65,10 @@ public abstract class ResizeableListCompartmentEditPart extends ListCompartmentE
 		}
 		if (resolveSemanticElement() != null) {
 			super.handleNotificationEvent(notification);
+		}
+		// Refresh needed upon moving attributes in new compartments
+		if (Notification.ADD == notification.getEventType()) {
+			DiagramHelper.refresh(this, true);
 		}
 	}
 

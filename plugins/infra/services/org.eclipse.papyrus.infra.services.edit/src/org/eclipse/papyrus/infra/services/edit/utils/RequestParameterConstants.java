@@ -151,6 +151,11 @@ public interface RequestParameterConstants {
 	 * Constant used to indicate where the action is done.
 	 */
 	public static final String TYPE_MOVING = "TYPE_MOVING"; //$NON-NLS-1$
+  
+	/**
+	 * Store the view on which we are working.
+	 */
+	public final static String AFFECTED_VIEW = "AFFECTED_VIEW";//$NON-NLS-1$
 	
 	/**
 	 * this constant is used to precise if it is needed to make the editdialog cancellable or not

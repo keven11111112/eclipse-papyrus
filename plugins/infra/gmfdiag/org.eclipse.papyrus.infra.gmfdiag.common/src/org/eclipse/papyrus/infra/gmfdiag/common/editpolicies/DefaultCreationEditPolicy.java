@@ -129,6 +129,7 @@ public class DefaultCreationEditPolicy extends CreationEditPolicy {
 			if (null != parameters) {
 				// Here, the action is done on the diagram
 				parameters.put(RequestParameterConstants.TYPE_MOVING, RequestParameterConstants.TYPE_MOVING_DIAGRAM);
+				parameters.put(RequestParameterConstants.AFFECTED_VIEW, view);
 			}
 
 			moveRequest.addParameters(parameters);
