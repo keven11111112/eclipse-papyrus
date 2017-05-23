@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.editor.welcome.internationalization.Activator;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.internationalization.commands.InternationalizationPreferenceCommandFactory;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.modelresource.InternationalizationPreferenceModel;
 import org.eclipse.papyrus.infra.internationalization.utils.InternationalizationPreferenceModelUtils;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
@@ -99,6 +100,10 @@ public class PrivateInternationalizationPreferenceObservableValue extends Abstra
 	 */
 	@Override
 	protected Boolean doGetValue() {
+		if(!InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			return false;
+		}
+		
 		return internationalizationPrefModel.isLegacyMode();
 	}
 

@@ -76,6 +76,9 @@ public class UseInternationalizationObservableValue extends AbstractObservableVa
 	 */
 	@Override
 	protected Boolean doGetValue() {
+		if(!InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			return false;
+		}
 		final InternationalizationPreferenceModel model = InternationalizationPreferenceModelUtils.getInternationalizationPreferenceModel((ModelSet) domain.getResourceSet());
 		return InternationalizationPreferencesUtils.getInternationalizationPreference(model.getPrivateResourceURI());
 	}

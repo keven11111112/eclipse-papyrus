@@ -42,6 +42,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.InternationalizationConstants;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.properties.ui.providers.FeatureContentProvider;
@@ -119,7 +120,7 @@ public class UMLModelElement extends EMFModelElement {
 	@Override
 	public IObservable doGetObservable(final String propertyPath) {
 		IObservable value = null;
-		if (InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)) {
+		if (InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath) && InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
 			value = new UMLLabelObservableValue((NamedElement) source, domain);
 		} else if (InternationalizationConstants.KEYWORD_PROPERTY_PATH.equals(propertyPath)) {
 			value = new KeywordObservableValue((Stereotype) source, domain);

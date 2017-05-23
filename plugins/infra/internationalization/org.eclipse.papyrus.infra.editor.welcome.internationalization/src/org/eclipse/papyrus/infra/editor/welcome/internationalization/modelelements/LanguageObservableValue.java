@@ -88,6 +88,10 @@ public class LanguageObservableValue extends AbstractObservableValue<String> imp
 	 */
 	@Override
 	protected String doGetValue() {
+		if(!InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			return ""; //$NON-NLS-1$
+		}
+		
 		final InternationalizationPreferenceModel model = InternationalizationPreferenceModelUtils.getInternationalizationPreferenceModel((ModelSet) domain.getResourceSet());
 		return InternationalizationPreferencesUtils.getLocalePreference(model.getPrivateResourceURI()).toString();
 	}

@@ -20,7 +20,6 @@ public class Messages extends NLS {
 	public static String InternationalizationDialog_UseInternationalizationLabel;
 	public static String InternationalizationPreferencePage_LoadInternationalizationFieldName;
 	public static String InternationalizationPreferencePage_LoadInternationalizationOfExternalFilesFieldName;
-	public static String InternationalizationPreferencePage_Title;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

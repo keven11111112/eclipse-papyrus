@@ -32,7 +32,6 @@ public class InternationalizationPreferencePage extends FieldEditorPreferencePag
 	public InternationalizationPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription(Messages.InternationalizationPreferencePage_Title);
 	}
 
 	/**

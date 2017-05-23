@@ -123,14 +123,16 @@ public class LanguageDialog extends AbstractValueEditor implements SelectionList
 	public void setModelObservable(final IObservableValue modelProperty) {
 		super.setModelObservable(modelProperty);
 
-		if (modelProperty instanceof IObserving) {
-			Object observed = ((IObserving) modelProperty).getObserved();
-			if (observed instanceof URI) {
-				URI resourceURI = (URI) observed;
-				dialog.setResourceURI(resourceURI);
-
-				final String localeAsString = InternationalizationPreferencesUtils.getLocalePreference(resourceURI).toString();
-				currentValueLabel.setText(localeAsString);
+		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+			if (modelProperty instanceof IObserving) {
+				Object observed = ((IObserving) modelProperty).getObserved();
+				if (observed instanceof URI) {
+					URI resourceURI = (URI) observed;
+					dialog.setResourceURI(resourceURI);
+	
+					final String localeAsString = InternationalizationPreferencesUtils.getLocalePreference(resourceURI).toString();
+					currentValueLabel.setText(localeAsString);
+				}
 			}
 		}
 	}
