@@ -79,7 +79,7 @@ public class CreateCoordinateCommand extends RecordingCommand {
 		if (semantic != null) {
 			coordinate.setElement(semantic);
 		}
-		ViewUtil.insertChildView(compartment, coordinate, ViewUtil.APPEND, true);
+		ViewUtil.insertChildView(compartment, coordinate, ViewUtil.APPEND, false);
 	}
 
 

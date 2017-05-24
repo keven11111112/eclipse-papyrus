@@ -39,7 +39,7 @@ public class CreateGrillingStructureCommand extends RecordingCommand {
 	 *
 	 * Constructor.
 	 *
-	 * @param domain
+	 * @param domain 
 	 * @param node
 	 *            The EditPart view of the Compartment
 	 */
@@ -57,17 +57,8 @@ public class CreateGrillingStructureCommand extends RecordingCommand {
 		BasicCompartment compartment = NotationFactory.eINSTANCE.createBasicCompartment();
 		// Complete the creation
 		compartment.setType(GrillingEditpart.VISUAL_ID);
-		ViewUtil.insertChildView(node, compartment, ViewUtil.APPEND, true);
-		//create One line
-		Node line= NotationFactory.eINSTANCE.createDecorationNode();
-		Location linelocation=NotationFactory.eINSTANCE.createLocation();
-		linelocation.setY(Y_SPACE);
-		line.setType(GridManagementEditPolicy.COLUMN+"0");
-		line.setLayoutConstraint(linelocation);
-		ViewUtil.insertChildView(compartment, line, ViewUtil.APPEND, true);
-
-
-
+		compartment.setMutable(true);
+		ViewUtil.insertChildView(node, compartment, ViewUtil.APPEND, false);
 	}
 
 
