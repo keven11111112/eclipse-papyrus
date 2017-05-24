@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_TD6UMCq7EeeggtQf9kdCWQ" name="expressions">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_TD6UMCq7EeeggtQf9kdCWQ" name="expressions" label="Expressions Metamodel">
   <tabs xmi:id="_UckJMCq7EeeggtQf9kdCWQ" label="expressions" id="expressions" priority="100">
     <sections xmi:id="_UckwQCq7EeeggtQf9kdCWQ" name="Single IBasicExpressionElement" sectionFile="ui/SingleIBasicExpressionElement.xwt">
       <widget href="ui/SingleIBasicExpressionElement.xwt#/"/>

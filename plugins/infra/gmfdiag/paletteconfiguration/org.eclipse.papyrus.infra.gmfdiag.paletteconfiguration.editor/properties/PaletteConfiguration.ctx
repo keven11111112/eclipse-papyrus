@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_QFK38JmjEeW_-tPAoZEp-w" name="paletteconfiguration" label="">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_QFK38JmjEeW_-tPAoZEp-w" name="paletteconfiguration" label="Palette Configuration Metamodel">
   <tabs xmi:id="_pevIQJmjEeW_-tPAoZEp-w" label="Configuration" id="paletteconfiguration" priority="100">
     <sections xmi:id="_pfL0MJmjEeW_-tPAoZEp-w" name="Single PaletteConfiguration" sectionFile="ui/SinglePaletteConfiguration.xwt">
       <widget href="ui/SinglePaletteConfiguration.xwt#/"/>

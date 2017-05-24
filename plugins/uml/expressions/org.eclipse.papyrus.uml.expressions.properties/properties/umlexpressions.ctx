@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_wsjoICzsEeeKOdJYr-htag" name="umlexpressions">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_wsjoICzsEeeKOdJYr-htag" name="umlexpressions" label="UML Expressions Metamodel">
   <tabs xmi:id="_xcGOsCzsEeeKOdJYr-htag" label="umlexpressions" id="umlexpressions" priority="100">
     <sections xmi:id="_xcGOsSzsEeeKOdJYr-htag" name="Single IsStereotypedWithExpression" sectionFile="ui/SingleIsStereotypedWithExpression.xwt">
       <widget href="ui/SingleIsStereotypedWithExpression.xwt#/"/>

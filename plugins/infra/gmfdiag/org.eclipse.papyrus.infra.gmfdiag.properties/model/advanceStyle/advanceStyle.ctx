@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_qahnQPNAEeSUy5qALahJGg" name="AdvanceStyle">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_qahnQPNAEeSUy5qALahJGg" name="AdvanceStyle" label="Diagram Advanced Notation">
   <tabs xmi:id="_qahnQfNAEeSUy5qALahJGg" label="Advance" id="advanceAppearance" category="org.eclipse.papyrus" afterTab="_b0dE8AU3EeWyLrX3gM3cmQ" indented="true" priority="75">
     <sections xmi:id="_LSzTgPP_EeSAco7o1Suyeg" name="GenericNodeShapeSection" sectionFile="ui/GenericNodeShapeSection.xwt">
       <widget href="ui/GenericNodeShapeSection.xwt#/"/>

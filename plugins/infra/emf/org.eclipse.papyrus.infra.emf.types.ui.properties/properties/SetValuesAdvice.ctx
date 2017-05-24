@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_CPYnoPA5EeWJjOCbWbsQPg" name="SetValues">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_CPYnoPA5EeWJjOCbWbsQPg" name="SetValues" label="Set Values For Properties View">
   <tabs xmi:id="_SsUUIPA5EeWJjOCbWbsQPg" label="SetValues" id="values" priority="100">
     <sections xmi:id="_SsaawPA5EeWJjOCbWbsQPg" name="Single SetValuesAdviceConfiguration" sectionFile="ui/SingleSetValuesAdviceConfiguration.xwt">
       <widget href="ui/SingleSetValuesAdviceConfiguration.xwt#/"/>
