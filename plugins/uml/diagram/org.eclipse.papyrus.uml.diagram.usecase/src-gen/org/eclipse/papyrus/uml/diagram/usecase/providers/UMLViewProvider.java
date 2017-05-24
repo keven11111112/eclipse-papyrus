@@ -476,8 +476,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node actor_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActorNameEditPartTN.VISUAL_ID));
 		actor_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actor_NameLabel_Location = (Location) actor_NameLabel.getLayoutConstraint();
-		actor_NameLabel_Location.setX(20);
-		actor_NameLabel_Location.setY(60);
+		actor_NameLabel_Location.setX(0);
+		actor_NameLabel_Location.setY(15);
 		Node actor_StereotypeLabel = createLabel(node, UMLVisualIDRegistry.getType(ActorAppliedStereotypeEditPartTN.VISUAL_ID));
 		actor_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actor_StereotypeLabel_Location = (Location) actor_StereotypeLabel.getLayoutConstraint();
@@ -883,8 +883,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node actor_NameLabel_CN = createLabel(node, UMLVisualIDRegistry.getType(ActorInPackageNameEditPart.VISUAL_ID));
 		actor_NameLabel_CN.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actor_NameLabel_CN_Location = (Location) actor_NameLabel_CN.getLayoutConstraint();
-		actor_NameLabel_CN_Location.setX(20);
-		actor_NameLabel_CN_Location.setY(60);
+		actor_NameLabel_CN_Location.setX(0);
+		actor_NameLabel_CN_Location.setY(15);
 		Node actor_StereotypeLabel_CN = createLabel(node, UMLVisualIDRegistry.getType(ActorInPackageAppliedStereotypeEditPart.VISUAL_ID));
 		actor_StereotypeLabel_CN.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actor_StereotypeLabel_CN_Location = (Location) actor_StereotypeLabel_CN.getLayoutConstraint();

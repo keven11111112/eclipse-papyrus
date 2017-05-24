@@ -44,6 +44,7 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPa
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
+import org.eclipse.papyrus.uml.diagram.usecase.locator.ActorFloatingLabelLocator;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
@@ -179,7 +180,7 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof ActorInComponentNameEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			IBorderItemLocator locator = new ActorFloatingLabelLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else if (borderItemEditPart instanceof ActorInComponentAppliedStereotypeEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());

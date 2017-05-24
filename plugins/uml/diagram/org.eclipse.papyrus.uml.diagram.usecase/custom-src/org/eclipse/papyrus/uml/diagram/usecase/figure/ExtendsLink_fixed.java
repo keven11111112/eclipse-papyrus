@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 /**
  * 
- * @deprecated since 3.1 (bug 520755)
+ * @deprecated since 4.0 (bug 520755)
  * This wrapping label class should be removed in the same time than its associated view and its associated editpart (update of the gmfgen file).
  * Moreover removing all these things requires to write a diagram reconciler. 
  * As it is for a Service release, we don't do it yet. 
