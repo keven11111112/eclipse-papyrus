@@ -28,11 +28,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 public class InternationalizationKeyResolver {
 
 	/**
-	 * The singleton instance.
-	 */
-	private static InternationalizationKeyResolver instance;
-
-	/**
 	 * The '_labelDiagram_' prefix of each diagram entry.
 	 */
 	protected static final String LABEL_DIAGRAM_PREFIX_QN = "_labelDiagram_"; //$NON-NLS-1$
@@ -53,20 +48,11 @@ public class InternationalizationKeyResolver {
 	 */
 	protected static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
+	/**
+	 * Constructor.
+	 */
 	public InternationalizationKeyResolver() {
 		// Do nothing
-	}
-
-	/**
-	 * Get the singleton instance (create it if not existing).
-	 * 
-	 * @return The singleton instance.
-	 */
-	public static InternationalizationKeyResolver getInstance() {
-		if (null == instance) {
-			instance = new InternationalizationKeyResolver();
-		}
-		return instance;
 	}
 
 	/**
@@ -148,6 +134,13 @@ public class InternationalizationKeyResolver {
 			result.append((String) entry.getKey());
 		}
 		return result.toString();
+	}
+
+	/**
+	 * This allows to dispose the key resolver.
+	 */
+	public void dispose() {
+		// Do nothing here
 	}
 
 }

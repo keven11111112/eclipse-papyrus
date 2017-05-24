@@ -46,7 +46,7 @@ public class InternationalizationResourceFactory extends XMIResourceFactoryImpl 
 			resource.setEncoding(EMFCoreConstants.XMI_ENCODING);
 		}
 
-		final InternationalizationKeyResolver keyResolver = InternationalizationKeyResolver.getInstance();
+		final InternationalizationKeyResolver keyResolver = new InternationalizationKeyResolver();
 		resource.getDefaultLoadOptions().put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
 				keyResolver);
 

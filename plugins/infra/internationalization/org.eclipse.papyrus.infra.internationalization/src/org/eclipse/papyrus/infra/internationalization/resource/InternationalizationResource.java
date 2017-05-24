@@ -26,14 +26,11 @@ import java.util.Vector;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.emf.commands.AddToResourceCommand;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.internationalization.Activator;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationEntry;
@@ -67,7 +64,7 @@ public class InternationalizationResource extends XMIResourceImpl {
 	 */
 	@Override
 	public void load(final Map<?, ?> options) throws IOException {
-
+		
 		// Load the key resolver save option if exist
 		final InternationalizationKeyResolver keyResolver = loadKeyResolverOption(options, defaultLoadOptions);
 
@@ -116,46 +113,8 @@ public class InternationalizationResource extends XMIResourceImpl {
 				library.getEntries().add(entry);
 			}
 
-			if (getResourceSet() instanceof ModelSet) {
-				
-				// Load the locale save option if exist
-				final Object needUnsafe = options != null
-						&& options.containsKey(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
-								? options.get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
-								: defaultLoadOptions != null
-										? defaultLoadOptions
-												.get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
-										: null;
-			
-				// Add the library to the resource
-				if (needUnsafe instanceof Boolean && (Boolean)needUnsafe) {
-					try {
-						// We need to do this by unsafe for the fake resources
-						GMFUnsafe.write(((ModelSet) getResourceSet()).getTransactionalEditingDomain(), new Runnable() {
-							
-							@Override
-							public void run() {
-								getContents().add(library);
-								
-							}
-						});
-					} catch (InterruptedException | RollbackException e) {
-						Activator.log.error(e);
-					}
-				} else {
-					final GMFtoEMFCommandWrapper command = new GMFtoEMFCommandWrapper(new AddToResourceCommand(
-							((ModelSet) getResourceSet()).getTransactionalEditingDomain(), this, library));
-					command.execute();
-				}
-			} else {
-				// Workaround for the non ModelSet resource set.
-				final ResourceSet resourceSet = getResourceSet();
-				resourceSet.getResources().remove(this);
-				getContents().add(library);
-				resourceSet.getResources().add(this);
-			}
-
-			setModified(false);
+			// Save the library in a resource options
+			defaultSaveOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT, library);
 		}
 	}
 
@@ -199,31 +158,30 @@ public class InternationalizationResource extends XMIResourceImpl {
 		// stream because the resource bundle cannot be modified
 		final SortedProperties properties = new SortedProperties(sort);
 
-		if (!getContents().isEmpty()) {
-			for (final EObject content : getContents()) {
-				if (content instanceof InternationalizationLibrary) {
-					final InternationalizationLibrary library = (InternationalizationLibrary) content;
+		final Object library = options != null
+				&& options.containsKey(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT)
+						? options.get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT)
+						: defaultSaveOptions != null
+								? defaultSaveOptions.get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT)
+								: null;
 
-					// Add all the entries into properties (need this properties
-					// to save
-					// easier the properties file)
-					for (final InternationalizationEntry entry : library.getEntries()) {
-						if ((null == deletedObjects || !deletedObjects.contains(entry.getKey()))
-								&& !entry.getValue().isEmpty()) {
-							if (null != keyResolver) {
-								properties.setProperty(keyResolver.getKey(entry), entry.getValue());
-							} else {
-								properties.setProperty(entry.getKey().toString(), entry.getValue());
-							}
-						}
+		if (library instanceof InternationalizationLibrary) {
+
+			// Add all the entries into properties (need this properties to save easier the properties file)
+			for (final InternationalizationEntry entry : ((InternationalizationLibrary) library).getEntries()) {
+				if ((null == deletedObjects || !deletedObjects.contains(entry.getKey()))
+						&& !entry.getValue().isEmpty()) {
+					if (null != keyResolver) {
+						properties.setProperty(keyResolver.getKey(entry), entry.getValue());
+					} else {
+						properties.setProperty(entry.getKey().toString(), entry.getValue());
 					}
-
-					// This allows to save the properties into the properties
-					// file
-					final URIConverter uriConverter = new ExtensibleURIConverterImpl();
-					properties.store(uriConverter.createOutputStream(getURI()), null);
 				}
 			}
+
+			// This allows to save the properties into the properties file
+			final URIConverter uriConverter = new ExtensibleURIConverterImpl();
+			properties.store(uriConverter.createOutputStream(getURI()), null);
 		}
 		setModified(false);
 	}
@@ -242,13 +200,7 @@ public class InternationalizationResource extends XMIResourceImpl {
 		//
 		if (!getContents().isEmpty()) {
 			// Load the locale save option if exist
-			final Object needUnsafe = getDefaultLoadOptions() != null
-					&& getDefaultLoadOptions().containsKey(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
-							? getDefaultLoadOptions().get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
-							: defaultLoadOptions != null
-									? defaultLoadOptions
-											.get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT)
-									: null;
+			final Object needUnsafe = defaultLoadOptions != null ? defaultLoadOptions.get(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT) : null;
 
 			// Add the library to the resource
 			if (needUnsafe instanceof Boolean && (Boolean) needUnsafe) {
@@ -269,6 +221,19 @@ public class InternationalizationResource extends XMIResourceImpl {
 				getContents().clear();
 			}
 		}
+
+		// Dispose the key resolver if not null
+		final InternationalizationKeyResolver keyResolver = loadKeyResolverOption(null, defaultLoadOptions);
+		if (null != keyResolver) {
+			keyResolver.dispose();
+		}
+
+		// Delete the library
+		Object library = defaultSaveOptions != null ? defaultSaveOptions.get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT) : null;
+		if (null != library) {
+			library = null;
+		}
+
 		getErrors().clear();
 		getWarnings().clear();
 

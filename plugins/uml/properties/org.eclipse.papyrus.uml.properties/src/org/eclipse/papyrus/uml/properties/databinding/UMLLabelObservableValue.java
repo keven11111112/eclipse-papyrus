@@ -101,7 +101,9 @@ public class UMLLabelObservableValue extends AbstractObservableValue implements 
 	@Override
 	public synchronized void dispose() {
 		if (null != listener) {
-			entry.eAdapters().remove(listener);
+			if(entry.eAdapters().contains(listener)) {
+				entry.eAdapters().remove(listener);
+			}
 			listener = null;
 		}
 
@@ -167,7 +169,7 @@ public class UMLLabelObservableValue extends AbstractObservableValue implements 
 		try {
 			
 			// Remove the listener on entry
-			if(null != entry && null != listener){
+			if(null != entry && null != listener && entry.eAdapters().contains(listener)){
 				entry.eAdapters().remove(listener);
 			}
 			

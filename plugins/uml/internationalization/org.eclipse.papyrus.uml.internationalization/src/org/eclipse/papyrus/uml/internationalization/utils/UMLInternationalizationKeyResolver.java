@@ -13,8 +13,11 @@
 
 package org.eclipse.papyrus.uml.internationalization.utils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -22,9 +25,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationEntry;
 import org.eclipse.papyrus.infra.internationalization.utils.InternationalizationKeyResolver;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLQualifiedNameUtils;
 import org.eclipse.papyrus.uml.tools.utils.NameResolutionUtils;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Stereotype;
@@ -36,32 +39,20 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 public class UMLInternationalizationKeyResolver extends InternationalizationKeyResolver {
 
 	/**
-	 * The singleton instance.
-	 */
-	private static UMLInternationalizationKeyResolver instance;
-
-	/**
 	 * The qualified name separator replacement into properties file.
 	 */
 	private static final String QUALIFIED_NAME_SEPARATOR_REPLACEMENT = "__"; //$NON-NLS-1$
 
 	/**
+	 * The map of NamedElement by qualified names.
+	 */
+	private Map<String, NamedElement> elementsForQN;
+
+	/**
 	 * Constructor.
 	 */
 	public UMLInternationalizationKeyResolver() {
-		// Do nothing
-	}
-
-	/**
-	 * Get the singleton instance (create it if not existing).
-	 * 
-	 * @return The singleton instance.
-	 */
-	public static UMLInternationalizationKeyResolver getInstance() {
-		if (null == instance) {
-			instance = new UMLInternationalizationKeyResolver();
-		}
-		return instance;
+		elementsForQN = new HashMap<String, NamedElement>();
 	}
 
 	/**
@@ -84,22 +75,39 @@ public class UMLInternationalizationKeyResolver extends InternationalizationKeyR
 			final String qualifiedName = ((String) entryKey).replaceAll(QUALIFIED_NAME_SEPARATOR_REPLACEMENT,
 					NamedElementUtil.QUALIFIED_NAME_SEPARATOR); // $NON-NLS-1$
 
-			// TODO: is this the good way to get the named elements by
-			// qualified names?
-			final Resource umlResource = resourceSet
-					.getResource(uri.trimFileExtension().appendFileExtension(UMLResource.FILE_EXTENSION), true);
-			if (null != umlResource && null != umlResource.getContents() && !umlResource.getContents().isEmpty()) {
-				final List<NamedElement> elements = NameResolutionUtils.getNamedElements(qualifiedName,
-						((Element) umlResource.getContents().get(0)), null);
-
-				if (!elements.isEmpty() && 1 == elements.size()) {
-					final NamedElement umlElement = elements.get(0);
-					entry.setKey(umlElement);
+			// Compute all the qualified names of the UML resource if not already done
+			if (elementsForQN.isEmpty()) {
+				final Resource umlResource = resourceSet
+						.getResource(uri.trimFileExtension().appendFileExtension(UMLResource.FILE_EXTENSION), true);
+				if (null != umlResource && null != umlResource.getContents() && !umlResource.getContents().isEmpty()) {
+					computeElementsNames(umlResource);
 				}
+			}
+
+			final NamedElement namedElement = elementsForQN.get(qualifiedName);
+			if (null != namedElement) {
+				entry.setKey(namedElement);
 			}
 		}
 
 		return entry;
+	}
+
+	/**
+	 * This allows to compute all NamedElement in a UML Resource.
+	 * 
+	 * @param resource
+	 *            The UML Resource.
+	 */
+	private void computeElementsNames(final Resource resource) {
+		final TreeIterator<EObject> contents = EcoreUtil.getAllProperContents(resource, false);
+		while (contents.hasNext()) {
+			final EObject eObject = contents.next();
+
+			if (eObject instanceof NamedElement) {
+				elementsForQN.put(((NamedElement) eObject).getQualifiedName(), (NamedElement) eObject);
+			}
+		}
 	}
 
 	/**
@@ -142,11 +150,21 @@ public class UMLInternationalizationKeyResolver extends InternationalizationKeyR
 				}
 			}
 			if (!shortestQualifiedNameUsed) {
-				stringBuilder.append(((NamedElement) entry.getKey()).getQualifiedName()
-						.replaceAll(NamedElementUtil.QUALIFIED_NAME_SEPARATOR, QUALIFIED_NAME_SEPARATOR_REPLACEMENT));
+				stringBuilder.append(UMLQualifiedNameUtils.getQualifiedName((NamedElement) entry.getKey(), QUALIFIED_NAME_SEPARATOR_REPLACEMENT));
 			}
 		}
 		return 0 != stringBuilder.length() ? stringBuilder.toString() : super.getKey(entry);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.internationalization.utils.InternationalizationKeyResolver#dispose()
+	 */
+	@Override
+	public void dispose() {
+		elementsForQN.clear();
+		super.dispose();
 	}
 
 }

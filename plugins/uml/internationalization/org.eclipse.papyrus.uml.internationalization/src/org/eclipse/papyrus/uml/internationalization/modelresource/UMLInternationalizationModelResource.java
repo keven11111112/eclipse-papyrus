@@ -46,7 +46,7 @@ public class UMLInternationalizationModelResource extends InternationalizationMo
 	 */
 	@Override
 	protected InternationalizationKeyResolver createKeyResolver() {
-		return UMLInternationalizationKeyResolver.getInstance();
+		return new UMLInternationalizationKeyResolver();
 	}
 
 	/**

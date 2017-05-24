@@ -51,7 +51,6 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.emf.commands.AddToResourceCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.internationalization.Activator;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationEntry;
@@ -86,12 +85,6 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 * Model ID.
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.internationalization.resource.InternationalizationModel"; //$NON-NLS-1$
-
-	/**
-	 * This allows to manage the key (resolve the objects by their qualified
-	 * name, etc.).
-	 */
-	protected InternationalizationKeyResolver keyResolver = null;
 
 	/**
 	 * The map of the loaded resource by the initial URI and by locale.
@@ -138,15 +131,20 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected Set<Resource> resourcesToNotSave = new HashSet<Resource>();
 
 	/**
+	 * The map of the InternationalizationLibrary by resource.
+	 */
+	protected Map<Resource, InternationalizationLibrary> resourceContents;
+
+	/**
 	 * Constructor.
 	 */
 	public InternationalizationModelResource() {
 		super();
 		propertiesByLocale = new HashMap<URI, Map<Locale, Resource>>();
 
-		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+		if (InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
 			Activator.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
-	
+
 				@Override
 				public void propertyChange(final PropertyChangeEvent event) {
 					if (event.getProperty().equals(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE)) {
@@ -157,11 +155,12 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 						}
 					}
 				}
-	
+
 			});
 		}
 		deletedObjects = new HashSet<EObject>();
 		adapters = new HashMap<EObject, Adapter>();
+		resourceContents = new HashMap<Resource, InternationalizationLibrary>();
 	}
 
 	/**
@@ -173,7 +172,6 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	public void init(final ModelSet modelSet) {
 		super.init(modelSet);
 		InternationalizationResourceHelper.installUMLInternationalizationSupport(modelSet);
-		keyResolver = createKeyResolver();
 	}
 
 	/**
@@ -182,7 +180,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 * @return The created key resolver.
 	 */
 	protected InternationalizationKeyResolver createKeyResolver() {
-		return InternationalizationKeyResolver.getInstance();
+		return new InternationalizationKeyResolver();
 	}
 
 	/**
@@ -205,34 +203,34 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *            have to bo loaded or not.
 	 */
 	public void loadModel(final URI uriWithoutExtension, final boolean needToLoadOtherProperties) {
-		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+		if (InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
 			// Compute model URI
 			final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
-	
+
 			if (needToBeLoaded(uri)) {
-	
+
 				resourceURI = uri;
-	
+
 				final Locale locale = InternationalizationPreferencesUtils.getLocalePreference(uriWithoutExtension);
-	
+
 				try {
-	
+
 					resource = loadResource(uri, locale);
-	
+
 					// We need to do even if the resource is null
 					if (needToLoadOtherProperties) {
 						resourceURI = uri;
-	
+
 						String existingResourceLoadedName = "";
 						if (null != resource) {
 							existingResourceLoadedName = resource.getURI().lastSegment();
 						}
-	
+
 						// We need to load other properties files in the same
 						// folders
 						loadOthersPropertiesFiles(uri, existingResourceLoadedName);
 					}
-	
+
 				} catch (final Exception ex) {
 					Activator.log.error(ex);
 				}
@@ -376,7 +374,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 				configureResource(uri, resource, locale);
 
-				if(InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
+				if (InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
 					// call registered snippets
 					startSnippets();
 				}
@@ -416,6 +414,10 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 					try {
 						resource.load(null);
+						final Object libraryContent = ((InternationalizationResource) resource).getDefaultSaveOptions().get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT);
+						if (libraryContent instanceof InternationalizationLibrary) {
+							resourceContents.put(resource, (InternationalizationLibrary) libraryContent);
+						}
 					} catch (IOException e) {
 						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
 					}
@@ -427,6 +429,11 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				} else {
 					try {
 						resource.load(null);
+
+						final Object libraryContent = ((InternationalizationResource) resource).getDefaultSaveOptions().get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT);
+						if (libraryContent instanceof InternationalizationLibrary) {
+							resourceContents.put(resource, (InternationalizationLibrary) libraryContent);
+						}
 					} catch (IOException e) {
 						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
 					}
@@ -434,7 +441,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			}
 
 			loadInternationalizationContent(uri, locale);
-		} else if(InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
+		} else if (InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
 			// call registered snippets
 			startSnippets();
 		}
@@ -449,21 +456,21 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	@Override
 	public void createModel(final URI uriWithoutExtension) {
-		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+		if (InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
 			super.createModel(uriWithoutExtension);
-	
+
 			final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
 			final Locale locale = InternationalizationPreferencesUtils.getLocalePreference(this.resource.getURI());
 			final Resource resource = this.resource;
-	
+
 			// Fill the properties by locale map
 			configureResource(resourceURI, resource, locale);
-	
+
 			// Calculate the internationalization content
 			loadInternationalizationContent(uri, locale);
-	
+
 			resource.setModified(true);
-	
+
 			try {
 				saveResource(resource);
 			} catch (final IOException e) {
@@ -485,7 +492,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resourceToConfigure)
 					.getDefaultLoadOptions();
 			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
-					keyResolver);
+					createKeyResolver());
 			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_LOCALE, locale);
 			defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_URI, uri);
 		}
@@ -509,8 +516,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	protected void loadInternationalizationContent(final URI uri, final Locale locale) {
 		final Resource resource = getResourceForURIAndLocale(uri, locale);
-		if (null != resource && !resource.getContents().isEmpty()) {
-			final InternationalizationLibrary library = getModelRoot(resource);
+
+		if (null != resource) {
+			final InternationalizationLibrary library = getInternationalizationLibrary(resource);
 
 			if (null != library) {
 				for (final InternationalizationEntry entry : library.getEntries()) {
@@ -581,10 +589,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			final InternationalizationLibrary library = InternationalizationFactory.eINSTANCE
 					.createInternationalizationLibrary();
 
-			// Create the resource content command and execute it
-			final GMFtoEMFCommandWrapper command = new GMFtoEMFCommandWrapper(new AddToResourceCommand(
-					((ModelSet) resource.getResourceSet()).getTransactionalEditingDomain(), resource, library));
-			command.execute();
+			// Add the library to the resource option and to the map of contents
+			((InternationalizationResource) resource).getDefaultSaveOptions().put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT, library);
+			resourceContents.put(resource, library);
 		}
 	}
 
@@ -674,7 +681,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					saveOptions.put(InternationalizationResourceOptionsConstants.SAVE_OPTION_DELETED_OBJECTS,
 							deletedObjects);
 					saveOptions.put(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_KEY_RESOLVER,
-							keyResolver);
+							createKeyResolver());
 				}
 			}
 			resource.save(saveOptions);
@@ -852,7 +859,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		}
 
 		if (null != resource) {
-			final InternationalizationLibrary library = getModelRoot(resource);
+			final InternationalizationLibrary library = getInternationalizationLibrary(resource);
 
 			if (null != library) {
 				final Iterator<InternationalizationEntry> entries = library.getEntries().iterator();
@@ -889,19 +896,19 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			final Locale locale) {
 		Command resultCommand = null;
 
-		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
-		
+		if (InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+
 			// Get the resource where add/modify the entry corresponding to the key
 			Resource resource = getResourceForURIAndLocale(uri, locale);
 			if (null == resource) {
 				resource = getResourceForURIAndLocale(uri, new Locale("")); //$NON-NLS-1$
 			}
-	
-			final InternationalizationLibrary library = getModelRoot(resource);
-	
+
+			final InternationalizationLibrary library = getInternationalizationLibrary(resource);
+
 			if (null != library) {
 				final Iterator<InternationalizationEntry> entries = library.getEntries().iterator();
-	
+
 				// Search on existing entries if the key already exists.
 				// In this case, just modify the value
 				while (entries.hasNext() && null == resultCommand) {
@@ -934,14 +941,14 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					}
 				}
 			}
-	
+
 			// If the key does not exist, create an entry
 			if (null == resultCommand && null != value && !value.isEmpty()) {
 				final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
 						.createInternationalizationEntry();
 				entry.setKey(key);
 				entry.setValue(value);
-	
+
 				if (null == resource) {
 					// If the resource does not exist, create it and add entry to
 					// the library
@@ -962,7 +969,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					}
 					resource.setModified(true);
 				}
-	
+
 				// If the created entry is an entry corresponding to an object who's
 				// depending to Editor part, we need to create the
 				// PartLabelSynchronizer
@@ -972,22 +979,22 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 						resultCommand = new CompoundCommand("Change label value"); //$NON-NLS-1$
 						((CompoundCommand) resultCommand).append(tmpCommand);
 						((CompoundCommand) resultCommand).append(new AbstractCommand() {
-	
+
 							@Override
 							public void execute() {
 								addPartLabelSynchronizerForEntry(key, entry);
 							}
-	
+
 							@Override
 							protected boolean prepare() {
 								return true;
 							}
-	
+
 							@Override
 							public void undo() {
 								// Do nothing
 							}
-	
+
 							@Override
 							public void redo() {
 								// Do nothing
@@ -1015,8 +1022,8 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	public void setValue(final URI uri, final EObject key, final String value, final Locale locale) {
 
-		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
-			
+		if (InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+
 			// Get the resource where add/modify the entry corresponding to the key
 			Resource resource = getResourceForURIAndLocale(uri, locale);
 			if (null == resource) {
@@ -1024,12 +1031,12 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				resource = createResource(uri,
 						InternationalizationPreferencesUtils.getLocalePreference(getParentEObject(key)));
 			}
-	
-			final InternationalizationLibrary library = getModelRoot(resource);
-	
+
+			final InternationalizationLibrary library = getInternationalizationLibrary(resource);
+
 			final Iterator<InternationalizationEntry> entries = library.getEntries().iterator();
 			boolean hasFound = false;
-	
+
 			// Search on existing entries if the key already exists.
 			// In this case, just modify the value
 			while (entries.hasNext() && !hasFound) {
@@ -1047,7 +1054,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					hasFound = true;
 				}
 			}
-	
+
 			// If the key does not exist, create an entry
 			if (!hasFound && null != value && !value.isEmpty()) {
 				final InternationalizationEntry entry = InternationalizationFactory.eINSTANCE
@@ -1056,7 +1063,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				entry.setValue(value);
 				library.getEntries().add(entry);
 				setNameValue(entry);
-	
+
 				// If the created entry is an entry corresponding to an object who's
 				// depending to Editor part, we need to create the
 				// PartLabelSynchronizer
@@ -1082,14 +1089,14 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected Command getSetNameValueCommand(final EditingDomain domain, final EObject eObject) {
 		Command result = null;
 
-		if(InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
-			
+		if (InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
+
 			// Change name for diagram
 			if (domain instanceof TransactionalEditingDomain) {
 				if (eObject instanceof Diagram) {
 					result = new GMFtoEMFCommandWrapper(new ResetNameTransactionalCommand(
 							(TransactionalEditingDomain) domain, eObject, NotationPackage.eINSTANCE.getDiagram_Name()));
-	
+
 					// Change name for table
 				} else if (eObject instanceof Table) {
 					result = new GMFtoEMFCommandWrapper(
@@ -1099,7 +1106,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			} else {
 				if (eObject instanceof Diagram) {
 					result = new ResetNameCommand(domain, eObject, NotationPackage.eINSTANCE.getDiagram_Name());
-	
+
 					// Change name for table
 				} else if (eObject instanceof Table) {
 					result = new ResetNameCommand(domain, eObject,
@@ -1143,13 +1150,10 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 *            The resource to search.
 	 * @return The root of the model, or null if no root exist.
 	 */
-	public InternationalizationLibrary getModelRoot(final Resource resource) {
+	public InternationalizationLibrary getInternationalizationLibrary(final Resource resource) {
 		if (null != resource) {
-			for (final EObject object : resource.getContents()) {
-
-				if (isModelRoot(object)) {
-					return (InternationalizationLibrary) object;
-				}
+			if (resourceContents.containsKey(resource)) {
+				return resourceContents.get(resource);
 			}
 		}
 
@@ -1347,6 +1351,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		}
 
 		resourcesToNotSave.clear();
+		resourceContents.clear();
 
 		resource = null;
 		super.unload();
@@ -1389,6 +1394,9 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				propertiesByLocale.remove(initialUri);
 			}
 		}
+
+		// Remove from the resource content map
+		resourceContents.remove(resource);
 
 		resource.unload();
 	}
@@ -1456,7 +1464,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			createdResource = createResource(uri, locale);
 
 			if (null != entryToAdd) {
-				final InternationalizationLibrary library = getModelRoot(createdResource);
+				final InternationalizationLibrary library = getInternationalizationLibrary(createdResource);
 				library.getEntries().add(entryToAdd);
 			}
 
