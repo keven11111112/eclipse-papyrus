@@ -37,7 +37,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	}
 
 	/**
-	 * @since 3.0
+	 * @since 3.1
 	 */
 	protected IParser getAppliedKeywordParser(String defaultPrintString) {
 		return new AppliedKeywordParser(defaultPrintString);

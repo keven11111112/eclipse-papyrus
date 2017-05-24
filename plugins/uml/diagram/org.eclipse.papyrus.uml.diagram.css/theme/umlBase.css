@@ -325,6 +325,14 @@ UseCaseDiagram Actor > Compartment[kind="symbol"]
     visible:true;
 }
 
+UseCaseDiagram Actor > 	Label[type=Actor_NameLabel],
+						Label[type=Actor_NameLabel_CN],
+						Label[type=Actor_NameLabel_CCN]
+{
+	visible:true;
+	textAlignment:left;
+}
+
 /*---------- Communication Diagram ----------*/
 CommunicationDiagram  DurationObservation > Compartment[kind="symbol"],
 CommunicationDiagram  TimeObservation > Compartment[kind="symbol"]
