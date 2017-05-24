@@ -14,11 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.swt.SWT;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -30,6 +29,8 @@ public class MessageReply extends MessageFigure {
 	 *
 	 */
 	public MessageReply() {
+		super();
+		setStyle();
 	}
 
 	/**
@@ -39,7 +40,11 @@ public class MessageReply extends MessageFigure {
 	 */
 	public MessageReply(IMapMode mapMode) {
 		super(mapMode);
-		this.setLineStyle(Graphics.LINE_DASH);
+		setStyle();
+	}
+
+	protected void setStyle() {
+		this.setLineStyle(SWT.LINE_DASH);
 		this.setForegroundColor(ColorConstants.black);
 	}
 
@@ -52,12 +57,12 @@ public class MessageReply extends MessageFigure {
 	protected RotatableDecoration createTargetDecoration() {
 		PolylineDecoration df = new PolylineDecoration();
 		df.setForegroundColor(getForegroundColor());
-//		PointList pl = new PointList();
-//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-//		pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-//		df.setTemplate(pl);
-//		df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
+		// PointList pl = new PointList();
+		// pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
+		// pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+		// pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
+		// df.setTemplate(pl);
+		// df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 		return df;
 	}
 
@@ -70,4 +75,6 @@ public class MessageReply extends MessageFigure {
 	protected RotatableDecoration createSourceDecoration() {
 		return null;
 	}
+
+
 }

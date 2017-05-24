@@ -19,6 +19,7 @@ import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.swt.SWT;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -30,6 +31,8 @@ public class MessageCreate extends MessageFigure {
 	 *
 	 */
 	public MessageCreate() {
+		super();
+		setStyle();
 	}
 
 	/**
@@ -39,7 +42,12 @@ public class MessageCreate extends MessageFigure {
 	 */
 	public MessageCreate(IMapMode mapMode) {
 		super(mapMode);
-		this.setLineStyle(Graphics.LINE_DASH);
+		setStyle();
+
+	}
+
+	protected void setStyle() {
+		this.setLineStyle(SWT.LINE_DASH);
 		this.setForegroundColor(ColorConstants.black);
 	}
 
@@ -53,11 +61,11 @@ public class MessageCreate extends MessageFigure {
 		PolylineDecoration df = new PolylineDecoration();
 		df.setForegroundColor(getForegroundColor());
 		PointList pl = new PointList();
-//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-//		pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-//		df.setTemplate(pl);
-//		df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
+		// pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
+		// pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+		// pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
+		// df.setTemplate(pl);
+		// df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 		return df;
 	}
 
@@ -69,5 +77,19 @@ public class MessageCreate extends MessageFigure {
 	@Override
 	protected RotatableDecoration createSourceDecoration() {
 		return null;
+	}
+
+	/**
+	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
+	 *
+	 * @param graphics
+	 */
+	@Override
+	public void paint(Graphics graphics) {
+		super.paint(graphics);
+		graphics.pushState();
+		graphics.setLineStyle(SWT.LINE_DASH);
+		graphics.popState();
+
 	}
 }
