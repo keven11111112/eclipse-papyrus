@@ -139,7 +139,7 @@ public class GeneratorWizard extends Wizard {
 			if (result.getSeverity() < IStatus.ERROR) {
 				monitor.subTask("Opening editor");
 				try {
-					Futures.get(UIUtil.syncCall(getShell().getDisplay(), new Callable<Void>() {
+					Futures.getChecked(UIUtil.syncCall(getShell().getDisplay(), new Callable<Void>() {
 						@Override
 						public Void call() throws Exception {
 							IDE.openEditor(page, model.getOutputModelFile());

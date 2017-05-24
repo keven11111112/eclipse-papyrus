@@ -4,13 +4,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.6" {
+location egit "http://download.eclipse.org/egit/staging/4.8.0.201705170830-rc1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M7-201705120500/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC1-201705181030/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -18,7 +18,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.23.0/v20170419-0302" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.23.0/v20170510-0304" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -42,6 +42,6 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestone
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20170314-1401" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20170523-0512" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
