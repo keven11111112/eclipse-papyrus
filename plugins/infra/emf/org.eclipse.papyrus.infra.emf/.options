@@ -1,0 +1,5 @@
+# Master switch for tracing in this bundle  
+org.eclipse.papyrus.infra.emf/debug=true
+
+# Tracing the indexer
+org.eclipse.papyrus.infra.emf/debug/indexer=false

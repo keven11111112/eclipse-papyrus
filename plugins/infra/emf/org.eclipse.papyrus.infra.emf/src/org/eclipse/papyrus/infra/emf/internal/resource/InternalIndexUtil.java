@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -22,17 +22,45 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.internal.language.ILanguageModel;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.Activator;
 
 /**
  * Miscellaneous internal utilities supporting or using the model indexing facilities.
  */
 public class InternalIndexUtil {
 
+	/** Tracing options key for the indexer in general. */
+	public static final String TRACE_INDEXER = "indexer"; //$NON-NLS-1$
+
 	/**
 	 * Not instantiable by clients.
 	 */
 	private InternalIndexUtil() {
 		super();
+	}
+
+	/**
+	 * Queries whether indexer tracing is enabled.
+	 * Useful to avoid doing unnecessary work preparing a message.
+	 * 
+	 * @return whether indexer tracing is enabled
+	 */
+	public static boolean isTracing() {
+		return Activator.log.isTraceEnabled(TRACE_INDEXER);
+	}
+
+	/**
+	 * Logs a debug message.
+	 * 
+	 * @param format
+	 *            the message format
+	 * @param args
+	 *            the message arguments
+	 * 
+	 * @see String#format(String, Object...)
+	 */
+	public static void tracef(String format, Object... args) {
+		Activator.log.trace(TRACE_INDEXER, String.format(format, args));
 	}
 
 	/**

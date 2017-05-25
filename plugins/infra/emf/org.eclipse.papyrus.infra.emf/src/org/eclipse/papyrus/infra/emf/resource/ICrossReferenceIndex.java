@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.infra.emf.resource;
 
 import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.getSemanticModelFileExtensions;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.isTracing;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.tracef;
 
 import java.util.Set;
 
@@ -327,6 +329,34 @@ public interface ICrossReferenceIndex {
 	Set<URI> getParents(URI shardURI) throws CoreException;
 
 	/**
+	 * Attempts to query URIs of resources that are immediate parents of a given
+	 * (potential) sub-unit resource. If the receiver is not ready to provide a complete
+	 * and/or correct result, then fall back to an {@code alternate}, if any.
+	 * Equivalent to calling {@link #getRoots(URI, boolean, ICrossReferenceIndex)} with
+	 * a {@code true} value for the {@code shardOnly} parameter.
+	 * 
+	 * @param subunitURI
+	 *            the URI of a potential sub-unit resource. It needs not necessarily actually
+	 *            be a sub-unit, in which case it trivially wouldn't have any parents
+	 * @param alternate
+	 *            a fall-back index from which to get the parents if I am not ready
+	 *            to provide them, or {@code null} if not required
+	 * @return the URIs of resources that are immediate parents in its graph, or {@code null}
+	 *         if the receiver cannot provide a result and there is no {@code alternate}.
+	 *         Note that {@code null} is only returned in this failure case; any successful
+	 *         result is at least an empty set
+	 * 
+	 * @throws CoreException
+	 *             if the index is not available and the {@code alternate} fails
+	 * @throws IllegalArgumentException
+	 *             if the {@code alternate} is myself (attempted recursion)
+	 * 
+	 * @since 3.0
+	 * @see #getParents(URI, boolean, ICrossReferenceIndex)
+	 */
+	Set<URI> getParents(URI subunitURI, ICrossReferenceIndex alternate) throws CoreException;
+
+	/**
 	 * Queries URIs of resources that are immediate parents of a given
 	 * resource, whether it is a shard or a sub-model unit.
 	 * 
@@ -344,6 +374,34 @@ public interface ICrossReferenceIndex {
 	 *             the calling thread is interrupted in waiting for the result
 	 */
 	Set<URI> getParents(URI resourceURI, boolean shardOnly) throws CoreException;
+
+	/**
+	 * Attempts to query URIs of resources that are immediate parents of a given
+	 * (potential) sub-unit resource. If the receiver is not ready to provide a complete
+	 * and/or correct result, then fall back to an {@code alternate}, if any.
+	 * 
+	 * @param subunitURI
+	 *            the URI of a potential sub-unit resource. It needs not necessarily actually
+	 *            be a sub-unit, in which case it trivially wouldn't have any parents
+	 * @param shardOnly
+	 *            whether to consider only shards as validly having parents (useful for
+	 *            determining required resource dependencies)
+	 * @param alternate
+	 *            a fall-back index from which to get the parents if I am not ready
+	 *            to provide them, or {@code null} if not required
+	 * @return the URIs of resources that are immediate parents in its graph, or {@code null}
+	 *         if the receiver cannot provide a result and there is no {@code alternate}.
+	 *         Note that {@code null} is only returned in this failure case; any successful
+	 *         result is at least an empty set
+	 * 
+	 * @throws CoreException
+	 *             if the index is not available and the {@code alternate} fails
+	 * @throws IllegalArgumentException
+	 *             if the {@code alternate} is myself (attempted recursion)
+	 * 
+	 * @since 3.0
+	 */
+	Set<URI> getParents(URI subunitURI, boolean shardOnly, ICrossReferenceIndex alternate) throws CoreException;
 
 	/**
 	 * Asynchronously queries URIs of resources that are roots (ultimate parents) of a given
@@ -463,4 +521,201 @@ public interface ICrossReferenceIndex {
 	 */
 	Set<URI> getRoots(URI subunitURI, boolean shardOnly, ICrossReferenceIndex alternate) throws CoreException;
 
+	//
+	// Nested types
+	//
+
+	/**
+	 * An index delegator for a {@link ResourceSet} that automatically delegates
+	 * index queries to the most appropriate index implementation for the
+	 * calling context. This includes automatically invoking the fall-back
+	 * algorithm for queries that support an alternative index in case
+	 * the primary model index is not ready. This is most useful for clients
+	 * that require synchronous access to the index and timely responses
+	 * (usually because they are on time-critical threads such as the UI).
+	 * 
+	 * @since 3.0
+	 */
+	class Delegator implements ICrossReferenceIndex {
+		private final ResourceSet resourceSet;
+
+		public Delegator(ResourceSet resourceSet) {
+			super();
+
+			this.resourceSet = resourceSet;
+		}
+
+		protected final ResourceSet getResourceSet() {
+			return resourceSet;
+		}
+
+		protected ICrossReferenceIndex getDelegate() {
+			ICrossReferenceIndex result = ICrossReferenceIndex.getInstance(getResourceSet());
+
+			if (isTracing()) {
+				String indexName = (result instanceof CrossReferenceIndex)
+						? "standard index" //$NON-NLS-1$
+						: (result instanceof OnDemandCrossReferenceIndex)
+								? "on-demand index" //$NON-NLS-1$
+								: result.getClass().getSimpleName();
+
+				StackTraceElement[] stack = Thread.currentThread().getStackTrace();
+				// [0] is the getStackTrace() method and [1] is this getDelegate()
+				String calling = (stack.length >= 3) ? stack[2].getMethodName() : "<unknown>"; //$NON-NLS-1$
+
+				tracef("Delegating to %s for ICrossReferenceIndex::%s", indexName, calling); //$NON-NLS-1$
+			}
+
+			return result;
+		}
+
+		@Override
+		public ListenableFuture<SetMultimap<URI, URI>> getOutgoingCrossReferencesAsync() {
+			return getDelegate().getOutgoingCrossReferencesAsync();
+		}
+
+		@Override
+		public SetMultimap<URI, URI> getOutgoingCrossReferences() throws CoreException {
+			return getDelegate().getOutgoingCrossReferences();
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getOutgoingCrossReferencesAsync(URI resourceURI) {
+			return getDelegate().getOutgoingCrossReferencesAsync(resourceURI);
+		}
+
+		@Override
+		public Set<URI> getOutgoingCrossReferences(URI resourceURI) throws CoreException {
+			return getDelegate().getOutgoingCrossReferences(resourceURI);
+		}
+
+		@Override
+		public ListenableFuture<SetMultimap<URI, URI>> getIncomingCrossReferencesAsync() {
+			return getDelegate().getIncomingCrossReferencesAsync();
+		}
+
+		@Override
+		public SetMultimap<URI, URI> getIncomingCrossReferences() throws CoreException {
+			return getDelegate().getIncomingCrossReferences();
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getIncomingCrossReferencesAsync(URI resourceURI) {
+			return getDelegate().getIncomingCrossReferencesAsync(resourceURI);
+		}
+
+		@Override
+		public Set<URI> getIncomingCrossReferences(URI resourceURI) throws CoreException {
+			return getDelegate().getIncomingCrossReferences(resourceURI);
+		}
+
+		@Override
+		public ListenableFuture<Boolean> isShardAsync(URI resourceURI) {
+			return getDelegate().isShardAsync(resourceURI);
+		}
+
+		@Override
+		public boolean isShard(URI resourceURI) throws CoreException {
+			return getDelegate().isShard(resourceURI);
+		}
+
+		@Override
+		public ListenableFuture<SetMultimap<URI, URI>> getSubunitsAsync() {
+			return getDelegate().getSubunitsAsync();
+		}
+
+		@Override
+		public SetMultimap<URI, URI> getSubunits() throws CoreException {
+			return getDelegate().getSubunits();
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getSubunitsAsync(URI resourceURI) {
+			return getDelegate().getSubunitsAsync(resourceURI);
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getSubunitsAsync(URI resourceURI, boolean shardOnly) {
+			return getDelegate().getSubunitsAsync(resourceURI, shardOnly);
+		}
+
+		@Override
+		public Set<URI> getSubunits(URI resourceURI) throws CoreException {
+			return getDelegate().getSubunits(resourceURI);
+		}
+
+		@Override
+		public Set<URI> getSubunits(URI resourceURI, boolean shardOnly) throws CoreException {
+			return getDelegate().getSubunits(resourceURI, shardOnly);
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getParentsAsync(URI shardURI) {
+			return getDelegate().getParentsAsync(shardURI);
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getParentsAsync(URI resourceURI, boolean shardOnly) {
+			return getDelegate().getParentsAsync(resourceURI, shardOnly);
+		}
+
+		@Override
+		public Set<URI> getParents(URI shardURI) throws CoreException {
+			ICrossReferenceIndex primary = getDelegate();
+			ICrossReferenceIndex alternate = ICrossReferenceIndex.getAlternate(primary, getResourceSet());
+			return primary.getParents(shardURI, alternate);
+		}
+
+		@Override
+		public Set<URI> getParents(URI resourceURI, boolean shardOnly) throws CoreException {
+			ICrossReferenceIndex primary = getDelegate();
+			ICrossReferenceIndex alternate = ICrossReferenceIndex.getAlternate(primary, getResourceSet());
+			return primary.getParents(resourceURI, shardOnly, alternate);
+		}
+
+		@Override
+		public Set<URI> getParents(URI subunitURI, ICrossReferenceIndex alternate) throws CoreException {
+			return getDelegate().getParents(subunitURI, alternate);
+		}
+
+		@Override
+		public Set<URI> getParents(URI subunitURI, boolean shardOnly, ICrossReferenceIndex alternate) throws CoreException {
+			return getDelegate().getParents(subunitURI, shardOnly, alternate);
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getRootsAsync(URI shardURI) {
+			return getDelegate().getRootsAsync(shardURI);
+		}
+
+		@Override
+		public ListenableFuture<Set<URI>> getRootsAsync(URI resourceURI, boolean shardOnly) {
+			return getDelegate().getRootsAsync(resourceURI, shardOnly);
+		}
+
+		@Override
+		public Set<URI> getRoots(URI shardURI) throws CoreException {
+			ICrossReferenceIndex primary = getDelegate();
+			ICrossReferenceIndex alternate = ICrossReferenceIndex.getAlternate(primary, getResourceSet());
+			return primary.getRoots(shardURI, alternate);
+		}
+
+		@Override
+		public Set<URI> getRoots(URI subunitURI, ICrossReferenceIndex alternate) throws CoreException {
+			return getDelegate().getRoots(subunitURI, alternate);
+		}
+
+		@Override
+		public Set<URI> getRoots(URI resourceURI, boolean shardOnly) throws CoreException {
+			ICrossReferenceIndex primary = getDelegate();
+			ICrossReferenceIndex alternate = ICrossReferenceIndex.getAlternate(primary, getResourceSet());
+			return primary.getRoots(resourceURI, shardOnly, alternate);
+		}
+
+		@Override
+		public Set<URI> getRoots(URI subunitURI, boolean shardOnly, ICrossReferenceIndex alternate) throws CoreException {
+			return getDelegate().getRoots(subunitURI, shardOnly, alternate);
+		}
+
+	}
 }

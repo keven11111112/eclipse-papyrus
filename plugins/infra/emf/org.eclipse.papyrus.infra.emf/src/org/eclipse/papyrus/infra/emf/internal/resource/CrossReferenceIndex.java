@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,9 @@
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.internal.resource;
+
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.isTracing;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.tracef;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -158,6 +161,7 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 		return index.afterIndex(callable);
 	}
 
+	@Override
 	<V> V ifAvailable(Callable<V> callable, Callable<? extends V> elseCallable) throws CoreException {
 		V result = null;
 
@@ -166,6 +170,10 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 
 		if ((result == null) && (elseCallable != null)) {
 			try {
+				if (isTracing()) {
+					tracef("Index not ready. Falling back to %s.", elseCallable.getClass().getSimpleName()); //$NON-NLS-1$
+				}
+
 				result = elseCallable.call();
 			} catch (CoreException e) {
 				throw e;

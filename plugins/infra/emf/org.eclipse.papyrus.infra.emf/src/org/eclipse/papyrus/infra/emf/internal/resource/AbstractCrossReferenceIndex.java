@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -316,6 +316,24 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 	@Override
 	public Set<URI> getParents(URI resourceURI, boolean shardOnly) throws CoreException {
 		return sync(afterIndex(getParentsCallable(resourceURI, shardOnly)));
+	}
+
+	@Override
+	public Set<URI> getParents(URI subunitURI, ICrossReferenceIndex alternate) throws CoreException {
+		return getParents(subunitURI, true, alternate);
+	}
+
+	@Override
+	public Set<URI> getParents(URI subunitURI, boolean shardOnly, ICrossReferenceIndex alternate) throws CoreException {
+		if (alternate == this) {
+			throw new IllegalArgumentException("self alternate"); //$NON-NLS-1$
+		}
+
+		Callable<Set<URI>> elseCallable = (alternate == null)
+				? null
+				: () -> alternate.getParents(subunitURI, shardOnly);
+
+		return ifAvailable(getParentsCallable(subunitURI, shardOnly), elseCallable);
 	}
 
 	Callable<Set<URI>> getParentsCallable(URI shardURI, boolean shardOnly) {

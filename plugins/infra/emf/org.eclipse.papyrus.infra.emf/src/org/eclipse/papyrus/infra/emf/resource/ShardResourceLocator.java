@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -57,7 +57,7 @@ public class ShardResourceLocator extends ResourceLocator {
 	 *            the resource set for which I shall provide
 	 */
 	public ShardResourceLocator(ResourceSetImpl resourceSet) {
-		this(resourceSet, () -> ICrossReferenceIndex.getInstance(resourceSet));
+		this(resourceSet, new ICrossReferenceIndex.Delegator(resourceSet));
 	}
 
 	/**

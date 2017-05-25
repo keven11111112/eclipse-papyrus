@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -137,6 +137,7 @@ public class OnDemandCrossReferenceIndex extends AbstractCrossReferenceIndex {
 		return executor.submit(callable);
 	}
 
+	@Override
 	<V> V ifAvailable(Callable<V> callable, Callable<? extends V> elseCallable) throws CoreException {
 		// We are implicitly always available, because we cannot cause deadlock and
 		// with on-demand computation we're not expected actually to be "available"
@@ -163,18 +164,30 @@ public class OnDemandCrossReferenceIndex extends AbstractCrossReferenceIndex {
 		// Only parse as far as the shard annotation, which occurs near the top
 		CrossReferenceIndexHandler handler = new CrossReferenceIndexHandler(resourceURI, true);
 
-		try (InputStream input = URIConverter.INSTANCE.createInputStream(resourceURI)) {
-			InputSource source = new InputSource(input);
-			SAXParserFactory factory = SAXParserFactory.newInstance();
-			factory.setValidating(false);
-			factory.setNamespaceAware(true);
-			SAXParser parser = factory.newSAXParser();
+		try {
+			URIConverter converter = URIConverter.INSTANCE;
+			if (converter.exists(resourceURI, null)) {
+				try (InputStream input = converter.createInputStream(resourceURI)) {
+					InputSource source = new InputSource(input);
+					SAXParserFactory factory = SAXParserFactory.newInstance();
+					factory.setValidating(false);
+					factory.setNamespaceAware(true);
+					SAXParser parser = factory.newSAXParser();
 
-			parser.parse(source, handler);
-		} catch (StopParsing stop) {
-			// Normal
+					parser.parse(source, handler);
+				} catch (StopParsing stop) {
+					// Normal
+				} catch (Exception e) {
+					Activator.log.error("Failed to scan model resource for parent reference.", e); //$NON-NLS-1$
+				}
+			}
 		} catch (Exception e) {
-			Activator.log.error("Failed to scan model resource for parent reference.", e); //$NON-NLS-1$
+			String path = resourceURI.isPlatform()
+					? resourceURI.toPlatformString(true)
+					: resourceURI.isFile()
+							? resourceURI.toFileString()
+							: resourceURI.toString();
+			Activator.log.error("Failed to determine existence of resource " + path, e);
 		}
 
 		// Clear the aggregate map because we now have updates to include
