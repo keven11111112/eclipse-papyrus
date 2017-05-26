@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation, Bug 502160, 494531
- *  Christian W. Damus - bugs 493858, 493853, 516310
+ *  Christian W. Damus - bugs 493858, 493853, 516310, 517313
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bugs 494537, 504745
  *  
  *****************************************************************************/
@@ -1072,6 +1072,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 					// Manage the context selection
 					final List<Object> contexts = new ArrayList<Object>(selection.size());
+					EObject sourceElement = null;
 					final Iterator<?> selectionIterator = selection.iterator();
 					while (selectionIterator.hasNext()) {
 						Object selectedObject = selectionIterator.next();
@@ -1080,12 +1081,19 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 						} else {
 							contexts.add(selectedObject);
 						}
+
+						if (sourceElement == null) {
+							// An edit-part in GMF can resolve its semantic element
+							// to something different to the element referenced by
+							// its notation view, so don't rely on the notation
+							sourceElement = EMFHelper.getEObject(selectedObject);
+						}
 					}
 
 					// Get the model element
-					if (0 < contexts.size()) {
+					if (sourceElement != null) {
 						final ModelElement modelElement = dataSource.getModelElement(propertyPath);
-						EObject sourceElement = getEObjectAsTableContext(EMFHelper.getEObject(contexts.get(0)));
+						sourceElement = getEObjectAsTableContext(sourceElement); // Convert to table context
 						EStructuralFeature feature = null;
 						if (modelElement instanceof CompositeModelElement) {
 							if (!((CompositeModelElement) modelElement).getSubElements().isEmpty()) {
