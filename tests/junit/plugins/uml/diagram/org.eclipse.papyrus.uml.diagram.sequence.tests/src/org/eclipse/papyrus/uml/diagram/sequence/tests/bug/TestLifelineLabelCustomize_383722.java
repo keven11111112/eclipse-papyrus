@@ -50,6 +50,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
@@ -90,7 +91,11 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 
 	public static final String LABEL_DISPLAY_PREFERENCE = SequenceDiagramEditPart.MODEL_ID + "_Lifeline.label.display";
 
-	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">" + "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">" + "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>" + "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>" + "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
+	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">"
+			+ "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">"
+			+ "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>"
+			+ "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>"
+			+ "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
@@ -173,11 +178,11 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 
 	protected LifelineEditPart setupLifeline() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
 		// set lifeline represent
-		Interaction interaction = (Interaction)getRootSemanticModel();
+		Interaction interaction = (Interaction) getRootSemanticModel();
 		Classifier p = interaction.getNestedClassifier("Person");
 		changeRepresents(lifeline1, p.getFeature("company"));
 		return lifeline1;
@@ -195,8 +200,8 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 			@Override
 			public void execute() {
 				View view = lifeline1.getNotationView();
-				EAnnotation oldAnnotation = view.getEAnnotation(CUSTOM_APPEARENCE_ANNOTATION); //VisualInformationPapyrusConstants
-				if(oldAnnotation == null) {
+				EAnnotation oldAnnotation = view.getEAnnotation(CUSTOM_APPEARENCE_ANNOTATION); // VisualInformationPapyrusConstants
+				if (oldAnnotation == null) {
 					oldAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 					oldAnnotation.setSource(CUSTOM_APPEARENCE_ANNOTATION);
 					view.getEAnnotations().add(oldAnnotation);
@@ -213,12 +218,12 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 		file = project.getFile(getFileName());
 		this.diResourceSet = houseKeeper.cleanUpLater(new DiResourceSet());
 		try {
-			//at this point, no resources have been created
-			if(file.exists()) {
+			// at this point, no resources have been created
+			if (file.exists()) {
 				file.delete(true, new NullProgressMonitor());
 			}
 
-			if(!file.exists()) {
+			if (!file.exists()) {
 				// Don't create a zero-byte file. Create an empty XMI document
 				Resource diResource = diResourceSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 				diResource.save(null);
@@ -236,7 +241,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 
 			papyrusEditor = houseKeeper.openPapyrusEditor(file);
 		} catch (Exception e) {
-			System.err.println("error " + e);
+			Activator.log.error("TestLifelineLabelCustomize_383722 > projectCreation()", e);
 		}
 	}
 
@@ -249,7 +254,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);
@@ -262,7 +267,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 	}
 
 	protected void changeRepresents(LifelineEditPart p, Object value) {
-		Lifeline lifeline = (Lifeline)p.resolveSemanticElement();
+		Lifeline lifeline = (Lifeline) p.resolveSemanticElement();
 		EReference feature = UMLPackage.eINSTANCE.getLifeline_Represents();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(lifeline);
 		SetRequest request = new SetRequest(p.getEditingDomain(), lifeline, feature, value);
@@ -271,16 +276,18 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 		assertTrue(CHANGE_REPRESENTS + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
 		getEMFCommandStack().execute(emfCommand);
 		waitForComplete();
-		if(value != null) {
+		if (value != null) {
 			assertTrue(CHANGE_REPRESENTS + TEST_THE_EXECUTION, lifeline.getRepresents().equals(value));
 		}
 	}
 
 	static class DummyCommand extends org.eclipse.emf.common.command.AbstractCommand {
 
+		@Override
 		public void execute() {
 		}
 
+		@Override
 		public void redo() {
 		}
 

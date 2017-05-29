@@ -13,32 +13,46 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests;
 
-import org.osgi.framework.BundleActivator;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-public class Activator implements BundleActivator {
+public class Activator extends AbstractUIPlugin {
 
-	private static BundleContext context;
+	public static Activator plugin;
 
-	static BundleContext getContext() {
-		return context;
-	}
+	public static LogHelper log;
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
+	 *
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
+		super.start(bundleContext);
+		plugin = this;
+		log = new LogHelper(this);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+	 *
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
+		plugin = null;
+		log = null;
+		super.stop(bundleContext);
+	}
+
+	/**
+	 * Returns the shared instance
+	 *
+	 * @return the shared instance
+	 */
+	public static Activator getDefault() {
+		return plugin;
 	}
 }

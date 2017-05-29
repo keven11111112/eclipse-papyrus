@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xtend.lib;bundle-version="2.8.1",
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.preferences
+ org.eclipse.papyrus.infra.gmfdiag.preferences,
+ org.eclipse.ui.workbench
 Export-Package: org.eclipse.papyrus.uml.diagram.sequence.tests,
  org.eclipse.papyrus.uml.diagram.sequence.tests.generation
 Bundle-Vendor: %Bundle-Vendor

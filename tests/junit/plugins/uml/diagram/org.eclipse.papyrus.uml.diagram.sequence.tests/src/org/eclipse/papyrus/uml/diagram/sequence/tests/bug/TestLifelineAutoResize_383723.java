@@ -56,6 +56,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
@@ -79,7 +80,11 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 
 	private static final String CHANGE_REPRESENTS = "Change Represents: ";
 
-	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">" + "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">" + "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>" + "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>" + "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
+	private static final String UML_REPLACEMENT_TEMPLATE = "><nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_zAqbcIP8EeGnt9CMb_JfYQ\" name=\"Person\">"
+			+ "<ownedAttribute xmi:id=\"__-RhYIP8EeGnt9CMb_JfYQ\" name=\"company\" isStatic=\"true\" type=\"_6imi4IP8EeGnt9CMb_JfYQ\"/>" + "</nestedClassifier>" + "<nestedClassifier xmi:type=\"uml:Class\" xmi:id=\"_6imi4IP8EeGnt9CMb_JfYQ\" name=\"Company\">"
+			+ "<ownedAttribute xmi:type=\"uml:Port\" xmi:id=\"_1oQd4IP-EeGnt9CMb_JfYQ\" name=\"port1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EShort\"/>" + "</ownedAttribute>"
+			+ "<ownedAttribute xmi:id=\"_CVUmYIP_EeGnt9CMb_JfYQ\" name=\"Property1\">" + "<type xmi:type=\"uml:PrimitiveType\" href=\"pathmap://UML_METAMODELS/Ecore.metamodel.uml#EDouble\"/>" + "</ownedAttribute>" + "</nestedClassifier>" + "</packagedElement>"
+			+ "<packageImport xmi:id=\"_q19q4YP8EeGnt9CMb_JfYQ\">" + "<importedPackage xmi:type=\"uml:Model\" href=\"pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0\"/>" + "</packageImport>";
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
@@ -99,7 +104,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	@Test
 	public void testManualSize() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
 		RectangleFigure fig = lifeline1.getPrimaryShape().getFigureLifelineNameContainerFigure();
@@ -109,7 +114,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 		resize(lifeline1, bounds.getLeft(), PositionConstants.WEST, new Dimension(-20, 0)); // manual resize
 
 		Rectangle manualSize = getAbsoluteBounds(lifeline1);
-		Interaction interaction = (Interaction)getRootSemanticModel();
+		Interaction interaction = (Interaction) getRootSemanticModel();
 		Classifier p = interaction.getNestedClassifier("Person");
 
 		changeRepresents(lifeline1, p.getFeature("company"));
@@ -122,17 +127,17 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	@Test
 	public void testAutoSize() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
 		Rectangle initBounds = getAbsoluteBounds(lifeline1);
 
-		Interaction interaction = (Interaction)getRootSemanticModel();
+		Interaction interaction = (Interaction) getRootSemanticModel();
 		Classifier p = interaction.getNestedClassifier("Person");
 		changeRepresents(lifeline1, p.getFeature("company"));
 		assertTrue(RESIZE + TEST_THE_EXECUTION, !getAbsoluteBounds(lifeline1).equals(initBounds));
 
-		// the size of the label should be undone if the represented element is  set to null, or when the user uses the "Undo" action.
+		// the size of the label should be undone if the represented element is set to null, or when the user uses the "Undo" action.
 		getEMFCommandStack().undo();
 		assertTrue(RESIZE + TEST_THE_UNDO, getAbsoluteBounds(lifeline1).equals(initBounds));
 		getEMFCommandStack().redo();
@@ -145,14 +150,14 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	@Test
 	public void testPropertyChanged() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
 		Rectangle initBounds = getAbsoluteBounds(lifeline1);
 
-		Interaction interaction = (Interaction)getRootSemanticModel();
+		Interaction interaction = (Interaction) getRootSemanticModel();
 		Classifier p = interaction.getNestedClassifier("Person");
-		final Property feature = (Property)p.getFeature("company");
+		final Property feature = (Property) p.getFeature("company");
 		changeRepresents(lifeline1, feature);
 		assertTrue(RESIZE + TEST_THE_EXECUTION, !getAbsoluteBounds(lifeline1).equals(initBounds));
 
@@ -184,14 +189,14 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	 * Execute a EMF command without history
 	 *
 	 * @param editingDomain
-	 *        The editing domain
+	 *            The editing domain
 	 * @param command
-	 *        The command
+	 *            The command
 	 * @param flag
 	 */
 	public static void executeCommandWithoutHistory(EditingDomain editingDomain, org.eclipse.emf.common.command.Command command, boolean flag) {
 		TransactionalCommandStackImpl stack = new TransactionalCommandStackImpl();
-		stack.setEditingDomain((InternalTransactionalEditingDomain)editingDomain);
+		stack.setEditingDomain((InternalTransactionalEditingDomain) editingDomain);
 		try {
 			stack.execute(command, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 		} catch (InterruptedException e) {
@@ -203,9 +208,11 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 
 	static class DummyCommand extends org.eclipse.emf.common.command.AbstractCommand {
 
+		@Override
 		public void execute() {
 		}
 
+		@Override
 		public void redo() {
 		}
 
@@ -225,12 +232,12 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 		file = project.getFile(getFileName());
 		this.diResourceSet = houseKeeper.cleanUpLater(new DiResourceSet());
 		try {
-			//at this point, no resources have been created
-			if(file.exists()) {
+			// at this point, no resources have been created
+			if (file.exists()) {
 				file.delete(true, new NullProgressMonitor());
 			}
 
-			if(!file.exists()) {
+			if (!file.exists()) {
 				// Don't create a zero-byte file. Create an empty XMI document
 				Resource diResource = diResourceSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 				diResource.save(null);
@@ -248,7 +255,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 
 			papyrusEditor = houseKeeper.openPapyrusEditor(file);
 		} catch (Exception e) {
-			System.err.println("error " + e);
+			Activator.log.error("TestLifelineAutoResize_383723 > projectCreation()", e);
 		}
 	}
 
@@ -261,7 +268,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	}
 
 	protected void changeRepresents(LifelineEditPart p, Object value) {
-		Lifeline lifeline = (Lifeline)p.resolveSemanticElement();
+		Lifeline lifeline = (Lifeline) p.resolveSemanticElement();
 		EReference feature = UMLPackage.eINSTANCE.getLifeline_Represents();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(lifeline);
 		SetRequest request = new SetRequest(p.getEditingDomain(), lifeline, feature, value);
@@ -270,7 +277,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 		assertTrue(CHANGE_REPRESENTS + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
 		getEMFCommandStack().execute(emfCommand);
 		waitForComplete();
-		if(value != null) {
+		if (value != null) {
 			assertTrue(CHANGE_REPRESENTS + TEST_THE_EXECUTION, lifeline.getRepresents().equals(value));
 		}
 	}
@@ -281,7 +288,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 		req.setEditParts(op);
 		req.setResizeDirection(resizeDir);
 		req.setSizeDelta(deltaSize);
-		if(resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST) {
+		if (resizeDir == PositionConstants.NORTH || resizeDir == PositionConstants.WEST) {
 			req.setMoveDelta(new Point(-deltaSize.width(), -deltaSize.height()));
 		}
 
@@ -310,7 +317,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);

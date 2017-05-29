@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
@@ -119,7 +120,7 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 
 			papyrusEditor = houseKeeper.openPapyrusEditor(file);
 		} catch (Exception e) {
-			System.err.println("error " + e);
+			Activator.log.error("TestAdvancedDragDrop_364696 > projectCreation()", e);
 		}
 	}
 
