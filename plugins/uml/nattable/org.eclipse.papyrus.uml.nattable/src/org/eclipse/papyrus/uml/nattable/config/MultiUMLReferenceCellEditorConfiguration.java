@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,13 +8,12 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 517374
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.config;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
@@ -43,7 +42,7 @@ public class MultiUMLReferenceCellEditorConfiguration implements ICellAxisConfig
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationId()
 	 */
 	@Override
@@ -53,7 +52,7 @@ public class MultiUMLReferenceCellEditorConfiguration implements ICellAxisConfig
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationDescription()
 	 */
 	@Override
@@ -63,7 +62,7 @@ public class MultiUMLReferenceCellEditorConfiguration implements ICellAxisConfig
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
 	 */
 	@Override
@@ -74,9 +73,7 @@ public class MultiUMLReferenceCellEditorConfiguration implements ICellAxisConfig
 			EStructuralFeature feature = (EStructuralFeature) object;
 			if (feature.isMany()) {
 				EClassifier etype = feature.getEType();
-				if (etype instanceof EDataType) {
-					result = EMFHelper.isSuperType(UMLPackage.eINSTANCE.getElement(), etype);
-				}
+				result = EMFHelper.isSuperType(UMLPackage.eINSTANCE.getElement(), etype);
 			}
 		}
 		return result;
@@ -84,7 +81,7 @@ public class MultiUMLReferenceCellEditorConfiguration implements ICellAxisConfig
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#configureCellEditor(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object, java.lang.String)
 	 */
 	@Override
