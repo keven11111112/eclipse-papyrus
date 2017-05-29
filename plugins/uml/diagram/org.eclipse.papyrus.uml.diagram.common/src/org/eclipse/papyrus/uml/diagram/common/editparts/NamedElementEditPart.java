@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,16 +7,19 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 517404
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
-import java.util.List;
-
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -29,7 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.NameDisplayEditPoli
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.PositionEnum;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
@@ -185,21 +188,33 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	private void refreshLabelMargin() {
 		Object model = this.getModel();
 
-
 		if (model instanceof View) {
 			int leftMargin = NotationUtils.getIntValue((View) model, LEFT_MARGIN_PROPERTY, getDefaultLeftNameMargin());
 			int rightMargin = NotationUtils.getIntValue((View) model, RIGHT_MARGIN_PROPERTY, getDefaultRightNameMargin());
 			int topMargin = NotationUtils.getIntValue((View) model, TOP_MARGIN_PROPERTY, getDefaultTopNameMargin());
 			int bottomMargin = NotationUtils.getIntValue((View) model, BOTTOM_MARGIN_PROPERTY, getDefaultBottomNameMargin());
 
-			// Get all children figures of the Edit Part and set margin according to the retrieve values
-			if (this instanceof IPapyrusEditPart) {
-				IFigure figure = ((IPapyrusEditPart) this).getPrimaryShape();
-				List<IPapyrusWrappingLabel> labelChildFigureList = FigureUtils.findChildFigureInstances(figure, IPapyrusWrappingLabel.class);
+			EObject semantic = resolveSemanticElement();
 
-				for (IPapyrusWrappingLabel label : labelChildFigureList) {
-					if (label != null) {
-						label.setMarginLabel(leftMargin, topMargin, rightMargin, bottomMargin);
+			// Get all margined labels for this element and set their margins
+			for (TreeIterator<EditPart> contents = DiagramEditPartsUtil.getAllContents(this, false); contents.hasNext();) {
+				EditPart next = contents.next();
+
+				if (next instanceof IGraphicalEditPart) {
+					IGraphicalEditPart gep = (IGraphicalEditPart) next;
+					if (gep.resolveSemanticElement() != semantic) {
+						// Different semantic element: it has its own margins
+						contents.prune();
+					} else {
+						// Is its figure a papyrus-style wrapping label?
+						IFigure figure = (gep instanceof IPapyrusEditPart)
+								? ((IPapyrusEditPart) gep).getPrimaryShape()
+								: gep.getFigure();
+						if (figure instanceof IPapyrusWrappingLabel) {
+							// Set the margins
+							IPapyrusWrappingLabel label = (IPapyrusWrappingLabel) figure;
+							label.setMarginLabel(leftMargin, topMargin, rightMargin, bottomMargin);
+						}
 					}
 				}
 			}
