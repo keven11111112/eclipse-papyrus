@@ -329,7 +329,12 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 		double newPercentY = localY / bounds.preciseHeight();
 		double oldPercentY = IdentityAnchorHelper.getYPercentage(anchor);
-		if (Math.abs(oldPercentY - newPercentY) > 0.05) {
+		double oldPosition=oldPercentY*bounds.preciseHeight();
+		double newPosition=newPercentY*bounds.preciseHeight();
+		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
+		GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRILLING_MANAGEMENT);
+		if (grilling != null) {
+		if (Math.abs(oldPosition - newPosition) >grilling.threshold ) {
 			if (newPercentY > 1) {
 				newPercentY = 0.99;
 			}
@@ -341,6 +346,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modify anchor to precentY=" + newPercentY);//$NON-NLS-1$
 				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
 			}
+		}
 		}
 	}
 

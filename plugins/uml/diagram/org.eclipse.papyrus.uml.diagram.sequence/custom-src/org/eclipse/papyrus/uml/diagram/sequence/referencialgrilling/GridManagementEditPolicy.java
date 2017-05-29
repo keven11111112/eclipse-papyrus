@@ -72,7 +72,23 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public static String COLUMN = "COLUMN_";
 	public static String ROW = "ROW_";
 
-	public int threshold = 10;
+	public int threshold = 5;
+	/**
+	 * @return the threshold
+	 */
+	public int getThreshold() {
+		return threshold;
+	}
+
+	/**
+	 * @param threshold the threshold to set
+	 */
+	public void setThreshold(int threshold) {
+		this.threshold = threshold;
+	}
+
+
+
 	public int margin = 50;
 	public boolean respectMargin = true;
 	public boolean moveAllLinesAtSamePosition = false;

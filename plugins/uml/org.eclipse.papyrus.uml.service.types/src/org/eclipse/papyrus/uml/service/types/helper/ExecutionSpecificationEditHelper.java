@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
@@ -66,11 +67,11 @@ public abstract class ExecutionSpecificationEditHelper extends ElementEditHelper
 
 					destroyIntermediateInteractionFragments(es, req.getEditingDomain(), deleteElementsCommand);
 
-					if (es.getStart() != null) {
+					if (es.getStart() != null && !(es.getStart() instanceof MessageEnd)) {
 						DestroyElementRequest delStart = new DestroyElementRequest(req.getEditingDomain(), es.getStart(), false);
 						deleteElementsCommand.add(new DestroyElementCommand(delStart));
 					}
-					if (es.getFinish() != null) {
+					if (es.getFinish() != null&&!(es.getFinish() instanceof MessageEnd)) {
 						DestroyElementRequest delEnd = new DestroyElementRequest(req.getEditingDomain(), es.getFinish(), false);
 						deleteElementsCommand.add(new DestroyElementCommand(delEnd));
 					}
