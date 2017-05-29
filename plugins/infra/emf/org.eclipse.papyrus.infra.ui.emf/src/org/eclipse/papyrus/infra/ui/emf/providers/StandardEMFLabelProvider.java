@@ -11,7 +11,7 @@
  *     Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Added support for enum literals
  *     Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Implementation of IDetailLabelProvider
  *     Christian W. Damus - bug 474467
- *     
+ *     Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr, bug 517377
  *******************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
 
@@ -79,8 +79,9 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 
 	protected String getText(EObject element) {
 		String title = ""; //$NON-NLS-1$
-		if (element instanceof Enumerator) {
-			return ((Enumerator) element).getName();
+		
+		if (element instanceof Enumerator) {//we must return the literal instead of the name when it is available, see bug 517377
+			return (((Enumerator) element).getLiteral()==null || ((Enumerator) element).getLiteral().isEmpty()) ? ((Enumerator) element).getName() : ((Enumerator) element).getLiteral(); 
 		}
 		EObject eObject = EMFHelper.getEObject(element);
 		IItemLabelProvider itemLabelProvider = getItemLabelProvider(eObject);
