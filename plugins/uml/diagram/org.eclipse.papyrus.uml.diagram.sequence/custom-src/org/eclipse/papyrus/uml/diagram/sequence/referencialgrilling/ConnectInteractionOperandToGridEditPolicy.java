@@ -118,5 +118,25 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 			}
 		}
 	}
-	
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateHeightFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
+	 *
+	 * @param originPosition
+	 * @param currentBounds
+	 */
+	@Override
+	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
+		// do nothing the grid cannot update the position of interactionOperand
+		
+	}
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateYFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
+	 *
+	 * @param originPosition
+	 * @param currentBounds
+	 */
+	@Override
+	protected void updateYFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
+		// do nothing the grid cannot update the position of interactionOperand
+	}
 }

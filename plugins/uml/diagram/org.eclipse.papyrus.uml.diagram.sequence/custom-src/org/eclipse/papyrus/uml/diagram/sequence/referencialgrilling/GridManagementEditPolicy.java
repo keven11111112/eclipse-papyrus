@@ -373,9 +373,13 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 				if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
 					if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
 						DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
-						// when we move line we disconnect listeners to avoid problems of infinite loop
+						//when the row is connected to interaction operand --> do nothing
+						if(movedRow.getElement() instanceof InteractionOperand) {
+							return;
+						}
 						if (moveAllLinesAtSamePosition) {
 							ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
+							// when we move line we disconnect listeners to avoid problems of infinite loop
 							((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
 
 							// maybe we must move other lines
@@ -387,11 +391,9 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 							}
 							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
 								DecorationNode axis = (DecorationNode) iterator.next();
-								if((movedRow.getElement() instanceof Lifeline)&& (axis.getElement() instanceof Lifeline)) {
-
-									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
-								}
-								else if(!(movedRow.getElement() instanceof Lifeline)) {
+								
+								//we do not move line about Lifeline and interaction operand
+								 if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
 									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
 								}
 
@@ -497,8 +499,12 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 				if(!(rowsCopy.get(i).equals(movedRow))) {
 					LayoutConstraint aConstraint = rowsCopy.get(i).getLayoutConstraint();
 					if (aConstraint instanceof Location) {
+						//do not move row connected to interaction operand 
+						if((!(rowsCopy.get(i).getElement() instanceof InteractionOperand))) {
+							
 						execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), aConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location) aConstraint).getY() + margin));
-					}
+						}
+						}
 				}
 			}
 		}

@@ -109,24 +109,28 @@ public class OccurrenceSpecificationHelperAdvice extends AbstractEditHelperAdvic
 					Message m=(Message)currentEObject;
 					if( os.equals(m.getSendEvent())) {
 						dependentsToDestroy.add(m);
-						dependentsToDestroy.add(m.getReceiveEvent());
+						if(m.getReceiveEvent()!=null) {
+							dependentsToDestroy.add(m.getReceiveEvent());
+						}
 					}
 					if( os.equals(m.getReceiveEvent())) {
 						dependentsToDestroy.add(m);
-						dependentsToDestroy.add(m.getSendEvent());
+						if(m.getSendEvent()!=null) {
+							dependentsToDestroy.add(m.getSendEvent());
+						}
 					}
 				}
 				if( currentEObject instanceof ExecutionSpecification) {
 					ExecutionSpecification exec=(ExecutionSpecification)currentEObject;
 					if( os.equals(exec.getStart())) {
 						dependentsToDestroy.add(exec);
-						if( !(exec.getFinish() instanceof MessageEnd)) {
+						if( exec.getFinish()!= null&&!(exec.getFinish() instanceof MessageEnd)) {
 							dependentsToDestroy.add(exec.getFinish());
 						}
 					}
-					if( os.equals(exec.getStart())) {
+					if( os.equals(exec.getFinish())) {
 						dependentsToDestroy.add(exec);
-						if( !(exec.getStart() instanceof MessageEnd)) {
+						if( exec.getStart()!= null&& !(exec.getStart() instanceof MessageEnd)) {
 							dependentsToDestroy.add(exec.getStart());
 						}
 					}
