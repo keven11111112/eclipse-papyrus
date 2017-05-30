@@ -8,7 +8,7 @@
 	    <artifactId>org.eclipse.papyrus.plugins</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>org.eclipse.papyrus.toolsmiths</artifactId>
+    <artifactId>org.eclipse.papyrus-toolsmiths</artifactId>
     <packaging>pom</packaging>
 	<name>Papyrus Toolsmiths Plugins</name>
 	<description>Tools for Papyrus DSML ToolSmiths, including UI customization model editors.</description>
