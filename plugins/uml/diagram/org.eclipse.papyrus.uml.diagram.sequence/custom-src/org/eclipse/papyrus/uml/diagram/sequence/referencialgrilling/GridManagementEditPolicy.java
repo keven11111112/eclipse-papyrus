@@ -372,6 +372,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 				updateRowsAndColumns();
 				if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
 					if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
+						DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
 						// when we move line we disconnect listeners to avoid problems of infinite loop
 						if (moveAllLinesAtSamePosition) {
 							ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
@@ -379,18 +380,26 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 							// maybe we must move other lines
 							// it exist other lines
-							if (rows.size() > rowlist.size()) {
-								updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
+							if(!(movedRow.getElement() instanceof Lifeline)) {
+								if (rows.size() > rowlist.size()) {
+									updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
+								}
 							}
 							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
 								DecorationNode axis = (DecorationNode) iterator.next();
-								execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue()))); //$NON-NLS-1$
+								if((movedRow.getElement() instanceof Lifeline)&& (axis.getElement() instanceof Lifeline)) {
+
+									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
+								}
+								else if(!(movedRow.getElement() instanceof Lifeline)) {
+									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
+								}
 
 							}
-							((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
 						}
-
+						((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
 					}
+
 				}
 			}
 		}
