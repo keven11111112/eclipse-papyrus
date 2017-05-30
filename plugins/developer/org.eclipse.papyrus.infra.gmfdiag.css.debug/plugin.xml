@@ -9,7 +9,7 @@
             class="org.eclipse.papyrus.infra.gmfdiag.css.debug.views.CSSDebugView"
             icon="icons/sourceEditor.gif"
             id="org.eclipse.papyrus.infra.gmfdiag.css.debug.view"
-            name="CSS Debug"
+            name="%view.name"
             restorable="true">
       </view>
    </extension>

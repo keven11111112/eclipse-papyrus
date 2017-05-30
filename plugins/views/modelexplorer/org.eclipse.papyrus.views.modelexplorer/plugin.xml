@@ -13,7 +13,7 @@
       </modeldeclaration>
    </extension>
    <extension point="org.eclipse.ui.views">
-      <view category="org.eclipse.papyrus.views.category" class="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView" icon="icons/ModelExplorer.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer" name="Model Explorer" restorable="true">
+      <view category="org.eclipse.papyrus.views.category" class="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView" icon="icons/ModelExplorer.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer" name="%view.name" restorable="true">
       </view>
    </extension>
    <extension point="org.eclipse.ui.navigator.viewer">

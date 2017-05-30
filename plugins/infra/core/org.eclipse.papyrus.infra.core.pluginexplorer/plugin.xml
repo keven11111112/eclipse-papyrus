@@ -8,7 +8,7 @@
             class="org.eclipse.papyrus.infra.core.pluginexplorer.PluginsContentView"
             icon="icons/plugin_obj.gif"
             id="org.eclipse.papyrus.infra.core.pluginexplorer.PluginsContentView"
-            name="Plugin Content Explorer">
+            name="%view.name">
       </view>
    </extension>
 

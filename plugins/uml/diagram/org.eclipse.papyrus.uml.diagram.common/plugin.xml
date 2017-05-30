@@ -27,7 +27,7 @@
       <extension point="org.eclipse.ui.views">
    <category 
 	id="org.eclipse.papyrus.views.category"
-	name="Papyrus">
+	name="%view.name">
    </category>
    
 </extension>

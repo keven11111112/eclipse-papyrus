@@ -27,7 +27,7 @@
    </extension>
    <extension point="org.eclipse.ui.views">
         <view id="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
-             name="OCL evaluation View"
+             name="%view.name"
           class="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
        />
 </extension>

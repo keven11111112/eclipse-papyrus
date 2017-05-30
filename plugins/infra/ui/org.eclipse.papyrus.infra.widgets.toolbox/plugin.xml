@@ -23,7 +23,7 @@
             class="org.eclipse.papyrus.infra.widgets.toolbox.notification.view.PapyrusNotificationView"
             icon="icons/sample.gif"
             id="org.eclipse.papyrus.ui.toolbox.notification.view.PapyrusNotificationView"
-            name="Papyrus Notification">
+            name="%view.name">
       </view>
    </extension>
    <extension
