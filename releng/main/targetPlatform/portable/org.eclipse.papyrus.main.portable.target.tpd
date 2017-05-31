@@ -3,7 +3,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201703131617" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201705301810" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -41,13 +41,13 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC1-201705181030/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC2-201705242000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201705221432" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201705290449" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -81,13 +81,13 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //updateFrom("EMFT MWE",0)
 
-location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/" {
+location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.1/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC1-20170523093452/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC2-20170530000117/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 

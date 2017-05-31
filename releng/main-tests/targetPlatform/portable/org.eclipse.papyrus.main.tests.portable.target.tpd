@@ -3,7 +3,7 @@ target "Papyrus Tests" with source requirements
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
 
-//updateFrom("GMF Tooling",0) 
+//manualUpdate ("GMF Tooling",0) 
 
 location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
 	org.eclipse.gmf.tooling.codegen.xtend2.feature.group

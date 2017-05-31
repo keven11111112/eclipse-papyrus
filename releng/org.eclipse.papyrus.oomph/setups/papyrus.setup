@@ -80,7 +80,7 @@
 	  <requirement name="org.apache.xerces"/>
 	  <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC1-201705181030/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC2-201705242000/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -130,21 +130,15 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Tooling</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/">
+        <repository url="${base.downloads.url}/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.1/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201703131617">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201705301810">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>QVT Operational</value>
@@ -158,7 +152,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201705221432">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201705290449">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse OCL 6.3</value>
@@ -193,7 +187,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC1-20170523093452/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC2-20170530000117/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -261,13 +255,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Tooling</value>
-            </detail>
-          </annotation>
-        </repository>
+        <repository url="${base.downloads.url}/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
         <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
@@ -392,13 +380,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3.1/RC2">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Tooling</value>
-            </detail>
-          </annotation>
-        </repository>
+        <repository url="${base.downloads.url}/modeling/gmp/gmf-tooling/updates/milestones-3.3.1/RC2"/>
         <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.2/R201511170833/mwe">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
@@ -531,13 +513,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.2.2.RC4">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Tooling</value>
-            </detail>
-          </annotation>
-        </repository>
+        <repository url="${base.downloads.url}/modeling/gmp/gmf-tooling/updates/milestones-3.2.2.RC4"/>
         <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/R201409021027/mwe">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">

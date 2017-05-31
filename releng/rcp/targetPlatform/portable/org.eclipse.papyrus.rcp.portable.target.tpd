@@ -10,7 +10,7 @@ location egit "http://download.eclipse.org/egit/staging/4.8.0.201705170830-rc1" 
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC1-201705181030/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC2-201705242000/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group

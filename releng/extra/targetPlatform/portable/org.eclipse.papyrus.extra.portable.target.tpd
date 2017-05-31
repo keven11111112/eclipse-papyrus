@@ -12,7 +12,7 @@ location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.7/S20
 	org.eclipse.acceleo.sdk.feature.group
 }
 
-//updateFrom("GMF Tooling",0) 
+//manualUpdate ("GMF Tooling",0) 
 
 location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
 	org.eclipse.gmf.tooling.feature.group
