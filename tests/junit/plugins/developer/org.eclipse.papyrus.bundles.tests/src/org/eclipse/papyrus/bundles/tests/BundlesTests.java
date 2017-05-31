@@ -17,6 +17,7 @@ package org.eclipse.papyrus.bundles.tests;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -54,6 +55,8 @@ public class BundlesTests extends AbstractPapyrusTest {
 	private static final String NATTABLE_VERSION = "1.5.0"; //$NON-NLS-1$
 
 	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
+
+	private static final String UML2_UML_VERSION_RANGE = "bundle-version=\"[5.3.0,6.0.0)\")";//$NON-NLS-1$
 
 	@Condition
 	public final boolean isAutomatedBuild = JUnitUtils.isAutomatedBuildExecution();
@@ -220,6 +223,13 @@ public class BundlesTests extends AbstractPapyrusTest {
 	@Test
 	public void guavaDependencyVersionText() {
 		testPapyrusDependencies2("com.google.guava", "21.0.0");//$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	@Test
+	public void uml2umlDependencyVersionTest() {
+		testPapyrusDependencies("org.eclipse.uml2.uml", UML2_UML_VERSION_RANGE, //$NON-NLS-1$
+				new ArrayList<>(Arrays.asList("org.eclipse.uml2.uml.profile.standard", //$NON-NLS-1$
+						"org.eclipse.uml2.uml.validation", "org.eclipse.uml2.uml.editor"))); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public final static String REGEX_PACKAGE_WORD = "\\w(?:\\w|\\d)*";// match a //$NON-NLS-1$
@@ -412,7 +422,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	public void pluginIDTest() {
 		StringBuffer errorMessage = new StringBuffer();
 		StringBuffer warningMessage = new StringBuffer();
-		final Collection<String> possibleIds = new ArrayList<String>();
+		final Collection<String> possibleIds = new ArrayList<>();
 		possibleIds.add("ID");//$NON-NLS-1$
 		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$
 		int nbError = 0;

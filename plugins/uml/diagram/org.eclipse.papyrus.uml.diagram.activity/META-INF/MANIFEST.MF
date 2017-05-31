@@ -50,9 +50,9 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.e4.ui.css.core;bundle-version="[0.11.0,1.0.0)",
  org.eclipse.papyrus.infra.hyperlink;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.diagram.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.uml2.uml.edit;bundle-version="[5.1.0,6.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml.edit;bundle-version="[5.3.0,6.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[2.1.0,3.0.0)",
- org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)",
+ org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)",
  org.eclipse.papyrus.uml.internationalization.edit;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[1.0.0,2.0.0)"

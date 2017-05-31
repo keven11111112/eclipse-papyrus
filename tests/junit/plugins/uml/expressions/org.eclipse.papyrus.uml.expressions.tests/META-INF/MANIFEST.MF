@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.expressions.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)",
+Require-Bundle: org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)",
  org.eclipse.papyrus.infra.emf.expressions;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.uml.expressions;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.editor.integration.tests;bundle-version="[1.2.0,2.0.0)",
