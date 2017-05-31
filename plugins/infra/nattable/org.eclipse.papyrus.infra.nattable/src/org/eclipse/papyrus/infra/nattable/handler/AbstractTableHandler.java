@@ -113,6 +113,20 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		return manager;
 	}
 
+	/**
+	 * @return
+	 * 		the current NatTable or <code>null</code> if not found
+	 * @since 5.0
+	 */
+	protected NatTable getCurrentNatTable() {
+		final NatEventData data = getNatEventData();
+		NatTable natTable = null;
+		if (null != data) {
+			natTable = data.getNatTable();
+		}
+
+		return natTable;
+	}
 
 	/**
 	 * Returns the EditingDomain associated to the table

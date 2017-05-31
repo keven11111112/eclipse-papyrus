@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.nattable,
  org.eclipse.papyrus.infra.nattable.accumulator,
  org.eclipse.papyrus.infra.nattable.advice,
+ org.eclipse.papyrus.infra.nattable.applynamedstyle,
  org.eclipse.papyrus.infra.nattable.celleditor,
  org.eclipse.papyrus.infra.nattable.celleditor.config,
  org.eclipse.papyrus.infra.nattable.command,

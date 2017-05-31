@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Override of the paintCell() method
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515735
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515735, 515737
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.painter;
 
@@ -47,6 +47,20 @@ public class CustomizedCellPainter extends CellPainterWithUnderlinedError {
 	 */
 	public CustomizedCellPainter() {
 		super(false, true);// with (true,true), automatic newLine when the text is too long to be displayed.
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param wrapText
+	 *            Split text over multiple lines
+	 * @param calculateByTextHeight
+	 *            Tell the text painter to calculate the cell border by
+	 *            containing text height
+	 * @since 5.0
+	 */
+	public CustomizedCellPainter(final boolean wrapText, final boolean calculateByTextHeight) {
+		super(wrapText, true, 2, false, calculateByTextHeight);
 	}
 
 	/**
@@ -103,7 +117,7 @@ public class CustomizedCellPainter extends CellPainterWithUnderlinedError {
 
 			int yStartPos = rectangle.y + CellStyleUtil.getVerticalAlignmentPadding(cellStyle, rectangle, contentHeight);
 			String[] lines = text.split("\n"); //$NON-NLS-1$
-			for (int lineIndex = 0; lineIndex < lines.length; lineIndex ++) {
+			for (int lineIndex = 0; lineIndex < lines.length; lineIndex++) {
 				Image im = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("org.eclipse.papyrus.infra.nattable", "/icons/arrow_down_end.png"); //$NON-NLS-1$ //$NON-NLS-2$
 
 				// If the current text position passes the cell bounds, we should display the down pointing arrow
@@ -117,5 +131,27 @@ public class CustomizedCellPainter extends CellPainterWithUnderlinedError {
 				yStartPos += fontHeight;
 			}
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * Overridden to bypass the bug 516783 in NatTable. Thanks to Dirk Fauth for the temporary solution.
+	 */
+	@Override
+	public int getPreferredHeight(final ILayerCell cell, final GC gc, final IConfigRegistry configRegistry) {
+		setupGCFromConfig(gc, CellStyleUtil.getCellStyle(cell, configRegistry));
+
+		int fontHeight = gc.getFontMetrics().getHeight();
+		String text = convertDataType(cell, configRegistry);
+
+		// Draw Text
+		text = getTextToDisplay(cell, gc, cell.getBounds().width, text);
+
+		int numberOfNewLines = getNumberOfNewLines(text);
+
+		// If the content height is bigger than the available row height
+		// we're extending the row height (only if word wrapping is enabled)
+		return (fontHeight * numberOfNewLines) + (this.lineSpacing * (numberOfNewLines - 1)) + (this.spacing * 2);
 	}
 }

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,9 +8,11 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515737
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
+
+import java.util.Set;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -124,4 +125,45 @@ public class AxisUtils {
 		return getAxisProviderUsedForColumns(manager.getTable());
 	}
 
+	/**
+	 * Return the index of the unique selected axis (column or row).
+	 * If not only 1 axis is selected, return -1.
+	 *
+	 * @param nattableManager
+	 *            The nattable manager
+	 * @return The index of the unique selected axis or -1 otherwise
+	 * @since 5.0
+	 */
+	public static int getUniqueSelectedAxisIndex(final INattableModelManager nattableManager) {
+
+		int axisIndex = -1;
+
+		if (null != nattableManager) {
+			final TableSelectionWrapper tableSelectionWrapper = nattableManager.getAdapter(TableSelectionWrapper.class);
+			if (null != tableSelectionWrapper && null != nattableManager.getTable()) {
+				final Table table = nattableManager.getTable();
+
+				int numSelectedAxis = 0;
+				Set<Integer> keySet = null;
+
+				// If the table is already inverted, handle with the number of fully selected rows
+				// otherwise, handle with the number of fully selected columns
+				if (table.isInvertAxis()) {
+					numSelectedAxis = tableSelectionWrapper.getFullySelectedRows().size();
+					keySet = tableSelectionWrapper.getFullySelectedRows().keySet();
+				} else {
+					numSelectedAxis = tableSelectionWrapper.getFullySelectedColumns().size();
+					keySet = tableSelectionWrapper.getFullySelectedColumns().keySet();
+				}
+
+				// Just continue to check the upper bound if there is only one selected axis
+				if (1 == numSelectedAxis) {
+					// Get the axis index from the key set
+					axisIndex = (Integer) keySet.toArray()[0];
+				}
+			}
+		}
+
+		return axisIndex;
+	}
 }

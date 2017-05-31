@@ -1946,7 +1946,11 @@ NamedStyles are properties that the users can add to table configurations to pro
 | child of Table
 | determines if the cell height will be resized automatically when displaying the table
 |-
-| 
+| style="font-weight: bold;" | displayListOnSeparatedRows
+| BooleanValueStyle
+| child of Axis
+| determines if the elements list of a fully selected column (or row in an invert table) is displayed on separated rows or single row
+|-
 | 
 | 
 | 

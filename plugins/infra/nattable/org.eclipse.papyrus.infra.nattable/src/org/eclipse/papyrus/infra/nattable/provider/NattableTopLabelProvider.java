@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515737
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.provider;
 
@@ -213,7 +212,18 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @return
 	 */
 	private Image getBodyLabelImage(ILabelProviderCellContextElementWrapper cell, IConfigRegistry configRegistry) {
-		return null;
+		Image image = null;
+		final LabelProviderService labelService = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+
+		final Object value = cell.getObject();
+		if (null != value) {
+			ILabelProvider labelProvider = labelService.getLabelProvider(value);
+			if (null != labelProvider) {
+				image = labelProvider.getImage(value);
+			}
+		}
+
+		return image;
 	}
 
 	/**
@@ -223,7 +233,7 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @param configRegistry
 	 *            the config registry
 	 * @return
-	 *         the image to display in the row
+	 * 		the image to display in the row
 	 */
 	private Image getRowHeaderImage(ILabelProviderCellContextElementWrapper cell, IConfigRegistry configRegistry) {
 		Object representedObjet = cell.getObject();
@@ -235,26 +245,26 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	}
 
 	/**
-	 * 
+	 *
 	 * @param contextElement
-	 * the context element for which we want the decoration
+	 *            the context element for which we want the decoration
 	 * @param configRegistry
-	 * the config registry of the table
+	 *            the config registry of the table
 	 * @param labelproviderContext
-	 * the label provider context
+	 *            the label provider context
 	 * @return
-	 * the image with decorators to display according to the  contextElement
+	 * 		the image with decorators to display according to the contextElement
 	 */
 	private Image getImageWithDecoration(final ILabelProviderCellContextElementWrapper contextElement, final IConfigRegistry configRegistry, final String labelproviderContext) {
 		Image im = getImage(contextElement, configRegistry, labelproviderContext);
 		DecorationService decorationService = configRegistry.getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
 		if (decorationService != null) {
-			Object representedObject= AxisUtils.getRepresentedElement(contextElement.getObject());
-			if(representedObject!=null){
+			Object representedObject = AxisUtils.getRepresentedElement(contextElement.getObject());
+			if (representedObject != null) {
 				List<IPapyrusDecoration> decoration = ((DecorationService) decorationService).getDecorations(representedObject, true);
 				if (decoration.size() > 0) {
 					return DecorationImageUtils.getDecoratedImage(im, decoration, DecorationImageUtils.SIZE_16_16);
-				}	
+				}
 			}
 		}
 		return im;

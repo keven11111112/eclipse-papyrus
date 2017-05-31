@@ -8,12 +8,13 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095, 515737
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.configuration;
 
 import org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration;
 import org.eclipse.nebula.widgets.nattable.layer.CompositeLayer;
+import org.eclipse.papyrus.infra.nattable.applynamedstyle.PapyrusApplyNamedStyleBindings;
 import org.eclipse.papyrus.infra.nattable.export.PapyrusExportBindings;
 import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportBindings;
 import org.eclipse.papyrus.infra.nattable.export.image.PapyrusImageExportBindings;
@@ -36,6 +37,7 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 		super(gridLayer);
 		addFileExportUIBindings();
 		addImageExportUIBindings();
+		addApplyNamedStyleBindings();
 	}
 
 	/**
@@ -83,5 +85,14 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 	 */
 	protected void addImageExportUIBindings() {
 		addConfiguration(new PapyrusImageExportBindings());
+	}
+
+	/**
+	 * Add the apply named style binding.
+	 *
+	 * @since 5.0
+	 */
+	protected void addApplyNamedStyleBindings() {
+		addConfiguration(new PapyrusApplyNamedStyleBindings());
 	}
 }

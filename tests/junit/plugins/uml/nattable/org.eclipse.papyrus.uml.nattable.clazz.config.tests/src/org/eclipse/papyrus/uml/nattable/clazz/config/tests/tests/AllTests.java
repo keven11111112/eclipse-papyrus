@@ -9,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806, 519383
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806, 519383, 515737
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.ChangeCategoryNo
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRequirementsWithNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRowElementTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DestroyColumnTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DisplayListOnSeparatedRowsTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.MoveElementsTreeTableTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.NoDepth0TreeFillingConfigurationTest;
@@ -219,6 +220,9 @@ import org.junit.runners.Suite.SuiteClasses;
 	// Delete row elements
 	DeleteRowElementTest.class,
 
+	// Bug 515737: Papyrus Table must be able to display list in cells with a new line for each object owned by the list and fake line between values
+	DisplayListOnSeparatedRowsTest.class,
+		
 	// Destroy column
 	DestroyColumnTest.class,
 

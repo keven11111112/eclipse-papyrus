@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 515737
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -145,6 +145,32 @@ public class StyleUtils {
 	}
 
 	/**
+	 * Get the value of a boolean named style in a given styled element.
+	 *
+	 * @param styledElement
+	 *            The given styled element
+	 * @param namedStyleString
+	 *            The named style string
+	 * @param defaultValue
+	 *            The default value if the boolean value style does not exist
+	 * @return The boolean value of the named style
+	 * @since 4.0
+	 */
+	public static boolean getBooleanNamedStyleValue(final StyledElement styledElement, final String namedStyleString, final boolean defaultValue) {
+
+		if (null != styledElement && null != namedStyleString) {
+			// Get the relevant boolean named style
+			final BooleanValueStyle booleanNamedStyle = (BooleanValueStyle) styledElement.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+
+			if (null != booleanNamedStyle) {
+				return booleanNamedStyle.isBooleanValue();
+			}
+		}
+
+		return defaultValue;
+	}
+
+	/**
 	 * Get the value of a boolean named style in a given table.
 	 *
 	 * @param table
@@ -173,22 +199,22 @@ public class StyleUtils {
 	}
 
 	/**
-	 * Set the value of a boolean named style in a given table.
+	 * Set the value of a boolean named style in a given styled element.
 	 *
 	 * @param editingDomain
 	 *            The editing domain
-	 * @param table
-	 *            The given papyrus table
+	 * @param styledElement
+	 *            The given styled element
 	 * @param namedStyleString
 	 *            The named style string
 	 * @param value
 	 *            The boolean value to be set
-	 * @since 3.0
+	 * @since 4.0
 	 */
-	public static void setBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final Table table, final String namedStyleString, final boolean value) {
-		if (null != editingDomain && null != table && null != namedStyleString) {
-			// Get the relevant boolean named style from the table
-			BooleanValueStyle booleanNamedStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+	public static void setBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final StyledElement styledElement, final String namedStyleString, final boolean value) {
+		if (null != editingDomain && null != styledElement && null != namedStyleString) {
+			// Get the relevant boolean named style from the style element
+			BooleanValueStyle booleanNamedStyle = (BooleanValueStyle) styledElement.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
 
 			if (null != booleanNamedStyle) {
 				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(booleanNamedStyle);
@@ -208,18 +234,18 @@ public class StyleUtils {
 	 *
 	 * @param editingDomain
 	 *            The editing domain
-	 * @param table
-	 *            The given papyrus table
+	 * @param styledElement
+	 *            The given styled element
 	 * @param namedStyleString
 	 *            The named style string
 	 * @param defaultValue
 	 *            The default value to be set
-	 * @since 3.0
+	 * @since 4.0
 	 */
-	public static void initBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final Table table, final String namedStyleString, final boolean defaultValue) {
-		if (null != editingDomain && null != table && null != namedStyleString) {
+	public static void initBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final StyledElement styledElement, final String namedStyleString, final boolean defaultValue) {
+		if (null != editingDomain && null != styledElement && null != namedStyleString) {
 			// Get the relevant named style
-			BooleanValueStyle namedStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+			BooleanValueStyle namedStyle = (BooleanValueStyle) styledElement.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
 
 			// If it does not exist, initialize it, otherwise do nothing
 			if (null == namedStyle) {
@@ -228,11 +254,45 @@ public class StyleUtils {
 				namedStyle.setBooleanValue(defaultValue);
 
 				// Add the new boolean style
-				List<Style> styleList = new ArrayList<Style>(table.getStyles());
+				List<Style> styleList = new ArrayList<Style>(styledElement.getStyles());
 				styleList.add(namedStyle);
 
-				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(table);
-				SetRequest request = new SetRequest(editingDomain, table, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), styleList);
+				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(styledElement);
+				SetRequest request = new SetRequest(editingDomain, styledElement, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), styleList);
+				if (editService.canEdit(request)) {
+					Command command = GMFtoEMFCommandWrapper.wrap(editService.getEditCommand(request));
+					editingDomain.getCommandStack().execute(command);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Delete the given named style if it is already created.
+	 * If the named style does not exist, do nothing.
+	 *
+	 * @param editingDomain
+	 *            The editing domain
+	 * @param styledElement
+	 *            The given styled element to be deleted
+	 * @param namedStyleString
+	 *            The named style string
+	 * @since 4.0
+	 */
+	public static void deleteBooleanNamedStyle(final TransactionalEditingDomain editingDomain, final StyledElement styledElement, final String namedStyleString) {
+		if (null != editingDomain && null != styledElement && null != namedStyleString) {
+			// Get the relevant named style
+			BooleanValueStyle namedStyle = (BooleanValueStyle) styledElement.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), namedStyleString);
+
+			// If it does exist, remove it, otherwise do nothing
+			if (null != namedStyle) {
+
+				// Delete the boolean style
+				List<Style> styleList = new ArrayList<Style>(styledElement.getStyles());
+				styleList.remove(namedStyle);
+
+				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(styledElement);
+				SetRequest request = new SetRequest(editingDomain, styledElement, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), styleList);
 				if (editService.canEdit(request)) {
 					Command command = GMFtoEMFCommandWrapper.wrap(editService.getEditCommand(request));
 					editingDomain.getCommandStack().execute(command);
