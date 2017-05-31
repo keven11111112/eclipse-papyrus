@@ -423,14 +423,14 @@
       </owningRules>
       <configuration href="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/resources/viewpage.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_d4-QwCT-EeedRqoTe_1ZiA" name="Matrix of Relationships" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.matrix/icons/uml_generic_matrix_relationships.png" implementationID="UMLGenericMatrixOfRelationships">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_d4-QwCT-EeedRqoTe_1ZiA" name="Relationship Generic Matrix" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.matrix/icons/uml_generic_matrix_relationships.png" implementationID="UMLGenericMatrixOfRelationships">
       <modelRules xmi:id="_d4-QwST-EeedRqoTe_1ZiA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
       <owningRules xmi:id="_d4-QwiT-EeedRqoTe_1ZiA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
-      <configuration href="../../org.eclipse.papyrus.uml.nattable.matrix/configs/generic_matrix_of_relationships.nattableconfiguration#/"/>
+      <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable.matrix/configs/generic_matrix_of_relationships.nattableconfiguration#/"/>
     </representationKinds>
     <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   </contexts>
