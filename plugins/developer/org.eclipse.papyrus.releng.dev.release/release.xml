@@ -2,8 +2,10 @@
 <release>
 	<feature name="org.eclipse.papyrus.dev.feature" version="3.0.0">
 		<feature name="org.eclipse.papyrus.junit.feature" version="2.0.0"/>
+		<feature name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.codegen" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.def" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.dev.ui" version="0.0.1"/>
 		<plugin name="org.eclipse.papyrus.dev.view.services.edit.request" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.gmf.editpoliciesstates" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.gmf.editpartview" version="1.2.0"/>
@@ -14,7 +16,6 @@
 		<plugin name="org.eclipse.papyrus.dev.project.management" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.commandstack" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.dev.assistants.codegen" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.uml.developer.mde" version="1.2.0"/>
 		<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.100"/>
 		<plugin name="org.eclipse.cbi.p2repo.aggregator.legacy" version="1.0.0"/>
 		<plugin name="org.eclipse.cbi.p2repo.util" version="1.0.0"/>
@@ -35,6 +36,9 @@
 		<plugin name="org.eclipse.papyrus.tests.framework.annotations" version="1.2.0"/>
 		<plugin name="org.eclipse.upr.utp" version="0.9.0"/>
 	</feature>
+	<feature name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature" version="1.0.0">
+		<plugin name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools" version="1.0.0"/>
+	</feature>
 	<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.100"/>
 	<plugin name="org.eclipse.cbi.p2repo.aggregator.legacy" version="1.0.0"/>
 	<plugin name="org.eclipse.cbi.p2repo.cli" version="1.0.0"/>
@@ -48,6 +52,7 @@
 	<plugin name="org.eclipse.papyrus.dev.tests.framework" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.dev.tests.framework.ui" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.dev.types" version="3.0.0"/>
+	<plugin name="org.eclipse.papyrus.dev.ui" version="0.0.1"/>
 	<plugin name="org.eclipse.papyrus.dev.view.services.edit.request" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.editpartview" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.editpoliciesstates" version="1.2.0"/>
@@ -64,6 +69,6 @@
 	<plugin name="org.eclipse.papyrus.tests.framework.annotations" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.tests.framework.edit" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.tests.framework.editor" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.developer.mde" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools" version="1.0.0"/>
 	<plugin name="org.eclipse.upr.utp" version="0.9.0"/>
 </release>
