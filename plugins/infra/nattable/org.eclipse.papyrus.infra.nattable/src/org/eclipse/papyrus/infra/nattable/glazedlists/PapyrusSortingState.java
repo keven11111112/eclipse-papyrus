@@ -13,10 +13,6 @@
 
 package org.eclipse.papyrus.infra.nattable.glazedlists;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import org.eclipse.papyrus.infra.nattable.glazedlists.copy.AbstractTableComparatorChooser;
 import org.eclipse.papyrus.infra.nattable.glazedlists.copy.SortingState;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;

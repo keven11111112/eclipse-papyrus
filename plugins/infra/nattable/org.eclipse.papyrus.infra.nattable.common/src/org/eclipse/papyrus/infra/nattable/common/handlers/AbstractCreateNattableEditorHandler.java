@@ -194,6 +194,9 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	}
 
 
+	/**
+	 * @since 3.0
+	 */
 	protected abstract TableConfiguration getTableEditorConfiguration();
 
 	/**

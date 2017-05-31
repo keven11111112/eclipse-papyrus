@@ -3,10 +3,10 @@
 /*                                                     O'Dell Engineering Ltd.*/
 package org.eclipse.papyrus.infra.nattable.glazedlists.copy;
 
+import java.util.Comparator;
+
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.gui.TableFormat;
-
-import java.util.Comparator;
 
 /**
  * A comparator that sorts a table by the column that was clicked.

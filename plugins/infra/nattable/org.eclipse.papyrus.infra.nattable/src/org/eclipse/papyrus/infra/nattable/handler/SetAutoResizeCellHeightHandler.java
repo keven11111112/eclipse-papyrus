@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 
 /**
  * Handler to enable or disable the auto-resizing of cell height of the active table.
+ * @since 3.0
  */
 public class SetAutoResizeCellHeightHandler extends AbstractTableHandler {
 

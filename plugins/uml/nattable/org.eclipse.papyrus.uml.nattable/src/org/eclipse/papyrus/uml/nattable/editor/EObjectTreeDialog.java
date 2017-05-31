@@ -39,6 +39,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
  * Dialog to display a EObjectTreeReferenceValueEditor
+ * @since 3.0
  */
 public class EObjectTreeDialog extends SelectionDialog {
 

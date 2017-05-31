@@ -35,6 +35,8 @@ import org.eclipse.uml2.uml.Type;
 
 /**
  * The cell editor for UML Single Datatype declared in the profile.
+ * 
+ * @since 3.0
  */
 public class UMLStereotypeMultiDataTypeCellEditorConfiguration implements ICellAxisConfiguration {
 
@@ -73,9 +75,11 @@ public class UMLStereotypeMultiDataTypeCellEditorConfiguration implements ICellA
 		final String id = AxisUtils.getPropertyId(axisElement);
 		if (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX)) {
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), id);
-			final Type type = prop.getType();
-			if (null != prop && prop.isMultivalued()) {
-				result = type instanceof DataType && !(type instanceof Enumeration) && !(type instanceof PrimitiveType);
+			if (null != prop) {
+				final Type type = prop.getType();
+				if (prop.isMultivalued()) {
+					result = type instanceof DataType && !(type instanceof Enumeration) && !(type instanceof PrimitiveType);
+				}
 			}
 		}
 		return result;

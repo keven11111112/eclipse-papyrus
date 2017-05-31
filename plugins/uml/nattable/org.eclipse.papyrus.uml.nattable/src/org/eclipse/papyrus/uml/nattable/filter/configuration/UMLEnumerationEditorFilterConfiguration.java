@@ -77,9 +77,7 @@ public class UMLEnumerationEditorFilterConfiguration extends EEnumFilterCellEdit
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), AxisUtils.getPropertyId(string));
 			if (prop != null) {
 				Type type = prop.getType();
-				if (prop != null) {
-					return type instanceof Enumeration;
-				}
+				return type instanceof Enumeration;
 			}
 		}
 		return false;

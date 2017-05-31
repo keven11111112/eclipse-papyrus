@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Cell Manager which allows to get the value of an UML {@link EOperation} for an {@link EObject}.
+ * @since 3.0
  */
 public class UMLOperationValueCellManager extends EMFOperationValueCellManager {
 

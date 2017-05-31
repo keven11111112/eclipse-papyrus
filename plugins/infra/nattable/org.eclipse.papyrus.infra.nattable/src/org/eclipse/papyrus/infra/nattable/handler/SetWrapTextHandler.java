@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 
 /**
  * Handler to enable or disable wrap text in cells of the active table.
+ * @since 3.0
  */
 public class SetWrapTextHandler extends AbstractTableHandler {
 

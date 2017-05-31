@@ -113,7 +113,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 * @param columnElement
 	 * @param rowElement
 	 * @return
-	 *         a list with 2 elements : the first one is the Element and the second one the string representing the property of stereotypes
+	 * 		a list with 2 elements : the first one is the Element and the second one the string representing the property of stereotypes
 	 */
 	@Override
 	protected List<Object> organizeAndResolvedObjects(final Object columnElement, final Object rowElement, final Map<?, ?> sharedMap) {
@@ -154,9 +154,9 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			// see bug 426709: [Table 2][Stereotype] Papyrus Table must allows to edit stereotype properties even if the required stereotypes is not yet applied
 			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426709
 			final int nbApplicablesSte = UMLTableUtils.getApplicableStereotypesWithThisProperty(el, id).size();
-			return nbApplicablesSte == 1 && !prop.isDerived() && !prop.isReadOnly();
+			return nbApplicablesSte == 1 && null != prop && !prop.isDerived() && !prop.isReadOnly();
 		case 1:
-			return !prop.isDerived() && !prop.isReadOnly();
+			return null != prop && !prop.isDerived() && !prop.isReadOnly();
 		default:
 			return false;
 		}
@@ -194,7 +194,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 		case 1:
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id, sharedMap);
-			return !prop.isDerived() && !prop.isReadOnly();
+			return null != prop && !prop.isDerived() && !prop.isReadOnly();
 		default:
 			return false;
 		}
@@ -274,7 +274,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		EStructuralFeature steApFeature = null;
 		if (prop != null) {
 			if (stereotypes.isEmpty()) {
-				if (newValue == null || newValue.isEmpty() || newValue.equalsIgnoreCase(org.eclipse.papyrus.infra.nattable.utils.Constants.NOT_AVALAIBLE)) { //$NON-NLS-1$
+				if (newValue == null || newValue.isEmpty() || newValue.equalsIgnoreCase(org.eclipse.papyrus.infra.nattable.utils.Constants.NOT_AVALAIBLE)) { // $NON-NLS-1$
 					// Don't apply the stereotype if there's no value to set.
 					return null;
 				}
@@ -470,7 +470,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			}
 		}
 
-		//		final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
+		// final CompositeCommand cmd = new CompositeCommand("Set Value As String Command"); //$NON-NLS-1$
 		if (steApFeature == null || stereotypes.size() != 1) {
 			IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, "The property of stereotype to use to do the set value can't be resolved", Collections.singletonList(valueAsString)); //$NON-NLS-1$
 			solvedValue = new ConvertedValueContainer<Object>(null, status);
@@ -527,7 +527,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				final EStructuralFeature editedFeature = elementToEdit.eClass().getEStructuralFeature(UML2Util.getValidJavaIdentifier(prop.getName()));
 				return doGetUnsetCellValueCommand(domain, elementToEdit, editedFeature, tableManager);
 			}
-			//other cases are not yet managed
+			// other cases are not yet managed
 		}
 		return null;
 	}

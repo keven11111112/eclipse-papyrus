@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.config;
 
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
@@ -69,7 +68,6 @@ public class UMLMultiReferenceTextualCellEditorWithButtonConfiguration implement
 			if (!ref.isMany()) {
 				return false;
 			}
-			EClassifier type = ref.getEType();
 
 			// TODO : to test on constraint
 			// return type instanceof EClass && UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf((EClass) type);

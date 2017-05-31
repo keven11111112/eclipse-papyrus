@@ -33,7 +33,6 @@ import org.eclipse.papyrus.infra.services.decoration.util.DecorationImageUtils;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 
 /**
  * The LabelProvider used in the table

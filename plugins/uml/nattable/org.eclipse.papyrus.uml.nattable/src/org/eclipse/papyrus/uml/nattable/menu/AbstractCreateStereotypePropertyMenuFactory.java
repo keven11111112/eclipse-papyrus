@@ -124,7 +124,7 @@ public abstract class AbstractCreateStereotypePropertyMenuFactory extends Extens
 						public void fill(Menu parent, int index) {
 							super.fill(parent, index);
 							getMenu().getParentItem().setEnabled(true);
-							Image image = Activator.getDefault().getImage(org.eclipse.papyrus.uml.nattable.Activator.getDefault().PLUGIN_ID, iconPath);
+							Image image = Activator.getDefault().getImage(org.eclipse.papyrus.uml.nattable.Activator.PLUGIN_ID, iconPath);
 							getMenu().getParentItem().setImage(image);
 						}
 

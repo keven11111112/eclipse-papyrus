@@ -172,6 +172,7 @@ public class ContextFeatureContentProvider extends EcoreModelContentProvider imp
 	 * 
 	 * @param parent
 	 *            The parent {@link Composite}.
+	 * @since 3.0
 	 */
 	protected void createCaseSensitiveButton(final Composite parent) {
 		// Create the checkbox button
@@ -193,6 +194,7 @@ public class ContextFeatureContentProvider extends EcoreModelContentProvider imp
 
 	/**
 	 * Create the pattern filter.
+	 * @since 3.0
 	 */
 	protected void createPatternFilter(final Composite parent) {
 		StringWithClearEditor editor = new StringWithClearEditor(parent, SWT.BORDER);

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.nattable.menu;
 
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.Separator;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 
 /**

@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.Type;
 
 /**
  * The cell editor for UML Single Datatype declared in the profile.
+ * @since 3.0
  */
 public class UMLStereotypeSingleDataTypeCellEditorConfiguration implements ICellAxisConfiguration {
 

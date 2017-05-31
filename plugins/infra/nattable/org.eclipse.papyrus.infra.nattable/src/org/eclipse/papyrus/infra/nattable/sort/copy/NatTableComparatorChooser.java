@@ -20,7 +20,6 @@ import java.util.List;
 import org.eclipse.nebula.widgets.nattable.sort.SortDirectionEnum;
 import org.eclipse.papyrus.infra.nattable.glazedlists.copy.AbstractTableComparatorChooser;
 
-
 import ca.odell.glazedlists.SortedList;
 //import ca.odell.glazedlists.gui.AbstractTableComparatorChooser;
 //import ca.odell.glazedlists.gui.AbstractTableComparatorChooser;

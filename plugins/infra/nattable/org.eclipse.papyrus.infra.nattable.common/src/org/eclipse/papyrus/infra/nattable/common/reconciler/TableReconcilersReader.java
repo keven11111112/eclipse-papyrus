@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.nattable.common.Activator;
 
 /**
  * A reader of table reconcilers from the extensions
+ * @since 3.0
  */
 public class TableReconcilersReader extends RegistryReader {
 
