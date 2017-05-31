@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 515737
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.celleditor.config;
@@ -97,8 +97,10 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 	 */
 	@Override
 	public void configureCellEditor(IConfigRegistry configRegistry, Object axis, String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, getCellPainter(configRegistry, axis, configLabel), DisplayMode.NORMAL, configLabel);
-		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, getCellEditor(configRegistry, axis, configLabel), DisplayMode.EDIT, configLabel);
+		final Object axisElement = AxisUtils.getRepresentedElement(axis);
+
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, getCellPainter(configRegistry, axisElement, configLabel), DisplayMode.NORMAL, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, getCellEditor(configRegistry, axisElement, configLabel), DisplayMode.EDIT, configLabel);
 		// I believe that we don't need converters because we are working with the standard type --String.
 		// configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, null, DisplayMode.EDIT, configLabel);
 	}

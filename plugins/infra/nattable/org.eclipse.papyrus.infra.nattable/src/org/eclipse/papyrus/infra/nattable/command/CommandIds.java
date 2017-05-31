@@ -90,4 +90,15 @@ public class CommandIds {
 	 */
 	public static final String COMMAND_AUTO_RESIZE_CELL_HEIGHT = "org.eclipse.papyrus.infra.nattable.autoresize.cellheight"; //$NON-NLS-1$
 
+	/**
+	 * @since 5.0
+	 */
+	public static final String COMMAND_DISPLAY_LIST_ON_SEPARATED_ROWS_COLUMNHEADER = "org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.columnheader"; //$NON-NLS-1$
+
+	/**
+	 * @since 5.0
+	 */
+	public static final String COMMAND_DISPLAY_LIST_ON_SEPARATED_ROWS_ROWHEADER = "org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.rowheader"; //$NON-NLS-1$
+
+
 }

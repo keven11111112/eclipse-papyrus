@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 486101
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515737
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.painter;
 
@@ -45,18 +45,39 @@ public class CellPainterWithUnderlinedError extends TextPainter {
 	 * Constructor.
 	 *
 	 * @param wrapText
-     *            split text over multiple lines
-     * @param paintBg
-     *            skips painting the background if is FALSE
+	 *            split text over multiple lines
+	 * @param paintBg
+	 *            skips painting the background if is FALSE
 	 */
 	public CellPainterWithUnderlinedError(final boolean wrapText, final boolean paintBg) {
 		super(wrapText, paintBg);
 	}
 
 	/**
+	 * Constructor.
+	 *
+	 * @param wrapText
+	 *            Split text over multiple lines
+	 * @param paintBg
+	 *            Skip painting the background if is FALSE
+	 * @param spacing
+	 *            The space between text and cell border
+	 * @param calculateByTextLength
+	 *            Tell the text painter to calculate the cell border by
+	 *            containing text length
+	 * @param calculateByTextHeight
+	 *            Tell the text painter to calculate the cell border by
+	 *            containing text height
+	 * @since 5.0
+	 */
+	public CellPainterWithUnderlinedError(final boolean wrapText, final boolean paintBg, final int spacing, final boolean calculateByTextLength, final boolean calculateByTextHeight) {
+		super(wrapText, paintBg, spacing, calculateByTextLength, calculateByTextHeight);
+	}
+
+	/**
 	 * Just calculate if the cell is in error before manage the paint cell. This allows to manage a different pain decoration if needed.
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter#paintCell(org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell, org.eclipse.swt.graphics.GC, org.eclipse.swt.graphics.Rectangle,
 	 *      org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
 	 */
@@ -71,7 +92,7 @@ public class CellPainterWithUnderlinedError extends TextPainter {
 	/**
 	 * This allows to manage a different pain decoration (underline red) if the cell has an error.
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.nebula.widgets.nattable.painter.cell.AbstractTextPainter#paintDecoration(org.eclipse.nebula.widgets.nattable.style.IStyle, org.eclipse.swt.graphics.GC, int, int, int, int)
 	 */
 	@Override
@@ -100,11 +121,11 @@ public class CellPainterWithUnderlinedError extends TextPainter {
 
 	/**
 	 * This allows to determinate if the cell has an error.
-	 * 
+	 *
 	 * @param cell
 	 *            a cell.
 	 * @return
-	 *         <code>true</code> if the cell contents a Problem
+	 * 		<code>true</code> if the cell contents a Problem
 	 */
 	protected boolean hasError(final ILayerCell cell) {
 		Object value = cell.getDataValue();

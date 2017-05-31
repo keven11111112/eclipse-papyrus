@@ -966,7 +966,7 @@
           class="org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester"
           id="org.eclipse.papyrus.infra.nattable.tester"
           namespace="org.eclipse.papyrus.infra.nattable.tester"
-          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration, hasSlaveRowAxisProvider, hasSlaveColumnAxisProvider, canInvertAxis, isHierarchicTable"
+          properties="isNattableWidget, hasFeatureRowHeaderConfiguration, hasFeatureColumnHeaderConfiguration, hasSlaveRowAxisProvider, hasSlaveColumnAxisProvider, canInvertAxis, isHierarchicTable, isOneMultipleValuesAxisSelected"
           type="org.eclipse.jface.viewers.IStructuredSelection">
     </propertyTester>
     <propertyTester
@@ -1782,6 +1782,26 @@
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.category"
+            description="Display List On Separated Rows For Columne Header"
+            id="org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.columnheader"
+            name="Display List On Separated Rows">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.category"
+            description="Display List On Separated Rows For Row Header"
+            id="org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.rowheader"
+            name="Display List On Separated Rows">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -1797,6 +1817,60 @@
                commandId="org.eclipse.papyrus.infra.nattable.autoresize.cellheight"
                label="Auto Resize Cell Height"
                style="toggle">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.papyrus.infra.nattable.header.columns.menu?after=general.separator">
+         <command
+               commandId="org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.columnheader"
+               label="Display List On Separated Rows"
+               style="toggle">
+            <visibleWhen
+                  checkEnabled="true">
+                  <and>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                        value="true">
+                  </test>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.nattable.tester.isOneMultipleValuesAxisSelected"
+                        value="true">
+                  </test>
+               </with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.header.rows.menu?after=general.separator">
+         <command
+               commandId="org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.rowheader"
+               label="Display List On Separated Rows"
+               style="toggle">
+            <visibleWhen
+                  checkEnabled="true">
+                  <and>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                        value="true">
+                  </test>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.nattable.tester.isOneMultipleValuesAxisSelected"
+                        value="true">
+                  </test>
+               </with>
+               </and>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
@@ -1829,6 +1903,14 @@
                </test>
             </with>
          </activeWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.infra.nattable.handler.SetDisplayListOnSeparatedRowsHandler"
+            commandId="org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.columnheader">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.infra.nattable.handler.SetDisplayListOnSeparatedRowsHandler"
+            commandId="org.eclipse.papyrus.infra.nattable.displaylist.separatedrows.rowheader">
       </handler>
    </extension>
    <extension

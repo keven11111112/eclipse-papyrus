@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515737
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.configuration;
@@ -38,7 +38,6 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
@@ -59,7 +58,7 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.nebula.widgets.nattable.config.IConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
 	 *
 	 * @param configRegistry
@@ -109,9 +108,7 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 		Assert.isTrue(declareOnColumn != declareOnRow);
 		for (int i = 0; i < elements.size(); i++) {
 			Object current = elements.get(i);
-			if (current instanceof IAxis) {
-				current = ((IAxis) current).getElement();
-			}
+
 			boolean configWithNewRegistry = configureWithNewRegistry(configRegistry, current, i, columnAccumulator, rowAccumulator);
 			// boolean configWithOldFactory = false;
 			if (!configWithNewRegistry) {

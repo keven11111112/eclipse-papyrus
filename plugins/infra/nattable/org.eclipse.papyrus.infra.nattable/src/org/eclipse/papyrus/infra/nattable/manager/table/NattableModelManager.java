@@ -11,7 +11,7 @@
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 504077, 496905, 508175
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -714,6 +714,23 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			// Update the auto resize cell height state
 			command = commandService.getCommand(CommandIds.COMMAND_AUTO_RESIZE_CELL_HEIGHT);
 			updateToggleCommandState(command, StyleUtils.getBooleanNamedStyleValue(getTable(), NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT));
+
+			// Update the display list on separated rows state
+			// Get the selected axis index
+			final int selectedAxisIndex = AxisUtils.getUniqueSelectedAxisIndex(this);
+			// Always get the column axis provider for invert or non-invert table
+			final AbstractAxisProvider axisProvider = getTable().getCurrentColumnAxisProvider();
+
+			// If the index is in range, get the relevant axis and update its toggle command state
+			if (null != axisProvider && 0 <= selectedAxisIndex && selectedAxisIndex < axisProvider.getAxis().size()) {
+				final IAxis selectedAxis = axisProvider.getAxis().get(selectedAxisIndex);
+				String commandID = CommandIds.COMMAND_DISPLAY_LIST_ON_SEPARATED_ROWS_COLUMNHEADER;
+				if (getTable().isInvertAxis()) {
+					commandID = CommandIds.COMMAND_DISPLAY_LIST_ON_SEPARATED_ROWS_ROWHEADER;
+				}
+				command = commandService.getCommand(commandID);
+				updateToggleCommandState(command, StyleUtils.getBooleanNamedStyleValue(selectedAxis, NamedStyleConstants.DISPLAY_LIST_ON_SEPARATED_ROWS, NamedStyleConstants.ENABLE_DISPLAY_LIST_ON_SEPARATED_ROWS));
+			}
 
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service %s has not been found", ICommandService.class)); //$NON-NLS-1$

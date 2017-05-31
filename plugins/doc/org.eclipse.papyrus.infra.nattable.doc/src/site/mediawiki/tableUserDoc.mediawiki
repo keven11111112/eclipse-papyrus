@@ -218,8 +218,11 @@ Moreover Tree table provides some specific features
 [[File:images/ConfigureUnsupportedCellContent.PNG|frame|none|Preference to configure unsupported cell content]]
 :Then the content of all cells under unsupported columns will be updated immediately, as showed in the following figure:
 [[File:images/UnsupportedCellContentExample.PNG|frame|none|Unsupported cell content example]]
+; Display List on Separated Rows for fully selected columns/rows with multiple values<br> 
+[[File:images/DisplayListOnSeparatedRows.png|frame|none|Menu to Show/Hide Display List on Separated Rows]]
+: Select fully a column with multiple values (or a row in an invert table) then right click on the corresponding column header to show the context menu and select Display List On Separated Rows
 ===The list of available features for tables===
-This table lists all feature available for Tabular editors provided by Papyrus (the 6th of August 2017). This list could be considered as representative of tables capabilities '''assuming 3 points''':
+This table lists all feature available for Tabular editors provided by Papyrus (the 1st of September 2017). This list could be considered as representative of tables capabilities '''assuming 3 points''':
 # The table is not inverted
 # Elements are on rows
 # Features are on columns
@@ -412,6 +415,13 @@ if the user changed the configuration
 |-
 | Configure unsupported cell content
 | colspan="5" style="text-align: center;" | Yes (action provided by Preferences/Papyrus/NatTable/Cell Preferences)
+|-
+| Display List on Separated Rows for a fully selected column of multiple values
+| style="text-align: center;" | Yes
+| style="text-align: center;" | Yes
+| style="text-align: center;" | Yes
+| style="text-align: center;" | No
+| style="text-align: center;" | Yes
 |-
 |}
 

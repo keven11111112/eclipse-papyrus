@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,13 +8,17 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515737
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
 import org.eclipse.ui.IWorkbench;
@@ -28,6 +31,20 @@ import org.eclipse.ui.PlatformUI;
 public class NattableWidgetPropertyTester extends PropertyTester {
 
 	public static final String IS_NATTABLE_WIDGET = "isNattableWidget"; //$NON-NLS-1$
+
+	/**
+	 * The unbounded multiplicity number.
+	 *
+	 * @since 4.0
+	 */
+	protected static final int UNBOUNDED_MULTIPLICITY = -1;
+
+	/**
+	 * The string to test if one axis with multiple values is selected.
+	 *
+	 * @since 4.0
+	 */
+	protected static final String IS_ONE_MULTIPLE_VALUES_AXIS_SELECTED = "isOneMultipleValuesAxisSelected"; //$NON-NLS-1$
 
 	private static final String HAS_FEATURE_ROW_HEADER_CONFIGURATION = "hasFeatureRowHeaderConfiguration"; //$NON-NLS-1$
 
@@ -44,8 +61,9 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 	@Override
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		final INattableModelManager manager = getNattableModelManager();
+
 		if (IS_NATTABLE_WIDGET.equals(property) && expectedValue instanceof Boolean) {
-			return expectedValue.equals(null != manager) && ((!(Boolean)expectedValue) || manager.getAdapter(NatTable.class).isFocusControl());
+			return expectedValue.equals(null != manager) && ((!(Boolean) expectedValue) || manager.getAdapter(NatTable.class).isFocusControl());
 		}
 		if (manager != null && expectedValue instanceof Boolean) {
 			if (HAS_FEATURE_ROW_HEADER_CONFIGURATION.equals(property)) {
@@ -61,8 +79,33 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 				return expectedValue.equals(manager.canInvertAxis());
 			} else if (IS_HIERARCHIC_TABLE.equals(property)) {
 				return expectedValue.equals(isHierarchicTable(manager));
+			} else if (IS_ONE_MULTIPLE_VALUES_AXIS_SELECTED.equals(property)) {
+
+				// Get the selected axis index
+				final int axisIndex = AxisUtils.getUniqueSelectedAxisIndex(manager);
+
+				// Always get the column axis provider for invert or non-invert table
+				final AbstractAxisProvider axisProvider = manager.getTable().getCurrentColumnAxisProvider();
+
+				// If the index is in range
+				if (null != axisProvider && null != axisProvider.getAxis() && 0 <= axisIndex && axisIndex < axisProvider.getAxis().size()) {
+					final IAxis selectedAxis = axisProvider.getAxis().get(axisIndex);
+
+					// EOperationAxis is not supported in this moment as there is no cell editor configuration for operation axis
+					if (!(selectedAxis instanceof EOperationAxis)) {
+						// Get the selected axis element
+						final Object axisElement = selectedAxis.getElement();
+
+						// Check its upper bound if typed element can be casted from the axis element
+						if (axisElement instanceof ETypedElement) {
+							final ETypedElement typedElement = (ETypedElement) axisElement;
+							return expectedValue.equals(isMultipleValues(typedElement.getUpperBound()));
+						}
+					}
+				}
 			}
 		}
+
 		return false;
 	}
 
@@ -94,8 +137,18 @@ public class NattableWidgetPropertyTester extends PropertyTester {
 		}
 
 		if (current != null) {
-			return (INattableModelManager) current.getAdapter(INattableModelManager.class);
+			return current.getAdapter(INattableModelManager.class);
 		}
 		return null;
+	}
+
+	/**
+	 * @param upperBound
+	 *            The upper bound to be checked
+	 * @return <code>true</code> if upper bound > 1 or unbounded, <code>false</code> otherwise
+	 * @since 4.0
+	 */
+	protected boolean isMultipleValues(final int upperBound) {
+		return (upperBound > 1) || (UNBOUNDED_MULTIPLICITY == upperBound);
 	}
 }

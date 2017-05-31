@@ -9,7 +9,7 @@
  * Contributors:
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 515737
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -141,13 +141,29 @@ public class NamedStyleConstants {
 
 	/**
 	 * A {@link BooleanValueStyle} used to enable wrap text in the NatTable.
+	 *
 	 * @since 3.0
 	 */
 	public static final String WRAP_TEXT = "wrapText"; //$NON-NLS-1$
 
 	/**
 	 * A {@link BooleanValueStyle} used to enable auto-resize cell height in the NatTable.
+	 *
 	 * @since 3.0
 	 */
 	public static final String AUTO_RESIZE_CELL_HEIGHT = "autoResizeCellHeight"; //$NON-NLS-1$
+
+	/**
+	 * A {@link BooleanValueStyle} used to display list on separated rows in the NatTable.
+	 *
+	 * @since 4.0
+	 */
+	public static final String DISPLAY_LIST_ON_SEPARATED_ROWS = "displayListOnSeparatedRows"; //$NON-NLS-1$
+
+	/**
+	 * A default value used to enable the display list on separated rows function in the NatTable.
+	 * It is disable by default.
+	 * @since 5.0
+	 */
+	public static final boolean ENABLE_DISPLAY_LIST_ON_SEPARATED_ROWS = false;
 }
