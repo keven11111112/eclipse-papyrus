@@ -35,10 +35,6 @@ Nicolas Bros (Mia-Software) - stats for main and extra plug-ins
 	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.uml.diagram.clazz']/properties">
 		<xsl:call-template name="artifact_properties"/>
 	</xsl:template>
-
-	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.sysml']/properties">
-		<xsl:call-template name="artifact_properties"/>
-	</xsl:template>
 	
  	<xsl:template name="artifact_properties">
  		<properties size='{@size+1}'>
