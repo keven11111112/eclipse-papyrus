@@ -29,8 +29,11 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
 
 /**
@@ -69,7 +72,7 @@ public class PapyrusDiagramStyleItemProvider
 			super.getPropertyDescriptors(object);
 
 			addOwnerPropertyDescriptor(object);
-			addDiagramKindPropertyDescriptor(object);
+			addDiagramKindIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,23 +100,23 @@ public class PapyrusDiagramStyleItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Diagram Kind feature.
+	 * This adds a property descriptor for the Diagram Kind Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDiagramKindPropertyDescriptor(Object object) {
+	protected void addDiagramKindIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusDiagramStyle_diagramKind_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagramStyle_diagramKind_feature", "_UI_PapyrusDiagramStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND,
+				 getString("_UI_PapyrusDiagramStyle_diagramKindId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagramStyle_diagramKindId_feature", "_UI_PapyrusDiagramStyle_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -137,7 +140,10 @@ public class PapyrusDiagramStyleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PapyrusDiagramStyle_type"); //$NON-NLS-1$
+		String label = ((PapyrusDiagramStyle)object).getDiagramKindId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PapyrusDiagramStyle_type") : //$NON-NLS-1$
+			getString("_UI_PapyrusDiagramStyle_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 
@@ -151,6 +157,12 @@ public class PapyrusDiagramStyleItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(PapyrusDiagramStyle.class)) {
+			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

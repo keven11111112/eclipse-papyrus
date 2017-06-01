@@ -41,7 +41,6 @@ import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.RepresentationKindImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.RepresentationKindImpl#getConcerns <em>Concerns</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.RepresentationKindImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,25 +55,6 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 	 * @ordered
 	 */
 	protected EList<Concern> concerns;
-
-	/**
-	 * The default value of the '{@link #getIcon() <em>Icon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIcon()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ICON_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getIcon() <em>Icon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIcon()
-	 * @generated
-	 * @ordered
-	 */
-	protected String icon = ICON_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,27 +85,6 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 			concerns = new EObjectResolvingEList<Concern>(Concern.class, this, ArchitecturePackage.REPRESENTATION_KIND__CONCERNS);
 		}
 		return concerns;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getIcon() {
-		return icon;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIcon(String newIcon) {
-		String oldIcon = icon;
-		icon = newIcon;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.REPRESENTATION_KIND__ICON, oldIcon, icon));
 	}
 
 	/**
@@ -225,8 +184,6 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 				return getLanguage();
 			case ArchitecturePackage.REPRESENTATION_KIND__CONCERNS:
 				return getConcerns();
-			case ArchitecturePackage.REPRESENTATION_KIND__ICON:
-				return getIcon();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -247,9 +204,6 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 				getConcerns().clear();
 				getConcerns().addAll((Collection<? extends Concern>)newValue);
 				return;
-			case ArchitecturePackage.REPRESENTATION_KIND__ICON:
-				setIcon((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -268,9 +222,6 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 			case ArchitecturePackage.REPRESENTATION_KIND__CONCERNS:
 				getConcerns().clear();
 				return;
-			case ArchitecturePackage.REPRESENTATION_KIND__ICON:
-				setIcon(ICON_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -287,26 +238,8 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 				return getLanguage() != null;
 			case ArchitecturePackage.REPRESENTATION_KIND__CONCERNS:
 				return concerns != null && !concerns.isEmpty();
-			case ArchitecturePackage.REPRESENTATION_KIND__ICON:
-				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (icon: "); //$NON-NLS-1$
-		result.append(icon);
-		result.append(')');
-		return result.toString();
 	}
 
 } //RepresentationKindImpl

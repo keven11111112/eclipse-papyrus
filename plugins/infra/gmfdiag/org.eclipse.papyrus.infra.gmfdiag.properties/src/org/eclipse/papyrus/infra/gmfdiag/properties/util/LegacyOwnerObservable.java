@@ -22,6 +22,7 @@ import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -41,7 +42,7 @@ public class LegacyOwnerObservable extends AbstractObservableValue {
 
 	private EditingDomain domain;
 	private Diagram diagram;
-	private EReference reference;
+	private EStructuralFeature feature;
 	private IChangeListener styleListener;
 	private IChangeListener valueListener;
 	private PapyrusObservableValue styleObservable;
@@ -55,11 +56,11 @@ public class LegacyOwnerObservable extends AbstractObservableValue {
 	 * @param domain
 	 *            The editing domain
 	 */
-	public LegacyOwnerObservable(Diagram diagram, EReference feature, EditingDomain domain) {
+	public LegacyOwnerObservable(Diagram diagram, EStructuralFeature feature, EditingDomain domain) {
 		super(Realm.getDefault());
 		this.domain = domain;
 		this.diagram = diagram;
-		this.reference = feature;
+		this.feature = feature;
 		buildStyleListener();
 		this.styleObservable = new GMFObservableValue(diagram, NotationPackage.Literals.VIEW__STYLES, domain);
 		this.styleObservable.addChangeListener(styleListener);
@@ -116,7 +117,7 @@ public class LegacyOwnerObservable extends AbstractObservableValue {
 				});
 			}
 		};
-		valueObservable = new GMFObservableValue(style, reference, domain);
+		valueObservable = new GMFObservableValue(style, feature, domain);
 		valueObservable.addChangeListener(valueListener);
 	}
 

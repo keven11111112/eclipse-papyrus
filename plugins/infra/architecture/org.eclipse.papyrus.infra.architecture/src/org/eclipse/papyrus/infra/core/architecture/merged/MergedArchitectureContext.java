@@ -48,34 +48,6 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	}
 
 	/**
-	 * Gets the context's id
-	 * 
-	 * @return an id
-	 */
-	public String getId() {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getId() != null)
-				return context.getId();
-		}
-		return null;
-	}
-
-	/**
-	 * Gets the context's icon path
-	 * 
-	 * @return an icon path
-	 */
-	public String getIcon() {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getIcon() != null)
-				return context.getIcon();
-		}
-		return null;
-	}
-
-	/**
 	 * Gets the context's extension prefix
 	 * 
 	 * @return an extension prefix
@@ -180,16 +152,4 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 		return Collections.unmodifiableCollection(viewpoints.values());
 	}
 
-	/*
-	 * Gets the merge increment that has an icon value
-	 */
-	@Override
-	public Object getImageObject() {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getIcon() != null)
-				return context;
-		}
-		return super.getImageObject();
-	}
 }

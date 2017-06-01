@@ -3,10 +3,12 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="architecture" nsURI="http://www.eclipse.org/papyrus/infra/core/architecture"
     nsPrefix="architecture">
   <eClassifiers xsi:type="ecore:EClass" name="ADElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureDomain" eSuperTypes="#//ADElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholders" upperBound="-1"
@@ -41,7 +43,6 @@
         eType="#//RepresentationKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
         eType="#//ArchitectureContext" eOpposite="#//ArchitectureContext/viewpoints"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepresentationKind" abstract="true"
       eSuperTypes="#//ADElement">
@@ -49,7 +50,6 @@
         eType="#//ArchitectureDescriptionLanguage" eOpposite="#//ArchitectureDescriptionLanguage/representationKinds"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="concerns" upperBound="-1"
         eType="#//Concern"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureContext" abstract="true"
       eSuperTypes="#//ADElement">
@@ -61,8 +61,6 @@
         eType="ecore:EClass ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
         eType="#//ArchitectureDomain" eOpposite="#//ArchitectureDomain/contexts"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionPrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationCommandClass" lowerBound="1">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">

@@ -234,13 +234,22 @@ public interface NattablePackage extends EPackage {
 	int TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>Table Kind Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__TABLE_KIND_ID = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 13;
+	int TABLE_FEATURE_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -441,6 +450,17 @@ public interface NattablePackage extends EPackage {
 	EReference getTable_OwnedCellEditorConfigurations();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableKindId <em>Table Kind Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Table Kind Id</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableKindId()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EAttribute getTable_TableKindId();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -577,5 +597,13 @@ public interface NattablePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS = eINSTANCE.getTable_OwnedCellEditorConfigurations();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Kind Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE__TABLE_KIND_ID = eINSTANCE.getTable_TableKindId();
 	}
 } // NattablePackage

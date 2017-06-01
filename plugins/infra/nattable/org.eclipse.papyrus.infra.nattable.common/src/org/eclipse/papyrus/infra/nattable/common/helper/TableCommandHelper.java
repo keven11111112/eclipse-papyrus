@@ -18,7 +18,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
@@ -66,7 +68,7 @@ public class TableCommandHelper implements IViewTypeHelper {
 			return false;
 		}
 		Table table = (Table) view;
-		return (table.getPrototype() instanceof PapyrusTable);
+		return (table.getTableKindId() != null);
 	}
 
 	@Override
@@ -75,7 +77,8 @@ public class TableCommandHelper implements IViewTypeHelper {
 			return null;
 		}
 		PolicyChecker checker = PolicyChecker.getFor(view);
-		PapyrusTable repKind = (PapyrusTable) ((Table)view).getPrototype();
+		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
+		PapyrusTable repKind =  (PapyrusTable) manager.getRepresentationKindById(((Table)view).getTableKindId());
 		if (checker.isInViewpoint(repKind))
 			return getPrototypeFor(repKind);
 		return ViewPrototype.UNAVAILABLE_VIEW;

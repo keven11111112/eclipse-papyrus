@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeTo
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -153,7 +154,9 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 
 					boolean match = false;
 					if (null != papyrusDiagramStyle) {
-						match = diagramName.equals(papyrusDiagramStyle.getDiagramKind().getName());
+						ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
+						PapyrusDiagram repKind = (PapyrusDiagram) manager.getRepresentationKindById(papyrusDiagramStyle.getDiagramKindId());
+						match = diagramName.equals(repKind.getName());
 					} else if (null != implementationID) {
 						// If there is no diagram style we match on the implementation ID. See bug 516878
 						match = null != diagramPalette && implementationID.equals(diagramPalette.getType());

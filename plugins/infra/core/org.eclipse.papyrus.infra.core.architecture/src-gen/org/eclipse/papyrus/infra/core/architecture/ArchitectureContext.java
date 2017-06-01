@@ -29,8 +29,6 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDefaultViewpoints <em>Default Viewpoints</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getElementTypes <em>Element Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getId <em>Id</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getExtensionPrefix <em>Extension Prefix</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getCreationCommandClass <em>Creation Command Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getConversionCommandClass <em>Conversion Command Class</em>}</li>
@@ -90,58 +88,6 @@ public interface ArchitectureContext extends ADElement {
 	 * @generated
 	 */
 	EList<ElementTypeSetConfiguration> getElementTypes();
-
-	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(String)
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_Id()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getId();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
-	 * @see #getId()
-	 * @generated
-	 */
-	void setId(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Icon</em>' attribute.
-	 * @see #setIcon(String)
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_Icon()
-	 * @model
-	 * @generated
-	 */
-	String getIcon();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getIcon <em>Icon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Icon</em>' attribute.
-	 * @see #getIcon()
-	 * @generated
-	 */
-	void setIcon(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Extension Prefix</b></em>' attribute.

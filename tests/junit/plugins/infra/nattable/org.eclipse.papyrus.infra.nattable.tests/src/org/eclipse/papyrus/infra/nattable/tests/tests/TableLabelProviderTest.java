@@ -19,19 +19,14 @@ import static org.junit.Assume.assumeThat;
 
 import java.util.Collections;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainPreferences;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.nattable.common.reconciler.TableVersioningUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -134,6 +129,7 @@ public class TableLabelProviderTest {
 		
 		proto = RepresentationFactory.eINSTANCE.createPapyrusTable();
 		proto.setName("Test Table");
+		proto.setId("org.eclipse.papyrus.infra.nattable.tests.table.test");
 		proto.setImplementationID("org.eclipse.papyrus.infra.nattable.tests.TestTable");
 		//proto.setConfiguration("TestTable");
 		language.getRepresentationKinds().add(proto);
@@ -152,7 +148,7 @@ public class TableLabelProviderTest {
 		table = NattableFactory.eINSTANCE.createTable();
 		TableVersioningUtils.stampCurrentVersion(table);
 		table.setName("classes");
-		table.setPrototype(proto);
+		table.setTableKindId(proto.getId());
 		table.setContext(package_);
 	}
 

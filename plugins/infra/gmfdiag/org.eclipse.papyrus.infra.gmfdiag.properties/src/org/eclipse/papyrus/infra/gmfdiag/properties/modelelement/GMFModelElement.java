@@ -113,9 +113,9 @@ public class GMFModelElement extends EMFModelElement {
 			Diagram diagram = (Diagram) source;
 			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
 			if (style != null) {
-				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND, domain);
+				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID, domain);
 			}
-			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND, domain);
+			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID, domain);
 		}
 
 		FeaturePath featurePath = getFeaturePath(propertyPath);

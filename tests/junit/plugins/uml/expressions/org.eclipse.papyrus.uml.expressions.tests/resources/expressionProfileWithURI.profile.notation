@@ -76,9 +76,8 @@
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_o0MdkSgyEeeoAJG6t_MwCA" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_o0MdkigyEeeoAJG6t_MwCA"/>
-  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_o0MdkygyEeeoAJG6t_MwCA">
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_o0MdkygyEeeoAJG6t_MwCA" diagramKindId="org.eclipse.papyrus.uml.diagram.profile">
     <owner xmi:type="uml:Profile" href="expressionProfileWithURI.profile.uml#_ozrgMCgyEeeoAJG6t_MwCA"/>
-    <diagramKind xmi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_UekVgHDwEeWh-MssWmCB_A"/>
   </styles>
   <element xmi:type="uml:Profile" href="expressionProfileWithURI.profile.uml#_ozrgMCgyEeeoAJG6t_MwCA"/>
   <edges xmi:type="notation:Connector" xmi:id="_tP83MCgyEeeoAJG6t_MwCA" type="StereotypeCommentLink" source="_tPCRMCgyEeeoAJG6t_MwCA" target="_tP8QICgyEeeoAJG6t_MwCA">

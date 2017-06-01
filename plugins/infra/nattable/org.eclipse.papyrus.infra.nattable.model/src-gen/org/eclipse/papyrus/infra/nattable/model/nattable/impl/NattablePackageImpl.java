@@ -206,7 +206,6 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getTable_Prototype() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(2);
 	}
@@ -315,6 +314,15 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTable_TableKindId() {
+		return (EAttribute)tableEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NattableFactory getNattableFactory() {
 		return (NattableFactory)getEFactoryInstance();
@@ -353,6 +361,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		createEReference(tableEClass, TABLE__CURRENT_COLUMN_AXIS_PROVIDER);
 		createEReference(tableEClass, TABLE__CELLS);
 		createEReference(tableEClass, TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS);
+		createEAttribute(tableEClass, TABLE__TABLE_KIND_ID);
 	}
 
 	/**
@@ -390,6 +399,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		NattablestylePackage theNattablestylePackage = (NattablestylePackage)EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
 		NattablecelleditorPackage theNattablecelleditorPackage = (NattablecelleditorPackage)EPackage.Registry.INSTANCE.getEPackage(NattablecelleditorPackage.eNS_URI);
 		NattablewrapperPackage theNattablewrapperPackage = (NattablewrapperPackage)EPackage.Registry.INSTANCE.getEPackage(NattablewrapperPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theNattableconfigurationPackage);
@@ -415,7 +425,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTable_Context(), ecorePackage.getEObject(), null, "context", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_Owner(), ecorePackage.getEObject(), null, "owner", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTable_Prototype(), ecorePackage.getEObject(), null, "prototype", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_Prototype(), ecorePackage.getEObject(), null, "prototype", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_TableConfiguration(), theNattableconfigurationPackage.getTableConfiguration(), null, "tableConfiguration", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTable_InvertAxis(), ecorePackage.getEBoolean(), "invertAxis", "false", 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getTable_ColumnAxisProvidersHistory(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "columnAxisProvidersHistory", null, 1, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -426,6 +436,7 @@ public class NattablePackageImpl extends EPackageImpl implements NattablePackage
 		initEReference(getTable_CurrentColumnAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "currentColumnAxisProvider", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_Cells(), theNattablecellPackage.getCell(), null, "cells", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTable_OwnedCellEditorConfigurations(), theNattablecelleditorPackage.getICellEditorConfiguration(), null, "ownedCellEditorConfigurations", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTable_TableKindId(), theEcorePackage.getEString(), "tableKindId", null, 1, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

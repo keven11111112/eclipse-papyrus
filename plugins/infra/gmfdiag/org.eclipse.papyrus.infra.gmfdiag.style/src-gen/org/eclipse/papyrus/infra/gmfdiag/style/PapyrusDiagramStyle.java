@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.gmf.runtime.notation.Style;
 
-import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Papyrus Diagram Style</b></em>'.
@@ -29,7 +27,7 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getOwner <em>Owner</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKind <em>Diagram Kind</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKindId <em>Diagram Kind Id</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.style.StylePackage#getPapyrusDiagramStyle()
@@ -64,29 +62,29 @@ public interface PapyrusDiagramStyle extends Style {
 	void setOwner(EObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Diagram Kind</b></em>' reference.
+	 * Returns the value of the '<em><b>Diagram Kind Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Diagram Kind</em>' reference isn't clear,
+	 * If the meaning of the '<em>Diagram Kind Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Diagram Kind</em>' reference.
-	 * @see #setDiagramKind(PapyrusDiagram)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.style.StylePackage#getPapyrusDiagramStyle_DiagramKind()
+	 * @return the value of the '<em>Diagram Kind Id</em>' attribute.
+	 * @see #setDiagramKindId(String)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.style.StylePackage#getPapyrusDiagramStyle_DiagramKindId()
 	 * @model
 	 * @generated
 	 */
-	PapyrusDiagram getDiagramKind();
+	String getDiagramKindId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKind <em>Diagram Kind</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKindId <em>Diagram Kind Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Diagram Kind</em>' reference.
-	 * @see #getDiagramKind()
+	 * @param value the new value of the '<em>Diagram Kind Id</em>' attribute.
+	 * @see #getDiagramKindId()
 	 * @generated
 	 */
-	void setDiagramKind(PapyrusDiagram value);
+	void setDiagramKindId(String value);
 
 } // PapyrusDiagramStyle

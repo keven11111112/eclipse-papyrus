@@ -190,9 +190,8 @@
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_aRQG4QfYEeecBNIdvHNERQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_aRQG4gfYEeecBNIdvHNERQ"/>
-  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_UyzUYA1uEeeQy-14Ti5JsQ">
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_UyzUYA1uEeeQy-14Ti5JsQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
     <owner xmi:type="uml:Model" href="model.uml#_aM2vEAfYEeecBNIdvHNERQ"/>
-    <diagramKind xmi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_zzf4gHDtEeWh-MssWmCB_A"/>
   </styles>
   <element xmi:type="uml:Model" href="model.uml#_aM2vEAfYEeecBNIdvHNERQ"/>
   <edges xmi:type="notation:Connector" xmi:id="_kh3H0BCbEeeJu4TZy_sr1Q" type="Association_Edge" source="_jkm1YBCbEeeJu4TZy_sr1Q" target="_kCu70BCbEeeJu4TZy_sr1Q">

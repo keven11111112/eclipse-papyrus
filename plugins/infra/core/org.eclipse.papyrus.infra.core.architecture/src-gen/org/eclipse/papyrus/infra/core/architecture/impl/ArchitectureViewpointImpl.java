@@ -43,7 +43,6 @@ import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureViewpointImpl#getConcerns <em>Concerns</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureViewpointImpl#getRepresentationKinds <em>Representation Kinds</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureViewpointImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureViewpointImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -68,26 +67,6 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 	 * @ordered
 	 */
 	protected EList<RepresentationKind> representationKinds;
-
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -178,27 +157,6 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(String newId) {
-		String oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.ARCHITECTURE_VIEWPOINT__ID, oldId, id));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -252,8 +210,6 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 				return getRepresentationKinds();
 			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT:
 				return getContext();
-			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__ID:
-				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,9 +234,6 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT:
 				setContext((ArchitectureContext)newValue);
 				return;
-			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__ID:
-				setId((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -302,9 +255,6 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT:
 				setContext((ArchitectureContext)null);
 				return;
-			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__ID:
-				setId(ID_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -323,26 +273,8 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 				return representationKinds != null && !representationKinds.isEmpty();
 			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT:
 				return getContext() != null;
-			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: "); //$NON-NLS-1$
-		result.append(id);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ArchitectureViewpointImpl

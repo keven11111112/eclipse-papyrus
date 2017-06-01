@@ -24,6 +24,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/currentColumnAxisProvider"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/cells"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/ownedCellEditorConfigurations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//Table/tableKindId"/>
     </genClasses>
     <nestedGenPackages prefix="Nattableconfiguration" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
         disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattableconfiguration">

@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
@@ -223,16 +222,8 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 			for (EObject element : current.getContents()) {
 				if (element instanceof Table) {
 					Table table = (Table) element;
-					EObject prototype = table.getPrototype();
-					if (prototype instanceof TableViewPrototype) {
-						final String implementationID = ((TableViewPrototype) prototype).getImplementation();
-						if (tableType.equals(implementationID)) {
-							matchingTables.add(table);
-						}
-					} else {
-						if (tableType.equals(table.getTableConfiguration().getType())) {
-							matchingTables.add(table);
-						}
+					if (tableType.equals(table.getTableConfiguration().getType())) {
+						matchingTables.add(table);
 					}
 				}
 			}
@@ -313,13 +304,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 						matchName = tableName.equals(table.getName());
 					}
 					if (tableType != null) {
-						EObject prototype = table.getPrototype();
-						if (prototype instanceof TableViewPrototype) {
-							final String implementationID = ((TableViewPrototype) prototype).getImplementation();
-							matchType = tableType.equals(implementationID);
-						} else {
-							matchType = tableType.equals(table.getTableConfiguration().getType());
-						}
+						matchType = tableType.equals(table.getTableConfiguration().getType());
 					}
 					if (tableOwner != null) {
 						matchOwner = tableOwner.equals(table.getOwner());

@@ -22,7 +22,9 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.ui.emf.utils.EcoreModelContentProvider;
@@ -104,7 +106,9 @@ public class ContextFeatureContentProvider extends EcoreModelContentProvider imp
 		if (!(element instanceof EObject)) {
 			return false;
 		}
-		ViewPrototype prototype = ViewPrototype.get((PapyrusRepresentationKind) table.getPrototype());
+		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
+		RepresentationKind repKind = manager.getRepresentationKindById(table.getTableKindId());
+		ViewPrototype prototype = ViewPrototype.get((PapyrusRepresentationKind) repKind);
 		if (prototype == null) {
 			return false;
 		}

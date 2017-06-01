@@ -46,8 +46,6 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getDefaultViewpoints <em>Default Viewpoints</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getElementTypes <em>Element Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getId <em>Id</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getExtensionPrefix <em>Extension Prefix</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getCreationCommandClass <em>Creation Command Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureContextImpl#getConversionCommandClass <em>Conversion Command Class</em>}</li>
@@ -85,46 +83,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * @ordered
 	 */
 	protected EList<ElementTypeSetConfiguration> elementTypes;
-
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String id = ID_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getIcon() <em>Icon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIcon()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ICON_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getIcon() <em>Icon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIcon()
-	 * @generated
-	 * @ordered
-	 */
-	protected String icon = ICON_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExtensionPrefix() <em>Extension Prefix</em>}' attribute.
@@ -219,48 +177,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			elementTypes = new EObjectResolvingEList<ElementTypeSetConfiguration>(ElementTypeSetConfiguration.class, this, ArchitecturePackage.ARCHITECTURE_CONTEXT__ELEMENT_TYPES);
 		}
 		return elementTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(String newId) {
-		String oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.ARCHITECTURE_CONTEXT__ID, oldId, id));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getIcon() {
-		return icon;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIcon(String newIcon) {
-		String oldIcon = icon;
-		icon = newIcon;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.ARCHITECTURE_CONTEXT__ICON, oldIcon, icon));
 	}
 
 	/**
@@ -432,10 +348,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 				return getElementTypes();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN:
 				return getDomain();
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ID:
-				return getId();
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ICON:
-				return getIcon();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__EXTENSION_PREFIX:
 				return getExtensionPrefix();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS:
@@ -470,12 +382,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN:
 				setDomain((ArchitectureDomain)newValue);
 				return;
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ID:
-				setId((String)newValue);
-				return;
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ICON:
-				setIcon((String)newValue);
-				return;
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__EXTENSION_PREFIX:
 				setExtensionPrefix((String)newValue);
 				return;
@@ -509,12 +415,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN:
 				setDomain((ArchitectureDomain)null);
 				return;
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ID:
-				setId(ID_EDEFAULT);
-				return;
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ICON:
-				setIcon(ICON_EDEFAULT);
-				return;
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__EXTENSION_PREFIX:
 				setExtensionPrefix(EXTENSION_PREFIX_EDEFAULT);
 				return;
@@ -544,10 +444,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 				return elementTypes != null && !elementTypes.isEmpty();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN:
 				return getDomain() != null;
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ICON:
-				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__EXTENSION_PREFIX:
 				return EXTENSION_PREFIX_EDEFAULT == null ? extensionPrefix != null : !EXTENSION_PREFIX_EDEFAULT.equals(extensionPrefix);
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS:
@@ -568,11 +464,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: "); //$NON-NLS-1$
-		result.append(id);
-		result.append(", icon: "); //$NON-NLS-1$
-		result.append(icon);
-		result.append(", extensionPrefix: "); //$NON-NLS-1$
+		result.append(" (extensionPrefix: "); //$NON-NLS-1$
 		result.append(extensionPrefix);
 		result.append(", creationCommandClass: "); //$NON-NLS-1$
 		result.append(creationCommandClass);

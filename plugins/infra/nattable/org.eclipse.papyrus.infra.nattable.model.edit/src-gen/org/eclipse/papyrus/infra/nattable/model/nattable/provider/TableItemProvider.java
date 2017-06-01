@@ -76,6 +76,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 			addInvertAxisPropertyDescriptor(object);
 			addCurrentRowAxisProviderPropertyDescriptor(object);
 			addCurrentColumnAxisProviderPropertyDescriptor(object);
+			addTableKindIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -235,6 +236,28 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Table Kind Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTableKindIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Table_tableKindId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Table_tableKindId_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablePackage.Literals.TABLE__TABLE_KIND_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -308,6 +331,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 
 		switch (notification.getFeatureID(Table.class)) {
 			case NattablePackage.TABLE__INVERT_AXIS:
+			case NattablePackage.TABLE__TABLE_KIND_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case NattablePackage.TABLE__COLUMN_AXIS_PROVIDERS_HISTORY:

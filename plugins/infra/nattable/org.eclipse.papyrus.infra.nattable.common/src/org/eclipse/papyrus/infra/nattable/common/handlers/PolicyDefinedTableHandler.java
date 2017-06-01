@@ -70,7 +70,7 @@ public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
 						Table table = PolicyDefinedTableHandler.this.doExecute(serviceRegistry, name, this.description);
 						TableVersioningUtils.stampCurrentVersion(table);
 						table.setOwner(context);
-						table.setPrototype(prototype.getRepresentationKind());
+						table.setTableKindId(prototype.getRepresentationKind().getId());
 					} catch (Exception ex) {
 						Activator.log.error(ex);
 					}

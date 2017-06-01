@@ -19,6 +19,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 
 /**
  * An element that represents a merged collection of {@link org.eclipse.papyrus.infra.core.
@@ -64,6 +65,19 @@ public class MergedADElement {
 	}
 
 	/**
+	 * Gets the context's id
+	 * 
+	 * @return an id
+	 */
+	public String getId() {
+		for (ADElement element : elements) {
+			if (element.getId() != null)
+				return element.getId();
+		}
+		return null;
+	}
+
+	/**
 	 * Get the element's name
 	 * 
 	 * @return a name
@@ -103,6 +117,18 @@ public class MergedADElement {
 	}
 
 	/**
+	 * Gets the context's icon path
+	 * 
+	 * @return an icon path
+	 */
+	public String getIcon() {
+		Object obj = getImageObject();
+		if (obj instanceof ADElement)
+			return ((ADElement)obj).getIcon();
+		return null;
+	}
+
+	/**
 	 * Get a merge increment whose image represents that of the merged element   
 	 * 
 	 * By default, any one of the merge increments will be returned. Subclasses may override.
@@ -110,8 +136,10 @@ public class MergedADElement {
 	 * @return a merge increment
 	 */
 	public Object getImageObject() {
-		if (!elements.isEmpty())
-			return elements.iterator().next();
+		for (ADElement element : elements) {
+			if (element.getIcon() != null)
+				return element;
+		}
 		return null;
 	}
 

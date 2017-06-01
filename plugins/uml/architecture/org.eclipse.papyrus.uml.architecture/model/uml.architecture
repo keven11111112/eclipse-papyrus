@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<architecture:ArchitectureDomain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture="http://www.eclipse.org/papyrus/infra/core/architecture" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:gmfdiagrepresentation="http://www.eclipse.org/papyrus/infra/gmfdiag/representation" xmlns:nattablerepresentation="http://www.eclipse.org/papyrus/infra/nattable/representation" xmi:id="_HQhf4MSYEeaKZJ_pGfaSiA" name="Software Engineering" description="The domain of developing software systems">
-  <stakeholders xmi:id="_HQhf4cSYEeaKZJ_pGfaSiA" name="Software Engineer" description="An engineer interested in software development" concerns="_HQhf4sSYEeaKZJ_pGfaSiA _HQhf48SYEeaKZJ_pGfaSiA _HQhf5MSYEeaKZJ_pGfaSiA"/>
-  <stakeholders xmi:id="_IigrMMSjEeaCPPhpB0_9OQ" name="Domain Architect" concerns="_NxfRgMSjEeaCPPhpB0_9OQ"/>
-  <concerns xmi:id="_NxfRgMSjEeaCPPhpB0_9OQ" name="Profiles" description="The concern of defining the domain profiles"/>
-  <concerns xmi:id="_HQhf4sSYEeaKZJ_pGfaSiA" name="Use Cases" description="The concern of defining the system's use cases"/>
-  <concerns xmi:id="_HQhf48SYEeaKZJ_pGfaSiA" name="Structure" description="The concern of developing the system's structure"/>
-  <concerns xmi:id="_HQhf5MSYEeaKZJ_pGfaSiA" name="Behavior" description="The concern of developing the system's behavior"/>
-  <contexts xsi:type="architecture:ArchitectureDescriptionLanguage" xmi:id="_HQhf5cSYEeaKZJ_pGfaSiA" name="UML" description="The Unified Modeling Language" id="org.eclipse.papyrus.infra.services.edit.TypeContext" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/uml.gif" creationCommandClass="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand">
-    <viewpoints xmi:id="_HQhf5sSYEeaKZJ_pGfaSiA" name="Software Analysis" description="A viewpoint allowing software analysis with UML" representationKinds="_yeY0sHDvEeWh-MssWmCB_A _zzf4gHDtEeWh-MssWmCB_A _zzf4cXDtEeWh-MssWmCB_A _P3J1cEb7EeRVGbM3cmVSqQ _Uz8agHDcEeWh-MssWmCB_A _P3J1cEa7EeSVGbM3cmVSqQ _WC1q0P4UEhSRsNBVzfUrzA _wXztQHDwEwWh-MssWmCB_A _d4-QwCT-EeedRqoTe_1ZiA" id="org.eclipse.papyrus.uml.analysis"/>
-    <viewpoints xmi:id="_OOrIUMSZEeaKZJ_pGfaSiA" name="Software Design" description="A viewpoint allowing software design with UML" representationKinds="_UzcgsHDtEeWh-MssWmCB_A _zzf4gHDtEeWh-MssWmCB_A _jRtroHDuEeWh-MssWmCB_A _fa4kAHDuEeWh-MssWmCB_A _fa4kBHDuEeWh-MssWmCB_A _bKiwMHDuEeWh-MssWmCB_A _bKiwNHDuEeWh-MssWmCB_A _ARGokHDuEeWh-MssWmCB_A _zzf4YHDtEeWh-MssWmCB_A _FuMjYHDuEeWh-MssWmCB_A _zzf4cXDtEeWh-MssWmCB_A _TR15IHDvEeWh-MssWmCB_A _PwD0cHDvEeWh-MssWmCB_A _LzyMIHDvEeWh-MssWmCB_A _P3J1cEb7EeRVGbM3cmVSqQ _Uz8agHDcEeWh-MssWmCB_A _P3J1cEa7EeSVGbM3cmVSqQ _WC1q0P4UEhSRsNBVzfUrzA _wXztQHDwEwWh-MssWmCB_A _d4-QwCT-EeedRqoTe_1ZiA" id="org.eclipse.papyrus.uml.design"/>
+<architecture:ArchitectureDomain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture="http://www.eclipse.org/papyrus/infra/core/architecture" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:gmfdiagrepresentation="http://www.eclipse.org/papyrus/infra/gmfdiag/representation" xmlns:nattablerepresentation="http://www.eclipse.org/papyrus/infra/nattable/representation" xmi:id="_HQhf4MSYEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.softwareEngineering" name="Software Engineering" description="The domain of developing software systems">
+  <stakeholders xmi:id="_HQhf4cSYEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.softwareEngineering.softwareEngineer" name="Software Engineer" description="An engineer interested in software development" concerns="_HQhf4sSYEeaKZJ_pGfaSiA _HQhf48SYEeaKZJ_pGfaSiA _HQhf5MSYEeaKZJ_pGfaSiA"/>
+  <stakeholders xmi:id="_IigrMMSjEeaCPPhpB0_9OQ" id="org.eclipse.papyrus.softwareEngineering.domainArchitect" name="Domain Architect" concerns="_NxfRgMSjEeaCPPhpB0_9OQ"/>
+  <concerns xmi:id="_NxfRgMSjEeaCPPhpB0_9OQ" id="org.eclipse.papyrus.softwareEngineering.profiles" name="Profiles" description="The concern of defining the domain profiles"/>
+  <concerns xmi:id="_HQhf4sSYEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.softwareEngineering.useCases" name="Use Cases" description="The concern of defining the system's use cases"/>
+  <concerns xmi:id="_HQhf48SYEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.softwareEngineering.structure" name="Structure" description="The concern of developing the system's structure"/>
+  <concerns xmi:id="_HQhf5MSYEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.softwareEngineering.behavior" name="Behavior" description="The concern of developing the system's behavior"/>
+  <contexts xsi:type="architecture:ArchitectureDescriptionLanguage" xmi:id="_HQhf5cSYEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.infra.services.edit.TypeContext" name="UML" description="The Unified Modeling Language" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/uml.gif" creationCommandClass="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand">
+    <viewpoints xmi:id="_HQhf5sSYEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.uml.analysis" name="Software Analysis" description="A viewpoint allowing software analysis with UML" representationKinds="_yeY0sHDvEeWh-MssWmCB_A _zzf4gHDtEeWh-MssWmCB_A _zzf4cXDtEeWh-MssWmCB_A _P3J1cEb7EeRVGbM3cmVSqQ _Uz8agHDcEeWh-MssWmCB_A _P3J1cEa7EeSVGbM3cmVSqQ _WC1q0P4UEhSRsNBVzfUrzA _wXztQHDwEwWh-MssWmCB_A _d4-QwCT-EeedRqoTe_1ZiA"/>
+    <viewpoints xmi:id="_OOrIUMSZEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.uml.design" name="Software Design" description="A viewpoint allowing software design with UML" representationKinds="_UzcgsHDtEeWh-MssWmCB_A _zzf4gHDtEeWh-MssWmCB_A _jRtroHDuEeWh-MssWmCB_A _fa4kAHDuEeWh-MssWmCB_A _fa4kBHDuEeWh-MssWmCB_A _bKiwMHDuEeWh-MssWmCB_A _bKiwNHDuEeWh-MssWmCB_A _ARGokHDuEeWh-MssWmCB_A _zzf4YHDtEeWh-MssWmCB_A _FuMjYHDuEeWh-MssWmCB_A _zzf4cXDtEeWh-MssWmCB_A _TR15IHDvEeWh-MssWmCB_A _PwD0cHDvEeWh-MssWmCB_A _LzyMIHDvEeWh-MssWmCB_A _P3J1cEb7EeRVGbM3cmVSqQ _Uz8agHDcEeWh-MssWmCB_A _P3J1cEa7EeSVGbM3cmVSqQ _WC1q0P4UEhSRsNBVzfUrzA _wXztQHDwEwWh-MssWmCB_A _d4-QwCT-EeedRqoTe_1ZiA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.emf/model/infra-emf.elementtypesconfigurations#_rWI4YHPzEeSnGJwaJWHCSg"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/notation.elementtypesconfigurations#_ScP1oFYCEeS0WsAAtVmToA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/gmfdiag-common.elementtypesconfigurations#_rWI4YHPzEeSnGJwaJWHCSg"/>
@@ -31,7 +31,7 @@
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/StandardProfile.elementtypesconfigurations#_jfoLkGT_EeSEqNuV3JpFCA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_ScP1oFYCEeS0WsAAtVmToA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types.ui/model/uml-advice.elementtypesconfigurations#_ScP1oFYCEeS0WsAAtVmToA"/>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_UzcgsHDtEeWh-MssWmCB_A" name="Activity Diagram" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.activity/icons/obj16/Diagram_Activity.gif" implementationID="PapyrusUMLActivityDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_UzcgsHDtEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.activity" name="Activity Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.activity/icons/obj16/Diagram_Activity.gif" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLActivityDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand">
       <modelRules xmi:id="_UzcgsXDtEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </modelRules>
@@ -59,7 +59,7 @@
       <childRules xmi:id="_UzcguXDtEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.activity/model/PapyrusUMLActivityDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_zzf4gHDtEeWh-MssWmCB_A" name="Class Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_zzf4gHDtEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.class" name="Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLClassDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
       <modelRules xmi:id="_zzf4gXDtEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -69,7 +69,7 @@
       <childRules xmi:id="_zzf4g3DtEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/model/PapyrusUMLClassDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_zzf4YHDtEeWh-MssWmCB_A" name="Inner Class Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_zzf4YHDtEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.innerClass" name="Inner Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLClassDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
       <modelRules xmi:id="_zzf4YXDtEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </modelRules>
@@ -103,7 +103,7 @@
       <paletteRules xmi:id="_zzf4b3DtEeWh-MssWmCB_A" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_zzf4cHDtEeWh-MssWmCB_A" element=""/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_zzf4cXDtEeWh-MssWmCB_A" name="Package Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif" implementationID="PapyrusUMLClassDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_zzf4cXDtEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.package" name="Package Diagram" icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLClassDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
       <modelRules xmi:id="_zzf4cnDtEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -123,7 +123,7 @@
       <paletteRules xmi:id="_zzf4fnDtEeWh-MssWmCB_A" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_zzf4f3DtEeWh-MssWmCB_A" element=""/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_jRtroHDuEeWh-MssWmCB_A" name="Communication Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.communication/icons/obj16/Diagram_Communication.gif" implementationID="PapyrusUMLCommunicationDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.communication.CreateCommunicationDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_jRtroHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.communication" name="Communication Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.communication/icons/obj16/Diagram_Communication.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLCommunicationDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.communication.CreateCommunicationDiagramCommand">
       <modelRules xmi:id="_jRtroXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </modelRules>
@@ -151,7 +151,7 @@
       <childRules xmi:id="_jRtrqXDuEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.communication/model/PapyrusUMLCommunicationDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_fa4kAHDuEeWh-MssWmCB_A" name="Component Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.component/icons/obj16/ComponentDiagram.gif" implementationID="PapyrusUMLComponentDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_fa4kAHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.component.root.package" name="Component Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.component/icons/obj16/ComponentDiagram.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLComponentDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand">
       <modelRules xmi:id="_fa4kAXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -161,7 +161,7 @@
       <childRules xmi:id="_fa4kA3DuEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.component/model/PapyrusUMLComponentDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_fa4kBHDuEeWh-MssWmCB_A" name="Component Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.component/icons/obj16/ComponentDiagram.gif" implementationID="PapyrusUMLComponentDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_fa4kBHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.component.root.component" name="Component Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.component/icons/obj16/ComponentDiagram.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLComponentDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand">
       <modelRules xmi:id="_fa4kBXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
       </modelRules>
@@ -202,7 +202,7 @@
       <paletteRules xmi:id="_fa4kEHDuEeWh-MssWmCB_A" permit="false" element="component.tool.model"/>
       <paletteRules xmi:id="_fa4kEXDuEeWh-MssWmCB_A" permit="false" element="component.tool.package"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_bKiwMHDuEeWh-MssWmCB_A" name="Composite Structure Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.composite/icons/obj16/Diagram_CompositeStructure.gif" implementationID="CompositeStructure" creationCommandClass="org.eclipse.papyrus.uml.diagram.composite.CreateCompositeDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_bKiwMHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.compositeStructure.root.package" name="Composite Structure Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.composite/icons/obj16/Diagram_CompositeStructure.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="CompositeStructure" creationCommandClass="org.eclipse.papyrus.uml.diagram.composite.CreateCompositeDiagramCommand">
       <modelRules xmi:id="_bKiwMXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -212,7 +212,7 @@
       <childRules xmi:id="_bKiwM3DuEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.composite/model/CompositeStructure.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_bKiwNHDuEeWh-MssWmCB_A" name="Composite Structure Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.composite/icons/obj16/Diagram_CompositeStructure.gif" implementationID="CompositeStructure" creationCommandClass="org.eclipse.papyrus.uml.diagram.composite.CreateCompositeDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_bKiwNHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.compositeStructure.root.structuredClassifier" name="Composite Structure Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.composite/icons/obj16/Diagram_CompositeStructure.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="CompositeStructure" creationCommandClass="org.eclipse.papyrus.uml.diagram.composite.CreateCompositeDiagramCommand">
       <modelRules xmi:id="_bKiwNXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuredClassifier"/>
       </modelRules>
@@ -224,7 +224,7 @@
       </owningRules>
       <childRules xmi:id="_bKiwOHDuEeWh-MssWmCB_A"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_ARGokHDuEeWh-MssWmCB_A" name="Deployment Diagram" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.deployment/icons/obj16/DeploymentDiagram.gif" implementationID="PapyrusUMLDeploymentDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_ARGokHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.deployment" name="Deployment Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.deployment/icons/obj16/DeploymentDiagram.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLDeploymentDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand">
       <modelRules xmi:id="_ARGokXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -234,7 +234,7 @@
       <childRules xmi:id="_ARGok3DuEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.deployment/model/PapyrusUMLDeploymentDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_FuMjYHDuEeWh-MssWmCB_A" name="Interaction Overview Diagram" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.interactionoverview/icons/obj16/interactionOverviewDiagram.gif" implementationID="PapyrusUMLInteractionOverviewDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramCreateCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_FuMjYHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.interactionOverview" name="Interaction Overview Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.interactionoverview/icons/obj16/interactionOverviewDiagram.gif" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLInteractionOverviewDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramCreateCommand">
       <modelRules xmi:id="_FuMjYXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
       </modelRules>
@@ -262,7 +262,7 @@
       <childRules xmi:id="_FuMjaXDuEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.interactionoverview/palettes/PapyrusInteractionOverviewDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_UekVgHDwEeWh-MssWmCB_A" name="Profile Diagram" concerns="_NxfRgMSjEeaCPPhpB0_9OQ" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.profile/icons/obj16/Diagram_Profile.gif" implementationID="PapyrusUMLProfileDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_UekVgHDwEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.profile" name="Profile Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.profile/icons/obj16/Diagram_Profile.gif" concerns="_NxfRgMSjEeaCPPhpB0_9OQ" implementationID="PapyrusUMLProfileDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand">
       <modelRules xmi:id="_UekVgXDwEeWh-MssWmCB_A">
         <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_UekVgnDwEeWh-MssWmCB_A" name="IsContainedByProfile">
           <constraintType href="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
@@ -279,7 +279,7 @@
       <childRules xmi:id="_UekVhnDwEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.profile/model/PapyrusUMLProfileDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_TR15IHDvEeWh-MssWmCB_A" name="Sequence Diagram" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/Diagram_Sequence.gif" implementationID="PapyrusUMLSequenceDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.sequence.CreateSequenceDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_TR15IHDvEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.sequence" name="Sequence Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/icons/obj16/Diagram_Sequence.gif" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLSequenceDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.sequence.CreateSequenceDiagramCommand">
       <modelRules xmi:id="_TR15IXDvEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
       </modelRules>
@@ -313,7 +313,7 @@
       <childRules xmi:id="_TR15K3DvEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/PapyrusUMLSequenceDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_PwD0cHDvEeWh-MssWmCB_A" name="State Machine Diagram" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.statemachine/icons/obj16/Diagram_StateMachine.gif" implementationID="PapyrusUMLStateMachineDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.statemachine.CreateStateMachineDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_PwD0cHDvEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.stateMachine" name="State Machine Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.statemachine/icons/obj16/Diagram_StateMachine.gif" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLStateMachineDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.statemachine.CreateStateMachineDiagramCommand">
       <modelRules xmi:id="_PwD0cXDvEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
       </modelRules>
@@ -353,7 +353,7 @@
       <childRules xmi:id="_PwD0e3DvEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.statemachine/model/PapyrusUMLStateMachineDiagram.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_LzyMIHDvEeWh-MssWmCB_A" name="Timing Diagram" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.timing/icons/obj16/Diagram_Timing.gif" implementationID="PapyrusUMLTimingDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.timing.custom.CreateTimingDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_LzyMIHDvEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.timing" name="Timing Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.timing/icons/obj16/Diagram_Timing.gif" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLTimingDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.timing.custom.CreateTimingDiagramCommand">
       <modelRules xmi:id="_LzyMIXDvEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -362,7 +362,7 @@
       </owningRules>
       <childRules xmi:id="_LzyMI3DvEeWh-MssWmCB_A"/>
     </representationKinds>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_yeY0sHDvEeWh-MssWmCB_A" name="Use Case Diagram" concerns="_HQhf4sSYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.usecase/icons/obj16/Diagram_UseCase.gif" implementationID="UseCase" customStyle="platform:/plugin/org.eclipse.papyrus.uml.diagram.usecase/models/usecase.css" creationCommandClass="org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_yeY0sHDvEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.useCase" name="Use Case Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.usecase/icons/obj16/Diagram_UseCase.gif" concerns="_HQhf4sSYEeaKZJ_pGfaSiA" implementationID="UseCase" customStyle="platform:/plugin/org.eclipse.papyrus.uml.diagram.usecase/models/usecase.css" creationCommandClass="org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand">
       <modelRules xmi:id="_yeY0sXDvEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -378,7 +378,7 @@
       <childRules xmi:id="_yeY0tXDvEeWh-MssWmCB_A"/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.usecase/models/UseCase.paletteconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_P3J1cEa7EeSVGbM3cmVSqQ" name="Generic Tree Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable/icons/uml_generic_table.png" implementationID="PapyrusUMLGenericTreeTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_P3J1cEa7EeSVGbM3cmVSqQ" id="org.eclipse.papyrus.uml.table.genericTree" name="Generic Tree Table" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable/icons/uml_generic_table.png" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLGenericTreeTable">
       <modelRules xmi:id="_vZwgkEr7EeSVGbM3cmVSqQ">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
       </modelRules>
@@ -387,7 +387,7 @@
       </owningRules>
       <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable/configs/genericTreeTable.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_P3J1cEb7EeRVGbM3cmVSqQ" name="Class Tree Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusClassTreeTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_P3J1cEb7EeRVGbM3cmVSqQ" id="org.eclipse.papyrus.uml.table.classTree" name="Class Tree Table" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusClassTreeTable">
       <modelRules xmi:id="_vZwgkEr7EeSVGbM3cmVSqQ">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -396,7 +396,7 @@
       </owningRules>
       <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_Uz8agHDcEeWh-MssWmCB_A" name="Generic Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusGenericTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_Uz8agHDcEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.table.generic" name="Generic Table" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusGenericTable">
       <modelRules xmi:id="_Uz8agXDuEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </modelRules>
@@ -405,7 +405,7 @@
       </owningRules>
       <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/configs/generic.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_WC1q0P4UEhSRsNBVzfUrzA" name="Stereotype Display Tree Table" concerns="_NxfRgMSjEeaCPPhpB0_9OQ" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusStereotypeDisplayTreeTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_WC1q0P4UEhSRsNBVzfUrzA" id="org.eclipse.papyrus.uml.table.stereotypeDisplayTree" name="Stereotype Display Tree Table" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" concerns="_NxfRgMSjEeaCPPhpB0_9OQ" implementationID="PapyrusStereotypeDisplayTreeTable">
       <modelRules xmi:id="_7k79wP4VEeSRsNBVzfUrzA">
         <element href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View"/>
       </modelRules>
@@ -414,7 +414,7 @@
       </owningRules>
       <configuration href="platform:/plugin/org.eclipse.papyrus.uml.nattable.stereotype.display/config/stereotype.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_wXztQHDwEwWh-MssWmCB_A" name="View Table" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png" implementationID="PapyrusViewsTable">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_wXztQHDwEwWh-MssWmCB_A" id="org.eclipse.papyrus.uml.table.view" name="View Table" icon="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/icons/nattablepageeditor.png" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusViewsTable">
       <modelRules xmi:id="_wXztQXDwEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </modelRules>
@@ -423,7 +423,7 @@
       </owningRules>
       <configuration href="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/resources/viewpage.nattableconfiguration#/"/>
     </representationKinds>
-    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_d4-QwCT-EeedRqoTe_1ZiA" name="Relationship Generic Matrix" concerns="_HQhf48SYEeaKZJ_pGfaSiA" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.matrix/icons/uml_generic_matrix_relationships.png" implementationID="UMLGenericMatrixOfRelationships">
+    <representationKinds xsi:type="nattablerepresentation:PapyrusTable" xmi:id="_d4-QwCT-EeedRqoTe_1ZiA" id="org.eclipse.papyrus.uml.table.matrix" name="Relationship Generic Matrix" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.matrix/icons/uml_generic_matrix_relationships.png" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="UMLGenericMatrixOfRelationships">
       <modelRules xmi:id="_d4-QwST-EeedRqoTe_1ZiA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -434,8 +434,8 @@
     </representationKinds>
     <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   </contexts>
-  <contexts xsi:type="architecture:ArchitectureFramework" xmi:id="__ZqwAMSlEeaCPPhpB0_9OQ" name="Profile" description="The Profile Definition Framework" id="org.eclipse.papyrus.uml.architecture.Profile" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/profile.gif" extensionPrefix="profile" creationCommandClass="org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand">
-    <viewpoints xmi:id="_hoXx0MSiEeaKZJ_pGfaSiA" name="Profile Definition" description="A viewpoint allowing profile definition with UML" representationKinds="_UekVgHDwEeWh-MssWmCB_A _zzf4gHDtEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.profile.definition"/>
+  <contexts xsi:type="architecture:ArchitectureFramework" xmi:id="__ZqwAMSlEeaCPPhpB0_9OQ" id="org.eclipse.papyrus.uml.architecture.Profile" name="Profile" description="The Profile Definition Framework" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/profile.gif" extensionPrefix="profile" creationCommandClass="org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand">
+    <viewpoints xmi:id="_hoXx0MSiEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.uml.profile.definition" name="Profile Definition" description="A viewpoint allowing profile definition with UML" representationKinds="_UekVgHDwEeWh-MssWmCB_A _zzf4gHDtEeWh-MssWmCB_A"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.emf/model/infra-emf.elementtypesconfigurations#_rWI4YHPzEeSnGJwaJWHCSg"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/notation.elementtypesconfigurations#_ScP1oFYCEeS0WsAAtVmToA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/gmfdiag-common.elementtypesconfigurations#_rWI4YHPzEeSnGJwaJWHCSg"/>

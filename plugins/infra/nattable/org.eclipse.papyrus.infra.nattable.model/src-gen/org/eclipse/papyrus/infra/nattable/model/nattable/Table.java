@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCells <em>Cells</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableKindId <em>Table Kind Id</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable()
@@ -116,13 +117,15 @@ public interface Table extends TableNamedElement {
 	 * Returns the value of the '<em><b>Prototype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Prototype</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Prototype</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
+	 * @deprecated Use {@link Table#getTableKindId()} instead
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Prototype</em>' reference.
 	 * @see #setPrototype(EObject)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_Prototype()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	EObject getPrototype();
@@ -130,6 +133,7 @@ public interface Table extends TableNamedElement {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getPrototype <em>Prototype</em>}' reference.
 	 * <!-- begin-user-doc -->
+	 * @deprecated Use {@link Table#setTableKindId()} instead
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Prototype</em>' reference.
 	 * @see #getPrototype()
@@ -363,4 +367,30 @@ public interface Table extends TableNamedElement {
 	 * @generated
 	 */
 	void setOwnedCellEditorConfigurations(ICellEditorConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Table Kind Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Table Kind Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Table Kind Id</em>' attribute.
+	 * @see #setTableKindId(String)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable_TableKindId()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getTableKindId();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableKindId <em>Table Kind Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Table Kind Id</em>' attribute.
+	 * @see #getTableKindId()
+	 * @generated
+	 */
+	void setTableKindId(String value);
 } // Table

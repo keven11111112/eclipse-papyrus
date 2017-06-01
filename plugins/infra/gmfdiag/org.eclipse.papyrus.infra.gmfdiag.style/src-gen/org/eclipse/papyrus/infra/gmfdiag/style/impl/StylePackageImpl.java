@@ -13,6 +13,7 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.style.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -21,14 +22,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-
-import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
-import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
-import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.gmfdiag.style.StyleFactory;
 import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
-import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,13 +87,8 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		ArchitecturePackage.eINSTANCE.eClass();
-		ConstraintsPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
-		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
-		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eINSTANCE.eClass();
-		RepresentationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theStylePackage.createPackageContents();
@@ -137,8 +128,8 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusDiagramStyle_DiagramKind() {
-		return (EReference)papyrusDiagramStyleEClass.getEStructuralFeatures().get(1);
+	public EAttribute getPapyrusDiagramStyle_DiagramKindId() {
+		return (EAttribute)papyrusDiagramStyleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -171,7 +162,7 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		// Create classes and their features
 		papyrusDiagramStyleEClass = createEClass(PAPYRUS_DIAGRAM_STYLE);
 		createEReference(papyrusDiagramStyleEClass, PAPYRUS_DIAGRAM_STYLE__OWNER);
-		createEReference(papyrusDiagramStyleEClass, PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND);
+		createEAttribute(papyrusDiagramStyleEClass, PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID);
 	}
 
 	/**
@@ -200,7 +191,6 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		// Obtain other dependent packages
 		NotationPackage theNotationPackage = (NotationPackage)EPackage.Registry.INSTANCE.getEPackage(NotationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		RepresentationPackage theRepresentationPackage_1 = (RepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(RepresentationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -212,7 +202,7 @@ public class StylePackageImpl extends EPackageImpl implements StylePackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(papyrusDiagramStyleEClass, PapyrusDiagramStyle.class, "PapyrusDiagramStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPapyrusDiagramStyle_Owner(), theEcorePackage.getEObject(), null, "owner", null, 1, 1, PapyrusDiagramStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPapyrusDiagramStyle_DiagramKind(), theRepresentationPackage_1.getPapyrusDiagram(), null, "diagramKind", null, 0, 1, PapyrusDiagramStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPapyrusDiagramStyle_DiagramKindId(), theEcorePackage.getEString(), "diagramKindId", null, 0, 1, PapyrusDiagramStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

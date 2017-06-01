@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
@@ -228,6 +229,16 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 */
 	public MergedArchitectureViewpoint getArchitectureViewpointById(String id) {
 		return merger.getArchitectureViewpointById(id);
+	}
+
+	/**
+	 * Gets a representation kind by the given id
+	 * 
+	 * @param id a given id of a representation kind
+	 * @return the representation kind with the given id
+	 */
+	public RepresentationKind getRepresentationKindById(String id) {
+		return merger.getRepresentationKindById(id);
 	}
 
 }

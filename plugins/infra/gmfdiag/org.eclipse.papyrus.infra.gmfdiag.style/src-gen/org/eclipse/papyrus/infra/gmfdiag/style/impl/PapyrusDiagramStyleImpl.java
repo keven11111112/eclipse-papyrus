@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
 
@@ -35,7 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.style.impl.PapyrusDiagramStyleImpl#getOwner <em>Owner</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.style.impl.PapyrusDiagramStyleImpl#getDiagramKind <em>Diagram Kind</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.style.impl.PapyrusDiagramStyleImpl#getDiagramKindId <em>Diagram Kind Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,14 +50,24 @@ public class PapyrusDiagramStyleImpl extends MinimalEObjectImpl.Container implem
 	protected EObject owner;
 
 	/**
-	 * The cached value of the '{@link #getDiagramKind() <em>Diagram Kind</em>}' reference.
+	 * The default value of the '{@link #getDiagramKindId() <em>Diagram Kind Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDiagramKind()
+	 * @see #getDiagramKindId()
 	 * @generated
 	 * @ordered
 	 */
-	protected PapyrusDiagram diagramKind;
+	protected static final String DIAGRAM_KIND_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDiagramKindId() <em>Diagram Kind Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDiagramKindId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String diagramKindId = DIAGRAM_KIND_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,16 +131,8 @@ public class PapyrusDiagramStyleImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PapyrusDiagram getDiagramKind() {
-		if (diagramKind != null && diagramKind.eIsProxy()) {
-			InternalEObject oldDiagramKind = (InternalEObject)diagramKind;
-			diagramKind = (PapyrusDiagram)eResolveProxy(oldDiagramKind);
-			if (diagramKind != oldDiagramKind) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND, oldDiagramKind, diagramKind));
-			}
-		}
-		return diagramKind;
+	public String getDiagramKindId() {
+		return diagramKindId;
 	}
 
 	/**
@@ -140,20 +140,11 @@ public class PapyrusDiagramStyleImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PapyrusDiagram basicGetDiagramKind() {
-		return diagramKind;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDiagramKind(PapyrusDiagram newDiagramKind) {
-		PapyrusDiagram oldDiagramKind = diagramKind;
-		diagramKind = newDiagramKind;
+	public void setDiagramKindId(String newDiagramKindId) {
+		String oldDiagramKindId = diagramKindId;
+		diagramKindId = newDiagramKindId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND, oldDiagramKind, diagramKind));
+			eNotify(new ENotificationImpl(this, Notification.SET, StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID, oldDiagramKindId, diagramKindId));
 	}
 
 	/**
@@ -167,9 +158,8 @@ public class PapyrusDiagramStyleImpl extends MinimalEObjectImpl.Container implem
 			case StylePackage.PAPYRUS_DIAGRAM_STYLE__OWNER:
 				if (resolve) return getOwner();
 				return basicGetOwner();
-			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND:
-				if (resolve) return getDiagramKind();
-				return basicGetDiagramKind();
+			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID:
+				return getDiagramKindId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -185,8 +175,8 @@ public class PapyrusDiagramStyleImpl extends MinimalEObjectImpl.Container implem
 			case StylePackage.PAPYRUS_DIAGRAM_STYLE__OWNER:
 				setOwner((EObject)newValue);
 				return;
-			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND:
-				setDiagramKind((PapyrusDiagram)newValue);
+			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID:
+				setDiagramKindId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,8 +193,8 @@ public class PapyrusDiagramStyleImpl extends MinimalEObjectImpl.Container implem
 			case StylePackage.PAPYRUS_DIAGRAM_STYLE__OWNER:
 				setOwner((EObject)null);
 				return;
-			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND:
-				setDiagramKind((PapyrusDiagram)null);
+			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID:
+				setDiagramKindId(DIAGRAM_KIND_ID_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -220,10 +210,26 @@ public class PapyrusDiagramStyleImpl extends MinimalEObjectImpl.Container implem
 		switch (featureID) {
 			case StylePackage.PAPYRUS_DIAGRAM_STYLE__OWNER:
 				return owner != null;
-			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND:
-				return diagramKind != null;
+			case StylePackage.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID:
+				return DIAGRAM_KIND_ID_EDEFAULT == null ? diagramKindId != null : !DIAGRAM_KIND_ID_EDEFAULT.equals(diagramKindId);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (diagramKindId: "); //$NON-NLS-1$
+		result.append(diagramKindId);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PapyrusDiagramStyleImpl

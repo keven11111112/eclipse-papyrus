@@ -78,13 +78,22 @@ public interface ArchitecturePackage extends EPackage {
 	int AD_ELEMENT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AD_ELEMENT__ID = 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AD_ELEMENT__NAME = 0;
+	int AD_ELEMENT__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -93,7 +102,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AD_ELEMENT__DESCRIPTION = 1;
+	int AD_ELEMENT__DESCRIPTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -102,7 +111,16 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AD_ELEMENT__QUALIFIED_NAME = 2;
+	int AD_ELEMENT__QUALIFIED_NAME = 3;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AD_ELEMENT__ICON = 4;
 
 	/**
 	 * The number of structural features of the '<em>AD Element</em>' class.
@@ -111,7 +129,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AD_ELEMENT_FEATURE_COUNT = 3;
+	int AD_ELEMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>AD Element</em>' class.
@@ -131,6 +149,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	int ARCHITECTURE_DOMAIN = 1;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DOMAIN__ID = AD_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -158,6 +185,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_DOMAIN__QUALIFIED_NAME = AD_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DOMAIN__ICON = AD_ELEMENT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Stakeholders</b></em>' containment reference list.
@@ -215,6 +251,15 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT = 7;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT__ID = AD_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -240,6 +285,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_CONTEXT__QUALIFIED_NAME = AD_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT__ICON = AD_ELEMENT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Viewpoints</b></em>' containment reference list.
@@ -278,31 +332,13 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT__DOMAIN = AD_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARCHITECTURE_CONTEXT__ID = AD_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARCHITECTURE_CONTEXT__ICON = AD_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Extension Prefix</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__EXTENSION_PREFIX = AD_ELEMENT_FEATURE_COUNT + 6;
+	int ARCHITECTURE_CONTEXT__EXTENSION_PREFIX = AD_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Creation Command Class</b></em>' attribute.
@@ -311,7 +347,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 7;
+	int ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Command Class</b></em>' attribute.
@@ -320,7 +356,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 8;
+	int ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -329,7 +365,7 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 9;
+	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Context</em>' class.
@@ -349,6 +385,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__ID = ARCHITECTURE_CONTEXT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -376,6 +421,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE__QUALIFIED_NAME = ARCHITECTURE_CONTEXT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__ICON = ARCHITECTURE_CONTEXT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Viewpoints</b></em>' containment reference list.
@@ -412,24 +466,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE__DOMAIN = ARCHITECTURE_CONTEXT__DOMAIN;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARCHITECTURE_DESCRIPTION_LANGUAGE__ID = ARCHITECTURE_CONTEXT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARCHITECTURE_DESCRIPTION_LANGUAGE__ICON = ARCHITECTURE_CONTEXT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Extension Prefix</b></em>' attribute.
@@ -514,6 +550,15 @@ public interface ArchitecturePackage extends EPackage {
 	int STAKEHOLDER = 3;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAKEHOLDER__ID = AD_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -539,6 +584,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int STAKEHOLDER__QUALIFIED_NAME = AD_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAKEHOLDER__ICON = AD_ELEMENT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Concerns</b></em>' reference list.
@@ -587,6 +641,15 @@ public interface ArchitecturePackage extends EPackage {
 	int CONCERN = 4;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCERN__ID = AD_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -612,6 +675,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONCERN__QUALIFIED_NAME = AD_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCERN__ICON = AD_ELEMENT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Domain</b></em>' container reference.
@@ -651,6 +723,15 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_VIEWPOINT = 5;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_VIEWPOINT__ID = AD_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -676,6 +757,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_VIEWPOINT__QUALIFIED_NAME = AD_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_VIEWPOINT__ICON = AD_ELEMENT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Concerns</b></em>' reference list.
@@ -705,22 +795,13 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_VIEWPOINT__CONTEXT = AD_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARCHITECTURE_VIEWPOINT__ID = AD_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Viewpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_VIEWPOINT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 4;
+	int ARCHITECTURE_VIEWPOINT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Viewpoint</em>' class.
@@ -740,6 +821,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	int REPRESENTATION_KIND = 6;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION_KIND__ID = AD_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -769,6 +859,15 @@ public interface ArchitecturePackage extends EPackage {
 	int REPRESENTATION_KIND__QUALIFIED_NAME = AD_ELEMENT__QUALIFIED_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION_KIND__ICON = AD_ELEMENT__ICON;
+
+	/**
 	 * The feature id for the '<em><b>Language</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -787,22 +886,13 @@ public interface ArchitecturePackage extends EPackage {
 	int REPRESENTATION_KIND__CONCERNS = AD_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPRESENTATION_KIND__ICON = AD_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Representation Kind</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION_KIND_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 3;
+	int REPRESENTATION_KIND_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Representation Kind</em>' class.
@@ -822,6 +912,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	int ARCHITECTURE_FRAMEWORK = 8;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK__ID = ARCHITECTURE_CONTEXT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -849,6 +948,15 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_FRAMEWORK__QUALIFIED_NAME = ARCHITECTURE_CONTEXT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK__ICON = ARCHITECTURE_CONTEXT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Viewpoints</b></em>' containment reference list.
@@ -885,24 +993,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_FRAMEWORK__DOMAIN = ARCHITECTURE_CONTEXT__DOMAIN;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARCHITECTURE_FRAMEWORK__ID = ARCHITECTURE_CONTEXT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARCHITECTURE_FRAMEWORK__ICON = ARCHITECTURE_CONTEXT__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Extension Prefix</b></em>' attribute.
@@ -1035,6 +1125,17 @@ public interface ArchitecturePackage extends EPackage {
 	EClass getADElement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ADElement#getId()
+	 * @see #getADElement()
+	 * @generated
+	 */
+	EAttribute getADElement_Id();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1066,6 +1167,17 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getADElement_QualifiedName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getIcon <em>Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ADElement#getIcon()
+	 * @see #getADElement()
+	 * @generated
+	 */
+	EAttribute getADElement_Icon();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain <em>Domain</em>}'.
@@ -1250,17 +1362,6 @@ public interface ArchitecturePackage extends EPackage {
 	EReference getArchitectureViewpoint_Context();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint#getId()
-	 * @see #getArchitectureViewpoint()
-	 * @generated
-	 */
-	EAttribute getArchitectureViewpoint_Id();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind <em>Representation Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1280,17 +1381,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRepresentationKind_Concerns();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getIcon <em>Icon</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Icon</em>'.
-	 * @see org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getIcon()
-	 * @see #getRepresentationKind()
-	 * @generated
-	 */
-	EAttribute getRepresentationKind_Icon();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getLanguage <em>Language</em>}'.
@@ -1345,28 +1435,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getArchitectureContext_ElementTypes();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getId()
-	 * @see #getArchitectureContext()
-	 * @generated
-	 */
-	EAttribute getArchitectureContext_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getIcon <em>Icon</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Icon</em>'.
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getIcon()
-	 * @see #getArchitectureContext()
-	 * @generated
-	 */
-	EAttribute getArchitectureContext_Icon();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getExtensionPrefix <em>Extension Prefix</em>}'.
@@ -1498,6 +1566,14 @@ public interface ArchitecturePackage extends EPackage {
 		EClass AD_ELEMENT = eINSTANCE.getADElement();
 
 		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AD_ELEMENT__ID = eINSTANCE.getADElement_Id();
+
+		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1520,6 +1596,14 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute AD_ELEMENT__QUALIFIED_NAME = eINSTANCE.getADElement_QualifiedName();
+
+		/**
+		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AD_ELEMENT__ICON = eINSTANCE.getADElement_Icon();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureDomainImpl <em>Domain</em>}' class.
@@ -1668,14 +1752,6 @@ public interface ArchitecturePackage extends EPackage {
 		EReference ARCHITECTURE_VIEWPOINT__CONTEXT = eINSTANCE.getArchitectureViewpoint_Context();
 
 		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ARCHITECTURE_VIEWPOINT__ID = eINSTANCE.getArchitectureViewpoint_Id();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.core.architecture.impl.RepresentationKindImpl <em>Representation Kind</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1692,14 +1768,6 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EReference REPRESENTATION_KIND__CONCERNS = eINSTANCE.getRepresentationKind_Concerns();
-
-		/**
-		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REPRESENTATION_KIND__ICON = eINSTANCE.getRepresentationKind_Icon();
 
 		/**
 		 * The meta object literal for the '<em><b>Language</b></em>' container reference feature.
@@ -1742,22 +1810,6 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ARCHITECTURE_CONTEXT__ELEMENT_TYPES = eINSTANCE.getArchitectureContext_ElementTypes();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ARCHITECTURE_CONTEXT__ID = eINSTANCE.getArchitectureContext_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ARCHITECTURE_CONTEXT__ICON = eINSTANCE.getArchitectureContext_Icon();
 
 		/**
 		 * The meta object literal for the '<em><b>Extension Prefix</b></em>' attribute feature.

@@ -22,9 +22,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
 
@@ -58,7 +55,6 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 
 			addConcernsPropertyDescriptor(object);
 			addRepresentationKindsPropertyDescriptor(object);
-			addIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -108,28 +104,6 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ArchitectureViewpoint_id_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_id_feature", "_UI_ArchitectureViewpoint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns ArchitectureViewpoint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -164,12 +138,6 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ArchitectureViewpoint.class)) {
-			case ArchitecturePackage.ARCHITECTURE_VIEWPOINT__ID:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

@@ -160,7 +160,7 @@ public class NatTableModelElement extends EMFModelElement {
 		// The create nattable model manager for the properties view doesn't need some listeners of the table (invert axis and update cells map listener)
 		tableModelManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(getEditedTable(), new EObjectSelectionExtractor(), false);
 		this.interestingFeatures = new ArrayList<EStructuralFeature>();
-		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Prototype());
+		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_TableKindId());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Owner());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Context());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_InvertAxis());

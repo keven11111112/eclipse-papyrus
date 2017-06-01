@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getConcerns <em>Concerns</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getRepresentationKind()
@@ -49,32 +48,6 @@ public interface RepresentationKind extends ADElement {
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
-
-	/**
-	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Icon</em>' attribute.
-	 * @see #setIcon(String)
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getRepresentationKind_Icon()
-	 * @model
-	 * @generated
-	 */
-	String getIcon();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getIcon <em>Icon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Icon</em>' attribute.
-	 * @see #getIcon()
-	 * @generated
-	 */
-	void setIcon(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Language</b></em>' container reference.

@@ -24,9 +24,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement()
@@ -34,6 +36,32 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ADElement extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Id()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getId();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -100,5 +128,31 @@ public interface ADElement extends EObject {
 	 * @generated
 	 */
 	String getQualifiedName();
+
+	/**
+	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Icon</em>' attribute.
+	 * @see #setIcon(String)
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Icon()
+	 * @model
+	 * @generated
+	 */
+	String getIcon();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ADElement#getIcon <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Icon</em>' attribute.
+	 * @see #getIcon()
+	 * @generated
+	 */
+	void setIcon(String value);
 
 } // ADElement

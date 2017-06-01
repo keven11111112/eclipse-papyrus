@@ -13,6 +13,7 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.style;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -88,13 +89,13 @@ public interface StylePackage extends EPackage {
 	int PAPYRUS_DIAGRAM_STYLE__OWNER = NotationPackage.STYLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Diagram Kind</b></em>' reference.
+	 * The feature id for the '<em><b>Diagram Kind Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND = NotationPackage.STYLE_FEATURE_COUNT + 1;
+	int PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID = NotationPackage.STYLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Papyrus Diagram Style</em>' class.
@@ -137,15 +138,15 @@ public interface StylePackage extends EPackage {
 	EReference getPapyrusDiagramStyle_Owner();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKind <em>Diagram Kind</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKindId <em>Diagram Kind Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Diagram Kind</em>'.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKind()
+	 * @return the meta object for the attribute '<em>Diagram Kind Id</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle#getDiagramKindId()
 	 * @see #getPapyrusDiagramStyle()
 	 * @generated
 	 */
-	EReference getPapyrusDiagramStyle_DiagramKind();
+	EAttribute getPapyrusDiagramStyle_DiagramKindId();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -189,12 +190,12 @@ public interface StylePackage extends EPackage {
 		EReference PAPYRUS_DIAGRAM_STYLE__OWNER = eINSTANCE.getPapyrusDiagramStyle_Owner();
 
 		/**
-		 * The meta object literal for the '<em><b>Diagram Kind</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Diagram Kind Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND = eINSTANCE.getPapyrusDiagramStyle_DiagramKind();
+		EAttribute PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID = eINSTANCE.getPapyrusDiagramStyle_DiagramKindId();
 
 	}
 

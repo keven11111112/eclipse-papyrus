@@ -291,9 +291,8 @@
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_wa94EdenEeSTpeYJP6Dwgg" name="diagram_compatibility_version" stringValue="1.3.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_wa94EtenEeSTpeYJP6Dwgg"/>
-    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_I2jW0BLqEeeLNcr9BGXt3g">
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_I2jW0BLqEeeLNcr9BGXt3g" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
       <owner xmi:type="uml:Model" href="ExpansionModel.uml#_haqhoNenEeSTpeYJP6Dwgg"/>
-      <diagramKind xmi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_zzf4gHDtEeWh-MssWmCB_A"/>
     </styles>
     <element xmi:type="uml:Model" href="ExpansionModel.uml#_haqhoNenEeSTpeYJP6Dwgg"/>
     <edges xmi:type="notation:Connector" xmi:id="_7rcmcNeqEeSTpeYJP6Dwgg" type="Association_Edge" source="_32TBMNenEeSTpeYJP6Dwgg" target="_4OewUNeqEeSTpeYJP6Dwgg">

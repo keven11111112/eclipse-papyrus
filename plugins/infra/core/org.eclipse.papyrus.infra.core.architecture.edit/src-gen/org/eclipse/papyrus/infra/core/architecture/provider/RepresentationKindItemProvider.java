@@ -22,9 +22,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 
@@ -57,7 +54,6 @@ public class RepresentationKindItemProvider extends ADElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addConcernsPropertyDescriptor(object);
-			addIconPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -80,28 +76,6 @@ public class RepresentationKindItemProvider extends ADElementItemProvider {
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Icon feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIconPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RepresentationKind_icon_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_RepresentationKind_icon_feature", "_UI_RepresentationKind_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 ArchitecturePackage.Literals.REPRESENTATION_KIND__ICON,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -131,12 +105,6 @@ public class RepresentationKindItemProvider extends ADElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(RepresentationKind.class)) {
-			case ArchitecturePackage.REPRESENTATION_KIND__ICON:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

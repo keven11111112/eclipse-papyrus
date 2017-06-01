@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.architecture.migration;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -33,37 +34,43 @@ import org.eclipse.papyrus.uml.architecture.UMLArchitectureContextIds;
 public class UMLTableReconciler_1_3_0 extends TableReconciler {
 
 	private static final String VIEW_TABLE = "View Table";
+	private static final String VIEW_TABLE_URI = "org.eclipse.papyrus.infra.nattable.views.config/resources/viewpageTable.configuration";
 	private static final String GENERIC_TREE_TABLE = "Generic Tree Table";
-	private static final String CLASS_TREE_TABLE = "ClassTreeTable";
+	private static final String GENERIC_TREE_TABLE_URI = "org.eclipse.papyrus.uml.nattable/configs/genericTreeTable.configuration";
+	private static final String CLASS_TREE_TABLE = "Class Tree Table";
+	private static final String CLASS_TREE_TABLE_URI = "org.eclipse.papyrus.uml.nattable.clazz.config/configs/classTreeTable.configuration";
 	private static final String GENERIC_TABLE = "Generic Table";
-	private static final String STEREO_DISPLAY_TREE_TABLE = "StereotypeDisplayTreeTable";
-
+	private static final String GENERIC_TABLE_URI = "org.eclipse.papyrus.uml.nattable.generic.config/configs/genericTable.configuration";
+	private static final String STEREO_DISPLAY_TREE_TABLE = "Stereotype Display Tree Table";
+	private static final String STEREO_DISPLAY_TREE_TABLE_URI = "org.eclipse.papyrus.uml.nattable.stereotype.display/config/stereotypeDisplay.configuration";
+	private static final String DEFAULT_URI = "org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration";
+	
 	@Override
 	public ICommand getReconcileCommand(Table table) {
+		RepresentationKind newTableKind = null;
 		if (table.getPrototype() instanceof org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView) {
 			org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView oldTableKind =
 				(org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView) table.getPrototype();
-			
-			RepresentationKind newTableKind = null;
-			if (oldTableKind != null) {
-				if (VIEW_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getTableKind(oldTableKind.getName(), table);
-				} else if (GENERIC_TREE_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getTableKind(oldTableKind.getName(), table);
-				} else if (CLASS_TREE_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getTableKind("Class Tree Table", table);
-				} else if (GENERIC_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getTableKind(oldTableKind.getName(), table);
-				} else if (STEREO_DISPLAY_TREE_TABLE.equals(oldTableKind.getName())) {
-					newTableKind = getTableKind("Stereotype Display Tree Table", table);
-				} else if (oldTableKind.getName() == null) {
+			if (oldTableKind.eIsProxy()) {
+				if (EcoreUtil.getURI(oldTableKind).toString().contains(VIEW_TABLE_URI)) {
+					newTableKind = getTableKind(VIEW_TABLE, table);
+				} else if (EcoreUtil.getURI(oldTableKind).toString().contains(GENERIC_TREE_TABLE_URI)) {
+					newTableKind = getTableKind(GENERIC_TREE_TABLE, table);
+				} else if (EcoreUtil.getURI(oldTableKind).toString().contains(CLASS_TREE_TABLE_URI)) {
+					newTableKind = getTableKind(CLASS_TREE_TABLE, table);
+				} else if (EcoreUtil.getURI(oldTableKind).toString().contains(GENERIC_TABLE_URI)) {
+					newTableKind = getTableKind(GENERIC_TABLE, table);
+				} else if (EcoreUtil.getURI(oldTableKind).toString().contains(STEREO_DISPLAY_TREE_TABLE_URI)) {
+					newTableKind = getTableKind(STEREO_DISPLAY_TREE_TABLE, table);
+				} else if (EcoreUtil.getURI(oldTableKind).toString().contains(DEFAULT_URI)) {
 					newTableKind = getTableKind(GENERIC_TABLE, table);
 				}
-			};
-			
-			if (newTableKind != null)
-				return new ReplaceTablePrototypeCommand(table, newTableKind);
+			}
+		} else {
+			newTableKind = getTableKind(GENERIC_TABLE, table);
 		}
+		if (newTableKind != null)
+			return new ReplaceTablePrototypeCommand(table, newTableKind);
 		return null;
 	}
 
@@ -100,7 +107,8 @@ public class UMLTableReconciler_1_3_0 extends TableReconciler {
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			table.setPrototype(newKind);
+			table.setPrototype(null);
+			table.setTableKindId(newKind.getId());
 			return CommandResult.newOKCommandResult();
 		}
 

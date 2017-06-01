@@ -199,7 +199,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getADElement_Name() {
+	public EAttribute getADElement_Id() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -208,7 +208,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getADElement_Description() {
+	public EAttribute getADElement_Name() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -217,8 +217,26 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getADElement_QualifiedName() {
+	public EAttribute getADElement_Description() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getADElement_QualifiedName() {
+		return (EAttribute)adElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getADElement_Icon() {
+		return (EAttribute)adElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -379,15 +397,6 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureViewpoint_Id() {
-		return (EAttribute)architectureViewpointEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getRepresentationKind() {
 		return representationKindEClass;
 	}
@@ -399,15 +408,6 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 */
 	public EReference getRepresentationKind_Concerns() {
 		return (EReference)representationKindEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepresentationKind_Icon() {
-		return (EAttribute)representationKindEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -460,7 +460,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_Id() {
+	public EAttribute getArchitectureContext_ExtensionPrefix() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -469,7 +469,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_Icon() {
+	public EAttribute getArchitectureContext_CreationCommandClass() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -478,26 +478,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArchitectureContext_ExtensionPrefix() {
-		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getArchitectureContext_CreationCommandClass() {
-		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getArchitectureContext_ConversionCommandClass() {
-		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -583,9 +565,11 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		// Create classes and their features
 		adElementEClass = createEClass(AD_ELEMENT);
+		createEAttribute(adElementEClass, AD_ELEMENT__ID);
 		createEAttribute(adElementEClass, AD_ELEMENT__NAME);
 		createEAttribute(adElementEClass, AD_ELEMENT__DESCRIPTION);
 		createEAttribute(adElementEClass, AD_ELEMENT__QUALIFIED_NAME);
+		createEAttribute(adElementEClass, AD_ELEMENT__ICON);
 
 		architectureDomainEClass = createEClass(ARCHITECTURE_DOMAIN);
 		createEReference(architectureDomainEClass, ARCHITECTURE_DOMAIN__STAKEHOLDERS);
@@ -608,20 +592,16 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		createEReference(architectureViewpointEClass, ARCHITECTURE_VIEWPOINT__CONCERNS);
 		createEReference(architectureViewpointEClass, ARCHITECTURE_VIEWPOINT__REPRESENTATION_KINDS);
 		createEReference(architectureViewpointEClass, ARCHITECTURE_VIEWPOINT__CONTEXT);
-		createEAttribute(architectureViewpointEClass, ARCHITECTURE_VIEWPOINT__ID);
 
 		representationKindEClass = createEClass(REPRESENTATION_KIND);
 		createEReference(representationKindEClass, REPRESENTATION_KIND__LANGUAGE);
 		createEReference(representationKindEClass, REPRESENTATION_KIND__CONCERNS);
-		createEAttribute(representationKindEClass, REPRESENTATION_KIND__ICON);
 
 		architectureContextEClass = createEClass(ARCHITECTURE_CONTEXT);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__VIEWPOINTS);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__ELEMENT_TYPES);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__DOMAIN);
-		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__ID);
-		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__ICON);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__EXTENSION_PREFIX);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS);
@@ -677,9 +657,11 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(adElementEClass, ADElement.class, "ADElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getADElement_Id(), ecorePackage.getEString(), "id", null, 1, 1, ADElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getADElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, ADElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getADElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ADElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getADElement_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ADElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getADElement_Icon(), ecorePackage.getEString(), "icon", null, 0, 1, ADElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(architectureDomainEClass, ArchitectureDomain.class, "ArchitectureDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getArchitectureDomain_Stakeholders(), this.getStakeholder(), this.getStakeholder_Domain(), "stakeholders", null, 0, -1, ArchitectureDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -702,20 +684,16 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		initEReference(getArchitectureViewpoint_Concerns(), this.getConcern(), null, "concerns", null, 0, -1, ArchitectureViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureViewpoint_RepresentationKinds(), this.getRepresentationKind(), null, "representationKinds", null, 0, -1, ArchitectureViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureViewpoint_Context(), this.getArchitectureContext(), this.getArchitectureContext_Viewpoints(), "context", null, 1, 1, ArchitectureViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getArchitectureViewpoint_Id(), ecorePackage.getEString(), "id", null, 1, 1, ArchitectureViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(representationKindEClass, RepresentationKind.class, "RepresentationKind", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRepresentationKind_Language(), this.getArchitectureDescriptionLanguage(), this.getArchitectureDescriptionLanguage_RepresentationKinds(), "language", null, 1, 1, RepresentationKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRepresentationKind_Concerns(), this.getConcern(), null, "concerns", null, 0, -1, RepresentationKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getRepresentationKind_Icon(), ecorePackage.getEString(), "icon", null, 0, 1, RepresentationKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(architectureContextEClass, ArchitectureContext.class, "ArchitectureContext", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getArchitectureContext_Viewpoints(), this.getArchitectureViewpoint(), this.getArchitectureViewpoint_Context(), "viewpoints", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureContext_DefaultViewpoints(), this.getArchitectureViewpoint(), null, "defaultViewpoints", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureContext_ElementTypes(), theElementTypesConfigurationsPackage.getElementTypeSetConfiguration(), null, "elementTypes", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureContext_Domain(), this.getArchitectureDomain(), this.getArchitectureDomain_Contexts(), "domain", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getArchitectureContext_Id(), ecorePackage.getEString(), "id", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getArchitectureContext_Icon(), ecorePackage.getEString(), "icon", null, 0, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getArchitectureContext_ExtensionPrefix(), ecorePackage.getEString(), "extensionPrefix", null, 0, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
 		EGenericType g2 = createEGenericType();

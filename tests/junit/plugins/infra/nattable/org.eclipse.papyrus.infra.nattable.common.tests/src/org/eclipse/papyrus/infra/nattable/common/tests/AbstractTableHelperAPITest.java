@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
@@ -224,7 +225,8 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 		Assert.assertEquals(createAssertMessage("The owner is not correct", tableType), tableOwner, tableToCheck.getOwner()); //$NON-NLS-1$
 
 		// we check the type
-		EObject proto = tableToCheck.getPrototype();
+		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
+		EObject proto = manager.getRepresentationKindById(tableToCheck.getTableKindId());
 
 		Assert.assertTrue(createAssertMessage("The view prototype seems not valid for a table", tableType), proto instanceof PapyrusTable); //$NON-NLS-1$
 		String implementation = ((PapyrusRepresentationKind) proto).getImplementationID();

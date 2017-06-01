@@ -20,11 +20,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
-import org.eclipse.papyrus.infra.architecture.representation.provider.RepresentationEditPlugin;
-import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
-
-import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureEditPlugin;
-import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
  * This is the central singleton for the Style edit plugin.
@@ -58,13 +53,8 @@ public final class StyleEditPlugin extends EMFPlugin {
 	public StyleEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     ArchitectureEditPlugin.INSTANCE,
-		     ConstraintsEditPlugin.INSTANCE,
 		     EcoreEditPlugin.INSTANCE,
-		     TypesConfigurationsEditPlugin.INSTANCE,
 		     NotationEditPlugin.INSTANCE,
-		     RepresentationEditPlugin.INSTANCE,
-		     org.eclipse.papyrus.infra.gmfdiag.representation.provider.RepresentationEditPlugin.INSTANCE,
 		   });
 	}
 

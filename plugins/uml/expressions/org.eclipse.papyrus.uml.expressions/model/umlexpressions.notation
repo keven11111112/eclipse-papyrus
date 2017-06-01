@@ -181,9 +181,8 @@
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_IsaTkSTWEeehXLEpOVl1Ig" name="diagram_compatibility_version" stringValue="1.3.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_IsaTkiTWEeehXLEpOVl1Ig"/>
-    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_IsaTkyTWEeehXLEpOVl1Ig">
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_IsaTkyTWEeehXLEpOVl1Ig" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
       <owner xmi:type="uml:Model" href="umlexpressions.uml#_IqN7MCTWEeehXLEpOVl1Ig"/>
-      <diagramKind xmi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_zzf4gHDtEeWh-MssWmCB_A"/>
     </styles>
     <element xmi:type="uml:Model" href="umlexpressions.uml#_IqN7MCTWEeehXLEpOVl1Ig"/>
     <edges xmi:type="notation:Connector" xmi:id="_DgHYYCTXEeehXLEpOVl1Ig" type="InterfaceRealization_Edge" source="_7sdO0CTWEeehXLEpOVl1Ig" target="_2WWFwCTWEeehXLEpOVl1Ig" routing="Rectilinear">

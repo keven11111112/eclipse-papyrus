@@ -13,9 +13,11 @@
       resource="XMI" disposableProviderFactory="true" extensibleProviderFactory="true"
       ecorePackage="Architecture.ecore#/">
     <genClasses image="false" ecoreClass="Architecture.ecore#//ADElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/qualifiedName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/icon"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDomain">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDomain/stakeholders"/>
@@ -38,20 +40,16 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/concerns"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/representationKinds"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/context"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureViewpoint/id"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Architecture.ecore#//RepresentationKind">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//RepresentationKind/language"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//RepresentationKind/concerns"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//RepresentationKind/icon"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Architecture.ecore#//ArchitectureContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/viewpoints"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/defaultViewpoints"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/elementTypes"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/domain"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/icon"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/extensionPrefix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/creationCommandClass"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/conversionCommandClass"/>

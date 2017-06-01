@@ -53,6 +53,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.i
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getCells <em>Cells</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getOwnedCellEditorConfigurations <em>Owned Cell Editor Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.impl.TableImpl#getTableKindId <em>Table Kind Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -200,6 +201,26 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	protected ICellEditorConfiguration ownedCellEditorConfigurations;
 
 	/**
+	 * The default value of the '{@link #getTableKindId() <em>Table Kind Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTableKindId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TABLE_KIND_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTableKindId() <em>Table Kind Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTableKindId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String tableKindId = TABLE_KIND_ID_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -303,7 +324,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EObject getPrototype() {
 		if (prototype != null && prototype.eIsProxy()) {
 			InternalEObject oldPrototype = (InternalEObject)prototype;
@@ -330,7 +350,6 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setPrototype(EObject newPrototype) {
 		EObject oldPrototype = prototype;
 		prototype = newPrototype;
@@ -658,6 +677,27 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getTableKindId() {
+		return tableKindId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTableKindId(String newTableKindId) {
+		String oldTableKindId = tableKindId;
+		tableKindId = newTableKindId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablePackage.TABLE__TABLE_KIND_ID, oldTableKindId, tableKindId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -717,6 +757,8 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 				return getCells();
 			case NattablePackage.TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS:
 				return getOwnedCellEditorConfigurations();
+			case NattablePackage.TABLE__TABLE_KIND_ID:
+				return getTableKindId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -772,6 +814,9 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 			case NattablePackage.TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS:
 				setOwnedCellEditorConfigurations((ICellEditorConfiguration)newValue);
 				return;
+			case NattablePackage.TABLE__TABLE_KIND_ID:
+				setTableKindId((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -823,6 +868,9 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 			case NattablePackage.TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS:
 				setOwnedCellEditorConfigurations((ICellEditorConfiguration)null);
 				return;
+			case NattablePackage.TABLE__TABLE_KIND_ID:
+				setTableKindId(TABLE_KIND_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -861,6 +909,8 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 				return cells != null && !cells.isEmpty();
 			case NattablePackage.TABLE__OWNED_CELL_EDITOR_CONFIGURATIONS:
 				return ownedCellEditorConfigurations != null;
+			case NattablePackage.TABLE__TABLE_KIND_ID:
+				return TABLE_KIND_ID_EDEFAULT == null ? tableKindId != null : !TABLE_KIND_ID_EDEFAULT.equals(tableKindId);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -877,6 +927,8 @@ public class TableImpl extends TableNamedElementImpl implements Table {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (invertAxis: "); //$NON-NLS-1$
 		result.append(invertAxis);
+		result.append(", tableKindId: "); //$NON-NLS-1$
+		result.append(tableKindId);
 		result.append(')');
 		return result.toString();
 	}

@@ -304,14 +304,14 @@
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_jwgGkbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="Architecture.ecore#//ArchitectureViewpoint/representationKinds"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwgGkreqEearJ4erliAKEg" points="[-63, -32, 164, 27]$[-174, -32, 53, 27]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwgGkreqEearJ4erliAKEg" points="[-93, -25, 164, 27]$[-204, -25, 53, 27]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy0awbeqEearJ4erliAKEg" id="(0.5431034482758621,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy0awreqEearJ4erliAKEg" id="(0.49523809523809526,0.0)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_jwkYALeqEearJ4erliAKEg" type="4004" source="_jptiELeqEearJ4erliAKEg" target="_jpWVsLeqEearJ4erliAKEg" routing="Rectilinear">
     <styles xmi:type="notation:FontStyle" xmi:id="_jwkYAbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwkYAreqEearJ4erliAKEg" points="[31, -59, 353, 423]$[31, -419, 353, 63]$[-278, -419, 44, 63]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwkYAreqEearJ4erliAKEg" points="[31, -52, 353, 423]$[31, -412, 353, 63]$[-278, -412, 44, 63]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy1o5LeqEearJ4erliAKEg" id="(0.7672413793103449,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy1o5beqEearJ4erliAKEg" id="(0.6666666666666666,0.0)"/>
   </edges>
@@ -324,14 +324,14 @@
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_jwm0QbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="Architecture.ecore#//RepresentationKind/concerns"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwm0QreqEearJ4erliAKEg" points="[-26, -32, 115, 27]$[-115, -32, 26, 27]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwm0QreqEearJ4erliAKEg" points="[-26, -25, 115, 27]$[-115, -25, 26, 27]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jyzMoreqEearJ4erliAKEg" id="(0.24761904761904763,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jyzMo7eqEearJ4erliAKEg" id="(0.7678571428571429,0.0)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_jwrswLeqEearJ4erliAKEg" type="4004" source="_jpvXQLeqEearJ4erliAKEg" target="_jpWVsLeqEearJ4erliAKEg" routing="Rectilinear">
     <styles xmi:type="notation:FontStyle" xmi:id="_jwrswbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwrswreqEearJ4erliAKEg" points="[29, 0, 78, 482]$[29, 40, 78, 522]$[344, 40, 393, 522]$[344, -437, 393, 45]$[17, -437, 66, 45]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwrswreqEearJ4erliAKEg" points="[29, 0, 78, 475]$[29, 41, 78, 516]$[344, 41, 393, 516]$[344, -430, 393, 45]$[17, -430, 66, 45]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy2P8reqEearJ4erliAKEg" id="(0.49523809523809526,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy2P87eqEearJ4erliAKEg" id="(0.5,0.0)"/>
   </edges>
@@ -351,7 +351,7 @@
   <edges xmi:type="notation:Connector" xmi:id="_jwyacLeqEearJ4erliAKEg" type="4004" source="_jpv-VreqEearJ4erliAKEg" target="_jpWVsLeqEearJ4erliAKEg" routing="Rectilinear">
     <styles xmi:type="notation:FontStyle" xmi:id="_jwyacbeqEearJ4erliAKEg" fontName="Lucida Grande"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwyacreqEearJ4erliAKEg" points="[-33, -123, 122, 108]$[-33, -150, 122, 81]$[-133, -150, 22, 81]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jwyacreqEearJ4erliAKEg" points="[-33, -91, 122, 108]$[-33, -118, 122, 81]$[-133, -118, 22, 81]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy2P9LeqEearJ4erliAKEg" id="(0.7476635514018691,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jy2P9beqEearJ4erliAKEg" id="(0.8333333333333334,0.0)"/>
   </edges>

@@ -55,20 +55,6 @@ public class MergedArchitectureViewpoint extends MergedADElement {
 	}
 
 	/**
-	 * Get the viewpoints's id
-	 * 
-	 * @return an id
-	 */
-	public String getId() {
-		for (ADElement element : elements) {
-			ArchitectureViewpoint viewpoint = (ArchitectureViewpoint) element;
-			if (viewpoint.getId() != null)
-				return viewpoint.getId();
-		}
-		return null;
-	}
-
-	/**
 	 * Gets the viewpoint's merged concerns
 	 * 
 	 * @return a merged collection of concerns

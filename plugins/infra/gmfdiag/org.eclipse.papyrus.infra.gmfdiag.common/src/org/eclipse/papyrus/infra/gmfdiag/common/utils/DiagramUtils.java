@@ -25,12 +25,15 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
@@ -139,8 +142,9 @@ public class DiagramUtils {
 	public static ViewPrototype getPrototype(Diagram diagram) {
 		PolicyChecker checker = PolicyChecker.getFor(diagram);
 		PapyrusDiagramStyle pvs = getPapyrusDiagramStyle(diagram);
-		if (pvs != null) {			
-			PapyrusRepresentationKind repKind = pvs.getDiagramKind();
+		if (pvs != null) {	
+			ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
+			PapyrusDiagram repKind = (PapyrusDiagram) manager.getRepresentationKindById(pvs.getDiagramKindId());
 
 			// Check if the selected viewpoint contains the diagram model kind
 			if (repKind != null) {
@@ -199,10 +203,10 @@ public class DiagramUtils {
 	public static void setPrototype(Diagram diagram, DiagramPrototype prototype) {
 		PapyrusDiagramStyle pvs = getPapyrusDiagramStyle(diagram);
 		if (pvs != null) {
-			pvs.setDiagramKind(prototype.getRepresentationKind());
+			pvs.setDiagramKindId(prototype.getRepresentationKind().getId());
 		} else {
 			pvs = (PapyrusDiagramStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
-			pvs.setDiagramKind(prototype.getRepresentationKind());
+			pvs.setDiagramKindId(prototype.getRepresentationKind().getId());
 		}
 	}
 

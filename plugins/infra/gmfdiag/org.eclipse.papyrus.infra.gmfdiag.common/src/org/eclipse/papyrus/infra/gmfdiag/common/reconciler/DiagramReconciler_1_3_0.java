@@ -58,7 +58,7 @@ public abstract class DiagramReconciler_1_3_0 extends DiagramReconciler {
 				newStyle.setOwner(oldStyle.getOwner());
 			else
 				newStyle.setOwner(diagram.getElement());
-			newStyle.setDiagramKind(diagramKind);
+			newStyle.setDiagramKindId(diagramKind.getId());
 			return new ReplacePapyrusViewStyleCommand(diagram, oldStyle, newStyle);
 		}
 		

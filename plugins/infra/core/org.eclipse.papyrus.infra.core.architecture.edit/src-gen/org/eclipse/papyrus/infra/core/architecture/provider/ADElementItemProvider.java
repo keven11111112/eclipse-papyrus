@@ -71,11 +71,35 @@ public class ADElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIdPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addQualifiedNamePropertyDescriptor(object);
+			addIconPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ADElement_id_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_id_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ArchitecturePackage.Literals.AD_ELEMENT__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -145,6 +169,28 @@ public class ADElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Icon feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIconPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ADElement_icon_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_icon_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ArchitecturePackage.Literals.AD_ELEMENT__ICON,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,9 +217,11 @@ public class ADElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ADElement.class)) {
+			case ArchitecturePackage.AD_ELEMENT__ID:
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
 			case ArchitecturePackage.AD_ELEMENT__QUALIFIED_NAME:
+			case ArchitecturePackage.AD_ELEMENT__ICON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

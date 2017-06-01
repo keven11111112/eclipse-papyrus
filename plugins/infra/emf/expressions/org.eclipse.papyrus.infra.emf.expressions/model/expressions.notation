@@ -130,9 +130,8 @@
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_s8chYRUjEee_D4EhwjboOQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_s8chYhUjEee_D4EhwjboOQ"/>
-    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_s8chYxUjEee_D4EhwjboOQ">
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_s8chYxUjEee_D4EhwjboOQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
       <owner xmi:type="uml:Model" href="expressions.uml#_s7iicBUjEee_D4EhwjboOQ"/>
-      <diagramKind xmi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_zzf4gHDtEeWh-MssWmCB_A"/>
     </styles>
     <element xmi:type="uml:Model" href="expressions.uml#_s7iicBUjEee_D4EhwjboOQ"/>
     <edges xmi:type="notation:Connector" xmi:id="_9OFkEBVIEee_D4EhwjboOQ" type="Association_Edge" source="_eYo54BVIEee_D4EhwjboOQ" target="_T6M6ABUlEee_D4EhwjboOQ" routing="Rectilinear">
@@ -507,9 +506,8 @@
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_E-Du8RXiEee_D4EhwjboOQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_E-Du8hXiEee_D4EhwjboOQ"/>
-    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_E-Du8xXiEee_D4EhwjboOQ">
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_E-Du8xXiEee_D4EhwjboOQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
       <owner xmi:type="uml:Package" href="expressions.uml#_0cNGMBXhEee_D4EhwjboOQ"/>
-      <diagramKind xmi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_zzf4gHDtEeWh-MssWmCB_A"/>
     </styles>
     <element xmi:type="uml:Package" href="expressions.uml#_0cNGMBXhEee_D4EhwjboOQ"/>
     <edges xmi:type="notation:Connector" xmi:id="_SpXBUBXiEee_D4EhwjboOQ" type="Association_Edge" source="_SokXIBXiEee_D4EhwjboOQ" target="_SpF7kBXiEee_D4EhwjboOQ" routing="Rectilinear">

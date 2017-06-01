@@ -227,7 +227,7 @@ public   class CreateAndOpenTableEditorCommand extends RecordingCommand {
 		} else {
 			table.setOwner(this.owner);
 		}
-		table.setPrototype(tableViewPrototype.getRepresentationKind());
+		table.setTableKindId(tableViewPrototype.getRepresentationKind().getId());
 		if (this.pageManager != null) {
 			this.pageManager.openPage(table);
 		}

@@ -24,8 +24,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
-import org.eclipse.papyrus.infra.core.architecture.merged.MergedADElement;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 
@@ -69,7 +70,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	/**
 	 * a cached mapping from id to ADElement
 	 */
-	private Map<String, MergedADElement> idCache;
+	private Map<String, Object> idCache;
 	
 	/**
 	 * Constructs a new instance of the class
@@ -127,7 +128,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	public MergedArchitectureContext getArchitectureContextById(String id) {
 		if (mergedDomains == null)
 			init();
-		MergedADElement found = idCache.get(id);
+		Object found = idCache.get(id);
 		return (found instanceof MergedArchitectureContext)? (MergedArchitectureContext)found : null;
 	}
 
@@ -140,10 +141,23 @@ public class ArchitectureDomainMerger implements Cloneable {
 	public MergedArchitectureViewpoint getArchitectureViewpointById(String id) {
 		if (mergedDomains == null)
 			init();
-		MergedADElement found = idCache.get(id);
+		Object found = idCache.get(id);
 		return (found instanceof MergedArchitectureViewpoint)? (MergedArchitectureViewpoint)found : null;
 	}
 	
+	/**
+	 * Gets a representation kind given its id
+	 * 
+	 * @param id an id for an representation kind
+	 * @return a representation kind
+	 */
+	public RepresentationKind getRepresentationKindById(String id) {
+		if (mergedDomains == null)
+			init();
+		Object found = idCache.get(id);
+		return (found instanceof RepresentationKind)? (RepresentationKind)found : null;
+	}
+
 	@Override
 	public ArchitectureDomainMerger clone() {
 		ArchitectureDomainMerger clone = new ArchitectureDomainMerger();
@@ -223,12 +237,18 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 * builds a id to element cache for faster lookup
 	 */
 	private void buildCache() {
-		idCache = new HashMap<String, MergedADElement>();
+		idCache = new HashMap<String, Object>();
 		for (MergedArchitectureDomain domain : mergedDomains.values()) {
 			for (MergedArchitectureContext context : domain.getContexts()) {
 				idCache.put(context.getId(), context);
 				for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
 					idCache.put(viewpoint.getId(), viewpoint);
+				}
+				if (context instanceof MergedArchitectureDescriptionLanguage) {
+					MergedArchitectureDescriptionLanguage language = (MergedArchitectureDescriptionLanguage) context;
+					for (RepresentationKind representationKind : language.getRepresentationKinds()) {
+						idCache.put(representationKind.getId(), representationKind);
+					}
 				}
 			}
 		}

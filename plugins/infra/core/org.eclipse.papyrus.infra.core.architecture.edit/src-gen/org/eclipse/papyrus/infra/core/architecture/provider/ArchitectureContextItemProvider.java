@@ -60,8 +60,6 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 
 			addDefaultViewpointsPropertyDescriptor(object);
 			addElementTypesPropertyDescriptor(object);
-			addIdPropertyDescriptor(object);
-			addIconPropertyDescriptor(object);
 			addExtensionPrefixPropertyDescriptor(object);
 			addCreationCommandClassPropertyDescriptor(object);
 			addConversionCommandClassPropertyDescriptor(object);
@@ -109,50 +107,6 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_id_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_id_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Icon feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIconPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ArchitectureContext_icon_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_icon_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ICON,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -280,8 +234,6 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ArchitectureContext.class)) {
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ID:
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ICON:
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__EXTENSION_PREFIX:
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS:
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS:

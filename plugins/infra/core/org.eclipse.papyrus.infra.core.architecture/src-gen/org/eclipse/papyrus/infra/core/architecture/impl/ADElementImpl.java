@@ -30,14 +30,36 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ADElementImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ADElementImpl extends MinimalEObjectImpl.Container implements ADElement {
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,6 +111,26 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	protected static final String QUALIFIED_NAME_EDEFAULT = null;
 
 	/**
+	 * The default value of the '{@link #getIcon() <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIcon()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ICON_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIcon() <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIcon()
+	 * @generated
+	 * @ordered
+	 */
+	protected String icon = ICON_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -105,6 +147,27 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	protected EClass eStaticClass() {
 		return ArchitecturePackage.Literals.AD_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.AD_ELEMENT__ID, oldId, id));
 	}
 
 	/**
@@ -169,15 +232,40 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getIcon() {
+		return icon;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIcon(String newIcon) {
+		String oldIcon = icon;
+		icon = newIcon;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.AD_ELEMENT__ICON, oldIcon, icon));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ArchitecturePackage.AD_ELEMENT__ID:
+				return getId();
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				return getName();
 			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
 				return getDescription();
 			case ArchitecturePackage.AD_ELEMENT__QUALIFIED_NAME:
 				return getQualifiedName();
+			case ArchitecturePackage.AD_ELEMENT__ICON:
+				return getIcon();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -190,11 +278,17 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ArchitecturePackage.AD_ELEMENT__ID:
+				setId((String)newValue);
+				return;
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
 			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case ArchitecturePackage.AD_ELEMENT__ICON:
+				setIcon((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -208,11 +302,17 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ArchitecturePackage.AD_ELEMENT__ID:
+				setId(ID_EDEFAULT);
+				return;
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case ArchitecturePackage.AD_ELEMENT__ICON:
+				setIcon(ICON_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -226,12 +326,16 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ArchitecturePackage.AD_ELEMENT__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case ArchitecturePackage.AD_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ArchitecturePackage.AD_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ArchitecturePackage.AD_ELEMENT__QUALIFIED_NAME:
 				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
+			case ArchitecturePackage.AD_ELEMENT__ICON:
+				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -246,10 +350,14 @@ public abstract class ADElementImpl extends MinimalEObjectImpl.Container impleme
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
+		result.append(" (id: "); //$NON-NLS-1$
+		result.append(id);
+		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
+		result.append(", icon: "); //$NON-NLS-1$
+		result.append(icon);
 		result.append(')');
 		return result.toString();
 	}
