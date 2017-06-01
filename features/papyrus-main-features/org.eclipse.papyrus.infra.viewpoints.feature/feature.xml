@@ -6,7 +6,7 @@
       provider-name="Eclipse Modeling Project">
 
    <description url="https://eclipse.org/papyrus/">
-      Plug-ins providing an model of the ISO42010 standard and its application to Papyrus for role-based viewpoints customizing the UI experience.
+      Plug-ins providing viewpoints that customize the UI experience.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">

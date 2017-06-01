@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.toolsmiths.feature"
-      label="Papyrus Toolsmiths Feature"
+      label="Papyrus for Toolsmiths"
       version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
+      
+   <description url="https://eclipse.org/papyrus/">
+      Papyrus for Toolsmiths provides editors and tools to exploit the powerful customization mechanisms of Papyrus and which can be leveraged to create Papyrus-based domain-specific modeling environment.
+   </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.

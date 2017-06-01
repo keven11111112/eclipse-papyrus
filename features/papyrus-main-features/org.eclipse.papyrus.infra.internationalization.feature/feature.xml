@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.infra.internationalization.feature" label="Papyrus Internationalization" provider-name="Eclipse Modeling Project" version="1.0.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.infra.internationalization.feature"
+      label="Papyrus Internationalization"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
+
+   <description url="https://eclipse.org/papyrus/">
+      This feature regroups the plugins that manage the internationalization in Papyrus
+   </description>
 
    <copyright url="epl-v10.html">
       Copyright (c) 2016 CEA LIST
@@ -13,19 +22,60 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.internationalization" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.internationalization"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.internationalization.edit" install-size="0" unpack="false" version="0.0.0"/>
-   
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.internationalization.utils" install-size="0" unpack="false" version="0.0.0"/>
-   
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.internationalization.ui" install-size="0" unpack="false" version="0.0.0"/>
-   
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.internationalization.controlmode" install-size="0" unpack="false" version="0.0.0"/>
-   
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.internationalization.common" install-size="0" unpack="false" version="0.0.0"/>
-   
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.internationalization.readonly" install-size="0" unpack="false" version="0.0.0"/>
-   
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.editor.welcome.internationalization" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.internationalization.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.internationalization.utils"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.internationalization.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.internationalization.controlmode"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.internationalization.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.internationalization.readonly"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.editor.welcome.internationalization"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

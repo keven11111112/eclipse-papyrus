@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.sdk.feature"
-      label="Papyrus UML"
+      label="Papyrus for UML"
       version="3.0.0.qualifier"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.papyrus.sdk">
 
    <description url="https://eclipse.org/papyrus/">
-      Bundles specified to the SDK assembly of Papyrus.
+      Papyrus for UML provides a UML 2 modeling environment that conforms to the OMG specification.
+Papyrus for UML notably features diagram editors for UML 2 diagrams, rich model editing facilities, and the glue required to integrate with other model-based tools. 
+It also offers a very advanced support of UML profiles that enables users to define UML-based domain-specific modeling languages. 
+To complement the UML profiles support, Papyrus provides very powerful customization mechanisms which can be leveraged to create user-defined Papyrus perspectives and give it the same look and feel as a native DSL editor.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -129,7 +132,7 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.uml.internationalization.feature"
          version="0.0.0"/>
-		 
+
    <includes
          id="org.eclipse.papyrus.uml.m2m.qvto.feature"
          version="0.0.0"/>
@@ -185,7 +188,7 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.uml.expressions.feature"
          version="0.0.0"/>
-         
+
    <plugin
          id="com.google.guava"
          download-size="0"

@@ -7,7 +7,7 @@
       plugin="org.eclipse.papyrus.infra.discovery">
 
    <description url="https://eclipse.org/papyrus/">
-      Model and UI for Papyrus Component Discovery catalogue and installer.
+      Model and UI for Papyrus Component Discovery catalog and installer.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">

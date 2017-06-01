@@ -5,6 +5,10 @@
       version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
+   <description url="https://eclipse.org/papyrus/">
+      Provides some common QVTo facilities to work with Papyrus.
+   </description>
+
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2017 CEA LIST
 All rights reserved.   This program and the accompanying materials
@@ -24,7 +28,7 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-   
+
    <plugin
          id="org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes"
          download-size="0"

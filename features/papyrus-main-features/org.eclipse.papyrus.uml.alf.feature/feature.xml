@@ -5,6 +5,11 @@
       version="3.0.0.qualifier"
       provider-name="%providerName">
 
+   <description url="https://eclipse.org/papyrus/">
+      The Papyrus implementation of the Action Language for 
+Foundational UML.
+   </description>
+
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST.
 All rights reserved.   This program and the accompanying materials
@@ -17,10 +22,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-   
-   <description url="https://eclipse.org/papyrus/">
-   	The Papyrus implementation of the Action Language for Foundational UML.
-   </description>
 
    <plugin
          id="org.eclipse.papyrus.uml.alf.common"

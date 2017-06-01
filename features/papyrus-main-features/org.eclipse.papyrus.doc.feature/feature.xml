@@ -6,7 +6,8 @@
       provider-name="Eclipse Modeling Project">
 
    <description url="https://eclipse.org/papyrus/">
-      This feature regroups the different doc plugins that should be released in the info center.
+      This feature regroups the different documentation plugins that should be
+released in the info center.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
