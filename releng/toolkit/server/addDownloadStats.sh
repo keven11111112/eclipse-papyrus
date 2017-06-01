@@ -14,7 +14,7 @@
 #--------------------------------------------------------------------------------
 
 if [ $# -ne 2 ]; then
-echo "usage: $0 <update_site_location> <main|extra>"
+echo "usage: $0 <update_site_location> <main>"
 exit
 fi
 
