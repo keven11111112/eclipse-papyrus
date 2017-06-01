@@ -8,13 +8,16 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Céline Janssens (celine.janssens@all4tec.net) - Add Coregion  functionnality
+ *   Cï¿½line Janssens (celine.janssens@all4tec.net) - Add Coregion  functionnality
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -25,6 +28,7 @@ import org.eclipse.uml2.uml.InteractionOperatorKind;
 /**
  * @author PT202707
  * @since 3.0
+ * this class has been customized to prevent the strange feedback of lifeline during the move
  *
  */
 public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
@@ -90,6 +94,22 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 		((CombinedFragmentFigure) getPrimaryShape()).setCoregion(isCoregion());
 		super.refresh();
 
+	}
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 */
+	@Override
+	public void showTargetFeedback(Request request) {
+		if(request instanceof ChangeBoundsRequest){
+			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+
+			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			}
+		}
+		super.showTargetFeedback(request);
 	}
 
 }

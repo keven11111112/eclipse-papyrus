@@ -15,11 +15,13 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
@@ -28,10 +30,13 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 
 /**
- * The customn LayoutEditPolicy for InteractionOperandEditPart.
+ * The custom LayoutEditPolicy for InteractionOperandEditPart.
+* this class has been customized to prevent the strange feedback of lifeline during the move
+*
  */
 public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 
@@ -127,5 +132,36 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 			}
 		}
 		return super.getOrphanChildrenCommand(request);
+	}
+	/**
+	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#createAddCommand(org.eclipse.gef.requests.ChangeBoundsRequest, org.eclipse.gef.EditPart, java.lang.Object)
+	 *
+	 * @param request
+	 * @param child
+	 * @param constraint
+	 * @return
+	 */
+	@Override
+	protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
+		if( child instanceof LifelineEditPart) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createAddCommand(request, child, constraint);
+	}
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 */
+	@Override
+	public void showTargetFeedback(Request request) {
+		if(request instanceof ChangeBoundsRequest){
+			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+
+			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			}
+		}
+		super.showTargetFeedback(request);
 	}
 }

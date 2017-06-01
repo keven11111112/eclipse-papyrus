@@ -11,6 +11,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
@@ -18,6 +19,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentS
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceDiagramLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 
 /**
@@ -59,5 +61,7 @@ public class SequenceDiagramEditPart extends PapyrusDiagramEditPart {
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT, new GridManagementEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new SequenceDiagramLayoutEditPolicy());
 	}
+	
 }

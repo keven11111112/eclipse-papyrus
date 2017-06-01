@@ -35,7 +35,8 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 
 /**
  * This class is over load the creation of element and to avoid to move element directly at creation
- *
+ *this class has been customized to prevent the strange feedback of lifeline during the move
+
  */
 public class GridBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy implements IGrillingEditpolicy{
 	/**
@@ -84,7 +85,7 @@ public class GridBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedE
 				String semanticHint=((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getSemanticHint();
 				// do let the user place where he want the life line at the creation
 				if(semanticHint.equals(LifelineEditPart.VISUAL_ID)){
-					request.setLocation(new Point(request.getLocation().x,10));
+					((Rectangle) constraint).setY(10);
 				}
 			}
 		}

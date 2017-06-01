@@ -10,10 +10,12 @@ import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RelativeLocator;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
@@ -471,5 +473,20 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		svgNodePlate.setDefaultNodePlate(createNodePlate());
 		return svgNodePlate;
 	}
-	
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 */
+	@Override
+	public void showTargetFeedback(Request request) {
+		if(request instanceof ChangeBoundsRequest){
+			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+
+			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			}
+		}
+		super.showTargetFeedback(request);
+	}
 }

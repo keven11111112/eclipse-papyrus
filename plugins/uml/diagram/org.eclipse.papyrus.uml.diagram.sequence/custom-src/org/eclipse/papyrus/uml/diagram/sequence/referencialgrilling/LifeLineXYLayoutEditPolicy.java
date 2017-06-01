@@ -24,6 +24,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -45,12 +46,14 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
 /**
  * This class is used to manage node element in the compartment by using grill system.
- *
+ *this class has been customized to prevent the strange feedback of lifeline during the move
+
  */
 public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy implements IGrillingEditpolicy {
 
@@ -269,4 +272,35 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		return super.getCreateCommand(request);
 	}
 
+	/**
+	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#createAddCommand(org.eclipse.gef.requests.ChangeBoundsRequest, org.eclipse.gef.EditPart, java.lang.Object)
+	 *
+	 * @param request
+	 * @param child
+	 * @param constraint
+	 * @return
+	 */
+	@Override
+	protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
+		if( child instanceof LifelineEditPart) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.createAddCommand(request, child, constraint);
+	}
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 */
+	@Override
+	public void showTargetFeedback(Request request) {
+		if(request instanceof ChangeBoundsRequest){
+			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+
+			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			}
+		}
+		super.showTargetFeedback(request);
+	}
 }

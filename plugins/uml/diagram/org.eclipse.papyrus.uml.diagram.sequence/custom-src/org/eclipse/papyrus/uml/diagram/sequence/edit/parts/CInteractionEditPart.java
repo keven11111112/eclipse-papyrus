@@ -21,6 +21,7 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.requests.TargetRequest;
@@ -39,7 +40,8 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 /**
  * @author PT202707
  * @since 3.0
- *
+ *this class has been customized to prevent the strange feedback of lifeline during the move
+
  */
 public class CInteractionEditPart  extends InteractionEditPart{
 
@@ -177,6 +179,33 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	private ConnectionAnchor createAnchor(Point location) {
 		// return new SlidableAnchor(getFigure(), BaseSlidableAnchor.getAnchorRelativeLocation(location, getFigure().getBounds()));
 		return AnchorHelper.InnerPointAnchor.createAnchorAtLocation(getFigure(), new PrecisionPoint(location));
+	}
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#isSelectable()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean isSelectable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 */
+	@Override
+	public void showTargetFeedback(Request request) {
+		if(request instanceof ChangeBoundsRequest){
+			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+
+			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			}
+		}
+		super.showTargetFeedback(request);
 	}
 	
 }
