@@ -49,7 +49,7 @@ import org.junit.runners.Suite.SuiteClasses;
 })
 public class AllTests {
 	@ClassRule
-	public static Timeout timeout = Timeout.seconds(300);
+	public static Timeout timeout = Timeout.seconds(180);
 
 	public AllTests() {
 		super();

@@ -11,6 +11,8 @@
 package org.eclipse.papyrus.uml.diagram.interactionoverview.tests;
 
 import org.eclipse.papyrus.uml.diagram.interactionoverview.tests.canonical.AllCanonicalTests;
+import org.junit.ClassRule;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -25,4 +27,7 @@ import org.junit.runners.Suite.SuiteClasses;
 // @formatter:on
 public class AllTests {
 	// Junit 4 test case
+
+	@ClassRule
+	public static Timeout timeout = Timeout.seconds(180);
 }
