@@ -60,7 +60,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 	protected AbstractExecutionSpecificationEditPart createExecutionSpecificationWithLifeline(Point lifelineLocation, Dimension lifelineSize) {
 		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), lifelineLocation, lifelineSize);
 		assertNotNull("create ExecutionSpecification's Lifeline", lifeline);
-		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, getAbsoluteBounds(lifeline).getCenter(), null);
+		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, new Point(0,50), new Dimension(20,50));
 		assertNotNull("create ExecutionSpecification", es);
 		return es;
 	}
@@ -115,8 +115,8 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 
 	@Test
 	public void testReconnectSyncMessage() {
-		AbstractExecutionSpecificationEditPart part1 = createExecutionSpecificationWithLifeline(new Point(50, 100), null);
-		AbstractExecutionSpecificationEditPart part2 = createExecutionSpecificationWithLifeline(new Point(200, 100), null);
+		AbstractExecutionSpecificationEditPart part1 = createExecutionSpecificationWithLifeline(new Point(50, 100), new Dimension(100,1000));
+		AbstractExecutionSpecificationEditPart part2 = createExecutionSpecificationWithLifeline(new Point(200, 100),new Dimension(100,1000));
 		Point startLocation = getAbsoluteBounds(part1).getCenter();
 		Point endLocation = getAbsoluteCenter(part2).setY(startLocation.y + 1);
 		ExecutionSpecification execution2 = (ExecutionSpecification)part2.resolveSemanticElement();
@@ -127,7 +127,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
 		doCheckExecution(execution2, message, true);
-		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, part2.getParent(), getAbsoluteBounds(part2).getLocation().getTranslated(0, 100), null);
+		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, part2.getParent(), new Point(0,300), null);
 		ExecutionSpecification execution3 = (ExecutionSpecification)part3.resolveSemanticElement();
 		assertNotNull("execution3", execution3);
 		//reconnect from execution2 to execution3.

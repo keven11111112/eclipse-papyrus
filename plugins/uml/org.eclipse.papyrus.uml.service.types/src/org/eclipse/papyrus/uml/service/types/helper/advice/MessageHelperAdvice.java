@@ -215,39 +215,40 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 							toReplacebyMessageSent.getExecution().setFinish((OccurrenceSpecification)message.getSendEvent());
 						}
 					}
-					//the occurennce spec must disapear!
-					if(toReplacebyMessageReceive.getOwner()!=null) {
-						IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageSent);
-						if(provider != null) {
-							DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageSent, false);
-							ICommand destroyCommand = provider.getEditCommand(destroyRequest);
-							destroyCommand.execute(new NullProgressMonitor(), null);					
+					if(toReplacebyMessageReceive!=null) {
+						//the occurennce spec must disapear!
+						if(toReplacebyMessageReceive.getOwner()!=null) {
+							IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageSent);
+							if(provider != null) {
+								DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageSent, false);
+								ICommand destroyCommand = provider.getEditCommand(destroyRequest);
+								destroyCommand.execute(new NullProgressMonitor(), null);					
+							}
 						}
-					}
-				}
-				if(toReplacebyMessageReceive!=null) {
-					//replace by the receive message
-					if(toReplacebyMessageReceive.getExecution()!=null) {
-						//this is the start?
-						if( toReplacebyMessageReceive.getExecution().getStart().equals(toReplacebyMessageReceive)) {
-							toReplacebyMessageReceive.getExecution().setStart((OccurrenceSpecification)message.getReceiveEvent());
-						}
-						else {
-							//this is the finish
-							toReplacebyMessageReceive.getExecution().setFinish((OccurrenceSpecification)message.getReceiveEvent());
-						}
-					}
-					//the occurence spec must be deleted
-					if(toReplacebyMessageReceive.getOwner()!=null) {
-						IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageReceive);
-						if(provider != null) {
-							DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageReceive, false);
-							ICommand destroyCommand = provider.getEditCommand(destroyRequest);
-							destroyCommand.execute(new NullProgressMonitor(), null);					
-						}
-					}
-				}
 
+
+						//replace by the receive message
+						if(toReplacebyMessageReceive.getExecution()!=null) {
+							//this is the start?
+							if( toReplacebyMessageReceive.getExecution().getStart().equals(toReplacebyMessageReceive)) {
+								toReplacebyMessageReceive.getExecution().setStart((OccurrenceSpecification)message.getReceiveEvent());
+							}
+							else {
+								//this is the finish
+								toReplacebyMessageReceive.getExecution().setFinish((OccurrenceSpecification)message.getReceiveEvent());
+							}
+						}
+						//the occurence spec must be deleted
+						if(toReplacebyMessageReceive.getOwner()!=null) {
+							IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageReceive);
+							if(provider != null) {
+								DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageReceive, false);
+								ICommand destroyCommand = provider.getEditCommand(destroyRequest);
+								destroyCommand.execute(new NullProgressMonitor(), null);					
+							}
+						}
+					}
+				}
 				return CommandResult.newOKCommandResult(message);
 			}
 
