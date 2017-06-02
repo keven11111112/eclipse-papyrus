@@ -81,7 +81,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            category="org.eclipse.papyrus.views.properties.propertyview"
             class="org.eclipse.papyrus.views.properties.toolsmiths.preferences.CustomizationPreferencePage"
             id="org.eclipse.papyrus.customization.properties.preferences"
             name="%page.name">
