@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.CommandStackListener;
@@ -34,6 +36,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
@@ -55,6 +58,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
@@ -230,8 +234,6 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 * update the list of romw and colmumn
 	 */
 	public void updateRowsAndColumns() {
-
-
 		rows.clear();
 		columns.clear();
 		if (gridCompartment != null) {
@@ -259,8 +261,12 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public void updateCoveredAndOwnerAfterUpdate() {
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "____UPDATE COVERED_____");//$NON-NLS-1$
 
-		// 1. look for all Lifelines
-		// There are columns.
+		updateCoveredBy();
+		IComputeOwnerHelper computeOwner= new ComputeOwnerHelper();
+		computeOwner.updateOwnedByInteractionOperand(((IGraphicalEditPart) getHost()).getEditingDomain(), rows, columns, (Interaction)((IGraphicalEditPart) getHost()).resolveSemanticElement(), this);
+	}
+
+	protected void updateCoveredBy() {
 		HashSet<Lifeline> lifelineList = new HashSet<Lifeline>();
 		for (DecorationNode column : columns) {
 			if ((column.getElement()) instanceof Lifeline) {
@@ -326,249 +332,238 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			}
 
 		}
-
-
-
 	}
 
-
-
-
-/**
- * Gets the diagram event broker from the editing domain.
- *
- * @return the diagram event broker
- */
-protected DiagramEventBroker getDiagramEventBroker() {
-	TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-	if (null != theEditingDomain) {
-		return DiagramEventBroker.getInstance(theEditingDomain);
+	
+	/**
+	 * Gets the diagram event broker from the editing domain.
+	 *
+	 * @return the diagram event broker
+	 */
+	protected DiagramEventBroker getDiagramEventBroker() {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		if (null != theEditingDomain) {
+			return DiagramEventBroker.getInstance(theEditingDomain);
+		}
+		return null;
 	}
-	return null;
-}
 
-/**
- * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
- * 
- */
-@Override
-public void deactivate() {
-	getDiagramEventBroker().removeNotificationListener(((EObject) getHost().getModel()), this);
-	super.deactivate();
-}
+	/**
+	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
+	 * 
+	 */
+	@Override
+	public void deactivate() {
+		getDiagramEventBroker().removeNotificationListener(((EObject) getHost().getModel()), this);
+		super.deactivate();
+	}
 
-/**
- * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
- *
- * @param notifications
- */
-@Override
-public void notifyChanged(Notification notification) {
-	if (notification instanceof CommandExecutionNotification) {
-		// after a command execution moveAllLinesAtSamePosition is set to false
-		// we must explicitly set to true if we want to move it as a line
-		//setMoveAllLinesAtSamePosition(true);
-		//UMLDiagramEditorPlugin.log.trace(CustomMessages.SEQUENCE_DEBUG_REFERENCEGRID, "executed Command");//$NON-NLS-1$
-	} else {
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notifications
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
 
-		if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location) {
-			updateRowsAndColumns();
+			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location) {
+				updateRowsAndColumns();
 
-			if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
-				if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
-					DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
-					//when the row is connected to interaction operand --> do nothing
-					if(movedRow.getElement() instanceof InteractionOperand) {
-						return;
-					}
-					if (moveAllLinesAtSamePosition) {
-						ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
-						// when we move line we disconnect listeners to avoid problems of infinite loop
-						((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
+				if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
+					if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
+						DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
+						//when the row is connected to interaction operand --> do nothing
+						if(movedRow.getElement() instanceof InteractionOperand) {
+							return;
+						}
+						if (moveAllLinesAtSamePosition) {
+							ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
+							// when we move line we disconnect listeners to avoid problems of infinite loop
+							((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
 
-						// maybe we must move other lines
-						// it exist other lines
-						if(!(movedRow.getElement() instanceof Lifeline)) {
-							if (rows.size() > rowlist.size()) {
-								updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
+							// maybe we must move other lines
+							// it exist other lines
+							if(!(movedRow.getElement() instanceof Lifeline)) {
+								if (rows.size() > rowlist.size()) {
+									updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
+								}
+							}
+							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
+								DecorationNode axis = (DecorationNode) iterator.next();
+
+								//we do not move line about Lifeline and interaction operand
+								if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
+									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
+								}
+
 							}
 						}
-						for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
-							DecorationNode axis = (DecorationNode) iterator.next();
-
-							//we do not move line about Lifeline and interaction operand
-							if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
-								execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
-							}
-
-						}
+						((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
 					}
-					((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
+					
 				}
 				updateCoveredAndOwnerAfterUpdate();
 			}
-		}
-	}
-}
-
-
-
-/**
- * get the decoration node that represents a column from a position (absolute)
- * 
- * @param x
- *            the position x for the column
- * @return the decoration node
- */
-public DecorationNode createColumnTolisten(int x, Element semantic) throws NoGrillElementFound {
-	execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) gridCompartment.getNotationView()), COLUMN + columns.size(), semantic, x));
-	refreshGrillingStructure();
-	return getLastCreatedAxis();
-}
-
-/**
- * get the decoration node that represents a line from a position (absolute)
- * 
- * @param y
- *            the position y for the line
- * @return the decoration node
- */
-public DecorationNode createRowTolisten(int y, Element semantic) throws NoGrillElementFound {
-	execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) gridCompartment.getNotationView()), ROW + rows.size(), semantic, y));
-	DecorationNode row = getLastCreatedAxis();
-	refreshGrillingStructure();
-	return row;
-
-}
-
-/**
- * @return get the last created Axis
- **/
-public DecorationNode getLastCreatedAxis() throws NoGrillElementFound {
-	BasicCompartment grid = ((BasicCompartment) gridCompartment.getNotationView());
-	if (grid.getChildren().size() == 0) {
-		throw new NoGrillElementFound();
-	} else {
-		return (DecorationNode) grid.getChildren().get(grid.getChildren().size() - 1);
 	}
 
-}
 
 
-/**
- * 
- * @param y
- *            the position y where we look for a row
- * @return the rows that exists at the position [y- threshold, y+threshold]s
- */
-public ArrayList<DecorationNode> getRowAtPosition(int y) {
-	ArrayList<DecorationNode> sameLines = new ArrayList<DecorationNode>();
-	for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
-		DecorationNode currentRow = iterator.next();
-		int Yposition = getPositionY(currentRow);
-		if (Yposition - threshold <= y && y <= Yposition + threshold) {
-			sameLines.add(currentRow);
+	/**
+	 * get the decoration node that represents a column from a position (absolute)
+	 * 
+	 * @param x
+	 *            the position x for the column
+	 * @return the decoration node
+	 */
+	public DecorationNode createColumnTolisten(int x, Element semantic) throws NoGrillElementFound {
+		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) gridCompartment.getNotationView()), COLUMN + columns.size(), semantic, x));
+		refreshGrillingStructure();
+		return getLastCreatedAxis();
+	}
+
+	/**
+	 * get the decoration node that represents a line from a position (absolute)
+	 * 
+	 * @param y
+	 *            the position y for the line
+	 * @return the decoration node
+	 */
+	public DecorationNode createRowTolisten(int y, Element semantic) throws NoGrillElementFound {
+		execute(new CreateCoordinateCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), ((BasicCompartment) gridCompartment.getNotationView()), ROW + rows.size(), semantic, y));
+		DecorationNode row = getLastCreatedAxis();
+		refreshGrillingStructure();
+		return row;
+
+	}
+
+	/**
+	 * @return get the last created Axis
+	 **/
+	public DecorationNode getLastCreatedAxis() throws NoGrillElementFound {
+		BasicCompartment grid = ((BasicCompartment) gridCompartment.getNotationView());
+		if (grid.getChildren().size() == 0) {
+			throw new NoGrillElementFound();
+		} else {
+			return (DecorationNode) grid.getChildren().get(grid.getChildren().size() - 1);
 		}
 
 	}
-	return sameLines;
-}
 
-/**
- * @param decorationNode
- * @return the Position Y for a decoration node
- */
-public int getPositionY(DecorationNode decorationNode) {
-	LayoutConstraint constraint = decorationNode.getLayoutConstraint();
-	if (constraint instanceof Location) {
-		return ((Location) constraint).getY();
+
+	/**
+	 * 
+	 * @param y
+	 *            the position y where we look for a row
+	 * @return the rows that exists at the position [y- threshold, y+threshold]s
+	 */
+	public ArrayList<DecorationNode> getRowAtPosition(int y) {
+		ArrayList<DecorationNode> sameLines = new ArrayList<DecorationNode>();
+		for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
+			DecorationNode currentRow = iterator.next();
+			int Yposition = getPositionY(currentRow);
+			if (Yposition - threshold <= y && y <= Yposition + threshold) {
+				sameLines.add(currentRow);
+			}
+
+		}
+		return sameLines;
 	}
-	return 0;
-}
 
-
-protected void updateYpositionForRow(DecorationNode movedRow, int oldPosition) {
-	LayoutConstraint newconstraint = movedRow.getLayoutConstraint();
-	DecorationNode nextRow = getDistanceWithNextRowBeforeMoving(movedRow, oldPosition);
-	if (nextRow == null) {
-		return;
+	/**
+	 * @param decorationNode
+	 * @return the Position Y for a decoration node
+	 */
+	public int getPositionY(DecorationNode decorationNode) {
+		LayoutConstraint constraint = decorationNode.getLayoutConstraint();
+		if (constraint instanceof Location) {
+			return ((Location) constraint).getY();
+		}
+		return 0;
 	}
-	LayoutConstraint nextConstraint = nextRow.getLayoutConstraint();
-	int nextDistance = ((Location) nextConstraint).getY() - ((Location) newconstraint).getY();
-	int margin = getGridSpacing();
-	if (nextDistance < margin) {
-		ArrayList<DecorationNode> rowsCopy = new ArrayList<DecorationNode>();
-		rowsCopy.addAll(rows);
-		for (int i = rowsCopy.indexOf(nextRow); i < rowsCopy.size(); i++) {
-			if(!(rowsCopy.get(i).equals(movedRow))) {
-				LayoutConstraint aConstraint = rowsCopy.get(i).getLayoutConstraint();
-				if (aConstraint instanceof Location) {
-					//do not move row connected to interaction operand 
-					if((!(rowsCopy.get(i).getElement() instanceof InteractionOperand))) {
 
-						execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), aConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location) aConstraint).getY() + margin));
+
+	protected void updateYpositionForRow(DecorationNode movedRow, int oldPosition) {
+		LayoutConstraint newconstraint = movedRow.getLayoutConstraint();
+		DecorationNode nextRow = getDistanceWithNextRowBeforeMoving(movedRow, oldPosition);
+		if (nextRow == null) {
+			return;
+		}
+		LayoutConstraint nextConstraint = nextRow.getLayoutConstraint();
+		int nextDistance = ((Location) nextConstraint).getY() - ((Location) newconstraint).getY();
+		int margin = getGridSpacing();
+		if (nextDistance < margin) {
+			ArrayList<DecorationNode> rowsCopy = new ArrayList<DecorationNode>();
+			rowsCopy.addAll(rows);
+			for (int i = rowsCopy.indexOf(nextRow); i < rowsCopy.size(); i++) {
+				if(!(rowsCopy.get(i).equals(movedRow))) {
+					LayoutConstraint aConstraint = rowsCopy.get(i).getLayoutConstraint();
+					if (aConstraint instanceof Location) {
+						//do not move row connected to interaction operand 
+						if((!(rowsCopy.get(i).getElement() instanceof InteractionOperand))) {
+
+							execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), aConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location) aConstraint).getY() + margin));
+						}
 					}
 				}
 			}
 		}
 	}
-}
 
-/**
- * 
- * @param currentRow
- * @param currentRowPosition
- * @return get the next row that has not the same position
- */
-protected DecorationNode getDistanceWithNextRowBeforeMoving(DecorationNode currentRow, int oldPosition) {
-	Object[] arrayRow = rows.toArray();
-	List<Object> orderedRows = Arrays.asList(arrayRow);
-	DecorationNode nextRow = null;
-	// look for the next row
-	for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
-		DecorationNode aRow = iterator.next();
-		int Yposition = getPositionY(aRow);
-		if (oldPosition  < Yposition && (!aRow.equals(currentRow))) {
-			nextRow = aRow;
-			return nextRow;
+	/**
+	 * 
+	 * @param currentRow
+	 * @param currentRowPosition
+	 * @return get the next row that has not the same position
+	 */
+	protected DecorationNode getDistanceWithNextRowBeforeMoving(DecorationNode currentRow, int oldPosition) {
+		Object[] arrayRow = rows.toArray();
+		List<Object> orderedRows = Arrays.asList(arrayRow);
+		DecorationNode nextRow = null;
+		// look for the next row
+		for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
+			DecorationNode aRow = iterator.next();
+			int Yposition = getPositionY(aRow);
+			if (oldPosition  < Yposition && (!aRow.equals(currentRow))) {
+				nextRow = aRow;
+				return nextRow;
+			}
+
 		}
+		return nextRow;
 
 	}
-	return nextRow;
 
-}
+	protected int getGridSpacing() {
+		if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
 
-protected int getGridSpacing() {
-	if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
+			RootEditPart drep = getHost().getRoot();
+			if (drep instanceof DiagramRootEditPart) {
+				return (int) ((DiagramRootEditPart) drep).getGridSpacing();
+			}
+		}
+		return margin;
+	}
 
-		RootEditPart drep = getHost().getRoot();
-		if (drep instanceof DiagramRootEditPart) {
-			return (int) ((DiagramRootEditPart) drep).getGridSpacing();
+	public static Point getLocation(DecorationNode current) throws NoGrillElementFound {
+		LayoutConstraint currentConstraint = current.getLayoutConstraint();
+		if (currentConstraint instanceof Location) {
+			return new Point(((Location) currentConstraint).getX(), ((Location) currentConstraint).getY());
+		} else {
+			throw new NoGrillElementFound();
 		}
 	}
-	return margin;
-}
 
-public static Point getLocation(DecorationNode current) throws NoGrillElementFound {
-	LayoutConstraint currentConstraint = current.getLayoutConstraint();
-	if (currentConstraint instanceof Location) {
-		return new Point(((Location) currentConstraint).getX(), ((Location) currentConstraint).getY());
-	} else {
-		throw new NoGrillElementFound();
-	}
-}
-
-public static List<EObject> getRef(DecorationNode current) {
-	EAnnotation eAnnotation = current.getEAnnotation(GRID_CONNECTION);
-	if (eAnnotation == null) {
-		return null;
-	} else {
-		if (eAnnotation.getReferences().size() != 0) {
-			return eAnnotation.getReferences();
+	public static List<EObject> getRef(DecorationNode current) {
+		EAnnotation eAnnotation = current.getEAnnotation(GRID_CONNECTION);
+		if (eAnnotation == null) {
+			return null;
+		} else {
+			if (eAnnotation.getReferences().size() != 0) {
+				return eAnnotation.getReferences();
+			}
+			return null;
 		}
-		return null;
 	}
-}
 
 
 
