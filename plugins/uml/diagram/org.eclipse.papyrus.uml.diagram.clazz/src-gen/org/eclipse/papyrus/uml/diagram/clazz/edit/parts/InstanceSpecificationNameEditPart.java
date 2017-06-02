@@ -238,17 +238,7 @@ public class InstanceSpecificationNameEditPart extends PapyrusCompartmentEditPar
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
-		}
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for (View view : views) {
-			if (AppearanceHelper.showElementIcon(view)) {
-				return UMLElementTypes.getImage(parserElement.eClass());
-			}
-		}
-		return null;
+		return org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
 	}
 
 	/**
