@@ -347,6 +347,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		}
 
 		List<EClass> availableClasses = getAvailableEClasses();
+		Collections.sort(availableClasses, new EClassNameComparator());
 		if (availableClasses.isEmpty()) {
 			return null;
 		}
@@ -444,7 +445,6 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 */
 	protected List<EClass> getAvailableEClasses() {
 		List<EClass> availableEClasses = EMFHelper.getSubclassesOf(type, true);
-		Collections.sort(availableEClasses, new EClassNameComparator());
 		return availableEClasses;
 	}
 

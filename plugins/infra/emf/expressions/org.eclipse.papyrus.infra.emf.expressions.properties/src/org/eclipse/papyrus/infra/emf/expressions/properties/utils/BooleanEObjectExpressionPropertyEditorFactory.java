@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
-import org.eclipse.papyrus.infra.emf.utils.EClassNameComparator;
 import org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory;
 
 /**
@@ -73,7 +72,7 @@ public class BooleanEObjectExpressionPropertyEditorFactory extends EcoreProperty
 				}
 			}
 		}
-		availableEClasses.sort(new EClassNameComparator());
 		return availableEClasses;
 	}
+	
 }
