@@ -20,11 +20,10 @@ import org.eclipse.papyrus.uml.diagram.css.dom.GMFUMLElementProviderFactory;
  *
  * @author Shuai Li
  * @since 2.0
+ * @deprecated Use {@link GMFUMLElementProviderFactory} instead
  *
  */
+@Deprecated
 public class GMFUMLTypedElementProviderFactory extends GMFUMLElementProviderFactory {
-	@Override
-	public IPapyrusElementProvider createProvider(CSSDiagram diagram) {
-		return new GMFUMLTypedElementProvider();
-	}
+	// Deprecated, empty class
 }

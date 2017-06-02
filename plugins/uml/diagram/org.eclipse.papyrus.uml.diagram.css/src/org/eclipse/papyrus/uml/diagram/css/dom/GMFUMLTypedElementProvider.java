@@ -11,12 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
-import org.eclipse.e4.ui.css.core.engine.CSSEngine;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.uml.diagram.css.dom.GMFUMLElementProvider;
-import org.w3c.dom.Element;
-
 /**
  * An IElementProvider for UML-specific CSS concepts
  *
@@ -24,22 +18,9 @@ import org.w3c.dom.Element;
  *
  * @author Shuai Li
  * @since 2.0
+ * @deprecated Use/Extend {@link GMFUMLElementProvider} instead
  */
-@SuppressWarnings("restriction")
-// e4 CSS
+@Deprecated
 public class GMFUMLTypedElementProvider extends GMFUMLElementProvider {
-
-	@Override
-	public Element getElement(Object element, CSSEngine engine) {
-
-		if (!(element instanceof View)) {
-			throw new IllegalArgumentException("Unknown element : " + element);
-		}
-
-		if (!(engine instanceof ExtendedCSSEngine)) {
-			throw new IllegalArgumentException("Invalid CSS Engine : " + engine);
-		}
-
-		return new GMFUMLTypedElementAdapter((View) element, (ExtendedCSSEngine) engine);
-	}
+	//Deprecated, empty class
 }

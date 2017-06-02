@@ -9,13 +9,6 @@
       </factory>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.gmfdiag.css.domElementAdapter">
-      <factory
-            factory="org.eclipse.papyrus.uml.diagram.css.dom.GMFUMLTypedElementProviderFactory"
-            order="10">
-      </factory>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.gmfdiag.css.userAgentStyleSheet">
       <stylesheet
             stylesheetPath="theme/umlBase.css">

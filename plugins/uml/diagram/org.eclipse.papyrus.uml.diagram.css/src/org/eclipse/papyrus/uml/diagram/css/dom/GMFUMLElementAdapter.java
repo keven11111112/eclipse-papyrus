@@ -39,6 +39,8 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.Trigger;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.TypedElement;
 
 /**
  * DOM Element Adapter for UML Elements
@@ -67,6 +69,9 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 	/** The Constant IS_FRAMEZABLE. */
 	public static final String IS_FRAME = "isFrame"; //$NON-NLS-1$
+	
+	/** CSS property to verify if a stereotype is applied on the type of a TypedElement */
+	public static final String TYPE_APPLIED_STEREOTYPES_PROPERTY = "typeAppliedStereotypes"; //$NON-NLS-1$
 
 
 	/**
@@ -139,6 +144,22 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					return ListHelper.deepToString(appliedStereotypes, CSS_VALUES_SEPARATOR);
 				}
 			}
+			
+			if (TYPE_APPLIED_STEREOTYPES_PROPERTY.equals(attr) && semanticElement instanceof TypedElement) {
+				Type type = ((TypedElement) semanticElement).getType();
+				if (type != null) {
+					List<String> appliedStereotypes = new LinkedList<>();
+					for (Stereotype stereotype : type.getAppliedStereotypes()) {
+						appliedStereotypes.add(stereotype.getName());
+						appliedStereotypes.add(stereotype.getQualifiedName());
+					}
+
+					if (!appliedStereotypes.isEmpty()) {
+						return ListHelper.deepToString(appliedStereotypes, CSS_VALUES_SEPARATOR);
+					}
+				}
+			}
+			
 			for (EObject stereotypeApplication : currentElement.getStereotypeApplications()) {
 				EStructuralFeature feature = stereotypeApplication.eClass().getEStructuralFeature(attr);
 				if (feature != null) {
