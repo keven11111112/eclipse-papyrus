@@ -383,45 +383,48 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			// Load the resource if not already loaded
 			if (!resource.isLoaded()) {
 				// If this is a read-only resource, create a fake resource to get the internationalization content and read the needed entries
-				if (InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded() && modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
-
+				if (modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
+					
 					// Unload the resource and remove the created resource from the map and from the resource set
 					unload(resource);
 					getResources().remove(resource);
 					modelSet.getResources().remove(resource);
-
-					final URI initialResourceURI = resource.getURI();
-					final String lastSegment = initialResourceURI.lastSegment();
-					URI newResourceURI = modelSet.getURIWithoutExtension();
-					newResourceURI = newResourceURI.trimSegments(1);
-					newResourceURI = newResourceURI.appendSegment(lastSegment);
-
-					// Create the resource with the ResourceSet but this one need to be removed from the ResourceSet
-					// Look for the resource
-					resource = getResourceSet().getResource(newResourceURI, false);
-
-					// Check if model is loaded.
-					if (null == resource) {
-						resource = modelSet.createResource(newResourceURI);
-					}
-					configureResource(initialResourceURI, resource, locale);
-
-					if (resource instanceof InternationalizationResource) {
-						final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resource)
-								.getDefaultLoadOptions();
-						defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT, true);
-					}
-
-					try {
-						resource.load(null);
-						final Object libraryContent = ((InternationalizationResource) resource).getDefaultSaveOptions().get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT);
-						if (libraryContent instanceof InternationalizationLibrary) {
-							resourceContents.put(resource, (InternationalizationLibrary) libraryContent);
+					
+					if(InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
+	
+						final URI initialResourceURI = resource.getURI();
+						final String lastSegment = initialResourceURI.lastSegment();
+						URI newResourceURI = modelSet.getURIWithoutExtension();
+						newResourceURI = newResourceURI.trimSegments(1);
+						newResourceURI = newResourceURI.appendSegment(lastSegment);
+	
+						// Create the resource with the ResourceSet but this one need to be removed from the ResourceSet
+						// Look for the resource
+						resource = getResourceSet().getResource(newResourceURI, false);
+	
+						// Check if model is loaded.
+						if (null == resource) {
+							resource = modelSet.createResource(newResourceURI);
 						}
-					} catch (IOException e) {
-						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
+						configureResource(initialResourceURI, resource, locale);
+	
+						if (resource instanceof InternationalizationResource) {
+							final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resource)
+									.getDefaultLoadOptions();
+							defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT, true);
+						}
+	
+						try {
+							resource.load(null);
+							final Object libraryContent = ((InternationalizationResource) resource).getDefaultSaveOptions().get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT);
+							if (libraryContent instanceof InternationalizationLibrary) {
+								resourceContents.put(resource, (InternationalizationLibrary) libraryContent);
+							}
+						} catch (IOException e) {
+							Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
+						}
 					}
-
+					
 					// And add the temporary resource to the list of resources to not save
 					resourcesToNotSave.add(resource);
 					// The resource set don't need to have this file anymore
