@@ -121,7 +121,9 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		options.put(UML2EcoreConverter.OPTION__VALIDATION_DELEGATES, handleConstraints);
 		options.put(UML2EcoreConverter.OPTION__INVOCATION_DELEGATES, handleConstraints);
 		options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, handleConstraints);
-		//
+		
+		// Assure that "right" (consistent with xtext editor) OCL delegate is used , see bug 512428 
+		options.put(UML2EcoreConverter.OPTION__OCL_DELEGATE_URI, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"); //$NON-NLS-1$
 
 		options.put(UML2EcoreConverter.OPTION__COMMENTS, UMLUtil.OPTION__IGNORE);
 		options.put(Profile2EPackageConverter.OPTION__FOREIGN_DEFINITIONS, UMLUtil.OPTION__PROCESS);
