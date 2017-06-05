@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2018 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA-LIST) - vincent.lorenzo@cea.fr - bug 517731
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
@@ -90,9 +90,9 @@ public class EOperationAxisManager extends EObjectAxisManager {
 		return null;
 	}
 
-	
+
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
 	 *
 	 * @param domain
@@ -108,15 +108,17 @@ public class EOperationAxisManager extends EObjectAxisManager {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Get the axis to add from the objects to add.
-	 * 
-	 * @param objectToAdd The objects to add.
+	 *
+	 * @param objectToAdd
+	 *            The objects to add.
 	 * @return The axis to add.
 	 */
-	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd){
-		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
+	@Override
+	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd) {
+		final Collection<IAxis> toAdd = new ArrayList<>();
 		for (final Object current : objectToAdd) {
 			if (isAllowedContents(current) && !isAlreadyManaged(current)) {
 				final EOperationAxis newAxis = NattableaxisFactory.eINSTANCE.createEOperationAxis();
@@ -145,9 +147,9 @@ public class EOperationAxisManager extends EObjectAxisManager {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
 	 *
 	 * @param domain
@@ -163,41 +165,73 @@ public class EOperationAxisManager extends EObjectAxisManager {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Get the operations to add.
-	 * 
-	 * @param objectToAdd The initial objects to add.
+	 *
+	 * @param objectToAdd
+	 *            The initial objects to add.
 	 * @return The operations to add.
 	 */
-	protected Set<Object> getOperationsToAdd(final Collection<Object> objectToAdd){
-		final Set<Object> operations = new HashSet<Object>();
+	protected Set<Object> getOperationsToAdd(final Collection<Object> objectToAdd) {
+		final Set<Object> operations = new HashSet<>();
 		for (final Object current : objectToAdd) {
 			if (current instanceof EObject) {
 				operations.addAll(((EObject) current).eClass().getEAllOperations());
 			}
 		}
 		operations.removeAll(getElements());
-		removeVoidOperations(operations);
+		removeOperations(operations);
 		return operations;
 	}
-	
+
+
+	/**
+	 * This allows to remove the needed EOperation.
+	 *
+	 * @param objects
+	 *            The list of objects
+	 * @since 5.1
+	 */
+	protected void removeOperations(final Collection<?> objects) {
+		removeVoidOperations(objects);
+		removeOperationsWithParameters(objects);
+	}
+
 	/**
 	 * This allows to remove the void EOperation.
-	 * 
-	 * @param objects The list of objects
+	 *
+	 * @param objects
+	 *            The list of objects
 	 */
-	protected void removeVoidOperations(final Collection<?> objects){
+	protected void removeVoidOperations(final Collection<?> objects) {
 		Iterator<?> objectsIterator = objects.iterator();
-		while(objectsIterator.hasNext()){
+		while (objectsIterator.hasNext()) {
 			Object currentObject = objectsIterator.next();
-			
-			if(currentObject instanceof EOperation && null == ((EOperation) currentObject).getEType()){
+
+			if (currentObject instanceof EOperation && null == ((EOperation) currentObject).getEType()) {
 				objectsIterator.remove();
 			}
 		}
 	}
 
+	/**
+	 * This allows to remove the EOperation with parameters.
+	 *
+	 * @param objects
+	 *            The list of objects
+	 * @since 5.1
+	 */
+	protected void removeOperationsWithParameters(final Collection<?> objects) {
+		Iterator<?> objectsIterator = objects.iterator();
+		while (objectsIterator.hasNext()) {
+			Object currentObject = objectsIterator.next();
+
+			if (currentObject instanceof EOperation && !((EOperation) currentObject).getEParameters().isEmpty()) {
+				objectsIterator.remove();
+			}
+		}
+	}
 
 	/**
 	 *

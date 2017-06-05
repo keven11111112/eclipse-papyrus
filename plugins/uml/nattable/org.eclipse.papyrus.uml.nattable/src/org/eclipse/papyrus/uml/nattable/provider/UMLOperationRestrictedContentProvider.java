@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2018 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Nicolas Fauvergue - nicolas.fauvergue@cea.fr - bug 517731
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.provider;
@@ -123,7 +123,7 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 	 */
 	@Override
 	public Object[] getChildren(Object parentElement) {
-		List<Object> asList = new ArrayList<Object>();
+		List<Object> asList = new ArrayList<>();
 		if (parentElement instanceof EClass) {
 			EClass eClass = (EClass) parentElement;
 			if (isIgnoringInheritedElements()) {
@@ -132,13 +132,13 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 				asList.addAll(eClass.getEAllOperations());
 			}
 			asList.remove(EcorePackage.eINSTANCE.getEModelElement_EAnnotations());
-			removeVoidOperations(asList);
+			removeOperations(asList);
 			return asList.toArray();
 		} else if (parentElement instanceof EPackage) {
 			EPackage ePackage = (EPackage) parentElement;
 			Collection<EClassifier> eClassifiers = null;
 			if (isRestricted()) {
-				eClassifiers = new HashSet<EClassifier>();
+				eClassifiers = new HashSet<>();
 				AbstractAxisProvider axisProvider = ((INattableModelManager) this.axisManager.getTableManager()).getHorizontalAxisProvider();
 				if (axisProvider == this.axisManager.getRepresentedContentProvider()) {
 					axisProvider = ((INattableModelManager) this.axisManager.getTableManager()).getVerticalAxisProvider();
@@ -157,15 +157,6 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 						eClassifiers.add(eClass);
 						eClassifiers.addAll(eClass.getEAllSuperTypes());
 					}
-					// if (object instanceof EObject) {
-					// EObject eObject = (EObject) object;
-					// if (eObject instanceof EObjectAxis) {
-					// eObject = ((EObjectAxis) eObject).getElement();
-					// }
-					// EClass eClass = eObject.eClass();
-					// eClassifiers.add(eClass);
-					// eClassifiers.addAll(eClass.getEAllSuperTypes());
-					// }
 				}
 			} else {
 				eClassifiers = ePackage.getEClassifiers();
@@ -179,21 +170,52 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 			}
 			return asList.toArray();
 		}
-		return null;
+		return asList.toArray();
 
 	}
-	
+
+	/**
+	 * This allows to remove the needed EOperation.
+	 *
+	 * @param objects
+	 *            The list of objects
+	 * @since 5.2
+	 */
+	protected void removeOperations(final Collection<?> objects) {
+		removeVoidOperations(objects);
+		removeOperationsWithParameters(objects);
+	}
+
 	/**
 	 * This allows to remove the void EOperation.
-	 * 
-	 * @param objects The list of objects
+	 *
+	 * @param objects
+	 *            The list of objects
 	 */
-	protected void removeVoidOperations(final Collection<?> objects){
+	protected void removeVoidOperations(final Collection<?> objects) {
 		Iterator<?> objectsIterator = objects.iterator();
-		while(objectsIterator.hasNext()){
+		while (objectsIterator.hasNext()) {
 			Object currentObject = objectsIterator.next();
-			
-			if(currentObject instanceof EOperation && null == ((EOperation) currentObject).getEType()){
+
+			if (currentObject instanceof EOperation && null == ((EOperation) currentObject).getEType()) {
+				objectsIterator.remove();
+			}
+		}
+	}
+
+	/**
+	 * This allows to remove the EOperation with parameters.
+	 *
+	 * @param objects
+	 *            The list of objects
+	 * @since 5.2
+	 */
+	protected void removeOperationsWithParameters(final Collection<?> objects) {
+		Iterator<?> objectsIterator = objects.iterator();
+		while (objectsIterator.hasNext()) {
+			Object currentObject = objectsIterator.next();
+
+			if (currentObject instanceof EOperation && !((EOperation) currentObject).getEParameters().isEmpty()) {
 				objectsIterator.remove();
 			}
 		}
@@ -265,7 +287,7 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 	 *
 	 * @param element
 	 * @return
-	 *         <code>true</code> if the element is a UML Feature
+	 * 		<code>true</code> if the element is a UML Feature
 	 */
 	@Override
 	public boolean isValidValue(Object element) {
