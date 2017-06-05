@@ -56,6 +56,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
+import org.eclipse.gmf.runtime.diagram.ui.internal.editparts.DefaultNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -687,6 +688,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 * @return true if an edit part of this type should be selected
 	 */
 	private boolean isEditPartTypeAdapted(Class<? extends EditPart> editPartClass, EClass eClass) {
+		if( DefaultNodeEditPart.class.isAssignableFrom(editPartClass)) {
+			return false;
+		}
 		if (DiagramEditPart.class.isAssignableFrom(editPartClass) || CompartmentEditPart.class.isAssignableFrom(editPartClass)) {
 			// the edit part is disqualified, as a compartment or a diagram can
 			// not be dropped

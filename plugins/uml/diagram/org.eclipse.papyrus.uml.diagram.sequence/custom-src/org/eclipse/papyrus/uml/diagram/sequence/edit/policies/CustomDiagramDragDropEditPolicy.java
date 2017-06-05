@@ -439,6 +439,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the drop command if the Element can be dropped
 	 */
 	private Command dropNodeElement(Element element, String nodeVISUALID, Point location) {
+		if(LifelineEditPart.VISUAL_ID==nodeVISUALID ) {
+			location.setY(50);
+		}
 		Element parent = element.getOwner();
 		if (getHostObject().equals(parent)) {
 			List<View> existingViews = DiagramEditPartsUtil.findViews(parent, getViewer());
@@ -557,6 +560,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return
 	 */
 	private Command dropCompartmentNodeElement(Element element, String nodeVISUALID, Point location) {
+		IHintedType type = ((IHintedType) getUMLElementType(nodeVISUALID));
+		String semanticHint = null;
+		if (type != null) {
+			semanticHint = type.getSemanticHint();
+		}
 		Element parent = element.getOwner();
 		Element directParent = parent;
 		if (parent instanceof InteractionOperand) {
@@ -567,7 +575,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if (!existingViews.isEmpty()) {
 				EditPart parentEditPart = lookForEditPart(directParent);
 				if (parentEditPart != null) {
-					return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, element));
+					location.setY(0);
+					location.setX(0);
+					IAdaptable elementAdapter = new EObjectAdapter(element);
+					ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, semanticHint, ViewUtil.APPEND, true, getDiagramPreferencesHint());
+					CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
+					// find best bounds
+					createViewRequest.setLocation(location);
+					// "ask" the host for a command associated with the CreateViewRequest
+					Command command = getHost().getCommand(createViewRequest);
+					// set the viewdescriptor as result
+					// it then can be used as an adaptable to retrieve the View
+					return new ICommandProxy(new CommandProxyWithResult(command, descriptor));
+					//	return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, element));
 				}
 			}
 		}
@@ -1081,19 +1101,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// Get the lifelines containing the graphical destructionEvent
 		List<Lifeline> lifelines = getLifelines(existingViews);
 		// If the list of lifeline already containing the destructionEvent doesn't contain the lifeline targeted.
-//		if (!lifelines.contains(getHostObject())) {
-//			Lifeline lifeline = (Lifeline) getHostObject();
-//			for (InteractionFragment ift : lifeline.getCoveredBys()) {
-//				if (ift instanceof DestructionOccurrenceSpecification) {
-//					DestructionOccurrenceSpecification occurrenceSpecification = (DestructionOccurrenceSpecification) ift;
-//					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
-//					if (destructionOccurence.equals(occurrenceSpecification)) {
-						return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, destructionOccurence));
-//					}
-//				}
-//			}
-//		}
-//		return UnexecutableCommand.INSTANCE;
+		//		if (!lifelines.contains(getHostObject())) {
+		//			Lifeline lifeline = (Lifeline) getHostObject();
+		//			for (InteractionFragment ift : lifeline.getCoveredBys()) {
+		//				if (ift instanceof DestructionOccurrenceSpecification) {
+		//					DestructionOccurrenceSpecification occurrenceSpecification = (DestructionOccurrenceSpecification) ift;
+		//					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
+		//					if (destructionOccurence.equals(occurrenceSpecification)) {
+		return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, destructionOccurence));
+		//					}
+		//				}
+		//			}
+		//		}
+		//		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
