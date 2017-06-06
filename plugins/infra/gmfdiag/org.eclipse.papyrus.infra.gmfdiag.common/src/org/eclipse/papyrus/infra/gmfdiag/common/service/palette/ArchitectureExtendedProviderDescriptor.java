@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ExtendedProviderDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.ui.IEditorPart;
 import org.osgi.framework.Bundle;
 
@@ -144,26 +145,35 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 			ContributeToPaletteOperation o = (ContributeToPaletteOperation) operation;
 			IEditorPart part = o.getEditor();
 			if (part instanceof DiagramEditorWithFlyOutPalette) {
-				String diagramId = getDiagram().getImplementationID(); // implementation id is the key of modelkind
-				if (null != diagramId) {
-					Diagram currentDiagram = ((DiagramEditorWithFlyOutPalette) part).getDiagram();
-					if (currentDiagram != null && diagramId.equals(currentDiagram.getType())) {
-						if (!isHidden(o)) {
-							ModelSet modelSet = null;
-							try {
-								// Find out if a viewpoint refers the palettes diagram.
-								modelSet = ServiceUtils.getInstance().getModelSet(part.getAdapter(ServicesRegistry.class));
-								List<?> collect = new ArchitectureDescriptionUtils(modelSet).getArchitectureViewpoints().stream()// gets Viewpoints
-										.flatMap(p -> p.getRepresentationKinds().stream())// get representation kinds from viewpoint
-										.filter(PapyrusDiagram.class::isInstance).map(PapyrusDiagram.class::cast)// filter on diagram type
-										.filter(p -> getDiagram().getQualifiedName().equals(p.getQualifiedName()))
-										.flatMap(p -> p.getPalettes().stream()).distinct()// Get paletteConf
-										.collect(Collectors.toList());// as list
-								provides = !collect.isEmpty();
+				String diagramName = getDiagram().getName(); // name is the key of modelkind
+				if (null != diagramName) {
+					Diagram diagramPalette = ((DiagramEditorWithFlyOutPalette) part).getDiagram();
+					String implementationID = getDiagram().getImplementationID();
+					PapyrusDiagramStyle papyrusDiagramStyle = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPapyrusDiagramStyle(diagramPalette);
 
-							} catch (ServiceException e) {
-								Activator.log.error("Can't get model set", e);
-							}
+					boolean match = false;
+					if (null != papyrusDiagramStyle) {
+						match = diagramName.equals(papyrusDiagramStyle.getDiagramKind().getName());
+					} else if (null != implementationID) {
+						// If there is no diagram style we match on the implementation ID. See bug 516878
+						match = null != diagramPalette && implementationID.equals(diagramPalette.getType());
+					}
+
+					if (match && !isHidden(o)) {
+						ModelSet modelSet = null;
+						try {
+							// Find out if a viewpoint refers the palettes diagram.
+							modelSet = ServiceUtils.getInstance().getModelSet(part.getAdapter(ServicesRegistry.class));
+							List<?> collect = new ArchitectureDescriptionUtils(modelSet).getArchitectureViewpoints().stream()// gets Viewpoints
+									.flatMap(p -> p.getRepresentationKinds().stream())// get representation kinds from viewpoint
+									.filter(PapyrusDiagram.class::isInstance).map(PapyrusDiagram.class::cast)// filter on diagram type
+									.filter(p -> getDiagram().getQualifiedName().equals(p.getQualifiedName()))
+									.flatMap(p -> p.getPalettes().stream()).distinct()// Get paletteConf
+									.collect(Collectors.toList());// as list
+							provides = !collect.isEmpty();
+
+						} catch (ServiceException e) {
+							Activator.log.error("Can't get model set", e);
 						}
 					}
 				}
