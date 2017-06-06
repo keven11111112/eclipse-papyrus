@@ -66,7 +66,7 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 		// Retrieve the stereotype application for the element
 		EObject applyStereotype = element.getStereotypeApplication(stereotypeInTargetContext);
 		// If the stereotype is not applied yet
-		if (null == applyStereotype) {
+		if (null == applyStereotype && null!=element.eContainer()) {
 			// Then apply it safely without triggering the exception when applying an already applied stereotype (bug 511045)
 			applyStereotype = element.applyStereotype(stereotypeInTargetContext);
 		}

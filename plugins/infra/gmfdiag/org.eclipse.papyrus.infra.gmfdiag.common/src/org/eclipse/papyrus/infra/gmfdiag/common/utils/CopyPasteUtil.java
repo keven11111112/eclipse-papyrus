@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * Different utility methods prior to paste command.
- *
+ * @since 3.0
  */
 public class CopyPasteUtil {
 	
@@ -114,7 +114,7 @@ public class CopyPasteUtil {
 		 * @return
 		 */
 		public static GraphicalEditPart lookForTargetEditPart(GraphicalEditPart targetEditPart, View view){
-			List children = targetEditPart.getChildren();
+			List<?> children = targetEditPart.getChildren();
 			PreferencesHint prefs = ((IDiagramPreferenceSupport) targetEditPart.getRoot()).getPreferencesHint();
 			CreateViewRequest request = new CreateViewRequest(view.getElement(), prefs);
 			for (Object object : children) {
@@ -137,7 +137,7 @@ public class CopyPasteUtil {
 		 * @return
 		 */
 		public static Command lookForCommandInSubContainer(GraphicalEditPart targetEditPart, List<EObject> objectToDrop) {
-			List children = targetEditPart.getChildren();
+			List<?> children = targetEditPart.getChildren();
 			DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 			for (Object object : children) {
 				if (object instanceof GraphicalEditPart) {
@@ -153,4 +153,33 @@ public class CopyPasteUtil {
 			}
 			return null;
 		}
+
+		/**
+		 * 
+		 *  Look in sub container for a dropcommand
+		 *  
+		 * @param targetEditPart
+		 * @param semanticObjects
+		 * @param newLocation
+		 * @return
+		 */
+		public static Command lookForCommandInSubContainer(GraphicalEditPart targetEditPart, List<EObject> semanticObjects, Point newLocation) {
+			List<?> children = targetEditPart.getChildren();
+			DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
+			for (Object object : children) {
+				if (object instanceof GraphicalEditPart) {
+					GraphicalEditPart graphicalEditPart = (GraphicalEditPart) object;
+					dropObjectsRequest.setLocation(newLocation);
+					dropObjectsRequest.setObjects(semanticObjects);
+					Command command = graphicalEditPart.getCommand(dropObjectsRequest);
+					if (command != null) {
+						return command;	
+					}
+				}
+				
+			}
+			return null;
+		}
+
+		
 }

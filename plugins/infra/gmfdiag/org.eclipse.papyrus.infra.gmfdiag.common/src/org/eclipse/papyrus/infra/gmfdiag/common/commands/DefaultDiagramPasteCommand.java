@@ -9,13 +9,12 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 508404
+ *  Asma Smaoui (CEA LIST) asma.smaoui@cea.fr -Bug 490804
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -31,26 +30,15 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.LayoutConstraint;
-import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.infra.core.internal.clipboard.CopierFactory;
-import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.VisualTypeService;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CopyPasteUtil;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -77,6 +65,8 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 	private GraphicalEditPart targetEditPart;
 
 	private List<EObject> objectToDrop;
+
+	private List<EObject> elementsToMove;
 
 	/**
 	 * Constructor.
@@ -110,7 +100,7 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 		papyrusClipboard.addAllInternalToTargetCopy(transtypeCopier);
 		List<EObject> semanticRootList = EcoreUtil.filterDescendants(semanticList);
 		MoveRequest moveRequest = new MoveRequest(container.getElement(), semanticRootList);
-
+		this.elementsToMove = semanticRootList;
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container.getElement());
 		if (provider != null) {
 			editCommand = provider.getEditCommand(moveRequest);
@@ -125,14 +115,37 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+
+		// this will execute the Move request command: create the semantic elements to be copied
+		// all copied semanitc elements regardless of the targetContainer (if a possible view could be created or not)
 		editCommand.execute(progressMonitor, info);
-		if (this.objectToDrop != null) { // try to drop the views
+
+		if (this.objectToDrop != null) {
 			constructDropRequest(targetEditPart, this.objectToDrop);
-			if (allDropCommand != null && !allDropCommand.isEmpty()) {
-				allDropCommand.execute();
-			}
+
+			// if there is a view in the clipboard, create the duplicated view via a drop command to find the convenient editPart
+			// this will ensure that no view will be created if the drop disallow the view creation
 		} else if (viewList != null && !viewList.isEmpty()) {
-			createAndShiftViews(targetEditPart, viewList);
+			constructViewDropRequest(targetEditPart, viewList);
+		}
+
+		// execute the drop command : create all possible views
+		if (allDropCommand != null && !allDropCommand.isEmpty()) {
+			allDropCommand.execute();
+		}
+
+		// remove all moved elements with no possible created views:
+		if (elementsToMove != null && !elementsToMove.isEmpty()) {
+			for (EObject eObject : elementsToMove) {
+				DestroyElementRequest destroyRequest = new DestroyElementRequest(eObject, false);
+				if (eObject.eContainer() != null) {
+					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(eObject.eContainer());
+					if (provider != null) {
+						ICommand destroyCommand = provider.getEditCommand(destroyRequest);
+						destroyCommand.execute(progressMonitor, info);
+					}
+				}
+			}
 		}
 		return editCommand.getCommandResult();
 	}
@@ -171,77 +184,40 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 	}
 
 
-
-
-
 	/**
-	 * Create and shift the layout of all duplicate Views
-	 *
-	 * @param values
+	 * Construct the drop request to control created views, duplicated views will be created at the cursor position
+	 * 
+	 * @param targetEditPart
+	 * @param viewsToDrop
+	 * 
+	 * @since 3.0
 	 */
-	// TODO : move it in a View utility class
-	private void createAndShiftViews(GraphicalEditPart targetEditPart, Collection<EObject> values) {
-		// Collection values = duplicatedObject.values();
-		Iterator<EObject> iterator = values.iterator();
-		// for each view, a create view command is executed
-		// if this is a shape a new position is set in order to avoid overlap
-		while (iterator.hasNext()) {
-			Object object = iterator.next();
-			if (object instanceof View) {
-				View duplicatedView = (View) object;
-				if (object instanceof Shape) {
-					LayoutConstraint layoutConstraint = ((Shape) object).getLayoutConstraint();
-					if (layoutConstraint instanceof Bounds) {
-						((Bounds) layoutConstraint).setX(((Bounds) layoutConstraint).getX() + CopyPasteUtil.DEFAULT_AVOID_SUPERPOSITION_X);
-						((Bounds) layoutConstraint).setY(((Bounds) layoutConstraint).getY() + CopyPasteUtil.DEFAULT_AVOID_SUPERPOSITION_Y);
-					}
+	protected void constructViewDropRequest(GraphicalEditPart targetEditPart, List<EObject> viewsToDrop) {
+
+		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
+		Point newlocation = CopyPasteUtil.getCursorPosition(targetEditPart);
+		allDropCommand = new CompoundCommand("Drop all semantics elements"); //$NON-NLS-1$
+		for (EObject eObject : viewsToDrop) {
+			if (eObject instanceof View && ((View) eObject).getElement() != null) {
+				EObject objectToDrop = ((View) eObject).getElement();
+				dropObjectsRequest.setObjects(Collections.singletonList(objectToDrop));
+				dropObjectsRequest.setLocation(newlocation);
+				Command command = targetEditPart.getCommand(dropObjectsRequest);
+				if (command == null) {
+					command = CopyPasteUtil.lookForCommandInSubContainer(targetEditPart, Collections.singletonList(objectToDrop), newlocation);
 				}
-				if (duplicatedView.eContainer() == null && targetEditPart != null) {
-
-					// ViewUtil.insertChildView is very dangerous it inserts the view without any verification
-					// it is preferable to create a view request and see if the UMLProvider allows the view creation
-
-					// ViewUtil.insertChildView(container, duplicatedView, ViewUtil.APPEND, true);
-
-					Command command = createViewCommand(targetEditPart, duplicatedView);
-					if (command != null && command.canExecute()) {
-						command.execute();
-					} else {
-						GraphicalEditPart subtargetEditPart = CopyPasteUtil.lookForTargetEditPart(targetEditPart, duplicatedView);
-						command = createViewCommand(subtargetEditPart, duplicatedView);
-						if (command != null && command.canExecute()) {
-							command.execute();
-						}
+				if (command != null && command.canExecute()) {
+					// a view will be created for this semantic elements, remove this semantic elements from the list of the elementToMove
+					if (elementsToMove.contains(objectToDrop)) {
+						elementsToMove.remove(objectToDrop);
 					}
+					allDropCommand.add(command);
+					newlocation = CopyPasteUtil.shiftLayout(newlocation);
 				}
+
 			}
 		}
+
 	}
-
-
-
-	/**
-	 * 
-	 * @param editpart
-	 * @param duplicatedView
-	 * @return
-	 */
-	private Command createViewCommand(IGraphicalEditPart editpart, View duplicatedView) {
-
-		IAdaptable adapter = new EObjectAdapter(duplicatedView.getElement());
-		PreferencesHint prefs = ((IDiagramPreferenceSupport) targetEditPart.getRoot()).getPreferencesHint();
-		String visualid = null;
-		ViewDescriptor descriptor = null;
-		visualid = VisualTypeService.getInstance().getNodeType((View) editpart.getModel(), duplicatedView.getElement());
-		descriptor = new ViewDescriptor(adapter, Node.class, visualid, prefs);		
-		CreateViewRequest request = new CreateViewRequest(descriptor);
-		Command command = editpart.getCommand(request);
-
-		return command;
-	}
-
-
-
-
 
 }
