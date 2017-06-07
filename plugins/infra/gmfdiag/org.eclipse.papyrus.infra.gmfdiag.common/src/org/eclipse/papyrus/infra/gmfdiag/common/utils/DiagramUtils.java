@@ -25,12 +25,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
-import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
-import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
@@ -144,7 +144,13 @@ public class DiagramUtils {
 		PapyrusDiagramStyle pvs = getPapyrusDiagramStyle(diagram);
 		if (pvs != null) {	
 			ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
-			PapyrusDiagram repKind = (PapyrusDiagram) manager.getRepresentationKindById(pvs.getDiagramKindId());
+			PapyrusDiagram repKind = null;
+			if (manager.getRepresentationKindById(pvs.getDiagramKindId()) instanceof PapyrusDiagram) {
+				repKind = (PapyrusDiagram) manager.getRepresentationKindById(pvs.getDiagramKindId());
+			}
+			else {
+				Activator.log.info("Unexpected diagram kind. Your notation file might be broken or created with a previous version of the architecture framework.");
+			}
 
 			// Check if the selected viewpoint contains the diagram model kind
 			if (repKind != null) {
