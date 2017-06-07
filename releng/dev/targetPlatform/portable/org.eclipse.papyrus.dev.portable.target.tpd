@@ -24,7 +24,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/re
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20170516-053439-1.8.0-M1" {
+location oomph "http://download.eclipse.org/oomph/drops/milestone/S20170531-053543-1.8.0-M2" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group

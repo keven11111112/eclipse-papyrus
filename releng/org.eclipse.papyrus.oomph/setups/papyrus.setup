@@ -80,7 +80,7 @@
 	  <requirement name="org.apache.xerces"/>
 	  <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC2-201705242000/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC3-201705312000/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -95,14 +95,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201705111354">
+        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201706061339">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF TRANSACTION</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201705100939">
+        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/releases/R201706061352">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF VALIDATION</value>
@@ -116,14 +116,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201705141341">
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201706061437">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GMF Runtime</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201705141339">
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201706061354">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GMF Notation</value>
@@ -138,7 +138,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201705301810">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/releases/3.7.0">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>QVT Operational</value>
@@ -152,7 +152,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201705290449">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706050700">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse OCL 6.3</value>
@@ -180,14 +180,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201705111548">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706061501">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC2-20170530000117/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC3-20170606120625/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -1452,7 +1452,7 @@
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
           <requirement name="org.eclipse.emf.cdo.sdk.feature.group"/>
           <repositoryList name="Oxygen">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20170523-0512">
+            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20170531-1203">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF CDO</value>

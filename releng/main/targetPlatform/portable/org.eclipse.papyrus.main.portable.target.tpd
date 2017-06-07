@@ -3,13 +3,13 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201705301810" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/releases/3.7.0" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
 //updateFrom("EMF TRANSACTION",0)
 
-location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201705111354" {
+location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201706061339" {
 	org.eclipse.emf.transaction.sdk.feature.group
 }
 
@@ -35,19 +35,19 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestone
 
 //updateFrom("GMF Runtime",0) 
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201705141341" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201706061437" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC2-201705242000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC3-201705312000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201705290449" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706050700" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -87,7 +87,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC2-20170530000117/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC3-20170606120625/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 
@@ -99,13 +99,13 @@ location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-
 
 //updateFrom("EMF VALIDATION",0)
 
-location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201705100939" {
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases/R201706061352" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
 //updateFrom("GMF Notation",0)
 
-location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201705141339" {
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201706061354" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
@@ -117,7 +117,7 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestone
 
 //updateFrom("EMF Query",0) 
 
-location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/milestones/S201705091307" {
+location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326" {
 	org.eclipse.emf.query.sdk.feature.group
 }
 
