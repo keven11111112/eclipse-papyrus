@@ -56,7 +56,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
 
-	private static final String UML2_UML_VERSION_RANGE = "bundle-version=\"[5.3.0,6.0.0)\")";//$NON-NLS-1$
+	private static final String UML2_UML_VERSION_RANGE = "bundle-version=\"[5.3.0,6.0.0)\"";//$NON-NLS-1$
 
 	@Condition
 	public final boolean isAutomatedBuild = JUnitUtils.isAutomatedBuildExecution();
