@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 Christian W. Damus and others.
+ * Copyright (c) 2014, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -397,6 +397,9 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 			@SuppressWarnings("unchecked")
 			IndexRecord record = (IndexRecord) file.getSessionProperty(getIndexKey());
 			if ((record == null) || record.isObsolete()) {
+				add(project, file);
+			} else if (pIndexer == null) {
+				// No persistence support? Fine, then recompute
 				add(project, file);
 			} else {
 				// If it's not obsolete, then we're loading it from persistent storage
