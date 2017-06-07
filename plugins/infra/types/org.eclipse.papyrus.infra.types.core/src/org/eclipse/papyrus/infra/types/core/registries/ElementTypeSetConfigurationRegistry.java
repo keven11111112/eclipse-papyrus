@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus - bug 459174
  *  Christian W. Damus - bug 467207
+ *  Sebastien Gabel (Esterel Technologies SAS) - bug 517914
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types.core.registries;
@@ -177,6 +178,8 @@ public class ElementTypeSetConfigurationRegistry {
 			}
 		} catch (IOException e) {
 			Activator.log.error(e);
+			resource.unload();
+			elementTypeSetConfigurationResourceSet.getResources().remove(resource);
 		}
 
 		return false;
