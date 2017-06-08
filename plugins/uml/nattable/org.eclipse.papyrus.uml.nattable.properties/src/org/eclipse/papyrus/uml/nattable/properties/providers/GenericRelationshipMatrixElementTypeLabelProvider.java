@@ -42,11 +42,18 @@ import org.osgi.framework.Bundle;
 public class GenericRelationshipMatrixElementTypeLabelProvider implements ILabelProvider {
 
 	/**
-	 * 2 of the possibles contants returned by {@link GenericRelationshipMatrixElementTypeContentProvider} as root of the tree
+	 * some useful string
 	 */
-	private final String UML = "UML"; //$NON-NLS-1$
+	// TODO name of elementTypeSet should use a common pattern
+	private static final String UML = "UML"; //$NON-NLS-1$
 
-	private final String SYSML = "SysML"; //$NON-NLS-1$
+	private static final String UML_TYPE_SET_NAME = "UMLElementTypeSet";//$NON-NLS-1$
+
+	private static final String SYSML_TYPE_SET_NAME = "elementTypeSetSysML";//$NON-NLS-1$
+
+	private static final String SYSML = "SysML"; //$NON-NLS-1$
+
+	private static final String SYSML_14 = "SysML 1.4"; //$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
@@ -98,21 +105,26 @@ public class GenericRelationshipMatrixElementTypeLabelProvider implements ILabel
 	 */
 	@Override
 	public Image getImage(final Object element) {
+		// TODO find a better way to get the image instead of hard code
 		URL url = null;
-		if (element instanceof String) {// currently we have 2 levels in the displayed tree and the first one is String
-			if (UML.equals(element)) {
+		if (element instanceof ElementTypeSetConfiguration) {
+			final String name = ((ElementTypeSetConfiguration) element).getName();
+			if (UML_TYPE_SET_NAME.equals(name)) {
 				Bundle bundle = Platform.getBundle("org.eclipse.papyrus.uml.architecture"); //$NON-NLS-1$
-				
-				//TODO get the icons defined for the EPackage if exist ????
-
 				url = bundle.getEntry("icons/uml.gif"); //$NON-NLS-1$
-			} else if (SYSML.equals(element)) {
+			} else if (SYSML_TYPE_SET_NAME.equals(name)) {
 				Bundle bundle = Platform.getBundle("org.eclipse.papyrus.sysml.architecture"); //$NON-NLS-1$
-				
-				//TODO get the icons defined for the EPackage if exist ????
 				url = bundle.getEntry("icons/sysml.gif"); //$NON-NLS-1$
+			} else if (SYSML_14.equals(name) || SYSML.equals(name)) {
+				// commented because not in 16x16 for SysML 1.4
+				// Bundle bundle = Platform.getBundle("org.eclipse.papyrus.sysml14"); //$NON-NLS-1$
+				// url = bundle.getEntry("resources/icons/SysML.gif"); //$NON-NLS-1$ //commented because not in 16x16
+				Bundle bundle = Platform.getBundle("org.eclipse.papyrus.sysml.architecture"); //$NON-NLS-1$
+				url = bundle.getEntry("icons/sysml.gif"); //$NON-NLS-1$
+
 			}
-		} else if (element instanceof ElementTypeConfiguration) {
+		}
+		if (element instanceof ElementTypeConfiguration) {
 			url = getIconURL((ElementTypeConfiguration) element);
 			if (null == url) {
 				IElementType elementType = null;
@@ -127,16 +139,16 @@ public class GenericRelationshipMatrixElementTypeLabelProvider implements ILabel
 				}
 			}
 		}
+		Image im = null;
 		if (null != url) {
-			final Image im = ExtendedImageRegistry.INSTANCE.getImage(url); // $NON-NLS-1$
+			im = ExtendedImageRegistry.INSTANCE.getImage(url); // $NON-NLS-1$
 			if (null == im) {
 				Activator.log.warn(NLS.bind("The image located at {0} as not been found", url)); //$NON-NLS-1$
 			}
-			return im;
-		} else if (element instanceof ElementTypeConfiguration && !(element instanceof String)) {// we don't have a clean way currently to define icon for string excepted hard-coding
+		} else if (element instanceof ElementTypeConfiguration) {// we don't have a clean way currently to define icon for string excepted hard-coding
 			Activator.log.warn(NLS.bind("No icon defined for ", element)); //$NON-NLS-1$
 		}
-		return null;
+		return im;
 	}
 
 	/**
@@ -225,6 +237,13 @@ public class GenericRelationshipMatrixElementTypeLabelProvider implements ILabel
 			}
 			if (element instanceof ElementTypeConfiguration) {
 				returnedName = ProviderUtils.getNameToDisplay((ElementTypeConfiguration) element);
+			}
+
+			if (UML_TYPE_SET_NAME.equals(returnedName)) {
+				returnedName = UML;
+			}
+			if (SYSML_TYPE_SET_NAME.equals(returnedName)) {
+				returnedName = SYSML;
 			}
 		}
 		return returnedName;

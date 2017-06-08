@@ -14,19 +14,16 @@ package org.eclipse.papyrus.uml.nattable.properties.providers;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -35,7 +32,6 @@ import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureCont
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.cell.IGenericMatrixRelationshipCellManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration;
@@ -53,12 +49,7 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	/**
 	 * The architecture context which allows to get all available element types
 	 */
-	private final MergedArchitectureContext architextureContext;
-
-	/**
-	 * The list of the metamodel uri to ignore
-	 */
-	private Collection<String> nsURIToIgnore;
+	private MergedArchitectureContext architextureContext;
 
 	/**
 	 * The list of the managed relationship identified by their EClass
@@ -71,20 +62,24 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	private Collection<String> elementTypeSetConfigurationToIgnore;
 
 	/**
-	 * separator used in the display name field of the IElementType
+	 * the map with the available elementtypeconfiguration and their allowed children.
 	 */
-	private final String displayNameSeparator = "::"; //$NON-NLS-1$
+	private Map<ElementTypeSetConfiguration, Collection<ElementTypeConfiguration>> typeConfigurationAndTheirChildren;
 
 	/**
-	 * the map with the available configuration organized by the metamodel name deduced from the display name of the IElementType
-	 */
-	private Map<String, Collection<ElementTypeConfiguration>> configurationByMetamodelMap;
-
-	/**
-	 * The compartor used to sort Element typess
+	 * The comparator used to sort Element typess
 	 */
 	private Comparator<ElementTypeConfiguration> comparator = new ElementTypeConfigurationComparator();
 
+	/**
+	 * the uri as string of the UML metamodel
+	 */
+	private static final String UML_METAMODEL_URI = "http://www.eclipse.org/uml2/5.0.0/UML";//$NON-NLS-1$
+
+	/**
+	 * the eobject used as context to create the architecture context to use
+	 */
+	private EObject contextForAF;
 
 	/**
 	 * Constructor.
@@ -92,77 +87,63 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 * @param context
 	 */
 	public GenericRelationshipMatrixElementTypeContentProvider(final EObject context) {
-		if (null != context && null != context.eResource() && null != context.eResource().getResourceSet()) {
-			this.architextureContext = new ArchitectureDescriptionUtils((ModelSet) context.eResource().getResourceSet()).getArchitectureContext();
-		} else {
-			this.architextureContext = null;
-		}
+		this.contextForAF = context;
+		this.architextureContext = createArchitectureContext();
 		initFields();
+	}
+
+	/**
+	 * 
+	 * return
+	 * the created MergedArchitectureContext or <code>null</code> when it can't be created
+	 */
+	private MergedArchitectureContext createArchitectureContext() {
+		if (null != this.contextForAF && null != this.contextForAF.eResource() && null != this.contextForAF.eResource().getResourceSet()) {
+			return new ArchitectureDescriptionUtils((ModelSet) this.contextForAF.eResource().getResourceSet()).getArchitectureContext();
+		}
+		return null;
 	}
 
 	/**
 	 * This method allows to init the field of this class
 	 */
 	private void initFields() {
-		this.nsURIToIgnore = initURIToIgnore();
 		this.managedRelationships = initManagedRelationships();
-		this.elementTypeSetConfigurationToIgnore = initElementTypeSetConfigurations();
-		this.configurationByMetamodelMap = initMapContents();
+		this.elementTypeSetConfigurationToIgnore = initElementTypeSetConfigurationsToIgnore();
+		this.typeConfigurationAndTheirChildren = initMapContents();
 	}
 
 	/**
 	 * @return
 	 */
-	private Map<String, Collection<ElementTypeConfiguration>> initMapContents() {
-		Map<String, Collection<ElementTypeConfiguration>> mapByMetamodel = new TreeMap<String, Collection<ElementTypeConfiguration>>();
+	private Map<ElementTypeSetConfiguration, Collection<ElementTypeConfiguration>> initMapContents() {
+		Map<ElementTypeSetConfiguration, Collection<ElementTypeConfiguration>> mapByMetamodel = new HashMap<ElementTypeSetConfiguration, Collection<ElementTypeConfiguration>>();
 		if (null == this.architextureContext) {
-			return null;
+			return mapByMetamodel;
 		}
 
 		// we build the set of the supported configuration according to the context and the existing Matrix Cell Managers
 		for (final ElementTypeSetConfiguration typeSet : this.architextureContext.getElementTypes()) {
-			if (this.elementTypeSetConfigurationToIgnore.contains(typeSet.getIdentifier()) || typeSet.getMetamodelNsURI() == null || this.nsURIToIgnore.contains(typeSet.getMetamodelNsURI())) {
+			if (!UML_METAMODEL_URI.equals(typeSet.getMetamodelNsURI())) {
 				continue;
 			}
-			for (final ElementTypeConfiguration config : typeSet.getElementTypeConfigurations()) {
-				if (isManagedElementTypeConfiguration(config)) {
-					// 1. we determine the metamodel name from the display name (I know, this pattern is not sure, but it works for UML and SysML 1.1)
-					String metamodelName = ""; //$NON-NLS-1$
-					final String displayName = ProviderUtils.getElementTypeDisplayName(config);
 
-
-					final String[] res = displayName.split(this.displayNameSeparator);
-					if (res.length > 2) {
-						continue;// we ignore it, probably an element type to define a feature inside an object (ie : UML::CollaborationUse::RoleBinding
-					}
-					if (res.length == 2) {
-						metamodelName = res[0];
-					}
-
-					final Collection<ElementTypeConfiguration> list;
-					if (!mapByMetamodel.containsKey(metamodelName)) {
-						list = new TreeSet<ElementTypeConfiguration>(comparator);
-						mapByMetamodel.put(metamodelName, list);
-					}
-					mapByMetamodel.get(metamodelName).add(config);
+			if (this.elementTypeSetConfigurationToIgnore.contains(typeSet.getIdentifier())) {
+				continue;
+			}
+			final TreeSet<ElementTypeConfiguration> children = new TreeSet<ElementTypeConfiguration>(this.comparator);
+			for (final ElementTypeConfiguration configuration : typeSet.getElementTypeConfigurations()) {
+				if (isValidValue(configuration)) {
+					children.add(configuration);
 				}
+			}
+			if (children.size() > 0) {
+				mapByMetamodel.put(typeSet, children);
 			}
 		}
 		return mapByMetamodel;
 	}
 
-
-	/**
-	 * @return
-	 * 		the list of the nsURI of metamodels to ignore
-	 */
-	private Collection<String> initURIToIgnore() {
-		final Collection<String> uriToIgnore = new HashSet<String>();
-		uriToIgnore.add(EcorePackage.eINSTANCE.getNsURI());
-		uriToIgnore.add(NattablePackage.eINSTANCE.getNsURI());
-		uriToIgnore.add(NotationPackage.eINSTANCE.getNsURI());// to avoid dependency on GMF
-		return uriToIgnore;
-	}
 
 	/**
 	 * 
@@ -181,9 +162,10 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 * @return
 	 * 		a collection with the identifier of the ElementTypeSetConfigurations to ignore
 	 */
-	private Collection<String> initElementTypeSetConfigurations() {
+	private Collection<String> initElementTypeSetConfigurationsToIgnore() {
 		final Set<String> ignoredStypeSets = new HashSet<String>();
 		ignoredStypeSets.add("org.eclipse.papyrus.umldi.service.types.UMLDIElementTypeSet"); //$NON-NLS-1$
+		ignoredStypeSets.add("org.eclipse.papyrus.sysml14di.elementTypeSet.class.extension"); //$NON-NLS-1$
 		return ignoredStypeSets;
 	}
 
@@ -195,6 +177,29 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 * 		<code>true</code> if the element type is managed by a CellManager and <code>false</code> otherwise
 	 */
 	private boolean isManagedElementTypeConfiguration(final ElementTypeConfiguration configuration) {
+		final IElementType elementType;
+
+		if (configuration instanceof MetamodelTypeConfiguration) {
+			elementType = ElementTypeRegistry.getInstance().getType(((MetamodelTypeConfiguration) configuration).getIdentifier());
+		} else if (configuration instanceof SpecializationTypeConfiguration) {
+			elementType = ElementTypeRegistry.getInstance().getType(((SpecializationTypeConfiguration) configuration).getIdentifier());
+		} else {
+			elementType = null;
+		}
+		if (null == elementType) {
+			return false;
+		}
+
+
+		final String name = configuration.getName() == null ? "" : configuration.getName();
+		if (name.split(ProviderUtils.ELEMENT_TYPE_DISPLAY_NAME_SEPARATOR).length == 3) {
+			return false;
+		}
+
+		if (elementType.getEClass() == null) {
+			return false;
+		}
+
 		if (configuration instanceof MetamodelTypeConfiguration) {
 			return this.managedRelationships.contains(((MetamodelTypeConfiguration) configuration).getEClass());
 		}
@@ -224,9 +229,13 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 */
 	@Override
 	public Object[] getElements() {
-		if (null != this.configurationByMetamodelMap) {
-			// this.configurationByMetamodelMap.s
-			return this.configurationByMetamodelMap.keySet().toArray();
+		MergedArchitectureContext af = createArchitectureContext();
+		if (null != this.architextureContext && !this.architextureContext.equals(af)) {// we check to be able to update our content provider if the architecture context changed, keeping visible the matrix tab
+			this.architextureContext = af;
+			initFields();
+		}
+		if (null != this.typeConfigurationAndTheirChildren) {
+			return this.typeConfigurationAndTheirChildren.keySet().toArray();
 		}
 		return new Object[0];
 	}
@@ -239,10 +248,10 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 */
 	@Override
 	public Object[] getChildren(final Object parentElement) {
-		if (parentElement instanceof String && this.configurationByMetamodelMap.containsKey(parentElement)) {
-			return this.configurationByMetamodelMap.get(parentElement).toArray();
+		if (this.typeConfigurationAndTheirChildren.containsKey(parentElement)) {
+			return this.typeConfigurationAndTheirChildren.get(parentElement).toArray();
 		}
-		return null;
+		return new Object[0];
 	}
 
 	/**
@@ -253,16 +262,6 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 */
 	@Override
 	public Object getParent(final Object element) {
-		if (element instanceof String) {
-			return null;
-		}
-		if (element instanceof ElementTypeConfiguration) {
-			for (final Entry<String, Collection<ElementTypeConfiguration>> entry : this.configurationByMetamodelMap.entrySet()) {
-				if (entry.getValue().contains(element)) {
-					return entry.getKey();
-				}
-			}
-		}
 		return null;
 	}
 
@@ -274,8 +273,8 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 */
 	@Override
 	public boolean hasChildren(final Object element) {
-		if (element instanceof String) {
-			return 0 != this.configurationByMetamodelMap.get(element).size();
+		if (this.typeConfigurationAndTheirChildren.containsKey(element)) {
+			return this.typeConfigurationAndTheirChildren.get(element).size() > 0;
 		}
 		return false;
 	}
@@ -288,16 +287,10 @@ public final class GenericRelationshipMatrixElementTypeContentProvider implement
 	 */
 	@Override
 	public boolean isValidValue(Object element) {
-		final IElementType elementType;
-
-		if (element instanceof MetamodelTypeConfiguration) {
-			elementType = ElementTypeRegistry.getInstance().getType(((MetamodelTypeConfiguration) element).getIdentifier());
-		} else if (element instanceof SpecializationTypeConfiguration) {
-			elementType = ElementTypeRegistry.getInstance().getType(((SpecializationTypeConfiguration) element).getIdentifier());
-		} else {
-			elementType = null;
+		if (element instanceof ElementTypeConfiguration) {
+			return isManagedElementTypeConfiguration((ElementTypeConfiguration) element);
 		}
-		return null != elementType;
+		return false;
 	}
 
 	/**
