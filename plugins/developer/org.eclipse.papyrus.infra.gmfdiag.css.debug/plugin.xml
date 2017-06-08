@@ -5,13 +5,17 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
-            category="org.eclipse.papyrus.views.category"
+            category="org.eclipse.papyrus.dev.views.category"
             class="org.eclipse.papyrus.infra.gmfdiag.css.debug.views.CSSDebugView"
             icon="icons/sourceEditor.gif"
             id="org.eclipse.papyrus.infra.gmfdiag.css.debug.view"
             name="CSS Debug"
             restorable="true">
       </view>
+      <category
+            id="org.eclipse.papyrus.dev.views.category"
+            name="%category.name" >
+      </category>
    </extension>
 
 </plugin>

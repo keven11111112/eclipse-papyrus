@@ -127,23 +127,33 @@
  <extension
        point="org.eclipse.ui.views">
     <view
-          category="org.eclipse.papyrus.views.category"
+          category="org.eclipse.papyrus.dev.views.category"
           class="org.eclipse.papyrus.dev.types.view.RegistredElementTypesView"
           id="org.eclipse.papyrus.dev.types.registeredElementTypesView"
-          name="Registred ElementTypes View"
+          name="%viewRegisteredElementtype.name"
+          icon="icons/Papyrus.gif"
           restorable="true">
     </view>
+    <category
+            id="org.eclipse.papyrus.dev.views.category"
+            name="%category.name" >
+     </category>
  </extension>
  
   <extension
        point="org.eclipse.ui.views">
     <view
-          category="org.eclipse.papyrus.views.category"
+          category="org.eclipse.papyrus.dev.views.category"
           class="org.eclipse.papyrus.dev.types.view.TypesConfigurationsListenerView"
           id="org.eclipse.papyrus.dev.types.typesConfigurationsListenerView"
-          name="TypesConfigurations Listener View"
+          name="%viewListenerElementtype.name"
+          icon="icons/Papyrus.gif"
           restorable="true">
     </view>
+    <category
+            id="org.eclipse.papyrus.dev.views.category"
+            name="%category.name" >
+    </category>
  </extension>
 
 </plugin>

@@ -14,8 +14,7 @@
       </view>
       <category
             id="org.eclipse.papyrus.dev.views.category"
-            name="%category.name"
-            parentCategory="org.eclipse.papyrus.views.category">
+            name="%category.name" >
       </category>
    </extension>
 

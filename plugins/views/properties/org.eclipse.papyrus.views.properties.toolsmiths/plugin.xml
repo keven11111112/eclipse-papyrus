@@ -51,13 +51,17 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="true"
-            category="org.eclipse.papyrus.views.category"
+            category="org.eclipse.papyrus.toolsmiths.views.category"
             class="org.eclipse.papyrus.views.properties.toolsmiths.editor.preview.Preview"
             icon="icons/preview.png"
             id="org.eclipse.papyrus.customization.properties.preview"
             name="%view.name"
             restorable="true">
       </view>
+      <category
+            id="org.eclipse.papyrus.toolsmiths.views.category"
+            name="%category.name" >
+      </category>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">

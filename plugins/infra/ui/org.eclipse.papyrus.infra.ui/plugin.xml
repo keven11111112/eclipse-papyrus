@@ -513,6 +513,10 @@
     		name="%wizardCategoryComponents" parentCategory="org.eclipse.papyrus.wizards.category">
 		</category>
 		<category 
+			id="org.eclipse.papyrus.wizards.table.category"
+    		name="%wizardCategoryTable" parentCategory="org.eclipse.papyrus.wizards.category">
+		</category>
+		<category 
 			id="org.eclipse.papyrus.wizards.toolsmiths.category"
     		name="%wizardCategoryToolsmiths" parentCategory="org.eclipse.papyrus.wizards.category">
 		</category>

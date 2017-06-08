@@ -17,15 +17,12 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableModelWizardID"
             name="%_UI_NattableModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattableModelFile.gif">
          <description>%_UI_NattableModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -45,15 +42,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationModelWizardID"
             name="%_UI_NattableconfigurationModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattableconfigurationModelFile.gif">
          <description>%_UI_NattableconfigurationModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -72,15 +66,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderModelWizardID"
             name="%_UI_NattableaxisproviderModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.presentation.NattableaxisproviderModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattableaxisproviderModelFile.gif">
          <description>%_UI_NattableaxisproviderModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -100,15 +91,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderModelWizardID"
             name="%_UI_NattablelabelproviderModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.presentation.NattablelabelproviderModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattablelabelproviderModelFile.gif">
          <description>%_UI_NattablelabelproviderModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -128,15 +116,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationModelWizardID"
             name="%_UI_NattableaxisconfigurationModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation.NattableaxisconfigurationModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattableaxisconfigurationModelFile.gif">
          <description>%_UI_NattableaxisconfigurationModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -155,15 +140,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation.NattabletesterModelWizardID"
             name="%_UI_NattabletesterModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation.NattabletesterModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattabletesterModelFile.gif">
          <description>%_UI_NattabletesterModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -183,15 +165,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisModelWizardID"
             name="%_UI_NattableaxisModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation.NattableaxisModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattableaxisModelFile.gif">
          <description>%_UI_NattableaxisModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -211,15 +190,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.presentation.NattablecellModelWizardID"
             name="%_UI_NattablecellModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.presentation.NattablecellModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattablecellModelFile.gif">
          <description>%_UI_NattablecellModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -239,15 +215,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation.NattableproblemModelWizardID"
             name="%_UI_NattableproblemModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation.NattableproblemModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattableproblemModelFile.gif">
          <description>%_UI_NattableproblemModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -267,15 +240,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.presentation.NattablestyleModelWizardID"
             name="%_UI_NattablestyleModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.presentation.NattablestyleModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattablestyleModelFile.gif">
          <description>%_UI_NattablestyleModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -295,15 +265,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.presentation.NattablecelleditorModelWizardID"
             name="%_UI_NattablecelleditorModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.presentation.NattablecelleditorModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattablecelleditorModelFile.gif">
          <description>%_UI_NattablecelleditorModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -323,15 +290,12 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated nattable -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <!-- @generated NOT nattable -->
       <wizard
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.presentation.NattablewrapperModelWizardID"
             name="%_UI_NattablewrapperModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.presentation.NattablewrapperModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.table.category"
             icon="icons/full/obj16/NattablewrapperModelFile.gif">
          <description>%_UI_NattablewrapperModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
