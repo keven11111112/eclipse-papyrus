@@ -90,7 +90,7 @@ public class UMLStereotypeSingleUMLEnumerationCellEditorConfiguration implements
 	 */
 	@Override
 	public void configureCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.NORMAL, configLabel);
 
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new ComboBoxCellEditor(getComboDataProvider(modelManager.getTable(), axis, modelManager.getTableAxisElementProvider())), DisplayMode.EDIT, configLabel);

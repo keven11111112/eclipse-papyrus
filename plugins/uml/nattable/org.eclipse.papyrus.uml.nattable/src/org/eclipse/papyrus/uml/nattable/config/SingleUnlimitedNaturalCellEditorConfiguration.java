@@ -85,7 +85,7 @@ public class SingleUnlimitedNaturalCellEditorConfiguration implements ICellAxisC
 	 */
 	@Override
 	public void configureCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new TextCellEditor(), DisplayMode.EDIT, configLabel);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new UnlimitedNaturalDisplayConverter(), DisplayMode.EDIT, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, new UnlimitedNaturalDataValidator(), DisplayMode.EDIT, configLabel);

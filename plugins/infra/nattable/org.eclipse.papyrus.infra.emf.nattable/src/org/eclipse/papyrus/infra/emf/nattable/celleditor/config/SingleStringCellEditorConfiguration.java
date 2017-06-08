@@ -97,7 +97,7 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 	 */
 	@Override
 	public void configureCellEditor(IConfigRegistry configRegistry, Object axis, String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, getCellPainter(configRegistry, axis, configLabel), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, getCellPainter(configRegistry, axis, configLabel), DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, getCellEditor(configRegistry, axis, configLabel), DisplayMode.EDIT, configLabel);
 		// I believe that we don't need converters because we are working with the standard type --String.
 		// configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, null, DisplayMode.EDIT, configLabel);

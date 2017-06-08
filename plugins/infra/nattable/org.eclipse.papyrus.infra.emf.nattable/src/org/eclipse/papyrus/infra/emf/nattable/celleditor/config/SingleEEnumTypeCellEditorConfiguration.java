@@ -113,7 +113,7 @@ public class SingleEEnumTypeCellEditorConfiguration implements ICellAxisConfigur
 			}
 		};
 
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new ComboBoxPainter(), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new ComboBoxPainter(), DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new ComboBoxCellEditor(new EEnumComboBoxDataProvider(eenum)), DisplayMode.EDIT, configLabel);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, displayConverter, DisplayMode.EDIT, configLabel);
 	}

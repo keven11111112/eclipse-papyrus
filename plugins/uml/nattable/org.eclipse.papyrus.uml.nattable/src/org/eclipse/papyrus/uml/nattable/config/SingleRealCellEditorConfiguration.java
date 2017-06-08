@@ -84,7 +84,7 @@ public class SingleRealCellEditorConfiguration implements ICellAxisConfiguration
 	 */
 	@Override
 	public void configureCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.NORMAL, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new TextCellEditor(), DisplayMode.EDIT, configLabel);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new RealDisplayConverter(), DisplayMode.EDIT, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, new RealDataValidator(), DisplayMode.EDIT, configLabel);
