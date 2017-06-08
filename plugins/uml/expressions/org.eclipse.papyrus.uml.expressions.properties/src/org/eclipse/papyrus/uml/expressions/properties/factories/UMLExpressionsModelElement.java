@@ -15,9 +15,11 @@
 package org.eclipse.papyrus.uml.expressions.properties.factories;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.expressions.properties.factories.utils.UMLExpressionsConstants;
 import org.eclipse.papyrus.uml.tools.providers.UMLEClassContentProvider;
@@ -57,7 +59,8 @@ public class UMLExpressionsModelElement extends EMFModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		if (UMLExpressionsConstants.UML_ECLASS.equals(propertyPath)) {
-			return new UMLEClassContentProvider();
+			final ResourceSet resourceSet = this.domain == null ? null : this.domain.getResourceSet();
+			return new EMFGraphicalContentProvider(new UMLEClassContentProvider(), resourceSet, "org.eclipse.papyrus.uml.expressions.eclass.history"); //$NON-NLS-1$
 		}
 		return super.getContentProvider(propertyPath);
 	}
