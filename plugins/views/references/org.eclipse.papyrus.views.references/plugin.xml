@@ -52,6 +52,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
+      		category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.views.references.views.ReferencesView"
             icon="icons/scopeset_obj.gif"
             id="org.eclipse.papyrus.views.references.ReferencesView"

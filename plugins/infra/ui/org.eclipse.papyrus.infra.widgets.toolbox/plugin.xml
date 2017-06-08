@@ -21,9 +21,9 @@
       <view
             category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.infra.widgets.toolbox.notification.view.PapyrusNotificationView"
-            icon="icons/sample.gif"
+            icon="icons/Papyrus.gif"
             id="org.eclipse.papyrus.ui.toolbox.notification.view.PapyrusNotificationView"
-            name="Papyrus Notification">
+            name="%viewName">
       </view>
    </extension>
    <extension

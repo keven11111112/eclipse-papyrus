@@ -26,10 +26,13 @@
       </menuContribution>
    </extension>
    <extension point="org.eclipse.ui.views">
-        <view id="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
-             name="OCL evaluation View"
-          class="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
+        <view 
+        	category="org.eclipse.papyrus.views.category"
+        	id="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
+            name="%view.name"
+            icon="icons/Papyrus.gif"
+            class="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
        />
-</extension>
+	</extension>
 
 </plugin>
