@@ -12,10 +12,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.PolygonDecoration;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFigure;
 import org.eclipse.swt.SWT;
 
 /**
@@ -24,7 +21,7 @@ import org.eclipse.swt.SWT;
  * @author PT202707
  *
  */
-public class TemplateBindingFigure extends UMLEdgeFigure {
+public class TemplateBindingFigure extends InterfaceRealizationFigure {
 
 	protected BindingSubstitutionFigure bindingSubstitutionFigure;
 
@@ -40,25 +37,8 @@ public class TemplateBindingFigure extends UMLEdgeFigure {
 	@Override
 	protected void createContents() {
 		super.createContents();
-		PolygonDecoration dec = new PolygonDecoration();
-		dec.setScale(15, 5);
-		dec.setBackgroundColor(ColorConstants.white);
-		dec.setLineWidth(1);
-		setTargetDecoration(dec); // arrow at target endpoint
-		setForegroundColor(ColorConstants.black);
-		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
 		bindingSubstitutionFigure = new BindingSubstitutionFigure();
 		this.add(bindingSubstitutionFigure);
-	}
-
-	@Override
-	public void resetStyle() {
-		super.resetStyle();
-		PolygonDecoration dec = new PolygonDecoration();
-		dec.setScale(15, 5);
-		dec.setBackgroundColor(ColorConstants.white);
-		dec.setLineWidth(1);
-		setTargetDecoration(dec); // arrow at target endpoint
 	}
 
 	/**

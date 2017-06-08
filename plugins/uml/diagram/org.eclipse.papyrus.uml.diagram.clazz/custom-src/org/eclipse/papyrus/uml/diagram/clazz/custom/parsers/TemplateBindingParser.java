@@ -12,8 +12,6 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 
-import java.util.Iterator;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -35,6 +33,8 @@ import org.eclipse.uml2.uml.TemplateParameterSubstitution;
  */
 public class TemplateBindingParser implements IParser {
 
+	private static final String EMPTY_STR = ""; //$NON-NLS-1$
+	
 	final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
@@ -54,8 +54,7 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		// TODO Auto-generated method stub
-		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IStatus.OK, "");
+		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IStatus.OK, EMPTY_STR);
 	}
 
 	/**
@@ -65,7 +64,6 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		// TODO Auto-generated method stub
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 
@@ -76,23 +74,28 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		String out = "";
+		String out = EMPTY_STR;
 		EObject e = element.getAdapter(EObject.class);
 		if (e != null) {
 			final TemplateBinding binding = (TemplateBinding) e;
-			Iterator<TemplateParameterSubstitution> bindIter = binding.getParameterSubstitutions().iterator();
-			while (bindIter.hasNext()) {
-				TemplateParameterSubstitution substitution = bindIter.next();
+			for (TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
+				if (!EMPTY_STR.equals(out)) {
+					out += ", ";	// add separator, if not empty //$NON-NLS-1$
+				}
 				if (substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
-					out = out + ((NamedElement) substitution.getFormal().getParameteredElement()).getName();
+					out += ((NamedElement) substitution.getFormal().getParameteredElement()).getName();
 				}
 				if (substitution.getActual() instanceof NamedElement) {
-					out = out + " -> " + ((NamedElement) substitution.getActual()).getName() + "\n";
+					out += " -> " + //$NON-NLS-1$
+							((NamedElement) substitution.getActual()).getName();
 				}
 			}
 		}
-		if (out.equals("")) {
+		if (EMPTY_STR.equals(out)) {
 			return "<No Binding Substitution>";
+		}
+		else {
+			out = String.format("«bind»\n<%s>", out); //$NON-NLS-1$
 		}
 		return out;
 	}
@@ -104,7 +107,6 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -115,7 +117,6 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
