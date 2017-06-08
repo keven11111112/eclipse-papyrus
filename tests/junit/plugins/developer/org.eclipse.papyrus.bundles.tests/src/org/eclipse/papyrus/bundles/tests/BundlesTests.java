@@ -50,7 +50,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	private static final String INCUBATION_KEYWORD = "(Incubation)"; //$NON-NLS-1$
 
-	private static final String BATIK_VERSION = "[1.6.0,1.7.0)"; //$NON-NLS-1$
+	private static final String BATIK_VERSION = "\"[1.6.0,1.7.0)\""; //$NON-NLS-1$
 
 	private static final String NATTABLE_VERSION = "1.5.0"; //$NON-NLS-1$
 
@@ -221,7 +221,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	}
 
 	@Test
-	public void guavaDependencyVersionText() {
+	public void guavaDependencyVersionTest() {
 		testPapyrusDependencies2("com.google.guava", "21.0.0");//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -238,7 +238,9 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	public static final String REGEX_PLUGIN = "(?:\\." + REGEX_PACKAGE_WORD + ")*";// match plugin name //$NON-NLS-1$ //$NON-NLS-2$
 
-	public static final String REGEX_DEPENDENCY = "(?:;bundle-version=\"([^\"]*)\")?"; //$NON-NLS-1$
+	public static final String REGEX_BUNDLE = "(?:;bundle-version=\"([^\"]*)\")?"; //$NON-NLS-1$
+
+	public static final String REGEX_REEXPORT = "(?:;\\w*:=\\w*;\\w*-\\w*=\"([^\"]*)\")|"; //$NON-NLS-1$
 
 	public static class Version {
 
@@ -348,7 +350,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 * @param partialDependencyName
 	 *            the fullName or a part of the name of the plugin
 	 * @param wantedBundleVersionRegex
-	 *            a string like this : "bundle-version=\"[1.6.0,1.7.0)\")"
+	 *            a string like this : "bundle-version=\"[1.6.0,1.7.0)\""
 	 * @deprecated since 2.0, use the method {@link BundlesTests#testPapyrusDependencies(String, String, List)} instead
 	 */
 	@Deprecated
@@ -361,7 +363,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 * @param partialDependencyName
 	 *            the fullName or a part of the name of the plugin
 	 * @param wantedBundleVersionRegex
-	 *            a string like this : "bundle-version=\"[1.6.0,1.7.0)\")"
+	 *            a string like this : "bundle-version=\"[1.6.0,1.7.0)\""
 	 * @param list
 	 *            of dependencies to ignore
 	 * @since 2.0
@@ -375,7 +377,9 @@ public class BundlesTests extends AbstractPapyrusTest {
 			if (value == null) {
 				continue;
 			}
-			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + REGEX_DEPENDENCY); //$NON-NLS-1$ //$NON-NLS-2$
+
+			// Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + REGEX_DEPENDENCY); //$NON-NLS-1$ //$NON-NLS-2$
+			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + "(" + REGEX_REEXPORT + REGEX_BUNDLE + ")");
 			Matcher matcher = pattern.matcher(value);
 			final StringBuilder localBuilder = new StringBuilder();
 			while (matcher.find()) {
@@ -409,7 +413,9 @@ public class BundlesTests extends AbstractPapyrusTest {
 				builder.append("\n");//$NON-NLS-1$
 			}
 		}
-		if (builder.length() != 0) {
+		if (builder.length() != 0)
+
+		{
 			builder.insert(0, NLS.bind("{0} problems. We want this version : {1} for the plugin {2}\n", new String[] { Integer.toString(nb), wantedVersion, partialDependencyName })); //$NON-NLS-1$
 		}
 		Assert.assertTrue(builder.toString(), builder.length() == 0);
