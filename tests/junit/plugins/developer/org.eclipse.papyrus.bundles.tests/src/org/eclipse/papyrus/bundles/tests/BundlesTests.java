@@ -217,7 +217,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	@Test
 	public void glazedListDependencyVersionTest() {
-		testPapyrusDependencies2("ca.odell.glazedlists", NATTABLE_VERSION);//$NON-NLS-1$
+		testPapyrusDependencies2("ca.odell.glazedlists", GLAZED_LIST_VERSION);//$NON-NLS-1$
 	}
 
 	@Test
@@ -389,7 +389,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 				}
 				if (versionString == null) {
 					if (localBuilder.length() == 0) {
-						localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
+						localBuilder.append(NLS.bind("Incorrect version for {0}, got {1} and not {2} \n", new String[] {pluginName, current.getSymbolicName(), wantedVersion})); //$NON-NLS-1$
 					}
 					localBuilder.append(NLS.bind("No Version number for {0}\n", pluginName)); //$NON-NLS-1$
 					nb++;
@@ -399,7 +399,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 						if (localBuilder.length() == 0) {
 							localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
 						}
-						localBuilder.append(NLS.bind("Bad version for {0}\n", pluginName)); //$NON-NLS-1$
+						localBuilder.append(NLS.bind("Bad version for {0}, got {1} and not {2} \n", new String[] {pluginName, versionString, wantedVersion})); //$NON-NLS-1$
 						nb++;
 					}
 				}
