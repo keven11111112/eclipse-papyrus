@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.BugTests2;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.BugTest_m7;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.AllCanonicalTests;
 import org.junit.ClassRule;
-import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -43,8 +42,5 @@ public class AllTests {
 
 	@ClassRule
 	public static final HideViewRule hideOutline = new HideViewRule("org.eclipse.ui.views.ContentOutline");
-
-	@ClassRule
-	public static Timeout timeout = Timeout.seconds(180);
 
 }
