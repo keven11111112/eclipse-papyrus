@@ -585,6 +585,7 @@
       <requirement name="org.eclipse.swtbot.eclipse.feature.group"/>
       <requirement name="org.eclipse.swtbot.eclipse.gef.feature.group"/>
       <requirement name="org.eclipse.swtbot.forms.feature.group"/>
+      <requirement name="org.apache.commons.lang3" versionRange="[3.1.0,3.1.1)"/>
       <repositoryList name="Oxygen">
         <repository url="${base.downloads.url}/technology/swtbot/snapshots"/>
       </repositoryList>
