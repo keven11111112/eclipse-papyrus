@@ -14,8 +14,6 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 
-import java.util.Iterator;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -38,6 +36,8 @@ import org.eclipse.uml2.uml.TemplateParameterSubstitution;
  */
 public class TemplateBindingParser implements IParser {
 
+	private static final String EMPTY_STR = ""; //$NON-NLS-1$
+	
 	final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
@@ -57,7 +57,7 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IStatus.OK, "");
+		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IStatus.OK, EMPTY_STR);
 	}
 
 	/**
@@ -77,23 +77,28 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		String out = "";
+		String out = EMPTY_STR;
 		EObject e = element.getAdapter(EObject.class);
 		if (e != null) {
 			final TemplateBinding binding = (TemplateBinding) e;
-			Iterator<TemplateParameterSubstitution> bindIter = binding.getParameterSubstitutions().iterator();
-			while (bindIter.hasNext()) {
-				TemplateParameterSubstitution substitution = bindIter.next();
+			for (TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
+				if (!EMPTY_STR.equals(out)) {
+					out += ", ";	// add separator, if not empty //$NON-NLS-1$
+				}
 				if (substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
-					out = out + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getFormal().getParameteredElement()));
+					out += UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getFormal().getParameteredElement()));
 				}
 				if (substitution.getActual() instanceof NamedElement) {
-					out = out + " -> " + UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getActual())) + "\n";
+					out += " -> " + //$NON-NLS-1$
+							UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getActual()));
 				}
 			}
 		}
-		if ("".equals(out)) { //$NON-NLS-1$
+		if (EMPTY_STR.equals(out)) {
 			return "<No Binding Substitution>";
+		}
+		else {
+			out = String.format("«bind»\n<%s>", out); //$NON-NLS-1$
 		}
 		return out;
 	}
