@@ -16,10 +16,7 @@
 		<profile>
 			<id>portable</id>
 			<activation>
-				<property>
-					<name>target.suffix</name>
-					<value>portable</value>
-				</property>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
 				<module>portable</module>
