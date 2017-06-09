@@ -33,7 +33,6 @@
 		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Deprecated; kept for Legacy. Can be set to file:/home/data/httpd/download.eclipse.org when building on HIPP -->
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}</papyrus.repo.main>
 		<papyrus.repo.dev>https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/</papyrus.repo.dev>
-		<target.suffix>portable</target.suffix> <!-- set to 'eclipse' when building on HIPP, to improve performances -->
 	</properties>
 
 	<modules>
@@ -141,4 +140,29 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>eclipsehippIntegration</id>
+			<activation>
+				<property>
+					<name>HUDSON_URL</name>
+				</property>
+			</activation>
+			<properties>
+				<target.suffix>eclipse</target.suffix> <!-- set to 'eclipse' when building on HIPP, to improve performances -->
+			</properties>
+		</profile>
+		<profile>
+			<id>localIntegration</id>
+			<activation>
+				<property>
+					<name>!HUDSON_URL</name>
+				</property>
+			</activation>
+			<properties>
+				<target.suffix>portable</target.suffix>
+			</properties>
+		</profile>
+	</profiles>
 </project>
