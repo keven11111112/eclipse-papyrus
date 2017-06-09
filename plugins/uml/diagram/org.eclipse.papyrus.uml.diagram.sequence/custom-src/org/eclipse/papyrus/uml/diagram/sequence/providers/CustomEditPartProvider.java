@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.providers;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.SilentEditpart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
@@ -57,7 +58,11 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		if (customEditPart != null) {
 			return customEditPart;
 		}
-		return super.createEditPart(view);
+		IGraphicalEditPart graphicalEditPart= super.createEditPart(view);
+		if( graphicalEditPart==null) {
+			return new SilentEditpart(view);
+		}
+		return graphicalEditPart;
 	}
 
 	protected IGraphicalEditPart createCustomEditPart(View view) {
