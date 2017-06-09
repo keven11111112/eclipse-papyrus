@@ -91,7 +91,9 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			ILoadCustomizationsDialog dialog = ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(shell, registeredCustomizations, customizationManager.getManagedCustomizations(), dialogCallBack);
 
 			if (Window.OK == dialog.open()) {
-				customizationManager.getManagedCustomizations().clear();
+				if( customizationManager.getManagedCustomizations().size()>0) {
+					customizationManager.getManagedCustomizations().clear();
+				}
 				customizationManager.getManagedCustomizations().addAll(dialog.getSelectedCustomizations());
 				// Save the current state of the customizations
 				org.eclipse.papyrus.infra.ui.internal.emf.Activator.getDefault().saveCustomizationManagerState();
