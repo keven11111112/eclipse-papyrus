@@ -12,8 +12,8 @@
 
 package org.eclipse.papyrus.uml.diagram.common.tests.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 
@@ -74,37 +74,41 @@ public class Bug507488_BinaryRelationshipLabelPositionTest extends AbstractPapyr
 		final Rectangle ass1NameBounds = ass1Name.getFigure().getBounds();
 
 		// Name label is centered with respect to the association
-		assertTrue(((ass1NameBounds.x + ass1NameBounds.width / 2) - (ass1Bounds.x + ass1Bounds.width / 2)) == 0);
+		assertEquals((ass1NameBounds.x + ass1NameBounds.width / 2), (ass1Bounds.x + ass1Bounds.width / 2));
 
 		final IGraphicalEditPart ass1SourceRole = ass1.getChildBySemanticHint("Association_SourceRoleLabel"); //$NON-NLS-1$
 		assertNotNull(ass1SourceRole);
 		final Rectangle ass1SourceRoleBounds = ass1SourceRole.getFigure().getBounds();
-		assertTrue(ass1SourceRoleBounds.x == 353 && ass1SourceRoleBounds.y == 193);
+		assertEquals(ass1SourceRoleBounds.x, 353);
+		assertEquals(ass1SourceRoleBounds.y, 193);
 
 		final IGraphicalEditPart ass1TargetRole = ass1.getChildBySemanticHint("Association_TargetRoleLabel"); //$NON-NLS-1$
 		assertNotNull(ass1TargetRole);
 		final Rectangle ass1TargetRoleBounds = ass1TargetRole.getFigure().getBounds();
-		assertTrue(ass1TargetRoleBounds.x == 241 && ass1TargetRoleBounds.y == 153);
+		assertEquals(ass1TargetRoleBounds.x, 241);
+		assertEquals(ass1TargetRoleBounds.y, 153);
 
 		final IGraphicalEditPart ass1SourceMult = ass1.getChildBySemanticHint("Association_SourceMultiplicityLabel"); //$NON-NLS-1$
 		assertNotNull(ass1SourceMult);
 		final Rectangle ass1SourceMultBounds = ass1SourceMult.getFigure().getBounds();
-		assertTrue(ass1SourceMultBounds.x == 259 && ass1SourceMultBounds.y == 193);
+		assertEquals(ass1SourceMultBounds.x, 259);
+		assertEquals(ass1SourceMultBounds.y, 193);
 
 		final IGraphicalEditPart ass1TargetMult = ass1.getChildBySemanticHint("Association_TargetMultiplicityLabel"); //$NON-NLS-1$
 		assertNotNull(ass1TargetMult);
 		final Rectangle ass1TargetMultBounds = ass1TargetMult.getFigure().getBounds();
-		assertTrue(ass1TargetMultBounds.x == 371 && ass1TargetMultBounds.y == 153);
+		assertEquals(ass1TargetMultBounds.x, 371);
+		assertEquals(ass1TargetMultBounds.y, 153);
 
 		// Source role and target multiplicity are centered with each other
-		assertTrue(((ass1SourceRoleBounds.x + ass1SourceRoleBounds.width / 2) - (ass1TargetMultBounds.x + ass1TargetMultBounds.width / 2)) == 0);
+		assertEquals((ass1SourceRoleBounds.x + ass1SourceRoleBounds.width / 2), (ass1TargetMultBounds.x + ass1TargetMultBounds.width / 2));
 		// And they are vertically symetric with respect to the association
-		assertTrue((((ass1SourceRoleBounds.y + ass1SourceRoleBounds.height / 2) + (ass1TargetMultBounds.y + ass1TargetMultBounds.height / 2)) / 2 - (ass1Bounds.y + ass1Bounds.height / 2)) == 0);
+		assertEquals(((ass1SourceRoleBounds.y + ass1SourceRoleBounds.height / 2) + (ass1TargetMultBounds.y + ass1TargetMultBounds.height / 2)) / 2, (ass1Bounds.y + ass1Bounds.height / 2));
 
 		// Target role and source multiplicity are centerned with each other
-		assertTrue(((ass1TargetRoleBounds.x + ass1TargetRoleBounds.width / 2) - (ass1SourceMultBounds.x + ass1SourceMultBounds.width / 2)) == 0);
+		assertEquals((ass1TargetRoleBounds.x + ass1TargetRoleBounds.width / 2), (ass1SourceMultBounds.x + ass1SourceMultBounds.width / 2));
 		// And they are vertically symetric with respect to the association
-		assertTrue((((ass1TargetRoleBounds.y + ass1TargetRoleBounds.height / 2) + (ass1SourceMultBounds.y + ass1SourceMultBounds.height / 2)) / 2 - (ass1Bounds.y + ass1Bounds.height / 2)) == 0);
+		assertEquals(((ass1TargetRoleBounds.y + ass1TargetRoleBounds.height / 2) + (ass1SourceMultBounds.y + ass1SourceMultBounds.height / 2)) / 2, (ass1Bounds.y + ass1Bounds.height / 2));
 	}
 
 	/**
@@ -128,7 +132,7 @@ public class Bug507488_BinaryRelationshipLabelPositionTest extends AbstractPapyr
 		final Rectangle dependency1NameBounds = dependency1Name.getFigure().getBounds();
 
 		// Name label is centered with respect to the dependency
-		assertTrue(((dependency1NameBounds.x + dependency1NameBounds.width / 2) - (dependency1Bounds.x + dependency1Bounds.width / 2)) == 0);
+		assertEquals((dependency1NameBounds.x + dependency1NameBounds.width / 2), (dependency1Bounds.x + dependency1Bounds.width / 2));
 	}
 
 	/**
@@ -153,7 +157,7 @@ public class Bug507488_BinaryRelationshipLabelPositionTest extends AbstractPapyr
 		final Rectangle contextLabelBounds = contextLabel.getFigure().getBounds();
 
 		// Keyword "context" label is centered with respect to the context link
-		assertTrue(((contextLabelBounds.x + contextLabelBounds.width / 2) - (contextLinkBounds.x + contextLinkBounds.width / 2)) == 0);
+		assertEquals((contextLabelBounds.x + contextLabelBounds.width / 2), (contextLinkBounds.x + contextLinkBounds.width / 2));
 	}
 
 	/**
@@ -177,7 +181,7 @@ public class Bug507488_BinaryRelationshipLabelPositionTest extends AbstractPapyr
 		final Rectangle intRealizationNameBounds = intRealizationName.getFigure().getBounds();
 
 		// Name label is centered with respect to the interface realization
-		assertTrue(((intRealizationNameBounds.x + intRealizationNameBounds.width / 2) - (intRealizationBounds.x + intRealizationBounds.width / 2)) == 0);
+		assertEquals((intRealizationNameBounds.x + intRealizationNameBounds.width / 2), (intRealizationBounds.x + intRealizationBounds.width / 2));
 	}
 
 	/**
