@@ -32,7 +32,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.equinox.internal.p2.ui.IProvHelpContextIds;
+import org.eclipse.equinox.internal.p2.ui.dialogs.PreselectedIUInstallWizard;
+import org.eclipse.equinox.internal.p2.ui.dialogs.ProvisioningWizardDialog;
 import org.eclipse.equinox.p2.core.ProvisionException;
 import org.eclipse.equinox.p2.metadata.IInstallableUnit;
 import org.eclipse.equinox.p2.metadata.Version;
@@ -47,11 +49,14 @@ import org.eclipse.equinox.p2.repository.metadata.IMetadataRepositoryManager;
 import org.eclipse.equinox.p2.ui.ProvisioningUI;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.discovery.InstallableComponent;
 import org.eclipse.papyrus.infra.discovery.ui.Activator;
 import org.eclipse.papyrus.infra.discovery.ui.internal.wizards.Messages;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A job that configures a p2 {@link #getInstallAction() install action} for
@@ -74,6 +79,8 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 
 	private Set<URI> repositoryLocations;
 
+	private boolean headless = false;
+
 	public PrepareInstallProfileJob(
 			Collection<InstallableComponent> installableConnectors) {
 		if (installableConnectors == null || installableConnectors.isEmpty()) {
@@ -82,6 +89,10 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 		this.installableConnectors = new ArrayList<InstallableComponent>(
 				installableConnectors);
 		this.provisioningUI = ProvisioningUI.getDefaultUI();
+	}
+
+	public void setHeadlessMode(boolean isHeadless) {
+		this.headless = isHeadless;
 	}
 
 	public void run(IProgressMonitor progressMonitor)
@@ -95,18 +106,20 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 
 				checkCancelled(monitor);
 
-				final InstallOperation installOperation = resolve(monitor
-						.newChild(50), ius, repositoryLocations
-						.toArray(new URI[0]));
+				final InstallOperation installOperation = resolve(
+						monitor.newChild(50), ius,
+						repositoryLocations.toArray(new URI[0]));
 
 				checkCancelled(monitor);
 
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						provisioningUI.openInstallWizard(ius, installOperation,
-								null);
-					}
-				});
+				if (!headless) {
+					Display.getDefault().asyncExec(new Runnable() {
+						public void run() {
+							openInstallWizard(provisioningUI, ius,
+									installOperation);
+						}
+					});
+				}
 			} finally {
 				monitor.done();
 			}
@@ -115,6 +128,17 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 		} catch (Exception e) {
 			throw new InvocationTargetException(e);
 		}
+	}
+
+	private static int openInstallWizard(ProvisioningUI ui, Collection<IInstallableUnit> initialSelections, InstallOperation operation) {
+		PreselectedIUInstallWizard wizard = new PreselectedIUInstallWizard(ui, operation, initialSelections, null);
+		wizard.setRemediationOperation(null);
+		Shell defaultParentShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+
+		WizardDialog dialog = new ProvisioningWizardDialog(defaultParentShell, wizard);
+		dialog.create();
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(dialog.getShell(), IProvHelpContextIds.INSTALL_WIZARD);
+		return dialog.open();
 	}
 
 	private void checkCancelled(IProgressMonitor monitor) {
@@ -128,11 +152,11 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 			throws CoreException {
 		final InstallOperation installOperation = provisioningUI
 				.getInstallOperation(ius, repositories);
+		SubMonitor subMonitor = SubMonitor.convert(monitor, installableConnectors.size());
 		IStatus operationStatus = installOperation
-				.resolveModal(new SubProgressMonitor(monitor,
-						installableConnectors.size()));
+				.resolveModal(subMonitor);
 		if (operationStatus.getSeverity() > IStatus.WARNING) {
-			throw new CoreException(operationStatus);
+			throw new RuntimeException(operationStatus.getMessage());
 		}
 		return installOperation;
 	}
@@ -149,6 +173,7 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 			removeOldVersions(installableUnits);
 			checkForUnavailable(installableUnits);
 			return installableUnits;
+
 		} catch (URISyntaxException e) {
 			// should never happen, since we already validated URLs.
 			throw new CoreException(new Status(IStatus.ERROR,
@@ -207,8 +232,7 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 					detailedMessage += Messages.InstallConnectorsJob_commaSeparator;
 				}
 				detailedMessage += NLS
-						.bind(
-								Messages.PrepareInstallProfileJob_notFoundDescriptorDetail,
+						.bind(Messages.PrepareInstallProfileJob_notFoundDescriptorDetail,
 								new Object[] { descriptor.getName(),
 										unavailableIds.toString(),
 										descriptor.getSitesURLS() });
@@ -220,27 +244,30 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 			// anyways
 			final boolean[] okayToProceed = new boolean[1];
 			final String finalMessage = message;
-			Display.getDefault().syncExec(new Runnable() {
-				public void run() {
-					okayToProceed[0] = MessageDialog
-							.openQuestion(
-									DiscoveryUiUtil.getShell(),
-									Messages.InstallConnectorsJob_questionProceed,
-									NLS
-											.bind(
-													Messages.InstallConnectorsJob_questionProceed_long,
-													new Object[] { finalMessage }));
+
+			if (headless) {
+				throw new RuntimeException(detailedMessage);
+			} else {
+				Display.getDefault().syncExec(new Runnable() {
+					public void run() {
+						okayToProceed[0] = MessageDialog.openQuestion(
+								DiscoveryUiUtil.getShell(),
+								Messages.InstallConnectorsJob_questionProceed,
+								NLS.bind(
+										Messages.InstallConnectorsJob_questionProceed_long,
+										new Object[] { finalMessage }));
+					}
+				});
+				if (!okayToProceed[0]) {
+					throw new CoreException(
+							new Status(
+									IStatus.ERROR,
+									Activator.PLUGIN_ID,
+									NLS.bind(
+											Messages.InstallConnectorsJob_connectorsNotAvailable,
+											detailedMessage),
+									null));
 				}
-			});
-			if (!okayToProceed[0]) {
-				throw new CoreException(
-						new Status(
-								IStatus.ERROR,
-								Activator.PLUGIN_ID,
-								NLS
-										.bind(
-												Messages.InstallConnectorsJob_connectorsNotAvailable,
-												detailedMessage), null));
 			}
 		}
 	}
@@ -255,7 +282,7 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 		Map<String, Version> symbolicNameToVersion = new HashMap<String, Version>();
 		for (IInstallableUnit unit : installableUnits) {
 			Version version = symbolicNameToVersion.get(unit.getId());
-			if (version == null || version.compareTo(unit.getVersion()) < 0) {
+			if (version == null || version.compareTo(unit.getVersion()) == -1) {
 				symbolicNameToVersion.put(unit.getId(), unit.getVersion());
 			}
 		}
@@ -373,9 +400,8 @@ public class PrepareInstallProfileJob implements IRunnableWithProgress {
 		Iterator<String> it = descriptor.getSitesURLS().iterator();
 		while (it.hasNext() && !found) {
 			String url = it.next();
-			if (location.toString().equals(url)) {
+			if (location.toString().equals(url))
 				found = true;
-			}
 		}
 		return found;
 	}
