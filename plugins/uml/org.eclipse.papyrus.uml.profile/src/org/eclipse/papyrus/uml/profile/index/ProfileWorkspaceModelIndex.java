@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,14 @@
  *
  * Contributors:
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *  Christian W. Damus - bug 512554
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.index;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import org.eclipse.core.resources.IFile;
@@ -21,54 +23,77 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.emf.resource.index.IWorkspaceModelIndexListener;
 import org.eclipse.papyrus.infra.emf.resource.index.IWorkspaceModelIndexProvider;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
-import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex.IndexHandler;
+import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex.PersistentIndexHandler;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * {@link WorkspaceModelIndex} for {@link Profile} model.
+ * 
  * @since 3.0
  *
  */
 public class ProfileWorkspaceModelIndex {
 
 	/** The workspace model index */
-	private WorkspaceModelIndex<URI> index;
+	private WorkspaceModelIndex<String> index;
 
 	/** The instance. */
 	private static final ProfileWorkspaceModelIndex INSTANCE = new ProfileWorkspaceModelIndex();
 
 	String[] profileExtension = { "profile.uml" };//$NON-NLS-1$
 
+	private Set<URI> workspaceProfileURIs = new HashSet<>();
+
 	/**
 	 * Constructor.
 	 */
 	private ProfileWorkspaceModelIndex() {
-		index = new WorkspaceModelIndex<URI>("PapyrusWorkspaceProfiles", UMLPackage.eCONTENT_TYPE, indexer()); //$NON-NLS-1$
+		index = new WorkspaceModelIndex<String>("PapyrusWorkspaceProfiles", UMLPackage.eCONTENT_TYPE, indexer()); //$NON-NLS-1$
 	}
 
 	/**
 	 * @return the indexer.
 	 */
-	protected IndexHandler<URI> indexer() {
-		return new IndexHandler<URI>() {
+	protected PersistentIndexHandler<String> indexer() {
+		return new PersistentIndexHandler<String>() {
 
 			@Override
-			public URI index(final IFile file) {
-				return URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+			public String index(final IFile file) {
+				URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+
+				synchronized (workspaceProfileURIs) {
+					workspaceProfileURIs.add(uri);
+				}
+
+				return uri.toString();
 			}
 
 			@Override
 			public void unindex(final IFile file) {
-				// DO nothing
+				URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+
+				synchronized (workspaceProfileURIs) {
+					workspaceProfileURIs.remove(uri);
+				}
 			}
 
 			@Override
 			public boolean shouldIndex(IFile file) {
-				return file.getFullPath().lastSegment().contains(".profile.uml"); //$NON-NLS-1$
+				return file.getName().contains(".profile.uml"); //$NON-NLS-1$
 			};
 
+			@Override
+			public boolean load(IFile file, String index) {
+				URI uri = URI.createPlatformResourceURI(index, true);
+
+				synchronized (workspaceProfileURIs) {
+					workspaceProfileURIs.add(uri);
+				}
+
+				return true;
+			}
 		};
 	}
 
@@ -83,13 +108,17 @@ public class ProfileWorkspaceModelIndex {
 	 * Gets all {@link Profile}s available in eclipse workspace.
 	 */
 	public Collection<URI> getWorkspaceProfilesURIs() {
-		Collection<URI> profiles = new ArrayList<URI>();
+		Collection<URI> result = new HashSet<>();
+
 		try {
-			profiles = index.getIndex().get().values();
+			result = index.afterIndex(() -> {
+				return new HashSet<>(workspaceProfileURIs);
+			}).get();
 		} catch (InterruptedException | ExecutionException e) {
 			Activator.log.error(e);
 		}
-		return profiles;
+
+		return result;
 	}
 
 	/**
@@ -102,7 +131,7 @@ public class ProfileWorkspaceModelIndex {
 	/**
 	 * @return The index.
 	 */
-	public WorkspaceModelIndex<URI> getIndex() {
+	public WorkspaceModelIndex<String> getIndex() {
 		return index;
 	}
 

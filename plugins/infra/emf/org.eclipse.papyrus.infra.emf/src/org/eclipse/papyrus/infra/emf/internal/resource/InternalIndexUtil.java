@@ -32,6 +32,15 @@ public class InternalIndexUtil {
 	/** Tracing options key for the indexer in general. */
 	public static final String TRACE_INDEXER = "indexer"; //$NON-NLS-1$
 
+	/** Tracing options key for the details of files being indexed. */
+	public static final String TRACE_INDEXER_FILES = "indexer/files"; //$NON-NLS-1$
+
+	/** Tracing options key for the details of matching which files are to be indexed. */
+	public static final String TRACE_INDEXER_FILES_MATCHING = "indexer/files/matching"; //$NON-NLS-1$
+
+	/** Tracing options key for the details of indexer event notifications. */
+	public static final String TRACE_INDEXER_EVENTS = "indexer/events"; //$NON-NLS-1$
+
 	/**
 	 * Not instantiable by clients.
 	 */
@@ -50,7 +59,7 @@ public class InternalIndexUtil {
 	}
 
 	/**
-	 * Logs a debug message.
+	 * Logs a general debug message.
 	 * 
 	 * @param format
 	 *            the message format
@@ -61,6 +70,22 @@ public class InternalIndexUtil {
 	 */
 	public static void tracef(String format, Object... args) {
 		Activator.log.trace(TRACE_INDEXER, String.format(format, args));
+	}
+
+	/**
+	 * Logs a specific debug message.
+	 * 
+	 * @param trace
+	 *            the tracing key under which to write the trace
+	 * @param format
+	 *            the message format
+	 * @param args
+	 *            the message arguments
+	 * 
+	 * @see String#format(String, Object...)
+	 */
+	public static void detailf(String trace, String format, Object... args) {
+		Activator.log.trace(trace, String.format(format, args));
 	}
 
 	/**

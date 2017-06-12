@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 Christian W. Damus and others.
+ * Copyright (c) 2014, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,13 @@
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.internal.resource.index;
+
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.TRACE_INDEXER_EVENTS;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.TRACE_INDEXER_FILES;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.TRACE_INDEXER_FILES_MATCHING;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.detailf;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.isTracing;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.tracef;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +38,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Predicate;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -46,6 +54,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
@@ -54,8 +63,10 @@ import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.core.runtime.content.IContentTypeManager;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
+import org.eclipse.core.runtime.jobs.MultiRule;
 import org.eclipse.papyrus.infra.core.utils.JobBasedFuture;
 import org.eclipse.papyrus.infra.core.utils.JobExecutorService;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -67,6 +78,7 @@ import org.eclipse.papyrus.infra.tools.util.ReferenceCounted;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -82,6 +94,9 @@ import com.google.common.util.concurrent.ListenableFuture;
  */
 public class IndexManager {
 	private static final int MAX_INDEX_RETRIES = 3;
+
+	// Number of files to index at a time in the indexing job
+	private static final int PARTITION_SIZE = 10;
 
 	private static final IndexManager INSTANCE = new IndexManager();
 
@@ -267,22 +282,31 @@ public class IndexManager {
 	}
 
 	void index(Collection<? extends IProject> projects) {
-		List<IndexProjectJob> jobs = Lists.newArrayListWithCapacity(projects.size());
+		List<AbstractIndexJob> jobs = Lists.newArrayListWithCapacity(projects.size());
 		for (IProject next : projects) {
-			jobs.add(new IndexProjectJob(next));
+			jobs.add(new DiscoverProjectJob(next));
 		}
 		schedule(jobs);
 	}
 
 	void index(IProject project) {
-		schedule(new IndexProjectJob(project));
+		schedule(new DiscoverProjectJob(project));
 	}
 
 	void process(IFile file) throws CoreException {
 		IProject project = file.getProject();
 
 		safeIterateIndices(index -> {
-			if (index.match(file)) {
+			boolean matched = index.match(file);
+
+			if (isTracing()) {
+				detailf(TRACE_INDEXER_FILES_MATCHING, "Index %s %s file %s", //$NON-NLS-1$
+						index.getIndexKey().getLocalName(),
+						matched ? "indexing" : "un-indexing", //$NON-NLS-1$ //$NON-NLS-2$
+						file.getFullPath());
+			}
+
+			if (matched) {
 				index.process(file);
 			} else {
 				index.remove(project, file);
@@ -338,6 +362,9 @@ public class IndexManager {
 						index.setFollowup(followup);
 					}
 					break;
+				case DISCOVERY:
+					// This will be followed by a full index run, so re-indexing is moot
+					break;
 				case MASTER:
 					throw new IllegalStateException("Master job is in the active table."); //$NON-NLS-1$
 				}
@@ -348,20 +375,6 @@ public class IndexManager {
 		}
 
 		return result;
-	}
-
-	IResourceVisitor getWorkspaceVisitor(final IProgressMonitor monitor) {
-		return new IResourceVisitor() {
-
-			@Override
-			public boolean visit(IResource resource) throws CoreException {
-				if (resource.getType() == IResource.FILE) {
-					process((IFile) resource);
-				}
-
-				return !monitor.isCanceled();
-			}
-		};
 	}
 
 	private void schedule(Collection<? extends AbstractIndexJob> jobs) {
@@ -404,6 +417,10 @@ public class IndexManager {
 			case INDEX:
 				for (IndexListener next : listeners) {
 					try {
+						if (isTracing()) {
+							detailf(TRACE_INDEXER_EVENTS, "Notifying calculating for %s to %s", //$NON-NLS-1$
+									indexJob.getProject().getName(), next.getClass().getName());
+						}
 						next.listener.indexAboutToCalculate(events.computeIfAbsent(next.index, eventFunction));
 					} catch (Exception e) {
 						Activator.log.error("Uncaught exception in index listsner.", e); //$NON-NLS-1$
@@ -413,12 +430,17 @@ public class IndexManager {
 			case REINDEX:
 				for (IndexListener next : listeners) {
 					try {
+						if (isTracing()) {
+							detailf(TRACE_INDEXER_EVENTS, "Notifying recalculating for %s to %s", //$NON-NLS-1$
+									indexJob.getProject().getName(), next.getClass().getName());
+						}
 						next.listener.indexAboutToRecalculate(events.computeIfAbsent(next.index, eventFunction));
 					} catch (Exception e) {
 						Activator.log.error("Uncaught exception in index listsner.", e); //$NON-NLS-1$
 					}
 				}
 				break;
+			case DISCOVERY:
 			case MASTER:
 				// Pass
 				break;
@@ -434,6 +456,10 @@ public class IndexManager {
 
 				for (IndexListener next : listeners) {
 					try {
+						if (isTracing()) {
+							detailf(TRACE_INDEXER_EVENTS, "Notifying failure for %s to %s", //$NON-NLS-1$
+									indexJob.getProject().getName(), next.getClass().getName());
+						}
 						next.listener.indexFailed(events.computeIfAbsent(next.index, eventFunction));
 					} catch (Exception e) {
 						Activator.log.error("Uncaught exception in index listsner.", e); //$NON-NLS-1$
@@ -456,6 +482,10 @@ public class IndexManager {
 				case INDEX:
 					for (IndexListener next : listeners) {
 						try {
+							if (isTracing()) {
+								detailf(TRACE_INDEXER_EVENTS, "Notifying calculate done for %s to %s", //$NON-NLS-1$
+										indexJob.getProject().getName(), next.getClass().getName());
+							}
 							next.listener.indexCalculated(events.computeIfAbsent(next.index, eventFunction));
 						} catch (Exception e) {
 							Activator.log.error("Uncaught exception in index listsner.", e); //$NON-NLS-1$
@@ -465,12 +495,17 @@ public class IndexManager {
 				case REINDEX:
 					for (IndexListener next : listeners) {
 						try {
+							if (isTracing()) {
+								detailf(TRACE_INDEXER_EVENTS, "Notifying recalculate done for %s to %s", //$NON-NLS-1$
+										indexJob.getProject().getName(), next.getClass().getName());
+							}
 							next.listener.indexRecalculated(events.computeIfAbsent(next.index, eventFunction));
 						} catch (Exception e) {
 							Activator.log.error("Uncaught exception in index listsner.", e); //$NON-NLS-1$
 						}
 					}
 					break;
+				case DISCOVERY:
 				case MASTER:
 					// Pass
 					break;
@@ -484,10 +519,10 @@ public class IndexManager {
 	//
 
 	private enum JobKind {
-		MASTER, INDEX, REINDEX;
+		MASTER, DISCOVERY, INDEX, REINDEX;
 
 		boolean isSystem() {
-			return this != MASTER;
+			return this != DISCOVERY;
 		}
 	}
 
@@ -497,29 +532,34 @@ public class IndexManager {
 		private volatile Semaphore permit;
 
 		AbstractIndexJob(String name, IProject project) {
-			this(name, project, true);
+			this(name, project, project);
 		}
 
-		AbstractIndexJob(String name, IProject project, boolean register) {
+		AbstractIndexJob(String name, IProject project, ISchedulingRule rule) {
 			super(name);
 
 			this.project = project;
 
-			if ((project != null) && register) {
-				setRule(project);
-				synchronized (activeJobs) {
-					if (!activeJobs.containsKey(project)) {
-						activeJobs.put(project, this);
+			if (rule != null) {
+				setRule(rule);
+
+				if (project != null) {
+					synchronized (activeJobs) {
+						if (!activeJobs.containsKey(project)) {
+							activeJobs.put(project, this);
+						}
 					}
 				}
 			}
 
 			setSystem(kind().isSystem());
+			setPriority(Job.BUILD);
 		}
 
 		@Override
 		public boolean belongsTo(Object family) {
-			return family == IndexManager.this;
+			return (family == IndexManager.this)
+					|| ResourcesPlugin.FAMILY_MANUAL_BUILD.equals(family);
 		}
 
 		final IProject getProject() {
@@ -533,7 +573,29 @@ public class IndexManager {
 			IStatus result;
 
 			try {
+				if (isTracing()) {
+					switch (kind()) {
+					case MASTER:
+						tracef("Starting index manager"); //$NON-NLS-1$
+						break;
+					default:
+						tracef("Starting %s of project %s", kind(), getProject().getName()); //$NON-NLS-1$
+						break;
+					}
+				}
+
 				result = doRun(monitor);
+
+				if (isTracing()) {
+					switch (kind()) {
+					case MASTER:
+						tracef("Finished index manager"); //$NON-NLS-1$
+						break;
+					default:
+						tracef("Finished %s of project %s", kind(), getProject().getName()); //$NON-NLS-1$
+						break;
+					}
+				}
 			} finally {
 				synchronized (activeJobs) {
 					AbstractIndexJob followup = getFollowup();
@@ -549,6 +611,8 @@ public class IndexManager {
 					if (followup != null) {
 						// Kick off the follow-up job
 						IndexManager.this.schedule(followup);
+						tracef("Follow-up %s of project %s with %s", //$NON-NLS-1$
+								kind(), getProject().getName(), followup.kind());
 					}
 				}
 			}
@@ -722,8 +786,8 @@ public class IndexManager {
 							next.setPermit(indexJobSemaphore);
 							pending.incrementAndGet();
 
-							// Now go
-							next.schedule();
+							// Now go (after a brief delay)
+							next.schedule(100L);
 
 							monitor.worked(1);
 						} catch (InterruptedException e) {
@@ -793,11 +857,154 @@ public class IndexManager {
 		}
 	}
 
+	private class DiscoverProjectJob extends AbstractIndexJob {
+		private AbstractIndexJob followup;
+
+		DiscoverProjectJob(IProject project) {
+			super("Initializing workspace model index", project);
+
+			setUser(true);
+		}
+
+		@Override
+		JobKind kind() {
+			return JobKind.DISCOVERY;
+		}
+
+		@Override
+		protected IStatus doRun(IProgressMonitor monitor) {
+			IStatus result = Status.OK_STATUS;
+			final IProject project = getProject();
+
+			monitor.beginTask("Scanning project " + project.getName(), IProgressMonitor.UNKNOWN);
+
+			try {
+				if (project.isAccessible()) {
+					List<InternalModelIndex> needIndex = Lists.newArrayListWithCapacity(indices.size());
+					for (InternalModelIndex next : indices.values()) {
+						if (!next.hasIndex(project)) {
+							needIndex.add(next);
+						}
+					}
+
+					if (!needIndex.isEmpty()) {
+						ProjectScanner scanner = new ProjectScanner(needIndex, monitor);
+						project.accept(scanner);
+						if (!monitor.isCanceled() && !scanner.isEmpty()) {
+							followup = new IndexProjectJob(project, scanner.getResourcesToIndex());
+						}
+					}
+				} else {
+					remove(project);
+				}
+
+				if (monitor.isCanceled()) {
+					remove(project); // We've lost this project's index
+					result = Status.CANCEL_STATUS;
+				}
+			} catch (CoreException e) {
+				result = e.getStatus();
+
+				try {
+					remove(project); // We've lost this project's index
+				} catch (CoreException e2) {
+					// Already have an exception
+					Activator.getDefault().getLog().log(e2.getStatus());
+				}
+			} finally {
+				monitor.done();
+			}
+
+			return result;
+		}
+
+		@Override
+		protected AbstractIndexJob getFollowup() {
+			return followup;
+		}
+	}
+
+	private class ProjectScanner implements IResourceVisitor {
+		private final Predicate<IFile> fileMatcher;
+		private final IProgressMonitor monitor;
+
+		private final ImmutableList.Builder<IFile> resourcesToIndex = ImmutableList.builder();
+		private boolean empty = true;
+
+		ProjectScanner(List<InternalModelIndex> needIndex, IProgressMonitor monitor) {
+			super();
+
+			this.monitor = monitor;
+
+			if (needIndex.size() == 1) {
+				InternalModelIndex index = needIndex.get(0);
+				fileMatcher = file -> {
+					boolean result = index.match(file);
+
+					if (result && isTracing()) {
+						detailf(TRACE_INDEXER_FILES_MATCHING, "Index %s accepting file %s", //$NON-NLS-1$
+								index.getIndexKey().getLocalName(),
+								file.getFullPath());
+					}
+
+					return result;
+				};
+			} else {
+				int indexCount = needIndex.size();
+				fileMatcher = file -> {
+					boolean result = false;
+
+					for (int i = 0; (i < indexCount) && !result; i++) {
+						result = needIndex.get(i).match(file);
+
+						if (result && isTracing()) {
+							detailf(TRACE_INDEXER_FILES_MATCHING, "Index %s accepting file %s", //$NON-NLS-1$
+									needIndex.get(i).getIndexKey().getLocalName(),
+									file.getFullPath());
+						}
+					}
+
+					return result;
+				};
+			}
+		}
+
+		@Override
+		public boolean visit(IResource resource) throws CoreException {
+			boolean result = !monitor.isCanceled();
+
+			if (result && (resource.getType() == IResource.FILE)) {
+				scan((IFile) resource);
+			}
+
+			return result;
+		}
+
+		public boolean isEmpty() {
+			return empty;
+		}
+
+		public Collection<IFile> getResourcesToIndex() {
+			return resourcesToIndex.build();
+		}
+
+		void scan(IFile file) throws CoreException {
+			if (fileMatcher.test(file)) {
+				resourcesToIndex.add(file);
+				empty = false;
+			}
+		}
+	}
+
 	private class IndexProjectJob extends AbstractIndexJob {
+		private final List<IFile> resourcesToIndex;
+
 		private ReindexProjectJob followup;
 
-		IndexProjectJob(IProject project) {
-			super("Indexing project " + project.getName(), project);
+		IndexProjectJob(IProject project, Collection<IFile> resourcesToIndex) {
+			super("Indexing project " + project.getName(), project, null);
+
+			this.resourcesToIndex = ImmutableList.copyOf(resourcesToIndex);
 		}
 
 		@Override
@@ -810,20 +1017,64 @@ public class IndexManager {
 			IStatus result = Status.OK_STATUS;
 			final IProject project = getProject();
 
-			monitor.beginTask("Indexing models in project " + project.getName(), IProgressMonitor.UNKNOWN);
+			// Partition the files into chunks
+			List<List<IFile>> partitions = Lists.partition(resourcesToIndex, PARTITION_SIZE);
 
+			SubMonitor subMonitor = SubMonitor.convert(monitor,
+					"Indexing models in project " + project.getName(),
+					resourcesToIndex.size() + partitions.size());
 			try {
-				if (project.isAccessible()) {
-					project.accept(getWorkspaceVisitor(monitor));
-				} else {
-					remove(project);
-				}
+				for (List<IFile> filesToIndex : partitions) {
+					ISchedulingRule partitionRule = new MultiRule(filesToIndex.toArray(new ISchedulingRule[filesToIndex.size()]));
 
-				if (monitor.isCanceled()) {
-					result = Status.CANCEL_STATUS;
+					// Reserve this partition of files for indexing
+					getJobManager().beginRule(partitionRule, subMonitor.newChild(1));
+
+					try {
+						IProgressMonitor childMonitor = subMonitor.newChild(filesToIndex.size());
+
+						if (project.isAccessible()) {
+							for (IFile file : filesToIndex) {
+								try {
+									if (isTracing()) {
+										detailf(TRACE_INDEXER_FILES, "Indexing file %s", file.getFullPath()); //$NON-NLS-1$
+									}
+
+									process(file);
+									childMonitor.worked(1);
+								} catch (CoreException e) {
+									if (result.isOK()) {
+										result = e.getStatus();
+									} else if (!result.isMultiStatus()) {
+										result = new MultiStatus(result.getPlugin(), result.getCode(),
+												new IStatus[] { result, e.getStatus() },
+												result.getMessage(), null);
+									}
+								}
+							}
+						} else {
+							tracef("Removing project %s from index", getProject().getName()); //$NON-NLS-1$
+							remove(project);
+							break;
+						}
+
+						if (monitor.isCanceled()) {
+							result = Status.CANCEL_STATUS;
+							break;
+						}
+					} finally {
+						// Release the partition
+						getJobManager().endRule(partitionRule);
+					}
 				}
 			} catch (CoreException e) {
-				result = e.getStatus();
+				if (result.isOK()) {
+					result = e.getStatus();
+				} else if (!result.isMultiStatus()) {
+					result = new MultiStatus(result.getPlugin(), result.getCode(),
+							new IStatus[] { result, e.getStatus() },
+							result.getMessage(), null);
+				}
 			} finally {
 				monitor.done();
 			}
@@ -918,13 +1169,16 @@ public class IndexManager {
 
 	private class ReindexProjectJob extends AbstractIndexJob {
 		private final IProject project;
-		private final ConcurrentLinkedQueue<IndexDelta> deltas;
+		private final ConcurrentLinkedQueue<IndexDelta> moreDeltas;
+		private List<IndexDelta> currentDeltas;
 
 		ReindexProjectJob(IProject project, Collection<? extends IndexDelta> deltas) {
-			super("Re-indexing project " + project.getName(), project);
+			super("Re-indexing project " + project.getName(), project,
+					new MultiRule(deltas.stream().map(IndexDelta::file).distinct().toArray(ISchedulingRule[]::new)));
 
 			this.project = project;
-			this.deltas = Queues.newConcurrentLinkedQueue(deltas);
+			this.currentDeltas = ImmutableList.copyOf(deltas);
+			this.moreDeltas = Queues.newConcurrentLinkedQueue();
 		}
 
 		@Override
@@ -933,7 +1187,7 @@ public class IndexManager {
 		}
 
 		void addDeltas(Iterable<? extends IndexDelta> deltas) {
-			Iterables.addAll(this.deltas, deltas);
+			Iterables.addAll(this.moreDeltas, deltas);
 		}
 
 		@Override
@@ -943,7 +1197,7 @@ public class IndexManager {
 			monitor.beginTask("Re-indexing models in project " + project.getName(), IProgressMonitor.UNKNOWN);
 
 			try {
-				for (IndexDelta next = deltas.poll(); next != null; next = deltas.poll()) {
+				for (IndexDelta next : currentDeltas) {
 					if (monitor.isCanceled()) {
 						result = Status.CANCEL_STATUS;
 						break;
@@ -953,9 +1207,17 @@ public class IndexManager {
 						switch (next.kind()) {
 						case INDEX:
 						case REINDEX:
+							if (isTracing()) {
+								detailf(TRACE_INDEXER_FILES, "Re-indexing file %s", next.file().getFullPath()); //$NON-NLS-1$
+							}
+
 							process(next.file());
 							break;
 						case UNINDEX:
+							if (isTracing()) {
+								detailf(TRACE_INDEXER_FILES, "Un-indexing file %s", next.file().getFullPath()); //$NON-NLS-1$
+							}
+
 							remove(project, next.file());
 							break;
 						}
@@ -976,7 +1238,17 @@ public class IndexManager {
 		@Override
 		protected AbstractIndexJob getFollowup() {
 			// If I still have work to do, then I am my own follow-up
-			return deltas.isEmpty() ? null : this;
+			if (moreDeltas.isEmpty()) {
+				return null;
+			}
+
+			ImmutableList.Builder<IndexDelta> newDeltas = ImmutableList.builder();
+			for (IndexDelta next = moreDeltas.poll(); next != null; next = moreDeltas.poll()) {
+				newDeltas.add(next);
+			}
+
+			this.currentDeltas = newDeltas.build();
+			return this;
 		}
 	}
 

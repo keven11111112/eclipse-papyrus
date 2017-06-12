@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 Christian W. Damus and others.
+ * Copyright (c) 2014, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -273,7 +273,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 				(restartedAt - cancellingAt), greaterThan(1000L));
 
 		// Check the index
-		index = fixture.getIndex().get();
+		index = fixture.getIndex().get(30L, TimeUnit.SECONDS);
 
 		assertIndex(index);
 	}
