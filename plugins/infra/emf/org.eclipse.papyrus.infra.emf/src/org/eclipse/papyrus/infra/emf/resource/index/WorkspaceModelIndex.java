@@ -13,6 +13,10 @@
 
 package org.eclipse.papyrus.infra.emf.resource.index;
 
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.TRACE_INDEXER_FILES;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.detailf;
+import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.isTracing;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInput;
@@ -51,6 +55,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.SetMultimap;
+import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -439,6 +444,11 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	}
 
 	void init(IProject project, IFile file, IndexRecord record) throws CoreException {
+		if (isTracing()) {
+			detailf(TRACE_INDEXER_FILES,
+					"Loading initial index %s for %s", getIndexKey().getLocalName(), file.getFullPath()); //$NON-NLS-1$
+		}
+
 		if (pIndexer.load(file, record.index)) {
 			synchronized (index) {
 				index.put(project, file);
@@ -448,6 +458,11 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	}
 
 	void add(IProject project, IFile file) throws CoreException {
+		if (isTracing()) {
+			detailf(TRACE_INDEXER_FILES,
+					"Computing index %s for %s", getIndexKey().getLocalName(), file.getFullPath()); //$NON-NLS-1$
+		}
+
 		T data = indexer.index(file);
 		synchronized (index) {
 			index.put(project, file);
@@ -497,12 +512,39 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 		}
 	}
 
+	@Override
+	protected boolean hasIndex(IProject project) {
+		synchronized (index) {
+			return index.containsKey(project);
+		}
+	}
+
 	public void addListener(IWorkspaceModelIndexListener listener) {
-		IndexManager.getInstance().addListener(this, listener);
+		Futures.addCallback(getManager(), new FutureCallback<IndexManager>() {
+			@Override
+			public void onSuccess(IndexManager result) {
+				result.addListener(WorkspaceModelIndex.this, listener);
+			}
+
+			@Override
+			public void onFailure(Throwable t) {
+				// Don't need a listener
+			}
+		});
 	}
 
 	public void removeListener(IWorkspaceModelIndexListener listener) {
-		IndexManager.getInstance().removeListener(this, listener);
+		Futures.addCallback(getManager(), new FutureCallback<IndexManager>() {
+			@Override
+			public void onSuccess(IndexManager result) {
+				result.removeListener(WorkspaceModelIndex.this, listener);
+			}
+
+			@Override
+			public void onFailure(Throwable t) {
+				// Couldn't have added the listener anyways
+			}
+		});
 	}
 
 	//

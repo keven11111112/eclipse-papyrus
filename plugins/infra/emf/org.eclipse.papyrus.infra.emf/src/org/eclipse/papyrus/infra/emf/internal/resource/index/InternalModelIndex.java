@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -146,6 +146,10 @@ public abstract class InternalModelIndex {
 		}
 	}
 
+	protected final ListenableFuture<IndexManager> getManager() {
+		return manager;
+	}
+
 	protected abstract void start();
 
 	protected abstract boolean match(IFile file);
@@ -155,4 +159,13 @@ public abstract class InternalModelIndex {
 	protected abstract void remove(IProject project, IFile file) throws CoreException;
 
 	protected abstract void remove(IProject project) throws CoreException;
+
+	/**
+	 * Do I have an up-to-date index for the given {@code project}?
+	 * 
+	 * @param project
+	 *            a project
+	 * @return whether I have an up-to-date index for it
+	 */
+	protected abstract boolean hasIndex(IProject project);
 }
