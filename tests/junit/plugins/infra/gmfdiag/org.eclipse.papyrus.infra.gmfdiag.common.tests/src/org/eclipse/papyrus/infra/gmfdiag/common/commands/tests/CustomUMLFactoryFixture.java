@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 490804
  *   
  *****************************************************************************/
 
@@ -120,8 +121,23 @@ public class CustomUMLFactoryFixture implements TestRule {
 						return Proxy.newProxyInstance(cl, new Class[] {
 								eClass.getInstanceClass(),
 								InternalEObject.class,
-						}, (___, method1, args1) -> {
+						}, (proxy, method1, args1) -> {
 							recordInvocation(method1.getName());
+
+							// Be careful to implement equals() and hashCode() as
+							// expected by EMF
+							switch (method1.getName()) {
+							case "equals":
+								if (args.length == 1) {
+									return proxy == args1[0];
+								}
+								break;
+							case "hashCode":
+								if (args.length == 0) {
+									return System.identityHashCode(proxy);
+								}
+								break;
+							}
 							return method1.invoke(realObject, args1);
 						});
 					default:
