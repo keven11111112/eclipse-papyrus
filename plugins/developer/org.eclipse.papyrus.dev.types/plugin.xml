@@ -130,7 +130,7 @@
           category="org.eclipse.papyrus.views.category"
           class="org.eclipse.papyrus.dev.types.view.RegistredElementTypesView"
           id="org.eclipse.papyrus.dev.types.registeredElementTypesView"
-          name="viewRegisteredElementtype.name"
+          name="Registred ElementTypes View"
           restorable="true">
     </view>
  </extension>
@@ -141,7 +141,7 @@
           category="org.eclipse.papyrus.views.category"
           class="org.eclipse.papyrus.dev.types.view.TypesConfigurationsListenerView"
           id="org.eclipse.papyrus.dev.types.typesConfigurationsListenerView"
-          name="viewListenerElementtype.name"
+          name="TypesConfigurations Listener View"
           restorable="true">
     </view>
  </extension>

@@ -55,7 +55,7 @@
             class="org.eclipse.papyrus.views.references.views.ReferencesView"
             icon="icons/scopeset_obj.gif"
             id="org.eclipse.papyrus.views.references.ReferencesView"
-            name="%view.name">
+            name="References">
       </view>
    </extension>
    <extension

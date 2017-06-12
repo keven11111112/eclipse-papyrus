@@ -56,7 +56,7 @@
             class="org.eclipse.papyrus.views.documentation.views.DocumentationView"
             icon="icons/documentation.png"
             id="org.eclipse.papyrus.views.documentation.DocumentationView"
-            name="%view.name">
+            name="Documentation">
       </view>
    </extension>
    <extension

@@ -43,7 +43,7 @@
             class="org.eclipse.papyrus.infra.viewpoints.policy.ViewpointExplorer"
             icon="platform:/plugin/org.eclipse.papyrus.infra.core.architecture.edit/icons/full/obj16/ArchitectureViewpoint.gif"
             id="org.eclipse.papyrus.infra.viewpoints.policy.ViewpointExplorer"
-            name="%view.name">
+            name="Viewpoint Explorer">
       </view>
    </extension>
 

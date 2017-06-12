@@ -23,7 +23,7 @@
             class="org.eclipse.papyrus.views.validation.internal.ModelValidationView"
             icon="icons/full/view16/model_validation.gif"
             id="org.eclipse.papyrus.views.validation.ModelValidationView"
-            name="%view.name"
+            name="Model Validation"
             restorable="true">
       </view>
    </extension>
