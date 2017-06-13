@@ -40,15 +40,18 @@ public class StateMachineEventAccepter extends EventAccepter{
 	public void accept(EventOccurrence eventOccurrence) {
 		// When an event occurrence is accepted this marks the beginning of a new RTC step for
 		// the executed state-machine. The following set of actions takes place:
-		// 1 - The list of transition that can be fired using the given event occurrence is computed
-		// 2 - This list is organized as a different sub-set of transitions that can be fired. One of the
-		//     subset is chosen to be fired. Each transition fires **Concurrently**
-		// 3 - If the accepted event occurrence is a call event occurrence then there is a explicit
-		//	   "return from call" which enables the caller to continue its execution 
-		// 4 - When the RTC step is about to complete a new event accepter for the state-machine
+		// 1 - The event can be deferred if required
+		// 2 - The event can trigger on to many transitions if it is not deferred
+		//	2.1 - The list of transitions that can be fired using the given event
+		//        occurrence is computed.
+		//  2.2 - Transitions in the set of fireable transitions are fired **concurrently**
+		//  2.3 - If the accepted event occurrence is a call event occurrence then there is a explicit
+		//	      "return from call" which enables the caller to continue its execution. 
+		// 3 - When the RTC step is about to complete a new event accepter for the state-machine
 		//     is registered at the waiting event accepter list handled by the object activation
-		// Note that there always is a single event accepter for a state-machine (this works differently
-		// than for activities).
+		// Note that there always is a single event accepter for a state-machine. This differs from
+		// fUML. Indeed, in the state machine context, the overall state machine configuration gets
+		// analyzed.
 		if(this.isDeferred(eventOccurrence)){
 			this.defer(eventOccurrence);
 		}else{
@@ -57,19 +60,19 @@ public class StateMachineEventAccepter extends EventAccepter{
 				for(Iterator<TransitionActivation> fireableTransitionsIterator = fireableTransitionActivations.iterator(); fireableTransitionsIterator.hasNext();){
 					fireableTransitionsIterator.next().fire(eventOccurrence);
 				}
+				CallEventOccurrence callEventOccurrence = null;
+				if(eventOccurrence instanceof CS_EventOccurrence){
+					EventOccurrence wrappedEventOccurrence = ((CS_EventOccurrence)eventOccurrence).wrappedEventOccurrence;
+					if(wrappedEventOccurrence instanceof CallEventOccurrence){
+						callEventOccurrence = (CallEventOccurrence) wrappedEventOccurrence;
+					}
+				}else if(eventOccurrence instanceof CallEventOccurrence){
+					callEventOccurrence = (CallEventOccurrence) eventOccurrence;
+				}
+				if(callEventOccurrence != null){
+					callEventOccurrence.returnFromCall();
+				}
 			}
-		}
-		CallEventOccurrence callEventOccurrence = null;
-		if(eventOccurrence instanceof CS_EventOccurrence){
-			EventOccurrence wrappedEventOccurrence = ((CS_EventOccurrence)eventOccurrence).wrappedEventOccurrence;
-			if(wrappedEventOccurrence instanceof CallEventOccurrence){
-				callEventOccurrence = (CallEventOccurrence) wrappedEventOccurrence;
-			}
-		}else if(eventOccurrence instanceof CallEventOccurrence){
-			callEventOccurrence = (CallEventOccurrence) eventOccurrence;
-		}
-		if(callEventOccurrence != null){
-			callEventOccurrence.returnFromCall();
 		}
 		Object_ context = this.registrationContext.context;
 		if(context!=null && context.objectActivation!=null){
@@ -95,7 +98,11 @@ public class StateMachineEventAccepter extends EventAccepter{
 		//     could be found.
 		// 3 - It does not exist any running doActivity having already registered an accepter
 		//     for the given event occurrence
-		boolean deferred = this._isDeferred(eventOccurrence, this.registrationContext.getConfiguration().rootConfiguration);
+		// Note: a completion event cannot be deferred.
+		boolean deferred = false;
+		if(!(eventOccurrence instanceof CompletionEventOccurrence)){
+			deferred = this._isDeferred(eventOccurrence, this.registrationContext.getConfiguration().rootConfiguration);
+		}
 		if(deferred){
 			Object_ context = this.registrationContext.context;
 			if(context != null && context.objectActivation != null){
