@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications;
 
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.ExecutionQueueManager;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.uml2.uml.Trigger;
@@ -61,9 +62,10 @@ public abstract class EventOccurrence {
 	public void _startObjectBehavior() {
 		// When the sending behavior starts, the current event
 		// occurrence is is forwarded to the target object.
-		if(this.target != null){
-			this.doSend();
-		}
+		EventOccurrenceSendingExecution sendingExecution = new EventOccurrenceSendingExecution();
+		sendingExecution.self = this;
+		sendingExecution.context = this.target.referent;
+		ExecutionQueueManager.getInstance().enqueue(sendingExecution);
 	}
 	
 }

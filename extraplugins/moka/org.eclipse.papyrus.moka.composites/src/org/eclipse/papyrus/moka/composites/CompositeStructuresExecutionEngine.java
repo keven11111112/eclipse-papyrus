@@ -21,6 +21,8 @@ import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFac
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Executor;
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Locus;
 import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngineForMoka;
+import org.eclipse.papyrus.moka.fuml.Semantics.ExecutionQueueManager;
+import org.eclipse.papyrus.moka.fuml.Semantics.RootExecution;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.uml2.uml.Behavior;
 
@@ -56,8 +58,9 @@ public class CompositeStructuresExecutionEngine extends FUMLExecutionEngineForMo
 			// Finally launches the execution
 			this.started = true;
 
-			// Finally launches the execution
-			locus.executor.execute(main, null, this.arguments);
+			// Start execution
+			RootExecution rootExecution = new RootExecution(behavior, this.arguments, locus);
+			ExecutionQueueManager.getInstance().start(rootExecution);
 		}
 	}
 

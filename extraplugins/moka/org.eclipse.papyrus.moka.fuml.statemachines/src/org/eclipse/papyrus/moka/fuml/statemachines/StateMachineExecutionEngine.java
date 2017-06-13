@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.moka.composites.CompositeStructuresExecutionEngine;
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Executor;
+import org.eclipse.papyrus.moka.fuml.Semantics.ExecutionQueueManager;
+import org.eclipse.papyrus.moka.fuml.Semantics.RootExecution;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.ControlDelegate;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.SM_ExecutionFactory;
@@ -56,7 +58,9 @@ public class StateMachineExecutionEngine extends CompositeStructuresExecutionEng
 			this.initializeArguments(this.args) ;
 			// Finally launches the execution
 			this.started = true ;
-			this.locus.executor.execute(main, null,this.arguments);
+			// Start execution
+			RootExecution rootExecution = new RootExecution(behavior, this.arguments, locus);
+			ExecutionQueueManager.getInstance().start(rootExecution);
 		}
 	}
 	

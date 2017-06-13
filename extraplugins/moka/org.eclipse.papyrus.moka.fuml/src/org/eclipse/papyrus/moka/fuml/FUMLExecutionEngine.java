@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.engine.AbstractExecutionEngine;
+import org.eclipse.papyrus.moka.fuml.Semantics.ExecutionQueueManager;
+import org.eclipse.papyrus.moka.fuml.Semantics.RootExecution;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.IntermediateActions.DefaultCreateObjectActionStrategy;
 import org.eclipse.papyrus.moka.fuml.Semantics.Actions.IntermediateActions.DefaultGetAssociationStrategy;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.RedefinitionBasedDispatchStrategy;
@@ -103,7 +105,9 @@ public abstract class FUMLExecutionEngine extends AbstractExecutionEngine {
 			this.initializeArguments(this.args);
 			// Finally launches the execution
 			this.started = true;
-			this.locus.executor.execute(main, null, this.arguments);
+			// Start execution
+			RootExecution rootExecution = new RootExecution(behavior, this.arguments, locus);
+			ExecutionQueueManager.getInstance().start(rootExecution);
 			eInstance.getControlDelegate().waitForTermination();
 		}
 	}

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.ExecutionQueueManager;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.CallEventOccurrence;
@@ -140,6 +141,7 @@ public class CallEventExecution extends Execution{
 		// Wait for an indeterminate amount of time to allow other concurrent 
 		// executions to proceed.
 		// [There is no further formal specification for this operation.]
+		ExecutionQueueManager.getInstance().step();
 	}
 	
 }
