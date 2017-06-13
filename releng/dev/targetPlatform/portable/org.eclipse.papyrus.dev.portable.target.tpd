@@ -62,7 +62,7 @@ location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/staging/4.8.0.201705170830-rc1" // oomph
+location egit "http://download.eclipse.org/egit/updates-4.8" // oomph
 
 //updateFrom("m2e",0)
 
