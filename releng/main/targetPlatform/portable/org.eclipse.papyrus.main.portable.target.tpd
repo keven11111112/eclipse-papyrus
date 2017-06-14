@@ -87,7 +87,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC3-20170606120625/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/R-3.9.0-20170613094504/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 

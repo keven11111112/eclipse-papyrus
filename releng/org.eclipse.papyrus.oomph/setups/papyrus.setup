@@ -80,7 +80,7 @@
 	  <requirement name="org.apache.xerces"/>
 	  <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC3-201705312000/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC4a-201706120950/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -88,7 +88,7 @@
           </annotation>
         </repository>
         <repository url="${base.downloads.url}/tools/orbit/downloads/drops/R20150519210750/repository"/>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.13milestones/">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.13/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
@@ -152,7 +152,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706050700">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706120522">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse OCL 6.3</value>
@@ -180,14 +180,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706061501">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706130827">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0RC3-20170606120625/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/R-3.9.0-20170613094504/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
