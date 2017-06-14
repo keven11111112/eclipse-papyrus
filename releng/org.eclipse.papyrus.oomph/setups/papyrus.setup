@@ -77,8 +77,8 @@
       <requirement name="org.eclipse.sdk.feature.group"/>
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
-	  <requirement name="org.apache.xerces"/>
-	  <requirement name="org.eclipse.wst.xml.core"/>
+      <requirement name="org.apache.xerces"/>
+      <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="Oxygen">
         <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC4a-201706120950/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
@@ -1437,9 +1437,6 @@
     </setupTask>
     <project label="BPMN" name="bpmn">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="bpmn"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
@@ -1485,9 +1482,6 @@
         </targlet>
       </setupTask>
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="cdo"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
@@ -1513,18 +1507,12 @@
         </targlet>
       </setupTask>
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="elk"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
     </project>
     <project label="Diagram Template" name="diagramtemplate">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="diagramtemplate"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
@@ -1546,9 +1534,6 @@
       <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
@@ -1562,9 +1547,6 @@
     </project>
     <project label="East-ADL" name="eastadl">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="eastadl"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
@@ -1646,9 +1628,6 @@
       <setupTask xsi:type="setup.p2:P2Task" label="Migration Development Tools">
         <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
       </setupTask>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
@@ -1727,9 +1706,6 @@
     </project>
     <project label="UML-RT" name="umlrt">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="umlrt"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
       <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
