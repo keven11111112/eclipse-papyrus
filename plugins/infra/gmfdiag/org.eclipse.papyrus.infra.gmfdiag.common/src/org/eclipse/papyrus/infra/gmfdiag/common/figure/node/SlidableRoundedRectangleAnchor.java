@@ -117,10 +117,12 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 				// take in account the header of the package
 				points.addPoint(anchorableRectangle.x + packageHeader.width, anchorableRectangle.y);
 				points.addPoint(anchorableRectangle.x + packageHeader.width, anchorableRectangle.y + packageHeader.height);
-				points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + packageHeader.height);
+				
+				//drawing is from 0 to n-1 for width and height, same principle as array
+				points.addPoint(anchorableRectangle.x + anchorableRectangle.width -1, anchorableRectangle.y + packageHeader.height);
 
-				points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + anchorableRectangle.height);
-				points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height);
+				points.addPoint(anchorableRectangle.x + anchorableRectangle.width -1, anchorableRectangle.y + anchorableRectangle.height-1);
+				points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height-1);
 				points.addPoint(anchorableRectangle.x, anchorableRectangle.y);
 			}
 		}
