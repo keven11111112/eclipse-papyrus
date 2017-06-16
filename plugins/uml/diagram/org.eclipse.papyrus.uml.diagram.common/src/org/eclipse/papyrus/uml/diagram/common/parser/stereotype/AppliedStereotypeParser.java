@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006 Borland Software Corporation
+ * Copyright (c) 2006, 2017 Borland Software Corporation
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.Stereotype;
 public class AppliedStereotypeParser implements ISemanticParser {
 
 	private final String myDefaultPrintString;
-
+	
 	public AppliedStereotypeParser() {
 		this(null);
 	}
@@ -45,7 +45,6 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	public AppliedStereotypeParser(String defaultPrintString) {
 		myDefaultPrintString = defaultPrintString;
 	}
-
 
 	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
@@ -123,9 +122,20 @@ public class AppliedStereotypeParser implements ISemanticParser {
 		return ParserEditStatus.UNEDITABLE_STATUS;
 	}
 
-	private Element doAdapt(IAdaptable adaptable) {
+	/**
+	 * @since 3.1
+	 */
+	protected Element doAdapt(IAdaptable adaptable) {
 		Element element = (Element) adaptable.getAdapter(EObject.class);
 		return element;
+	}
+
+	/**
+	 * @return the myDefaultPrintString
+	 * @since 3.1
+	 */
+	protected String getMyDefaultPrintString() {
+		return myDefaultPrintString;
 	}
 
 }
