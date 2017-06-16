@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2009-2011, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.composite.custom.providers;
 
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
+import org.eclipse.papyrus.uml.diagram.common.keyword.KeywordLabel;
+import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedKeywordParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.uml.diagram.composite.custom.parsers.ConnectorLabelParser;
 import org.eclipse.papyrus.uml.diagram.composite.custom.parsers.MultiplicityLabelParser;
@@ -37,6 +39,13 @@ public class CustomParserProvider extends UMLParserProvider {
 	protected IParser getAppliedStereotypeParser(String defaultEditString) {
 		return new AppliedStereotypeParser(defaultEditString);
 	}
+	
+	/**
+	 * @since 3.0
+	 */
+	protected IParser getAppliedKeywordParser(String defaultPrintString) {
+		return new AppliedKeywordParser(defaultPrintString);
+	}
 
 	@Override
 	protected IParser getParser(String visualID) {
@@ -47,17 +56,17 @@ public class CustomParserProvider extends UMLParserProvider {
 		case ConnectorNameEditPart.VISUAL_ID:
 			return getConnectorLabelParser();
 		case AbstractionAppliedStereotypeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("abstraction"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.ABSTRACTION);
 		case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("deployment"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.DEPLOY);
 		case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("flow"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.FLOW);
 		case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("manifestation"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.MANIFEST);
 		case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("substitution"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.SUBSTITUTE);
 		case UsageAppliedStereotypeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("use"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.USE);
 		}
 		return super.getParser(visualID);
 	}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -48,15 +48,17 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditP
 import org.eclipse.papyrus.uml.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.keyword.KeywordLabel;
 import org.eclipse.papyrus.uml.diagram.common.parser.custom.AssociationEndParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.custom.AssociationMultiplicityParser;
+import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedKeywordParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * this class is used to overload specific parsers
  *
- * @author patrick Tessier
+ * @author Patrick Tessier
  */
 public class CustomUMLParserProvider extends UMLParserProvider {
 
@@ -74,6 +76,10 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 
 	protected IParser getAppliedStereotypeParser(String defaultPrintString) {
 		return new AppliedStereotypeParser(defaultPrintString);
+	}
+	
+	protected IParser getAppliedKeywordParser(String defaultPrintString) {
+		return new AppliedKeywordParser(defaultPrintString);
 	}
 
 	protected IParser getAssociationBranchRole() {
@@ -173,25 +179,25 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser();
+			return getAppliedKeywordParser(KeywordLabel.SUBSTITUTE); 
 		case AppliedStereotypeRealizationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("abstraction"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.ABSTRACTION);
 		case AppliedStereotypeUsageEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("use"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.USE); 
 		case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("Import"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.IMPORT);
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("flow"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.FLOW);
 		case ContextLinkAppliedStereotypeEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser(CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy.APPLIED_STEREOTYPE_LABEL);
 		case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser("merge"); //$NON-NLS-1$
+			return getAppliedKeywordParser(KeywordLabel.MERGE);
 		}
 		return super.getParser(visualID);
 	}
