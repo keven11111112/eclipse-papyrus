@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Esterel Technologies SAS and others.
- *
+ * Copyright (c) 2012, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
  *  Alain Le Guennec (Esterel Technologies SAS) - Bug 497452
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
 
@@ -94,7 +93,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		if (eobject.eClass().getEAllStructuralFeatures().contains(feature)) {
 			return eobject.eGet(feature);
 		}
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**
@@ -421,7 +420,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getUnsetCellValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 *
@@ -443,10 +442,10 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param domain
 	 *            the editing domain to use
-	 * 
+	 *
 	 * @param elementToEdit
 	 *            the edited element
 	 * @param editedFeature
@@ -495,7 +494,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param domain
 	 *            the editing domain to use
 	 * @param elementToEdit

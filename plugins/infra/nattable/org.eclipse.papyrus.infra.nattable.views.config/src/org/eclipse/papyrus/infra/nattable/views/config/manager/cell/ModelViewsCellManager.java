@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.manager.cell;
 
@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -124,7 +125,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 		if (Utils.VIEW_EDITOR_TYPE.equals(featureName)) {
 			return getEditorType(editor);
 		}
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**
@@ -134,7 +135,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#isCellEditable(java.lang.Object, java.lang.Object, INattableModelManager)
 	 *
 	 * @return
-	 *         <code>true</code> excepted if the edited feature is isOpen
+	 * 		<code>true</code> excepted if the edited feature is isOpen
 	 */
 	@Override
 	public boolean isCellEditable(Object rowElement, Object columnElement, INattableModelManager tableManager) {
@@ -191,7 +192,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 				}
 			}
 		}
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**
@@ -199,7 +200,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 * @param editor
 	 *            the editor
 	 * @return
-	 *         <code>true</code> if the current editor is open
+	 * 		<code>true</code> if the current editor is open
 	 */
 	protected Object getEditorIsOpen(final Object editor) {
 		if (editor instanceof EObject) {
@@ -212,7 +213,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 			}
 		}
 
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**
@@ -230,7 +231,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 				return eobject.eGet(feature);
 			}
 		}
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**
@@ -243,7 +244,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	protected Object getEditorContext(final Object editor) {
 		final Object result = Utils.getEditorContext(editor);
 		if (result == null) {
-			return NOT_AVALAIBLE;
+			return CellHelper.getUnsupportedCellContentsText();
 		}
 		return result;
 	}

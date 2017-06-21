@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,9 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		 Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *     Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *     Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
@@ -18,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -26,6 +26,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -42,6 +44,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringR
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement;
 import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
+import org.eclipse.papyrus.infra.nattable.preferences.pages.CellPreferencePage;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.ui.converter.ConvertedValueContainer;
@@ -154,7 +157,7 @@ public class CellHelper {
 	 * @param valueContainer
 	 *            the converted value
 	 * @return
-	 *         the command to create a String resolution Problem
+	 * 		the command to create a String resolution Problem
 	 */
 	public static final Command getCreateStringResolutionProblemCommand(final TransactionalEditingDomain domain, final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText,
 			final ConvertedValueContainer<?> valueContainer) {
@@ -265,7 +268,7 @@ public class CellHelper {
 	 * @param tableManager
 	 *            the table manager
 	 * @return
-	 *         the command to use to destroy the string problem referenced by a cell
+	 * 		the command to use to destroy the string problem referenced by a cell
 	 */
 	public static final Command getDestroyStringResolutionProblemCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
 		Cell cell = tableManager.getCell(columnElement, rowElement);
@@ -298,5 +301,11 @@ public class CellHelper {
 		return null;
 	}
 
-
+	/**
+	 * @return the text of cell to be displayed with unsupported column
+	 * @since 4.0
+	 */
+	public static final String getUnsupportedCellContentsText() {
+		return Activator.getDefault().getPreferenceStore().getString(CellPreferencePage.UNSUPPORTED_COLUMN_CELL_TEXT);
+	}
 }

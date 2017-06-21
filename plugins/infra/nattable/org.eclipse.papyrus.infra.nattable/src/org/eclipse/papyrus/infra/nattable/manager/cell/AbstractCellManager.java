@@ -18,6 +18,7 @@ import java.util.Map;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.infra.ui.converter.ConvertedValueContainer;
 
@@ -216,4 +217,12 @@ public abstract class AbstractCellManager implements ICellManager, IUnsetValueCe
 		return null;
 	}
 	
+	/**
+	 * @return the text of cell to be displayed with unsupported column
+	 * @since 4.0
+	 */
+	@Override
+	public String getUnsupportedCellContentsText() {
+		return CellHelper.getUnsupportedCellContentsText();
+	}
 }

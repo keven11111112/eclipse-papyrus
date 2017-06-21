@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2017 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.stereotype.display.manager.cell;
 
@@ -19,6 +19,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.utils.StereotypeDisplayTreeTableConstants;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.utils.StereotypeDisplayTreeTableHelper;
@@ -215,4 +216,11 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 		// Nothing to do
 	}
 
+	/**
+	 * @return the text of cell to be displayed with unsupported column
+	 */
+	@Override
+	public String getUnsupportedCellContentsText() {
+		return CellHelper.getUnsupportedCellContentsText();
+	}
 }

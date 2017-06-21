@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 497571
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.filter.configuration;
@@ -33,13 +33,13 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.nebula.widgets.nattable.filterrow.combobox.FilterRowComboBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.filter.IFilterValueToMatchManager;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
@@ -98,6 +98,7 @@ public abstract class AbstractBooleanFilterRowComboBoxCellEditorFilterConfigurat
 	 *
 	 * @return
 	 */
+	@Override
 	public String getConfigurationDescription() {
 		return "This configuration provides an Combo with checkbox to filter boolean values. Known values are true, false and N/A"; // $//$NON-NLS-1$
 	}
@@ -128,12 +129,14 @@ public abstract class AbstractBooleanFilterRowComboBoxCellEditorFilterConfigurat
 			IAxis iaxis = (IAxis) axis;
 			NamedStyle style = getValueToMatchStyle(iaxis);
 			if (style != null) {
+				final String unsupportedColumnCellText = CellHelper.getUnsupportedCellContentsText();
+
 				if (style instanceof StringListValueStyle) {
 					List<Object> returnedValues = new ArrayList<Object>();
 					Collection<String> coll = ((StringListValueStyle) style).getStringListValue();
 					for (String string : coll) {
-						if (string.equals(ICellManager.NOT_AVALAIBLE)) {
-							returnedValues.add(ICellManager.NOT_AVALAIBLE);
+						if (string.equals(unsupportedColumnCellText)) {
+							returnedValues.add(unsupportedColumnCellText);
 						} else {
 							Assert.isTrue(TypeUtils.isBooleanValue(string));
 							returnedValues.add(Boolean.valueOf(string));
@@ -143,8 +146,8 @@ public abstract class AbstractBooleanFilterRowComboBoxCellEditorFilterConfigurat
 				}
 				if (style instanceof StringValueStyle) {
 					String val = ((StringValueStyle) style).getStringValue();
-					if (val.equals(ICellManager.NOT_AVALAIBLE)) {
-						return ICellManager.NOT_AVALAIBLE;
+					if (val.equals(unsupportedColumnCellText)) {
+						return unsupportedColumnCellText;
 					}
 					Assert.isTrue(TypeUtils.isBooleanValue(val));
 					return Boolean.valueOf(val);
@@ -189,7 +192,7 @@ public abstract class AbstractBooleanFilterRowComboBoxCellEditorFilterConfigurat
 
 				List<String> values = new ArrayList<String>();
 				for (Object tmp : coll) {
-					Assert.isTrue(tmp instanceof Boolean || ICellManager.NOT_AVALAIBLE.equals(tmp));
+					Assert.isTrue(tmp instanceof Boolean || CellHelper.getUnsupportedCellContentsText().equals(tmp));
 					values.add(tmp.toString());
 				}
 				cc.append(SetCommand.create(domain, keyStyle, NattablestylePackage.eINSTANCE.getStringListValueStyle_StringListValue(), values));
@@ -206,7 +209,7 @@ public abstract class AbstractBooleanFilterRowComboBoxCellEditorFilterConfigurat
 					keyStyle.setName(FILTER_VALUE_TO_MATCH);
 					cc.append(AddCommand.create(domain, iaxis, NattablestylePackage.eINSTANCE.getNamedStyle(), keyStyle));
 				}
-				Assert.isTrue(newValue instanceof Boolean || ICellManager.NOT_AVALAIBLE.equals(newValue));
+				Assert.isTrue(newValue instanceof Boolean || CellHelper.getUnsupportedCellContentsText().equals(newValue));
 				// we store the name of the literal and a reference to the literal, for 2 reasons :
 				// - for static profile we get enumerator and not EEnumLiteral
 				// - in case of redefinition of the profile, the reference would be not correct

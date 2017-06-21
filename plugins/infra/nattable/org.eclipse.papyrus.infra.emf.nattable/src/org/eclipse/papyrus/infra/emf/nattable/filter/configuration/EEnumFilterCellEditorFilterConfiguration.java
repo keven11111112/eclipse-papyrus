@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 497571
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.filter.configuration;
@@ -44,7 +44,6 @@ import org.eclipse.papyrus.infra.nattable.filter.IPapyrusMatcherEditorFactory;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.AbstractFilterValueToMatchManager;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.filter.validator.EnumFilterDataValidator;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
@@ -52,6 +51,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
 import ca.odell.glazedlists.BasicEventList;
@@ -87,7 +87,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 	}
 
 	/**
-	 * 
+	 *
 	 * @param axis
 	 *            an axis
 	 * @return
@@ -120,7 +120,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 		List<Enumerator> literals = getLiteral(configRegistry, columnElement);
 		final List<Object> valuesToProposed = new ArrayList<Object>(literals);
 
-		valuesToProposed.add(0, ICellManager.NOT_AVALAIBLE);
+		valuesToProposed.add(0, CellHelper.getUnsupportedCellContentsText());
 
 		ICellEditor editor = new FilterRowComboBoxCellEditor(new ListComboBoxDataProvider(valuesToProposed));
 		IPapyrusMatcherEditorFactory<Object> factory = createPapyrusMatcherFactory();
@@ -134,7 +134,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 
 	/**
 	 * This allows to create the papyrus matcher factory.
-	 * 
+	 *
 	 * @return The create papyrus matcher factory.
 	 */
 	protected IPapyrusMatcherEditorFactory<Object> createPapyrusMatcherFactory() {
@@ -150,7 +150,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 	}
 
 	/**
-	 * 
+	 *
 	 * @param filterConfiguration
 	 *            the id of the filter configuration used for the managed axis
 	 * @param literals
@@ -164,14 +164,14 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 
 	/**
 	 * This allows to get the data validator to use.
-	 * 
+	 *
 	 * @param configRegistry
 	 *            The config registry.
 	 * @param literals
 	 *            The list of authorized literals.
-	 * 
+	 *
 	 * @return The data validator to use.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	protected IDataValidator getDataValidator(final IConfigRegistry configRegistry, final List<Enumerator> literals) {
@@ -179,8 +179,8 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 	}
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration#getConfigurationId()
 	 *
 	 * @return
@@ -201,7 +201,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 	}
 
 	/**
-	 * 
+	 *
 	 * This class allows to save the state of the filter for column typed with enumeration
 	 *
 	 */
@@ -241,12 +241,14 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 			IAxis iaxis = (IAxis) axis;
 			NamedStyle style = getValueToMatchStyle(iaxis);
 			if (style != null) {
+				final String unsupportedColumnCellText = CellHelper.getUnsupportedCellContentsText();
+				
 				if (style instanceof StringListValueStyle) {
 					List<Object> returnedValues = new ArrayList<Object>();
 					Collection<String> coll = ((StringListValueStyle) style).getStringListValue();
 					for (String string : coll) {
-						if (string.equals(ICellManager.NOT_AVALAIBLE)) {
-							returnedValues.add(ICellManager.NOT_AVALAIBLE);
+						if (string.equals(unsupportedColumnCellText)) {
+							returnedValues.add(unsupportedColumnCellText);
 						} else {
 							for (Enumerator tmp : literals) {
 								if (tmp.getName().equals(string)) {
@@ -260,8 +262,8 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 				}
 				if (style instanceof StringValueStyle) {
 					String val = ((StringValueStyle) style).getStringValue();
-					if (val.equals(ICellManager.NOT_AVALAIBLE)) {
-						return ICellManager.NOT_AVALAIBLE;
+					if (val.equals(unsupportedColumnCellText)) {
+						return unsupportedColumnCellText;
 					}
 					for (Enumerator tmp : literals) {
 						if (tmp.getName().equals(val)) {
@@ -291,6 +293,8 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 			IAxis iaxis = (IAxis) axis;
 			CompoundCommand cc = new CompoundCommand("Save Value To Match Command"); //$NON-NLS-1$
 			NamedStyle keyStyle = getValueToMatchStyle(iaxis);
+			final String unsupportedColumnCellText = CellHelper.getUnsupportedCellContentsText();
+			
 			if (newValue instanceof Collection<?>) {
 				Collection<?> coll = (Collection<?>) newValue;
 				// we need to update the keystyle
@@ -309,11 +313,11 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 
 				List<String> values = new ArrayList<String>();
 				for (Object tmp : coll) {
-					Assert.isTrue(tmp instanceof Enumerator || ICellManager.NOT_AVALAIBLE.equals(tmp));
+					Assert.isTrue(tmp instanceof Enumerator || unsupportedColumnCellText.equals(tmp));
 					if (tmp instanceof Enumerator) {
 						values.add(((Enumerator) tmp).getName());
 					} else {
-						values.add(ICellManager.NOT_AVALAIBLE);
+						values.add(unsupportedColumnCellText);
 					}
 				}
 				cc.append(SetCommand.create(domain, keyStyle, NattablestylePackage.eINSTANCE.getStringListValueStyle_StringListValue(), values));
@@ -330,7 +334,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 					keyStyle.setName(FILTER_VALUE_TO_MATCH);
 					cc.append(AddCommand.create(domain, iaxis, NattablestylePackage.eINSTANCE.getNamedStyle(), keyStyle));
 				}
-				Assert.isTrue(newValue instanceof Enumerator || ICellManager.NOT_AVALAIBLE.equals(newValue));
+				Assert.isTrue(newValue instanceof Enumerator || unsupportedColumnCellText.equals(newValue));
 				// we store the name of the literal and a reference to the literal, for 2 reasons :
 				// - for static profile we get enumerator and not EEnumLiteral
 				// - in case of redefinition of the profile, the reference would be not correct
@@ -338,7 +342,7 @@ public class EEnumFilterCellEditorFilterConfiguration implements IFilterConfigur
 				if (newValue instanceof Enumerator) {
 					name = ((Enumerator) newValue).getName();
 				} else {
-					name = ICellManager.NOT_AVALAIBLE;
+					name = unsupportedColumnCellText;
 				}
 				cc.append(SetCommand.create(domain, keyStyle, NattablestylePackage.eINSTANCE.getStringValueStyle_StringValue(), name));
 			}

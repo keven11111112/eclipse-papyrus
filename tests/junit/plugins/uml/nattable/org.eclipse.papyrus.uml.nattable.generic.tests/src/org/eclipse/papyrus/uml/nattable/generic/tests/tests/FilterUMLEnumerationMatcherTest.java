@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLStereotypeSingleEnumerationComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.junit.Before;
@@ -85,7 +85,7 @@ public class FilterUMLEnumerationMatcherTest extends AbstractFilterMatcherTest {
 
 	@Test
 	public void test4() throws Exception {
-		checkFilter(Collections.singleton(ICellManager.NOT_AVALAIBLE), 2, 2, nbElementInTheTable, 1);
+		checkFilter(Collections.singleton(CellHelper.getUnsupportedCellContentsText()), 2, 2, nbElementInTheTable, 1);
 	}
 
 	@Test
@@ -102,7 +102,7 @@ public class FilterUMLEnumerationMatcherTest extends AbstractFilterMatcherTest {
 		List<?> literals = getAvailablePriorityLiterals();
 		Collection<Object> matchOn = new ArrayList<Object>();
 		matchOn.add(literals.get(0));
-		matchOn.add(ICellManager.NOT_AVALAIBLE);
+		matchOn.add(CellHelper.getUnsupportedCellContentsText());
 		checkFilter(matchOn, 2, 2, nbElementInTheTable, 2);
 	}
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.filter.validator;
@@ -21,20 +21,20 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 
 /**
  * The validator used for enum editor in the filter row header.
- * 
+ *
  * @since 3.0
  */
 public class EnumFilterDataValidator implements IDataValidator {
-	
+
 	/**
 	 * The list of authorized literals.
 	 */
 	final List<Enumerator> authorizedLiterals;
-	
+
 	/**
 	 * Constructor.
 	 *
@@ -45,7 +45,7 @@ public class EnumFilterDataValidator implements IDataValidator {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator#validate(int, int, java.lang.Object)
 	 */
 	@Override
@@ -55,7 +55,7 @@ public class EnumFilterDataValidator implements IDataValidator {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator#validate(org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell, org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object)
 	 */
 	@Override
@@ -63,9 +63,9 @@ public class EnumFilterDataValidator implements IDataValidator {
 		if (null == newValue) {
 			return true;
 		}
-		if(newValue instanceof Enumerator && authorizedLiterals.contains(newValue)) {
+		if (newValue instanceof Enumerator && authorizedLiterals.contains(newValue)) {
 			return true;
-		} else if (newValue instanceof String && newValue.equals(ICellManager.NOT_AVALAIBLE)) {
+		} else if (newValue instanceof String && newValue.equals(CellHelper.getUnsupportedCellContentsText())) {
 			return true;
 		} else if (newValue instanceof Collection<?>) {
 			boolean result = true;

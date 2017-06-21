@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.cell;
 
@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.paste.PastePostActionRegistry;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.infra.ui.converter.ConvertedValueContainer;
 import org.eclipse.papyrus.infra.ui.converter.MultiConvertedValueContainer;
@@ -105,7 +106,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 				return SEVERAL_STEREOTYPES_WITH_THIS_FEATURE_ARE_APPLIED;
 			}
 		}
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**

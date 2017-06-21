@@ -19,6 +19,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 
 /**
@@ -31,6 +32,8 @@ public interface ICellManager {
 
 	/**
 	 * The string displayed for Not_AVAILABLE
+	 * @deprecated since 4.0
+	 * use the method {@link CellHelper#getUnsupportedCellContentsText()} instead
 	 */
 	public static final String NOT_AVALAIBLE = Messages.ICellManager_NotAvailable;
 
@@ -186,4 +189,10 @@ public interface ICellManager {
 	 *
 	 */
 	public void setStringValue(final Object columnElement, final Object rowElement, final String valueAsString, final AbstractStringValueConverter valueConverter, final Map<?, ?> sharedMap, final INattableModelManager tableManager);
+	
+	/**
+	 * @return the text of cell to be displayed with unsupported column
+	 * @since 4.0
+	 */
+	public String getUnsupportedCellContentsText();
 }
