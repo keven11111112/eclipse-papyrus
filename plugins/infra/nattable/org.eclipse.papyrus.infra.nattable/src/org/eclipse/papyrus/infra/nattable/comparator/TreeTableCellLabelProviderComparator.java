@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.comparator;
@@ -21,10 +21,10 @@ import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 import org.eclipse.nebula.widgets.nattable.sort.SortDirectionEnum;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisComparator;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.SortLabelProviderFullCellContextElementWrapper;
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 
 /**
  * @author VL222926
- * 
+ *
  *         The comparator used to sort the rows selecting column header in case of a TreeTable
  *
  */
@@ -108,7 +108,8 @@ public class TreeTableCellLabelProviderComparator extends TableCellLabelProvider
 				final String txt1 = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT).getText(sortWrapper1);
 				final String txt2 = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT).getText(sortWrapper2);
 				int res = -1;
-				if (ICellManager.NOT_AVALAIBLE.equals(txt1) || ICellManager.NOT_AVALAIBLE.equals(txt2)) { // OR or AND ? I don't know 
+				final String unsupportedColumnCellText = CellHelper.getUnsupportedCellContentsText();
+				if (unsupportedColumnCellText.equals(txt1) || unsupportedColumnCellText.equals(txt2)) { // OR or AND ? I don't know
 					res = comparator.compare(axis1, axis2);
 					if (direction == SortDirectionEnum.DESC) {
 						res = -res;// to preserve the order of the TreeFillingConfiguration declared in the model and of the unsortable object

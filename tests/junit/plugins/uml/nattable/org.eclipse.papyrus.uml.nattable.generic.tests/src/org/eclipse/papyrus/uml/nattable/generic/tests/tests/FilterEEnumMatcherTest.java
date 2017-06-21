@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
@@ -20,7 +20,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,13 +41,13 @@ public class FilterEEnumMatcherTest extends AbstractFilterMatcherTest {
 	public void initModel() throws Exception {
 		super.initModel();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         a list containing the possible Enumerator for the axis
+	 * 		a list containing the possible Enumerator for the axis
 	 */
 	private List<Enumerator> getVisibilityLiteral() {
 		final List<Enumerator> literals = new ArrayList<Enumerator>();
@@ -68,7 +68,7 @@ public class FilterEEnumMatcherTest extends AbstractFilterMatcherTest {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testEEnumMatchingMode_2() throws Exception {
 		List<Enumerator> eenum = getVisibilityLiteral();
@@ -79,7 +79,7 @@ public class FilterEEnumMatcherTest extends AbstractFilterMatcherTest {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testEEnumMatchingMode_3() throws Exception {
 		List<Enumerator> eenum = getVisibilityLiteral();
@@ -101,16 +101,16 @@ public class FilterEEnumMatcherTest extends AbstractFilterMatcherTest {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testEEnumMatchingMode_5() throws Exception {
-		checkFilter(Collections.singleton(ICellManager.NOT_AVALAIBLE), 2, 2, 5, 1);
+		checkFilter(Collections.singleton(CellHelper.getUnsupportedCellContentsText()), 2, 2, 5, 1);
 	}
-	
+
 	@Test
 	public void testEEnumMatchingMode_6() throws Exception {
 		List<Object> matchOn = new ArrayList<Object>();
-		matchOn.add(ICellManager.NOT_AVALAIBLE);
+		matchOn.add(CellHelper.getUnsupportedCellContentsText());
 		matchOn.add(getVisibilityLiteral().get(0));
 		checkFilter(matchOn, 2, 2, 5, 2);
 	}

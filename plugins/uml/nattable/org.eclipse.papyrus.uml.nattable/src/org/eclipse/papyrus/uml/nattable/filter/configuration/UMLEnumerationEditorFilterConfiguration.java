@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.filter.configuration;
@@ -30,7 +30,6 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EEnumFilterCellEditorFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.filter.IFilterValueToMatchManager;
 import org.eclipse.papyrus.infra.nattable.filter.IPapyrusMatcherEditorFactory;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -40,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Enumeration;
@@ -104,7 +104,6 @@ public class UMLEnumerationEditorFilterConfiguration extends EEnumFilterCellEdit
 	 *
 	 * @return
 	 */
-	@Override
 	protected IPapyrusMatcherEditorFactory<Object> createPapyrusMatcherFactory() {
 		return new IPapyrusMatcherEditorFactory<Object>() {
 
@@ -181,7 +180,7 @@ public class UMLEnumerationEditorFilterConfiguration extends EEnumFilterCellEdit
 					List<Object> returnedValues = new ArrayList<Object>();
 					Collection<String> coll = ((StringListValueStyle) style).getStringListValue();
 					for (String string : coll) {
-						if (ICellManager.NOT_AVALAIBLE.equals(string)) {
+						if (CellHelper.getUnsupportedCellContentsText().equals(string)) {
 							returnedValues.add(string);
 							continue;
 						}
@@ -196,7 +195,7 @@ public class UMLEnumerationEditorFilterConfiguration extends EEnumFilterCellEdit
 				}
 				if (style instanceof StringValueStyle) {
 					String val = ((StringValueStyle) style).getStringValue();
-					if (ICellManager.NOT_AVALAIBLE.equals(val)) {
+					if (CellHelper.getUnsupportedCellContentsText().equals(val)) {
 						return val;
 					}
 					for (Enumerator tmp : literals) {

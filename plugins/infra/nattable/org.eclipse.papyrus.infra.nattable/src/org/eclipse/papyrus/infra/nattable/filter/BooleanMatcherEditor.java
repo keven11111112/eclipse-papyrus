@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.filter;
@@ -18,7 +18,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IColumnAccessor;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 
 import ca.odell.glazedlists.matchers.Matcher;
 
@@ -75,7 +75,7 @@ public class BooleanMatcherEditor extends AbstractPapyrusMatcherEditor {
 		public BooleanMatcher(IColumnAccessor<Object> accessor, Object wantedObject, int columnIndex) {
 			super(accessor, columnIndex, wantedObject);
 			Assert.isTrue(!(wantedObject instanceof Collection<?>));
-			Assert.isTrue(wantedObject instanceof Boolean || wantedObject.equals(ICellManager.NOT_AVALAIBLE));
+			Assert.isTrue(wantedObject instanceof Boolean || wantedObject.equals(CellHelper.getUnsupportedCellContentsText()));
 		}
 
 		/**

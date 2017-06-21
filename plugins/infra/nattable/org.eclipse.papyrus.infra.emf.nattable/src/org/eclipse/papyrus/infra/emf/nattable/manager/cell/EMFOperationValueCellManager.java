@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 465009 : Allow EOperation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
@@ -24,13 +24,14 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 
 /**
- * 
+ *
  * Cell Manager which allows to get the value of an {@link EOperation} for an {@link EObject}
  *
  * @author Céline JANSSENS
- * 
+ *
  */
 public class EMFOperationValueCellManager extends AbstractCellManager {
 
@@ -76,7 +77,7 @@ public class EMFOperationValueCellManager extends AbstractCellManager {
 				return NOT_IMPLEMENTED_MESSAGE;
 			}
 		}
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**
@@ -88,7 +89,7 @@ public class EMFOperationValueCellManager extends AbstractCellManager {
 	 * @param sharedMap
 	 *            a map with interesting informations
 	 * @return
-	 *         <code>null</code> or a list of 2 objects.
+	 * 		<code>null</code> or a list of 2 objects.
 	 *         <ul>
 	 *         <li>the first element is the edited EObject</li>
 	 *         <li>the second one is the edited feature</li>

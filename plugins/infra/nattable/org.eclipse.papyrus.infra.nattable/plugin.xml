@@ -1831,4 +1831,25 @@
          </activeWhen>
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.nattable.preferences.pages.NattablePreferencePage"
+            id="org.eclipse.papyrus.infra.nattable.preferences.nattable"
+            name="NatTable">
+      </page>
+      <page
+            category="org.eclipse.papyrus.infra.nattable.preferences.nattable"
+            class="org.eclipse.papyrus.infra.nattable.preferences.pages.CellPreferencePage"
+            id="org.eclipse.papyrus.infra.nattable.preferences.nattable.cell"
+            name="Cell Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.infra.nattable.preferences.initializers.CellPreferenceInitializer">
+      </initializer>
+   </extension>
 </plugin>

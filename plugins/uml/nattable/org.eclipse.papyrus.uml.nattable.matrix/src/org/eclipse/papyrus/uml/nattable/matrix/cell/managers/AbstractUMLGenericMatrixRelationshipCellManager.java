@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) - thanhliem.phan@all4tec.net - Bug 515806
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.matrix.cell.managers;
@@ -45,6 +45,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.Gene
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.ICellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipDirection;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -75,7 +76,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	private IBooleanEObjectExpression defaultFilter = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 *
 	 * @param managedElement
@@ -87,7 +88,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the relationship helper to use
 	 */
@@ -122,7 +123,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#isCellEditable(java.lang.Object, java.lang.Object, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 *
 	 * @param columnElement
@@ -153,7 +154,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param columnElement
 	 *            the column element
 	 * @param rowElement
@@ -175,15 +176,15 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 			if (isDirectedRelationship()) {
 				isEditable = false;
 			} else {
-				isEditable = (matchingSourceFeatureType(realRow) && matchingTargetFeatureType((Element) realColumn))
-						&& /* or || ?? */ matchingSourceFeatureType(realColumn) && matchingTargetFeatureType((Element) realRow);
+				isEditable = (matchingSourceFeatureType(realRow) && matchingTargetFeatureType(realColumn))
+						&& /* or || ?? */ matchingSourceFeatureType(realColumn) && matchingTargetFeatureType(realRow);
 			}
 			break;
 		case FROM_ROW_TO_COLUMN:
-			isEditable = matchingSourceFeatureType(realRow) && matchingTargetFeatureType((Element) realColumn);
+			isEditable = matchingSourceFeatureType(realRow) && matchingTargetFeatureType(realColumn);
 			break;
 		case FROM_COLUMN_TO_ROW:
-			isEditable = matchingSourceFeatureType(realColumn) && matchingTargetFeatureType((Element) realRow);
+			isEditable = matchingSourceFeatureType(realColumn) && matchingTargetFeatureType(realRow);
 			break;
 		default:
 			break;
@@ -192,7 +193,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param axisObject
 	 * @return
 	 * 		<code>true</code> if the object can be used as source
@@ -202,7 +203,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param axisObject
 	 * @return
 	 * 		<code>true</code> if the object can be used as target
@@ -212,7 +213,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param elementTypeConfiguration
 	 *            the elemen type configruation declared in the table cell editor configuration
 	 * @param source
@@ -229,7 +230,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param configuration
 	 *            the cell editor configuration declared in the edited table
 	 * @return
@@ -247,12 +248,12 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param configuration
 	 *            the cell editor configuration declared in the edited table
 	 * @return
 	 * 		the matcher to use, or <code>null</code> if not defined
-	 * 
+	 *
 	 */
 	protected IElementMatcher getElementTypeMatcher(final GenericRelationshipMatrixCellEditorConfiguration configuration) {
 		final IElementType elementType = getElementTypeToCreate(configuration);
@@ -260,7 +261,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		<code>true</code> if the managed EClass relationship can have more than 2 ends, and <code>false</code> if not OR if the relationship is not managed
 	 */
@@ -269,7 +270,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		<code>true</code> if the managed EClass relationship is a directed relationship, and <code>false</code> if not OR if the relationship is not managed
 	 */
@@ -279,7 +280,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 
 
 	/**
-	 * 
+	 *
 	 * @param manager
 	 *            the current edited table
 	 * @return
@@ -291,7 +292,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param elTypeConf
 	 *            an element type
 	 * @return
@@ -310,10 +311,10 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param manager
 	 *            the matrix widget manager
-	 * 
+	 *
 	 * @return
 	 * 		<code>true</code> if the table owns a {@link GenericRelationshipMatrixCellEditorConfiguration} and <code>false</code> otherwise
 	 */
@@ -322,7 +323,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param manager
 	 *            the matrix widget manager
 	 * @return
@@ -337,7 +338,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param manager
 	 *            the current edited table
 	 * @return
@@ -352,7 +353,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param relationship
 	 *            a relationship
 	 * @return
@@ -363,7 +364,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param relationship
 	 *            a relationship
 	 * @return
@@ -374,7 +375,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param relationship
 	 *            a relationship
 	 * @return
@@ -385,7 +386,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param relationship
 	 *            a relationship
 	 * @return
@@ -409,11 +410,11 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 			// we already know that column and rows are UML Elemenr due to the handles methods
 			return getMatchingRelationships((Element) AxisUtils.getRepresentedElement(columnElement), (Element) AxisUtils.getRepresentedElement(rowElement), tableManager);
 		}
-		return NOT_AVALAIBLE;
+		return CellHelper.getUnsupportedCellContentsText();
 	}
 
 	/**
-	 * 
+	 *
 	 * @param columnElement
 	 *            the column element
 	 * @param rowElement
@@ -467,7 +468,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @param relationship
 	 *            a relationship
 	 * @return
@@ -478,7 +479,7 @@ public abstract class AbstractUMLGenericMatrixRelationshipCellManager extends Ab
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager#getSetValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, java.lang.Object,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 *

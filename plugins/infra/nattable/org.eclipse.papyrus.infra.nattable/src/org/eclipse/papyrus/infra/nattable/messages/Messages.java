@@ -1,7 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012, 2017 CEA LIST.
  *
- *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,9 +8,11 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095, 515806
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.messages;
+
+import javax.inject.Singleton;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -495,6 +496,16 @@ public class Messages extends NLS {
 	public static String MatrixRelationshipDirectionLabelProvider_RowToColumn;
 
 	public static String MatrixRelationshipDirectionLabelProvider_ColumnToRow;
+
+	/**
+	 * @since 4.0
+	 */
+	public static String CellPreferenceInitializer_NotAvailable;
+
+	/**
+	 * @since 4.0
+	 */
+	public static String CellPreferencePage_UnsupportedColumnCellLabel;
 
 	static {
 		// initialize resource bundle
