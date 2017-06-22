@@ -109,8 +109,8 @@ public class AssistantRuleItemProvider extends RuleItemProvider {
 		if ((pattern == null) || pattern.isEmpty()) {
 			pattern = "*";
 		}
-		String permit = rule.isPermit() ? getString("_UI_allow") : getString("_UI_deny");
-		return getString("_UI_AssistantRule_label", new Object[] { pattern, permit });
+		String permit = (rule.isPermit() ? "allow" : "deny");
+		return "Assistant: "+pattern+" => "+permit;
 	}
 	
 
