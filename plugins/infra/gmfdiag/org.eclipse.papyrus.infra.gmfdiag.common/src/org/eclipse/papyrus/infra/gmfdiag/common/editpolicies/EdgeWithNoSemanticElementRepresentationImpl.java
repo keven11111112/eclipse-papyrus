@@ -27,17 +27,17 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	/**
 	 * the semantic hint for the represented element
 	 */
-	private String semanticHint;
+	protected String semanticHint;
 
 	/**
 	 * the source of the link
 	 */
-	private final EObject source;
+	protected final EObject source;
 
 	/**
 	 * the target of the link
 	 */
-	private final EObject target;
+	protected final EObject target;
 
 	/**
 	 *
@@ -59,7 +59,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	/**
 	 *
 	 * @return
-	 *         the source of the represented link
+	 * 		the source of the represented link
 	 */
 	public EObject getSource() {
 		return source;
@@ -68,7 +68,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	/**
 	 *
 	 * @return
-	 *         the target of the represented link
+	 * 		the target of the represented link
 	 */
 	public EObject getTarget() {
 		return target;
@@ -77,7 +77,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	/**
 	 *
 	 * @return
-	 *         a view for this link
+	 * 		a view for this link
 	 */
 	public String getSemanticHint() {
 		return semanticHint;
@@ -90,14 +90,14 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	 * @see java.lang.Object#hashCode()
 	 *
 	 * @return
-	 *         the hashcode
+	 * 		the hashcode
 	 */
 	@Override
 	public int hashCode() {
 		int result = 1;
-		result= result + ((this.target == null) ? 0 : this.target.hashCode());
-		result= result + 7 * ((this.source == null) ? 0 : this.source.hashCode());
-		result= result + 11 * ((this.semanticHint == null) ? 0 : this.semanticHint.hashCode());
+		result = result + ((this.target == null) ? 0 : this.target.hashCode());
+		result = result + 7 * ((this.source == null) ? 0 : this.source.hashCode());
+		result = result + 11 * ((this.semanticHint == null) ? 0 : this.semanticHint.hashCode());
 		return result;
 	}
 
@@ -108,7 +108,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	 * @param obj
 	 *            an object
 	 * @return
-	 *         <code>true</code> if this object is the same than the other one
+	 * 		<code>true</code> if this object is the same than the other one
 	 */
 	@Override
 	public boolean equals(final Object obj) {

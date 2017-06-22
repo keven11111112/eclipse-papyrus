@@ -10,12 +10,14 @@
  * Contributors:
  * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ * 		Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.utils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -132,7 +135,7 @@ public class ElementUtil {
 
 	/**
 	 * @return true element is type of type to match
-	 * @since 3.0
+	 * @since 3.1
 	 */
 	public static boolean isTypeOf(IElementType element, IElementType typeTomatch) {
 		if (typeTomatch.equals(element)) {
@@ -142,6 +145,46 @@ public class ElementUtil {
 		if (supers.contains(typeTomatch)) {
 			return true;
 		}
-		return false; 
+		return false;
+	}
+
+	/**
+	 * Check for stereotype applied on {@link Element}.
+	 *
+	 * @param element
+	 *            the element to test
+	 * @param stereotype
+	 *            the stereotype qualify name
+	 * @return true, if successful
+	 * @since 3.1
+	 */
+	public static boolean hasStereotypeApplied(final Element element, final String stereotype) {
+		List<String> sourceAppliedStereotypes = element.getAppliedStereotypes().stream()
+				.map(st -> st.getQualifiedName())
+				.collect(Collectors.toList());
+
+		sourceAppliedStereotypes.addAll(element.getAppliedStereotypes().stream()
+				.flatMap(st -> st.allParents().stream())
+				.filter(Stereotype.class::isInstance).map(Stereotype.class::cast)
+				.map(st -> st.getQualifiedName())
+				.collect(Collectors.toList()));
+
+		return sourceAppliedStereotypes.contains(stereotype);
+	}
+
+	/**
+	 * Gets the stereotype application of the {@link Stereotype} in an {@link Element}.
+	 *
+	 * @param umlElement
+	 *            the UML {@link Element}
+	 * @param stereotype
+	 *            the {@link Stereotype}
+	 * @return the stereotype application
+	 * @since 3.1
+	 */
+	public static EObject getStereotypeApplication(final Element umlElement, final Stereotype stereotype) {
+		Stereotype actual = (stereotype == null) ? null : org.eclipse.papyrus.uml.tools.utils.UMLUtil.getAppliedSubstereotype(umlElement, stereotype);
+		EObject stereotypeApplication = (null == actual) ? null : umlElement.getStereotypeApplication(actual);
+		return stereotypeApplication;
 	}
 }

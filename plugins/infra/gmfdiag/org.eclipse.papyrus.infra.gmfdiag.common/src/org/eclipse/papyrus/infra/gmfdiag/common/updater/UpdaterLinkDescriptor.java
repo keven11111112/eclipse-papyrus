@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
  *   
  *****************************************************************************/
 
@@ -17,6 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
 
 /**
  * @since 2.0
@@ -36,29 +38,35 @@ public class UpdaterLinkDescriptor extends UpdaterNodeDescriptor {
 	}
 
 	public UpdaterLinkDescriptor(EObject source, EObject destination, final IElementType elementType, String linkVID) {
-		this(source, destination, (EObject) null, linkVID);
-		mySemanticAdapter = new IAdaptable() {
-
-			public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-				if (IElementType.class.equals(adapter)) {
-					return elementType;
-				}
-				return null;
-			}
-		};
+		this(source, destination, (EObject) null, elementType, linkVID);
 	}
 
 	public UpdaterLinkDescriptor(EObject source, EObject destination, EObject linkElement, final IElementType elementType, String linkVID) {
 		this(source, destination, linkElement, linkVID);
-		mySemanticAdapter = new EObjectAdapter(linkElement) {
 
-			public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-				if (IElementType.class.equals(adapter)) {
-					return elementType;
+		if (null != linkElement && !(linkElement instanceof EdgeWithNoSemanticElementRepresentationImpl)) {
+			mySemanticAdapter = new EObjectAdapter(linkElement) {
+
+				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+					if (IElementType.class.equals(adapter)) {
+						return elementType;
+					}
+					return super.getAdapter(adapter);
 				}
-				return super.getAdapter(adapter);
-			}
-		};
+			};
+		} else {
+			mySemanticAdapter = new IAdaptable() {
+
+				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+					if (IElementType.class.equals(adapter)) {
+						return elementType;
+					} else if (UpdaterLinkDescriptor.class.equals(adapter)) {
+						return UpdaterLinkDescriptor.this;
+					}
+					return null;
+				}
+			};
+		}
 	}
 
 	public EObject getSource() {

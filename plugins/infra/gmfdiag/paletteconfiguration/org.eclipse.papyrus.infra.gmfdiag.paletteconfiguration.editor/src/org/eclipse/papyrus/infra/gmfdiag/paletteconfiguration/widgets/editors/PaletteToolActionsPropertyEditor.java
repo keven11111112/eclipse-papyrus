@@ -53,7 +53,10 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor.messages.Me
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.ToolConfigurationItemProvider;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSourceChangedEvent;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSourceFactory;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.IDataSourceListener;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.infra.properties.ui.runtime.DisplayEngine;
 import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
@@ -64,6 +67,7 @@ import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.types.ExternallyRegisteredType;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.extensionpoints.IAdviceKindExtensionPoint;
 import org.eclipse.papyrus.infra.types.core.factories.impl.AbstractAdviceBindingFactory;
@@ -145,6 +149,12 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 
 	/** list of actions advice which have not to be show */
 	protected List<String> blackListedAdvice = new ArrayList<>(Collections.singleton("Set type"));//$NON-NLS-1$
+
+	/** The {@link DataSource} listener. */
+	private IDataSourceListener dataSourceListener;
+
+	/** True if the Property editor is loaded from the standalone editor(vs Palette customize editor.) */
+	private boolean standaloneEditor = false;
 
 	/** enumeration of existing entry types */
 	private enum ToolbarButtonIds {
@@ -556,8 +566,13 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 		if (!elementDescriptors.isEmpty()) {
 			ElementDescriptor elementDescriptor = elementDescriptors.get(0);
 			ElementTypeConfiguration elementTypeConfiguration = elementDescriptor.getElementType();
+
 			if (elementTypeConfiguration instanceof SpecializationTypeConfiguration) {
-				elementTypeFound = ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypes().get(0);
+				if (!standaloneEditor && !(((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypes().get(0) instanceof ExternallyRegisteredType)) {
+					elementTypeFound = ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypes().get(0);
+				} else {
+					elementTypeFound = elementTypeConfiguration;
+				}
 			}
 		}
 		return elementTypeFound;
@@ -707,9 +722,67 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 	 */
 	@Override
 	public void setInput(final DataSource input) {
-		this.input = input;
-		initialize();
+		final DataSource oldInput = this.input;
+		if (input != oldInput) {
+			if (oldInput != null) {
+				unhookDataSourceListener(oldInput);
+			}
 
+			this.input = input;
+
+			if (input != null) {
+				hookDataSourceListener(input);
+			}
+			initialize();
+		}
+	}
+
+	/**
+	 * Unhook the {@link DataSource} listener.
+	 * 
+	 * @param oldInput
+	 *            the {@link DataSource} to unhook
+	 * @since 3.1
+	 */
+	protected void unhookDataSourceListener(final DataSource oldInput) {
+		oldInput.removeDataSourceListener(getDataSourceListener());
+	}
+
+	/**
+	 * Hook the {@link DataSource} listener.
+	 * 
+	 * @param oldInput
+	 *            the {@link DataSource} to hook
+	 * @since 3.1
+	 */
+	protected void hookDataSourceListener(final DataSource newInput) {
+		newInput.addDataSourceListener(getDataSourceListener());
+	}
+
+	/**
+	 * @return the {@link DataSource} listener.
+	 */
+	private IDataSourceListener getDataSourceListener() {
+		if (dataSourceListener == null) {
+			dataSourceListener = new IDataSourceListener() {
+
+				@Override
+				public void dataSourceChanged(DataSourceChangedEvent event) {
+					initialize();
+					actionsViewer.refresh();
+					Object elementAt = actionsViewer.getElementAt(0);
+					if (null != elementAt) {
+						actionsViewer.setSelection(new StructuredSelection(elementAt));
+					} else {
+						for (Control control : propertiesComposite.getChildren()) {
+							control.dispose();
+						}
+					}
+				}
+			};
+		}
+
+		return dataSourceListener;
 	}
 
 	/**
@@ -734,7 +807,7 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 	 */
 	protected void initialize() {
 		if (null != property && null != input) {
-			ModelElement modelElement = input.getModelElement(property);
+			ModelElement modelElement = DataSourceFactory.instance.getModelElementFromPropertyPath(input, property);
 			if (modelElement instanceof EMFModelElement) {
 				setEditingDomain((AdapterFactoryEditingDomain) ((EMFModelElement) modelElement).getDomain());
 				setToolSource(modelElement);
@@ -821,6 +894,7 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 			if (null != result && 0 < result.length) {
 				elementTypeSetConfigurationSemantic = (ElementTypeSetConfiguration) result[0];
 				editingDomain.getResourceSet().getLoadOptions().put(PaletteRessourcesConstants.ELEMENTTYPE_SEMENTIC_RESSOURCE_IDENTIFIER, elementTypeSetConfigurationSemantic.eResource());
+				standaloneEditor = true;
 				setReadOnly(false);
 			} else {
 				setReadOnly(true);
@@ -908,6 +982,10 @@ public class PaletteToolActionsPropertyEditor implements CustomizablePropertyEdi
 	 */
 	public void refresh() {
 		actionsViewer.refresh();
+		Object elementAt = actionsViewer.getElementAt(0);
+		if (null != elementAt) {
+			actionsViewer.setSelection(new StructuredSelection(elementAt));
+		}
 		refreshButtons();
 	}
 

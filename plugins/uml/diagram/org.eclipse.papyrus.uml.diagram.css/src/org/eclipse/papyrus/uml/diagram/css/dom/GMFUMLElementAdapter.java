@@ -10,14 +10,18 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 461489: add supports of AcceptEventAction
+ *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
-
+import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyReferenceEdgeAdvice.FEATURE_TO_SET_ANNOTATION_KEY;
+import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyReferenceEdgeAdvice.STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT;
+import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyReferenceEdgeAdvice.STEREOTYPE_QUALIFIED_NAME_ANNOTATION_KEY;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -54,6 +58,11 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 
 	/**
+	 * The Constant STEREOTYPE_REFERENCE_EDGE_SOURCE_APPLIED_STEREOTYPES_PROPERTY.
+	 */
+	private static final String STEREOTYPE_REFERENCE_EDGE_SOURCE_APPLIED_STEREOTYPES_PROPERTY = "sourceAppliedStereotypes";//$NON-NLS-1$
+
+	/**
 	 * Name of the CSS Simple Selector to match on the Stereotype Compartment Shape
 	 */
 	private static final String STEREOTYPE_COMMENT = "StereotypeComment"; //$NON-NLS-1$
@@ -69,9 +78,11 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 	/** The Constant IS_FRAMEZABLE. */
 	public static final String IS_FRAME = "isFrame"; //$NON-NLS-1$
-	
-	/** CSS property to verify if a stereotype is applied on the type of a TypedElement */
-	public static final String TYPE_APPLIED_STEREOTYPES_PROPERTY = "typeAppliedStereotypes"; //$NON-NLS-1$
+
+	/**
+	 * CSS property to verify if a stereotype is applied on the type of a TypedElement
+	 */
+	private static final String TYPE_APPLIED_STEREOTYPES_PROPERTY = "typeAppliedStereotypes"; //$NON-NLS-1$
 
 
 	/**
@@ -144,7 +155,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					return ListHelper.deepToString(appliedStereotypes, CSS_VALUES_SEPARATOR);
 				}
 			}
-			
+
 			if (TYPE_APPLIED_STEREOTYPES_PROPERTY.equals(attr) && semanticElement instanceof TypedElement) {
 				Type type = ((TypedElement) semanticElement).getType();
 				if (type != null) {
@@ -159,7 +170,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					}
 				}
 			}
-			
+
 			for (EObject stereotypeApplication : currentElement.getStereotypeApplications()) {
 				EStructuralFeature feature = stereotypeApplication.eClass().getEStructuralFeature(attr);
 				if (feature != null) {
@@ -199,16 +210,35 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					return String.valueOf(isAcceptTimeEventAction((AcceptEventAction) semanticElement));
 				}
 			}
+
 			// manage of isFraezable=true attribute for dislaying header/frame
-			if(IS_FRAME.equals(attr)){
-				if(notationElement.eContainer()==notationElement.getDiagram()){
+			if (IS_FRAME.equals(attr)) {
+				if (notationElement.eContainer() == notationElement.getDiagram()) {
 					return String.valueOf(true);
-				}
-				else{
+				} else {
 					return String.valueOf(false);
 				}
 			}
 		}
+
+		// manage of stereotype reference link
+		if (STEREOTYPE_REFERENCE_EDGE_SOURCE_APPLIED_STEREOTYPES_PROPERTY.equals(attr)) {
+			if (null != notationElement && STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT.equals(notationElement.getType())) {
+				EAnnotation eAnnotation = notationElement.getEAnnotation(STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT);
+				if (null != eAnnotation) {
+					return eAnnotation.getDetails().get(STEREOTYPE_QUALIFIED_NAME_ANNOTATION_KEY);
+				}
+			}
+		}
+		if (FEATURE_TO_SET_ANNOTATION_KEY.equals(attr)) {
+			if (null != notationElement && STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT.equals(notationElement.getType())) {
+				EAnnotation eAnnotation = notationElement.getEAnnotation(STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT);
+				if (null != eAnnotation) {
+					return eAnnotation.getDetails().get(FEATURE_TO_SET_ANNOTATION_KEY);
+				}
+			}
+		}
+
 		return null;
 	}
 

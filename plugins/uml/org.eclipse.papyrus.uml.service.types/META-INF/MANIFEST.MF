@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[3.0.0,4.
  org.eclipse.papyrus.infra.emf.gmf
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.service.types.Activator

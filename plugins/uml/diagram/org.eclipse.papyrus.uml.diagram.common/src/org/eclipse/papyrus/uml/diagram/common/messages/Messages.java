@@ -34,6 +34,8 @@ public class Messages extends NLS {
 
 	public static String ShowHideRelatedLinkSelectionDialog_Sources;
 
+	public static String ShowHideRelatedLinkSelectionDialog_StereotypePropertyReferenceLabel;
+
 	public static String ShowHideRelatedLinkSelectionDialog_Ends;
 
 	public static String ShowHideRelatedLinkSelectionDialog_LinksToDisplay;

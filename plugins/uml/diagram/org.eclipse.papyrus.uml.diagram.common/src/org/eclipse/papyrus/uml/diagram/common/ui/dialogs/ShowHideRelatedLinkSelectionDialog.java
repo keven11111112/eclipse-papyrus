@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.ui.dialogs;
@@ -37,6 +38,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.StereotypePropertyReferenceEdgeRepresentation;
 import org.eclipse.papyrus.uml.diagram.common.dialogs.AbstractCheckedTreeColumnViewerSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.common.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.common.util.LinkEndsMapper;
@@ -59,7 +61,7 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 	/**
 	 * the width for the first column
 	 */
-	private final int FIRST_COLUMN_WIDTH = 180;
+	private final int FIRST_COLUMN_WIDTH = 200;
 
 	/**
 	 * the width for the others columns
@@ -186,7 +188,7 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 	/**
 	 *
 	 * @return
-	 *         the checkedStateListener to use
+	 * 		the checkedStateListener to use
 	 */
 	protected ICheckStateListener getOrCreateCheckStateListener() {
 		if (this.checkedStateListener == null) {
@@ -269,7 +271,7 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 	/**
 	 *
 	 * @return
-	 *         the checkedStateProvider to use for this dialog
+	 * 		the checkedStateProvider to use for this dialog
 	 */
 	protected ICheckStateProvider getOrCreateCheckStateProvider() {
 		if (this.checkedStateProvider == null) {
@@ -367,6 +369,8 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 				}
 				if (source instanceof Constraint) {
 					return Messages.ShowHideRelatedLinkSelectionDialog_ConstraintLink;
+				} else if (element instanceof StereotypePropertyReferenceEdgeRepresentation) {
+					return Messages.ShowHideRelatedLinkSelectionDialog_StereotypePropertyReferenceLabel;
 				}
 			}
 			if (element instanceof EObject) {
@@ -427,6 +431,8 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 					return Messages.ShowHideRelatedLinkSelectionDialog_CommentLink;
 				} else if (source instanceof Constraint) {
 					return Messages.ShowHideRelatedLinkSelectionDialog_ConstraintLink;
+				} else if (element instanceof StereotypePropertyReferenceEdgeRepresentation) {
+					return ((StereotypePropertyReferenceEdgeRepresentation) element).getStereotypeQualifiedName() + "::" + ((StereotypePropertyReferenceEdgeRepresentation) element).getFeatureToSet();//$NON-NLS-1$
 				}
 			}
 			return labelProvider.getText(element);

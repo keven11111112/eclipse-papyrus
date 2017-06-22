@@ -11,10 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
-import org.eclipse.papyrus.infra.gmfdiag.css.provider.IPapyrusElementProvider;
-import org.eclipse.papyrus.uml.diagram.css.dom.GMFUMLElementProviderFactory;
-
 /**
  * IElementProvider Factory for Diagrams related to UML TypedElements
  *

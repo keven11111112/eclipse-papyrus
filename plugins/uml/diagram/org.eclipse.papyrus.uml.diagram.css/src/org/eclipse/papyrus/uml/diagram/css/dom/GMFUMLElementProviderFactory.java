@@ -23,7 +23,6 @@ import org.eclipse.uml2.uml.Element;
  * @author Camille Letavernier
  *
  */
-@SuppressWarnings("restriction")
 public class GMFUMLElementProviderFactory implements ICSSElementProviderFactory {
 
 	@Override

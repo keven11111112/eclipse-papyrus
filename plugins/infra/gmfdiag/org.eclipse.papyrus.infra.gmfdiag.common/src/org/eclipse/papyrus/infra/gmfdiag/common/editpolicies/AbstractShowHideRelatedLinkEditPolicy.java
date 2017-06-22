@@ -551,11 +551,6 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 
 			// we look for the link descriptor
 			UpdaterLinkDescriptor descriptor = getLinkDescriptor(linkToShow, linkDescriptors);
-			if (linkToShow instanceof EdgeWithNoSemanticElementRepresentationImpl) {
-				// we replace the specific link descriptor by a new one, with no model element (if not the view provider refuse to create the view
-				final IElementType elementType = descriptor.getSemanticAdapter().getAdapter(IElementType.class);
-				descriptor = new UpdaterLinkDescriptor(descriptor.getSource(), descriptor.getDestination(), elementType, descriptor.getVisualID());
-			}
 			if (descriptor != null) {
 
 				Set<View> sourceViewList = domain2NotationMap.get(descriptor.getSource());

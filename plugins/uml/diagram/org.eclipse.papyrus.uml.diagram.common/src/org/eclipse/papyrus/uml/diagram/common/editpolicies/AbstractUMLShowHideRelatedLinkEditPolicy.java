@@ -13,19 +13,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyReferenceEdgeAdvice.STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -35,10 +41,14 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractShowHideRelatedLinkEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.StereotypePropertyReferenceEdgeRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterLinkDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.Domain2Notation;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper;
@@ -51,7 +61,10 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -61,6 +74,11 @@ import org.eclipse.uml2.uml.Relationship;
  */
 public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractShowHideRelatedLinkEditPolicy {
 
+
+	/**
+	 * The qualify name of the stereotype property reference edge element type.
+	 */
+	private static final String STEREOTYPE_PROPERTY_REFERENCE_EDGE_ELEMENT_TYPE_QN = "org.eclipse.papyrus.umldi.StereotypePropertyReferenceEdge"; //$NON-NLS-1$
 
 	/**
 	 *
@@ -94,7 +112,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param domain2NotationMap
 	 * @param linksDescriptors
 	 * @return
-	 *         the command which open a dialog to ask for the user to select visible links, chained with the command to show/hide the links according
+	 * 		the command which open a dialog to ask for the user to select visible links, chained with the command to show/hide the links according
 	 *         to the user selection
 	 */
 	@Override
@@ -110,7 +128,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 				linkMapping.put(link, createLinkEndMapper((Element) link, current));
 			} else if (link instanceof EdgeWithNoSemanticElementRepresentationImpl) {
 				final EObject source = ((EdgeWithNoSemanticElementRepresentationImpl) link).getSource();
-				if (source instanceof Comment || source instanceof Constraint) {
+				if (source instanceof Comment || source instanceof Constraint || STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT.equals(current.getVisualID())) {
 					linkMapping.put(link, createLinkEndMapper((Element) source, current));
 				}
 			}
@@ -133,7 +151,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param descriptor
 	 *            the link descriptor
 	 * @return
-	 *         the collection of link descriptors without some invalid descriptor (we get this case when the link doesn't have source AND target, but
+	 * 		the collection of link descriptors without some invalid descriptor (we get this case when the link doesn't have source AND target, but
 	 *         only ends)
 	 */
 	@Override
@@ -190,7 +208,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	/**
 	 *
 	 * @return
-	 *         <code>true</code> if the link is oriented and <code>false</code> if not.
+	 * 		<code>true</code> if the link is oriented and <code>false</code> if not.
 	 *         If not, that is to say than {@link LinkMappingHelper} should returns the same values for sources and targets
 	 */
 	public static final boolean isAnOrientedLink(final EObject link) {
@@ -201,6 +219,8 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 		} else if (link instanceof Connector) {
 			return false;
 		} else if (link instanceof Comment || link instanceof Constraint) {
+			return true;
+		} else if (link instanceof StereotypePropertyReferenceEdgeRepresentation) {
 			return true;
 		}
 		return false;
@@ -214,13 +234,13 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param element
 	 *            an element
 	 * @return
-	 *         a linkEndsMapper according to this element
+	 * 		a linkEndsMapper according to this element
 	 */
 	public static final LinkEndsMapper createLinkEndMapper(final Element element, final UpdaterLinkDescriptor descriptor) {
 		Collection<?> ends;
 		Collection<?> sources;
 		Collection<?> targets;
-		if (element instanceof Comment || element instanceof Constraint) {
+		if (element instanceof Comment || element instanceof Constraint || STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT.equals(descriptor.getVisualID())) {
 			ends = Collections.emptyList();
 			sources = Collections.singletonList(descriptor.getSource());
 			targets = Collections.singletonList(descriptor.getDestination());
@@ -241,7 +261,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param domain
 	 *            the editing domain
 	 * @return
-	 *         the command to open the dialog to choose the link to show
+	 * 		the command to open the dialog to choose the link to show
 	 */
 	protected ICommand getOpenDialogCommand(final TransactionalEditingDomain domain, final Collection<EditPart> selectedEditPart, final Map<EditPart, Set<EObject>> availableLinks, final Collection<EObject> initialSelection,
 			final Map<EObject, LinkEndsMapper> linkMapping) {
@@ -277,5 +297,76 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	@Override
 	protected ILabelProvider getLabelProvider() {
 		return new UMLLabelProvider();
+	}
+
+	/**
+	 * Collects all related links for view.
+	 *
+	 * @param view
+	 *            the view
+	 * @param domain2NotationMap
+	 *            the domain2 notation map
+	 * @return linkdescriptors
+	 */
+	protected Collection<? extends UpdaterLinkDescriptor> collectPartRelatedLinks(final View view, final Domain2Notation domain2NotationMap) {
+		Collection<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(super.collectPartRelatedLinks(view, domain2NotationMap));
+
+		// Get existing outgoing links
+		List<? extends UpdaterLinkDescriptor> outgoingDescriptors = getOutgoingStereotypePropertyReferenceLinks(view);
+		result.addAll(outgoingDescriptors);
+
+		return removeInvalidLinkDescriptor(result);
+	}
+
+	/**
+	 * Get Outgoing Stereotype Property Reference Links for the given view.
+	 * 
+	 * @since 3.1
+	 */
+	protected List<UpdaterLinkDescriptor> getOutgoingStereotypePropertyReferenceLinks(final View view) {
+		Element element = (Element) view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		if (null != element) {
+
+			IElementType type = ElementTypeRegistry.getInstance().getType(STEREOTYPE_PROPERTY_REFERENCE_EDGE_ELEMENT_TYPE_QN);
+
+			// gets all applied stereotype
+			EList<Stereotype> appliedStereotypes = element.getAppliedStereotypes();
+
+			for (Stereotype stereotype : appliedStereotypes) {
+				Stereotype actual = (stereotype == null) ? null : org.eclipse.papyrus.uml.tools.utils.UMLUtil.getAppliedSubstereotype(element, stereotype);
+				EObject stereotypeApplication = (actual == null) ? null : element.getStereotypeApplication(actual);
+
+				EList<EStructuralFeature> eAllStructuralFeatures = stereotypeApplication.eClass().getEAllStructuralFeatures();
+				// For each structural feature if set
+				for (EStructuralFeature eStructuralFeature : eAllStructuralFeatures) {
+					Object featureValue = stereotypeApplication.eGet(eStructuralFeature);
+
+					// If it's not the base feature
+					if (!eStructuralFeature.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+
+						// gets The stereotype which contains the feature
+						Stereotype stereotypeFeatureContainer = (Stereotype) stereotype.getAllAttributes().stream().filter(p -> p.getName().equals(eStructuralFeature.getName())).findFirst().get().eContainer();
+
+						// Create edge representation
+						if (1 == eStructuralFeature.getUpperBound()) {
+							Element target = UMLUtil.getBaseElement((EObject) featureValue);
+							final StereotypePropertyReferenceEdgeRepresentation edgeRepresentation = new StereotypePropertyReferenceEdgeRepresentation(element, null == target ? (Element) featureValue : target, stereotypeFeatureContainer.getQualifiedName(),
+									eStructuralFeature.getName(), eStructuralFeature.getName());
+							result.add(new UpdaterLinkDescriptor(element, null == target ? (Element) featureValue : target, edgeRepresentation, type, STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT));
+						} else if (featureValue instanceof List) {
+							for (Object value : (List<?>) featureValue) {
+								Element target = UMLUtil.getBaseElement((EObject) value);
+								final StereotypePropertyReferenceEdgeRepresentation edgeRepresentation = new StereotypePropertyReferenceEdgeRepresentation(element, null == target ? (Element) value : target, stereotypeFeatureContainer.getQualifiedName(),
+										eStructuralFeature.getName(), eStructuralFeature.getName());
+								result.add(new UpdaterLinkDescriptor(element, null == target ? (Element) value : target, edgeRepresentation, type, STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT));
+							}
+						}
+					}
+				}
+			}
+		}
+		return result;
 	}
 }
