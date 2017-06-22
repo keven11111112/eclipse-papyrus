@@ -33,8 +33,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.OrthogonalRouterUtilit
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageAsync;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDiagramConstants;
 
 /**
  * A multi behavior router which enable to draw message.
@@ -46,28 +46,43 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 @SuppressWarnings({ "restriction", "deprecation" })
 public class MessageRouter extends ObliqueRouter {
 
-	private static final int MAX_DELTA = 10;
+	private static final int PRECISION_DELTA = SequenceDiagramConstants.HORIZONTAL_MESSAGE_PRECISION_Y_DELTA;
 
 	public static enum RouterKind {
 		HORIZONTAL, OBLIQUE, SELF;
 
 		public static RouterKind getKind(Connection conn, PointList newLine) {
+
 			if (isSelfConnection(conn)) {
+
 				return SELF;
 			}
 			if (isHorizontalConnection(conn, newLine)) {
+
 				return HORIZONTAL;
 			}
+
 			return OBLIQUE;
 		}
 
+
+		/**
+		 * isHorizontalConnection tests whether an asynchronous message is horizontal
+		 * 
+		 * @param conn
+		 *            controller representing the link
+		 * @param newLine
+		 *            points corresponding to message ends
+		 * @return false if message is not asynchronous
+		 *         true if the message is asynchronous and horizontal
+		 */
 		private static boolean isHorizontalConnection(Connection conn, PointList newLine) {
-			if (!(conn instanceof MessageAsync)) {
-				return false;
-			}
+
 			Point sourcePoint = newLine.getFirstPoint();
 			Point targetPoint = newLine.getLastPoint();
-			return Math.abs(sourcePoint.y - targetPoint.y) <= MAX_DELTA;
+
+			return (Math.abs(sourcePoint.y - targetPoint.y) <= PRECISION_DELTA);
+
 		}
 
 		/**
