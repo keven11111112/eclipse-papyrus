@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Vincent Lorenzo - bug 492522
+ *   Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -37,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.types.core.utils.ElementTypeRegistryUtils;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.common.util.CacheAdapter;
 
@@ -66,7 +68,7 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 	 *            the visual id
 	 * @return
 	 * 		the EReference represented by the view with this visual id
-	 * @since 3.0
+	 * @since 3.1
 	 */
 	protected EReference getFeature(String visualId, IClientContext context) {
 		List<IElementType> elementTypes = ElementTypeRegistryUtils.getElementTypesBySemanticHint(visualId, context.getId());
@@ -75,7 +77,9 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 			Map<String, EReference> featureElementTypeToEReferenceMap = getFeatureElementTypeToEReferenceMap();
 			for (String featureElementType : featureElementTypeToEReferenceMap.keySet()) {
 				List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(featureElementType));
-				if (subs.contains(iElementType)) {
+
+				boolean typeOf = ElementUtil.isTypeOf(iElementType, ElementTypeRegistry.getInstance().getType(featureElementType));// Fix due to the miss of element in all context
+				if (subs.contains(iElementType) || typeOf) {
 					return featureElementTypeToEReferenceMap.get(featureElementType);
 				}
 			}
@@ -122,8 +126,9 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 	 *            the destroy reference request
 	 * @return
 	 * 		the list of connector to destroy for the request
+	 * @since 3.1
 	 */
-	private List<Connector> findConnectorsToDestroy(final DestroyReferenceRequest request) {
+	protected List<Connector> findConnectorsToDestroy(final DestroyReferenceRequest request) {
 		List<Connector> connectorsToDestroy = new ArrayList<Connector>();
 		EObject featureOwner = request.getContainer();
 		if (null != featureOwner) {
@@ -224,7 +229,7 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 	 */
 	@Override
 	protected ICommand getBeforeDestroyReferenceCommand(final DestroyReferenceRequest request) {
-		final CompositeCommand command = new CompositeCommand("Clear Connectors"); // $NON-NLS-0$
+		final CompositeCommand command = new CompositeCommand("Clear Connectors"); // $NON-NLS-1$
 
 		// 1. get all connectors to destroy
 		final Collection<Connector> connectorsToDestroy = findConnectorsToDestroy(request);

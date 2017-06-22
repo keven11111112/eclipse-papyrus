@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.types.core.utils.ElementTypeRegistryUtils;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
 public abstract class AbstractFeatureRelationshipReorientEditHelperAdvice extends AbstractEditHelperAdvice {
 
@@ -38,12 +40,15 @@ public abstract class AbstractFeatureRelationshipReorientEditHelperAdvice extend
 		if (value instanceof View) {
 
 			try {
-				IClientContext context = TypeContext.getContext((View)value);
+				IClientContext context = TypeContext.getContext((View) value);
 				List<IElementType> elementTypes = ElementTypeRegistryUtils.getElementTypesBySemanticHint(((View) value).getType(), context.getId());
 
 				for (IElementType iElementType : elementTypes) {
+
 					List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(elementTypeIDToSpecialize()));
-					if (subs.contains(iElementType)) {
+
+					boolean typeOf = ElementUtil.isTypeOf(iElementType, ElementTypeRegistry.getInstance().getType(elementTypeIDToSpecialize()));// Fix due to the miss of element in all context
+					if (subs.contains(iElementType) || typeOf) {
 						return getFeatureRelationshipReorientCommand(request);
 					}
 				}

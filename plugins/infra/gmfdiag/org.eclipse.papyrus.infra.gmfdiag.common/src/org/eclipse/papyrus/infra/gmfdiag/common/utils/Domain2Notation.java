@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -18,12 +19,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.StereotypePropertyReferenceEdgeRepresentation;
 
 
 /**
@@ -67,7 +70,17 @@ public class Domain2Notation extends HashMap<EObject, Set<View>> {
 		if (element == null && view instanceof Connector) {
 			final EObject source = ((Connector) view).getSource().getElement();
 			final EObject target = ((Connector) view).getTarget().getElement();
-			element = new EdgeWithNoSemanticElementRepresentationImpl(source, target, view.getType());
+			if (view.getType().equals("StereotypePropertyReferenceEdge")) {//$NON-NLS-1$
+				EAnnotation eAnnotation = view.getEAnnotation("StereotypePropertyReferenceEdge");//$NON-NLS-1$
+				if (null != eAnnotation) {
+					String stereotypeQualifyName = eAnnotation.getDetails().get("stereotypeQualifiedName");//$NON-NLS-1$
+					String featureToSet = eAnnotation.getDetails().get("featureToSet");//$NON-NLS-1$
+					String linkLabel = eAnnotation.getDetails().get("edgeLabel");//$NON-NLS-1$
+					element = new StereotypePropertyReferenceEdgeRepresentation(source, target, stereotypeQualifyName, featureToSet, linkLabel);
+				}
+			} else {
+				element = new EdgeWithNoSemanticElementRepresentationImpl(source, target, view.getType());
+			}
 		} else if (element == null) {
 			return;
 		}

@@ -39,6 +39,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -66,7 +67,9 @@ public class FeatureToSetNameValueEditor extends StringEditor {
 				Stereotype stereotype = (Stereotype) inputElement;
 				EList<Property> ownedAttributes = stereotype.getAllAttributes();
 				for (Property property : ownedAttributes) {
-					attributes.add(property);
+					if (!property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+						attributes.add(property);
+					}
 				}
 			}
 			return attributes.toArray();

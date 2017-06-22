@@ -107,6 +107,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 							String type = ((Connector) model).getType();
 							if (type != null) {
 								result.setParameter(RequestParameterConstants.VIEW_VISUAL_ID, type);
+								result.setParameter(RequestParameterConstants.AFFECTED_VIEW, model);
 							}
 						}
 					}
@@ -241,14 +242,14 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	private Command getDefaultSemanticCommand(IEditCommandRequest req, Object context) {
 		try {
 			IClientContext clientContext = TypeContext.getContext(getEditingDomain());
-			
+
 			IElementEditService commandService;
 			if (context != null) {
 				commandService = ElementEditServiceUtils.getCommandProvider(context, clientContext);
 			} else {
 				commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement(), clientContext);
 			}
-	
+
 			if (commandService != null) {
 				ICommand semanticCommand = commandService.getEditCommand(req);
 				if ((semanticCommand != null) && (semanticCommand.canExecute())) {

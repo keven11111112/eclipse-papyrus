@@ -8,6 +8,10 @@
             contextModel="properties/ApplyStereotypeAdvice.ctx"
             isCustomizable="true">
       </context>
+      <context
+            contextModel="properties/StereotypePropertyReferenceEdgeAdvice.ctx"
+            isCustomizable="true">
+      </context>
    </extension>
 	<extension
          point="org.eclipse.papyrus.infra.properties.environments">

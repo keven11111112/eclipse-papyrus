@@ -2904,6 +2904,9 @@
     <iconEntry xmi:id="_siKSkNx2EeWVxMf7SXAfhg" iconPath="/icons/full/obj16/Stereotype.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypes xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Stereotype"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.StereotypePropertyReferenceEdge" identifier="org.eclipse.papyrus.umldi.StereotypePropertyReferenceEdge" name="Stereotype Property Reference Edge" hint="StereotypePropertyReferenceEdge">
+    <specializedTypes xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="uml.elementtypesconfigurations#org.eclipse.papyrus.StereotypePropertyReference"/>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.StringExpression_PackagedElementShape" identifier="org.eclipse.papyrus.umldi.StringExpression_PackagedElementShape" name="String Expression Packaged Element Shape" hint="StringExpression_PackagedElementShape">
     <iconEntry xmi:id="_sBLscNx2EeWVxMf7SXAfhg" iconPath="/icons/full/obj16/StringExpression.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypes xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml-containments.elementtypesconfigurations#org.eclipse.papyrus.uml.StringExpression_As_UML::Package::packagedElement"/>

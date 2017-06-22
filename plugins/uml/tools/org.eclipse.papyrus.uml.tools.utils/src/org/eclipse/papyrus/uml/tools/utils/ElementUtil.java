@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -130,7 +131,7 @@ public class ElementUtil {
 	 *            of image ("icon" | "shape")
 	 * @return {@link Image} or null
 	 */
-	public static Image getStereotypeImage(Element element, String kind) {	
+	public static Image getStereotypeImage(Element element, String kind) {
 		EList<Stereotype> appliedStereotypes = element.getAppliedStereotypes();
 		if (appliedStereotypes == null || appliedStereotypes.isEmpty()) {
 			return null;
@@ -404,7 +405,7 @@ public class ElementUtil {
 						}
 					}
 
-				} else { 
+				} else {
 					if (metaType.isInstance(currentElt)) {
 						filteredElements.add((T) currentElt);
 					}
@@ -424,6 +425,30 @@ public class ElementUtil {
 		}
 
 		return filteredElements;
+	}
+
+	/**
+	 * Check if the element have the stereotype or a substereotype applied.
+	 *
+	 * @param element
+	 *            the element
+	 * @param stereotype
+	 *            the stereotype qualified name
+	 * @return true, if successful
+	 * @since 3.1
+	 */
+	public static boolean hasStereotypeApplied(final Element element, final String stereotype) {
+		List<String> sourceAppliedStereotypes = element.getAppliedStereotypes().stream()
+				.map(st -> st.getQualifiedName())
+				.collect(Collectors.toList());
+
+		sourceAppliedStereotypes.addAll(element.getAppliedStereotypes().stream()
+				.flatMap(st -> st.allParents().stream())
+				.filter(Stereotype.class::isInstance).map(Stereotype.class::cast)
+				.map(st -> st.getQualifiedName())
+				.collect(Collectors.toList()));
+
+		return sourceAppliedStereotypes.contains(stereotype);
 	}
 
 }
