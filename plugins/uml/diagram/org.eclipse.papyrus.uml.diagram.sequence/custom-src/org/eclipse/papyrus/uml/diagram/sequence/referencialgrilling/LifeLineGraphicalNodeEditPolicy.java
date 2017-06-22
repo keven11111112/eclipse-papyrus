@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 import java.util.Map;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -26,6 +25,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.FeedbackHelper;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
@@ -39,7 +39,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -55,7 +54,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePosi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDiagramConstants;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -70,6 +74,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	/** manage only for FOUND message **/
 	private GraphicalNodeEditPolicy graphicalNodeEditPolicy = null;
 	private DisplayEvent displayEvent;
+	private boolean precisionMode;
 
 
 
@@ -132,6 +137,22 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getAfterConnectionCompleteCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest,
+	 *      org.eclipse.emf.transaction.TransactionalEditingDomain)
+	 *
+	 * @param request
+	 *            Initial Creation Request
+	 * @param editingDomain
+	 *            Editing Domain
+	 * @return null (this is a special Case for Affixed node, lifeline has it's anchor inside the figure)
+	 */
+	@Override
+	protected ICommand getAfterConnectionCompleteCommand(CreateConnectionViewAndElementRequest request, TransactionalEditingDomain editingDomain) {
+
+		return null;
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionAndRelationshipCompleteCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest)
 	 *
 	 * @param request
@@ -139,78 +160,37 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
-		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
+
 		Command cmd = super.getConnectionAndRelationshipCompleteCommand(request);
-		MessageEnd end = getPreviousEventFromPosition(request.getLocation());
-		if (end != null) {
-			Map<String, Object> extendedData = request.getExtendedData();
-			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.SECOND_PREVIOUS_EVENT, end);
-			request.setExtendedData(extendedData);
+
+
+		// Initialize the modifier Shift Key = Precision Mode
+		initModifier();
+
+		// Check if the request is allowed or return an unexecutable Command
+		if (!isAllowedMessageEnd(request)) {
+			return UnexecutableCommand.INSTANCE;
 		}
-		// add a param if we must replace an event of the execution specification
-		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
-		if (os != null) {
-			Map<String, Object> extendedData = request.getExtendedData();
-			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT, os);
-			request.setExtendedData(extendedData);
-		}
-		//
-		// in the case of a create message
-		// the target of the message is translated in Y to the position Y of the message
+
+		// Check if a message can be consider as horizontal and update request accordingly
+		forceHorizontalRequest(request);
+
+		// Display event circles on the Lifeline figure
+		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
+
+		updateExtendedData(request);
+
+
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())) {
-			//Rectangle relativePt = new Rectangle(0, request.getLocation().y, 0, 0);
-			Map<String, Object> requestParameters = request.getExtendedData();
-			final Point sourcePoint = ((Point) requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
-			getHostFigure().getParent().translateToRelative(sourcePoint);
-			NodeEditPart nodeEP = (NodeEditPart) request.getTargetEditPart();
-			if( nodeEP instanceof CLifeLineEditPart) {
-				int stickerHeight=((CLifeLineEditPart)nodeEP).getStickerHeight();
-				if( stickerHeight!=-1) {
-					sourcePoint.y= sourcePoint.y-(stickerHeight/2);
-				}
-			}
-
-			Bounds bounds = ((Bounds) ((Node) nodeEP.getModel()).getLayoutConstraint());
-
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) nodeEP).getNotationView()),
-					new Point(bounds.getX(), sourcePoint.y));
-			CompoundCommand compoundCommand = new CompoundCommand();
-			DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-			GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
-			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-			compoundCommand.add(cmd);
-			compoundCommand.add(new GMFtoGEFCommandWrapper(setBoundsCommand));
-			setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
-			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-
-			return compoundCommand;
+			return getCreateEdgeCommand(request, cmd);
 		}
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_DELETE_EDGE.getSemanticHint())) {
-			Rectangle relativePt = new Rectangle(request.getLocation().x, request.getLocation().y, 0, 0);
-			getHostFigure().getParent().translateToRelative(relativePt);
-			DropDestructionOccurenceSpecification dropDestructionOccurenceSpecification = new DropDestructionOccurenceSpecification(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart) request.getTargetEditPart(), relativePt.getTopLeft());
-			CompoundCommand compoundCommand = new CompoundCommand();
-			compoundCommand.add(cmd);
-			compoundCommand.add(new GMFtoGEFCommandWrapper(dropDestructionOccurenceSpecification));
-			return compoundCommand;
+			return getDeleteEdgeCommand(request, cmd);
 		}
 
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_ASYNCH_EDGE.getSemanticHint()) ||
 				request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_SYNCH_EDGE.getSemanticHint())) {
-			// in the case of messages of sort: synchCall, asynchCall or asynchSignal
-			// an execution specification may be created at target
-			DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-			GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg = new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart) request.getTargetEditPart());
-			CompoundCommand compoundCommand = new CompoundCommand();
-			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
-			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-			compoundCommand.add(cmd);
-			compoundCommand.add(new GMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
-			setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
-			compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-			return compoundCommand;
+			return getSyncAsyncEdgeCommand(request, cmd);
 		}
 
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_FOUND_EDGE.getSemanticHint())) {
@@ -224,19 +204,235 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getAfterConnectionCompleteCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest,
-	 *      org.eclipse.emf.transaction.TransactionalEditingDomain)
-	 *
+	 * This method update the Extended Data of the the Creation Request
+	 * 1) Adding the Previous Event of the Target
+	 * 2) Adding the OccurenceSpecification which needs to be replaced by the Message ReceiveEvent
+	 * 
 	 * @param request
-	 * @param editingDomain
-	 * @return
+	 *            initial Request to be updated
 	 */
-	@Override
-	protected ICommand getAfterConnectionCompleteCommand(CreateConnectionViewAndElementRequest request, TransactionalEditingDomain editingDomain) {
-
-		return null;
+	private void updateExtendedData(CreateConnectionViewAndElementRequest request) {
+		MessageEnd end = getPreviousEventFromPosition(request.getLocation());
+		if (end != null) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.SECOND_PREVIOUS_EVENT, end);
+			request.setExtendedData(extendedData);
+		}
+		// add a param if we must replace an event of the execution specification
+		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
+		if (os != null) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT, os);
+			request.setExtendedData(extendedData);
+		}
 	}
 
+	/**
+	 * Initialize the Modifier
+	 * PrecisionMode is defined by the Shift key
+	 */
+	private void initModifier() {
+		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, new Listener() {
+
+
+
+			@Override
+			public void handleEvent(Event event) {
+				// in case the SHIFT key is down, the creation enter in the precision Mode
+				precisionMode = (event.keyCode == SWT.SHIFT);
+			}
+		});
+
+
+		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new Listener() {
+
+			@Override
+			public void handleEvent(Event event) {
+				// in case the SHIFT key is released, the creation mode goes back to normal
+				if (event.keyCode == SWT.SHIFT) {
+					precisionMode = false;
+				}
+			}
+		});
+	}
+
+	/**
+	 * During creation of a message, check if the creating message can be considered as horizontal using a threshold
+	 * If this is the case, update the request to force the location as horizontal.
+	 * 
+	 * @param request
+	 *            The request of Message creation
+	 */
+	protected void forceHorizontalRequest(CreateConnectionViewAndElementRequest request) {
+		Map<String, Object> extendedData = request.getExtendedData();
+		Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
+
+		// only message with a target lower than the source is allowed.
+		if (sourceLocation instanceof Point) {
+			Point sourceLocationPoint = (Point) sourceLocation;
+			Point targetLocation = request.getLocation();
+			// Check if the Connection can be considered as Horizontal
+			if (isHorizontalConnection(sourceLocationPoint, targetLocation) && sourceLocationPoint.y() != targetLocation.y()) {
+				Point forceHorizontalPoint = new Point(targetLocation);
+				forceHorizontalPoint.setY(sourceLocationPoint.y());
+				// Update the request accordingly
+				request.setLocation(forceHorizontalPoint);
+			}
+		}
+	}
+
+	/**
+	 * isHorizontalConnection tests whether an asynchronous message is horizontal
+	 * 
+	 * @param conn
+	 *            controller representing the link
+	 * @param newLine
+	 *            points corresponding to message ends
+	 * @return false if message is not asynchronous
+	 *         true if the message is asynchronous and horizontal
+	 */
+	private boolean isHorizontalConnection(Point sourcePoint, Point targetPoint) {
+		boolean horizontal = true;
+		int realDelta = sourcePoint.y - targetPoint.y;
+
+		if (!precisionMode) {
+			// If delta not big enough the connection is consider as Horizontal
+			horizontal = (Math.abs(realDelta) <= SequenceDiagramConstants.HORIZONTAL_MESSAGE_MAX_Y_DELTA);
+		} else {
+			horizontal = (Math.abs(realDelta) <= SequenceDiagramConstants.HORIZONTAL_MESSAGE_PRECISION_Y_DELTA);
+		}
+
+		return horizontal;
+	}
+
+	/**
+	 * Get the Command for a Message Sync and Async creation
+	 * Adding the command to create the AES or BES and update Grid position accordingly
+	 * 
+	 * @param request
+	 *            the initial request
+	 * @param cmd
+	 *            the initial Command
+	 * @return Compound cmd with the Delete Occurrence Specification command
+	 */
+	private Command getSyncAsyncEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) {
+
+
+		// in the case of messages of sort: synchCall, asynchCall or asynchSignal
+		// an execution specification may be created at target
+		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
+		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+		CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg = new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart) request.getTargetEditPart());
+		CompoundCommand compoundCommand = new CompoundCommand();
+		SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
+		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+		compoundCommand.add(cmd);
+		compoundCommand.add(new GMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
+		setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
+		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+
+
+		return compoundCommand;
+	}
+
+	/**
+	 * Get the Command for a Message delete creation
+	 * Adding the Delete Occurrence Specification command
+	 * 
+	 * @param request
+	 *            the initial request
+	 * @param cmd
+	 *            the initial Command
+	 * @return Compound cmd with the Delete Occurrence Specification command
+	 */
+	private Command getDeleteEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) {
+		Rectangle relativePt = new Rectangle(request.getLocation().x, request.getLocation().y, 0, 0);
+		getHostFigure().getParent().translateToRelative(relativePt);
+		DropDestructionOccurenceSpecification dropDestructionOccurenceSpecification = new DropDestructionOccurenceSpecification(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart) request.getTargetEditPart(), relativePt.getTopLeft());
+		CompoundCommand compoundCommand = new CompoundCommand();
+		compoundCommand.add(cmd);
+		compoundCommand.add(new GMFtoGEFCommandWrapper(dropDestructionOccurenceSpecification));
+		return compoundCommand;
+	}
+
+	/**
+	 * Get the Command for a Message Create creation
+	 * Adding the command to update the grid accordingly
+	 * 
+	 * @param request
+	 *            the initial request
+	 * @param cmd
+	 *            the initial Command
+	 * @return Command for creating a Message Create command
+	 */
+	private Command getCreateEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) {
+		Map<String, Object> requestParameters = request.getExtendedData();
+		final Point sourcePoint = ((Point) requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
+		getHostFigure().getParent().translateToRelative(sourcePoint);
+		NodeEditPart nodeEP = (NodeEditPart) request.getTargetEditPart();
+		if (nodeEP instanceof CLifeLineEditPart) {
+			int stickerHeight = ((CLifeLineEditPart) nodeEP).getStickerHeight();
+			if (stickerHeight != -1) {
+				sourcePoint.y = sourcePoint.y - (stickerHeight / 2);
+			}
+		}
+
+		Bounds bounds = ((Bounds) ((Node) nodeEP.getModel()).getLayoutConstraint());
+
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) nodeEP).getNotationView()),
+				new Point(bounds.getX(), sourcePoint.y));
+		CompoundCommand compoundCommand = new CompoundCommand();
+		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
+		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+		SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
+		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+		compoundCommand.add(cmd);
+		compoundCommand.add(new GMFtoGEFCommandWrapper(setBoundsCommand));
+		setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
+		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+
+		return compoundCommand;
+	}
+
+	/**
+	 * Check if the request is allowed
+	 * 
+	 * @param request
+	 *            The Connection END creation Request
+	 * @return true if all the validation are passed
+	 */
+	private boolean isAllowedMessageEnd(CreateConnectionViewAndElementRequest request) {
+
+		Boolean allowed = true;
+		if (!precisionMode) {
+			allowed &= isTargetLowerThanSource(request);
+		}
+		return allowed;
+	}
+
+	/**
+	 * Validation1:
+	 * Check if the Target point is Lower than the Source.
+	 * The target should be lower than the source to be valid.
+	 * 
+	 * @param request
+	 *            The Connection END creation Request
+	 * 
+	 * @return true if target location point is lower than source location point
+	 */
+	private Boolean isTargetLowerThanSource(CreateConnectionViewAndElementRequest request) {
+		Boolean targetLowerThanSource = true;
+		Point targetLocation = request.getLocation();
+		Map<String, Object> extendedData = request.getExtendedData();
+		Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
+		// only message with a target lower than the source is allowed.
+		if (sourceLocation instanceof Point) {
+			Point sourceLocationPoint = (Point) sourceLocation;
+
+			targetLowerThanSource = sourceLocationPoint.y() <= targetLocation.y() + SequenceDiagramConstants.HORIZONTAL_MESSAGE_MAX_Y_DELTA;
+		}
+		return targetLowerThanSource;
+	}
 
 	protected GraphicalNodeEditPolicy getBasicGraphicalNodeEditPolicy() {
 		if (graphicalNodeEditPolicy == null) {
