@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI 
+<xmi:XMI
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
-    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.clazz"
       modelID="PapyrusUMLClassDiagram"
@@ -74,8 +73,7 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
-        <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
+        <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
@@ -127,8 +125,7 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
-        <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
+        <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
@@ -180,8 +177,7 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
-        <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
+        <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
@@ -245,8 +241,7 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
-        <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
+        <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
@@ -298,8 +293,7 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
-        <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
+        <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
@@ -351,8 +345,7 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
-        <modelFacet
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
+        <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature
@@ -7304,7 +7297,7 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
-        </labels>        
+        </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.0/@expressions.2"
             targetEnd="/0/@expressionProviders/@providers.0/@expressions.3"/>
@@ -8894,9 +8887,6 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="not self.oclIsTypeOf(EnumerationLiteral)"/>
-        <expressions
-            xsi:type="gmfgen:GenConstraint"
-            body="self.association.oclIsUndefined()"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"
@@ -9953,7 +9943,7 @@
           visualID="InformationFlow_StereotypeLabel"/>
       <child
           genView="/0/@diagram/@links.24/@labels.2"
-          visualID="InformationFlow_NameLabel"/>          
+          visualID="InformationFlow_NameLabel"/>
     </child>
     <child
         genView="/0/@diagram/@links.25"

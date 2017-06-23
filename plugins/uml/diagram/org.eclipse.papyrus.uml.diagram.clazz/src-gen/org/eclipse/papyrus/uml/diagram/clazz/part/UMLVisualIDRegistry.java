@@ -275,8 +275,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_ClassAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForClassEditPart.VISUAL_ID;
 				}
 				break;
@@ -312,8 +311,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_ComponentAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForComponentEditPart.VISUAL_ID;
 				}
 				break;
@@ -349,14 +347,12 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case SignalAttributeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_SignalAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForSignalEditPart.VISUAL_ID;
 				}
 				break;
 			case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_InterfaceAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForInterfaceEditPart.VISUAL_ID;
 				}
 				break;
@@ -392,8 +388,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_PrimitiveTypeAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyforPrimitiveTypeEditPart.VISUAL_ID;
 				}
 				break;
@@ -403,8 +398,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_DataTypeAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyforDataTypeEditPart.VISUAL_ID;
 				}
 				break;
@@ -508,8 +502,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ClassAttributeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_ClassAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForClassEditPart.VISUAL_ID;
 				}
 				break;
@@ -545,8 +538,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ComponentAttributeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_ComponentAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForComponentEditPart.VISUAL_ID;
 				}
 				break;
@@ -582,8 +574,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_InterfaceAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForInterfaceEditPart.VISUAL_ID;
 				}
 				break;
@@ -619,8 +610,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_PrimitiveTypeAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyforPrimitiveTypeEditPart.VISUAL_ID;
 				}
 				break;
@@ -630,8 +620,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_DataTypeAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyforDataTypeEditPart.VISUAL_ID;
 				}
 				break;
@@ -641,8 +630,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_ComponentAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForComponentEditPart.VISUAL_ID;
 				}
 				break;
@@ -652,8 +640,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case SignalAttributeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-						&& isProperty_SignalAttributeLabel((Property) domainElement)) {
+				if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 					return PropertyForSignalEditPart.VISUAL_ID;
 				}
 				break;
@@ -2033,60 +2020,6 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isInstanceSpecification_Shape(InstanceSpecification domainElement) {
 		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null)
-				.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isProperty_ClassAttributeLabel(Property domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null)
-				.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isProperty_ComponentAttributeLabel(Property domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null)
-				.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isProperty_SignalAttributeLabel(Property domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null)
-				.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isProperty_InterfaceAttributeLabel(Property domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null)
-				.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isProperty_PrimitiveTypeAttributeLabel(Property domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null)
-				.evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isProperty_DataTypeAttributeLabel(Property domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null)
 				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
