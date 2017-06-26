@@ -938,23 +938,29 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		Diagram diagram = ((DiagramEditor) editor).getDiagram();
 		PolicyChecker checker = PolicyChecker.getFor(diagram);
 		for (Object o : root.getChildren()) {
-			if (o instanceof PaletteDrawer) {
-				PaletteDrawer drawer = (PaletteDrawer) o;
-				boolean isVisible = checker.isInPalette(diagram, drawer.getId());
-				drawer.setVisible(isVisible);
-				if (isVisible) {
-					for (Object x : drawer.getChildren()) {
-						if (x instanceof PaletteEntry) {
-							PaletteEntry entry = (PaletteEntry) x;
-							entry.setVisible(checker.isInPalette(diagram, entry.getId()));
-						}
-					}
-				}
+			if (o instanceof PaletteContainer) {
+				PaletteContainer drawer = (PaletteContainer) o;
+				configurePaletteVisibility(checker, diagram, drawer);
 			}
 		}
 		return root;
 	}
-
+	
+	protected void configurePaletteVisibility(PolicyChecker checker, Diagram diagram, PaletteContainer container) {
+		boolean isVisible = checker.isInPalette(diagram, container.getId());
+		container.setVisible(isVisible);
+		if (isVisible) {
+			for (Object child : container.getChildren()) {
+				if (child instanceof PaletteContainer) {
+					configurePaletteVisibility(checker, diagram, (PaletteContainer)child);
+				}
+				if (child instanceof PaletteEntry) {
+					PaletteEntry entry = (PaletteEntry) child;
+					entry.setVisible(checker.isInPalette(diagram, entry.getId()));
+				}
+			}
+		}
+	}
 
 	/**
 	 * {@inheritDoc}
