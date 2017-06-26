@@ -10,6 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 471954
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 507488
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 518645
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.tests.tests;
 
@@ -40,7 +41,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		Bug476873_MoveCommandTest.class,
 		Bug495430_DuplicatedTransitionsTest.class,
 		Bug488744_PortPositionTest.class,
-		Bug507488_BinaryRelationshipLabelPositionTest.class
+		Bug507488_BinaryRelationshipLabelPositionTest.class,
+		StereotypePropertyReferenceEdgeTest.class
 })
 
 public class AllTests {

@@ -25,18 +25,19 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.dynamic.profile.tests;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)"
+ org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.uml.types.core;bundle-version="[3.1.0,4.0.0)"
 Export-Package: org.eclipse.papyrus.uml.diagram.common.tests,
  org.eclipse.papyrus.uml.diagram.common.tests.css,
  org.eclipse.papyrus.uml.diagram.common.tests.parser,
  org.eclipse.papyrus.uml.diagram.common.tests.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.tests.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: This plugin provides tests for the papyrus plugin UML Diagram Common
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
