@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 518789
  *  
  * 
  */
@@ -19,8 +20,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
+import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IPreferencesService;
+import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.osgi.service.prefs.BackingStoreException;
@@ -41,11 +47,17 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * The excludedContexts preference property name
 	 */
 	public static final String EXCLUDED_CONTEXTS = "excludedContexts"; //$NON-NLS-1$
-	
+
 	/**
 	 * The defaultContext preference property name
 	 */
 	public static final String DEFAULT_CONTEXT = "defaultContext"; //$NON-NLS-1$
+
+	/**
+	 * The look-up order of preference scopes.
+	 */
+	private final IScopeContext[] scopes = { InstanceScope.INSTANCE, ConfigurationScope.INSTANCE,
+			DefaultScope.INSTANCE };
 
 	/**
 	 * The list of added architecture models in the preferences
@@ -56,7 +68,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * The set of excluded architecture contexts in the preferences
 	 */
 	private Set<String> excludedContexts;
-	
+
 	/**
 	 * The id of the default context in the preferences
 	 */
@@ -78,11 +90,17 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * Reads the state of the preferences
 	 */
 	public void read() {
-		addedModels = Arrays.asList(getPreferences().get(ArchitectureDomainPreferences.ADDED_MODELS, "").split(" "));
-		excludedContexts = new HashSet<String>(Arrays.asList(getPreferences().get(ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, "").split(",")));
-		defaultContext = getPreferences().get(ArchitectureDomainPreferences.DEFAULT_CONTEXT, defaultDefaultContext);
+		IPreferencesService preferences = Platform.getPreferencesService();
+
+		addedModels = Arrays.asList(preferences
+				.getString(Activator.PLUGIN_ID, ArchitectureDomainPreferences.ADDED_MODELS, "", scopes).split(" "));
+		excludedContexts = new HashSet<String>(Arrays.asList(
+				preferences.getString(Activator.PLUGIN_ID, ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, "", scopes)
+						.split(",")));
+		defaultContext = preferences.getString(Activator.PLUGIN_ID, ArchitectureDomainPreferences.DEFAULT_CONTEXT,
+				defaultDefaultContext, scopes);
 	}
-	
+
 	/**
 	 * Writes the state of the preferences
 	 */
@@ -100,7 +118,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 			Activator.log.error(e);
 		}
 	}
-	
+
 	/**
 	 * Resets the state of this class to default
 	 */
@@ -109,7 +127,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 		excludedContexts.clear();
 		defaultContext = defaultDefaultContext;
 	}
-	
+
 	/**
 	 * Adds the given preference change listener
 	 * 
@@ -143,7 +161,8 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	/**
 	 * Sets the default context id
 	 * 
-	 * @param defaultContext the default context id
+	 * @param defaultContext
+	 *            the default context id
 	 */
 	public void setDefaultContextId(String defaultContext) {
 		this.defaultContext = defaultContext;
