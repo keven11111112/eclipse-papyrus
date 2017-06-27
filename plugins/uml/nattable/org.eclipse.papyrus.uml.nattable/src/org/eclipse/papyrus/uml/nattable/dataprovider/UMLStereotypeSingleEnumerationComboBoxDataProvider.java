@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.nattable.dataprovider;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
@@ -72,7 +73,7 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 	 * @param rowIndex
 	 *
 	 * @return
-	 *         the list of the available enumeration literal
+	 * 		the list of the available enumeration literal
 	 */
 	@Override
 	public List<?> getValues(int columnIndex, int rowIndex) {
@@ -91,31 +92,44 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 			final String id = AxisUtils.getPropertyId(this.axisElement);
 			final Property property = UMLTableUtils.getRealStereotypeProperty(modelElement, id);
 			final List<Stereotype> ste = UMLTableUtils.getApplicableStereotypesWithThisProperty(modelElement, id);
-			if (ste.size() == 1) {
-				final Stereotype current = ste.get(0);
-				// the stereotype is maybe not applied on the element, but we allow to edit its values
-				EObject propertyDef = current.getProfile().getDefinition(property);
-				EEnum eenum = null;
-				if (propertyDef != null) {
-					if (propertyDef instanceof EClass) {
-						// dynamic profile
-						EStructuralFeature feature = ((EClass) propertyDef).getEStructuralFeature(property.getName());
-						if (feature != null && feature.getEType() instanceof EEnum) {
-							eenum = (EEnum) feature.getEType();
-						}
-
-						// in case of static profile (SysML) we get an eattribute instead of an EClass
-					} else if (propertyDef instanceof EAttribute) {
-						EClassifier tmp = ((EAttribute) propertyDef).getEType();
-						if (tmp instanceof EEnum) {
-							eenum = (EEnum) tmp;
+			if (!ste.isEmpty()) {
+				Stereotype correctStereotype = null;
+				if (ste.size() == 1) {
+					correctStereotype = ste.get(0);
+				} else {
+					final Iterator<Stereotype> applicableStereotypes = ste.iterator();
+					while (applicableStereotypes.hasNext() && null == correctStereotype) {
+						final Stereotype applicableStereotype = applicableStereotypes.next();
+						if (id.contains(applicableStereotype.getName())) {
+							correctStereotype = applicableStereotype;
 						}
 					}
 				}
-				if (eenum != null) {
-					for (EEnumLiteral literal : eenum.getELiterals()) {
-						Enumerator value = literal.getInstance();
-						literals.add(value);
+				if (null != correctStereotype) {
+					// the stereotype is maybe not applied on the element, but we allow to edit its values
+					EObject propertyDef = correctStereotype.getProfile().getDefinition(property);
+					EEnum eenum = null;
+					if (propertyDef != null) {
+						if (propertyDef instanceof EClass) {
+							// dynamic profile
+							EStructuralFeature feature = ((EClass) propertyDef).getEStructuralFeature(property.getName());
+							if (feature != null && feature.getEType() instanceof EEnum) {
+								eenum = (EEnum) feature.getEType();
+							}
+
+							// in case of static profile (SysML) we get an eattribute instead of an EClass
+						} else if (propertyDef instanceof EAttribute) {
+							EClassifier tmp = ((EAttribute) propertyDef).getEType();
+							if (tmp instanceof EEnum) {
+								eenum = (EEnum) tmp;
+							}
+						}
+					}
+					if (eenum != null) {
+						for (EEnumLiteral literal : eenum.getELiterals()) {
+							Enumerator value = literal.getInstance();
+							literals.add(value);
+						}
 					}
 				}
 			}
