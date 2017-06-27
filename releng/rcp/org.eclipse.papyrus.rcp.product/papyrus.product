@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="2.1.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="3.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.eclipse.papyrus.rcp/icons/papyrus_lg.png"/>
@@ -25,7 +25,7 @@ This product includes software developed by other open source projects including
    <launcherArgs>
       <programArgs>-showsplash org.eclipse.papyrus.rcp --launcher.XXMaxPermSize 256m --launcher.defaultAction openFile
       </programArgs>
-      <vmArgs>-Xms128m -Xmx900m
+      <vmArgs>-Xms128m -Xmx900m -Dosgi.bundlefile.limit=200
       </vmArgs>
       <vmArgsMac>-Xdock:icon=../Resources/papyrus.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
@@ -41,7 +41,6 @@ This product includes software developed by other open source projects including
    <launcher name="papyrus">
       <linux icon="../org.eclipse.papyrus.rcp/icons/icon.xpm"/>
       <macosx icon="../org.eclipse.papyrus.rcp/icons/papyrus.icns"/>
-      <solaris/>
       <win useIco="true">
          <ico path="../org.eclipse.papyrus.rcp/icons/papyrus.ico"/>
          <bmp/>
@@ -206,8 +205,8 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
 
    <repositories>
       <repository location="http://download.eclipse.org/releases/oxygen/" enabled="true" />
-      <repository location="http://download.eclipse.org/eclipse/updates/4.6" enabled="true" />
-      <repository location="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/oxygen" enabled="true" />
+      <repository location="http://download.eclipse.org/eclipse/updates/4.7" enabled="true" />
+      <repository location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen/" enabled="true" />
    </repositories>
 
    <preferencesInfo>
