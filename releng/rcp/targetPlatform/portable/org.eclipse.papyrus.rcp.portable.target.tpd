@@ -1,7 +1,6 @@
 target "Papyrus RCP" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
-include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
 location egit "http://download.eclipse.org/egit/updates-4.8" {

@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.rcp.feature"
       label="Papyrus RCP Feature"
-      version="2.1.0.qualifier"
+      version="3.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://www.eclipse.org/papyrus">
@@ -32,7 +32,6 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <requires>
-   	  <!-- Features from Eclipse Modeling -->
       <import feature="org.eclipse.equinox.p2.user.ui"/>
       <import feature="org.eclipse.help"/>
       <import feature="org.eclipse.jdt"/>
@@ -51,23 +50,15 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.uml2.sdk"/>
       <import feature="org.eclipse.ocl.all.sdk"/>
       <import feature="org.eclipse.emf.transaction.sdk"/>
-      <!--<import feature="org.eclipse.emf.ecoretools.design" version="3.0.0" match="compatible"/>-->
       <import feature="org.eclipse.emf.query.sdk"/>
       <import feature="org.eclipse.xsd.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
       <import feature="org.eclipse.emf.compare.source"/>
       <import feature="org.eclipse.emf.compare.ide.ui.source"/>
-      <!--<import feature="org.eclipse.amalgam.discovery"/>-->
-      <import feature="org.eclipse.emf.cdo.epp" />
+      <import feature="org.eclipse.emf.cdo.epp"/>
       <import feature="org.eclipse.gmf.runtime.sdk"/>
       <import feature="org.eclipse.egit"/>
       <import feature="org.eclipse.egit.import"/>
-      <!--<import feature="org.eclipse.emf.eef.codegen.ecore-feature"  version="1.2.0.qualifier" match="compatible"/>-->
-      <!--<import feature="org.eclipse.epp.package.common.feature"/>-->
-      <!--<import feature="org.eclipse.emf.ecp.sdk.feature"/>-->
-      <!--<import feature="org.eclipse.emf.emfstore.sdk.feature"/>-->
-      
-      <!--<import feature="org.eclipse.epp.logging.aeri.feature"/>-->
       <import feature="org.eclipse.papyrus.sdk.feature.source"/>
    </requires>
 
