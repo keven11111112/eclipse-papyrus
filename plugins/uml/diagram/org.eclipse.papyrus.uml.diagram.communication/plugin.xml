@@ -82,9 +82,9 @@
 		   </extension>
 
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
-      <?gmfgen generated="true"?>
-      <viewProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLViewProvider">
-         <Priority name="Lowest"/>
+      <?gmfgen generated="false"?>
+      <viewProvider class="org.eclipse.papyrus.uml.diagram.communication.custom.providers.CustomViewProvider">
+         <Priority name="Low"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLCommunicationDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Interaction_Shape,Lifeline_Shape,Constraint_Shape,Comment_Shape,TimeObservation_Shape,DurationObservation_Shape"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Path_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,DurationObservation_EventEdge,TimeObservation_EventEdge"/>

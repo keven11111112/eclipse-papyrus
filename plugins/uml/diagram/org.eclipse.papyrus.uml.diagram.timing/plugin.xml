@@ -141,9 +141,9 @@
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
-      <?gmfgen generated="true"?>
-      <viewProvider class="org.eclipse.papyrus.uml.diagram.timing.providers.UMLViewProvider">
-         <Priority name="Lowest"/>
+      <?gmfgen generated="false"?>
+      <viewProvider class="org.eclipse.papyrus.uml.diagram.timing.custom.providers.CustomViewProvider">
+         <Priority name="Low"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLTimingDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Interaction_Shape,Lifeline_FullShape,Lifeline_CompactShape,StateInvariant_FullShape,StateInvariant_CompactShape,OccurrenceSpecification_Shape,MessageOccurrenceSpecification_Shape,Node_StateDefinitionShape,Node_StateInvariantTransitionShape,TimeConstraint_Shape,TimeObservation_Shape,DurationConstraint_Shape,DurationObservation_Shape,GeneralOrdering_Shape,Node_FreeTimeRulerShape,Node_LinearTimeRulerShape,Node_TickShape,DestructionOccurrenceSpecification_Shape,Lifeline_Shape,Gate_Shape"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Message_SynchEdge,Message_AsynchEdge,Message_ReplyEdge,Message_CreateEdge,Message_DeleteEdge,Message_LostEdge,Message_FoundEdge"/>
