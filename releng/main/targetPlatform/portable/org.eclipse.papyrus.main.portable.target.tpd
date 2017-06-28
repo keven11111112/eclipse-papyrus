@@ -7,12 +7,6 @@ location qvto "http://download.eclipse.org/mmt/qvto/updates/releases/3.7.0" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
-//updateFrom("EMF TRANSACTION",0)
-
-location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201706061339" {
-	org.eclipse.emf.transaction.sdk.feature.group
-}
-
 //updateFrom("M2T XPAND",0) 
 
 location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/" {
@@ -29,25 +23,19 @@ location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3" {
 	org.eclipse.uml2.sdk.feature.group
-}
-
-//updateFrom("GMF Runtime",0) 
-
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201706061437" {
-	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7/R-4.7-201706120950/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M1-201708022000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706132000" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201708070807" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -97,13 +85,13 @@ location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-
 	org.eclipse.team.svn.feature.group lazy
 }
 
-//updateFrom("EMF VALIDATION",0)
+//updateFrom("GMF Runtime",0) 
 
-location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases/R201706061352" {
-	org.eclipse.emf.validation.sdk.feature.group
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201706061437" {
+	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("GMF Notation",0)
+//updateFrom("GMF Runtime",0)
 
 location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201706061354" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
@@ -115,10 +103,22 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13/" {
 	org.eclipse.emf.sdk.feature.group
 }
 
-//updateFrom("EMF Query",0) 
+//updateFrom("EMF Services",0) 
 
 location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326" {
 	org.eclipse.emf.query.sdk.feature.group
+}
+
+//updateFrom("EMF Services",0)
+
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases/R201706061352" {
+	org.eclipse.emf.validation.sdk.feature.group
+}
+
+//updateFrom("EMF Services",0)
+
+location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201706061339" {
+	org.eclipse.emf.transaction.sdk.feature.group
 }
 
 //updateFrom("GEF",0)

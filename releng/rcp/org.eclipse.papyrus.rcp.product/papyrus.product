@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="3.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="4.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.eclipse.papyrus.rcp/icons/papyrus_lg.png"/>
@@ -11,9 +11,9 @@
 Version: {1}
 Build id: {0}
 
-Copyright CEA LIST and others 2015. http://www.eclipse.org/papyrus
+Copyright CEA LIST and others 2017. http://www.eclipse.org/papyrus
 
-(c) Copyright Eclipse contributors and others 2000, 2015.  All rights reserved. Eclipse and the Eclipse logo are trademarks of the Eclipse Foundation, Inc., https://www.eclipse.org/. The Eclipse logo cannot be altered without Eclipse&apos;s permission. Eclipse logos are provided for use under the Eclipse logo and trademark guidelines, https://www.eclipse.org/logotm/. Oracle and Java are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.
+(c) Copyright Eclipse contributors and others 2000, 2017.  All rights reserved. Eclipse and the Eclipse logo are trademarks of the Eclipse Foundation, Inc., https://www.eclipse.org/. The Eclipse logo cannot be altered without Eclipse&apos;s permission. Eclipse logos are provided for use under the Eclipse logo and trademark guidelines, https://www.eclipse.org/logotm/. Oracle and Java are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.
 
 This product includes software developed by other open source projects including the Apache Software Foundation, https://www.apache.org/.
       </text>
@@ -42,7 +42,7 @@ This product includes software developed by other open source projects including
       <linux icon="../org.eclipse.papyrus.rcp/icons/icon.xpm"/>
       <macosx icon="../org.eclipse.papyrus.rcp/icons/papyrus.icns"/>
       <win useIco="true">
-         <ico path="../org.eclipse.papyrus.rcp/icons/papyrus.ico"/>
+         <ico path="/org.eclipse.papyrus.rcp/icons/papyrus.ico"/>
          <bmp/>
       </win>
    </launcher>
@@ -54,7 +54,7 @@ This product includes software developed by other open source projects including
         <url>http://eclipse.org/legal/epl/notice.php</url>
         <text>
    Eclipse Foundation Software User Agreement
-February 1, 2015
+February 1, 2017
 
 Usage Of Content
 
@@ -205,8 +205,8 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
 
    <repositories>
       <repository location="http://download.eclipse.org/releases/oxygen/" enabled="true" />
-      <repository location="http://download.eclipse.org/eclipse/updates/4.7" enabled="true" />
-      <repository location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen/" enabled="true" />
+      <repository location="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/photon/" enabled="true" />
+      <repository location="http://download.eclipse.org/eclipse/updates/4.8" enabled="true" />
    </repositories>
 
    <preferencesInfo>
