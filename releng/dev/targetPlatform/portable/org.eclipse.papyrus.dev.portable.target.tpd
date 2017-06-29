@@ -24,7 +24,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/re
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20170531-053543-1.8.0-M2" {
+location oomph "http://download.eclipse.org/oomph/drops/release/1.8.0" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -70,4 +70,4 @@ location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.23.0/v20170510-0304" // oomph
+location mylyn "http://download.eclipse.org/mylyn/drops/3.23.1/v20170623-2012" // oomph
