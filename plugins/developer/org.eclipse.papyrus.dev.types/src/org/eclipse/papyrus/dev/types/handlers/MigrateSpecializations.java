@@ -41,8 +41,13 @@ import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.dev.types.Activator;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.types.core.IConfiguredHintedElementType;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -165,7 +170,7 @@ public class MigrateSpecializations extends AbstractHandler {
 						Document doc = builder.parse(file);
 						Element root = doc.getDocumentElement();
 
-						// Update namespaces
+						// update namespaces
 						root.setAttribute(ELEMENTTYPECONFIGURATION_NAMESPACE_ATTRIBUTE, ELEMENTTYPECONFIGURATION_NAMESPACE_NEW);
 
 						NodeList elementTypeConfigurations = root.getElementsByTagName(ELEMENTTYPECONFIGURATIONS);
@@ -208,14 +213,24 @@ public class MigrateSpecializations extends AbstractHandler {
 									specializedTypes.setAttribute(HREF_ATTRIBUTE, mapSpecializationMigration.get(specialized));
 									elementTypeConfiguration.appendChild(specializedTypes);
 								} else {
-									System.err.println("Couldn't find : " + specialized);
+									// handle case that the referenced element-type ID is not in this file, but defined
+									// in the registry
+									IElementType elementType = ElementTypeRegistry.getInstance().getType(specialized);
+									if (elementType instanceof IConfiguredHintedElementType) {
+										ElementTypeConfiguration etc = ((IConfiguredHintedElementType) elementType).getConfiguration();
+										if (etc != null) {
+											specializedTypes.setAttribute(TYPE_ATTRIBUTE, ELEMENTTYPESCONFIGURATIONS_SPECIALIZATIONTYPECONFIGURATION);
+											specializedTypes.setAttribute(HREF_ATTRIBUTE,
+													etc.eResource().getURI().toString() + "#" + etc.eResource().getURIFragment(etc)); //$NON-NLS-1$
+											elementTypeConfiguration.appendChild(specializedTypes);
+										}
+									}
+									else {
+										Activator.log.debug("Couldn't find : " + specialized); //$NON-NLS-1$
+									}
 								}
-
-
 							}
-							// }
 						}
-
 
 						Transformer transformer = TransformerFactory.newInstance().newTransformer();
 						transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
@@ -224,9 +239,7 @@ public class MigrateSpecializations extends AbstractHandler {
 
 						transformer.transform(input, output);
 
-
 						selectedFile.touch(new NullProgressMonitor());
-
 
 
 					} catch (ParserConfigurationException e) {
@@ -255,12 +268,8 @@ public class MigrateSpecializations extends AbstractHandler {
 			}
 		}
 
-
 		return null;
 	}
-
-
-
 
 
 }
