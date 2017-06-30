@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IIdAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
+import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.nattable.provider.UMLStereotypeRestrictedPropertyContentProvider;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
@@ -289,6 +291,29 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 			return UMLTableUtils.getRealStereotypeProperty(getTableContext(), path);
 		}
 		return null;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.EStructuralFeatureAxisManager#getElementAxisName(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis)
+	 */
+	@Override
+	public String getElementAxisName(final IAxis axis) {
+		String returnedValue = null; // $NON-NLS-1$
+		if (axis instanceof FeatureIdAxis) {
+			String elementId = ((FeatureIdAxis) axis).getElement();
+			final Object resolvedElement = resolvedPath(elementId);
+			if (resolvedElement instanceof NamedElement) {
+				returnedValue = UMLLabelInternationalization.getInstance().getLabel((NamedElement) resolvedElement);
+			} else {
+				elementId = elementId.replace(Constants.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
+				final String[] splitedElementId = elementId.split("::"); //$NON-NLS-1$
+				returnedValue = splitedElementId[splitedElementId.length - 1];
+			}
+
+		}
+		return null != returnedValue ? returnedValue : super.getElementAxisName(axis);
 	}
 
 }
