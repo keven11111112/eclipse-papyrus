@@ -95,7 +95,7 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	private Adapter tableConfigurationChangesListener = new AdapterImpl() {
 
 		public void notifyChanged(final Notification msg) {
-			if (msg.isReset() || msg.isTouch()) {
+			if (msg.isTouch()) {
 				return;
 			}
 			final Object listenFeature = msg.getFeature();
