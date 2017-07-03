@@ -8753,8 +8753,8 @@
               genLinks="/0/@diagram/@links.19"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Information Flow Link"
-              description="Create an Information Flow Link"
+              title="Information Flow"
+              description="Create an Information Flow"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
               createMethodName="createInformationFlowLinkCreationTool"
@@ -8762,8 +8762,8 @@
               genLinks="/0/@diagram/@links.24"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Instance Specification Link"
-              description="Create an Instance Specification Link"
+              title="Instance Specification"
+              description="Create an Instance Specification"
               largeIconPath="icons/obj16/InstanceLink.gif"
               smallIconPath="icons/obj16/InstanceLink.gif"
               createMethodName="createInstanceSpecificationLinkCreationTool"

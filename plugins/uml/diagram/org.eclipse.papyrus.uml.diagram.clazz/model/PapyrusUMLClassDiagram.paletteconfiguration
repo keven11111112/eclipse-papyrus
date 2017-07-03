@@ -370,13 +370,13 @@
         <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.GeneralizationSet_Edge"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.informationflowlink" label="Information Flow Link" description="Create an Information Flow Link" kind="ConnectionTool">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.informationflowlink" label="Information Flow" description="Create an Information Flow" kind="ConnectionTool">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InformationFlow.gif"/>
       <elementDescriptors>
         <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InformationFlow_Edge"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.instancespecificationlink" label="Instance Specification Link" description="Create an Instance Specification Link" kind="ConnectionTool">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.instancespecificationlink" label="Instance Specification" description="Create an Instance Specification" kind="ConnectionTool">
       <icon pluginID="org.eclipse.papyrus.uml.diagram.clazz" iconPath="icons/obj16/InstanceLink.gif"/>
       <elementDescriptors>
         <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InstanceSpecification_Edge"/>

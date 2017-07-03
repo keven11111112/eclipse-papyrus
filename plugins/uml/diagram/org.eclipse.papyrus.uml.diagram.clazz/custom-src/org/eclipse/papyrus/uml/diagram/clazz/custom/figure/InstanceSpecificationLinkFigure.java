@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 
 /**
- * the figure of a instance specification link
+ * the figure of a instance specification
  * it contains moreover two label to display roles
  */
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;

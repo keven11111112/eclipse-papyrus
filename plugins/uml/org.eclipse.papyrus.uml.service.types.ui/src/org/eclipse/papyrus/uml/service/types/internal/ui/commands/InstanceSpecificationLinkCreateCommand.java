@@ -88,7 +88,7 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 	}
 
 	/**
-	 * remove an end in the instance specification link by adding a eannotation if not exist
+	 * remove an end in the instance specification by adding a eannotation if not exist
 	 *
 	 * @param instanceLink
 	 * @param end
@@ -131,7 +131,7 @@ public class InstanceSpecificationLinkCreateCommand extends ConfigureElementComm
 			}
 		}
 		/*
-		 * Creation of the instance specification link
+		 * Creation of the instance specification
 		 * with a name a container, and set the source and target
 		 */
 		InstanceSpecification instanceSpecification = (InstanceSpecification) getElementToEdit();

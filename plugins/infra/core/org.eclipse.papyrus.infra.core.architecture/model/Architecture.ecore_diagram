@@ -185,7 +185,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_UObbYgP_EeeD5ZWpL2ysEA"/>
     </children>
     <element xmi:type="ecore:EClass" href="Architecture.ecore#//ArchitectureDescriptionPreferences"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UOZmMQP_EeeD5ZWpL2ysEA" x="36" y="36"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UOZmMQP_EeeD5ZWpL2ysEA" x="-5" y="20"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_jPuUwbeqEearJ4erliAKEg"/>
   <element xmi:type="ecore:EPackage" href="Architecture.ecore#/"/>

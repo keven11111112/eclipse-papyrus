@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * It is used to refresh the label of the role in the instance specification link
+ * It is used to refresh the label of the role in the instance specification
  */
 @SuppressWarnings("restriction")
 public abstract class InstanceSpecificationRoleDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
