@@ -18,7 +18,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
@@ -75,10 +74,9 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		View targetView = (View) request.getTargetEditPart().getModel();
 		createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_TARGET_VIEW, targetView);
-		if (request.getLocation()!=null) {
+		if (request.getLocation() != null) {
 			createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, request.getLocation().getCopy());
-		}
-		else {
+		} else {
 			createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, null);
 
 		}
@@ -98,14 +96,35 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		final TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		final Command defaultCommand = super.getConnectionAndRelationshipCompleteCommand(request);
+		final ICommand afterConnectionCompleteCommand = getAfterConnectionCompleteCommand(request, editingDomain);
+
 		if (defaultCommand != null && defaultCommand.canExecute()) {
 			final CompoundCommand cc = new CompoundCommand("ConnectionAndRelationshipCompleteCommand");//$NON-NLS-1$
 			cc.add(defaultCommand);
-			final ICommand fixAnchor = new FixEdgeAnchorAfterCreationCommand(editingDomain, request);
-			cc.add(new ICommandProxy(fixAnchor));
+			if (afterConnectionCompleteCommand != null && afterConnectionCompleteCommand.canExecute()) {
+				cc.add(new ICommandProxy(afterConnectionCompleteCommand));
+			}
 			return cc;
 		}
 		return defaultCommand;
+	}
+
+
+	/**
+	 * Method that allow to add a command that will be executed after the connection creation
+	 * Exemple: Fixing the Edge Anchor
+	 * 
+	 * @param request
+	 *            Initial Connection creation Request
+	 * @param editingDomain
+	 *            The editing Domain
+	 * 
+	 * @return The Command to be executed after the creation of the connection View and element
+	 */
+	protected ICommand getAfterConnectionCompleteCommand(CreateConnectionViewAndElementRequest request, final TransactionalEditingDomain editingDomain) {
+		final ICommand fixAnchor = new FixEdgeAnchorAfterCreationCommand(editingDomain, request);
+		return fixAnchor;
+
 	}
 
 
@@ -116,14 +135,14 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	protected Command getConnectionAndRelationshipCreateCommand(CreateConnectionViewAndElementRequest request) {
 		// Add parameter (source view to the CreateRelationshipRequest)
 		CreateElementRequestAdapter requestAdapter = request.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
-		if (requestAdapter != null){
+		if (requestAdapter != null) {
 			CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
 
-			if (createElementRequest != null &&  request.getTargetEditPart()!= null){
+			if (createElementRequest != null && request.getTargetEditPart() != null) {
 				View sourceView = (View) request.getTargetEditPart().getModel();
-				if( sourceView != null){
+				if (sourceView != null) {
 					createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW, sourceView);
-				}	
+				}
 			}
 
 		}
@@ -156,10 +175,9 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		// see bug 430702: [Diagram] Moving source of a link moves the target too, we need to store the source point to fix this bug.
 		@SuppressWarnings("unchecked")
 		Map<Object, Object> parameters = req.getExtendedData();
-		if(request.getLocation()!=null) {
+		if (request.getLocation() != null) {
 			parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, request.getLocation().getCopy());
-		}
-		else {
+		} else {
 			parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, null);
 		}
 
@@ -227,7 +245,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	/**
 	 *
 	 * @return
-	 *         the editing domain to use
+	 * 		the editing domain to use
 	 */
 	protected final TransactionalEditingDomain getEditingDomain() {
 		try {
