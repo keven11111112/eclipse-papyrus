@@ -140,10 +140,11 @@ public class ArchitectureDescriptionLanguageItemProvider extends ArchitectureCon
 	 */
 	@Override
 	public Object getImage(Object object) {
+		String icon = "full/obj16/ArchitectureDescriptionLanguage"; //$NON-NLS-1$
 		ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage)object;
-		if (language.getIcon() != null)
-			return overlayImage(object, getResourceLocator().getImage(language.getIcon()));
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDescriptionLanguage"));
+		if (language.getIcon() != null && !language.getIcon().isEmpty())
+			icon = language.getIcon();
+		return overlayImage(object, getResourceLocator().getImage(icon));
 	}
 
 	/**

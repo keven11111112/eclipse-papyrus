@@ -62,10 +62,11 @@ public class ArchitectureFrameworkItemProvider extends ArchitectureContextItemPr
 	 */
 	@Override
 	public Object getImage(Object object) {
+		String icon = "full/obj16/ArchitectureFramework"; //$NON-NLS-1$
 		ArchitectureFramework framework = (ArchitectureFramework)object;
-		if (framework.getIcon() != null)
-			return overlayImage(object, getResourceLocator().getImage(framework.getIcon()));
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureFramework"));
+		if (framework.getIcon() != null && !framework.getIcon().isEmpty())
+			icon = framework.getIcon();
+		return overlayImage(object, getResourceLocator().getImage(icon));
 	}
 
 	/**
