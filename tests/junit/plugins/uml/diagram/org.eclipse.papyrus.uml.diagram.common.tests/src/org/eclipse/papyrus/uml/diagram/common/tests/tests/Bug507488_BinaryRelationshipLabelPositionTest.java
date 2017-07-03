@@ -8,12 +8,15 @@
  *
  * Contributors:
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 507488
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 518125
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.tests.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 
@@ -53,6 +56,10 @@ public class Bug507488_BinaryRelationshipLabelPositionTest extends AbstractPapyr
 		assertNotNull(classDiagram);
 	}
 
+	/** Constants. */
+	private static int DEFAULT_X_ERROR_MARGIN = 50;
+	private static int DEFAULT_Y_ERROR_MARGIN = 50;
+
 	/**
 	 * Test the position of an association's name, role and multiplicity.
 	 */
@@ -79,26 +86,22 @@ public class Bug507488_BinaryRelationshipLabelPositionTest extends AbstractPapyr
 		final IGraphicalEditPart ass1SourceRole = ass1.getChildBySemanticHint("Association_SourceRoleLabel"); //$NON-NLS-1$
 		assertNotNull(ass1SourceRole);
 		final Rectangle ass1SourceRoleBounds = ass1SourceRole.getFigure().getBounds();
-		assertEquals(ass1SourceRoleBounds.x, 353);
-		assertEquals(ass1SourceRoleBounds.y, 193);
+		assertBounds(ass1SourceRoleBounds, 353, 193);
 
 		final IGraphicalEditPart ass1TargetRole = ass1.getChildBySemanticHint("Association_TargetRoleLabel"); //$NON-NLS-1$
 		assertNotNull(ass1TargetRole);
 		final Rectangle ass1TargetRoleBounds = ass1TargetRole.getFigure().getBounds();
-		assertEquals(ass1TargetRoleBounds.x, 241);
-		assertEquals(ass1TargetRoleBounds.y, 153);
+		assertBounds(ass1TargetRoleBounds, 241, 153);
 
 		final IGraphicalEditPart ass1SourceMult = ass1.getChildBySemanticHint("Association_SourceMultiplicityLabel"); //$NON-NLS-1$
 		assertNotNull(ass1SourceMult);
 		final Rectangle ass1SourceMultBounds = ass1SourceMult.getFigure().getBounds();
-		assertEquals(ass1SourceMultBounds.x, 259);
-		assertEquals(ass1SourceMultBounds.y, 193);
+		assertBounds(ass1SourceMultBounds, 259, 193);
 
 		final IGraphicalEditPart ass1TargetMult = ass1.getChildBySemanticHint("Association_TargetMultiplicityLabel"); //$NON-NLS-1$
 		assertNotNull(ass1TargetMult);
 		final Rectangle ass1TargetMultBounds = ass1TargetMult.getFigure().getBounds();
-		assertEquals(ass1TargetMultBounds.x, 371);
-		assertEquals(ass1TargetMultBounds.y, 153);
+		assertBounds(ass1TargetMultBounds, 371, 153);
 
 		// Source role and target multiplicity are centered with each other
 		assertEquals((ass1SourceRoleBounds.x + ass1SourceRoleBounds.width / 2), (ass1TargetMultBounds.x + ass1TargetMultBounds.width / 2));
@@ -223,4 +226,22 @@ public class Bug507488_BinaryRelationshipLabelPositionTest extends AbstractPapyr
 		return semanticEP;
 	}
 
+	/**
+	 * Compare bounds with expected x and y.
+	 * 
+	 * @param bounds
+	 *            The bounds to check.
+	 * @param expectedX
+	 *            The expected X.
+	 * @param expectedY
+	 *            The expected Y.
+	 */
+	protected static void assertBounds(final Rectangle bounds, final int expectedX, final int expectedY) {
+		if (bounds.x != -1) {
+			assertTrue("The element should have a horizontal position at about " + bounds.x + " pixels", Math.abs(expectedX - bounds.x) <= DEFAULT_X_ERROR_MARGIN); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		if (bounds.y != -1) {
+			assertTrue("The element should have a vertical position at about " + bounds.y + " pixels", Math.abs(expectedY - bounds.y) <= DEFAULT_Y_ERROR_MARGIN); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
 }
