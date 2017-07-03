@@ -26,6 +26,7 @@
     <requirement name="org.eclipse.swtbot.generator.feature.feature.group"/>
     <requirement name="org.eclipse.m2e.feature.feature.group"/>
     <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
+    <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases/"/>
   </setupTask>
   <setupTask xsi:type="setup.p2:P2Task" label="Releng Tools">
     <requirement name="org.eclipse.oomph.projectconfig.feature.group"/>
@@ -602,7 +603,7 @@
     <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Main Plug-ins">
       <requirement name="org.eclipse.papyrus.sdk.feature.feature.group"/>
       <repositoryList name="Oxygen">
-        <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/oxygen/main"/>
+        <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/oxygen"/>
       </repositoryList>
       <repositoryList name="Neon">
         <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/neon/main"/>
@@ -1813,7 +1814,7 @@
           <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
           <requirement name="org.eclipse.cbi.p2repo.aggregator.engine.feature.feature.group"/>
           <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
-          <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/oxygen/main"/>
+          <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/oxygen"/>
           <repository url="http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
           <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/">
             <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
