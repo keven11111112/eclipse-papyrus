@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Sebastien Gabel (Esterel Technologies SAS) - bug 513803
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
@@ -29,7 +30,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
  * Extended version of the {@link CombinedTemplateCreationEntry}.
  */
 @SuppressWarnings("restriction")
-public class ExtendedCreationToolEntry extends PaletteToolEntry implements IElementTypesBasedTool, IClassBasedTool {
+public class ExtendedCreationToolEntry extends PaletteToolEntry implements IElementTypesBasedTool, IClassBasedTool, IExtendedPaletteEntry {
 
 	/** list of element types created by this tool */
 	final private List<IElementType> elementTypes = new ArrayList<IElementType>();

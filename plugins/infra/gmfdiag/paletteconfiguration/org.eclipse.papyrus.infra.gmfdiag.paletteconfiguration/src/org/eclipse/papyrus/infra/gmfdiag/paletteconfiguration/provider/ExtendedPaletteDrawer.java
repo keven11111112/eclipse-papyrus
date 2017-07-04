@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Sebastien Gabel (Esterel Technologies SAS) - implements IExtendedPaletteEntry interface (bug 513803)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
@@ -21,7 +22,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 /**
  * Specific implementation of the Palette Drawer for Papyrus. The one from GMF is not used, as it is internal.
  */
-public class ExtendedPaletteDrawer extends org.eclipse.gef.palette.PaletteDrawer {
+public class ExtendedPaletteDrawer extends org.eclipse.gef.palette.PaletteDrawer implements IExtendedPaletteEntry {
 
 	/**
 	 * Creates a new PaletteDrawerEx, with the default icon

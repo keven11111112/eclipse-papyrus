@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2009, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Micka�l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343.
+ *  Sebastien Gabel (Esterel Technologies SAS) - bug 513803
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
@@ -73,6 +74,7 @@ import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDesc
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.XMLPaletteProviderConfiguration.EditorDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.IExtendedPaletteEntry;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.ui.IEditorPart;
@@ -1020,7 +1022,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		// remove existing entries that were not found in the new container
 		for (Iterator iter = existingEntryIds.values().iterator(); iter.hasNext();) {
 			PaletteEntry entry = (PaletteEntry) iter.next();
-			existingContainer.remove(entry);
+			// only process palette entries that Papyrus is able to support
+			if (entry instanceof IExtendedPaletteEntry) {
+				existingContainer.remove(entry);
+			}
 		}
 
 	}

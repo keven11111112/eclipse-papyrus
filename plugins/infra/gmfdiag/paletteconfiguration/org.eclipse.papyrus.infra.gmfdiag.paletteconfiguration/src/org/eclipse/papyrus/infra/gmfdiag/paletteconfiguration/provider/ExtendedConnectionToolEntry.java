@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 - 2017 CEA LIST, ALL4TEC and others.
+ * Copyright (c) 2010, 2017 CEA LIST, ALL4TEC, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Micka�l ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512110
+ *  Sebastien Gabel (Esterel Technologies SAS) - Bug 513803
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 
@@ -28,7 +29,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
  * Extended connection Tool Entry
  */
 @SuppressWarnings("restriction")
-public class ExtendedConnectionToolEntry extends PaletteToolEntry implements IElementTypesBasedTool, IClassBasedTool {
+public class ExtendedConnectionToolEntry extends PaletteToolEntry implements IElementTypesBasedTool, IClassBasedTool, IExtendedPaletteEntry {
 
 	/** list of element types created by this tool */
 	final private List<IElementType> elementTypes = new ArrayList<IElementType>();
