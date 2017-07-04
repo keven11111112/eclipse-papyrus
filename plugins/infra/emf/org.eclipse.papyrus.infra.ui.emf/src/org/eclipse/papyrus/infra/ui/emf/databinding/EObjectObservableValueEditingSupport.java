@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Initial API and implementation
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515491
+ *   Sebastien Gabel (Esterel Technologies SAS) - Bug 519143 (Fix NPE) 
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.ui.emf.databinding;
@@ -230,9 +231,12 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 					String eTypeName = eType.getName();
 					if (eTypeName.equals("Boolean")) { //$NON-NLS-1$
 						setBooleanValue(observableValue, value);
-					} else if (!observableValue.getValue().equals(value)) {
-						// Just set the new value if it is different from the current one
-						observableValue.setValue(value);
+					} else {
+						Object oldValue = observableValue.getValue();
+						// Just set the new value if it is different from the current or if it's a new observable
+						if (oldValue == null || !oldValue.equals(value)) {
+							observableValue.setValue(value);
+						}
 					}
 				}
 			}
