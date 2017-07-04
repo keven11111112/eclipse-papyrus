@@ -437,7 +437,7 @@
     <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   </contexts>
   <contexts xsi:type="architecture:ArchitectureFramework" xmi:id="__ZqwAMSlEeaCPPhpB0_9OQ" id="org.eclipse.papyrus.uml.architecture.Profile" name="Profile" description="The Profile Definition Framework" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/profile.gif" extensionPrefix="profile" creationCommandClass="org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand">
-    <viewpoints xmi:id="_hoXx0MSiEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.uml.profile.definition" name="Profile Definition" description="A viewpoint allowing profile definition with UML" representationKinds="_UekVgHDwEeWh-MssWmCB_A _zzf4gHDtEeWh-MssWmCB_A"/>
+    <viewpoints xmi:id="_hoXx0MSiEeaKZJ_pGfaSiA" id="org.eclipse.papyrus.uml.profile.definition" name="Profile Definition" description="A viewpoint allowing profile definition with UML" representationKinds="_UekVgHDwEeWh-MssWmCB_A _zzf4cXDtEeWh-MssWmCB_A _P3J1cEa7EeSVGbM3cmVSqQ"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.emf/model/infra-emf.elementtypesconfigurations#_rWI4YHPzEeSnGJwaJWHCSg"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/notation.elementtypesconfigurations#_ScP1oFYCEeS0WsAAtVmToA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/gmfdiag-common.elementtypesconfigurations#_rWI4YHPzEeSnGJwaJWHCSg"/>
