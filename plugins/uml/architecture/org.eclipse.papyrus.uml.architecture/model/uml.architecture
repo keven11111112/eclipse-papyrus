@@ -102,6 +102,7 @@
       <paletteRules xmi:id="_zzf4bnDtEeWh-MssWmCB_A" element="clazz.tool.generalizationset"/>
       <paletteRules xmi:id="_zzf4b3DtEeWh-MssWmCB_A" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_zzf4cHDtEeWh-MssWmCB_A" element=""/>
+      <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/model/PapyrusUMLClassDiagram.paletteconfiguration#/"/>
     </representationKinds>
     <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_zzf4cXDtEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.package" name="Package Diagram" icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLClassDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
       <modelRules xmi:id="_zzf4cnDtEeWh-MssWmCB_A">
@@ -122,6 +123,7 @@
       <paletteRules xmi:id="_zzf4fXDtEeWh-MssWmCB_A" element="clazz.tool.containmentlink"/>
       <paletteRules xmi:id="_zzf4fnDtEeWh-MssWmCB_A" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_zzf4f3DtEeWh-MssWmCB_A" element=""/>
+      <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/model/PapyrusUMLClassDiagram.paletteconfiguration#/"/>
     </representationKinds>
     <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_jRtroHDuEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.communication" name="Communication Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.communication/icons/obj16/Diagram_Communication.gif" concerns="_HQhf48SYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLCommunicationDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.communication.CreateCommunicationDiagramCommand">
       <modelRules xmi:id="_jRtroXDuEeWh-MssWmCB_A">
