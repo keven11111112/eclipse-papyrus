@@ -365,43 +365,42 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location) {
 				updateRowsAndColumns();
-
-				if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
-					if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
-						DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
-						//when the row is connected to interaction operand --> do nothing
-						if(movedRow.getElement() instanceof InteractionOperand) {
-							return;
-						}
-						if (moveAllLinesAtSamePosition) {
-							ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
-							// when we move line we disconnect listeners to avoid problems of infinite loop
-							((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
-
-							// maybe we must move other lines
-							// it exist other lines
-							if(!(movedRow.getElement() instanceof Lifeline)) {
-								if (rows.size() > rowlist.size()) {
-									updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
-								}
-							}
-							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
-								DecorationNode axis = (DecorationNode) iterator.next();
-
-								//we do not move line about Lifeline and interaction operand
-								if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
-									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
-								}
-
-							}
-						}
-						((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
-					}
-					
-				}
+//
+//				if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
+//					if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
+//						DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
+//						//when the row is connected to interaction operand --> do nothing
+//						if(movedRow.getElement() instanceof InteractionOperand) {
+//							return;
+//						}
+//						if (moveAllLinesAtSamePosition) {
+//							ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
+//							// when we move line we disconnect listeners to avoid problems of infinite loop
+//							((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
+//
+//							// maybe we must move other lines
+//							// it exist other lines
+//							if(!(movedRow.getElement() instanceof Lifeline)) {
+//								if (rows.size() > rowlist.size()) {
+//									updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
+//								}
+//							}
+//							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
+//								DecorationNode axis = (DecorationNode) iterator.next();
+//
+//								//we do not move line about Lifeline and interaction operand
+//								if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
+//									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
+//								}
+//
+//							}
+//						}
+//						((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
+//					}
+//					
+//				}
 				updateCoveredAndOwnerAfterUpdate();
 			}
 	}

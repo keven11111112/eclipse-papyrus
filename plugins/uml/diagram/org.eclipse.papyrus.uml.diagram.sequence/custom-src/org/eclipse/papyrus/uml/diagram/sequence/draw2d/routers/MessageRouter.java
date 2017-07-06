@@ -141,16 +141,16 @@ public class MessageRouter extends ObliqueRouter {
 	}
 
 	protected void adjustCreateEndpoint(Connection conn, PointList newLine) {
-		if (conn instanceof MessageCreate) {
-			if (newLine.size() >= 2) {
-				Point start = newLine.getFirstPoint();
-				Point end = newLine.getLastPoint();
-				if (start.y != end.y) {
-					start.y = end.y;
-					newLine.setPoint(start, 0);
-				}
-			}
-		}
+//		if (conn instanceof MessageCreate) {
+//			if (newLine.size() >= 2) {
+//				Point start = newLine.getFirstPoint();
+//				Point end = newLine.getLastPoint();
+//				if (start.y != end.y) {
+//					start.y = end.y;
+//					newLine.setPoint(start, 0);
+//				}
+//			}
+//		}
 	}
 
 	@Override

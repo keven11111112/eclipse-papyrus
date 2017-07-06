@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 import java.util.Map;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -38,6 +39,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -46,10 +48,12 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.uml2.uml.Lifeline;
@@ -154,14 +158,22 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		// in the case of a create message
 		// the target of the message is translated in Y to the position Y of the message
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())) {
-			Rectangle relativePt = new Rectangle(0, request.getLocation().y, 0, 0);
-			getHostFigure().getParent().translateToRelative(relativePt);
+			//Rectangle relativePt = new Rectangle(0, request.getLocation().y, 0, 0);
+			Map<String, Object> requestParameters = request.getExtendedData();
+			final Point sourcePoint = ((Point) requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
+			getHostFigure().getParent().translateToRelative(sourcePoint);
 			NodeEditPart nodeEP = (NodeEditPart) request.getTargetEditPart();
+			if( nodeEP instanceof CLifeLineEditPart) {
+				int stickerHeight=((CLifeLineEditPart)nodeEP).getStickerHeight();
+				if( stickerHeight!=-1) {
+					sourcePoint.y= sourcePoint.y-(stickerHeight/2);
+				}
+			}
 
 			Bounds bounds = ((Bounds) ((Node) nodeEP.getModel()).getLayoutConstraint());
 
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update column", new EObjectAdapter(((GraphicalEditPart) nodeEP).getNotationView()),
-					new Point(bounds.getX(), relativePt.y - 5));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) nodeEP).getNotationView()),
+					new Point(bounds.getX(), sourcePoint.y));
 			CompoundCommand compoundCommand = new CompoundCommand();
 			DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
 			GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
