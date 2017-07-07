@@ -22,9 +22,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.service.types.command.StereotypePropertyReferenceDestroyCommand;
+import org.eclipse.papyrus.uml.types.core.commands.StereotypePropertyReferenceEdgeUtil;
 
 /**
- * This helper provides the command to remove an annotated element from a comment
+ * This helper provides the command to remove an annotated element from a comment.
  * 
  * @since 3.1
  */
@@ -68,7 +69,11 @@ public class StereotypePropertyReferenceDestroyEditHelperAdvice extends Abstract
 	 */
 	@Override
 	protected ICommand getAfterDestroyReferenceCommand(final DestroyReferenceRequest request) {
-		return new StereotypePropertyReferenceDestroyCommand(request);
+		if (StereotypePropertyReferenceEdgeUtil.isStereotypePropertyReferenceEdge(request.getParameters().get(RequestParameterConstants.AFFECTED_VIEW))) {
+			return new StereotypePropertyReferenceDestroyCommand(request);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -78,12 +83,16 @@ public class StereotypePropertyReferenceDestroyEditHelperAdvice extends Abstract
 	 */
 	@Override
 	protected List<Connector> findConnectorsToDestroy(final DestroyReferenceRequest request) {
-		List<Connector> connector = new ArrayList<Connector>();
-		Object parameter = request.getParameter(RequestParameterConstants.AFFECTED_VIEW);
-		if (parameter instanceof Connector) {
-			connector.add((Connector) parameter);
+		if (StereotypePropertyReferenceEdgeUtil.isStereotypePropertyReferenceEdge(request.getParameters().get(RequestParameterConstants.AFFECTED_VIEW))) {
+			List<Connector> connector = new ArrayList<Connector>();
+			Object parameter = request.getParameter(RequestParameterConstants.AFFECTED_VIEW);
+			if (parameter instanceof Connector) {
+				connector.add((Connector) parameter);
+			}
+			return connector;
+		} else {
+			return super.findConnectorsToDestroy(request);
 		}
-		return connector;
 	}
 
 }

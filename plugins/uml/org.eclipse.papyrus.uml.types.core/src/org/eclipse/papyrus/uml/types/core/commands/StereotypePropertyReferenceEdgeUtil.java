@@ -239,7 +239,7 @@ public class StereotypePropertyReferenceEdgeUtil {
 						if (null != eStructuralFeature) {
 							EClassifier metaclass = eStructuralFeature.getEType();
 							if (metaclass instanceof EClassifier) {
-								compatible = ((EClassifier) metaclass).isInstance(targetElement);
+								compatible = metaclass.isInstance(targetElement);
 							}
 						}
 					}
@@ -268,7 +268,7 @@ public class StereotypePropertyReferenceEdgeUtil {
 
 
 	/**
-	 * Find view from stereotype.
+	 * Find the view from stereotype application.
 	 *
 	 * @param stereotype
 	 *            the stereotype
@@ -390,7 +390,7 @@ public class StereotypePropertyReferenceEdgeUtil {
 	 *            the {@link ReorientReferenceRelationshipRequest} request
 	 * @return the clean stereotype property reference edge command
 	 */
-	public static ICommand getCleanStereotypePropertyReferenceEdgeCommand(ReorientReferenceRelationshipRequest request) {
+	public static ICommand getCleanStereotypePropertyReferenceEdgeCommand(final ReorientReferenceRelationshipRequest request) {
 		int reorientDirection = request.getDirection();
 		EObject newEnd = request.getNewRelationshipEnd();
 		Object value = request.getParameters().get(DefaultSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
@@ -418,6 +418,23 @@ public class StereotypePropertyReferenceEdgeUtil {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Checks if the object is an stereotype property reference edge.
+	 * 
+	 * @param object
+	 *            the object to test
+	 */
+	public static boolean isStereotypePropertyReferenceEdge(final Object object) {
+		View view = object instanceof View ? (View) object : null;
+		if (null != view) {
+			EAnnotation eAnnotation = view.getEAnnotation(STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT);
+			if (null != eAnnotation) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
