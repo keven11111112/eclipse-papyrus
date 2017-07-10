@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST, ALL4TEC and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519454
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -31,7 +31,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -338,28 +338,28 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 				Stereotype actual = (stereotype == null) ? null : org.eclipse.papyrus.uml.tools.utils.UMLUtil.getAppliedSubstereotype(element, stereotype);
 				EObject stereotypeApplication = (actual == null) ? null : element.getStereotypeApplication(actual);
 
-				EList<EStructuralFeature> eAllStructuralFeatures = stereotypeApplication.eClass().getEAllStructuralFeatures();
-				// For each structural feature if set
-				for (EStructuralFeature eStructuralFeature : eAllStructuralFeatures) {
-					Object featureValue = stereotypeApplication.eGet(eStructuralFeature);
+				EList<EReference> eAllReferences = stereotypeApplication.eClass().getEAllReferences();
+				// For each reference if set
+				for (EReference eReference : eAllReferences) {
+					Object referenceValue = stereotypeApplication.eGet(eReference);
 
-					// If it's not the base feature
-					if (!eStructuralFeature.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+					// If it's not the base reference
+					if (!eReference.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
 
-						// gets The stereotype which contains the feature
-						Stereotype stereotypeFeatureContainer = (Stereotype) stereotype.getAllAttributes().stream().filter(p -> p.getName().equals(eStructuralFeature.getName())).findFirst().get().eContainer();
+						// gets The stereotype which contains the reference
+						Stereotype stereotypeFeatureContainer = (Stereotype) stereotype.getAllAttributes().stream().filter(p -> p.getName().equals(eReference.getName())).findFirst().get().eContainer();
 
 						// Create edge representation
-						if (1 == eStructuralFeature.getUpperBound()) {
-							Element target = UMLUtil.getBaseElement((EObject) featureValue);
-							final StereotypePropertyReferenceEdgeRepresentation edgeRepresentation = new StereotypePropertyReferenceEdgeRepresentation(element, null == target ? (Element) featureValue : target, stereotypeFeatureContainer.getQualifiedName(),
-									eStructuralFeature.getName(), eStructuralFeature.getName());
-							result.add(new UpdaterLinkDescriptor(element, null == target ? (Element) featureValue : target, edgeRepresentation, type, STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT));
-						} else if (featureValue instanceof List) {
-							for (Object value : (List<?>) featureValue) {
+						if (1 == eReference.getUpperBound()) {
+							Element target = UMLUtil.getBaseElement((EObject) referenceValue);
+							final StereotypePropertyReferenceEdgeRepresentation edgeRepresentation = new StereotypePropertyReferenceEdgeRepresentation(element, null == target ? (Element) referenceValue : target, stereotypeFeatureContainer.getQualifiedName(),
+									eReference.getName(), eReference.getName());
+							result.add(new UpdaterLinkDescriptor(element, null == target ? (Element) referenceValue : target, edgeRepresentation, type, STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT));
+						} else if (referenceValue instanceof List) {
+							for (Object value : (List<?>) referenceValue) {
 								Element target = UMLUtil.getBaseElement((EObject) value);
 								final StereotypePropertyReferenceEdgeRepresentation edgeRepresentation = new StereotypePropertyReferenceEdgeRepresentation(element, null == target ? (Element) value : target, stereotypeFeatureContainer.getQualifiedName(),
-										eStructuralFeature.getName(), eStructuralFeature.getName());
+										eReference.getName(), eReference.getName());
 								result.add(new UpdaterLinkDescriptor(element, null == target ? (Element) value : target, edgeRepresentation, type, STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT));
 							}
 						}

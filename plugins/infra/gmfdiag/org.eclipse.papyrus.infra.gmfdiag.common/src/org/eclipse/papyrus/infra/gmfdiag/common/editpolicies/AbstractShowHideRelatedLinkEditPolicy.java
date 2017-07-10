@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 463263
- *
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519454
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
@@ -570,7 +570,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 								return null;
 							}
 							String semanticHint = getSemanticHint(linkToShow);
-							if (semanticHint == null) {
+							if (semanticHint == null || semanticHint == "-1") {//$NON-NLS-1$
 								semanticHint = ((IHintedType) descriptor.getSemanticAdapter().getAdapter(IElementType.class)).getSemanticHint();
 							}
 							CreateConnectionViewRequest.ConnectionViewDescriptor viewDescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(descriptor.getSemanticAdapter(), semanticHint, ViewUtil.APPEND, false,
