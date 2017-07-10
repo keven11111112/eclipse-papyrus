@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2017 CEA LIST, EclipseSource and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,11 +10,11 @@
  * 
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440108
+ *  Camille Letavernier (EclipseSource) - Bug 519446
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -48,8 +48,7 @@ import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.utils.CacheRegistry;
 import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 import org.eclipse.papyrus.infra.types.core.notification.AbstractNotifierEditHelper;
-import org.eclipse.papyrus.infra.types.core.utils.AdviceComparator;
-import org.eclipse.ui.progress.IElementCollector;
+import org.eclipse.papyrus.infra.types.core.utils.AdviceUtil;
 
 /**
  * <pre>
@@ -383,8 +382,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 				}
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
 				IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching((EObject) editHelperContext, req.getClientContext());
-				Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
-
+				AdviceUtil.sort(advices, types, req.getClientContext().getId());
 			} else if (editHelperContext instanceof IElementType) {
 				if(req.getClientContext() == null) {
 					try {
@@ -394,7 +392,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 					}
 				}
 				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));
-				Arrays.sort(advices, new AdviceComparator((IElementType) editHelperContext, req.getClientContext().getId()));
+				AdviceUtil.sort(advices, (IElementType)editHelperContext, req.getClientContext().getId());
 
 			} else if (editHelperContext instanceof IEditHelperContext) {
 				IClientContext clientContext = ((IEditHelperContext) editHelperContext).getClientContext();
@@ -404,11 +402,11 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 				if (clientContext != null) {
 					if (elementType != null) {
 						advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), elementType);
-						Arrays.sort(advices, new AdviceComparator(elementType, req.getClientContext().getId()));
+						AdviceUtil.sort(advices, elementType, req.getClientContext().getId());
 					} else if (eObject != null) {
 						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(eObject, req.getClientContext());
 						advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
-						Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
+						AdviceUtil.sort(advices, types, req.getClientContext().getId());
 
 					}
 				} else {
@@ -421,7 +419,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 							}
 						}
 						advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), elementType);
-						Arrays.sort(advices, new AdviceComparator(elementType, req.getClientContext().getId()));
+						AdviceUtil.sort(advices, elementType, req.getClientContext().getId());
 					} else if (eObject != null) {
 						IClientContext context = req.getClientContext();
 						if(context == null) {
@@ -434,7 +432,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 						}
 						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(eObject, context);
 						advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
-						Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
+						AdviceUtil.sort(advices, types, req.getClientContext().getId());
 					}
 				}
 			}

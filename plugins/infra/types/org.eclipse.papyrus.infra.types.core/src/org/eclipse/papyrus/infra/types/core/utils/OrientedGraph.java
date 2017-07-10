@@ -40,11 +40,12 @@ public class OrientedGraph<T extends Object> {
 
 		Set<T> directChildren = graph.get(element);
 
-		result.addAll(directChildren);
-
-		for (T child : directChildren) {
-			Set<T> childChildren = getAllConnex(child);
-			result.addAll(childChildren);
+		if (directChildren != null) {
+			result.addAll(directChildren);
+			for (T child : directChildren) {
+				Set<T> childChildren = getAllConnex(child);
+				result.addAll(childChildren);
+			}
 		}
 
 		return result;

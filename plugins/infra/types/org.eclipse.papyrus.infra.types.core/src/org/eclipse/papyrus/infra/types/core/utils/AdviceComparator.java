@@ -22,6 +22,10 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 
 
+/**
+ * @deprecated Bug 519446: Use {@link AdviceUtil#sort()} instead
+ */
+@Deprecated
 public class AdviceComparator implements Comparator<IEditHelperAdvice> {
 
 	protected Collection<OrientedGraph<String>> dependencies;
