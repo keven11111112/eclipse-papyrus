@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -39,6 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -46,6 +48,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusSlidableSnapToGridAnchor;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
@@ -111,6 +115,124 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	protected void eraseTargetConnectionFeedback(DropRequest request) {
 		super.eraseTargetConnectionFeedback(request);
 		displayEvent.removeFigureEvent(getHostFigure());
+	}
+
+	/**
+	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#showCreationFeedback(org.eclipse.gef.requests.CreateConnectionRequest)
+	 *
+	 * @param request
+	 */
+	@Override
+	protected void showCreationFeedback(CreateConnectionRequest request) {
+		// TODO Auto-generated method stub
+		FeedbackHelper helper = getFeedbackHelper(request);
+		Point p = new Point(request.getLocation());
+		helper.update(getTargetConnectionAnchor(request), p);
+	}
+
+	/**
+	 * This method take into account the horizontal Delta to have an horizontal feedback if the target point is in the Y delta.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy#getTargetConnectionAnchor(org.eclipse.gef.requests.CreateConnectionRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ConnectionAnchor getTargetConnectionAnchor(CreateConnectionRequest request) {
+
+		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(request);
+		ConnectionAnchor newTargetConnectionAnchor = targetConnectionAnchor;
+		if (null != targetConnectionAnchor) {
+			Point referenceTargetPoint = targetConnectionAnchor.getReferencePoint();
+			if (request instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
+				CreateRequest requestForType = getCreateMessageRequest((CreateAspectUnspecifiedTypeConnectionRequest) request);
+				Map<String, Object> extendedData = requestForType.getExtendedData();
+				Point sourceLocation = (Point) extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
+
+				if (referenceTargetPoint != null && sourceLocation != null) {
+
+					if (isHorizontalConnection(sourceLocation, referenceTargetPoint)) {
+						newTargetConnectionAnchor = getHorizontalAnchor(targetConnectionAnchor, referenceTargetPoint, sourceLocation);
+					}
+				}
+			}
+		}
+
+
+		return newTargetConnectionAnchor;
+	}
+
+	/**
+	 * @param request
+	 *            initial Request
+	 * @return The real request for the creation of the message
+	 */
+	protected CreateRequest getCreateMessageRequest(CreateAspectUnspecifiedTypeConnectionRequest request) {
+		CreateRequest req = null;
+
+		req = request.getRequestForType(UMLDIElementTypes.MESSAGE_ASYNCH_EDGE);
+
+		if (null == req) {
+			req = request.getRequestForType(UMLDIElementTypes.MESSAGE_SYNCH_EDGE);
+		}
+
+		if (null == req) {
+			req = request.getRequestForType(UMLDIElementTypes.MESSAGE_EDGE);
+		}
+
+		if (null == req) {
+			req = request.getRequestForType(UMLDIElementTypes.MESSAGE_OCCURRENCE_SPECIFICATION_SHAPE);
+		}
+
+		if (null == req) {
+			req = request.getRequestForType(UMLDIElementTypes.MESSAGE_REPLY_EDGE);
+		}
+
+		return req;
+	}
+
+	/**
+	 * @param targetConnectionAnchor
+	 *            The initial TargetAnchor
+	 * @param referenceTargetPoint
+	 *            The Target Point
+	 * @param sourceLocation
+	 *            The Source Point
+	 * @return the new ConnectionAnchor forcing the horizontal Position if in the delta.
+	 */
+	protected ConnectionAnchor getHorizontalAnchor(ConnectionAnchor targetConnectionAnchor, Point referenceTargetPoint, Point sourceLocation) {
+		ConnectionAnchor newTargetConnectionAnchor;
+		Point newLocation = referenceTargetPoint.setY(sourceLocation.y());
+
+		PrecisionPoint pt = BaseSlidableAnchor.getAnchorRelativeLocation(targetConnectionAnchor.getReferencePoint(), targetConnectionAnchor.getOwner().getBounds());
+		newTargetConnectionAnchor = new PapyrusSlidableSnapToGridAnchor((NodeFigure) targetConnectionAnchor.getOwner(), pt) {
+
+
+			/**
+			 * Force the Horizontal position of the feedback
+			 * 
+			 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor#getIntersectionPoints(org.eclipse.draw2d.geometry.Point, org.eclipse.draw2d.geometry.Point)
+			 *
+			 * @param ownReference
+			 *            is ignored
+			 * @param foreignReference
+			 *            is ignored
+			 * @return a List with a single point of intersection
+			 */
+			@Override
+			protected PointList getIntersectionPoints(Point ownReference, Point foreignReference) {
+				PointList list = new PointList();
+
+				list.addPoint(newLocation);
+				return list;
+			}
+
+
+
+
+		};
+		return newTargetConnectionAnchor;
 	}
 
 	/**
