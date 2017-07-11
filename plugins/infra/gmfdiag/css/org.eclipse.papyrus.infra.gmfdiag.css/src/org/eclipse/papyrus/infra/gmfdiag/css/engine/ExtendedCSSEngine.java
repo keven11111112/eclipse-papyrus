@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Camille Letavernier (EclipseSource) - Bug 519412
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
@@ -107,19 +108,53 @@ public interface ExtendedCSSEngine extends LazyCSSEngine, CSSEngine {
 	 */
 	public CascadeScope getCascadeScope(StyleSheet stylesheet);
 
+	/**
+	 * Scope of the CSSEngine, defining its priority level. Based on the W3C levels, with Papyrus-specific additions.
+	 * Priority is: {@link #USER_AGENT} &lt; {@link #USER} &lt; {@link #VIEWPOINT} &lt; {@link #AUTHOR}.
+	 * Rules defined in a lower priority scope engine will always be overridden by rules from a higher priority scope engine.
+	 * If the scope is equal, then the priority is based on the CSS Rule selector complexity, as defined by the W3C.
+	 */
 	public enum CascadeScope {
+		/**
+		 * The User Agent level, defining tool-specific rules (Mostly default values).
+		 * This is the lowest priority level.
+		 */
 		USER_AGENT(0),
+
+		/**
+		 * The User level, defining general user-specific rules. This is used for e.g. Workspace-level Theme.
+		 */
 		USER(1),
-		AUTHOR(2);
+
+		/**
+		 * The Viewpoint level, defining context-specific rules.
+		 * This is used for Architecture Context/Viewpoint customization. The priority is higher
+		 * than {@link #USER}, but lower than {@link #AUTHOR}
+		 * 
+		 * @since 2.2
+		 */
+		//Added in Bug 519412: Viewpoint Stylesheets have a very high priority
+		VIEWPOINT(2),
+
+		/**
+		 * Project-, Model- or Diagram-specific rules. These rules have the highest priority
+		 */
+		AUTHOR(3);
+
+		/**
+		 * The integer priority level of this scope. Lower value means lower priority
+		 * 
+		 * @return
+		 * 		The priority
+		 */
+		public int getOrder() {
+			return order;
+		}
 
 		private int order;
 
 		private CascadeScope(int order) {
 			this.order = order;
-		}
-
-		public int getOrder() {
-			return order;
 		}
 
 	}
