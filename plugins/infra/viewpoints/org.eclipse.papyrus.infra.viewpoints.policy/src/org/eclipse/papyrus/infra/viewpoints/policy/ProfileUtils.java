@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST, EclipseSource and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Camille Letavernier (EclipseSource) - Cache the parsed ProfileHelper
  *
  *****************************************************************************/
 
@@ -19,7 +20,6 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
@@ -40,28 +40,37 @@ public class ProfileUtils {
 	 */
 	private static final String EXTENSION_ID = "org.eclipse.papyrus.infra.viewpoints.policy.profilehelper";
 
+	private static final IProfileHelper profileHelper = readProfileHelper();
+
 	/**
 	 * Gets a instance of the <code>IProfileHelper</code> interface
 	 *
 	 * @return an instance of <code>IProfileHelper</code>
 	 */
 	public static IProfileHelper getProfileHelper() {
+		return profileHelper;
+	}
+
+	private static IProfileHelper readProfileHelper() {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IExtensionPoint point = registry.getExtensionPoint(EXTENSION_ID);
-		IExtension[] extensions = point.getExtensions();
 
-		for (int i = 0; i != extensions.length; i++) {
-			IConfigurationElement[] elements = extensions[i].getConfigurationElements();
-			for (int j = 0; j != elements.length; j++) {
+		try {
+			for (IConfigurationElement e : point.getConfigurationElements()) {
 				try {
-					IProfileHelper instance = (IProfileHelper) elements[j].createExecutableExtension("class");
+					IProfileHelper instance = (IProfileHelper) e.createExecutableExtension("class");
 					if (instance != null) {
 						return instance;
 					}
-				} catch (CoreException e) {
+				} catch (CoreException | ClassCastException ex) {
+					Activator.log.error(ex);
 				}
 			}
+		} catch (Throwable t) {
+			Activator.log.error(t);
+			// Swallow and return a default value: do not fail during class initialization
 		}
+
 		return new DefaultProfileHelper();
 	}
 
