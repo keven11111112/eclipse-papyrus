@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support adapter instead of custom resource impl for CSS (CDO)
  *  Christian W. Damus - bugs 433206, 464443, 436665
+ *  Camille Letavernier (EclipseSource) - Bug 519412
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
@@ -24,17 +25,13 @@ import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
-import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.DiagramCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.engine.ViewpointCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
-import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
-import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * Default implementation for CSSDiagram
@@ -45,6 +42,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.Internal {
 
 	protected ExtendedCSSEngine engine;
+	private ExtendedCSSEngine viewpointEngine;
 
 	private CSSView cssView;
 
@@ -52,7 +50,8 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.I
 	public ExtendedCSSEngine getEngine() {
 		if (engine == null) {
 			ExtendedCSSEngine modelEngine = getModelEngine();
-			engine = new DiagramCSSEngine(modelEngine, this);
+			viewpointEngine = new ViewpointCSSEngine(modelEngine, this);
+			engine = new DiagramCSSEngine(viewpointEngine, this);
 		}
 		return engine;
 	}
@@ -64,6 +63,8 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.I
 
 			engine.dispose();
 			engine = null;
+			viewpointEngine.dispose();
+			viewpointEngine = null;
 
 			// And walk our contents to make all views forget their engine
 			eAllContents().forEachRemaining(o -> {
@@ -116,31 +117,10 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.I
 			}
 		}
 
-		StyleSheet s = getViewpointDefinedStylesheet();
-		if (s != null) {
-			result.add(s);
-		}
-
 		return result;
 	}
 
-	private StyleSheet getViewpointDefinedStylesheet() {
-		ViewPrototype proto = ViewPrototype.get(this);
-		if (proto == null) {
-			return null;
-		}
-		PapyrusRepresentationKind conf = proto.getRepresentationKind();
-		if (conf == null || !(conf instanceof PapyrusDiagram)) {
-			return null;
-		}
-		String path = ((PapyrusDiagram) conf).getCustomStyle();
-		if (path == null || path.isEmpty()) {
-			return null;
-		}
-		StyleSheetReference ref = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
-		ref.setPath(path);
-		return ref;
-	}
+	
 
 	protected CSSView getCSSView() {
 		if (cssView == null) {
