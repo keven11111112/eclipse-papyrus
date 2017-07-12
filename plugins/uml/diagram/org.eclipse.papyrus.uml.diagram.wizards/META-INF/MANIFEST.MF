@@ -22,7 +22,7 @@ Require-Bundle: org.eclipse.m2m.qvt.oml;bundle-version="[3.6.0,4.0.0)";visibilit
  org.eclipse.papyrus.infra.ui.architecture;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.0.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.wizards.Activator
