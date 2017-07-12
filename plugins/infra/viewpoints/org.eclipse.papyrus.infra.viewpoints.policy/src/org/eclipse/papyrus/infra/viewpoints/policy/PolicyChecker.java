@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus - bugs 463156, 493030
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519409
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
 
@@ -29,15 +29,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
-import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
-import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.ModelAutoCreate;
 import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
 import org.eclipse.papyrus.infra.architecture.representation.OwningRule;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
+import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.gmfdiag.representation.AssistantRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule;
@@ -80,7 +80,7 @@ public class PolicyChecker {
 		else
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
 	}
-	
+
 	/**
 	 * @since 2.0
 	 */
@@ -108,7 +108,7 @@ public class PolicyChecker {
 		Collection<MergedArchitectureViewpoint> viewpoints = new ArchitectureDescriptionUtils(modelSet).getArchitectureViewpoints();
 		return getFor(viewpoints);
 	}
-	
+
 	/**
 	 * @since 2.0
 	 */
@@ -332,7 +332,7 @@ public class PolicyChecker {
 			for (RepresentationKind kind : viewpoint.getRepresentationKinds()) {
 				PapyrusRepresentationKind view = (PapyrusRepresentationKind) kind;
 				ViewPrototype proto = ViewPrototype.get(view);
-				if (proto != null) {
+				if (null != proto && !result.contains(proto)) {
 					result.add(proto);
 				}
 			}
@@ -762,6 +762,6 @@ public class PolicyChecker {
 	private int allows(AssistantRule rule, IElementType elementType) {
 		return rule.matches(elementType)
 				? (rule.isPermit() ? RESULT_PERMIT : RESULT_DENY)
-				: RESULT_UNKNOWN;
+						: RESULT_UNKNOWN;
 	}
 }
