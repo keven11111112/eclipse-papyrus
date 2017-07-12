@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -26,10 +28,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFac
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.util.Util;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
-import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Signal;
@@ -41,6 +40,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  *
  * Call pin derivation command on modification of a signal
+ * 
  * @since 3.0
  */
 public class SignalEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -63,19 +63,21 @@ public class SignalEditHelperAdvice extends AbstractEditHelperAdvice {
 			Signal signal = (Signal) request.getElementToEdit();
 			Package root = PackageUtil.getRootPackage(signal);
 			if (root != null) {
-				List<AcceptEventAction> allAcceptEventAction = null;
 				// 2] check the preference for AcceptEventAction
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.ACCEPTE_EVENT_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				if (synchronizePinPreference) {
-					// 3] get all AcceptEventAction
-					allAcceptEventAction = ElementUtil.getInstancesFilteredByType(root, AcceptEventAction.class, null);
-					for (AcceptEventAction acceptEventAction : allAcceptEventAction) {
-						if (!(acceptEventAction instanceof AcceptCallAction)) { // instance of AcceptEventAction and not AcceptCallEvent
-							for (Trigger t : acceptEventAction.getTriggers()) {
-								if (t.getEvent() instanceof SignalEvent) {
-									SignalEvent signalEvent = (SignalEvent) t.getEvent();
-									if (signalEvent.getSignal() == signal || Util.getAllSuperClasses(null, signalEvent.getSignal()).contains(signal)) {
-										// 4] call the command for the acceptEventAction whose trigger reference a signalEvent which reference the signal
+					// 3] get all AcceptEventAction which reference the signal
+					// Signal -> SignalEvent (Reference) -> Trigger (Reference) -> AcceptEventAction (owned by)
+					ECrossReferenceAdapter adapterSignal = ECrossReferenceAdapter.getCrossReferenceAdapter(signal);
+					Collection<Setting> allReferencesOfSignal = adapterSignal.getInverseReferences(signal);
+					for (Setting settingSignal : allReferencesOfSignal) {
+						if (settingSignal.getEObject() instanceof SignalEvent) {
+							ECrossReferenceAdapter adapterSignalEvent = ECrossReferenceAdapter.getCrossReferenceAdapter(settingSignal.getEObject());
+							Collection<Setting> allReferencesOfSignalEvent = adapterSignalEvent.getInverseReferences(settingSignal.getEObject());
+							for (Setting settingSignalEvent : allReferencesOfSignalEvent) {
+								if (settingSignalEvent.getEObject() instanceof Trigger) {
+									if (((Trigger) settingSignalEvent.getEObject()).getOwner() instanceof AcceptEventAction) {
+										AcceptEventAction acceptEventAction = (AcceptEventAction) ((Trigger) settingSignalEvent.getEObject()).getOwner();
 										IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
 										command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
 									}

@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -26,9 +28,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFac
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
-import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.SignalEvent;
@@ -39,6 +39,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  *
  * Call pin derivation command on modification of a signalEvent
+ * 
  * @since 3.0
  */
 public class SignalEventEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -61,20 +62,19 @@ public class SignalEventEditHelperAdvice extends AbstractEditHelperAdvice {
 			SignalEvent signalEvent = (SignalEvent) request.getElementToEdit();
 			Package root = PackageUtil.getRootPackage(signalEvent);
 			if (root != null) {
-				List<AcceptEventAction> allAcceptEventAction = null;
 				// 2] check the preference for AcceptEventAction
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.ACCEPTE_EVENT_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				if (synchronizePinPreference) {
-					// 3] get all AcceptEventAction
-					allAcceptEventAction = ElementUtil.getInstancesFilteredByType(root, AcceptEventAction.class, null);
-					for (AcceptEventAction acceptEventAction : allAcceptEventAction) {
-						if (!(acceptEventAction instanceof AcceptCallAction)) { // instance of AcceptEventAction and not AcceptCallEvent
-							for (Trigger t : acceptEventAction.getTriggers()) {
-								if (t.getEvent() instanceof SignalEvent && t.getEvent() == signalEvent) {
-									// 4] call the command for the acceptEventAction whose trigger reference the signalEvent
-									IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
-									command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
-								}
+					// 3] get all AcceptEventAction which reference the signalEvent
+					// SignalEvent -> Trigger (Reference) -> AcceptEventAction (owned by)
+					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(signalEvent);
+					Collection<Setting> allReferences = adapter.getInverseReferences(signalEvent);
+					for (Setting setting : allReferences) {
+						if (setting.getEObject() instanceof Trigger) {
+							if (((Trigger) setting.getEObject()).getOwner() instanceof AcceptEventAction) {
+								AcceptEventAction acceptEventAction = (AcceptEventAction) ((Trigger) setting.getEObject()).getOwner();
+								IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
+								command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
 							}
 						}
 					}
