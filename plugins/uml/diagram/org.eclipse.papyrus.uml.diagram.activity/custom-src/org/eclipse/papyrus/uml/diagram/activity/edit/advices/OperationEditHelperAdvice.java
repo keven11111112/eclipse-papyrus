@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -26,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFac
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.CallEvent;
@@ -64,16 +65,22 @@ public class OperationEditHelperAdvice extends AbstractEditHelperAdvice {
 				// 2] check the preference for AcceptCallEvent
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.ACCEPT_CALL_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				if (synchronizePinPreference) {
-					// 3] get allAcceptCallAction
-					List<AcceptCallAction> allAcceptCallAction = ElementUtil.getInstancesFilteredByType(root, AcceptCallAction.class, null);
-					for (AcceptCallAction acceptCallAction : allAcceptCallAction) {
-						if (acceptCallAction instanceof AcceptCallAction) {
-							for (Trigger t : acceptCallAction.getTriggers()) {
-								if (t.getEvent() instanceof CallEvent) {
-									if (((CallEvent) t.getEvent()).getOperation() == operation) {
-										// 6] call the command for the acceptCallAction whose trigger reference a callEvent which reference the operation
+					// 3] get all AcceptCallAction referencing the operation
+					// Operation -> CallEvent (Reference) -> Trigger (Reference) -> AcceptEventAction (owned by)
+					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(operation);
+					Collection<Setting> allReferences = adapter.getNonNavigableInverseReferences(operation);
+					for (Setting reference : allReferences) {
+						if(reference.getEObject() instanceof CallEvent) {
+							ECrossReferenceAdapter adapterCallEvent = ECrossReferenceAdapter.getCrossReferenceAdapter(reference.getEObject());
+							Collection<Setting> allReferencesCallEvent = adapterCallEvent.getNonNavigableInverseReferences(reference.getEObject());
+							for(Setting referenceCallEvent : allReferencesCallEvent) {
+								if(referenceCallEvent.getEObject() instanceof Trigger) {
+									if(((Trigger)referenceCallEvent.getEObject()).getOwner() instanceof AcceptCallAction) {
+										// 4] call the command for the acceptCallAction whose trigger reference a callEvent which reference the operation
+										AcceptCallAction acceptCallAction = (AcceptCallAction) ((Trigger)referenceCallEvent.getEObject()).getOwner();
 										IPinUpdater<AcceptCallAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptCallAction);
 										return new PinUpdateCommand<AcceptCallAction>("Update accept event action pins", updater, acceptCallAction); //$NON-NLS-1$
+									
 									}
 								}
 							}

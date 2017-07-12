@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -31,9 +33,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediatea
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
-import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.LinkEndCreationData;
@@ -42,6 +42,7 @@ import org.eclipse.uml2.uml.LinkEndDestructionData;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -50,6 +51,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  * 
  * Call pin derivation command on modification of a property
+ * 
  * @since 3.0
  */
 public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -73,20 +75,23 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 			Property property = (Property) request.getElementToEdit();
 			Package root = PackageUtil.getRootPackage(property);
 			if (root != null) {
-				List<AcceptEventAction> allAcceptEventAction = null;
+				Collection<Setting> allReferences = null;
 				// 2] check the preference for AcceptEventAction
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.ACCEPTE_EVENT_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				if (synchronizePinPreference) {
-					// 3] get all AcceptEventAction
-					allAcceptEventAction = ElementUtil.getInstancesFilteredByType(root, AcceptEventAction.class, null);
-					for (AcceptEventAction acceptEventAction : allAcceptEventAction) {
-						if (!(acceptEventAction instanceof AcceptCallAction)) { // instance of AcceptEventAction and not AcceptCallEvent
-							for (Trigger t : acceptEventAction.getTriggers()) {
-								if (t.getEvent() instanceof SignalEvent) {
-									for (Property p : ((SignalEvent) t.getEvent()).getSignal().getAllAttributes()) { // get all properties including those inherited from its parents
-										if (p == property) {
-											// 4] call the command for the acceptEventAction whose trigger reference a signalEvent
-											// which reference an signal which owned the property
+					// 3] get all AcceptEventAction which reference the property
+					// Property -> Signal (owned by) -> SignalEvent (Reference) -> Trigger (Reference) -> AcceptEventAction (owned by)
+					if (property.getOwner() instanceof Signal) {
+						ECrossReferenceAdapter adapterSignal = ECrossReferenceAdapter.getCrossReferenceAdapter(property.getOwner());
+						Collection<Setting> allReferencesOfSignal = adapterSignal.getNonNavigableInverseReferences(property.getOwner());
+						for (Setting settingSignal : allReferencesOfSignal) {
+							if (settingSignal.getEObject() instanceof SignalEvent) {
+								ECrossReferenceAdapter adapterSignalEvent = ECrossReferenceAdapter.getCrossReferenceAdapter(settingSignal.getEObject());
+								Collection<Setting> allReferencesOfSignalEvent = adapterSignalEvent.getNonNavigableInverseReferences(settingSignal.getEObject());
+								for (Setting settingSignalEvent : allReferencesOfSignalEvent) {
+									if (settingSignalEvent.getEObject() instanceof Trigger) {
+										if (((Trigger) settingSignalEvent.getEObject()).getOwner() instanceof AcceptEventAction) {
+											AcceptEventAction acceptEventAction = (AcceptEventAction) ((Trigger) settingSignalEvent.getEObject()).getOwner();
 											IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
 											command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
 										}
@@ -97,19 +102,21 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					}
 				}
 				// Pins of CreateLinkAction should be create and update automatically
-				List<LinkEndData> allLinkEndData = null;
 				// 1] get the preference for CreateLinkAction
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.CREATE_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				// 2] check preference
 				if (synchronizePinPreference) {
-					// 3] get all LinkEndData
-					allLinkEndData = ElementUtil.getInstancesFilteredByType(root, LinkEndData.class, null);
-					// 4] loop into the list of LinkEndCreationData
-					for (LinkEndData linkEndCreationData : allLinkEndData) {
-						if (linkEndCreationData instanceof LinkEndCreationData && linkEndCreationData.getEnd() == property) {
-							// 5] call the command for the CreateLinkAction owning the LinkEndCreationData
+					if (allReferences == null) {
+						ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(property);
+						allReferences = adapter.getNonNavigableInverseReferences(property);
+					}
+					// 3] get all LinkEndData which reference the property
+					for (Setting setting : allReferences) {
+						if (setting.getEObject() instanceof LinkEndCreationData) {
+							LinkEndCreationData linkEndCreationData = (LinkEndCreationData) setting.getEObject();
 							IPinUpdaterLinkEndData updater = new LinkEndCreationDataPinUpdater();
 							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndCreationData)); //$NON-NLS-1$
+
 						}
 					}
 				}
@@ -118,14 +125,14 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.DESTROY_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				// 2] check preference
 				if (synchronizePinPreference) {
-					// 3] get all LinkEndDestructionData if not get yet
-					if (allLinkEndData == null) {
-						allLinkEndData = ElementUtil.getInstancesFilteredByType(root, LinkEndData.class, null);
+					if (allReferences == null) {
+						ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(property);
+						allReferences = adapter.getNonNavigableInverseReferences(property);
 					}
-					// 4] loop into the list of LinkEndDestructionData
-					for (LinkEndData linkEndDestructionData : allLinkEndData) {
-						if (linkEndDestructionData instanceof LinkEndDestructionData && linkEndDestructionData.getEnd() == property) {
-							// 5] call the command for the DestroyLinkAction owning the LinkEndDestructionData
+					// 3] get all LinkEndData which reference the property
+					for (Setting setting : allReferences) {
+						if (setting.getEObject() instanceof LinkEndDestructionData) {
+							LinkEndDestructionData linkEndDestructionData = (LinkEndDestructionData) setting.getEObject();
 							IPinUpdaterLinkEndData updater = new LinkEndDestructionDataPinUpdater();
 							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndDestructionData)); //$NON-NLS-1$
 						}
@@ -136,18 +143,16 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.READ_LINK_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				// 2] check preference
 				if (synchronizePinPreference) {
-					// 3] get all LinkEndData if not get yet
-					if (allLinkEndData == null) {
-						allLinkEndData = ElementUtil.getInstancesFilteredByType(root, LinkEndData.class, null);
+					if (allReferences == null) {
+						ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(property);
+						allReferences = adapter.getNonNavigableInverseReferences(property);
 					}
-					// 4] loop into the list of LinkEndDestructionData
-					for (LinkEndData linkEndData : allLinkEndData) {
-						if (!(linkEndData instanceof LinkEndCreationData || linkEndData instanceof LinkEndDestructionData)) {
-							if (linkEndData.getEnd() == property) {
-								// 5] call the command for the DestroyLinkAction owning the LinkEndDestructionData
-								IPinUpdaterLinkEndData updater = new LinkEndDataPinUpdater();
-								command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndData)); //$NON-NLS-1$
-							}
+					// 3] get all LinkEndData which reference the property
+					for (Setting setting : allReferences) {
+						if (setting.getEObject() instanceof LinkEndData) {
+							LinkEndData linkEndData = (LinkEndData) setting.getEObject();
+							IPinUpdaterLinkEndData updater = new LinkEndDataPinUpdater();
+							command.add(new PinUpdateLinkEndDataCommand("Update link end data pins", updater, linkEndData)); //$NON-NLS-1$
 						}
 					}
 				}
@@ -158,12 +163,14 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					synchronizePinPreference = prefStore.getString(IAutomatedModelCompletionPreferencesConstants.READ_STRUCTURAL_FEATURE_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION);
 					// 2] check preference
 					if (synchronizePinPreference) {
-						// 3] get all ReadStructuralFeatureAction
-						List<ReadStructuralFeatureAction> allReadStructuralFeatureAction = ElementUtil.getInstancesFilteredByType(root, ReadStructuralFeatureAction.class, null);
-						// 4] loop into the list of ReadStructuralFeatureAction
-						for (ReadStructuralFeatureAction readStructuralFeatureAction : allReadStructuralFeatureAction) {
-							if (readStructuralFeatureAction.getStructuralFeature() == property) {
-								// 5] call the command for the ReadStructuralFeatureAction whose the structuralFeature reference the property
+						if (allReferences == null) {
+							ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(property);
+							allReferences = adapter.getNonNavigableInverseReferences(property);
+						}
+						// 3] get all ReadStructuralFeatureAction which reference the property
+						for (Setting setting : allReferences) {
+							if (setting.getEObject() instanceof ReadStructuralFeatureAction) {
+								ReadStructuralFeatureAction readStructuralFeatureAction = (ReadStructuralFeatureAction) setting.getEObject();
 								IPinUpdater<ReadStructuralFeatureAction> updater = PinUpdaterFactory.getInstance().instantiate(readStructuralFeatureAction);
 								command.add(new PinUpdateCommand<ReadStructuralFeatureAction>("Update read structural feature action pins", updater, readStructuralFeatureAction)); //$NON-NLS-1$
 							}
@@ -174,12 +181,14 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 					synchronizePinPreference = prefStore.getString(IAutomatedModelCompletionPreferencesConstants.ADD_STRUCTURAL_FEATURE_VALUE_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION);
 					// 2] check preference
 					if (synchronizePinPreference) {
-						// 3] get all AddStructuralFeatureValueAction
-						List<AddStructuralFeatureValueAction> allAddStructuralFeatureValueAction = ElementUtil.getInstancesFilteredByType(root, AddStructuralFeatureValueAction.class, null);
-						// 4] loop into the list of AddStructuralFeatureValueAction
-						for (AddStructuralFeatureValueAction addStructuralFeatureValueAction : allAddStructuralFeatureValueAction) {
-							if (addStructuralFeatureValueAction.getStructuralFeature() == request.getElementToEdit()) {
-								// 5] call the command for the AddStructuralFeatureValueAction whose the structuralFeature is the property
+						if (allReferences == null) {
+							ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(property);
+							allReferences = adapter.getNonNavigableInverseReferences(property);
+						}
+						// 3] get all AddStructuralFeatureValueAction which reference the property
+						for (Setting setting : allReferences) {
+							if (setting.getEObject() instanceof AddStructuralFeatureValueAction) {
+								AddStructuralFeatureValueAction addStructuralFeatureValueAction = (AddStructuralFeatureValueAction) setting.getEObject();
 								IPinUpdater<AddStructuralFeatureValueAction> updater = PinUpdaterFactory.getInstance().instantiate(addStructuralFeatureValueAction);
 								command.add(new PinUpdateCommand<AddStructuralFeatureValueAction>("Update add structural feature value action pins", updater, addStructuralFeatureValueAction)); //$NON-NLS-1$
 							}

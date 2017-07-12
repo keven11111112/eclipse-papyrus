@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
-
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -25,7 +23,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFac
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Package;
@@ -59,17 +56,13 @@ public class InstanceValueEditHelperAdvice extends AbstractEditHelperAdvice {
 				InstanceValue instanceValue = (InstanceValue) request.getElementToEdit();
 				Package root = PackageUtil.getRootPackage(instanceValue);
 				if (root != null) {
-					// 4] get all ValueSpecificationAction
-					List<ValueSpecificationAction> allValueSpecificationAction = ElementUtil.getInstancesFilteredByType(root, ValueSpecificationAction.class, null);
-					// 5] loop into the list of ValueSpecificationAction
-					for (ValueSpecificationAction valueSpecificationAction : allValueSpecificationAction) {
-						if (valueSpecificationAction.getValue() instanceof InstanceValue) {
-							if (valueSpecificationAction.getValue() == instanceValue) {
-								// 6] call the command for the ValueSpecificationAction whose value is the instanceValue
-								IPinUpdater<ValueSpecificationAction> updater = PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction);
-								return new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", updater, valueSpecificationAction); //$NON-NLS-1$
-							}
-						}
+					// 4] get all ValueSpecificationAction referencing the instance value
+					// ValueSpecification (CrossReference) -> ValueSpecificationAction (owned by)
+					if(instanceValue.getOwner() instanceof ValueSpecificationAction) {
+						// 5] call the command for the ValueSpecificationAction whose value is the instanceValue
+						ValueSpecificationAction valueSpecificationAction = (ValueSpecificationAction) instanceValue.getOwner();
+						IPinUpdater<ValueSpecificationAction> updater = PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction);
+						return new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", updater, valueSpecificationAction); //$NON-NLS-1$
 					}
 				}
 			}

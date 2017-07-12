@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -26,9 +28,9 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFac
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StartObjectBehaviorAction;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -36,6 +38,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
  * Pins of StartObjectBehaviorAction should be create and update automatically
+ * 
  * @since 3.0
  *
  */
@@ -61,14 +64,18 @@ public class BehaviorEditHelperAdvice extends AbstractEditHelperAdvice {
 				Behavior behavior = (Behavior) request.getElementToEdit();
 				Package root = PackageUtil.getRootPackage(behavior);
 				if (root != null) {
-					// 4] get all StartObjectBehaviorAction
-					List<StartObjectBehaviorAction> allStartObjectBehaviorAction = ElementUtil.getInstancesFilteredByType(root, StartObjectBehaviorAction.class, null);
-					// 5] loop into the list of StartObjectBehaviorAction
-					for (StartObjectBehaviorAction startObjectBehaviorAction : allStartObjectBehaviorAction) {
-						if (startObjectBehaviorAction.behavior() == behavior) {
-							// 6] call the command for the StartObjectBehaviorAction which has as behavior the current one
-							IPinUpdater<StartObjectBehaviorAction> updater = PinUpdaterFactory.getInstance().instantiate(startObjectBehaviorAction);
-							command.add(new PinUpdateCommand<StartObjectBehaviorAction>("Update start object behavior action pins", updater, startObjectBehaviorAction)); //$NON-NLS-1$
+					// 4] get all StartObjectBehaviorAction referencing the behavior
+					// Behavior -> InputPin (type reference) -> StartObjectBehaviorAction (owned by)
+					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(behavior);
+					Collection<Setting> allReferences = adapter.getNonNavigableInverseReferences(behavior);
+					for (Setting reference : allReferences) {
+						if (reference.getEObject() instanceof InputPin) {
+							if (((InputPin) reference.getEObject()).getOwner() instanceof StartObjectBehaviorAction) {
+								StartObjectBehaviorAction startObjectBehaviorAction = (StartObjectBehaviorAction) ((InputPin) reference.getEObject()).getOwner();
+								// 5] call the command for the StartObjectBehaviorAction which has as behavior the current one
+								IPinUpdater<StartObjectBehaviorAction> updater = PinUpdaterFactory.getInstance().instantiate(startObjectBehaviorAction);
+								command.add(new PinUpdateCommand<StartObjectBehaviorAction>("Update start object behavior action pins", updater, startObjectBehaviorAction)); //$NON-NLS-1$
+							}
 						}
 					}
 				}

@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
-
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -26,7 +24,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFac
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
@@ -38,6 +35,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  *
  * Call pin derivation command on modification of a trigger
+ * 
  * @since 3.0
  */
 public class TriggerEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -58,41 +56,26 @@ public class TriggerEditHelperAdvice extends AbstractEditHelperAdvice {
 			Trigger trigger = (Trigger) request.getElementToEdit();
 			Package root = PackageUtil.getRootPackage(trigger);
 			if (root != null) {
-				List<AcceptEventAction> allAcceptEventAction = null;
 				// 2] check the preference for AcceptEventAction
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.ACCEPTE_EVENT_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				if (synchronizePinPreference) {
-					// 3] get all AcceptEventAction
-					allAcceptEventAction = ElementUtil.getInstancesFilteredByType(root, AcceptEventAction.class, null);
-					for (AcceptEventAction acceptEventAction : allAcceptEventAction) {
-						if (!(acceptEventAction instanceof AcceptCallAction)) {
-							for (Trigger t : acceptEventAction.getTriggers()) {
-								if (t == trigger) {
-									// 4] call the command for the acceptEventAction whose trigger is equal to the current one
-									IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
-									command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
-								}
-							}
-						}
+					// 3] get all AcceptEventAction which reference the trigger
+					// Trigger -> AcceptEventAction (owned by)
+					if (trigger.getOwner() instanceof AcceptEventAction) {
+						AcceptEventAction acceptEventAction = (AcceptEventAction) trigger.getOwner();
+						IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
+						command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
 					}
 				}
-				// 5] check the preference for AcceptCallEvent
+				// 4] check the preference for AcceptCallEvent
 				synchronizePinPreference = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.ACCEPT_CALL_ACTION_ACCELERATOR).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
 				if (synchronizePinPreference) {
-					// 6] get allAcceptEventAction if we don't get it before
-					if (allAcceptEventAction == null) {
-						allAcceptEventAction = ElementUtil.getInstancesFilteredByType(root, AcceptEventAction.class, null);
-					}
-					for (AcceptEventAction acceptEventAction : allAcceptEventAction) {
-						if (acceptEventAction instanceof AcceptCallAction) {
-							for (Trigger t : acceptEventAction.getTriggers()) {
-								if (t == trigger) {
-									// 7] call the command for the acceptEventAction whose trigger is equal to the current one
-									IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
-									command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
-								}
-							}
-						}
+					// 5] get all AcceptCallAction referencing the trigger
+					// Trigger -> AcceptEventAction (owned by)
+					if (trigger.getOwner() instanceof AcceptCallAction) {
+						AcceptCallAction acceptCallAction = (AcceptCallAction) trigger.getOwner();
+						IPinUpdater<AcceptCallAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptCallAction);
+						command.add(new PinUpdateCommand<AcceptCallAction>("Update accept event action pins", updater, acceptCallAction)); //$NON-NLS-1$
 					}
 				}
 				if (!command.isEmpty()) {

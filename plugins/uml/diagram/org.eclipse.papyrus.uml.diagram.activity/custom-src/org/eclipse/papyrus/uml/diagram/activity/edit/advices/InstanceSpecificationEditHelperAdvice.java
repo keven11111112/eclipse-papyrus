@@ -13,8 +13,11 @@
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -25,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFac
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.IAutomatedModelCompletionPreferencesConstants;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -53,6 +55,7 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 		if (request.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
 			final IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
 			boolean synchronizePin = false;
+			CompositeCommand command = new CompositeCommand("Update inctanceSpecification"); //$NON-NLS-1$
 			InstanceSpecification instanceSpecification = (InstanceSpecification) request.getElementToEdit();
 			// 1] get the preference for ValueSpecificationAction
 			synchronizePin = (prefStore.getString(IAutomatedModelCompletionPreferencesConstants.VALUE_SPECIFICATION_ACTION).equals(AutomatedModelCompletionPreferencesInitializer.PIN_SYNCHRONIZATION));
@@ -60,18 +63,23 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 			if (synchronizePin) {
 				Package root = PackageUtil.getRootPackage(instanceSpecification);
 				if (root != null) {
-					// 3] get all ValueSpecificationAction
-					List<ValueSpecificationAction> allValueSpecificationAction = ElementUtil.getInstancesFilteredByType(root, ValueSpecificationAction.class, null);
-					// 4] loop into the list of ValueSpecificationAction
-					for (ValueSpecificationAction valueSpecificationAction : allValueSpecificationAction) {
-						if (valueSpecificationAction.getValue() instanceof InstanceValue) {
-							if (((InstanceValue) valueSpecificationAction.getValue()).getInstance() == instanceSpecification) {
-								// 5] call the command for the ValueSpecificationAction whose value is an instanceValue which referenced the instance specification
+					// 3] get all ValueSpecificationAction referencing the instance specification
+					// instanceSpecification -> instanceValue (Reference) -> ValueSpecificationAction (owned by)
+					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(instanceSpecification);
+					Collection<Setting> allReferences = adapter.getNonNavigableInverseReferences(instanceSpecification);
+					for (Setting reference : allReferences) {
+						if(reference.getEObject() instanceof InstanceValue) {
+							if(((InstanceValue) reference.getEObject()).getOwner() instanceof ValueSpecificationAction) {
+								ValueSpecificationAction valueSpecificationAction = (ValueSpecificationAction) ((InstanceValue) reference.getEObject()).getOwner();
+								// 4] call the command for the ValueSpecificationAction whose value is an instanceValue which referenced the instance specification
 								IPinUpdater<ValueSpecificationAction> updater = PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction);
-								return new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", updater, valueSpecificationAction); //$NON-NLS-1$
+								command.add(new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", updater, valueSpecificationAction)); //$NON-NLS-1$
 							}
 						}
 					}
+				}
+				if (!command.isEmpty()) {
+					return command;
 				}
 			}
 		}

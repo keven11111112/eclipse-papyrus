@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.ImportUMLPrimitiveTypePackageCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.PinUpdateCommand;
