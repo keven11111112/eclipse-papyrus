@@ -475,7 +475,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	public String getDiagramFileExtension(String contextId, String defaultExtension) {
 		MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getArchitectureContextById(contextId);
 		String extensionPrefix = context != null ? context.getExtensionPrefix() : null;
-		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension; //$NON-NLS-1$
+		return (extensionPrefix != null && !extensionPrefix.trim().isEmpty()) ? extensionPrefix + "." + defaultExtension : defaultExtension; //$NON-NLS-1$
 	}
 
 	/**
