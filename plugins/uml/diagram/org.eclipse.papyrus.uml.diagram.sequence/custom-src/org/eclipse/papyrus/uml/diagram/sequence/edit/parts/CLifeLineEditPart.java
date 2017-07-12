@@ -13,15 +13,12 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.LifelineNodePlate;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineRestorePositionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
 
@@ -32,8 +29,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
  */
 public class CLifeLineEditPart extends LifelineEditPart {
 
-	public static int DEFAUT_HEIGHT=250;
-	public static int DEFAUT_WIDTH=100;
+	public static int DEFAUT_HEIGHT = 250;
+	public static int DEFAUT_WIDTH = 100;
+
 	/**
 	 * Constructor.
 	 *
@@ -44,9 +42,9 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#createSVGNodePlate()
-	 *
-	 * @return
 	 */
 	@Override
 	protected NodeFigure createSVGNodePlate() {
@@ -55,23 +53,39 @@ public class CLifeLineEditPart extends LifelineEditPart {
 
 		return svgNodePlate;
 	}
-	
-	
-	
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart#createDefaultEditPolicies()
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		installEditPolicy(LifeLineRestorePositionEditPolicy.KEY, new LifeLineRestorePositionEditPolicy());
+		super.createDefaultEditPolicies();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart#setLayoutConstraint(org.eclipse.gef.EditPart, org.eclipse.draw2d.IFigure, java.lang.Object)
+	 */
 	@Override
 	public void setLayoutConstraint(EditPart child, IFigure childFigure, Object constraint) {
 		if (!(childFigure instanceof ILifelineInternalFigure)) {
 			getPrimaryShape().setConstraint(childFigure, constraint);
 		}
 	}
+
 	/**
 	 * @return the size of the header height
-	 * if the layout is null return -1
+	 *         if the layout is null return -1
 	 */
 	public int getStickerHeight() {
-		if( getPrimaryShape().getLifeLineLayoutManager()!=null) {
-			 return ((LifeLineLayoutManager) getPrimaryShape().getLifeLineLayoutManager()).getBottomHeader();
+		if (getPrimaryShape().getLifeLineLayoutManager() != null) {
+			return ((LifeLineLayoutManager) getPrimaryShape().getLifeLineLayoutManager()).getBottomHeader();
 		}
 		return -1;
 	}
+
 }
