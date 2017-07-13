@@ -81,7 +81,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.infra.properties.ui.propertyview"
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.uml.properties.preferences.MultiplicityEditorPreferencePage"
             id="org.eclipse.papyrus.uml.properties.multiplicityEditorProperties"
             name="Multiplicity Editor">
