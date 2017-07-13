@@ -22,7 +22,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.ConnectionEditPart;
@@ -32,23 +31,12 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeListener;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 
 /**
  * Edit policy to restore target lifeline line position after a deletion of a {@link MessageCreate}.
@@ -96,34 +84,12 @@ public class LifeLineRestorePositionEditPolicy extends AbstractEditPolicy implem
 	 */
 	@Override
 	public void removingTargetConnection(final ConnectionEditPart connection, final int index) {
-		Command restoreLifelinePositionCommand = getRestoreLifelinePositionOnMessageCreateDeleteCommand(connection);
+		Command restoreLifelinePositionCommand = LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand(connection);
 		if (null != restoreLifelinePositionCommand && restoreLifelinePositionCommand.canExecute()) {
 			executeCommand(restoreLifelinePositionCommand);
 		}
 	}
 
-	/**
-	 * @return the command when a create message is deleted to move its target lifeline up
-	 */
-	protected Command getRestoreLifelinePositionOnMessageCreateDeleteCommand(final ConnectionEditPart editPart) {
-		Command commands = null;
-		if (editPart instanceof MessageCreateEditPart) {
-			MessageCreateEditPart part = (MessageCreateEditPart) editPart;
-			if (part.getTarget() instanceof LifelineEditPart && 1 == LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size()) {
-				LifelineEditPart target = (LifelineEditPart) part.getTarget();
-				if (target.getModel() instanceof Shape) {
-					Shape view = (ShapeImpl) target.getModel();
-					if (view.getLayoutConstraint() instanceof Bounds) {
-						Bounds bounds = (Bounds) view.getLayoutConstraint();
-						// get the set bounds command
-						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET));
-						commands = new ICommandProxy(boundsCommand);
-					}
-				}
-			}
-		}
-		return commands;
-	}
 
 	/**
 	 * Executes the supplied command inside an <code>unchecked action</code>

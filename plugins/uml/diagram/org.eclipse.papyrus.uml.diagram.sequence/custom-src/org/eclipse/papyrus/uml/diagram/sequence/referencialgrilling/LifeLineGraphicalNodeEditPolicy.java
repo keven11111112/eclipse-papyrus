@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -23,6 +24,7 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -58,6 +60,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePosi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDiagramConstants;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.swt.SWT;
@@ -355,19 +360,16 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 		updateExtendedData(request);
 
-
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())) {
 			return getCreateEdgeCommand(request, cmd);
 		}
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_DELETE_EDGE.getSemanticHint())) {
 			return getDeleteEdgeCommand(request, cmd);
 		}
-
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_ASYNCH_EDGE.getSemanticHint()) ||
 				request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_SYNCH_EDGE.getSemanticHint())) {
 			return getSyncAsyncEdgeCommand(request, cmd);
 		}
-
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_FOUND_EDGE.getSemanticHint())) {
 			// in the case of the found message, because the serialization is very specific , we must call basic editpolicy of GMF
 			// so we create an new instance of the GraphicalNode editpolicy and we delegate the operation.
@@ -535,32 +537,47 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 *            the initial Command
 	 * @return Command for creating a Message Create command
 	 */
-	protected Command getCreateEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) {
-		Map<String, Object> requestParameters = request.getExtendedData();
-		final Point sourcePoint = ((Point) requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
+	protected Command getCreateEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) { // if it's the first message create
+		if (LifelineMessageCreateHelper.getIncomingMessageCreate(request.getTargetEditPart()).isEmpty()) {
+			NodeEditPart nodeEP = (NodeEditPart) request.getTargetEditPart();
+			Map<String, Object> requestParameters = request.getExtendedData();
+			final Point sourcePoint = ((Point) requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
+			return getSetLifelinePositionCommand(cmd, nodeEP, sourcePoint);
+		}
+		return cmd;
+	}
+
+	/**
+	 * Get the command to set lifeline position in case of MessageCreate reorient or creation.
+	 * 
+	 * @param originalCommand
+	 *            the original command which needs to be completed
+	 * @param targetEditPart
+	 *            the target edit part
+	 * @param sourcePoint
+	 *            the position of the target point
+	 * @return the command
+	 */
+	protected CompoundCommand getSetLifelinePositionCommand(final Command originalCommand, final NodeEditPart targetEditPart, final Point sourcePoint) {
 		getHostFigure().getParent().translateToRelative(sourcePoint);
-		NodeEditPart nodeEP = (NodeEditPart) request.getTargetEditPart();
-		if (nodeEP instanceof CLifeLineEditPart) {
-			int stickerHeight = ((CLifeLineEditPart) nodeEP).getStickerHeight();
+		if (targetEditPart instanceof CLifeLineEditPart) {
+			int stickerHeight = ((CLifeLineEditPart) targetEditPart).getStickerHeight();
 			if (stickerHeight != -1) {
 				sourcePoint.y = sourcePoint.y - (stickerHeight / 2);
 			}
 		}
-
-		Bounds bounds = ((Bounds) ((Node) nodeEP.getModel()).getLayoutConstraint());
-
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) nodeEP).getNotationView()),
+		Bounds bounds = ((Bounds) ((Node) targetEditPart.getModel()).getLayoutConstraint());
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
 				new Point(bounds.getX(), sourcePoint.y));
 		CompoundCommand compoundCommand = new CompoundCommand();
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
 		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
 		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-		compoundCommand.add(cmd);
+		compoundCommand.add(originalCommand);
 		compoundCommand.add(new GMFtoGEFCommandWrapper(setBoundsCommand));
 		setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
 		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-
 		return compoundCommand;
 	}
 
@@ -616,10 +633,33 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 */
+	protected Command getReconnectTargetCommand(final ReconnectRequest request) {
+		Command command = null;
+		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
 
-	protected Command getReconnectTargetCommand(ReconnectRequest request) {
-		return getBasicGraphicalNodeEditPolicy().getCommand(request);
+		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
+		// in case of reconnect target for message create it is need to move up the old target and move down the new target
+		if (nodeEP instanceof CLifeLineEditPart && request.getConnectionEditPart() instanceof MessageCreateEditPart) {
+			command = new CompoundCommand();
+			if (LifelineMessageCreateHelper.getIncomingMessageCreate(nodeEP).isEmpty()) {
+				// if first message, need to move it down
+				((CompoundCommand) command).add(getSetLifelinePositionCommand(reconnectTargetCommand, nodeEP, request.getLocation()));
+			} else {
+				((CompoundCommand) command).add(reconnectTargetCommand);
+			}
+			// move up old target
+			((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
+		} else {
+			command = reconnectTargetCommand;
+		}
+		return command;
 	}
+
 
 	/**
 	 * This method must look for event that are upper than the given position
