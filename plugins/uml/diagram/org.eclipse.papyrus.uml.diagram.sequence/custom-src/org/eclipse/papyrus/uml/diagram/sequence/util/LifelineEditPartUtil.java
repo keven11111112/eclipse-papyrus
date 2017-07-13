@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010,2017 CEA LIST, ALL4TEC and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *    Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
@@ -18,17 +18,35 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class LifelineEditPartUtil {
+
+	/**
+	 * Constructor.
+	 */
+	private LifelineEditPartUtil() {
+	}
 
 	/**
 	 * This operation returns the ExecutionSpecification EditParts contained in the Lifeline
@@ -83,9 +101,29 @@ public class LifelineEditPartUtil {
 	}
 
 	/**
-	 * Constructor.
-	 *
+	 * @param editPart
+	 *            the remove {@link MessageCreateEditPart}
+	 * @return the command when the last create message is remove to a lifeline to move it up.
+	 * @since 3.0
+	 * 
 	 */
-	private LifelineEditPartUtil() {
+	public static Command getRestoreLifelinePositionOnMessageCreateRemovedCommand(final ConnectionEditPart editPart) {
+		Command commands = null;
+		if (editPart instanceof MessageCreateEditPart) {
+			MessageCreateEditPart part = (MessageCreateEditPart) editPart;
+			if (part.getTarget() instanceof LifelineEditPart && 1 == LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size()) {
+				LifelineEditPart target = (LifelineEditPart) part.getTarget();
+				if (target.getModel() instanceof Shape) {
+					Shape view = (ShapeImpl) target.getModel();
+					if (view.getLayoutConstraint() instanceof Bounds) {
+						Bounds bounds = (Bounds) view.getLayoutConstraint();
+						// get the set bounds command
+						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+						commands = new ICommandProxy(boundsCommand);
+					}
+				}
+			}
+		}
+		return commands;
 	}
 }

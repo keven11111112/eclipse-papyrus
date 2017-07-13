@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2017 CEA LIST, ALL4TEC and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
@@ -18,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -28,9 +24,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
@@ -38,20 +31,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.service.types.command.MessageAsyncReorientCommand;
-import org.eclipse.papyrus.uml.service.types.command.SetMessageSort;
 import org.eclipse.papyrus.uml.service.types.command.MessageCreateReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageDeleteReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageFoundReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageLostReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageReplyReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageSyncReorientCommand;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.MessageUtils;
 import org.eclipse.papyrus.uml.tools.utils.ExecutionSpecificationUtil;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
@@ -94,8 +82,6 @@ public class MessageEditHelper extends ElementEditHelper {
 			// that the create relationship gesture is enabled.
 			return IdentityCommand.INSTANCE;
 		}
-		IElementType elementType = request.getElementType();
-		EObject owner= request.getContainer();
 		return super.getCreateRelationshipCommand(request);
 	}
 
@@ -105,7 +91,6 @@ public class MessageEditHelper extends ElementEditHelper {
 	 * @return
 	 */
 	private boolean canCreate(EObject source, EObject target) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -115,6 +100,7 @@ public class MessageEditHelper extends ElementEditHelper {
 		boolean isReadOnly = (eObject.eResource() != null) && (editingDomain.isReadOnly(eObject.eResource()));
 		return isReadOnly;
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
 	 *
@@ -204,8 +190,7 @@ public class MessageEditHelper extends ElementEditHelper {
 			reorientCommand = new MessageReplyReorientCommand(req);
 
 		} else if (msgToReorient.getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL) {
-			//reorientCommand = new MessageCreateReorientCommand(req);
-			reorientCommand = UnexecutableCommand.INSTANCE;
+			reorientCommand = new MessageCreateReorientCommand(req);
 
 		} else if (msgToReorient.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL) {
 			// Forbid the target re-orient command of delete Message.

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -80,6 +80,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	/**
 	 * @return the size of the header height
 	 *         if the layout is null return -1
+	 * @since 3.0
 	 */
 	public int getStickerHeight() {
 		if (getPrimaryShape().getLifeLineLayoutManager() != null) {
