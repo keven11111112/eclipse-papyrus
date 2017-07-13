@@ -64,11 +64,13 @@ public class MultiplicityEditorPreferencePage extends FieldEditorPreferencePage 
 		final Label descriptionLabel = new Label(multiplicityEditorGroup, SWT.NONE);
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 		StringBuilder description = new StringBuilder();
-		description.append("\""); //$NON-NLS-1$
+		description.append("- \""); //$NON-NLS-1$
 		description.append(MultiplicityConstants.SIMPLE_MODE_TEXT_VALUE);
+		description.append("\" ");
 		description.append(Messages.MultiplicityPreference_SimpleModeDescription);
-		description.append("\n\""); //$NON-NLS-1$
+		description.append("\n- \""); //$NON-NLS-1$
 		description.append(MultiplicityConstants.ADVANCED_MODE_TEXT_VALUE);
+		description.append("\" ");
 		description.append(Messages.MultiplicityPreference_AdvancedModeDescription);
 		descriptionLabel.setText(description.toString());
 
