@@ -8,9 +8,8 @@ location egit "http://download.eclipse.org/egit/updates-4.6.1" {
 	org.eclipse.egit.feature.group
 }
 
-//updateFrom("Eclipse",0)
-
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC4-201703010400/" {
+// manualUpdate as the simrel reference does not exist anymore
+location platform "http://download.eclipse.org/eclipse/updates/4.6/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group

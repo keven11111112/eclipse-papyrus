@@ -11,9 +11,9 @@ location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4
 	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
 }
 
-//manualUpdate
+//updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201608311750" {
 	org.eclipse.emf.compare.ide.ui.feature.group lazy
 }
 

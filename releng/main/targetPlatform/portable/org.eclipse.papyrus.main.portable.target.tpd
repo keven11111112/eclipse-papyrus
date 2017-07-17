@@ -44,9 +44,9 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.3RC4-201703010400/" {
+// manualUpdate as the simrel reference does not exist anymore
+location platform "http://download.eclipse.org/eclipse/updates/4.6/" {
 	org.eclipse.sdk.feature.group
 }
 
