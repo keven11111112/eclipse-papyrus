@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -49,22 +49,5 @@ public class CustomTimingDiagramEditPart extends TimingDiagramEditPart {
 		}
 		return true;
 	}
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart#createFigure()
-	 *
-	 * @return
-	 */
-	@Override
-	protected IFigure createFigure() {
-		IFigure fig= super.createFigure();
-		String message="This diagram is not available, it will be fixed for the next service release.";
-		org.eclipse.draw2d.Label label = new org.eclipse.draw2d.Label(message);
-		label.setBackgroundColor(ColorConstants.lightBlue);
-		label.setOpaque(true);
-		label.setBounds(new Rectangle(20,20,600,40));
-		fig.add(label);
-		return fig;
-		
-		
-	}
+
 }

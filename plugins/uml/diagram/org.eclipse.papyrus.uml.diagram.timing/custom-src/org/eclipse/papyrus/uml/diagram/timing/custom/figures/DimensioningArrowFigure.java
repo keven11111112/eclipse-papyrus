@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.figures;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
@@ -23,6 +24,17 @@ public class DimensioningArrowFigure extends PapyrusNodeFigure {
 		super();
 		setShadow(false);
 		setBorder(null);
+	}
+
+	/**
+	 * @see org.eclipse.draw2d.Figure#setBorder(org.eclipse.draw2d.Border)
+	 *
+	 * @param border
+	 */
+	@Override
+	public void setBorder(Border border) {
+		// there should not be a visible border on the element
+		super.setBorder(null);
 	}
 
 	@Override
