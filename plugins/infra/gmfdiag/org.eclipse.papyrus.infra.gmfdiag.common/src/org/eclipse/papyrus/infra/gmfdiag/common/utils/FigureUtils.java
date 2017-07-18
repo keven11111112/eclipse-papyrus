@@ -55,13 +55,16 @@ public final class FigureUtils {
 	}
 
 	public static <T extends IFigure> List<T> findChildFigureInstances(final IFigure parent, final Class<T> childFigureClass) {
-		final List<T> result = new ArrayList<T>();
+		final List<T> result = new ArrayList<>();
 		internalFindChildFigureInstances(parent, result, childFigureClass);
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	public static <T extends IFigure> void internalFindChildFigureInstances(final IFigure parent, final List<T> result, final Class<T> childFigureClass) {
+		if (parent == null) {
+			return;
+		}
 		final List<IFigure> children = parent.getChildren();
 		for (final IFigure child : children) {
 			if (childFigureClass.isAssignableFrom(child.getClass())) {

@@ -59,76 +59,76 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 			switch (visualID) {
 			case TimingDiagramEditPart.VISUAL_ID:
 				return new CustomTimingDiagramEditPart(view);
-//			case InteractionEditPartTN.VISUAL_ID:
-//				return new CustomInteractionEditPartTN(view);
-//			case InteractionCompartmentEditPartTN.VISUAL_ID:
-//				return new CustomInteractionCompartmentEditPartTN(view);
-//			case FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID:
-//				return new CustomFullLifelineStateDefinitionCompartmentEditPartCN(view);
-//			case FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID:
-//				return new CustomFullLifelineTimelineCompartmentEditPartCN(view);
-//			case StateDefinitionEditPart.VISUAL_ID:
-//				return new CustomStateDefinitionEditPart(view);
-//			case OccurrenceSpecificationLabelEditPart.VISUAL_ID:
-//				return new CustomOccurrenceSpecificationLabelEditPart(view);
-//			case FullStateInvariantEditPartCN.VISUAL_ID:
-//				return new CustomFullStateInvariantEditPartCN(view);
-//			case OccurrenceSpecificationEditPartCN.VISUAL_ID:
-//				return new CustomOccurrenceSpecificationEditPartCN(view);
-//			case MessageOccurrenceSpecificationEditPartCN.VISUAL_ID:
-//				return new CustomMessageOccurrenceSpecificationEditPartCN(view);
-//			case MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID:
-//				return new CustomMessageOccurrenceSpecificationLabelEditPart(view);
-//			case TimeConstraintEditPart.VISUAL_ID:
-//				return new CustomTimeConstraintEditPart(view);
-//			case TimeObservationEditPart.VISUAL_ID:
-//				return new CustomTimeObservationEditPart(view);
-//			case DurationObservationEditPartCN.VISUAL_ID:
-//				return new CustomDurationObservationEditPart(view);
-//			case DurationConstraintEditPartCN.VISUAL_ID:
-//				return new CustomDurationConstraintEditPart(view);
-//			case FullLifelineEditPartCN.VISUAL_ID:
-//				return new CustomFullLifelineEditPartCN(view);
-//			case CompactLifelineEditPartCN.VISUAL_ID:
-//				return new CustomCompactLifelineEditPartCN(view);
-//			case CompactLifelineCompartmentEditPartCN.VISUAL_ID:
-//				return new CustomCompactLifelineCompartmentEditPart(view);
-//			case FreeTimingRulerEditPartCN.VISUAL_ID:
-//				return new CustomFreeTimingRulerEditPart(view);
-//			case TickEditPart.VISUAL_ID:
-//				return new CustomTickEditPart(view);
-//			case DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID:
-//				return new CustomDestructionOccurrenceSpecificationEditPartCN(view);
-//			case CompactStateInvariantEditPartCN.VISUAL_ID:
-//				return new CustomCompactStateInvariantEditPartCN(view);
-//			case TimeRulerCompartmentEditPartCN.VISUAL_ID:
-//				return new CustomTimeRulerCompartmentEditPartCN(view);
-//			case CompactStateInvariantNameEditPart.VISUAL_ID:
-//				return new CustomCompactStateInvariantNameEditPart(view);
-//			case DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID:
-//				return new CustomDestructionOccurrenceSpecificationLabelEditPart(view);
-//			case StateDefinitionLabelEditPart.VISUAL_ID:
-//				return new CustomStateDefinitionLabelEditPart(view);
-//			case FullStateInvariantVerticalLineEditPart.VISUAL_ID:
-//				return new CustomFullStateInvariantVerticalLineEditPart(view);
-//			case MessageLostEditPart.VISUAL_ID:
-//				return new CustomMessageLostEditPart(view);
-//			case MessageFoundEditPart.VISUAL_ID:
-//				return new CustomMessageFoundEditPart(view);
-//			case GeneralOrderingEditPart.VISUAL_ID:
-//				return new CustomGeneralOrderingEditPart(view);
-//			case GateEditPart.VISUAL_ID:
-//				return new CustomGateEditPart(view);
-//			case FreeTimeRulerCompartmentEditPart.VISUAL_ID:
-//				return new CustomFreeTimeRulerCompartmentEditPart(view);
-//			case FullLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID:
-//				return new CustomFullLifelineTimeRulerCompartmentEditPartCN(view);
-//			case CompactLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID:
-//				return new CustomCompactLifelineTimeRulerCompartmentEditPartCN(view);
-			default:
-				return new NoVisibleEditPart(view);
-				// when adding cases to this switch, also add the corresponding IDs in the extension
-				// org.eclipse.gmf.runtime.diagram.ui.editpartProviders
+			case InteractionEditPartTN.VISUAL_ID:
+				return new CustomInteractionEditPartTN(view);
+			case InteractionCompartmentEditPartTN.VISUAL_ID:
+				return new CustomInteractionCompartmentEditPartTN(view);
+			case FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID:
+				return new CustomFullLifelineStateDefinitionCompartmentEditPartCN(view);
+			case FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID:
+				return new CustomFullLifelineTimelineCompartmentEditPartCN(view);
+			case StateDefinitionEditPart.VISUAL_ID:
+				return new CustomStateDefinitionEditPart(view);
+			case OccurrenceSpecificationLabelEditPart.VISUAL_ID:
+				return new CustomOccurrenceSpecificationLabelEditPart(view);
+			case FullStateInvariantEditPartCN.VISUAL_ID:
+				return new CustomFullStateInvariantEditPartCN(view);
+			case OccurrenceSpecificationEditPartCN.VISUAL_ID:
+				return new CustomOccurrenceSpecificationEditPartCN(view);
+			case MessageOccurrenceSpecificationEditPartCN.VISUAL_ID:
+				return new CustomMessageOccurrenceSpecificationEditPartCN(view);
+			case MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID:
+				return new CustomMessageOccurrenceSpecificationLabelEditPart(view);
+			case TimeConstraintEditPart.VISUAL_ID:
+				return new CustomTimeConstraintEditPart(view);
+			case TimeObservationEditPart.VISUAL_ID:
+				return new CustomTimeObservationEditPart(view);
+			case DurationObservationEditPartCN.VISUAL_ID:
+				return new CustomDurationObservationEditPart(view);
+			case DurationConstraintEditPartCN.VISUAL_ID:
+				return new CustomDurationConstraintEditPart(view);
+			case FullLifelineEditPartCN.VISUAL_ID:
+				return new CustomFullLifelineEditPartCN(view);
+			case CompactLifelineEditPartCN.VISUAL_ID:
+				return new CustomCompactLifelineEditPartCN(view);
+			case CompactLifelineCompartmentEditPartCN.VISUAL_ID:
+				return new CustomCompactLifelineCompartmentEditPart(view);
+			case FreeTimingRulerEditPartCN.VISUAL_ID:
+				return new CustomFreeTimingRulerEditPart(view);
+			case TickEditPart.VISUAL_ID:
+				return new CustomTickEditPart(view);
+			case DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID:
+				return new CustomDestructionOccurrenceSpecificationEditPartCN(view);
+			case CompactStateInvariantEditPartCN.VISUAL_ID:
+				return new CustomCompactStateInvariantEditPartCN(view);
+			case TimeRulerCompartmentEditPartCN.VISUAL_ID:
+				return new CustomTimeRulerCompartmentEditPartCN(view);
+			case CompactStateInvariantNameEditPart.VISUAL_ID:
+				return new CustomCompactStateInvariantNameEditPart(view);
+			case DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID:
+				return new CustomDestructionOccurrenceSpecificationLabelEditPart(view);
+			case StateDefinitionLabelEditPart.VISUAL_ID:
+				return new CustomStateDefinitionLabelEditPart(view);
+			case FullStateInvariantVerticalLineEditPart.VISUAL_ID:
+				return new CustomFullStateInvariantVerticalLineEditPart(view);
+			case MessageLostEditPart.VISUAL_ID:
+				return new CustomMessageLostEditPart(view);
+			case MessageFoundEditPart.VISUAL_ID:
+				return new CustomMessageFoundEditPart(view);
+			case GeneralOrderingEditPart.VISUAL_ID:
+				return new CustomGeneralOrderingEditPart(view);
+			case GateEditPart.VISUAL_ID:
+				return new CustomGateEditPart(view);
+			case FreeTimeRulerCompartmentEditPart.VISUAL_ID:
+				return new CustomFreeTimeRulerCompartmentEditPart(view);
+			case FullLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID:
+				return new CustomFullLifelineTimeRulerCompartmentEditPartCN(view);
+			case CompactLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID:
+				return new CustomCompactLifelineTimeRulerCompartmentEditPartCN(view);
+			// default:
+			// return new NoVisibleEditPart(view);
+			// when adding cases to this switch, also add the corresponding IDs in the extension
+			// org.eclipse.gmf.runtime.diagram.ui.editpartProviders
 			}
 		}
 		return super.createEditPart(context, model);

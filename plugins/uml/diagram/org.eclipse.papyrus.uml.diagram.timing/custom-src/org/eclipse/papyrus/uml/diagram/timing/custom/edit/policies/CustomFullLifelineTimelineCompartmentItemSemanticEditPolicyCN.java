@@ -13,6 +13,7 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomDurationConstraintCreateCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomDurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomGeneralOrderingCreateCommand;
@@ -71,5 +72,21 @@ public class CustomFullLifelineTimelineCompartmentItemSemanticEditPolicyCN exten
 			return getGEFWrapper(new CustomGeneralOrderingCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.timing.edit.policies.UMLBaseItemSemanticEditPolicy#getSemanticCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected Command getSemanticCommand(IEditCommandRequest request) {
+		// This override is used to suppplement the missing elementtypes in order to call the right creation command
+		if (request instanceof CreateElementRequest) {
+			return getCreateCommand((CreateElementRequest) request);
+		}
+
+		return super.getSemanticCommand(request);
 	}
 }

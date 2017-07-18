@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.timing.edit.parts;
 
@@ -167,7 +167,7 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof InteractionNameEditPart) {
-			((InteractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			((InteractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
 
@@ -267,10 +267,10 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -368,4 +368,5 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
+
 }
