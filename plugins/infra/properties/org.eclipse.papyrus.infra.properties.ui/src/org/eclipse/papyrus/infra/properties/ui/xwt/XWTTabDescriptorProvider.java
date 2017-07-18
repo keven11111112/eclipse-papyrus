@@ -195,8 +195,10 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
 			cachedResult = descriptors.toArray(new ITabDescriptor[descriptors.size()]);
 
-			// Workaround for memory leak
-			TabbedPropertyRegistryFactory.getInstance().disposeRegistry((ITabbedPropertySheetPageContributor) part);
+			if (contributor != null) {
+				// Workaround for memory leak
+				TabbedPropertyRegistryFactory.getInstance().disposeRegistry(contributor);				
+			}
 		}
 
 		return cachedResult;
