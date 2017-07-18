@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2016, 2017 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Alain Le Guennec (Esterel Technologies) - bug 519809
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.types.core.utils;
 
 import java.util.ArrayList;
@@ -12,6 +24,7 @@ import java.util.Stack;
 import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.registries.AdviceConfigurationTypeRegistry;
 
@@ -74,7 +87,9 @@ public class TypesConfigurationsCycleUtil {
 
 			String type = descriptor.getTypeId();
 
-			String currentAdviceConfigurationClassName = descriptor.getEditHelperAdvice().getClass().getName();
+			String currentAdviceConfigurationClassName = (adviceConfiguration instanceof ExternallyRegisteredAdvice)
+				? ((ExternallyRegisteredAdvice) adviceConfiguration).getEditHelperAdviceClassName()
+				: descriptor.getEditHelperAdvice().getClass().getName();
 			// Add current to the vertices
 			if (!adviceDependencies.containsKey(type)) {
 				adviceDependencies.put(type, new OrientedGraph<String>());
