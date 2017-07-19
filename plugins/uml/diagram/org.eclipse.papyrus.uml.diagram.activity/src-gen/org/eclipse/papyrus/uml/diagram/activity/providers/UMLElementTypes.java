@@ -954,6 +954,32 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType OutputPin_CreateLinkObjectActionResultShape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.OutputPin_CreateLinkObjectActionResultShape"); //$NON-NLS-1$
+	
+	/**
+	 * @generated
+	 */
+	public static final IElementType UnmarshallAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.UnmarshallAction_Shape"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_UnmarshallActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_UnmarshallActionObjectShape"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_UnmarshallActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_UnmarshallActionObjectShape"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_UnmarshallActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_UnmarshallActionObjectShape"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_UnmarshallActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_UnmarshallActionResultShape"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -1401,6 +1427,21 @@ public class UMLElementTypes {
 
 			elements.put(OutputPin_CreateLinkObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
+			elements.put(UnmarshallAction_Shape, UMLPackage.eINSTANCE.getUnmarshallAction());
+
+
+			elements.put(InputPin_UnmarshallActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(ValuePin_UnmarshallActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+
+			elements.put(ActionInputPin_UnmarshallActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+
+			elements.put(OutputPin_UnmarshallActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 			elements.put(Action_LocalPreconditionEdge, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(Action_LocalPostconditionEdge, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -1613,6 +1654,11 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ValuePin_CreateLinkObjectActionInputShape);
 			KNOWN_ELEMENT_TYPES.add(ActionInputPin_CreateLinkObjectActionInputShape);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_CreateLinkObjectActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(UnmarshallAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_UnmarshallActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_UnmarshallActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_UnmarshallActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_UnmarshallActionResultShape);
 			KNOWN_ELEMENT_TYPES.add(Action_LocalPreconditionEdge);
 			KNOWN_ELEMENT_TYPES.add(Action_LocalPostconditionEdge);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_Edge);
@@ -2004,6 +2050,16 @@ public class UMLElementTypes {
 				return ActionInputPin_CreateLinkObjectActionInputShape;
 			case OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID:
 				return OutputPin_CreateLinkObjectActionResultShape;
+			case UnmarshallActionEditPart.VISUAL_ID:
+				return UnmarshallAction_Shape;
+			case InputPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				return InputPin_UnmarshallActionObjectShape;
+			case ValuePinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				return ValuePin_UnmarshallActionObjectShape;
+			case ActionPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				return ActionInputPin_UnmarshallActionObjectShape;
+			case OutputPinInUnmarshallActionAsResultEditPart.VISUAL_ID:
+				return OutputPin_UnmarshallActionResultShape;
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return Action_LocalPreconditionEdge;
 			case ActionLocalPostconditionEditPart.VISUAL_ID:

@@ -305,6 +305,11 @@
 						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.OutputPin_CreateLinkObjectActionResultShape"/>
 				</elementDescriptors>
+				<elementDescriptors>
+					<elementType
+						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.OutputPin_UnmarshallActionResultShape"/>
+				</elementDescriptors>
 			</ownedConfigurations>
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.pins.inputpin" 
@@ -445,6 +450,11 @@
 					<elementType
 						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InputPin_CreateLinkObjectActionInputShape"/>
+				</elementDescriptors>
+				<elementDescriptors>
+					<elementType
+						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InputPin_UnmarshallActionObjectShape"/>
 				</elementDescriptors>
 			</ownedConfigurations>
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
@@ -592,6 +602,11 @@
 						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ActionInputPin_ReadStructuralFeatureActionObjectShape"/>
 				</elementDescriptors>
+				<elementDescriptors>
+					<elementType
+						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ActionInputPin_UnmarshallActionObjectShape"/>
+				</elementDescriptors>
 			</ownedConfigurations>
 			<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 				id="activity.nodes.pins.valuepin" 
@@ -737,6 +752,11 @@
 					<elementType
 						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ValuePin_ReadStructuralFeatureActionObjectShape"/>
+				</elementDescriptors>
+				<elementDescriptors>
+					<elementType
+						xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+						href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ValuePin_UnmarshallActionObjectShape"/>
 				</elementDescriptors>
 			</ownedConfigurations>
 		</ownedConfigurations>
@@ -1128,6 +1148,17 @@
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.AcceptEventAction_Shape"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="activity.nodes.unmarshallaction" 
+			label="Unmarshall Action"
+			description="Create an Unmarshall Action node">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/UnmarshallAction.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.UnmarshallAction_Shape"/>
 			</elementDescriptors>
 		</ownedConfigurations>
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"

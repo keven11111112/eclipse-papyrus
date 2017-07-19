@@ -63,6 +63,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StartClassifierBehavi
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StartObjectBehavoiurActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TestIdentityActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.UnmarshallActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractGenericShapeTest;
 
@@ -126,6 +127,7 @@ public class RoundedCompartmentTest extends AbstractGenericShapeTest {
 		classes.add(StructuredActivityNodeEditPart.class);
 		classes.add(TestIdentityActionEditPart.class);
 		classes.add(ValueSpecificationActionEditPart.class);
+		classes.add(UnmarshallActionEditPart.class);
 
 		return classes;
 	}
