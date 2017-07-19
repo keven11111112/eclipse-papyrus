@@ -42,18 +42,18 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
 /**
  * This class is used to manage node element in the compartment by using grill system.
- *this class has been customized to prevent the strange feedback of lifeline during the move
-
+ * this class has been customized to prevent the strange feedback of lifeline during the move
+ * 
  */
 public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy implements IGrillingEditpolicy {
 
@@ -189,6 +189,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 	}
 
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.GraphicalEditPolicy#removeFeedback(org.eclipse.draw2d.IFigure)
 	 *
@@ -258,6 +259,9 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	 */
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
+
+		request.setLocation(displayEvent.getRealEventLocation(request.getLocation()));
+
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
 		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grid != null) {
@@ -282,11 +286,12 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	 */
 	@Override
 	protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
-		if( child instanceof LifelineEditPart) {
+		if (child instanceof LifelineEditPart) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createAddCommand(request, child, constraint);
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
 	 *
@@ -294,11 +299,11 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
-		if(request instanceof ChangeBoundsRequest){
-			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+		if (request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
 
-			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
-				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			if (changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x, 0));
 			}
 		}
 		super.showTargetFeedback(request);
