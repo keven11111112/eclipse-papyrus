@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UnmarshallAction;
 import org.eclipse.uml2.uml.ValuePin;
 
 /**
@@ -705,6 +706,20 @@ public class UMLVisualIDRegistry {
 					return OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
+			case UnmarshallActionEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())) {
+					return InputPinInUnmarshallActionAsObjectEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())) {
+					return ValuePinInUnmarshallActionAsObjectEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())) {
+					return ActionPinInUnmarshallActionAsObjectEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
+					return OutputPinInUnmarshallActionAsResultEditPart.VISUAL_ID;
+				}
+				break;
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				if (UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())) {
 					return ParameterEditPart.VISUAL_ID;
@@ -896,6 +911,9 @@ public class UMLVisualIDRegistry {
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
+				}
 				break;
 			case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 				if (UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())) {
@@ -1033,6 +1051,9 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
 				}
 				break;
 			case ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
@@ -1202,6 +1223,9 @@ public class UMLVisualIDRegistry {
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
+				}
 				break;
 			case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 				if (UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())) {
@@ -1369,6 +1393,9 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
 				}
 				break;
 			case SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
@@ -1538,6 +1565,9 @@ public class UMLVisualIDRegistry {
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
+				}
 				break;
 			case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 				if (UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())) {
@@ -1705,6 +1735,9 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
 				}
 				break;
 			case ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID:
@@ -1876,6 +1909,9 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
 				}
 				break;
 			case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
@@ -2236,6 +2272,9 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
 						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
+				}
+				if (UMLPackage.eINSTANCE.getUnmarshallAction().isSuperTypeOf(domainElement.eClass())) {
+					return UnmarshallActionEditPart.VISUAL_ID;
 				}
 				break;
 			}
@@ -4387,6 +4426,64 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				break;
+			case UnmarshallActionEditPart.VISUAL_ID:
+				if (UnmarshallActionNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (UnmarshallActionFloatingNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (InputPinInUnmarshallActionAsObjectEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ValuePinInUnmarshallActionAsObjectEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ActionPinInUnmarshallActionAsObjectEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (OutputPinInUnmarshallActionAsResultEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case InputPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				if (InputPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (InputPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ValuePinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				if (ValuePinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ValuePinInUnmarshallActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ValuePinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ActionPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				if (ActionPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ActionPinInUnmarshallActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (ActionPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case OutputPinInUnmarshallActionAsResultEditPart.VISUAL_ID:
+				if (OutputPinInUnmarshallActionAsResultLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (OutputPinInUnmarshallActionAsResultAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				if (ParameterEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
@@ -4568,6 +4665,9 @@ public class UMLVisualIDRegistry {
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
 				break;
 			case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 				if (InitialNodeEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -4694,6 +4794,9 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -4854,6 +4957,9 @@ public class UMLVisualIDRegistry {
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
 				break;
 			case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 				if (InitialNodeEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -5010,6 +5116,9 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -5170,6 +5279,9 @@ public class UMLVisualIDRegistry {
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
 				break;
 			case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 				if (InitialNodeEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -5326,6 +5438,9 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -5487,6 +5602,9 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -5827,6 +5945,9 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (CreateLinkObjectActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (UnmarshallActionEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -7015,6 +7136,10 @@ public class UMLVisualIDRegistry {
 			case OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID:
 			case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 			case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
+			case InputPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+			case ValuePinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+			case ActionPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+			case OutputPinInUnmarshallActionAsResultEditPart.VISUAL_ID:
 				return true;
 			}
 		}

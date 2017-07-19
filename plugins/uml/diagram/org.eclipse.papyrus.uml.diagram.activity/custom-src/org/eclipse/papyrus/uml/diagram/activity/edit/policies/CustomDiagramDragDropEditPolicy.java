@@ -67,6 +67,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.UnmarshallActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -125,6 +126,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualID.add(ControlFlowEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ValueSpecificationActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ReadSelfActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(UnmarshallActionEditPart.VISUAL_ID);
 		return droppableElementsVisualID;
 	}
 
@@ -164,6 +166,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case CallOperationActionEditPart.VISUAL_ID:
 			case ValueSpecificationActionEditPart.VISUAL_ID:
 			case ReadSelfActionEditPart.VISUAL_ID:
+			case UnmarshallActionEditPart.VISUAL_ID:
 				return dropAction(dropRequest, semanticElement, nodeVISUALID);
 			case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:

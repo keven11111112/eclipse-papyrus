@@ -242,7 +242,8 @@ ActivityDiagram ReadLinkAction,
 ActivityDiagram ReclassifyObjectAction,
 ActivityDiagram StartClassifierBehaviorAction,
 ActivityDiagram StartObjectBehaviorAction,
-ActivityDiagram TestIdentityAction {
+ActivityDiagram TestIdentityAction,
+ActivityDiagram UnmarshallAction {
 	radiusWidth:15;
 	radiusHeight:15;
 }

@@ -1827,6 +1827,57 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case OutputPinInCreateLinkObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return new OutputPinInCreateLinkObjectActionAppliedStereotypeLabelEditPart(view);
 
+			case UnmarshallActionEditPart.VISUAL_ID:
+				return new UnmarshallActionEditPart(view);
+
+			case UnmarshallActionNameEditPart.VISUAL_ID:
+				return new UnmarshallActionNameEditPart(view);
+
+			case UnmarshallActionFloatingNameEditPart.VISUAL_ID:
+				return new UnmarshallActionFloatingNameEditPart(view);
+
+			case InputPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				return new InputPinInUnmarshallActionAsObjectEditPart(view);
+
+			case InputPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID:
+				return new InputPinInUnmarshallActionAsObjectLabelEditPart(view);
+
+			case InputPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new InputPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart(view);
+
+			case ValuePinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				return new ValuePinInUnmarshallActionAsObjectEditPart(view);
+
+			case ValuePinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID:
+				return new ValuePinInUnmarshallActionAsObjectLabelEditPart(view);
+
+			case ValuePinInUnmarshallActionAsObjectValueEditPart.VISUAL_ID:
+				return new ValuePinInUnmarshallActionAsObjectValueEditPart(view);
+
+			case ValuePinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new ValuePinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart(view);
+
+			case ActionPinInUnmarshallActionAsObjectEditPart.VISUAL_ID:
+				return new ActionPinInUnmarshallActionAsObjectEditPart(view);
+
+			case ActionPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID:
+				return new ActionPinInUnmarshallActionAsObjectLabelEditPart(view);
+
+			case ActionPinInUnmarshallActionAsObjectValueEditPart.VISUAL_ID:
+				return new ActionPinInUnmarshallActionAsObjectValueEditPart(view);
+
+			case ActionPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new ActionPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart(view);
+
+			case OutputPinInUnmarshallActionAsResultEditPart.VISUAL_ID:
+				return new OutputPinInUnmarshallActionAsResultEditPart(view);
+
+			case OutputPinInUnmarshallActionAsResultLabelEditPart.VISUAL_ID:
+				return new OutputPinInUnmarshallActionAsResultLabelEditPart(view);
+
+			case OutputPinInUnmarshallActionAsResultAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new OutputPinInUnmarshallActionAsResultAppliedStereotypeLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

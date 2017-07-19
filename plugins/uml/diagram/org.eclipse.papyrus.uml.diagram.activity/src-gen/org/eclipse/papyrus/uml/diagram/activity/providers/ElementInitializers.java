@@ -68,6 +68,7 @@ import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UnmarshallAction;
 import org.eclipse.uml2.uml.ValuePin;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
@@ -2637,7 +2638,83 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_OutputPin_CreateLinkObjectActionResultShape(instance);
 			if (value_0 != null) {
-				instance.setName((String) value_0);
+				instance.setName(
+						(String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_UnmarshallAction_Shape(UnmarshallAction instance) {
+		try {
+			Object value_0 = name_UnmarshallAction_Shape(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InputPin_UnmarshallActionObjectShape(InputPin instance) {
+		try {
+			Object value_0 = name_InputPin_UnmarshallActionObjectShape(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_ValuePin_UnmarshallActionObjectShape(ValuePin instance) {
+		try {
+			Object value_0 = name_ValuePin_UnmarshallActionObjectShape(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_ActionInputPin_UnmarshallActionObjectShape(ActionInputPin instance) {
+		try {
+			Object value_0 = name_ActionInputPin_UnmarshallActionObjectShape(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_OutputPin_UnmarshallActionResultShape(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_UnmarshallActionResultShape(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -3973,6 +4050,41 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_OutputPin_CreateLinkObjectActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_UnmarshallAction_Shape(UnmarshallAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_UnmarshallActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_UnmarshallActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_UnmarshallActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_UnmarshallActionResultShape(OutputPin it) {
 		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
 	}
 
