@@ -96,10 +96,14 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		final TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		final Command defaultCommand = super.getConnectionAndRelationshipCompleteCommand(request);
+		final ICommand afterConnectionCompleteCommand = getAfterConnectionCompleteCommand(request, editingDomain);
+
 		if (defaultCommand != null && defaultCommand.canExecute()) {
 			final CompoundCommand cc = new CompoundCommand("ConnectionAndRelationshipCompleteCommand");//$NON-NLS-1$
 			cc.add(defaultCommand);
-			cc.add(new ICommandProxy(getAfterConnectionCompleteCommand(request, editingDomain)));
+			if (afterConnectionCompleteCommand != null && afterConnectionCompleteCommand.canExecute()) {
+				cc.add(new ICommandProxy(getAfterConnectionCompleteCommand(request, editingDomain)));
+			}
 			return cc;
 		}
 		return defaultCommand;
