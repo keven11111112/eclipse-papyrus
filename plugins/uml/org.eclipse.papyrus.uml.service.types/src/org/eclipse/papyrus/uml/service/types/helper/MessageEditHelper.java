@@ -9,6 +9,7 @@
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -24,6 +26,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
@@ -37,7 +42,10 @@ import org.eclipse.papyrus.uml.service.types.command.MessageFoundReorientCommand
 import org.eclipse.papyrus.uml.service.types.command.MessageLostReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageReplyReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageSyncReorientCommand;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.MessageUtils;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.tools.utils.ExecutionSpecificationUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -73,7 +81,7 @@ public class MessageEditHelper extends ElementEditHelper {
 		EObject target = request.getTarget();
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
-		if (!noSourceAndTarget && !canCreate(source, target)) {
+		if (!noSourceAndTarget && !canCreate(source, target, request)) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -86,12 +94,65 @@ public class MessageEditHelper extends ElementEditHelper {
 	}
 
 	/**
+	 * Test if a message can be created.
+	 * 
 	 * @param source
+	 *            the source of the message
 	 * @param target
-	 * @return
+	 *            the target of the message
+	 * @return return true if message can be created
 	 */
-	private boolean canCreate(EObject source, EObject target) {
-		return true;
+	private boolean canCreate(final EObject source, final EObject target, final CreateElementRequest request) {
+		boolean create = true;
+		IElementType elementType = request.getElementType();
+
+		if (null != elementType) {
+			// Create Message case
+			if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_CREATE_MESSAGE)
+					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_CREATE_MESSAGE)
+					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_CREATE_MESSAGE)) {
+				create = canCreateMessageCreate(source, target, request);
+			}
+		}
+
+		return create;
+	}
+
+	/**
+	 * Test if a Message Create can be created.
+	 * 
+	 * @param source
+	 *            the source of the message
+	 * @param target
+	 *            the target of the message
+	 * @param request
+	 *            the request
+	 * @return return true if message can be created
+	 */
+	private boolean canCreateMessageCreate(final EObject source, final EObject target, final AbstractEditCommandRequest request) {
+		boolean create = true;
+
+		// source and target can't be the same
+		create = source != target;
+
+		// check if target is not already created with another create message
+		if (create && target instanceof Lifeline) {
+			create = !((Lifeline) target).getCoveredBys().stream()
+					.filter(MessageEnd.class::isInstance)
+					.map(MessageEnd.class::cast)
+					.filter(m -> null != m.getMessage()) // filter on receive event
+					.filter(m -> null != m.getMessage().getReceiveEvent()) // filter on receive event
+					.filter(m -> m.getMessage().getReceiveEvent().equals(m)) // filter on receive event
+					.map(m -> m.getMessage())
+					.anyMatch(m -> m.getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL);
+		}
+
+		// Check if the create message is the first message into the target lifeline.
+		Object isFirst = request.getParameter(RequestParameterConstants.IS_FIRST_EVENT);
+		if (create && isFirst instanceof Boolean) {
+			create = (boolean) isFirst;
+		}
+		return create;
 	}
 
 
@@ -190,7 +251,33 @@ public class MessageEditHelper extends ElementEditHelper {
 			reorientCommand = new MessageReplyReorientCommand(req);
 
 		} else if (msgToReorient.getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL) {
-			reorientCommand = new MessageCreateReorientCommand(req);
+			if (req.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
+				EObject target = req.getNewRelationshipEnd();
+
+				// Get the source
+				EObject source = null;
+				EObject relationship = req.getRelationship();
+				if (relationship instanceof Message) {
+					Message message = (Message) relationship;
+					MessageEnd sendEvent = message.getSendEvent();
+					if (sendEvent instanceof InteractionFragment) {
+						InteractionFragment fragment = (InteractionFragment) sendEvent;
+						EList<Lifeline> covereds = fragment.getCovereds();
+						if (!covereds.isEmpty()) {
+							source = covereds.get(0);
+						}
+					}
+				}
+				// test if we can create it
+				if (canCreateMessageCreate(source, target, req)) {
+					reorientCommand = new MessageCreateReorientCommand(req);
+				} else {
+					reorientCommand = UnexecutableCommand.INSTANCE;
+				}
+			} else {
+				reorientCommand = new MessageCreateReorientCommand(req);
+			}
+
 
 		} else if (msgToReorient.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL) {
 			// Forbid the target re-orient command of delete Message.

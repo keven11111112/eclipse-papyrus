@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -22,7 +23,6 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -44,9 +44,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
@@ -69,8 +67,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -86,10 +82,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	private DisplayEvent displayEvent;
 	private boolean precisionMode;
 
-	private CLifeLineEditPart lifeline;
-
-
-
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionCreateCommand(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *
@@ -99,13 +91,11 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
 		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
-		lifeline = (CLifeLineEditPart) getHost();
 		MessageEnd end = getPreviousEventFromPosition(request.getLocation());
 		if (end != null) {
 			Map<String, Object> extendedData = request.getExtendedData();
 			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.PREVIOUS_EVENT, end);
 			request.setExtendedData(extendedData);
-
 		}
 
 		MessageOccurrenceSpecification mos = displayEvent.getMessageEvent(getHostFigure(), ((CreateRequest) request).getLocation());
@@ -156,7 +146,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected ConnectionAnchor getTargetConnectionAnchor(CreateConnectionRequest request) {
-
 		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(request);
 		ConnectionAnchor newTargetConnectionAnchor = targetConnectionAnchor;
 		if (null != targetConnectionAnchor) {
@@ -177,7 +166,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			}
 		}
 
-
 		return newTargetConnectionAnchor;
 	}
 
@@ -190,14 +178,11 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected ConnectionAnchor getSourceConnectionAnchor(CreateConnectionRequest request) {
-
 		request.setLocation(displayEvent.getRealEventLocation(request.getLocation()));
 		ConnectionAnchor sourceConnectionAnchor = super.getSourceConnectionAnchor(request);
 		ConnectionAnchor newSourceConnectionAnchor = sourceConnectionAnchor;
 
-
 		return newSourceConnectionAnchor;
-
 	}
 
 	/**
@@ -262,7 +247,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		if (targetConnectionAnchor.getOwner() instanceof NodeFigure) {
 			newTargetConnectionAnchor = new PapyrusSlidableSnapToGridAnchor((NodeFigure) targetConnectionAnchor.getOwner(), pt) {
 
-
 				/**
 				 * Force the Horizontal position of the feedback
 				 * 
@@ -321,7 +305,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected ICommand getAfterConnectionCompleteCommand(CreateConnectionViewAndElementRequest request, TransactionalEditingDomain editingDomain) {
-
 		return null;
 	}
 
@@ -342,7 +325,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		}
 
 		Command cmd = super.getConnectionAndRelationshipCompleteCommand(request);
-
 
 		// Initialize the modifier Shift Key = Precision Mode
 		initModifier();
@@ -416,7 +398,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 				precisionMode = (event.keyCode == SWT.SHIFT);
 			}
 		});
-
 
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new Listener() {
 
@@ -589,7 +570,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @return true if all the validation are passed
 	 */
 	private boolean isAllowedMessageEnd(CreateConnectionViewAndElementRequest request) {
-
 		Boolean allowed = true;
 		if (!precisionMode) {
 			allowed &= isTargetLowerThanSource(request);
@@ -652,11 +632,22 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			} else {
 				((CompoundCommand) command).add(reconnectTargetCommand);
 			}
-			// move up old target
-			((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
+			// move up old target if the target is different of the source
+			if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
+				((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
+			} else {
+				command = UnexecutableCommand.INSTANCE;
+			}
 		} else {
 			command = reconnectTargetCommand;
 		}
+
+		// Set request extended data if it's the first event on the lifeline
+		if (request.getLocation() != null) {
+			List<MessageEnd> previous = LifelineEditPartUtil.getPreviousEventsFromPosition((Point) request.getLocation(), (LifelineEditPart) getHost());
+			request.getExtendedData().put(org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants.IS_FIRST_EVENT, previous.isEmpty());
+		}
+
 		return command;
 	}
 
@@ -665,39 +656,11 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * This method must look for event that are upper than the given position
 	 * 
 	 * @param point
+	 *            the position on the lifeline
 	 */
-	public MessageEnd getPreviousEventFromPosition(Point point) {
-		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-		MessageEnd previous = null;
-		LifelineEditPart lifelineEditPart = (LifelineEditPart) getHost();
-		Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
-		try {
-			GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-			if (grilling != null) {
-				for (DecorationNode row : grilling.rows) {
-					Point currentPoint = GridManagementEditPolicy.getLocation(row);
-					if (currentPoint.y < point.y) {
-						if (GridManagementEditPolicy.getRef(row) != null) {
-							for (EObject referedElement : GridManagementEditPolicy.getRef(row)) {
-								if (referedElement instanceof View && ((View) referedElement).getElement() instanceof Message) {
-									Message message = (Message) ((View) referedElement).getElement();
-									MessageEnd receiveEvent = message.getReceiveEvent();
-									if (lifeline.getCoveredBys().contains(receiveEvent)) {
-										previous = receiveEvent;
-									}
-									MessageEnd sendEvent = message.getSendEvent();
-									if (lifeline.getCoveredBys().contains(sendEvent)) {
-										previous = sendEvent;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		} catch (Exception e) {
-		}
-		return previous;
+	public MessageEnd getPreviousEventFromPosition(final Point point) {
+		List<MessageEnd> previousEventsFromPosition = LifelineEditPartUtil.getPreviousEventsFromPosition(point, (LifelineEditPart) getHost());
+		return previousEventsFromPosition.isEmpty() ? null : previousEventsFromPosition.get(0);
 	}
 
 
@@ -711,7 +674,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 *            the position has we want in the serialization
 	 */
 	protected void computeTargetPosition(CreateConnectionRequest request, PrecisionPoint wanted) {
-
 		ConnectionAnchor anchor = ((NodeEditPart) request.getTargetEditPart()).getTargetConnectionAnchor(request);
 		if (anchor instanceof AnchorHelper.InnerPointAnchor) {
 			PrecisionPoint resultedPoint = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor) anchor).getTerminal());
@@ -734,7 +696,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getFeedbackHelper(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *      This method is used in order to manage the snap to grid of LOST Message
 	 */
-
 	protected FeedbackHelper getFeedbackHelper(CreateConnectionRequest request) {
 		if (request.getTargetEditPart() instanceof NodeEditPart) {
 			ConnectionAnchor targetAnchor = ((NodeEditPart) request.getTargetEditPart()).getTargetConnectionAnchor(request);
