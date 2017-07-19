@@ -9,7 +9,8 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *    Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
@@ -19,16 +20,22 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
@@ -36,6 +43,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentE
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
+import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -125,5 +135,57 @@ public class LifelineEditPartUtil {
 			}
 		}
 		return commands;
+	}
+
+	/**
+	 * Get the list of previous {@link MessageEnd} on the {@link LifelineEditPart} according to the position.
+	 * 
+	 * @param position
+	 *            The reference position.
+	 * @param lifelineEditPart
+	 *            The lifeline edit part
+	 */
+	public static List<MessageEnd> getPreviousEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
+		List<MessageEnd> previous = new ArrayList<MessageEnd>();
+		DiagramEditPart diagramEditPart = getDiagramEditPart(lifelineEditPart);
+		Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
+		try {
+			GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+			if (grilling != null) {
+				for (DecorationNode row : grilling.rows) {
+					Point currentPoint = GridManagementEditPolicy.getLocation(row);
+					if (currentPoint.y < position.y) {
+						if (row.getElement() != null) {
+							EObject referedElement = row.getElement();
+							if (referedElement instanceof MessageEnd) {
+								if (lifeline.getCoveredBys().contains(referedElement)) {
+									previous.add((MessageEnd) referedElement);
+								}
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+		}
+		return previous;
+	}
+
+	/**
+	 * Walks up the editpart hierarchy to find and return the
+	 * <code>TopGraphicEditPart</code> instance.
+	 */
+	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
+		while (editPart instanceof IGraphicalEditPart) {
+			if (editPart instanceof DiagramEditPart) {
+				return (DiagramEditPart) editPart;
+			}
+
+			editPart = editPart.getParent();
+		}
+		if (editPart instanceof DiagramRootEditPart) {
+			return (DiagramEditPart) ((DiagramRootEditPart) editPart).getChildren().get(0);
+		}
+		return null;
 	}
 }

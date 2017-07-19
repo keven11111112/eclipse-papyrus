@@ -17,13 +17,16 @@ package org.eclipse.papyrus.uml.service.types.utils;
  * <pre>
  * IDs of request parameters.
  * </pre>
+ * 
  * @use org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants instead
  */
 public interface RequestParameterConstants extends org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants {
 
 	/**
 	 * Parameter used to override som UML Constraint (for sysml)
-	 * 
 	 */
 	public static final String UML_STRICT = "UML_STRICT"; //$NON-NLS-1$
+
+	/** Key for request parameters which is set to true when the current event is the first on the lifeline. */
+	public static final String IS_FIRST_EVENT = "IS_FIRST_EVENT"; //$NON-NLS-1$
 }

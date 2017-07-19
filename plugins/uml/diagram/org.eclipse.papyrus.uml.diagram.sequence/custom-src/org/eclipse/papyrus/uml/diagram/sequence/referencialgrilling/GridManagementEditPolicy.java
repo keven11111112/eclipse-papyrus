@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, ALL4TEC and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
  *   
  *****************************************************************************/
 
@@ -17,16 +18,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -34,11 +32,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
@@ -65,8 +60,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This edit policy is used to manage the referential grid of the sequence diagram
- *
+ * This edit policy is used to manage the referential grid of the sequence diagram.
  */
 public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IGrillingEditpolicy {
 	public static final String GRID_CONNECTION = "Grid Connection"; //$NON-NLS-1$
@@ -78,6 +72,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public static String ROW = "ROW_"; //$NON-NLS-1$
 
 	public int threshold = 5;
+
 	/**
 	 * @return the threshold
 	 */
@@ -86,13 +81,12 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	}
 
 	/**
-	 * @param threshold the threshold to set
+	 * @param threshold
+	 *            the threshold to set
 	 */
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
 	}
-
-
 
 	public int margin = 50;
 	public boolean respectMargin = true;
@@ -262,8 +256,8 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "____UPDATE COVERED_____");//$NON-NLS-1$
 
 		updateCoveredBy();
-		IComputeOwnerHelper computeOwner= new ComputeOwnerHelper();
-		computeOwner.updateOwnedByInteractionOperand(((IGraphicalEditPart) getHost()).getEditingDomain(), rows, columns, (Interaction)((IGraphicalEditPart) getHost()).resolveSemanticElement(), this);
+		IComputeOwnerHelper computeOwner = new ComputeOwnerHelper();
+		computeOwner.updateOwnedByInteractionOperand(((IGraphicalEditPart) getHost()).getEditingDomain(), rows, columns, (Interaction) ((IGraphicalEditPart) getHost()).resolveSemanticElement(), this);
 	}
 
 	protected void updateCoveredBy() {
@@ -274,7 +268,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			}
 
 		}
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "--> there is " +lifelineList.size()+" lifelines");//$NON-NLS-1$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "--> there is " + lifelineList.size() + " lifelines");//$NON-NLS-1$
 
 		// for each lifeline recreat the list of covered element
 		for (Lifeline lifeline : lifelineList) {
@@ -283,11 +277,11 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 				if (row.getElement() instanceof InteractionFragment && (!(row.getElement() instanceof InteractionOperand))) {
 					InteractionFragment interactionFragment = (InteractionFragment) (row.getElement());
 					if (lifeline.getCoveredBys().contains(interactionFragment)) {
-						if( !covered.contains(interactionFragment)) {
+						if (!covered.contains(interactionFragment)) {
 							covered.add(interactionFragment);
-							if( interactionFragment instanceof ExecutionOccurrenceSpecification) {
-								if( !covered.contains(((ExecutionOccurrenceSpecification)interactionFragment).getExecution())) {
-									covered.add(((ExecutionOccurrenceSpecification)interactionFragment).getExecution());
+							if (interactionFragment instanceof ExecutionOccurrenceSpecification) {
+								if (!covered.contains(((ExecutionOccurrenceSpecification) interactionFragment).getExecution())) {
+									covered.add(((ExecutionOccurrenceSpecification) interactionFragment).getExecution());
 								}
 							}
 						}
@@ -295,22 +289,22 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 				}
 			}
 
-			//update the list of covered by taking account InteractionFragment
+			// update the list of covered by taking account InteractionFragment
 			if (covered.size() == lifeline.getCoveredBys().size()) {
-				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "the list is equals"+covered.size()+", we reorder");//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "the list is equals" + covered.size() + ", we reorder");//$NON-NLS-1$
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			} else if (covered.size() < lifeline.getCoveredBys().size()) {
-				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "More event detected! +"+ (covered.size()- lifeline.getCoveredBys().size())+ "--> modify covered");//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "More event detected! +" + (covered.size() - lifeline.getCoveredBys().size()) + "--> modify covered");//$NON-NLS-1$
 				covered.addAll(lifeline.getCoveredBys());
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
 			} else if (covered.size() > lifeline.getCoveredBys().size()) {
-				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "problem! normaly event must be added by element types -"+(covered.size() - lifeline.getCoveredBys().size()));//$NON-NLS-1$
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "problem! normaly event must be added by element types -" + (covered.size() - lifeline.getCoveredBys().size()));//$NON-NLS-1$
 			}
 			// 3. management of InteractionOperand
 			// There are columns.
 
 			ArrayList<InteractionOperand> coveredbyInteractionOperand = new ArrayList<InteractionOperand>();
-			covered= new ArrayList<InteractionFragment>();
+			covered = new ArrayList<InteractionFragment>();
 			for (DecorationNode column : columns) {
 				if (column.getElement() instanceof InteractionOperand) {
 					if (!(coveredbyInteractionOperand.contains(column.getElement()))) {
@@ -324,7 +318,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 				}
 
 			}
-			if( covered.size()>0) {
+			if (covered.size() > 0) {
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "Add Interraction operand");//$NON-NLS-1$
 				covered.addAll(lifeline.getCoveredBys());
 				execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), covered));
@@ -334,7 +328,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		}
 	}
 
-	
+
 	/**
 	 * Gets the diagram event broker from the editing domain.
 	 *
@@ -365,45 +359,44 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location) {
-				updateRowsAndColumns();
-
-				if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
-					if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
-						DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
-						//when the row is connected to interaction operand --> do nothing
-						if(movedRow.getElement() instanceof InteractionOperand) {
-							return;
-						}
-						if (moveAllLinesAtSamePosition) {
-							ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
-							// when we move line we disconnect listeners to avoid problems of infinite loop
-							((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
-
-							// maybe we must move other lines
-							// it exist other lines
-							if(!(movedRow.getElement() instanceof Lifeline)) {
-								if (rows.size() > rowlist.size()) {
-									updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
-								}
-							}
-							for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
-								DecorationNode axis = (DecorationNode) iterator.next();
-
-								//we do not move line about Lifeline and interaction operand
-								if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
-									execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
-								}
-
-							}
-						}
-						((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
-					}
-					
-				}
-				updateCoveredAndOwnerAfterUpdate();
-			}
+		if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location) {
+			updateRowsAndColumns();
+			//
+			// if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
+			// if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
+			// DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
+			// //when the row is connected to interaction operand --> do nothing
+			// if(movedRow.getElement() instanceof InteractionOperand) {
+			// return;
+			// }
+			// if (moveAllLinesAtSamePosition) {
+			// ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
+			// // when we move line we disconnect listeners to avoid problems of infinite loop
+			// ((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
+			//
+			// // maybe we must move other lines
+			// // it exist other lines
+			// if(!(movedRow.getElement() instanceof Lifeline)) {
+			// if (rows.size() > rowlist.size()) {
+			// updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
+			// }
+			// }
+			// for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
+			// DecorationNode axis = (DecorationNode) iterator.next();
+			//
+			// //we do not move line about Lifeline and interaction operand
+			// if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
+			// execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
+			// }
+			//
+			// }
+			// }
+			// ((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
+			// }
+			//
+			// }
+			updateCoveredAndOwnerAfterUpdate();
+		}
 	}
 
 
@@ -495,11 +488,11 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			ArrayList<DecorationNode> rowsCopy = new ArrayList<DecorationNode>();
 			rowsCopy.addAll(rows);
 			for (int i = rowsCopy.indexOf(nextRow); i < rowsCopy.size(); i++) {
-				if(!(rowsCopy.get(i).equals(movedRow))) {
+				if (!(rowsCopy.get(i).equals(movedRow))) {
 					LayoutConstraint aConstraint = rowsCopy.get(i).getLayoutConstraint();
 					if (aConstraint instanceof Location) {
-						//do not move row connected to interaction operand 
-						if((!(rowsCopy.get(i).getElement() instanceof InteractionOperand))) {
+						// do not move row connected to interaction operand
+						if ((!(rowsCopy.get(i).getElement() instanceof InteractionOperand))) {
 
 							execute(new SetCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), aConstraint, NotationPackage.eINSTANCE.getLocation_Y(), ((Location) aConstraint).getY() + margin));
 						}
@@ -523,7 +516,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
 			DecorationNode aRow = iterator.next();
 			int Yposition = getPositionY(aRow);
-			if (oldPosition  < Yposition && (!aRow.equals(currentRow))) {
+			if (oldPosition < Yposition && (!aRow.equals(currentRow))) {
 				nextRow = aRow;
 				return nextRow;
 			}
@@ -552,19 +545,5 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			throw new NoGrillElementFound();
 		}
 	}
-
-	public static List<EObject> getRef(DecorationNode current) {
-		EAnnotation eAnnotation = current.getEAnnotation(GRID_CONNECTION);
-		if (eAnnotation == null) {
-			return null;
-		} else {
-			if (eAnnotation.getReferences().size() != 0) {
-				return eAnnotation.getReferences();
-			}
-			return null;
-		}
-	}
-
-
 
 }
