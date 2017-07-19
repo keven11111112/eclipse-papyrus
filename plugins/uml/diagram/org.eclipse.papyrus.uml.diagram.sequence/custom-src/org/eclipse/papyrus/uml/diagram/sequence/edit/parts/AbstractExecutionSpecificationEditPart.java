@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ExecutionSpecificationNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecutionToGridEditPolicy;
@@ -103,6 +104,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		super.createDefaultEditPolicies();
 		installEditPolicy(ConnectYCoordinateToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectExecutionToGridEditPolicy());
 		installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
+		installEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE, new SequenceReferenceEditPolicy());
+
 	}
 
 	@Override
