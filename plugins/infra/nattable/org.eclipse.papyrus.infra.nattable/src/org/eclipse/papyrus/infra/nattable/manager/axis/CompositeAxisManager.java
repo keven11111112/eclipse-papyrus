@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@cea.fr - Bug 516314
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
@@ -247,7 +247,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
 	 *
 	 * @param domain
@@ -294,7 +294,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
 	 *
 	 * @param domain
@@ -325,8 +325,17 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	@Override
 	public synchronized void updateAxisContents() {
 		final List<Object> displayedElement = getElements();
+
+		// Bug 516314: As the filter list wraps the row sorted list (see NattableModelManager.createHorizontalElementList or createVerticcalElementList),
+		// adding element in the outer list implies the change in the inner list, which causes the double elements in the sorted list,
+		// which could be seen as the filter is not used anymore.
+		// So the clear the sorted list instead of the filter list could handle the bug.
+		final List<Object> sortedElement = getSortedElements();
+
+		// Clear the sorted list which also clear the filter list
+		sortedElement.clear();
+
 		synchronized (displayedElement) {
-			displayedElement.clear();
 			displayedElement.addAll(this.managedObject);
 			if (this.subManagers != null) {
 				for (final IAxisManager current : this.subManagers) {
@@ -379,7 +388,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#sortAxisByName(boolean, org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
 	 */
 	@Override
@@ -555,7 +564,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 				final List<Object> newAxisOrder = new ArrayList<Object>(getRepresentedContentProvider().getAxis());
 				newAxisOrder.remove(elementToMove);
 				newAxisOrder.add(newIndex, elementToMove);
-	
+
 				domain.getCommandStack().execute(getSetNewAxisOrderCommand(newAxisOrder));
 			}
 		}

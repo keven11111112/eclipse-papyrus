@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 469289, 504077
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 516314
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
@@ -300,7 +300,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
 	 *
 	 * @param domain
@@ -340,7 +340,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
 	 *
 	 * @param domain
@@ -720,6 +720,19 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	/**
+	 * @return
+	 * 		the list owning the elements sorted on the managed axis
+	 * @since 4.0
+	 */
+	protected final List<Object> getSortedElements() {
+		if (isUsedAsColumnManager()) {
+			return getTableManager().getColumnSortedList();
+		} else {
+			return getTableManager().getRowSortedList();
+		}
+	}
+
+	/**
 	 *
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 *
@@ -751,7 +764,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * This allows to manage the managed objects during the add command.
-	 * 
+	 *
 	 * @author Nicolas FAUVERGUE
 	 */
 	protected class AddCommandWrapper extends ReorderAxisCommandWrapper {
@@ -777,7 +790,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#execute()
 		 */
 		@Override
@@ -790,7 +803,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#undo()
 		 */
 		@Override
@@ -803,7 +816,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#redo()
 		 */
 		@Override
@@ -817,7 +830,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 	/**
 	 * This allows to manage the managed objects during the remove command.
-	 * 
+	 *
 	 * @author Nicolas FAUVERGUE
 	 */
 	protected class RemoveCommandWrapper extends ReorderAxisCommandWrapper {
@@ -844,7 +857,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#execute()
 		 */
 		@Override
@@ -857,7 +870,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#undo()
 		 */
 		@Override
@@ -870,7 +883,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#redo()
 		 */
 		@Override
@@ -886,7 +899,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * This allows to manage a wrapper after the reorder columns or rows.
 	 * This can't me managed by the notification (in the NattableModelManager class)
 	 * because the move action is managed as REMOVE and ADD notifications.
-	 * 
+	 *
 	 * @author Nicolas FAUVERGUE
 	 */
 	protected class ReorderAxisCommandWrapper extends CommandWrapper {
@@ -922,7 +935,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#execute()
 		 */
 		@Override
@@ -933,7 +946,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#undo()
 		 */
 		@Override
@@ -944,7 +957,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.CommandWrapper#redo()
 		 */
 		@Override
