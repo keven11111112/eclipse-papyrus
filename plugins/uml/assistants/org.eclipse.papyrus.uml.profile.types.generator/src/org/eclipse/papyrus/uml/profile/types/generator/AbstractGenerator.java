@@ -106,7 +106,7 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 			try {
 				output.save(null);
 			} catch (IOException e) {
-				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to save output", e));
+				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to save output", e));//$NON-NLS-1$
 			}
 			refreshContainer(outputURI);
 		} catch (CoreException e) {
@@ -146,7 +146,7 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 					next.refreshLocal(IResource.DEPTH_ONE, null);
 				}
 			} catch (URISyntaxException e) {
-				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Bad resource URI", e));
+				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Bad resource URI", e));//$NON-NLS-1$
 			}
 		}
 	}
