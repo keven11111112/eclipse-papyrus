@@ -286,14 +286,37 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 
 		@SuppressWarnings("unchecked")
 		final Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
+		final EObject targetContainer = request.getTargetContainer();
 		while (it.hasNext()) {
 			final EObject eObject = it.next();
 
 			if (eObject instanceof Generalization) {
 				viewsToDestroy.addAll(getViewsToDestroy(eObject));
 				viewsToDestroy.addAll(getViewsAccordingToGeneralization((Generalization) eObject));
-			} else if (eObject instanceof Feature || eObject instanceof Classifier) {
-				viewsToDestroy.addAll(getViewsAccordingToEObject(eObject, request.getTargetContainer()));
+			}
+			else if (eObject instanceof Port) {
+				// remove view of ports attached to parts, if the port changes its owner.
+				for (View viewToDestroy : getViewsToDestroy(eObject)) {
+					View parentView = ViewUtil.getContainerView(viewToDestroy);
+					if (parentView.getElement() instanceof Property) {
+						Property part = (Property) parentView.getElement();
+						boolean destroy = true;
+						// check if the view does not need to be destroyed since the port is still
+						// owned by the partType or one of its super-classes
+						if (part.getType() instanceof org.eclipse.uml2.uml.Class) {
+							org.eclipse.uml2.uml.Class partType = (org.eclipse.uml2.uml.Class) part.getType();
+							if (partType == targetContainer || partType.getGenerals().contains(targetContainer)) {
+								destroy = false;
+							}
+						}
+						if (destroy) {
+							viewsToDestroy.add(viewToDestroy);
+						}
+					}
+				}
+			}
+			else if (eObject instanceof Feature || eObject instanceof Classifier) {
+				viewsToDestroy.addAll(getViewsAccordingToEObject(eObject, targetContainer));
 			}
 		}
 
