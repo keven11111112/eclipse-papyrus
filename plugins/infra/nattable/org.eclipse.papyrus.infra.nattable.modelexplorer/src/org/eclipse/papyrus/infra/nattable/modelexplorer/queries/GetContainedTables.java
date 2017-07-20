@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 516882
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer.queries;
 
@@ -37,8 +38,10 @@ public class GetContainedTables implements IJavaQuery2<EObject, Collection<Table
 				EObject usingElement = setting.getEObject();
 				if (usingElement instanceof Table) {
 					Table table = (Table) usingElement;
-					EObject parent = table.getOwner() == null ? table.getContext() : table.getOwner();
-					if (parent == source) {
+					// Bug 516882: When undoing table creation, table should not be added to the contained tables list. 
+					// Otherwise, the broken table view remains in the Model explorer.
+					// Checking table owner not null could handles this problem.
+					if (null != table.getOwner() && table.getOwner() == source && !result.contains(table)) {
 						result.add(table);
 					}
 				}
