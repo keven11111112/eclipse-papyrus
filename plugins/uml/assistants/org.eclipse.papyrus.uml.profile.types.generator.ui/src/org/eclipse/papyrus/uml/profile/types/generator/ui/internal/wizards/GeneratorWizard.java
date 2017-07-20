@@ -47,6 +47,12 @@ import com.google.common.util.concurrent.Futures;
  */
 public class GeneratorWizard extends Wizard {
 
+	/**
+	 * 
+	 */
+	// FIXME : should be provided by an element type plugin
+	private static final String ELEMENTTYPESCONFIGURATIONS = "elementtypesconfigurations"; //$NON-NLS-1$
+	
 	private final IWorkbenchPage page;
 	private final GeneratorWizardModel model;
 
@@ -71,7 +77,7 @@ public class GeneratorWizard extends Wizard {
 	}
 
 	protected IGeneratorWizardPage createMainPage(GeneratorWizardModel model) {
-		return new GeneratorMainPage(model, "Element Types Configuration Model", "Enter details of the element types model to generate.", "typesconfigurations");
+		return new GeneratorMainPage(model, "Element Types Configuration Model", "Enter details of the element types model to generate.", ELEMENTTYPESCONFIGURATIONS);
 	}
 
 	private void save() {
@@ -97,7 +103,7 @@ public class GeneratorWizard extends Wizard {
 		} catch (InterruptedException e) {
 			status[0] = Status.CANCEL_STATUS;
 		} catch (InvocationTargetException e) {
-			status[0] = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Model generation failed with an exception.", e.getTargetException());
+			status[0] = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Model generation failed with an exception.", e.getTargetException());//$NON-NLS-1$
 		}
 
 		if (status[0].matches(IStatus.WARNING | IStatus.ERROR)) {

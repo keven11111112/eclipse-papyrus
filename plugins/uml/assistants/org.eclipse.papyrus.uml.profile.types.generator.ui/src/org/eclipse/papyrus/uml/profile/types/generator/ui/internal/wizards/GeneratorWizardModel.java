@@ -132,10 +132,10 @@ public class GeneratorWizardModel {
 
 		setErrorMessage(null);
 		if (isNullOrEmpty(getIdentifier())) {
-			setErrorMessage("An identifier is required.");
+			setErrorMessage("An identifier is required.");//$NON-NLS-1$
 			result = false;
 		} else if (getSelectedElementTypeSet() == null) {
-			setErrorMessage("A base element type set must be selected.");
+			setErrorMessage("A base element type set must be selected.");//$NON-NLS-1$
 			result = false;
 		}
 
