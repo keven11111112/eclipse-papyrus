@@ -21,5 +21,6 @@
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
 		<uml:MultiplicityDialog input="{Binding}" property="Multiplicity:multiplicity"></uml:MultiplicityDialog>
+		<ppe:ReferenceDialog input="{Binding}" property="UML:ConnectorEnd:role"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>
