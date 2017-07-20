@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 516882
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.helper;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
-import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
@@ -68,7 +67,11 @@ public class TableCommandHelper implements IViewTypeHelper {
 			return false;
 		}
 		Table table = (Table) view;
-		return (table.getTableKindId() != null);
+		// Bug 516882: When undoing table creation, table kind ID is null leads to the fact that
+		// table view is not removed from the list of observables.
+		// As a consequence, the broken table view remains in the Welcome page / Notation Views.
+		// Checking also the table configuration could handle this problem.
+		return (table.getTableKindId() != null || table.getTableConfiguration() != null);
 	}
 
 	@Override
@@ -78,8 +81,8 @@ public class TableCommandHelper implements IViewTypeHelper {
 		}
 		PolicyChecker checker = PolicyChecker.getFor(view);
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
-		PapyrusTable repKind =  (PapyrusTable) manager.getRepresentationKindById(((Table)view).getTableKindId());
-		if (checker.isInViewpoint(repKind))
+		PapyrusTable repKind = (PapyrusTable) manager.getRepresentationKindById(((Table) view).getTableKindId());
+		if (null != repKind && checker.isInViewpoint(repKind)) // null when we are destroying the table (undo after a creation for example), bug 516882
 			return getPrototypeFor(repKind);
 		return ViewPrototype.UNAVAILABLE_VIEW;
 	}
