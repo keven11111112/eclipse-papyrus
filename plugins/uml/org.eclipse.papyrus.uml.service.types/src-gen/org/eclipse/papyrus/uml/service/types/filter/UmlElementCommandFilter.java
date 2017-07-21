@@ -97,6 +97,7 @@ public class UmlElementCommandFilter implements ICommandFilter {
 			localVisibleCommands.add(UMLElementTypes.DURATION_CONSTRAINT);
 			localVisibleCommands.add(UMLElementTypes.DURATION_INTERVAL);
 			localVisibleCommands.add(UMLElementTypes.DURATION_OBSERVATION);
+			localVisibleCommands.add(UMLElementTypes.DURATION_OBSERVATION_EVENT);
 			localVisibleCommands.add(UMLElementTypes.ELEMENT_IMPORT);
 			localVisibleCommands.add(UMLElementTypes.ENUMERATION);
 			localVisibleCommands.add(UMLElementTypes.ENUMERATION_LITERAL);
@@ -221,6 +222,7 @@ public class UmlElementCommandFilter implements ICommandFilter {
 			localVisibleCommands.add(UMLElementTypes.TIME_EXPRESSION);
 			localVisibleCommands.add(UMLElementTypes.TIME_INTERVAL);
 			localVisibleCommands.add(UMLElementTypes.TIME_OBSERVATION);
+			localVisibleCommands.add(UMLElementTypes.TIME_OBSERVATION_EVENT);
 			// localVisibleCommands.add(UMLElementTypes.TRANSITION);
 			localVisibleCommands.add(UMLElementTypes.TRIGGER);
 			localVisibleCommands.add(UMLElementTypes.UNMARSHALL_ACTION);

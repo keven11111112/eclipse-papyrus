@@ -375,6 +375,10 @@
     <iconEntry xmi:id="_ScefS1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DurationObservation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DurationObservation"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.DurationObservation.Event" identifier="org.eclipse.papyrus.uml.DurationObservation.Event" name="UML::DurationObservation::Event" hint="UML::DurationObservation::Event">
+    <editHelperAdviceConfiguration xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration" xmi:id="_y8N2UFWsEeeGFsmbOwBrhg" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.DurationObservationEventEditHelperAdvice"/>
+    <specializedTypes xsi:type="elementtypesconfigurations:ExternallyRegisteredType" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.gmf.runtime.emf.type.core.null"/>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.Element" identifier="org.eclipse.papyrus.uml.Element" name="UML::Element" hint="UML::Element" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_ScgUUVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
@@ -1037,6 +1041,10 @@
     <iconEntry xmi:id="_SdKbv1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/TimeObservation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//TimeObservation"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.TimeObservation.Event" identifier="org.eclipse.papyrus.uml.TimeObservation.Event" name="UML::TimeObservation::Event" hint="UML::TimeObservation::Event">
+    <editHelperAdviceConfiguration xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration" xmi:id="_CQre4FWtEeeGFsmbOwBrhg" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.TimeObservationEventEditHelperAdvice"/>
+    <specializedTypes xsi:type="elementtypesconfigurations:ExternallyRegisteredType" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.gmf.runtime.emf.type.core.null"/>
+  </elementTypeConfigurations> 
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.Transition" identifier="org.eclipse.papyrus.uml.Transition" name="UML::Transition" hint="UML::Transition" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.TransitionEditHelper">
     <iconEntry xmi:id="_SdLCtlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Transition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
