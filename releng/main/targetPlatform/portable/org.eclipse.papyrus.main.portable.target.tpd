@@ -29,7 +29,7 @@ location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
