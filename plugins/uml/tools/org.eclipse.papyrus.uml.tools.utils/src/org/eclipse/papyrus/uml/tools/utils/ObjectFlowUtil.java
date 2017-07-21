@@ -18,16 +18,21 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
+import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.ExpansionRegion;
 import org.eclipse.uml2.uml.FinalNode;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.JoinNode;
+import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OutputPin;
+import org.eclipse.uml2.uml.Pin;
+import org.eclipse.uml2.uml.SequenceNode;
 import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -88,9 +93,15 @@ public class ObjectFlowUtil {
 			}
 			if (source instanceof InputPin) {
 				// rule validateInputPin_validateOutgoingEdgesStructuredOnly
-				if (source.getOwner() instanceof StructuredActivityNode) {
-					if (target != null && !source.getOwner().equals(target.getInStructuredNode())) {
-						return false;
+				if (source.getOwner() instanceof StructuredActivityNode
+						&& !(source.getOwner() instanceof LoopNode)
+						&& !(source.getOwner() instanceof ConditionalNode)
+						&& !(source.getOwner() instanceof SequenceNode)
+						&& !(source.getOwner() instanceof ExpansionRegion)) {
+					if (target != null) {
+						if(!isPinOwnedByStructuredActivityNode(target, (StructuredActivityNode)source.getOwner())) {
+							return false;
+						}
 					}
 				} else {
 					return false;
@@ -162,9 +173,15 @@ public class ObjectFlowUtil {
 			}
 			if (target instanceof OutputPin) {
 				// rule validateOutputPin_validateIncomingEdgesStructuredOnly
-				if (target.getOwner() instanceof StructuredActivityNode) {
-					if (source != null && !target.getOwner().equals(source.getInStructuredNode())) {
-						return false;
+				if (target.getOwner() instanceof StructuredActivityNode
+						&& !(target.getOwner() instanceof LoopNode)
+						&& !(target.getOwner() instanceof ConditionalNode)
+						&& !(target.getOwner() instanceof SequenceNode)
+						&& !(target.getOwner() instanceof ExpansionRegion)) {
+					if (source != null) {
+						if(!isPinOwnedByStructuredActivityNode(source, (StructuredActivityNode) target.getOwner())) {
+							return false;
+						}
 					}
 				} else {
 					return false;
@@ -295,5 +312,22 @@ public class ObjectFlowUtil {
 		if (parentAction instanceof OpaqueAction) {
 			((OpaqueAction) parentAction).getInputValues().add(inputPin);
 		}
+	}
+
+	/**
+	 * Check if the pin is directly or indirectly owned by the structuredActivityNode 
+	 * 
+	 * @param pin
+	 * @param owner
+	 * @return
+	 */
+	public static boolean isPinOwnedByStructuredActivityNode(ActivityNode pin, StructuredActivityNode owner) {
+		if(pin instanceof Pin) {
+			EList<ActivityNode> nodes = owner.allOwnedNodes();
+			if(nodes.contains(pin)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

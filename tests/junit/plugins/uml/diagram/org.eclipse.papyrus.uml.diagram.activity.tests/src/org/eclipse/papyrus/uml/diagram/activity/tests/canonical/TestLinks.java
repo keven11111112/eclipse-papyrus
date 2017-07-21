@@ -22,23 +22,30 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateLinkActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateLinkObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInCreateLinkActionAsInputValueEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInCreateLinkObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadExtentActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReduceActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInReduceActionAsCollectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
-import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -135,6 +142,44 @@ public class TestLinks extends AbstractPapyrusTestCase {
 	}
 
 	@Test
+	public void testCreateObjectFlowLinkFromInputPinInStructuredActivityNodeToInputPin() {
+		IGraphicalEditPart structuredActivityNodeEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart structuredActivityNodeCompartmentEP = findChildBySemanticHint(structuredActivityNodeEP, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart inputPinInStructuredActivityNode = createChild(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, structuredActivityNodeEP);
+		
+		IGraphicalEditPart opaqueActionEP = createChild(OpaqueActionEditPart.VISUAL_ID, structuredActivityNodeCompartmentEP);
+		IGraphicalEditPart inputPinInOpaqueAction = createChild(InputPinInOpaqueActEditPart.VISUAL_ID, opaqueActionEP);
+		
+		Command endCommand = createLinkCommand(inputPinInStructuredActivityNode, inputPinInOpaqueAction, UMLElementTypes.ObjectFlow_Edge);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart objectFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(objectFlowConnection instanceof ObjectFlowEditPart);
+	}
+	
+	@Test
+	public void testCreateObjectFlowLinkFromOutpinPinInStructuredActivityNodeToOutputPin() {
+		IGraphicalEditPart structuredActivityNodeEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart structuredActivityNodeCompartmentEP = findChildBySemanticHint(structuredActivityNodeEP, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart outputPinInStructuredActivityNode = createChild(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, structuredActivityNodeEP);
+		
+		IGraphicalEditPart opaqueActionEP = createChild(OpaqueActionEditPart.VISUAL_ID, structuredActivityNodeCompartmentEP);
+		IGraphicalEditPart outputPinInOpaqueAction = createChild(OutputPinInOpaqueActEditPart.VISUAL_ID, opaqueActionEP);
+		
+		Command endCommand = createLinkCommand(outputPinInOpaqueAction, outputPinInStructuredActivityNode, UMLElementTypes.ObjectFlow_Edge);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart objectFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(objectFlowConnection instanceof ObjectFlowEditPart);
+	}
+
+	@Test
 	public void testCreateControlFlowLink() {
 		IGraphicalEditPart initialNodeEP = createChild(InitialNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart readExtentctionEP = createChild(ReadExtentActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
@@ -203,6 +248,66 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		Assert.assertFalse(reorientCommand.canExecute());
 	}
 
+	@Test
+	public void testObjectFlowLinkReorientSourceFromInputPinInStructuredActivityNodeToInputPin() {
+		IGraphicalEditPart structuredActivityNodeEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart structuredActivityNodeCompartmentEP = findChildBySemanticHint(structuredActivityNodeEP, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart inputPinInStructuredActivityNode = createChild(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, structuredActivityNodeEP);
+		
+		IGraphicalEditPart opaqueActionEP = createChild(OpaqueActionEditPart.VISUAL_ID, structuredActivityNodeCompartmentEP);
+		IGraphicalEditPart inputPinInOpaqueAction = createChild(InputPinInOpaqueActEditPart.VISUAL_ID, opaqueActionEP);
+		
+		IGraphicalEditPart createLinkActionEP = createChild(CreateLinkActionEditPart.VISUAL_ID,  getActivityCompartmentEditPart());
+		IGraphicalEditPart inputPinInCreateLinkAction = createChild(InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID, createLinkActionEP);
+		
+		Command endCommand = createLinkCommand(inputPinInStructuredActivityNode, inputPinInOpaqueAction, UMLElementTypes.ObjectFlow_Edge);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart objectFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(objectFlowConnection instanceof ObjectFlowEditPart);
+
+		ObjectFlowEditPart objectFlowEP = (ObjectFlowEditPart)objectFlowConnection;
+
+		ReconnectRequest reconnect = getReconnectRequest(inputPinInCreateLinkAction, objectFlowEP, RequestConstants.REQ_RECONNECT_TARGET);
+
+		Command reorientCommand = reconnect.getTarget().getCommand(reconnect);
+		Assert.assertNotNull(reorientCommand);
+		Assert.assertFalse(reorientCommand.canExecute());
+	}
+
+	@Test
+	public void testObjectFlowLinkReorientSourceFromOutputPinInStructuredActivityNodeToOutputPin() {
+		IGraphicalEditPart structuredActivityNodeEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart structuredActivityNodeCompartmentEP = findChildBySemanticHint(structuredActivityNodeEP, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart outputPinInStructuredActivityNode = createChild(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, structuredActivityNodeEP);
+		
+		IGraphicalEditPart opaqueActionEP = createChild(OpaqueActionEditPart.VISUAL_ID, structuredActivityNodeCompartmentEP);
+		IGraphicalEditPart outputPinInOpaqueAction = createChild(OutputPinInOpaqueActEditPart.VISUAL_ID, opaqueActionEP);
+		
+		IGraphicalEditPart createLinkObjectActionEP = createChild(CreateLinkObjectActionEditPart.VISUAL_ID,  getActivityCompartmentEditPart());
+		IGraphicalEditPart outputPinInCreateLinkObjectAction = createChild(OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID, createLinkObjectActionEP);
+		
+		Command endCommand = createLinkCommand(outputPinInOpaqueAction, outputPinInStructuredActivityNode, UMLElementTypes.ObjectFlow_Edge);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart objectFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(objectFlowConnection instanceof ObjectFlowEditPart);
+
+		ObjectFlowEditPart objectFlowEP = (ObjectFlowEditPart)objectFlowConnection;
+
+		ReconnectRequest reconnect = getReconnectRequest(outputPinInCreateLinkObjectAction, objectFlowEP, RequestConstants.REQ_RECONNECT_SOURCE);
+
+		Command reorientCommand = reconnect.getTarget().getCommand(reconnect);
+		Assert.assertNotNull(reorientCommand);
+		Assert.assertFalse(reorientCommand.canExecute());
+	}
+	
 	@Test
 	public void testControlFlowLinkReorient() {
 		IGraphicalEditPart parameterNodeEP = createChild(ActivityParameterNodeEditPart.VISUAL_ID, (IGraphicalEditPart)getActivityCompartmentEditPart().getParent());
