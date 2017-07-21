@@ -33,7 +33,7 @@ public class CommentDestroyAnnotatedElementsEditHelperAdvice extends AbstractRef
 		// TODO, here we must manage the case where a set request is sent instead of a destroy reference request, like done for Comment#annotatedElement by the property view.
 		// Currently, this is the class org.eclipse.papyrus.uml.diagram.sequence.SequenceViewDependentsAdvice which intercept the set request
 
-		// the test for set request is already write, but tagged as invalid test in org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteCommentLinkTest
+		// the test for set request is already written, but tagged as invalid test in org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteCommentLinkTest
 		return super.getBeforeSetCommand(request);
 	}
 

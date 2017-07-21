@@ -265,6 +265,9 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** IElementType for UML DurationObservation */
 	public static final IHintedType DURATION_OBSERVATION = (IHintedType) getElementType("org.eclipse.papyrus.uml.DurationObservation"); //$NON-NLS-1$
+	
+	/** IElementType for UML Constraint.ConstrainedElements */
+	public static final IHintedType DURATION_OBSERVATION_EVENT = (IHintedType) getElementType("org.eclipse.papyrus.uml.DurationObservation.Event"); //$NON-NLS-1$
 
 	/** IElementType for UML Element */
 	public static final IHintedType ELEMENT = (IHintedType) getElementType("org.eclipse.papyrus.uml.Element"); //$NON-NLS-1$
@@ -769,6 +772,9 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** IElementType for UML TimeObservation */
 	public static final IHintedType TIME_OBSERVATION = (IHintedType) getElementType("org.eclipse.papyrus.uml.TimeObservation"); //$NON-NLS-1$
+	
+	/** IElementType for UML Constraint.ConstrainedElements */
+	public static final IHintedType TIME_OBSERVATION_EVENT = (IHintedType) getElementType("org.eclipse.papyrus.uml.TimeObservation.Event"); //$NON-NLS-1$
 
 	/** IElementType for UML Transition */
 	public static final IHintedType TRANSITION = (IHintedType) getElementType("org.eclipse.papyrus.uml.Transition"); //$NON-NLS-1$
