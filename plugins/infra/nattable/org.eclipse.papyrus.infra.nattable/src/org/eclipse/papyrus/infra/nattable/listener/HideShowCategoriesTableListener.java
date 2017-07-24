@@ -175,6 +175,10 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 	 */
 	@Override
 	public void resourceSetChanged(ResourceSetChangeEvent arg0) {
+		if (null == this.tableManager || null == this.tableManager.getTable() || null == this.tableManager.getTable().getTableConfiguration()) {
+			// we are deleting the table
+			return;
+		}
 		for (Notification current : arg0.getNotifications()) {
 			if (isNotificationOnHideShowCategories(current)) {
 				manageHideShowCategories(current);
@@ -238,7 +242,7 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 	 * @param notification
 	 *            a notification
 	 * @return
-	 *         <code>true</code> if the notification concerns the display style of the table
+	 * 		<code>true</code> if the notification concerns the display style of the table
 	 */
 	private static final boolean isNotificationOnSingleOrMultiColumnInRowHeader(Notification notification) {
 		Object feature = notification.getFeature();
@@ -263,7 +267,7 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 	 * @param notification
 	 *            a notification
 	 * @return
-	 *         <code>true</code> if the notification concerns the hide/show of the categoriesF
+	 * 		<code>true</code> if the notification concerns the hide/show of the categoriesF
 	 */
 	private static final boolean isNotificationOnHideShowCategories(Notification notification) {
 		Object notifier = notification.getNotifier();

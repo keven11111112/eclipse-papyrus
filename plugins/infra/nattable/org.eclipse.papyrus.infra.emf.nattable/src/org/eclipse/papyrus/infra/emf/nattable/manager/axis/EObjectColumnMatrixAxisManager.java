@@ -510,6 +510,10 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	 * This method allows to update the displayed column after changes in the table configuration
 	 */
 	protected void updateAxisAfterConfigurationChange() {
+		if (null == getTableManager() || null == getTableManager().getTable() || null == getTableManager().getTable().getCurrentColumnAxisProvider()) {
+			return;// we are deleting the table
+		}
+
 		List<Object> allAxisToDisplay = new ArrayList<Object>();
 		for (final IWrapper current : ((IMasterAxisProvider) getTableManager().getTable().getCurrentColumnAxisProvider()).getSources()) {
 			allAxisToDisplay = getListenFeatureValueFor((EObject) current.getElement());
