@@ -40,6 +40,7 @@ import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.Representation
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.ChildrenListRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionsRegistry;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.graphics.Image;
 
@@ -72,6 +73,14 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 		return "This strategy is used to allow dropping of expansion of elements in extended diagrams.";
 	}
 
+	public String getCategoryID() {
+		return "org.eclipse.papyrus.infra.gmfdiag.dnd.expansiondropsteategy";
+	}
+
+	public String getCategoryLabel() {
+		return "Expansion element drag and drop";
+	}	
+	
 	public Image getImage() {
 		return null;
 	}
@@ -127,7 +136,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 				return null;
 			}
 			List<EObject> sourceElements = getSourceEObjects(request);
-			if (sourceElements.size() == 0) {
+			if (sourceElements.isEmpty()) {
 				return null;
 			}
 			final List<EObject> valuesToAdd = new ArrayList<EObject>(sourceElements.size());
@@ -138,16 +147,19 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 			for (String posibleID : childrenList) {
 				AbstractRepresentation abstractRepresentation = listRepresentation.IDMap.get(posibleID);
 				if (abstractRepresentation instanceof Representation) {
-					String elementTypeID = ((Representation) abstractRepresentation).getGraphicalElementTypeRef().getIdentifier();
-					if (elementTypeID != null && !elementTypeID.isEmpty()) {
-						final IElementType elementType = ElementTypeRegistry.getInstance().getType(elementTypeID);
-						if (elementType instanceof ISpecializationType) {
-							acceptedElementTypes.add((ISpecializationType) elementType);
-						}
+					ElementTypeConfiguration graphicalElementTypeRef = ((Representation) abstractRepresentation).getGraphicalElementTypeRef();
+					if (graphicalElementTypeRef != null) {
+						String elementTypeID = graphicalElementTypeRef.getIdentifier();
+						if (elementTypeID != null && !elementTypeID.isEmpty()) {
+							final IElementType elementType = ElementTypeRegistry.getInstance().getType(elementTypeID);
+							if (elementType instanceof ISpecializationType) {
+								acceptedElementTypes.add((ISpecializationType) elementType);
+							}
+						}						
 					}
 				}
 			}
-			Activator.log.trace(Activator.EXPANSION_TRACE, "try to drop " + sourceElements + " inside " + graphicalEditPart.getNotationView().getType() + " accepts " + childrenList);
+			Activator.log.trace(Activator.EXPANSION_TRACE, "try to drop " + sourceElements + " inside " + graphicalEditPart.getNotationView().getType() + " accepts " + childrenList); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			// get the sub list of accepted source element that match to elementType
 			for (EObject sourceElement : sourceElements) {
 				// the source element must be a children of the container
@@ -192,7 +204,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 	protected Command addCommandDrop(final EditPart targetEditPart, CompositeCommand cc, final List<EObject> valuesToAdd, EObject sourceElement, final ISpecializationType iSpecializationType) {
 
 		valuesToAdd.add(sourceElement);
-		Activator.log.trace(Activator.EXPANSION_TRACE, "try to drop command created for " + sourceElement + " " + iSpecializationType);
+		Activator.log.trace(Activator.EXPANSION_TRACE, "try to drop command created for " + sourceElement + " " + iSpecializationType);//$NON-NLS-1$ //$NON-NLS-2$
 		Command cmd = new Command() {
 			@Override
 			public void execute() {
@@ -207,11 +219,5 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 	}
 
 
-	public String getCategoryID() {
-		return "org.eclipse.papyrus.infra.gmfdiag.dnd.expansiondropsteategy";
-	}
 
-	public String getCategoryLabel() {
-		return "Expansion element drag and drop";
-	}
 }
