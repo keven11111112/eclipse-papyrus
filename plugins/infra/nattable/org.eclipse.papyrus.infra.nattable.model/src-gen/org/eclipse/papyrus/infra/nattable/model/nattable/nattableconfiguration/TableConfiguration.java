@@ -302,7 +302,7 @@ public interface TableConfiguration extends TableNamedElement {
 	 * @return the value of the '<em>Owned Cell Editor Configurations</em>' containment reference.
 	 * @see #setOwnedCellEditorConfigurations(ICellEditorConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableConfiguration_OwnedCellEditorConfigurations()
-	 * @model containment="true" transient="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	ICellEditorConfiguration getOwnedCellEditorConfigurations();

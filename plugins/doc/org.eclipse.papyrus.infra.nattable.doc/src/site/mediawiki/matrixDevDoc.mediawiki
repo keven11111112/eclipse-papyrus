@@ -90,7 +90,9 @@ Here, we will explain you how to create a matrix dedicated to a given relationsh
 ##'''Cell Content Filter''' (not mandatory): a '''BooleanEObjectExpression''' used as filter to select precisely the relationship to display in the cells of the table,
 ##'''Cell Editor Id''': an id for your cell editor (not yet used in the current implementation),
 ##'''Direction''': define the orientation of the relationship displayed in the cells of the table,
-##'''Edited Element''': an element type representing the relationship edited in your table.
+##'''Edited Element''': an element type representing the relationship edited in your table. This field is typed with the object '''ElementTypeConfiguration'''. To be able to define this field, you must: 
+###load a file '''*.elementtypesconfigurations'''. You can have defined your own element types or reuse a Papyrus one. In all cases, you must have the plugin with containing this file in your workspace.
+###open the tableconfiguration file in text mode, to check that the reference to the element type is defined as <code>href="platform:/plugin/myFilePath"</code> and not as <code>href="platform:/resource/myFilePath"</code> or as <code>href="../../../myFilePath"</code>.
 ##*the final matrix will work only if a cell editor managing the chosen element type exists
 #Define the feature to listen (same behavior than TreeTable)
 ##Edit the '''TreeFillingConfiguration''' for rows and columns
