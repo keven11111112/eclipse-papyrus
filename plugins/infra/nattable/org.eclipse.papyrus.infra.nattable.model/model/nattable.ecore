@@ -203,8 +203,7 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCellEditorConfigurations"
-          eType="#//nattablecelleditor/ICellEditorConfiguration" transient="true"
-          containment="true">
+          eType="#//nattablecelleditor/ICellEditorConfiguration" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="In some case (Matrix Table for example), the table can have celleditor configuration."/>
         </eAnnotations>
