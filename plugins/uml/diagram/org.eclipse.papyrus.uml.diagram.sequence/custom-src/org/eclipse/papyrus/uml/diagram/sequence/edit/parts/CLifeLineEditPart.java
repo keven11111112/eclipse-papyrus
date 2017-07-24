@@ -29,8 +29,15 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
  */
 public class CLifeLineEditPart extends LifelineEditPart {
 
-	public static int DEFAUT_HEIGHT = 250;
+	/** The default height of the figure. */
+	public static int DEFAUT_HEIGHT = 700;
+
+	/** The default width of the figure. */
 	public static int DEFAUT_WIDTH = 100;
+
+	/** The minimum height of the figure. */
+	public static int MIN_HEIGHT = 100;
+
 
 	/**
 	 * Constructor.
@@ -84,7 +91,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	 */
 	public int getStickerHeight() {
 		if (getPrimaryShape().getLifeLineLayoutManager() != null) {
-			return ((LifeLineLayoutManager) getPrimaryShape().getLifeLineLayoutManager()).getBottomHeader();
+			return ((LifeLineLayoutManager) getPrimaryShape().getLifeLineLayoutManager()).getBottomHeader() - getPrimaryShape().getBounds().y();
 		}
 		return -1;
 	}

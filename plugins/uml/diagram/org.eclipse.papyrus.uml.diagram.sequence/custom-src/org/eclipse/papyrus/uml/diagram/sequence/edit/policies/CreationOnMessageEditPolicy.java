@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 
 	/**
+	 * TODO_MIA: CHeck if necessary
 	 * Get the command after updating the request with appropriate occurrences
 	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getCreateElementAndViewCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest)
@@ -129,7 +130,7 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 		String durCstOnLifelineHint = ((IHintedType) UMLElementTypes.DurationConstraint_Shape).getSemanticHint();
 		String durCstOnMessage = ((IHintedType) UMLElementTypes.DurationConstraint_Shape_CN).getSemanticHint();
 		String durObsOnMessage = ((IHintedType) UMLElementTypes.DurationObservation_Shape).getSemanticHint();
-		return durCstOnLifelineHint.equals(requestHint) /* || durCstOnMessage.equals(requestHint) */|| durObsOnMessage.equals(requestHint);
+		return durCstOnLifelineHint.equals(requestHint) /* || durCstOnMessage.equals(requestHint) */ || durObsOnMessage.equals(requestHint);
 	}
 
 	/**

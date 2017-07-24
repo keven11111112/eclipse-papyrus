@@ -78,7 +78,7 @@ public class InteractionUseRectangleFigure extends RoundedCompartmentFigure {
 	 * @return
 	 */
 	@Override
-	protected Dimension getLabelsDimension() {
+	public Dimension getLabelsDimension() {
 		if (null != nameLabel) {
 			// Header decoration should have the header dimension
 			return new Dimension(nameLabel.getBounds().width, nameLabel.getBounds().height);

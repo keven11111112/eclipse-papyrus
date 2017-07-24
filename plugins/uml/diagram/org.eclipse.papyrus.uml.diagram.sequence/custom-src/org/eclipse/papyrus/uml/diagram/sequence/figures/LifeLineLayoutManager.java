@@ -25,14 +25,14 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLa
 
 /**
  * @since 3.0
- * This class manage as {@link AutomaticCompartmentLayoutManager} but layout figure as XY layout if there are {@link ILifelineInternalFigure}
+ *        This class manage as {@link AutomaticCompartmentLayoutManager} but layout figure as XY layout if there are {@link ILifelineInternalFigure}
  */
-public  class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
-	private int bottomHeaderY=0;
+public class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
+	private int bottomHeaderY = 0;
 	/** The layout contraints */
 	protected Map<IFigure, Rectangle> constraints = new HashMap<IFigure, Rectangle>();
 
-	public int getBottomHeader(){
+	public int getBottomHeader() {
 		return bottomHeaderY;
 	}
 
@@ -43,22 +43,24 @@ public  class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 	 */
 	@Override
 	public void layout(IFigure container) {
-		// TODO Auto-generated method stub
 		super.layout(container);
 		layoutXYFigure(container);
 	}
 
-	/* Fills the given bound data as a non-compartment child
+	/*
+	 * Fills the given bound data as a non-compartment child
 	 *
 	 * @param container
-	 *            The container to layout
+	 * The container to layout
+	 * 
 	 * @param bound
-	 *            The bound to fill
+	 * The bound to fill
+	 * 
 	 * @param previous
-	 *            The previously filled bound
+	 * The previously filled bound
 	 */
 	protected void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
-		bound.x = container.getBounds().x + 1; //+1, see bug 490318, restore +1 to fix shift from Papyrus Luna to Papyrus Mars
+		bound.x = container.getBounds().x + 1; // +1, see bug 490318, restore +1 to fix shift from Papyrus Luna to Papyrus Mars
 		bound.width = container.getBounds().width;
 		if (previous == null) {
 			bound.y = container.getBounds().y + 3;
@@ -75,15 +77,16 @@ public  class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 	 */
 	@Override
 	public void setConstraint(IFigure child, Object constraint) {
-		if(child instanceof SelectableBorderedNodeFigure){
-			if(((SelectableBorderedNodeFigure)child).getMainFigure() instanceof ILifelineInternalFigure){
-				if( constraint instanceof Rectangle){
-					constraints.put(child, (Rectangle)constraint);
+		if (child instanceof SelectableBorderedNodeFigure) {
+			if (((SelectableBorderedNodeFigure) child).getMainFigure() instanceof ILifelineInternalFigure) {
+				if (constraint instanceof Rectangle) {
+					constraints.put(child, (Rectangle) constraint);
 				}
 			}
 		}
 		super.setConstraint(child, constraint);
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLayoutManager#fillBoundsForCompartment(org.eclipse.draw2d.IFigure, org.eclipse.draw2d.geometry.Rectangle, org.eclipse.draw2d.geometry.Rectangle, double)
 	 *
@@ -95,11 +98,12 @@ public  class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 	@Override
 	protected void fillBoundsForCompartment(IFigure container, Rectangle bound, Rectangle previous, double ratio) {
 		fillBoundsForOther(container, bound, previous);
-		//bound.height = (int) (bound.height / ratio);
+		// bound.height = (int) (bound.height / ratio);
 		if (previous == null) {
 			bound.y = container.getBounds().y;
 		}
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLayoutManager#layoutDefault(org.eclipse.draw2d.IFigure)
 	 *
@@ -107,47 +111,45 @@ public  class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 	 */
 	@Override
 	protected void layoutDefault(IFigure container) {
-		ScalableCompartmentFigure symbolFigure=null;
-		int i=0;
-		while (symbolFigure==null&&i<container.getChildren().size() ){
-			if (container.getChildren().get(i) instanceof ScalableCompartmentFigure){
-				symbolFigure=(ScalableCompartmentFigure)container.getChildren().get(i);
+		ScalableCompartmentFigure symbolFigure = null;
+		int i = 0;
+		while (symbolFigure == null && i < container.getChildren().size()) {
+			if (container.getChildren().get(i) instanceof ScalableCompartmentFigure) {
+				symbolFigure = (ScalableCompartmentFigure) container.getChildren().get(i);
 			}
 			i++;
 		}
 		super.layoutDefault(container);
 
-		//change coordinate to set the symbol at the top
-		if( symbolFigure!=null){
+		// change coordinate to set the symbol at the top
+		if (symbolFigure != null) {
 			symbolFigure.getBounds().setY(container.getBounds().getTop().y);
 		}
-		Rectangle containerBounds= container.getBounds();
+		Rectangle containerBounds = container.getBounds();
 		IFigure previous = null;
 		for (IFigure child : visibleOthers) {
 			Rectangle bound = new Rectangle();
 			if (previous != null) {
-				if( child.equals(symbolFigure)){
-					bound.y = containerBounds.y+3;
-				}
-				else{
+				if (child.equals(symbolFigure)) {
+					bound.y = containerBounds.y + 3;
+				} else {
 					bound.y = previous.getBounds().getBottomLeft().y + 1;
 					bound.x = containerBounds.x + 1;
 					bound.width = containerBounds.width;
-					bound.height=child.getBounds().height;
-					bottomHeaderY=bound.y+bound.height;
+					bound.height = child.getBounds().height;
+					bottomHeaderY = bound.y + bound.height;
 				}
 			} else {
 				bound.x = containerBounds.x + 1;
-				//here the symbo may be present
-				if( symbolFigure!=null){
-					bound.y = containerBounds.y+3+symbolFigure.getBounds().height;
-				}
-				else{
-					bound.y = containerBounds.y+3;
+				// here the symbo may be present
+				if (symbolFigure != null) {
+					bound.y = containerBounds.y + 3 + symbolFigure.getBounds().height;
+				} else {
+					bound.y = containerBounds.y + 3;
 				}
 
 				bound.width = containerBounds.width;
-				bound.height=child.getBounds().height;
+				bound.height = child.getBounds().height;
 			}
 			child.setBounds(bound);
 			previous = child;
@@ -173,16 +175,16 @@ public  class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 				bound.y = previous.getBounds().getBottomLeft().y + 1;
 				bound.x = container.x + 1;
 				bound.width = container.width;
-				bound.height=child.getBounds().height;
-				bottomHeaderY=bound.y+bound.height;
+				bound.height = child.getBounds().height;
+				bottomHeaderY = bound.y + bound.height;
 			} else {
 				bound.x = container.x + 1;
 				// in the case where the content is grater than the container
 				// it is forbidden to change the y coordinate
-				bound.y = container.y+3;
+				bound.y = container.y + 3;
 				bound.width = container.width;
-				bound.height=child.getBounds().height;
-				bottomHeaderY=bound.y+bound.height;
+				bound.height = child.getBounds().height;
+				bottomHeaderY = bound.y + bound.height;
 			}
 			child.setBounds(bound);
 			previous = child;
@@ -192,14 +194,15 @@ public  class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 
 	/**
 	 * all {@link ILifelineInternalFigure} must be managed as XY layout by respecting their position and size
+	 * 
 	 * @param container
 	 */
 	protected void layoutXYFigure(IFigure container) {
 		for (Object child : container.getChildren()) {
-			if(child  instanceof BorderedNodeFigure){
-				if(((BorderedNodeFigure)child).getMainFigure() instanceof ILifelineInternalFigure){
-					Rectangle theConstraint=constraints.get(child).getCopy();
-					if(theConstraint!=null){
+			if (child instanceof BorderedNodeFigure) {
+				if (((BorderedNodeFigure) child).getMainFigure() instanceof ILifelineInternalFigure) {
+					Rectangle theConstraint = constraints.get(child).getCopy();
+					if (theConstraint != null) {
 						theConstraint.translate(container.getBounds().getTopLeft());
 						((BorderedNodeFigure) child).setBounds(theConstraint);
 					}

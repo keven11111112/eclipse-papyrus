@@ -873,7 +873,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @return the dimension. (-1,-1) if there is no label.
 	 * @since 3.0
 	 */
-	protected Dimension getLabelsDimension() {
+	public Dimension getLabelsDimension() {
 		final Dimension labelDimension = new Dimension(-1, -1);
 
 		if (null != nameLabel && labelDimension.width < nameLabel.getPreferredSize().width) {

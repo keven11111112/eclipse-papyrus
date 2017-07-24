@@ -19,7 +19,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -113,7 +115,7 @@ public class LifelineEditPartUtil {
 	/**
 	 * @param editPart
 	 *            the remove {@link MessageCreateEditPart}
-	 * @return the command when the last create message is remove to a lifeline to move it up.
+	 * @return the command when the last create message is remove to a lifeline to move it up and resize it.
 	 * @since 3.0
 	 * 
 	 */
@@ -128,7 +130,12 @@ public class LifelineEditPartUtil {
 					if (view.getLayoutConstraint() instanceof Bounds) {
 						Bounds bounds = (Bounds) view.getLayoutConstraint();
 						// get the set bounds command
-						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+						Point newLocation = new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET);
+						Dimension newDimension = new Dimension(bounds.getWidth(), bounds.getHeight() + (bounds.getY() - SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+						Rectangle newBounds = new Rectangle(newLocation, newDimension);
+
+						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
+
 						commands = new ICommandProxy(boundsCommand);
 					}
 				}

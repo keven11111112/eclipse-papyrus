@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -36,6 +37,7 @@ import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
@@ -62,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDiagramConstants;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
@@ -138,7 +141,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * This method take into account the horizontal Delta to have an horizontal feedback if the target point is in the Y delta.
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy#getTargetConnectionAnchor(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *
 	 * @param request
@@ -157,9 +160,9 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					Point sourceLocation = (Point) extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
 
 					if (referenceTargetPoint != null && sourceLocation != null) {
-
-						if (isHorizontalConnection(sourceLocation, referenceTargetPoint)) {
-							newTargetConnectionAnchor = getHorizontalAnchor(targetConnectionAnchor, referenceTargetPoint, sourceLocation);
+						if (UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint().equals(((CreateConnectionViewAndElementRequest) requestForType).getConnectionViewAndElementDescriptor().getSemanticHint())
+								|| isHorizontalConnection(sourceLocation, referenceTargetPoint)) {
+							newTargetConnectionAnchor = getHorizontalAnchor(targetConnectionAnchor, referenceTargetPoint);
 						}
 					}
 				}
@@ -239,34 +242,28 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 *            The Source Point
 	 * @return the new ConnectionAnchor forcing the horizontal Position if in the delta.
 	 */
-	protected ConnectionAnchor getHorizontalAnchor(ConnectionAnchor targetConnectionAnchor, Point referenceTargetPoint, Point sourceLocation) {
-		ConnectionAnchor newTargetConnectionAnchor = targetConnectionAnchor;
-		Point newLocation = referenceTargetPoint.setY(sourceLocation.y());
+	protected ConnectionAnchor getHorizontalAnchor(ConnectionAnchor targetConnectionAnchor, Point referenceTargetPoint) {
+		ConnectionAnchor newTargetConnectionAnchor = null;
 
-		PrecisionPoint pt = BaseSlidableAnchor.getAnchorRelativeLocation(targetConnectionAnchor.getReferencePoint(), targetConnectionAnchor.getOwner().getBounds());
 		if (targetConnectionAnchor.getOwner() instanceof NodeFigure) {
-			newTargetConnectionAnchor = new PapyrusSlidableSnapToGridAnchor((NodeFigure) targetConnectionAnchor.getOwner(), pt) {
+			NodeFigure figure = (NodeFigure) targetConnectionAnchor.getOwner();
+			PrecisionPoint pt = BaseSlidableAnchor.getAnchorRelativeLocation(referenceTargetPoint, figure.getBounds());
+			newTargetConnectionAnchor = new PapyrusSlidableSnapToGridAnchor(figure, pt) {
 
 				/**
 				 * Force the Horizontal position of the feedback
 				 * 
 				 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor#getIntersectionPoints(org.eclipse.draw2d.geometry.Point, org.eclipse.draw2d.geometry.Point)
-				 *
-				 * @param ownReference
-				 *            is ignored
-				 * @param foreignReference
-				 *            is ignored
-				 * @return a List with a single point of intersection
 				 */
 				@Override
 				protected PointList getIntersectionPoints(Point ownReference, Point foreignReference) {
-					PointList list = new PointList();
-
-					list.addPoint(newLocation);
-					return list;
+					ownReference.setY(foreignReference.y());
+					return super.getIntersectionPoints(ownReference, foreignReference);
 				}
 
 			};
+		} else {
+			newTargetConnectionAnchor = targetConnectionAnchor;
 		}
 		return newTargetConnectionAnchor;
 	}
@@ -309,17 +306,15 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionAndRelationshipCompleteCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest)
-	 *
-	 * @param request
-	 * @return
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
 
 		// Update request with the real Location of the Event if location next to an Event
 		Point realEventLocation = displayEvent.getRealEventLocation(request.getLocation());
-
 		if (request.getLocation() != realEventLocation) {
 			request.setLocation(realEventLocation);
 		}
@@ -414,7 +409,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	/**
 	 * During creation of a message, check if the creating message can be considered as horizontal using a threshold
 	 * If this is the case, update the request to force the location as horizontal.
-	 * 
+	 *
 	 * @param request
 	 *            The request of Message creation
 	 */
@@ -427,18 +422,21 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			Point sourceLocationPoint = (Point) sourceLocation;
 			Point targetLocation = request.getLocation();
 			// Check if the Connection can be considered as Horizontal
-			if (isHorizontalConnection(sourceLocationPoint, targetLocation) && sourceLocationPoint.y() != targetLocation.y()) {
-				Point forceHorizontalPoint = new Point(targetLocation);
-				forceHorizontalPoint.setY(sourceLocationPoint.y());
-				// Update the request accordingly
-				request.setLocation(forceHorizontalPoint);
+			if (sourceLocationPoint.y() != targetLocation.y()) {
+				if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())
+						|| isHorizontalConnection(sourceLocationPoint, targetLocation)) {
+					Point forceHorizontalPoint = new Point(targetLocation);
+					forceHorizontalPoint.setY(sourceLocationPoint.y());
+					// Update the request accordingly
+					request.setLocation(forceHorizontalPoint);
+				}
 			}
 		}
 	}
 
 	/**
 	 * isHorizontalConnection tests whether an asynchronous message is horizontal
-	 * 
+	 *
 	 * @param conn
 	 *            controller representing the link
 	 * @param newLine
@@ -518,14 +516,15 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 *            the initial Command
 	 * @return Command for creating a Message Create command
 	 */
-	protected Command getCreateEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) { // if it's the first message create
+	protected Command getCreateEdgeCommand(final CreateConnectionViewAndElementRequest request, final Command cmd) {
+		// if it's the first message create
 		if (LifelineMessageCreateHelper.getIncomingMessageCreate(request.getTargetEditPart()).isEmpty()) {
 			NodeEditPart nodeEP = (NodeEditPart) request.getTargetEditPart();
 			Map<String, Object> requestParameters = request.getExtendedData();
 			final Point sourcePoint = ((Point) requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
 			return getSetLifelinePositionCommand(cmd, nodeEP, sourcePoint);
 		}
-		return cmd;
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -540,25 +539,32 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @return the command
 	 */
 	protected CompoundCommand getSetLifelinePositionCommand(final Command originalCommand, final NodeEditPart targetEditPart, final Point sourcePoint) {
+		CompoundCommand compoundCommand = new CompoundCommand();
 		getHostFigure().getParent().translateToRelative(sourcePoint);
 		if (targetEditPart instanceof CLifeLineEditPart) {
 			int stickerHeight = ((CLifeLineEditPart) targetEditPart).getStickerHeight();
 			if (stickerHeight != -1) {
 				sourcePoint.y = sourcePoint.y - (stickerHeight / 2);
 			}
+			Bounds bounds = ((Bounds) ((Node) targetEditPart.getModel()).getLayoutConstraint());
+
+			SetBoundsCommand setPositionCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
+					new Point(bounds.getX(), sourcePoint.y));
+
+			SetBoundsCommand setSizeCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
+					new Dimension(bounds.getWidth(), bounds.getHeight() - sourcePoint.y + stickerHeight / 2));
+
+			// // // TODO_MIA Aks if SetMoveAllLineAtSamePositionCommand is up to date: to delete if not useful
+			// DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
+			// GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+			// SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
+			// compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+			compoundCommand.add(originalCommand);
+			compoundCommand.add(new GMFtoGEFCommandWrapper(setPositionCommand));
+			// setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
+			// compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+			compoundCommand.add(new GMFtoGEFCommandWrapper(setSizeCommand));
 		}
-		Bounds bounds = ((Bounds) ((Node) targetEditPart.getModel()).getLayoutConstraint());
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
-				new Point(bounds.getX(), sourcePoint.y));
-		CompoundCommand compoundCommand = new CompoundCommand();
-		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-		SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
-		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-		compoundCommand.add(originalCommand);
-		compoundCommand.add(new GMFtoGEFCommandWrapper(setBoundsCommand));
-		setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
-		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
 		return compoundCommand;
 	}
 
@@ -572,7 +578,12 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	private boolean isAllowedMessageEnd(CreateConnectionViewAndElementRequest request) {
 		Boolean allowed = true;
 		if (!precisionMode) {
-			allowed &= isTargetLowerThanSource(request);
+			Point targetLocation = request.getLocation();
+			Map<String, Object> extendedData = request.getExtendedData();
+			Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
+			if (sourceLocation instanceof Point) {
+				allowed &= isTargetLowerThanSource((Point) sourceLocation, targetLocation);
+			}
 		}
 		return allowed;
 	}
@@ -587,18 +598,13 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * 
 	 * @return true if target location point is lower than source location point
 	 */
-	private Boolean isTargetLowerThanSource(CreateConnectionViewAndElementRequest request) {
+	private Boolean isTargetLowerThanSource(Point sourceLocation, Point targetLocation) {
 		Boolean targetLowerThanSource = true;
-		Point targetLocation = request.getLocation();
-		Map<String, Object> extendedData = request.getExtendedData();
-		Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
 		// only message with a target lower than the source is allowed.
-		if (sourceLocation instanceof Point) {
-			Point sourceLocationPoint = (Point) sourceLocation;
-
-			targetLowerThanSource = sourceLocationPoint.y() <= targetLocation.y() + SequenceDiagramConstants.HORIZONTAL_MESSAGE_MAX_Y_DELTA;
-		}
+		Point sourceLocationPoint = (Point) sourceLocation;
+		targetLowerThanSource = sourceLocationPoint.y() <= targetLocation.y() + SequenceDiagramConstants.HORIZONTAL_MESSAGE_MAX_Y_DELTA;
 		return targetLowerThanSource;
+
 	}
 
 	protected GraphicalNodeEditPolicy getBasicGraphicalNodeEditPolicy() {
@@ -609,6 +615,12 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		return graphicalNodeEditPolicy;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 */
+	@Override
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
 		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
@@ -618,11 +630,12 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 */
+	@Override
 	protected Command getReconnectTargetCommand(final ReconnectRequest request) {
 		Command command = null;
 		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
-
 		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
+
 		// in case of reconnect target for message create it is need to move up the old target and move down the new target
 		if (nodeEP instanceof CLifeLineEditPart && request.getConnectionEditPart() instanceof MessageCreateEditPart) {
 			command = new CompoundCommand();
@@ -632,11 +645,10 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			} else {
 				((CompoundCommand) command).add(reconnectTargetCommand);
 			}
+
 			// move up old target if the target is different of the source
 			if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
 				((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
-			} else {
-				command = UnexecutableCommand.INSTANCE;
 			}
 		} else {
 			command = reconnectTargetCommand;
@@ -649,6 +661,25 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		}
 
 		return command;
+	}
+
+	protected Command getReconnectCommand(ConnectionNodeEditPart connectionPart, EditPart targetPart, Point location, String requestType) {
+		ReconnectRequest req = new ReconnectRequest(REQ_RECONNECT_TARGET);
+		req.setConnectionEditPart(connectionPart);
+		req.setTargetEditPart(targetPart);
+		Point newlocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, false);
+		location.setY(newlocation.y);
+		req.setLocation(location);
+		Command command = targetPart.getCommand(req);
+		return command;
+		// // Create and set the properties of the request
+		// ReconnectRequest reconnReq = new ReconnectRequest();
+		// reconnReq.setConnectionEditPart(connectionPart);
+		// reconnReq.setLocation(location);
+		// reconnReq.setTargetEditPart(targetPart);
+		// reconnReq.setType(requestType);
+		// Command cmd = targetPart.getCommand(reconnReq);
+		// return cmd;
 	}
 
 
