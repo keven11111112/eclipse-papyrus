@@ -122,6 +122,8 @@
       <paletteRules xmi:id="_zzf4fHDtEeWh-MssWmCB_A" element="clazz.tool.link"/>
       <paletteRules xmi:id="_zzf4fXDtEeWh-MssWmCB_A" element="clazz.tool.containmentlink"/>
       <paletteRules xmi:id="_zzf4fnDtEeWh-MssWmCB_A" permit="false" element="clazz.tool.*"/>
+      <paletteRules xmi:id="_-p3PYHBqEee8uorOJUenzw" permit="false" element="createTimeObservation22CreationTool"/>
+      <paletteRules xmi:id="_BI754HBrEee8uorOJUenzw" permit="false" element="createDurationObservation7CreationTool"/>
       <paletteRules xmi:id="_zzf4f3DtEeWh-MssWmCB_A" element=""/>
       <palettes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/model/PapyrusUMLClassDiagram.paletteconfiguration#/"/>
     </representationKinds>
