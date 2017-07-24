@@ -39,10 +39,10 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OldCustomInteractionEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 
 public class LifelineMessageCreateHelper {
@@ -59,16 +59,18 @@ public class LifelineMessageCreateHelper {
 		}
 	}
 
+	@Deprecated // TODO_MIA TO_DELETE
 	public static ConnectionAnchor getCreateMessageAnchor(LifelineEditPart part, Request request, Point location) {
-//		IFigure fig = part.getPrimaryShape().getFigureLifelineNameContainerFigure();
-//		fig.translateToRelative(location);
-//		if (fig.containsPoint(location)) {// move to header
-//			return new LifelineAnchor(part.getPrimaryShape().getFigureLifelineNameContainerFigure());
-//		}
-//		// move to dash line
+		IFigure fig = part.getPrimaryShape();
+		fig.translateToRelative(location);
+		if (fig.containsPoint(location)) {// move to header
+			return new LifelineAnchor(part.getPrimaryShape());
+		}
+		// move to dash line
 		return getTargetConnectionAnchor(part, request);
 	}
 
+	@Deprecated // TODO_MIA TO_DELETE
 	static ConnectionAnchor getTargetConnectionAnchor(LifelineEditPart part, Request request) {
 		NodeFigure nodeFigure = null;
 		if (part instanceof OLDLifelineEditPart) {
@@ -165,6 +167,7 @@ public class LifelineMessageCreateHelper {
 		return create;
 	}
 
+
 	public static boolean canReconnectMessageCreate(ReconnectRequest request) {
 		MessageCreateEditPart connPart = (MessageCreateEditPart) request.getConnectionEditPart();
 		if (request.isMovingStartAnchor()) { // reconnect source
@@ -179,6 +182,7 @@ public class LifelineMessageCreateHelper {
 		return true;
 	}
 
+	@Deprecated // TODO_MIA TO_DELETE
 	public static Command reconnectMessageCreateTarget(ReconnectRequest request, Command command) {
 		LifelineEditPart oldTarget = (LifelineEditPart) request.getConnectionEditPart().getTarget();
 		// LifelineEditPart source = (LifelineEditPart)request.getConnectionEditPart().getSource();
@@ -197,6 +201,7 @@ public class LifelineMessageCreateHelper {
 		return command;
 	}
 
+	@Deprecated // TODO_MIA TO_DELETE
 	public static Command moveLifelineDown(Command command, OLDLifelineEditPart part, Point sourcePointCopy) {
 		IFigure fig = part.getFigure();
 		Rectangle bounds = fig.getBounds().getCopy();
@@ -221,35 +226,37 @@ public class LifelineMessageCreateHelper {
 		return command;
 	}
 
+	@Deprecated // TODO_MIA TO_DELETE
 	public static Command moveCascadeLifeline(LifelineEditPart part, Command command, int dy) {
 		command = moveCascadeLifelineRecursive(part, command, dy);
-		OldCustomInteractionEditPart interactionEP = (OldCustomInteractionEditPart) part.getParent().getParent();
-		command = interactionEP.getUpdateLifelinesHeightsCommand(command);
+		CInteractionEditPart interactionEP = (CInteractionEditPart) part.getParent().getParent();
+		// command = interactionEP.getUpdateLifelinesHeightsCommand(command);
 		return command;
 	}
 
 	// move all lifelines which has incoming create link from part
+	@Deprecated // TODO_MIA TO_DELETE
 	public static Command moveCascadeLifelineRecursive(LifelineEditPart part, Command command, int dy) {
 		List<?> list = part.getSourceConnections();
 		if (list != null && list.size() > 0) {
 			for (Object l : list) {
 				if (l instanceof MessageCreateEditPart) {
 					EditPart target = ((MessageCreateEditPart) l).getTarget();
-					if (target instanceof OLDLifelineEditPart) {
-						OLDLifelineEditPart lp = (OLDLifelineEditPart) target;
-						Rectangle bounds = lp.getFigure().getBounds().getCopy();
-						View targetView = lp.getNotationView();
-						Point location = bounds.getLocation().getCopy().translate(0, dy);
-						Command boundsCommand = new ICommandProxy(new SetBoundsCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location));
-						// Take care of the order of commands, to make sure target is always bellow the source.
-						if (dy < 0) { // move up
-							command = command == null ? boundsCommand : command.chain(boundsCommand);
-							command = moveCascadeLifelineRecursive(lp, command, dy);
-						} else { // move down
-							command = moveCascadeLifelineRecursive(lp, command, dy);
-							command = command == null ? boundsCommand : command.chain(boundsCommand);
-						}
-					}
+					// if (target instanceof CLifeLineEditPart) {
+					// CLifeLineEditPart lp = (CLifeLineEditPart) target;
+					// Rectangle bounds = lp.getFigure().getBounds().getCopy();
+					// View targetView = lp.getNotationView();
+					// Point location = bounds.getLocation().getCopy().translate(0, dy);
+					// Command boundsCommand = new ICommandProxy(new SetBoundsCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location));
+					// // Take care of the order of commands, to make sure target is always bellow the source.
+					// if (dy < 0) { // move up
+					// command = command == null ? boundsCommand : command.chain(boundsCommand);
+					// command = moveCascadeLifelineRecursive(lp, command, dy);
+					// } else { // move down
+					// command = moveCascadeLifelineRecursive(lp, command, dy);
+					// command = command == null ? boundsCommand : command.chain(boundsCommand);
+					// }
+					// }
 				}
 			}
 		}

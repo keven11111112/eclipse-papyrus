@@ -63,10 +63,10 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionHeadImpactLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.StereotypeInteractionFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -151,7 +151,7 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 				InteractionInteractionCompartmentEditPart childEditPart = (InteractionInteractionCompartmentEditPart) child;
 				for (Object grandChild : childEditPart.getChildren()) {
 					if (grandChild instanceof OLDLifelineEditPart) {
-						//command = ((CustomLifelineEditPart) grandChild).getAlignLifelineBottomToParentCommand(command, false);
+						// command = ((CLifelineEditPart) grandChild).getAlignLifelineBottomToParentCommand(command, false);
 					}
 				}
 			}
@@ -218,7 +218,7 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 							IFigure figure = editPart.getFigure();
 							if (grandChild instanceof OLDLifelineEditPart) {
 								Rectangle childBounds = figure.getBounds().getCopy();
-								//childBounds.height = ((CustomLifelineEditPart) grandChild).getMinimumHeight(-1);
+								// childBounds.height = ((CustomLifelineEditPart) grandChild).getMinimumHeight(-1);
 								bounds.union(childBounds);
 							} else {
 								bounds.union(figure.getBounds());

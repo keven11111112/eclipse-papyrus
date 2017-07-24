@@ -72,6 +72,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
@@ -798,11 +799,11 @@ public class SequenceUtil {
 	 *            the contained edit part or itself
 	 * @return lifeline edit part or null
 	 */
-	public static LifelineEditPart getParentLifelinePart(EditPart nodeEditPart) {
+	public static CLifeLineEditPart getParentLifelinePart(EditPart nodeEditPart) {
 		EditPart parent = nodeEditPart;
 		while (parent != null) {
-			if (parent instanceof LifelineEditPart) {
-				return (LifelineEditPart) parent;
+			if (parent instanceof CLifeLineEditPart) {
+				return (CLifeLineEditPart) parent;
 			} else {
 				parent = parent.getParent();
 			}

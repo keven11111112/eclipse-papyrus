@@ -21,6 +21,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -37,24 +38,27 @@ import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionBendpointEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.util.SelectInDiagramHelper;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -83,6 +87,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	private static final String MOVED_DOWN = "Moved Down";
 
 	private static final String MOVED_HORIZONTAL = "Moved Horizontal";
+
+	/** The minimum height of the Lifeline figure. */
+	private static final int LIFELINE_MIN_HEIGHT = 100;
 
 	public MessageConnectionLineSegEditPolicy() {
 		super(LineMode.ORTHOGONAL_FREE);
@@ -159,35 +166,60 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				MessageEnd send = ((Message) message).getSendEvent();
 				MessageEnd rcv = ((Message) message).getReceiveEvent();
 				EditPart srcPart = connectionPart.getSource();
-				LifelineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(srcPart);
+				CLifeLineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(srcPart);
 				EditPart tgtPart = connectionPart.getTarget();
-				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
-				if (/* send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && */srcLifelinePart != null && tgtLifelinePart != null) {
+				CLifeLineEditPart targetLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
+				if (/* send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && */srcLifelinePart != null && targetLifelinePart != null) {
 					RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 					if ((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart) && kind == RouterKind.SELF) {
+						// TODO_MIA Test it
 						return getSelfLinkMoveCommand(request, connectionPart, send, rcv, srcLifelinePart);
 					} else if (getHost() instanceof MessageCreateEditPart) {
-						IFigure fig = tgtLifelinePart.getPrimaryShape().getFigureLifelineNameContainerFigure();
-						Rectangle bounds = fig.getBounds().getCopy();
-						fig.translateToAbsolute(bounds);
-						PointList points = getConnection().getPoints();
-						Point sourceRefPoint = points.getFirstPoint().getCopy();
-						getConnection().translateToAbsolute(sourceRefPoint);
-						int dy = sourceRefPoint.y - bounds.getCenter().y;
-						Point location = tgtLifelinePart.getFigure().getBounds().getLocation().getCopy().translate(0, dy);
-						Command moveCmd = new ICommandProxy(new SetBoundsCommand(tgtLifelinePart.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(tgtLifelinePart.getNotationView()), location));
-						// Take care of the order of commands, to make sure target is always bellow the source.
-						if (dy < 0) { // move up
-							return LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart, moveCmd, dy);
-						} else { // move down
-							Command cmd = LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart, null, dy);
-							cmd = cmd == null ? moveCmd : cmd.chain(moveCmd);
-							return cmd;
+						// Reposition lifeline
+						IFigure targetFigure = targetLifelinePart.getPrimaryShape();
+
+						Point sourcePoint = request.getLocation().getCopy();
+						targetFigure.getParent().translateToRelative(sourcePoint);
+
+						int stickerHeight = ((CLifeLineEditPart) targetLifelinePart).getStickerHeight();
+						if (stickerHeight != -1) {
+							sourcePoint.y = sourcePoint.y - (stickerHeight / 2);
 						}
-					} else {
+						Bounds bounds = ((Bounds) ((Node) targetLifelinePart.getModel()).getLayoutConstraint());
+
+						SetBoundsCommand moveLifelineCmd = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
+								new Point(bounds.getX(), sourcePoint.y));
+
+						SetBoundsCommand setSizeCommand = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
+								new Dimension(bounds.getWidth(), bounds.getHeight() - (sourcePoint.y + stickerHeight / 2 - targetFigure.getBounds().y)));
+
+						// Move message End
 						int y = request.getLocation().y;
 						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart);
-						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, tgtLifelinePart);
+						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart);
+
+						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
+						Point oldLocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, true);
+						if (oldLocation != null) {
+							int oldY = oldLocation.y;
+							if (oldY < y) {
+								compoudCmd.add(tgtCmd);
+								compoudCmd.add(srcCmd);
+								compoudCmd.add(new ICommandProxy(moveLifelineCmd));
+								compoudCmd.add(new ICommandProxy(setSizeCommand));
+							} else {
+								compoudCmd.add(new ICommandProxy(moveLifelineCmd));
+								compoudCmd.add(new ICommandProxy(setSizeCommand));
+								compoudCmd.add(srcCmd);
+								compoudCmd.add(tgtCmd);
+							}
+							return compoudCmd;
+						}
+					} else {
+						// TODO_MIA to test
+						int y = request.getLocation().y;
+						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart);
+						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart);
 						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 						/*
 						 * Take care of the order of commands, to make sure target is always bellow the source.
@@ -432,15 +464,32 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			return false;
 		}
 		EditPart sourcePart = ((ConnectionNodeEditPart) getHost()).getSource();
-		if (sourcePart instanceof LifelineEditPart) {
-			LifelineEditPart lep = (LifelineEditPart) sourcePart;
-			NodeFigure fig = lep.getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
-			Rectangle bounds = fig.getBounds().getCopy();
-			fig.translateToAbsolute(bounds);
-			Rectangle conBounds = linkPoints.getBounds();
-			getConnection().translateToAbsolute(conBounds);
+		if (sourcePart instanceof CLifeLineEditPart) {
+			CLifeLineEditPart sourceLifelineEditPart = (CLifeLineEditPart) sourcePart;
+			NodeFigure sourceFigure = sourceLifelineEditPart.getPrimaryShape();
+			Rectangle boundsToMatch = sourceFigure.getBounds().getCopy();
+			// The bounds to match must be the top of the dashline of the source lifeline and the bottom of the target or source lifeline.
+			// TODO_MIA case where target is not a lifeline(AbstractExecutionSpecificationEditPart)
+			EditPart targetPart = ((ConnectionNodeEditPart) getHost()).getTarget();
+			if (sourceLifelineEditPart.getStickerHeight() != -1) {
+				boundsToMatch.setHeight(boundsToMatch.height - sourceLifelineEditPart.getStickerHeight());
+				boundsToMatch.setY(boundsToMatch.y + sourceLifelineEditPart.getStickerHeight());
+			}
+
+			if (targetPart instanceof CLifeLineEditPart) {
+				NodeFigure targetFigure = (NodeFigure) ((NodeEditPart) targetPart).getPrimaryShape();
+				// If the bottom of the target is higher
+				int bottom = targetFigure.getBounds().bottom();
+				if (bottom < boundsToMatch.bottom()) {
+					int delta = boundsToMatch.bottom() - bottom + LIFELINE_MIN_HEIGHT;
+					boundsToMatch.setHeight(boundsToMatch.height - delta);
+				}
+			}
+			sourceFigure.translateToAbsolute(boundsToMatch);
+			Rectangle boundsToCheck = linkPoints.getBounds();
+			getConnection().translateToAbsolute(boundsToCheck);
 			// check top and bottom y limit
-			if (conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y) {
+			if (boundsToCheck.y <= boundsToMatch.y || boundsToCheck.getBottom().y >= boundsToMatch.getBottom().y) {
 				return false;
 			}
 		}
@@ -454,7 +503,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			getConnection().translateToAbsolute(conBounds);
 			if (getHost() instanceof MessageSyncEditPart) {// Sync message is linked between two executions.
 				if (conBounds.width < 2 || conBounds.height < 2
-						// check top and bottom y limit
+				// check top and bottom y limit
 						|| conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y) {
 					return false;
 				}
