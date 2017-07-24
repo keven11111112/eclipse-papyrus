@@ -396,7 +396,7 @@
     <iconEntry xmi:id="_ScgUVVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/EncapsulatedClassifier.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//EncapsulatedClassifier"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.Enumeration" identifier="org.eclipse.papyrus.uml.Enumeration" name="UML::Enumeration" hint="UML::Enumeration" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.Enumeration" identifier="org.eclipse.papyrus.uml.Enumeration" name="UML::Enumeration" hint="UML::Enumeration" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.EnumerationEditHelper">
     <iconEntry xmi:id="_ScgUV1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Enumeration.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Enumeration"/>
   </elementTypeConfigurations>

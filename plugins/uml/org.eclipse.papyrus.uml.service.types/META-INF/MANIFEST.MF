@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[3.0.0,4.
  org.eclipse.papyrus.infra.types.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.uml.types.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)",
- org.eclipse.papyrus.infra.emf.gmf
+ org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.100,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 3.1.0.qualifier
