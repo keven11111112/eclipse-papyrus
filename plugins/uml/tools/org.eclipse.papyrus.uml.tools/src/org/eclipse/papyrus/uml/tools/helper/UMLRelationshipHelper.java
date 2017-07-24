@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -183,10 +184,11 @@ public class UMLRelationshipHelper {
 	 */
 	public Element getBestOwner(final MetamodelTypeConfiguration elementTypeConfiguration, final Element source, final Element target, final Element editorContext) {
 		final EClass relationshipToCreate = elementTypeConfiguration.getEClass();
-		if (UMLPackage.eINSTANCE.getAbstraction() == relationshipToCreate) {
-			return source.getOwner();
-		}
-		if (UMLPackage.eINSTANCE.getDependency() == relationshipToCreate) {
+		if (UMLPackage.eINSTANCE.getAbstraction() == relationshipToCreate
+				|| UMLPackage.eINSTANCE.getDependency() == relationshipToCreate) {
+			if (source instanceof Package || null == source.getOwner()) {
+				return source;
+			}
 			return source.getOwner();
 		}
 		return null;
