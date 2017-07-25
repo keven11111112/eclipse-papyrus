@@ -89,6 +89,40 @@ public class FillingConfigurationUtils {
 	 *
 	 * @param table
 	 *            a table
+	 * @param rep
+	 *            an axis manager representation
+	 * @return
+	 *         the list of {@link TreeFillingConfiguration} to use for the representedAxisManager defined as column axis manager
+	 * @since 3.1
+	 */
+	public static final List<TreeFillingConfiguration> getTreeFillingConfigurationForColumn(final Table table, final AxisManagerRepresentation representedAxisManager) {
+		Assert.isTrue(!table.isInvertAxis(), INVERT_AXIS_CASE_NOT_YET_MANAGED_FOR_TREE_TABLE);
+		List<TreeFillingConfiguration> confs = new ArrayList<TreeFillingConfiguration>();
+		LocalTableHeaderAxisConfiguration local = table.getLocalColumnHeaderAxisConfiguration();
+		if (local != null && local.getAxisManagerConfigurations().size() > 0) {
+			for (AxisManagerConfiguration currentRep : local.getAxisManagerConfigurations()) {
+				if (currentRep.getAxisManager() == representedAxisManager) {
+					for (final IAxisConfiguration current : currentRep.getLocalSpecificConfigurations()) {
+						if (current instanceof TreeFillingConfiguration) {
+							confs.add((TreeFillingConfiguration) current);
+						}
+					}
+					return confs;
+				}
+			}
+		} else {
+			for (final IAxisConfiguration current : representedAxisManager.getSpecificAxisConfigurations()) {
+				if (current instanceof TreeFillingConfiguration) {
+					confs.add((TreeFillingConfiguration) current);
+				}
+			}
+		}
+		return confs;
+	}
+	/**
+	 *
+	 * @param table
+	 *            a table
 	 * @param wantedDepth
 	 *            the depth for which we want all TreeFillingConfiguration
 	 * @return
