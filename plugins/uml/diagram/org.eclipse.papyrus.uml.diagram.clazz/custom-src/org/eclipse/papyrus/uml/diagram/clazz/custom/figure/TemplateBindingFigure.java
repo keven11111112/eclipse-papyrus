@@ -12,7 +12,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 import org.eclipse.swt.SWT;
 
 /**
@@ -21,7 +21,7 @@ import org.eclipse.swt.SWT;
  * @author PT202707
  *
  */
-public class TemplateBindingFigure extends InterfaceRealizationFigure {
+public class TemplateBindingFigure extends DashedEdgeFigure {
 
 	protected BindingSubstitutionFigure bindingSubstitutionFigure;
 
