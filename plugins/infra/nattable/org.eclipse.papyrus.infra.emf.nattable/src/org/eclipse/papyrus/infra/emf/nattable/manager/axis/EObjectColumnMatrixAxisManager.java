@@ -37,7 +37,6 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
@@ -50,7 +49,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.ICellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper;
-import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 
 /**
  * This axis manager has been developed to manage the columns for Matrix. It can't be used row manager
@@ -66,7 +65,7 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	/**
 	 * the expression returned when there is no expression registered in the TreeFillingConfiguration
 	 */
-	private final IBooleanEObjectExpression defaultFIlter = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
+	private final IBooleanEObjectExpression defaultFilter = BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression();
 
 	/**
 	 * The table eobjects to listen to be notified when the table configuration changes
@@ -113,9 +112,6 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 
 				// 3. we init the list of feature to listen for the columns sources elements
 				cleanAndFillTreeFillingConfigurationMap();
-				// TODO : update the values
-				// TODO reinit the listener
-				// TODO reinit the maps
 			}
 		};
 	};
@@ -252,11 +248,8 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 
 		final Table table = getTableManager().getTable();
 		if (null != table) {
-			final AbstractHeaderAxisConfiguration columnHeaderAxisConfiguration = HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(table);
-
-			for (final IAxisConfiguration current : columnHeaderAxisConfiguration.getOwnedAxisConfigurations()) {
-				if (current instanceof TreeFillingConfiguration && ((TreeFillingConfiguration) current).getDepth() == 1) {
-					final TreeFillingConfiguration treeFillingConfiguration = (TreeFillingConfiguration) current;
+			for(final TreeFillingConfiguration treeFillingConfiguration : FillingConfigurationUtils.getTreeFillingConfigurationForColumn(table, this.representedAxisManager)){
+				if (treeFillingConfiguration.getDepth() == 1) {
 					final TreeFillingConfigurationHelper helper = new TreeFillingConfigurationHelper(treeFillingConfiguration);
 					this.map.put(treeFillingConfiguration, helper);
 					this.featureVSConfiguration.put(helper.getEStructuralFeatureToListen(), treeFillingConfiguration);
@@ -376,7 +369,7 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	public boolean isAllowedContents(final Object objectToTest, final Object semanticParent, final TreeFillingConfiguration conf, final int depth) {
 		boolean result = false;
 		if (semanticParent instanceof EObject && objectToTest instanceof EObject && null != conf && null != conf.getAxisUsedAsAxisProvider()) {
-			final IBooleanEObjectExpression filter = null != conf.getFilterRule() ? conf.getFilterRule() : this.defaultFIlter;
+			final IBooleanEObjectExpression filter = null != conf.getFilterRule() ? conf.getFilterRule() : this.defaultFilter;
 			if (filter.evaluate((EObject) objectToTest)) {
 				result = CellManagerFactory.INSTANCE.getCrossValueAsCollection(semanticParent, conf.getAxisUsedAsAxisProvider(), this.tableManager).contains(objectToTest);
 			}
