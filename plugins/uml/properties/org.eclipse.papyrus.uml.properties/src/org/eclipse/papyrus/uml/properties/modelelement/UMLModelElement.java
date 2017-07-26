@@ -22,7 +22,6 @@ import static org.eclipse.uml2.uml.ParameterDirectionKind.OUT_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +44,7 @@ import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.InternationalizationConstants;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement;
 import org.eclipse.papyrus.infra.properties.ui.providers.FeatureContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
@@ -91,7 +91,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Camille Letavernier
  *
  */
-public class UMLModelElement extends EMFModelElement {
+public class UMLModelElement extends EMFModelElement implements ILabeledModelElement {
 
 	/**
 	 *
@@ -196,7 +196,7 @@ public class UMLModelElement extends EMFModelElement {
 				public boolean isValidValue(Object element) {
 					element = EMFHelper.getEObject(element);
 					// according to the UML norm 2.5, section 17.4.3.1
-					// The signature of a Message refers to either an Operation or a Signal. 
+					// The signature of a Message refers to either an Operation or a Signal.
 					return element instanceof Operation || element instanceof Signal;
 				}
 			};
@@ -266,7 +266,7 @@ public class UMLModelElement extends EMFModelElement {
 				@Override
 				protected List<EClass> getAvailableEClasses() {
 					// according to the UML norm 2.5, section 17.4.3.1
-					// The signature of a Message refers to either an Operation or a Signal. 
+					// The signature of a Message refers to either an Operation or a Signal.
 					final List<EClass> eClasses = new ArrayList<EClass>();
 					eClasses.add(UMLPackage.eINSTANCE.getOperation());
 					eClasses.add(UMLPackage.eINSTANCE.getSignal());
@@ -379,5 +379,25 @@ public class UMLModelElement extends EMFModelElement {
 			return new UMLReferenceConverter(helper, getFeature(propertyPath).isMany());
 		}
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement#getLabel(java.lang.String)
+	 */
+	@Override
+	public String getLabel(final String propertyPath) {
+		String result = null;
+		if (getSource() instanceof NamedElement) {
+			final NamedElement namedElement = (NamedElement) getSource();
+			final String name = namedElement.getName();
+			final String label = namedElement.getLabel();
+
+			if (!label.equals(name)) {
+				result = label;
+			}
+		}
+		return result;
 	}
 }
