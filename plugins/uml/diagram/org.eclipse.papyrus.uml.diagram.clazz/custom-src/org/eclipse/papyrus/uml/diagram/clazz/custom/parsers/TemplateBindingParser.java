@@ -92,10 +92,10 @@ public class TemplateBindingParser implements IParser {
 			}
 		}
 		if (EMPTY_STR.equals(out)) {
-			return "<No Binding Substitution>";
+			out = String.format("«bind»\n<No Binding Substitution>", out); //$NON-NLS-1$
 		}
 		else {
-			out = String.format("Â«bindÂ»\n<%s>", out); //$NON-NLS-1$
+			out = String.format("«bind»\n<%s>", out); //$NON-NLS-1$
 		}
 		return out;
 	}
