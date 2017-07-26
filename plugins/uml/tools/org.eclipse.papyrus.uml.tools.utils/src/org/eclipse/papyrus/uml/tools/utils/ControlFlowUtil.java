@@ -12,9 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ControlFlow;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 
@@ -35,7 +35,7 @@ public class ControlFlowUtil {
 	 * @param target
 	 * @return
 	 */
-	public static boolean canExistControlFlow(Activity container, ControlFlow linkInstance, ActivityNode source, ActivityNode target) {
+	public static boolean canExistControlFlow(Element container, ControlFlow linkInstance, ActivityNode source, ActivityNode target) {
 		try {
 			if (target instanceof InitialNode) {
 				return false;

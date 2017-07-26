@@ -26,57 +26,87 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.commands.ActivityEdgeReparentCommand;
 import org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper;
+import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InterruptibleActivityRegion;
+import org.eclipse.uml2.uml.Pin;
 
 
 /**
- * Class provide extended reparent command in case drag&drop from ActivityPartition 
- * or InterruptibleActivityRegion
+ * Class provide extended reparent command in case of:
+ * - drag&drop from ActivityPartition or InterruptibleActivityRegion
+ * - drag&drop of an ActivityEdge (reparent according to its new container)
  */
-public class ActivityCompartmentCreationEditPolicy extends DefaultCreationEditPolicy{
+public class ActivityCompartmentCreationEditPolicy extends DefaultCreationEditPolicy {
 
 	/**
 	 * Set in moveRequest additional parameters then reparent from ActivityPartition
 	 * or InterruptibleActivityRegion
+	 * Reparent ActivityEdge if necessary
 	 */
 	@Override
 	protected ICommand getReparentCommand(IGraphicalEditPart gep) {
-		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label); 
-		View container = (View)getHost().getModel();
+		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
+		View container = (View) getHost().getModel();
 		EObject context = ViewUtil.resolveSemanticElement(container);
-		View view = (View)gep.getModel();
+		View view = (View) gep.getModel();
 		EObject element = ViewUtil.resolveSemanticElement(view);
 
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
 				.getEditingDomain();
 
 		// semantic
-		if ( element != null ) {
+		if (element != null) {
+			// Set in moveRequest additional parameters then reparent from ActivityPartition
+			// or InterruptibleActivityRegion
 			MoveRequest req = new MoveRequest(editingDomain, context, element);
-			EObject currentParentSemantic = ((IGraphicalEditPart)gep.getParent()).resolveSemanticElement();
+			EObject currentParentSemantic = ((IGraphicalEditPart) gep.getParent()).resolveSemanticElement();
 			if (currentParentSemantic instanceof ActivityPartition) {
 				req.setParameter(ActivityNodeHelper.OUT_FROM_PARTITION, currentParentSemantic);
 			}
 			if (currentParentSemantic instanceof InterruptibleActivityRegion) {
 				req.setParameter(ActivityNodeHelper.OUT_FROM_INTERRUPTIBLE_REGION, currentParentSemantic);
 			}
-			Command moveSemanticCmd = 
-				getHost().getCommand(
-					new EditCommandRequestWrapper(req));
+			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(req));
 
-			
 			if (moveSemanticCmd == null) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
-			
-			cc.compose ( new CommandProxy(moveSemanticCmd) );
+
+			cc.compose(new CommandProxy(moveSemanticCmd));
+
+			// Reparent ActivityEdge if necessary
+			if (context != null && shouldReparent(element, context)) {
+				if (element instanceof ActivityNode) {
+					ActivityNode activityNode = (ActivityNode) element;
+					// correct container of ControlFlow
+					for (ActivityEdge edge : activityNode.getOutgoings()) {
+						cc.compose(new ActivityEdgeReparentCommand(editingDomain, edge));
+					}
+					for (ActivityEdge edge : activityNode.getIncomings()) {
+						cc.compose(new ActivityEdgeReparentCommand(editingDomain, edge));
+					}
+					// correct container of ObjectFlow
+					for (Element ownedElement : activityNode.getOwnedElements()) {
+						if (ownedElement instanceof Pin) {
+							for (ActivityEdge edge : ((Pin) ownedElement).getOutgoings()) {
+								cc.compose(new ActivityEdgeReparentCommand(editingDomain, edge));
+							}
+							for (ActivityEdge edge : ((Pin) ownedElement).getIncomings()) {
+								cc.compose(new ActivityEdgeReparentCommand(editingDomain, edge));
+							}
+						}
+					}
+				}
+			}
 		}
-		//
+
 		// notation
 		cc.compose(getReparentViewCommand(gep));
 		return cc;
 	}
-
 }

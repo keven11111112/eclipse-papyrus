@@ -30,10 +30,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.service.types.command.ControlFlowReorientCommand;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
+import org.eclipse.papyrus.uml.tools.utils.ActivityEdgeUtil;
 import org.eclipse.papyrus.uml.tools.utils.ControlFlowUtil;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ControlFlow;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * Edit helper class for binary {@link ControlFlow}
@@ -52,17 +53,17 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 	 * Test if the relationship creation is allowed.
 	 * 
 	 * @param source
-	 *        the relationship source can be null
+	 *            the relationship source can be null
 	 * @param target
-	 *        the relationship target can be null
+	 *            the relationship target can be null
 	 * @param sourceView
-	 *        the relationship graphical source can be null
+	 *            the relationship graphical source can be null
 	 * @param targetView
-	 *        the relationship graphical target can be null
+	 *            the relationship graphical target can be null
 	 * @return true if the creation is allowed
 	 */
 	protected boolean canCreate(EObject source, EObject target, View sourceView, View targetView) {
-		return canCreate(source, target); 
+		return canCreate(source, target);
 	}
 
 	/**
@@ -76,24 +77,24 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
 
-		if(!noSourceAndTarget && !canCreate(source, target, RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req))) {
+		if (!noSourceAndTarget && !canCreate(source, target, RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req))) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		if(noSourceOrTarget && !noSourceAndTarget) {
+		if (noSourceOrTarget && !noSourceAndTarget) {
 			// The request isn't complete yet. Return the identity command so
 			// that the create relationship gesture is enabled.
 			// this can be before first creation => check the source
-			if(source != null && !(source instanceof ActivityNode)) {
+			if (source != null && !(source instanceof ActivityNode)) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			return IdentityCommand.INSTANCE;
 		}
 
 		// Propose a semantic container for the new control flow.
-		Activity proposedContainer = deduceContainer(req);
-		if(proposedContainer == null) {
+		Element proposedContainer = deduceContainer(req);
+		if (proposedContainer == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
@@ -101,26 +102,9 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 
 		return new CreateRelationshipCommand(req);
 	}
-	
-	protected Activity deduceContainer(CreateRelationshipRequest request) {
-		return deduceContainer(request.getSource(), request.getTarget());
-	}
-	
-	/**
-	 * @param source
-	 * @param target
-	 * @return
-	 */
-	private Activity deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null; element = element.eContainer()) {
-			if(element instanceof Activity) {
-				return (Activity)element;
-			}
-		}
-		return null;
+
+	protected Element deduceContainer(CreateRelationshipRequest request) {
+		return ActivityEdgeUtil.deduceContainer(request.getSource(), request.getTarget());
 	}
 
 	/**
@@ -133,13 +117,13 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				ControlFlow element = (ControlFlow)req.getElementToConfigure();
+				ControlFlow element = (ControlFlow) req.getElementToConfigure();
 				ActivityNode source = getSourceObject(req);
 				ActivityNode target = getTargetObject(req);
-				if(source !=null) {
+				if (source != null) {
 					element.setSource(getSourceObject(req));
 				}
-				if(target !=null) {
+				if (target != null) {
 					element.setTarget(target);
 				}
 
@@ -149,7 +133,7 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
-	
+
 
 	/**
 	 * This method provides the object to be use as source.
@@ -158,7 +142,7 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 	 */
 	protected ActivityNode getSourceObject(ConfigureRequest req) {
 		Object result = req.getParameter(CreateRelationshipRequest.SOURCE);
-		return ( result instanceof ActivityNode) ? (ActivityNode)result : null;
+		return (result instanceof ActivityNode) ? (ActivityNode) result : null;
 	}
 
 	/**
@@ -168,26 +152,26 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 	 */
 	protected ActivityNode getTargetObject(ConfigureRequest req) {
 		Object result = req.getParameter(CreateRelationshipRequest.TARGET);
-		return ( result instanceof ActivityNode) ? (ActivityNode)result : null;
+		return (result instanceof ActivityNode) ? (ActivityNode) result : null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected boolean canCreate(EObject source, EObject target) {
-		if((source != null) && !(source instanceof ActivityNode)) {
+		if ((source != null) && !(source instanceof ActivityNode)) {
 			return false;
 		}
 
-		if((target != null) && !(target instanceof ActivityNode)) {
+		if ((target != null) && !(target instanceof ActivityNode)) {
 			return false;
 		}
-		
-		Activity container = deduceContainer(source, target);
-		if(container == null) {
+
+		Element container = ActivityEdgeUtil.deduceContainer(source, target);
+		if (container == null) {
 			return false;
 		}
-		return ControlFlowUtil.canExistControlFlow(container, null, (ActivityNode)source, (ActivityNode)target);
+		return ControlFlowUtil.canExistControlFlow(container, null, (ActivityNode) source, (ActivityNode) target);
 	}
 
 }

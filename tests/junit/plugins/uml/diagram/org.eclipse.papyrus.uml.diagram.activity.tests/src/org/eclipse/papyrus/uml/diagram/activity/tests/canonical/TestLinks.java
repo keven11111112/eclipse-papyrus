@@ -46,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNod
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInReduceActionAsCollectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -158,6 +159,10 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart objectFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(objectFlowConnection instanceof ObjectFlowEditPart);
+	
+		StructuredActivityNode structuredActivityNode = (StructuredActivityNode) getSemanticElement(structuredActivityNodeEP);
+		Assert.assertEquals(1, structuredActivityNode.getEdges().size());
+		Assert.assertEquals(getSemanticElement(objectFlowConnection), structuredActivityNode.getEdges().get(0));
 	}
 	
 	@Test
@@ -177,8 +182,12 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart objectFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(objectFlowConnection instanceof ObjectFlowEditPart);
+		
+		StructuredActivityNode structuredActivityNode = (StructuredActivityNode) getSemanticElement(structuredActivityNodeEP);
+		Assert.assertEquals(1, structuredActivityNode.getEdges().size());
+		Assert.assertEquals(getSemanticElement(objectFlowConnection), structuredActivityNode.getEdges().get(0));
 	}
-
+	
 	@Test
 	public void testCreateControlFlowLink() {
 		IGraphicalEditPart initialNodeEP = createChild(InitialNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
@@ -192,6 +201,28 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart controlFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(controlFlowConnection instanceof ControlFlowEditPart);
+	}
+
+	@Test
+	public void testCreateControlFlowLinkInStructuredActivityNode() {
+		IGraphicalEditPart structuredActivityNodeEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
+		IGraphicalEditPart structuredActivityNodeCompartmentEP = findChildBySemanticHint(structuredActivityNodeEP, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID);
+		
+		IGraphicalEditPart initialNodeEP = createChild(InitialNodeEditPart.VISUAL_ID, structuredActivityNodeCompartmentEP);
+		IGraphicalEditPart readExtentActionEP = createChild(ReadExtentActionEditPart.VISUAL_ID, structuredActivityNodeCompartmentEP);
+
+		Command endCommand = createLinkCommand(initialNodeEP, readExtentActionEP, UMLElementTypes.ControlFlow_Edge);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart controlFlowConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(controlFlowConnection instanceof ControlFlowEditPart);
+		
+		StructuredActivityNode structuredActivityNode = (StructuredActivityNode) getSemanticElement(structuredActivityNodeEP);
+		Assert.assertEquals(1, structuredActivityNode.getEdges().size());
+		Assert.assertEquals(getSemanticElement(controlFlowConnection), structuredActivityNode.getEdges().get(0));
 	}
 
 	@Test

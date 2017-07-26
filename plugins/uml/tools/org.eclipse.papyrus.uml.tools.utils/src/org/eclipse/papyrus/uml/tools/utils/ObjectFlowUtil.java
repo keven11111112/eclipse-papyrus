@@ -14,12 +14,12 @@ package org.eclipse.papyrus.uml.tools.utils;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Action;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExpansionRegion;
 import org.eclipse.uml2.uml.FinalNode;
 import org.eclipse.uml2.uml.ForkNode;
@@ -82,7 +82,7 @@ public class ObjectFlowUtil {
 	 * @param target
 	 * @return
 	 */
-	public static boolean canExistObjectFlow(Activity container, ObjectFlow linkInstance, ActivityNode source, ActivityNode target) {
+	public static boolean canExistObjectFlow(Element container, ObjectFlow linkInstance, ActivityNode source, ActivityNode target) {
 		try {
 			if (source instanceof Action) {
 				// rule validateObjectFlow_validateNoActions
@@ -99,7 +99,7 @@ public class ObjectFlowUtil {
 						&& !(source.getOwner() instanceof SequenceNode)
 						&& !(source.getOwner() instanceof ExpansionRegion)) {
 					if (target != null) {
-						if(!isPinOwnedByStructuredActivityNode(target, (StructuredActivityNode)source.getOwner())) {
+						if (!isPinOwnedByStructuredActivityNode(target, (StructuredActivityNode) source.getOwner())) {
 							return false;
 						}
 					}
@@ -179,7 +179,7 @@ public class ObjectFlowUtil {
 						&& !(target.getOwner() instanceof SequenceNode)
 						&& !(target.getOwner() instanceof ExpansionRegion)) {
 					if (source != null) {
-						if(!isPinOwnedByStructuredActivityNode(source, (StructuredActivityNode) target.getOwner())) {
+						if (!isPinOwnedByStructuredActivityNode(source, (StructuredActivityNode) target.getOwner())) {
 							return false;
 						}
 					}
@@ -315,16 +315,16 @@ public class ObjectFlowUtil {
 	}
 
 	/**
-	 * Check if the pin is directly or indirectly owned by the structuredActivityNode 
+	 * Check if the pin is directly or indirectly owned by the structuredActivityNode
 	 * 
 	 * @param pin
 	 * @param owner
 	 * @return
 	 */
 	public static boolean isPinOwnedByStructuredActivityNode(ActivityNode pin, StructuredActivityNode owner) {
-		if(pin instanceof Pin) {
+		if (pin instanceof Pin) {
 			EList<ActivityNode> nodes = owner.allOwnedNodes();
-			if(nodes.contains(pin)) {
+			if (nodes.contains(pin)) {
 				return true;
 			}
 		}
