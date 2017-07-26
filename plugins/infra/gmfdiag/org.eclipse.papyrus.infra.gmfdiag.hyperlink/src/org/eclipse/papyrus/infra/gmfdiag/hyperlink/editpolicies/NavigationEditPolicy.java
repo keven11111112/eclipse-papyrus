@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 Atos Origin, CEA, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 Atos Origin, CEA, Christian W. Damus, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 421411
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 454386
  *  Christian W. Damus - bugs 460583, 485220, 488965
+ *  Camille Letavernier (EclipseSource) - bug 520222
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
@@ -26,6 +27,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -35,6 +37,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -98,12 +101,16 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		// edit part that refers to default diagram
 
 		// if this a label of a compartment, the good editpart is the parent
-		if ((IGraphicalEditPart) getHost() instanceof CompartmentEditPart) {
-			gep = (IGraphicalEditPart) getHost().getParent();
-		} else {
-
-			gep = (IGraphicalEditPart) getHost();
+		EditPart target = getHost();
+		while (false == target instanceof IPrimaryEditPart && target != null) {
+			target = target.getParent();
 		}
+		
+		if (false == target instanceof IGraphicalEditPart) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		gep = (IGraphicalEditPart)target;
 		final EObject semanticElement = gep.resolveSemanticElement();
 
 		// defaultHyperlinks
