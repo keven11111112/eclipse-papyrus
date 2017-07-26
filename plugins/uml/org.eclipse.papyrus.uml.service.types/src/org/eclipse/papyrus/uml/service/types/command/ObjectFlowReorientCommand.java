@@ -25,7 +25,9 @@ import org.eclipse.papyrus.uml.tools.utils.ObjectFlowUtil;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ControlFlow;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ObjectFlow;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 
 /**
  * <pre>
@@ -41,11 +43,10 @@ public class ObjectFlowReorientCommand extends EditElementCommand {
 	protected final EObject newEnd;
 
 	/**
-	 * <pre>
 	 * Constructor.
 	 * 
-	 * @param request the re-orient relationship request.
-	 * </pre>
+	 * @param request
+	 *            the re-orient relationship request.
 	 */
 	public ObjectFlowReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
@@ -55,53 +56,51 @@ public class ObjectFlowReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * <pre>
 	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand#canExecute()
 	 * 
 	 * @return true if the command is executable.
-	 * </pre>
 	 */
 	public boolean canExecute() {
-		if(false == getElementToEdit() instanceof ObjectFlow) {
+		if (false == getElementToEdit() instanceof ObjectFlow) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
 	}
 
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof ActivityNode && newEnd instanceof ActivityNode)) {
+		if (!(oldEnd instanceof ActivityNode && newEnd instanceof ActivityNode)) {
 			return false;
 		}
-		if(!(getLink().eContainer() instanceof Activity)) {
+		if (!(getLink().eContainer() instanceof Activity) && !(getLink().eContainer() instanceof StructuredActivityNode)) {
 			return false;
 		}
-		return ObjectFlowUtil.canExistObjectFlow((Activity)getLink().eContainer(), getLink(), getNewSource(), getLink().getTarget());
+		return ObjectFlowUtil.canExistObjectFlow((Element) getLink().eContainer(), getLink(), getNewSource(), getLink().getTarget());
 	}
 
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof ActivityNode && newEnd instanceof ActivityNode)) {
+		if (!(oldEnd instanceof ActivityNode && newEnd instanceof ActivityNode)) {
 			return false;
 		}
-		if(!(getLink().eContainer() instanceof Activity)) {
+		if (!(getLink().eContainer() instanceof Activity) && !(getLink().eContainer() instanceof StructuredActivityNode)) {
 			return false;
 		}
-		return ObjectFlowUtil.canExistObjectFlow((Activity)getLink().eContainer(), getLink(), getLink().getSource(), getNewTarget());
+		return ObjectFlowUtil.canExistObjectFlow((Element) getLink().eContainer(), getLink(), getLink().getSource(), getNewTarget());
 	}
 
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -118,23 +117,23 @@ public class ObjectFlowReorientCommand extends EditElementCommand {
 	}
 
 	protected ObjectFlow getLink() {
-		return (ObjectFlow)getElementToEdit();
+		return (ObjectFlow) getElementToEdit();
 	}
 
 	protected ActivityNode getOldSource() {
-		return (ActivityNode)oldEnd;
+		return (ActivityNode) oldEnd;
 	}
 
 	protected ActivityNode getNewSource() {
-		return (ActivityNode)newEnd;
+		return (ActivityNode) newEnd;
 	}
 
 	protected ActivityNode getOldTarget() {
-		return (ActivityNode)oldEnd;
+		return (ActivityNode) oldEnd;
 	}
 
 	protected ActivityNode getNewTarget() {
-		return (ActivityNode)newEnd;
+		return (ActivityNode) newEnd;
 	}
-	
+
 }
