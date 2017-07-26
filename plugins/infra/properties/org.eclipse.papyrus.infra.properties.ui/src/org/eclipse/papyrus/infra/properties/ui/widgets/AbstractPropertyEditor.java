@@ -32,6 +32,8 @@ import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSourceChangedEvent;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.IDataSourceListener;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
@@ -359,6 +361,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	protected String getLabel() {
 		if (customLabel != null) {
 			return customLabel;
+		}
+		
+		if(null != getInput()) {
+			final ModelElement modelElement = getInput().getModelElement(propertyPath);
+			if(modelElement instanceof ILabeledModelElement) {
+				final String label = ((ILabeledModelElement)modelElement).getLabel(getLocalPropertyPath());
+				if(null != label && !label.isEmpty()) {
+					return label;
+				}
+			}
 		}
 
 		Property property = getModelProperty();
