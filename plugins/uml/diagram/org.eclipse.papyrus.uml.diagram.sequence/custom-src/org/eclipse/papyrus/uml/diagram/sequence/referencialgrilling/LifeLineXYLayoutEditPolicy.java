@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import java.util.Map;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -39,13 +41,17 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.ExecutionSpecificationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
@@ -106,10 +112,15 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 						}
 						constraintRect.width = AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH;
 						constraintRect.x = (parentBound.width / 2) - (constraintRect.width / 2);
+
+						constraintRect = ExecutionSpecificationUtil.calculateExecutionSpecificationCorrectLocation(((CLifeLineEditPart) getHost()), constraintRect, null);
+
 						if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
 							int modulo = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT / (int) spacing;
 							constraintRect.height = modulo * (int) spacing;
 						}
+						
+						constraint = constraintRect;
 					}
 				}
 			}
@@ -218,23 +229,57 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	protected Command createChangeConstraintCommand(
 			EditPart child,
 			Object constraint) {
+		
 		Rectangle newBounds = (Rectangle) constraint;
 		View shapeView = (View) child.getModel();
+		
+		final CompoundCommand subCommand = new CompoundCommand("Edit Execution Specification positions"); //$NON-NLS-1$
 
 		if (child instanceof AbstractExecutionSpecificationEditPart) {
 			RootEditPart drep = getHost().getRoot();
 			if (drep instanceof DiagramRootEditPart) {
+				
+				// Get the initial Rectangle from the edit part
+				Rectangle initialRectangle = null;
+				final Object view = ((AbstractExecutionSpecificationEditPart) child).getModel();
+				if (view instanceof Node) {
+					final Bounds bounds = BoundForEditPart.getBounds((Node) view);
+					initialRectangle = new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
+				}
+				
 				double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
 				Rectangle parentBound = getHostFigure().getBounds();
+				// Initial default x and y positions
 				newBounds.setLocation(new Point((parentBound.width / 2) - (AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH / 2), newBounds.getLocation().y));
-				if (newBounds.height == -1) {
-					newBounds.height = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT;
-				}
-				if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
-					int modulo = newBounds.height / (int) spacing;
-					newBounds.setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH, modulo * (int) spacing));
-				}
 
+				final CLifeLineEditPart lifeLineEditPart = (CLifeLineEditPart) getHost();
+				final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles = ExecutionSpecificationUtil.getRectangles(lifeLineEditPart);
+				
+				Rectangle boundsToRectangle = null;
+				CompoundCommand compoundCommand = null;
+				
+				// Loop until found command for the execution specifications bounds (because by moving other execution specification, the first one can be moved another time).
+				do {
+					// Calculate the moved execution specification bounds
+					boundsToRectangle = ExecutionSpecificationUtil.calculateExecutionSpecificationCorrectLocation(
+							lifeLineEditPart, executionSpecificationRectangles, new Rectangle(newBounds.x, newBounds.y, newBounds.width, newBounds.height), child);
+
+					if (boundsToRectangle.height == -1) {
+						boundsToRectangle.height = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT;
+					}
+					if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
+						int modulo = boundsToRectangle.height / (int) spacing;
+						boundsToRectangle.setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH, modulo * (int) spacing));
+					}
+					
+					// Get the possible command of execution specification bounds modification
+					compoundCommand = ExecutionSpecificationUtil.getExecutionSpecificationToMove(lifeLineEditPart, executionSpecificationRectangles, initialRectangle, boundsToRectangle, child);
+					if(null != compoundCommand && !compoundCommand.isEmpty()) {
+						subCommand.add(compoundCommand);
+					}
+				}while(compoundCommand != null && !compoundCommand.isEmpty());
+				
+				newBounds.setBounds(boundsToRectangle);
 			}
 		}
 
@@ -247,6 +292,10 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		CompoundCommand compoundCommand = new CompoundCommand();
 		compoundCommand.add(new ICommandProxy(boundsCommand));
 
+		if(!subCommand.isEmpty()) {
+			compoundCommand.add(subCommand);
+		}
+		
 		return compoundCommand;
 	}
 
@@ -263,6 +312,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		request.setLocation(displayEvent.getRealEventLocation(request.getLocation()));
 
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
+
 		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grid != null) {
 			CompoundCommand cmd = new CompoundCommand();
