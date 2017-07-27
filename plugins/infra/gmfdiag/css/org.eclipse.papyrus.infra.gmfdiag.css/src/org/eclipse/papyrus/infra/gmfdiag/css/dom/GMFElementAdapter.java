@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 461629, 436665
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 462381
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 431940
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.dom;
 
@@ -389,9 +390,9 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 					localName = type;
 				}
 			} else if (getNotationElement() instanceof BasicCompartment) {
-				return "Compartment";
+				localName = "Compartment";//$NON-NLS-1$
 			} else if (helper.isFloatingLabel(getNotationElement())) {
-				return "Label";
+				localName = "Label";//$NON-NLS-1$
 			} else {
 				localName = getSemanticElement().eClass().getName();
 			}

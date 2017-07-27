@@ -10,7 +10,8 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 461489: add supports of AcceptEventAction
- *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 517679
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 431940
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
@@ -84,6 +86,29 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 */
 	private static final String TYPE_APPLIED_STEREOTYPES_PROPERTY = "typeAppliedStereotypes"; //$NON-NLS-1$
 
+	/** Notation type of comment link. */
+	private static final String COMMENT_ANNOTATED_ELEMENT_EDGE_TYPE = "Comment_AnnotatedElementEdge";//$NON-NLS-1$
+
+	/** Selector name for comment link. */
+	private static final String COMMENT_LINK = "CommentLink";//$NON-NLS-1$
+
+	/** Notation type of constraint link. */
+	private static final String CONSTRAINT_CONSTRAINED_ELEMENT_EDGE_TYPE = "Constraint_ConstrainedElementEdge";//$NON-NLS-1$
+
+	/** Selector name for constraint link. */
+	private static final String CONSTRAINT_LINK = "ConstraintLink";//$NON-NLS-1$
+
+	/** Notation type of context link. */
+	private static final String CONSTRAINT_CONTEXT_EDGE_TYPE = "Constraint_ContextEdge";//$NON-NLS-1$
+
+	/** Selector name for context link. */
+	private static final String CONTEXT_LINK = "ContextLink";//$NON-NLS-1$
+
+	/** Selector name for stereotype property reference link. */
+	private static final String STEREOTYPE_REFERENCE_LINK = "StereotypePropertyReferenceLink";//$NON-NLS-1$
+
+	/** Selector name for stereotype stereotype comment link. */
+	private static final String STEREOTYPE_COMMENT_LINK = "StereotypeCommentLink";//$NON-NLS-1$
 
 	/**
 	 * The CSS Separator for qualifiers, when we must use CSS ID
@@ -362,9 +387,28 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		if (localName == null) {
 			// In case of StereotypeComment type, the selector should match on the Stereotype Comment.
 			if (stereotypeHelper.isStereotypeComment(getNotationElement())) {
-				return STEREOTYPE_COMMENT;
+				localName = STEREOTYPE_COMMENT;
+			} else if (getSemanticElement() instanceof Edge) {
+				switch (((Edge) getSemanticElement()).getType()) {
+				case COMMENT_ANNOTATED_ELEMENT_EDGE_TYPE:
+					localName = COMMENT_LINK;
+					break;
+				case CONSTRAINT_CONSTRAINED_ELEMENT_EDGE_TYPE:
+					localName = CONSTRAINT_LINK;
+					break;
+				case CONSTRAINT_CONTEXT_EDGE_TYPE:
+					localName = CONTEXT_LINK;
+					break;
+				case STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT:
+					localName = STEREOTYPE_REFERENCE_LINK;
+					break;
+				case StereotypeDisplayConstant.STEREOTYPE_COMMENT_LINK_TYPE:
+					localName = STEREOTYPE_COMMENT_LINK;
+					break;
+				}
 			}
 		}
-		return super.getLocalName();
+
+		return localName == null ? super.getLocalName() : localName;
 	}
 }
