@@ -364,6 +364,24 @@
             name="Highest">
       </Priority>
    </editpolicyProvider>
+    <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomCombinedFragmentEditPolicyProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+   </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomInteractionUseEditPolicyProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+   </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomInteractionEditPolicyProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+   </editpolicyProvider>
 </extension>
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
       <editpartProvider class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomEditPartProvider">
