@@ -195,7 +195,7 @@ public class ConnectorUtils {
 	//TODO : find a better way for that!
 	public static final boolean applyUMLRulesForConnector(final Connector connector) {
 		final Element element = connector.getOwner();
-		return element.getAppliedStereotype("SysML::Blocks::Block") == null; //$NON-NLS-1$
+		return element.getAppliedStereotype("SysML::Blocks::Block") == null && element.getAppliedStereotype("SysML::ConstraintBlocks::ConstraintBlock") == null ; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
