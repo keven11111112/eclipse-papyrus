@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST,ALL4TEC, and others.
+ * Copyright (c) 2010, 2016, 2017 CEA LIST,ALL4TEC, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,8 +11,10 @@
  *  Christian W. Damus (CEA) - bug 408491
  *  Philip Langer (EclipseSource) planger@eclipsesource.com - bug 495394
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Adds implementation if multi tabulation.
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr, Bug 435352 (only initialize current tab)
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.widgets.editors;
 
 import java.util.ArrayList;
@@ -73,7 +75,6 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  */
 public class TreeSelectorDialog extends SelectionDialog implements ITreeSelectorDialog {
 
-
 	/** The icon used for the default tabulation. */
 	protected static final String ICONS_TREE_VIEW = "/icons/treeView.gif"; //$NON-NLS-1$
 
@@ -88,6 +89,9 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 
 	/** the viewer. */
 	private Map<String, TreeViewer> treeViewers = new HashMap<String, TreeViewer>();
+
+	/** a map of tabComposites, used for lazy instantiation */
+	private Map<String, Composite> tabComposites = new HashMap<String, Composite>();
 
 	/** The main description of the dialog. */
 
@@ -224,6 +228,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	 */
 	public TreeSelectorDialog(final Shell parentShell) {
 		super(parentShell);
+		currentTabId = defaultTabId;
 	}
 
 	/**
@@ -263,8 +268,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		}
 
 		// Refresh tree viewer to reorder if necessary
-		for (Entry entry : labelProviders.entrySet()) {
-			((ILabelProvider) entry.getValue()).addListener(event -> {
+		for (Entry<String, ILabelProvider> entry : labelProviders.entrySet()) {
+			entry.getValue().addListener(event -> {
 				Object key = entry.getKey();
 				TreeViewer treeViewer = treeViewers.get(key);
 				if (null != treeViewer && !treeViewer.getTree().isDisposed()) {
@@ -345,6 +350,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 
 	/**
 	 * initialize the viewer and provider for a particular tabulation.
+	 * Only call setInput, if for currentTab
 	 * 
 	 * @param tabId
 	 *            The tabulation id.
@@ -352,7 +358,9 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	private void initViewerAndProvider(final String tabId) {
 		treeViewers.get(tabId).setContentProvider(contentProviders.get(tabId));
 		if (null == treeViewers.get(tabId).getInput()) {
-			doSetInput(tabId);
+			if (tabId.equals(currentTabId)) {
+				doSetInput(tabId);
+			}
 		}
 	}
 
@@ -393,8 +401,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 				int indexOfLast = tabIds.indexOf(lastSelectedTabId);
 				if (0 <= indexOfLast) {
 					currentTabId = lastSelectedTabId;
+					// no need to refresh (reduce opening time)
 					tabFolder.setSelection(indexOfLast);
-					doSetInput(currentTabId);// refresh the input of the selected viewer
 				}
 			} else {
 				currentTabId = defaultTabId;
@@ -422,7 +430,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		if (!initialized) {
 			initializeTabulationInfo();
 		}
-		if (1 < tabIds.size()) {
+		if (tabIds.size() > 1) {
 			tabFolder = new TabFolder(getDialogArea(), SWT.CLOSE);
 			GridDataFactory.fillDefaults().grab(true, true).applyTo(tabFolder);
 		}
@@ -436,7 +444,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 			ITreeContentProvider tabContentProvider = contentProviders.get(tabId);
 
 			Composite tabComposite = null;
-			if (1 < tabIds.size()) {
+			if (tabIds.size() > 1) {
 
 				TabItem item = new TabItem(tabFolder, SWT.NONE);
 				item.setText(tabName);
@@ -445,20 +453,6 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 				tabComposite = new Composite(tabFolder, SWT.NONE);
 				GridLayoutFactory.swtDefaults().applyTo(tabComposite);
 				item.setControl(tabComposite);
-
-				// Add selection chance listener.
-				tabFolder.addSelectionListener(new SelectionListener() {
-
-					public void widgetSelected(SelectionEvent e) {
-						currentTabId = tabIds.get(tabFolder.getSelectionIndex());
-						doSetInput(currentTabId);// refresh the input of the selected viewer
-						getDialogSettings().put(LAST_TAB_KEY, currentTabId);// update last selected tab preference
-					}
-
-					public void widgetDefaultSelected(SelectionEvent e) {
-						widgetSelected(e);
-					}
-				});
 
 			} else {
 				tabComposite = new Composite(getDialogArea(), SWT.NONE);
@@ -502,8 +496,41 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 			tabTreeViewer.addSelectionChangedListener(new SelectionChangedListenerImplementation());
 			tabTreeViewer.addDoubleClickListener(new DoubleClickListenerImplementation());
 
-			// create content from graphical content provider
-			createContent(tabContentProvider, tabLabelProvider, tabComposite, tabTreeViewer);
+			// initialize content, either
+			// (1) directly, if for current tab
+			// (2) later: store composite reference, initialize in selection listener
+			// This reduces the initialization delay, see bug 435352, attribute selection takes way too long
+			if (tabId.equals(currentTabId)) {
+				createContent(tabContentProvider, tabLabelProvider, tabComposite, tabTreeViewer);
+			}
+			else {
+				tabComposites.put(tabId, tabComposite);
+			}
+
+			if (tabIds.size() > 1) {
+				// Add selection change listener.
+				tabFolder.addSelectionListener(new SelectionListener() {
+
+					public void widgetSelected(SelectionEvent e) {
+						currentTabId = tabIds.get(tabFolder.getSelectionIndex());
+						getDialogSettings().put(LAST_TAB_KEY, currentTabId);// update last selected tab preference
+						if (tabComposites.containsKey(currentTabId)) {
+							doSetInput(currentTabId);// refresh the input of the selected viewer
+							// initialize the tab contents
+							createContent(contentProviders.get(currentTabId), labelProviders.get(currentTabId),
+									tabComposites.get(currentTabId), treeViewers.get(currentTabId));
+							revealInitialElement(contentProviders.get(currentTabId), treeViewers.get(currentTabId));
+							tabComposites.remove(currentTabId);
+						}
+					}
+
+					public void widgetDefaultSelected(SelectionEvent e) {
+						widgetSelected(e);
+					}
+				});
+			}
+
+
 		}
 	}
 
@@ -552,6 +579,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	 *            the parent.
 	 * @param treeViewer
 	 *            The treeViewer
+	 * @return the composite containing the "after" widget for later initialization
 	 */
 	protected void createContent(final ITreeContentProvider contentProvider, final ILabelProvider labelProvider, final Composite parent, final TreeViewer treeViewer) {
 		if (contentProvider instanceof IGraphicalContentProvider || labelProvider instanceof IGraphicalLabelProvider) {
@@ -606,7 +634,6 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 			if (contentProvider instanceof IGraphicalContentProvider) {
 				((IGraphicalContentProvider) contentProvider).createAfter(afterTreeComposite);
 			}
-
 		}
 	}
 

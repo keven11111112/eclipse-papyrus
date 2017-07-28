@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST, ALL4TEC and others.
+ * Copyright (c) 2016, 2017 CEA LIST, ALL4TEC and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,6 +14,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - History integration
  *  Philip Langer (EclipseSource) planger@eclipsesource.com - Revealing first match of filter
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 500869
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Bug 435352 (avoid commit on dispose)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
@@ -280,23 +281,26 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		patternFilter = new PatternViewerFilter();
 		currentFilterPattern = "*"; //$NON-NLS-1$
 		((PatternViewerFilter) patternFilter).setPattern(currentFilterPattern);
+		editor.setValue(currentFilterPattern);
 
 		editor.addCommitListener(new ICommitListener() {
 
 			@Override
 			public void commit(AbstractEditor editor) {
 				String filterPattern = (String) ((StringWithClearEditor) editor).getValue();
-				((PatternViewerFilter) patternFilter).setPattern(filterPattern);
+				if (!filterPattern.equals(currentFilterPattern)) {
+					((PatternViewerFilter) patternFilter).setPattern(filterPattern);
 
-				List<ViewerFilter> filtersAsList = Arrays.asList(viewer.getFilters());
-				if (!filtersAsList.contains(patternFilter)) {
-					viewer.addFilter(patternFilter);
-				}
-				viewer.refresh();
+					List<ViewerFilter> filtersAsList = Arrays.asList(viewer.getFilters());
+					if (!filtersAsList.contains(patternFilter)) {
+						viewer.addFilter(patternFilter);
+					}
+					viewer.refresh();
 
-				if (!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) { //$NON-NLS-1$
-					findAndRevealFirstMatchingItem();
-					currentFilterPattern = filterPattern;
+					if (!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) { //$NON-NLS-1$
+						findAndRevealFirstMatchingItem();
+						currentFilterPattern = filterPattern;
+					}
 				}
 			}
 
