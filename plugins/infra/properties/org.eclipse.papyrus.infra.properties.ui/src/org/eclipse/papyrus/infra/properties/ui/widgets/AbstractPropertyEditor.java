@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
+ * Copyright (c) 2010, 2016-2017 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,6 +15,7 @@
  *  Christian W. Damus - bug 469188
  *  Sebastien Gabel (Esterel Technologies SAS) - bug 497367
  *  Sebastien Gabel (Esterel Technologies SAS) - bug 497461
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 515650
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
@@ -32,6 +33,8 @@ import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSourceChangedEvent;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.IDataSourceListener;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
@@ -359,6 +362,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	protected String getLabel() {
 		if (customLabel != null) {
 			return customLabel;
+		}
+		
+		if(null != getInput()) {
+			final ModelElement modelElement = getInput().getModelElement(propertyPath);
+			if(modelElement instanceof ILabeledModelElement) {
+				final String label = ((ILabeledModelElement)modelElement).getLabel(getLocalPropertyPath());
+				if(null != label && !label.isEmpty()) {
+					return label;
+				}
+			}
 		}
 
 		Property property = getModelProperty();

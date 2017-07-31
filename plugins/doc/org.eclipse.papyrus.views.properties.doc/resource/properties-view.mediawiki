@@ -267,6 +267,28 @@ Properties views have fields' coloration. If you modify a value the background o
 
 [[File:images/fig14.png|Example of a field being modified]]
 
+====Editors label====
+
+Editors label in properties view can be customized with this following possibilities managed by priority:
+#  A 'customLabel' specified in the '*.xwt' files
+#  By using internationalized name (using <code>NamedElement#getLabel()</code> function)
+#  By default: A label deduce from the Property of the DataContext. The deduced label is the name of the property with the first letter in upper case.
+
+Examples:
+
+Custom label:
+
+[[File:images/CustomLabelExample.png|Example of custom label]]
+
+Internationalized name of a stereotype property:
+
+[[File:images/InternationalizedLabel.png|Example of the internationalized label]]
+
+Label decude from the property of the DataContext:
+
+[[File:images/DeducedLabel.png|Example of the deduced label]]
+
+
 ===Generation Tool===
 
 Editing an existing property view can be useful, but most of the time, you'll want a brand new configuration for your own profile or meta-model. Thus, the framework provides a tool to automatically generate the initial property view, which you can then customize using the customization tool.
