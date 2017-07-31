@@ -29,7 +29,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EObjectStructuredValueFactory;
-import org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -39,9 +38,7 @@ import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.common.util.UML2Util;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -49,7 +46,7 @@ import org.eclipse.uml2.uml.Stereotype;
  *
  * @author Camille Letavernier
  */
-public class StereotypeModelElement extends EMFModelElement implements ILabeledModelElement {
+public class StereotypeModelElement extends EMFModelElement {
 
 	/**
 	 * The stereotype handled by this ModelElement
@@ -179,33 +176,5 @@ public class StereotypeModelElement extends EMFModelElement implements ILabeledM
 		}
 
 		return super.getValueFactory(propertyPath);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement#getLabel(java.lang.String)
-	 */
-	@Override
-	public String getLabel(final String propertyPath) {
-		String result = null;
-
-		final FeaturePath featurePath = getFeaturePath(propertyPath);
-		final EStructuralFeature feature = getFeature(featurePath);
-
-		if (null != feature) {
-			final EObject property = StereotypeUtil.getPropertyByName(stereotype, feature.getName());
-			if (property instanceof NamedElement) {
-				final NamedElement namedElement = (NamedElement) property;
-				final String name = namedElement.getName();
-				final String label = namedElement.getLabel();
-
-				if (!label.equals(name)) {
-					result = label;
-				}
-			}
-		}
-
-		return result;
 	}
 }
