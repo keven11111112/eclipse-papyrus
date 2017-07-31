@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
+ * Copyright (c) 2008, 2017 CEA LIST, ALL4TEC and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.edge;
 
@@ -111,7 +110,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 			this.setTargetDecoration(dec);
 		} else {
 			this.setTargetDecoration(null);
-		}// arrow at target endpoint
+		} // arrow at target endpoint
 		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
 
 		// set dashes
@@ -119,5 +118,6 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 			dashes[i] = 5;
 		}
 		setLineDash(dashes);
+		setSourceDecoration(null);
 	}
 }

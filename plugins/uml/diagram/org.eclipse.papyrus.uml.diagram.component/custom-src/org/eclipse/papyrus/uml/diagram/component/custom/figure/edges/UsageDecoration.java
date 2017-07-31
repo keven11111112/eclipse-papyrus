@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2017 CEA LIST, ALL4TEC and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/INRIA DaRT) amine.el_kouhen@inria.fr
+ *	Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 
@@ -18,6 +19,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 
 /**
  * The Class UsageDecoration.
+ * 
  * @since 3.0
  */
 public class UsageDecoration extends PapyrusEdgeFigure {
@@ -35,6 +37,7 @@ public class UsageDecoration extends PapyrusEdgeFigure {
 	public void resetStyle() {
 		super.resetStyle();
 		setTargetDecoration(createTargetDecoration());
+		setSourceDecoration(null);
 	}
 
 	/**

@@ -139,9 +139,6 @@
     <sections xmi:id="_O2eT-pLDEeWbp4A9_-WIrQ" name="Multiple CanonicalStyle" sectionFile="ui/MultipleCanonicalStyle.xwt">
       <widget href="ui/MultipleCanonicalStyle.xwt#/"/>
     </sections>
-    <sections xmi:id="_O2eT-5LDEeWbp4A9_-WIrQ" name="Multiple ConnectorStyle" sectionFile="ui/MultipleConnectorStyle.xwt">
-      <widget href="ui/MultipleConnectorStyle.xwt#/"/>
-    </sections>
     <sections xmi:id="_O2eT_JLDEeWbp4A9_-WIrQ" name="Multiple PageStyle" sectionFile="ui/MultiplePageStyle.xwt">
       <widget href="ui/MultiplePageStyle.xwt#/"/>
     </sections>
@@ -231,6 +228,11 @@
     </sections>
     <sections xmi:id="_O2e7AZLDEeWbp4A9_-WIrQ" name="SingleGradientData" sectionFile="ui/SingleGradientData.xwt">
       <widget href="ui/SingleGradientData.xwt#/"/>
+    </sections>
+  </tabs>
+  <tabs xmi:id="_UV7zoHNzEeeemqYFZZsKKQ" label="Advance" id="advanceAppearance" category="org.eclipse.papyrus" afterTab="_O2ds4ZLDEeWbp4A9_-WIrQ" indented="true" priority="75">
+    <sections xmi:id="_O2eT-5LDEeWbp4A9_-WIrQ" name="Multiple ConnectorStyle" sectionFile="ui/MultipleConnectorStyle.xwt">
+      <widget href="ui/MultipleConnectorStyle.xwt#/"/>
     </sections>
   </tabs>
   <views xmi:id="_O2e7ApLDEeWbp4A9_-WIrQ" name="Single Style" sections="_O2ds4pLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_O2hXTpLDEeWbp4A9_-WIrQ">
@@ -927,5 +929,12 @@
       <properties xmi:id="_O2h-X5LDEeWbp4A9_-WIrQ" name="activate" label="Activate" type="Boolean"/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+  <dataContexts xmi:id="_7q95oHFMEeewCerBMQEgiw" name="advanceStyle" label="">
+    <elements xmi:id="_MRDiIHFNEeewCerBMQEgiw" name="ConnectorStyle">
+      <properties xmi:id="_S5LFoHFNEeewCerBMQEgiw" name="sourceDecoration" label="Source decoration" description="The source decoration of the edge."/>
+      <properties xmi:id="_TPxAsHFNEeewCerBMQEgiw" name="targetDecoration" label="Target decoration" description="The target decoration of the edge."/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@modelElementFactories.6"/>
   </dataContexts>
 </contexts:Context>

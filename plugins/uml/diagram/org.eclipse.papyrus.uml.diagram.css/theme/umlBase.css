@@ -57,6 +57,13 @@ OutputPin > Label {
 	textAlignment:"left";
 }
 
+StereotypePropertyReferenceLink{
+	targetDecoration: open_arrow;
+	lineStyle: dashed;
+	lineDashLength: 5;
+	lineDashGap: 5;
+}
+
 /*---------- Default SVG symbols ----------*/
 
 /* Round full */

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009-2017 CEA LIST, ALL4TEC and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 
@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * Figure for Connector representation.
+ * 
  * @since 3.0
  */
 public class ConnectorFigure extends UMLEdgeFigure {
@@ -98,4 +99,16 @@ public class ConnectorFigure extends UMLEdgeFigure {
 	public WrappingLabel getMultiplicityTargetLabel() {
 		return fMultiplicityTargetLabel;
 	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure#resetStyle()
+	 *
+	 */
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setSourceDecoration(null);
+		setTargetDecoration(null);
+	}
+
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2009-2017 CEA LIST, ALL4TEC and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.figures;
 
@@ -96,5 +96,17 @@ public class ConnectorFigure extends UMLEdgeFigure {
 	 */
 	public WrappingLabel getMultiplicityTargetLabel() {
 		return fMultiplicityTargetLabel;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure#resetStyle()
+	 */
+	@Override
+	public void resetStyle() {
+		super.resetStyle();
+		setSourceDecoration(null);
+		setTargetDecoration(null);
 	}
 }
