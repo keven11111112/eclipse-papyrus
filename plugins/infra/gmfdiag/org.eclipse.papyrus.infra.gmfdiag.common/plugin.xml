@@ -15,6 +15,7 @@
    <extension-point id="visualTypeProviders" name="Visual Type Providers" schema="schema/visualTypeProviders.exsd"/>
    <extension-point id="paletteCustomization" name="palette Customization" schema="schema/paletteCustomization.exsd"/>
    <extension-point id="paletteDefinition" name="paletteDefinition" schema="schema/paletteDefinition.exsd"/>
+   <extension-point id="connectionDecoration" name="connection Decoration" schema="schema/connectionDecoration.exsd"/>
 
 <extension
       point="org.eclipse.ui.handlers">
@@ -490,6 +491,41 @@
       <listener
             class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ArchitectureForPaletteServiceListener">
       </listener>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
+      <decorationDeclaration
+            class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.OpenArrowConnectionDecoration"
+            name="open_arrow">
+      </decorationDeclaration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
+      <decorationDeclaration
+            class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidDiamondFilledConnectionDecoration"
+            name="solid_diamond_filled">
+      </decorationDeclaration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
+      <decorationDeclaration
+            class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidDiamondEmptyConnectionDecoration"
+            name="solid_diamond_empty">
+      </decorationDeclaration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
+         <decorationDeclaration
+            class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidArrowFilledConnectionDecoration"
+            name="solid_arrow_filled">
+      </decorationDeclaration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
+         <decorationDeclaration
+            class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidArrowEmptyConnectionDecoration"
+            name="solid_arrow_empty">
+      </decorationDeclaration>
    </extension>
 
 </plugin>

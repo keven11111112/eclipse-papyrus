@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, ALL4TEC and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,17 +8,27 @@
  *
  * Contributors:
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation - bug 465297
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.decoration.ConnectionDecorationRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.LineStyleEnum;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.PortPositionEnum;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.PositionEnum;
+import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.ConnectionDecorationStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.CustomChildFloatingLabelBooleanStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.CustomIntStyleCompartmentObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.CustomStringStyleCompartmentObservableValue;
@@ -91,13 +101,17 @@ public class AdvanceStyleModelElement extends CustomStyleModelElement {
 			if (propertyPath.equals(NamedStyleProperties.DISPLAY_FLOATING_LABEL) && !"FloatingLabel".equals(NotationTypesMap.instance.getHumanReadableType((View) source))) {// $NON-NLS-1$
 				// CustomStringObservableValue to set all compartment of the Shape
 				observable = new CustomChildFloatingLabelBooleanStyleObservableValue(view, domain, propertyPath);
-			} else {
+			} else
 
+			// case of connector decorations
+			if (propertyPath.equals(ConnectionEditPart.TARGET_DECORATION)
+					|| propertyPath.equals(ConnectionEditPart.SOURCE_DECORATION)) {
+				observable = new ConnectionDecorationStyleObservableValue(view, domain, propertyPath);
+			} else {
 				observable = super.doGetObservable(propertyPath);
 			}
 		}
 		return observable;
-
 	}
 
 	/**
@@ -155,6 +169,15 @@ public class AdvanceStyleModelElement extends CustomStyleModelElement {
 					PortPositionEnum.OUTSIDE.toString() };
 
 			contentProvider = new StaticContentProvider(portPositions);
+		}
+
+		// case connector decorations
+		if (propertyPath.equals(ConnectionEditPart.TARGET_DECORATION)
+				|| propertyPath.equals(ConnectionEditPart.SOURCE_DECORATION)) {
+			Map<String, Class<? extends RotatableDecoration>> availableDecoration = ConnectionDecorationRegistry.getInstance().getAvailableDecoration();
+			List<String> decorations = new ArrayList<String>(availableDecoration.keySet());
+			decorations.addAll(Arrays.asList(ConnectionEditPart.DECORATION_VALUES));
+			contentProvider = new StaticContentProvider(decorations.toArray());
 		}
 
 		return null != contentProvider ? contentProvider : super.getContentProvider(propertyPath);

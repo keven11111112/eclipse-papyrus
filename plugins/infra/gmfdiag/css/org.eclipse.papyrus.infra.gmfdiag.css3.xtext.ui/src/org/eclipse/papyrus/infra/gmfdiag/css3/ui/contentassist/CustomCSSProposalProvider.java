@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2015, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,27 +9,33 @@
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
  *   Christian W. Damus - bug 485220
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.decoration.ConnectionDecorationRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.infra.gmfdiag.css.service.StylingService;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
@@ -230,8 +236,8 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				"lineStyle", //$NON-NLS-1$
 				"lineDashLength", //$NON-NLS-1$
 				"lineDashGap", //$NON-NLS-1$
-				"targetDecoration", //$NON-NLS-1$
-				"sourceDecoration", //$NON-NLS-1$
+				ConnectionEditPart.TARGET_DECORATION,
+				ConnectionEditPart.SOURCE_DECORATION,
 				"maskLabel", //$NON-NLS-1$
 				"svgFile", //$NON-NLS-1$
 				"followSVGSymbol", //$NON-NLS-1$
@@ -416,6 +422,53 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 		return propertiesNames;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist.AbstractCSSProposalProvider#completeStringTok_Value(org.eclipse.emf.ecore.EObject, org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext,
+	 *      org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
+	 */
+	@Override
+	public void completeStringTok_Value(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+		super.completeStringTok_Value(model, assignment, context, acceptor);
+
+		if (model instanceof css_declaration || model instanceof IdentifierTok) {
+			String property = null;
+			String prefix = null;
+			boolean autocomplete = false;
+			// first call as css_declaration
+			if (model instanceof css_declaration) {
+				css_declaration declaration = (css_declaration) model;
+				property = declaration.getProperty().getName();
+				prefix = context.getPrefix();
+				autocomplete = true;
+			} else
+			// second call as IdentifierTok without prefix
+			if (model instanceof IdentifierTok) {
+				IdentifierTok declaration = (IdentifierTok) model;
+				prefix = context.getPrefix();
+				// Third call IndentifierTok with the good prefix
+				if (!prefix.isEmpty()) {
+					autocomplete = true;
+				}
+				if (declaration.eContainer() instanceof css_declaration) {
+					property = ((css_declaration) declaration.eContainer()).getProperty().getName();
+				}
+			}
+
+			// Add possible values for connection decoration
+			if (autocomplete && null != property && (property.equals(ConnectionEditPart.SOURCE_DECORATION) || property.equals(ConnectionEditPart.TARGET_DECORATION))) {
+				Map<String, Class<? extends RotatableDecoration>> availableDecoration = ConnectionDecorationRegistry.getInstance().getAvailableDecoration();
+				List<String> decorations = new ArrayList<String>(availableDecoration.keySet());
+				decorations.addAll(Arrays.asList(ConnectionEditPart.DECORATION_VALUES));
+				for (String decoration : decorations) {
+					if (decoration.contains(prefix)) {
+						acceptor.accept(buildProposal(decoration, context));
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 * Complete color tok_ value.
@@ -494,7 +547,12 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 
 		String[] otherSemanticElements = new String[] {
 				"Compartment", //$NON-NLS-1$
-				"Label"//$NON-NLS-1$
+				"Label", //$NON-NLS-1$
+				"CommentLink", //$NON-NLS-1$
+				"ConstraintLink", //$NON-NLS-1$
+				"ContextLink", //$NON-NLS-1$
+				"StereotypePropertyReferenceLink", //$NON-NLS-1$
+				"StereotypeCommentLink"//$NON-NLS-1$
 		};
 
 		for (String element : otherSemanticElements) {

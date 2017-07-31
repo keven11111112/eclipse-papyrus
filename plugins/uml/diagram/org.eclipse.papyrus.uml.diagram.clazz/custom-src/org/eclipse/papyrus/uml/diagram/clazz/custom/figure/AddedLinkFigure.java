@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
+ * Copyright (c) 2009, 2017 CEA LIST, ALL4TEC and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.figure;
 
@@ -28,7 +27,7 @@ public class AddedLinkFigure extends UMLEdgeFigure {
 		this.setLineStyle(Graphics.LINE_SOLID);
 		this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);
 		this.setSourceDecoration(new ContainmentDecoration());
+		this.setTargetDecoration(null);
 	}
-
 
 }

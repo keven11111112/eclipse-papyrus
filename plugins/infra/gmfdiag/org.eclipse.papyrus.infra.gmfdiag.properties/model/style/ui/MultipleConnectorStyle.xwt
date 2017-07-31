@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:j="clr-namespace:java.lang"
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets">
+	xmlns:x="http://www.eclipse.org/xwt">
 	<Composite.layout>
-		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		<GridLayout></GridLayout>
 	</Composite.layout>
+	<Group text="Decoration">
+		<Group.layout>
+			<ppel:PapyrusRowLayout></ppel:PapyrusRowLayout>
+		</Group.layout>
+		<Composite>
+			<Composite.layout>
+				<RowLayout numColumns="1"></RowLayout>
+			</Composite.layout>
+			<ppe:StringCombo input="{Binding}"
+				property="advanceStyle:ConnectorStyle:sourceDecoration" customLabel="Source"></ppe:StringCombo>
+			<ppe:StringCombo input="{Binding}"
+				property="advanceStyle:ConnectorStyle:targetDecoration" customLabel="Target"></ppe:StringCombo>
+		</Composite>
+	</Group>
 </Composite>
