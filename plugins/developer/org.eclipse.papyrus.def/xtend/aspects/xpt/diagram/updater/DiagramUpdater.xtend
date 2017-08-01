@@ -203,10 +203,10 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 			«ELSE»
 			«generatedMemberComment»
 			public  «listOfNodeDescriptors» «getSemanticChildrenMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
-				«IF getPossibleSemanticChildrenChildFeatures(it).notEmpty || it.getPhantomNodes().notEmpty»
+				«IF getSemanticChildrenChildFeatures(it).notEmpty || it.getPhantomNodes().notEmpty»
 					«defineModelElement(it)»
 					«newLinkedListOfNodeDescriptors(it.diagramUpdater, 'result')»();
-					«/* childMetaFeature can be null here! */FOR childMetaFeature : getPossibleSemanticChildrenChildFeatures(it)»
+					«/* childMetaFeature can be null here! */FOR childMetaFeature : getSemanticChildrenChildFeatures(it)»
 						«IF null == childMetaFeature»
 							{ 	/*FIXME no containment/child feature found in the genmodel, toolsmith need to specify Class here manually*/ childElement = 
 								/*FIXME no containment/child feature found in the genmodel, toolsmith need to specify correct one here manually*/;
@@ -244,21 +244,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 			«ENDIF»	
 	'''
 	
-		def Set<GenFeature> getPossibleSemanticChildrenChildFeatures(GenContainerBase container) {
-		var result = <GenFeature>newHashSet();
-		val containerMetaclass = container.metaClass;
-		
-		if (containerMetaclass != null) {
-			for (feature : getSemanticChildrenChildFeatures(container)) {
-				if(containerMetaclass.ecoreClass.EAllStructuralFeatures.contains(feature.ecoreFeature)){
-					result.add(feature);
-				}
-			}
-		}
-		
-		return result;
-	}
-
+	
 	override defineLinkSource(TypeLinkModelFacet it, boolean inLoop) '''
 		«IF sourceMetaFeature.listType»
 			java.util.List<?> sources = «xptMetaModel.getFeatureValue(sourceMetaFeature, 'link', metaClass)»;
