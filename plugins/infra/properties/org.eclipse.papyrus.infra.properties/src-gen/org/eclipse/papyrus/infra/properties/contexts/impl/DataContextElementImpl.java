@@ -36,13 +36,13 @@ import org.eclipse.papyrus.infra.properties.contexts.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getProperties <em>Properties</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getPackage <em>Package</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getSupertypes <em>Supertypes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -147,7 +147,7 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	@Override
 	public EList<Property> getProperties() {
 		if (properties == null) {
-			properties = new EObjectContainmentWithInverseEList<Property>(Property.class, this, ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES, ContextsPackage.PROPERTY__CONTEXT_ELEMENT);
+			properties = new EObjectContainmentWithInverseEList<>(Property.class, this, ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES, ContextsPackage.PROPERTY__CONTEXT_ELEMENT);
 		}
 		return properties;
 	}
@@ -187,7 +187,7 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	public void setPackage(DataContextPackage newPackage) {
 		if (newPackage != eInternalContainer() || (eContainerFeatureID() != ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE && newPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newPackage)) {
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null) {
@@ -200,8 +200,7 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE, newPackage, newPackage));
 		}
 	}
@@ -215,7 +214,7 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	@Override
 	public EList<DataContextElement> getSupertypes() {
 		if (supertypes == null) {
-			supertypes = new EObjectResolvingEList<DataContextElement>(DataContextElement.class, this, ContextsPackage.DATA_CONTEXT_ELEMENT__SUPERTYPES);
+			supertypes = new EObjectResolvingEList<>(DataContextElement.class, this, ContextsPackage.DATA_CONTEXT_ELEMENT__SUPERTYPES);
 		}
 		return supertypes;
 	}
@@ -381,7 +380,7 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(')');
 		return result.toString();

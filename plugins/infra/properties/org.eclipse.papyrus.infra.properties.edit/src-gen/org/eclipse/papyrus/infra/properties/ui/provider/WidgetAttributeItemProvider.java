@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.provider;
 
 
@@ -64,19 +69,17 @@ public class WidgetAttributeItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_WidgetAttribute_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_WidgetAttribute_name_feature", "_UI_WidgetAttribute_type"),
-						UiPackage.Literals.WIDGET_ATTRIBUTE__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_WidgetAttribute_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetAttribute_name_feature", "_UI_WidgetAttribute_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.WIDGET_ATTRIBUTE__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -89,9 +92,8 @@ public class WidgetAttributeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((WidgetAttribute) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_WidgetAttribute_type") :
-				getString("_UI_WidgetAttribute_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_WidgetAttribute_type") : //$NON-NLS-1$
+				getString("_UI_WidgetAttribute_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

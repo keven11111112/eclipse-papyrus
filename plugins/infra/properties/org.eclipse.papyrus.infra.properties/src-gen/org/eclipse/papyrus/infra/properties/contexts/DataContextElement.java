@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,13 +21,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextElement#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextElement#getProperties <em>Properties</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextElement#getPackage <em>Package</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextElement#getSupertypes <em>Supertypes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextElement()
  * @model
@@ -36,7 +41,7 @@ public interface DataContextElement extends EObject {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextElement_Name()
@@ -49,7 +54,7 @@ public interface DataContextElement extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.DataContextElement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -66,7 +71,7 @@ public interface DataContextElement extends EObject {
 	 * If the meaning of the '<em>Properties</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Properties</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextElement_Properties()
 	 * @see org.eclipse.papyrus.infra.properties.contexts.Property#getContextElement
@@ -83,7 +88,7 @@ public interface DataContextElement extends EObject {
 	 * If the meaning of the '<em>Package</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Package</em>' container reference.
 	 * @see #setPackage(DataContextPackage)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextElement_Package()
@@ -97,7 +102,7 @@ public interface DataContextElement extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.DataContextElement#getPackage <em>Package</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Package</em>' container reference.
 	 * @see #getPackage()
@@ -113,7 +118,7 @@ public interface DataContextElement extends EObject {
 	 * If the meaning of the '<em>Supertypes</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Supertypes</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextElement_Supertypes()
 	 * @model

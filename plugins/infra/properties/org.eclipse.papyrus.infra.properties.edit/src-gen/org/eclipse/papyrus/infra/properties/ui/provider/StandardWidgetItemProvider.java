@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.provider;
 
 
@@ -61,19 +66,17 @@ public class StandardWidgetItemProvider
 	 * @generated
 	 */
 	protected void addWidgetTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_StandardWidget_widgetType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_StandardWidget_widgetType_feature", "_UI_StandardWidget_type"),
-						UiPackage.Literals.STANDARD_WIDGET__WIDGET_TYPE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_StandardWidget_widgetType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_StandardWidget_widgetType_feature", "_UI_StandardWidget_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.STANDARD_WIDGET__WIDGET_TYPE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -85,7 +88,7 @@ public class StandardWidgetItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StandardWidget"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StandardWidget")); //$NON-NLS-1$
 	}
 
 	/**
@@ -97,7 +100,7 @@ public class StandardWidgetItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_StandardWidget_type");
+		return getString("_UI_StandardWidget_type"); //$NON-NLS-1$
 	}
 
 	/**

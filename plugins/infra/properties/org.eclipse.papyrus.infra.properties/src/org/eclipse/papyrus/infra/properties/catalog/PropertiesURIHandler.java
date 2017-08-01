@@ -58,11 +58,11 @@ public class PropertiesURIHandler implements URIHandler {
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		URI convertedURI = getConvertedURI(uri);
-		if(convertedURI == null){
+		if (convertedURI == null) {
 			throw new IOException(uri.toString() + " not found");
 		}
 		URIHandler handler = getDelegateHandler(convertedURI);
-		if(handler == null){
+		if (handler == null) {
 			throw new IOException(uri.toString() + " : no handler found");
 		}
 		return handler.createInputStream(convertedURI, options);

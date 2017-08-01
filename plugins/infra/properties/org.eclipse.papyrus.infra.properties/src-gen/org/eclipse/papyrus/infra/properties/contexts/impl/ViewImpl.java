@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getSections <em>Sections</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#isAutomaticContext <em>Automatic Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getDatacontexts <em>Datacontexts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -169,7 +169,7 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	@Override
 	public EList<Section> getSections() {
 		if (sections == null) {
-			sections = new EObjectResolvingEList<Section>(Section.class, this, ContextsPackage.VIEW__SECTIONS);
+			sections = new EObjectResolvingEList<>(Section.class, this, ContextsPackage.VIEW__SECTIONS);
 		}
 		return sections;
 	}
@@ -209,7 +209,7 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	public void setContext(Context newContext) {
 		if (newContext != eInternalContainer() || (eContainerFeatureID() != ContextsPackage.VIEW__CONTEXT && newContext != null)) {
 			if (EcoreUtil.isAncestor(this, newContext)) {
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null) {
@@ -222,8 +222,7 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.VIEW__CONTEXT, newContext, newContext));
 		}
 	}
@@ -263,7 +262,7 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	@Override
 	public EList<DataContextElement> getDatacontexts() {
 		if (datacontexts == null) {
-			datacontexts = new EObjectResolvingEList<DataContextElement>(DataContextElement.class, this, ContextsPackage.VIEW__DATACONTEXTS);
+			datacontexts = new EObjectResolvingEList<>(DataContextElement.class, this, ContextsPackage.VIEW__DATACONTEXTS);
 		}
 		return datacontexts;
 	}
@@ -434,9 +433,9 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", automaticContext: ");
+		result.append(", automaticContext: "); //$NON-NLS-1$
 		result.append(automaticContext);
 		result.append(')');
 		return result.toString();

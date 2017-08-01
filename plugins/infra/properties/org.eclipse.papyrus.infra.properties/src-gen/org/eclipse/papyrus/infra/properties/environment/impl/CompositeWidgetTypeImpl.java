@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,8 +19,6 @@ import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Composite Widget Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -23,7 +26,7 @@ public class CompositeWidgetTypeImpl extends WidgetTypeImpl implements Composite
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected CompositeWidgetTypeImpl() {
@@ -33,7 +36,7 @@ public class CompositeWidgetTypeImpl extends WidgetTypeImpl implements Composite
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

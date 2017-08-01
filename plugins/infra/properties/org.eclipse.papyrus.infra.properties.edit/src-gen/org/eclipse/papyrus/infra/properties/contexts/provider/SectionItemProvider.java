@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.provider;
 
 
@@ -69,19 +74,17 @@ public class SectionItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_name_feature", "_UI_Section_type"),
-						ContextsPackage.Literals.SECTION__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Section_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Section_name_feature", "_UI_Section_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ContextsPackage.Literals.SECTION__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -92,19 +95,17 @@ public class SectionItemProvider
 	 * @generated
 	 */
 	protected void addSectionFilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_sectionFile_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_sectionFile_feature", "_UI_Section_type"),
-						ContextsPackage.Literals.SECTION__SECTION_FILE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Section_sectionFile_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Section_sectionFile_feature", "_UI_Section_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ContextsPackage.Literals.SECTION__SECTION_FILE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -115,19 +116,17 @@ public class SectionItemProvider
 	 * @generated
 	 */
 	protected void addWidgetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_widget_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_widget_feature", "_UI_Section_type"),
-						ContextsPackage.Literals.SECTION__WIDGET,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Section_widget_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Section_widget_feature", "_UI_Section_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ContextsPackage.Literals.SECTION__WIDGET,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -139,7 +138,7 @@ public class SectionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Section"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Section")); //$NON-NLS-1$
 	}
 
 	/**
@@ -152,9 +151,8 @@ public class SectionItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Section) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_Section_type") :
-				getString("_UI_Section_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Section_type") : //$NON-NLS-1$
+				getString("_UI_Section_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

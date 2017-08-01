@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -11,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.infra.properties.ui.*;
 import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.infra.properties.ui.Element;
 import org.eclipse.papyrus.infra.properties.ui.Layout;
@@ -26,7 +32,7 @@ import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
@@ -34,7 +40,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public static UiFactory init() {
@@ -53,7 +59,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public UiFactoryImpl() {
@@ -63,7 +69,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,14 +92,14 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 		case UiPackage.REFERENCE_ATTRIBUTE:
 			return createReferenceAttribute();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,7 +111,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +123,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +135,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +147,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +159,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +171,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,7 +183,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,7 +195,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,7 +206,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

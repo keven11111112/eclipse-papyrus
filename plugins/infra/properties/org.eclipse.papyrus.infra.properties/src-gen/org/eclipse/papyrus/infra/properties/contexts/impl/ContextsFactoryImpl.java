@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.infra.properties.contexts.*;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
@@ -33,7 +34,7 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory {
@@ -42,7 +43,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public static ContextsFactory init() {
@@ -61,7 +62,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public ContextsFactoryImpl() {
@@ -71,7 +72,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,14 +97,14 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 		case ContextsPackage.DATA_CONTEXT_ROOT:
 			return createDataContextRoot();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +116,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,7 +128,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,7 +140,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +152,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,7 +164,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,7 +176,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,7 +188,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,7 +200,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,7 +212,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,7 +223,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

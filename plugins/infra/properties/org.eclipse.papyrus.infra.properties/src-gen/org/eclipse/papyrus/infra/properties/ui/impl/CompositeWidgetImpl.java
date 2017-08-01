@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
 import java.util.Collection;
@@ -28,12 +33,12 @@ import org.eclipse.papyrus.infra.properties.ui.Widget;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.CompositeWidgetImpl#getLayout <em>Layout</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.CompositeWidgetImpl#getWidgets <em>Widgets</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.CompositeWidgetImpl#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -143,8 +148,7 @@ public class CompositeWidgetImpl extends WidgetImpl implements CompositeWidget {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.COMPOSITE_WIDGET__LAYOUT, newLayout, newLayout));
 		}
 	}
@@ -158,7 +162,7 @@ public class CompositeWidgetImpl extends WidgetImpl implements CompositeWidget {
 	@Override
 	public EList<Widget> getWidgets() {
 		if (widgets == null) {
-			widgets = new EObjectContainmentEList<Widget>(Widget.class, this, UiPackage.COMPOSITE_WIDGET__WIDGETS);
+			widgets = new EObjectContainmentEList<>(Widget.class, this, UiPackage.COMPOSITE_WIDGET__WIDGETS);
 		}
 		return widgets;
 	}

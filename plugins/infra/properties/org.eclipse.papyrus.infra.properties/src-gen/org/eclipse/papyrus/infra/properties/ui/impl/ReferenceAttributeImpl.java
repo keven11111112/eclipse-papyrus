@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,10 +26,10 @@ import org.eclipse.papyrus.infra.properties.ui.UiPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.ReferenceAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -33,7 +38,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -43,7 +48,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected ReferenceAttributeImpl() {
@@ -53,7 +58,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +69,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,7 +80,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetValue(UIComponent newValue, NotificationChain msgs) {
@@ -83,11 +88,10 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 		value = newValue;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UiPackage.REFERENCE_ATTRIBUTE__VALUE, oldValue, newValue);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -95,33 +99,28 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setValue(UIComponent newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
-			if (value != null) {
+			if (value != null)
 				msgs = ((InternalEObject) value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UiPackage.REFERENCE_ATTRIBUTE__VALUE, null, msgs);
-			}
-			if (newValue != null) {
+			if (newValue != null)
 				msgs = ((InternalEObject) newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UiPackage.REFERENCE_ATTRIBUTE__VALUE, null, msgs);
-			}
 			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.REFERENCE_ATTRIBUTE__VALUE, newValue, newValue));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,7 +135,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +150,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,7 +166,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,7 +182,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

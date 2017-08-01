@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.impl;
 
 import java.util.Collection;
@@ -31,6 +36,7 @@ import org.eclipse.papyrus.infra.properties.environment.StandardWidgetType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.EnvironmentImpl#getModelElementFactories <em>Model Element Factories</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.EnvironmentImpl#getWidgetTypes <em>Widget Types</em>}</li>
@@ -40,7 +46,6 @@ import org.eclipse.papyrus.infra.properties.environment.StandardWidgetType;
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.EnvironmentImpl#getNamespaces <em>Namespaces</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.EnvironmentImpl#getMiscClasses <em>Misc Classes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -152,7 +157,7 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 	@Override
 	public EList<ModelElementFactoryDescriptor> getModelElementFactories() {
 		if (modelElementFactories == null) {
-			modelElementFactories = new EObjectContainmentEList<ModelElementFactoryDescriptor>(ModelElementFactoryDescriptor.class, this, EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES);
+			modelElementFactories = new EObjectContainmentEList<>(ModelElementFactoryDescriptor.class, this, EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES);
 		}
 		return modelElementFactories;
 	}
@@ -166,7 +171,7 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 	@Override
 	public EList<StandardWidgetType> getWidgetTypes() {
 		if (widgetTypes == null) {
-			widgetTypes = new EObjectContainmentEList<StandardWidgetType>(StandardWidgetType.class, this, EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES);
+			widgetTypes = new EObjectContainmentEList<>(StandardWidgetType.class, this, EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES);
 		}
 		return widgetTypes;
 	}
@@ -180,7 +185,7 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 	@Override
 	public EList<PropertyEditorType> getPropertyEditorTypes() {
 		if (propertyEditorTypes == null) {
-			propertyEditorTypes = new EObjectContainmentEList<PropertyEditorType>(PropertyEditorType.class, this, EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES);
+			propertyEditorTypes = new EObjectContainmentEList<>(PropertyEditorType.class, this, EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES);
 		}
 		return propertyEditorTypes;
 	}
@@ -194,7 +199,7 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 	@Override
 	public EList<CompositeWidgetType> getCompositeWidgetTypes() {
 		if (compositeWidgetTypes == null) {
-			compositeWidgetTypes = new EObjectContainmentEList<CompositeWidgetType>(CompositeWidgetType.class, this, EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES);
+			compositeWidgetTypes = new EObjectContainmentEList<>(CompositeWidgetType.class, this, EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES);
 		}
 		return compositeWidgetTypes;
 	}
@@ -208,7 +213,7 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 	@Override
 	public EList<LayoutType> getLayoutTypes() {
 		if (layoutTypes == null) {
-			layoutTypes = new EObjectContainmentEList<LayoutType>(LayoutType.class, this, EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES);
+			layoutTypes = new EObjectContainmentEList<>(LayoutType.class, this, EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES);
 		}
 		return layoutTypes;
 	}
@@ -222,7 +227,7 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 	@Override
 	public EList<Namespace> getNamespaces() {
 		if (namespaces == null) {
-			namespaces = new EObjectContainmentEList<Namespace>(Namespace.class, this, EnvironmentPackage.ENVIRONMENT__NAMESPACES);
+			namespaces = new EObjectContainmentEList<>(Namespace.class, this, EnvironmentPackage.ENVIRONMENT__NAMESPACES);
 		}
 		return namespaces;
 	}
@@ -236,7 +241,7 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 	@Override
 	public EList<MiscClass> getMiscClasses() {
 		if (miscClasses == null) {
-			miscClasses = new EObjectContainmentEList<MiscClass>(MiscClass.class, this, EnvironmentPackage.ENVIRONMENT__MISC_CLASSES);
+			miscClasses = new EObjectContainmentEList<>(MiscClass.class, this, EnvironmentPackage.ENVIRONMENT__MISC_CLASSES);
 		}
 		return miscClasses;
 	}

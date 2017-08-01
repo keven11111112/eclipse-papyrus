@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.presentation;
 
 
@@ -44,8 +49,6 @@ import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -77,6 +80,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -98,6 +102,7 @@ import org.eclipse.papyrus.infra.properties.ui.provider.UiItemProviderAdapterFac
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
@@ -191,7 +196,7 @@ public class UiEditor
 	 *
 	 * @generated
 	 */
-	protected PropertySheetPage propertySheetPage;
+	protected List<PropertySheetPage> propertySheetPages = new ArrayList<PropertySheetPage>();
 
 	/**
 	 * This is the viewer that shadows the selection in the content outline.
@@ -312,48 +317,45 @@ public class UiEditor
 	 *
 	 * @generated
 	 */
-	protected IPartListener partListener =
-			new IPartListener() {
-				@Override
-				public void partActivated(IWorkbenchPart p) {
-					if (p instanceof ContentOutline) {
-						if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
-							getActionBarContributor().setActiveEditor(UiEditor.this);
+	protected IPartListener partListener = new IPartListener() {
+		@Override
+		public void partActivated(IWorkbenchPart p) {
+			if (p instanceof ContentOutline) {
+				if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
+					getActionBarContributor().setActiveEditor(UiEditor.this);
 
-							setCurrentViewer(contentOutlineViewer);
-						}
-					}
-					else if (p instanceof PropertySheet) {
-						if (((PropertySheet) p).getCurrentPage() == propertySheetPage) {
-							getActionBarContributor().setActiveEditor(UiEditor.this);
-							handleActivate();
-						}
-					}
-					else if (p == UiEditor.this) {
-						handleActivate();
-					}
+					setCurrentViewer(contentOutlineViewer);
 				}
+			} else if (p instanceof PropertySheet) {
+				if (propertySheetPages.contains(((PropertySheet) p).getCurrentPage())) {
+					getActionBarContributor().setActiveEditor(UiEditor.this);
+					handleActivate();
+				}
+			} else if (p == UiEditor.this) {
+				handleActivate();
+			}
+		}
 
-				@Override
-				public void partBroughtToTop(IWorkbenchPart p) {
-					// Ignore.
-				}
+		@Override
+		public void partBroughtToTop(IWorkbenchPart p) {
+			// Ignore.
+		}
 
-				@Override
-				public void partClosed(IWorkbenchPart p) {
-					// Ignore.
-				}
+		@Override
+		public void partClosed(IWorkbenchPart p) {
+			// Ignore.
+		}
 
-				@Override
-				public void partDeactivated(IWorkbenchPart p) {
-					// Ignore.
-				}
+		@Override
+		public void partDeactivated(IWorkbenchPart p) {
+			// Ignore.
+		}
 
-				@Override
-				public void partOpened(IWorkbenchPart p) {
-					// Ignore.
-				}
-			};
+		@Override
+		public void partOpened(IWorkbenchPart p) {
+			// Ignore.
+		}
+	};
 
 	/**
 	 * Resources that have been removed since last activation.
@@ -407,52 +409,57 @@ public class UiEditor
 	 *
 	 * @generated
 	 */
-	protected EContentAdapter problemIndicationAdapter =
-			new EContentAdapter() {
-				@Override
-				public void notifyChanged(Notification notification) {
-					if (notification.getNotifier() instanceof Resource) {
-						switch (notification.getFeatureID(Resource.class)) {
-						case Resource.RESOURCE__IS_LOADED:
-						case Resource.RESOURCE__ERRORS:
-						case Resource.RESOURCE__WARNINGS: {
-							Resource resource = (Resource) notification.getNotifier();
-							Diagnostic diagnostic = analyzeResourceProblems(resource, null);
-							if (diagnostic.getSeverity() != Diagnostic.OK) {
-								resourceToDiagnosticMap.put(resource, diagnostic);
-							}
-							else {
-								resourceToDiagnosticMap.remove(resource);
-							}
+	protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
+		protected boolean dispatching;
 
-							if (updateProblemIndication) {
-								getSite().getShell().getDisplay().asyncExec
-										(new Runnable() {
-											@Override
-											public void run() {
-												updateProblemIndication();
-											}
-										});
-							}
-							break;
-						}
-						}
+		@Override
+		public void notifyChanged(Notification notification) {
+			if (notification.getNotifier() instanceof Resource) {
+				switch (notification.getFeatureID(Resource.class)) {
+				case Resource.RESOURCE__IS_LOADED:
+				case Resource.RESOURCE__ERRORS:
+				case Resource.RESOURCE__WARNINGS: {
+					Resource resource = (Resource) notification.getNotifier();
+					Diagnostic diagnostic = analyzeResourceProblems(resource, null);
+					if (diagnostic.getSeverity() != Diagnostic.OK) {
+						resourceToDiagnosticMap.put(resource, diagnostic);
+					} else {
+						resourceToDiagnosticMap.remove(resource);
 					}
-					else {
-						super.notifyChanged(notification);
+					dispatchUpdateProblemIndication();
+					break;
+				}
+				}
+			} else {
+				super.notifyChanged(notification);
+			}
+		}
+
+		protected void dispatchUpdateProblemIndication() {
+			if (updateProblemIndication && !dispatching) {
+				dispatching = true;
+				getSite().getShell().getDisplay().asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						dispatching = false;
+						updateProblemIndication();
 					}
-				}
+				});
+			}
+		}
 
-				@Override
-				protected void setTarget(Resource target) {
-					basicSetTarget(target);
-				}
+		@Override
+		protected void setTarget(Resource target) {
+			basicSetTarget(target);
+		}
 
-				@Override
-				protected void unsetTarget(Resource target) {
-					basicUnsetTarget(target);
-				}
-			};
+		@Override
+		protected void unsetTarget(Resource target) {
+			basicUnsetTarget(target);
+			resourceToDiagnosticMap.remove(target);
+			dispatchUpdateProblemIndication();
+		}
+	};
 
 	/**
 	 * This listens for workspace changes.
@@ -461,80 +468,76 @@ public class UiEditor
 	 *
 	 * @generated
 	 */
-	protected IResourceChangeListener resourceChangeListener =
-			new IResourceChangeListener() {
-				@Override
-				public void resourceChanged(IResourceChangeEvent event) {
-					IResourceDelta delta = event.getDelta();
-					try {
-						class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-							protected ResourceSet resourceSet = editingDomain.getResourceSet();
-							protected Collection<Resource> changedResources = new ArrayList<Resource>();
-							protected Collection<Resource> removedResources = new ArrayList<Resource>();
+	protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
+		@Override
+		public void resourceChanged(IResourceChangeEvent event) {
+			IResourceDelta delta = event.getDelta();
+			try {
+				class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+					protected ResourceSet resourceSet = editingDomain.getResourceSet();
+					protected Collection<Resource> changedResources = new ArrayList<Resource>();
+					protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
-							@Override
-							public boolean visit(IResourceDelta delta) {
-								if (delta.getResource().getType() == IResource.FILE) {
-									if (delta.getKind() == IResourceDelta.REMOVED ||
-											delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-										Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
-										if (resource != null) {
-											if (delta.getKind() == IResourceDelta.REMOVED) {
-												removedResources.add(resource);
-											}
-											else if (!savedResources.remove(resource)) {
-												changedResources.add(resource);
-											}
-										}
+					@Override
+					public boolean visit(IResourceDelta delta) {
+						if (delta.getResource().getType() == IResource.FILE) {
+							if (delta.getKind() == IResourceDelta.REMOVED ||
+									delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
+								Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+								if (resource != null) {
+									if (delta.getKind() == IResourceDelta.REMOVED) {
+										removedResources.add(resource);
+									} else if (!savedResources.remove(resource)) {
+										changedResources.add(resource);
 									}
 								}
-
-								return true;
 							}
-
-							public Collection<Resource> getChangedResources() {
-								return changedResources;
-							}
-
-							public Collection<Resource> getRemovedResources() {
-								return removedResources;
-							}
+							return false;
 						}
 
-						final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-						delta.accept(visitor);
-
-						if (!visitor.getRemovedResources().isEmpty()) {
-							getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										@Override
-										public void run() {
-											removedResources.addAll(visitor.getRemovedResources());
-											if (!isDirty()) {
-												getSite().getPage().closeEditor(UiEditor.this, false);
-											}
-										}
-									});
-						}
-
-						if (!visitor.getChangedResources().isEmpty()) {
-							getSite().getShell().getDisplay().asyncExec
-									(new Runnable() {
-										@Override
-										public void run() {
-											changedResources.addAll(visitor.getChangedResources());
-											if (getSite().getPage().getActiveEditor() == UiEditor.this) {
-												handleActivate();
-											}
-										}
-									});
-						}
+						return true;
 					}
-					catch (CoreException exception) {
-						PropertiesEditorPlugin.INSTANCE.log(exception);
+
+					public Collection<Resource> getChangedResources() {
+						return changedResources;
+					}
+
+					public Collection<Resource> getRemovedResources() {
+						return removedResources;
 					}
 				}
-			};
+
+				final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+				delta.accept(visitor);
+
+				if (!visitor.getRemovedResources().isEmpty()) {
+					getSite().getShell().getDisplay().asyncExec(new Runnable() {
+						@Override
+						public void run() {
+							removedResources.addAll(visitor.getRemovedResources());
+							if (!isDirty()) {
+								getSite().getPage().closeEditor(UiEditor.this, false);
+							}
+						}
+					});
+				}
+
+				if (!visitor.getChangedResources().isEmpty()) {
+					getSite().getShell().getDisplay().asyncExec(new Runnable() {
+						@Override
+						public void run() {
+							changedResources.addAll(visitor.getChangedResources());
+							if (getSite().getPage().getActiveEditor() == UiEditor.this) {
+								handleActivate();
+							}
+						}
+					});
+				}
+			} catch (CoreException exception) {
+				PropertiesEditorPlugin.INSTANCE.log(exception);
+			}
+		}
+	};
 
 	/**
 	 * Handles activation of the editor or it's associated views.
@@ -557,14 +560,12 @@ public class UiEditor
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(UiEditor.this, false);
-			}
-			else {
+			} else {
 				removedResources.clear();
 				changedResources.clear();
 				savedResources.clear();
 			}
-		}
-		else if (!changedResources.isEmpty()) {
+		} else if (!changedResources.isEmpty()) {
 			changedResources.removeAll(savedResources);
 			handleChangedResources();
 			changedResources.clear();
@@ -618,13 +619,11 @@ public class UiEditor
 	 */
 	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
-			BasicDiagnostic diagnostic =
-					new BasicDiagnostic
-					(Diagnostic.OK,
-							"org.eclipse.papyrus.infra.properties.editor",
-							0,
-							null,
-							new Object[] { editingDomain.getResourceSet() });
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK,
+					"org.eclipse.papyrus.infra.properties.editor", //$NON-NLS-1$
+					0,
+					null,
+					new Object[] { editingDomain.getResourceSet() });
 			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
@@ -637,8 +636,7 @@ public class UiEditor
 				if (diagnostic.getSeverity() != Diagnostic.OK) {
 					setActivePage(lastEditorPage);
 				}
-			}
-			else if (diagnostic.getSeverity() != Diagnostic.OK) {
+			} else if (diagnostic.getSeverity() != Diagnostic.OK) {
 				ProblemEditorPart problemEditorPart = new ProblemEditorPart();
 				problemEditorPart.setDiagnostic(diagnostic);
 				problemEditorPart.setMarkerHelper(markerHelper);
@@ -673,10 +671,9 @@ public class UiEditor
 	 * @generated
 	 */
 	protected boolean handleDirtyConflict() {
-		return MessageDialog.openQuestion
-				(getSite().getShell(),
-						getString("_UI_FileConflict_label"),
-						getString("_WARN_FileConflict"));
+		return MessageDialog.openQuestion(getSite().getShell(),
+				getString("_UI_FileConflict_label"), //$NON-NLS-1$
+				getString("_WARN_FileConflict")); //$NON-NLS-1$
 	}
 
 	/**
@@ -718,29 +715,32 @@ public class UiEditor
 
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//
-		commandStack.addCommandStackListener
-				(new CommandStackListener() {
+		commandStack.addCommandStackListener(new CommandStackListener() {
+			@Override
+			public void commandStackChanged(final EventObject event) {
+				getContainer().getDisplay().asyncExec(new Runnable() {
 					@Override
-					public void commandStackChanged(final EventObject event) {
-						getContainer().getDisplay().asyncExec
-								(new Runnable() {
-									@Override
-									public void run() {
-										firePropertyChange(IEditorPart.PROP_DIRTY);
+					public void run() {
+						firePropertyChange(IEditorPart.PROP_DIRTY);
 
-										// Try to select the affected objects.
-										//
-										Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
-										if (mostRecentCommand != null) {
-											setSelectionToViewer(mostRecentCommand.getAffectedObjects());
-										}
-										if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
-											propertySheetPage.refresh();
-										}
-									}
-								});
+						// Try to select the affected objects.
+						//
+						Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
+						if (mostRecentCommand != null) {
+							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+						}
+						for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
+							PropertySheetPage propertySheetPage = i.next();
+							if (propertySheetPage.getControl().isDisposed()) {
+								i.remove();
+							} else {
+								propertySheetPage.refresh();
+							}
+						}
 					}
 				});
+			}
+		});
 
 		// Create the editing domain with a special command stack.
 		//
@@ -771,24 +771,24 @@ public class UiEditor
 		// Make sure it's okay.
 		//
 		if (theSelection != null && !theSelection.isEmpty()) {
-			Runnable runnable =
-					new Runnable() {
-						@Override
-						public void run() {
-							// Try to select the items in the current content viewer of the editor.
-							//
-							if (currentViewer != null) {
-								currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
-							}
-						}
-					};
+			Runnable runnable = new Runnable() {
+				@Override
+				public void run() {
+					// Try to select the items in the current content viewer of the editor.
+					//
+					if (currentViewer != null) {
+						currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+					}
+				}
+			};
 			getSite().getShell().getDisplay().asyncExec(runnable);
 		}
 	}
 
 	/**
 	 * This returns the editing domain as required by the {@link IEditingDomainProvider} interface.
-	 * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain} and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
+	 * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain}
+	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -895,15 +895,14 @@ public class UiEditor
 			if (selectionChangedListener == null) {
 				// Create the listener on demand.
 				//
-				selectionChangedListener =
-						new ISelectionChangedListener() {
-							// This just notifies those things that are affected by the section.
-							//
-							@Override
-							public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
-								setSelection(selectionChangedEvent.getSelection());
-							}
-						};
+				selectionChangedListener = new ISelectionChangedListener() {
+					// This just notifies those things that are affected by the section.
+					//
+					@Override
+					public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
+						setSelection(selectionChangedEvent.getSelection());
+					}
+				};
 			}
 
 			// Stop listening to the old one.
@@ -948,8 +947,8 @@ public class UiEditor
 	 * @generated
 	 */
 	protected void createContextMenuFor(StructuredViewer viewer) {
-		MenuManager contextMenu = new MenuManager("#PopUp");
-		contextMenu.add(new Separator("additions"));
+		MenuManager contextMenu = new MenuManager("#PopUp"); //$NON-NLS-1$
+		contextMenu.add(new Separator("additions")); //$NON-NLS-1$
 		contextMenu.setRemoveAllWhenShown(true);
 		contextMenu.addMenuListener(this);
 		Menu menu = contextMenu.createContextMenu(viewer.getControl());
@@ -957,7 +956,7 @@ public class UiEditor
 		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
@@ -998,25 +997,22 @@ public class UiEditor
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
-			BasicDiagnostic basicDiagnostic =
-					new BasicDiagnostic
-					(Diagnostic.ERROR,
-							"org.eclipse.papyrus.infra.properties.editor",
-							0,
-							getString("_UI_CreateModelError_message", resource.getURI()),
-							new Object[] { exception == null ? (Object) resource : exception });
+		boolean hasErrors = !resource.getErrors().isEmpty();
+		if (hasErrors || !resource.getWarnings().isEmpty()) {
+			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
+					"org.eclipse.papyrus.infra.properties.editor", //$NON-NLS-1$
+					0,
+					getString("_UI_CreateModelError_message", resource.getURI()), //$NON-NLS-1$
+					new Object[] { exception == null ? (Object) resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
-		}
-		else if (exception != null) {
+		} else if (exception != null) {
 			return new BasicDiagnostic(Diagnostic.ERROR,
-					"org.eclipse.papyrus.infra.properties.editor",
+					"org.eclipse.papyrus.infra.properties.editor", //$NON-NLS-1$
 					0,
-					getString("_UI_CreateModelError_message", resource.getURI()),
+					getString("_UI_CreateModelError_message", resource.getURI()), //$NON-NLS-1$
 					new Object[] { exception });
-		}
-		else {
+		} else {
 			return Diagnostic.OK_INSTANCE;
 		}
 	}
@@ -1040,25 +1036,25 @@ public class UiEditor
 			// Create a page for the selection tree view.
 			//
 			{
-				ViewerPane viewerPane =
-						new ViewerPane(getSite().getPage(), UiEditor.this) {
-							@Override
-							public Viewer createViewer(Composite composite) {
-								Tree tree = new Tree(composite, SWT.MULTI);
-								TreeViewer newTreeViewer = new TreeViewer(tree);
-								return newTreeViewer;
-							}
+				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), UiEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						Tree tree = new Tree(composite, SWT.MULTI);
+						TreeViewer newTreeViewer = new TreeViewer(tree);
+						return newTreeViewer;
+					}
 
-							@Override
-							public void requestActivation() {
-								super.requestActivation();
-								setCurrentViewerPane(this);
-							}
-						};
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 
 				selectionViewer = (TreeViewer) viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				selectionViewer.setUseHashlookup(true);
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
@@ -1069,27 +1065,26 @@ public class UiEditor
 
 				createContextMenuFor(selectionViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
+				setPageText(pageIndex, getString("_UI_SelectionPage_label")); //$NON-NLS-1$
 			}
 
 			// Create a page for the parent tree view.
 			//
 			{
-				ViewerPane viewerPane =
-						new ViewerPane(getSite().getPage(), UiEditor.this) {
-							@Override
-							public Viewer createViewer(Composite composite) {
-								Tree tree = new Tree(composite, SWT.MULTI);
-								TreeViewer newTreeViewer = new TreeViewer(tree);
-								return newTreeViewer;
-							}
+				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), UiEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						Tree tree = new Tree(composite, SWT.MULTI);
+						TreeViewer newTreeViewer = new TreeViewer(tree);
+						return newTreeViewer;
+					}
 
-							@Override
-							public void requestActivation() {
-								super.requestActivation();
-								setCurrentViewerPane(this);
-							}
-						};
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 
 				parentViewer = (TreeViewer) viewerPane.getViewer();
@@ -1099,25 +1094,24 @@ public class UiEditor
 
 				createContextMenuFor(parentViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_ParentPage_label"));
+				setPageText(pageIndex, getString("_UI_ParentPage_label")); //$NON-NLS-1$
 			}
 
 			// This is the page for the list viewer
 			//
 			{
-				ViewerPane viewerPane =
-						new ViewerPane(getSite().getPage(), UiEditor.this) {
-							@Override
-							public Viewer createViewer(Composite composite) {
-								return new ListViewer(composite);
-							}
+				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), UiEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new ListViewer(composite);
+					}
 
-							@Override
-							public void requestActivation() {
-								super.requestActivation();
-								setCurrentViewerPane(this);
-							}
-						};
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 				listViewer = (ListViewer) viewerPane.getViewer();
 				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
@@ -1125,25 +1119,24 @@ public class UiEditor
 
 				createContextMenuFor(listViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_ListPage_label"));
+				setPageText(pageIndex, getString("_UI_ListPage_label")); //$NON-NLS-1$
 			}
 
 			// This is the page for the tree viewer
 			//
 			{
-				ViewerPane viewerPane =
-						new ViewerPane(getSite().getPage(), UiEditor.this) {
-							@Override
-							public Viewer createViewer(Composite composite) {
-								return new TreeViewer(composite);
-							}
+				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), UiEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new TreeViewer(composite);
+					}
 
-							@Override
-							public void requestActivation() {
-								super.requestActivation();
-								setCurrentViewerPane(this);
-							}
-						};
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 				treeViewer = (TreeViewer) viewerPane.getViewer();
 				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
@@ -1153,25 +1146,24 @@ public class UiEditor
 
 				createContextMenuFor(treeViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TreePage_label"));
+				setPageText(pageIndex, getString("_UI_TreePage_label")); //$NON-NLS-1$
 			}
 
 			// This is the page for the table viewer.
 			//
 			{
-				ViewerPane viewerPane =
-						new ViewerPane(getSite().getPage(), UiEditor.this) {
-							@Override
-							public Viewer createViewer(Composite composite) {
-								return new TableViewer(composite);
-							}
+				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), UiEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new TableViewer(composite);
+					}
 
-							@Override
-							public void requestActivation() {
-								super.requestActivation();
-								setCurrentViewerPane(this);
-							}
-						};
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 				tableViewer = (TableViewer) viewerPane.getViewer();
 
@@ -1183,39 +1175,38 @@ public class UiEditor
 
 				TableColumn objectColumn = new TableColumn(table, SWT.NONE);
 				layout.addColumnData(new ColumnWeightData(3, 100, true));
-				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+				objectColumn.setText(getString("_UI_ObjectColumn_label")); //$NON-NLS-1$
 				objectColumn.setResizable(true);
 
 				TableColumn selfColumn = new TableColumn(table, SWT.NONE);
 				layout.addColumnData(new ColumnWeightData(2, 100, true));
-				selfColumn.setText(getString("_UI_SelfColumn_label"));
+				selfColumn.setText(getString("_UI_SelfColumn_label")); //$NON-NLS-1$
 				selfColumn.setResizable(true);
 
-				tableViewer.setColumnProperties(new String[] { "a", "b" });
+				tableViewer.setColumnProperties(new String[] { "a", "b" }); //$NON-NLS-1$ //$NON-NLS-2$
 				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(tableViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TablePage_label"));
+				setPageText(pageIndex, getString("_UI_TablePage_label")); //$NON-NLS-1$
 			}
 
 			// This is the page for the table tree viewer.
 			//
 			{
-				ViewerPane viewerPane =
-						new ViewerPane(getSite().getPage(), UiEditor.this) {
-							@Override
-							public Viewer createViewer(Composite composite) {
-								return new TreeViewer(composite);
-							}
+				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), UiEditor.this) {
+					@Override
+					public Viewer createViewer(Composite composite) {
+						return new TreeViewer(composite);
+					}
 
-							@Override
-							public void requestActivation() {
-								super.requestActivation();
-								setCurrentViewerPane(this);
-							}
-						};
+					@Override
+					public void requestActivation() {
+						super.requestActivation();
+						setCurrentViewerPane(this);
+					}
+				};
 				viewerPane.createControl(getContainer());
 
 				treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
@@ -1226,57 +1217,54 @@ public class UiEditor
 				tree.setLinesVisible(true);
 
 				TreeColumn objectColumn = new TreeColumn(tree, SWT.NONE);
-				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+				objectColumn.setText(getString("_UI_ObjectColumn_label")); //$NON-NLS-1$
 				objectColumn.setResizable(true);
 				objectColumn.setWidth(250);
 
 				TreeColumn selfColumn = new TreeColumn(tree, SWT.NONE);
-				selfColumn.setText(getString("_UI_SelfColumn_label"));
+				selfColumn.setText(getString("_UI_SelfColumn_label")); //$NON-NLS-1$
 				selfColumn.setResizable(true);
 				selfColumn.setWidth(200);
 
-				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
+				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" }); //$NON-NLS-1$ //$NON-NLS-2$
 				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(treeViewerWithColumns);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
+				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label")); //$NON-NLS-1$
 			}
 
-			getSite().getShell().getDisplay().asyncExec
-					(new Runnable() {
-						@Override
-						public void run() {
-							setActivePage(0);
-						}
-					});
+			getSite().getShell().getDisplay().asyncExec(new Runnable() {
+				@Override
+				public void run() {
+					setActivePage(0);
+				}
+			});
 		}
 
 		// Ensures that this editor will only display the page's tab
 		// area if there are more than one page
 		//
-		getContainer().addControlListener
-				(new ControlAdapter() {
-					boolean guard = false;
+		getContainer().addControlListener(new ControlAdapter() {
+			boolean guard = false;
 
-					@Override
-					public void controlResized(ControlEvent event) {
-						if (!guard) {
-							guard = true;
-							hideTabs();
-							guard = false;
-						}
-					}
-				});
+			@Override
+			public void controlResized(ControlEvent event) {
+				if (!guard) {
+					guard = true;
+					hideTabs();
+					guard = false;
+				}
+			}
+		});
 
-		getSite().getShell().getDisplay().asyncExec
-				(new Runnable() {
-					@Override
-					public void run() {
-						updateProblemIndication();
-					}
-				});
+		getSite().getShell().getDisplay().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				updateProblemIndication();
+			}
+		});
 	}
 
 	/**
@@ -1289,7 +1277,7 @@ public class UiEditor
 	 */
 	protected void hideTabs() {
 		if (getPageCount() <= 1) {
-			setPageText(0, "");
+			setPageText(0, ""); //$NON-NLS-1$
 			if (getContainer() instanceof CTabFolder) {
 				((CTabFolder) getContainer()).setTabHeight(1);
 				Point point = getContainer().getSize();
@@ -1308,7 +1296,7 @@ public class UiEditor
 	 */
 	protected void showTabs() {
 		if (getPageCount() > 1) {
-			setPageText(0, getString("_UI_SelectionPage_label"));
+			setPageText(0, getString("_UI_SelectionPage_label")); //$NON-NLS-1$
 			if (getContainer() instanceof CTabFolder) {
 				((CTabFolder) getContainer()).setTabHeight(SWT.DEFAULT);
 				Point point = getContainer().getSize();
@@ -1345,14 +1333,11 @@ public class UiEditor
 	public Object getAdapter(Class key) {
 		if (key.equals(IContentOutlinePage.class)) {
 			return showOutlineView() ? getContentOutlinePage() : null;
-		}
-		else if (key.equals(IPropertySheetPage.class)) {
+		} else if (key.equals(IPropertySheetPage.class)) {
 			return getPropertySheetPage();
-		}
-		else if (key.equals(IGotoMarker.class)) {
+		} else if (key.equals(IGotoMarker.class)) {
 			return this;
-		}
-		else {
+		} else {
 			return super.getAdapter(key);
 		}
 	}
@@ -1377,6 +1362,7 @@ public class UiEditor
 
 					// Set up the tree viewer.
 					//
+					contentOutlineViewer.setUseHashlookup(true);
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
@@ -1409,15 +1395,14 @@ public class UiEditor
 
 			// Listen to selection so that we can handle it is a special way.
 			//
-			contentOutlinePage.addSelectionChangedListener
-					(new ISelectionChangedListener() {
-						// This ensures that we handle selections correctly.
-						//
-						@Override
-						public void selectionChanged(SelectionChangedEvent event) {
-							handleContentOutlineSelection(event.getSelection());
-						}
-					});
+			contentOutlinePage.addSelectionChangedListener(new ISelectionChangedListener() {
+				// This ensures that we handle selections correctly.
+				//
+				@Override
+				public void selectionChanged(SelectionChangedEvent event) {
+					handleContentOutlineSelection(event.getSelection());
+				}
+			});
 		}
 
 		return contentOutlinePage;
@@ -1431,23 +1416,21 @@ public class UiEditor
 	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		if (propertySheetPage == null) {
-			propertySheetPage =
-					new ExtendedPropertySheetPage(editingDomain) {
-						@Override
-						public void setSelectionToViewer(List<?> selection) {
-							UiEditor.this.setSelectionToViewer(selection);
-							UiEditor.this.setFocus();
-						}
+		PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(editingDomain) {
+			@Override
+			public void setSelectionToViewer(List<?> selection) {
+				UiEditor.this.setSelectionToViewer(selection);
+				UiEditor.this.setFocus();
+			}
 
-						@Override
-						public void setActionBars(IActionBars actionBars) {
-							super.setActionBars(actionBars);
-							getActionBarContributor().shareGlobalActions(this, actionBars);
-						}
-					};
-			propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
-		}
+			@Override
+			public void setActionBars(IActionBars actionBars) {
+				super.setActionBars(actionBars);
+				getActionBarContributor().shareGlobalActions(this, actionBars);
+			}
+		};
+		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+		propertySheetPages.add(propertySheetPage);
 
 		return propertySheetPage;
 	}
@@ -1479,8 +1462,7 @@ public class UiEditor
 					// Set the selection to the widget.
 					//
 					selectionViewer.setSelection(new StructuredSelection(selectionList));
-				}
-				else {
+				} else {
 					// Set the input to the widget.
 					//
 					if (currentViewerPane.getViewer().getInput() != selectedElement) {
@@ -1517,35 +1499,36 @@ public class UiEditor
 		//
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
 
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
-		WorkspaceModifyOperation operation =
-				new WorkspaceModifyOperation() {
-					// This is the method that gets invoked when the operation runs.
-					//
-					@Override
-					public void execute(IProgressMonitor monitor) {
-						// Save the resources to the file system.
-						//
-						boolean first = true;
-						for (Resource resource : editingDomain.getResourceSet().getResources()) {
-							if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
-								try {
-									long timeStamp = resource.getTimeStamp();
-									resource.save(saveOptions);
-									if (resource.getTimeStamp() != timeStamp) {
-										savedResources.add(resource);
-									}
-								}
-								catch (Exception exception) {
-									resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
-								}
-								first = false;
+		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+			// This is the method that gets invoked when the operation runs.
+			//
+			@Override
+			public void execute(IProgressMonitor monitor) {
+				// Save the resources to the file system.
+				//
+				boolean first = true;
+				List<Resource> resources = editingDomain.getResourceSet().getResources();
+				for (int i = 0; i < resources.size(); ++i) {
+					Resource resource = resources.get(i);
+					if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+						try {
+							long timeStamp = resource.getTimeStamp();
+							resource.save(saveOptions);
+							if (resource.getTimeStamp() != timeStamp) {
+								savedResources.add(resource);
 							}
+						} catch (Exception exception) {
+							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 						}
+						first = false;
 					}
-				};
+				}
+			}
+		};
 
 		updateProblemIndication = false;
 		try {
@@ -1630,10 +1613,7 @@ public class UiEditor
 		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
-		IProgressMonitor progressMonitor =
-				getActionBars().getStatusLineManager() != null ?
-						getActionBars().getStatusLineManager().getProgressMonitor() :
-						new NullProgressMonitor();
+		IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars().getStatusLineManager().getProgressMonitor() : new NullProgressMonitor();
 		doSave(progressMonitor);
 	}
 
@@ -1645,19 +1625,9 @@ public class UiEditor
 	 */
 	@Override
 	public void gotoMarker(IMarker marker) {
-		try {
-			if (marker.getType().equals(EValidator.MARKER)) {
-				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
-				if (uriAttribute != null) {
-					URI uri = URI.createURI(uriAttribute);
-					EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
-					if (eObject != null) {
-						setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
-					}
-				}
-			}
-		} catch (CoreException exception) {
-			PropertiesEditorPlugin.INSTANCE.log(exception);
+		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
+		if (!targetObjects.isEmpty()) {
+			setSelectionToViewer(targetObjects);
 		}
 	}
 
@@ -1688,8 +1658,7 @@ public class UiEditor
 	public void setFocus() {
 		if (currentViewerPane != null) {
 			currentViewerPane.setFocus();
-		}
-		else {
+		} else {
 			getControl(getActivePage()).setFocus();
 		}
 	}
@@ -1755,30 +1724,28 @@ public class UiEditor
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
-				contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
+		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
 				Collection<?> collection = ((IStructuredSelection) selection).toList();
 				switch (collection.size()) {
 				case 0: {
-					statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
+					statusLineManager.setMessage(getString("_UI_NoObjectSelected")); //$NON-NLS-1$
 					break;
 				}
 				case 1: {
 					String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
-					statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
+					statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text)); //$NON-NLS-1$
 					break;
 				}
 				default: {
-					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
+					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size()))); //$NON-NLS-1$
 					break;
 				}
 				}
-			}
-			else {
-				statusLineManager.setMessage("");
+			} else {
+				statusLineManager.setMessage(""); //$NON-NLS-1$
 			}
 		}
 	}
@@ -1867,7 +1834,7 @@ public class UiEditor
 			getActionBarContributor().setActiveEditor(null);
 		}
 
-		if (propertySheetPage != null) {
+		for (PropertySheetPage propertySheetPage : propertySheetPages) {
 			propertySheetPage.dispose();
 		}
 

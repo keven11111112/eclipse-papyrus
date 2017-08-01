@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.provider;
 
 
@@ -64,19 +69,17 @@ public class UnknownComponentItemProvider
 	 * @generated
 	 */
 	protected void addTypeNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_UnknownComponent_typeName_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_UnknownComponent_typeName_feature", "_UI_UnknownComponent_type"),
-						UiPackage.Literals.UNKNOWN_COMPONENT__TYPE_NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnknownComponent_typeName_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_UnknownComponent_typeName_feature", "_UI_UnknownComponent_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.UNKNOWN_COMPONENT__TYPE_NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -88,7 +91,7 @@ public class UnknownComponentItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UnknownComponent"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UnknownComponent")); //$NON-NLS-1$
 	}
 
 	/**
@@ -101,9 +104,8 @@ public class UnknownComponentItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((UnknownComponent) object).getTypeName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_UnknownComponent_type") :
-				getString("_UI_UnknownComponent_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UnknownComponent_type") : //$NON-NLS-1$
+				getString("_UI_UnknownComponent_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

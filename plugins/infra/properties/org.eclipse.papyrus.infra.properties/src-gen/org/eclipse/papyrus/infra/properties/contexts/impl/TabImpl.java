@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
 import java.util.Collection;
@@ -27,6 +32,7 @@ import org.eclipse.papyrus.infra.properties.contexts.Tab;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#getId <em>Id</em>}</li>
@@ -37,7 +43,6 @@ import org.eclipse.papyrus.infra.properties.contexts.Tab;
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#isIndented <em>Indented</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#getPriority <em>Priority</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -375,7 +380,7 @@ public class TabImpl extends EObjectImpl implements Tab {
 	@Override
 	public EList<Section> getSections() {
 		if (sections == null) {
-			sections = new EObjectContainmentWithInverseEList<Section>(Section.class, this, ContextsPackage.TAB__SECTIONS, ContextsPackage.SECTION__TAB);
+			sections = new EObjectContainmentWithInverseEList<>(Section.class, this, ContextsPackage.TAB__SECTIONS, ContextsPackage.SECTION__TAB);
 		}
 		return sections;
 	}
@@ -613,17 +618,17 @@ public class TabImpl extends EObjectImpl implements Tab {
 		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (label: ");
+		result.append(" (label: "); //$NON-NLS-1$
 		result.append(label);
-		result.append(", id: ");
+		result.append(", id: "); //$NON-NLS-1$
 		result.append(id);
-		result.append(", category: ");
+		result.append(", category: "); //$NON-NLS-1$
 		result.append(category);
-		result.append(", image: ");
+		result.append(", image: "); //$NON-NLS-1$
 		result.append(image);
-		result.append(", indented: ");
+		result.append(", indented: "); //$NON-NLS-1$
 		result.append(indented);
-		result.append(", priority: ");
+		result.append(", priority: "); //$NON-NLS-1$
 		result.append(priority);
 		result.append(')');
 		return result.toString();

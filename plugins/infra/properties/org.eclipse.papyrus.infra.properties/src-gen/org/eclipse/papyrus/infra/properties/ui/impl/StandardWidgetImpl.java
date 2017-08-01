@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -20,10 +25,10 @@ import org.eclipse.papyrus.infra.properties.ui.UiPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.StandardWidgetImpl#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -32,7 +37,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	 * The cached value of the '{@link #getWidgetType() <em>Widget Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getWidgetType()
 	 * @generated
 	 * @ordered
@@ -42,7 +47,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected StandardWidgetImpl() {
@@ -52,7 +57,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +68,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,9 +77,8 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 			InternalEObject oldWidgetType = (InternalEObject) widgetType;
 			widgetType = (StandardWidgetType) eResolveProxy(oldWidgetType);
 			if (widgetType != oldWidgetType) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiPackage.STANDARD_WIDGET__WIDGET_TYPE, oldWidgetType, widgetType));
-				}
 			}
 		}
 		return widgetType;
@@ -83,7 +87,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public StandardWidgetType basicGetWidgetType() {
@@ -93,31 +97,29 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setWidgetType(StandardWidgetType newWidgetType) {
 		StandardWidgetType oldWidgetType = widgetType;
 		widgetType = newWidgetType;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.STANDARD_WIDGET__WIDGET_TYPE, oldWidgetType, widgetType));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case UiPackage.STANDARD_WIDGET__WIDGET_TYPE:
-			if (resolve) {
+			if (resolve)
 				return getWidgetType();
-			}
 			return basicGetWidgetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -126,7 +128,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,7 +144,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,7 +160,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

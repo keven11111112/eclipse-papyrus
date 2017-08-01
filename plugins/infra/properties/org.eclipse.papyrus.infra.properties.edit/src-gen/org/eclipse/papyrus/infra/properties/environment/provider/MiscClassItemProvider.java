@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.provider;
 
 
@@ -79,19 +84,17 @@ public class MiscClassItemProvider
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MiscClass_label_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MiscClass_label_feature", "_UI_MiscClass_type"),
-						EnvironmentPackage.Literals.MISC_CLASS__LABEL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MiscClass_label_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_MiscClass_label_feature", "_UI_MiscClass_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EnvironmentPackage.Literals.MISC_CLASS__LABEL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -102,19 +105,17 @@ public class MiscClassItemProvider
 	 * @generated
 	 */
 	protected void addClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MiscClass_class_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MiscClass_class_feature", "_UI_MiscClass_type"),
-						EnvironmentPackage.Literals.MISC_CLASS__CLASS,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MiscClass_class_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_MiscClass_class_feature", "_UI_MiscClass_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EnvironmentPackage.Literals.MISC_CLASS__CLASS,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -125,19 +126,17 @@ public class MiscClassItemProvider
 	 * @generated
 	 */
 	protected void addNamespacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MiscClass_namespace_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_MiscClass_namespace_feature", "_UI_MiscClass_type"),
-						EnvironmentPackage.Literals.MISC_CLASS__NAMESPACE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MiscClass_namespace_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_MiscClass_namespace_feature", "_UI_MiscClass_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EnvironmentPackage.Literals.MISC_CLASS__NAMESPACE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -149,7 +148,7 @@ public class MiscClassItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MiscClass"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MiscClass")); //$NON-NLS-1$
 	}
 
 	/**
@@ -162,9 +161,8 @@ public class MiscClassItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((MiscClass) object).getLabel();
-		return label == null || label.length() == 0 ?
-				getString("_UI_MiscClass_type") :
-				getString("_UI_MiscClass_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_MiscClass_type") : //$NON-NLS-1$
+				getString("_UI_MiscClass_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
