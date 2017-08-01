@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014 - 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *
  *		 Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *		 Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -19,11 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -56,7 +53,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.FixEdgeAnchorsDeferredC
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.FixAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
-import org.omg.CORBA.Bounds;
 
 /**
  *
@@ -148,7 +144,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 		}
 		return chainGuideAttachmentCommands(request, new ICommandProxy(cc.reduce()));
 	}
-	
+
 
 	/**
 	 * Returns the <code>Command</code> to resize a group of children.
@@ -193,22 +189,39 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 			}
 			// we add the command to fix the anchor
 			if (isConstrainedResize && child instanceof INodeEditPart) {
-				if (helper == null) {
+				if (getHelper() == null) {
 					TransactionalEditingDomain domain = null;
 					try {
 						domain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(child);
 					} catch (ServiceException e) {
 						Activator.log.error(e);
 					}
-					this.helper = new FixAnchorHelper(domain);
+					setHelper(new FixAnchorHelper(domain));
 				}
-				final Command fixAnchorCommand = this.helper.getFixIdentityAnchorCommand((INodeEditPart) child, request.getMoveDelta(), request.getSizeDelta(), request.getResizeDirection());
+				final Command fixAnchorCommand = getHelper().getFixIdentityAnchorCommand((INodeEditPart) child, request.getMoveDelta(), request.getSizeDelta(), request.getResizeDirection());
 				if (fixAnchorCommand != null) {
 					resize.add(fixAnchorCommand);
 				}
 			}
 		}
 		return resize.unwrap();
+	}
+
+	/**
+	 * @return the helper
+	 * @since 3.1.0
+	 */
+	public FixAnchorHelper getHelper() {
+		return helper;
+	}
+
+	/**
+	 * @param helper
+	 *            the helper to set
+	 * @since 3.1.0
+	 */
+	public void setHelper(FixAnchorHelper helper) {
+		this.helper = helper;
 	}
 
 	@Override
@@ -220,11 +233,26 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 				final CompoundCommand cc = new CompoundCommand();
 				cc.add(cmd);
 				// see bug 430702: [Diagram] Moving source of a link moves the target too.
-				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart) getHost(), notBeingMovedConnections)));
+				ICommandProxy moveChildrenFixEdgeAnchorCommand = getMoveChildrenFixEdgeAnchorCommand(notBeingMovedConnections);
+				if (null != moveChildrenFixEdgeAnchorCommand) {
+					cc.add(moveChildrenFixEdgeAnchorCommand);
+				}
 				return cc;
 			}
 		}
 		return cmd;
+	}
+
+	/**
+	 * Get the Command to Fix the Edge Anchor when moving the children
+	 * 
+	 * @param notBeingMovedConnections
+	 *            List of not being moved Connections
+	 * @return The proxy Command to Fix the Edge Anchor
+	 * @since 3.1.0
+	 */
+	protected ICommandProxy getMoveChildrenFixEdgeAnchorCommand(Set<Object> notBeingMovedConnections) {
+		return new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart) getHost(), notBeingMovedConnections));
 	}
 
 	/*
@@ -259,7 +287,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 		return result;
 	}
 
-	protected final TransactionalEditingDomain getEditingDomain() {
+	protected TransactionalEditingDomain getEditingDomain() {
 
 		TransactionalEditingDomain domain = null;
 		try {
