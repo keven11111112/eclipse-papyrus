@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -19,11 +24,11 @@ import org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescr
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.ModelElementFactoryDescriptorImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.ModelElementFactoryDescriptorImpl#getFactoryClass <em>Factory Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -32,7 +37,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -43,7 +48,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -54,7 +59,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	 * The default value of the '{@link #getFactoryClass() <em>Factory Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getFactoryClass()
 	 * @generated
 	 * @ordered
@@ -65,7 +70,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	 * The cached value of the '{@link #getFactoryClass() <em>Factory Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getFactoryClass()
 	 * @generated
 	 * @ordered
@@ -75,7 +80,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected ModelElementFactoryDescriptorImpl() {
@@ -85,7 +90,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +101,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,22 +112,21 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EnvironmentPackage.MODEL_ELEMENT_FACTORY_DESCRIPTOR__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,22 +137,21 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setFactoryClass(String newFactoryClass) {
 		String oldFactoryClass = factoryClass;
 		factoryClass = newFactoryClass;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EnvironmentPackage.MODEL_ELEMENT_FACTORY_DESCRIPTOR__FACTORY_CLASS, oldFactoryClass, factoryClass));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +168,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +187,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,7 +206,7 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -220,19 +223,18 @@ public class ModelElementFactoryDescriptorImpl extends EObjectImpl implements Mo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", factoryClass: ");
+		result.append(", factoryClass: "); //$NON-NLS-1$
 		result.append(factoryClass);
 		result.append(')');
 		return result.toString();

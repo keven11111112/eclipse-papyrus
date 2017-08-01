@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,12 +21,12 @@ import org.eclipse.papyrus.infra.properties.environment.CompositeWidgetType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.CompositeWidget#getLayout <em>Layout</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.CompositeWidget#getWidgets <em>Widgets</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.CompositeWidget#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getCompositeWidget()
  * @model
@@ -35,7 +40,7 @@ public interface CompositeWidget extends Widget {
 	 * If the meaning of the '<em>Layout</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Layout</em>' containment reference.
 	 * @see #setLayout(Layout)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getCompositeWidget_Layout()
@@ -48,7 +53,7 @@ public interface CompositeWidget extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.CompositeWidget#getLayout <em>Layout</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Layout</em>' containment reference.
 	 * @see #getLayout()
@@ -64,7 +69,7 @@ public interface CompositeWidget extends Widget {
 	 * If the meaning of the '<em>Widgets</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Widgets</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getCompositeWidget_Widgets()
 	 * @model containment="true"
@@ -79,7 +84,7 @@ public interface CompositeWidget extends Widget {
 	 * If the meaning of the '<em>Widget Type</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Widget Type</em>' reference.
 	 * @see #setWidgetType(CompositeWidgetType)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getCompositeWidget_WidgetType()
@@ -92,7 +97,7 @@ public interface CompositeWidget extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.CompositeWidget#getWidgetType <em>Widget Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Widget Type</em>' reference.
 	 * @see #getWidgetType()

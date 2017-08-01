@@ -30,13 +30,13 @@ import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getTab <em>Tab</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getSectionFile <em>Section File</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getWidget <em>Widget</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -45,7 +45,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -56,7 +56,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -67,7 +67,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	 * The default value of the '{@link #getSectionFile() <em>Section File</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSectionFile()
 	 * @generated
 	 * @ordered
@@ -78,7 +78,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	 * The cached value of the '{@link #getSectionFile() <em>Section File</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSectionFile()
 	 * @generated
 	 * @ordered
@@ -89,7 +89,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	 * The cached value of the '{@link #getWidget() <em>Widget</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getWidget()
 	 * @generated
 	 * @ordered
@@ -99,7 +99,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected SectionImpl() {
@@ -109,7 +109,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,7 +120,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,36 +131,34 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.SECTION__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Tab getTab() {
-		if (eContainerFeatureID() != ContextsPackage.SECTION__TAB) {
+		if (eContainerFeatureID() != ContextsPackage.SECTION__TAB)
 			return null;
-		}
 		return (Tab) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTab(Tab newTab, NotificationChain msgs) {
@@ -171,36 +169,30 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setTab(Tab newTab) {
 		if (newTab != eInternalContainer() || (eContainerFeatureID() != ContextsPackage.SECTION__TAB && newTab != null)) {
-			if (EcoreUtil.isAncestor(this, newTab)) {
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			}
+			if (EcoreUtil.isAncestor(this, newTab))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null) {
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			}
-			if (newTab != null) {
+			if (newTab != null)
 				msgs = ((InternalEObject) newTab).eInverseAdd(this, ContextsPackage.TAB__SECTIONS, Tab.class, msgs);
-			}
 			msgs = basicSetTab(newTab, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.SECTION__TAB, newTab, newTab));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,22 +203,21 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setSectionFile(String newSectionFile) {
 		String oldSectionFile = sectionFile;
 		sectionFile = newSectionFile;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.SECTION__SECTION_FILE, oldSectionFile, sectionFile));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,9 +226,8 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 			InternalEObject oldWidget = (InternalEObject) widget;
 			widget = (CompositeWidget) eResolveProxy(oldWidget);
 			if (widget != oldWidget) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ContextsPackage.SECTION__WIDGET, oldWidget, widget));
-				}
 			}
 		}
 		return widget;
@@ -246,7 +236,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public CompositeWidget basicGetWidget() {
@@ -256,31 +246,29 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setWidget(CompositeWidget newWidget) {
 		CompositeWidget oldWidget = widget;
 		widget = newWidget;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.SECTION__WIDGET, oldWidget, widget));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ContextsPackage.SECTION__TAB:
-			if (eInternalContainer() != null) {
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			}
 			return basicSetTab((Tab) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -289,7 +277,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -304,7 +292,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -319,7 +307,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -332,9 +320,8 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 		case ContextsPackage.SECTION__SECTION_FILE:
 			return getSectionFile();
 		case ContextsPackage.SECTION__WIDGET:
-			if (resolve) {
+			if (resolve)
 				return getWidget();
-			}
 			return basicGetWidget();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -343,7 +330,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -368,7 +355,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -393,7 +380,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -414,19 +401,18 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", sectionFile: ");
+		result.append(", sectionFile: "); //$NON-NLS-1$
 		result.append(sectionFile);
 		result.append(')');
 		return result.toString();

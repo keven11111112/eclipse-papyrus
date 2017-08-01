@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -20,10 +25,10 @@ import org.eclipse.papyrus.infra.properties.ui.UiPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.LayoutImpl#getLayoutType <em>Layout Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -32,7 +37,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	 * The cached value of the '{@link #getLayoutType() <em>Layout Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getLayoutType()
 	 * @generated
 	 * @ordered
@@ -42,7 +47,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected LayoutImpl() {
@@ -52,7 +57,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,7 +68,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -72,9 +77,8 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 			InternalEObject oldLayoutType = (InternalEObject) layoutType;
 			layoutType = (LayoutType) eResolveProxy(oldLayoutType);
 			if (layoutType != oldLayoutType) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiPackage.LAYOUT__LAYOUT_TYPE, oldLayoutType, layoutType));
-				}
 			}
 		}
 		return layoutType;
@@ -83,7 +87,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public LayoutType basicGetLayoutType() {
@@ -93,31 +97,29 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setLayoutType(LayoutType newLayoutType) {
 		LayoutType oldLayoutType = layoutType;
 		layoutType = newLayoutType;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.LAYOUT__LAYOUT_TYPE, oldLayoutType, layoutType));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case UiPackage.LAYOUT__LAYOUT_TYPE:
-			if (resolve) {
+			if (resolve)
 				return getLayoutType();
-			}
 			return basicGetLayoutType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -126,7 +128,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,7 +144,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,7 +160,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

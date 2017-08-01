@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.PropertyImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.PropertyImpl#getLabel <em>Label</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.PropertyImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.PropertyImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -47,7 +47,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -58,7 +58,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -69,7 +69,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -80,7 +80,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -91,7 +91,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -102,7 +102,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -113,7 +113,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getMultiplicity()
 	 * @generated
 	 * @ordered
@@ -124,7 +124,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getMultiplicity()
 	 * @generated
 	 * @ordered
@@ -135,7 +135,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -146,7 +146,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -156,7 +156,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected PropertyImpl() {
@@ -166,7 +166,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,7 +177,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,22 +188,21 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.PROPERTY__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,22 +213,21 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.PROPERTY__LABEL, oldLabel, label));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,36 +238,34 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setType(Type newType) {
 		Type oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.PROPERTY__TYPE, oldType, type));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public DataContextElement getContextElement() {
-		if (eContainerFeatureID() != ContextsPackage.PROPERTY__CONTEXT_ELEMENT) {
+		if (eContainerFeatureID() != ContextsPackage.PROPERTY__CONTEXT_ELEMENT)
 			return null;
-		}
 		return (DataContextElement) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContextElement(DataContextElement newContextElement, NotificationChain msgs) {
@@ -280,36 +276,30 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setContextElement(DataContextElement newContextElement) {
 		if (newContextElement != eInternalContainer() || (eContainerFeatureID() != ContextsPackage.PROPERTY__CONTEXT_ELEMENT && newContextElement != null)) {
-			if (EcoreUtil.isAncestor(this, newContextElement)) {
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			}
+			if (EcoreUtil.isAncestor(this, newContextElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null) {
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			}
-			if (newContextElement != null) {
+			if (newContextElement != null)
 				msgs = ((InternalEObject) newContextElement).eInverseAdd(this, ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES, DataContextElement.class, msgs);
-			}
 			msgs = basicSetContextElement(newContextElement, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.PROPERTY__CONTEXT_ELEMENT, newContextElement, newContextElement));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -320,22 +310,21 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setMultiplicity(int newMultiplicity) {
 		int oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.PROPERTY__MULTIPLICITY, oldMultiplicity, multiplicity));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -346,31 +335,29 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.PROPERTY__DESCRIPTION, oldDescription, description));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ContextsPackage.PROPERTY__CONTEXT_ELEMENT:
-			if (eInternalContainer() != null) {
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			}
 			return basicSetContextElement((DataContextElement) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -379,7 +366,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -394,7 +381,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -409,7 +396,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -434,7 +421,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -465,7 +452,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -496,7 +483,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -521,25 +508,24 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", label: ");
+		result.append(", label: "); //$NON-NLS-1$
 		result.append(label);
-		result.append(", type: ");
+		result.append(", type: "); //$NON-NLS-1$
 		result.append(type);
-		result.append(", multiplicity: ");
+		result.append(", multiplicity: "); //$NON-NLS-1$
 		result.append(multiplicity);
-		result.append(", description: ");
+		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
 		result.append(')');
 		return result.toString();

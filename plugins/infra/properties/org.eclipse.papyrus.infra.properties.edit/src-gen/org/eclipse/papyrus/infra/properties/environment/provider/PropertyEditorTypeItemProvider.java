@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.provider;
 
 
@@ -65,19 +70,17 @@ public class PropertyEditorTypeItemProvider
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditorType_type_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_type_feature", "_UI_PropertyEditorType_type"),
-						EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__TYPE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditorType_type_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_type_feature", "_UI_PropertyEditorType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__TYPE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -88,19 +91,17 @@ public class PropertyEditorTypeItemProvider
 	 * @generated
 	 */
 	protected void addMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditorType_multiplicity_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_multiplicity_feature", "_UI_PropertyEditorType_type"),
-						EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__MULTIPLICITY,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditorType_multiplicity_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_multiplicity_feature", "_UI_PropertyEditorType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__MULTIPLICITY,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -112,7 +113,7 @@ public class PropertyEditorTypeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyEditorType"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyEditorType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -125,9 +126,8 @@ public class PropertyEditorTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((PropertyEditorType) object).getLabel();
-		return label == null || label.length() == 0 ?
-				getString("_UI_PropertyEditorType_type") :
-				getString("_UI_PropertyEditorType_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_PropertyEditorType_type") : //$NON-NLS-1$
+				getString("_UI_PropertyEditorType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

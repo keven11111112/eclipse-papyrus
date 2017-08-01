@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.provider;
 
 
@@ -56,7 +61,8 @@ public class DataContextPackageItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,7 +101,7 @@ public class DataContextPackageItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataContextPackage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataContextPackage")); //$NON-NLS-1$
 	}
 
 	/**
@@ -108,9 +114,8 @@ public class DataContextPackageItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((DataContextPackage) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_DataContextPackage_type") :
-				getString("_UI_DataContextPackage_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DataContextPackage_type") : //$NON-NLS-1$
+				getString("_UI_DataContextPackage_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -145,20 +150,14 @@ public class DataContextPackageItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.DATA_CONTEXT_PACKAGE__ELEMENTS,
-						ContextsFactory.eINSTANCE.createDataContextElement()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.DATA_CONTEXT_PACKAGE__ELEMENTS,
+				ContextsFactory.eINSTANCE.createDataContextElement()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.DATA_CONTEXT_PACKAGE__ELEMENTS,
-						ContextsFactory.eINSTANCE.createDataContextPackage()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.DATA_CONTEXT_PACKAGE__ELEMENTS,
+				ContextsFactory.eINSTANCE.createDataContextPackage()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.DATA_CONTEXT_PACKAGE__ELEMENTS,
-						ContextsFactory.eINSTANCE.createDataContextRoot()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.DATA_CONTEXT_PACKAGE__ELEMENTS,
+				ContextsFactory.eINSTANCE.createDataContextRoot()));
 	}
 
 }

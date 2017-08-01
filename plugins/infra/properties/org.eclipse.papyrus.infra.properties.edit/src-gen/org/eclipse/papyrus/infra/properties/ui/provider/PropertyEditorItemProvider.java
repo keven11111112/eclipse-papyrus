@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.provider;
 
 
@@ -71,19 +76,17 @@ public class PropertyEditorItemProvider
 	 * @generated
 	 */
 	protected void addPropertyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditor_property_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_property_feature", "_UI_PropertyEditor_type"),
-						UiPackage.Literals.PROPERTY_EDITOR__PROPERTY,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditor_property_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_property_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.PROPERTY_EDITOR__PROPERTY,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -94,19 +97,17 @@ public class PropertyEditorItemProvider
 	 * @generated
 	 */
 	protected void addReadOnlyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditor_readOnly_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_readOnly_feature", "_UI_PropertyEditor_type"),
-						UiPackage.Literals.PROPERTY_EDITOR__READ_ONLY,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditor_readOnly_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_readOnly_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.PROPERTY_EDITOR__READ_ONLY,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -117,19 +118,17 @@ public class PropertyEditorItemProvider
 	 * @generated
 	 */
 	protected void addWidgetTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditor_widgetType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_widgetType_feature", "_UI_PropertyEditor_type"),
-						UiPackage.Literals.PROPERTY_EDITOR__WIDGET_TYPE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditor_widgetType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_widgetType_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.PROPERTY_EDITOR__WIDGET_TYPE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -140,19 +139,17 @@ public class PropertyEditorItemProvider
 	 * @generated
 	 */
 	protected void addContentProviderClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditor_contentProviderClass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_contentProviderClass_feature", "_UI_PropertyEditor_type"),
-						UiPackage.Literals.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditor_contentProviderClass_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_contentProviderClass_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -163,19 +160,17 @@ public class PropertyEditorItemProvider
 	 * @generated
 	 */
 	protected void addShowLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditor_showLabel_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_showLabel_feature", "_UI_PropertyEditor_type"),
-						UiPackage.Literals.PROPERTY_EDITOR__SHOW_LABEL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditor_showLabel_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_showLabel_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.PROPERTY_EDITOR__SHOW_LABEL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -186,23 +181,22 @@ public class PropertyEditorItemProvider
 	 * @generated
 	 */
 	protected void addCustomLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditor_customLabel_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_customLabel_feature", "_UI_PropertyEditor_type"),
-						UiPackage.Literals.PROPERTY_EDITOR__CUSTOM_LABEL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditor_customLabel_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_customLabel_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UiPackage.Literals.PROPERTY_EDITOR__CUSTOM_LABEL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,7 +235,7 @@ public class PropertyEditorItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyEditor"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyEditor")); //$NON-NLS-1$
 	}
 
 	/**
@@ -254,7 +248,7 @@ public class PropertyEditorItemProvider
 	@Override
 	public String getText(Object object) {
 		PropertyEditor propertyEditor = (PropertyEditor) object;
-		return getString("_UI_PropertyEditor_type") + " " + propertyEditor.isReadOnly();
+		return getString("_UI_PropertyEditor_type") + " " + propertyEditor.isReadOnly(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -295,10 +289,8 @@ public class PropertyEditorItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.PROPERTY_EDITOR__UNRESOLVED_PROPERTY,
-						ContextsFactory.eINSTANCE.createUnknownProperty()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.PROPERTY_EDITOR__UNRESOLVED_PROPERTY,
+				ContextsFactory.eINSTANCE.createUnknownProperty()));
 	}
 
 }

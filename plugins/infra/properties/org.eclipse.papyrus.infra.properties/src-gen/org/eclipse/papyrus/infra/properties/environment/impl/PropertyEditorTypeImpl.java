@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -19,11 +24,11 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.PropertyEditorTypeImpl#getType <em>Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.PropertyEditorTypeImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -32,7 +37,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -43,7 +48,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -54,7 +59,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getMultiplicity()
 	 * @generated
 	 * @ordered
@@ -65,7 +70,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getMultiplicity()
 	 * @generated
 	 * @ordered
@@ -75,7 +80,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected PropertyEditorTypeImpl() {
@@ -85,7 +90,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +101,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,22 +112,21 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setType(Type newType) {
 		Type oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EnvironmentPackage.PROPERTY_EDITOR_TYPE__TYPE, oldType, type));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,22 +137,21 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setMultiplicity(int newMultiplicity) {
 		int oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EnvironmentPackage.PROPERTY_EDITOR_TYPE__MULTIPLICITY, oldMultiplicity, multiplicity));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +168,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +187,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,7 +206,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -220,19 +223,18 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
+		result.append(" (type: "); //$NON-NLS-1$
 		result.append(type);
-		result.append(", multiplicity: ");
+		result.append(", multiplicity: "); //$NON-NLS-1$
 		result.append(multiplicity);
 		result.append(')');
 		return result.toString();

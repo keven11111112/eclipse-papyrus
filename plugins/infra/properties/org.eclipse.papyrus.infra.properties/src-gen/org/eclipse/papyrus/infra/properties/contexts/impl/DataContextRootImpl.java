@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -20,11 +25,11 @@ import org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescr
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextRootImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextRootImpl#getModelElementFactory <em>Model Element Factory</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -33,7 +38,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -44,7 +49,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -55,7 +60,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	 * The cached value of the '{@link #getModelElementFactory() <em>Model Element Factory</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getModelElementFactory()
 	 * @generated
 	 * @ordered
@@ -65,7 +70,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected DataContextRootImpl() {
@@ -75,7 +80,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +91,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,22 +102,21 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.DATA_CONTEXT_ROOT__LABEL, oldLabel, label));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,9 +125,8 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 			InternalEObject oldModelElementFactory = (InternalEObject) modelElementFactory;
 			modelElementFactory = (ModelElementFactoryDescriptor) eResolveProxy(oldModelElementFactory);
 			if (modelElementFactory != oldModelElementFactory) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ContextsPackage.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY, oldModelElementFactory, modelElementFactory));
-				}
 			}
 		}
 		return modelElementFactory;
@@ -132,7 +135,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public ModelElementFactoryDescriptor basicGetModelElementFactory() {
@@ -142,22 +145,21 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setModelElementFactory(ModelElementFactoryDescriptor newModelElementFactory) {
 		ModelElementFactoryDescriptor oldModelElementFactory = modelElementFactory;
 		modelElementFactory = newModelElementFactory;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY, oldModelElementFactory, modelElementFactory));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,9 +168,8 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 		case ContextsPackage.DATA_CONTEXT_ROOT__LABEL:
 			return getLabel();
 		case ContextsPackage.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY:
-			if (resolve) {
+			if (resolve)
 				return getModelElementFactory();
-			}
 			return basicGetModelElementFactory();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -177,7 +178,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +197,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,7 +216,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -232,17 +233,16 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (label: ");
+		result.append(" (label: "); //$NON-NLS-1$
 		result.append(label);
 		result.append(')');
 		return result.toString();

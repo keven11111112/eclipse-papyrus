@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.presentation;
 
 import java.util.ArrayList;
@@ -74,18 +79,17 @@ public class UiActionBarContributor
 	 *
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction =
-			new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
-				@Override
-				public void run() {
-					try {
-						getPage().showView("org.eclipse.ui.views.PropertySheet");
-					}
-					catch (PartInitException exception) {
-						PropertiesEditorPlugin.INSTANCE.log(exception);
-					}
-				}
-			};
+	protected IAction showPropertiesViewAction = new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
+	{
+		@Override
+		public void run() {
+			try {
+				getPage().showView("org.eclipse.ui.views.PropertySheet"); //$NON-NLS-1$
+			} catch (PartInitException exception) {
+				PropertiesEditorPlugin.INSTANCE.log(exception);
+			}
+		}
+	};
 
 	/**
 	 * This action refreshes the viewer of the current editor if the editor
@@ -95,23 +99,23 @@ public class UiActionBarContributor
 	 *
 	 * @generated
 	 */
-	protected IAction refreshViewerAction =
-			new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
-				@Override
-				public boolean isEnabled() {
-					return activeEditorPart instanceof IViewerProvider;
-				}
+	protected IAction refreshViewerAction = new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) //$NON-NLS-1$
+	{
+		@Override
+		public boolean isEnabled() {
+			return activeEditorPart instanceof IViewerProvider;
+		}
 
-				@Override
-				public void run() {
-					if (activeEditorPart instanceof IViewerProvider) {
-						Viewer viewer = ((IViewerProvider) activeEditorPart).getViewer();
-						if (viewer != null) {
-							viewer.refresh();
-						}
-					}
+		@Override
+		public void run() {
+			if (activeEditorPart instanceof IViewerProvider) {
+				Viewer viewer = ((IViewerProvider) activeEditorPart).getViewer();
+				if (viewer != null) {
+					viewer.refresh();
 				}
-			};
+			}
+		}
+	};
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
@@ -174,8 +178,8 @@ public class UiActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		toolBarManager.add(new Separator("ui-settings"));
-		toolBarManager.add(new Separator("ui-additions"));
+		toolBarManager.add(new Separator("ui-settings")); //$NON-NLS-1$
+		toolBarManager.add(new Separator("ui-additions")); //$NON-NLS-1$
 	}
 
 	/**
@@ -190,32 +194,31 @@ public class UiActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_UiEditor_menu"), "org.eclipse.papyrus.views.properties.uiMenuID");
-		menuManager.insertAfter("additions", submenuManager);
-		submenuManager.add(new Separator("settings"));
-		submenuManager.add(new Separator("actions"));
-		submenuManager.add(new Separator("additions"));
-		submenuManager.add(new Separator("additions-end"));
+		IMenuManager submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_UiEditor_menu"), "org.eclipse.papyrus.infra.properties.uiMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
+		menuManager.insertAfter("additions", submenuManager); //$NON-NLS-1$
+		submenuManager.add(new Separator("settings")); //$NON-NLS-1$
+		submenuManager.add(new Separator("actions")); //$NON-NLS-1$
+		submenuManager.add(new Separator("additions")); //$NON-NLS-1$
+		submenuManager.add(new Separator("additions-end")); //$NON-NLS-1$
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-		submenuManager.insertBefore("additions", createChildMenuManager);
+		createChildMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
+		submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		submenuManager.insertBefore("additions", createSiblingMenuManager);
+		createSiblingMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
+		submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
 
 		// Force an update because Eclipse hides empty menus now.
 		//
-		submenuManager.addMenuListener
-				(new IMenuListener() {
-					@Override
-					public void menuAboutToShow(IMenuManager menuManager) {
-						menuManager.updateAll(true);
-					}
-				});
+		submenuManager.addMenuListener(new IMenuListener() {
+			@Override
+			public void menuAboutToShow(IMenuManager menuManager) {
+				menuManager.updateAll(true);
+			}
+		});
 
 		addGlobalActions(submenuManager);
 	}
@@ -239,8 +242,7 @@ public class UiActionBarContributor
 		}
 		if (part == null) {
 			selectionProvider = null;
-		}
-		else {
+		} else {
 			selectionProvider = part.getSite().getSelectionProvider();
 			selectionProvider.addSelectionChangedListener(this);
 
@@ -353,8 +355,7 @@ public class UiActionBarContributor
 			for (IAction action : actions) {
 				if (contributionID != null) {
 					manager.insertBefore(contributionID, action);
-				}
-				else {
+				} else {
 					manager.add(action);
 				}
 			}
@@ -404,13 +405,13 @@ public class UiActionBarContributor
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
 		populateManager(submenuManager, createChildActions, null);
-		menuManager.insertBefore("edit", submenuManager);
+		menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 
-		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
 		populateManager(submenuManager, createSiblingActions, null);
-		menuManager.insertBefore("edit", submenuManager);
+		menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 	}
 
 	/**
@@ -422,11 +423,11 @@ public class UiActionBarContributor
 	 */
 	@Override
 	protected void addGlobalActions(IMenuManager menuManager) {
-		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
-		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
+		menuManager.insertAfter("additions-end", new Separator("ui-actions")); //$NON-NLS-1$ //$NON-NLS-2$
+		menuManager.insertAfter("ui-actions", showPropertiesViewAction); //$NON-NLS-1$
 
 		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());
-		menuManager.insertAfter("ui-actions", refreshViewerAction);
+		menuManager.insertAfter("ui-actions", refreshViewerAction); //$NON-NLS-1$
 
 		super.addGlobalActions(menuManager);
 	}

@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
 import java.util.Collection;
@@ -24,10 +29,10 @@ import org.eclipse.papyrus.infra.properties.ui.WidgetAttribute;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.UIComponentImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -73,7 +78,7 @@ public abstract class UIComponentImpl extends ElementImpl implements UIComponent
 	@Override
 	public EList<WidgetAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<WidgetAttribute>(WidgetAttribute.class, this, UiPackage.UI_COMPONENT__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<>(WidgetAttribute.class, this, UiPackage.UI_COMPONENT__ATTRIBUTES);
 		}
 		return attributes;
 	}

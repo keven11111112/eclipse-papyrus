@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.provider;
 
 
@@ -58,7 +63,8 @@ public class EnvironmentItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,7 +109,7 @@ public class EnvironmentItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Environment"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Environment")); //$NON-NLS-1$
 	}
 
 	/**
@@ -115,7 +121,7 @@ public class EnvironmentItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Environment_type");
+		return getString("_UI_Environment_type"); //$NON-NLS-1$
 	}
 
 	/**
@@ -156,40 +162,26 @@ public class EnvironmentItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES,
-						EnvironmentFactory.eINSTANCE.createModelElementFactoryDescriptor()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES,
+				EnvironmentFactory.eINSTANCE.createModelElementFactoryDescriptor()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__WIDGET_TYPES,
-						EnvironmentFactory.eINSTANCE.createStandardWidgetType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__WIDGET_TYPES,
+				EnvironmentFactory.eINSTANCE.createStandardWidgetType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES,
-						EnvironmentFactory.eINSTANCE.createPropertyEditorType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES,
+				EnvironmentFactory.eINSTANCE.createPropertyEditorType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES,
-						EnvironmentFactory.eINSTANCE.createCompositeWidgetType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES,
+				EnvironmentFactory.eINSTANCE.createCompositeWidgetType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES,
-						EnvironmentFactory.eINSTANCE.createLayoutType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES,
+				EnvironmentFactory.eINSTANCE.createLayoutType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES,
-						EnvironmentFactory.eINSTANCE.createNamespace()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES,
+				EnvironmentFactory.eINSTANCE.createNamespace()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES,
-						EnvironmentFactory.eINSTANCE.createMiscClass()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES,
+				EnvironmentFactory.eINSTANCE.createMiscClass()));
 	}
 
 	/**

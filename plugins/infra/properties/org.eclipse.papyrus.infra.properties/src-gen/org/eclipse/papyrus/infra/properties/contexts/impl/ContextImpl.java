@@ -219,7 +219,7 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	@Override
 	public EList<Context> getDependencies() {
 		if (dependencies == null) {
-			dependencies = new EObjectResolvingEList<Context>(Context.class, this, ContextsPackage.CONTEXT__DEPENDENCIES);
+			dependencies = new EObjectResolvingEList<>(Context.class, this, ContextsPackage.CONTEXT__DEPENDENCIES);
 		}
 		return dependencies;
 	}
@@ -233,7 +233,7 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	@Override
 	public EList<Tab> getTabs() {
 		if (tabs == null) {
-			tabs = new EObjectContainmentEList<Tab>(Tab.class, this, ContextsPackage.CONTEXT__TABS);
+			tabs = new EObjectContainmentEList<>(Tab.class, this, ContextsPackage.CONTEXT__TABS);
 		}
 		return tabs;
 	}
@@ -247,7 +247,7 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	@Override
 	public EList<View> getViews() {
 		if (views == null) {
-			views = new EObjectContainmentWithInverseEList<View>(View.class, this, ContextsPackage.CONTEXT__VIEWS, ContextsPackage.VIEW__CONTEXT);
+			views = new EObjectContainmentWithInverseEList<>(View.class, this, ContextsPackage.CONTEXT__VIEWS, ContextsPackage.VIEW__CONTEXT);
 		}
 		return views;
 	}
@@ -261,7 +261,7 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	@Override
 	public EList<DataContextRoot> getDataContexts() {
 		if (dataContexts == null) {
-			dataContexts = new EObjectContainmentEList<DataContextRoot>(DataContextRoot.class, this, ContextsPackage.CONTEXT__DATA_CONTEXTS);
+			dataContexts = new EObjectContainmentEList<>(DataContextRoot.class, this, ContextsPackage.CONTEXT__DATA_CONTEXTS);
 		}
 		return dataContexts;
 	}
@@ -534,9 +534,9 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		}
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", label: ");
+		result.append(", label: "); //$NON-NLS-1$
 		result.append(label);
 		result.append(')');
 		return result.toString();

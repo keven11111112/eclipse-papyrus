@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.provider;
 
 
@@ -73,7 +78,7 @@ public class ElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Element"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Element")); //$NON-NLS-1$
 	}
 
 	/**
@@ -85,7 +90,7 @@ public class ElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Element_type");
+		return getString("_UI_Element_type"); //$NON-NLS-1$
 	}
 
 	/**

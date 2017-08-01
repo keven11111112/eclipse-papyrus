@@ -80,8 +80,8 @@ public class ContextItemProvider
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Context_name_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Context_name_feature", "_UI_Context_type"),
+				getString("_UI_Context_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_name_feature", "_UI_Context_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				ContextsPackage.Literals.CONTEXT__NAME,
 				true,
 				false,
@@ -101,8 +101,8 @@ public class ContextItemProvider
 	protected void addDependenciesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Context_dependencies_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Context_dependencies_feature", "_UI_Context_type"),
+				getString("_UI_Context_dependencies_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_dependencies_feature", "_UI_Context_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				ContextsPackage.Literals.CONTEXT__DEPENDENCIES,
 				true,
 				false,
@@ -122,8 +122,8 @@ public class ContextItemProvider
 	protected void addPrototypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Context_prototype_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Context_prototype_feature", "_UI_Context_type"),
+				getString("_UI_Context_prototype_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_prototype_feature", "_UI_Context_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				ContextsPackage.Literals.CONTEXT__PROTOTYPE,
 				true,
 				false,
@@ -143,8 +143,8 @@ public class ContextItemProvider
 	protected void addLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Context_label_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_Context_label_feature", "_UI_Context_type"),
+				getString("_UI_Context_label_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_label_feature", "_UI_Context_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				ContextsPackage.Literals.CONTEXT__LABEL,
 				true,
 				false,
@@ -197,7 +197,7 @@ public class ContextItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Context"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Context")); //$NON-NLS-1$
 	}
 
 	/**
@@ -210,7 +210,8 @@ public class ContextItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Context) object).getUserLabel();
-		return label == null || label.length() == 0 ? getString("_UI_Context_type") : getString("_UI_Context_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Context_type") : //$NON-NLS-1$
+				getString("_UI_Context_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

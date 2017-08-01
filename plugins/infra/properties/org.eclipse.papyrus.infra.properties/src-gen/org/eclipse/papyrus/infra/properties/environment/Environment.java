@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +21,7 @@ import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.Environment#getModelElementFactories <em>Model Element Factories</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.Environment#getWidgetTypes <em>Widget Types</em>}</li>
@@ -25,7 +31,6 @@ import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.Environment#getNamespaces <em>Namespaces</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.environment.Environment#getMiscClasses <em>Misc Classes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment()
  * @model
@@ -40,7 +45,7 @@ public interface Environment extends ConstraintEnvironment {
 	 * If the meaning of the '<em>Model Element Factories</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Model Element Factories</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment_ModelElementFactories()
 	 * @model containment="true"
@@ -56,7 +61,7 @@ public interface Environment extends ConstraintEnvironment {
 	 * If the meaning of the '<em>Widget Types</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Widget Types</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment_WidgetTypes()
 	 * @model containment="true"
@@ -72,7 +77,7 @@ public interface Environment extends ConstraintEnvironment {
 	 * If the meaning of the '<em>Property Editor Types</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Property Editor Types</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment_PropertyEditorTypes()
 	 * @model containment="true"
@@ -88,7 +93,7 @@ public interface Environment extends ConstraintEnvironment {
 	 * If the meaning of the '<em>Composite Widget Types</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Composite Widget Types</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment_CompositeWidgetTypes()
 	 * @model containment="true"
@@ -104,7 +109,7 @@ public interface Environment extends ConstraintEnvironment {
 	 * If the meaning of the '<em>Layout Types</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Layout Types</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment_LayoutTypes()
 	 * @model containment="true"
@@ -120,7 +125,7 @@ public interface Environment extends ConstraintEnvironment {
 	 * If the meaning of the '<em>Namespaces</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Namespaces</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment_Namespaces()
 	 * @model containment="true"
@@ -136,7 +141,7 @@ public interface Environment extends ConstraintEnvironment {
 	 * If the meaning of the '<em>Misc Classes</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Misc Classes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getEnvironment_MiscClasses()
 	 * @model containment="true"

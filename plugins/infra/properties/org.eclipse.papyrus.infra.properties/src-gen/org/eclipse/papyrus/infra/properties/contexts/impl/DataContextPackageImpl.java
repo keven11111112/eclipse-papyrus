@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
 import java.util.Collection;
@@ -24,10 +29,10 @@ import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextPackageImpl#getElements <em>Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -73,7 +78,7 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	@Override
 	public EList<DataContextElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentWithInverseEList<DataContextElement>(DataContextElement.class, this, ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS, ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE);
+			elements = new EObjectContainmentWithInverseEList<>(DataContextElement.class, this, ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS, ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE);
 		}
 		return elements;
 	}

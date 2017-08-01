@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts;
 
 import org.eclipse.emf.ecore.EObject;
@@ -16,6 +21,7 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getLabel <em>Label</em>}</li>
@@ -24,7 +30,6 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getMultiplicity <em>Multiplicity</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty()
  * @model
@@ -38,7 +43,7 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Name()
@@ -51,7 +56,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -66,7 +71,7 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Label()
@@ -79,7 +84,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
@@ -95,7 +100,7 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.properties.environment.Type
 	 * @see #setType(Type)
@@ -109,7 +114,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.properties.environment.Type
@@ -126,7 +131,7 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Context Element</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Context Element</em>' container reference.
 	 * @see #setContextElement(DataContextElement)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_ContextElement()
@@ -140,7 +145,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getContextElement <em>Context Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Context Element</em>' container reference.
 	 * @see #getContextElement()
@@ -156,7 +161,7 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Multiplicity</em>' attribute.
 	 * @see #setMultiplicity(int)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Multiplicity()
@@ -169,7 +174,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getMultiplicity <em>Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Multiplicity</em>' attribute.
 	 * @see #getMultiplicity()
@@ -184,7 +189,7 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Description()
@@ -197,7 +202,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
