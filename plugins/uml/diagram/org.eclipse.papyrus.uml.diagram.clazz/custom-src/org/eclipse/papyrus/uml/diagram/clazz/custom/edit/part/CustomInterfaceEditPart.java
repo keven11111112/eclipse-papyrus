@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPart;
 
 /**
  * The custom edit policy for the interface edit part.
+ *  @since 3.0
  */
 public class CustomInterfaceEditPart extends InterfaceEditPart {
 
