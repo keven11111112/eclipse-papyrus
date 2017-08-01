@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014 - 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
@@ -57,6 +58,12 @@ public class FixAnchorHelper {
 	protected final TransactionalEditingDomain domain;
 
 	/**
+	 * @since 3.1.0
+	 */
+	private Rectangle includedRect;
+
+
+	/**
 	 *
 	 * Constructor.
 	 *
@@ -79,7 +86,7 @@ public class FixAnchorHelper {
 	 * @param moveDirection
 	 *            the direction for the resize/move
 	 * @return
-	 *         the command to fix the anchor or <code>null</code> if we can't fix it
+	 * 		the command to fix the anchor or <code>null</code> if we can't fix it
 	 */
 	public Command getFixIdentityAnchorCommand(final INodeEditPart node, final Point move, final Dimension sizeDelta, int moveDirection) {
 		final CompoundCommand cc = new CompoundCommand("Fix All Anchors Command"); //$NON-NLS-1$
@@ -127,7 +134,7 @@ public class FixAnchorHelper {
 	 * @param sourcePoint
 	 *            if <code>true</code> we return the source point and if false we return the end point
 	 * @return
-	 *         the real point to fix
+	 * 		the real point to fix
 	 */
 	protected Point getRealAnchorPoint(final AbstractConnectionEditPart edgeEP, final boolean sourcePoint) {
 		final IFigure figure = edgeEP.getFigure();
@@ -154,7 +161,7 @@ public class FixAnchorHelper {
 	 * @param p
 	 *            the real anchor point in absolute coordinate
 	 * @return
-	 *         the anchor representing the point to fix
+	 * 		the anchor representing the point to fix
 	 */
 	protected IdentityAnchor getIdentityAnchor(final AbstractConnectionEditPart edgeEP, final boolean sourcePoint, final INodeEditPart nodeEP, final Point p) {
 		final View view = (View) edgeEP.getAdapter(View.class);
@@ -293,9 +300,9 @@ public class FixAnchorHelper {
 	 * @param fixingSource
 	 *            if <code>true</code> we are fixing the source anchor and if <code>false</code> we are fixing the target anchor
 	 * @return
-	 *         the direction of the manipulated anchor (according to {@link PositionConstants}
+	 * 		the direction of the manipulated anchor (according to {@link PositionConstants}
 	 */
-	protected final int getSideOfConnectionPoint(final IFigure nodeFigure, final AbstractConnectionEditPart edgeEP, final boolean fixingSource) {
+	protected int getSideOfConnectionPoint(final IFigure nodeFigure, final AbstractConnectionEditPart edgeEP, final boolean fixingSource) {
 		int side = -1;
 		final IFigure figure = edgeEP.getFigure();
 		if (figure instanceof PolylineConnectionEx) {
@@ -309,11 +316,9 @@ public class FixAnchorHelper {
 				pt = connection.getEnd();
 			}
 			figure.translateToAbsolute(pt);
-			Rectangle includedRect = bounds.getCopy();
-			while (includedRect.contains(pt)) {
-				includedRect.shrink(1, 1);
-			}
-			side = includedRect.getPosition(pt);
+			setIncludedRect(bounds.getCopy());
+
+			side = getSideFromRectangle(pt);
 			// if the anchor side is a corner, we determine its side using another point
 			if (side == PositionConstants.NORTH_WEST || side == PositionConstants.NORTH_EAST || side == PositionConstants.SOUTH_EAST || side == PositionConstants.SOUTH_WEST) {
 				final Point previousPoint;
@@ -326,13 +331,48 @@ public class FixAnchorHelper {
 						previousPoint = list.getPoint(list.size() - 2);
 					}
 					nodeFigure.translateToAbsolute(previousPoint.getCopy());
-					while (includedRect.contains(previousPoint)) {
-						includedRect.shrink(1, 1);
+					while (getIncludedRect().contains(previousPoint)) {
+						getIncludedRect().shrink(1, 1);
 					}
-					side = includedRect.getPosition(previousPoint);
+					side = getIncludedRect().getPosition(previousPoint);
 				}
 			}
 		}
 		return side;
+	}
+
+	/**
+	 * Return the side of the point on the included Rectangle
+	 * 
+	 * @since 3.1.0
+	 * @param pt
+	 *            Point with absolute position
+	 * @return integer representing the position from PositionConstants.
+	 * 
+	 */
+	protected int getSideFromRectangle(Point pt) {
+		while (getIncludedRect().contains(pt)) {
+			getIncludedRect().shrink(1, 1);
+		}
+		int side = getIncludedRect().getPosition(pt);
+
+		return side;
+	}
+
+	/**
+	 * @return the includedRect
+	 * @since 3.1.0
+	 */
+	public Rectangle getIncludedRect() {
+		return includedRect;
+	}
+
+	/**
+	 * @param includedRect
+	 *            the includedRect to set
+	 * @since 3.1.0
+	 */
+	public void setIncludedRect(Rectangle includedRect) {
+		this.includedRect = includedRect;
 	}
 }
