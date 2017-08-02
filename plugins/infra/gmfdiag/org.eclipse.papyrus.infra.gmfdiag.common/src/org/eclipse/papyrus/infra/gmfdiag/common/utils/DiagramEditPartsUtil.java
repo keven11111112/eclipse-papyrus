@@ -52,18 +52,22 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -80,10 +84,10 @@ import com.google.common.collect.Lists;
  */
 public class DiagramEditPartsUtil {
 
-	protected DiagramEditPartsUtil() { // FIXME : protected instate of private for non regression purposes
+	protected DiagramEditPartsUtil() { // FIXME : protected instead of private for non regression purposes
 										// should be removed as soon as org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil
 										// is removed
-		// to prevent instanciation
+		// to prevent instantiation
 	}
 
 	/**
@@ -1003,4 +1007,29 @@ public class DiagramEditPartsUtil {
 		return isReadOnly;
 	}
 
+	protected static ILabelProvider labelProvider;
+
+	/**
+	 * Return the icon of a label, taking element type definitions into account
+	 *
+	 * @param parserElement the parserElement, typically the (model) element of an edit part
+	 * @param viewer the edit part viewer
+	 * @return the icon element
+	 */
+	public static Image getIcon(EObject parserElement, EditPartViewer viewer) {
+		// EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, viewer);
+		for (View view : views) {
+			if (AppearanceHelper.showElementIcon(view)) {
+				if (labelProvider == null) {
+					labelProvider = new EMFLabelProvider();
+				}
+				return labelProvider.getImage(parserElement);
+			}
+		}
+		return null;
+	}
 }
