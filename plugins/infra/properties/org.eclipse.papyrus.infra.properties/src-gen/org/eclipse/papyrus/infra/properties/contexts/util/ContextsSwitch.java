@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
-import org.eclipse.papyrus.infra.properties.contexts.*;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;

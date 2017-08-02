@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.properties.ui.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.infra.properties.ui.*;
 import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.infra.properties.ui.Element;
 import org.eclipse.papyrus.infra.properties.ui.Layout;

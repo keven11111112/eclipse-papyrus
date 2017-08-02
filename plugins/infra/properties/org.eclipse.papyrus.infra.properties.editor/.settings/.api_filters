@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.properties.editor" version="2">
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/contexts/presentation/ContextsEditor.java" type="org.eclipse.papyrus.infra.properties.contexts.presentation.ContextsEditor">
+        <filter comment="for generated code, we don't had the @since tag" id="1143996420">
+            <message_arguments>
+                <message_argument value="propertySheetPages"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/environment/presentation/EnvironmentEditor.java" type="org.eclipse.papyrus.infra.properties.environment.presentation.EnvironmentEditor">
+        <filter comment="for generated code, we don't had the @since tag" id="1143996420">
+            <message_arguments>
+                <message_argument value="propertySheetPages"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/ui/presentation/UiEditor.java" type="org.eclipse.papyrus.infra.properties.ui.presentation.UiEditor">
+        <filter comment="for generated code, we don't had the @since tag" id="1143996420">
+            <message_arguments>
+                <message_argument value="propertySheetPages"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

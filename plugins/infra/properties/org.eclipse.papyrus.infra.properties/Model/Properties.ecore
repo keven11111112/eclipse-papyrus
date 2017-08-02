@@ -156,6 +156,10 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedProperties"
+          upperBound="-1" eType="#//contexts/Property" eOpposite="#//contexts/Property/redefinedByProperties"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedByProperties"
+          upperBound="-1" eType="#//contexts/Property" derived="true" eOpposite="#//contexts/Property/redefinedProperties"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UnknownProperty" eSuperTypes="#//contexts/Property"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataContextPackage" eSuperTypes="#//contexts/DataContextElement">

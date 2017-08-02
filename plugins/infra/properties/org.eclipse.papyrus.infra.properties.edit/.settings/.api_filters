@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.properties.edit" version="2">
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/contexts/provider/PropertyItemProvider.java" type="org.eclipse.papyrus.infra.properties.contexts.provider.PropertyItemProvider">
+        <filter comment="for generated code, we don't had the @since tag" id="1143996420">
+            <message_arguments>
+                <message_argument value="addRedefinedByPropertiesPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1143996420">
+            <message_arguments>
+                <message_argument value="addRedefinedPropertiesPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
