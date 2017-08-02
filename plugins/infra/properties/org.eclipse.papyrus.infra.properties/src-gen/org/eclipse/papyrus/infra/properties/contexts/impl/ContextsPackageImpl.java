@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2015, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
  *   Christian W. Damus - bug 482927
+ *   Vincent Lorenzo - Bug 520271
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
@@ -40,14 +41,14 @@ import org.eclipse.papyrus.infra.properties.ui.impl.UiPackageImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass contextEClass = null;
@@ -55,7 +56,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass tabEClass = null;
@@ -63,7 +64,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass viewEClass = null;
@@ -71,7 +72,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass sectionEClass = null;
@@ -79,7 +80,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass dataContextElementEClass = null;
@@ -87,7 +88,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass propertyEClass = null;
@@ -95,7 +96,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass unknownPropertyEClass = null;
@@ -103,7 +104,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass dataContextPackageEClass = null;
@@ -111,7 +112,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass dataContextRootEClass = null;
@@ -126,7 +127,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#eNS_URI
 	 * @see #init()
@@ -139,27 +140,28 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>
 	 * This method is used to initialize {@link ContextsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static ContextsPackage init() {
-		if (isInited)
+		if (isInited) {
 			return (ContextsPackage) EPackage.Registry.INSTANCE.getEPackage(ContextsPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
 		ContextsPackageImpl theContextsPackage = (ContextsPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ContextsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ContextsPackageImpl());
@@ -197,7 +199,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -208,7 +210,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -219,7 +221,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -230,7 +232,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -241,7 +243,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -252,7 +254,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -263,7 +265,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -274,7 +276,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -285,7 +287,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -296,7 +298,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -307,7 +309,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -318,7 +320,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -329,7 +331,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -340,7 +342,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -351,7 +353,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -362,7 +364,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -373,7 +375,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -384,7 +386,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -395,7 +397,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -406,7 +408,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -417,7 +419,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -428,7 +430,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -439,7 +441,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -450,7 +452,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -461,7 +463,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -472,7 +474,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -483,7 +485,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -494,7 +496,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -505,7 +507,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -516,7 +518,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -527,7 +529,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -538,7 +540,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -549,7 +551,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -560,7 +562,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -571,7 +573,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -582,7 +584,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -593,7 +595,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -604,7 +606,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -615,7 +617,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -626,7 +628,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -637,7 +639,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -648,7 +650,29 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getProperty_RedefinedProperties() {
+		return (EReference) propertyEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getProperty_RedefinedByProperties() {
+		return (EReference) propertyEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -659,7 +683,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -670,7 +694,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -681,7 +705,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -692,7 +716,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -703,7 +727,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -714,7 +738,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -725,7 +749,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -735,12 +759,13 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if (isCreated) {
 			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -790,6 +815,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(propertyEClass, PROPERTY__CONTEXT_ELEMENT);
 		createEAttribute(propertyEClass, PROPERTY__MULTIPLICITY);
 		createEAttribute(propertyEClass, PROPERTY__DESCRIPTION);
+		createEReference(propertyEClass, PROPERTY__REDEFINED_PROPERTIES);
+		createEReference(propertyEClass, PROPERTY__REDEFINED_BY_PROPERTIES);
 
 		unknownPropertyEClass = createEClass(UNKNOWN_PROPERTY);
 
@@ -804,7 +831,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -814,12 +841,13 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if (isInitialized) {
 			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -896,6 +924,10 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProperty_Multiplicity(), ecorePackage.getEInt(), "multiplicity", "1", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getProperty_Description(), ecorePackage.getEString(), "description", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getProperty_RedefinedProperties(), this.getProperty(), this.getProperty_RedefinedByProperties(), "redefinedProperties", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_RedefinedByProperties(), this.getProperty(), this.getProperty_RedefinedProperties(), "redefinedByProperties", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(unknownPropertyEClass, UnknownProperty.class, "UnknownProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

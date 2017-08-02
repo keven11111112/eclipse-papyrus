@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Vincent Lorenzo - Bug 520271
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.provider;
 
@@ -75,6 +76,8 @@ public class PropertyItemProvider
 			addTypePropertyDescriptor(object);
 			addMultiplicityPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addRedefinedPropertiesPropertyDescriptor(object);
+			addRedefinedByPropertiesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -180,6 +183,48 @@ public class PropertyItemProvider
 				false,
 				false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Redefined Properties feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addRedefinedPropertiesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Property_redefinedProperties_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_redefinedProperties_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ContextsPackage.Literals.PROPERTY__REDEFINED_PROPERTIES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Redefined By Properties feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addRedefinedByPropertiesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Property_redefinedByProperties_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_redefinedByProperties_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ContextsPackage.Literals.PROPERTY__REDEFINED_BY_PROPERTIES,
+				true,
+				false,
+				true,
+				null,
 				null,
 				null));
 	}

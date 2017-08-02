@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2015, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,12 +10,13 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus - bug 482927
- *
+ *  Vincent Lorenzo (CEA LIST) - bug 520271 
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -122,20 +123,33 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 				}
 
 				List<PropertyEditor> editors = new LinkedList<PropertyEditor>();
-
+				// the list of properties for the current view
+				final List<Property> properties = new ArrayList<Property>();
 				for (DataContextElement element : getAllContextElements(view.getDatacontexts())) {
 					for (Property property : element.getProperties()) {
 						if (isSelected(fieldSelection, property, view.getElementMultiplicity() != 1)) {
-							PropertyEditor editor = UiFactory.eINSTANCE.createPropertyEditor();
-							editor.setProperty(property);
-							editor.setWidgetType(configManager.getDefaultEditorType(property));
-							editors.add(editor);
-							ValueAttribute input = UiFactory.eINSTANCE.createValueAttribute();
-							input.setName("input"); //$NON-NLS-1$
-							input.setValue("{Binding}"); //$NON-NLS-1$
-							editor.getAttributes().add(input);
+							properties.add(property);
 						}
 					}
+				}
+
+				final List<Property> tmpProperties = new ArrayList<Property>(properties);
+				for (Property p1 : tmpProperties) {
+					//Bug 519090
+					// we remove all redefined properties from the list
+					properties.removeAll(p1.getRedefinedProperties());
+				}
+
+				// we create the editor
+				for (Property property : properties) {
+					PropertyEditor editor = UiFactory.eINSTANCE.createPropertyEditor();
+					editor.setProperty(property);
+					editor.setWidgetType(configManager.getDefaultEditorType(property));
+					editors.add(editor);
+					ValueAttribute input = UiFactory.eINSTANCE.createValueAttribute();
+					input.setName("input"); //$NON-NLS-1$
+					input.setValue("{Binding}"); //$NON-NLS-1$
+					editor.getAttributes().add(input);
 				}
 
 				List<Section> generatedSections = layoutGenerator.layoutElements(editors, view);

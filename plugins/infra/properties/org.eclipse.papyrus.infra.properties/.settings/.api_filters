@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.properties" version="2">
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/contexts/ContextsPackage.java" type="org.eclipse.papyrus.infra.properties.contexts.ContextsPackage">
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="PROPERTY__REDEFINED_BY_PROPERTIES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="PROPERTY__REDEFINED_PROPERTIES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="UNKNOWN_PROPERTY__REDEFINED_BY_PROPERTIES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="UNKNOWN_PROPERTY__REDEFINED_PROPERTIES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="getProperty_RedefinedByProperties()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="getProperty_RedefinedProperties()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/contexts/ContextsPackage.java" type="org.eclipse.papyrus.infra.properties.contexts.ContextsPackage$Literals">
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="PROPERTY__REDEFINED_BY_PROPERTIES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="PROPERTY__REDEFINED_PROPERTIES"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/contexts/Property.java" type="org.eclipse.papyrus.infra.properties.contexts.Property">
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="getRedefinedByProperties()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1211105284">
+            <message_arguments>
+                <message_argument value="getRedefinedProperties()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/properties/contexts/impl/PropertyImpl.java" type="org.eclipse.papyrus.infra.properties.contexts.impl.PropertyImpl">
+        <filter comment="for generated code, we don't had the @since tag" id="1143996420">
+            <message_arguments>
+                <message_argument value="redefinedByProperties"/>
+            </message_arguments>
+        </filter>
+        <filter comment="for generated code, we don't had the @since tag" id="1143996420">
+            <message_arguments>
+                <message_argument value="redefinedProperties"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
