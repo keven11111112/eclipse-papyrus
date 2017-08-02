@@ -24,6 +24,7 @@ import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -155,6 +156,18 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
+		ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+		ConnectionEditPart linkEditPart = reconnectRequest.getConnectionEditPart();
+		if (linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
+			SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
+			for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
+				EditPart editPart = (EditPart) iterator.next();
+				if (editPart.equals(getHost())) {
+					reconnectRequest.setTargetEditPart(getHost().getParent());
+					return getHost().getParent().getCommand(reconnectRequest);
+				}
+			}
+		}
 		Command command = super.getReconnectSourceCommand(request);
 		if (command != null) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
@@ -178,6 +191,19 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 	 */
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
+		ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+		ConnectionEditPart linkEditPart = reconnectRequest.getConnectionEditPart();
+		if (linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
+			SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
+			for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
+				EditPart editPart = (EditPart) iterator.next();
+				if (editPart.equals(getHost())) {
+					reconnectRequest.setTargetEditPart(getHost().getParent());
+					return getHost().getParent().getCommand(reconnectRequest);
+				}
+			}
+		}
+
 		Command command = super.getReconnectTargetCommand(request);
 		if (command != null) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());

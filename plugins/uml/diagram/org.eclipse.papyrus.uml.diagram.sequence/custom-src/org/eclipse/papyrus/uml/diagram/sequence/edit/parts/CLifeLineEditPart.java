@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.LifelineNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineRestorePositionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateNodeReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
 
@@ -66,6 +67,8 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(LifeLineRestorePositionEditPolicy.KEY, new LifeLineRestorePositionEditPolicy());
+		installEditPolicy(UpdateNodeReferenceEditPolicy.UDPATE_NODE_REFERENCE, new UpdateNodeReferenceEditPolicy());
+
 		super.createDefaultEditPolicies();
 	}
 

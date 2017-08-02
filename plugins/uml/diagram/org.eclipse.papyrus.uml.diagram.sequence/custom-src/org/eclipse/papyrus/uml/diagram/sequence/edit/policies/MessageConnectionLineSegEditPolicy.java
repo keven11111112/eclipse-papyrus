@@ -195,8 +195,8 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 						// Move message End
 						int y = request.getLocation().y;
-						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart);
-						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart);
+						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart, request);
+						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart, request);
 
 						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 						Point oldLocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, true);
@@ -218,8 +218,8 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					} else {
 						// TODO_MIA to test
 						int y = request.getLocation().y;
-						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart);
-						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart);
+						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart, request);
+						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart, request);
 						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 						/*
 						 * Take care of the order of commands, to make sure target is always bellow the source.
@@ -249,10 +249,10 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=402970
 	 */
-	protected Command createMoveMessageEndCommand(Message message, EditPart endEditPart, MessageEnd end, int yLocation, LifelineEditPart lifeline) {
+	protected Command createMoveMessageEndCommand(Message message, EditPart endEditPart, MessageEnd end, int yLocation, LifelineEditPart lifeline, Request request) {
 		if (end instanceof OccurrenceSpecification) {
 			List<EditPart> empty = Collections.emptyList();
-			return OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification) end, null, yLocation, -1, lifeline, empty);
+			return OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification) end, null, yLocation, -1, lifeline, empty, request);
 		} else if (end instanceof Gate) {
 			boolean isSource = (end == message.getSendEvent());
 			ConnectionNodeEditPart connection = (ConnectionNodeEditPart) getHost();
