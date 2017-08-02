@@ -810,6 +810,25 @@ public class SequenceUtil {
 		}
 		return null;
 	}
+	
+	/**
+	 * Return the combined fragment edit part containing this part (directly or indirectly).
+	 *
+	 * @param nodeEditPart
+	 *            The contained edit part or itself.
+	 * @return Combined fragment edit part or <code>null</code>.
+	 */
+	public static CombinedFragmentEditPart getParentCombinedFragmentPart(EditPart nodeEditPart) {
+		EditPart parent = nodeEditPart;
+		while (parent != null) {
+			if (parent instanceof CombinedFragmentEditPart) {
+				return (CombinedFragmentEditPart) parent;
+			} else {
+				parent = parent.getParent();
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Get the edit part (message, execution, or destruction event) which starts or finishes with the event on the given lifeline part
