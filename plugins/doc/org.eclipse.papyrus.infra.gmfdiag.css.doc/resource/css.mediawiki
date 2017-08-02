@@ -348,9 +348,9 @@ The following properties can be used to bypass the standard UML notation. They c
 |-
 | lineDashGap || integer || N/A || Connectors || When the lineStyle is set to "Dash", specifies the gap between the dashes
 |-
-| targetDecoration || <nowiki>[none]</nowiki> || N/A || Connectors || If "targetDecoration" is set to None, hides the target decoration of the Connector (e.g. the arrow)
+| targetDecoration || <nowiki>[none | default | open_arrow | ...]</nowiki> || N/A || Connectors || Permits to set target decoration. If "targetDecoration" is set to None, hides the target decoration of the Connector (e.g. the arrow)
 |-
-| sourceDecoration || <nowiki>[none]</nowiki> || N/A || Connectors || If "sourceDecoration" is set to None, hides the source decoration of the Connector (e.g. the arrow)
+| sourceDecoration || <nowiki>[none | default | open_arrow | ...]</nowiki> || N/A || Connectors || Permits to set source decoration. If "sourceDecoration" is set to None, hides the source decoration of the Connector (e.g. the arrow)
 |-
 | maskLabel || <nowiki>string[]</nowiki> || N/A || Labels, floating labels || This property can be used to configure the display of complex labels (e.g. properties). See examples in the [#Mask_Label Mask Label] chapter below
 |-
