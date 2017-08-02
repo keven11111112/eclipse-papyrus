@@ -138,9 +138,9 @@
       
    
   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
-   </extension>
+		      <?gmfgen generated="true"?>
+		      <initializer class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
+		   </extension>
 
 
 <extension point="org.eclipse.ui.menus" id="context-menus">
@@ -176,20 +176,20 @@
       <?gmfgen generated="true"?>
    </extension>
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
-      <?gmfgen generated="true"?>
-<page
-      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-      name="UseCase Diagram"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
-      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramGeneralPreferencePage">
-</page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage">
-</page>
-   </extension>
+		      <?gmfgen generated="true"?>
+		<page
+		      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
+		      name="UseCase Diagram"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+		      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramGeneralPreferencePage">
+		</page>
+		<page
+		      id="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage"
+		      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
+		      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage">
+		</page>
+		   </extension>
 
 	
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
@@ -654,6 +654,20 @@
             diagramType="UseCase">
          </visualTypeProvider>
    </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.uml.diagram.usecase.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.papyrus.uml.diagram.usecase.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.eclipse.papyrus.uml.diagram.usecase.TypeContext">
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+
 
 
 

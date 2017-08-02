@@ -254,6 +254,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case IncludeAppliedStereotypeEditPart.VISUAL_ID:
 				return new IncludeAppliedStereotypeEditPart(view);
 
+
 			case ExtendEditPart.VISUAL_ID:
 				return new ExtendEditPart(view);
 
@@ -263,11 +264,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ExtendAppliedStereotypeEditPart.VISUAL_ID:
 				return new ExtendAppliedStereotypeEditPart(view);
 
+
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
+
 
 			case AssociationEditPart.VISUAL_ID:
 				return new AssociationEditPart(view);
@@ -278,8 +281,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationAppliedStereotypeEditPart.VISUAL_ID:
 				return new AssociationAppliedStereotypeEditPart(view);
 
+
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
+
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
@@ -290,8 +295,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return new DependencyAppliedStereotypeEditPart(view);
 
+
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
+
 
 			case AbstractionEditPart.VISUAL_ID:
 				return new AbstractionEditPart(view);
@@ -302,6 +309,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
 				return new AppliedStereotypeAbstractionEditPart(view);
 
+
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
 
@@ -310,6 +318,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case AppliedStereotypeUsageEditPart.VISUAL_ID:
 				return new AppliedStereotypeUsageEditPart(view);
+
 
 			case RealizationEditPart.VISUAL_ID:
 				return new RealizationEditPart(view);
@@ -320,11 +329,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new RealizationAppliedStereotypeEditPart(view);
 
+
 			case PackageMergeEditPart.VISUAL_ID:
 				return new PackageMergeEditPart(view);
 
 			case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
 				return new AppliedStereotypePackageMergeEditPart(view);
+
 
 			case PackageImportEditPart.VISUAL_ID:
 				return new PackageImportEditPart(view);
@@ -350,7 +361,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
@@ -391,7 +403,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
 			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);

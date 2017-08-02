@@ -164,9 +164,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy
-					? ((ICommandProxy) editPolicyCommand).getICommand()
-					: new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -344,8 +342,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
 		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
-					|| nextView.getElement() != view.getElement()) {
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -378,28 +375,32 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canCreateInclude_Edge(UseCase container, UseCase source, UseCase target) {
-			return canExistInclude_Edge(container, null, source, target);
+			return canExistInclude_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateExtend_Edge(UseCase container, UseCase source, UseCase target) {
-			return canExistExtend_Edge(container, null, source, target);
+			return canExistExtend_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralization_Edge(Classifier container, Classifier source, Classifier target) {
-			return canExistGeneralization_Edge(container, null, source, target);
+			return canExistGeneralization_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateAssociation_Edge(Package container, Type source, Type target) {
-			return canExistAssociation_Edge(container, null, source, target);
+			return canExistAssociation_Edge(
+					container, null, source, target);
 		}
 
 		/**
@@ -407,19 +408,22 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
-				if (source.getConstrainedElements().contains(target)) {
+				if (source.getConstrainedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistConstraint_ConstrainedElementEdge(source, target);
+			return canExistConstraint_ConstrainedElementEdge(
+					source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_Edge(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_Edge(container, null, source, target);
+			return canExistDependency_Edge(
+					container, null, source, target);
 		}
 
 		/**
@@ -427,47 +431,54 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
-				if (source.getAnnotatedElements().contains(target)) {
+				if (source.getAnnotatedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistComment_AnnotatedElementEdge(source, target);
+			return canExistComment_AnnotatedElementEdge(
+					source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateAbstraction_Edge(Package container, NamedElement source, NamedElement target) {
-			return canExistAbstraction_Edge(container, null, source, target);
+			return canExistAbstraction_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateUsage_Edge(Package container, NamedElement source, NamedElement target) {
-			return canExistUsage_Edge(container, null, source, target);
+			return canExistUsage_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateRealization_Edge(Package container, NamedElement source, NamedElement target) {
-			return canExistRealization_Edge(container, null, source, target);
+			return canExistRealization_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreatePackageMerge_Edge(Package container, Package source, Package target) {
-			return canExistPackageMerge_Edge(container, null, source, target);
+			return canExistPackageMerge_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreatePackageImport_Edge(Namespace source, Package target) {
-			return canExistPackageImport_Edge(null, source, target);
+			return canExistPackageImport_Edge(
+					null, source, target);
 		}
 
 		/**
@@ -493,10 +504,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
-							UMLPackage.eINSTANCE.getClassifier());
-					Object sourceVal = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getClassifier(), env)
-							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getClassifier()); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getClassifier(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -504,10 +513,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
-							UMLPackage.eINSTANCE.getClassifier());
-					Object targetVal = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getClassifier(), env)
-							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getClassifier()); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getClassifier(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -524,13 +531,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistAssociation_Edge(Package container, Association linkInstance, Type source, Type target) {
 			try {
-				if ((source instanceof Class) || (source instanceof Component) || (source instanceof Actor)
-						|| (source instanceof UseCase)) {
-					if ((target instanceof Class) || (target instanceof Component) || (target instanceof Actor)
-							|| (target instanceof UseCase)) {
+				if ((source instanceof Class) || (source instanceof Component) || (source instanceof Actor) || (source instanceof UseCase)) {
+					if ((target instanceof Class) || (target instanceof Component) || (target instanceof Actor) || (target instanceof UseCase)) {
 						if ((source instanceof UseCase) && (target instanceof UseCase)) {
-							return (Collections.disjoint(((UseCase) source).getSubjects(),
-									((UseCase) target).getSubjects()));
+							return (Collections.disjoint(((UseCase) source).getSubjects(), ((UseCase) target).getSubjects()));
 
 						}
 						return true;
@@ -539,13 +543,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				} else {
 					return false;
 				}
-				if ((source instanceof Class) || (source instanceof Component) || (source instanceof Actor)
-						|| (source instanceof UseCase)) {
-					if ((target instanceof Class) || (target instanceof Component) || (target instanceof Actor)
-							|| (target instanceof UseCase)) {
+				if ((source instanceof Class) || (source instanceof Component) || (source instanceof Actor) || (source instanceof UseCase)) {
+					if ((target instanceof Class) || (target instanceof Component) || (target instanceof Actor) || (target instanceof UseCase)) {
 						if ((source instanceof UseCase) && (target instanceof UseCase)) {
-							return (Collections.disjoint(((UseCase) source).getSubjects(),
-									((UseCase) target).getSubjects()));
+							return (Collections.disjoint(((UseCase) source).getSubjects(), ((UseCase) target).getSubjects()));
 
 						}
 						return true;
@@ -577,10 +578,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
-							UMLPackage.eINSTANCE.getNamedElement());
-					Object targetVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env)
-							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getNamedElement()); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
