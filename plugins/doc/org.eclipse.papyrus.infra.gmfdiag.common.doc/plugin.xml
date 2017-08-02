@@ -18,6 +18,14 @@
       <toc
             file="target/generated-eclipse-help/textAlignment-toc.xml"
             primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/connectionDecorationCustomizationMain.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/connectionDecorationCustomization-toc.xml"
+            primary="false">
       </toc>      
    </extension>
 </plugin>

@@ -63,6 +63,12 @@
               <nestedClassifier xmi:type="uml:Class" xmi:id="_5S5QsDeoEeaoIeKDbY2kpA" name="Diagram.REQ_017-001"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_z-gBEDe3EeaPnYE3F_KdYw" name="Diagram.REQ_018"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_jgJtIHgrEee67-8AynoAhA" name="Diagram.REQ_019"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_jgJtIXgrEee67-8AynoAhA" name="Diagram.REQ_020"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_jgJtIngrEee67-8AynoAhA" name="Diagram.REQ_021"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_jgJtI3grEee67-8AynoAhA" name="Diagram.REQ_022"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_jgJtJHgrEee67-8AynoAhA" name="Diagram.REQ_023"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_jgJtJXgrEee67-8AynoAhA" name="Diagram.REQ_024"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Package" xmi:id="_3EkNcDRyEeaZ0_eSx8_2aA" name="Technical Requirements">
             <packagedElement xmi:type="uml:Abstraction" xmi:id="_KyZC8DRzEeaZ0_eSx8_2aA" client="_3EkNcDRyEeaZ0_eSx8_2aA" supplier="_xqvpEDRyEeaZ0_eSx8_2aA"/>
@@ -248,4 +254,10 @@
   <Requirements:Requirement xmi:id="_z-oj8De3EeaPnYE3F_KdYw" text="Papyrus shall provide facilities to migrate diagram from a version to upper version" id="Diagram.REQ_018" base_Class="_z-gBEDe3EeaPnYE3F_KdYw"/>
   <Requirements:DeriveReqt xmi:id="_V7qqIDe4EeaPnYE3F_KdYw" base_Abstraction="_V7hgMDe4EeaPnYE3F_KdYw"/>
   <Requirements:Requirement xmi:id="_T1wz8Kp_Eea736WDa-fj3g" text="The extension point used to defines palette oep.uml.diagram.common.paletteDefinition must allow to define several palettes in the same time (cardinality 1..*] " id="Diagram.REQT_003" base_Class="_T1twoKp_Eea736WDa-fj3g"/>
+  <Requirements:Requirement xmi:id="_jgK7QHgrEee67-8AynoAhA" text="The graphical representation can be set on source." id="Diagram.REQ_019" base_Class="_jgJtIHgrEee67-8AynoAhA"/>
+  <Requirements:Requirement xmi:id="_jgK7QXgrEee67-8AynoAhA" text="The graphical representation can be set on target." id="Diagram.REQ_020" base_Class="_jgJtIXgrEee67-8AynoAhA"/>
+  <Requirements:Requirement xmi:id="_jgK7QngrEee67-8AynoAhA" text="Available decoration must be extensible through extension point." id="Diagram.REQ_021" base_Class="_jgJtIngrEee67-8AynoAhA"/>
+  <Requirements:Requirement xmi:id="_jgK7Q3grEee67-8AynoAhA" text="The source and target representation can be set with CSS." id="Diagram.REQ_022" base_Class="_jgJtI3grEee67-8AynoAhA"/>
+  <Requirements:Requirement xmi:id="_jgK7RHgrEee67-8AynoAhA" text="The list of available decoration types is in CSS autocompletion." id="Diagram.REQ_023" base_Class="_jgJtJHgrEee67-8AynoAhA"/>
+  <Requirements:Requirement xmi:id="_jgK7RXgrEee67-8AynoAhA" text="The source and target representation can be set with properties view." id="Diagram.REQ_024" base_Class="_jgJtJXgrEee67-8AynoAhA"/>
 </xmi:XMI>
