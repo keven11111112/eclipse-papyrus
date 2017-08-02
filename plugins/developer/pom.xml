@@ -19,6 +19,7 @@
 		<module>org.eclipse.papyrus.codegen</module>
 		<module>org.eclipse.papyrus.def</module>
 		<module>org.eclipse.papyrus.dev.assistants.codegen</module>
+		<module>org.eclipse.papyrus.dev.pluginexplorer</module>
 		<module>org.eclipse.papyrus.dev.project.management</module>
 		<module>org.eclipse.papyrus.dev.tests.framework</module>
 		<module>org.eclipse.papyrus.dev.tests.framework.ui</module>

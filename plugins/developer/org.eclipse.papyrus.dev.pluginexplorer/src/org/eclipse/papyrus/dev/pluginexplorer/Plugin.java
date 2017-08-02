@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.pluginexplorer;
+package org.eclipse.papyrus.dev.pluginexplorer;
 
 import java.io.File;
 import java.io.IOException;

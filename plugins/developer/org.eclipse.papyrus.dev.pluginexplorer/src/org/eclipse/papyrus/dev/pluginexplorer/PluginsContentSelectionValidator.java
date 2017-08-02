@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.pluginexplorer;
+package org.eclipse.papyrus.dev.pluginexplorer;
 
 /**
  * Validates the selection of a resource in a plugin
