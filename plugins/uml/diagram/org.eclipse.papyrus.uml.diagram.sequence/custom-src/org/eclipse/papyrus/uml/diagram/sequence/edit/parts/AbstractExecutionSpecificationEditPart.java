@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -8,7 +7,6 @@ import org.eclipse.draw2d.DelegatingLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RelativeLocator;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateConnectionReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ExecutionSpecificationNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecutionToGridEditPolicy;
@@ -56,10 +55,10 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 public abstract class AbstractExecutionSpecificationEditPart extends RoundedCompartmentEditPart {
 
 	public static final String EXECUTION_FIX_ANCHOR_POSITION = "Execution Fix Anchor Position";
-	public static int DEFAUT_HEIGHT=100;
-	public static int DEFAUT_WIDTH=20;
-	
-	//private List<ExecutionSpecificationEndEditPart> executionSpecificationEndParts;
+	public static int DEFAUT_HEIGHT = 100;
+	public static int DEFAUT_WIDTH = 20;
+
+	// private List<ExecutionSpecificationEndEditPart> executionSpecificationEndParts;
 
 	public AbstractExecutionSpecificationEditPart(View view) {
 		super(view);
@@ -67,9 +66,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 
 	@Override
 	public List getChildren() {
-		//if (executionSpecificationEndParts == null) {
-		//	initExecutionSpecificationEndEditPart();
-		//}
+		// if (executionSpecificationEndParts == null) {
+		// initExecutionSpecificationEndEditPart();
+		// }
 		return super.getChildren();
 	}
 
@@ -78,17 +77,17 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		if (!(element instanceof ExecutionSpecification)) {
 			return;
 		}
-		//executionSpecificationEndParts = new ArrayList<ExecutionSpecificationEndEditPart>();
+		// executionSpecificationEndParts = new ArrayList<ExecutionSpecificationEndEditPart>();
 		ExecutionSpecification execution = (ExecutionSpecification) element;
-		//final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
-		//executionSpecificationEndParts.add(startPart);
-		//final ExecutionSpecificationEndEditPart finishPart = new ExecutionSpecificationEndEditPart(execution.getFinish(), this, new RelativeLocator(getFigure(), PositionConstants.SOUTH));
-		//executionSpecificationEndParts.add(finishPart);
+		// final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
+		// executionSpecificationEndParts.add(startPart);
+		// final ExecutionSpecificationEndEditPart finishPart = new ExecutionSpecificationEndEditPart(execution.getFinish(), this, new RelativeLocator(getFigure(), PositionConstants.SOUTH));
+		// executionSpecificationEndParts.add(finishPart);
 		Diagram diagram = ((View) this.getModel()).getDiagram();
-		//startPart.rebuildLinks(diagram);
-		//finishPart.rebuildLinks(diagram);
-		//addChild(startPart, -1);
-		//addChild(finishPart, -1);
+		// startPart.rebuildLinks(diagram);
+		// finishPart.rebuildLinks(diagram);
+		// addChild(startPart, -1);
+		// addChild(finishPart, -1);
 	}
 
 	static class FillParentLocator implements Locator {
@@ -105,6 +104,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		installEditPolicy(ConnectYCoordinateToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectExecutionToGridEditPolicy());
 		installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 		installEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE, new SequenceReferenceEditPolicy());
+		installEditPolicy(UpdateConnectionReferenceEditPolicy.UDPATE_CONNECTION_REFERENCE, new UpdateConnectionReferenceEditPolicy());
 
 	}
 
@@ -156,123 +156,123 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		return true;
 	}
 
-//	@Override
-//	protected void handleNotificationEvent(Notification event) {
-//		super.handleNotificationEvent(event);
-//		Object feature = event.getFeature();
-//		if ((getModel() != null) && (getModel() == event.getNotifier())) {
-//			if (NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
-//				refreshLineWidth();
-//			} else if (NotationPackage.eINSTANCE.getLineTypeStyle_LineType().equals(feature)) {
-//				refreshLineType();
-//			}
-//		} else if (NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-//				|| NotationPackage.eINSTANCE.getSize_Width().equals(feature)) {
-//			getParent().refresh();
-//		} else if (UMLPackage.eINSTANCE.getExecutionSpecification_Finish().equals(feature) || UMLPackage.eINSTANCE.getExecutionSpecification_Start().equals(feature)) {
-//			if (executionSpecificationEndParts != null) {
-//				for (ExecutionSpecificationEndEditPart child : executionSpecificationEndParts) {
-//					removeChild(child);
-//					child.removeFromResource();
-//				}
-//				executionSpecificationEndParts = null;
-//			}
-//			refreshChildren();
-//		}
-//		refreshShadow();
-//	}
+	// @Override
+	// protected void handleNotificationEvent(Notification event) {
+	// super.handleNotificationEvent(event);
+	// Object feature = event.getFeature();
+	// if ((getModel() != null) && (getModel() == event.getNotifier())) {
+	// if (NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+	// refreshLineWidth();
+	// } else if (NotationPackage.eINSTANCE.getLineTypeStyle_LineType().equals(feature)) {
+	// refreshLineType();
+	// }
+	// } else if (NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+	// || NotationPackage.eINSTANCE.getSize_Width().equals(feature)) {
+	// getParent().refresh();
+	// } else if (UMLPackage.eINSTANCE.getExecutionSpecification_Finish().equals(feature) || UMLPackage.eINSTANCE.getExecutionSpecification_Start().equals(feature)) {
+	// if (executionSpecificationEndParts != null) {
+	// for (ExecutionSpecificationEndEditPart child : executionSpecificationEndParts) {
+	// removeChild(child);
+	// child.removeFromResource();
+	// }
+	// executionSpecificationEndParts = null;
+	// }
+	// refreshChildren();
+	// }
+	// refreshShadow();
+	// }
 
 	@Override
 	public abstract ExecutionSpecificationRectangleFigure getPrimaryShape();
 
 	// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=385604
-//	protected ShapeNodeEditPart moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect) {
-//		OLDLifelineEditPart lifelineEP = (OLDLifelineEditPart) movedPart.getParent();
-//		Rectangle copy = rect.getCopy();
-//		lifelineEP.getPrimaryShape().translateToRelative(copy);
-//		List<ShapeNodeEditPart> executionSpecificationList = LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEP);
-//		List<ShapeNodeEditPart> movedChildrenParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(AbstractExecutionSpecificationEditPart.this);
-//		executionSpecificationList.remove(movedPart); // ignore current action and its children
-//		executionSpecificationList.removeAll(movedChildrenParts);
-//		ShapeNodeEditPart parentBar = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-//		Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
-//		int dotLineBarLocationX = dotLineBounds.x + dotLineBounds.width / 2 - OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH / 2;
-//		if (parentBar == null) {
-//			if (dotLineBarLocationX < copy.x) { // there is no parent bar, move to the center dotline position
-//				int dx = dotLineBarLocationX - copy.x;
-//				request.getMoveDelta().x += dx;
-//				rect.x += dx;
-//			}
-//		} else {
-//			while (!executionSpecificationList.isEmpty()) {
-//				Rectangle parentBounds = parentBar.getFigure().getBounds();
-//				int width = parentBounds.width > 0 ? parentBounds.width : OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH;
-//				int x = parentBounds.x + width / 2 + 1; // affixed to the parent bar
-//				int dx = x - copy.x;
-//				rect.x += dx;
-//				request.getMoveDelta().x += dx;
-//				copy.x = x;
-//				// check again to see if the new bar location overlaps with existing bars
-//				ShapeNodeEditPart part = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-//				if (part == parentBar) {
-//					break;
-//				} else {
-//					// if overlaps, go on moving the bar to next x position
-//					parentBar = part;
-//				}
-//			}
-//		}
-//		return parentBar;
-//	}
+	// protected ShapeNodeEditPart moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect) {
+	// OLDLifelineEditPart lifelineEP = (OLDLifelineEditPart) movedPart.getParent();
+	// Rectangle copy = rect.getCopy();
+	// lifelineEP.getPrimaryShape().translateToRelative(copy);
+	// List<ShapeNodeEditPart> executionSpecificationList = LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEP);
+	// List<ShapeNodeEditPart> movedChildrenParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(AbstractExecutionSpecificationEditPart.this);
+	// executionSpecificationList.remove(movedPart); // ignore current action and its children
+	// executionSpecificationList.removeAll(movedChildrenParts);
+	// ShapeNodeEditPart parentBar = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
+	// Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
+	// int dotLineBarLocationX = dotLineBounds.x + dotLineBounds.width / 2 - OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH / 2;
+	// if (parentBar == null) {
+	// if (dotLineBarLocationX < copy.x) { // there is no parent bar, move to the center dotline position
+	// int dx = dotLineBarLocationX - copy.x;
+	// request.getMoveDelta().x += dx;
+	// rect.x += dx;
+	// }
+	// } else {
+	// while (!executionSpecificationList.isEmpty()) {
+	// Rectangle parentBounds = parentBar.getFigure().getBounds();
+	// int width = parentBounds.width > 0 ? parentBounds.width : OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH;
+	// int x = parentBounds.x + width / 2 + 1; // affixed to the parent bar
+	// int dx = x - copy.x;
+	// rect.x += dx;
+	// request.getMoveDelta().x += dx;
+	// copy.x = x;
+	// // check again to see if the new bar location overlaps with existing bars
+	// ShapeNodeEditPart part = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
+	// if (part == parentBar) {
+	// break;
+	// } else {
+	// // if overlaps, go on moving the bar to next x position
+	// parentBar = part;
+	// }
+	// }
+	// }
+	// return parentBar;
+	// }
 
-//	/**
-//	 * Override for add elements on ExecutionSpecification
-//	 */
-//	@Override
-//	public Command getCommand(Request request) {
-//		if (request instanceof CreateUnspecifiedTypeRequest) {
-//			return getParent().getCommand(request);
-//		}
-//		return super.getCommand(request);
-//	}
-//
-//	/**
-//	 * @generated NOT Override for redirecting creation request to the lifeline
-//	 */
-//	@Override
-//	public void showSourceFeedback(Request request) {
-//		if (request instanceof CreateUnspecifiedTypeRequest) {
-//			getParent().showSourceFeedback(request);
-//		}
-//		super.showSourceFeedback(request);
-//	}
-//
-//	/**
-//	 * @generated NOT Override for redirecting creation request to the lifeline
-//	 */
-//	@Override
-//	public void eraseSourceFeedback(Request request) {
-//		if (request instanceof CreateUnspecifiedTypeRequest) {
-//			getParent().eraseSourceFeedback(request);
-//		}
-//		super.eraseSourceFeedback(request);
-//	}
-//
-//	@Override
-//	public void showTargetFeedback(Request request) {
-//		if (request instanceof CreateUnspecifiedTypeRequest) {
-//			getParent().showTargetFeedback(request);
-//		}
-//		super.showTargetFeedback(request);
-//	}
-//
-//	@Override
-//	public void eraseTargetFeedback(Request request) {
-//		if (request instanceof CreateUnspecifiedTypeRequest) {
-//			getParent().eraseTargetFeedback(request);
-//		}
-//		super.eraseTargetFeedback(request);
-//	}
+	// /**
+	// * Override for add elements on ExecutionSpecification
+	// */
+	// @Override
+	// public Command getCommand(Request request) {
+	// if (request instanceof CreateUnspecifiedTypeRequest) {
+	// return getParent().getCommand(request);
+	// }
+	// return super.getCommand(request);
+	// }
+	//
+	// /**
+	// * @generated NOT Override for redirecting creation request to the lifeline
+	// */
+	// @Override
+	// public void showSourceFeedback(Request request) {
+	// if (request instanceof CreateUnspecifiedTypeRequest) {
+	// getParent().showSourceFeedback(request);
+	// }
+	// super.showSourceFeedback(request);
+	// }
+	//
+	// /**
+	// * @generated NOT Override for redirecting creation request to the lifeline
+	// */
+	// @Override
+	// public void eraseSourceFeedback(Request request) {
+	// if (request instanceof CreateUnspecifiedTypeRequest) {
+	// getParent().eraseSourceFeedback(request);
+	// }
+	// super.eraseSourceFeedback(request);
+	// }
+	//
+	// @Override
+	// public void showTargetFeedback(Request request) {
+	// if (request instanceof CreateUnspecifiedTypeRequest) {
+	// getParent().showTargetFeedback(request);
+	// }
+	// super.showTargetFeedback(request);
+	// }
+	//
+	// @Override
+	// public void eraseTargetFeedback(Request request) {
+	// if (request instanceof CreateUnspecifiedTypeRequest) {
+	// getParent().eraseTargetFeedback(request);
+	// }
+	// super.eraseTargetFeedback(request);
+	// }
 
 	/**
 	 * Add connection on top off the figure during the feedback.
@@ -470,12 +470,13 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 
 	@Override
 	protected NodeFigure createSVGNodePlate() {
-		ExecutionSpecificationNodePlate svgNodePlateFigure= new ExecutionSpecificationNodePlate(this, -1, -1);
+		ExecutionSpecificationNodePlate svgNodePlateFigure = new ExecutionSpecificationNodePlate(this, -1, -1);
 		svgNodePlateFigure.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20))); // min height 20
 		svgNodePlate = svgNodePlateFigure.withLinkLFEnabled();
 		svgNodePlate.setDefaultNodePlate(createNodePlate());
 		return svgNodePlate;
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
 	 *
@@ -483,11 +484,11 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
-		if(request instanceof ChangeBoundsRequest){
-			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+		if (request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
 
-			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
-				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			if (changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x, 0));
 			}
 		}
 		super.showTargetFeedback(request);

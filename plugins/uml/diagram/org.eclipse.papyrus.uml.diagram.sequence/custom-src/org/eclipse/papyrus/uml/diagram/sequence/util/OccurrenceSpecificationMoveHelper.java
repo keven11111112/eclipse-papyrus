@@ -63,6 +63,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SenderRequestUtils;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -100,10 +101,12 @@ public class OccurrenceSpecificationMoveHelper {
 	 *            lifeline edit part containing the moved element
 	 * @param notToMoveEditParts
 	 *            list of edit parts which must not be moved in the created command
+	 * @param request
+	 *            the request that implies the creation of the command
 	 * @return command to move all edit parts linked to the occurrence specifications or null
 	 */
 	public static Command getMoveOccurrenceSpecificationsCommand(OccurrenceSpecification movedOccurrenceSpecification1, OccurrenceSpecification movedOccurrenceSpecification2, int yLocation1, int yLocation2, LifelineEditPart lifelinePart,
-			List<EditPart> notToMoveEditParts) {
+			List<EditPart> notToMoveEditParts, Request request) {
 		// the global command which shall be completed and returned
 		CompoundCommand globalCmd = new CompoundCommand();
 		// move the corresponding execution specification if necessary
@@ -113,13 +116,13 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		// reconnect the corresponding message(s) if necessary
 		if (movedOccurrenceSpecification1 instanceof MessageOccurrenceSpecification) {
-			command = getReconnectMessageCommand(movedOccurrenceSpecification1, yLocation1, lifelinePart, notToMoveEditParts);
+			command = getReconnectMessageCommand(movedOccurrenceSpecification1, yLocation1, lifelinePart, notToMoveEditParts, request);
 			if (command != null) {
 				globalCmd.add(command);
 			}
 		}
 		if (movedOccurrenceSpecification2 instanceof MessageOccurrenceSpecification) {
-			command = getReconnectMessageCommand(movedOccurrenceSpecification2, yLocation2, lifelinePart, notToMoveEditParts);
+			command = getReconnectMessageCommand(movedOccurrenceSpecification2, yLocation2, lifelinePart, notToMoveEditParts, request);
 			if (command != null) {
 				globalCmd.add(command);
 			}
@@ -229,7 +232,7 @@ public class OccurrenceSpecificationMoveHelper {
 	 *            list of edit parts which must not be moved in the created command
 	 * @return command to reconnect message edit part linked to the occurrence specification or null
 	 */
-	private static Command getReconnectMessageCommand(OccurrenceSpecification movedOccurrenceSpecification, int yLocation, LifelineEditPart lifelinePart, List<EditPart> notToMoveEditParts) {
+	private static Command getReconnectMessageCommand(OccurrenceSpecification movedOccurrenceSpecification, int yLocation, LifelineEditPart lifelinePart, List<EditPart> notToMoveEditParts, Request request) {
 		// the global command which shall be completed and returned
 		CompoundCommand command = new CompoundCommand();
 		if (movedOccurrenceSpecification instanceof MessageOccurrenceSpecification) {
@@ -246,6 +249,8 @@ public class OccurrenceSpecificationMoveHelper {
 						// the message part must start or finish on the lifeline (with the event)
 						if (part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
 							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart) part, true, referencePoint, childToReconnectTo);
+							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+							SenderRequestUtils.addRequestSenders(reconnectRequest, senderList);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 							command.add(reconnect);
 							// update enclosing interaction fragment
@@ -267,6 +272,8 @@ public class OccurrenceSpecificationMoveHelper {
 						// the message part must start or finish on the lifeline (with the event)
 						if (part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
 							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart) part, false, referencePoint, childToReconnectTo);
+							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+							SenderRequestUtils.addRequestSenders(reconnectRequest, senderList);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 							command.add(reconnect);
 							// update enclosing interaction fragment
@@ -303,7 +310,8 @@ public class OccurrenceSpecificationMoveHelper {
 	 *            list of edit parts which must not be moved in the created command
 	 * @return command to move time edit parts linked to the occurrence specification or null
 	 */
-	private static Command getMoveTimeElementsCommand(OccurrenceSpecification movedOccurrenceSpecification1, OccurrenceSpecification movedOccurrenceSpecification2, int yLocation1, int yLocation2, LifelineEditPart lifelinePart, List<EditPart> notToMoveEditParts) {
+	private static Command getMoveTimeElementsCommand(OccurrenceSpecification movedOccurrenceSpecification1, OccurrenceSpecification movedOccurrenceSpecification2, int yLocation1, int yLocation2, LifelineEditPart lifelinePart,
+			List<EditPart> notToMoveEditParts) {
 		// the global command which shall be completed and returned
 		CompoundCommand globalCmd = new CompoundCommand();
 		IFigure lifelineFigure = lifelinePart.getFigure();
@@ -774,14 +782,14 @@ public class OccurrenceSpecificationMoveHelper {
 		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(connectableNode);
 		MessageEnd event = getMessageEndFromReconnectMessage(request);
 		if (event instanceof OccurrenceSpecification) {
-			Command cmd = getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification) event, null, request.getLocation().y, -1, lifelinePart, notToMoveEditParts);
+			Command cmd = getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification) event, null, request.getLocation().y, -1, lifelinePart, notToMoveEditParts, request);
 			if (cmd != null) {
 				globalCmd.add(cmd);
 			}
 		}
 		OccurrenceSpecification event2 = getOccurrenceSpecificationFromReconnectGeneralOrdering(request);
 		if (event2 instanceof OccurrenceSpecification) {
-			Command cmd = getMoveOccurrenceSpecificationsCommand(event2, null, request.getLocation().y, -1, lifelinePart, notToMoveEditParts);
+			Command cmd = getMoveOccurrenceSpecificationsCommand(event2, null, request.getLocation().y, -1, lifelinePart, notToMoveEditParts, request);
 			if (cmd != null) {
 				globalCmd.add(cmd);
 			}
@@ -848,7 +856,7 @@ public class OccurrenceSpecificationMoveHelper {
 					notToMoveEditParts.add(message);
 				}
 			}
-			Command cmd = getMoveOccurrenceSpecificationsCommand(start, finish, startY, finishY, lifelinePart, notToMoveEditParts);
+			Command cmd = getMoveOccurrenceSpecificationsCommand(start, finish, startY, finishY, lifelinePart, notToMoveEditParts, request);
 			if (cmd != null) {
 				compoundCmd.add(cmd);
 			}
@@ -965,7 +973,7 @@ public class OccurrenceSpecificationMoveHelper {
 			}
 			if (occSpec1 != null) {
 				List<EditPart> notToMoveEditParts = Collections.singletonList(hostEditPart);
-				Command cmd = getMoveOccurrenceSpecificationsCommand(occSpec1, occSpec2, yLocation1, yLocation2, lifelinePart, notToMoveEditParts);
+				Command cmd = getMoveOccurrenceSpecificationsCommand(occSpec1, occSpec2, yLocation1, yLocation2, lifelinePart, notToMoveEditParts, request);
 				if (cmd != null) {
 					return moveCommand.chain(cmd);
 				}

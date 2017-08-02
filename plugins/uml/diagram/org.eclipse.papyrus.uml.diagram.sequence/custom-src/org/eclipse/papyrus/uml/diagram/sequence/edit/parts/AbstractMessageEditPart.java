@@ -1,9 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Cursors;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
@@ -20,16 +18,12 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.LineSeg;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.selection.SelectSeveralLinksEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsOrderingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
@@ -41,8 +35,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTrack
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.graphics.Cursor;
-import org.eclipse.uml2.uml.Gate;
-import org.eclipse.uml2.uml.Message;
 
 public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart {
 
@@ -77,10 +69,11 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		}
 	}
 
-	
+
 	/**
-	 *  This method has been added in order to satisfy the requirement Diagram.UML.Sequence.REQ_004:
+	 * This method has been added in order to satisfy the requirement Diagram.UML.Sequence.REQ_004:
 	 * <I>"It should be possible to select and move several messages at the same time."</I>
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart#getDragTracker(org.eclipse.gef.Request)
 	 *
 	 *
@@ -92,8 +85,8 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	public DragTracker getDragTracker(Request req) {
 		return new SelectMessagesEditPartTracker(this);
 	}
-	
-	
+
+
 	private void hookGraphicalViewer() {
 		if (SelfMessageHelper.isSelfLink(this)) {
 			getViewer().getControl().addMouseMoveListener(mouseMoveListener = new MouseMoveListener() {
@@ -201,7 +194,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	}
 
 
-	
+
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();

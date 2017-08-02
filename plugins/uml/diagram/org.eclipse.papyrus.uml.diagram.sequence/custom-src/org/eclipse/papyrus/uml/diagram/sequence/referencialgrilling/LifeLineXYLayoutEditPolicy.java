@@ -87,6 +87,12 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		displayEvent = new DisplayEvent(getHost());
 	}
 
+	@Override
+	protected Command getChangeConstraintCommand(ChangeBoundsRequest request) {
+		request.setConstrainedResize(false);
+		return super.getChangeConstraintCommand(request);
+	}
+
 	/*
 	 * Override to use to deal with causes where the point is UNDERFINED
 	 * we will ask the layout helper to find a location for us
@@ -121,7 +127,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 							int modulo = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT / (int) spacing;
 							constraintRect.height = modulo * (int) spacing;
 						}
-						
+
 						constraint = constraintRect;
 					}
 				}
@@ -231,16 +237,16 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	protected Command createChangeConstraintCommand(
 			EditPart child,
 			Object constraint) {
-		
+
 		Rectangle newBounds = (Rectangle) constraint;
 		View shapeView = (View) child.getModel();
-		
+
 		final CompoundCommand subCommand = new CompoundCommand("Edit Execution Specification positions"); //$NON-NLS-1$
 
 		if (child instanceof AbstractExecutionSpecificationEditPart) {
 			RootEditPart drep = getHost().getRoot();
 			if (drep instanceof DiagramRootEditPart) {
-				
+
 				// Get the initial Rectangle from the edit part
 				Rectangle initialRectangle = null;
 				final Object view = ((AbstractExecutionSpecificationEditPart) child).getModel();
@@ -248,7 +254,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 					final Bounds bounds = BoundForEditPart.getBounds((Node) view);
 					initialRectangle = new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
 				}
-				
+
 				double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
 				Rectangle parentBound = getHostFigure().getBounds();
 				// Initial default x and y positions
@@ -256,10 +262,10 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 				final CLifeLineEditPart lifeLineEditPart = (CLifeLineEditPart) getHost();
 				final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles = ExecutionSpecificationUtil.getRectangles(lifeLineEditPart);
-				
+
 				Rectangle boundsToRectangle = null;
 				CompoundCommand compoundCommand = null;
-				
+
 				// Loop until found command for the execution specifications bounds (because by moving other execution specification, the first one can be moved another time).
 				do {
 					// Calculate the moved execution specification bounds
@@ -273,14 +279,14 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 						int modulo = boundsToRectangle.height / (int) spacing;
 						boundsToRectangle.setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH, modulo * (int) spacing));
 					}
-					
+
 					// Get the possible command of execution specification bounds modification
 					compoundCommand = ExecutionSpecificationUtil.getExecutionSpecificationToMove(lifeLineEditPart, executionSpecificationRectangles, initialRectangle, boundsToRectangle, child);
-					if(null != compoundCommand && !compoundCommand.isEmpty()) {
+					if (null != compoundCommand && !compoundCommand.isEmpty()) {
 						subCommand.add(compoundCommand);
 					}
-				}while(compoundCommand != null && !compoundCommand.isEmpty());
-				
+				} while (compoundCommand != null && !compoundCommand.isEmpty());
+
 				newBounds.setBounds(boundsToRectangle);
 			}
 		}
@@ -294,10 +300,10 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		CompoundCommand compoundCommand = new CompoundCommand();
 		compoundCommand.add(new ICommandProxy(boundsCommand));
 
-		if(!subCommand.isEmpty()) {
+		if (!subCommand.isEmpty()) {
 			compoundCommand.add(subCommand);
 		}
-		
+
 		return compoundCommand;
 	}
 
