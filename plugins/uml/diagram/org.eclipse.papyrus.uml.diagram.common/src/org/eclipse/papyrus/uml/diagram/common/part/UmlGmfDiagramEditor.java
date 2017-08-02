@@ -16,7 +16,9 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.contexts.IContextService;
 
@@ -46,6 +48,14 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 	private ServicesRegistry servicesRegistry;
 
 	/**
+	 * boolean indicating whether the viewer has already been initialized.
+	 * Used for lazy initialization (wait, until set Focus is called) to reduce opening time
+	 * of Papyrus editor.
+	 * @since 2.1
+	 */
+	protected boolean viewerInitialized = false;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param servicesRegistry
@@ -65,6 +75,42 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		// account.
 		ISaveAndDirtyService saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		saveAndDirtyService.registerIsaveablePart(this);
+		viewerInitialized = false;
+	}
+
+	/**
+	 * Override to initialize viewer, if it gets in focus
+	 *
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor#setFocus()
+	 */
+	@Override
+	public void setFocus() {
+		if (!viewerInitialized) {
+			BusyIndicator.showWhile(Display.getDefault(), new Runnable(){
+
+				public void run(){
+					doInitializeGraphicalViewer();
+					viewerInitialized = true;
+				}
+			});
+		}
+		super.setFocus();
+	}
+
+	/**
+	 * Initialize the graphical viewer (calls superclass)
+	 */
+	protected void doInitializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void initializeGraphicalViewer() {
+		// do nothing to enable a lazy initialization.
+		// initialization is done, if setFocus is called.
 	}
 
 	@Override
