@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014-2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Pauline DEVILLE (CEA LIST): Bug 509015 - [StateMachineDiagram] lacks support for UML 2.5 notation of redefinable elements with isLeaf=true
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
@@ -76,20 +77,19 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		StateFigure stateFigure = ((StateEditPart) getParent()).getPrimaryShape();
-		
+
 		View stateLabelView = (View) getModel();
-		if(!(stateLabelView.getElement() instanceof State)) {
+		if (!(stateLabelView.getElement() instanceof State)) {
 			return;
 		}
-		
+
 		State state = (State) stateLabelView.getElement();
-		
+
 		View stateView = (View) stateLabelView.eContainer();
 		if (stateView == null) {
 			return;
 		}
 		View stateCompartmentView = CustomStateEditPart.getStateCompartmentView(stateView);
-
 		if (stateCompartmentView.getChildren().isEmpty()) {
 			stateFigure.getStateCompartmentFigure().setVisible(false);
 		} else {
@@ -104,6 +104,10 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 			stateFigure.setIsSubmachineState(false);
 		}
 
+		// set <<final>> label
+		stateFigure.setIsLeafState(state.isLeaf());
+		stateFigure.restoreFinalLabel();
+
 		int width = stateFigure.getBounds().width;
 		// calculate height for labels via position of the rectangle figure after the labels. Layout managers such as the
 		// AutomaticCompartmentLayoutManager add extra space on top of the first label which would not be accounted for
@@ -116,8 +120,7 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 			if (height < 0) {
 				height = 0;
 			}
-		}
-		else {
+		} else {
 			height = stateFigure.getNameLabel().getBounds().height;
 		}
 
@@ -144,9 +147,8 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 			internalResizeRequest.setSizeDelta(new Dimension(dx, dy));
 			Rectangle rect = new Rectangle(x, y, stateWidth + dx, stateHeight + dy);
 
-			CustomStateResizeCommand internalResizeCommand =
-					new CustomStateResizeCommand(adaptableForState, getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label,
-							internalResizeRequest, rect, true);
+			CustomStateResizeCommand internalResizeCommand = new CustomStateResizeCommand(adaptableForState, getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label,
+					internalResizeRequest, rect, true);
 			internalResizeCommand.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 
 			try {
