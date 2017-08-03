@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010 - 2017 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ * 		Celine JANSSENS (All4tec) - Refactor and update for Bug 520154 (Gate into account)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -19,39 +20,24 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
-import org.eclipse.papyrus.uml.service.types.Activator;
-import org.eclipse.papyrus.uml.service.types.command.SetMessageSort;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
-import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
+import org.eclipse.papyrus.uml.service.types.command.ConfigureMessageEventCommand;
 import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
@@ -59,8 +45,6 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -70,14 +54,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 
-
-
-
 	/**
 	 * This method provides the source type provided as {@link ConfigureRequest} parameter.
 	 * 
 	 * @return the target role
-	 * @since 3.0
+	 * @since 3.1
 	 */
 	protected Element getSource(ConfigureRequest req) {
 		Element result = null;
@@ -93,7 +74,7 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 	 * This method provides the target type provided as {@link ConfigureRequest} parameter.
 	 * 
 	 * @return the target role
-	 * @since 3.0
+	 * @since 3.1
 	 */
 	protected Element getTarget(ConfigureRequest req) {
 		Element result = null;
@@ -104,6 +85,30 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 
 		return result;
 	}
+
+	/**
+	 * Return if the Configure Request is Valid
+	 * 
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#approveRequest(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
+	 * @since 3.1
+	 * @return true by default
+	 *
+	 */
+	protected boolean isValidConfigureRequest(ConfigureRequest request) {
+
+		ConfigureRequest req = request;
+		boolean valid = true;
+		if ((getSource(req) == null) || (getTarget(req) == null)) {
+			valid = false;
+		} else if ((!(getSource(req) instanceof Lifeline)) && (!(getSource(req) instanceof Interaction)) && (!(getSource(req) instanceof Gate)) && (!(getSource(req) instanceof ExecutionSpecification))) {
+			valid = false;
+		} else if ((!(getTarget(req) instanceof Lifeline)) && (!(getTarget(req) instanceof Interaction)) && (!(getTarget(req) instanceof Gate)) && (!(getTarget(req) instanceof ExecutionSpecification))) {
+			valid = false;
+		}
+
+		return valid;
+	}
+
 	/**
 	 * <pre>
 	 * {@inheritDoc}
@@ -117,236 +122,84 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 
-
-		final Message message = (Message) request.getElementToConfigure();
 		final Element source = getSource(request);
 		final Element target = getTarget(request);
-		IElementType elementType = request.getTypeToConfigure();
-		if ((source == null) || (target == null)) {
-			return UnexecutableCommand.INSTANCE;
+		ICommand beforeConfigCommand = null;
+
+		// Check if the Request is allowed
+		if (!isValidConfigureRequest(request)) {
+			beforeConfigCommand = UnexecutableCommand.INSTANCE;
+		} else {
+
+			// Get the main Command that configure the Message (Event creation, request Parameters update, ...)
+			ICommand configureMessageCommand = getConfigureCommand(request);
+
+			CompositeCommand command = new CompositeCommand(configureMessageCommand.getLabel());
+			if (null != configureMessageCommand) {
+				command.compose(configureMessageCommand);
+			}
+
+			// in case of Gate Update the Gate Message as well
+			// For Source
+			if (source instanceof MessageEnd) {
+				ICommand setSourceEndCommand = getSetMessageEndCommand((MessageEnd) source, request);
+				if (null != setSourceEndCommand && setSourceEndCommand.canExecute()) {
+					command.compose(setSourceEndCommand);
+				}
+			}
+
+			// For Target
+			if (target instanceof MessageEnd) {
+				ICommand setTargetEndCommand = getSetMessageEndCommand((MessageEnd) target, request);
+				if (null != setTargetEndCommand && setTargetEndCommand.canExecute()) {
+					command.compose(setTargetEndCommand);
+				}
+			}
+
+			if (!command.isEmpty()) {
+				beforeConfigCommand = command;
+			}
 		}
 
-		if  ((!(source instanceof Lifeline))&&(!(source instanceof Interaction))&&(!(source instanceof Gate))&&(!(source instanceof ExecutionSpecification))){
-			return UnexecutableCommand.INSTANCE;
-		}
-		if ((!(target instanceof Lifeline))&&(!(target instanceof Interaction))&&(!(target instanceof Gate))&&(!(target instanceof ExecutionSpecification))){
-			return UnexecutableCommand.INSTANCE;
-		}
-		return new ConfigureElementCommand(request) {
+		return beforeConfigCommand;
 
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				final Message message = (Message) request.getElementToConfigure();
-				final Element source = getSource(request);
-				final Element target = getTarget(request);
-				MessageEnd previousSentEvent = (MessageEnd)request.getParameters().get(SequenceRequestConstant.PREVIOUS_EVENT);
-				MessageEnd previousReceiveEvent = (MessageEnd)request.getParameters().get(SequenceRequestConstant.SECOND_PREVIOUS_EVENT);
-				ExecutionOccurrenceSpecification toReplacebyMessageSent = (ExecutionOccurrenceSpecification)request.getParameters().get(SequenceRequestConstant.MESSAGE_SENTEVENT_REPLACE_EXECUTIONEVENT);
-				ExecutionOccurrenceSpecification toReplacebyMessageReceive = (ExecutionOccurrenceSpecification)request.getParameters().get(SequenceRequestConstant.MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT);
-
-
-				IElementType elementType = request.getTypeToConfigure();
-				if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_ASYNCH_CALL)) {
-					createSenEvent(message, source,previousSentEvent);
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.ASYNCH_CALL_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_ASYNCH_SIGNAL)) {
-					createSenEvent(message, source,previousSentEvent);
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.ASYNCH_SIGNAL_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_CREATE_MESSAGE)) {
-					createSenEvent(message, source,previousSentEvent);
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.CREATE_MESSAGE_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_DELETE_MESSAGE)) {
-					createSenEvent(message, source,previousSentEvent);
-					createDestroyReceiveEvent(message, target);
-					message.setMessageSort(MessageSort.DELETE_MESSAGE_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_REPLY)) {
-					createSenEvent(message, source,previousSentEvent);
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.REPLY_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_SYNCH_CALL)) {
-					createSenEvent(message, source,previousSentEvent);
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.SYNCH_CALL_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_ASYNCH_CALL)) {
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.ASYNCH_CALL_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_ASYNCH_SIGNAL)) {
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.ASYNCH_SIGNAL_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_CREATE_MESSAGE)) {
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.CREATE_MESSAGE_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_DELETE_MESSAGE)) {
-					createDestroyReceiveEvent(message, target);
-					message.setMessageSort(MessageSort.DELETE_MESSAGE_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_REPLY)) {
-					createReceiveEvent(message, target,previousReceiveEvent);
-					message.setMessageSort(MessageSort.REPLY_LITERAL);
-				}  else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_ASYNCH_CALL)) {
-					createSenEvent(message, source,previousSentEvent);
-					message.setMessageSort(MessageSort.ASYNCH_CALL_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_ASYNCH_SIGNAL)) {
-					createSenEvent(message, source,previousSentEvent);
-					message.setMessageSort(MessageSort.ASYNCH_SIGNAL_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_CREATE_MESSAGE)) {
-					createSenEvent(message, source,previousSentEvent);
-					message.setMessageSort(MessageSort.CREATE_MESSAGE_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_DELETE_MESSAGE)) {
-					createSenEvent(message, source,previousSentEvent);
-					message.setMessageSort(MessageSort.DELETE_MESSAGE_LITERAL);
-				} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_REPLY)) {
-					createSenEvent(message, source,previousSentEvent);
-					message.setMessageSort(MessageSort.REPLY_LITERAL);
-				} 
-
-				// an occurence spec must replaced?
-				if(toReplacebyMessageSent!=null) {
-					if(toReplacebyMessageSent.getExecution()!=null) {
-						//by the sent event of the message?
-						//this is the start?
-						if( toReplacebyMessageSent.getExecution().getStart().equals(toReplacebyMessageSent)) {
-							toReplacebyMessageSent.getExecution().setStart((OccurrenceSpecification)message.getSendEvent());
-						}
-						else {
-							//this is the finish
-							toReplacebyMessageSent.getExecution().setFinish((OccurrenceSpecification)message.getSendEvent());
-						}
-					}
-					if(toReplacebyMessageReceive!=null) {
-						//the occurennce spec must disapear!
-						if(toReplacebyMessageReceive.getOwner()!=null) {
-							IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageSent);
-							if(provider != null) {
-								DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageSent, false);
-								ICommand destroyCommand = provider.getEditCommand(destroyRequest);
-								destroyCommand.execute(new NullProgressMonitor(), null);					
-							}
-						}
-
-
-						//replace by the receive message
-						if(toReplacebyMessageReceive.getExecution()!=null) {
-							//this is the start?
-							if( toReplacebyMessageReceive.getExecution().getStart().equals(toReplacebyMessageReceive)) {
-								toReplacebyMessageReceive.getExecution().setStart((OccurrenceSpecification)message.getReceiveEvent());
-							}
-							else {
-								//this is the finish
-								toReplacebyMessageReceive.getExecution().setFinish((OccurrenceSpecification)message.getReceiveEvent());
-							}
-						}
-						//the occurence spec must be deleted
-						if(toReplacebyMessageReceive.getOwner()!=null) {
-							IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageReceive);
-							if(provider != null) {
-								DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageReceive, false);
-								ICommand destroyCommand = provider.getEditCommand(destroyRequest);
-								destroyCommand.execute(new NullProgressMonitor(), null);					
-							}
-						}
-					}
-				}
-				return CommandResult.newOKCommandResult(message);
-			}
-
-			/**
-			 * @param message
-			 * @param source
-			 */
-			private void createDestroyReceiveEvent(final Message message, final Element source) {
-				// Create source and target ends
-				MessageEnd sendEvent = createDestroyMessageEnd(message,(Lifeline)source);
-				sendEvent.setName(message.getName()+"ReceiveDestroyEvent");
-				message.setReceiveEvent(sendEvent);
-			}
-
-
-			/**
-			 * @param message
-			 * @param source
-			 */
-			private void createSenEvent(final Message message, final Element source, final MessageEnd previous) {
-				if( source instanceof Gate){
-					message.setSendEvent((Gate)source);
-				}
-				else if(source instanceof ExecutionSpecification){
-					if(((ExecutionSpecification)source).getCovereds().size()>0){
-						Lifeline  lifeline=((ExecutionSpecification)source).getCovereds().get(0);
-						MessageEnd sendEvent = createMessageEnd(message,lifeline,previous);
-						sendEvent.setName(message.getName()+"SendEvent");
-						message.setSendEvent(sendEvent);
-					}
-				}
-				else if( source instanceof Lifeline){
-					// Create source and target ends
-					MessageEnd sendEvent = createMessageEnd(message,(Lifeline)source,previous);
-					sendEvent.setName(message.getName()+"SendEvent");
-					message.setSendEvent(sendEvent);
-				}
-			}
-
-			/**
-			 * @param message
-			 * @param target
-			 */
-			private void createReceiveEvent(final Message message, final Element target, final MessageEnd previous) {
-				if( target instanceof Gate){
-					message.setReceiveEvent((Gate)target);
-				}
-				else if(target instanceof ExecutionSpecification){
-					if(((ExecutionSpecification)target).getCovereds().size()>0){
-						Lifeline  lifeline=((ExecutionSpecification)target).getCovereds().get(0);
-						MessageEnd receiveEvent = createMessageEnd(message,lifeline,previous);
-						receiveEvent.setName(message.getName()+"ReceiveEvent");
-						message.setReceiveEvent(receiveEvent);
-					}
-				}
-				else if( target instanceof Lifeline){
-					MessageEnd receiveEvent = createMessageEnd(message,(Lifeline) target, previous);
-					receiveEvent.setName(message.getName()+"ReceiveEvent");
-					message.setReceiveEvent(receiveEvent);
-				}
-			}
-		};
 	}
 
 	/**
-	 * Create a MessageEnd
-	 *
-	 * @param message the message that reference the message end  always !=null
-	 * @param lifeline the lifeLine where is set the message end ,always !=null
-	 * @since 3.0
+	 * Get the Command that would set the Message feature to the Message End (Gate or MOS) .
+	 * 
+	 * @param msgEnd
+	 *            The gate to be set
+	 * @param request
+	 *            The Initial Configure Request of the Message
+	 * @return The Command according to the ElementTypes of the Gate.
+	 * @since 3.1
 	 */
-	public static MessageEnd createMessageEnd(Message message, Lifeline lifeline, final MessageEnd previous) {
-		MessageOccurrenceSpecification messageOccurrenceSpecification=UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
-		if(previous==null){
-			messageOccurrenceSpecification.setCovered(lifeline);
-		}else{
-			lifeline.getCoveredBys().add(lifeline.getCoveredBys().indexOf(previous)+1, messageOccurrenceSpecification);
+	protected ICommand getSetMessageEndCommand(MessageEnd msgEnd, ConfigureRequest request) {
+		ICommand semanticCommand = null;
+
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(msgEnd);
+		SetRequest setMsgEndRequest = new SetRequest(msgEnd, UMLPackage.eINSTANCE.getMessageEnd_Message(), request.getElementToConfigure());
+
+		if (commandService != null) {
+			semanticCommand = commandService.getEditCommand(setMsgEndRequest);
 		}
-		messageOccurrenceSpecification.setMessage(message);
-		messageOccurrenceSpecification.setMessage(message);
-		((Interaction)message.getOwner()).getFragments().add(messageOccurrenceSpecification);
-		return messageOccurrenceSpecification;
+
+		return semanticCommand;
 	}
 
 	/**
-	 * Create a MessageEnd
-	 *
-	 * @param message the message that reference the message end  always !=null
-	 * @param lifeline the lifeLine where is set the message end ,always !=null
-	 * @since 3.0
+	 * This get a Command in charge to update the Request Parameters and Create the different Event (OccurenceSpecification)
+	 * 
+	 * @param request
+	 * @return
+	 * @since 3.1
 	 */
-	public static MessageEnd createDestroyMessageEnd(Message message, Lifeline lifeline) {
-		DestructionOccurrenceSpecification messageOccurrenceSpecification=UMLFactory.eINSTANCE.createDestructionOccurrenceSpecification();
-		messageOccurrenceSpecification.setCovered(lifeline);
-		messageOccurrenceSpecification.setMessage(message);
-		((Interaction)message.getOwner()).getFragments().add(messageOccurrenceSpecification);
-		return messageOccurrenceSpecification;
+	protected ICommand getConfigureCommand(ConfigureRequest request) {
+		return new ConfigureMessageEventCommand(request);
 	}
+
+
 
 	/**
 	 * <pre>
@@ -359,7 +212,7 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeDestroyDependentsCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest)
 	 * 
 	 * @param request
-	 *        the request
+	 *            the request
 	 * @return the command to execute before the edit helper work is done
 	 */
 	@Override
@@ -367,22 +220,22 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
 
-		Message message = (Message)request.getElementToDestroy();
+		Message message = (Message) request.getElementToDestroy();
 
 		// Add send - receive referenced MessageEnd to the dependents list
 		// if they are not used by another element.
 		MessageEnd sendEvent = message.getSendEvent();
-		if((sendEvent != null) && (!isSharedEvent(sendEvent, message))) {
+		if ((sendEvent != null) && (!isSharedEvent(sendEvent, message))) {
 			dependentsToDestroy.add(sendEvent);
 		}
 
 		MessageEnd recvEvent = message.getReceiveEvent();
-		if((recvEvent != null) && (!isSharedEvent(recvEvent, message))) {
+		if ((recvEvent != null) && (!isSharedEvent(recvEvent, message))) {
 			dependentsToDestroy.add(recvEvent);
 		}
 
-		// return command to destroy dependents MessageEnd 
-		if(!dependentsToDestroy.isEmpty()) {
+		// return command to destroy dependents MessageEnd
+		if (!dependentsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(dependentsToDestroy);
 		}
 
@@ -409,7 +262,7 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 		Set<EObject> crossReferences = new HashSet<EObject>();
 		for (Setting setting : EMFHelper.getUsages(usedObject)) {
 			EObject eObj = setting.getEObject();
-			if( !setting.getEStructuralFeature().equals(UMLPackage.eINSTANCE.getLifeline_CoveredBy())){
+			if (!setting.getEStructuralFeature().equals(UMLPackage.eINSTANCE.getLifeline_CoveredBy())) {
 				if (eObj.eClass().getEPackage().equals(mmPackage)) {
 					crossReferences.add(eObj);
 				}
@@ -424,5 +277,48 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 		// If no referencer remains in the list, the known element is the only
 		// usage.
 		return !(crossReferences.isEmpty());
+	}
+
+	/**
+	 * Create a MessageEnd
+	 *
+	 * @param message
+	 *            the message that reference the message end always !=null
+	 * @param lifeline
+	 *            the lifeLine where is set the message end ,always !=null
+	 * @since 3.0
+	 * @deprecated
+	 */
+	@Deprecated
+	public static MessageEnd createMessageEnd(Message message, Lifeline lifeline, final MessageEnd previous) {
+		MessageOccurrenceSpecification messageOccurrenceSpecification = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
+		if (previous == null) {
+			messageOccurrenceSpecification.setCovered(lifeline);
+		} else {
+			lifeline.getCoveredBys().add(lifeline.getCoveredBys().indexOf(previous) + 1, messageOccurrenceSpecification);
+		}
+		messageOccurrenceSpecification.setMessage(message);
+		messageOccurrenceSpecification.setMessage(message);
+		((Interaction) message.getOwner()).getFragments().add(messageOccurrenceSpecification);
+		return messageOccurrenceSpecification;
+	}
+
+	/**
+	 * Create a MessageEnd
+	 *
+	 * @param message
+	 *            the message that reference the message end always !=null
+	 * @param lifeline
+	 *            the lifeLine where is set the message end ,always !=null
+	 * @since 3.0
+	 * @deprecated
+	 */
+	@Deprecated
+	public static MessageEnd createDestroyMessageEnd(Message message, Lifeline lifeline) {
+		DestructionOccurrenceSpecification messageOccurrenceSpecification = UMLFactory.eINSTANCE.createDestructionOccurrenceSpecification();
+		messageOccurrenceSpecification.setCovered(lifeline);
+		messageOccurrenceSpecification.setMessage(message);
+		((Interaction) message.getOwner()).getFragments().add(messageOccurrenceSpecification);
+		return messageOccurrenceSpecification;
 	}
 }
