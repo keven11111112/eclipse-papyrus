@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -116,7 +117,7 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 	}
 
 	private Association createAssociation(IGraphicalEditPart source, IGraphicalEditPart target) {
-		createLink(UMLElementTypes.AssociationDirected_Edge, source, target);
+		createLink(UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE, source, target);
 		return findAssociation(source);
 	}
 

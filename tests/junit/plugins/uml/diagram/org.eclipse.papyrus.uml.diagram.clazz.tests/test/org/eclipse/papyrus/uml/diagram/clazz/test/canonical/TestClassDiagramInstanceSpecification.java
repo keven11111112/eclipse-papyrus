@@ -12,6 +12,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomUMLDiagramUp
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestInstanceSpecification;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.junit.Test;
 
 public class TestClassDiagramInstanceSpecification extends TestInstanceSpecification {
@@ -38,7 +39,7 @@ public class TestClassDiagramInstanceSpecification extends TestInstanceSpecifica
 
 	@Test
 	public void testInstanceSpecification() {
-		testInstanceSpecification(UMLElementTypes.Class_Shape, UMLElementTypes.Association_Edge, UMLElementTypes.InstanceSpecification_Shape, UMLElementTypes.InstanceSpecification_Edge);
+		testInstanceSpecification(UMLElementTypes.Class_Shape, UMLDIElementTypes.ASSOCIATION_NON_DIRECTED_EDGE, UMLElementTypes.InstanceSpecification_Shape, UMLElementTypes.InstanceSpecification_Edge);
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="org.eclipse.papyrus.uml.diagram.clazz.paletteconfiguration" label="PapyrusUMLClassDiagram Palette" description="This is the palette of PapyrusUMLClassDiagram">
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="org.eclipse.papyrus.uml.diagram.clazz.paletteconfiguration" label="PapyrusUMLClassDiagram Palette" description="This is the palette of PapyrusUMLClassDiagram">
   <drawerConfigurations id="clazz.group.nodes" label="Nodes" description="Nodes">
     <icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.class" label="Class" description="Create a new Class">
@@ -284,8 +284,14 @@
   </drawerConfigurations>
   <drawerConfigurations id="clazz.group.relationships" label="Edges" description="Edges">
     <icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
-    <ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="clazz.tool.associations" label="Associations">
-      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationdirected" label="Association (Directed)" description="Create a Directed Association" kind="ConnectionTool" toolClassName="">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.abstraction" label="Abstraction" description="Create an Abstraction" kind="ConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Abstraction.gif"/>
+      <elementDescriptors>
+        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Abstraction_Edge"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="clazz.group.relationships.associations" label="Associations">
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationdirected" label="Association (Directed)" description="Create a Directed Association" kind="ConnectionTool">
         <icon pluginID="org.eclipse.papyrus.uml.service.types" iconPath="/icons/Association_none_directed.gif"/>
         <elementDescriptors>
           <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.AssociationDirected_Edge"/>
@@ -294,27 +300,21 @@
       <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.association" label="Association" description="Create an Association" kind="ConnectionTool">
         <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif"/>
         <elementDescriptors>
-          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Association_Edge"/>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_ggRYoHhMEee4-vqumSjwzg"/>
         </elementDescriptors>
       </ownedConfigurations>
-      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationcompositedirected" label="Composite Association (Directed)" description="Create a Directed composite Association" kind="ConnectionTool" toolClassName="">
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationcompositedirected" label="Composite Association (Directed)" description="Create a Directed composite Association" kind="ConnectionTool">
         <icon pluginID="org.eclipse.papyrus.uml.service.types" iconPath="/icons/Association_composite_directed.gif"/>
         <elementDescriptors>
           <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.AssociationCompositeDirected_Edge"/>
         </elementDescriptors>
       </ownedConfigurations>
-      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationshareddirected" label="Shared Association (Directed)" description="Create a Directed Shared Association" kind="ConnectionTool" toolClassName="">
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationshareddirected" label="Shared Association (Directed)" description="Create a Directed Shared Association" kind="ConnectionTool">
         <icon pluginID="org.eclipse.papyrus.uml.service.types" iconPath="/icons/Association_shared_directed.gif"/>
         <elementDescriptors>
           <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.AssociationSharedDirected_Edge"/>
         </elementDescriptors>
       </ownedConfigurations>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.abstraction" label="Abstraction" description="Create an Abstraction" kind="ConnectionTool">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Abstraction.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Abstraction_Edge"/>
-      </elementDescriptors>
     </ownedConfigurations>
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationbranch" label="Association Branch" description="Create an Association Branch" kind="ConnectionTool">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif"/>

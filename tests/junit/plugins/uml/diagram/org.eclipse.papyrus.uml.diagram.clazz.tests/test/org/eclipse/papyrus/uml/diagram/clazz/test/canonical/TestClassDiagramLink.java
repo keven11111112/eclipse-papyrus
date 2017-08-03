@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomUMLDiagramUp
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestLink;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.junit.Test;
 
 /**
@@ -62,7 +63,7 @@ public class TestClassDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageAssociation() {
-		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Association_Edge, UMLElementTypes.Package_Shape, true,"srcMulA_cla");
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLDIElementTypes.ASSOCIATION_NON_DIRECTED_EDGE, UMLElementTypes.Package_Shape, true,"srcMulA_cla");
 	}
 
 	//test generatlization
