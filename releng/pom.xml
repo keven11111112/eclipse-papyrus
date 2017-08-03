@@ -60,6 +60,7 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
+		<outputDirectory>bin</outputDirectory> 
 		<pluginManagement>
 			<plugins>
 				<plugin>
