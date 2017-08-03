@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.uml.service.types.utils.InteractionConstraintUtil;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.InteractionConstraint;
+import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -47,6 +48,9 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * </pre>
  */
 public class ConstraintEditHelper extends ElementEditHelper {
+	
+	/** The Constant OCL_LANGAGE_BODY. */
+	public static final String OCL_LANGAGE_BODY = "OCL";
 
 	{
 		getDefaultContainmentFeatures().put(UMLPackage.eINSTANCE.getValueSpecification(), UMLPackage.eINSTANCE.getConstraint_Specification());
@@ -62,8 +66,7 @@ public class ConstraintEditHelper extends ElementEditHelper {
 
 				// Create constraint specification
 				ValueSpecification spec = createSpecification();
-				spec.setName("constraintSpec"); //$NON-NLS-1$
-
+				
 				element.setSpecification(spec);
 
 				return CommandResult.newOKCommandResult(element);
@@ -74,7 +77,11 @@ public class ConstraintEditHelper extends ElementEditHelper {
 	}
 
 	protected ValueSpecification createSpecification() {
-		return UMLFactory.eINSTANCE.createLiteralString();
+		OpaqueExpression spec = UMLFactory.eINSTANCE.createOpaqueExpression();
+		spec.setName("constraintSpec"); //$NON-NLS-1$
+		spec.getLanguages().add(OCL_LANGAGE_BODY);
+		spec.getBodies().add("true");//$NON-NLS-1$
+		return spec;
 	}
 	
 	/**
