@@ -44,7 +44,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	protected boolean noBorder = false;
 
 	/** The Constant CHEVRON. */
-	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
+	protected static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 
 	/** The tagged label. */
 	protected PapyrusWrappingLabel taggedLabel;
@@ -84,7 +84,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	protected PapyrusWrappingLabel stereotypesLabel;
 
-	private int namePosition = PositionConstants.MIDDLE;
+	protected int namePosition = PositionConstants.MIDDLE;
 
 	/**
 	 * Create a basic figure.
