@@ -107,11 +107,22 @@ public class MessageEditHelper extends ElementEditHelper {
 		IElementType elementType = request.getElementType();
 
 		if (null != elementType) {
+			// Case of not unique message for a Message End
+			if (source instanceof MessageEnd) {
+				MessageEnd msgEndSource = (MessageEnd) source;
+				create &= (null == msgEndSource.getMessage());
+			}
+
+			if (target instanceof MessageEnd) {
+				MessageEnd msgEndTarget = (MessageEnd) target;
+				create &= (null == msgEndTarget.getMessage());
+			}
+
 			// Create Message case
 			if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_CREATE_MESSAGE)
 					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_CREATE_MESSAGE)
 					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_CREATE_MESSAGE)) {
-				create = canCreateMessageCreate(source, target, request);
+				create &= canCreateMessageCreate(source, target, request);
 			}
 		}
 

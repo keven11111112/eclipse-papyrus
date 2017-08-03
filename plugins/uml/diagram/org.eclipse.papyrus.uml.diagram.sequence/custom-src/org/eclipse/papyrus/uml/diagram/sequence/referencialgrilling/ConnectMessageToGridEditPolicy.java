@@ -38,9 +38,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -188,7 +187,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				if (anchor.getId() != null && !(anchor.getId().equals(""))) {
 					ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 					Message m = (Message) connectionEditPart.resolveSemanticElement();
-					NamedElementEditPart sourceEditpart = (NamedElementEditPart) connectionEditPart.getSource();
+					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
 					int anchorY = computeAnchorPositionNotation(anchor, sourceEditpart);
 					try {
 						GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
@@ -215,7 +214,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				IdentityAnchor anchor = (IdentityAnchor) notification.getNewValue();
 				if (anchor.getId() != null && !(anchor.getId().equals(""))) {
 					ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
-					NamedElementEditPart editpart = (NamedElementEditPart) connectionEditPart.getTarget();
+					GraphicalEditPart editpart = (GraphicalEditPart) connectionEditPart.getTarget();
 					Message m = (Message) connectionEditPart.resolveSemanticElement();
 					int anchorY = computeAnchorPositionNotation(anchor, editpart);
 					try {
@@ -239,30 +238,30 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT Source change " + notification.getNotifier());//$NON-NLS-1$
 				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 				Edge edge = (Edge) connectionEditPart.getNotationView();
-				if (edge.getSourceAnchor()!=null && rowSource != null) {
+				if (edge.getSourceAnchor() != null && rowSource != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
-					NamedElementEditPart sourceEditpart = (NamedElementEditPart) connectionEditPart.getSource();
+					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
 					int anchorY = computeAnchorPositionNotation(anchor, sourceEditpart);
 					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowSource, 0, anchorY);
 				}
-				
+
 			}
-			
+
 			if (notification.getEventType() == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) {
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT target change " + notification.getNotifier());//$NON-NLS-1$
 				ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 				Edge edge = (Edge) connectionEditPart.getNotationView();
-				if (edge.getTargetAnchor()!=null && rowTarget != null) {
+				if (edge.getTargetAnchor() != null && rowTarget != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
-					NamedElementEditPart targetEditpart = (NamedElementEditPart) connectionEditPart.getTarget();
+					GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
 					int anchorY = computeAnchorPositionNotation(anchor, targetEditpart);
 					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowTarget, 0, anchorY);
 				}
-				
+
 			}
-			
+
 			// A move has been done by the user
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof IdentityAnchor) {
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+EVENT IdentificationAnchor change " + notification.getNotifier());//$NON-NLS-1$
@@ -270,14 +269,14 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				Edge edge = (Edge) connectionEditPart.getNotationView();
 				if (notification.getNotifier().equals(edge.getSourceAnchor()) && rowSource != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
-					NamedElementEditPart sourceEditpart = (NamedElementEditPart) connectionEditPart.getSource();
+					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
 					int anchorY = computeAnchorPositionNotation(anchor, sourceEditpart);
 					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowSource, 0, anchorY);
 				}
 				if (notification.getNotifier().equals(edge.getTargetAnchor()) && rowTarget != null) {
 					IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
-					NamedElementEditPart editpart = (NamedElementEditPart) connectionEditPart.getTarget();
+					GraphicalEditPart editpart = (GraphicalEditPart) connectionEditPart.getTarget();
 					int anchorY = computeAnchorPositionNotation(anchor, editpart);
 					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+-->TARGET change " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + anchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					updatePositionGridAxis((DecorationNode) rowTarget, 0, anchorY);
@@ -329,24 +328,24 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 		double newPercentY = localY / bounds.preciseHeight();
 		double oldPercentY = IdentityAnchorHelper.getYPercentage(anchor);
-		double oldPosition=oldPercentY*bounds.preciseHeight();
-		double newPosition=newPercentY*bounds.preciseHeight();
+		double oldPosition = oldPercentY * bounds.preciseHeight();
+		double newPosition = newPercentY * bounds.preciseHeight();
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
 		GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grilling != null) {
-		if (Math.abs(oldPosition - newPosition) >grilling.threshold ) {
-			if (newPercentY > 1) {
-				newPercentY = 0.99;
+			if (Math.abs(oldPosition - newPosition) > grilling.threshold) {
+				if (newPercentY > 1) {
+					newPercentY = 0.99;
+				}
+				if (newPercentY < 0) {
+					newPercentY = 0.01;
+				}
+				if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
+					final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xpercent, newPercentY);
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modify anchor to precentY=" + newPercentY);//$NON-NLS-1$
+					execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+				}
 			}
-			if (newPercentY < 0) {
-				newPercentY = 0.01;
-			}
-			if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
-				final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xpercent, newPercentY);
-				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modify anchor to precentY=" + newPercentY);//$NON-NLS-1$
-				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
-			}
-		}
 		}
 	}
 
