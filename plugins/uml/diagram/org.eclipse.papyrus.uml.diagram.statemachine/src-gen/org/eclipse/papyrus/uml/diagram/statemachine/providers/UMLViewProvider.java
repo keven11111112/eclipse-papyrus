@@ -68,6 +68,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPar
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DeferrableTriggerEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
@@ -270,6 +271,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case EntryStateBehaviorEditPart.VISUAL_ID:
 					case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
 					case ExitStateBehaviorEditPart.VISUAL_ID:
+					case DeferrableTriggerEditPart.VISUAL_ID:
 					case InternalTransitionEditPart.VISUAL_ID:
 						if (domainElement == null || !visualID.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
 							return false; // visual id in semantic hint should match visual id for domain element
@@ -381,6 +383,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return createBehavior_DoActivityBehaviorLabel(domainElement, containerView, index, persisted, preferencesHint);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
 				return createBehavior_ExitBehaviorLabel(domainElement, containerView, index, persisted, preferencesHint);
+			case DeferrableTriggerEditPart.VISUAL_ID:
+				return createTrigger_DeferrableTriggerLabel(domainElement, containerView, index, persisted, preferencesHint);
 			}
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -926,6 +930,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExitStateBehavior");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createTrigger_DeferrableTriggerLabel(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(DeferrableTriggerEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DeferrableTrigger");
 		return node;
 	}
 

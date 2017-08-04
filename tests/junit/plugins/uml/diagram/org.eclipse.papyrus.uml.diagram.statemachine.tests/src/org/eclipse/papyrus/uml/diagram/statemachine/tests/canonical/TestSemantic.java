@@ -35,6 +35,7 @@ import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DeferrableTriggerEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
@@ -139,6 +140,16 @@ public class TestSemantic extends BaseTestCase {
 		EReference expectedFeature = UMLPackage.eINSTANCE.getState_Entry();
 
 		checkOneElementReferenceSemantic(entryEP, stateEP, expectedFeature);
+	}
+
+	@Test
+	public void testDeferrableTriggerInState() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart entryEP = createChild(DeferrableTriggerEditPart.VISUAL_ID, stateEP);
+
+		EReference expectedFeature = UMLPackage.eINSTANCE.getState_DeferrableTrigger();
+
+		checkListElementReferenceSemantic(entryEP, stateEP, expectedFeature);
 	}
 
 	@Test

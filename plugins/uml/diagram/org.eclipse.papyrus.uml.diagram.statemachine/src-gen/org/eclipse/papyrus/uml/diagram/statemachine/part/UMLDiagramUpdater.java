@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointRe
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DeferrableTriggerEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
@@ -73,6 +74,7 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
 
@@ -228,6 +230,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (ExitStateBehaviorEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		for (Iterator<?> it = modelElement.getDeferrableTriggers()
+				.iterator(); it.hasNext();) {
+			Trigger childElement = (Trigger) it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (DeferrableTriggerEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
 			}
 		}
 		for (Iterator<?> it = modelElement.getIncomings()
@@ -445,6 +456,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getBehavior_DoActivityBehaviorLabel_ContainedLinks(view);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
 				return getBehavior_ExitBehaviorLabel_ContainedLinks(view);
+			case DeferrableTriggerEditPart.VISUAL_ID:
+				return getTrigger_DeferrableTriggerLabel_ContainedLinks(view);
 			case TransitionEditPart.VISUAL_ID:
 				return getTransition_Edge_ContainedLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
@@ -506,6 +519,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getBehavior_DoActivityBehaviorLabel_IncomingLinks(view);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
 				return getBehavior_ExitBehaviorLabel_IncomingLinks(view);
+			case DeferrableTriggerEditPart.VISUAL_ID:
+				return getTrigger_DeferrableTriggerLabel_IncomingLinks(view);
 			case TransitionEditPart.VISUAL_ID:
 				return getTransition_Edge_IncomingLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
@@ -567,6 +582,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getBehavior_DoActivityBehaviorLabel_OutgoingLinks(view);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
 				return getBehavior_ExitBehaviorLabel_OutgoingLinks(view);
+			case DeferrableTriggerEditPart.VISUAL_ID:
+				return getTrigger_DeferrableTriggerLabel_OutgoingLinks(view);
 			case TransitionEditPart.VISUAL_ID:
 				return getTransition_Edge_OutgoingLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
@@ -757,6 +774,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getTrigger_DeferrableTriggerLabel_ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1040,6 +1064,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public List<UMLLinkDescriptor> getTrigger_DeferrableTriggerLabel_IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getTransition_Edge_IncomingLinks(View view) {
 		Transition modelElement = (Transition) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
@@ -1265,6 +1296,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getBehavior_ExitBehaviorLabel_OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getTrigger_DeferrableTriggerLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 

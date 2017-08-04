@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointRe
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DeferrableTriggerEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
@@ -176,6 +177,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Trigger_DeferrableTriggerLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Trigger_DeferrableTriggerLabel"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Transition_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Transition_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
@@ -301,6 +307,9 @@ public class UMLElementTypes {
 			elements.put(Behavior_ExitBehaviorLabel, UMLPackage.eINSTANCE.getBehavior());
 
 
+			elements.put(Trigger_DeferrableTriggerLabel, UMLPackage.eINSTANCE.getTrigger());
+
+
 			elements.put(Transition_Edge, UMLPackage.eINSTANCE.getTransition());
 
 
@@ -351,6 +360,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Behavior_EntryBehaviorLabel);
 			KNOWN_ELEMENT_TYPES.add(Behavior_DoActivityBehaviorLabel);
 			KNOWN_ELEMENT_TYPES.add(Behavior_ExitBehaviorLabel);
+			KNOWN_ELEMENT_TYPES.add(Trigger_DeferrableTriggerLabel);
 			KNOWN_ELEMENT_TYPES.add(Transition_Edge);
 			KNOWN_ELEMENT_TYPES.add(Generalization_Edge);
 			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
@@ -422,6 +432,8 @@ public class UMLElementTypes {
 				return Behavior_DoActivityBehaviorLabel;
 			case ExitStateBehaviorEditPart.VISUAL_ID:
 				return Behavior_ExitBehaviorLabel;
+			case DeferrableTriggerEditPart.VISUAL_ID:
+				return Trigger_DeferrableTriggerLabel;
 			case TransitionEditPart.VISUAL_ID:
 				return Transition_Edge;
 			case GeneralizationEditPart.VISUAL_ID:

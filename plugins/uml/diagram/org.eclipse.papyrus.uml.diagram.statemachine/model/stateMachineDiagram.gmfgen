@@ -235,7 +235,7 @@
           editPartClassName="StateEditPart"
           itemSemanticEditPolicyClassName="StateItemSemanticEditPolicy"
           canonicalEditPolicyClassName="StateCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
+          childNodes="/0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
           compartments="/0/@diagram/@compartments.2"
           graphicalNodeEditPolicyClassName="StateGraphicalNodeEditPolicy"
           createCommandClassName="StateCreateCommand"
@@ -1889,6 +1889,45 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/exit"/>
         </labelModelFacet>
       </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildLabelNode"
+          visualID="693"
+          editPartClassName="DeferrableTriggerEditPart"
+          itemSemanticEditPolicyClassName="DeferrableTriggerItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="DeferrableTriggerCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DeferrableTriggerGraphicalNodeEditPolicy"
+          createCommandClassName="DeferrableTriggerCreateCommand"
+          containers="/0/@diagram/@childNodes.2">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Trigger_DeferrableTriggerLabel"
+            displayName="DeferrableTrigger"
+            definedExternally="true"
+            editHelperClassName="DeferrableTriggerEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Trigger"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/deferrableTrigger"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/deferrableTrigger"/>
+        </modelFacet>
+        <labelModelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="/0/@labelParsers/@implementations.10">
+          <metaFeatures
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/deferrableTrigger"/>
+        </labelModelFacet>
+      </childNodes>
       <topLevelNodes
           visualID="2000"
           editPartClassName="StateMachineEditPart"
@@ -2856,6 +2895,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.19/@labelModelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.ExitStateBehaviorParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.20/@labelModelFacet"
+          qualifiedName="org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.DeferrableTriggerParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">
@@ -2979,6 +3022,9 @@
     <child
         genView="/0/@diagram/@childNodes.19"
         visualID="Behavior_ExitBehaviorLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.20"
+        visualID="Trigger_DeferrableTriggerLabel"/>
     <child
         genView="/0/@diagram/@childNodes.11"
         visualID="Pseudostate_EntryPointShape">

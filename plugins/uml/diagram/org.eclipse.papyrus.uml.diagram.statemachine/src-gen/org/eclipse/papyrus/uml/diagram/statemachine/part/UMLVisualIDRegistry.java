@@ -27,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPar
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DeferrableTriggerEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
@@ -213,6 +214,9 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_ExitBehaviorLabel((Behavior) domainElement)) {
 					return ExitStateBehaviorEditPart.VISUAL_ID;
 				}
+				if (UMLPackage.eINSTANCE.getTrigger().isSuperTypeOf(domainElement.eClass())) {
+					return DeferrableTriggerEditPart.VISUAL_ID;
+				}
 				if (UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
 					return InternalTransitionEditPart.VISUAL_ID;
 				}
@@ -394,6 +398,9 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (ExitStateBehaviorEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DeferrableTriggerEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				if (InternalTransitionEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -835,6 +842,7 @@ public class UMLVisualIDRegistry {
 			case EntryStateBehaviorEditPart.VISUAL_ID:
 			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
 			case ExitStateBehaviorEditPart.VISUAL_ID:
+			case DeferrableTriggerEditPart.VISUAL_ID:
 			case FinalStateEditPart.VISUAL_ID:
 			case PseudostateInitialEditPart.VISUAL_ID:
 			case PseudostateJoinEditPart.VISUAL_ID:

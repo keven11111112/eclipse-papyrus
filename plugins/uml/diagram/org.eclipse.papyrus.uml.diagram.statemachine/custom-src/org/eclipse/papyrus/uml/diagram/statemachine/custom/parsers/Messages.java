@@ -17,6 +17,8 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.messages"; //$NON-NLS-1$
 
+	public static String DeferrableTriggerParser_DEFER_KEYWORD;
+
 	public static String DoActivityStateBehaviorParser_DO_KEYWORD;
 
 	public static String EntryStateBehaviorParser_ENTRY_KEYWORD;
