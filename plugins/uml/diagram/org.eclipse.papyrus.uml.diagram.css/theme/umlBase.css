@@ -431,6 +431,10 @@ StateMachineDiagram Pseudostate[kind="choice"]{
 	maintainSymbolRatio:false;
 }
 
+StateMachineDiagram State{
+	canonical:true;
+}
+
 /*---------- Composite Diagram ---------*/
 
 CompositeStructureDiagram Property[aggregation="shared"]{

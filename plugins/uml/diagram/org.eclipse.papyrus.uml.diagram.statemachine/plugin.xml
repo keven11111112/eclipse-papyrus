@@ -144,7 +144,7 @@
 	      <viewProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLViewProvider">
 	         <Priority name="Lowest"/>
 	         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
-	         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="StateMachine_Shape,State_Shape_TN,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
+	         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="StateMachine_Shape,State_Shape_TN,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel,Trigger_DeferrableTriggerLabel"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Transition_Edge,Generalization_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
 	      </viewProvider>
 	   </extension>
@@ -157,7 +157,7 @@
 	            <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
 	         </object>
 	         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-	            <method name="getType()" value="StateMachine_Shape,State_Shape_TN,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
+	            <method name="getType()" value="StateMachine_Shape,State_Shape_TN,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel,Trigger_DeferrableTriggerLabel"/>
 	         </object>
 	         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
 	            <method name="getType()" value="Transition_Edge,Generalization_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>

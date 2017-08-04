@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.DeferrableTriggerParser;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.DoActivityStateBehaviorParser;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.EntryStateBehaviorParser;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.ExitStateBehaviorParser;
@@ -36,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointRe
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintNameLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DeferrableTriggerEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
@@ -675,6 +677,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private DeferrableTriggerParser trigger_DeferrableTriggerLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTrigger_DeferrableTriggerLabel_Parser() {
+		if (trigger_DeferrableTriggerLabel_Parser == null) {
+			trigger_DeferrableTriggerLabel_Parser = new DeferrableTriggerParser();
+		}
+		return trigger_DeferrableTriggerLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser transition_NameLabel_Parser;
 
 	/**
@@ -837,6 +854,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getBehavior_DoActivityBehaviorLabel_Parser();
 			case ExitStateBehaviorEditPart.VISUAL_ID:
 				return getBehavior_ExitBehaviorLabel_Parser();
+			case DeferrableTriggerEditPart.VISUAL_ID:
+				return getTrigger_DeferrableTriggerLabel_Parser();
 			case TransitionNameEditPart.VISUAL_ID:
 				return getTransition_NameLabel_Parser();
 			case TransitionGuardEditPart.VISUAL_ID:
