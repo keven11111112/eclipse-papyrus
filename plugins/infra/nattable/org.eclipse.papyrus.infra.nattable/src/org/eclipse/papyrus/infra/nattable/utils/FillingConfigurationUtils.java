@@ -93,7 +93,7 @@ public class FillingConfigurationUtils {
 	 *            an axis manager representation
 	 * @return
 	 *         the list of {@link TreeFillingConfiguration} to use for the representedAxisManager defined as column axis manager
-	 * @since 3.1
+	 * @since 4.0
 	 */
 	public static final List<TreeFillingConfiguration> getTreeFillingConfigurationForColumn(final Table table, final AxisManagerRepresentation representedAxisManager) {
 		Assert.isTrue(!table.isInvertAxis(), INVERT_AXIS_CASE_NOT_YET_MANAGED_FOR_TREE_TABLE);

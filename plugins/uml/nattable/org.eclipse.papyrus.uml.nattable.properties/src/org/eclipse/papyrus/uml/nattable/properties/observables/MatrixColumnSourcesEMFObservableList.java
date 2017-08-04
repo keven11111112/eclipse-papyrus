@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA-LIST) bug 520566
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.properties.observables;
@@ -19,6 +19,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -81,18 +82,29 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 * @return
 	 */
 	@Override
-	public boolean addAll(Collection c) {
+	public boolean addAll(@SuppressWarnings("rawtypes") Collection c) {
 		// 1. we build EOBjectWrapper to wrap the element selected by the user and be able to store them in the Table as column context
 		final Collection<IWrapper> toAdd = new ArrayList<IWrapper>();
 		for (final Object current : c) {
 			if (current instanceof IWrapper) {
 				// we recreate a wrapper, because the previous one will be destroyed in few time by the remove all command previously executed
+				// not sure we enter in this if...
 				final EObjectWrapper wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
 				wrapper.setElement((EObject) ((IWrapper) current).getElement());
 				toAdd.add(wrapper);
 			} else if (current instanceof EObject) {
-				final EObjectWrapper wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
-				wrapper.setElement((EObject) current);
+				EObjectWrapper wrapper = null;
+				// 1. we check if the current EObject is already wrapped (it allow to avoid Undo/Redo bug
+				for (final Object current1 : this.concreteList.toArray()) {
+					if (current1 instanceof IWrapper && ((IWrapper) current1).getElement() == current) {
+						wrapper = (EObjectWrapper) current1;
+						break;
+					}
+				}
+				if (null == wrapper) {
+					wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
+					wrapper.setElement((EObject) current);
+				}
 				toAdd.add(wrapper);
 			}
 		}
@@ -197,9 +209,10 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 */
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
-		// 1. we edit the field column context
-		Command cmd = super.getRemoveAllCommand(values);
-		return cmd;
+		return RemoveCommand.create(this.editingDomain, this.source, this.feature, values); // bug 520566
+		// Command cmd = super.getRemoveAllCommand(values);
+		// return cmd;
+
 	}
 
 
@@ -266,7 +279,7 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 * @return
 	 */
 	@Override
-	public boolean addAll(int index, Collection c) {
+	public boolean addAll(int index, @SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -278,7 +291,7 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 * @return
 	 */
 	@Override
-	public boolean removeAll(Collection c) {
+	public boolean removeAll(@SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -290,7 +303,7 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 * @return
 	 */
 	@Override
-	public boolean retainAll(Collection c) {
+	public boolean retainAll(@SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -339,7 +352,7 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 * @return
 	 */
 	@Override
-	public boolean containsAll(Collection c) {
+	public boolean containsAll(@SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 }
