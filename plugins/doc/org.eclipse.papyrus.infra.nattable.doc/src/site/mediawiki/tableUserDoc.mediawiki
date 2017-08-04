@@ -213,8 +213,13 @@ Moreover Tree table provides some specific features
 : Right click on the table body to show the context menu and select WrapText 
 ; Auto Resize Cell Height for String cell
 : Right click on the table body to show the context menu and select Auto Resize Cell Height
+; Configure unsupported cell content
+: Go to Windows/Preferences/Papyrus/NatTable/Cell Preferences, then you can define the unsupported cell content. 
+[[File:images/ConfigureUnsupportedCellContent.PNG|frame|none|Preference to configure unsupported cell content]]
+:Then the content of all cells under unsupported columns will be updated immediately, as showed in the following figure:
+[[File:images/UnsupportedCellContentExample.PNG|frame|none|Unsupported cell content example]]
 ===The list of available features for tables===
-This table lists all feature available for Tabular editors provided by Papyrus (the 25th of Avril 2017). This list could be considered as representative of tables capabilities '''assuming 3 points''':
+This table lists all feature available for Tabular editors provided by Papyrus (the 6th of August 2017). This list could be considered as representative of tables capabilities '''assuming 3 points''':
 # The table is not inverted
 # Elements are on rows
 # Features are on columns
@@ -404,6 +409,9 @@ if the user changed the configuration
 |-
 | Automatic Resize Cell Height for String cell
 | colspan="5" style="text-align: center;" | Yes (action provided by a popup menu of the body)
+|-
+| Configure unsupported cell content
+| colspan="5" style="text-align: center;" | Yes (action provided by Preferences/Papyrus/NatTable/Cell Preferences)
 |-
 |}
 
