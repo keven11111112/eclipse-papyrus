@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA-LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA-LIST) - bug 520566
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
@@ -509,7 +509,7 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 
 		List<Object> allAxisToDisplay = new ArrayList<Object>();
 		for (final IWrapper current : ((IMasterAxisProvider) getTableManager().getTable().getCurrentColumnAxisProvider()).getSources()) {
-			allAxisToDisplay = getListenFeatureValueFor((EObject) current.getElement());
+			allAxisToDisplay.addAll(getListenFeatureValueFor((EObject) current.getElement()));
 		}
 		List<Object> toAdd = new ArrayList<Object>(allAxisToDisplay);
 		toAdd.removeAll(this.managedObject);

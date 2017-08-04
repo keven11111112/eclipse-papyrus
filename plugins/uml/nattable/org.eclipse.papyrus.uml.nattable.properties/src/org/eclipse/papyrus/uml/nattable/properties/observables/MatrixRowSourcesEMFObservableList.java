@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager;
@@ -222,8 +223,9 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
 		// 1. we edit the field row context
-		Command cmd = super.getRemoveAllCommand(values);
-
+//		Command cmd = super.getRemoveAllCommand(values);
+		Command cmd =  RemoveCommand.create(this.editingDomain, this.source, this.feature, values); // bug 520566
+		
 		// 2. we are looking for the element represented by the deleted row contexts
 		final List<Object> toRemove = new ArrayList<Object>();
 		for (Object current : values) {
