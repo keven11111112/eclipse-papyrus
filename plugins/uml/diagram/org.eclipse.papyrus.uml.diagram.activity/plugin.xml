@@ -71,20 +71,20 @@
    </extension>
 
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
-      <?gmfgen generated="true"?>
-<page
-      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLActivityDiagram"
-      name="PapyrusUMLActivityDiagram Diagram"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
-      class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramGeneralPreferencePage">
-</page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPrintingPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLActivityDiagram"
-      class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPrintingPreferencePage">
-</page>
-   </extension>
+		      <?gmfgen generated="true"?>
+		<page
+		      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLActivityDiagram"
+		      name="PapyrusUMLActivityDiagram Diagram"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+		      class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramGeneralPreferencePage">
+		</page>
+		<page
+		      id="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPrintingPreferencePage"
+		      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLActivityDiagram"
+		      class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPrintingPreferencePage">
+		</page>
+		   </extension>
 
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>
@@ -153,9 +153,9 @@
 <?gmfgen generated="true"?>
 
 	<extension point="org.eclipse.core.runtime.preferences" id="prefs">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPreferenceInitializer"/>
-   </extension>
+		      <?gmfgen generated="true"?>
+		      <initializer class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramPreferenceInitializer"/>
+		   </extension>
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="false"?>
 		<initializer class="org.eclipse.papyrus.uml.diagram.activity.preferences.DiagramSpecificPreferenceInitializer"/>
@@ -2179,6 +2179,14 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	<?gmfgen generated="false"?>
 	<initializer class="org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer"/>
 </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+
+<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+
 
 
 </plugin>

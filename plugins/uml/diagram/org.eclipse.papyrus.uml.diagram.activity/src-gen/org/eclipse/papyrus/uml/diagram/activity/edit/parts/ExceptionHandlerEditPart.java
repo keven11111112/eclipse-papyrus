@@ -10,8 +10,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.uml.diagram.activity.figures.ExceptionHandlerFigure;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**

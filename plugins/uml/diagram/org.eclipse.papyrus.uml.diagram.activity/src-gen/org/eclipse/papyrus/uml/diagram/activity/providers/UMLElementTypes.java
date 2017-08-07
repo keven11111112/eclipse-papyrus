@@ -36,8 +36,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
-			UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -47,914 +46,732 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Package_ActivityDiagram = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Package_ActivityDiagram"); //$NON-NLS-1$
+	public static final IElementType Package_ActivityDiagram = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Package_ActivityDiagram"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Activity_Shape"); //$NON-NLS-1$
+	public static final IElementType Activity_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Activity_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Parameter_ParameterLabel = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Parameter_ParameterLabel"); //$NON-NLS-1$
+	public static final IElementType Parameter_ParameterLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Parameter_ParameterLabel"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_PreconditionLabel = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Constraint_PreconditionLabel"); //$NON-NLS-1$
+	public static final IElementType Constraint_PreconditionLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_PreconditionLabel"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_PostconditionLabel = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Constraint_PostconditionLabel"); //$NON-NLS-1$
+	public static final IElementType Constraint_PostconditionLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_PostconditionLabel"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InitialNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InitialNode_Shape"); //$NON-NLS-1$
+	public static final IElementType InitialNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InitialNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActivityFinalNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"); //$NON-NLS-1$
+	public static final IElementType ActivityFinalNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType FlowFinalNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.FlowFinalNode_Shape"); //$NON-NLS-1$
+	public static final IElementType FlowFinalNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.FlowFinalNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OpaqueAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OpaqueAction_Shape"); //$NON-NLS-1$
+	public static final IElementType OpaqueAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OpaqueAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_OpaqueActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_OpaqueActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_OpaqueActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_OpaqueActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_OpaqueActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_OpaqueActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_OpaqueActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_OpaqueActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_OpaqueActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_OpaqueActionInputShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_OpaqueActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_OpaqueActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_OpaqueActionOutputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_OpaqueActionOutputShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_OpaqueActionOutputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_OpaqueActionOutputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CallBehaviorAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.CallBehaviorAction_Shape"); //$NON-NLS-1$
+	public static final IElementType CallBehaviorAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CallBehaviorAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_CallBehaviorActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_CallBehaviorActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_CallBehaviorActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_CallBehaviorActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CallOperationAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.CallOperationAction_Shape"); //$NON-NLS-1$
+	public static final IElementType CallOperationAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CallOperationAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_CallOperationActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CallOperationActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_CallOperationActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_CallOperationActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CallOperationActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_CallOperationActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_CallOperationActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_CallOperationActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_CallOperationActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_CallOperationActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_CallOperationActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_CallOperationActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_CallOperationActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_CallOperationActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_CallOperationActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_CallOperationActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CallOperationActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_CallOperationActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_CallOperationActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CallOperationActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_CallOperationActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_CallOperationActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_CallOperationActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_CallOperationActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_LocalPreconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DurationConstraint_LocalPreconditionShape"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_LocalPreconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationConstraint_LocalPreconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_LocalPostconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_LocalPostconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_LocalPreconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.TimeConstraint_LocalPreconditionShape"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_LocalPreconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeConstraint_LocalPreconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_LocalPostconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.TimeConstraint_LocalPostconditionShape"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_LocalPostconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeConstraint_LocalPostconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType IntervalConstraint_LocalPreconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.IntervalConstraint_LocalPreconditionShape"); //$NON-NLS-1$
+	public static final IElementType IntervalConstraint_LocalPreconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.IntervalConstraint_LocalPreconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType IntervalConstraint_LocalPostconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.IntervalConstraint_LocalPostconditionShape"); //$NON-NLS-1$
+	public static final IElementType IntervalConstraint_LocalPostconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.IntervalConstraint_LocalPostconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_LocalPreconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Constraint_LocalPreconditionShape"); //$NON-NLS-1$
+	public static final IElementType Constraint_LocalPreconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_LocalPreconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_LocalPostconditionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Constraint_LocalPostconditionShape"); //$NON-NLS-1$
+	public static final IElementType Constraint_LocalPostconditionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_LocalPostconditionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DecisionNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DecisionNode_Shape"); //$NON-NLS-1$
+	public static final IElementType DecisionNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DecisionNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType MergeNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.MergeNode_Shape"); //$NON-NLS-1$
+	public static final IElementType MergeNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.MergeNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ForkNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ForkNode_Shape"); //$NON-NLS-1$
+	public static final IElementType ForkNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ForkNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType JoinNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.JoinNode_Shape"); //$NON-NLS-1$
+	public static final IElementType JoinNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.JoinNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataStoreNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DataStoreNode_Shape"); //$NON-NLS-1$
+	public static final IElementType DataStoreNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DataStoreNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType SendObjectAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.SendObjectAction_Shape"); //$NON-NLS-1$
+	public static final IElementType SendObjectAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.SendObjectAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_SendObjectActionRequestShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_SendObjectActionRequestShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendObjectActionRequestShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_SendObjectActionRequestShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_SendObjectActionRequestShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionRequestShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendObjectActionRequestShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionRequestShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_SendObjectActionRequestShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_SendObjectActionRequestShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendObjectActionRequestShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_SendObjectActionRequestShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_SendObjectActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_SendObjectActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendObjectActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_SendObjectActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_SendObjectActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendObjectActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_SendObjectActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_SendObjectActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendObjectActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_SendObjectActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType SendSignalAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.SendSignalAction_Shape"); //$NON-NLS-1$
+	public static final IElementType SendSignalAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.SendSignalAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_SendSignalActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendSignalActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_SendSignalActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_SendSignalActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendSignalActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_SendSignalActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_SendSignalActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_SendSignalActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendSignalActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_SendSignalActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_SendSignalActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_SendSignalActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendSignalActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_SendSignalActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_SendSignalActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendSignalActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_SendSignalActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_SendSignalActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendSignalActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_SendSignalActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActivityParameterNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActivityParameterNode_Shape"); //$NON-NLS-1$
+	public static final IElementType ActivityParameterNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActivityParameterNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType AcceptEventAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.AcceptEventAction_Shape"); //$NON-NLS-1$
+	public static final IElementType AcceptEventAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.AcceptEventAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_AcceptEventActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_AcceptEventActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_AcceptEventActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_AcceptEventActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValueSpecificationAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValueSpecificationAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ValueSpecificationAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValueSpecificationAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ValueSpecificationActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ValueSpecificationActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ValueSpecificationActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ValueSpecificationActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConditionalNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ConditionalNode_Shape"); //$NON-NLS-1$
+	public static final IElementType ConditionalNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ConditionalNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExpansionRegion_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ExpansionRegion_Shape"); //$NON-NLS-1$
+	public static final IElementType ExpansionRegion_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ExpansionRegion_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExpansionNode_InputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ExpansionNode_InputShape"); //$NON-NLS-1$
+	public static final IElementType ExpansionNode_InputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ExpansionNode_InputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExpansionNode_OutputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ExpansionNode_OutputShape"); //$NON-NLS-1$
+	public static final IElementType ExpansionNode_OutputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ExpansionNode_OutputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType LoopNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.LoopNode_Shape"); //$NON-NLS-1$
+	public static final IElementType LoopNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.LoopNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_LoopNodeVariableInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_LoopNodeVariableInputShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_LoopNodeVariableInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_LoopNodeVariableInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_LoopNodeVariableInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_LoopNodeVariableInputShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_LoopNodeVariableInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_LoopNodeVariableInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_LoopNodeVariableInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_LoopNodeVariableInputShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_LoopNodeVariableInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_LoopNodeVariableInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_LoopNodeBodyOutputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_LoopNodeBodyOutputShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_LoopNodeBodyOutputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_LoopNodeBodyOutputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_LoopNodeVariableShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_LoopNodeVariableShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_LoopNodeVariableShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_LoopNodeVariableShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_LoopNodeResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_LoopNodeResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_LoopNodeResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_LoopNodeResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType SequenceNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.SequenceNode_Shape"); //$NON-NLS-1$
+	public static final IElementType SequenceNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.SequenceNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StructuredActivityNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.StructuredActivityNode_Shape"); //$NON-NLS-1$
+	public static final IElementType StructuredActivityNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StructuredActivityNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_StructuredActivityNodeInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_StructuredActivityNodeInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_StructuredActivityNodeInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StructuredActivityNodeInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_StructuredActivityNodeInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StructuredActivityNodeInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_StructuredActivityNodeOutputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_StructuredActivityNodeOutputShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_StructuredActivityNodeOutputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_StructuredActivityNodeOutputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActivityPartition_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActivityPartition_Shape"); //$NON-NLS-1$
+	public static final IElementType ActivityPartition_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActivityPartition_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InterruptibleActivityRegion_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InterruptibleActivityRegion_Shape"); //$NON-NLS-1$
+	public static final IElementType InterruptibleActivityRegion_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InterruptibleActivityRegion_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
+	public static final IElementType Comment_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadSelfAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReadSelfAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReadSelfAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReadSelfAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ReadSelfActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ReadSelfActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadSelfActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ReadSelfActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_Shape_CN = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Activity_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Activity_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Activity_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CreateObjectAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.CreateObjectAction_Shape"); //$NON-NLS-1$
+	public static final IElementType CreateObjectAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CreateObjectAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_CreateObjectActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_CreateObjectActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_CreateObjectActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_CreateObjectActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType NamedElement_DefaultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.NamedElement_DefaultShape"); //$NON-NLS-1$
+	public static final IElementType NamedElement_DefaultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.NamedElement_DefaultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadStructuralFeatureAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReadStructuralFeatureAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReadStructuralFeatureAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReadStructuralFeatureAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ReadStructuralFeatureActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ReadStructuralFeatureActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadStructuralFeatureActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ReadStructuralFeatureActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType AddStructuralFeatureValueAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.AddStructuralFeatureValueAction_Shape"); //$NON-NLS-1$
+	public static final IElementType AddStructuralFeatureValueAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.AddStructuralFeatureValueAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_AddStructuralFeatureValueActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_AddStructuralFeatureValueActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_AddStructuralFeatureValueActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_AddStructuralFeatureValueActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestroyObjectAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DestroyObjectAction_Shape"); //$NON-NLS-1$
+	public static final IElementType DestroyObjectAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DestroyObjectAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_DestroyObjectActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_DestroyObjectActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_DestroyObjectActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_DestroyObjectActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_DestroyObjectActionTargetShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_DestroyObjectActionTargetShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadVariableAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReadVariableAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReadVariableAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReadVariableAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ReadVariableActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ReadVariableActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadVariableActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ReadVariableActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType AddVariableValueAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.AddVariableValueAction_Shape"); //$NON-NLS-1$
+	public static final IElementType AddVariableValueAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.AddVariableValueAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_AddVariableValueActionValueShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionValueShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddVariableValueActionValueShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionValueShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_AddVariableValueActionValueShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionValueShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddVariableValueActionValueShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionValueShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_AddVariableValueActionValueShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionValueShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddVariableValueActionValueShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionValueShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType BroadcastSignalAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.BroadcastSignalAction_Shape"); //$NON-NLS-1$
+	public static final IElementType BroadcastSignalAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.BroadcastSignalAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CentralBufferNode_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.CentralBufferNode_Shape"); //$NON-NLS-1$
+	public static final IElementType CentralBufferNode_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CentralBufferNode_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
+	public static final IElementType Constraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StartObjectBehaviorAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.StartObjectBehaviorAction_Shape"); //$NON-NLS-1$
+	public static final IElementType StartObjectBehaviorAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StartObjectBehaviorAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_StartObjectBehaviorActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_StartObjectBehaviorActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_StartObjectBehaviorActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_StartObjectBehaviorActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TestIdentityAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.TestIdentityAction_Shape"); //$NON-NLS-1$
+	public static final IElementType TestIdentityAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TestIdentityAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_TestIdentityActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_TestIdentityActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_TestIdentityActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_TestIdentityActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_TestIdentityActionFirstShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_TestIdentityActionFirstShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_TestIdentityActionFirstShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_TestIdentityActionFirstShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_TestIdentityActionSecondShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_TestIdentityActionSecondShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_TestIdentityActionSecondShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_TestIdentityActionSecondShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_TestIdentityActionFirstShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionFirstShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_TestIdentityActionFirstShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionFirstShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_TestIdentityActionSecondShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionSecondShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_TestIdentityActionSecondShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionSecondShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_TestIdentityActionFirstShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionFirstShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_TestIdentityActionFirstShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionFirstShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_TestIdentityActionSecondShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionSecondShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_TestIdentityActionSecondShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionSecondShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ClearStructuralFeatureAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ClearStructuralFeatureAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ClearStructuralFeatureAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ClearStructuralFeatureAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ClearStructuralFeatureActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ClearStructuralFeatureActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ClearStructuralFeatureActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ClearStructuralFeatureActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CreateLinkAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.CreateLinkAction_Shape"); //$NON-NLS-1$
+	public static final IElementType CreateLinkAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CreateLinkAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_CreateLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_CreateLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_CreateLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_CreateLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_CreateLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_CreateLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CreateLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_CreateLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_CreateLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CreateLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadLinkAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReadLinkAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReadLinkAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReadLinkAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ReadLinkActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ReadLinkActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadLinkActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ReadLinkActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_ReadLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_ReadLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReadLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_ReadLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_ReadLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_ReadLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReadLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_ReadLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_ReadLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_ReadLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReadLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_ReadLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestroyLinkAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DestroyLinkAction_Shape"); //$NON-NLS-1$
+	public static final IElementType DestroyLinkAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DestroyLinkAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_DestroyLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_DestroyLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_DestroyLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_DestroyLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_DestroyLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_DestroyLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_DestroyLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_DestroyLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_DestroyLinkActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_DestroyLinkActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_DestroyLinkActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_DestroyLinkActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ClearAssociationAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ClearAssociationAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ClearAssociationAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ClearAssociationAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_ClearAssociationActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_ClearAssociationActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_ClearAssociationActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ClearAssociationActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_ClearAssociationActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ClearAssociationActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadExtentAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReadExtentAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReadExtentAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReadExtentAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ReadExtentActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ReadExtentActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadExtentActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ReadExtentActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReclassifyObjectAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReclassifyObjectAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReclassifyObjectAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReclassifyObjectAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadIsClassifiedObjectAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReadIsClassifiedObjectAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReadIsClassifiedObjectAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReadIsClassifiedObjectAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ReadIsClassifiedObjectActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ReadIsClassifiedObjectActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadIsClassifiedObjectActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ReadIsClassifiedObjectActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReduceAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ReduceAction_Shape"); //$NON-NLS-1$
+	public static final IElementType ReduceAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ReduceAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_ReduceActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_ReduceActionResultShape"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReduceActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_ReduceActionResultShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_ReduceActionCollectionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_ReduceActionCollectionShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReduceActionCollectionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_ReduceActionCollectionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_ReduceActionCollectionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_ReduceActionCollectionShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReduceActionCollectionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_ReduceActionCollectionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_ReduceActionCollectionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_ReduceActionCollectionShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReduceActionCollectionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_ReduceActionCollectionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StartClassifierBehaviorAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.StartClassifierBehaviorAction_Shape"); //$NON-NLS-1$
+	public static final IElementType StartClassifierBehaviorAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StartClassifierBehaviorAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CreateLinkObjectAction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.CreateLinkObjectAction_Shape"); //$NON-NLS-1$
+	public static final IElementType CreateLinkObjectAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CreateLinkObjectAction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.InputPin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
+	public static final IElementType InputPin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ValuePin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_CreateLinkObjectActionResultShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OutputPin_CreateLinkObjectActionResultShape"); //$NON-NLS-1$
-	
+	public static final IElementType OutputPin_CreateLinkObjectActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_CreateLinkObjectActionResultShape"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -983,38 +800,31 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Action_LocalPreconditionEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Action_LocalPreconditionEdge"); //$NON-NLS-1$
+	public static final IElementType Action_LocalPreconditionEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Action_LocalPreconditionEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Action_LocalPostconditionEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Action_LocalPostconditionEdge"); //$NON-NLS-1$
+	public static final IElementType Action_LocalPostconditionEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Action_LocalPostconditionEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ObjectFlow_Edge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ObjectFlow_Edge"); //$NON-NLS-1$
+	public static final IElementType ObjectFlow_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ObjectFlow_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ControlFlow_Edge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ControlFlow_Edge"); //$NON-NLS-1$
+	public static final IElementType ControlFlow_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ControlFlow_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExceptionHandler_Edge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.ExceptionHandler_Edge"); //$NON-NLS-1$
+	public static final IElementType ExceptionHandler_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ExceptionHandler_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
+	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
+	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -1056,374 +866,546 @@ public class UMLElementTypes {
 
 			elements.put(Package_ActivityDiagram, UMLPackage.eINSTANCE.getPackage());
 
+
 			elements.put(Activity_Shape, UMLPackage.eINSTANCE.getActivity());
+
 
 			elements.put(Parameter_ParameterLabel, UMLPackage.eINSTANCE.getParameter());
 
+
 			elements.put(Constraint_PreconditionLabel, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(Constraint_PostconditionLabel, UMLPackage.eINSTANCE.getConstraint());
 
+
 			elements.put(InitialNode_Shape, UMLPackage.eINSTANCE.getInitialNode());
+
 
 			elements.put(ActivityFinalNode_Shape, UMLPackage.eINSTANCE.getActivityFinalNode());
 
+
 			elements.put(FlowFinalNode_Shape, UMLPackage.eINSTANCE.getFlowFinalNode());
+
 
 			elements.put(OpaqueAction_Shape, UMLPackage.eINSTANCE.getOpaqueAction());
 
+
 			elements.put(ValuePin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(InputPin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(OutputPin_OpaqueActionOutputShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(CallBehaviorAction_Shape, UMLPackage.eINSTANCE.getCallBehaviorAction());
+
 
 			elements.put(ValuePin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(InputPin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(OutputPin_CallBehaviorActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(CallOperationAction_Shape, UMLPackage.eINSTANCE.getCallOperationAction());
 
+
 			elements.put(ActionInputPin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(ValuePin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(InputPin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(OutputPin_CallOperationActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(ValuePin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(InputPin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(DurationConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getDurationConstraint());
 
+
 			elements.put(DurationConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getDurationConstraint());
+
 
 			elements.put(TimeConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getTimeConstraint());
 
+
 			elements.put(TimeConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getTimeConstraint());
+
 
 			elements.put(IntervalConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getIntervalConstraint());
 
+
 			elements.put(IntervalConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getIntervalConstraint());
+
 
 			elements.put(Constraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getConstraint());
 
+
 			elements.put(Constraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(DecisionNode_Shape, UMLPackage.eINSTANCE.getDecisionNode());
 
+
 			elements.put(MergeNode_Shape, UMLPackage.eINSTANCE.getMergeNode());
+
 
 			elements.put(ForkNode_Shape, UMLPackage.eINSTANCE.getForkNode());
 
+
 			elements.put(JoinNode_Shape, UMLPackage.eINSTANCE.getJoinNode());
+
 
 			elements.put(DataStoreNode_Shape, UMLPackage.eINSTANCE.getDataStoreNode());
 
+
 			elements.put(SendObjectAction_Shape, UMLPackage.eINSTANCE.getSendObjectAction());
+
 
 			elements.put(ValuePin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(InputPin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(InputPin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(SendSignalAction_Shape, UMLPackage.eINSTANCE.getSendSignalAction());
 
+
 			elements.put(ActionInputPin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(ValuePin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(InputPin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(InputPin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ActivityParameterNode_Shape, UMLPackage.eINSTANCE.getActivityParameterNode());
+
 
 			elements.put(AcceptEventAction_Shape, UMLPackage.eINSTANCE.getAcceptEventAction());
 
+
 			elements.put(OutputPin_AcceptEventActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(ValueSpecificationAction_Shape, UMLPackage.eINSTANCE.getValueSpecificationAction());
 
+
 			elements.put(OutputPin_ValueSpecificationActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(ConditionalNode_Shape, UMLPackage.eINSTANCE.getConditionalNode());
 
+
 			elements.put(ExpansionRegion_Shape, UMLPackage.eINSTANCE.getExpansionRegion());
+
 
 			elements.put(ExpansionNode_InputShape, UMLPackage.eINSTANCE.getExpansionNode());
 
+
 			elements.put(ExpansionNode_OutputShape, UMLPackage.eINSTANCE.getExpansionNode());
+
 
 			elements.put(LoopNode_Shape, UMLPackage.eINSTANCE.getLoopNode());
 
+
 			elements.put(InputPin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(OutputPin_LoopNodeBodyOutputShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(OutputPin_LoopNodeVariableShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(OutputPin_LoopNodeResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(SequenceNode_Shape, UMLPackage.eINSTANCE.getSequenceNode());
+
 
 			elements.put(StructuredActivityNode_Shape, UMLPackage.eINSTANCE.getStructuredActivityNode());
 
+
 			elements.put(InputPin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(OutputPin_StructuredActivityNodeOutputShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(ActivityPartition_Shape, UMLPackage.eINSTANCE.getActivityPartition());
+
 
 			elements.put(InterruptibleActivityRegion_Shape, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
 
+
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
+
 
 			elements.put(ReadSelfAction_Shape, UMLPackage.eINSTANCE.getReadSelfAction());
 
+
 			elements.put(OutputPin_ReadSelfActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(Activity_Shape_CN, UMLPackage.eINSTANCE.getActivity());
 
+
 			elements.put(CreateObjectAction_Shape, UMLPackage.eINSTANCE.getCreateObjectAction());
+
 
 			elements.put(OutputPin_CreateObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(NamedElement_DefaultShape, UMLPackage.eINSTANCE.getNamedElement());
+
 
 			elements.put(ReadStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getReadStructuralFeatureAction());
 
+
 			elements.put(InputPin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(ActionInputPin_ReadStructuralFeatureActionObjectShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(OutputPin_ReadStructuralFeatureActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
-			elements.put(AddStructuralFeatureValueAction_Shape,
-					UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
+
+			elements.put(AddStructuralFeatureValueAction_Shape, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
+
 
 			elements.put(InputPin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(InputPin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(InputPin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ValuePin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ValuePin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(ActionInputPin_AddStructuralFeatureValueActionObjectShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
 
-			elements.put(ActionInputPin_AddStructuralFeatureValueActionValueShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ActionInputPin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
 
-			elements.put(ActionInputPin_AddStructuralFeatureValueActionInsertAtShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+
+			elements.put(ActionInputPin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(OutputPin_AddStructuralFeatureValueActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(DestroyObjectAction_Shape, UMLPackage.eINSTANCE.getDestroyObjectAction());
+
 
 			elements.put(InputPin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(ReadVariableAction_Shape, UMLPackage.eINSTANCE.getReadVariableAction());
+
 
 			elements.put(OutputPin_ReadVariableActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(AddVariableValueAction_Shape, UMLPackage.eINSTANCE.getAddVariableValueAction());
+
 
 			elements.put(InputPin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(InputPin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ValuePin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(ActionInputPin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(BroadcastSignalAction_Shape, UMLPackage.eINSTANCE.getBroadcastSignalAction());
 
+
 			elements.put(InputPin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(CentralBufferNode_Shape, UMLPackage.eINSTANCE.getCentralBufferNode());
 
+
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(StartObjectBehaviorAction_Shape, UMLPackage.eINSTANCE.getStartObjectBehaviorAction());
 
+
 			elements.put(OutputPin_StartObjectBehaviorActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(InputPin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(InputPin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(ActionInputPin_StartObjectBehaviorActionArgumentShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(TestIdentityAction_Shape, UMLPackage.eINSTANCE.getTestIdentityAction());
 
+
 			elements.put(OutputPin_TestIdentityActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(InputPin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(InputPin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ValuePin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(ActionInputPin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(ClearStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getClearStructuralFeatureAction());
 
+
 			elements.put(OutputPin_ClearStructuralFeatureActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(InputPin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(ActionInputPin_ClearStructuralFeatureActionObjectShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(CreateLinkAction_Shape, UMLPackage.eINSTANCE.getCreateLinkAction());
 
+
 			elements.put(InputPin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(ReadLinkAction_Shape, UMLPackage.eINSTANCE.getReadLinkAction());
 
+
 			elements.put(OutputPin_ReadLinkActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(InputPin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(DestroyLinkAction_Shape, UMLPackage.eINSTANCE.getDestroyLinkAction());
+
 
 			elements.put(InputPin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(ClearAssociationAction_Shape, UMLPackage.eINSTANCE.getClearAssociationAction());
+
 
 			elements.put(InputPin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(ReadExtentAction_Shape, UMLPackage.eINSTANCE.getReadExtentAction());
+
 
 			elements.put(OutputPin_ReadExtentActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(ReclassifyObjectAction_Shape, UMLPackage.eINSTANCE.getReclassifyObjectAction());
+
 
 			elements.put(InputPin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(ReadIsClassifiedObjectAction_Shape, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction());
+
 
 			elements.put(OutputPin_ReadIsClassifiedObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(InputPin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(ActionInputPin_ReadIsClassifiedObjectActionObjectShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(ReduceAction_Shape, UMLPackage.eINSTANCE.getReduceAction());
 
+
 			elements.put(OutputPin_ReduceActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(InputPin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(StartClassifierBehaviorAction_Shape, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction());
+
 
 			elements.put(InputPin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(ValuePin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
 
-			elements.put(ActionInputPin_StartClassifierBehaviorActionObjectShape,
-					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(CreateLinkObjectAction_Shape, UMLPackage.eINSTANCE.getCreateLinkObjectAction());
 
+
 			elements.put(InputPin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(ValuePin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(OutputPin_CreateLinkObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
 
@@ -1446,9 +1428,12 @@ public class UMLElementTypes {
 
 			elements.put(Action_LocalPostconditionEdge, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 
+
 			elements.put(ObjectFlow_Edge, UMLPackage.eINSTANCE.getObjectFlow());
 
+
 			elements.put(ControlFlow_Edge, UMLPackage.eINSTANCE.getControlFlow());
+
 
 			elements.put(ExceptionHandler_Edge, UMLPackage.eINSTANCE.getExceptionHandler());
 

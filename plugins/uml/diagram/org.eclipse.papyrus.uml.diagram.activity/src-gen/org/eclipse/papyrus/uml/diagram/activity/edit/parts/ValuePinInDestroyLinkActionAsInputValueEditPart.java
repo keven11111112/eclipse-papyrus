@@ -76,7 +76,8 @@ public class ValuePinInDestroyLinkActionAsInputValueEditPart extends AbstractPin
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -130,9 +131,10 @@ public class ValuePinInDestroyLinkActionAsInputValueEditPart extends AbstractPin
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -141,7 +143,8 @@ public class ValuePinInDestroyLinkActionAsInputValueEditPart extends AbstractPin
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -160,6 +163,7 @@ public class ValuePinInDestroyLinkActionAsInputValueEditPart extends AbstractPin
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure
+	 * 
 	 * @generated
 	 */
 	public PinFigure getPrimaryShape() {
@@ -213,7 +217,9 @@ public class ValuePinInDestroyLinkActionAsInputValueEditPart extends AbstractPin
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -259,8 +265,7 @@ public class ValuePinInDestroyLinkActionAsInputValueEditPart extends AbstractPin
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(
-				UMLVisualIDRegistry.getType(ValuePinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ValuePinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 	}
 
 }

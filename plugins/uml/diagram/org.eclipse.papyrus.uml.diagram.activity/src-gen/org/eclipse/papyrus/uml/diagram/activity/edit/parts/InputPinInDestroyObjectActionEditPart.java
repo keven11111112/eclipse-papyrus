@@ -127,9 +127,10 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -138,7 +139,8 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -157,6 +159,7 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure
+	 * 
 	 * @generated
 	 */
 	public InputPinFigure getPrimaryShape() {
@@ -207,7 +210,9 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -253,8 +258,7 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(
-				UMLVisualIDRegistry.getType(InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID));
 	}
 
 }

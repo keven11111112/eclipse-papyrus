@@ -9,8 +9,8 @@ import org.eclipse.papyrus.uml.diagram.activity.figures.LinkFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

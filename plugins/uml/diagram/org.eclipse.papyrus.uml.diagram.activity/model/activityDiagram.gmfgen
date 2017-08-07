@@ -18627,9 +18627,9 @@
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/object"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/object"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
@@ -18715,9 +18715,9 @@
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/object"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/object"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
@@ -18816,9 +18816,9 @@
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/object"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/object"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
@@ -18919,9 +18919,9 @@
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CreateLinkObjectAction/result"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/result"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CreateLinkObjectAction/result"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UnmarshallAction/result"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers

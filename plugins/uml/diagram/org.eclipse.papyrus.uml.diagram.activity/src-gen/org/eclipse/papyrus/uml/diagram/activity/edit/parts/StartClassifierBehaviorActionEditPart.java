@@ -88,17 +88,16 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.StartClassifierBehaviorActionCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.StartClassifierBehaviorActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
-				new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -153,9 +152,10 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -164,7 +164,8 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -183,6 +184,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
+	 * 
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
@@ -198,29 +200,36 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(
-					((InputPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(
-					((ValuePinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(
-					((ActionPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 
 		return false;
 	}
@@ -233,18 +242,15 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 			return true;
 		}
 		if (childEditPart instanceof InputPinInStartClassifierBehaviorActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((InputPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ValuePinInStartClassifierBehaviorActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ActionPinInStartClassifierBehaviorActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -316,7 +322,9 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
