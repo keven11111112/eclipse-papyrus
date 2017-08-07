@@ -31,25 +31,25 @@
 				   </extension>   
 
    <extension point="org.eclipse.core.runtime.preferences" id="prefs">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPreferenceInitializer"/>
-   </extension>
+		      <?gmfgen generated="true"?>
+		      <initializer class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPreferenceInitializer"/>
+		   </extension>
 
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
-      <?gmfgen generated="true"?>
-<page
-      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-      name="PapyrusUMLStateMachineDiagram Diagram"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
-      class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramGeneralPreferencePage">
-</page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPrintingPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-      class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPrintingPreferencePage">
-</page>
-   </extension>
+		      <?gmfgen generated="true"?>
+		<page
+		      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+		      name="PapyrusUMLStateMachineDiagram Diagram"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+		      class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramGeneralPreferencePage">
+		</page>
+		<page
+		      id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPrintingPreferencePage"
+		      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+		      class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.DiagramPrintingPreferencePage">
+		</page>
+		   </extension>
 
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>

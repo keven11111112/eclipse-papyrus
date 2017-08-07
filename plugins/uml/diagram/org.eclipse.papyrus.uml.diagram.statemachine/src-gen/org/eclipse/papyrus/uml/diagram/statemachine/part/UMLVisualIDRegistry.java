@@ -163,15 +163,13 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return "";
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return "";
 		}
 		String containerVisualID;
 		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
@@ -190,36 +188,29 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case StateMachineEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateEntryPointEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateExitPointEditPart.VISUAL_ID;
 				}
 				break;
 			case StateEditPartTN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateEntryPointEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateExitPointEditPart.VISUAL_ID;
 				}
 				break;
 			case StateEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass())
-						&& isBehavior_EntryBehaviorLabel((Behavior) domainElement)) {
+				if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_EntryBehaviorLabel((Behavior) domainElement)) {
 					return EntryStateBehaviorEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass())
-						&& isBehavior_DoActivityBehaviorLabel((Behavior) domainElement)) {
+				if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_DoActivityBehaviorLabel((Behavior) domainElement)) {
 					return DoActivityStateBehaviorStateEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass())
-						&& isBehavior_ExitBehaviorLabel((Behavior) domainElement)) {
+				if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_ExitBehaviorLabel((Behavior) domainElement)) {
 					return ExitStateBehaviorEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
@@ -228,12 +219,10 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
 					return RegionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateEntryPointEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateExitPointEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())) {
@@ -241,36 +230,28 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case RegionCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_InitialShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_InitialShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateInitialEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_JoinShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_JoinShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateJoinEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ForkShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ForkShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateForkEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ChoiceShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ChoiceShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateChoiceEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_JunctionShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_JunctionShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateJunctionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ShallowHistoryShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ShallowHistoryShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateShallowHistoryEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_DeepHistoryShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_DeepHistoryShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateDeepHistoryEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_TerminateShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_TerminateShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateTerminateEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getFinalState().isSuperTypeOf(domainElement.eClass())) {
@@ -279,12 +260,10 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getState().isSuperTypeOf(domainElement.eClass())) {
 					return StateEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateEntryPointEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateExitPointEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
@@ -298,12 +277,10 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
 					return RegionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateEntryPointEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateExitPointEditPart.VISUAL_ID;
 				}
 				break;
@@ -319,12 +296,10 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
 					return RegionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateEntryPointEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass())
-						&& isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
+				if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate) domainElement)) {
 					return PseudostateExitPointEditPart.VISUAL_ID;
 				}
 				break;
@@ -337,15 +312,13 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
 		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
@@ -800,8 +773,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isBehavior_EntryBehaviorLabel(Behavior domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getBehavior(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -809,8 +781,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isBehavior_DoActivityBehaviorLabel(Behavior domainElement) {
-		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getBehavior(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -818,8 +789,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isBehavior_ExitBehaviorLabel(Behavior domainElement) {
-		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getBehavior(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -828,7 +798,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);
@@ -908,8 +878,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public String getNodeVisualID(View containerView, EObject domainElement) {
-			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
 		/**
@@ -917,8 +886,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
-			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry
-					.checkNodeVisualID(containerView, domainElement, candidate);
+			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
 		/**
@@ -926,8 +894,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean isCompartmentVisualID(String visualID) {
-			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry
-					.isCompartmentVisualID(visualID);
+			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
 		}
 
 		/**
@@ -935,8 +902,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean isSemanticLeafVisualID(String visualID) {
-			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry
-					.isSemanticLeafVisualID(visualID);
+			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};
 }
