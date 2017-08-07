@@ -300,7 +300,7 @@
       <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.association" label="Association" description="Create an Association" kind="ConnectionTool">
         <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif"/>
         <elementDescriptors>
-          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_ggRYoHhMEee4-vqumSjwzg"/>
+          <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.AssociationNonDirected_Edge"/>
         </elementDescriptors>
       </ownedConfigurations>
       <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="clazz.tool.associationcompositedirected" label="Composite Association (Directed)" description="Create a Directed composite Association" kind="ConnectionTool">

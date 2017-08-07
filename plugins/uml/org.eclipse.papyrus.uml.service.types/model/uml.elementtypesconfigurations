@@ -85,7 +85,7 @@
     <matcherConfiguration xsi:type="elementtypesconfigurations:MatcherConfiguration" xmi:id="_-lvgEFYTEeSx49G4xBUj9Q" matcherClassName="org.eclipse.papyrus.uml.service.types.matcher.AssociationMatcher"/>
     <specializedTypes xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.AssociationBase"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_Q_1woHhMEee4-vqumSjwzg" identifier="org.eclipse.papyrus.uml.AssociationNonDirected" name="UML::AssociationNonDirected" hint="UML::AssociationNonDirected">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.AssociationNonDirected" identifier="org.eclipse.papyrus.uml.AssociationNonDirected" name="UML::AssociationNonDirected" hint="UML::AssociationNonDirected">
     <iconEntry xmi:id="_Q_1woXhMEee4-vqumSjwzg" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <editHelperAdviceConfiguration xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration" xmi:id="_Q_1wonhMEee4-vqumSjwzg" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice"/>
     <matcherConfiguration xsi:type="elementtypesconfigurations:MatcherConfiguration" xmi:id="_Q_1wo3hMEee4-vqumSjwzg" matcherClassName="org.eclipse.papyrus.uml.service.types.matcher.AssociationMatcher"/>
