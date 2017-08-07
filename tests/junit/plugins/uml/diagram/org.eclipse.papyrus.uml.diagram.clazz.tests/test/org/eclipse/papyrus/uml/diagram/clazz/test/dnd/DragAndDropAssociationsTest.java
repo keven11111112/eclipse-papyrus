@@ -39,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.test.canonical.AbstractPapyrusTestCase;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -322,7 +323,7 @@ public class DragAndDropAssociationsTest extends AbstractPapyrusTestCase {
 	 * @return The new Association.
 	 */
 	protected Association createAssociation(final IGraphicalEditPart source, final IGraphicalEditPart target) {
-		createLink(UMLElementTypes.AssociationDirected_Edge, source, target);
+		createLink(UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE, source, target);
 		return findAssociation(source);
 	}
 

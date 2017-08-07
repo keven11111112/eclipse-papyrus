@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractTestMultiLink;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.junit.Test;
 
 public class TestMultiLink extends AbstractTestMultiLink {
@@ -52,7 +53,7 @@ public class TestMultiLink extends AbstractTestMultiLink {
 	 */
 	@Test
 	public void testToManageMultiAssociation() {
-		testToManageMultiLink(UMLElementTypes.Association_Edge, UMLElementTypes.Association_BranchEdge, false);
+		testToManageMultiLink(UMLDIElementTypes.ASSOCIATION_NON_DIRECTED_EDGE, UMLElementTypes.Association_BranchEdge, false);
 	}
 
 	@Override

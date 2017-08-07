@@ -271,6 +271,8 @@ public class UMLDIElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final IHintedType ASSOCIATION_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.Association_Edge"); //$NON-NLS-1$
 	
+	public static final IHintedType ASSOCIATION_NON_DIRECTED_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.AssociationNonDirected_Edge"); //$NON-NLS-1$
+	
 	public static final IHintedType ASSOCIATION_DIRECTED_EDGE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.AssociationDirected_Edge"); //$NON-NLS-1$
 
 	public static final IHintedType ASSOCIATION_SHAPE = (IHintedType) getElementType("org.eclipse.papyrus.umldi.Association_Shape"); //$NON-NLS-1$
