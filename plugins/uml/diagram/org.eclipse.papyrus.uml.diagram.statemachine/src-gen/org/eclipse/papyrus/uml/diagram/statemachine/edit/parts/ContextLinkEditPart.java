@@ -23,8 +23,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomAppliedStereoty
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomContextLinkFigure;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -45,8 +45,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -54,8 +53,8 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
-			((ContextLinkAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((ContextLinkAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

@@ -89,8 +89,7 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new CustomPseudostateForkJoinResizeEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -143,9 +142,10 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -154,7 +154,8 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -173,6 +174,7 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
+	 * 
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
@@ -218,7 +220,9 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

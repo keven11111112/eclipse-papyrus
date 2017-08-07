@@ -74,8 +74,7 @@ public class RegionEditPart extends NamedElementEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CustomRegionComponentEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
-				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -109,9 +108,10 @@ public class RegionEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -126,6 +126,7 @@ public class RegionEditPart extends NamedElementEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.RegionFigure
+	 * 
 	 * @generated
 	 */
 	public RegionFigure getPrimaryShape() {
@@ -137,9 +138,10 @@ public class RegionEditPart extends NamedElementEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
+
 		if (childEditPart instanceof RegionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getRegionCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((RegionCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -213,7 +215,9 @@ public class RegionEditPart extends NamedElementEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

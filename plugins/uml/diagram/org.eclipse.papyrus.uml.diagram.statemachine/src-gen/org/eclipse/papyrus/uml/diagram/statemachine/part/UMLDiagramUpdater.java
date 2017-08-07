@@ -90,7 +90,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	protected UMLDiagramUpdater() {
-		//to prevent instantiation allowing the override
+		// to prevent instantiation allowing the override
 	}
 
 	/**
@@ -131,7 +131,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getPackagedElements()
+				.iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (StateMachineEditPart.VISUAL_ID.equals(visualID)) {
@@ -158,7 +159,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		StateMachine modelElement = (StateMachine) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getConnectionPoints()
+				.iterator(); it.hasNext();) {
 			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
@@ -182,7 +184,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		State modelElement = (State) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getConnectionPoints()
+				.iterator(); it.hasNext();) {
 			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
@@ -227,7 +230,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
-		for (Iterator<?> it = modelElement.getIncomings().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getIncomings()
+				.iterator(); it.hasNext();) {
 			Transition childElement = (Transition) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (InternalTransitionEditPart.VISUAL_ID.equals(visualID)) {
@@ -235,7 +239,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getRegions()
+				.iterator(); it.hasNext();) {
 			Region childElement = (Region) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (RegionEditPart.VISUAL_ID.equals(visualID)) {
@@ -243,7 +248,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getConnectionPoints()
+				.iterator(); it.hasNext();) {
 			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
@@ -255,7 +261,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getConnections().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getConnections()
+				.iterator(); it.hasNext();) {
 			ConnectionPointReference childElement = (ConnectionPointReference) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (ConnectionPointReferenceEditPart.VISUAL_ID.equals(visualID)) {
@@ -287,7 +294,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		StateMachine modelElement = (StateMachine) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getRegions()
+				.iterator(); it.hasNext();) {
 			Region childElement = (Region) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (RegionEditPart.VISUAL_ID.equals(visualID)) {
@@ -295,7 +303,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getConnectionPoints()
+				.iterator(); it.hasNext();) {
 			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
@@ -323,7 +332,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		State modelElement = (State) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getRegions()
+				.iterator(); it.hasNext();) {
 			Region childElement = (Region) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (RegionEditPart.VISUAL_ID.equals(visualID)) {
@@ -331,7 +341,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getConnections().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getConnections()
+				.iterator(); it.hasNext();) {
 			ConnectionPointReference childElement = (ConnectionPointReference) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (ConnectionPointReferenceEditPart.VISUAL_ID.equals(visualID)) {
@@ -355,7 +366,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		}
 		State modelElement = (State) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getRegions()
+				.iterator(); it.hasNext();) {
 			Region childElement = (Region) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (RegionEditPart.VISUAL_ID.equals(visualID)) {
@@ -363,7 +375,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getConnectionPoints()
+				.iterator(); it.hasNext();) {
 			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
@@ -765,13 +778,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getStateMachine_Shape_IncomingLinks(View view) {
 		StateMachine modelElement = (StateMachine) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
@@ -781,13 +792,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getState_Shape_TN_IncomingLinks(View view) {
 		State modelElement = (State) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
@@ -797,12 +806,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getRegion_Shape_IncomingLinks(View view) {
 		Region modelElement = (Region) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
@@ -812,13 +819,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getFinalState_Shape_IncomingLinks(View view) {
 		FinalState modelElement = (FinalState) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
@@ -828,13 +833,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getState_Shape_IncomingLinks(View view) {
 		State modelElement = (State) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
@@ -844,13 +847,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_InitialShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -859,13 +860,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_JoinShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -874,13 +873,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_ForkShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -889,13 +886,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_ChoiceShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -904,13 +899,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_JunctionShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -919,13 +912,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_ShallowHistoryShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -934,13 +925,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_DeepHistoryShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -949,13 +938,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_TerminateShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -964,13 +951,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_EntryPointShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -979,13 +964,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getPseudostate_ExitPointShape_IncomingLinks(View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -994,13 +977,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getConnectionPointReference_Shape_IncomingLinks(View view) {
 		ConnectionPointReference modelElement = (ConnectionPointReference) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1009,12 +990,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getComment_Shape_IncomingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1023,12 +1002,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getConstraint_Shape_IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1065,12 +1042,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getTransition_Edge_IncomingLinks(View view) {
 		Transition modelElement = (Transition) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
@@ -1080,12 +1055,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getGeneralization_Edge_IncomingLinks(View view) {
 		Generalization modelElement = (Generalization) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -1314,7 +1287,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Transition_Edge(Region container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getTransitions().iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getTransitions()
+				.iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Transition) {
 				continue;
@@ -1325,8 +1299,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			}
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_Edge,
-					TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_Edge, TransitionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1336,7 +1309,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Generalization_Edge(Classifier container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getGeneralizations().iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getGeneralizations()
+				.iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Generalization) {
 				continue;
@@ -1346,8 +1320,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			Classifier dst = link.getGeneral();
-			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_Edge,
-					GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_Edge, GeneralizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1360,8 +1333,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getTransition_Target()
-					|| false == setting.getEObject() instanceof Transition) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getTransition_Target() || false == setting.getEObject() instanceof Transition) {
 				continue;
 			}
 			Transition link = (Transition) setting.getEObject();
@@ -1369,8 +1341,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			Vertex src = link.getSource();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Transition_Edge,
-					TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Transition_Edge, TransitionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1383,8 +1354,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralization_General()
-					|| false == setting.getEObject() instanceof Generalization) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralization_General() || false == setting.getEObject() instanceof Generalization) {
 				continue;
 			}
 			Generalization link = (Generalization) setting.getEObject();
@@ -1395,8 +1365,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			Classifier container = (Classifier) link.eContainer();
-			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_Edge,
-					GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_Edge, GeneralizationEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -1411,8 +1380,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
-						UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1427,9 +1395,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
-						UMLElementTypes.Constraint_ConstrainedElementEdge,
-						ConstraintConstrainedElementEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Constraint_ConstrainedElementEdge, ConstraintConstrainedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1444,8 +1410,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_Context()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Constraint_ContextEdge,
-						ContextLinkEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Constraint_ContextEdge, ContextLinkEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1468,7 +1433,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> links = container.getTransitions().iterator(); links.hasNext();) {
+		for (Iterator<?> links = container.getTransitions()
+				.iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Transition) {
 				continue;
@@ -1482,8 +1448,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_Edge,
-					TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_Edge, TransitionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1494,10 +1459,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
 			Comment source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
+		for (Iterator<?> destinations = source.getAnnotatedElements()
+				.iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Comment_AnnotatedElementEdge,
-					CommentAnnotatedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1508,10 +1473,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
 			Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for (Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
+		for (Iterator<?> destinations = source.getConstrainedElements()
+				.iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ConstrainedElementEdge,
-					ConstraintConstrainedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ConstrainedElementEdge, ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1526,8 +1491,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		if (destination == null) {
 			return result;
 		}
-		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ContextEdge,
-				ContextLinkEditPart.VISUAL_ID));
+		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ContextEdge, ContextLinkEditPart.VISUAL_ID));
 		return result;
 	}
 }

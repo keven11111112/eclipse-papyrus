@@ -66,11 +66,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
+	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 	/**
 	 * Extended request data key to hold the edge view during a reconnect request.
+	 * 
 	 * @generated
 	 */
 	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
@@ -93,8 +95,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 * Add the reoriented view to the request extended data so that the view
-	 *  currently edited can be distinguished from other views of the same element
-	 *  and these latter possibly removed if they become inconsistent after reconnect
+	 * currently edited can be distinguished from other views of the same element
+	 * and these latter possibly removed if they become inconsistent after reconnect
 	 * 
 	 * @generated
 	 */
@@ -113,6 +115,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
+	 * 
 	 * @generated
 	 */
 	protected String getVisualID(IEditCommandRequest request) {
@@ -146,9 +149,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy
-					? ((ICommandProxy) editPolicyCommand).getICommand()
-					: new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -312,6 +313,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
+	 * 
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -320,14 +322,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
+	 * 
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
 		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
-					|| nextView.getElement() != view.getElement()) {
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -360,14 +362,16 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canCreateTransition_Edge(Region container, Vertex source, Vertex target) {
-			return canExistTransition_Edge(container, null, source, target);
+			return canExistTransition_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralization_Edge(Classifier source, Classifier target) {
-			return canExistGeneralization_Edge(null, source, target);
+			return canExistGeneralization_Edge(
+					null, source, target);
 		}
 
 		/**
@@ -375,12 +379,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
-				if (source.getAnnotatedElements().contains(target)) {
+				if (source.getAnnotatedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistComment_AnnotatedElementEdge(source, target);
+			return canExistComment_AnnotatedElementEdge(
+					source, target);
 		}
 
 		/**
@@ -388,12 +394,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
-				if (source.getConstrainedElements().contains(target)) {
+				if (source.getConstrainedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistConstraint_ConstrainedElementEdge(source, target);
+			return canExistConstraint_ConstrainedElementEdge(
+					source, target);
 		}
 
 		/**
@@ -405,11 +413,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-			if (target != null && (target.getOwnedRules().contains(target))) {
+			if (target != null && (target.getOwnedRules()
+					.contains(target))) {
 				return false;
 			}
 
-			return canExistConstraint_ContextEdge(source, target);
+			return canExistConstraint_ContextEdge(
+					source, target);
 		}
 
 		/**

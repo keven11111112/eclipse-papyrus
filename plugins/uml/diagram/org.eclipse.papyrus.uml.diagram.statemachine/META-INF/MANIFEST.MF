@@ -57,8 +57,8 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12
  org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.gmf.runtime.diagram.ui.providers,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
- org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)";visibility:=reexport,
- org.eclipse.uml2.uml.edit;bundle-version="[5.3.0,6.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml;visibility:=reexport;bundle-version="[5.3.0,6.0.0)",
+ org.eclipse.uml2.uml.edit;visibility:=reexport;bundle-version="[5.3.0,6.0.0)",
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef,
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="[2.0.0,3.0.0)",
@@ -71,6 +71,6 @@ Eclipse-LazyStart: true
 Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.statemachine;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.statemachine; singleton:=true
 Import-Package: com.google.common.base;version="21.0.0",
  com.google.common.collect;version="21.0.0"
