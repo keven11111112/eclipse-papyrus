@@ -104,8 +104,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			@Override
 			public boolean handleResourceChanged(final Resource resource) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
-						.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -117,8 +116,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			@Override
 			public boolean handleResourceDeleted(Resource resource) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
-						.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -130,8 +128,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			@Override
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
-						.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}

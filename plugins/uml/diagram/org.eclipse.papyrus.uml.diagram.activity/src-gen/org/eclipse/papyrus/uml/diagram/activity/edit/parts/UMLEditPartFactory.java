@@ -865,8 +865,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart(view);
 
 			case InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(
-						view);
+				return new InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(view);
 
 			case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
 				return new InputPinInAddStructuralFeatureValueActionAsValueEditPart(view);
@@ -875,8 +874,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart(view);
 
 			case InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID:
-				return new InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart(
-						view);
+				return new InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart(view);
 
 			case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
 				return new InputPinInAddStructuralFeatureValueActionAsInserAtEditPart(view);
@@ -885,8 +883,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InputPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart(view);
 
 			case InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(
-						view);
+				return new InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(view);
 
 			case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
 				return new ValuePinInAddStructuralFeatureValueActionAsObjectEditPart(view);
@@ -898,8 +895,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ValuePinInAddStructuralFeatureValueActionAsObjectValueEditPart(view);
 
 			case ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(
-						view);
+				return new ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(view);
 
 			case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
 				return new ValuePinInAddStructuralFeatureValueActionAsValueEditPart(view);
@@ -923,8 +919,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ValuePinInAddStructuralFeatureValueActionAsInserAtValueEditPart(view);
 
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(
-						view);
+				return new ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(view);
 
 			case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
 				return new ActionPinInAddStructuralFeatureValueActionAsObjectEditPart(view);
@@ -936,8 +931,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart(view);
 
 			case ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(
-						view);
+				return new ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(view);
 
 			case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
 				return new ActionPinInAddStructuralFeatureValueActionAsValueEditPart(view);
@@ -949,8 +943,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActionPinInAddStructuralFeatureValueActionAsValueValueEditPart(view);
 
 			case ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart(
-						view);
+				return new ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart(view);
 
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
 				return new ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart(view);
@@ -962,8 +955,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActionPinInAddStructuralFeatureValueActionAsInserAtValueEditPart(view);
 
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(
-						view);
+				return new ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(view);
 
 			case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
 				return new OutputPinInAddStructuralFeatureValueActionAsResultEditPart(view);
@@ -972,8 +964,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart(view);
 
 			case OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID:
-				return new OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart(
-						view);
+				return new OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart(view);
 
 			case DestroyObjectActionEditPart.VISUAL_ID:
 				return new DestroyObjectActionEditPart(view);
@@ -1926,8 +1917,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return new ActionLocalPreconditionEditPart(view);
 
+
 			case ActionLocalPostconditionEditPart.VISUAL_ID:
 				return new ActionLocalPostconditionEditPart(view);
+
 
 			case ObjectFlowEditPart.VISUAL_ID:
 				return new ObjectFlowEditPart(view);
@@ -1956,6 +1949,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ObjectFlowInterruptibleIconEditPart.VISUAL_ID:
 				return new ObjectFlowInterruptibleIconEditPart(view);
 
+
 			case ControlFlowEditPart.VISUAL_ID:
 				return new ControlFlowEditPart(view);
 
@@ -1974,6 +1968,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ControlFlowInterruptibleIconEditPart.VISUAL_ID:
 				return new ControlFlowInterruptibleIconEditPart(view);
 
+
 			case ExceptionHandlerEditPart.VISUAL_ID:
 				return new ExceptionHandlerEditPart(view);
 
@@ -1983,8 +1978,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ExceptionHandlerIconEditPart.VISUAL_ID:
 				return new ExceptionHandlerIconEditPart(view);
 
+
 			case CommentLinkEditPart.VISUAL_ID:
 				return new CommentLinkEditPart(view);
+
 
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
@@ -2007,7 +2004,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
@@ -2048,7 +2046,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
 			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);

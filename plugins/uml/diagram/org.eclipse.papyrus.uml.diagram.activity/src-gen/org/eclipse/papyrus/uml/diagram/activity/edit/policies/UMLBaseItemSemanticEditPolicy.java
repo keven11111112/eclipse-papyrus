@@ -176,7 +176,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		// generated code
 		if (editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy
-					? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
+					? ((ICommandProxy) editPolicyCommand).getICommand()
+					: new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -265,8 +266,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		IElementEditService commandService = ElementEditServiceUtils
-				.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement());
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement());
 		if (req.getElementType() != null) {
 			commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType(), req.getClientContext());
 		}
@@ -405,8 +405,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
 		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
-					|| nextView.getElement() != view.getElement()) {
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -440,7 +439,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateAction_LocalPreconditionEdge(Action source, Constraint target) {
 			if (source != null) {
-				if (source.getLocalPreconditions().contains(target)) {
+				if (source.getLocalPreconditions()
+						.contains(target)) {
 					return false;
 				}
 				if (source == target) {
@@ -448,7 +448,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 			}
 
-			return canExistAction_LocalPreconditionEdge(source, target);
+			return canExistAction_LocalPreconditionEdge(
+					source, target);
 		}
 
 		/**
@@ -456,7 +457,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateAction_LocalPostconditionEdge(Action source, Constraint target) {
 			if (source != null) {
-				if (source.getLocalPostconditions().contains(target)) {
+				if (source.getLocalPostconditions()
+						.contains(target)) {
 					return false;
 				}
 				if (source == target) {
@@ -464,21 +466,24 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 			}
 
-			return canExistAction_LocalPostconditionEdge(source, target);
+			return canExistAction_LocalPostconditionEdge(
+					source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateObjectFlow_Edge(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistObjectFlow_Edge(container, null, source, target);
+			return canExistObjectFlow_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateControlFlow_Edge(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistControlFlow_Edge(container, null, source, target);
+			return canExistControlFlow_Edge(
+					container, null, source, target);
 		}
 
 		/**
@@ -486,7 +491,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateExceptionHandler_Edge(ExecutableNode container, ExecutableNode source,
 				ObjectNode target) {
-			return canExistExceptionHandler_Edge(container, null, source, target);
+			return canExistExceptionHandler_Edge(
+					container, null, source, target);
 		}
 
 		/**
@@ -494,12 +500,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
-				if (source.getAnnotatedElements().contains(target)) {
+				if (source.getAnnotatedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistComment_AnnotatedElementEdge(source, target);
+			return canExistComment_AnnotatedElementEdge(
+					source, target);
 		}
 
 		/**
@@ -507,12 +515,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
-				if (source.getConstrainedElements().contains(target)) {
+				if (source.getConstrainedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistConstraint_ConstrainedElementEdge(source, target);
+			return canExistConstraint_ConstrainedElementEdge(
+					source, target);
 		}
 
 		/**
@@ -579,8 +589,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 					// rule validateJoinNode_validateIncomingObjectFlow
-					ActivityEdge incomingObjectFlow = source.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if (incomingObjectFlow != null) {
 						// the outgoing edge must be an ObjectFlow
 						return false;
@@ -588,10 +597,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if (source instanceof ForkNode) {
 					// rule validateForkNode_validateEdges on source Fork node
-					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
-					ActivityEdge incomingObjectFlow = source.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
@@ -603,10 +610,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 					// rule validateMergeNode_validateEdges on source Merge node
-					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
-					ActivityEdge incomingObjectFlow = source.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
@@ -614,8 +619,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if (source instanceof DecisionNode) {
 					// rule validateDecisionNode_validateEdges on source Decision node
-					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					int incomingObjectFlowNumber = 0;
 					for (ActivityEdge incomingEdge : source.getIncomings()) {
 						if (incomingEdge instanceof ObjectFlow) {
@@ -653,10 +657,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 					// rule validateForkNode_validateEdges on target Fork node
-					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
-					ActivityEdge incomingObjectFlow = target.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
@@ -664,10 +666,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if (target instanceof MergeNode) {
 					// rule validateMergeNode_validateEdges on target Merge node
-					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
-					ActivityEdge incomingObjectFlow = target.getIncoming(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
@@ -680,13 +680,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 					// rule validateDecisionNode_validateEdges on target Decision node
-					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true,
-							UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = null;
 					for (ActivityEdge incomingEdge : target.getIncomings()) {
 						// filter the decision flow
-						if (incomingEdge instanceof ObjectFlow
-								&& incomingEdge != ((DecisionNode) target).getDecisionInputFlow()) {
+						if (incomingEdge instanceof ObjectFlow && incomingEdge != ((DecisionNode) target).getDecisionInputFlow()) {
 							incomingObjectFlow = incomingEdge;
 						}
 					}

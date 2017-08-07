@@ -66,11 +66,10 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
-				new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -104,9 +103,10 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -121,6 +121,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.LocalPreconditionConstraintFigure
+	 * 
 	 * @generated
 	 */
 	public LocalPreconditionConstraintFigure getPrimaryShape() {
@@ -136,10 +137,10 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 			return true;
 		}
 		if (childEditPart instanceof DurationConstraintAsLocalPrecondBodyEditPart) {
-			((DurationConstraintAsLocalPrecondBodyEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getConstraintFigure());
+			((DurationConstraintAsLocalPrecondBodyEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
 
 		return false;
 	}
@@ -208,7 +209,9 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -259,8 +262,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(
-				UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
 	}
 
 }

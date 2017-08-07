@@ -89,15 +89,14 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.TestIdentityActionCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.TestIdentityActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
-				new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
@@ -158,9 +157,10 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -169,7 +169,8 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -188,6 +189,7 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
+	 * 
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
@@ -203,61 +205,76 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInTestIdentityActionEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((OutputPinInTestIdentityActionEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinInTestIdentityActionEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInTestIdentityActionAsFirstEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((InputPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInTestIdentityActionAsSecondEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((InputPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInTestIdentityActionAsFirstEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((ValuePinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInTestIdentityActionAsSecondEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((ValuePinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInTestIdentityActionAsFirstEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((ActionPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInTestIdentityActionAsSecondEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((ActionPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 
 		return false;
 	}
@@ -270,38 +287,31 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 		if (childEditPart instanceof OutputPinInTestIdentityActionEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((OutputPinInTestIdentityActionEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInTestIdentityActionEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InputPinInTestIdentityActionAsFirstEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((InputPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InputPinInTestIdentityActionAsSecondEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((InputPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ValuePinInTestIdentityActionAsFirstEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((ValuePinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ValuePinInTestIdentityActionAsSecondEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((ValuePinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ActionPinInTestIdentityActionAsFirstEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((ActionPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInTestIdentityActionAsFirstEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ActionPinInTestIdentityActionAsSecondEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((ActionPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInTestIdentityActionAsSecondEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -374,7 +384,9 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

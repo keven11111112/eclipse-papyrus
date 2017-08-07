@@ -10,8 +10,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class ActionLocalPostconditionEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
