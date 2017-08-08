@@ -60,7 +60,7 @@ public interface DropStrategy {
 	 * @param targetEditPart
 	 *            The target edit part
 	 * @return
-	 *         A command, or null if the strategy cannot handle the request
+	 * 		A command, or null if the strategy cannot handle the request
 	 */
 	public Command getCommand(Request request, EditPart targetEditPart);
 
@@ -73,5 +73,39 @@ public interface DropStrategy {
 	 */
 	@Deprecated
 	public int getPriority();
+
+	/**
+	 * When this strategy can handle this request, this method can be implemented
+	 * to optionally display a visual feedback on the given edit part for this request.
+	 *
+	 * By default, compartments already support a feedback. Return true to override
+	 * the default feedback, false to keep it.
+	 *
+	 * The feedback should always be erased in {@link #eraseTargetFeedback(Request, EditPart)}
+	 *
+	 * @param request
+	 * @param targetEditPart
+	 *
+	 * @return true if the default feedback should be overridden, false if it should be preserved
+	 *
+	 * @since 1.3
+	 */
+	public default boolean showTargetFeedback(Request request, EditPart targetEditPart) {
+		return false;
+	}
+
+	/**
+	 * Erase any feedback added via {@link #showTargetFeedback(Request, EditPart)}. Note that this method
+	 * may be invoked even if {@link #showTargetFeedback(Request, EditPart)} was never called.
+	 *
+	 * @param request
+	 * @param targetEditPart
+	 * @return
+	 *
+	 * @since 1.3
+	 */
+	public default boolean eraseTargetFeedback(Request request, EditPart targetEditPart) {
+		return false;
+	}
 
 }

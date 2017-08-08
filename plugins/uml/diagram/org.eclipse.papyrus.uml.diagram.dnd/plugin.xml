@@ -30,5 +30,8 @@
        <strategy
              strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.PortToTypesPortDropStrategy">
        </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.ReorderListItemsStrategy">
+       </strategy>
    </extension>
 </plugin>
