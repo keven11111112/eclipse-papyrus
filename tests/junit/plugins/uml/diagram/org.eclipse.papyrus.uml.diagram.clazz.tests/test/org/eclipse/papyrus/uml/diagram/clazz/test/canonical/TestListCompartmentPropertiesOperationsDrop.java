@@ -240,35 +240,109 @@ public class TestListCompartmentPropertiesOperationsDrop extends AbstractPapyrus
 		getHelper().checkUnexecutableDrop(PrimitiveTypeEditPart.VISUAL_ID, PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID);
 	}
 
+	/*
+	 * For ASSOCIATION_DIRECTED_EDGE
+	 */
+	
 	@Test
-	public void testDropProperty2InterfaceAttributeCompartment() throws Exception {
-		getHelper().checkDropAssociationPropertyFromModelExplorer(InterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
+	public void testDropAssociationEndDirectedProperty2InterfaceAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(InterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
 	}
 
 	@Test
-	public void testDropProperty2ClassAttributeCompartment() throws Exception {
-		getHelper().checkDropAssociationPropertyFromModelExplorer(ClassEditPart.VISUAL_ID, ClassAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
+	public void testDropAssociationEndDirectedProperty2ClassAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(ClassEditPart.VISUAL_ID, ClassAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
 	}
 
 	@Test
-	public void testDropProperty2DataTypeAttributeCompartment() throws Exception {
-		getHelper().checkDropAssociationPropertyFromModelExplorer(DataTypeEditPart.VISUAL_ID, DataTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
+	public void testDropAssociationEndDirectedProperty2DataTypeAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(DataTypeEditPart.VISUAL_ID, DataTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
 	}
 
 	@Test
-	public void testDropProperty2SignalAttributeCompartment() throws Exception {
-		getHelper().checkDropAssociationPropertyFromModelExplorer(SignalEditPart.VISUAL_ID, SignalAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
+	public void testDropAssociationEndDirectedProperty2SignalAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(SignalEditPart.VISUAL_ID, SignalAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
 	}
 
 	@Test
-	public void testDropProperty2PrimitiveTypeAttributeCompartment() throws Exception {
-		getHelper().checkDropAssociationPropertyFromModelExplorer(PrimitiveTypeEditPart.VISUAL_ID, PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
+	public void testDropAssociationEndDirectedProperty2PrimitiveTypeAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(PrimitiveTypeEditPart.VISUAL_ID, PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
 	}
 
 	@Test
-	public void testDropProperty2ComponentAttributeCompartment() throws Exception {
-		getHelper().checkDropAssociationPropertyFromModelExplorer(ComponentEditPart.VISUAL_ID, ComponentAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
+	public void testDropAssociationEndDirectedProperty2ComponentAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(ComponentEditPart.VISUAL_ID, ComponentAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_DIRECTED_EDGE);
 	}
+
+	
+	/*
+	 * For ASSOCIATION_NON_DIRECTED_EDGE
+	 */
+	
+	@Test
+	public void testDropAssociationEndCompositeDirectedProperty2InterfaceAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(InterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_COMPOSITE_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropAssociationEndCompositeDirectedProperty2ClassAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(ClassEditPart.VISUAL_ID, ClassAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_COMPOSITE_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropAssociationEndCompositeDirectedProperty2DataTypeAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(DataTypeEditPart.VISUAL_ID, DataTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_COMPOSITE_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropAssociationEndCompositeDirectedProperty2SignalAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(SignalEditPart.VISUAL_ID, SignalAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_COMPOSITE_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropAssociationEndCompositeDirectedProperty2PrimitiveTypeAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(PrimitiveTypeEditPart.VISUAL_ID, PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_COMPOSITE_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropAssociationEndCompositeDirectedProperty2ComponentAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(ComponentEditPart.VISUAL_ID, ComponentAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_COMPOSITE_DIRECTED_EDGE);
+	}
+	
+	/*
+	 * For ASSOCIATION_SHARED_DIRECTED_EDGE
+	 */
+	
+	@Test
+	public void testDropSharedAssociationDirectedProperty2InterfaceAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(InterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_SHARED_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropSharedAssociationDirectedProperty2ClassAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(ClassEditPart.VISUAL_ID, ClassAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_SHARED_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropSharedAssociationDirectedProperty2DataTypeAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(DataTypeEditPart.VISUAL_ID, DataTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_SHARED_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropSharedAssociationDirectedProperty2SignalAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(SignalEditPart.VISUAL_ID, SignalAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_SHARED_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropSharedAssociationDirectedProperty2PrimitiveTypeAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(PrimitiveTypeEditPart.VISUAL_ID, PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_SHARED_DIRECTED_EDGE);
+	}
+
+	@Test
+	public void testDropSharedAssociationDirectedProperty2ComponentAttributeCompartment() throws Exception {
+		getHelper().checkDropAssociationEndPropertyFromModelExplorer(ComponentEditPart.VISUAL_ID, ComponentAttributeCompartmentEditPart.VISUAL_ID, UMLDIElementTypes.ASSOCIATION_SHARED_DIRECTED_EDGE);
+	}
+	
 
 	private TestListCompartmentHelper getHelper() {
 		if (myHelper == null) {

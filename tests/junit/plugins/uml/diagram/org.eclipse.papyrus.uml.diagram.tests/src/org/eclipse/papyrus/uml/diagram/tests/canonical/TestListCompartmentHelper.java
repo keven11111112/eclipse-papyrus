@@ -109,10 +109,18 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Assert.assertTrue(ddCommand.canExecute());
 	}
 
-	public void checkDropAssociationPropertyFromModelExplorer(String targetVisualId, String targetCompartmentVisualId, IElementType associationType) throws Exception {
+	/**
+	 * Requirement 20170700 An association end property could be dropped only in a container which is its semantic container
+	 * @param targetVisualId
+	 * @param targetCompartmentVisualId
+	 * @param associationType
+	 * @throws Exception
+	 */
+	public void checkDropAssociationEndPropertyFromModelExplorer(String targetVisualId, String targetCompartmentVisualId, IElementType associationType) throws Exception {
 		IGraphicalEditPart sourceEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 1);
-		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(sourceEP, targetCompartmentVisualId);
+		IGraphicalEditPart sourceCompartmentEP = findChildBySemanticHint(sourceEP, targetCompartmentVisualId);
+		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
 		IGraphicalEditPart associationEP = createAssociationLink(associationType, sourceEP, targetEP);
 		assertNotNull(associationEP);
 		EObject sourceSemantic = sourceEP.resolveSemanticElement();
@@ -122,7 +130,10 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Property sourceProperty = sourceProperties.get(0);
 		List<EObject> forDrop = new ArrayList<EObject>();
 		forDrop.add(sourceProperty);
-		Command ddCommand = createDropCommandFromModelExplorer(forDrop, targetCompartmentEP);
+		Command ddCommand = createDropCommandFromModelExplorer(forDrop, sourceCompartmentEP);
+		Assert.assertTrue(ddCommand != null || true == ddCommand.canExecute());
+		
+		ddCommand = createDropCommandFromModelExplorer(forDrop, targetCompartmentEP);
 		Assert.assertTrue(ddCommand == null || false == ddCommand.canExecute());
 	}
 
