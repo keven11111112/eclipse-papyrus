@@ -247,7 +247,7 @@
 		<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="2.0.0"/>
 		<plugin name="org.eclipse.nebula.widgets.richtext" version="1.2.0"/>
 	</feature>
-	<feature name="org.eclipse.papyrus.sdk.feature" version="3.0.0">
+	<feature name="org.eclipse.papyrus.sdk.feature" version="3.1.0">
 		<feature name="org.eclipse.papyrus.editor.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.core.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.feature" version="3.0.0"/>
