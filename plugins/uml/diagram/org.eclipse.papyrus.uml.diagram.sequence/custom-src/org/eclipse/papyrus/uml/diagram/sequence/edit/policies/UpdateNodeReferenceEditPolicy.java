@@ -56,7 +56,11 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 	 * 
 	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
-	 *         <LI>when move B (anchor of the message)-->move E but not move F this is a resize of the execution specification
+	 *         <LI>when move B (anchor of the message)-->
+	 *         If B.y<C.y
+	 *         Move E but not move F this is a resize of the execution specification
+	 *         if B.y> C.y
+	 *         Move E and Move F this is a move of the execution specification
 	 *         <LI>when move C (anchor of the message)-->move F but not move E this is a resize of the execution specification
 	 *         <UL>
 	 */
@@ -85,9 +89,15 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 						changeBoundsRequest.setEditParts(editPart);
 						if (references.getStrongReferences().get(editPart).equals(SequenceReferenceEditPolicy.ROLE_START)) {
 							int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y());
-							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName());// $NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
-							changeBoundsRequest.setMoveDelta(new Point(0, delta));
-							changeBoundsRequest.setSizeDelta(new Dimension(0, -delta));
+							if (gEditPart.getFigure().getBounds().height > delta) {
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName());// $NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
+								changeBoundsRequest.setMoveDelta(new Point(0, delta));
+								changeBoundsRequest.setSizeDelta(new Dimension(0, -delta));
+							} else {// make a move
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName());// $NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
+								changeBoundsRequest.setMoveDelta(new Point(0, delta));
+								changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
+							}
 						}
 						if (references.getStrongReferences().get(editPart).equals(SequenceReferenceEditPolicy.ROLE_FINISH)) {
 							int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y() - gEditPart.getFigure().getBounds().height);
