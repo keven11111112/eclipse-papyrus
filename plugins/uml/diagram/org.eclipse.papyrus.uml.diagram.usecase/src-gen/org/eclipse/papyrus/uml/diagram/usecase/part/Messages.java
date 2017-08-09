@@ -262,24 +262,14 @@ public class Messages extends NLS {
 	public static String Nodes1Group_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String Children2Group_title;
+	* @generated
+	*/
+	public static String Links2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Children2Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Links3Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Links3Group_desc;
+	public static String Links2Group_desc;
 
 	/**
 	 * @generated
@@ -342,14 +332,14 @@ public class Messages extends NLS {
 	public static String Comment6CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String ExtensionPoint1CreationTool_title;
+	* @generated
+	*/
+	public static String ExtensionPoint7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ExtensionPoint1CreationTool_desc;
+	public static String ExtensionPoint7CreationTool_desc;
 
 	/**
 	 * @generated
