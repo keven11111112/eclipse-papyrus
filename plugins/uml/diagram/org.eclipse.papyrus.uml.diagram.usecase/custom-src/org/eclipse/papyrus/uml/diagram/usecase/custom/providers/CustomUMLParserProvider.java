@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  CEA LIST- Initial API and implementation
- *
+ *  Vincent LORENZO (CEA-LIST) - bug 520755
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.custom.providers;
 
@@ -20,6 +20,8 @@ import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotyp
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ExtendAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.IncludeAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageImportAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLParserProvider;
 
@@ -52,6 +54,10 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAppliedStereotypeParser(KeywordLabel.USE);
 		case PackageImportAppliedStereotypeEditPart.VISUAL_ID:
 			return getAppliedKeywordParser(KeywordLabel.IMPORT);
+		case ExtendAppliedStereotypeEditPart.VISUAL_ID:
+			return getAppliedKeywordParser(KeywordLabel.EXTEND);
+		case IncludeAppliedStereotypeEditPart.VISUAL_ID:
+			return getAppliedKeywordParser(KeywordLabel.INCLUDE);
 		}
 		return super.getParser(visualID);
 	}
