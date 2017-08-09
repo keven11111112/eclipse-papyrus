@@ -48,8 +48,7 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[23];
-		this.expressionBodies = new String[] {
-				"\' \'", //$NON-NLS-1$
+		this.expressionBodies = new String[] { "\' \'", //$NON-NLS-1$
 				"self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 				"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
 				"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
@@ -103,7 +102,8 @@ public class UMLOCLFactory {
 			throw new IllegalArgumentException();
 		}
 		if (cached.expressions[index] == null) {
-			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
+					environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
@@ -186,9 +186,11 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
+		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
+				Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
-			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
+			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv),
+					EcorePackage.eINSTANCE.getEObject());
 			for (String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
@@ -198,7 +200,8 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv, String name, EClassifier type) {
+		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv,
+				String name, EClassifier type) {
 			Variable var = EcoreFactory.eINSTANCE.createVariable();
 			var.setName(name);
 			var.setType(ecoreEnv.getUMLReflection().getOCLType(type));

@@ -26,8 +26,6 @@ public class UMLEditPartProvider extends DefaultEditPartProvider {
 	 * @generated
 	 */
 	public UMLEditPartProvider() {
-		super(new UMLEditPartFactory(),
-				UMLVisualIDRegistry.TYPED_INSTANCE,
-				SequenceDiagramEditPart.MODEL_ID);
+		super(new UMLEditPartFactory(), UMLVisualIDRegistry.TYPED_INSTANCE, SequenceDiagramEditPart.MODEL_ID);
 	}
 }

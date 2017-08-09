@@ -89,9 +89,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteraction_NameLabel_Parser() {
 		if (interaction_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("sd: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -111,9 +109,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteractionUse_NameLabel_Parser() {
 		if (interactionUse_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Ref"); //$NON-NLS-1$
 			parser.setEditorPattern("Ref"); //$NON-NLS-1$
@@ -148,9 +144,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getContinuation_NameLabel_Parser() {
 		if (continuation_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			continuation_NameLabel_Parser = parser;
 		}
@@ -182,9 +176,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStateInvariant_NameLabel_Parser() {
 		if (stateInvariant_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stateInvariant_NameLabel_Parser = parser;
 		}
@@ -306,9 +298,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConstraint_NameLabel_Parser() {
 		if (constraint_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraint_NameLabel_Parser = parser;
 		}
@@ -415,9 +405,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getGate_NameLabel_Parser() {
 		if (gate_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			gate_NameLabel_Parser = parser;
 		}
@@ -658,9 +646,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			case InteractionNameEditPart.VISUAL_ID:
 				return getInteraction_NameLabel_Parser();
 
-
-
-
 			case InteractionUseNameEditPart.VISUAL_ID:
 				return getInteractionUse_NameLabel_Parser();
 			case InteractionUseName2EditPart.VISUAL_ID:
@@ -671,8 +656,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 			case LifelineNameEditPart.VISUAL_ID:
 				return getLifeline_NameLabel_Parser();
-
-
 
 			case StateInvariantNameEditPart.VISUAL_ID:
 				return getStateInvariant_NameLabel_Parser();
@@ -693,7 +676,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getDurationConstraint_BodyLabel_Parser();
 			case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
 				return getDurationConstraint_StereotypeLabel_Parser();
-
 
 			case ConstraintNameEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
@@ -751,11 +733,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_FoundStereotypeLabel_Parser();
 
-
-
 			case GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID:
 				return getGeneralOrdering_StereotypeLabel_Parser();
-
 
 			}
 		}

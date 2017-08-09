@@ -155,7 +155,8 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof DurationConstraintLabelEditPart || borderItemEditPart instanceof DurationConstraintAppliedStereotypeEditPart) {
+		if (borderItemEditPart instanceof DurationConstraintLabelEditPart
+				|| borderItemEditPart instanceof DurationConstraintAppliedStereotypeEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);

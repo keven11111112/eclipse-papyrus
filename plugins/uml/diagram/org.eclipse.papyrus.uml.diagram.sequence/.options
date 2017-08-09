@@ -5,8 +5,3 @@ org.eclipse.papyrus.uml.diagram.sequence/debug=false
 
 # Visual IDs
 org.eclipse.papyrus.uml.diagram.sequence/debug/visualID=false
-
-# Traces #
-org.eclipse.papyrus.uml.diagram.sequence/debug/SequenceDebug=false
-org.eclipse.papyrus.uml.diagram.sequence/debug/SequenceDebugUtil=false
-org.eclipse.papyrus.uml.diagram.sequence/debug/SequenceDebugGrid=false

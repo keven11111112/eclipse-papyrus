@@ -131,7 +131,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 

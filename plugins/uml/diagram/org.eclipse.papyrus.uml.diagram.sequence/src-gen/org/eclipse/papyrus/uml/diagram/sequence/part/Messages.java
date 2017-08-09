@@ -424,6 +424,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ConsiderIgnoreFragment16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ConsiderIgnoreFragment16CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String MessageSync1CreationTool_title;
 
 	/**

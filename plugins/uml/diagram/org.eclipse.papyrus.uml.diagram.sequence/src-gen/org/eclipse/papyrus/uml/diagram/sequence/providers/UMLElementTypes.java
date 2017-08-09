@@ -78,7 +78,8 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
+			UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -88,79 +89,98 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Package_SequenceDiagram = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Package_SequenceDiagram"); //$NON-NLS-1$
+	public static final IElementType Package_SequenceDiagram = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Package_SequenceDiagram"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interaction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Interaction_Shape"); //$NON-NLS-1$
+	public static final IElementType Interaction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Interaction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConsiderIgnoreFragment_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ConsiderIgnoreFragment_Shape"); //$NON-NLS-1$
+	public static final IElementType ConsiderIgnoreFragment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ConsiderIgnoreFragment_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CombinedFragment_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CombinedFragment_Shape"); //$NON-NLS-1$
+	public static final IElementType CombinedFragment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CombinedFragment_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InteractionOperand_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InteractionOperand_Shape"); //$NON-NLS-1$
+	public static final IElementType InteractionOperand_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InteractionOperand_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InteractionUse_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InteractionUse_Shape"); //$NON-NLS-1$
+	public static final IElementType InteractionUse_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InteractionUse_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Continuation_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Continuation_Shape"); //$NON-NLS-1$
+	public static final IElementType Continuation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Continuation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Lifeline_Shape"); //$NON-NLS-1$
+	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Lifeline_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionExecutionSpecification_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionExecutionSpecification_Shape"); //$NON-NLS-1$
+	public static final IElementType ActionExecutionSpecification_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionExecutionSpecification_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType BehaviorExecutionSpecification_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.BehaviorExecutionSpecification_Shape"); //$NON-NLS-1$
+	public static final IElementType BehaviorExecutionSpecification_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.BehaviorExecutionSpecification_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateInvariant_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StateInvariant_Shape"); //$NON-NLS-1$
+	public static final IElementType StateInvariant_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StateInvariant_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
+	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
+	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
+	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
+	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationConstraint_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationConstraint_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
+	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -169,47 +189,58 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_SynchEdge"); //$NON-NLS-1$
+	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Message_SynchEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_AsynchEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_AsynchEdge"); //$NON-NLS-1$
+	public static final IElementType Message_AsynchEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Message_AsynchEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_ReplyEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_ReplyEdge"); //$NON-NLS-1$
+	public static final IElementType Message_ReplyEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Message_ReplyEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_CreateEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_CreateEdge"); //$NON-NLS-1$
+	public static final IElementType Message_CreateEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Message_CreateEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_DeleteEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_DeleteEdge"); //$NON-NLS-1$
+	public static final IElementType Message_DeleteEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Message_DeleteEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_LostEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_LostEdge"); //$NON-NLS-1$
+	public static final IElementType Message_LostEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Message_LostEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_FoundEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_FoundEdge"); //$NON-NLS-1$
+	public static final IElementType Message_FoundEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Message_FoundEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
+	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
+	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType GeneralOrdering_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.GeneralOrdering_Edge"); //$NON-NLS-1$
+	public static final IElementType GeneralOrdering_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.GeneralOrdering_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_ContextEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_ContextEdge"); //$NON-NLS-1$
+	public static final IElementType Constraint_ContextEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_ContextEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -251,88 +282,63 @@ public class UMLElementTypes {
 
 			elements.put(Package_SequenceDiagram, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Interaction_Shape, UMLPackage.eINSTANCE.getInteraction());
-
 
 			elements.put(ConsiderIgnoreFragment_Shape, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
 
-
 			elements.put(CombinedFragment_Shape, UMLPackage.eINSTANCE.getCombinedFragment());
-
 
 			elements.put(InteractionOperand_Shape, UMLPackage.eINSTANCE.getInteractionOperand());
 
-
 			elements.put(InteractionUse_Shape, UMLPackage.eINSTANCE.getInteractionUse());
-
 
 			elements.put(Continuation_Shape, UMLPackage.eINSTANCE.getContinuation());
 
-
 			elements.put(Lifeline_Shape, UMLPackage.eINSTANCE.getLifeline());
-
 
 			elements.put(ActionExecutionSpecification_Shape, UMLPackage.eINSTANCE.getActionExecutionSpecification());
 
-
-			elements.put(BehaviorExecutionSpecification_Shape, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
-
+			elements.put(BehaviorExecutionSpecification_Shape,
+					UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
 
 			elements.put(StateInvariant_Shape, UMLPackage.eINSTANCE.getStateInvariant());
 
-
 			elements.put(TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint());
-
 
 			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
 
-
 			elements.put(DurationConstraint_Shape, UMLPackage.eINSTANCE.getDurationConstraint());
 
-
-			elements.put(DestructionOccurrenceSpecification_Shape, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
-
+			elements.put(DestructionOccurrenceSpecification_Shape,
+					UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
 
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
 
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
 
 			elements.put(DurationConstraint_Shape_CN, UMLPackage.eINSTANCE.getDurationConstraint());
 
-
 			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
-
 
 			elements.put(Gate_Shape, UMLPackage.eINSTANCE.getGate());
 
-
 			elements.put(Message_SynchEdge, UMLPackage.eINSTANCE.getMessage());
-
 
 			elements.put(Message_AsynchEdge, UMLPackage.eINSTANCE.getMessage());
 
-
 			elements.put(Message_ReplyEdge, UMLPackage.eINSTANCE.getMessage());
-
 
 			elements.put(Message_CreateEdge, UMLPackage.eINSTANCE.getMessage());
 
-
 			elements.put(Message_DeleteEdge, UMLPackage.eINSTANCE.getMessage());
 
-
 			elements.put(Message_LostEdge, UMLPackage.eINSTANCE.getMessage());
-
 
 			elements.put(Message_FoundEdge, UMLPackage.eINSTANCE.getMessage());
 
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
 
 			elements.put(GeneralOrdering_Edge, UMLPackage.eINSTANCE.getGeneralOrdering());
 
