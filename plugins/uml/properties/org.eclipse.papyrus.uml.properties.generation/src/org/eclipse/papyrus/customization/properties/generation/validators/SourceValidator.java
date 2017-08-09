@@ -38,11 +38,11 @@ public class SourceValidator extends AbstractValidator {
 			if (!s.equals("")) { //$NON-NLS-1$
 				if (this.generator instanceof EcoreGenerator) {
 					if (!s.endsWith("ecore")) { //$NON-NLS-1$
-						return error(Messages.SourceValidator_2);
+						return warning(Messages.SourceValidator_2);
 					}
 				} else if (this.generator instanceof ProfileGenerator) {
-					if (!s.endsWith("profile.uml")) { //$NON-NLS-1$
-						return error(Messages.SourceValidator_4);
+					if (!s.endsWith("uml")) { //$NON-NLS-1$
+						return warning(Messages.SourceValidator_4);
 					}
 				}
 

@@ -34,6 +34,7 @@ import org.eclipse.papyrus.customization.properties.generation.wizard.widget.Fil
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
+import org.eclipse.papyrus.infra.widgets.providers.FileExtensions;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.swt.SWT;
@@ -67,6 +68,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	private List<EObject> listEObject;
 
 
+	@Override
 	public void createControls(Composite parent) {
 		Composite root = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, false);
@@ -80,28 +82,31 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		sourceLabel.setLayoutData(data);
 
 		sourceFileChooser = new FileChooser(root, false);
-		sourceFileChooser.setFilterExtensions(new String[] { "profile.uml" }); //$NON-NLS-1$
+		sourceFileChooser.setFilterExtensions(FileExtensions.umlProfileExtensions);
 		sourceFileChooser.addListener(this);
-		listEObject = new ArrayList<EObject>();
+		listEObject = new ArrayList<>();
 	}
 
+	@Override
 	public String getDescription() {
 		return Messages.ProfileGenerator_description;
 	}
 
+	@Override
 	public boolean isReady() {
 		return sourceFileChooser.getFilePath() != null;
 	}
 
+	@Override
 	public String getName() {
 		return Messages.ProfileGenerator_name;
 	}
 
 	@Override
 	protected List<ModelExtent> getModelExtents() {
-		LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
+		LinkedList<ModelExtent> result = new LinkedList<>();
 		ModelExtent inPackage = new BasicModelExtent();
-		List<EObject> liste = new ArrayList<EObject>();
+		List<EObject> liste = new ArrayList<>();
 		if (!listEObject.isEmpty()) {
 			for (EObject currentEObject : listEObject) {
 				EObject tempEObject = null;
@@ -185,7 +190,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	private List<String> getPath(DataContextElement element) {
 		List<String> result;
 		if (element.getPackage() == null) {
-			result = new LinkedList<String>();
+			result = new LinkedList<>();
 		} else {
 			result = getPath(element.getPackage());
 		}
@@ -232,6 +237,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		return null;
 	}
 
+	@Override
 	public boolean isSelectedSingle(Property property) {
 		org.eclipse.uml2.uml.Property attribute = getAttribute(property);
 		if (attribute == null) {
@@ -250,6 +256,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		return true;
 	}
 
+	@Override
 	public boolean isSelectedMultiple(Property property) {
 		if (!isSelectedSingle(property)) {
 			return false;
@@ -257,7 +264,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 
 		org.eclipse.uml2.uml.Property attribute = getAttribute(property);
 
-		Set<String> validDataTypes = new HashSet<String>(Arrays.asList(new String[] { "Integer", "Boolean", "Float", "Double" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		Set<String> validDataTypes = new HashSet<>(Arrays.asList(new String[] { "Integer", "Boolean", "Float", "Double" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
 		if (attribute.getType() instanceof PrimitiveType) {
 			return validDataTypes.contains(((PrimitiveType) attribute.getType()).getName());
@@ -270,10 +277,12 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		return false;
 	}
 
+	@Override
 	public boolean isSelectedSingle(Property property, DataContextElement element) {
 		return isSelectedSingle(property);
 	}
 
+	@Override
 	public boolean isSelectedMultiple(Property property, DataContextElement element) {
 		return isSelectedMultiple(property);
 	}
@@ -283,6 +292,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		return sourceFileChooser.getObservableValue();
 	}
 
+	@Override
 	public List<Object> getExternalReference() {
 		URI packageURI = URI.createPlatformResourceURI(sourceFileChooser.getFilePath(), true);
 		try {
@@ -290,7 +300,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		} catch (IOException e) {
 			// nothing
 		}
-		list = new ArrayList<Object>();
+		list = new ArrayList<>();
 		list.add(umlProfile);
 
 		TreeIterator<EObject> tree = umlProfile.eAllContents();
@@ -310,6 +320,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	}
 
 
+	@Override
 	public void addCheckElement(Object obj) {
 		if (obj instanceof EObject) {
 			EObject current = (EObject) obj;
@@ -344,7 +355,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 			PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 			ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
 
-			LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
+			LinkedList<ModelExtent> result = new LinkedList<>();
 			result.add(inProfile);
 			result.add(getOutContextExtent());
 			result.add(inUml);

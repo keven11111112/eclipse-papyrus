@@ -39,7 +39,7 @@ public class PatternViewerFilter extends AbstractTreeFilter {
 	/** The wildcare to indicate that the start of a pattern is strict. */
 	private static final String START_STRICT_WILDCARE = "^";//$NON-NLS-1$
 
-	/** the wilcard ? */
+	/** The separator for patterns */
 	private static final String SEMI_COLON = ";";//$NON-NLS-1$
 
 	/** the wilcard * */
@@ -68,7 +68,7 @@ public class PatternViewerFilter extends AbstractTreeFilter {
 
 	/**
 	 * Set to true to ignore case.
-	 * 
+	 *
 	 * @param ignoreCase
 	 *            the ignoreCase to set
 	 */
@@ -122,7 +122,7 @@ public class PatternViewerFilter extends AbstractTreeFilter {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.providers.AbstractTreeFilter#isVisible(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
 	@Override

@@ -130,6 +130,7 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 		}
 	}
 
+	@Override
 	public void createControl(Composite parent) {
 		root = new Composite(parent, SWT.NONE);
 		root.setLayout(new GridLayout(2, false));
@@ -168,15 +169,18 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 		if (targetFieldStrategy != null) {
 			targetFieldStrategy.setConverter(new IConverter() {
 
+				@Override
 				public Object getToType() {
 
 					return String.class;
 				}
 
+				@Override
 				public Object getFromType() {
 					return String.class;
 				}
 
+				@Override
 				public String convert(Object fromObject) {
 					if (srcTextObservable != null) {
 						return (String) srcTextObservable.getValue();
@@ -191,14 +195,17 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 		if (srcFieldStrategy != null) {
 			srcFieldStrategy.setConverter(new IConverter() {
 
+				@Override
 				public Object getToType() {
 					return String.class;
 				}
 
+				@Override
 				public Object getFromType() {
 					return String.class;
 				}
 
+				@Override
 				public String convert(Object fromObject) {
 
 					if (fromObject instanceof String) {
@@ -242,6 +249,7 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 		setControl(root);
 	}
 
+	@Override
 	public void handleEvent(Event event) {
 
 		String filePath = targetFileChooser.getFilePath();
@@ -281,9 +289,10 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 	public boolean canFlipToNextPage() {
 		binding.getValidationStatus().addValueChangeListener(new IValueChangeListener() {
 
+			@Override
 			public void handleValueChange(ValueChangeEvent event) {
 				IStatus status = (IStatus) event.diff.getNewValue();
-				if (status.isOK()) {
+				if (status.isOK() || status.getSeverity() == IStatus.WARNING) {
 					setNext(true);
 				} else {
 					setNext(false);

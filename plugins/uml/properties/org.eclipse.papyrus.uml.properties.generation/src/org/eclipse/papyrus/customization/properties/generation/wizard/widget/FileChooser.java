@@ -11,9 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard.widget;
 
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -21,8 +23,17 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -47,9 +58,9 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 
 	private IFile currentFile;
 
-	private List<ViewerFilter> filters;
+	private Map<String, String> filters = new LinkedHashMap<>();
 
-	private Set<Listener> listeners = new HashSet<Listener>();
+	private Set<Listener> listeners = new HashSet<>();
 
 	private boolean newFile;
 
@@ -75,7 +86,6 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		browse = new Button(this, SWT.PUSH);
 		browse.setText(Messages.FileChooser_browseWorkspace);
 		browse.addSelectionListener(this);
-		filters = new LinkedList<ViewerFilter>();
 		this.newFile = newFile;
 	}
 
@@ -101,10 +111,32 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 	 */
 	public void setFilterExtensions(String[] extensions) {
 		filters.clear();
-		ExtensionFilter filter = new ExtensionFilter(extensions);
-		filters.add(filter);
+		for (String ext : extensions) {
+			filters.put(ext, ext);
+		}
 	}
 
+	/**
+	 * Sets the file extensions that this FileChooser accepts.
+	 * Files that don't match one of these extensions will be hidden.
+	 *
+	 * Extensions is a map in which the key is the filter (Accepting * and ? as wildcards)
+	 * and value is the displayed label. The filter may contain several patterns, separated
+	 * with a semi-colon (;).
+	 *
+	 * Example: <*.uml, UML>, <*.profile.uml;*.xmi, UML Profile>
+	 *
+	 * @param extensions
+	 *            A map of (filter name, extension filter)
+	 *
+	 * @since 2.1
+	 */
+	public void setFilterExtensions(Map<String, String> extensions) {
+		filters.clear();
+		filters.putAll(extensions);
+	}
+
+	@Override
 	public void handleEvent(Event event) {
 		notifyChange();
 	}
@@ -119,22 +151,64 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		listeners.add(listener);
 	}
 
+	@Override
 	public void widgetSelected(SelectionEvent e) {
-		IFile[] result = new IFile[0];
+
+		Object[] result = new Object[0];
 
 		if (newFile) {
-			IFile file = WorkspaceResourceDialog.openNewFile(getShell(), null, null, null, filters);
+
+			List<ViewerFilter> viewerFilter = Collections.singletonList(new ExtensionFilter(filters.keySet().toArray(new String[0])));
+
+			IFile file = WorkspaceResourceDialog.openNewFile(getShell(), null, null, null, viewerFilter);
 			if (file != null) {
 				result = new IFile[] { file };
 			}
 		} else {
-			result = WorkspaceResourceDialog.openFileSelection(getShell(), null, null, false, new Object[] { currentFile }, filters);
+			LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+			try {
+				labelProviderService.startService();
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
+
+			ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+
+			IFile currentFile = FileUtil.getIFile(text.getText());
+
+			TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
+			dialog.setTitle("File Selection");
+
+			WorkspaceContentProvider contentProvider = new WorkspaceContentProvider();
+
+			contentProvider.setExtensionFilters(filters);
+
+			dialog.setContentProvider(contentProvider);
+			dialog.setLabelProvider(labelProvider);
+
+
+			if (currentFile != null && currentFile.exists()) {
+				dialog.setInitialSelections(new IFile[] { currentFile });
+			}
+
+			int code = dialog.open();
+			if (code == Window.OK) {
+				result = dialog.getResult();
+			}
+			try {
+				labelProviderService.disposeService();
+			} catch (ServiceException ex) {
+				Activator.log.error(ex);
+			}
 		}
 
-		if (result.length >= 1) {
-			currentFile = result[0];
-			text.setText(currentFile.getFullPath().toString());
-			notifyChange();
+		if (result.length > 0) {
+			Object file = result[0];
+			if (file instanceof IFile) {
+				this.currentFile = ((IFile) file);
+				text.setText(currentFile.getFullPath().toString());
+				notifyChange();
+			}
 		}
 	}
 
@@ -144,6 +218,7 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		}
 	}
 
+	@Override
 	public void widgetDefaultSelected(SelectionEvent e) {
 		// Nothing
 	}
@@ -155,6 +230,5 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 
 	public void setText(String s) {
 		text.setText(s);
-
 	}
 }

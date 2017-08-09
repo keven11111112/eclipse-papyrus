@@ -30,6 +30,13 @@ public abstract class AbstractValidator implements IValidator {
 		return new Status(IStatus.ERROR, getPluginId(), message);
 	}
 
+	/**
+	 * @since 2.1
+	 */
+	protected IStatus warning(String message) {
+		return new Status(IStatus.WARNING, getPluginId(), message);
+	}
+
 	public String getPluginId() {
 		if (pluginId == null) {
 			return Activator.PLUGIN_ID;
