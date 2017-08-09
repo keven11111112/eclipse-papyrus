@@ -382,6 +382,12 @@
             name="Highest">
       </Priority>
    </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomInteractionOperandEditPolicyProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+   </editpolicyProvider>
 </extension>
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
       <editpartProvider class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomEditPartProvider">
