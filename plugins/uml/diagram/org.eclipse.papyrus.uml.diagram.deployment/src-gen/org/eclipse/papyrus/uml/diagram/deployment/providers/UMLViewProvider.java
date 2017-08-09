@@ -1325,6 +1325,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		communicationPath_StereotypeLabel_Location.setX(0);
 		communicationPath_StereotypeLabel_Location.setY(60);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "CommunicationPath");
 		return edge;
 	}
 
