@@ -2861,14 +2861,6 @@
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               id="&quot;usecase.tool.comment&quot;"
               genNodes="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.7"/>
-        </groups>
-        <groups
-            title="Children"
-            description="Child Elements of the Diagram Nodes"
-            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            id="&quot;usecase.group.children&quot;"
-            collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Extension Point"
