@@ -19,10 +19,10 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
+import org.eclipse.papyrus.uml.diagram.common.locator.ISideAffixedNodeBorderItemLocator;
 
-public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLocator implements IBorderItemLocator {
+public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLocator implements ISideAffixedNodeBorderItemLocator {
 
 	/**
 	 * The offset to add to default position. (to avoid corner of rounded
@@ -55,10 +55,10 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 
 		Rectangle realLocation = new Rectangle(proposedLocation);
 
-		if(realLocation.width < DEFAULT_PIN_SIZE) {
+		if (realLocation.width < DEFAULT_PIN_SIZE) {
 			realLocation.setWidth(DEFAULT_PIN_SIZE);
 		}
-		else if(realLocation.height < DEFAULT_PIN_SIZE){
+		if (realLocation.height < DEFAULT_PIN_SIZE) {
 			realLocation.setHeight(DEFAULT_PIN_SIZE);
 		}
 
@@ -113,7 +113,7 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		switch (suggestedSide) {
 
 		case PositionConstants.NORTH:
-			int northY = parent.y() - borderItemSize.height/2;
+			int northY = parent.y() - borderItemSize.height / 2;
 			if (suggestedLocation.y != northY) {
 				newY = northY;
 			}
@@ -132,7 +132,7 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 			break;
 		case PositionConstants.WEST:
 		default:
-			int westX = parent.x()  - borderItemSize.width / 2;
+			int westX = parent.x() - borderItemSize.width / 2;
 			if (suggestedLocation.x != westX) {
 				newX = westX;
 			}
@@ -184,22 +184,13 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		setCurrentSideOfParent(findClosestSideOfParent(borderItem.getBounds(), getParentBorder()));
 	}
 
-	@Override
-	protected Point getPreferredLocation(int side, IFigure borderItem) {
-		return super.getPreferredLocation(side, borderItem);
-	}
-
-
-	@Override protected Point locateOnBorder(Point suggestedLocation, int suggestedSide, int circuitCount, IFigure borderItem) {
-		return super.locateOnBorder(suggestedLocation, suggestedSide, circuitCount, borderItem);
-	}
-
 	/**
 	 *
 	 * @param proposedLocation
 	 *            the proposed location
 	 * @return a possible location on parent figure border
 	 */
+	@Override
 	public Rectangle getPreferredLocation(Rectangle proposedLocation) {
 		// Initialize port location with proposed location
 		// and resolve the bounds of it graphical parent
@@ -230,10 +221,21 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		// Modify position if needed.
 		if ((realLocation.y != yMin) && (realLocation.y != yMax)) {
 			if ((realLocation.x != xMin) && (realLocation.x != xMax)) {
-				if (realLocation.x <= (xMin + (parentRec.width / 2))) {
+				int preferedSide = findClosestSideOfParent(realLocation, parentRec);
+				switch (preferedSide) {
+				case PositionConstants.NORTH:
+					realLocation.y = yMin;
+					break;
+				case PositionConstants.SOUTH:
+					realLocation.y = yMax;
+					break;
+				case PositionConstants.WEST:
 					realLocation.x = xMin;
-				} else {
+					break;
+				case PositionConstants.EAST:
+				default:
 					realLocation.x = xMax;
+					break;
 				}
 			}
 		}

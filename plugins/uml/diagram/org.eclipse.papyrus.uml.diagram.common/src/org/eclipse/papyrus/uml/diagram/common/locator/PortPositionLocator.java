@@ -21,7 +21,6 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
@@ -49,7 +48,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.PortPositionEnum;
  * </pre>
  *
  */
-public class PortPositionLocator implements IBorderItemLocator {
+public class PortPositionLocator implements ISideAffixedNodeBorderItemLocator {
 
 	/** Default port height. */
 	private static final int DEFAULT_HEIGHT = 20;
@@ -73,7 +72,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 	private IFigure figure;
 
 	/**
-	 * Constructor 
+	 * Constructor
 	 *
 	 * @param parentFigure
 	 *            the parent figure
@@ -81,7 +80,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 *            unused
 	 * @deprecated use PortPositionLocator(final IFigure parentFigure)
 	 */
-	@Deprecated 
+	@Deprecated
 	public PortPositionLocator(final IFigure parentFigure, final int preferredSide) {
 		// The preferredSide parameter is not used, just kept here to ensure compatibility
 		// with GMF generated code.
@@ -89,15 +88,16 @@ public class PortPositionLocator implements IBorderItemLocator {
 	}
 
 	/**
-	 * Constructor 
+	 * Constructor
+	 * 
 	 * @param parentFigure
 	 *            the parent figure
 	 */
 	public PortPositionLocator(final IFigure parentFigure) {
 		this.parentFigure = parentFigure;
-	}		
-	
-	
+	}
+
+
 	public int getBorderItemOffset() {
 		return borderItemOffset;
 	}
@@ -172,6 +172,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 *            the proposed location
 	 * @return a possible location on parent figure border
 	 */
+	@Override
 	public Rectangle getPreferredLocation(final Rectangle proposedLocation) {
 		// If it's a SVGNodePlate get the anchor to get the position
 		if (parentFigure instanceof SVGNodePlateFigure &&

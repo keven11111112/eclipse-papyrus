@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.NodeSnapHelper;
+import org.eclipse.papyrus.uml.diagram.common.locator.ISideAffixedNodeBorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 
@@ -60,11 +61,11 @@ public class SideAffixedNodesCreationEditPolicy extends DefaultCreationEditPolic
 		Point requestedLocation = realWantedLocation.getCopy();
 		getHostFigure().translateToRelative(requestedLocation);
 		// Create proposed creation bounds and use the locator to find the expected position
-		PortPositionLocator locator = getPositionLocator();
+		ISideAffixedNodeBorderItemLocator locator = getPositionLocator();
 		if (locator == null) {
 			return null;
 		}
-		final Rectangle preferredBounds = locator.getPreferredLocation(new Rectangle(requestedLocation, new Dimension(20, 20)));
+		final Rectangle preferredBounds = locator.getPreferredLocation(new Rectangle(requestedLocation, new Dimension(-1, -1)));
 		Rectangle retainedBounds = preferredBounds.getCopy();
 		// find the current side of the wanted position
 		final Rectangle parentBounds = getHostFigure().getBounds().getCopy();
@@ -76,8 +77,8 @@ public class SideAffixedNodesCreationEditPolicy extends DefaultCreationEditPolic
 			// we find the best location with snap
 			Point wantedPoint = preferredBounds.getLocation();
 			getHostFigure().translateToAbsolute(wantedPoint);
-			Rectangle portBounds = new Rectangle(wantedPoint, new Dimension(20, 20));
-			NodeSnapHelper helper = new NodeSnapHelper((SnapToHelper) getHost().getAdapter(SnapToHelper.class), portBounds, false, false, true);
+			Rectangle portBounds = new Rectangle(wantedPoint, new Dimension(-1, -1));
+			NodeSnapHelper helper = new NodeSnapHelper(getHost().getAdapter(SnapToHelper.class), portBounds, false, false, true);
 			final ChangeBoundsRequest tmpRequest = new ChangeBoundsRequest("move"); //$NON-NLS-1$
 			tmpRequest.setEditParts(Collections.emptyList());
 			tmpRequest.setSnapToEnabled(true);
@@ -103,7 +104,7 @@ public class SideAffixedNodesCreationEditPolicy extends DefaultCreationEditPolic
 		return setBoundsCommand;
 	}
 
-	protected PortPositionLocator getPositionLocator() {
+	protected ISideAffixedNodeBorderItemLocator getPositionLocator() {
 		return new PortPositionLocator(getHostFigure(), PositionConstants.NONE);
 	}
 
