@@ -71,7 +71,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.providers.ide;bundle-version=
  org.eclipse.papyrus.infra.services.edit
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase; singleton:=true
