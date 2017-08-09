@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2007, 2010, 2013 Borland Software Corporation and others
+ * Copyright (c) 2007, 2010, 2013, 2017 Borland Software Corporation and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *    Thibault Landre (Atos Origin) - initial API and implementation
  *	  Vincent Lorenzo (CEA-LIST) Add a line to initialize the display of the compartments to true
  *    Vincent Lorenzo (CEA-LIST) - Add lines to initialize the display of the labels - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
+ *    Vincent Lorenzo (CEA-LIST) - Bug 520733
  */
 package aspects.xpt.providers
 
@@ -66,6 +67,16 @@ import xpt.editor.VisualIDRegistry
 					return provides((org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation) operation);
 				}
 				«_assert('operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewOperation')»
+				
+				/* we check this view provider is the good one for the currently edited diagram */
+				if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation) {
+					View container = ((org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation) operation).getContainerView();
+					Diagram diagram = container.getDiagram();
+					if(!getDiagramProvidedId().equals(diagram.getType())) {
+						return false;
+					}
+				}
+				
 				if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation) {
 					return provides((org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation) operation);
 				} else if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation) {
