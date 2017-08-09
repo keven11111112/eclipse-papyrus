@@ -378,6 +378,14 @@
 				type="Dependency_StereotypeLabel">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="CommunicationPath_NameLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="CommunicationPath_StereotypeLabel">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="Artifact_FloatingNameLabel_CCN">
 			</mapping>
