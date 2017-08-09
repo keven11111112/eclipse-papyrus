@@ -123,11 +123,11 @@
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
-      <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLIconProvider">
-         <Priority name="Low"/>
-      </IconProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <IconProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLIconProvider">
+	         <Priority name="Low"/>
+	      </IconProvider>
+	   </extension>
 
 
 
@@ -138,9 +138,9 @@
       
    
   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
-   </extension>
+		      <?gmfgen generated="true"?>
+		      <initializer class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
+		   </extension>
 
 
 <extension point="org.eclipse.ui.menus" id="context-menus">
@@ -176,20 +176,20 @@
       <?gmfgen generated="true"?>
    </extension>
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
-      <?gmfgen generated="true"?>
-<page
-      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-      name="UseCase Diagram"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
-      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramGeneralPreferencePage">
-</page>
-<page
-      id="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage"
-      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
-      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage">
-</page>
-   </extension>
+		      <?gmfgen generated="true"?>
+		<page
+		      id="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
+		      name="UseCase Diagram"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+		      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramGeneralPreferencePage">
+		</page>
+		<page
+		      id="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage"
+		      name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+		      category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
+		      class="org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPrintingPreferencePage">
+		</page>
+		   </extension>
 
 	
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
@@ -569,14 +569,14 @@
    </diagramMappings>
 </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
-      <?gmfgen generated="true"?>
-      <viewProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLViewProvider">
-         <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Actor_Shape,Actor_ClassifierShape,UseCase_Shape,UseCase_ClassifierShape,Classifier_SubjectShape,Package_Shape,Constraint_Shape,Comment_Shape,NamedElement_DefaultShape,Diagram_ShortcutShape,ExtensionPoint_ExtensionPointLabel,ExtensionPoint_ClassifierExtensionPointLabel,UseCase_Shape_CCN,Component_Shape_CCN,Comment_Shape_CN,Constraint_Shape_CCN,Actor_Shape_CCN,Constraint_Shape_CN,Actor_Shape_CN,UseCase_Shape_CN,Component_Shape_CN,Package_Shape_CN"/>
+	      <?gmfgen generated="true"?>
+	      <viewProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLViewProvider">
+	         <Priority name="Lowest"/>
+	         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
+	         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Actor_Shape,Actor_ClassifierShape,UseCase_Shape,UseCase_ClassifierShape,Classifier_SubjectShape,Package_Shape,Constraint_Shape,Comment_Shape,NamedElement_DefaultShape,Diagram_ShortcutShape,ExtensionPoint_ExtensionPointLabel,ExtensionPoint_ClassifierExtensionPointLabel,UseCase_Shape_CCN,Component_Shape_CCN,Comment_Shape_CN,Constraint_Shape_CCN,Actor_Shape_CCN,Constraint_Shape_CN,Actor_Shape_CN,UseCase_Shape_CN,Component_Shape_CN,Package_Shape_CN"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Include_Edge,Extend_Edge,Generalization_Edge,Association_Edge,Constraint_ConstrainedElementEdge,Dependency_Edge,Comment_AnnotatedElementEdge,Abstraction_Edge,Usage_Edge,Realization_Edge,PackageMerge_Edge,PackageImport_Edge"/>
-      </viewProvider>
-   </extension>
+	      </viewProvider>
+	   </extension>
 
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="false"?>
@@ -601,11 +601,11 @@
       </editpartProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
-      <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLParserProvider">
-         <Priority name="Lowest"/>
-      </ParserProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <ParserProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLParserProvider">
+	         <Priority name="Lowest"/>
+	      </ParserProvider>
+	   </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
    <modelProvider
@@ -648,12 +648,13 @@
        </strategy>
    </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
-      <?gmfgen generated="true"?>
-      <visualTypeProvider
-            class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLVisualTypeProvider"
-            diagramType="UseCase">
-         </visualTypeProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <visualTypeProvider
+	            class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLVisualTypeProvider"
+	            diagramType="UseCase">
+	         </visualTypeProvider>
+	   </extension>
+
 
 
 

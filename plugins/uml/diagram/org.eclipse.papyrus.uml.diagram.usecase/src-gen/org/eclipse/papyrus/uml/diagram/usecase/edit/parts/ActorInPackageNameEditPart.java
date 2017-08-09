@@ -270,7 +270,8 @@ public class ActorInPackageNameEditPart extends PapyrusLabelEditPart
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
+		return org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.getIcon(getParserElement(),
+				getViewer());
 	}
 
 	/**
