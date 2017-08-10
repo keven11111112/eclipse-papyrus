@@ -29,7 +29,7 @@ location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
@@ -47,7 +47,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.7/R-4.7-2017061
 
 //updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706132000" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.0" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -129,7 +129,7 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
-location orbit "http://download.eclipse.org/tools/orbit/S-builds/S20170306214312/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/S-builds/S20170804160030/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
 	org.apache.commons.lang3 3.1.0
