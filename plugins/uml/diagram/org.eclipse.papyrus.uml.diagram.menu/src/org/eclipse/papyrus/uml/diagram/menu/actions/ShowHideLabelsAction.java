@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
+ * Copyright (c) 2011, 2014, 2017 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Sebastien Gabel (Esterel Technologies) - Fix access to the diagram edit part when called outside of the diagram
- *
+ *  Vincent Lorenzo (CEA LIST) - Bug 520807
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.menu.actions;
 
@@ -198,7 +198,10 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 			if (!isCompartment(node) && (nodeType != null && nodeType.length() > 0)) {
 				LayoutConstraint lContraint = node.getLayoutConstraint();
 				if (lContraint instanceof Location) {
-					return true;
+					EditPart ep1 = EditPartService.getInstance().createGraphicEditPart(node);
+
+					return ep1 instanceof ILabelRoleProvider; // see Bug 520807 : we only show view which the editpart implements ILabelRoleProvider
+					// return true;
 				}
 			}
 		}
