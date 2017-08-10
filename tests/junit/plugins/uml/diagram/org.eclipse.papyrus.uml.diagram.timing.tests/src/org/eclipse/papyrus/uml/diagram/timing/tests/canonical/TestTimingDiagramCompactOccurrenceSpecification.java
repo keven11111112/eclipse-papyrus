@@ -98,7 +98,6 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 	}
 
 	@Test
-@FailingTest
 	public void testCreateOccurrenceSpecificationWithDoubleClick() {
 		final CompactStateInvariantEditPartCN stateInvariantEditPart = (CompactStateInvariantEditPartCN)EditPartUtils.findFirstChildEditPartWithId(getDefaultCompactLifelineEditPart(), CompactStateInvariantEditPartCN.VISUAL_ID);
 		assertNotNull("A StateInvariant must always exist", stateInvariantEditPart);
@@ -225,7 +224,6 @@ public class TestTimingDiagramCompactOccurrenceSpecification extends AbstractTim
 	}
 
 	@Test
-@FailingTest
 	public void testFullUndoRedo() {
 		createThreeOccurrenceSpecificationsInDefaultCompactLifeline();
 		// 3 OccurrenceSpecifications + 1 Lifeline + 1 Interaction
