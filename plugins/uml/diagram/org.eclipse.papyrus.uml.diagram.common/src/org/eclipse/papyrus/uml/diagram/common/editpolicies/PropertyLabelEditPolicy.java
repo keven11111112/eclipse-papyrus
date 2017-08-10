@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009,2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
+ *  Pauline DEVILLE (CEA LIST) - Bug 519845 - [ClassDiagram] Refresh of property default value 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -23,9 +24,14 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
+import org.eclipse.uml2.uml.Duration;
+import org.eclipse.uml2.uml.Expression;
+import org.eclipse.uml2.uml.Interval;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * Specific edit policy for label displaying stereotypes and their properties for edges representing
@@ -56,8 +62,37 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if (property.getType() != null) {
 			getDiagramEventBroker().addNotificationListener(property.getType(), this);
 		}
+		if (property.getDefaultValue() != null) {
+			addDefaultValueAditionnalListener(property.getDefaultValue());
+		}
 		getDiagramEventBroker().addNotificationListener(property.getUpperValue(), this);
 		getDiagramEventBroker().addNotificationListener(property.getLowerValue(), this);
+	}
+
+	/**
+	 * This method add listener for the value specification in parameter but also for each ValueSpecification in the parameter
+	 * 
+	 * e.x: an Expression as two operands which are ValueSpecification then 3 listeners are added:
+	 * - one for the expression
+	 * - one for each operand
+	 * 
+	 * @param valueSpecification
+	 *            the root value
+	 */
+	public void addDefaultValueAditionnalListener(ValueSpecification valueSpecification) {
+		getDiagramEventBroker().addNotificationListener(valueSpecification, this);
+		if (valueSpecification instanceof Duration) {
+			addDefaultValueAditionnalListener(((Duration) valueSpecification).getExpr());
+		} else if (valueSpecification instanceof Expression) {
+			for (ValueSpecification operand : ((Expression) valueSpecification).getOperands()) {
+				addDefaultValueAditionnalListener(operand);
+			}
+		} else if (valueSpecification instanceof Interval) {
+			addDefaultValueAditionnalListener(((Interval) valueSpecification).getMin());
+			addDefaultValueAditionnalListener(((Interval) valueSpecification).getMax());
+		} else if (valueSpecification instanceof TimeExpression) {
+			addDefaultValueAditionnalListener(((TimeExpression) valueSpecification).getExpr());
+		}
 	}
 
 	/**
@@ -104,9 +139,20 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if (object == null || property == null) {
 			return;
 		}
-		if (UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(notification.getFeature())) {
-			refreshDisplay();
-		} else if (UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(notification.getFeature())) {
+		// list of displayed feature
+		if (UMLPackage.eINSTANCE.getLiteralBoolean_Value().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getLiteralReal_Value().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getLiteralString_Value().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getDuration_Expr().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getExpression_Operand().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getExpression_Symbol().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getInterval_Max().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getInterval_Min().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getOpaqueExpression_Body().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getTimeExpression_Expr().equals(notification.getFeature())
+				|| UMLPackage.eINSTANCE.getInstanceValue_Instance().equals(notification.getFeature())) {
 			refreshDisplay();
 		}
 		if (object.equals(property)) {
@@ -135,7 +181,6 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		case UMLPackage.PROPERTY__NAME:
 		case UMLPackage.PROPERTY__VISIBILITY:
 		case UMLPackage.PROPERTY__IS_DERIVED:
-		case UMLPackage.PROPERTY__DEFAULT_VALUE:
 		case UMLPackage.PROPERTY__SUBSETTED_PROPERTY:
 		case UMLPackage.PROPERTY__REDEFINED_PROPERTY:
 		case UMLPackage.PROPERTY__IS_ORDERED:
@@ -143,6 +188,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		case UMLPackage.PROPERTY__IS_READ_ONLY:
 			refreshDisplay();
 			break;
+		case UMLPackage.PROPERTY__DEFAULT_VALUE:
 		case UMLPackage.PROPERTY__TYPE:
 		case UMLPackage.PROPERTY__LOWER:
 		case UMLPackage.PROPERTY__LOWER_VALUE:
@@ -185,10 +231,18 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// the type is set or removed...
 			case Notification.SET:
 				if (notification.getOldValue() != null) {
-					getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
+					if (notification.getFeatureID(Property.class) == UMLPackage.PROPERTY__DEFAULT_VALUE) {
+						removeDefaultValueAditionnalListener((ValueSpecification) notification.getOldValue());
+					} else {
+						getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
+					}
 				}
 				if (notification.getNewValue() != null) {
-					getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
+					if (notification.getFeatureID(Property.class) == UMLPackage.PROPERTY__DEFAULT_VALUE) {
+						addDefaultValueAditionnalListener((ValueSpecification) notification.getNewValue());
+					} else {
+						getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
+					}
 				}
 				refreshDisplay();
 			default:
@@ -245,5 +299,34 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 		getDiagramEventBroker().removeNotificationListener(property.getUpperValue(), this);
 		getDiagramEventBroker().removeNotificationListener(property.getLowerValue(), this);
+		if (property.getDefaultValue() != null) {
+			removeDefaultValueAditionnalListener(property.getDefaultValue());
+		}
+	}
+
+	/**
+	 * This method remove listener for the value specification in parameter but also for each ValueSpecification in the parameter
+	 * 
+	 * e.x: an Expression as two operands which are ValueSpecification then 3 listeners are removed:
+	 * - one for the expression
+	 * - one for each operand
+	 * 
+	 * @param valueSpecification
+	 *            the root value
+	 */
+	public void removeDefaultValueAditionnalListener(ValueSpecification valueSpecification) {
+		getDiagramEventBroker().removeNotificationListener(valueSpecification, this);
+		if (valueSpecification instanceof Duration) {
+			removeDefaultValueAditionnalListener(((Duration) valueSpecification).getExpr());
+		} else if (valueSpecification instanceof Expression) {
+			for (ValueSpecification operand : ((Expression) valueSpecification).getOperands()) {
+				removeDefaultValueAditionnalListener(operand);
+			}
+		} else if (valueSpecification instanceof Interval) {
+			removeDefaultValueAditionnalListener(((Interval) valueSpecification).getMin());
+			removeDefaultValueAditionnalListener(((Interval) valueSpecification).getMax());
+		} else if (valueSpecification instanceof TimeExpression) {
+			removeDefaultValueAditionnalListener(((TimeExpression) valueSpecification).getExpr());
+		}
 	}
 }
