@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
@@ -73,6 +74,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return provides((CreateViewForKindOperation) operation);
 		}
 		assert operation instanceof CreateViewOperation;
+
+		/* we check this view provider is the good one for the currently edited diagram */
+		if (operation instanceof CreateChildViewOperation) {
+			View container = ((CreateChildViewOperation) operation).getContainerView();
+			Diagram diagram = container.getDiagram();
+			if (!getDiagramProvidedId().equals(diagram.getType())) {
+				return false;
+			}
+		}
+
 		if (operation instanceof CreateDiagramViewOperation) {
 			return provides((CreateDiagramViewOperation) operation);
 		} else if (operation instanceof CreateEdgeViewOperation) {
