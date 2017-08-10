@@ -157,7 +157,6 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 	}
 
 	@Test
-@FailingTest
 	public void testCannotDeleteLastStateInvariant() {
 		checkInteractionFragmentsWithPattern("-");
 		checkSimpleCompactTimelinePattern("-");
@@ -168,7 +167,6 @@ public class TestTimingDiagramCompactStateInvariant extends AbstractTimingDiagra
 	}
 
 	@Test
-@FailingTest
 	public void testCannotHideLastStateInvariant() {
 		checkInteractionFragmentsWithPattern("-");
 		checkSimpleCompactTimelinePattern("-");

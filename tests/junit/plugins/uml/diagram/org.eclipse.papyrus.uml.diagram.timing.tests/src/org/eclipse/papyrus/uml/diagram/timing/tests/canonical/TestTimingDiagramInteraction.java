@@ -30,27 +30,23 @@ public class TestTimingDiagramInteraction extends AbstractTimingDiagramTestCase 
 	}
 
 	@Test
-@FailingTest
 	public void testCreateInteraction() {
 		createInteraction();
 	}
 
 	@Test
-@FailingTest
 	public void testHideInteraction() {
 		final InteractionEditPartTN interaction = createInteraction();
 		testHide(interaction);
 	}
 
 	@Test
-@FailingTest
 	public void testDeleteInteraction() {
 		final InteractionEditPartTN interaction = createInteraction();
 		testDelete(interaction);
 	}
 
 	@Test
-@FailingTest
 	public void testDropInteraction() {
 		// create an Interaction and hide its View, so as to be able to drop it after that
 		final InteractionEditPartTN interactionEditPart = createInteraction();
@@ -62,7 +58,6 @@ public class TestTimingDiagramInteraction extends AbstractTimingDiagramTestCase 
 	}
 
 	@Test
-@FailingTest
 	public void testCreateThreeInteractions() {
 		final InteractionEditPartTN interaction1 = createInteraction();
 		final InteractionEditPartTN interaction2 = createInteraction();

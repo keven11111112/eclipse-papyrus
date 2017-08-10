@@ -38,27 +38,23 @@ public class TestTimingDiagramCompactLifeline extends AbstractTimingDiagramTestC
 	}
 
 	@Test
-@FailingTest
 	public void testCreateLifeline() {
 		createCompactLifelineInDefaultInteraction();
 	}
 
 	@Test
-@FailingTest
 	public void testHideLifeline() {
 		final CompactLifelineEditPartCN lifelineEditPart = createCompactLifelineInDefaultInteraction();
 		testHide(lifelineEditPart);
 	}
 
 	@Test
-@FailingTest
 	public void testDeleteLifeline() {
 		final CompactLifelineEditPartCN lifelineEditPart = createCompactLifelineInDefaultInteraction();
 		testDelete(lifelineEditPart);
 	}
 
 	@Test
-@FailingTest
 	public void testDropLifeline() {
 		// create a compact Lifeline and hide its View, so as to be able to drop it after that
 		final CompactLifelineEditPartCN lifelineEditPart = createCompactLifelineInDefaultInteraction();
@@ -69,7 +65,6 @@ public class TestTimingDiagramCompactLifeline extends AbstractTimingDiagramTestC
 	}
 
 	@Test
-@FailingTest
 	public void testCellEditorLocator() {
 		final CompactLifelineEditPartCN lifelineEditPart = createCompactLifelineInDefaultInteraction();
 		final CompactLifelineNameEditPart compactLifelineNameEditPart = (CompactLifelineNameEditPart)EditPartUtils.findFirstChildEditPartWithId(lifelineEditPart, CompactLifelineNameEditPart.VISUAL_ID);
@@ -88,7 +83,6 @@ public class TestTimingDiagramCompactLifeline extends AbstractTimingDiagramTestC
 	}
 
 	@Test
-@FailingTest
 	public void create3LifelinesTest() {
 		final EditPart interactionCompartment = getDefaultInteractionCompartment();
 		assertNotNull("The interaction compartment was not found", interactionCompartment);
