@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -21,8 +21,8 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPar
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.RepresentationFigure;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class RepresentationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -40,6 +40,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -50,7 +51,8 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof RepresentationTagLabelEditPart) {
-			((RepresentationTagLabelEditPart) childEditPart).setLabel(getPrimaryShape().getTagLabel());
+			((RepresentationTagLabelEditPart) childEditPart).setLabel(
+					getPrimaryShape().getTagLabel());
 		}
 		return false;
 	}
@@ -58,6 +60,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -78,6 +81,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -87,12 +91,13 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new RepresentationFigure();
 	}
@@ -100,6 +105,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public RepresentationFigure getPrimaryShape() {
 		return (RepresentationFigure) getFigure();
 	}

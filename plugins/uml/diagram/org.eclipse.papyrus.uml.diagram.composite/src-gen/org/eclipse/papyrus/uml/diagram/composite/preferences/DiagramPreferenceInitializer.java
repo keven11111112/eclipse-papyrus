@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014, 2017 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
   *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 512207
@@ -13,6 +13,10 @@
 package org.eclipse.papyrus.uml.diagram.composite.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 
@@ -24,12 +28,13 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		DiagramGeneralPreferencePage.initDefaults(store);
-		DiagramAppearancePreferencePage.initDefaults(store);
-		DiagramConnectionsPreferencePage.initDefaults(store);
-		DiagramPrintingPreferencePage.initDefaults(store);
+		DiagramsPreferencePage.initDefaults(store);
+		AppearancePreferencePage.initDefaults(store);
+		ConnectionsPreferencePage.initDefaults(store);
+		PrintingPreferencePage.initDefaults(store);
 
 	}
 

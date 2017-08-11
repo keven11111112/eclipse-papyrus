@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -46,6 +46,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -59,6 +60,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -75,6 +77,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -92,6 +95,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -105,6 +109,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -23,8 +23,8 @@ import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoConnecta
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoDeleteFromDiagramEditPolicy;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -42,6 +42,7 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
@@ -52,12 +53,13 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new PolylineConnectionEx();
 	}
@@ -65,6 +67,7 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
+	@Override
 	public PolylineConnectionEx getPrimaryShape() {
 		return (PolylineConnectionEx) getFigure();
 	}
