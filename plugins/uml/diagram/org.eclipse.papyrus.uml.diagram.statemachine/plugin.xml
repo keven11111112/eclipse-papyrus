@@ -388,6 +388,26 @@
 				type="State_RegionCompartment_TN">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="Transition_NameLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Guard"
+				type="Transition_GuardLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="Transition_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="Generalization_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="Constraint_KeywordLabel">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="FinalState_FloatingNameLabel">
 			</mapping>

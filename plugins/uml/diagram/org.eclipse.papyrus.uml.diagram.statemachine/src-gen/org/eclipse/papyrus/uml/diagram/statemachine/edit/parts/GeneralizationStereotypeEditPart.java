@@ -63,6 +63,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEd
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.UMLTextSelectionEditPolicy;
@@ -82,7 +83,7 @@ import org.eclipse.uml2.uml.Feature;
  * @generated
  */
 public class GeneralizationStereotypeEditPart extends PapyrusLabelEditPart
-		implements ITextAwareEditPart, IControlParserForDirectEdit {
+		implements ITextAwareEditPart, IControlParserForDirectEdit, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -786,6 +787,20 @@ public class GeneralizationStereotypeEditPart extends PapyrusLabelEditPart
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Stereotype";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif";//$NON-NLS-1$
 	}
 
 }

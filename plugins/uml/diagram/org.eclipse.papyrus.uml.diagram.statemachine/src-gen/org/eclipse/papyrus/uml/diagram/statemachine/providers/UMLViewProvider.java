@@ -963,6 +963,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		transition_StereotypeLabel_Location.setX(0);
 		transition_StereotypeLabel_Location.setY(60);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Transition");
 		return edge;
 	}
 
@@ -996,6 +997,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		generalization_StereotypeLabel_Location.setX(0);
 		generalization_StereotypeLabel_Location.setY(40);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Generalization");
 		return edge;
 	}
 
@@ -1079,6 +1081,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node constraint_KeywordLabel = createLabel(edge, UMLVisualIDRegistry.getType(ContextLinkAppliedStereotypeEditPart.VISUAL_ID));
 		constraint_KeywordLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Undefined");
 		return edge;
 	}
 
