@@ -89,6 +89,7 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 
 		// list of element for the interaction
+
 		ArrayList<InteractionFragment> elementForInteraction = new ArrayList<InteractionFragment>();
 		// list of element for the interactionOperand
 		HashMap<InteractionOperand, ArrayList<InteractionFragment>> elementForIneractionOp = new HashMap<InteractionOperand, ArrayList<InteractionFragment>>();
@@ -137,9 +138,11 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 			InteractionOperand interactionOperand = (InteractionOperand) iterator.next();
 			ArrayList<InteractionFragment> elements = elementForIneractionOp.get(interactionOperand);
 			if (elements.size() != 0) {
+				// sort list bu taking
 				ArrayList<InteractionFragment> existedFragments = new ArrayList<InteractionFragment>();
+				ArrayList<InteractionFragment> sorted = sortSemanticFromRows(elements, rows);
+				existedFragments.addAll(sorted);
 				existedFragments.addAll(interactionOperand.getFragments());
-				existedFragments.addAll(elements);
 				grid.execute(new SetCommand(domain, interactionOperand, UMLPackage.eINSTANCE.getInteractionOperand_Fragment(), existedFragments));
 			}
 		}
@@ -147,12 +150,35 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 		// Update fragments of the interaction
 		if (elementForInteraction.size() != 0) {
 			ArrayList<InteractionFragment> existedFragments = new ArrayList<InteractionFragment>();
+			ArrayList<InteractionFragment> sorted = sortSemanticFromRows(elementForInteraction, rows);
+			existedFragments.addAll(sorted);
 			existedFragments.addAll(interaction.getFragments());
-			existedFragments.addAll(elementForInteraction);
 			grid.execute(new SetCommand(domain, interaction, UMLPackage.eINSTANCE.getInteraction_Fragment(), existedFragments));
 		}
 	}
 
+	/**
+	 * The goal is to create a new list of ordered fragment form a list of fragments by taking general order from rows
+	 * 
+	 * @param fragments
+	 *            a list of fragments
+	 * @param rows
+	 *            the general order of event
+	 * @return an ordered list
+	 */
+	protected ArrayList<InteractionFragment> sortSemanticFromRows(ArrayList<InteractionFragment> fragments, ArrayList<DecorationNode> rows) {
+		ArrayList<InteractionFragment> sortedList = new ArrayList<InteractionFragment>();
+		for (Iterator<DecorationNode> iteratorRow = rows.iterator(); iteratorRow.hasNext();) {
+			DecorationNode row = iteratorRow.next();
+			if (fragments.contains(row.getElement())) {
+				if (!sortedList.contains((InteractionFragment) row.getElement())) {
+					sortedList.add((InteractionFragment) row.getElement());
+				}
+			}
+
+		}
+		return sortedList;
+	}
 
 	/**
 	 * simplify the list of interaction operand to find only one.
