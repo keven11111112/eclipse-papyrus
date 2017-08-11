@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Notification;
@@ -46,11 +47,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEd
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateCoordinateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGrillingStructureCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyToSetMoveLinesListener;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
-import org.eclipse.swt.SWT;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.papyrus.uml.diagram.sequence.util.RedirectionOperationListener;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -166,6 +165,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			return 0;
 		}
 	};
+	protected RedirectionOperationListener operationHistoryListener;
 
 
 
@@ -187,10 +187,12 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		getDiagramEventBroker().addNotificationListener(((EObject) getHost().getModel()), this);
 		contentDiagramListener = new ContentDiagramListener(this);
 		commandStackListener = new GridCommandStackListener(this);
-		((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
-		getDiagramEditPart(getHost()).getEditingDomain().getCommandStack().addCommandStackListener(commandStackListener);
-		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, new KeyToSetMoveLinesListener(this, SWT.SHIFT, false));
-		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new KeyToSetMoveLinesListener(this, SWT.SHIFT, true));
+		operationHistoryListener = new RedirectionOperationListener(this);
+		// ((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
+		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(operationHistoryListener);
+		// getDiagramEditPart(getHost()).getEditingDomain().getCommandStack().addCommandStackListener(commandStackListener);
+		// PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, new KeyToSetMoveLinesListener(this, SWT.SHIFT, false));
+		// PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new KeyToSetMoveLinesListener(this, SWT.SHIFT, true));
 		refreshGrillingStructure();
 	}
 
@@ -359,44 +361,8 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location) {
-			updateRowsAndColumns();
-			//
-			// if ((((EObject) notification.getNotifier()).eContainer()) instanceof DecorationNode && rows.contains((((EObject) notification.getNotifier()).eContainer()))) {
-			// if (notification.getFeature().equals(NotationPackage.eINSTANCE.getLocation_Y())) {
-			// DecorationNode movedRow=(DecorationNode)(((EObject) notification.getNotifier()).eContainer());
-			// //when the row is connected to interaction operand --> do nothing
-			// if(movedRow.getElement() instanceof InteractionOperand) {
-			// return;
-			// }
-			// if (moveAllLinesAtSamePosition) {
-			// ArrayList<DecorationNode> rowlist = getRowAtPosition(notification.getOldIntValue());
-			// // when we move line we disconnect listeners to avoid problems of infinite loop
-			// ((EObject) getHost().getModel()).eResource().eAdapters().remove(contentDiagramListener);
-			//
-			// // maybe we must move other lines
-			// // it exist other lines
-			// if(!(movedRow.getElement() instanceof Lifeline)) {
-			// if (rows.size() > rowlist.size()) {
-			// updateYpositionForRow((DecorationNode) (((EObject) notification.getNotifier()).eContainer()), notification.getOldIntValue());
-			// }
-			// }
-			// for (Iterator<DecorationNode> iterator = rowlist.iterator(); iterator.hasNext();) {
-			// DecorationNode axis = (DecorationNode) iterator.next();
-			//
-			// //we do not move line about Lifeline and interaction operand
-			// if(!(axis.getElement() instanceof Lifeline)&&(!(axis.getElement() instanceof InteractionOperand))) {
-			// execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Line", new EObjectAdapter(axis), new Point(0, notification.getNewIntValue())));
-			// }
-			//
-			// }
-			// }
-			// ((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
-			// }
-			//
-			// }
-			updateCoveredAndOwnerAfterUpdate();
-		}
+		updateRowsAndColumns();
+		updateCoveredAndOwnerAfterUpdate();
 	}
 
 
