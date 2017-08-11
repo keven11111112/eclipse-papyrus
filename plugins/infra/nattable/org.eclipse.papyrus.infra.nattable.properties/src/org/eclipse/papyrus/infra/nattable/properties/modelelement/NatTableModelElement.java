@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 192891, 496905, 508175
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 520188
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.modelelement;
 
@@ -29,7 +29,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
-import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnAxisIdentifierContentProvider;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnElementTypeIdContentProvider;
@@ -83,7 +82,6 @@ import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnPostActionId
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -142,10 +140,27 @@ public class NatTableModelElement extends EMFModelElement {
 	 *
 	 * Constructor.
 	 *
+	 * @param tableManager
+	 *            the table manager, must not be <code>null</code>
+	 * @param domain
+	 *            the editing domain, must not be <code>null</code>
+	 */
+	public NatTableModelElement(final INattableModelManager tableManager, final EditingDomain domain) {
+		super(tableManager.getTable(), domain);
+		this.tableModelManager = tableManager;
+		this.table = tableManager.getTable();
+		init();
+	}
+
+	/**
+	 *
+	 * Constructor.
+	 *
 	 * @param source
 	 *            the table
 	 * @param domain
 	 *            the editing domain
+	 * @deprecated since 4.0
 	 */
 	public NatTableModelElement(final Table source, final EditingDomain domain) {
 		super(source, domain);
@@ -157,8 +172,6 @@ public class NatTableModelElement extends EMFModelElement {
 	 * Add the listener
 	 */
 	private void init() {
-		// The create nattable model manager for the properties view doesn't need some listeners of the table (invert axis and update cells map listener)
-		tableModelManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(getEditedTable(), new EObjectSelectionExtractor(), false);
 		this.interestingFeatures = new ArrayList<EStructuralFeature>();
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_TableKindId());
 		interestingFeatures.add(NattablePackage.eINSTANCE.getTable_Owner());
@@ -322,7 +335,6 @@ public class NatTableModelElement extends EMFModelElement {
 		}
 		columnLabelProviderConfigurations = null;
 		rowLabelProviderConfigurations = null;
-		tableModelManager.dispose();
 		tableModelManager = null;
 	}
 

@@ -828,17 +828,29 @@
       </constraints>
     </views>
     <views xmi:id="_bYg4e5LDEeWbp4A9_-WIrQ" name="SingleTableAppearance" sections="_hIAtIJQtEeWx9KtEop_Tug _bYfDCZLDEeWbp4A9_-WIrQ _bYfDCpLDEeWbp4A9_-WIrQ _bYfDDZLDEeWbp4A9_-WIrQ _bYfDEJLDEeWbp4A9_-WIrQ _bYfDE5LDEeWbp4A9_-WIrQ">
-      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_bYg4fJLDEeWbp4A9_-WIrQ" name="singleTable">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4fZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4fpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+      <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_SdshkH3lEee6PdP9Dq217g" name="isEObjectInActiveSingleTable">
+        <constraints xmi:id="_hmDvMH3iEeeYgItd3wXbFg" name="isEObjectInTable">
+          <constraintType href="Environment.xmi#//@constraintTypes.1"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_TVrScH3lEee6PdP9Dq217g" name="expectedValue" value="true"/>
+        </constraints>
+        <constraints xmi:id="_bYg4fJLDEeWbp4A9_-WIrQ" name="singleTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4fZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4fpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+        </constraints>
       </constraints>
     </views>
     <views xmi:id="_bYg4f5LDEeWbp4A9_-WIrQ" name="SinglePasteInTable" sections="_bYfDF5LDEeWbp4A9_-WIrQ _bYfDGpLDEeWbp4A9_-WIrQ _bYfDHZLDEeWbp4A9_-WIrQ _bYfDIJLDEeWbp4A9_-WIrQ">
-      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_bYg4gJLDEeWbp4A9_-WIrQ" name="singleTable">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4gZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4gpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+      <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_fZfpoH3lEee6PdP9Dq217g" name="isEObjectInActiveSingleTable">
+        <constraints xmi:id="_f7h_sH3lEee6PdP9Dq217g" name="isEObjectInTable">
+          <constraintType href="Environment.xmi#//@constraintTypes.1"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_f7h_sX3lEee6PdP9Dq217g" name="expectedValue" value="true"/>
+        </constraints>
+        <constraints xmi:id="_bYg4gJLDEeWbp4A9_-WIrQ" name="singleTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4gZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4gpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+        </constraints>
       </constraints>
     </views>
     <views xmi:id="_bYfDI5LDEeWbp4A9_-WIrR" name="EObjectInFlatTable" sections="_bYd04pLDEeWbp4A9_-WIrR" automaticContext="true" datacontexts="_bYg4g5LDEeWbp4A9_-WIrR">
