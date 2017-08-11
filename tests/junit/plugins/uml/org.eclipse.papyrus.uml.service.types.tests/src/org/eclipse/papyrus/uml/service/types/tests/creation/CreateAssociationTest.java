@@ -37,7 +37,7 @@ public class CreateAssociationTest extends AbstractCreateAssociationTest {
 	/**
 	 * The element id corresponding to the non-directed association.
 	 */
-	private static final String ELEMENT_TYPE_ID = "org.eclipse.papyrus.uml.Association";
+	private static final String ELEMENT_TYPE_ID = "org.eclipse.papyrus.uml.AssociationNonDirected";
 
 
 	/**
