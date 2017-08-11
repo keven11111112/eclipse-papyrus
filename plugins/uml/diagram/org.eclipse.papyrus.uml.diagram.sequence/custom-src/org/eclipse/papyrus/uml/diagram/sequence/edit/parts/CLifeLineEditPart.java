@@ -20,12 +20,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.LifelineNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineRestorePositionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateNodeReferenceEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForMessageSpecEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
 
 /**
  * @author PT202707
- * @since 3.1
+ * @since 3.0
  *
  */
 public class CLifeLineEditPart extends LifelineEditPart {
@@ -35,6 +36,13 @@ public class CLifeLineEditPart extends LifelineEditPart {
 
 	/** The default width of the figure. */
 	public static int DEFAUT_WIDTH = 100;
+
+	/**
+	 * The minimum height of the figure.
+	 * 
+	 * @since 4.0
+	 */
+	public static int MIN_HEIGHT = 100;
 
 
 	/**
@@ -68,7 +76,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(LifeLineRestorePositionEditPolicy.KEY, new LifeLineRestorePositionEditPolicy());
 		installEditPolicy(UpdateNodeReferenceEditPolicy.UDPATE_NODE_REFERENCE, new UpdateNodeReferenceEditPolicy());
-
+		installEditPolicy(UpdateWeakReferenceForMessageSpecEditPolicy.UDPATE_WEAK_REFERENCE_FOR_MESSAGE, new UpdateWeakReferenceForMessageSpecEditPolicy());
 		super.createDefaultEditPolicies();
 	}
 
@@ -87,7 +95,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	/**
 	 * @return the size of the header height
 	 *         if the layout is null return -1
-	 * @since 3.0
+	 * @since 4.0
 	 */
 	public int getStickerHeight() {
 		if (getPrimaryShape().getLifeLineLayoutManager() != null) {

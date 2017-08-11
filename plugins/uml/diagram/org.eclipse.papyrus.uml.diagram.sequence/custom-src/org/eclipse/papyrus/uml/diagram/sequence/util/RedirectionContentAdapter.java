@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
  * this class is to delegate all notification in all trre of an eObject to a notofication listener
  * for example an editpolicy
  * 
- * @since 3.0
+ * @since 4.0
  */
 public class RedirectionContentAdapter extends EContentAdapter {
 
@@ -29,7 +29,7 @@ public class RedirectionContentAdapter extends EContentAdapter {
 	protected NotificationListener notificationListener;
 
 	/**
-	 * Constructor.
+	 * Constructor
 	 *
 	 */
 	public RedirectionContentAdapter(NotificationListener notificationListener) {

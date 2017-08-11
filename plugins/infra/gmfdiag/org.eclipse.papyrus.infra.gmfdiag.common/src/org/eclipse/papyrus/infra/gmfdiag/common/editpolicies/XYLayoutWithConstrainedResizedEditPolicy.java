@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		 Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *		 Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
+ *		 Cï¿½line Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -209,7 +209,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 
 	/**
 	 * @return the helper
-	 * @since 3.1.0
+	 * @since 3.1
 	 */
 	public FixAnchorHelper getHelper() {
 		return helper;
@@ -218,7 +218,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 	/**
 	 * @param helper
 	 *            the helper to set
-	 * @since 3.1.0
+	 * @since 3.1
 	 */
 	public void setHelper(FixAnchorHelper helper) {
 		this.helper = helper;
@@ -249,7 +249,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 	 * @param notBeingMovedConnections
 	 *            List of not being moved Connections
 	 * @return The proxy Command to Fix the Edge Anchor
-	 * @since 3.1.0
+	 * @since 3.1
 	 */
 	protected ICommandProxy getMoveChildrenFixEdgeAnchorCommand(Set<Object> notBeingMovedConnections) {
 		return new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart) getHost(), notBeingMovedConnections));

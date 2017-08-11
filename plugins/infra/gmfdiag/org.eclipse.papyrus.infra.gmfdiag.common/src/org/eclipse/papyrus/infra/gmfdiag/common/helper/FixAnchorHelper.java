@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
+ *  Cï¿½line Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
@@ -344,7 +344,7 @@ public class FixAnchorHelper {
 	/**
 	 * Return the side of the point on the included Rectangle
 	 * 
-	 * @since 3.1.0
+	 * @since 3.1
 	 * @param pt
 	 *            Point with absolute position
 	 * @return integer representing the position from PositionConstants.
@@ -361,7 +361,7 @@ public class FixAnchorHelper {
 
 	/**
 	 * @return the includedRect
-	 * @since 3.1.0
+	 * @since 3.1
 	 */
 	public Rectangle getIncludedRect() {
 		return includedRect;
@@ -370,7 +370,7 @@ public class FixAnchorHelper {
 	/**
 	 * @param includedRect
 	 *            the includedRect to set
-	 * @since 3.1.0
+	 * @since 3.1
 	 */
 	public void setIncludedRect(Rectangle includedRect) {
 		this.includedRect = includedRect;

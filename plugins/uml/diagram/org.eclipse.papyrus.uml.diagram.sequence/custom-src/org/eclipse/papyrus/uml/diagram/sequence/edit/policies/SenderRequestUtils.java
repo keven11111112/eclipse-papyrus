@@ -22,7 +22,7 @@ import org.eclipse.gef.Request;
 /**
  * this class is used to add senders of request in the request
  * 
- * @since 3.0
+ * @since 4.0
  *
  */
 public class SenderRequestUtils {
