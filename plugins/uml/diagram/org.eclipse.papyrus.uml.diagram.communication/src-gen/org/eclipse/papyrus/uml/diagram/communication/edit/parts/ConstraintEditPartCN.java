@@ -141,6 +141,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

@@ -45,8 +45,7 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -54,10 +53,12 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof MessageNameEditPart) {
-			((MessageNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureMessageCreateLabelFigure());
+			((MessageNameEditPart) childEditPart).setLabel(
+					getPrimaryShape().getFigureMessageCreateLabelFigure());
 		}
 		if (childEditPart instanceof AppliedStereotypeMessageEditPart) {
-			((AppliedStereotypeMessageEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeMessageEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
