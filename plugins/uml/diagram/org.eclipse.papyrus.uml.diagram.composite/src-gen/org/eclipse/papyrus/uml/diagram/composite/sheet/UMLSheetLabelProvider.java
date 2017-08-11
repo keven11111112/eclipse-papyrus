@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -29,6 +29,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getText(Object element) {
 		element = unwrap(element);
 		IElementType etype = getElementType(getView(element));
@@ -38,6 +39,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	/**
 	 * @generated
 	 */
+	@Override
 	public Image getImage(Object element) {
 		IElementType etype = getElementType(getView(unwrap(element)));
 		return etype == null ? null : UMLElementTypes.getImage(etype);
@@ -61,7 +63,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 			return (View) element;
 		}
 		if (element instanceof IAdaptable) {
-			return (View) ((IAdaptable) element).getAdapter(View.class);
+			return ((IAdaptable) element).getAdapter(View.class);
 		}
 		return null;
 	}

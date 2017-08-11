@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -82,6 +82,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -90,8 +91,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeIconlDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ParameterLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
@@ -146,9 +146,11 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	}
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -157,7 +159,8 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -176,8 +179,10 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.ParameterFigure
+	 * 
 	 * @generated
 	 */
+	@Override
 	public ParameterFigure getPrimaryShape() {
 		return (ParameterFigure) primaryShape;
 	}
@@ -185,6 +190,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof ParameterNameEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
@@ -207,12 +213,13 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -226,7 +233,9 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -236,6 +245,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -246,6 +256,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -255,6 +266,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -262,6 +274,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -271,6 +284,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ParameterNameEditPart.VISUAL_ID));
 	}

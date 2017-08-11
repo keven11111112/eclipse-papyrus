@@ -28,9 +28,9 @@
 
 
    <extension point="org.eclipse.core.runtime.preferences" id="prefs">
-      <?gmfgen generated="true"?>
-      <initializer class="org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramPreferenceInitializer"/>
-   </extension>
+		      <?gmfgen generated="true"?>
+		      <initializer class="org.eclipse.papyrus.uml.diagram.composite.preferences.DiagramPreferenceInitializer"/>
+		   </extension>
 
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="false"?>
@@ -121,14 +121,14 @@
        </viewProvider>
    </extension>
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
-      <?gmfgen generated="true"?>
-      <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider">
-         <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Activity_Shape,Interaction_Shape,ProtocolStateMachine_Shape,StateMachine_Shape,FunctionBehavior_Shape,OpaqueBehavior_Shape,Component_Shape,Device_Shape,ExecutionEnvironment_Shape,Node_Shape,Class_Shape,Collaboration_Shape,Interface_Shape,PrimitiveType_Shape,Enumeration_Shape,DataType_Shape,Actor_Shape,DeploymentSpecification_Shape,Artifact_Shape,InformationItem_Shape,Signal_Shape,UseCase_Shape,SignalEvent_Shape,CallEvent_Shape,AnyReceiveEvent_Shape,ChangeEvent_Shape,TimeEvent_Shape,DurationObservation_Shape,TimeObservation_Shape,LiteralBoolean_Shape,LiteralInteger_Shape,LiteralNull_Shape,LiteralString_Shape,LiteralUnlimitedNatural_Shape,StringExpression_PackagedElementShape,OpaqueExpression_Shape,TimeExpression_Shape,Expression_Shape,Duration_Shape,TimeInterval_Shape,DurationInterval_Shape,Interval_Shape,InstanceValue_Shape,Comment_Shape,DurationConstraint_Shape,TimeConstraint_Shape,IntervalConstraint_Shape,InteractionConstraint_Shape,Constraint_Shape,Port_BehaviorShape,Port_Shape,Parameter_Shape,Property_Shape,ConnectableElement_CollaborationRoleShape,CollaborationUse_Shape,Activity_Shape_CN,Interaction_Shape_CN,ProtocolStateMachine_Shape_CN,StateMachine_Shape_CN,FunctionBehavior_Shape_CN,OpaqueBehavior_Shape_CN,Component_Shape_CN,Device_Shape_CN,ExecutionEnvironment_Shape_CN,Node_Shape_CN,Class_Shape_CN,Collaboration_Shape_CN,Interface_Shape_CN,PrimitiveType_Shape_CN,Enumeration_Shape_CN,DataType_Shape_CN,Actor_Shape_CN,DeploymentSpecification_Shape_CN,Artifact_Shape_CN,InformationItem_Shape_CN,Signal_Shape_CN,UseCase_Shape_CN,Comment_Shape_CN,DurationConstraint_Shape_CN,TimeConstraint_Shape_CN,IntervalConstraint_Shape_CN,InteractionConstraint_Shape_CN,Constraint_Shape_CN,Property_AttributeLabel,Operation_OperationLabel,EnumerationLiteral_LiteralLabel"/>
+	      <?gmfgen generated="true"?>
+	      <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider">
+	         <Priority name="Lowest"/>
+	         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
+	         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Activity_Shape,Interaction_Shape,ProtocolStateMachine_Shape,StateMachine_Shape,FunctionBehavior_Shape,OpaqueBehavior_Shape,Component_Shape,Device_Shape,ExecutionEnvironment_Shape,Node_Shape,Class_Shape,Collaboration_Shape,Interface_Shape,PrimitiveType_Shape,Enumeration_Shape,DataType_Shape,Actor_Shape,DeploymentSpecification_Shape,Artifact_Shape,InformationItem_Shape,Signal_Shape,UseCase_Shape,SignalEvent_Shape,CallEvent_Shape,AnyReceiveEvent_Shape,ChangeEvent_Shape,TimeEvent_Shape,DurationObservation_Shape,TimeObservation_Shape,LiteralBoolean_Shape,LiteralInteger_Shape,LiteralNull_Shape,LiteralString_Shape,LiteralUnlimitedNatural_Shape,StringExpression_PackagedElementShape,OpaqueExpression_Shape,TimeExpression_Shape,Expression_Shape,Duration_Shape,TimeInterval_Shape,DurationInterval_Shape,Interval_Shape,InstanceValue_Shape,Comment_Shape,DurationConstraint_Shape,TimeConstraint_Shape,IntervalConstraint_Shape,InteractionConstraint_Shape,Constraint_Shape,Port_BehaviorShape,Port_Shape,Parameter_Shape,Property_Shape,ConnectableElement_CollaborationRoleShape,CollaborationUse_Shape,Activity_Shape_CN,Interaction_Shape_CN,ProtocolStateMachine_Shape_CN,StateMachine_Shape_CN,FunctionBehavior_Shape_CN,OpaqueBehavior_Shape_CN,Component_Shape_CN,Device_Shape_CN,ExecutionEnvironment_Shape_CN,Node_Shape_CN,Class_Shape_CN,Collaboration_Shape_CN,Interface_Shape_CN,PrimitiveType_Shape_CN,Enumeration_Shape_CN,DataType_Shape_CN,Actor_Shape_CN,DeploymentSpecification_Shape_CN,Artifact_Shape_CN,InformationItem_Shape_CN,Signal_Shape_CN,UseCase_Shape_CN,Comment_Shape_CN,DurationConstraint_Shape_CN,TimeConstraint_Shape_CN,IntervalConstraint_Shape_CN,InteractionConstraint_Shape_CN,Constraint_Shape_CN,Property_AttributeLabel,Operation_OperationLabel,EnumerationLiteral_LiteralLabel"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Port_BehaviorEdge,Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,ComponentRealization_Edge,InterfaceRealization_Edge,Substitution_Edge,Realization_Edge,Manifestation_Edge,Abstraction_Edge,Usage_Edge,Deployment_Edge,Dependency_RoleBindingEdge,Dependency_Edge,Connector_Edge,Generalization_Edge,TimeObservation_EventEdge,DurationObservation_EventEdge,Representation_Edge,InformationFlow_Edge"/>
-      </viewProvider>
-   </extension>
+	      </viewProvider>
+	   </extension>
 
 
 
@@ -157,18 +157,18 @@
 
    
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
-      <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLIconProvider">
-         <Priority name="Low"/>
-      </IconProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <IconProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLIconProvider">
+	         <Priority name="Low"/>
+	      </IconProvider>
+	   </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
-      <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLParserProvider">
-         <Priority name="Lowest"/>
-      </ParserProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <ParserProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLParserProvider">
+	         <Priority name="Lowest"/>
+	      </ParserProvider>
+	   </extension>
 
 
 	   
@@ -1006,12 +1006,12 @@
    </diagramReconciler>
 </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
-      <?gmfgen generated="true"?>
-      <visualTypeProvider
-            class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLVisualTypeProvider"
-            diagramType="CompositeStructure">
-         </visualTypeProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <visualTypeProvider
+	            class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLVisualTypeProvider"
+	            diagramType="CompositeStructure">
+	         </visualTypeProvider>
+	   </extension>
 <extension
       point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
       <contributor

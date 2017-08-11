@@ -417,5 +417,27 @@
 					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InformationFlow_Edge"/>
 			</elementDescriptors>
 		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="composite.tool.manifestation" 
+			label="Manifestation"
+			description="Create new Manifestation" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Manifestation.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Manifestation_Edge"/>
+			</elementDescriptors>
+		</ownedConfigurations>
+		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
+			id="composite.tool.deployment" 
+			label="Deployment"
+			description="Create new Deployment" kind="ConnectionTool">
+			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Deployment.gif"/>
+			<elementDescriptors>
+				<elementType
+					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+					href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Deployment_Edge"/>
+			</elementDescriptors>
+		</ownedConfigurations>
 	</drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>

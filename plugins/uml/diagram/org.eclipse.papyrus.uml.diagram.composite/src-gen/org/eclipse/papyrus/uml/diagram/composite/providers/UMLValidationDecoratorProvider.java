@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -35,9 +35,11 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
-		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
-		if (editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
+		EditPart editPart = decoratorTarget.getAdapter(EditPart.class);
+		if (editPart instanceof GraphicalEditPart ||
+				editPart instanceof AbstractConnectionEditPart) {
 			Object model = editPart.getModel();
 			if ((model instanceof View)) {
 				View view = (View) model;
@@ -58,12 +60,14 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean provides(IOperation operation) {
 		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		View view = (View) decoratorTarget.getAdapter(View.class);
+		View view = decoratorTarget.getAdapter(
+				View.class);
 		return view != null && CompositeStructureDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 

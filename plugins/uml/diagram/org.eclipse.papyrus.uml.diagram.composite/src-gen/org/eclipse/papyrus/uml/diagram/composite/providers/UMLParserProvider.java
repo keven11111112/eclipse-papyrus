@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -47,7 +47,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivity_NameLabel_Parser() {
 		if (activity_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -67,7 +69,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivity_FloatingNameLabel_Parser() {
 		if (activity_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			activity_FloatingNameLabel_Parser = parser;
 		}
@@ -84,7 +88,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteraction_NameLabel_Parser() {
 		if (interaction_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -104,7 +110,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteraction_FloatingNameLabel_Parser() {
 		if (interaction_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interaction_FloatingNameLabel_Parser = parser;
 		}
@@ -121,7 +129,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getProtocolStateMachine_NameLabel_Parser() {
 		if (protocolStateMachine_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -141,7 +151,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getProtocolStateMachine_FloatingNameLabel_Parser() {
 		if (protocolStateMachine_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			protocolStateMachine_FloatingNameLabel_Parser = parser;
 		}
@@ -158,7 +170,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStateMachine_NameLabel_Parser() {
 		if (stateMachine_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -178,7 +192,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStateMachine_FloatingNameLabel_Parser() {
 		if (stateMachine_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stateMachine_FloatingNameLabel_Parser = parser;
 		}
@@ -195,7 +211,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getFunctionBehavior_NameLabel_Parser() {
 		if (functionBehavior_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -215,7 +233,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getFunctionBehavior_FloatingNameLabel_Parser() {
 		if (functionBehavior_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			functionBehavior_FloatingNameLabel_Parser = parser;
 		}
@@ -232,7 +252,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueBehavior_NameLabel_Parser() {
 		if (opaqueBehavior_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -252,7 +274,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueBehavior_FloatingNameLabel_Parser() {
 		if (opaqueBehavior_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			opaqueBehavior_FloatingNameLabel_Parser = parser;
 		}
@@ -269,7 +293,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getComponent_NameLabel_Parser() {
 		if (component_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -289,7 +315,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getComponent_FloatingNameLabel_Parser() {
 		if (component_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			component_FloatingNameLabel_Parser = parser;
 		}
@@ -306,7 +334,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDevice_NameLabel_Parser() {
 		if (device_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -326,7 +356,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDevice_FloatingNameLabel_Parser() {
 		if (device_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			device_FloatingNameLabel_Parser = parser;
 		}
@@ -343,7 +375,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getExecutionEnvironment_NameLabel_Parser() {
 		if (executionEnvironment_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -363,7 +397,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getExecutionEnvironment_FloatingNameLabel_Parser() {
 		if (executionEnvironment_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			executionEnvironment_FloatingNameLabel_Parser = parser;
 		}
@@ -380,7 +416,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getNode_NameLabel_Parser() {
 		if (node_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -400,7 +438,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getNode_FloatingNameLabel_Parser() {
 		if (node_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			node_FloatingNameLabel_Parser = parser;
 		}
@@ -417,7 +457,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClass_NameLabel_Parser() {
 		if (class_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -437,7 +479,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClass_FloatingNameLabel_Parser() {
 		if (class_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			class_FloatingNameLabel_Parser = parser;
 		}
@@ -454,7 +498,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCollaboration_NameLabel_Parser() {
 		if (collaboration_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -474,7 +520,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCollaboration_FloatingNameLabel_Parser() {
 		if (collaboration_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			collaboration_FloatingNameLabel_Parser = parser;
 		}
@@ -491,7 +539,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterface_NameLabel_Parser() {
 		if (interface_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -511,7 +561,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterface_FloatingNameLabel_Parser() {
 		if (interface_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interface_FloatingNameLabel_Parser = parser;
 		}
@@ -528,7 +580,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPrimitiveType_NameLabel_Parser() {
 		if (primitiveType_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -548,7 +602,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPrimitiveType_FloatingNameLabel_Parser() {
 		if (primitiveType_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			primitiveType_FloatingNameLabel_Parser = parser;
 		}
@@ -565,7 +621,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getEnumeration_NameLabel_Parser() {
 		if (enumeration_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -585,7 +643,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getEnumeration_FloatingNameLabel_Parser() {
 		if (enumeration_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			enumeration_FloatingNameLabel_Parser = parser;
 		}
@@ -602,7 +662,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDataType_NameLabel_Parser() {
 		if (dataType_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -622,7 +684,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDataType_FloatingNameLabel_Parser() {
 		if (dataType_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			dataType_FloatingNameLabel_Parser = parser;
 		}
@@ -639,7 +703,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActor_NameLabel_Parser() {
 		if (actor_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -659,7 +725,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActor_FloatingNameLabel_Parser() {
 		if (actor_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			actor_FloatingNameLabel_Parser = parser;
 		}
@@ -676,7 +744,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDeploymentSpecification_NameLabel_Parser() {
 		if (deploymentSpecification_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -696,7 +766,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDeploymentSpecification_FloatingNameLabel_Parser() {
 		if (deploymentSpecification_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			deploymentSpecification_FloatingNameLabel_Parser = parser;
 		}
@@ -713,7 +785,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getArtifact_NameLabel_Parser() {
 		if (artifact_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -733,7 +807,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getArtifact_FloatingNameLabel_Parser() {
 		if (artifact_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			artifact_FloatingNameLabel_Parser = parser;
 		}
@@ -750,7 +826,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInformationItem_NameLabel_Parser() {
 		if (informationItem_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -770,7 +848,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInformationItem_FloatingNameLabel_Parser() {
 		if (informationItem_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			informationItem_FloatingNameLabel_Parser = parser;
 		}
@@ -787,7 +867,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSignal_NameLabel_Parser() {
 		if (signal_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -807,7 +889,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSignal_FloatingNameLabel_Parser() {
 		if (signal_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			signal_FloatingNameLabel_Parser = parser;
 		}
@@ -824,7 +908,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getUseCase_NameLabel_Parser() {
 		if (useCase_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -844,7 +930,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getUseCase_FloatingNameLabel_Parser() {
 		if (useCase_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			useCase_FloatingNameLabel_Parser = parser;
 		}
@@ -861,7 +949,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSignalEvent_NameLabel_Parser() {
 		if (signalEvent_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -881,7 +971,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSignalEvent_FloatingNameLabel_Parser() {
 		if (signalEvent_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			signalEvent_FloatingNameLabel_Parser = parser;
 		}
@@ -898,7 +990,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCallEvent_NameLabel_Parser() {
 		if (callEvent_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -918,7 +1012,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCallEvent_FloatingNameLabel_Parser() {
 		if (callEvent_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			callEvent_FloatingNameLabel_Parser = parser;
 		}
@@ -935,7 +1031,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAnyReceiveEvent_NameLabel_Parser() {
 		if (anyReceiveEvent_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -955,7 +1053,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAnyReceiveEvent_FloatingNameLabel_Parser() {
 		if (anyReceiveEvent_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			anyReceiveEvent_FloatingNameLabel_Parser = parser;
 		}
@@ -972,7 +1072,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getChangeEvent_NameLabel_Parser() {
 		if (changeEvent_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -992,7 +1094,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getChangeEvent_FloatingNameLabel_Parser() {
 		if (changeEvent_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			changeEvent_FloatingNameLabel_Parser = parser;
 		}
@@ -1009,7 +1113,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeEvent_NameLabel_Parser() {
 		if (timeEvent_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1029,7 +1135,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeEvent_FloatingNameLabel_Parser() {
 		if (timeEvent_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeEvent_FloatingNameLabel_Parser = parser;
 		}
@@ -1046,7 +1154,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDurationObservation_NameLabel_Parser() {
 		if (durationObservation_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			durationObservation_NameLabel_Parser = parser;
 		}
@@ -1078,7 +1188,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeObservation_NameLabel_Parser() {
 		if (timeObservation_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeObservation_NameLabel_Parser = parser;
 		}
@@ -1110,7 +1222,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralBoolean_NameLabel_Parser() {
 		if (literalBoolean_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1130,7 +1244,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralBoolean_FloatingNameLabel_Parser() {
 		if (literalBoolean_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			literalBoolean_FloatingNameLabel_Parser = parser;
 		}
@@ -1147,7 +1263,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralInteger_NameLabel_Parser() {
 		if (literalInteger_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1167,7 +1285,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralInteger_FloatingNameLabel_Parser() {
 		if (literalInteger_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			literalInteger_FloatingNameLabel_Parser = parser;
 		}
@@ -1184,7 +1304,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralNull_NameLabel_Parser() {
 		if (literalNull_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1204,7 +1326,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralNull_FloatingNameLabel_Parser() {
 		if (literalNull_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			literalNull_FloatingNameLabel_Parser = parser;
 		}
@@ -1221,7 +1345,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralString_NameLabel_Parser() {
 		if (literalString_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1241,7 +1367,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralString_FloatingNameLabel_Parser() {
 		if (literalString_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			literalString_FloatingNameLabel_Parser = parser;
 		}
@@ -1258,7 +1386,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralUnlimitedNatural_NameLabel_Parser() {
 		if (literalUnlimitedNatural_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1278,7 +1408,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getLiteralUnlimitedNatural_FloatingNameLabel_Parser() {
 		if (literalUnlimitedNatural_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			literalUnlimitedNatural_FloatingNameLabel_Parser = parser;
 		}
@@ -1295,7 +1427,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStringExpression_NameLabel_Parser() {
 		if (stringExpression_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1315,7 +1449,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStringExpression_FloatingNameLabel_Parser() {
 		if (stringExpression_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stringExpression_FloatingNameLabel_Parser = parser;
 		}
@@ -1332,7 +1468,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueExpression_NameLabel_Parser() {
 		if (opaqueExpression_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1352,7 +1490,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueExpression_FloatingNameLabel_Parser() {
 		if (opaqueExpression_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			opaqueExpression_FloatingNameLabel_Parser = parser;
 		}
@@ -1369,7 +1509,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeExpression_NameLabel_Parser() {
 		if (timeExpression_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1389,7 +1531,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeExpression_FloatingNameLabel_Parser() {
 		if (timeExpression_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeExpression_FloatingNameLabel_Parser = parser;
 		}
@@ -1406,7 +1550,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getExpression_NameLabel_Parser() {
 		if (expression_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1426,7 +1572,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getExpression_FloatingNameLabel_Parser() {
 		if (expression_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			expression_FloatingNameLabel_Parser = parser;
 		}
@@ -1443,7 +1591,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDuration_NameLabel_Parser() {
 		if (duration_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1463,7 +1613,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDuration_FloatingNameLabel_Parser() {
 		if (duration_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			duration_FloatingNameLabel_Parser = parser;
 		}
@@ -1480,7 +1632,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeInterval_NameLabel_Parser() {
 		if (timeInterval_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1500,7 +1654,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeInterval_FloatingNameLabel_Parser() {
 		if (timeInterval_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeInterval_FloatingNameLabel_Parser = parser;
 		}
@@ -1517,7 +1673,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDurationInterval_NameLabel_Parser() {
 		if (durationInterval_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1537,7 +1695,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDurationInterval_FloatingNameLabel_Parser() {
 		if (durationInterval_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			durationInterval_FloatingNameLabel_Parser = parser;
 		}
@@ -1554,7 +1714,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterval_NameLabel_Parser() {
 		if (interval_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1574,7 +1736,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterval_FloatingNameLabel_Parser() {
 		if (interval_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interval_FloatingNameLabel_Parser = parser;
 		}
@@ -1591,7 +1755,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInstanceValue_NameLabel_Parser() {
 		if (instanceValue_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1611,7 +1777,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInstanceValue_FloatingNameLabel_Parser() {
 		if (instanceValue_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			instanceValue_FloatingNameLabel_Parser = parser;
 		}
@@ -1643,7 +1811,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDurationConstraint_NameLabel_Parser() {
 		if (durationConstraint_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			durationConstraint_NameLabel_Parser = parser;
 		}
@@ -1675,7 +1845,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeConstraint_NameLabel_Parser() {
 		if (timeConstraint_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeConstraint_NameLabel_Parser = parser;
 		}
@@ -1707,7 +1879,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getIntervalConstraint_NameLabel_Parser() {
 		if (intervalConstraint_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			intervalConstraint_NameLabel_Parser = parser;
 		}
@@ -1739,7 +1913,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteractionConstraint_NameLabel_Parser() {
 		if (interactionConstraint_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interactionConstraint_NameLabel_Parser = parser;
 		}
@@ -1771,7 +1947,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConstraint_NameLabel_Parser() {
 		if (constraint_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraint_NameLabel_Parser = parser;
 		}
@@ -1803,7 +1981,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPort_BehaviorFloatingNameLabel_Parser() {
 		if (port_BehaviorFloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			port_BehaviorFloatingNameLabel_Parser = parser;
 		}
@@ -1820,7 +2000,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPort_NameLabel_Parser() {
 		if (port_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			port_NameLabel_Parser = parser;
 		}
@@ -1852,7 +2034,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getParameter_NameLabel_Parser() {
 		if (parameter_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parameter_NameLabel_Parser = parser;
 		}
@@ -1884,7 +2068,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getProperty_NameLabel_Parser() {
 		if (property_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			property_NameLabel_Parser = parser;
 		}
@@ -1901,7 +2087,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getProperty_FloatingNameLabel_Parser() {
 		if (property_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			property_FloatingNameLabel_Parser = parser;
 		}
@@ -1918,7 +2106,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConnectableElement_CollaborationRoleNameLabel_Parser() {
 		if (connectableElement_CollaborationRoleNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -1938,7 +2128,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConnectableElement_CollaborationRoleFloatingNameLabel_Parser() {
 		if (connectableElement_CollaborationRoleFloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			connectableElement_CollaborationRoleFloatingNameLabel_Parser = parser;
 		}
@@ -1955,7 +2147,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCollaborationUse_NameLabel_Parser() {
 		if (collaborationUse_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			collaborationUse_NameLabel_Parser = parser;
 		}
@@ -1972,7 +2166,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCollaborationUse_FloatingNameLabel_Parser() {
 		if (collaborationUse_FloatingNameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			collaborationUse_FloatingNameLabel_Parser = parser;
 		}
@@ -1989,7 +2185,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivity_NameLabel_CN_Parser() {
 		if (activity_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2009,7 +2207,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivity_FloatingNameLabel_CN_Parser() {
 		if (activity_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			activity_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2026,7 +2226,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteraction_NameLabel_CN_Parser() {
 		if (interaction_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2046,7 +2248,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteraction_FloatingNameLabel_CN_Parser() {
 		if (interaction_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interaction_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2063,7 +2267,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getProtocolStateMachine_NameLabel_CN_Parser() {
 		if (protocolStateMachine_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2083,7 +2289,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getProtocolStateMachine_FloatingNameLabel_CN_Parser() {
 		if (protocolStateMachine_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			protocolStateMachine_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2100,7 +2308,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStateMachine_NameLabel_CN_Parser() {
 		if (stateMachine_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2120,7 +2330,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStateMachine_FloatingNameLabel_CN_Parser() {
 		if (stateMachine_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stateMachine_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2137,7 +2349,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getFunctionBehavior_NameLabel_CN_Parser() {
 		if (functionBehavior_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2157,7 +2371,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getFunctionBehavior_FloatingNameLabel_CN_Parser() {
 		if (functionBehavior_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			functionBehavior_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2174,7 +2390,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueBehavior_NameLabel_CN_Parser() {
 		if (opaqueBehavior_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2194,7 +2412,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueBehavior_FloatingNameLabel_CN_Parser() {
 		if (opaqueBehavior_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			opaqueBehavior_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2211,7 +2431,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getComponent_NameLabel_CN_Parser() {
 		if (component_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2231,7 +2453,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getComponent_FloatingNameLabel_CN_Parser() {
 		if (component_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			component_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2248,7 +2472,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDevice_NameLabel_CN_Parser() {
 		if (device_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2268,7 +2494,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDevice_FloatingNameLabel_CN_Parser() {
 		if (device_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			device_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2285,7 +2513,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getExecutionEnvironment_NameLabel_CN_Parser() {
 		if (executionEnvironment_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2305,7 +2535,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getExecutionEnvironment_FloatingNameLabel_CN_Parser() {
 		if (executionEnvironment_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			executionEnvironment_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2322,7 +2554,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getNode_NameLabel_CN_Parser() {
 		if (node_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2342,7 +2576,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getNode_FloatingNameLabel_CN_Parser() {
 		if (node_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			node_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2359,7 +2595,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClass_NameLabel_CN_Parser() {
 		if (class_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2379,7 +2617,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClass_FloatingNameLabel_CN_Parser() {
 		if (class_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			class_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2396,7 +2636,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCollaboration_NameLabel_CN_Parser() {
 		if (collaboration_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2416,7 +2658,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCollaboration_FloatingNameLabel_CN_Parser() {
 		if (collaboration_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			collaboration_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2433,7 +2677,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterface_NameLabel_CN_Parser() {
 		if (interface_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2453,7 +2699,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterface_FloatingNameLabel_CN_Parser() {
 		if (interface_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interface_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2470,7 +2718,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPrimitiveType_NameLabel_CN_Parser() {
 		if (primitiveType_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2490,7 +2740,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getPrimitiveType_FloatingNameLabel_CN_Parser() {
 		if (primitiveType_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			primitiveType_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2507,7 +2759,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getEnumeration_NameLabel_CN_Parser() {
 		if (enumeration_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2527,7 +2781,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getEnumeration_FloatingNameLabel_CN_Parser() {
 		if (enumeration_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			enumeration_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2544,7 +2800,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDataType_NameLabel_CN_Parser() {
 		if (dataType_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2564,7 +2822,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDataType_FloatingNameLabel_CN_Parser() {
 		if (dataType_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			dataType_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2581,7 +2841,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActor_NameLabel_CN_Parser() {
 		if (actor_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2601,7 +2863,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActor_FloatingNameLabel_CN_Parser() {
 		if (actor_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			actor_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2618,7 +2882,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDeploymentSpecification_NameLabel_CN_Parser() {
 		if (deploymentSpecification_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2638,7 +2904,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDeploymentSpecification_FloatingNameLabel_CN_Parser() {
 		if (deploymentSpecification_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			deploymentSpecification_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2655,7 +2923,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getArtifact_NameLabel_CN_Parser() {
 		if (artifact_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2675,7 +2945,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getArtifact_FloatingNameLabel_CN_Parser() {
 		if (artifact_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			artifact_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2692,7 +2964,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInformationItem_NameLabel_CN_Parser() {
 		if (informationItem_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2712,7 +2986,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInformationItem_FloatingNameLabel_CN_Parser() {
 		if (informationItem_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			informationItem_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2729,7 +3005,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSignal_NameLabel_CN_Parser() {
 		if (signal_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2749,7 +3027,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSignal_FloatingNameLabel_CN_Parser() {
 		if (signal_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			signal_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2766,7 +3046,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getUseCase_NameLabel_CN_Parser() {
 		if (useCase_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2786,7 +3068,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getUseCase_FloatingNameLabel_CN_Parser() {
 		if (useCase_FloatingNameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			useCase_FloatingNameLabel_CN_Parser = parser;
 		}
@@ -2818,7 +3102,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDurationConstraint_NameLabel_CN_Parser() {
 		if (durationConstraint_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			durationConstraint_NameLabel_CN_Parser = parser;
 		}
@@ -2850,7 +3136,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeConstraint_NameLabel_CN_Parser() {
 		if (timeConstraint_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeConstraint_NameLabel_CN_Parser = parser;
 		}
@@ -2882,7 +3170,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getIntervalConstraint_NameLabel_CN_Parser() {
 		if (intervalConstraint_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			intervalConstraint_NameLabel_CN_Parser = parser;
 		}
@@ -2914,7 +3204,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteractionConstraint_NameLabel_CN_Parser() {
 		if (interactionConstraint_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interactionConstraint_NameLabel_CN_Parser = parser;
 		}
@@ -2946,7 +3238,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConstraint_NameLabel_CN_Parser() {
 		if (constraint_NameLabel_CN_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraint_NameLabel_CN_Parser = parser;
 		}
@@ -2978,7 +3272,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getProperty_AttributeLabel_Parser() {
 		if (property_AttributeLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -2998,7 +3294,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOperation_OperationLabel_Parser() {
 		if (operation_OperationLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -3018,7 +3316,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getEnumerationLiteral_LiteralLabel_Parser() {
 		if (enumerationLiteral_LiteralLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}  "); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -3038,7 +3338,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getComponentRealization_NameLabel_Parser() {
 		if (componentRealization_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			componentRealization_NameLabel_Parser = parser;
 		}
@@ -3070,7 +3372,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInterfaceRealization_NameLabel_Parser() {
 		if (interfaceRealization_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceRealization_NameLabel_Parser = parser;
 		}
@@ -3102,7 +3406,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSubstitution_NameLabel_Parser() {
 		if (substitution_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			substitution_NameLabel_Parser = parser;
 		}
@@ -3134,7 +3440,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getRealization_NameLabel_Parser() {
 		if (realization_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			realization_NameLabel_Parser = parser;
 		}
@@ -3166,7 +3474,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getManifestation_NameLabel_Parser() {
 		if (manifestation_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			manifestation_NameLabel_Parser = parser;
 		}
@@ -3198,7 +3508,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAbstraction_NameLabel_Parser() {
 		if (abstraction_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			abstraction_NameLabel_Parser = parser;
 		}
@@ -3230,7 +3542,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getUsage_NameLabel_Parser() {
 		if (usage_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			usage_NameLabel_Parser = parser;
 		}
@@ -3262,7 +3576,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDeployment_NameLabel_Parser() {
 		if (deployment_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			deployment_NameLabel_Parser = parser;
 		}
@@ -3324,7 +3640,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDependency_NameLabel_Parser() {
 		if (dependency_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			dependency_NameLabel_Parser = parser;
 		}
@@ -3371,7 +3689,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConnector_NameLabel_Parser() {
 		if (connector_NameLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			connector_NameLabel_Parser = parser;
 		}
@@ -3388,7 +3708,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConnector_SourceMultiplicityLabel_Parser() {
 		if (connector_SourceMultiplicityLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("sourceMul{0}"); //$NON-NLS-1$
 			parser.setEditorPattern("sourceMul{0}"); //$NON-NLS-1$
@@ -3408,7 +3730,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConnector_TargetMultiplicityLabel_Parser() {
 		if (connector_TargetMultiplicityLabel_Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("targetMul{0}"); //$NON-NLS-1$
 			parser.setEditorPattern("targetMul{0}"); //$NON-NLS-1$
@@ -3885,6 +4209,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			case EnumerationLiteralEditPartCLN.VISUAL_ID:
 				return getEnumerationLiteral_LiteralLabel_Parser();
 
+
+
+
 			case ComponentRealizationNameEditPart.VISUAL_ID:
 				return getComponentRealization_NameLabel_Parser();
 			case ComponentRealizationAppliedStereotypeEditPart.VISUAL_ID:
@@ -3947,6 +4274,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getGeneralization_StereotypeLabel_Parser();
 
+
+
+
 			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getInformationFlow_StereotypeLabel_Parser();
 			case InformationFlowNameEditPart.VISUAL_ID:
@@ -3959,7 +4289,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
-	 * 
+	 *
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {
@@ -3969,12 +4299,13 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String) hint.getAdapter(String.class);
+		String vid = hint.getAdapter(String.class);
 		if (vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View) hint.getAdapter(View.class);
+		View view = hint.getAdapter(View.class);
 		if (view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
@@ -3984,6 +4315,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -4017,6 +4349,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		/**
 		 * @generated
 		 */
+		@Override
 		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -116,12 +116,14 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -130,9 +132,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(
-				org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationStereotypeLabelEditPart.VISUAL_ID),
-				new Point(0, 0));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationStereotypeLabelEditPart.VISUAL_ID), new Point(0, 0));
 	}
 
 	/**
@@ -145,18 +145,19 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeExternalNodeEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeExternalNodeEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ExternalLabelPrimaryDragRoleEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -169,6 +170,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -243,6 +245,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -250,6 +253,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -282,7 +286,8 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(ParserUtil.getParserAdapter(getParserElement(), this),
+			text = getParser().getPrintString(
+					ParserUtil.getParserAdapter(getParserElement(), this),
 					getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
@@ -294,6 +299,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -309,11 +315,13 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(ParserUtil.getParserAdapter(getParserElement(), this),
+		return getParser().getEditString(
+				ParserUtil.getParserAdapter(getParserElement(), this),
 				getParserOptions().intValue());
 	}
 
@@ -327,6 +335,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -336,16 +345,12 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
-								.runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
 									@Override
 									public void run() {
-										setResult(
-												parser.isValidEditString(
-														ParserUtil.getParserAdapter(getParserElement(),
-																TimeObservationStereotypeLabelEditPart.this),
-														(String) value));
+										setResult(parser.isValidEditString(ParserUtil.getParserAdapter(getParserElement(), TimeObservationStereotypeLabelEditPart.this), (String) value));
 									}
 								});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
@@ -363,6 +368,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -373,6 +379,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -380,6 +387,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public IParser getParser() {
 		if (parser == null) {
 			parser = ParserUtil.getParser(UMLElementTypes.TimeObservation_Shape, getParserElement(), this, VISUAL_ID);
@@ -442,6 +450,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -469,18 +478,13 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 					initializeDirectEditManager(theRequest);
 					return;
 				} else if (configuration instanceof IPopupEditorConfiguration) {
-					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
-							.createPopupEditorHelper(this);
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
 				} else if (configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
-							configuration.getTextToEdit(resolveSemanticElement()));
+					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
-							configuration.getTextToEdit(resolveSemanticElement()), configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -492,8 +496,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 
 						@Override
 						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(),
-									((ILabelEditorDialog) finalDialog).getValue());
+							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
 
 						}
 					};
@@ -519,10 +522,9 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData()
-								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) request.getExtendedData()
-									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+						if (request.getExtendedData().get(
+								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
 							performDirectEdit();
@@ -538,6 +540,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -573,7 +576,8 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -590,7 +594,8 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -599,11 +604,15 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(),
-					(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(
+					style.getFontName(), style.getFontHeight(),
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
+							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -611,6 +620,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -618,6 +628,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -633,6 +644,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -646,6 +658,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -668,7 +681,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 * 
+	 *
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -687,7 +700,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 
 	/**
 	 * Checks if an extended editor is present.
-	 * 
+	 *
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -700,7 +713,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 
 	/**
 	 * Checks if a default direct edition is available
-	 * 
+	 *
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -710,43 +723,42 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
-						this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
-						resolveSemanticElement(), this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
 			}
 		}
 	}
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("")
-				&& !languagePreferred.equals(configuration.getLanguage())) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
-					this);
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
 	}
 
 	/**
-	* Performs the direct edit usually used by GMF editors.
-	* @param theRequest the direct edit request that starts the direct edit system
-	* @generated
-	*/
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 * @generated
+	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -755,13 +767,11 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData()
-								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData()
-									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest)
-								&& (getEditText().equals(getLabelText()))) {
+						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
@@ -778,6 +788,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -787,10 +798,10 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
@@ -813,6 +824,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
@@ -829,6 +841,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getLabelRole() {
 		return "Stereotype";//$NON-NLS-1$
 	}
@@ -836,6 +849,7 @@ public class TimeObservationStereotypeLabelEditPart extends AbstractLabelEditPar
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif";//$NON-NLS-1$
 	}

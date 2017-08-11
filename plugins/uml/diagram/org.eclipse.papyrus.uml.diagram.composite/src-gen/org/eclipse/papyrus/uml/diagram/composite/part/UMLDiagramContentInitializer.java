@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -46,13 +46,11 @@ public class UMLDiagramContentInitializer {
 	 */
 	public void initDiagramContent(Diagram diagram) {
 		if (!CompositeStructureDiagramEditPart.MODEL_ID.equals(diagram.getType())) {
-			UMLDiagramEditorPlugin.getInstance()
-					.logError("Incorrect diagram passed as a parameter: " + diagram.getType());
+			UMLDiagramEditorPlugin.getInstance().logError("Incorrect diagram passed as a parameter: " + diagram.getType());
 			return;
 		}
 		if (false == diagram.getElement() instanceof Package) {
-			UMLDiagramEditorPlugin.getInstance()
-					.logError("Incorrect diagram element specified: " + diagram.getElement() + " instead of Package");
+			UMLDiagramEditorPlugin.getInstance().logError("Incorrect diagram element specified: " + diagram.getElement() + " instead of Package");
 			return;
 		}
 		createPackage_CompositeStructureDiagram_Children(diagram);
@@ -75,13 +73,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createActivity_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getActivity_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getActivity_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getActivity_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getActivity_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createActivity_StructureCompartment_Children(
-				getCompartment(view, ActivityCompositeCompartmentEditPart.VISUAL_ID));
+		createActivity_StructureCompartment_Children(getCompartment(view, ActivityCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -89,13 +88,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInteraction_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInteraction_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getInteraction_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInteraction_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getInteraction_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createInteraction_StructureCompartment_Children(
-				getCompartment(view, InteractionCompositeCompartmentEditPart.VISUAL_ID));
+		createInteraction_StructureCompartment_Children(getCompartment(view, InteractionCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -103,14 +103,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createProtocolStateMachine_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getProtocolStateMachine_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getProtocolStateMachine_Shape_OutgoingLinks(view));
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
 				.getProtocolStateMachine_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createProtocolStateMachine_StructureCompartment_Children(
-				getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID));
+		createProtocolStateMachine_StructureCompartment_Children(getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -118,13 +118,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createStateMachine_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getStateMachine_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getStateMachine_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getStateMachine_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getStateMachine_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createStateMachine_StructureCompartment_Children(
-				getCompartment(view, StateMachineCompositeCompartmentEditPart.VISUAL_ID));
+		createStateMachine_StructureCompartment_Children(getCompartment(view, StateMachineCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -132,13 +133,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createFunctionBehavior_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getFunctionBehavior_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getFunctionBehavior_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getFunctionBehavior_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getFunctionBehavior_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createFunctionBehavior_StructureCompartment_Children(
-				getCompartment(view, FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID));
+		createFunctionBehavior_StructureCompartment_Children(getCompartment(view, FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -146,13 +148,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createOpaqueBehavior_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getOpaqueBehavior_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getOpaqueBehavior_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getOpaqueBehavior_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getOpaqueBehavior_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createOpaqueBehavior_StructureCompartment_Children(
-				getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID));
+		createOpaqueBehavior_StructureCompartment_Children(getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -160,13 +163,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createComponent_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getComponent_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getComponent_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getComponent_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getComponent_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createComponent_StructureCompartment_Children(
-				getCompartment(view, ComponentCompositeCompartmentEditPart.VISUAL_ID));
+		createComponent_StructureCompartment_Children(getCompartment(view, ComponentCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -174,8 +178,10 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDevice_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDevice_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getDevice_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDevice_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getDevice_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
@@ -187,14 +193,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createExecutionEnvironment_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getExecutionEnvironment_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getExecutionEnvironment_Shape_OutgoingLinks(view));
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
 				.getExecutionEnvironment_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createExecutionEnvironment_StructureCompartment_Children(
-				getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID));
+		createExecutionEnvironment_StructureCompartment_Children(getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -202,8 +208,10 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createNode_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getNode_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getNode_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getNode_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getNode_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
@@ -215,8 +223,10 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createClass_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getClass_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getClass_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getClass_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getClass_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
@@ -228,9 +238,9 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createCollaboration_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getCollaboration_Shape_OutgoingLinks(view));
-		createCollaboration_StructureCompartment_Children(
-				getCompartment(view, CollaborationCompositeCompartmentEditPart.VISUAL_ID));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getCollaboration_Shape_OutgoingLinks(view));
+		createCollaboration_StructureCompartment_Children(getCompartment(view, CollaborationCompositeCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -238,7 +248,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInterface_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInterface_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInterface_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -246,7 +257,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createPrimitiveType_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getPrimitiveType_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getPrimitiveType_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -254,13 +266,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createEnumeration_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getEnumeration_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getEnumeration_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getEnumeration_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getEnumeration_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createEnumeration_LiteralCompartment_Children(
-				getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID));
+		createEnumeration_LiteralCompartment_Children(getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -268,11 +281,10 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDataType_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDataType_Shape_OutgoingLinks(view));
-		createDataType_AttributeCompartment_Children(
-				getCompartment(view, DataTypeAttributeCompartmentEditPart.VISUAL_ID));
-		createDataType_OperationCompartment_Children(
-				getCompartment(view, DataTypeOperationCompartmentEditPart.VISUAL_ID));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDataType_Shape_OutgoingLinks(view));
+		createDataType_AttributeCompartment_Children(getCompartment(view, DataTypeAttributeCompartmentEditPart.VISUAL_ID));
+		createDataType_OperationCompartment_Children(getCompartment(view, DataTypeOperationCompartmentEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -280,7 +292,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createActor_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getActor_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getActor_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -288,7 +301,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDeploymentSpecification_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDeploymentSpecification_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDeploymentSpecification_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -296,7 +310,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createArtifact_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getArtifact_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getArtifact_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -304,7 +319,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInformationItem_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInformationItem_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInformationItem_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -312,7 +328,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createSignal_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getSignal_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getSignal_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -320,7 +337,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createUseCase_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getUseCase_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getUseCase_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -328,7 +346,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createSignalEvent_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getSignalEvent_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getSignalEvent_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -336,7 +355,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createCallEvent_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getCallEvent_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getCallEvent_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -344,7 +364,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createAnyReceiveEvent_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getAnyReceiveEvent_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getAnyReceiveEvent_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -352,7 +373,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createChangeEvent_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getChangeEvent_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getChangeEvent_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -360,7 +382,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createTimeEvent_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getTimeEvent_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getTimeEvent_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -368,7 +391,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDurationObservation_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDurationObservation_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDurationObservation_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -376,7 +400,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createTimeObservation_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getTimeObservation_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getTimeObservation_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -384,7 +409,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createLiteralBoolean_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getLiteralBoolean_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getLiteralBoolean_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -392,7 +418,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createLiteralInteger_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getLiteralInteger_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getLiteralInteger_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -400,7 +427,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createLiteralNull_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getLiteralNull_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getLiteralNull_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -408,7 +436,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createLiteralString_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getLiteralString_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getLiteralString_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -416,7 +445,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createLiteralUnlimitedNatural_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getLiteralUnlimitedNatural_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getLiteralUnlimitedNatural_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -424,8 +454,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createStringExpression_PackagedElementShape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors
-				.addAll(UMLDiagramUpdater.INSTANCE.getStringExpression_PackagedElementShape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getStringExpression_PackagedElementShape_OutgoingLinks(view));
 	}
 
 	/**
@@ -433,7 +463,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createOpaqueExpression_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getOpaqueExpression_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getOpaqueExpression_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -441,7 +472,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createTimeExpression_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getTimeExpression_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getTimeExpression_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -449,7 +481,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createExpression_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getExpression_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getExpression_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -457,7 +490,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDuration_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDuration_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDuration_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -465,7 +499,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createTimeInterval_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getTimeInterval_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getTimeInterval_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -473,7 +508,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDurationInterval_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDurationInterval_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDurationInterval_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -481,7 +517,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInterval_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInterval_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInterval_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -489,7 +526,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInstanceValue_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInstanceValue_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInstanceValue_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -497,7 +535,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createComment_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getComment_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getComment_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -505,7 +544,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDurationConstraint_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDurationConstraint_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDurationConstraint_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -513,7 +553,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createTimeConstraint_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getTimeConstraint_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getTimeConstraint_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -521,7 +562,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createIntervalConstraint_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getIntervalConstraint_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getIntervalConstraint_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -529,7 +571,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInteractionConstraint_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInteractionConstraint_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInteractionConstraint_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -537,7 +580,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createConstraint_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getConstraint_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getConstraint_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -545,7 +589,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createPort_BehaviorShape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getPort_BehaviorShape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getPort_BehaviorShape_OutgoingLinks(view));
 	}
 
 	/**
@@ -553,7 +598,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createPort_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getPort_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getPort_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -561,7 +607,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createParameter_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getParameter_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getParameter_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -569,8 +616,10 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createProperty_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getProperty_Shape_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getProperty_Shape_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getProperty_Shape_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getProperty_Shape_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
@@ -582,8 +631,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createConnectableElement_CollaborationRoleShape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors
-				.addAll(UMLDiagramUpdater.INSTANCE.getConnectableElement_CollaborationRoleShape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getConnectableElement_CollaborationRoleShape_OutgoingLinks(view));
 	}
 
 	/**
@@ -591,7 +640,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createCollaborationUse_Shape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getCollaborationUse_Shape_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getCollaborationUse_Shape_OutgoingLinks(view));
 	}
 
 	/**
@@ -599,13 +649,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createActivity_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getActivity_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getActivity_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getActivity_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getActivity_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createActivity_StructureCompartment_CN_Children(
-				getCompartment(view, ActivityCompositeCompartmentEditPartCN.VISUAL_ID));
+		createActivity_StructureCompartment_CN_Children(getCompartment(view, ActivityCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -613,13 +664,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInteraction_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInteraction_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getInteraction_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInteraction_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getInteraction_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createInteraction_StructureCompartment_CN_Children(
-				getCompartment(view, InteractionCompositeCompartmentEditPartCN.VISUAL_ID));
+		createInteraction_StructureCompartment_CN_Children(getCompartment(view, InteractionCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -627,14 +679,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createProtocolStateMachine_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getProtocolStateMachine_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getProtocolStateMachine_Shape_CN_OutgoingLinks(view));
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
 				.getProtocolStateMachine_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createProtocolStateMachine_StructureCompartment_CN_Children(
-				getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
+		createProtocolStateMachine_StructureCompartment_CN_Children(getCompartment(view, ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -642,13 +694,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createStateMachine_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getStateMachine_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getStateMachine_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getStateMachine_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getStateMachine_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createStateMachine_StructureCompartment_CN_Children(
-				getCompartment(view, StateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
+		createStateMachine_StructureCompartment_CN_Children(getCompartment(view, StateMachineCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -656,14 +709,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createFunctionBehavior_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getFunctionBehavior_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getFunctionBehavior_Shape_CN_OutgoingLinks(view));
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
 				.getFunctionBehavior_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createFunctionBehavior_StructureCompartment_CN_Children(
-				getCompartment(view, FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
+		createFunctionBehavior_StructureCompartment_CN_Children(getCompartment(view, FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -671,13 +724,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createOpaqueBehavior_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getOpaqueBehavior_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getOpaqueBehavior_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getOpaqueBehavior_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getOpaqueBehavior_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createOpaqueBehavior_StructureCompartment_CN_Children(
-				getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
+		createOpaqueBehavior_StructureCompartment_CN_Children(getCompartment(view, OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -685,13 +739,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createComponent_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getComponent_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getComponent_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getComponent_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getComponent_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createComponent_StructureCompartment_CN_Children(
-				getCompartment(view, ComponentCompositeCompartmentEditPartCN.VISUAL_ID));
+		createComponent_StructureCompartment_CN_Children(getCompartment(view, ComponentCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -699,13 +754,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDevice_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDevice_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getDevice_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDevice_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getDevice_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createDevice_StructureCompartment_CN_Children(
-				getCompartment(view, DeviceCompositeCompartmentEditPartCN.VISUAL_ID));
+		createDevice_StructureCompartment_CN_Children(getCompartment(view, DeviceCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -713,14 +769,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createExecutionEnvironment_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getExecutionEnvironment_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getExecutionEnvironment_Shape_CN_OutgoingLinks(view));
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
 				.getExecutionEnvironment_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createExecutionEnvironment_StructureCompartment_CN_Children(
-				getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID));
+		createExecutionEnvironment_StructureCompartment_CN_Children(getCompartment(view, ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -728,8 +784,10 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createNode_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getNode_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getNode_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getNode_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getNode_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
@@ -741,13 +799,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createClass_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getClass_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getClass_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getClass_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getClass_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createClass_StructureCompartment_CN_Children(
-				getCompartment(view, ClassCompositeCompartmentEditPartCN.VISUAL_ID));
+		createClass_StructureCompartment_CN_Children(getCompartment(view, ClassCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -755,9 +814,9 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createCollaboration_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getCollaboration_Shape_CN_OutgoingLinks(view));
-		createCollaboration_StructureCompartment_CN_Children(
-				getCompartment(view, CollaborationCompositeCompartmentEditPartCN.VISUAL_ID));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getCollaboration_Shape_CN_OutgoingLinks(view));
+		createCollaboration_StructureCompartment_CN_Children(getCompartment(view, CollaborationCompositeCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -765,7 +824,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInterface_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInterface_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInterface_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -773,7 +833,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createPrimitiveType_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getPrimitiveType_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getPrimitiveType_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -781,13 +842,14 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createEnumeration_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getEnumeration_Shape_CN_OutgoingLinks(view));
-		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getEnumeration_Shape_CN_SemanticChildren(view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getEnumeration_Shape_CN_OutgoingLinks(view));
+		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
+				.getEnumeration_Shape_CN_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor) it.next());
 		}
-		createEnumeration_LiteralCompartment_CN_Children(
-				getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID));
+		createEnumeration_LiteralCompartment_CN_Children(getCompartment(view, EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -795,11 +857,10 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDataType_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDataType_Shape_CN_OutgoingLinks(view));
-		createDataType_AttributeCompartment_CN_Children(
-				getCompartment(view, DataTypeAttributeCompartmentEditPartCN.VISUAL_ID));
-		createDataType_OperationCompartment_CN_Children(
-				getCompartment(view, DataTypeOperationCompartmentEditPartCN.VISUAL_ID));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDataType_Shape_CN_OutgoingLinks(view));
+		createDataType_AttributeCompartment_CN_Children(getCompartment(view, DataTypeAttributeCompartmentEditPartCN.VISUAL_ID));
+		createDataType_OperationCompartment_CN_Children(getCompartment(view, DataTypeOperationCompartmentEditPartCN.VISUAL_ID));
 	}
 
 	/**
@@ -807,7 +868,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createActor_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getActor_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getActor_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -815,7 +877,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDeploymentSpecification_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDeploymentSpecification_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDeploymentSpecification_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -823,7 +886,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createArtifact_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getArtifact_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getArtifact_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -831,7 +895,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInformationItem_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInformationItem_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInformationItem_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -839,7 +904,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createSignal_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getSignal_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getSignal_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -847,7 +913,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createUseCase_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getUseCase_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getUseCase_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -855,7 +922,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createComment_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getComment_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getComment_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -863,7 +931,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDurationConstraint_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDurationConstraint_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getDurationConstraint_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -871,7 +940,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createTimeConstraint_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getTimeConstraint_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getTimeConstraint_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -879,7 +949,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createIntervalConstraint_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getIntervalConstraint_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getIntervalConstraint_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -887,7 +958,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createInteractionConstraint_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getInteractionConstraint_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getInteractionConstraint_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -895,7 +967,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createConstraint_Shape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getConstraint_Shape_CN_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getConstraint_Shape_CN_OutgoingLinks(view));
 	}
 
 	/**
@@ -903,7 +976,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createProperty_AttributeLabel_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getProperty_AttributeLabel_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getProperty_AttributeLabel_OutgoingLinks(view));
 	}
 
 	/**
@@ -911,7 +985,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createOperation_OperationLabel_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getOperation_OperationLabel_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getOperation_OperationLabel_OutgoingLinks(view));
 	}
 
 	/**
@@ -919,7 +994,8 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createEnumerationLiteral_LiteralLabel_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getEnumerationLiteral_LiteralLabel_OutgoingLinks(view));
+		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+				.getEnumerationLiteral_LiteralLabel_OutgoingLinks(view));
 	}
 
 	/**
@@ -1268,8 +1344,7 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createNode(View parentView, UMLNodeDescriptor nodeDescriptor) {
 		final String nodeType = UMLVisualIDRegistry.getType(nodeDescriptor.getVisualID());
-		Node node = ViewService.createNode(parentView, nodeDescriptor.getModelElement(), nodeType,
-				UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		Node node = ViewService.createNode(parentView, nodeDescriptor.getModelElement(), nodeType, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		switch (nodeDescriptor.getVisualID()) {
 		case ActivityCompositeEditPart.VISUAL_ID:
 			createActivity_Shape_Children(node);
@@ -1541,13 +1616,11 @@ public class UMLDiagramContentInitializer {
 			Collection additionalDescriptors = new LinkedList();
 			for (Iterator it = myLinkDescriptors.iterator(); it.hasNext();) {
 				UMLLinkDescriptor nextLinkDescriptor = (UMLLinkDescriptor) it.next();
-				if (!myDomain2NotationMap.containsKey(nextLinkDescriptor.getSource())
-						|| !myDomain2NotationMap.containsKey(nextLinkDescriptor.getDestination())) {
+				if (!myDomain2NotationMap.containsKey(nextLinkDescriptor.getSource()) || !myDomain2NotationMap.containsKey(nextLinkDescriptor.getDestination())) {
 					continue;
 				}
 				final String linkType = UMLVisualIDRegistry.getType(nextLinkDescriptor.getVisualID());
-				Edge edge = ViewService.getInstance().createEdge(nextLinkDescriptor.getSemanticAdapter(), diagram,
-						linkType, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Edge edge = ViewService.getInstance().createEdge(nextLinkDescriptor.getSemanticAdapter(), diagram, linkType, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (edge != null) {
 					edge.setSource((View) myDomain2NotationMap.get(nextLinkDescriptor.getSource()));
 					edge.setTarget((View) myDomain2NotationMap.get(nextLinkDescriptor.getDestination()));
@@ -1558,52 +1631,56 @@ public class UMLDiagramContentInitializer {
 					continueLinkCreation = true;
 					switch (nextLinkDescriptor.getVisualID()) {
 					case ComponentRealizationEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getComponentRealization_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getComponentRealization_Edge_OutgoingLinks(edge));
 						break;
 					case InterfaceRealizationEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getInterfaceRealization_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getInterfaceRealization_Edge_OutgoingLinks(edge));
 						break;
 					case SubstitutionEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getSubstitution_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getSubstitution_Edge_OutgoingLinks(edge));
 						break;
 					case RealizationEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getRealization_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getRealization_Edge_OutgoingLinks(edge));
 						break;
 					case ManifestationEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getManifestation_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getManifestation_Edge_OutgoingLinks(edge));
 						break;
 					case AbstractionEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getAbstraction_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getAbstraction_Edge_OutgoingLinks(edge));
 						break;
 					case UsageEditPart.VISUAL_ID:
-						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getUsage_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getUsage_Edge_OutgoingLinks(edge));
 						break;
 					case DeploymentEditPart.VISUAL_ID:
-						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDeployment_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getDeployment_Edge_OutgoingLinks(edge));
 						break;
 					case RoleBindingEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getDependency_RoleBindingEdge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getDependency_RoleBindingEdge_OutgoingLinks(edge));
 						break;
 					case DependencyEditPart.VISUAL_ID:
-						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getDependency_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getDependency_Edge_OutgoingLinks(edge));
 						break;
 					case ConnectorEditPart.VISUAL_ID:
-						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getConnector_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getConnector_Edge_OutgoingLinks(edge));
 						break;
 					case GeneralizationEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getGeneralization_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getGeneralization_Edge_OutgoingLinks(edge));
 						break;
 					case InformationFlowEditPart.VISUAL_ID:
-						additionalDescriptors
-								.addAll(UMLDiagramUpdater.INSTANCE.getInformationFlow_Edge_OutgoingLinks(edge));
+						additionalDescriptors.addAll(UMLDiagramUpdater.INSTANCE
+								.getInformationFlow_Edge_OutgoingLinks(edge));
 						break;
 					}
 				}
