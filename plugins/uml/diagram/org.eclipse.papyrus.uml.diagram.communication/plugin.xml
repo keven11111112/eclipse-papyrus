@@ -59,7 +59,6 @@
 				      <persistent value="true"/>
 				   </extension>
 
-
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
 		      <?gmfgen generated="true"?>
 		<page
@@ -92,54 +91,44 @@
    </extension>
 
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
-      <?gmfgen generated="true"?>
-      <editpartProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLEditPartProvider">
-         <Priority name="Lowest"/>
-         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
-            <method name="getType()" value="PapyrusUMLCommunicationDiagram"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="Interaction_Shape,Lifeline_Shape,Constraint_Shape,Comment_Shape,TimeObservation_Shape,DurationObservation_Shape"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="Path_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,DurationObservation_EventEdge,TimeObservation_EventEdge"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="Interaction_NameLabel,Interaction_FloatingNameLabel,Lifeline_NameLabel,Lifeline_FloatingNameLabel,Constraint_NameLabel,Constraint_BodyLabel,Comment_BodyLabel,TimeObservation_NameLabel,TimeObservation_StereotypeLabel,DurationObservation_NameLabel,DurationObservation_StereotypeLabel"/>
-         </object>
-         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="Interaction_SubfragmentCompartment"/>
-         </object>
-         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
-      </editpartProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <editpartProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLEditPartProvider">
+	         <Priority name="Lowest"/>
+	         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+	            <method name="getType()" value="PapyrusUMLCommunicationDiagram"/>
+	         </object>
+	         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+	            <method name="getType()" value="Interaction_Shape,Lifeline_Shape,Constraint_Shape,Comment_Shape,TimeObservation_Shape,DurationObservation_Shape"/>
+	         </object>
+	         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+	            <method name="getType()" value="Path_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,DurationObservation_EventEdge,TimeObservation_EventEdge"/>
+	         </object>
+	         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+	            <method name="getType()" value="Interaction_NameLabel,Interaction_FloatingNameLabel,Lifeline_NameLabel,Lifeline_FloatingNameLabel,Constraint_NameLabel,Constraint_BodyLabel,Comment_BodyLabel,TimeObservation_NameLabel,TimeObservation_StereotypeLabel,DurationObservation_NameLabel,DurationObservation_StereotypeLabel"/>
+	         </object>
+	         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+	            <method name="getType()" value="Interaction_SubfragmentCompartment"/>
+	         </object>
+	         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+	      </editpartProvider>
+	   </extension>
 
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
-      <?gmfgen generated="true"?>
-      <IconProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLIconProvider">
-         <Priority name="Lowest"/>
-      </IconProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <IconProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLIconProvider">
+	         <Priority name="Lowest"/>
+	      </IconProvider>
+	   </extension>
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
-      <?gmfgen generated="true"?>
-      <ParserProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLParserProvider">
-         <Priority name="Lowest"/>
-      </ParserProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <ParserProvider class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLParserProvider">
+	         <Priority name="Lowest"/>
+	      </ParserProvider>
+	   </extension>
 
-	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.uml.diagram.communication.TypeContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.eclipse.papyrus.uml.diagram.communication.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-   </extension>
-
+	
 
 <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
       <?gmfgen generated="true"?>
@@ -383,12 +372,12 @@
    </diagramReconciler>
 </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
-      <?gmfgen generated="true"?>
-      <visualTypeProvider
-            class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLVisualTypeProvider"
-            diagramType="PapyrusUMLCommunicationDiagram">
-         </visualTypeProvider>
-   </extension>
+	      <?gmfgen generated="true"?>
+	      <visualTypeProvider
+	            class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLVisualTypeProvider"
+	            diagramType="PapyrusUMLCommunicationDiagram">
+	         </visualTypeProvider>
+	   </extension>
 
 
 </plugin>
