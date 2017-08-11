@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2007, 2010, 2013 Borland Software Corporation and others
+ * Copyright (c) 2007, 2010, 2013, 2017 Borland Software Corporation and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *    Dmitry Stadnik (Borland) - initial API and implementation
  * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ *    Vincent Lorenzo (CEA-LIST) - Bug 520882
  */
 package aspects.xpt.providers
 
@@ -20,7 +21,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.gmf.codegen.gmfgen.MetamodelType
 import org.eclipse.gmf.codegen.gmfgen.NotationType
 import org.eclipse.gmf.codegen.gmfgen.SpecializationType
-import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
 import parsers.ParserProvider
 import xpt.diagram.Utils_qvto
 import xpt.diagram.edithelpers.EditHelper
@@ -113,38 +113,39 @@ import xpt.providers.ShortcutsDecoratorProvider
 		«tripleSpace(2)»</decoratorProvider>
 		«tripleSpace(1)»</extension>
 		«ENDIF»
-		
-		«IF !getLocalDefineTypedElements(it).empty»
-		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-		«tripleSpace(2)»«xmlGeneratedTag»
-		«FOR e : getLocalDefineTypedElements(it)»
-		«elementTypeSafe(e.elementType)»
-			«ENDFOR»
-		«tripleSpace(1)»</extension>
-		«ENDIF»
-		
-		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
-		«tripleSpace(2)»«xmlGeneratedTag»
-		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size<1»
-			«tripleSpace(2)»<clientContext id="«editorGen.plugin.ID».TypeContext">
-			«tripleSpace(3)»<enablement>
-			«tripleSpace(4)»<test
-			«tripleSpace(5)»property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-			«tripleSpace(5)»value="«editingDomainID»"/>
-			«tripleSpace(3)»</enablement>
-			«tripleSpace(2)»</clientContext> 
-			«tripleSpace(2)»<binding context="«editorGen.plugin.ID».TypeContext">
-		«ENDIF»
-		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
-
-        <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-        «ENDIF»
-		«FOR e : getLocalDefineTypedElements(it)»
-		«tripleSpace(3)»<elementType ref="«e.elementType.uniqueIdentifier»"/>
-				«ENDFOR»
-		«tripleSpace(3)»<advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-		«tripleSpace(2)»</binding>
-		«tripleSpace(1)»</extension>
+	
+«««		commented for bug 520882
+«««		«IF !getLocalDefineTypedElements(it).empty»
+«««		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+«««		«tripleSpace(2)»«xmlGeneratedTag»
+«««		«FOR e : getLocalDefineTypedElements(it)»
+«««		«elementTypeSafe(e.elementType)»
+«««			«ENDFOR»
+«««		«tripleSpace(1)»</extension>
+«««		«ENDIF»
+«««		
+«««		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+«««		«tripleSpace(2)»«xmlGeneratedTag»
+«««		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size<1»
+«««			«tripleSpace(2)»<clientContext id="«editorGen.plugin.ID».TypeContext">
+«««			«tripleSpace(3)»<enablement>
+«««			«tripleSpace(4)»<test
+«««			«tripleSpace(5)»property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+«««			«tripleSpace(5)»value="«editingDomainID»"/>
+«««			«tripleSpace(3)»</enablement>
+«««			«tripleSpace(2)»</clientContext> 
+«««			«tripleSpace(2)»<binding context="«editorGen.plugin.ID».TypeContext">
+«««		«ENDIF»
+«««		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
+«««
+«««        <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+«««        «ENDIF»
+«««		«FOR e : getLocalDefineTypedElements(it)»
+«««		«tripleSpace(3)»<elementType ref="«e.elementType.uniqueIdentifier»"/>
+«««				«ENDFOR»
+«««		«tripleSpace(3)»<advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+«««		«tripleSpace(2)»</binding>
+«««		«tripleSpace(1)»</extension>
 
 		«extraLineBreak»
 		«tripleSpace(1)»<extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
