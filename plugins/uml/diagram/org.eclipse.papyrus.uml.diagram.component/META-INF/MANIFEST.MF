@@ -44,18 +44,43 @@ Require-Bundle: org.eclipse.ui.navigator.resources;bundle-version="[3.5.0,4.0.0)
  org.eclipse.papyrus.uml.service.types;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
- org.eclipse.draw2d;bundle-version="[3.10.0,4.0.0)";visibility:=reexport,
- org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.validation;bundle-version="[1.8.0,2.0.0)";visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12.0,3.0.0)",
+ org.eclipse.draw2d;visibility:=reexport;bundle-version="[3.10.0,4.0.0)",
+ org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12.0,3.0.0)",
+ org.eclipse.emf.ecore.edit;visibility:=reexport;bundle-version="[2.9.0,3.0.0)",
+ org.eclipse.emf.validation;visibility:=reexport;bundle-version="[1.8.0,2.0.0)",
  org.eclipse.papyrus.uml.diagram.menu;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)"
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.jface,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.views,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.gmf.runtime.emf.core,
+ org.eclipse.gmf.runtime.emf.commands.core,
+ org.eclipse.gmf.runtime.emf.ui.properties,
+ org.eclipse.gmf.runtime.diagram.ui,
+ org.eclipse.papyrus.uml.diagram.common,
+ org.eclipse.papyrus.infra.gmfdiag.common,
+ org.eclipse.papyrus.infra.widgets,
+ org.eclipse.papyrus.infra.ui,
+ org.eclipse.papyrus.infra.core.sashwindows.di,
+ org.eclipse.gmf.runtime.diagram.ui.properties,
+ org.eclipse.gmf.runtime.diagram.ui.providers,
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor,
+ org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
+ org.eclipse.uml2.uml;visibility:=reexport,
+ org.eclipse.uml2.uml.edit;visibility:=reexport,
+ org.eclipse.gef,
+ org.eclipse.papyrus.extensionpoints.editors,
+ org.eclipse.papyrus.infra.services.edit
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.component;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.component; singleton:=true
