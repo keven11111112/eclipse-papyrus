@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -54,6 +54,7 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getCompartmentName() {
 		return Messages.ComponentCompositeCompartmentEditPartCN_title;
 	}
@@ -61,6 +62,7 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
@@ -68,8 +70,8 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.ComponentCompositeCompartmentCanonicalEditPolicyCN());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.ComponentCompositeCompartmentCanonicalEditPolicyCN());
 
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
@@ -79,6 +81,7 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -88,6 +91,7 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -96,6 +100,7 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -117,12 +122,16 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new Rectangle(loc, size));
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

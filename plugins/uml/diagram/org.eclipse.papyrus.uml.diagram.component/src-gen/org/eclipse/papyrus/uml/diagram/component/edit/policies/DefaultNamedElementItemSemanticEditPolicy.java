@@ -79,7 +79,7 @@ public class DefaultNamedElementItemSemanticEditPolicy extends UMLBaseItemSemant
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			List<EObject> todestroy = new ArrayList<EObject>();
+			List<EObject> todestroy = new ArrayList<>();
 			todestroy.add(req.getElementToDestroy());
 			// cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 			cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));

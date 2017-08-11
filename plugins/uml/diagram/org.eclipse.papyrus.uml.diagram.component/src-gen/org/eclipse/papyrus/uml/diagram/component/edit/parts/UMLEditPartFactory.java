@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
   * http://www.eclipse.org/legal/epl-v10.html
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -33,6 +33,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -239,6 +240,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case UsageAppliedStereotypeEditPart.VISUAL_ID:
 				return new UsageAppliedStereotypeEditPart(view);
 
+
 			case InterfaceRealizationEditPart.VISUAL_ID:
 				return new InterfaceRealizationEditPart(view);
 
@@ -248,11 +250,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new InterfaceRealizationAppliedStereotypeEditPart(view);
 
+
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
+
 
 			case SubstitutionEditPart.VISUAL_ID:
 				return new SubstitutionEditPart(view);
@@ -263,6 +267,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
 				return new SubstitutionAppliedStereotypeEditPart(view);
 
+
 			case ManifestationEditPart.VISUAL_ID:
 				return new ManifestationEditPart(view);
 
@@ -271,6 +276,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ManifestationAppliedStereotypeEditPart(view);
+
 
 			case ComponentRealizationEditPart.VISUAL_ID:
 				return new ComponentRealizationEditPart(view);
@@ -281,6 +287,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ComponentRealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ComponentRealizationAppliedStereotypeEditPart(view);
 
+
 			case AbstractionEditPart.VISUAL_ID:
 				return new AbstractionEditPart(view);
 
@@ -290,14 +297,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AbstractionAppliedStereotypeEditPart.VISUAL_ID:
 				return new AbstractionAppliedStereotypeEditPart(view);
 
+
 			case LinkDescriptorEditPart.VISUAL_ID:
 				return new LinkDescriptorEditPart(view);
+
 
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
+
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
+
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
@@ -308,11 +319,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return new DependencyAppliedStereotypeEditPart(view);
 
+
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
 
+
 			case InterfacePortLinkEditPart.VISUAL_ID:
 				return new InterfacePortLinkEditPart(view);
+
 
 			case ConnectorEditPart.VISUAL_ID:
 				return new ConnectorEditPart(view);
@@ -341,7 +355,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
@@ -375,6 +390,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 		/**
 		 * @generated
 		 */
+		@Override
 		public void relocate(CellEditor celleditor) {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
@@ -382,7 +398,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
 			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
