@@ -142,16 +142,15 @@ public class UMLDiagramEditorUtil {
 		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
 		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
-				Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain, Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Package model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService.createDiagram(model, DeploymentDiagramEditPart.MODEL_ID,
-						UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(
+						model,
+						DeploymentDiagramEditPart.MODEL_ID, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
@@ -159,10 +158,8 @@ public class UMLDiagramEditorUtil {
 				}
 
 				try {
-					modelResource.save(
-							org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorUtil.getSaveOptions());
-					diagramResource.save(
-							org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorUtil.getSaveOptions());
+					modelResource.save(org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorUtil.getSaveOptions());
+					diagramResource.save(org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorUtil.getSaveOptions());
 				} catch (IOException e) {
 
 					UMLDiagramEditorPlugin.getInstance().logError("Unable to store model and diagram resources", e); //$NON-NLS-1$
@@ -171,8 +168,7 @@ public class UMLDiagramEditorUtil {
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command, new SubProgressMonitor(progressMonitor, 1),
-					null);
+			OperationHistoryFactory.getOperationHistory().execute(command, new SubProgressMonitor(progressMonitor, 1), null);
 		} catch (ExecutionException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		}
@@ -182,21 +178,21 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
+	* Create a new instance of domain element associated with canvas.
+	* <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Package createInitialModel() {
 		return UMLFactory.eINSTANCE.createPackage();
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
+	* Store model element in the resource.
+	* <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
@@ -216,8 +212,7 @@ public class UMLDiagramEditorUtil {
 		}
 
 		if (!editParts.isEmpty()) {
-			diagramPart.getDiagramGraphicalViewer()
-					.reveal(firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
+			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
 		}
 	}
 
@@ -343,8 +338,7 @@ public class UMLDiagramEditorUtil {
 				return true;
 			}
 
-			if (parentView.isSetElement() && !element2ViewMap.containsKey(parentView.getElement())
-					&& elements.contains(parentView.getElement())) {
+			if (parentView.isSetElement() && !element2ViewMap.containsKey(parentView.getElement()) && elements.contains(parentView.getElement())) {
 				element2ViewMap.put(parentView.getElement(), parentView);
 				if (elements.size() == element2ViewMap.size()) {
 					return true;

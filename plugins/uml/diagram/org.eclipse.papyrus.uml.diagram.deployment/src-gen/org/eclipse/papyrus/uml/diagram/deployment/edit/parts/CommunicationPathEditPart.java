@@ -45,8 +45,7 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 	}
 
@@ -55,11 +54,12 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof CommunicationPathNameEditPart) {
-			((CommunicationPathNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+			((CommunicationPathNameEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAssociationNameLabel());
 		}
 		if (childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
-			((CommunicationPathAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((CommunicationPathAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
