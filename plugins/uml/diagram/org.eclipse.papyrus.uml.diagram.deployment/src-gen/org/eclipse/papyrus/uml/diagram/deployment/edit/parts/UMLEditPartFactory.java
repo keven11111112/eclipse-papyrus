@@ -272,11 +272,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case LinkDescriptorEditPart.VISUAL_ID:
 				return new LinkDescriptorEditPart(view);
 
+
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
+
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
+
 
 			case DeploymentEditPart.VISUAL_ID:
 				return new DeploymentEditPart(view);
@@ -287,6 +290,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 				return new DeploymentAppliedStereotypeEditPart(view);
 
+
 			case ManifestationEditPart.VISUAL_ID:
 				return new ManifestationEditPart(view);
 
@@ -296,11 +300,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ManifestationAppliedStereotypeEditPart(view);
 
+
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
+
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
@@ -311,8 +317,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return new DependencyAppliedStereotypeEditPart(view);
 
+
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
+
 
 			case CommunicationPathEditPart.VISUAL_ID:
 				return new CommunicationPathEditPart(view);
@@ -341,7 +349,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
@@ -382,7 +391,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
 			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
