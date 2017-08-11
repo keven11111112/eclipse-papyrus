@@ -519,6 +519,14 @@
 <extension point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
     <modelProvider uri="model/stateMachineDiagram.assistants"/>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
+   <semanticChildrenStrategy
+         class="org.eclipse.papyrus.uml.diagram.statemachine.custom.strategies.StateSemanticConnectionsStrategy"
+         editPart="org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart"
+         priority="50">
+   </semanticChildrenStrategy>
+</extension>
 
 
 </plugin>
