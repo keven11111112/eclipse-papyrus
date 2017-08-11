@@ -116,7 +116,7 @@ public class LifelineEditPartUtil {
 	 * @param editPart
 	 *            the remove {@link MessageCreateEditPart}
 	 * @return the command when the last create message is remove to a lifeline to move it up and resize it.
-	 * @since 3.0
+	 * @since 4.0
 	 * 
 	 */
 	public static Command getRestoreLifelinePositionOnMessageCreateRemovedCommand(final ConnectionEditPart editPart) {

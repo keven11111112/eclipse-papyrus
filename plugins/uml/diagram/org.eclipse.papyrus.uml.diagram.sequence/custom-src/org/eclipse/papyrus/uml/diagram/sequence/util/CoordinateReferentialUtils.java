@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 /**
  * The purpose of this class is to provide method to transform local coordinates to screen coordinate or absolute coordinate
  * 
- * @since 3.0
+ * @since 4.0
  */
 public class CoordinateReferentialUtils {
 

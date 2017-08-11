@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
  * this editpolicy is to manage the movement of Execution specification and update move of messages
  * It is like a graphical node
  * 
- * @since 3.0
+ * @since 4.0
  *
  */
 public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
@@ -76,7 +76,7 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 					for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
 						EditPart editPart = (EditPart) iterator.next();
 						if (!SenderRequestUtils.isASender(request, editPart)) {
-							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$
+							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart.getClass().getName());//$NON-NLS-1$
 							if (editPart instanceof ConnectionEditPart) {
 								ConnectionEditPart connectionEditPart = (ConnectionEditPart) editPart;
 								ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);

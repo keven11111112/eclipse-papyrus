@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
@@ -28,16 +29,18 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.util.RedirectionCommandStackListener;
 import org.eclipse.papyrus.uml.diagram.sequence.util.RedirectionContentAdapter;
+import org.eclipse.papyrus.uml.diagram.sequence.util.RedirectionOperationListener;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * this class is used to manage strong and weak references to editPart in the sequence : all execution specification and all messages
@@ -45,7 +48,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * and the editpart of the execution specification.
  * Two consecutive execution specifications on the same life-line means that a weak reference exists from the top exec to the bottom lifeline.
  * 
- * @since 3.0
+ * @since 4.0
  */
 public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements NotificationListener {
 
@@ -59,6 +62,8 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	protected HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
 	protected HashMap<EditPart, String> strongReferences = new HashMap<EditPart, String>();
 	protected RedirectionContentAdapter redirectionContentAdapter;
+	protected RedirectionCommandStackListener redirectionCommandStackListener;
+	protected RedirectionOperationListener redirectionOperationListener;
 
 	/**
 	 * @return the weakReferences
@@ -83,10 +88,8 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		super.activate();
 		updateStrongAndWeakReferences();
 		// add a listener to update weak and string references
-		redirectionContentAdapter = new RedirectionContentAdapter(this);
-		if (getInteraction() != null) {
-			getInteraction().eAdapters().add(redirectionContentAdapter);
-		}
+		redirectionOperationListener = new RedirectionOperationListener(this);
+		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(redirectionOperationListener);
 	}
 
 	/**
@@ -95,9 +98,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 */
 	@Override
 	public void deactivate() {
-		if (getInteraction() != null) {
-			getInteraction().eAdapters().remove(redirectionContentAdapter);
-		}
+		OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(redirectionOperationListener);
 		super.deactivate();
 	}
 
@@ -105,7 +106,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 * compute strong a weak reference
 	 */
 	public void updateStrongAndWeakReferences() {
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ Update String and weak ref " + getHost().getClass().getName());//$NON-NLS-1$ //$NON-NLS-2$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ Update Strong and weak ref " + getHost().getClass().getName());//$NON-NLS-1$ //$NON-NLS-2$
 
 		strongReferences.clear();
 		weakReferences.clear();
@@ -168,10 +169,12 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 */
 	protected void fillWeakReference(OccurrenceSpecification sourceEvent, Lifeline currentLifeline) {
 		Element nextEvent = getNextEventFromLifeline(currentLifeline, sourceEvent);
-		if (nextEvent instanceof MessageEnd) {
-			addMessageIntoReferences((MessageEnd) nextEvent, weakReferences, NO_ROLE);
-		} else if (nextEvent instanceof OccurrenceSpecification) {
-			addExecutionSpecIntoReferences((OccurrenceSpecification) nextEvent, weakReferences, NO_ROLE);
+		if (!isCoveredByStrinReference(nextEvent)) {
+			if (nextEvent instanceof MessageOccurrenceSpecification && isOnlyMessageEnd((MessageOccurrenceSpecification) nextEvent)) {
+				addMessageIntoReferences((MessageEnd) nextEvent, weakReferences, NO_ROLE);
+			} else if (nextEvent instanceof OccurrenceSpecification) {
+				addExecutionSpecIntoReferences((OccurrenceSpecification) nextEvent, weakReferences, NO_ROLE);
+			}
 		}
 	}
 
@@ -229,6 +232,32 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		return nextEvent;
 	}
 
+
+	public boolean isCoveredByStrinReference(Element event) {
+		for (Iterator<EditPart> iterator = getStrongReferences().keySet().iterator(); iterator.hasNext();) {
+			EditPart editPart = (EditPart) iterator.next();
+			if (editPart instanceof AbstractMessageEditPart) {
+				Message message = (Message) (((AbstractMessageEditPart) editPart)).resolveSemanticElement();
+				if (message.getSendEvent().equals(event)) {
+					return true;
+				}
+				if (message.getReceiveEvent().equals(event)) {
+					return true;
+				}
+			}
+			if (editPart instanceof AbstractExecutionSpecificationEditPart) {
+				ExecutionSpecification exec = (ExecutionSpecification) (((AbstractExecutionSpecificationEditPart) editPart)).resolveSemanticElement();
+				if (exec.getStart().equals(event)) {
+					return true;
+				}
+				if (exec.getFinish().equals(event)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * given a messageEnd, the corresponding editPart to a message is adding to the references list
 	 * 
@@ -241,9 +270,37 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		if (messageEnd.getMessage() != null) {
 			IGraphicalEditPart resultedEditPart = getEditPartFromSemantic(messageEnd.getMessage());
 			if (resultedEditPart != null) {
-				referenceList.put(resultedEditPart, role);
+				if (referenceList.equals(strongReferences)) {
+					referenceList.put(resultedEditPart, role);
+				} else if (referenceList.equals(weakReferences) && !(strongReferences.containsKey(resultedEditPart))) {
+					referenceList.put(resultedEditPart, role);
+				}
 			}
 		}
+	}
+
+
+	/**
+	 * test if this event is only use of a message not also for an executionSpecification
+	 * 
+	 * @param messageEnd
+	 * @return true if the message End is only used by a message
+	 */
+	protected boolean isOnlyMessageEnd(MessageOccurrenceSpecification messageEnd) {
+		InteractionFragment owner = (InteractionFragment) messageEnd.getOwner();
+		if (owner != null) {
+			for (Element fragment : owner.getOwnedElements()) {
+				if (fragment instanceof ExecutionSpecification) {
+					if (messageEnd.equals(((ExecutionSpecification) (fragment)).getStart())) {
+						return false;
+					}
+					if (messageEnd.equals(((ExecutionSpecification) (fragment)).getFinish())) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -258,11 +315,21 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		ExecutionSpecification executionSpec = getExecutionSpecificationAssociatedToEvent(sourceEvent);
 		if (executionSpec != null) {
 			IGraphicalEditPart resultedEditPart = getEditPartFromSemantic(executionSpec);
-			if (resultedEditPart != null) {
-				if (executionSpec.getStart().equals(sourceEvent)) {
-					referenceList.put(resultedEditPart, ROLE_START);
-				} else {
-					referenceList.put(resultedEditPart, ROLE_FINISH);
+			if (referenceList.equals(strongReferences)) {
+				if (resultedEditPart != null) {
+					if (executionSpec.getStart().equals(sourceEvent)) {
+						referenceList.put(resultedEditPart, ROLE_START);
+					} else {
+						referenceList.put(resultedEditPart, ROLE_FINISH);
+					}
+				}
+			} else if (referenceList.equals(weakReferences) && !(strongReferences.containsKey(resultedEditPart))) {
+				if (resultedEditPart != null) {
+					if (executionSpec.getStart().equals(sourceEvent)) {
+						referenceList.put(resultedEditPart, ROLE_START);
+					} else {
+						referenceList.put(resultedEditPart, ROLE_FINISH);
+					}
 				}
 			}
 		}
@@ -308,22 +375,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		if ((UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(notification.getFeature())) ||
-				(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(notification.getFeature()))) {
-			return;
-		}
-		if (UMLPackage.eINSTANCE.getMessage_ReceiveEvent().equals(notification.getFeature())
-				|| UMLPackage.eINSTANCE.getMessage_ReceiveEvent().equals(notification.getFeature())
-				|| UMLPackage.eINSTANCE.getExecutionSpecification_Start().equals(notification.getFeature())
-				|| UMLPackage.eINSTANCE.getExecutionSpecification_Finish().equals(notification.getFeature())
-				|| Notification.CREATE == notification.getEventType()
-				|| Notification.REMOVE == notification.getEventType()) {
-			updateStrongAndWeakReferences();
-			if ((((IGraphicalEditPart) getHost()).resolveSemanticElement()) != null) {
-				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ " + ((NamedElement) ((IGraphicalEditPart) getHost()).resolveSemanticElement()).getName() + " strongRef " + strongReferences.keySet().size());
-			}
-		}
-
+		updateStrongAndWeakReferences();
 	}
 
 

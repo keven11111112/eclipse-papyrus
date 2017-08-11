@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsOrderingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.TooltipUtil;
@@ -85,7 +84,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 				}
 				// Ordering fragments after moving and resizing, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
 				if (view.isSetElement() && (view.getElement() instanceof InteractionFragment)) {
-					editPart.installEditPolicy(InteractionFragmentsOrderingEditPolicy.ORDERING_ROLE, new InteractionFragmentsOrderingEditPolicy());
+					// editPart.installEditPolicy(InteractionFragmentsOrderingEditPolicy.ORDERING_ROLE, new InteractionFragmentsOrderingEditPolicy());
 				}
 			}
 		}

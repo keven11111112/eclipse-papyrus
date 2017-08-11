@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.gef.commands.CommandStackEvent;
+import org.eclipse.gef.commands.CommandStackEventListener;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 
 /**
@@ -23,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
  * 
  * @since 4.0
  */
-public class RedirectionContentAdapter extends EContentAdapter {
+public class RedirectionCommandStackListener implements CommandStackEventListener {
 
 
 	protected NotificationListener notificationListener;
@@ -32,18 +34,20 @@ public class RedirectionContentAdapter extends EContentAdapter {
 	 * Constructor.
 	 *
 	 */
-	public RedirectionContentAdapter(NotificationListener notificationListener) {
+	public RedirectionCommandStackListener(NotificationListener notificationListener) {
 		this.notificationListener = notificationListener;
 	}
 
+
+
 	/**
-	 * @see org.eclipse.emf.ecore.util.EContentAdapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
+	 * @see org.eclipse.gef.commands.CommandStackEventListener#stackChanged(org.eclipse.gef.commands.CommandStackEvent)
 	 *
-	 * @param notification
+	 * @param event
 	 */
 	@Override
-	public void notifyChanged(Notification notification) {
-		super.notifyChanged(notification);
-		notificationListener.notifyChanged(notification);
+	public void stackChanged(CommandStackEvent event) {
+		notificationListener.notifyChanged(new NotificationImpl(Notification.SET, null, null));
+
 	}
 }
