@@ -17,9 +17,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.export.engine;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,9 +38,6 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
@@ -100,6 +97,8 @@ public class ExportAllDiagramsEngine {
 
 	/** The export parameter. */
 	private ExportAllDiagramsParameter exportParameter = null;
+
+	private DiagramNameProvider diagramNameProvider;
 
 
 	/**
@@ -405,15 +404,14 @@ public class ExportAllDiagramsEngine {
 	 *            , the emf element diagrams
 	 */
 	public void export(IProgressMonitor newMonitor, List<Diagram> diagrams) {
-
-		// Initialise duplicates flag
-		setHaveDuplicates(false);
-
 		int tasksAmount = 9;
 		if (exportParameter.getModelSet() == null) {
 			tasksAmount++;
 		}
 		newMonitor.beginTask(Messages.ExportAllDiagrams_4, tasksAmount);
+
+		diagramNameProvider = new DiagramNameProvider(diagrams, exportParameter.isQualifiedName());
+		diagramNameProvider.getDiagnostic().forEach(this.diagnostic::addAll);
 
 		// Create file associate to all diagram
 		createDiagramFiles(new SubProgressMonitor(newMonitor, 9), diagrams);
@@ -424,8 +422,7 @@ public class ExportAllDiagramsEngine {
 		}
 
 		// Alert the user that file names have been changed to avoid duplicates
-		if (haveDuplicates() && displayRenamingInformation) {
-
+		if (displayRenamingInformation && diagrams.stream().anyMatch(diagramNameProvider::hasDuplicates)) {
 			final String message = Messages.ExportAllDiagrams_5;
 			if (workbenchWindow != null && workbenchWindow.getShell() != null) {
 
@@ -435,7 +432,6 @@ public class ExportAllDiagramsEngine {
 			} else {
 				Activator.log.info(message);
 			}
-
 		}
 
 		handleExportDiagnostic();
@@ -486,10 +482,9 @@ public class ExportAllDiagramsEngine {
 	 * @return true, if there is no duplicates
 	 */
 	private void createDiagramFiles(final IProgressMonitor newMonitor, List<Diagram> diagrams) {
-
 		try {
 
-			List<String> diagramNames = new ArrayList<String>();
+			Map<Diagram, String> diagramNames = diagramNameProvider.getDiagramNames();
 
 			try {
 				newMonitor.beginTask(Messages.ExportAllDiagrams_7, diagrams.size());
@@ -501,22 +496,20 @@ public class ExportAllDiagramsEngine {
 						break;
 					}
 
-
-					String uniqueFileName = handleFileName(diagram, diagramNames);
+					String uniqueFileName = diagramNames.get(diagram);
 
 					final String finalUniqueFileName = uniqueFileName;
-					diagramNames.add(uniqueFileName);
 					newMonitor.subTask(uniqueFileName);
 					if (useDisplayRunnable) {
 						Display.getDefault().syncExec(new Runnable() {
 
 							@Override
 							public void run() {
-								exportDiagram(finalUniqueFileName, diagram, newMonitor);
+								exportDiagram(finalUniqueFileName, diagram, newMonitor, diagramNames);
 							}
 						});
 					} else {
-						exportDiagram(uniqueFileName, diagram, newMonitor);
+						exportDiagram(uniqueFileName, diagram, newMonitor, diagramNames);
 					}
 
 					newMonitor.worked(1);
@@ -530,81 +523,6 @@ public class ExportAllDiagramsEngine {
 		}
 	}
 
-
-
-	/**
-	 * Handle file name.
-	 *
-	 * @param diagram
-	 *            the diagram
-	 * @param diagramNames
-	 * @param duplicates
-	 * @return the string
-	 */
-	private String handleFileName(Diagram diagram, List<String> diagramNames) {
-		boolean nameCut = false;
-
-		// Extract name of diagram
-		String label = ""; //$NON-NLS-1$
-		if (exportParameter.isQualifiedName()) {
-			ComposedAdapterFactory composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			composedAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-
-			try {
-				IItemLabelProvider itemLabelFactory = (IItemLabelProvider) composedAdapterFactory.adapt(diagram.getElement(), IItemLabelProvider.class);
-				label = itemLabelFactory.getText(diagram.getElement()).replace(Messages.ExportAllDiagrams_16, "") + "_"; //$NON-NLS-1$//$NON-NLS-2$
-			} finally {
-				// Don't leak the adapters created by this factory
-				composedAdapterFactory.dispose();
-			}
-		}
-
-		String uniqueFileName = encodeFileName(label + diagram.getName());
-
-		// Verify file name length
-		if (uniqueFileName.length() > 150) {
-			nameCut = true;
-			uniqueFileName = uniqueFileName.substring(0, 150);
-		}
-
-		// Detect duplicated diagram name
-		if (diagramNames.contains(uniqueFileName)) {
-			setHaveDuplicates(true);
-			uniqueFileName = getFirstAvailableName(uniqueFileName, diagramNames, 1);
-		}
-
-		// Add warning about cut name in export diagnostic
-		if (nameCut) {
-			BasicDiagnostic newDiagnostic = new BasicDiagnostic(Diagnostic.WARNING, "", 0, Messages.ExportAllDiagrams_10 + uniqueFileName, null); //$NON-NLS-1$
-			diagnostic.add(newDiagnostic);
-		}
-
-		return uniqueFileName;
-
-
-
-	}
-
-
-	/**
-	 * Sets the have duplicates.
-	 *
-	 * @param duplicates
-	 *            the new have duplicates
-	 */
-	private void setHaveDuplicates(boolean duplicates) {
-		hasDuplicates = duplicates;
-	}
-
-	/**
-	 * Have duplicates.
-	 *
-	 * @return true, if successful
-	 */
-	private boolean haveDuplicates() {
-		return hasDuplicates;
-	}
-
 	/**
 	 * Export diagram.
 	 *
@@ -614,8 +532,9 @@ public class ExportAllDiagramsEngine {
 	 *            the diagram
 	 * @param newMonitor
 	 *            the new monitor
+	 * @param diagramNames
 	 */
-	private void exportDiagram(String uniqueFileName, Diagram diagram, IProgressMonitor newMonitor) {
+	private void exportDiagram(String uniqueFileName, Diagram diagram, IProgressMonitor newMonitor, Map<Diagram, String> diagramNames) {
 		CopyToImageUtil copyImageUtil = new CopyToImageUtil();
 
 		// Build path of image
@@ -624,6 +543,7 @@ public class ExportAllDiagramsEngine {
 
 		try {
 			copyImageUtil.copyToImage(diagram, imagePath, exportParameter.getExportFormat(), new SubProgressMonitor(newMonitor, 1), PreferencesHint.USE_DEFAULTS);
+
 		} catch (Throwable e) {
 			BasicDiagnostic newDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, "", 0, String.format(Messages.ExportAllDiagrams_11, uniqueFileName, diagram.eResource().getURI().toString()), null); //$NON-NLS-1$
 			diagnostic.add(newDiagnostic);
@@ -662,49 +582,6 @@ public class ExportAllDiagramsEngine {
 			}
 		}
 
-	}
-
-	/**
-	 * Escape all characters that may result in a wrong file name.
-	 *
-	 * @param pathName
-	 *            a file name to encode
-	 * @return The encoded file name
-	 */
-	private String encodeFileName(String pathName) {
-		pathName = pathName.trim();
-		pathName = pathName.replaceAll(Messages.ExportAllDiagrams_14, Messages.ExportAllDiagrams_15);
-		pathName = pathName.replaceAll("_-_", "-"); //$NON-NLS-1$ //$NON-NLS-2$
-		while (pathName.contains("__")) { //$NON-NLS-1$
-			pathName = pathName.replaceAll("__", "_"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-		if (pathName.startsWith("_")) { //$NON-NLS-1$
-			pathName = pathName.replaceFirst("_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-		if (pathName.endsWith("_")) { //$NON-NLS-1$
-			pathName = pathName.substring(0, pathName.length() - 1);
-		}
-
-		return pathName;
-		// return URLEncoder.encode(pathName, "UTF-8").replaceAll("[*]", "_");
-	}
-
-	/**
-	 * Gets the first available name.
-	 *
-	 * @param commonBasis
-	 *            the common basis
-	 * @param existingNames
-	 *            the existing names
-	 * @param cpt
-	 *            the cpt
-	 * @return the first available name
-	 */
-	private String getFirstAvailableName(String commonBasis, List<String> existingNames, int cpt) {
-		if (existingNames.contains(commonBasis + cpt)) {
-			return getFirstAvailableName(commonBasis, existingNames, cpt + 1);
-		}
-		return commonBasis + cpt;
 	}
 
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.export.engine;
@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.AbstractLocalPageService;
 
 /**
- * Definition of local page for Export All Diagrams feture.
- * 
+ * Definition of local page for Export All Diagrams feature.
+ *
  * @author Gabriel Pascual
  *
  */
