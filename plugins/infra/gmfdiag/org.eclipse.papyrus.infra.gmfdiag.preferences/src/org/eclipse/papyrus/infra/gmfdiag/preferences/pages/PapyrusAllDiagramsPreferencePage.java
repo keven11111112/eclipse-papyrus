@@ -144,7 +144,10 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 	@Override
 	public void storeAllPreferences() {
 		super.storeAllPreferences();
-		((PapyrusPreferenceStore) getPreferenceStore()).deleteAllSubPreference(PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX);
+		IPreferenceStore preferenceStore = getPreferenceStore();
+		if (preferenceStore instanceof PapyrusPreferenceStore) {
+			((PapyrusPreferenceStore) preferenceStore).deleteAllSubPreference(PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX);
+		}
 
 	}
 }
