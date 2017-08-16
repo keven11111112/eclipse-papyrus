@@ -67,7 +67,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide;bundle-v
  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;visibility:=reexport;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.deployment;singleton:=true
