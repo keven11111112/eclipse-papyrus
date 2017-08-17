@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2016, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *   Ansgar Radermacher (CEA) ansgar.radermacher@cea.fr - Bug 519107 (lazy diagram opening)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.part;
@@ -125,6 +126,18 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	protected void initializeGraphicalViewer() {
 		// do nothing to enable a lazy initialization.
 		// initialization is done, if setFocus is called.
+	}
+
+	/**
+	 * Avoid NPE, if viewer has not been initialized yet (method is called on dispose)
+	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#persistViewerSettings()
+	 */
+	@Override
+	public void persistViewerSettings() {
+		if (getDiagramEditPart() != null) {
+			super.persistViewerSettings();
+		}
 	}
 
 	/**
@@ -309,10 +322,10 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	public void modifyPartName(final String name) {
 		setPartName(name);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#refreshEditorPart()
 	 */
 	@Override
