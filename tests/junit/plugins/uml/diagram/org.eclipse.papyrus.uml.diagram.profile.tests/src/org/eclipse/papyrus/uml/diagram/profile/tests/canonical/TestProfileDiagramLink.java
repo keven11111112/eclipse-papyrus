@@ -1,13 +1,14 @@
 package org.eclipse.papyrus.uml.diagram.profile.tests.canonical;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomUMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestLink;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.junit.Test;
 
 public class TestProfileDiagramLink extends TestLink {
@@ -43,7 +44,7 @@ public class TestProfileDiagramLink extends TestLink {
 
 	@Test
 	public void testToManageAssociationWithoutMulti() {
-		testToManageLinkWithoutMulti(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Association_Edge, UMLElementTypes.Package_Shape, true, null); // name of associations are not set now
+		testToManageLinkWithoutMulti(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLDIElementTypes.ASSOCIATION_NON_DIRECTED_EDGE, UMLElementTypes.Package_Shape, true, null); // name of associations are not set now
 	}
 
 	@Override
