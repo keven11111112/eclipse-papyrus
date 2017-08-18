@@ -1,6 +1,17 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2016, 2017 CEA LIST.
  *
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *   Ansgar Radermacher (CEA) ansgar.radermacher@cea.fr - Bug 519107 (lazy diagram opening)
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.part;
 
 import org.eclipse.core.commands.operations.IUndoContext;
@@ -118,6 +129,18 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		super.doSetInput(input, releaseEditorContents);
 		if (getDiagram() != null && !DiagramVersioningUtils.isOfCurrentPapyrusVersion(getDiagram())) {
 			new ReconcileHelper(getEditingDomain()).reconcileDiagram(getDiagram());
+		}
+	}
+
+	/**
+	 * Avoid NPE, if viewer has not been initialized yet (method is called on dispose)
+	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#persistViewerSettings()
+	 */
+	@Override
+	public void persistViewerSettings() {
+		if (getDiagramEditPart() != null) {
+			super.persistViewerSettings();
 		}
 	}
 
