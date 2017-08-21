@@ -27,9 +27,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
  * 
  * @since 3.0
  */
+@Deprecated
 public class OLDMessageConnectionEditPolicy extends ConnectionEditPolicy {
 
 	@Override
+	@Deprecated
 	protected Command createDeleteSemanticCommand(GroupRequest deleteRequest) {
 		CompoundCommand deleteSemanticsCommand = new CompoundCommand();
 		Command deleteSemanticCommand = super.createDeleteSemanticCommand(deleteRequest);
@@ -41,6 +43,7 @@ public class OLDMessageConnectionEditPolicy extends ConnectionEditPolicy {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Deprecated
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
 		CompoundCommand deleteViewsCommand = new CompoundCommand();
 		Command deleteViewCommand = super.createDeleteViewCommand(deleteRequest);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010 - 2017 CEA
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
@@ -33,8 +33,34 @@ import org.eclipse.swt.graphics.Color;
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class LifelineFigure extends RoundedCompartmentFigure {
-	@Deprecated
-	protected RectangleFigure fFigureLifelineNameContainerFigure;
+
+	/**
+	 * Utility figure to get header. Used for selection bounds.
+	 * 
+	 * @author Mickael ADAM
+	 *
+	 */
+	public final class LifelineHeaderFigure extends RectangleFigure {
+		/**
+		 * 
+		 * @see org.eclipse.draw2d.RectangleFigure#fillShape(org.eclipse.draw2d.Graphics)
+		 */
+		@Override
+		protected void fillShape(Graphics graphics) {
+			// do nothing
+		}
+
+		/**
+		 * @see org.eclipse.draw2d.RectangleFigure#outlineShape(org.eclipse.draw2d.Graphics)
+		 */
+		@Override
+		protected void outlineShape(Graphics graphics) {
+			// do nothing
+		}
+	}
+
+	protected RectangleFigure lifelineHeaderBoundsFigure;
+
 	@Deprecated
 	protected RectangleFigure fFigureExecutionsContainerFigure;
 	@Deprecated
@@ -42,13 +68,13 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * Constructor.
-	 *
 	 */
 	public LifelineFigure() {
 		super();
 		setLayoutManager(new LifeLineLayoutManager());
 		// This line has been used in order to display combinedFragment
 		setTransparency(100);
+		createContents();
 	}
 
 	/**
@@ -207,54 +233,8 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	 * remove label creation, change layout
 	 */
 	private void createContents() {
-		// fFigureLifelineNameContainerFigure = new RectangleFigure() {
-		//
-		// @Override
-		// protected void fillShape(Graphics graphics) {
-		// graphics.pushState();
-		// applyTransparency(graphics);
-		// graphics.fillRectangle(getBounds());
-		// graphics.popState();
-		// }
-		// };
-		// // do not fill to enable gradient
-		// fFigureLifelineNameContainerFigure.setFill(false);
-		// fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
-		// fFigureLifelineNameContainerFigure.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(30)));
-		// //this.add(fFigureLifelineNameContainerFigure, BorderLayout.TOP);
-		// // change layout
-		// ToolbarLayout layout = new ToolbarLayout(false);
-		// layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
-		// fFigureLifelineNameContainerFigure.setLayoutManager(layout);
-		// // remove label creation (created by parent figure)
-		// // fFigureLifelineLabelFigure = new WrappingLabel();
-		// //
-		// //
-		// //
-		// //
-		// // fFigureLifelineLabelFigure.setText("<...>");
-		// //
-		// //
-		// //
-		// //
-		// // fFigureLifelineLabelFigure.setTextWrap(true);
-		// //
-		// //
-		// //
-		// //
-		// // fFigureLifelineLabelFigure.setAlignment(PositionConstants.CENTER);
-		// //
-		// //
-		// //
-		// // fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
-		// fFigureExecutionsContainerFigure = new RectangleFigure();
-		// fFigureExecutionsContainerFigure.setFill(false);
-		// fFigureExecutionsContainerFigure.setOutline(false);
-		// fFigureExecutionsContainerFigure.setLineWidth(1);
-		// //this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
-		// fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
-		// fFigureLifelineDotLineFigure = new LifelineDotLineCustomFigure();
-		// fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);
+		lifelineHeaderBoundsFigure = new LifelineHeaderFigure();
+		this.add(lifelineHeaderBoundsFigure);
 	}
 
 	protected IMapMode getMapMode() {
@@ -270,7 +250,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	@Deprecated
 	public RectangleFigure getFigureLifelineNameContainerFigure() {
-		return fFigureLifelineNameContainerFigure;
+		return lifelineHeaderBoundsFigure;
 	}
 
 	@Deprecated

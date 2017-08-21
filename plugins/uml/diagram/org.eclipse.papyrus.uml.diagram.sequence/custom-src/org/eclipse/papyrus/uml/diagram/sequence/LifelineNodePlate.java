@@ -70,10 +70,15 @@ public class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
 			Point temp = p.getCopy();
 			translateToRelative(temp);
 			PrecisionPoint pt = BaseSlidableAnchor.getAnchorRelativeLocation(temp, getBounds());
-			pt.setPreciseX(0.5);// a changer
-
-
 			return createAnchor(pt);
 		}
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
+	 */
+	@Override
+	protected boolean isDefaultAnchorArea(PrecisionPoint p) {
+		return false;
 	}
 }

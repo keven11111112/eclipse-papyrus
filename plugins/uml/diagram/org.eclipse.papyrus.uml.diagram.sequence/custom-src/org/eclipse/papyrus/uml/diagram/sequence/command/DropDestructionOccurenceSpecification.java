@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.command;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -23,14 +24,19 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.BendpointRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
@@ -38,26 +44,27 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 
 /**
- *this class is used to drop the representation of the DestructionOccurrenceSpecification from the request in charge to create the message delete
- *
+ * this class is used to drop the representation of the DestructionOccurrenceSpecification from the request in charge to create the message delete
  */
 public class DropDestructionOccurenceSpecification extends AbstractTransactionalCommand {
 
-	private CreateConnectionViewAndElementRequest request;
+	private Request request;
 	private EditPart graphicalContainer;
 	private Point absolutePosition;
 
-	
+
 	/**
 	 * @param domain
-	 * @param request the request that has in charge to create the deleteMessage
-	 * @param graphicalContainer for example the lifeline that will contain the representation of the event
+	 * @param request
+	 *            the request that has in charge to create the deleteMessage
+	 * @param graphicalContainer
+	 *            for example the lifeline that will contain the representation of the event
 	 */
-	public DropDestructionOccurenceSpecification(TransactionalEditingDomain domain, CreateConnectionViewAndElementRequest request, EditPart graphicalContainer, Point absolutePosition) {
+	public DropDestructionOccurenceSpecification(TransactionalEditingDomain domain, Request request, EditPart graphicalContainer, Point absolutePosition) {
 		super(domain, Messages.Commands_DropDestructionOccurenceSpecification_Label, null);
-		this.request=request;
-		this.graphicalContainer= graphicalContainer;
-		this.absolutePosition=absolutePosition;
+		this.request = request;
+		this.graphicalContainer = graphicalContainer;
+		this.absolutePosition = absolutePosition;
 	}
 
 
@@ -72,17 +79,17 @@ public class DropDestructionOccurenceSpecification extends AbstractTransactional
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CommandResult commandresult = null;
-		//1. look for the message
-		Message deleteMessage=getDeleteMessage();
-		if( deleteMessage==null){
+		// 1. look for the message
+		Message deleteMessage = getDeleteMessage();
+		if (deleteMessage == null) {
 			return commandresult;
 		}
-		//2. look for the Destruction occurrence
-		DestructionOccurrenceSpecification destructionOccurrenceSpecification=getDestructionOccurrence(deleteMessage);
-		if( destructionOccurrenceSpecification==null){
+		// 2. look for the Destruction occurrence
+		DestructionOccurrenceSpecification destructionOccurrenceSpecification = getDestructionOccurrence(deleteMessage);
+		if (destructionOccurrenceSpecification == null) {
 			return commandresult;
 		}
-		//3. drop the Destruction Occurrence
+		// 3. drop the Destruction Occurrence
 		dropDestructionOccurrence(destructionOccurrenceSpecification);
 		return CommandResult.newOKCommandResult();
 	}
@@ -91,32 +98,44 @@ public class DropDestructionOccurenceSpecification extends AbstractTransactional
 	 * @param destructionOccurrenceSpecification
 	 */
 	private void dropDestructionOccurrence(DestructionOccurrenceSpecification destructionOccurrenceSpecification) {
-		DropObjectsRequest dropDestructionOccurrenceRequest= new DropObjectsRequest();
-		Point point=request.getLocation().getCopy();
-		IFigure parentFigure=((GraphicalEditPart)graphicalContainer).getFigure();
-		parentFigure.translateToRelative(absolutePosition);
-		DestructionEventFigure destructionEventFigure= new DestructionEventFigure();
-		point.y=point.y-destructionEventFigure.getDefaultSize().height/2;
-		dropDestructionOccurrenceRequest.setLocation(point);
-		ArrayList<EObject> destructionOccurrenceListToDrop=new ArrayList<EObject>();
-		destructionOccurrenceListToDrop.add(destructionOccurrenceSpecification);
-		dropDestructionOccurrenceRequest.setObjects(destructionOccurrenceListToDrop);
-		
-		//give the position from the layer it is not relative
-		Command command=graphicalContainer.getCommand(dropDestructionOccurrenceRequest);
-		command.execute();
+		DropObjectsRequest dropDestructionOccurrenceRequest = new DropObjectsRequest();
+		Point point = absolutePosition.getCopy();
+		IFigure parentFigure = ((GraphicalEditPart) graphicalContainer).getFigure();
+		parentFigure.translateToRelative(point);
+
+		// look for existing DestructionEventFigure
+		DestructionEventFigure destructionEventFigure = null;
+		Optional<DestructionOccurrenceSpecificationEditPart> findFirst = graphicalContainer.getChildren().stream()
+				.filter(DestructionOccurrenceSpecificationEditPart.class::isInstance)
+				.map(DestructionOccurrenceSpecificationEditPart.class::cast)
+				.findFirst();
+
+		// If not present create one
+		if (!findFirst.isPresent()) {
+			destructionEventFigure = new DestructionEventFigure();
+			point.y = point.y - destructionEventFigure.getDefaultSize().height / 2;
+			dropDestructionOccurrenceRequest.setLocation(point);
+			ArrayList<EObject> destructionOccurrenceListToDrop = new ArrayList<EObject>();
+			destructionOccurrenceListToDrop.add(destructionOccurrenceSpecification);
+			dropDestructionOccurrenceRequest.setObjects(destructionOccurrenceListToDrop);
+			// give the position from the layer it is not relative
+			Command command = graphicalContainer.getCommand(dropDestructionOccurrenceRequest);
+			command.execute();
+		}
 	}
 
 	/**
 	 * get the DestructionOccurenceSpecification from a given message
-	 * @param deleteMessage the message to look for must be never null
+	 * 
+	 * @param deleteMessage
+	 *            the message to look for must be never null
 	 * @return DestructionOccurenceSpecification or null
 	 */
 	private DestructionOccurrenceSpecification getDestructionOccurrence(Message deleteMessage) {
-		DestructionOccurrenceSpecification destructionOccurrenceSpecification=null;
-		MessageEnd messageEnd =deleteMessage.getReceiveEvent();
-		if(messageEnd instanceof DestructionOccurrenceSpecification){
-			destructionOccurrenceSpecification=(DestructionOccurrenceSpecification)messageEnd;
+		DestructionOccurrenceSpecification destructionOccurrenceSpecification = null;
+		MessageEnd messageEnd = deleteMessage.getReceiveEvent();
+		if (messageEnd instanceof DestructionOccurrenceSpecification) {
+			destructionOccurrenceSpecification = (DestructionOccurrenceSpecification) messageEnd;
 		}
 		return destructionOccurrenceSpecification;
 	}
@@ -125,15 +144,25 @@ public class DropDestructionOccurenceSpecification extends AbstractTransactional
 	 * @return the delete message from the given request, can return null
 	 */
 	private Message getDeleteMessage() {
-		Message deleteMessage=null;
-		ConnectionViewAndElementDescriptor connectionViewAndElementDescriptor=request.getConnectionViewAndElementDescriptor();
-		if( connectionViewAndElementDescriptor!=null){
-			CreateElementRequestAdapter createElementRequestAdapter=connectionViewAndElementDescriptor.getCreateElementRequestAdapter();
-			deleteMessage=(Message)createElementRequestAdapter.getAdapter(Message.class);
+		Message deleteMessage = null;
+		if (request instanceof CreateConnectionViewAndElementRequest) {
+			ConnectionViewAndElementDescriptor connectionViewAndElementDescriptor = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor();
+			if (null != connectionViewAndElementDescriptor) {
+				CreateElementRequestAdapter createElementRequestAdapter = connectionViewAndElementDescriptor.getCreateElementRequestAdapter();
+				deleteMessage = (Message) createElementRequestAdapter.getAdapter(Message.class);
+			}
+		} else if (request instanceof ReconnectRequest) {
+			EObject element = ((View) ((ReconnectRequest) request).getConnectionEditPart().getModel()).getElement();
+			if (element instanceof Message) {
+				deleteMessage = (Message) element;
+			}
+		} else if (request instanceof BendpointRequest) {
+			EObject element = ((View) ((BendpointRequest) request).getSource().getModel()).getElement();
+			if (element instanceof Message) {
+				deleteMessage = (Message) element;
+			}
 		}
 		return deleteMessage;
 	}
-
-
 
 }

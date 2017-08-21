@@ -27,6 +27,4 @@ public interface RequestParameterConstants extends org.eclipse.papyrus.infra.ser
 	 */
 	public static final String UML_STRICT = "UML_STRICT"; //$NON-NLS-1$
 
-	/** Key for request parameters which is set to true when the current event is the first on the lifeline. */
-	public static final String IS_FIRST_EVENT = "IS_FIRST_EVENT"; //$NON-NLS-1$
 }

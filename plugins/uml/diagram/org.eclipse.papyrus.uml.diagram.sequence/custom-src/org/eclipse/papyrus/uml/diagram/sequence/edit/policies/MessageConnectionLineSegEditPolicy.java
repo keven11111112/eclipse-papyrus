@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010-2017 CEA
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
@@ -37,6 +37,7 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionBendpointEditPolicy;
@@ -48,6 +49,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
@@ -55,6 +57,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
@@ -166,9 +169,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				MessageEnd send = ((Message) message).getSendEvent();
 				MessageEnd rcv = ((Message) message).getReceiveEvent();
 				EditPart srcPart = connectionPart.getSource();
-				CLifeLineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(srcPart);
+				CLifeLineEditPart srcLifelinePart = (CLifeLineEditPart) SequenceUtil.getParentLifelinePart(srcPart);
 				EditPart tgtPart = connectionPart.getTarget();
-				CLifeLineEditPart targetLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
+				CLifeLineEditPart targetLifelinePart = (CLifeLineEditPart) SequenceUtil.getParentLifelinePart(tgtPart);
 				if (/* send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && */srcLifelinePart != null && targetLifelinePart != null) {
 					RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 					if ((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart) && kind == RouterKind.SELF) {
@@ -179,8 +182,11 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						IFigure targetFigure = targetLifelinePart.getPrimaryShape();
 
 						Point sourcePoint = request.getLocation().getCopy();
+						sourcePoint = SequenceUtil.getSnappedLocation(targetLifelinePart, sourcePoint);
 						targetFigure.getParent().translateToRelative(sourcePoint);
+						// gets the final snapped position
 
+						// Take into account of the sticker size
 						int stickerHeight = ((CLifeLineEditPart) targetLifelinePart).getStickerHeight();
 						if (stickerHeight != -1) {
 							sourcePoint.y = sourcePoint.y - (stickerHeight / 2);
@@ -191,7 +197,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 								new Point(bounds.getX(), sourcePoint.y));
 
 						SetBoundsCommand setSizeCommand = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
-								new Dimension(bounds.getWidth(), bounds.getHeight() - (sourcePoint.y + stickerHeight / 2 - targetFigure.getBounds().y)));
+								new Dimension(bounds.getWidth(), bounds.getHeight() - (sourcePoint.y - targetFigure.getBounds().y)));
 
 						// Move message End
 						int y = request.getLocation().y;
@@ -215,6 +221,49 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 							}
 							return compoudCmd;
 						}
+					} else if (getHost() instanceof MessageDeleteEditPart) {
+						// Reposition lifeline
+						IFigure targetFigure = targetLifelinePart.getPrimaryShape();
+
+						Point refPoint = SequenceUtil.getSnappedLocation(targetLifelinePart, request.getLocation().getCopy());
+						targetFigure.getParent().translateToRelative(refPoint);
+						Bounds bounds = ((Bounds) ((Node) targetLifelinePart.getModel()).getLayoutConstraint());
+
+
+						SetBoundsCommand setSizeCommand = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
+								new Dimension(bounds.getWidth(), refPoint.y - bounds.getY()));
+
+						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
+						if (kind == RouterKind.SELF) {
+							// Only resize for down moved
+							if (MOVED_DOWN.equals(request.getExtendedData().get(MOVE_LINE_ORIENTATION_DATA))) {
+								compoudCmd.add(new ICommandProxy(setSizeCommand));
+							}
+						} else {
+							// Move message End
+							int y = request.getLocation().y;
+							Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart, request);
+							Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart, request);
+							DropDestructionOccurenceSpecification dropDestructionOccurenceSpecification = new DropDestructionOccurenceSpecification(((ConnectionEditPart) getHost()).getEditingDomain(), request, targetLifelinePart,
+									request.getLocation().getCopy());
+
+							Point oldLocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, true);
+							if (oldLocation != null) {
+								int oldY = oldLocation.y;
+								if (oldY < y) {// down
+									compoudCmd.add(new ICommandProxy(setSizeCommand));
+									compoudCmd.add(tgtCmd);
+									compoudCmd.add(srcCmd);
+									compoudCmd.add(new ICommandProxy(dropDestructionOccurenceSpecification));
+								} else {// up
+									compoudCmd.add(srcCmd);
+									compoudCmd.add(tgtCmd);
+									compoudCmd.add(new ICommandProxy(setSizeCommand));
+									compoudCmd.add(new ICommandProxy(dropDestructionOccurenceSpecification));
+								}
+							}
+						}
+						return compoudCmd;
 					} else {
 						// TODO_MIA to test
 						int y = request.getLocation().y;
@@ -388,13 +437,14 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	@SuppressWarnings("unchecked")
 	protected void showMoveLineSegFeedback(BendpointRequest request) {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if ((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart) && kind == RouterKind.SELF) {
+		if ((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart || getHost() instanceof MessageDeleteEditPart) && kind == RouterKind.SELF) {
 			if (router == null) {
 				router = getConnection().getConnectionRouter();
 				getConnection().setConnectionRouter(new DummyRouter());
 			}
 			PointList linkPoints = getConnection().getPoints().getCopy();
-			Point ptLoc = new Point(request.getLocation());
+			Point ptLoc = SequenceUtil.getSnappedLocation(getHost(), request.getLocation());
+
 			getConnection().translateToRelative(ptLoc);
 			int dy = 0;
 			int dx = 0;
@@ -429,14 +479,12 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				}
 			}
 			// link should not exceed lifeline bounds
-			if (checkBounds(linkPoints)) {
-				getConnection().setPoints(linkPoints);
-				getConnection().getLayoutManager().layout(getConnection());
-			}
+			getConnection().setPoints(linkPoints);
+			getConnection().getLayoutManager().layout(getConnection());
 			return;
 		}
 		// Add impossible to dragging MessageLost and MessageFound. See bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403138
-		if (getHost() instanceof MessageCreateEditPart || getHost() instanceof MessageLostEditPart || getHost() instanceof MessageFoundEditPart) {
+		if (getHost() instanceof MessageCreateEditPart || getHost() instanceof MessageDeleteEditPart || getHost() instanceof MessageLostEditPart || getHost() instanceof MessageFoundEditPart) {
 			if (router == null) {
 				router = getConnection().getConnectionRouter();
 				getConnection().setConnectionRouter(new DummyRouter());
@@ -448,6 +496,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			int size = linkPoints.size();
 			for (int i = 0; i < size; i++) {
 				Point p = linkPoints.getPoint(i).translate(0, dy);
+				p.y = SequenceUtil.getSnappedLocation(getHost(), p).y;
 				linkPoints.setPoint(p, i);
 			}
 			if (checkBounds(linkPoints)) {
@@ -476,7 +525,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				boundsToMatch.setY(boundsToMatch.y + sourceLifelineEditPart.getStickerHeight());
 			}
 
-			if (targetPart instanceof CLifeLineEditPart) {
+			if (getHost() instanceof MessageCreateEditPart && targetPart instanceof CLifeLineEditPart) {
 				NodeFigure targetFigure = (NodeFigure) ((NodeEditPart) targetPart).getPrimaryShape();
 				// If the bottom of the target is higher
 				int bottom = targetFigure.getBounds().bottom();

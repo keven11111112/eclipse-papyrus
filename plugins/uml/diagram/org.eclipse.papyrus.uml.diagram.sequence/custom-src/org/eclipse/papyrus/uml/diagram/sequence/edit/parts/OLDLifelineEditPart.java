@@ -167,7 +167,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 			if (isInlineMode()) {
 				// return true;
 			}
-			if (fFigureLifelineNameContainerFigure != null && fFigureLifelineNameContainerFigure.containsPoint(x, y)) {
+			if (lifelineHeaderBoundsFigure != null && lifelineHeaderBoundsFigure.containsPoint(x, y)) {
 				return true;
 			} else if (!isInlineMode() && fFigureLifelineDotLineFigure != null) {
 				Rectangle bounds = fFigureLifelineDotLineFigure.getDashLineRectangle().getBounds().getCopy();
@@ -186,7 +186,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 				return null;
 			}
 			// 1. First check if the location is enter the Title.
-			if (fFigureLifelineNameContainerFigure != null && fFigureLifelineNameContainerFigure.containsPoint(x, y)) {
+			if (lifelineHeaderBoundsFigure != null && lifelineHeaderBoundsFigure.containsPoint(x, y)) {
 				// Return label figure for supporting direct edit.
 				EditPart editPart = (EditPart) getViewer().getVisualPartMap().get(figure);
 				while (editPart == null) {
@@ -923,7 +923,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 			// Create message
 			return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 		}
-		if (connEditPart instanceof MessageAsyncEditPart) {
+		if (connEditPart instanceof MessageAsyncEditPart) {// TODO_MIA test it
 			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, false);
 			if (terminal.length() > 0) {
 				int start = terminal.indexOf("{") + 1;

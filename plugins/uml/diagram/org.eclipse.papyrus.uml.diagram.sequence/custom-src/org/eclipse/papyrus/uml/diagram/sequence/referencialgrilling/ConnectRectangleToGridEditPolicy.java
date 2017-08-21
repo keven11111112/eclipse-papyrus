@@ -247,11 +247,17 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 						Node node = (Node) this.getHost().getModel();
 						java.util.List<Edge> sourceEdge = node.getSourceEdges();
 						for (Edge edge : sourceEdge) {
-							updateAnchorFromHeight(edge, ((Node) getHost().getModel()), notification.getNewIntValue() - notification.getOldIntValue());
+							IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
+							if (anchor instanceof IdentityAnchor) {
+								updateAnchorFromHeight(anchor, ((Node) getHost().getModel()), notification.getNewIntValue() - notification.getOldIntValue());
+							}
 						}
 						java.util.List<Edge> targetEdge = node.getTargetEdges();
 						for (Edge edge : targetEdge) {
-							updateAnchorFromHeight(edge, ((Node) getHost().getModel()), notification.getNewIntValue() - notification.getOldIntValue());
+							IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
+							if (anchor instanceof IdentityAnchor) {
+								updateAnchorFromHeight(anchor, ((Node) getHost().getModel()), notification.getNewIntValue() - notification.getOldIntValue());
+							}
 						}
 					}
 				}
@@ -266,11 +272,17 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 						Node node = (Node) this.getHost().getModel();
 						java.util.List<Edge> sourceEdge = node.getSourceEdges();
 						for (Edge edge : sourceEdge) {
-							updateAnchorFromY(edge, ((Node) getHost().getModel()), notification.getOldIntValue(), notification.getNewIntValue());
+							IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
+							if (anchor instanceof IdentityAnchor) {
+								updateAnchorFromY(anchor, ((Node) getHost().getModel()), notification.getOldIntValue(), notification.getNewIntValue());
+							}
 						}
 						java.util.List<Edge> targetEdge = node.getTargetEdges();
 						for (Edge edge : targetEdge) {
-							updateAnchorFromY(edge, ((Node) getHost().getModel()), notification.getOldIntValue(), notification.getNewIntValue());
+							IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
+							if (anchor instanceof IdentityAnchor) {
+								updateAnchorFromY(anchor, ((Node) getHost().getModel()), notification.getOldIntValue(), notification.getNewIntValue());
+							}
 						}
 					}
 				}
@@ -411,27 +423,27 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this class update the position of anchor after the resize
 	 * 
-	 * @param sourceEdge
-	 * @param eObject
+	 * @param edge
+	 *            the edge anchor to update
+	 * @param node
+	 * @param deltaHeight
+	 * @param isSource
+	 *            true is it is the anchor source to update, false for the target.
 	 */
-	protected void updateAnchorFromHeight(Edge edge, Node node, int deltaHeight) {
-		IdentityAnchor anchor = null;
-		if (edge.getSource().equals(node)) {
-			anchor = (IdentityAnchor) edge.getSourceAnchor();
-		} else {
-			anchor = (IdentityAnchor) edge.getTargetAnchor();
-		}
-		double yPercent = IdentityAnchorHelper.getYPercentage(anchor);
-		double xPercent = IdentityAnchorHelper.getXPercentage(anchor);
+	protected void updateAnchorFromHeight(IdentityAnchor anchor, Node node, int deltaHeight) {
+		if (null != anchor) {
+			double yPercent = IdentityAnchorHelper.getYPercentage(anchor);
+			double xPercent = IdentityAnchorHelper.getXPercentage(anchor);
 
-		// calculate bounds from notation
-		PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds(node);
-		double oldHeight = BoundForEditPart.getHeightFromView(node) - deltaHeight;
+			// calculate bounds from notation
+			PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds(node);
+			double oldHeight = BoundForEditPart.getHeightFromView(node) - deltaHeight;
 
-		double newPercentY = (yPercent * oldHeight) / (bounds.preciseHeight());
-		if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
-			final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
-			execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+			double newPercentY = (yPercent * oldHeight) / (bounds.preciseHeight());
+			if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
+				final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
+				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+			}
 		}
 	}
 
@@ -442,14 +454,8 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	 * @param sourceEdge
 	 * @param eObject
 	 */
-	protected void updateAnchorFromY(Edge edge, Node node, int oldY, int newY) {
-		IdentityAnchor anchor = null;
-		if (edge.getSource().equals(node)) {
-			anchor = (IdentityAnchor) edge.getSourceAnchor();
-		} else {
-			anchor = (IdentityAnchor) edge.getTargetAnchor();
-		}
-		if (!anchor.getId().trim().equals("")) { //$NON-NLS-1$
+	protected void updateAnchorFromY(IdentityAnchor anchor, Node node, int oldY, int newY) {
+		if (null != anchor && !anchor.getId().trim().equals("")) { //$NON-NLS-1$
 			double yPercent = IdentityAnchorHelper.getYPercentage(anchor);
 			double xPercent = IdentityAnchorHelper.getXPercentage(anchor);
 

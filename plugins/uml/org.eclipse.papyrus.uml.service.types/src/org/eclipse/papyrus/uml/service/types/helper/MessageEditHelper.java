@@ -376,7 +376,7 @@ public class MessageEditHelper extends ElementEditHelper {
 					reorientCommand = UnexecutableCommand.INSTANCE;
 				}
 			} else {
-				reorientCommand = new MessageDeleteReorientCommand(req);
+				reorientCommand = new MessageDeleteReorientCommand(req); 
 			}
 		}
 

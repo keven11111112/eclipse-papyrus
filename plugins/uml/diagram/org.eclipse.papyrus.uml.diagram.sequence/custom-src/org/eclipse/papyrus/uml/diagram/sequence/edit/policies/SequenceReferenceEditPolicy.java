@@ -191,7 +191,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 */
 	protected ExecutionSpecification getExecutionSpecificationAssociatedToEvent(OccurrenceSpecification event) {
 		ExecutionSpecification exec = null;
-		if (event.getCovereds().size() > 0) {
+		if (null != event && !event.getCovereds().isEmpty()) {
 			Lifeline currentLifeline = event.getCovereds().get(0);
 			int index = 0;
 			while (exec == null && index < currentLifeline.getCoveredBys().size()) {
