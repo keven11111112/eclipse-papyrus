@@ -42,8 +42,10 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.uml2.uml.Lifeline;
@@ -123,7 +125,7 @@ public class LifelineEditPartUtil {
 		Command commands = null;
 		if (editPart instanceof MessageCreateEditPart) {
 			MessageCreateEditPart part = (MessageCreateEditPart) editPart;
-			if (part.getTarget() instanceof LifelineEditPart && 1 == LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size()) {
+			if (part.getTarget() instanceof LifelineEditPart && LifelineMessageCreateHelper.hasIncomingMessageCreate(part.getTarget())) {
 				LifelineEditPart target = (LifelineEditPart) part.getTarget();
 				if (target.getModel() instanceof Shape) {
 					Shape view = (ShapeImpl) target.getModel();
@@ -132,6 +134,38 @@ public class LifelineEditPartUtil {
 						// get the set bounds command
 						Point newLocation = new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET);
 						Dimension newDimension = new Dimension(bounds.getWidth(), bounds.getHeight() + (bounds.getY() - SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+						Rectangle newBounds = new Rectangle(newLocation, newDimension);
+
+						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
+
+						commands = new ICommandProxy(boundsCommand);
+					}
+				}
+			}
+		}
+		return commands;
+	}
+
+	/**
+	 * @param editPart
+	 *            the remove {@link MessageCreateEditPart}
+	 * @return the command when the last delete message is remove to a lifeline to move it up and resize it.
+	 * @since 3.1
+	 * 
+	 */
+	public static Command getRestoreLifelinePositionOnMessageDeleteRemovedCommand(final ConnectionEditPart editPart) {
+		Command commands = null;
+		if (editPart instanceof MessageDeleteEditPart) {
+			MessageDeleteEditPart part = (MessageDeleteEditPart) editPart;
+			if (part.getTarget() instanceof LifelineEditPart && LifelineMessageDeleteHelper.hasIncomingMessageDelete(part.getTarget())) {
+				LifelineEditPart target = (LifelineEditPart) part.getTarget();
+				if (target.getModel() instanceof Shape) {
+					Shape view = (ShapeImpl) target.getModel();
+					if (view.getLayoutConstraint() instanceof Bounds) {
+						Bounds bounds = (Bounds) view.getLayoutConstraint();
+						// get the set bounds command
+						Point newLocation = new Point(bounds.getX(), bounds.getY());
+						Dimension newDimension = new Dimension(bounds.getWidth(), CLifeLineEditPart.DEFAUT_HEIGHT - bounds.getY());
 						Rectangle newBounds = new Rectangle(newLocation, newDimension);
 
 						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
@@ -179,8 +213,61 @@ public class LifelineEditPartUtil {
 	}
 
 	/**
+	 * @since 3.1
+	 * 
+	 */
+	public static boolean hasPreviousEvent(final Point position, final LifelineEditPart lifelineEditPart) {
+		return !getPreviousEventsFromPosition(position, lifelineEditPart).isEmpty();
+	}
+
+	/**
+	 * @since 3.1
+	 * 
+	 */
+	public static boolean hasNextEvent(final Point position, final LifelineEditPart lifelineEditPart) {
+		return !getNextEventsFromPosition(position, lifelineEditPart).isEmpty();
+	}
+
+	/**
+	 * Get the list of previous {@link MessageEnd} on the {@link LifelineEditPart} according to the position.
+	 * 
+	 * @param position
+	 *            The reference position.
+	 * @param lifelineEditPart
+	 *            The lifeline edit part
+	 * @since 3.1
+	 */
+	public static List<MessageEnd> getNextEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
+		List<MessageEnd> previous = new ArrayList<MessageEnd>();
+		DiagramEditPart diagramEditPart = getDiagramEditPart(lifelineEditPart);
+		Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
+		try {
+			GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+			if (grilling != null) {
+				for (DecorationNode row : grilling.rows) {
+					Point currentPoint = GridManagementEditPolicy.getLocation(row);
+					if (currentPoint.y > position.y) {
+						if (row.getElement() != null) {
+							EObject referedElement = row.getElement();
+							if (referedElement instanceof MessageEnd) {
+								if (lifeline.getCoveredBys().contains(referedElement)) {
+									previous.add((MessageEnd) referedElement);
+								}
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+		}
+		return previous;
+	}
+
+	/**
 	 * Walks up the editpart hierarchy to find and return the
 	 * <code>TopGraphicEditPart</code> instance.
+	 * 
+	 * @since 3.1
 	 */
 	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
 		while (editPart instanceof IGraphicalEditPart) {

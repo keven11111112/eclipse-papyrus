@@ -14,9 +14,12 @@
 package org.eclipse.papyrus.uml.diagram.sequence.locator;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.diagram.ui.internal.figures.BorderItemContainerFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 
 /**
  * This class is used to place all BorderItem node in the middle of the figure for the X but let the position Y
@@ -37,33 +40,77 @@ public class CenterLocator extends AdvancedBorderItemLocator {
 		super(parentFigure, location);
 	}
 
+	/**
+	 * The DestructionEventFigure.
+	 *
+	 * It must be access through the method {@link #getDestructionEventFigure()}
+	 */
+	private DestructionEventFigure destructionEventFigure = null;
 
 	/**
-	 * Overrides :
-	 * - the destructionEventFigure is always drawn at the end of the figure
-	 *
-	 * @see org.eclipse.draw2d.Locator#relocate(org.eclipse.draw2d.IFigure)
+	 * The BorderItemContainerFigure. It must be access through the method {@link #getBorderItemContainerFigure()}
 	 */
-	@Override
-	public void relocate(IFigure borderItem) {
-		Dimension size = getSize(borderItem);
-		// get constraint is relative
-		Rectangle rectSuggested = getConstraint();
-		rectSuggested.setSize(size);
-		// GetValid constraint is absolute
-		Rectangle suggestedRectIndiagram = rectSuggested.getCopy();
-		suggestedRectIndiagram.x = suggestedRectIndiagram.x + getParentFigure().getBounds().x;
-		suggestedRectIndiagram.y = suggestedRectIndiagram.y + getParentFigure().getBounds().y;
-		suggestedRectIndiagram = getValidLocation(suggestedRectIndiagram, borderItem);
-		borderItem.setBounds(suggestedRectIndiagram.getCopy());
-		suggestedRectIndiagram.x = suggestedRectIndiagram.x - getParentFigure().getBounds().x;
-		suggestedRectIndiagram.y = suggestedRectIndiagram.y - getParentFigure().getBounds().y;
-		setConstraint(suggestedRectIndiagram);
+	private BorderItemContainerFigure borderItemContainerFigure = null;
 
+	/**
+	 * Get the DestructionEventFigure of the lifeline, if it is drawn.
+	 *
+	 * @return the DestructionEventFigure or null
+	 */
+	private DestructionEventFigure getDestructionEventFigure() {
+		if (destructionEventFigure == null) {
+			BorderItemContainerFigure borderItemContainerFigure = getBorderItemContainerFigure();
+			if (borderItemContainerFigure != null) {
+				for (Object child : borderItemContainerFigure.getChildren()) {
+					if (child instanceof DefaultSizeNodeFigure) {
+						for (Object figure : ((DefaultSizeNodeFigure) child).getChildren()) {
+							if (figure instanceof DestructionEventFigure) {
+								destructionEventFigure = (DestructionEventFigure) figure;
+								return destructionEventFigure;
+							}
+						}
+					}
+				}
+			}
+		}
+		return destructionEventFigure;
 	}
 
+	/**
+	 * Get the BorderItemContainerFigure
+	 *
+	 * @return the borderItemContainerFigure or null
+	 */
+	private BorderItemContainerFigure getBorderItemContainerFigure() {
+		if (borderItemContainerFigure == null) {
+			IFigure figure = getParentFigure().getParent();
+			for (Object object : figure.getChildren()) {
+				if (object instanceof BorderItemContainerFigure) {
+					borderItemContainerFigure = (BorderItemContainerFigure) object;
+					return borderItemContainerFigure;
+				}
+			}
+		}
+		return borderItemContainerFigure;
+	}
+
+	/**
+	 * Overridden :
+	 * - the destructionEventFigure is always drawn at the end of the figure
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator#getValidLocation(org.eclipse.draw2d.geometry.Rectangle, org.eclipse.draw2d.IFigure)
+	 */
 	@Override
 	public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
+		// The valid position for destruction event is always the bottom
+		if (getDestructionEventFigure() != null) {
+			if (borderItem.equals(getDestructionEventFigure().getParent())) {
+				Rectangle realLocation = new Rectangle(proposedLocation);
+				Point point = new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, getParentBorder().y + getParentBorder().height - realLocation.height / 2);
+				realLocation.setLocation(point);
+				return realLocation;
+			}
+		}
 		proposedLocation.setX(getParentFigure().getBounds().x + getParentFigure().getBounds().width / 2 - borderItem.getBounds().width() / 2);
 
 		if (proposedLocation.y - proposedLocation.height / 2 <= getParentFigure().getBounds().y) {
@@ -72,8 +119,8 @@ public class CenterLocator extends AdvancedBorderItemLocator {
 		if (proposedLocation.y - proposedLocation.height / 2 >= getParentFigure().getBounds().getBottomLeft().y) {
 			proposedLocation.setY(getParentFigure().getBounds().getBottomLeft().y);
 		}
-
 		return super.getValidLocation(proposedLocation, borderItem);
 	}
+
 
 }

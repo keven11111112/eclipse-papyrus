@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014-2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,18 +9,18 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Alex Paperno - bug 444956
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.util.EList;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
@@ -29,26 +29,15 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.papyrus.uml.diagram.sequence.command.ChangeEdgeTargetCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.command.CreateElementAndNodeCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
-import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
-import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageEnd;
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
 
+/**
+ * @since 3.1
+ */
 public class LifelineMessageDeleteHelper {
 
-	
 	/*
 	 * Set edge.target to the target lifeline
 	 */
@@ -70,7 +59,49 @@ public class LifelineMessageDeleteHelper {
 			sceCommand.setEdgeAdaptor(createRequest.getConnectionViewDescriptor());
 			sceCommand.setNewTargetAdaptor(targetEP);
 			return new ICommandProxy(sceCommand);
-		}			
-		return null;		
+		}
+		return null;
+	}
+
+	/**
+	 * @return true if a Message Delete exist between the source and the target.
+	 * @since 4.0
+	 */
+	public static boolean hasMessageDelete(final GraphicalEditPart sourceEditPart, final EditPart targetEditPart) {
+		List<?> list = sourceEditPart.getSourceConnections();
+		for (Object o : list) {
+			if (o instanceof MessageDeleteEditPart && targetEditPart.equals(((MessageDeleteEditPart) o).getTarget())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @return true if edit part as has incoming message delete.
+	 * @since 4.0
+	 */
+	public static boolean hasIncomingMessageDelete(final EditPart target) {
+		return !getIncomingMessageDelete(target).isEmpty();
+	}
+
+	/**
+	 * Get the list of incoming message delete of an edit part.
+	 * 
+	 * @since 4.0
+	 */
+	public static List<?> getIncomingMessageDelete(final EditPart target) {
+		List<EditPart> create = new ArrayList<EditPart>();
+		if (target instanceof LifelineEditPart) {
+			List<?> list = ((LifelineEditPart) target).getTargetConnections();
+			if (list != null && list.size() > 0) {
+				for (Object l : list) {
+					if (l instanceof MessageDeleteEditPart) {
+						create.add((MessageDeleteEditPart) l);
+					}
+				}
+			}
+		}
+		return create;
 	}
 }

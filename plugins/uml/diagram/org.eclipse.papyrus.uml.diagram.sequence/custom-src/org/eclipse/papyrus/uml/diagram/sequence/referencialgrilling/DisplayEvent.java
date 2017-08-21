@@ -256,10 +256,12 @@ public class DisplayEvent {
 		for (Edge edge : targetEdges) {
 
 			IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
-			int y = getYfromAnchor(node, anchor);
+			if (anchor != null) {
+				int y = getYfromAnchor(node, anchor);
 
-			if (eventLocation.equals(relativeLocation)) {
-				eventLocation = getNewEventLocationY(relativeLocation, editPartFigure.getBounds().y + y, editPartFigure);
+				if (eventLocation.equals(relativeLocation)) {
+					eventLocation = getNewEventLocationY(relativeLocation, editPartFigure.getBounds().y + y, editPartFigure);
+				}
 			}
 		}
 
@@ -418,15 +420,17 @@ public class DisplayEvent {
 		} else {
 			anchor = (IdentityAnchor) edge.getTargetAnchor();
 		}
-		double yPercent = IdentityAnchorHelper.getYPercentage(anchor);
 
-		// calculate bounds from notation
-		double height = 0;
-		height = BoundForEditPart.getHeightFromView(node);
+		if (null != anchor) {
+			double yPercent = IdentityAnchorHelper.getYPercentage(anchor);
 
-		double posY = yPercent * height;
-		addAnEvent(container.getFigure(), posY, ColorConstants.white, currentPosition);
+			// calculate bounds from notation
+			double height = 0;
+			height = BoundForEditPart.getHeightFromView(node);
 
+			double posY = yPercent * height;
+			addAnEvent(container.getFigure(), posY, ColorConstants.white, currentPosition);
+		}
 	}
 
 	/**

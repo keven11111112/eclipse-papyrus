@@ -123,6 +123,10 @@ public class MessageEditHelper extends ElementEditHelper {
 					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_CREATE_MESSAGE)
 					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_CREATE_MESSAGE)) {
 				create &= canCreateMessageCreate(source, target, request);
+			} else if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_DELETE_MESSAGE)
+					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_DELETE_MESSAGE)
+					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_DELETE_MESSAGE)) {
+				create &= canCreateMessageDelete(source, target, request);
 			}
 		}
 
@@ -158,10 +162,33 @@ public class MessageEditHelper extends ElementEditHelper {
 					.anyMatch(m -> m.getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL);
 		}
 
-		// Check if the create message is the first message into the target lifeline.
-		Object isFirst = request.getParameter(RequestParameterConstants.IS_FIRST_EVENT);
-		if (create && isFirst instanceof Boolean) {
-			create = (boolean) isFirst;
+		return create;
+	}
+
+	/**
+	 * Test if a Message Delete can be created.
+	 * 
+	 * @param source
+	 *            the source of the message
+	 * @param target
+	 *            the target of the message
+	 * @param request
+	 *            the request
+	 * @return return true if message can be created
+	 */
+	private boolean canCreateMessageDelete(final EObject source, final EObject target, final AbstractEditCommandRequest request) {
+		boolean create = true;
+
+		// check if target is not already created with another create message
+		if (create && target instanceof Lifeline) {
+			create = !((Lifeline) target).getCoveredBys().stream()
+					.filter(MessageEnd.class::isInstance)
+					.map(MessageEnd.class::cast)
+					.filter(m -> null != m.getMessage()) // filter on receive event
+					.filter(m -> null != m.getMessage().getReceiveEvent()) // filter on receive event
+					.filter(m -> m.getMessage().getReceiveEvent().equals(m)) // filter on receive event
+					.map(m -> m.getMessage())
+					.anyMatch(m -> m.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL);
 		}
 		return create;
 	}
@@ -289,17 +316,32 @@ public class MessageEditHelper extends ElementEditHelper {
 				reorientCommand = new MessageCreateReorientCommand(req);
 			}
 
-
 		} else if (msgToReorient.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL) {
-			// Forbid the target re-orient command of delete Message.
-			// The re-orient command is provided but the MessageEnd update is not correctly implemented.
-			// the graphic is badly updated
-			if (req.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
-				reorientCommand = new MessageDeleteReorientCommand(req);
+			if (req.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
+				EObject target = req.getNewRelationshipEnd();
 
-			} else if (req.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
-				// Not correctly implemented - Forbid this kind of re-orient for now.
-				reorientCommand = UnexecutableCommand.INSTANCE;
+				// Get the source
+				EObject source = null;
+				EObject relationship = req.getRelationship();
+				if (relationship instanceof Message) {
+					Message message = (Message) relationship;
+					MessageEnd sendEvent = message.getSendEvent();
+					if (sendEvent instanceof InteractionFragment) {
+						InteractionFragment fragment = (InteractionFragment) sendEvent;
+						EList<Lifeline> covereds = fragment.getCovereds();
+						if (!covereds.isEmpty()) {
+							source = covereds.get(0);
+						}
+					}
+				}
+				// test if we can create it
+				if (canCreateMessageDelete(source, target, req)) {
+					reorientCommand = new MessageDeleteReorientCommand(req);
+				} else {
+					reorientCommand = UnexecutableCommand.INSTANCE;
+				}
+			} else {
+				reorientCommand = new MessageDeleteReorientCommand(req);
 			}
 		}
 

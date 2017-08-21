@@ -69,6 +69,8 @@ import org.eclipse.uml2.uml.MessageEnd;
  * - Creation of general ordering links.
  * This edit policy is intended to be installed on parts which represent a lifeline or which are contained within a lifeline part.
  */
+// TODO_MIA check if can be deleted
+@Deprecated
 public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
 
 	/** the feedback for creating a duration constraint node */

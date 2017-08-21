@@ -14,7 +14,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import static org.eclipse.papyrus.uml.diagram.common.Activator.log;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -23,7 +22,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.ConnectionEditPart;
@@ -37,14 +35,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
-import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * Edit policy to restore target lifeline line position after a deletion of a {@link MessageCreate}.
@@ -94,14 +89,6 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 	 */
 	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
-		if (request instanceof CreateRelationshipRequest
-				|| request instanceof ReorientRelationshipRequest) {
-			Object targetPoint = request.getParameter(RequestParameterConstants.EDGE_TARGET_POINT);
-			if (targetPoint instanceof Point) {
-				List<MessageEnd> previous = LifelineEditPartUtil.getPreviousEventsFromPosition((Point) targetPoint, (LifelineEditPart) getHost());
-				request.setParameter(org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants.IS_FIRST_EVENT, previous.isEmpty());
-			}
-		}
 		return null;
 	}
 
@@ -115,9 +102,17 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 	 */
 	@Override
 	public void removingTargetConnection(final ConnectionEditPart connection, final int index) {
-		Command restoreLifelinePositionCommand = LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand(connection);
-		if (null != restoreLifelinePositionCommand && restoreLifelinePositionCommand.canExecute()) {
-			executeCommand(restoreLifelinePositionCommand);
+		if (connection instanceof MessageCreateEditPart) {
+			Command restoreLifelinePositionCommand = LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand(connection);
+			if (null != restoreLifelinePositionCommand && restoreLifelinePositionCommand.canExecute()) {
+				executeCommand(restoreLifelinePositionCommand);
+			}
+		}
+		if (connection instanceof MessageDeleteEditPart) {
+			Command restoreLifelinePositionCommand = LifelineEditPartUtil.getRestoreLifelinePositionOnMessageDeleteRemovedCommand(connection);
+			if (null != restoreLifelinePositionCommand && restoreLifelinePositionCommand.canExecute()) {
+				executeCommand(restoreLifelinePositionCommand);
+			}
 		}
 	}
 

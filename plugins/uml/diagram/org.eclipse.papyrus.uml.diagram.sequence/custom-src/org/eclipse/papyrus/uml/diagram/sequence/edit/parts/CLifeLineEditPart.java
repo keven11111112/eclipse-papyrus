@@ -13,16 +13,22 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.FixedAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.LifelineNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineRestorePositionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateNodeReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForMessageSpecEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.MessageCreateLifelineAnchor;
 
 /**
  * @author PT202707
@@ -61,9 +67,10 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	 */
 	@Override
 	protected NodeFigure createSVGNodePlate() {
-		svgNodePlate = new LifelineNodePlate(this, -1, -1).withLinkLFEnabled();
-		svgNodePlate.setDefaultNodePlate(createNodePlate());
-
+		if (null == svgNodePlate) {
+			svgNodePlate = new LifelineNodePlate(this, -1, -1).withLinkLFEnabled();
+			svgNodePlate.setDefaultNodePlate(createNodePlate());
+		}
 		return svgNodePlate;
 	}
 
@@ -74,10 +81,11 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new LifelineSelectionEditPolicy());
 		installEditPolicy(LifeLineRestorePositionEditPolicy.KEY, new LifeLineRestorePositionEditPolicy());
 		installEditPolicy(UpdateNodeReferenceEditPolicy.UDPATE_NODE_REFERENCE, new UpdateNodeReferenceEditPolicy());
 		installEditPolicy(UpdateWeakReferenceForMessageSpecEditPolicy.UDPATE_WEAK_REFERENCE_FOR_MESSAGE, new UpdateWeakReferenceForMessageSpecEditPolicy());
-		super.createDefaultEditPolicies();
 	}
 
 	/**
@@ -102,6 +110,42 @@ public class CLifeLineEditPart extends LifelineEditPart {
 			return ((LifeLineLayoutManager) getPrimaryShape().getLifeLineLayoutManager()).getBottomHeader() - getPrimaryShape().getBounds().y();
 		}
 		return -1;
+	}
+
+	/**
+	 * Create specific anchor to handle connection on top, on center and on bottom of the lifeline
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		if (connEditPart instanceof MessageCreateEditPart) {
+			// Create message anchor
+			return new MessageCreateLifelineAnchor(getPrimaryShape(), this);
+
+		} else if (connEditPart instanceof MessageDeleteEditPart) {
+			// delete message anchor
+			return new FixedAnchor(getPrimaryShape(), FixedAnchor.BOTTOM);
+		}
+		// if (connEditPart instanceof MessageAsyncEditPart) {// TODO_MIA test it
+		// String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, false);
+		// if (terminal.length() > 0) {
+		// int start = terminal.indexOf("{") + 1;
+		// PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(terminal);
+		// boolean rightHand = true;
+		// if (start > 0) {
+		// if (terminal.charAt(start) == 'L') {
+		// rightHand = false;
+		// }
+		// } else {
+		// Connection c = (Connection) connEditPart.getFigure();
+		// PointList list = c.getPoints();
+		// if (list.getPoint(0).x > list.getPoint(1).x) {
+		// rightHand = false;
+		// }
+		// }
+		// return new AnchorHelper.SideAnchor(getNodeFigure(), pt, rightHand);
+		// }
+		// }
+		return super.getTargetConnectionAnchor(connEditPart);
 	}
 
 }

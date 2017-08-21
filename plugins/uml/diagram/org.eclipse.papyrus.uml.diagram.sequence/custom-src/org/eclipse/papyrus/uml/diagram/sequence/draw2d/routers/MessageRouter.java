@@ -31,9 +31,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.ObliqueRouter;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.OrthogonalRouterUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.LifelineNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDiagramConstants;
 
 /**
@@ -93,11 +92,11 @@ public class MessageRouter extends ObliqueRouter {
 				return false;
 			}
 			IFigure sourceLifeline = conn.getSourceAnchor().getOwner();
-			while (sourceLifeline != null && !(sourceLifeline instanceof LifelineFigure)) {
+			while (sourceLifeline != null && !(sourceLifeline instanceof LifelineNodePlate)) {
 				sourceLifeline = sourceLifeline.getParent();
 			}
 			IFigure targetLifeline = conn.getTargetAnchor().getOwner();
-			while (targetLifeline != null && !(targetLifeline instanceof LifelineFigure)) {
+			while (targetLifeline != null && !(targetLifeline instanceof LifelineNodePlate)) {
 				targetLifeline = targetLifeline.getParent();
 			}
 			return sourceLifeline != null && sourceLifeline.equals(targetLifeline);
@@ -156,16 +155,16 @@ public class MessageRouter extends ObliqueRouter {
 	}
 
 	protected void adjustCreateEndpoint(Connection conn, PointList newLine) {
-//		if (conn instanceof MessageCreate) {
-//			if (newLine.size() >= 2) {
-//				Point start = newLine.getFirstPoint();
-//				Point end = newLine.getLastPoint();
-//				if (start.y != end.y) {
-//					start.y = end.y;
-//					newLine.setPoint(start, 0);
-//				}
-//			}
-//		}
+		// if (conn instanceof MessageCreate) {
+		// if (newLine.size() >= 2) {
+		// Point start = newLine.getFirstPoint();
+		// Point end = newLine.getLastPoint();
+		// if (start.y != end.y) {
+		// start.y = end.y;
+		// newLine.setPoint(start, 0);
+		// }
+		// }
+		// }
 	}
 
 	@Override

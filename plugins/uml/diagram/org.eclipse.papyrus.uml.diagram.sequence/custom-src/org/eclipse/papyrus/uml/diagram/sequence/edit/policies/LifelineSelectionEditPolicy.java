@@ -24,19 +24,16 @@ import org.eclipse.gef.handles.RelativeHandleLocator;
 import org.eclipse.gef.handles.ResizeHandle;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.tools.ResizeTracker;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusResizableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 
-public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
+public class LifelineSelectionEditPolicy extends PapyrusResizableShapeEditPolicy {
 
 	public LifelineSelectionEditPolicy() {
 		setResizeDirections(PositionConstants.WEST | PositionConstants.EAST);
@@ -86,68 +83,69 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		list.add(westResizer);
 	}
 
-	@Override
-	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
-		IFigure feedback = getDragSourceFeedbackFigure();
-		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-		getHostFigure().translateToAbsolute(rect);
-		boolean skipMinSize = false;
-		// Only enable horizontal dragging on lifelines(except lifelines that are result of a create message).
-		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
-		if (this.getHost() instanceof OLDLifelineEditPart) {
-			skipMinSize = true;
-			OLDLifelineEditPart lifelineEP = (OLDLifelineEditPart) this.getHost();
-			if (!SequenceUtil.isCreateMessageEndLifeline(lifelineEP)) {
-				request.getMoveDelta().y = 0;
-			}
-			// keepNameLabelBounds(lifelineEP, request, rect);
-			// restrict child size within parent bounds
-			keepInParentBounds(lifelineEP, request, rect);
-			changeCombinedFragmentBounds(request, lifelineEP);
-			// Adjust lifeline's height if no DestructionOccurrenceSpecification
-			List<?> children = lifelineEP.getChildren();
-			boolean hasDOS = false;
-			for (Object child : children) {
-				if (child instanceof DestructionOccurrenceSpecificationEditPart) {
-					hasDOS = true;
-				}
-			}
-			if (!hasDOS) {
-				rect.height -= request.getMoveDelta().y;
-			}
-		}
-		Point left = rect.getLeft();
-		Point right = rect.getRight();
-		rect.translate(request.getMoveDelta());
-		rect.resize(request.getSizeDelta());
-		IFigure f = getHostFigure();
-		Dimension min = f.getMinimumSize().getCopy();
-		Dimension max = f.getMaximumSize().getCopy();
-		// IMapMode mmode = MapModeUtil.getMapMode(f);
-		// min.height = mmode.LPtoDP(min.height);
-		// min.width = mmode.LPtoDP(min.width);
-		// max.height = mmode.LPtoDP(max.height);
-		// max.width = mmode.LPtoDP(max.width);
-		getHostFigure().translateToAbsolute(min);
-		getHostFigure().translateToAbsolute(max);
-		// In manual mode, there is no minimal width, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
-		if (min.width > rect.width && !skipMinSize) {
-			if (request.getMoveDelta().x > 0 && request.getSizeDelta().width != 0) {
-				rect.x = right.x - min.width;
-				request.getMoveDelta().x = rect.x - left.x;
-			}
-			rect.width = min.width;
-		} else if (max.width < rect.width) {
-			rect.width = max.width;
-		}
-		if (min.height > rect.height) {
-			rect.height = min.height;
-		} else if (max.height < rect.height) {
-			rect.height = max.height;
-		}
-		feedback.translateToRelative(rect);
-		feedback.setBounds(rect);
-	}
+	// TODO_MIA check it
+	// @Override
+	// protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
+	// IFigure feedback = getDragSourceFeedbackFigure();
+	// PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+	// getHostFigure().translateToAbsolute(rect);
+	// boolean skipMinSize = false;
+	// // Only enable horizontal dragging on lifelines(except lifelines that are result of a create message).
+	// // https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
+	// if (this.getHost() instanceof OLDLifelineEditPart) {
+	// skipMinSize = true;
+	// OLDLifelineEditPart lifelineEP = (OLDLifelineEditPart) this.getHost();
+	// if (!SequenceUtil.isCreateMessageEndLifeline(lifelineEP)) {
+	// request.getMoveDelta().y = 0;
+	// }
+	// // keepNameLabelBounds(lifelineEP, request, rect);
+	// // restrict child size within parent bounds
+	// keepInParentBounds(lifelineEP, request, rect);
+	// changeCombinedFragmentBounds(request, lifelineEP);
+	// // Adjust lifeline's height if no DestructionOccurrenceSpecification
+	// List<?> children = lifelineEP.getChildren();
+	// boolean hasDOS = false;
+	// for (Object child : children) {
+	// if (child instanceof DestructionOccurrenceSpecificationEditPart) {
+	// hasDOS = true;
+	// }
+	// }
+	// if (!hasDOS) {
+	// rect.height -= request.getMoveDelta().y;
+	// }
+	// }
+	// Point left = rect.getLeft();
+	// Point right = rect.getRight();
+	// rect.translate(request.getMoveDelta());
+	// rect.resize(request.getSizeDelta());
+	// IFigure f = getHostFigure();
+	// Dimension min = f.getMinimumSize().getCopy();
+	// Dimension max = f.getMaximumSize().getCopy();
+	// // IMapMode mmode = MapModeUtil.getMapMode(f);
+	// // min.height = mmode.LPtoDP(min.height);
+	// // min.width = mmode.LPtoDP(min.width);
+	// // max.height = mmode.LPtoDP(max.height);
+	// // max.width = mmode.LPtoDP(max.width);
+	// getHostFigure().translateToAbsolute(min);
+	// getHostFigure().translateToAbsolute(max);
+	// // In manual mode, there is no minimal width, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
+	// if (min.width > rect.width && !skipMinSize) {
+	// if (request.getMoveDelta().x > 0 && request.getSizeDelta().width != 0) {
+	// rect.x = right.x - min.width;
+	// request.getMoveDelta().x = rect.x - left.x;
+	// }
+	// rect.width = min.width;
+	// } else if (max.width < rect.width) {
+	// rect.width = max.width;
+	// }
+	// if (min.height > rect.height) {
+	// rect.height = min.height;
+	// } else if (max.height < rect.height) {
+	// rect.height = max.height;
+	// }
+	// feedback.translateToRelative(rect);
+	// feedback.setBounds(rect);
+	// }
 
 	private void keepNameLabelBounds(LifelineEditPart lifelineEP, ChangeBoundsRequest request, PrecisionRectangle rect) {
 		PrecisionRectangle size = getMovedRectangle(rect, request);

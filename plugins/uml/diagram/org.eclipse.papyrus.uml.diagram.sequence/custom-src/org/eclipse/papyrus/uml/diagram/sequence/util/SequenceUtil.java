@@ -36,6 +36,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -44,6 +45,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -799,7 +802,7 @@ public class SequenceUtil {
 	 *            the contained edit part or itself
 	 * @return lifeline edit part or null
 	 */
-	public static CLifeLineEditPart getParentLifelinePart(EditPart nodeEditPart) {
+	public static LifelineEditPart getParentLifelinePart(EditPart nodeEditPart) {
 		EditPart parent = nodeEditPart;
 		while (parent != null) {
 			if (parent instanceof CLifeLineEditPart) {
@@ -810,7 +813,7 @@ public class SequenceUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Return the combined fragment edit part containing this part (directly or indirectly).
 	 *
@@ -1678,5 +1681,45 @@ public class SequenceUtil {
 				|| editPart instanceof MessageDeleteAppliedStereotypeEditPart || editPart instanceof MessageLostAppliedStereotypeEditPart || editPart instanceof MessageFoundAppliedStereotypeEditPart) {
 			editPart.getParent().installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		}
+	}
+
+	/**
+	 * update the bounds of the rectangle to snap to grid
+	 * 
+	 * @param editPart
+	 * @param bounds
+	 * @param request
+	 * @return
+	 * 
+	 */
+	public static PrecisionRectangle getSnappedBounds(EditPart editPart, Rectangle bounds) {
+		PrecisionRectangle baseRect = new PrecisionRectangle(bounds);
+		PrecisionRectangle result = baseRect.getPreciseCopy();
+		if (editPart != null) {
+			SnapToHelper helper = editPart.getAdapter(SnapToHelper.class);
+			if (helper != null) {
+				helper.snapRectangle(new Request(), PositionConstants.NSEW, baseRect, result);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * update the bounds of the rectangle to snap to grid
+	 * 
+	 * @param editPart
+	 * @param location
+	 * 
+	 */
+	public static PrecisionPoint getSnappedLocation(EditPart editPart, Point location) {
+		PrecisionPoint baseRect = new PrecisionPoint(location);
+		PrecisionPoint result = baseRect.getPreciseCopy();
+		if (editPart != null) {
+			SnapToHelper helper = editPart.getAdapter(SnapToHelper.class);
+			if (helper != null) {
+				helper.snapPoint(new Request(), PositionConstants.NSEW, baseRect, result);
+			}
+		}
+		return result;
 	}
 }

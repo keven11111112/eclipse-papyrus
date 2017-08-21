@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016 - 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure.LifelineHeaderFigure;
 
 /**
  * @since 3.0
@@ -207,6 +208,8 @@ public class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 						((BorderedNodeFigure) child).setBounds(theConstraint);
 					}
 				}
+			} else if (child instanceof LifelineHeaderFigure) {
+				((LifelineHeaderFigure) child).setBounds(container.getBounds().getCopy().setHeight(bottomHeaderY - container.getBounds().y + 1));
 			}
 		}
 	}

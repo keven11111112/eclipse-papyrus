@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.command;
 
@@ -23,7 +23,7 @@ public class MessageDeleteReorientCommand extends MessageAbstractReorientCommand
 	 * Constructor.
 	 * 
 	 * @param request
-	 *        the re-orient request
+	 *            the re-orient request
 	 */
 	public MessageDeleteReorientCommand(ReorientRelationshipRequest request) {
 		super(request);
@@ -40,14 +40,14 @@ public class MessageDeleteReorientCommand extends MessageAbstractReorientCommand
 	 */
 	@Override
 	protected boolean canReorientTarget() {
-//FIXME : change for UML 2.4
-//		// Verify possible type of new target
-//		if(!((getNewTarget() instanceof DestructionEvent) || (getNewTarget() instanceof Lifeline))) {
-//			return false;
-//		}
+		// FIXME : change for UML 2.4
+		// // Verify possible type of new target
+		if (!(getNewTarget() instanceof Lifeline)) {
+			return false;
+		}
 
 		// Ensure the message owner is an interaction
-		if(!(getLink().eContainer() instanceof Interaction)) {
+		if (!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
 

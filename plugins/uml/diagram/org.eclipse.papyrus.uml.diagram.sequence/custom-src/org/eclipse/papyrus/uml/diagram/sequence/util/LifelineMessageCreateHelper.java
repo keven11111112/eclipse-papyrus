@@ -38,12 +38,12 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.MessageCreateLifelineAnchor;
 
 public class LifelineMessageCreateHelper {
 
@@ -59,15 +59,11 @@ public class LifelineMessageCreateHelper {
 		}
 	}
 
-	@Deprecated // TODO_MIA TO_DELETE
+
 	public static ConnectionAnchor getCreateMessageAnchor(LifelineEditPart part, Request request, Point location) {
 		IFigure fig = part.getPrimaryShape();
 		fig.translateToRelative(location);
-		if (fig.containsPoint(location)) {// move to header
-			return new LifelineAnchor(part.getPrimaryShape());
-		}
-		// move to dash line
-		return getTargetConnectionAnchor(part, request);
+		return new MessageCreateLifelineAnchor(part.getPrimaryShape(), (CLifeLineEditPart) part);
 	}
 
 	@Deprecated // TODO_MIA TO_DELETE
@@ -96,6 +92,7 @@ public class LifelineMessageCreateHelper {
 	}
 
 	// when a create message is deleted, move its target lifelines up
+	@Deprecated // TODO_MIA TO_DELETE
 	public static Command restoreLifelineOnMessageDelete(Command commands, EditPart editPart) {
 		if (editPart instanceof MessageCreateEditPart) {
 			MessageCreateEditPart part = (MessageCreateEditPart) editPart;
@@ -116,6 +113,7 @@ public class LifelineMessageCreateHelper {
 		return commands;
 	}
 
+	// TODO_MIA TO_DELETE
 	// when a lifleine is deleted, move its created lifelines up
 	public static Command restoreLifelineOnDelete(Command command, LifelineEditPart part) {
 		List<?> list = part.getSourceConnections();
@@ -228,8 +226,8 @@ public class LifelineMessageCreateHelper {
 
 	@Deprecated // TODO_MIA TO_DELETE
 	public static Command moveCascadeLifeline(LifelineEditPart part, Command command, int dy) {
-		command = moveCascadeLifelineRecursive(part, command, dy);
-		CInteractionEditPart interactionEP = (CInteractionEditPart) part.getParent().getParent();
+		// command = moveCascadeLifelineRecursive(part, command, dy);
+		// CInteractionEditPart interactionEP = (CInteractionEditPart) part.getParent().getParent();
 		// command = interactionEP.getUpdateLifelinesHeightsCommand(command);
 		return command;
 	}
@@ -241,7 +239,7 @@ public class LifelineMessageCreateHelper {
 		if (list != null && list.size() > 0) {
 			for (Object l : list) {
 				if (l instanceof MessageCreateEditPart) {
-					EditPart target = ((MessageCreateEditPart) l).getTarget();
+					// EditPart target = ((MessageCreateEditPart) l).getTarget();
 					// if (target instanceof CLifeLineEditPart) {
 					// CLifeLineEditPart lp = (CLifeLineEditPart) target;
 					// Rectangle bounds = lp.getFigure().getBounds().getCopy();
@@ -264,7 +262,7 @@ public class LifelineMessageCreateHelper {
 	}
 
 	public static boolean canMoveLifelineVertical(LifelineEditPart child, Rectangle newBounds) {
-		int halfHeight = child.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height / 2;
+		int halfHeight = child.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height / 2; // TODO_MIA check the use of this methode
 		// check outgoing links
 		List<?> list = child.getSourceConnections();
 		if (list != null && list.size() > 0) {
