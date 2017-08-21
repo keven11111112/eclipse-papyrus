@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
@@ -96,6 +97,16 @@ public class StereotypePropertyReferenceEdgeViewProvider extends CustomAbstractV
 		public PapyrusGraphicalTypeRegistry() {
 			knownEdges.add(IStereotypePropertyReferenceEdgeAdvice.STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation)
+	 */
+	@Override
+	protected boolean provides(final CreateViewForKindOperation op) {
+		return false;
 	}
 
 }
