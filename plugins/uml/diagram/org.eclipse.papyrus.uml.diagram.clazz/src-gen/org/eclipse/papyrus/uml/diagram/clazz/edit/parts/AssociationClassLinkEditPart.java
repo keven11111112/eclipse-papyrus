@@ -47,8 +47,7 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(DeleteLinkedAssociationClassViewEditPolicy.HIDE_ROLE,
-				new DeleteLinkedAssociationClassViewEditPolicy());
+		installEditPolicy(DeleteLinkedAssociationClassViewEditPolicy.HIDE_ROLE, new DeleteLinkedAssociationClassViewEditPolicy());
 	}
 
 	/**
@@ -56,10 +55,12 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
-			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(
+					getPrimaryShape().getRoleSourceLabel());
 		}
 		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
-			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(
+					getPrimaryShape().getRoleTargetLabel());
 		}
 		return false;
 	}
