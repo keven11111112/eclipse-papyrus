@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.IFigure;
@@ -99,13 +101,14 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	 * 
 	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#getConstraintFor(org.eclipse.gef.requests.CreateRequest)
 	 */
+	@Override
 	protected Object getConstraintFor(CreateRequest request) {
 		// Used during the creation from the palette
 		Object constraint = super.getConstraintFor(request);
 		if (request instanceof CreateViewAndElementRequest) {
 			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
 			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
-			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
+			IElementType elementType = descriptor.getElementAdapter().getAdapter(IElementType.class);
 			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.ACTION_EXECUTION_SPECIFICATION_SHAPE) ||
 					ElementUtil.isTypeOf(elementType, UMLDIElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE)) {
 				Rectangle parentBound = getHostFigure().getBounds();
@@ -234,6 +237,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	 *            the elements new bounds.
 	 * @return {@link SetBoundsCommand}
 	 */
+	@Override
 	protected Command createChangeConstraintCommand(
 			EditPart child,
 			Object constraint) {
@@ -333,6 +337,60 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 		}
 		return super.getCreateCommand(request);
 	}
+
+	/**
+	 * In the specific case of Execution Specification, the resize of the Lifeline should trigger the move of the ES to remain centered on it.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy#getCommand(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 *            general request
+	 * @return the default command in addition with he commands to move all the ExecutionSpecification
+	 */
+	@Override
+	public Command getCommand(Request request) {
+
+		CompoundCommand cmd = new CompoundCommand();
+		Command superCmd = super.getCommand(request);
+		if (null != superCmd && superCmd.canExecute()) {
+			cmd.add(superCmd);
+		}
+
+		// When resizing Lifeline, move the ES accordingly (only on the x direction)
+		if (REQ_RESIZE.equals(request.getType()) && request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest boundsReq = (ChangeBoundsRequest) request;
+			Dimension sizeDelta = boundsReq.getSizeDelta();
+
+			List children = getHost().getChildren();
+			Iterator iter = children.iterator();
+			while (iter.hasNext()) {
+				EditPart child = (EditPart) iter.next();
+				Command moveChildrenCmd = null;
+				if (child instanceof AbstractExecutionSpecificationEditPart) {
+					AbstractExecutionSpecificationEditPart ES = (AbstractExecutionSpecificationEditPart) child;
+					// Building the new Request for the ES
+					ChangeBoundsRequest moveESRequest = new ChangeBoundsRequest(REQ_RESIZE);
+					moveESRequest.setEditParts(ES);
+					moveESRequest.setResizeDirection(boundsReq.getResizeDirection());
+					moveESRequest.setMoveDelta(new Point(sizeDelta.width() / 2, 0));
+					// Get the according command
+					moveChildrenCmd = ES.getCommand(moveESRequest);
+
+				}
+
+				// for all the ES, add the get command
+				if (null != moveChildrenCmd && moveChildrenCmd.canExecute()) {
+					cmd.add(moveChildrenCmd);
+				}
+			}
+		}
+
+		if (cmd.isEmpty()) {
+			return null;
+		}
+		return cmd;
+	}
+
 
 	/**
 	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#createAddCommand(org.eclipse.gef.requests.ChangeBoundsRequest, org.eclipse.gef.EditPart, java.lang.Object)
