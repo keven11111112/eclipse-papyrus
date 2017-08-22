@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2014, 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Refactoring, cleanup, added support for PapyrusLabel element
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Add IRoundedRectangleFigure use case(436547)
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - NPE if SVG unit is not in pixels (521232)  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
@@ -194,7 +195,13 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 		if (base == null) {
 			return 0;
 		}
-		return base.getValue();
+		try {
+			return base.getValue();
+		}
+		catch (NullPointerException e) {
+			// NPE during getValue (bug 521232) => retry using getValueInSpecifiedUnits)
+			return base.getValueInSpecifiedUnits();
+		}
 	}
 
 	/**
