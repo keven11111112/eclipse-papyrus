@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.tests.canonical.TestLink;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.usecase.tests.IUseCaseDiagramTestsConstants;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.junit.Test;
 
 
@@ -62,11 +63,11 @@ public class TestUseCaseLink extends TestLink {
 	}
 	@Test
 	public void testToManageAssociationUseCase_UseCase() {
-		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.UseCase_Shape,UMLElementTypes.Association_Edge,UMLElementTypes.Package_Shape,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.UseCase_Shape,UMLDIElementTypes.ASSOCIATION_NON_DIRECTED_EDGE,UMLElementTypes.Package_Shape,true);
 	}
 	@Test
 	public void testToManageAssociationUseCase_Actor() {
-		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.Actor_Shape,UMLElementTypes.Association_Edge,UMLElementTypes.Package_Shape,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.Actor_Shape,UMLDIElementTypes.ASSOCIATION_NON_DIRECTED_EDGE,UMLElementTypes.Package_Shape,true);
 	}
 	
 	@Test
