@@ -10,6 +10,7 @@
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Gaabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 438511
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - bug 511045
+ *  Ansgar Radermacher (CEA LIST), ansgar.radermacher@cea.fr - bug 521279 (copy/paste between models) 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.commands;
 
@@ -41,19 +42,39 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 	 *
 	 * Constructor.
 	 *
+	 * @param domain
+	 *            The editing domain
 	 * @param element
 	 *            The UML Element on which the stereotype will be applied
-	 * @param stereotype
-	 *            The stereotypes to apply
+	 * @param stereotypeApplication
+	 *            The stereotype to apply
 	 */
 	public DuplicateStereotypeCommand(TransactionalEditingDomain domain, Element element, EObject stereotypeApplication) {
+		this(domain, element, element, stereotypeApplication);
+	}
+
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param domain
+	 *            The editing domain
+	 * @param element
+	 *            The UML Element on which the stereotype will be applied
+	 * @param targetContainer
+	 *            target container for the element. This information is required to reload the stereotype to the target context.
+	 *            It can not be deduced from the element, since the latter has not been added to the target container yet.
+	 * @param stereotypeApplication
+	 *            The stereotype to apply
+	 */
+	public DuplicateStereotypeCommand(TransactionalEditingDomain domain, Element element, Element targetContainer, EObject stereotypeApplication) {
 		super(domain);
 		this.element = element;
 		this.stereotypeApplication = stereotypeApplication;
 		// reload the stereotype in the new Context-ResourceSet (Required because in org.eclipse.uml2.uml.internal.operations.PackageOperations
 		// L960 in getProfileApplication the test is using == instead of equals)
 		Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
-		Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, element);
+		Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, targetContainer);
 		this.stereotypeInTargetContext = stereotypeInTargetContext;
 	}
 
@@ -66,7 +87,7 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 		// Retrieve the stereotype application for the element
 		EObject applyStereotype = element.getStereotypeApplication(stereotypeInTargetContext);
 		// If the stereotype is not applied yet
-		if (null == applyStereotype && null!=element.eContainer()) {
+		if (null == applyStereotype && null != element.eContainer()) {
 			// Then apply it safely without triggering the exception when applying an already applied stereotype (bug 511045)
 			applyStereotype = element.applyStereotype(stereotypeInTargetContext);
 		}
