@@ -128,7 +128,6 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
 		ICommand gmfCommand = super.getBeforeSetCommand(request);
-		;
 
 		EObject elementToEdit = request.getElementToEdit();
 
@@ -154,19 +153,21 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 			}
 		}
 
-		// Type set to null implies the property should be removed from association member ends (if related to an Association)
+		// Type set to null implies the property should be kept and the association deleted: see https://bugs.eclipse.org/bugs/show_bug.cgi?id=477724
 		if ((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() == null)) {
 			Property propertyToEdit = (Property) elementToEdit;
 			Association relatedAssociation = propertyToEdit.getAssociation();
 
 			if (relatedAssociation != null) {
 				// General case, delete the ConnectorEnd
-				DestroyReferenceRequest destroyRefRequest = new DestroyReferenceRequest(relatedAssociation, UMLPackage.eINSTANCE.getAssociation_MemberEnd(), propertyToEdit, false);
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
 				if (provider != null) {
-					// Add current EObject destroy reference command to the global command
-					ICommand destroyMemberRefCommand = provider.getEditCommand(destroyRefRequest);
-					gmfCommand = CompositeCommand.compose(gmfCommand, destroyMemberRefCommand);
+					DestroyElementRequest destroyRequest = new DestroyElementRequest(relatedAssociation, false);
+					List<EObject> ps = new ArrayList<EObject>();
+					ps.add(propertyToEdit);
+					destroyRequest.setParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.DEPENDENTS_TO_KEEP, ps);
+					ICommand destroyCommand = provider.getEditCommand(destroyRequest);
+					gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
 				}
 			}
 		}
