@@ -131,7 +131,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 						StereotypeClipboard stereotypeClipboard = (StereotypeClipboard)additionnalData;
 						Collection<EObject> stereotypeApplications = stereotypeClipboard.getstereotypeApplications();
 						for(EObject stereotypeApplication : stereotypeApplications) {
-							DuplicateStereotypeCommand applyStereotypeCommand = new DuplicateStereotypeCommand((TransactionalEditingDomain)domain, (Element)target, stereotypeApplication );	
+							DuplicateStereotypeCommand applyStereotypeCommand = new DuplicateStereotypeCommand((TransactionalEditingDomain)domain, (Element) target, (Element) targetOwner, stereotypeApplication);
 					
 							Stereotype stereotypeInTargetContext = applyStereotypeCommand.getStereotypeInTargetContext();
 							Profile profile = stereotypeInTargetContext.getProfile();
