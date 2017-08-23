@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<setup:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0" xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0" xmlns:mylyn="http://www.eclipse.org/oomph/setup/mylyn/1.0" xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0" xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0" xmlns:setup="http://www.eclipse.org/oomph/setup/1.0" xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0" xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0" xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0" xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0" xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/mylyn/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Mylyn.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore" name="papyrus" label="Papyrus">
+<setup:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:git_1.0="http://www.eclipse.org/oomph/setup/git/1.0" xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0" xmlns:mylyn_1.0="http://www.eclipse.org/oomph/setup/mylyn/1.0" xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0" xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0" xmlns:setup="http://www.eclipse.org/oomph/setup/1.0" xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0" xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0" xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0" xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0" xsi:schemaLocation="http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore" name="papyrus" label="Papyrus">
   <logicalProjectContainer xsi:type="setup:ProjectCatalog" href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
   <description>Workbench and workspace configuration for development on Papyrus</description>
   <setupTask xsi:type="setup.p2:P2Task" label="Core Development Tools">
@@ -58,7 +58,7 @@
   <setupTask xsi:type="setup:VariableTask" type="URI" name="base.downloads.url" value="http://download.eclipse.org"/>
   <setupTask xsi:type="setup:VariableTask" name="git.checkout.branch" value="${scope.project.stream.name}"/>
   <setupTask xsi:type="setup:VariableTask" name="eclipse.target.platform" defaultValue="Oxygen" storageURI="scope://Workspace"/>
-  <setupTask xsi:type="git:GitCloneTask" id="papyrus.git.clone" remoteURI="papyrus/org.eclipse.papyrus" pushURI="" checkoutBranch="${git.checkout.branch}">
+  <setupTask xsi:type="git_1.0:GitCloneTask" checkoutBranch="${git.checkout.branch}" id="papyrus.git.clone" pushURI="" remoteURI="papyrus/org.eclipse.papyrus">
     <description>Papyrus</description>
     <annotation source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail key="inherit">
@@ -80,7 +80,7 @@
       <requirement name="org.apache.xerces"/>
       <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7RC4a-201706120950/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC1-201708170500/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -152,14 +152,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706120522">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.0">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse OCL 6.3</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -187,7 +187,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/R-3.9.0-20170613094504/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.1/S-3.9.1RC1-20170822000154/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -634,20 +634,20 @@
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.repository" value="https://bugs.eclipse.org/bugs"/>
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.prefix" value="/buglist.cgi?classification=Modeling&amp;product=Papyrus&amp;${papyrus.bugzilla.version}"/>
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.open" value="bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED"/>
-    <setupTask xsi:type="mylyn:MylynQueriesTask" repositoryURL="${papyrus.bugzilla.repository}">
+    <setupTask xsi:type="mylyn_1.0:MylynQueriesTask" repositoryURL="${papyrus.bugzilla.repository}">
       <query summary="Papyrus Flagged for Review" url="${papyrus.bugzilla.prefix}&amp;${papyrus.bugzilla.open}&amp;query_format=advanced&amp;field0-0-0=flagtypes.name&amp;type0-0-0=equals&amp;value0-0-0=review%3F"/>
       <query summary="Papyrus Open Bugs" url="${papyrus.bugzilla.prefix}&amp;${papyrus.bugzilla.open}&amp;bug_severity=blocker&amp;bug_severity=critical&amp;bug_severity=major&amp;bug_severity=normal&amp;bug_severity=minor&amp;bug_severity=trivial"/>
       <query summary="Papyrus Open Enhancement Requests" url="${papyrus.bugzilla.prefix}&amp;${papyrus.bugzilla.open}&amp;bug_severity=enhancement"/>
       <query summary="Papyrus Resolved Items" url="${papyrus.bugzilla.prefix}&amp;bug_status=RESOLVED&amp;resolution=FIXED"/>
     </setupTask>
-    <setupTask xsi:type="mylyn:MylynQueriesTask" connectorKind="org.eclipse.mylyn.gerrit" repositoryURL="https://git.eclipse.org/r" userID="${bugzilla.id}" password="${eclipse.user.password}">
+    <setupTask xsi:type="mylyn_1.0:MylynQueriesTask" connectorKind="org.eclipse.mylyn.gerrit" password="${eclipse.user.password}" repositoryURL="https://git.eclipse.org/r" userID="${bugzilla.id}">
       <query summary="Papyrus Open Gerrit Reviews">
         <attribute key="gerrit query type" value="custom"/>
         <attribute key="gerrit query project" value="papyrus/org.eclipse.papyrus"/>
         <attribute key="gerrit query string" value="project:papyrus/org.eclipse.papyrus status:open branch:${git.checkout.branch}"/>
       </query>
     </setupTask>
-    <setupTask xsi:type="mylyn:MylynBuildsTask" serverURL="https://hudson.eclipse.org/papyrus/" userID="${bugzilla.id}" password="${eclipse.user.password}">
+    <setupTask xsi:type="mylyn_1.0:MylynBuildsTask" password="${eclipse.user.password}" serverURL="https://hudson.eclipse.org/papyrus/" userID="${bugzilla.id}">
       <buildPlan name="Papyrus-Master-Full"/>
       <buildPlan name="Papyrus-Master"/>
       <buildPlan name="Papyrus-Master-Tests"/>
@@ -1450,7 +1450,7 @@
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
           <requirement name="org.eclipse.emf.cdo.sdk.feature.group"/>
           <repositoryList name="Oxygen">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20170531-1203">
+            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/R20170614-0227">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF CDO</value>
