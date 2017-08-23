@@ -11,6 +11,7 @@
  *   Christian W. Damus - bugs 458685, 468071, 465899, 478314, 485220
  *   Vincent Lorenzo - bug 492522
  *   Martin Fleck - bug 510268
+ *   Francois Le Fevre - bug 477724
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.tests.suites;
@@ -25,6 +26,7 @@ import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationSha
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationSharedTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreatePureUMLElementTest;
+import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteAssociationPropertyTypeTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteCommentLinkTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteContainmentSubsetTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteDependentWithStereotypeApplications458685;
@@ -46,6 +48,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		DeleteTransitionsWithVertexTest.class,
 		DeleteContainmentSubsetTest.class,
 		ConnectorReadOnlyTestBug465899.class,
+		DeleteAssociationPropertyTypeTest.class,
 		DeleteCommentLinkTest.class,
 		CreateAssociationTest.class,
 		CreateAssociationDirectedTest.class,
