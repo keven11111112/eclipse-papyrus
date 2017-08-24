@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016-2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,23 +8,20 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
@@ -40,10 +37,10 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 /**
  * @author PT202707
  * @since 3.0
- *this class has been customized to prevent the strange feedback of lifeline during the move
-
+ *        this class has been customized to prevent the strange feedback of lifeline during the move
+ * 
  */
-public class CInteractionEditPart  extends InteractionEditPart{
+public class CInteractionEditPart extends InteractionEditPart {
 
 	/**
 	 * Constructor.
@@ -53,18 +50,18 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	public CInteractionEditPart(View view) {
 		super(view);
 	}
-	
-	
-	//***********************************************************************
-	//**ALL this code is used to manage  LOST and CREATE MESSAGE on Interaction.
-	//**************************************************************************
+
+
+	// ***********************************************************************
+	// **ALL this code is used to manage LOST and CREATE MESSAGE on Interaction.
+	// **************************************************************************
 	/**
 	 * Handle found message
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
 		ConnectionAnchor sourceAnchor = createAnchor(request, UMLDIElementTypes.MESSAGE_FOUND_EDGE, MessageFoundEditPart.VISUAL_ID, MessageFoundEditPart.class);
-		
+
 		if (sourceAnchor == null) {
 			sourceAnchor = super.getSourceConnectionAnchor(request);
 		}
@@ -76,7 +73,7 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		
+
 		// Read the anchor and load it, it read the absolute position
 		if (connEditPart instanceof MessageFoundEditPart) {
 			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, true);
@@ -94,13 +91,8 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		
+
 		ConnectionAnchor targetAnchor = createAnchor(request, UMLDIElementTypes.MESSAGE_LOST_EDGE, MessageLostEditPart.VISUAL_ID, MessageLostEditPart.class);
-//		if (targetAnchor == null) {
-//			// Enabled to find Anchor for MessageCreate, this would be useful when showing feedbacks.
-//			// Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134
-//			targetAnchor = createAnchor(request, UMLDIElementTypes.MESSAGE_CREATE_EDGE, MessageCreateEditPart.VISUAL_ID, MessageCreateEditPart.class);
-//		}
 		if (targetAnchor == null) {
 			targetAnchor = super.getTargetConnectionAnchor(request);
 		}
@@ -140,10 +132,9 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	 */
 	private ConnectionAnchor createAnchor(Request request, IElementType elementType, String visualId, Class<?> messageType) {
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			
-			
+
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
-			
+
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object obj : relationshipTypes) {
 				if (elementType.equals(obj)) {
@@ -177,20 +168,23 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	 * @return The connection anchor
 	 */
 	private ConnectionAnchor createAnchor(Point location) {
-		// return new SlidableAnchor(getFigure(), BaseSlidableAnchor.getAnchorRelativeLocation(location, getFigure().getBounds()));
 		return AnchorHelper.InnerPointAnchor.createAnchorAtLocation(getFigure(), new PrecisionPoint(location));
 	}
+
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * <pre>
+	 * Interaction is not selectable.
+	 * </pre>
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#isSelectable()
-	 *
-	 * @return
 	 */
 	@Override
 	public boolean isSelectable() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
 	 *
@@ -198,14 +192,14 @@ public class CInteractionEditPart  extends InteractionEditPart{
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
-		if(request instanceof ChangeBoundsRequest){
-			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+		if (request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
 
-			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
-				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			if (changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x, 0));
 			}
 		}
 		super.showTargetFeedback(request);
 	}
-	
+
 }

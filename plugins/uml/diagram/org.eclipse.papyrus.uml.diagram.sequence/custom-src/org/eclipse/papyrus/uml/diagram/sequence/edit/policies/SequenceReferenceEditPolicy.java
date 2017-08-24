@@ -1,4 +1,4 @@
-/***********s******************************************************************
+/*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Patrick Tessier (CEA LIST) - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -138,19 +138,23 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 			// manage Strong references
 			// fill about source
 			MessageEnd sourceEvent = aMessage.getSendEvent();
-			addExecutionSpecIntoReferences((OccurrenceSpecification) sourceEvent, strongReferences, ROLE_SOURCE);
+			if (null != sourceEvent) {
+				addExecutionSpecIntoReferences((OccurrenceSpecification) sourceEvent, strongReferences, ROLE_SOURCE);
+			}
 			// fill about target
 			MessageEnd targetEvent = aMessage.getReceiveEvent();
-			addExecutionSpecIntoReferences((OccurrenceSpecification) targetEvent, strongReferences, ROLE_TARGET);
+			if (null != targetEvent) {
+				addExecutionSpecIntoReferences((OccurrenceSpecification) targetEvent, strongReferences, ROLE_TARGET);
+			}
 
 			// manage weakReferences
 			// source
-			if (((OccurrenceSpecification) sourceEvent).getCovereds().size() == 1) {
+			if (null != sourceEvent && ((OccurrenceSpecification) sourceEvent).getCovereds().size() == 1) {
 				Lifeline currentLifeline = ((OccurrenceSpecification) sourceEvent).getCovereds().get(0);
 				fillWeakReference(((OccurrenceSpecification) sourceEvent), currentLifeline);
 			}
 			// target
-			if (((OccurrenceSpecification) targetEvent).getCovereds().size() == 1) {
+			if (null != targetEvent && ((OccurrenceSpecification) targetEvent).getCovereds().size() == 1) {
 				Lifeline currentLifeline = ((OccurrenceSpecification) targetEvent).getCovereds().get(0);
 				fillWeakReference(((OccurrenceSpecification) targetEvent), currentLifeline);
 			}

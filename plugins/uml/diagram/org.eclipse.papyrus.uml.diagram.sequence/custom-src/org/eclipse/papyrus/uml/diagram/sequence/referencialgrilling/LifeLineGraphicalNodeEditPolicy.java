@@ -165,7 +165,9 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					if (referenceTargetPoint != null && sourceLocation != null) {
 
 						if (UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint().equals(((CreateConnectionViewAndElementRequest) requestForType).getConnectionViewAndElementDescriptor().getSemanticHint())
-								|| isHorizontalConnection(sourceLocation, referenceTargetPoint)) {
+								|| (isHorizontalConnection(sourceLocation, referenceTargetPoint))
+										&& request.getSourceEditPart() != request.getTargetEditPart()
+										&& !UMLDIElementTypes.MESSAGE_LOST_EDGE.getSemanticHint().equals(((CreateConnectionViewAndElementRequest) requestForType).getConnectionViewAndElementDescriptor().getSemanticHint())) {
 							newTargetConnectionAnchor = getHorizontalAnchor(targetConnectionAnchor, referenceTargetPoint);
 						}
 					}

@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -23,6 +34,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusSlidableSnapToGridAnchor;
 
 public class AnchorHelper {
 
@@ -42,8 +54,7 @@ public class AnchorHelper {
 					}
 					if (a instanceof IdentityAnchor) {
 						setResult(((IdentityAnchor) a).getId());
-					}
-					else {
+					} else {
 						setResult(""); //$NON-NLS-1$
 					}
 				}
@@ -249,14 +260,14 @@ public class AnchorHelper {
 	 * Now, we use the location directly to avoid preserve position when the size of referenced figure changes.
 	 *
 	 */
-	public static class InnerPointAnchor extends SlidableAnchor {
+	public static class InnerPointAnchor extends PapyrusSlidableSnapToGridAnchor {
 
 		private PrecisionPoint percent;
 
 		private IFigure figure;
 
 		public InnerPointAnchor(IFigure fig, PrecisionPoint percent) {
-			super(fig, percent);
+			super((NodeFigure) fig, percent);
 			this.figure = fig;
 			this.percent = percent;
 		}

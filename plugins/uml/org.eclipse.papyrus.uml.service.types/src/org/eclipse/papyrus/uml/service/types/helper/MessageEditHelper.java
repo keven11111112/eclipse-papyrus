@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -45,7 +44,6 @@ import org.eclipse.papyrus.uml.service.types.command.MessageSyncReorientCommand;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.MessageUtils;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.tools.utils.ExecutionSpecificationUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -118,11 +116,21 @@ public class MessageEditHelper extends ElementEditHelper {
 				create &= (null == msgEndTarget.getMessage());
 			}
 
-			// Create Message case
-			if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_CREATE_MESSAGE)
-					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_CREATE_MESSAGE)
-					|| ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_CREATE_MESSAGE)) {
-				create &= canCreateMessageCreate(source, target, request);
+			// Message Create case
+			if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_CREATE_MESSAGE)) {
+				create &= canCreateMessageCreate(source, target);
+			} else
+			// Message Delete case
+			if (ElementUtil.isTypeOf(elementType, UMLElementTypes.COMPLETE_DELETE_MESSAGE)) {
+				create &= canCreateMessageDelete(source, target);
+			} else
+			// Message Lost case
+			if (ElementUtil.isTypeOf(elementType, UMLElementTypes.LOST_ASYNCH_CALL)) {
+				create &= canCreateMessageLost(source, target);
+			} else
+			// Message Lost case
+			if (ElementUtil.isTypeOf(elementType, UMLElementTypes.FOUND_ASYNCH_CALL)) {
+				create &= canCreateMessageFound(source, target);
 			}
 		}
 
@@ -140,7 +148,7 @@ public class MessageEditHelper extends ElementEditHelper {
 	 *            the request
 	 * @return return true if message can be created
 	 */
-	private boolean canCreateMessageCreate(final EObject source, final EObject target, final AbstractEditCommandRequest request) {
+	private boolean canCreateMessageCreate(final EObject source, final EObject target) {
 		boolean create = true;
 
 		// source and target can't be the same
@@ -158,12 +166,65 @@ public class MessageEditHelper extends ElementEditHelper {
 					.anyMatch(m -> m.getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL);
 		}
 
-		// Check if the create message is the first message into the target lifeline.
-		Object isFirst = request.getParameter(RequestParameterConstants.IS_FIRST_EVENT);
-		if (create && isFirst instanceof Boolean) {
-			create = (boolean) isFirst;
+		return create;
+	}
+
+	/**
+	 * Test if a Message Delete can be created.
+	 * 
+	 * @param source
+	 *            the source of the message
+	 * @param target
+	 *            the target of the message
+	 * @param request
+	 *            the request
+	 * @return return true if message can be created
+	 */
+	private boolean canCreateMessageDelete(final EObject source, final EObject target) {
+		boolean create = true;
+
+		// check if target is not already created with another create message
+		if (create && target instanceof Lifeline) {
+			create = !((Lifeline) target).getCoveredBys().stream()
+					.filter(MessageEnd.class::isInstance)
+					.map(MessageEnd.class::cast)
+					.filter(m -> null != m.getMessage()) // filter on receive event
+					.filter(m -> null != m.getMessage().getReceiveEvent()) // filter on receive event
+					.filter(m -> m.getMessage().getReceiveEvent().equals(m)) // filter on receive event
+					.map(m -> m.getMessage())
+					.anyMatch(m -> m.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL);
 		}
 		return create;
+	}
+
+	/**
+	 * Test if a Message Lost can be created.
+	 * 
+	 * @param source
+	 *            the source of the message
+	 * @param target
+	 *            the target of the message
+	 * @param request
+	 *            the request
+	 * @return return true if message can be created
+	 */
+	private boolean canCreateMessageLost(final EObject source, final EObject target) {
+		return (target instanceof Interaction || target == null) && source instanceof Lifeline;
+	}
+
+	/**
+	 * Test if a Message Found can be created.
+	 * 
+	 * @param source
+	 *            the source of the message
+	 * @param target
+	 *            the target of the message
+	 * @param request
+	 *            the request
+	 * @return return true if message can be created
+	 */
+	private boolean canCreateMessageFound(final EObject source, final EObject target) {
+		return source instanceof Interaction && (target instanceof Lifeline || target == null);
 	}
 
 
@@ -280,7 +341,7 @@ public class MessageEditHelper extends ElementEditHelper {
 					}
 				}
 				// test if we can create it
-				if (canCreateMessageCreate(source, target, req)) {
+				if (canCreateMessageCreate(source, target)) {
 					reorientCommand = new MessageCreateReorientCommand(req);
 				} else {
 					reorientCommand = UnexecutableCommand.INSTANCE;
@@ -291,15 +352,31 @@ public class MessageEditHelper extends ElementEditHelper {
 
 
 		} else if (msgToReorient.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL) {
-			// Forbid the target re-orient command of delete Message.
-			// The re-orient command is provided but the MessageEnd update is not correctly implemented.
-			// the graphic is badly updated
-			if (req.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
-				reorientCommand = new MessageDeleteReorientCommand(req);
+			if (req.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
+				EObject target = req.getNewRelationshipEnd();
 
-			} else if (req.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
-				// Not correctly implemented - Forbid this kind of re-orient for now.
-				reorientCommand = UnexecutableCommand.INSTANCE;
+				// Get the source
+				EObject source = null;
+				EObject relationship = req.getRelationship();
+				if (relationship instanceof Message) {
+					Message message = (Message) relationship;
+					MessageEnd sendEvent = message.getSendEvent();
+					if (sendEvent instanceof InteractionFragment) {
+						InteractionFragment fragment = (InteractionFragment) sendEvent;
+						EList<Lifeline> covereds = fragment.getCovereds();
+						if (!covereds.isEmpty()) {
+							source = covereds.get(0);
+						}
+					}
+				}
+				// test if we can create it
+				if (canCreateMessageDelete(source, target)) {
+					reorientCommand = new MessageDeleteReorientCommand(req);
+				} else {
+					reorientCommand = UnexecutableCommand.INSTANCE;
+				}
+			} else {
+				reorientCommand = new MessageDeleteReorientCommand(req);
 			}
 		}
 
