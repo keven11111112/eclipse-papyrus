@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010-2017 CEA
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -34,14 +34,6 @@ public class CustomMessageLostEditPart extends MessageLostEditPart {
 	 */
 	public CustomMessageLostEditPart(View view) {
 		super(view);
-	}
-
-	/**
-	 * @Override
-	 */
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
 	}
 
 	/**

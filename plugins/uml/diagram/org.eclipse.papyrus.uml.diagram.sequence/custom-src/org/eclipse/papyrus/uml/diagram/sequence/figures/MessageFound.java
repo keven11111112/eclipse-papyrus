@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010-2017 CEA
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
@@ -17,7 +17,6 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 /**
@@ -48,6 +47,7 @@ public class MessageFound extends MessageFigure {
 	 */
 	protected RotatableDecoration createSourceDecoration() {
 		EllipseDecoration df = new EllipseDecoration();
+		df.setPreferredSize(new Dimension(10, 10));
 		df.setAlwaysFill(true);
 		return df;
 	}
