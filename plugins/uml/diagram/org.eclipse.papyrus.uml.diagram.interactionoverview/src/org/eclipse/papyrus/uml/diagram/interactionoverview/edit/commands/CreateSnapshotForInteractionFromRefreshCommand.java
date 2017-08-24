@@ -39,8 +39,6 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUti
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CreateDiagramImage;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.URIUtils;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -51,12 +49,22 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 	/**
 	 * @since 3.0
 	 */
-	protected static final String ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING = "org.eclipse.papyrus.uml.diagram.timing";
+	protected static final String ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING = "org.eclipse.papyrus.uml.diagram.timing"; //$NON-NLS-1$
 
 	/**
 	 * @since 3.0
 	 */
-	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram";
+	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	protected final static String PAPYRUS_SEQUENCE_DIAGRAM_MODEL_ID = "PapyrusUMLSequenceDiagram"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	protected static final PreferencesHint PAPYRUS_SEQUENCE_DIAGRAM_PREFERENCES_HINT = new PreferencesHint("org.eclipse.papyrus.uml.diagram.sequence"); //$NON-NLS-1$
 
 	protected View callBehaviorView;
 
@@ -131,10 +139,10 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 	}
 
 	protected PreferencesHint getReferenceHint(final String type) {
-		if (SequenceDiagramEditPart.MODEL_ID.equals(type)) {
-			return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+		if (PAPYRUS_SEQUENCE_DIAGRAM_MODEL_ID.equals(type)) {
+			return PAPYRUS_SEQUENCE_DIAGRAM_PREFERENCES_HINT;
 		} else if (PAPYRUS_UML_TIMING_DIAGRAM.equals(type)) {
-			return  new PreferencesHint(ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING);
+			return new PreferencesHint(ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING);
 		} else if (InteractionOverviewDiagramEditPart.MODEL_ID.equals(type)) {
 			return Activator.DIAGRAM_PREFERENCES_HINT;
 		} else if (ModelEditPart.MODEL_ID.equals(type)) {

@@ -46,8 +46,6 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.DiagramConte
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUtil;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CreateDiagramImage;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.URIUtils;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -61,12 +59,22 @@ public class CreateSnapshotForInteractionFromViewDescriptorCommand extends Abstr
 	/**
 	 * @since 3.0
 	 */
-	protected static final String ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING = "org.eclipse.papyrus.uml.diagram.timing";
+	protected static final String ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING = "org.eclipse.papyrus.uml.diagram.timing"; //$NON-NLS-1$
 
 	/**
 	 * @since 3.0
 	 */
-	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram";
+	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	protected final static String PAPYRUS_SEQUENCE_DIAGRAM_MODEL_ID = "PapyrusUMLSequenceDiagram"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	protected static final PreferencesHint PAPYRUS_SEQUENCE_DIAGRAM_PREFERENCES_HINT = new PreferencesHint("org.eclipse.papyrus.uml.diagram.sequence"); //$NON-NLS-1$
 
 	protected ICommand createElementCommand;
 
@@ -150,8 +158,8 @@ public class CreateSnapshotForInteractionFromViewDescriptorCommand extends Abstr
 	}
 
 	protected PreferencesHint getReferenceHint(final String type) {
-		if (SequenceDiagramEditPart.MODEL_ID.equals(type)) {
-			return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+		if (PAPYRUS_SEQUENCE_DIAGRAM_MODEL_ID.equals(type)) {
+			return PAPYRUS_SEQUENCE_DIAGRAM_PREFERENCES_HINT;
 		} else if (PAPYRUS_UML_TIMING_DIAGRAM.equals(type)) {
 			return new PreferencesHint(ORG_ECLIPSE_PAPYRUS_UML_DIAGRAM_TIMING);
 		} else if (InteractionOverviewDiagramEditPart.MODEL_ID.equals(type)) {
@@ -206,8 +214,7 @@ public class CreateSnapshotForInteractionFromViewDescriptorCommand extends Abstr
 		dialog.setTitle(Messages.CreateSnapshotForInteractionFromViewDescriptorCommand_DiagramSelectorTitle);
 		if (dialog.open() == org.eclipse.jface.window.Window.OK) {
 			final Object[] result = dialog.getResult();
-			if (result != null && result.length > 0)
-			{
+			if (result != null && result.length > 0) {
 				return (Diagram) EMFHelper.getEObject(result[0]);// (Diagram)(((ModelElementItem)result[0]).getEObject());
 			}
 		}

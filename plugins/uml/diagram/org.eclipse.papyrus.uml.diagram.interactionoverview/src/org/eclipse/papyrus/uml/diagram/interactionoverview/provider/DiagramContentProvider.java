@@ -24,7 +24,6 @@ import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.InteractionOverviewDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Interaction;
 
@@ -39,7 +38,13 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 	/**
 	 * @since 3.0
 	 */
-	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram";
+	protected static final String PAPYRUS_UML_TIMING_DIAGRAM = "PapyrusUMLTimingDiagram"; //$NON-NLS-1$
+
+	/**
+	 * @since 3.0
+	 */
+	protected final static String PAPYRUS_SEQUENCE_DIAGRAM_MODEL_ID = "PapyrusUMLSequenceDiagram"; //$NON-NLS-1$
+
 	private final Interaction interaction;
 
 	public DiagramContentProvider(final Interaction interation) {
@@ -60,7 +65,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
 			pageMngr = servicesRegistry.getService(IPageManager.class);
 
-			final ArrayList<EObject> result = new ArrayList<EObject>();
+			final ArrayList<EObject> result = new ArrayList<>();
 			final List<Object> list = pageMngr.allPages();
 			for (int i = 0; i < list.size(); i++) {
 				final Object element = pageMngr.allPages().get(i);
@@ -81,7 +86,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 
 	private boolean isValidDiagram(final Diagram diagram) {
 		// seqDiagram or comDiagram
-		if (diagram.getType().equals(SequenceDiagramEditPart.MODEL_ID) || diagram.getType().equals(ModelEditPart.MODEL_ID)) {
+		if (diagram.getType().equals(PAPYRUS_SEQUENCE_DIAGRAM_MODEL_ID) || diagram.getType().equals(ModelEditPart.MODEL_ID)) {
 			if (diagram.getElement().equals(interaction)) {
 				return true;
 			}
