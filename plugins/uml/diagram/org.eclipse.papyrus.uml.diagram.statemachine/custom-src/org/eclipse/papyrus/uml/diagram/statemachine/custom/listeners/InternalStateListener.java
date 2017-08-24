@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Pauline DEVILLE - Bug 521260 - [StateMachineDiagram] Transition is deleted from the model when its kind is changed to internal
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.listeners;
 
@@ -19,15 +20,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.RefreshEditPartCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
@@ -39,7 +40,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Listener of internal state transition
- *  @deprecated this is a bad way to create/synchronize views. Behavior similar to {@link PapyrusCanonicalEditPolicy} should be used instead.
+ * 
+ * @deprecated this is a bad way to create/synchronize views. Behavior similar to {@link PapyrusCanonicalEditPolicy} should be used instead.
  */
 @Deprecated
 public class InternalStateListener extends AbstractModifcationTriggerListener {
@@ -59,7 +61,7 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 		Object newValue = notif.getNewValue();
 		Object notifier = notif.getNotifier();
 		if (newValue instanceof TransitionKind && notifier instanceof EObject) {
-			if(Display.getCurrent()==null) { // UI Thread safe (getDiagramEditPart will be null in this case...)
+			if (Display.getCurrent() == null) { // UI Thread safe (getDiagramEditPart will be null in this case...)
 				return null;
 			}
 			CompositeCommand cc = new CompositeCommand("Modification command triggered by modification of the kind of the current selected transition");
@@ -138,13 +140,16 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 				return null;
 			}
 		}
-		Request request = new GroupRequest(RequestConstants.REQ_DELETE);
-		((GroupRequest) request).setEditParts(availableEditPart);
-		return availableEditPart.getCommand(request);
+		// Bug 521260
+		// Here we delete directly the EditPart (without GroupRequest(RequestConstants.REQ_DELETE))
+		// because there is a conflict between delete and canonical mode
+		// This listener should be independent of the canonical mode
+		DeleteCommand deleteCommand = new DeleteCommand(availableEditPart.getNotationView());
+		return GMFtoGEFCommandWrapper.wrap(deleteCommand);
 	}
 
 	private Command getCreationCommand(boolean isBecomingInternal, EObject eNotifier) {
-		if(Display.getCurrent() ==null) { // non UI-thread safe (getDiagramEditPart will be null..)
+		if (Display.getCurrent() == null) { // non UI-thread safe (getDiagramEditPart will be null..)
 			return null;
 		}
 		// IGraphicalEditPart
@@ -158,8 +163,8 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 				// get the region
 				dropTarget = getChildByEObject(transition.getContainer(), getDiagramEditPart(), false);
 				// get the compartment
-				if(dropTarget!=null) {
-					dropTarget = dropTarget.getChildBySemanticHint(String.valueOf(RegionCompartmentEditPart.VISUAL_ID));	
+				if (dropTarget != null) {
+					dropTarget = dropTarget.getChildBySemanticHint(String.valueOf(RegionCompartmentEditPart.VISUAL_ID));
 				}
 			}
 			if (dropTarget != null) {
