@@ -40,10 +40,8 @@ import org.eclipse.papyrus.infra.widgets.providers.FilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
-import org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.part.Messages;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
@@ -78,29 +76,28 @@ public class CreateDiagramImage {
 
 		if (CallBehaviorUtil.isBehaviorNew(callBehaviorActionView)) {
 			CallBehaviorUtil.setBehaviorAsNonNew(callBehaviorActionView);
-			final List selectedLifelines = Arrays.asList(selectLifelines(lifelines));
-			final List removedLifeline = new ArrayList(lifelines);
+			final List<Object> selectedLifelines = Arrays.asList(selectLifelines(lifelines));
+			final List<GraphicalEditPart> removedLifeline = new ArrayList<>(lifelines);
 			removedLifeline.removeAll(selectedLifelines);
-			final List removedLifelineCopyForIterate = new ArrayList(removedLifeline);
-			for (final Iterator iterator = removedLifelineCopyForIterate.iterator(); iterator.hasNext();) {
+			final List<GraphicalEditPart> removedLifelineCopyForIterate = new ArrayList<>(removedLifeline);
+			for (final Iterator<GraphicalEditPart> iterator = removedLifelineCopyForIterate.iterator(); iterator.hasNext();) {
 				final Object object = iterator.next();
 				getAllChildren((GraphicalEditPart) object, removedLifeline);
 			}
-			final List<GraphicalEditPart> filteredEditParts = new ArrayList<GraphicalEditPart>(editParts);
 
-			for (final Iterator iterator = editParts.iterator(); iterator.hasNext();) {
-				final GraphicalEditPart graphicalEditPart = (GraphicalEditPart) iterator.next();
+			for (final Iterator<GraphicalEditPart> iterator = editParts.iterator(); iterator.hasNext();) {
+				final GraphicalEditPart graphicalEditPart = iterator.next();
 				if (removedLifeline.contains(graphicalEditPart)) {
 					graphicalEditPart.getFigure().setVisible(false);
 					final View view = (View) graphicalEditPart.getModel();
 					if (view.getElement() != null && view.getElement() instanceof NamedElement) {
 						CallBehaviorUtil.addLifelineQualifiedNames(callBehaviorActionView, ((NamedElement) (view.getElement())).getQualifiedName());
 					}
-					for (final Iterator iterator2 = graphicalEditPart.getSourceConnections().iterator(); iterator2.hasNext();) {
+					for (final Iterator<?> iterator2 = graphicalEditPart.getSourceConnections().iterator(); iterator2.hasNext();) {
 						final GraphicalEditPart source = (GraphicalEditPart) iterator2.next();
 						source.getFigure().setVisible(false);
 					}
-					for (final Iterator iterator2 = graphicalEditPart.getTargetConnections().iterator(); iterator2.hasNext();) {
+					for (final Iterator<?> iterator2 = graphicalEditPart.getTargetConnections().iterator(); iterator2.hasNext();) {
 						final GraphicalEditPart source = (GraphicalEditPart) iterator2.next();
 						source.getFigure().setVisible(false);
 					}
@@ -108,18 +105,18 @@ public class CreateDiagramImage {
 			}
 		} else {
 			final List<String> qualifiedNames = CallBehaviorUtil.getRemovedLifelinesQualifiedNames(callBehaviorActionView);
-			for (final Iterator iterator = editParts.iterator(); iterator.hasNext();) {
-				final GraphicalEditPart graphicalEditPart = (GraphicalEditPart) iterator.next();
+			for (final Iterator<GraphicalEditPart> iterator = editParts.iterator(); iterator.hasNext();) {
+				final GraphicalEditPart graphicalEditPart = iterator.next();
 				final View view = (View) graphicalEditPart.getModel();
 				if (view.getElement() != null && view.getElement() instanceof Lifeline) {
 					final String qualifiedName = ((Lifeline) (view.getElement())).getQualifiedName();
 					if (qualifiedNames.contains(qualifiedName)) {
 						graphicalEditPart.getFigure().setVisible(false);
-						for (final Iterator iterator2 = graphicalEditPart.getSourceConnections().iterator(); iterator2.hasNext();) {
+						for (final Iterator<?> iterator2 = graphicalEditPart.getSourceConnections().iterator(); iterator2.hasNext();) {
 							final GraphicalEditPart source = (GraphicalEditPart) iterator2.next();
 							source.getFigure().setVisible(false);
 						}
-						for (final Iterator iterator2 = graphicalEditPart.getTargetConnections().iterator(); iterator2.hasNext();) {
+						for (final Iterator<?> iterator2 = graphicalEditPart.getTargetConnections().iterator(); iterator2.hasNext();) {
 							final GraphicalEditPart source = (GraphicalEditPart) iterator2.next();
 							source.getFigure().setVisible(false);
 						}
@@ -173,14 +170,14 @@ public class CreateDiagramImage {
 	}
 
 	private static List<GraphicalEditPart> getAllLifeline(final List<GraphicalEditPart> editParts) {
-		final List<GraphicalEditPart> allChild = new ArrayList<GraphicalEditPart>();
-		for (final Iterator iterator = editParts.iterator(); iterator.hasNext();) {
-			final GraphicalEditPart editPart = (GraphicalEditPart) iterator.next();
+		final List<GraphicalEditPart> allChild = new ArrayList<>();
+		for (final Iterator<GraphicalEditPart> iterator = editParts.iterator(); iterator.hasNext();) {
+			final GraphicalEditPart editPart = iterator.next();
 			getAllChildren(editPart, allChild);
 		}
-		final List<GraphicalEditPart> lifelines = new ArrayList<GraphicalEditPart>();
-		for (final Iterator iterator = allChild.iterator(); iterator.hasNext();) {
-			final GraphicalEditPart graphicalEditPart = (GraphicalEditPart) iterator.next();
+		final List<GraphicalEditPart> lifelines = new ArrayList<>();
+		for (final Iterator<GraphicalEditPart> iterator = allChild.iterator(); iterator.hasNext();) {
+			final GraphicalEditPart graphicalEditPart = iterator.next();
 			if (isValidLifelineEditPart(graphicalEditPart)) {
 				lifelines.add(graphicalEditPart);
 			}
@@ -189,8 +186,8 @@ public class CreateDiagramImage {
 	}
 
 	private static boolean isValidLifelineEditPart(final GraphicalEditPart graphicalEditPart) {
-		if(graphicalEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart ) {
-			if(((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart) graphicalEditPart).resolveSemanticElement() instanceof Lifeline){
+		if (graphicalEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart) {
+			if (((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart) graphicalEditPart).resolveSemanticElement() instanceof Lifeline) {
 				return true;
 			}
 		}
