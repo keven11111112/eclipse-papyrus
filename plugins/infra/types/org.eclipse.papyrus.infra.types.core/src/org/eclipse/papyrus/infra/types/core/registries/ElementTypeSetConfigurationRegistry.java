@@ -10,7 +10,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus - bug 459174
  *  Christian W. Damus - bug 467207
- *  Sebastien Gabel (Esterel Technologies SAS) - bug 517914
+ *  Sebastien Gabel (Esterel Technologies SAS) - bug 517914, bug 521383
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types.core.registries;
@@ -170,19 +170,26 @@ public class ElementTypeSetConfigurationRegistry {
 		}
 		URI localURI = URI.createPlatformResourceURI(path, true);
 		Resource resource = elementTypeSetConfigurationResourceSet.createResource(localURI);
+		
+		boolean registration = true;
 		try {
 			resource.load(null);
 			EObject content = resource.getContents().get(0);
 			if (content instanceof ElementTypeSetConfiguration) {
-				return loadElementTypeSetConfiguration(contextId, (ElementTypeSetConfiguration) content);
+				registration = loadElementTypeSetConfiguration(contextId, (ElementTypeSetConfiguration) content);
+			} else {
+				registration = false;
 			}
 		} catch (IOException e) {
 			Activator.log.error(e);
+			registration = false;
+		}
+
+		if (!registration) {
 			resource.unload();
 			elementTypeSetConfigurationResourceSet.getResources().remove(resource);
 		}
-
-		return false;
+		return registration;
 
 	}
 
@@ -413,7 +420,7 @@ public class ElementTypeSetConfigurationRegistry {
 		// Store the advicesDependencies
 		advicesDeps.put(contextId, deps);
 
-		return true;
+		return !registrableElementTypeSetConfiguration.isEmpty();
 	}
 
 
