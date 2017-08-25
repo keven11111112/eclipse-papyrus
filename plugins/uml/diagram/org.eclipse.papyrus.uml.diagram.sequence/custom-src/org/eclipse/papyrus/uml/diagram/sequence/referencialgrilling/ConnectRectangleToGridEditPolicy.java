@@ -431,7 +431,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		double newPercentY = (yPercent * oldHeight) / (bounds.preciseHeight());
 		if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
 			final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
-			// execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
+			execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
 		}
 	}
 
