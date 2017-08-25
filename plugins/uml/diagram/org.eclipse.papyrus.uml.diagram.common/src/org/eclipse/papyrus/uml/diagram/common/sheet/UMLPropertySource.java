@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 ATOS ORIGIN.
+ * Copyright (c) 2009, 2017 ATOS ORIGIN.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,18 +9,19 @@
  *
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
+ *		Pauline DEVILLE (CEA LIST) - Bug 521408 - [Core] The property advanced tab should use treeviewer
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.sheet;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
@@ -28,10 +29,18 @@ import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.UnsetObject;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * A specific property source for Papyrus. It replaces the combo used to choose
@@ -79,38 +88,25 @@ public class UMLPropertySource extends PropertySource {
 			final Object genericFeature = itemPropertyDescriptor.getFeature(object);
 
 			// If it is a single reference
+			Object initialSelection = ((EObject) object).eGet((EStructuralFeature) genericFeature);
 			if (genericFeature instanceof EReference && !((EReference) genericFeature).isMany()) {
 				final ILabelProvider editLabelProvider = getEditLabelProvider();
 				result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
-
 					@Override
 					protected Object openDialogBox(Control cellEditorWindow) {
-						ElementListSelectionDialog dialog = new ElementListSelectionDialog(cellEditorWindow.getShell(), editLabelProvider);
-
-						dialog.setTitle("Element Selection");
-						dialog.setMessage("Select a String (* = any string, ? = any char):");
-
-						LinkedList<Object> result = new LinkedList<Object>();
-						Collection<?> collection = itemPropertyDescriptor.getChoiceOfValues(object);
-						result.add(""); // empty element enables to assign a null value
-						if ((genericFeature instanceof ENamedElement) && ((ENamedElement) genericFeature).getName().equals("classifierBehavior")) {
-							// filter in case of classifierBehavior, see bug 343123
-							// TODO: this rather generic function is probably not the right place to do the filtering. Also need to support filtering for other
-							// attributes
-							Collection<?> all = itemPropertyDescriptor.getChoiceOfValues(object);
-							result.addAll(filterOwned(object, collection));
-						}
-						else {
-							result.addAll(collection);
-						}
-						result.remove(null);
-
-						dialog.setElements(result.toArray());
-
+						CustomUMLContentProvider provider = new CustomUMLContentProvider((EObject) object, (EStructuralFeature) genericFeature);
+						provider.addTemporaryElement(UnsetObject.instance);
+						TreeSelectorDialog dialog = new TreeSelectorDialog(cellEditorWindow.getShell());
+						dialog.setTitle("Select type");
+						dialog.setContentProvider(provider);
+						dialog.setLabelProvider(new UMLLabelProvider());
+						Object[] selectedValue = { initialSelection };
+						dialog.setInitialSelections(selectedValue);
+						int userResponse = dialog.open();
 						Object toReturn = null;
-						if (dialog.open() == Window.OK) {
-							toReturn = dialog.getFirstResult();
-							if ("".equals(toReturn)) {
+						if (userResponse == Window.OK) {
+							toReturn = dialog.getResult()[0];
+							if (toReturn == null) {
 								toReturn = itemPropertyDescriptor.getPropertyValue(null);
 							}
 						} else {
@@ -119,52 +115,97 @@ public class UMLPropertySource extends PropertySource {
 						return toReturn;
 					}
 				};
-			} else {
-				result = super.createPropertyEditor(composite);
+			} else { // If it is a multiple reference
+				final ILabelProvider editLabelProvider = getEditLabelProvider();
+				result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
+
+					@Override
+					protected Object openDialogBox(Control cellEditorWindow) {
+						Object initialSelection = ((EObject) object).eGet((EStructuralFeature) genericFeature);
+						UMLContentProvider provider = new UMLContentProvider((EObject) object, (EStructuralFeature) genericFeature);
+
+						ReferenceSelector referenceSelector = new ReferenceSelector(true);
+						referenceSelector.setContentProvider(provider);
+						referenceSelector.setLabelProvider(new UMLLabelProvider());
+						MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(cellEditorWindow.getShell(), referenceSelector);
+						dialog.setInitialElementSelections((List) initialSelection);
+						dialog.setLabelProvider(new UMLLabelProvider());
+						dialog.setContextElement(object);
+						dialog.setTitle("Element Selection");
+
+						Object toReturn = null;
+						if (dialog.open() == Window.OK) {
+							toReturn = Arrays.asList(dialog.getResult());
+
+						} else {
+							toReturn = itemPropertyDescriptor.getPropertyValue(object);
+						}
+						return toReturn;
+					}
+				};
 			}
 			return result;
 		}
 	}
 
-	/**
-	 * Filter available choice: only show owned elements which are owned by the passed parent
-	 * See bug 343123
-	 *
-	 * @param parent
-	 *            a parent
-	 * @param in
-	 *            a collection of elements
-	 * @return a filtered collection containing only owned elements
-	 */
-	public static Collection<?> filterOwned(Object parent, Collection<?> in) {
-		EList<EObject> list = new BasicEList<EObject>();
-		for (Object obj : in) {
-			if (obj instanceof EObject) {
-				if (isOwned(parent, (EObject) obj)) {
-					list.add((EObject) obj);
+	public class CustomUMLContentProvider extends UMLContentProvider {
+
+		public CustomUMLContentProvider() {
+			super();
+		}
+
+		public CustomUMLContentProvider(EObject source, EStructuralFeature feature, Stereotype stereotype, ResourceSet root) {
+			super(source, feature, stereotype, root);
+		}
+
+		public CustomUMLContentProvider(EObject source, EStructuralFeature feature, Stereotype stereotype) {
+			super(source, feature, stereotype);
+		}
+
+		public CustomUMLContentProvider(EObject source, EStructuralFeature feature) {
+			super(source, feature);
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#isValidValue(java.lang.Object)
+		 *
+		 * @param element
+		 * @return
+		 */
+		@Override
+		public boolean isValidValue(Object element) {
+			boolean result = false;
+			if (element != null) {
+				result = element.equals(UnsetObject.instance);
+				// avoid that we can validate on an element that is not owned by the classifier itself
+				if ((feature instanceof ENamedElement) && ((ENamedElement) feature).getName().equals("classifierBehavior")) {
+					if (element instanceof EObjectTreeElement) {
+						return isOwned(object, ((EObjectTreeElement) element).getEObject());
+					}
 				}
 			}
-		}
-		return list;
-	}
 
-	/**
-	 * Check whether a child belongs to the given parent, i.e. is owned by it.
-	 *
-	 * @param parent
-	 *            a parent
-	 * @param child
-	 *            a child
-	 * @return true, if owned
-	 */
-	public static boolean isOwned(Object parent, EObject child) {
-		child = child.eContainer();
-		while (child != null) {
-			if (child == parent) {
-				return true;
-			}
-			child = child.eContainer();
+			return super.isValidValue(element) || result;
 		}
-		return false;
+
+		/**
+		 * Check whether a child belongs to the given parent, i.e. is owned by it.
+		 *
+		 * @param parent
+		 *            a parent
+		 * @param child
+		 *            a child
+		 * @return true, if owned
+		 */
+		public boolean isOwned(Object parent, EObject child) {
+			child = child.eContainer();
+			while (child != null) {
+				if (child == parent) {
+					return true;
+				}
+				child = child.eContainer();
+			}
+			return false;
+		}
 	}
 }
