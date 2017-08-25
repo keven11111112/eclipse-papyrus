@@ -9,7 +9,6 @@
 	</parent>
 	<groupId>org.eclipse.papyrus.developer</groupId>
 	<artifactId>org.eclipse.papyrus.dev.ui</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 	<description>A plugin to hold the menu for developer tools.</description>
 </project>
