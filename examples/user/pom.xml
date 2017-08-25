@@ -11,6 +11,5 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>org.eclipse.papyrus.examples.user.qvto</module>
-		<module>referencediagrams</module>
 	</modules>
 </project>
