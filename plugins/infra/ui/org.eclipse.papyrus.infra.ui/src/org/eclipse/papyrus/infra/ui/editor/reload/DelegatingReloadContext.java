@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2014 CEA and others.
+/*****************************************************************************
+ * Copyright (c) 2014, 2017 CEA and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,13 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *
- */
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521353
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.editor.reload;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.ui.part.EditorPart;
 
 
 /**
@@ -53,6 +54,12 @@ public class DelegatingReloadContext implements IDisposableReloadContext, IAdapt
 		if (delegate != null) {
 			IReloadContextProvider provider = AdapterUtils.adapt(reloadContextProvider, IReloadContextProvider.class, null);
 			if (provider != null) {
+				// Call setFocus to initialize the graphical viewer before restoring element of the current editor
+				// This assures that the selected edit part of the current editor is properly initialized
+				// Please see bug 519107 and 521353 for more details
+				if (reloadContextProvider instanceof EditorPart) {
+					((EditorPart) reloadContextProvider).setFocus();
+				}
 				provider.restore(delegate);
 			}
 		}
