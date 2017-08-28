@@ -87,6 +87,7 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testConsiderIgnoreFragment() {
 		createNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
@@ -104,7 +105,8 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 			assertTrue(CHANGE_OPERATOR_KIND + TEST_THE_EXECUTION, cf.getInteractionOperator() == list[i]);
 		}
 	}
-
+	
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testCombinedFragment() {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));

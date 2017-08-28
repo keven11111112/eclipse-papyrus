@@ -21,17 +21,18 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests for bug.
  */
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ TestCombinedFragmentKind_364710.class, TestCombinedFragmentOperand_364701.class, TestMessagesDeletion_364828.class, TestNestedCombinedFragment_364795.class, TestSynchronousMessageCreation_364827.class, /*
-																																																																																			 * TestCombinedFragmentGates_364816
-																																																																																			 * .
-																																																																																			 * class
-																																																																																			 * ,
-																																																																																			 * TestCombinedFragmentDeletion_364804
-																																																																																			 * .
-																																																																																			 * class
-																																																																																			 * ,
-																																																																																			 */
- TestAdvancedDragDrop_364696.class, TestGuardEdition_364808.class })
+@SuiteClasses({ 
+	TestCombinedFragmentKind_364710.class, 
+	TestCombinedFragmentOperand_364701.class, 
+	TestMessagesDeletion_364828.class, 
+	TestNestedCombinedFragment_364795.class, 
+	TestSynchronousMessageCreation_364827.class,
+	/** TestCombinedFragmentGates_364816.class,
+	* TestCombinedFragmentDeletion_364804.class,
+	*/
+ 	TestAdvancedDragDrop_364696.class, 
+	TestGuardEdition_364808.class 
+})
 public class BugTests {
 
 }

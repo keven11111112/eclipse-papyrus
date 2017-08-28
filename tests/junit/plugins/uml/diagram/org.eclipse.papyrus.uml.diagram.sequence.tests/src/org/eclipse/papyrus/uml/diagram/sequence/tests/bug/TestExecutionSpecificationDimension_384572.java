@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
@@ -63,21 +64,25 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testResizeActionExecutionNorth() {
 		resizeNorth(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
-
+	
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testResizeBehaviorExecutionNorth() {
 		resizeNorth(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testResizeActionExecutionSouth() {
 		resizeSouth(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testResizeBehaviorExecutionSouth() {
 		resizeSouth(UMLElementTypes.BehaviorExecutionSpecification_Shape);
