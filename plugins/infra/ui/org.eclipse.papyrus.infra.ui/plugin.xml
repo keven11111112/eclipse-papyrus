@@ -51,13 +51,14 @@
       
         <menuContribution
               allPopups="false"
-              locationURI="menu:org.eclipse.papyrus.ui.menu">
+              locationURI="popup:org.eclipse.papyrus.uml.modelrepair.refactor">
                 <menu
-            label="&amp;Name Edition..."
-            tooltip="Quick formatting for labels">
+                      icon="icons/Aa16.png"
+                      label="&amp;Name Edition..."
+                      tooltip="Quick formatting for labels">
          <command
                commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingUpperCaseCommand"
-               label="&amp;To apply uppercase"
+               label="&amp;UPPERCASE"
                style="push">
             <parameter
                   name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
@@ -66,7 +67,7 @@
       	 </command>
       	 <command
               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand"
-              label="&amp;To apply lowercase"
+              label="&amp;lowercase"
               style="push">
            <parameter
                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
@@ -74,17 +75,8 @@
            </parameter>
       	 </command>
       	 <command
-               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingSwitchSpace2UnderscoreCommand"
-               label="&amp;To switch space and underscore"
-               style="push">
-            <parameter
-                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
-                  value="switchSpace2Underscore">
-            </parameter>
-      	 </command>
-      	 <command
                commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingCapitalizeFirstLetterCommand"
-               label="&amp;To apply camelcase"
+               label="&amp;Capitalize Each Word"
                style="push">
             <parameter
                   name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
@@ -92,8 +84,75 @@
             </parameter>
       	 </command>
       	 <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingSwitchSpace2UnderscoreCommand"
+               label="&amp;Switch space and underscore"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="switchSpace2Underscore">
+            </parameter>
+      	 </command>
+      	 <command
                commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingRemoveSpaceCommand"
-               label="&amp;To remove or add space"
+               label="&amp;Remove or add space"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="removeSpace">
+            </parameter>
+      	 </command>
+        <visibleWhen
+              checkEnabled="true">
+        </visibleWhen>
+      </menu>
+        </menuContribution>
+        
+        <menuContribution
+              allPopups="false"
+              locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.format">
+                <menu
+                      icon="icons/Aa16.png"
+                      label="&amp;Name Edition..."
+                      tooltip="Quick formatting for labels">
+         <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingUpperCaseCommand"
+               label="&amp;UPPERCASE"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="uppercase">
+            </parameter>
+      	 </command>
+      	 <command
+              commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand"
+              label="&amp;lowercase"
+              style="push">
+           <parameter
+                 name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                 value="lowercase">
+           </parameter>
+      	 </command>
+      	 <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingCapitalizeFirstLetterCommand"
+               label="&amp;Capitalize Each Word"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="capitalizeFirstLetter">
+            </parameter>
+      	 </command>
+      	 <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingSwitchSpace2UnderscoreCommand"
+               label="&amp;Switch space and underscore"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="switchSpace2Underscore">
+            </parameter>
+      	 </command>
+      	 <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingRemoveSpaceCommand"
+               label="&amp;Remove or add space"
                style="push">
             <parameter
                   name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
