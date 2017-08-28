@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ import org.junit.Test;
  */
 public class TestInteractionAffixedChildNode extends AbstractTestSequenceAffixedChildNode {
 
-
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageGate() {
 		testToManageChildNode(UMLElementTypes.Gate_Shape, 1);

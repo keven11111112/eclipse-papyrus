@@ -51,6 +51,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -112,6 +113,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testOnChangeLifelineName() {
 		// Make sure the lifeline width is -1 to enable auto-increment.
@@ -207,6 +209,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		return lifeline;
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testOnResizeLifeline() {
 		LifelineEditPart lifeline = createLifeline("Lifeline", new Point(200, 100), null);
@@ -229,6 +232,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		assertTrue(CHECK_ES_POSITION, newLifelineBounds2.getCenter().x == newEsBounds2.getCenter().x);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testOnPartDecomposition() {
 		LifelineEditPart host = createLifeline(null, new Point(200, 100), new Dimension(240, 200));

@@ -57,6 +57,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageOperand() {
 		testToManageChildNode(UMLElementTypes.InteractionOperand_Shape, combinedFragmentProvider);

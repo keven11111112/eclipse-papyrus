@@ -63,6 +63,7 @@ public class TestInteractionUse extends AbstractNodeTest {
 	 *
 	 * See: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389538
 	 */
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testInteractionUseCoveredBy_389538() {
 		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);

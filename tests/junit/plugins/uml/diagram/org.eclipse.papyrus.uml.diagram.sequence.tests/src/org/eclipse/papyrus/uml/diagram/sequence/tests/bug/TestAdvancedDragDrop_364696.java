@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.Activator;
@@ -132,6 +133,7 @@ public class TestAdvancedDragDrop_364696 extends TestTopNode {
 		uml.setContents(new ByteArrayInputStream(content.getBytes()), false, true, new NullProgressMonitor());
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testDragDrop() {
 		Interaction interaction = (Interaction) getRootSemanticModel();

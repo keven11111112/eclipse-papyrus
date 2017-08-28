@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -55,6 +55,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 	
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageGeneralOrdering() {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.GeneralOrdering_Edge, executionProvider, false);
@@ -65,11 +66,13 @@ public class TestSequenceDiagramLink extends TestLink {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, executionProvider, false);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageMessageReply_4005() {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, executionProvider, false);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageMessageFound_4009() {
 		installEnvironment(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, lifelineProvider);
@@ -81,6 +84,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		testViewDeletion(UMLElementTypes.Message_FoundEdge, lifelineProvider);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageMessageLost_4008() {
 		installEnvironment(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, lifelineProvider);
@@ -93,16 +97,19 @@ public class TestSequenceDiagramLink extends TestLink {
 		testViewDeletion(UMLElementTypes.Message_LostEdge, lifelineProvider);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageCommentLink() {
 		testToManageLink(UMLElementTypes.Comment_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Comment_AnnotatedElementEdge, lifelineProvider, true);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageConstraintLink() {
 		testToManageLink(UMLElementTypes.Constraint_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Constraint_ConstrainedElementEdge, lifelineProvider, true);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageMessageAsync_4004() {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
@@ -110,11 +117,13 @@ public class TestSequenceDiagramLink extends TestLink {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_AsynchEdge, lifelineProvider, true);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageMessageDelete_4007() {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_DeleteEdge, lifelineProvider, true);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageMessageCreate_4006() {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_CreateEdge, lifelineProvider, false);

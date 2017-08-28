@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -42,6 +43,7 @@ public class TestMessageCreateWithLifeline_403134 extends AbstractNodeTest {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void test() {
 		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
