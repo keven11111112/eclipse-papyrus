@@ -11,7 +11,7 @@
          <menu
                icon="icons/papyrus.png"
                id="org.eclipse.papyrus.uml.modelrepair.refactor"
-               label="Model Repair">
+               label="%pluginMenuRefactor">
             <command
                   commandId="org.eclipse.papyrus.uml.modelrepair.switchprofiles"
                   style="push"
