@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Generated code not meant to be implemented" id="923795461">
+            <message_arguments>
+                <message_argument value="3.1.0"/>
+                <message_argument value="3.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/Configuration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration">
+        <filter comment="Generated code not meant to be implemented" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration"/>
+                <message_argument value="getFilters()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code not meant to be implemented" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration"/>
+                <message_argument value="getFilters(String)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code not meant to be implemented" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration"/>
+                <message_argument value="getFilters(String, boolean, EClass)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/impl/ConfigurationImpl.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl">
+        <filter comment="Generated code not meant to be implemented" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl"/>
+                <message_argument value="filters"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

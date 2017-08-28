@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_2IHXICwWEeeGrqtgh2TERg" name="paletteconfiguration" URI="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8">
+    <packageImport xmi:id="_w97OIIvlEeeGyKO2MvkxHA">
+      <importedPackage xmi:type="uml:Model" href="platform:/plugin/org.eclipse.papyrus.infra.filters/model/filters.uml#_u1APUG86EeSumdlFUM6GVw"/>
+    </packageImport>
     <packagedElement xmi:type="uml:Class" xmi:id="_2IHXISwWEeeGrqtgh2TERg" name="PaletteConfiguration">
       <generalization xmi:id="_2IHXIiwWEeeGrqtgh2TERg" general="_2IHXKCwWEeeGrqtgh2TERg"/>
       <ownedAttribute xmi:id="_2IHXIywWEeeGrqtgh2TERg" name="drawerConfigurations" type="_2IHXOywWEeeGrqtgh2TERg" isOrdered="true" aggregation="composite" association="_2IHXQywWEeeGrqtgh2TERg">
@@ -43,6 +46,11 @@
       </ownedAttribute>
       <ownedAttribute xmi:id="_2IHXMCwWEeeGrqtgh2TERg" name="icon" type="_2IHXMiwWEeeGrqtgh2TERg" isOrdered="true" aggregation="composite" association="_2IHXOSwWEeeGrqtgh2TERg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2IHXMSwWEeeGrqtgh2TERg"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1ULcsIvlEeeGyKO2MvkxHA" name="filters" aggregation="composite" association="_1T5I0IvlEeeGyKO2MvkxHA">
+        <type xmi:type="uml:Interface" href="platform:/plugin/org.eclipse.papyrus.infra.filters/model/filters.uml#_ftlkkHBIEeSbg_BqWNBy6A"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1UMq0IvlEeeGyKO2MvkxHA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1UNR4IvlEeeGyKO2MvkxHA" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_2IHXMiwWEeeGrqtgh2TERg" name="IconDescriptor">
@@ -118,7 +126,7 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2IH-OSwWEeeGrqtgh2TERg" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_2IH-OiwWEeeGrqtgh2TERg" name="elementType" association="_2IH-OywWEeeGrqtgh2TERg">
-        <type xmi:type="uml:Class" href="ElementTypesConfigurations.uml#_2IhnQCwWEeeGrqtgh2TERg"/>
+        <type xmi:type="uml:Class" href="platform:/plugin/org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.uml#_VkhwQhLoEeeDV7UHoBIkeA"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_2IH-OywWEeeGrqtgh2TERg" memberEnd="_2IH-OiwWEeeGrqtgh2TERg _2IH-PCwWEeeGrqtgh2TERg">
@@ -138,6 +146,12 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_2IH-RSwWEeeGrqtgh2TERg" name="SeparatorConfiguration">
       <generalization xmi:id="_2IH-RiwWEeeGrqtgh2TERg" general="_2IH-MSwWEeeGrqtgh2TERg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1T5I0IvlEeeGyKO2MvkxHA" visibility="public" memberEnd="_1ULcsIvlEeeGyKO2MvkxHA _1UNR4YvlEeeGyKO2MvkxHA">
+      <eAnnotations xmi:id="_1UHLQIvlEeeGyKO2MvkxHA" source="org.eclipse.papyrus">
+        <details xmi:id="_1UIZYIvlEeeGyKO2MvkxHA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_1UNR4YvlEeeGyKO2MvkxHA" name="configuration" type="_2IHXKCwWEeeGrqtgh2TERg" association="_1T5I0IvlEeeGyKO2MvkxHA"/>
     </packagedElement>
     <profileApplication xmi:id="_2IH-RywWEeeGrqtgh2TERg">
       <eAnnotations xmi:id="_2IH-SCwWEeeGrqtgh2TERg" source="http://www.eclipse.org/uml2/2.0.0/UML">

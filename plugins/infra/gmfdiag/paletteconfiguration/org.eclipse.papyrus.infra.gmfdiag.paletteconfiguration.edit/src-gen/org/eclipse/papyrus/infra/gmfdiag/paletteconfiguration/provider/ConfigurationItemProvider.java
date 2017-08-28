@@ -34,6 +34,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.papyrus.infra.filters.FiltersFactory;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 
@@ -158,6 +159,7 @@ public class ConfigurationItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PaletteconfigurationPackage.Literals.CONFIGURATION__ICON);
+			childrenFeatures.add(PaletteconfigurationPackage.Literals.CONFIGURATION__FILTERS);
 		}
 		return childrenFeatures;
 	}
@@ -208,6 +210,7 @@ public class ConfigurationItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case PaletteconfigurationPackage.CONFIGURATION__ICON:
+			case PaletteconfigurationPackage.CONFIGURATION__FILTERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -224,6 +227,16 @@ public class ConfigurationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.CONFIGURATION__FILTERS,
+				 FiltersFactory.eINSTANCE.createCompoundFilter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PaletteconfigurationPackage.Literals.CONFIGURATION__FILTERS,
+				 FiltersFactory.eINSTANCE.createEquals()));
 	}
 
 	/**

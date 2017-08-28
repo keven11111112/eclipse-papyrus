@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -34,7 +36,6 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguratio
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.IconDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.DrawerConfigurationItemProvider;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.DragAndDropCompoundCommand;
 
@@ -123,7 +124,13 @@ public class CustomDrawerConfigurationItemProvider extends DrawerConfigurationIt
 	 */
 	@Override
 	public Collection<?> getChildren(final Object object) {
-		return ((DrawerConfiguration) object).getOwnedConfigurations();
+		DrawerConfiguration configuration = (DrawerConfiguration) object;
+		List<EObject> children = new ArrayList<>();
+		
+		children.addAll(configuration.getFilters());
+		children.addAll(configuration.getOwnedConfigurations());
+		
+		return children;
 	}
 
 	/**

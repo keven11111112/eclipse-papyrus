@@ -158,6 +158,7 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.Paletteco
 
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
+import org.eclipse.papyrus.infra.filters.provider.FiltersItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.types.provider.ElementTypesConfigurationsItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -654,6 +655,7 @@ public class PaletteconfigurationEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new PaletteconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new FiltersItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ElementTypesConfigurationsItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

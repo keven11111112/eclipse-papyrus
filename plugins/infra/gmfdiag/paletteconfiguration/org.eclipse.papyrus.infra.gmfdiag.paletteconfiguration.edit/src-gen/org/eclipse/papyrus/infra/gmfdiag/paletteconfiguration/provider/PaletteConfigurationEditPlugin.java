@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
+import org.eclipse.papyrus.infra.filters.provider.FiltersEditPlugin;
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
@@ -53,6 +54,7 @@ public final class PaletteConfigurationEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     EcoreEditPlugin.INSTANCE,
+		     FiltersEditPlugin.INSTANCE,
 		     TypesConfigurationsEditPlugin.INSTANCE,
 		   });
 	}
