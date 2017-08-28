@@ -17,7 +17,9 @@ import java.util.Collections;
 import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -33,7 +35,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -44,6 +47,11 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -52,6 +60,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.filters.CompoundFilter;
+import org.eclipse.papyrus.infra.filters.util.FiltersAdapterFactory;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
@@ -153,9 +163,10 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 		adapterFactory.addAdapterFactory(new CustomPaletteconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new FiltersAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
-		BasicCommandStack commandStack = new BasicCommandStack();
+		TransactionalCommandStack commandStack = new TransactionalCommandStackImpl();
 
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		commandStack.addCommandStackListener(new CommandStackListener() {
@@ -186,8 +197,10 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 		});
 
 		// Create the editing domain with a special command stack.
-		//
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		TransactionalEditingDomainImpl editingDomain = new TransactionalEditingDomainImpl(adapterFactory, commandStack);
+		WorkspaceEditingDomainFactory.INSTANCE.mapResourceSet(editingDomain);
+		
+		this.editingDomain = editingDomain; 
 	}
 
 	/**
@@ -349,6 +362,43 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 		createToolBarItem(toolbar, CREATE_SEPARATOR_ICON, Messages.CustomPaletteconfigurationEditor_Create_Separator_Tooltip, createNewSeparatorListener(), validatorForNotStackChild);
 		createToolBarItem(toolbar, CREATE_TOOL_ICON, Messages.CustomPaletteconfigurationEditor_Create_Tool_Tooltip, createNewToolListener(), validator);
 		createToolBarItem(toolbar, CREATE_STACK_ICON, Messages.CustomPaletteconfigurationEditor_Create_Stack_Tooltip, createNewStackListener(), validatorForNotStackChild);
+		createToolBarItem(toolbar, CREATE_DRAWERS_ICON, "Filter", createFilterListener(), () -> true);
+	}
+
+	/**
+	 * @return
+	 */
+	private Listener createFilterListener() {
+		return event -> {
+			IStructuredSelection selection = (IStructuredSelection) selectionViewer.getSelection();
+			if (selection == null || selection.size() != 1) {
+				return;
+			}
+			
+			Object selected = selection.getFirstElement();
+			
+			EObject parent;
+			
+			if (selected instanceof Configuration) {
+				parent = (Configuration)selected;
+			} else if (selected instanceof CompoundFilter) {
+				parent = (CompoundFilter)selected;
+			} else {
+				return;
+			}
+			
+			List<CommandParameter> newChildDescriptors = editingDomain.getNewChildDescriptors(parent, null).stream()
+				.filter(CommandParameter.class::isInstance)
+				.map(CommandParameter.class::cast)
+				.collect(Collectors.toList());
+			
+			NewFilterDialog dialog = new NewFilterDialog(getSite().getShell(), newChildDescriptors);
+			if (dialog.open() == Dialog.OK && dialog.getNewChild() != null) {
+				CommandParameter newChild = dialog.getNewChild();
+				Command createCommand = editingDomain.createCommand(CreateChildCommand.class, new CommandParameter(parent, null, newChild));
+				editingDomain.getCommandStack().execute(createCommand);
+			}
+		};
 	}
 
 	/**

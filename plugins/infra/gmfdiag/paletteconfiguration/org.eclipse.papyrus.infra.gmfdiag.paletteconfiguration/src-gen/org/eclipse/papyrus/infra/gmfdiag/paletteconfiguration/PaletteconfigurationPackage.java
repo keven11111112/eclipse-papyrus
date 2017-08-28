@@ -113,13 +113,22 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int CONFIGURATION__ICON = 3;
 
 	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__FILTERS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_FEATURE_COUNT = 4;
+	int CONFIGURATION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.PaletteConfigurationImpl <em>Palette Configuration</em>}' class.
@@ -166,6 +175,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @ordered
 	 */
 	int PALETTE_CONFIGURATION__ICON = CONFIGURATION__ICON;
+
+	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE_CONFIGURATION__FILTERS = CONFIGURATION__FILTERS;
 
 	/**
 	 * The feature id for the '<em><b>Drawer Configurations</b></em>' containment reference list.
@@ -278,6 +296,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int DRAWER_CONFIGURATION__ICON = CONFIGURATION__ICON;
 
 	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DRAWER_CONFIGURATION__FILTERS = CONFIGURATION__FILTERS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,6 +369,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int CHILD_CONFIGURATION__ICON = CONFIGURATION__ICON;
 
 	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHILD_CONFIGURATION__FILTERS = CONFIGURATION__FILTERS;
+
+	/**
 	 * The number of structural features of the '<em>Child Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -397,6 +433,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int LEAF_CONFIGURATION__ICON = CHILD_CONFIGURATION__ICON;
 
 	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_CONFIGURATION__FILTERS = CHILD_CONFIGURATION__FILTERS;
+
+	/**
 	 * The number of structural features of the '<em>Leaf Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -450,6 +495,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL_CONFIGURATION__ICON = LEAF_CONFIGURATION__ICON;
+
+	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL_CONFIGURATION__FILTERS = LEAF_CONFIGURATION__FILTERS;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -571,6 +625,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int STACK_CONFIGURATION__ICON = CHILD_CONFIGURATION__ICON;
 
 	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACK_CONFIGURATION__FILTERS = CHILD_CONFIGURATION__FILTERS;
+
+	/**
 	 * The feature id for the '<em><b>Owned Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -633,6 +696,15 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEPARATOR_CONFIGURATION__ICON = LEAF_CONFIGURATION__ICON;
+
+	/**
+	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_CONFIGURATION__FILTERS = LEAF_CONFIGURATION__FILTERS;
 
 	/**
 	 * The number of structural features of the '<em>Separator Configuration</em>' class.
@@ -739,6 +811,17 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfiguration_Icon();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Filters</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration#getFilters()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EReference getConfiguration_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.IconDescriptor <em>Icon Descriptor</em>}'.
@@ -1018,6 +1101,14 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONFIGURATION__ICON = eINSTANCE.getConfiguration_Icon();
+
+		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION__FILTERS = eINSTANCE.getConfiguration_Filters();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.IconDescriptorImpl <em>Icon Descriptor</em>}' class.

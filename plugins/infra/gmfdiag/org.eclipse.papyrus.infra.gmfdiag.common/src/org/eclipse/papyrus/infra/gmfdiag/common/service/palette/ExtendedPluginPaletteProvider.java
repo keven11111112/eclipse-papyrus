@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
@@ -48,9 +49,12 @@ import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.gef.ui.internal.palette.PaletteStack;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
@@ -75,11 +79,15 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 
+import com.google.common.base.Predicate;
+
 
 /**
  * Palette provider with enhanced elements types
+ * 
  * @since 3.0
  */
+@SuppressWarnings({ "restriction", "deprecation" })
 public class ExtendedPluginPaletteProvider extends AbstractProvider implements IPaletteProvider, IProfileDependantPaletteProvider {
 
 	/** name of the type */
@@ -116,6 +124,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	protected static final ImageDescriptor DEFAULT_DRAWER_IMAGE_DESCRIPTOR = Activator.imageDescriptorFromPlugin(org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Activator.PLUGIN_ID, "/icons/drawer.gif"); //$NON-NLS-1$
 
 	/** cached list of required profiles for this palette to be shown. this will be <code>null</code> until initialized */
+	@Deprecated
 	protected Collection<String> requiredProfiles = null;
 
 	/**
@@ -163,15 +172,28 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 			return;
 		}
 
+		Predicate<Configuration> configFilter = c -> matches(editor, c);
+
 		// work for each configuration
-		for (PaletteConfiguration configuration : contributions) {
-			List<DrawerConfiguration> drawerConfigurations = configuration.getDrawerConfigurations();
-			if (drawerConfigurations != null && drawerConfigurations.size() > 0) {
-				for (DrawerConfiguration drawerConfiguration : drawerConfigurations) {
-					generateDrawer(root, drawerConfiguration, predefinedEntries);
-				}
-			}
+		contributions.stream()
+				.filter(configFilter)
+				.flatMap(conf -> conf.getDrawerConfigurations().stream()
+						.filter(configFilter))
+				.forEach(drawer -> generateDrawer(root, drawer, predefinedEntries));
+	}
+
+	private boolean matches(IEditorPart editor, Configuration paletteElement) {
+		Diagram diagram = editor.getAdapter(Diagram.class);
+		if (diagram == null) {
+			return true;
 		}
+
+		// Most (all?) filters are based on the semantic element,
+		// but for Palettes, it makes more sense to test filters
+		// on diagrams. So... just test on both.
+		// Edit parts don't make sense either, because the palette is global to the diagram. 
+		//Moreover, the palette is created before the EditParts, so we don't always have them.
+		return paletteElement.getFilters().stream().allMatch(f -> f.matches(diagram) || f.matches(diagram.getElement()));
 	}
 
 	/**

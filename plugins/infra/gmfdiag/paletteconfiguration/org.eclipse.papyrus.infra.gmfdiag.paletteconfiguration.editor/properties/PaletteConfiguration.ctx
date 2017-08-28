@@ -97,6 +97,7 @@
       <properties xmi:id="_QFK4T5mjEeW_-tPAoZEp-w" name="label" label="" description="Label of the Configuration, Used Only for Display"/>
       <properties xmi:id="_QFK4UJmjEeW_-tPAoZEp-w" name="description" description="Description of the Configuration."/>
       <properties xmi:id="_QFK4UZmjEeW_-tPAoZEp-w" name="icon" description="Icon of the Configuration"/>
+      <properties xmi:id="_5sZggIvtEeegX7GLIzVb2g" name="filter" type="Reference" multiplicity="1"/>
     </elements>
     <elements xmi:id="_QFK4UpmjEeW_-tPAoZEp-w" name="IconDescriptor">
       <properties xmi:id="_QFK4U5mjEeW_-tPAoZEp-w" name="pluginID" description="ID of the plugin where the icon is located. If not set, the tool will look in the bundle defining the palette."/>

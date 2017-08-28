@@ -55,5 +55,30 @@
            environmentModel="properties/environment.xmi">
      </environment>
   </extension>
+  <extension
+        point="org.eclipse.ui.views.properties.tabbed.propertySections">
+     <propertySections
+           contributorId="PaletteConfiguration">
+        <propertySection
+              class="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation.FilterSection"
+              id="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor.FilterSection"
+              tab="Filter">
+           <input
+                 type="org.eclipse.papyrus.infra.filters.Filter">
+           </input>
+        </propertySection>
+     </propertySections>
+  </extension>
+  <extension
+        point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+     <propertyTabs
+           contributorId="PaletteConfiguration">
+        <propertyTab
+              category="org.eclipse.papyrus"
+              id="Filter"
+              label="Filter">
+        </propertyTab>
+     </propertyTabs>
+  </extension>
 
 </plugin>

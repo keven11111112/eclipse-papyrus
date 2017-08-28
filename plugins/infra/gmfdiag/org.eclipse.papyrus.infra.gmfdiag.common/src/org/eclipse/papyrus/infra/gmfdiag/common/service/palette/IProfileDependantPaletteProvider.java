@@ -15,12 +15,17 @@ package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
 import java.util.Collection;
 
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
+import org.eclipse.papyrus.infra.filters.Filter;
 
 /**
  * Interface implemented by all palette providers that requires some profiles
  * applied to be shown
+ * 
  * @since 3.0
+ * 
+ * @deprecated Since 3.1 - Was never supported. Use {@link Filter Filters} in Palette Configuration elements instead.
  */
+@Deprecated
 public interface IProfileDependantPaletteProvider extends IPaletteProvider {
 
 	/**
