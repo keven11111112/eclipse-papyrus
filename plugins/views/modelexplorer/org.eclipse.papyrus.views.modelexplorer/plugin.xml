@@ -185,12 +185,6 @@
           </and>
        </visibleWhen>
     </command>
-    <separator name="rename" visible="true">
-    </separator>
-    <command commandId="org.eclipse.ui.edit.rename" icon="icons/etool16/rename.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.rename" label="&amp;Rename" style="push" tooltip="Rename the element">
-       <visibleWhen checkEnabled="true">
-       </visibleWhen>
-    </command>
     <separator name="command" visible="true">
     </separator>
     <command commandId="org.eclipse.ui.edit.undo" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.undo" label="&amp;Undo" style="push">
@@ -262,7 +256,14 @@
     </separator>
  </menuContribution>
 	<!-- ModelExplorer Contextual menu -->       
-       
+  <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.uml.modelrepair.refactor">
+  <separator name="rename" visible="true">
+    </separator>
+    <command commandId="org.eclipse.ui.edit.rename" icon="icons/etool16/rename.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.rename" label="&amp;Rename" style="push" tooltip="Rename the element">
+       <visibleWhen checkEnabled="true">
+       </visibleWhen>
+    </command>
+  </menuContribution>     
 </extension>
 
 <!-- Command declarations (for model explorer toolbar and contextual menu -->
