@@ -16,12 +16,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.*;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationFactory;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolKind;
 
 /**
  * <!-- begin-user-doc -->

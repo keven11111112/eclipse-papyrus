@@ -62,8 +62,7 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addSourceFilterPropertyDescriptor(object);
@@ -80,32 +79,30 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	 * @generated NOT
 	 */
 	protected void addSourceFilterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ConnectionAssistant_sourceFilter_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ConnectionAssistant_sourceFilter_feature", "_UI_ConnectionAssistant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null) {
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						Set<Object> result = new HashSet<>();
-						ConnectionAssistant self = (ConnectionAssistant) object;
+		itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ConnectionAssistant_sourceFilter_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ConnectionAssistant_sourceFilter_feature", "_UI_ConnectionAssistant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null) {
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				Set<Object> result = new HashSet<>();
+				ConnectionAssistant self = (ConnectionAssistant) object;
 
-						if (self.getProvider() != null) {
-							result.addAll(self.getProvider().getOwnedFilters());
-						}
-						result.remove(self.getSourceFilter());
+				if (self.getProvider() != null) {
+					result.addAll(self.getProvider().getOwnedFilters());
+				}
+				result.remove(self.getSourceFilter());
 
-						return result;
-					}
-				});
+				return result;
+			}
+		});
 	}
 
 	/**
@@ -116,36 +113,35 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	 * @generated NOT
 	 */
 	protected void addTargetFilterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ConnectionAssistant_targetFilter_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ConnectionAssistant_targetFilter_feature", "_UI_ConnectionAssistant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null) {
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						Set<Object> result = new HashSet<>();
-						ConnectionAssistant self = (ConnectionAssistant) object;
+		itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ConnectionAssistant_targetFilter_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ConnectionAssistant_targetFilter_feature", "_UI_ConnectionAssistant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null) {
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				Set<Object> result = new HashSet<>();
+				ConnectionAssistant self = (ConnectionAssistant) object;
 
-						if (self.getProvider() != null) {
-							result.addAll(self.getProvider().getOwnedFilters());
-						}
-						result.remove(self.getTargetFilter());
+				if (self.getProvider() != null) {
+					result.addAll(self.getProvider().getOwnedFilters());
+				}
+				result.remove(self.getTargetFilter());
 
-						return result;
-					}
-				});
+				return result;
+			}
+		});
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,8 +150,7 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER);
 			childrenFeatures.add(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER);
@@ -196,8 +191,7 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	 * @generated
 	 */
 	@Override
-	protected boolean shouldComposeCreationImage()
-	{
+	protected boolean shouldComposeCreationImage() {
 		return true;
 	}
 
@@ -211,8 +205,7 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((ConnectionAssistant) object).getElementTypeID();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ConnectionAssistant_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_ConnectionAssistant_type") : //$NON-NLS-1$
 				getString("_UI_ConnectionAssistant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -229,8 +222,7 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ConnectionAssistant.class))
-		{
+		switch (notification.getFeatureID(ConnectionAssistant.class)) {
 		case AssistantPackage.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER:
 		case AssistantPackage.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -251,45 +243,29 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
-						AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
+				AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
-						AssistantFactory.eINSTANCE.createElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
+				AssistantFactory.eINSTANCE.createElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
-						FiltersFactory.eINSTANCE.createCompoundFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
+				FiltersFactory.eINSTANCE.createCompoundFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
-						FiltersFactory.eINSTANCE.createEquals()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
+				FiltersFactory.eINSTANCE.createEquals()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
-						AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
+				AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
-						AssistantFactory.eINSTANCE.createElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
+				AssistantFactory.eINSTANCE.createElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
-						FiltersFactory.eINSTANCE.createCompoundFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
+				FiltersFactory.eINSTANCE.createCompoundFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
-						FiltersFactory.eINSTANCE.createEquals()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
+				FiltersFactory.eINSTANCE.createEquals()));
 	}
 
 	/**
@@ -304,12 +280,10 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify =
-				childFeature == AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER ||
-						childFeature == AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER;
+		boolean qualify = childFeature == AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER ||
+				childFeature == AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER;
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
 					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}

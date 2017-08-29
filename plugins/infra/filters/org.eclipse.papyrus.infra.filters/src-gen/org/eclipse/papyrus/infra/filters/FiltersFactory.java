@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage
  * @generated
  */
-public interface FiltersFactory extends EFactory
-{
+public interface FiltersFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -52,6 +51,17 @@ public interface FiltersFactory extends EFactory
 	 * @generated
 	 */
 	Equals createEquals();
+
+	/**
+	 * Returns a new object of class '<em>Filtered Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>Filtered Element</em>'.
+	 * @generated
+	 * @since 1.3
+	 */
+	FilteredElement createFilteredElement();
 
 	/**
 	 * Returns the package supported by this factory.

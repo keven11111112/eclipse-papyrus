@@ -67,5 +67,9 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="filters.ecore#//Equals">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute filters.ecore#//Equals/object"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="filters.ecore#//FilteredElement">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference filters.ecore#//FilteredElement/filter"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

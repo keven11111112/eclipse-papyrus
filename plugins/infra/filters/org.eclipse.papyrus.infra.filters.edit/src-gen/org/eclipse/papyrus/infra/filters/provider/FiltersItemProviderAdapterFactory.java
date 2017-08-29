@@ -84,7 +84,7 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 *
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -118,10 +118,8 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createCompoundFilterAdapter()
-	{
-		if (compoundFilterItemProvider == null)
-		{
+	public Adapter createCompoundFilterAdapter() {
+		if (compoundFilterItemProvider == null) {
 			compoundFilterItemProvider = new CompoundFilterItemProvider(this);
 		}
 
@@ -145,14 +143,38 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Adapter createEqualsAdapter()
-	{
-		if (equalsItemProvider == null)
-		{
+	public Adapter createEqualsAdapter() {
+		if (equalsItemProvider == null) {
 			equalsItemProvider = new EqualsItemProvider(this);
 		}
 
 		return equalsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.filters.FilteredElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @since 1.4
+	 */
+	protected FilteredElementItemProvider filteredElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.filters.FilteredElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public Adapter createFilteredElementAdapter() {
+		if (filteredElementItemProvider == null) {
+			filteredElementItemProvider = new FilteredElementItemProvider(this);
+		}
+
+		return filteredElementItemProvider;
 	}
 
 	/**
@@ -210,11 +232,9 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -228,8 +248,7 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 *
 	 * @generated
 	 */
-	public List<IChildCreationExtender> getChildCreationExtenders()
-	{
+	public List<IChildCreationExtender> getChildCreationExtenders() {
 		return childCreationExtenderManager.getChildCreationExtenders();
 	}
 
@@ -240,8 +259,7 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-	{
+	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
 	}
 
@@ -252,8 +270,7 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return childCreationExtenderManager;
 	}
 
@@ -292,8 +309,7 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -312,6 +328,9 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 		}
 		if (equalsItemProvider != null) {
 			equalsItemProvider.dispose();
+		}
+		if (filteredElementItemProvider != null) {
+			filteredElementItemProvider.dispose();
 		}
 	}
 

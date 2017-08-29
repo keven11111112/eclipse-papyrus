@@ -23,8 +23,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.util.AssistantResourceFactoryImpl
  * @generated
  */
-public class AssistantResourceImpl extends XMIResourceImpl implements AssistantResource
-{
+public class AssistantResourceImpl extends XMIResourceImpl implements AssistantResource {
 	/**
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->
@@ -34,8 +33,7 @@ public class AssistantResourceImpl extends XMIResourceImpl implements AssistantR
 	 *            the URI of the new resource.
 	 * @generated
 	 */
-	public AssistantResourceImpl(URI uri)
-	{
+	public AssistantResourceImpl(URI uri) {
 		super(uri);
 	}
 

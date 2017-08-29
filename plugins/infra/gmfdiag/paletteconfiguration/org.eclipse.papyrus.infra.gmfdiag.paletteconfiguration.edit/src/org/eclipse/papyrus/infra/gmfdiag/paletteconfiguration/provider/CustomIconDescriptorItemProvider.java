@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.IconDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.IconDescriptorItemProvider;
 
 /**
  * Custom item provider for IconDescriptor. Used to notify changed on eContainer.

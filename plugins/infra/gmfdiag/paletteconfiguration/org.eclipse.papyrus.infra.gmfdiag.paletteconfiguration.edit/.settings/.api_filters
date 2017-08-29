@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.edit" version="2">
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/provider/PaletteconfigurationItemProviderAdapterFactory.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.PaletteconfigurationItemProviderAdapterFactory">
+        <filter comment="Generated code" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.PaletteconfigurationItemProviderAdapterFactory"/>
+                <message_argument value="childCreationExtenderManager"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

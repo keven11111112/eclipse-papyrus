@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.papyrus.uml.filters.UMLFiltersPackage
  * @generated
  */
-public interface UMLFiltersFactory extends EFactory
-{
+public interface UMLFiltersFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->

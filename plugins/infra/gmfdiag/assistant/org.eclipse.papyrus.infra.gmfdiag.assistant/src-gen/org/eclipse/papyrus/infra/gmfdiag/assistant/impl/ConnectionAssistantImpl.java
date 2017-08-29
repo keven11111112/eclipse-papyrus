@@ -46,8 +46,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
  *
  * @generated
  */
-public class ConnectionAssistantImpl extends AssistantImpl implements ConnectionAssistant
-{
+public class ConnectionAssistantImpl extends AssistantImpl implements ConnectionAssistant {
 	/**
 	 * The cached value of the '{@link #getSourceFilter() <em>Source Filter</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -98,8 +97,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 *
 	 * @generated
 	 */
-	protected ConnectionAssistantImpl()
-	{
+	protected ConnectionAssistantImpl() {
 		super();
 	}
 
@@ -110,8 +108,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return AssistantPackage.Literals.CONNECTION_ASSISTANT;
 	}
 
@@ -122,8 +119,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider getProvider()
-	{
+	public ModelingAssistantProvider getProvider() {
 		ModelingAssistantProvider provider = basicGetProvider();
 		return provider != null && provider.eIsProxy() ? (ModelingAssistantProvider) eResolveProxy((InternalEObject) provider) : provider;
 	}
@@ -135,11 +131,9 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider basicGetProvider()
-	{
+	public ModelingAssistantProvider basicGetProvider() {
 		ModelingAssistantProvider owningProvider = getOwningProvider();
-		if (owningProvider != null)
-		{
+		if (owningProvider != null) {
 			return owningProvider;
 		}
 		return super.basicGetProvider();
@@ -152,14 +146,11 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public Filter getSourceFilter()
-	{
-		if (sourceFilter != null && sourceFilter.eIsProxy())
-		{
+	public Filter getSourceFilter() {
+		if (sourceFilter != null && sourceFilter.eIsProxy()) {
 			InternalEObject oldSourceFilter = (InternalEObject) sourceFilter;
 			sourceFilter = (Filter) eResolveProxy(oldSourceFilter);
-			if (sourceFilter != oldSourceFilter)
-			{
+			if (sourceFilter != oldSourceFilter) {
 				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssistantPackage.CONNECTION_ASSISTANT__SOURCE_FILTER, oldSourceFilter, sourceFilter));
 				}
@@ -174,8 +165,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 *
 	 * @generated
 	 */
-	public Filter basicGetSourceFilter()
-	{
+	public Filter basicGetSourceFilter() {
 		return sourceFilter;
 	}
 
@@ -186,8 +176,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public void setSourceFilter(Filter newSourceFilter)
-	{
+	public void setSourceFilter(Filter newSourceFilter) {
 		Filter oldSourceFilter = sourceFilter;
 		sourceFilter = newSourceFilter;
 		if (eNotificationRequired()) {
@@ -195,8 +184,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (ownedSourceFilter != null && ownedSourceFilter != newSourceFilter)
-			{
+			if (ownedSourceFilter != null && ownedSourceFilter != newSourceFilter) {
 				setOwnedSourceFilter(null);
 			}
 		}
@@ -209,14 +197,11 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public Filter getTargetFilter()
-	{
-		if (targetFilter != null && targetFilter.eIsProxy())
-		{
+	public Filter getTargetFilter() {
+		if (targetFilter != null && targetFilter.eIsProxy()) {
 			InternalEObject oldTargetFilter = (InternalEObject) targetFilter;
 			targetFilter = (Filter) eResolveProxy(oldTargetFilter);
-			if (targetFilter != oldTargetFilter)
-			{
+			if (targetFilter != oldTargetFilter) {
 				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssistantPackage.CONNECTION_ASSISTANT__TARGET_FILTER, oldTargetFilter, targetFilter));
 				}
@@ -231,8 +216,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 *
 	 * @generated
 	 */
-	public Filter basicGetTargetFilter()
-	{
+	public Filter basicGetTargetFilter() {
 		return targetFilter;
 	}
 
@@ -243,8 +227,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public void setTargetFilter(Filter newTargetFilter)
-	{
+	public void setTargetFilter(Filter newTargetFilter) {
 		Filter oldTargetFilter = targetFilter;
 		targetFilter = newTargetFilter;
 		if (eNotificationRequired()) {
@@ -252,8 +235,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (ownedTargetFilter != null && ownedTargetFilter != newTargetFilter)
-			{
+			if (ownedTargetFilter != null && ownedTargetFilter != newTargetFilter) {
 				setOwnedTargetFilter(null);
 			}
 		}
@@ -266,8 +248,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider getOwningProvider()
-	{
+	public ModelingAssistantProvider getOwningProvider() {
 		if (eContainerFeatureID() != AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER) {
 			return null;
 		}
@@ -280,8 +261,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningProvider(ModelingAssistantProvider newOwningProvider, NotificationChain msgs)
-	{
+	public NotificationChain basicSetOwningProvider(ModelingAssistantProvider newOwningProvider, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newOwningProvider, AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER, msgs);
 		return msgs;
 	}
@@ -293,10 +273,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public void setOwningProvider(ModelingAssistantProvider newOwningProvider)
-	{
-		if (newOwningProvider != eInternalContainer() || (eContainerFeatureID() != AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER && newOwningProvider != null))
-		{
+	public void setOwningProvider(ModelingAssistantProvider newOwningProvider) {
+		if (newOwningProvider != eInternalContainer() || (eContainerFeatureID() != AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER && newOwningProvider != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningProvider))
 			 {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
@@ -312,8 +290,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER, newOwningProvider, newOwningProvider));
 		}
 	}
@@ -325,8 +302,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public Filter getOwnedSourceFilter()
-	{
+	public Filter getOwnedSourceFilter() {
 		return ownedSourceFilter;
 	}
 
@@ -336,12 +312,10 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedSourceFilter(Filter newOwnedSourceFilter, NotificationChain msgs)
-	{
+	public NotificationChain basicSetOwnedSourceFilter(Filter newOwnedSourceFilter, NotificationChain msgs) {
 		Filter oldOwnedSourceFilter = ownedSourceFilter;
 		ownedSourceFilter = newOwnedSourceFilter;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssistantPackage.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER, oldOwnedSourceFilter, newOwnedSourceFilter);
 			if (msgs == null) {
 				msgs = notification;
@@ -351,10 +325,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwnedSourceFilter != null)
-			{
-				if (newOwnedSourceFilter != sourceFilter)
-				{
+			if (newOwnedSourceFilter != null) {
+				if (newOwnedSourceFilter != sourceFilter) {
 					setSourceFilter(newOwnedSourceFilter);
 				}
 			}
@@ -369,10 +341,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public void setOwnedSourceFilter(Filter newOwnedSourceFilter)
-	{
-		if (newOwnedSourceFilter != ownedSourceFilter)
-		{
+	public void setOwnedSourceFilter(Filter newOwnedSourceFilter) {
+		if (newOwnedSourceFilter != ownedSourceFilter) {
 			NotificationChain msgs = null;
 			if (ownedSourceFilter != null) {
 				msgs = ((InternalEObject) ownedSourceFilter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssistantPackage.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER, null, msgs);
@@ -384,8 +354,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, AssistantPackage.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER, newOwnedSourceFilter, newOwnedSourceFilter));
 		}
 	}
@@ -397,8 +366,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public Filter createOwnedSourceFilter(String name, EClass eClass)
-	{
+	public Filter createOwnedSourceFilter(String name, EClass eClass) {
 		Filter newOwnedSourceFilter = (Filter) create(eClass);
 		setOwnedSourceFilter(newOwnedSourceFilter);
 		if (name != null) {
@@ -414,8 +382,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public Filter getOwnedTargetFilter()
-	{
+	public Filter getOwnedTargetFilter() {
 		return ownedTargetFilter;
 	}
 
@@ -425,12 +392,10 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedTargetFilter(Filter newOwnedTargetFilter, NotificationChain msgs)
-	{
+	public NotificationChain basicSetOwnedTargetFilter(Filter newOwnedTargetFilter, NotificationChain msgs) {
 		Filter oldOwnedTargetFilter = ownedTargetFilter;
 		ownedTargetFilter = newOwnedTargetFilter;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssistantPackage.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER, oldOwnedTargetFilter, newOwnedTargetFilter);
 			if (msgs == null) {
 				msgs = notification;
@@ -440,10 +405,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwnedTargetFilter != null)
-			{
-				if (newOwnedTargetFilter != targetFilter)
-				{
+			if (newOwnedTargetFilter != null) {
+				if (newOwnedTargetFilter != targetFilter) {
 					setTargetFilter(newOwnedTargetFilter);
 				}
 			}
@@ -458,10 +421,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public void setOwnedTargetFilter(Filter newOwnedTargetFilter)
-	{
-		if (newOwnedTargetFilter != ownedTargetFilter)
-		{
+	public void setOwnedTargetFilter(Filter newOwnedTargetFilter) {
+		if (newOwnedTargetFilter != ownedTargetFilter) {
 			NotificationChain msgs = null;
 			if (ownedTargetFilter != null) {
 				msgs = ((InternalEObject) ownedTargetFilter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssistantPackage.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER, null, msgs);
@@ -473,8 +434,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, AssistantPackage.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER, newOwnedTargetFilter, newOwnedTargetFilter));
 		}
 	}
@@ -486,8 +446,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public Filter createOwnedTargetFilter(String name, EClass eClass)
-	{
+	public Filter createOwnedTargetFilter(String name, EClass eClass) {
 		Filter newOwnedTargetFilter = (Filter) create(eClass);
 		setOwnedTargetFilter(newOwnedTargetFilter);
 		if (name != null) {
@@ -503,10 +462,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER:
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -523,10 +480,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case AssistantPackage.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER:
 			return basicSetOwnedSourceFilter(null, msgs);
 		case AssistantPackage.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER:
@@ -544,10 +499,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-	{
-		switch (eContainerFeatureID())
-		{
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
 		case AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER:
 			return eInternalContainer().eInverseRemove(this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT, ModelingAssistantProvider.class, msgs);
 		}
@@ -561,10 +514,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case AssistantPackage.CONNECTION_ASSISTANT__SOURCE_FILTER:
 			if (resolve) {
 				return getSourceFilter();
@@ -592,10 +543,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case AssistantPackage.CONNECTION_ASSISTANT__SOURCE_FILTER:
 			setSourceFilter((Filter) newValue);
 			return;
@@ -622,10 +571,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.CONNECTION_ASSISTANT__SOURCE_FILTER:
 			setSourceFilter((Filter) null);
 			return;
@@ -652,10 +599,8 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.CONNECTION_ASSISTANT__PROVIDER:
 			return isSetProvider();
 		case AssistantPackage.CONNECTION_ASSISTANT__SOURCE_FILTER:
@@ -679,8 +624,7 @@ public class ConnectionAssistantImpl extends AssistantImpl implements Connection
 	 * @generated
 	 */
 	@Override
-	public boolean isSetProvider()
-	{
+	public boolean isSetProvider() {
 		return super.isSetProvider()
 				|| eIsSet(AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER);
 	}

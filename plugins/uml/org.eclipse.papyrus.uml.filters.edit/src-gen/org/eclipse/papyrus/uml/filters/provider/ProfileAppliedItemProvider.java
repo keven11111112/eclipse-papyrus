@@ -66,8 +66,7 @@ public class ProfileAppliedItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -85,19 +84,17 @@ public class ProfileAppliedItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Filter_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						FiltersPackage.Literals.FILTER__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Filter_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				FiltersPackage.Literals.FILTER__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -108,19 +105,17 @@ public class ProfileAppliedItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addProfileQualifiedNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ProfileApplied_profileQualifiedName_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ProfileApplied_profileQualifiedName_feature", "_UI_ProfileApplied_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UMLFiltersPackage.Literals.PROFILE_APPLIED__PROFILE_QUALIFIED_NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ProfileApplied_profileQualifiedName_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ProfileApplied_profileQualifiedName_feature", "_UI_ProfileApplied_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UMLFiltersPackage.Literals.PROFILE_APPLIED__PROFILE_QUALIFIED_NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -130,21 +125,18 @@ public class ProfileAppliedItemProvider extends ItemProviderAdapter implements I
 	 *
 	 * @generated
 	 */
-	protected void addProfileURIPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ProfileApplied_profileURI_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ProfileApplied_profileURI_feature", "_UI_ProfileApplied_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UMLFiltersPackage.Literals.PROFILE_APPLIED__PROFILE_URI,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addProfileURIPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ProfileApplied_profileURI_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ProfileApplied_profileURI_feature", "_UI_ProfileApplied_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UMLFiltersPackage.Literals.PROFILE_APPLIED__PROFILE_URI,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -180,8 +172,7 @@ public class ProfileAppliedItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object) {
 		String label = ((ProfileApplied) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ProfileApplied_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_ProfileApplied_type") : //$NON-NLS-1$
 				getString("_UI_ProfileApplied_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -198,8 +189,7 @@ public class ProfileAppliedItemProvider extends ItemProviderAdapter implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProfileApplied.class))
-		{
+		switch (notification.getFeatureID(ProfileApplied.class)) {
 		case UMLFiltersPackage.PROFILE_APPLIED__NAME:
 		case UMLFiltersPackage.PROFILE_APPLIED__PROFILE_QUALIFIED_NAME:
 		case UMLFiltersPackage.PROFILE_APPLIED__PROFILE_URI:

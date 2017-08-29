@@ -14,10 +14,19 @@ package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.*;
+import org.eclipse.papyrus.infra.filters.FilteredElement;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.LeafConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,12 +89,14 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 				PaletteConfiguration paletteConfiguration = (PaletteConfiguration)theEObject;
 				T result = casePaletteConfiguration(paletteConfiguration);
 				if (result == null) result = caseConfiguration(paletteConfiguration);
+				if (result == null) result = caseFilteredElement(paletteConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PaletteconfigurationPackage.CONFIGURATION: {
 				Configuration configuration = (Configuration)theEObject;
 				T result = caseConfiguration(configuration);
+				if (result == null) result = caseFilteredElement(configuration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -99,6 +110,7 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 				DrawerConfiguration drawerConfiguration = (DrawerConfiguration)theEObject;
 				T result = caseDrawerConfiguration(drawerConfiguration);
 				if (result == null) result = caseConfiguration(drawerConfiguration);
+				if (result == null) result = caseFilteredElement(drawerConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -106,6 +118,7 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 				ChildConfiguration childConfiguration = (ChildConfiguration)theEObject;
 				T result = caseChildConfiguration(childConfiguration);
 				if (result == null) result = caseConfiguration(childConfiguration);
+				if (result == null) result = caseFilteredElement(childConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -115,6 +128,7 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLeafConfiguration(toolConfiguration);
 				if (result == null) result = caseChildConfiguration(toolConfiguration);
 				if (result == null) result = caseConfiguration(toolConfiguration);
+				if (result == null) result = caseFilteredElement(toolConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,6 +137,7 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 				T result = caseLeafConfiguration(leafConfiguration);
 				if (result == null) result = caseChildConfiguration(leafConfiguration);
 				if (result == null) result = caseConfiguration(leafConfiguration);
+				if (result == null) result = caseFilteredElement(leafConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,6 +152,7 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 				T result = caseStackConfiguration(stackConfiguration);
 				if (result == null) result = caseChildConfiguration(stackConfiguration);
 				if (result == null) result = caseConfiguration(stackConfiguration);
+				if (result == null) result = caseFilteredElement(stackConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -146,6 +162,7 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLeafConfiguration(separatorConfiguration);
 				if (result == null) result = caseChildConfiguration(separatorConfiguration);
 				if (result == null) result = caseConfiguration(separatorConfiguration);
+				if (result == null) result = caseFilteredElement(separatorConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -300,6 +317,21 @@ public class PaletteconfigurationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSeparatorConfiguration(SeparatorConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Filtered Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Filtered Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFilteredElement(FilteredElement object) {
 		return null;
 	}
 

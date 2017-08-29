@@ -43,8 +43,7 @@ import org.eclipse.uml2.common.util.CacheAdapter;
  *
  * @generated
  */
-public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implements ElementTypeFilter
-{
+public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implements ElementTypeFilter {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -106,8 +105,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 *
 	 * @generated
 	 */
-	protected ElementTypeFilterImpl()
-	{
+	protected ElementTypeFilterImpl() {
 		super();
 	}
 
@@ -118,8 +116,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return AssistantPackage.Literals.ELEMENT_TYPE_FILTER;
 	}
 
@@ -130,8 +127,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -142,8 +138,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -159,8 +154,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public String getElementTypeID()
-	{
+	public String getElementTypeID() {
 		return elementTypeID;
 	}
 
@@ -171,8 +165,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setElementTypeID(String newElementTypeID)
-	{
+	public void setElementTypeID(String newElementTypeID) {
 		newElementTypeID = newElementTypeID == null ? ELEMENT_TYPE_ID_EDEFAULT : newElementTypeID;
 		String oldElementTypeID = elementTypeID;
 		elementTypeID = newElementTypeID;
@@ -188,14 +181,11 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public IElementType getElementType()
-	{
+	public IElementType getElementType() {
 		CacheAdapter cache = getCacheAdapter();
-		if (cache != null)
-		{
+		if (cache != null) {
 			IElementType result = (IElementType) cache.get(eResource(), this, AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE);
-			if (result == null)
-			{
+			if (result == null) {
 				cache.put(eResource(), this, AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE, result = ElementTypeFilterOperations.getElementType(this));
 			}
 			return result;
@@ -210,8 +200,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider getProvider()
-	{
+	public ModelingAssistantProvider getProvider() {
 		ModelingAssistantProvider provider = basicGetProvider();
 		return provider != null && provider.eIsProxy() ? (ModelingAssistantProvider) eResolveProxy((InternalEObject) provider) : provider;
 	}
@@ -222,8 +211,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 *
 	 * @generated
 	 */
-	public ModelingAssistantProvider basicGetProvider()
-	{
+	public ModelingAssistantProvider basicGetProvider() {
 		return ElementTypeFilterOperations.getProvider(this);
 	}
 
@@ -234,8 +222,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public boolean matches(Object input)
-	{
+	public boolean matches(Object input) {
 		return ElementTypeFilterOperations.matches(this, input);
 	}
 
@@ -246,10 +233,8 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case AssistantPackage.ELEMENT_TYPE_FILTER__NAME:
 			return getName();
 		case AssistantPackage.ELEMENT_TYPE_FILTER__ELEMENT_TYPE_ID:
@@ -272,10 +257,8 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case AssistantPackage.ELEMENT_TYPE_FILTER__NAME:
 			setName((String) newValue);
 			return;
@@ -293,10 +276,8 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.ELEMENT_TYPE_FILTER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -314,10 +295,8 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.ELEMENT_TYPE_FILTER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case AssistantPackage.ELEMENT_TYPE_FILTER__ELEMENT_TYPE_ID:
@@ -337,10 +316,8 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
 		case AssistantPackage.ELEMENT_TYPE_FILTER___MATCHES__OBJECT:
 			return matches(arguments.get(0));
 		}
@@ -354,8 +331,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
@@ -379,8 +355,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 
@@ -392,8 +367,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 * @return The cache adapter for this '<em><b>Element Type Filter</b></em>'.
 	 * @generated
 	 */
-	protected CacheAdapter getCacheAdapter()
-	{
+	protected CacheAdapter getCacheAdapter() {
 		return CacheAdapter.getCacheAdapter(this);
 	}
 

@@ -42,6 +42,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.papyrus.infra.filters.CompoundFilter;
+import org.eclipse.papyrus.infra.filters.FilteredElement;
 import org.eclipse.papyrus.infra.filters.FiltersPackage;
 
 import org.eclipse.papyrus.infra.filters.util.FiltersSwitch;
@@ -97,7 +98,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 *
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -131,10 +132,8 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createAssistedElementTypeFilterAdapter()
-	{
-		if (assistedElementTypeFilterItemProvider == null)
-		{
+	public Adapter createAssistedElementTypeFilterAdapter() {
+		if (assistedElementTypeFilterItemProvider == null) {
 			assistedElementTypeFilterItemProvider = new AssistedElementTypeFilterItemProvider(this);
 		}
 
@@ -159,8 +158,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 */
 	@Override
 	public Adapter createConnectionAssistantAdapter() {
-		if (connectionAssistantItemProvider == null)
-		{
+		if (connectionAssistantItemProvider == null) {
 			connectionAssistantItemProvider = new ConnectionAssistantItemProvider(this);
 		}
 
@@ -185,8 +183,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 */
 	@Override
 	public Adapter createPopupAssistantAdapter() {
-		if (popupAssistantItemProvider == null)
-		{
+		if (popupAssistantItemProvider == null) {
 			popupAssistantItemProvider = new PopupAssistantItemProvider(this);
 		}
 
@@ -211,8 +208,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 */
 	@Override
 	public Adapter createElementTypeFilterAdapter() {
-		if (elementTypeFilterItemProvider == null)
-		{
+		if (elementTypeFilterItemProvider == null) {
 			elementTypeFilterItemProvider = new ElementTypeFilterItemProvider(this);
 		}
 
@@ -237,8 +233,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 */
 	@Override
 	public Adapter createModelingAssistantProviderAdapter() {
-		if (modelingAssistantProviderItemProvider == null)
-		{
+		if (modelingAssistantProviderItemProvider == null) {
 			modelingAssistantProviderItemProvider = new ModelingAssistantProviderItemProvider(this);
 		}
 
@@ -300,11 +295,9 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -318,8 +311,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 *
 	 * @generated
 	 */
-	public List<IChildCreationExtender> getChildCreationExtenders()
-	{
+	public List<IChildCreationExtender> getChildCreationExtenders() {
 		return childCreationExtenderManager.getChildCreationExtenders();
 	}
 
@@ -330,8 +322,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain)
-	{
+	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
 		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
 	}
 
@@ -342,8 +333,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return childCreationExtenderManager;
 	}
 
@@ -382,8 +372,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -469,17 +458,29 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 			 * @generated
 			 */
 			@Override
-			public Object caseCompoundFilter(CompoundFilter object)
-			{
-				newChildDescriptors.add
-						(createChildParameter
-						(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
-								AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
+			public Object caseCompoundFilter(CompoundFilter object) {
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
+						AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
 
-				newChildDescriptors.add
-						(createChildParameter
-						(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
-								AssistantFactory.eINSTANCE.createElementTypeFilter()));
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
+						AssistantFactory.eINSTANCE.createElementTypeFilter()));
+
+				return null;
+			}
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 *
+			 * @generated
+			 */
+			@Override
+			public Object caseFilteredElement(FilteredElement object) {
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.FILTERED_ELEMENT__FILTER,
+						AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
+
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.FILTERED_ELEMENT__FILTER,
+						AssistantFactory.eINSTANCE.createElementTypeFilter()));
 
 				return null;
 			}
@@ -504,7 +505,7 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 		 */
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}

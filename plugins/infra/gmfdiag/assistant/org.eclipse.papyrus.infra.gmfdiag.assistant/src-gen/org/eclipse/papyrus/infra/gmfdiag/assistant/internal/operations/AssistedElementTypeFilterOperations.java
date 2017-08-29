@@ -38,8 +38,7 @@ import com.google.common.collect.Sets;
  *
  * @generated
  */
-public class AssistedElementTypeFilterOperations
-{
+public class AssistedElementTypeFilterOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,8 +55,7 @@ public class AssistedElementTypeFilterOperations
 	 *
 	 * @generated NOT
 	 */
-	public static boolean matches(AssistedElementTypeFilter assistedElementTypeFilter, Object input)
-	{
+	public static boolean matches(AssistedElementTypeFilter assistedElementTypeFilter, Object input) {
 		boolean result = false;
 
 		ModelingAssistantProvider provider = assistedElementTypeFilter.getProvider();
@@ -91,8 +89,7 @@ public class AssistedElementTypeFilterOperations
 	 *
 	 * @generated NOT
 	 */
-	public static ModelingAssistantProvider getProvider(AssistedElementTypeFilter assistedElementTypeFilter)
-	{
+	public static ModelingAssistantProvider getProvider(AssistedElementTypeFilter assistedElementTypeFilter) {
 		ModelingAssistantProvider result = null;
 
 		for (EObject container = assistedElementTypeFilter.eContainer(); (container != null) && (result == null); container = container.eContainer()) {

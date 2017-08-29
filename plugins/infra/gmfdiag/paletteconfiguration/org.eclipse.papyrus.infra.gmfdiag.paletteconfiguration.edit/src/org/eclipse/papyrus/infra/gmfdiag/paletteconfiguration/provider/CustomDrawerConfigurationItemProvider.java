@@ -116,6 +116,13 @@ public class CustomDrawerConfigurationItemProvider extends DrawerConfigurationIt
 		return null != command && command.canExecute() ? command : UnexecutableCommand.INSTANCE;
 	}
 
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		FilteredElementUtil.collectNewFilters(newChildDescriptors, object);
+	}
+
 
 	/**
 	 * Override to not show icon descriptor. <br>
@@ -126,10 +133,12 @@ public class CustomDrawerConfigurationItemProvider extends DrawerConfigurationIt
 	public Collection<?> getChildren(final Object object) {
 		DrawerConfiguration configuration = (DrawerConfiguration) object;
 		List<EObject> children = new ArrayList<>();
-		
-		children.addAll(configuration.getFilters());
+
+		if (configuration.getFilter() != null) {
+			children.add(configuration.getFilter());
+		}
 		children.addAll(configuration.getOwnedConfigurations());
-		
+
 		return children;
 	}
 

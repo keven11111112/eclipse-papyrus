@@ -32,16 +32,15 @@ import org.eclipse.papyrus.infra.filters.internal.operations.EqualsOperations;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.impl.EqualsImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.filters.impl.EqualsImpl#getObject <em>Object</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
-{
+public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals {
 	/**
 	 * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
 	 * <!-- begin-user-doc -->
@@ -102,8 +101,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 *
 	 * @generated
 	 */
-	protected EqualsImpl()
-	{
+	protected EqualsImpl() {
 		super();
 	}
 
@@ -114,8 +112,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return FiltersPackage.Literals.EQUALS;
 	}
 
@@ -126,8 +123,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -138,8 +134,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -155,8 +150,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public Object getObject()
-	{
+	public Object getObject() {
 		return object;
 	}
 
@@ -167,8 +161,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public void setObject(Object newObject)
-	{
+	public void setObject(Object newObject) {
 		Object oldObject = object;
 		object = newObject;
 		if (eNotificationRequired()) {
@@ -183,8 +176,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public boolean matches(Object input)
-	{
+	public boolean matches(Object input) {
 		return EqualsOperations.matches(this, input);
 	}
 
@@ -195,10 +187,8 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case FiltersPackage.EQUALS__NAME:
 			return getName();
 		case FiltersPackage.EQUALS__OBJECT:
@@ -214,10 +204,8 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case FiltersPackage.EQUALS__NAME:
 			setName((String) newValue);
 			return;
@@ -235,10 +223,8 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case FiltersPackage.EQUALS__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -256,10 +242,8 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case FiltersPackage.EQUALS__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case FiltersPackage.EQUALS__OBJECT:
@@ -275,10 +259,8 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
 		case FiltersPackage.EQUALS___MATCHES__OBJECT:
 			return matches(arguments.get(0));
 		}
@@ -292,8 +274,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
@@ -317,8 +298,7 @@ public class EqualsImpl extends MinimalEObjectImpl.Container implements Equals
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 

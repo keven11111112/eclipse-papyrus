@@ -24,19 +24,18 @@ import org.eclipse.emf.ecore.EClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.CompoundFilter#getFilters <em>Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.filters.CompoundFilter#getOwnedFilters <em>Owned Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.filters.CompoundFilter#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage#getCompoundFilter()
  * @model
  * @generated
  */
-public interface CompoundFilter extends Filter
-{
+public interface CompoundFilter extends Filter {
 	/**
 	 * Returns the value of the '<em><b>Filter</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.filters.Filter}.
@@ -88,10 +87,10 @@ public interface CompoundFilter extends Filter
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.filters.Filter}.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.filters.CompoundFilter#getFilters() <em>Filter</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Filter</em>' containment reference list isn't clear, there really should be more of a description here...

@@ -37,8 +37,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.*;
  *
  * @generated
  */
-public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFactory
-{
+public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -46,17 +45,13 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public static AssistantFactory init()
-	{
-		try
-		{
+	public static AssistantFactory init() {
+		try {
 			AssistantFactory theAssistantFactory = (AssistantFactory) EPackage.Registry.INSTANCE.getEFactory(AssistantPackage.eNS_URI);
-			if (theAssistantFactory != null)
-			{
+			if (theAssistantFactory != null) {
 				return theAssistantFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new AssistantFactoryImpl();
@@ -69,8 +64,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public AssistantFactoryImpl()
-	{
+	public AssistantFactoryImpl() {
 		super();
 	}
 
@@ -81,10 +75,8 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER:
 			return createAssistedElementTypeFilter();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER:
@@ -107,10 +99,8 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
 		case AssistantPackage.ELEMENT_TYPE:
 			return createElementTypeFromString(eDataType, initialValue);
 		case AssistantPackage.CLIENT_CONTEXT:
@@ -133,10 +123,8 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
 		case AssistantPackage.ELEMENT_TYPE:
 			return convertElementTypeToString(eDataType, instanceValue);
 		case AssistantPackage.CLIENT_CONTEXT:
@@ -159,8 +147,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public AssistedElementTypeFilter createAssistedElementTypeFilter()
-	{
+	public AssistedElementTypeFilter createAssistedElementTypeFilter() {
 		AssistedElementTypeFilterImpl assistedElementTypeFilter = new AssistedElementTypeFilterImpl();
 		return assistedElementTypeFilter;
 	}
@@ -172,8 +159,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider createModelingAssistantProvider()
-	{
+	public ModelingAssistantProvider createModelingAssistantProvider() {
 		ModelingAssistantProviderImpl modelingAssistantProvider = new ModelingAssistantProviderImpl();
 		return modelingAssistantProvider;
 	}
@@ -185,8 +171,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public ConnectionAssistant createConnectionAssistant()
-	{
+	public ConnectionAssistant createConnectionAssistant() {
 		ConnectionAssistantImpl connectionAssistant = new ConnectionAssistantImpl();
 		return connectionAssistant;
 	}
@@ -198,8 +183,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public PopupAssistant createPopupAssistant()
-	{
+	public PopupAssistant createPopupAssistant() {
 		PopupAssistantImpl popupAssistant = new PopupAssistantImpl();
 		return popupAssistant;
 	}
@@ -211,8 +195,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public ElementTypeFilter createElementTypeFilter()
-	{
+	public ElementTypeFilter createElementTypeFilter() {
 		ElementTypeFilterImpl elementTypeFilter = new ElementTypeFilterImpl();
 		return elementTypeFilter;
 	}
@@ -223,8 +206,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public IElementType createElementTypeFromString(EDataType eDataType, String initialValue)
-	{
+	public IElementType createElementTypeFromString(EDataType eDataType, String initialValue) {
 		return (IElementType) super.createFromString(eDataType, initialValue);
 	}
 
@@ -234,8 +216,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public String convertElementTypeToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertElementTypeToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -245,8 +226,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public IClientContext createClientContextFromString(EDataType eDataType, String initialValue)
-	{
+	public IClientContext createClientContextFromString(EDataType eDataType, String initialValue) {
 		return (IClientContext) super.createFromString(eDataType, initialValue);
 	}
 
@@ -256,8 +236,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public String convertClientContextToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertClientContextToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -267,8 +246,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public IOperation createIOperationFromString(EDataType eDataType, String initialValue)
-	{
+	public IOperation createIOperationFromString(EDataType eDataType, String initialValue) {
 		return (IOperation) super.createFromString(eDataType, initialValue);
 	}
 
@@ -278,8 +256,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public String convertIOperationToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertIOperationToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -289,8 +266,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public IProviderChangeListener createIProviderChangeListenerFromString(EDataType eDataType, String initialValue)
-	{
+	public IProviderChangeListener createIProviderChangeListenerFromString(EDataType eDataType, String initialValue) {
 		return (IProviderChangeListener) super.createFromString(eDataType, initialValue);
 	}
 
@@ -300,8 +276,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public String convertIProviderChangeListenerToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertIProviderChangeListenerToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -311,8 +286,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public IAdaptable createIAdaptableFromString(EDataType eDataType, String initialValue)
-	{
+	public IAdaptable createIAdaptableFromString(EDataType eDataType, String initialValue) {
 		return (IAdaptable) super.createFromString(eDataType, initialValue);
 	}
 
@@ -322,8 +296,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 *
 	 * @generated
 	 */
-	public String convertIAdaptableToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertIAdaptableToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -334,8 +307,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Override
-	public AssistantPackage getAssistantPackage()
-	{
+	public AssistantPackage getAssistantPackage() {
 		return (AssistantPackage) getEPackage();
 	}
 
@@ -347,8 +319,7 @@ public class AssistantFactoryImpl extends EFactoryImpl implements AssistantFacto
 	 * @generated
 	 */
 	@Deprecated
-	public static AssistantPackage getPackage()
-	{
+	public static AssistantPackage getPackage() {
 		return AssistantPackage.eINSTANCE;
 	}
 

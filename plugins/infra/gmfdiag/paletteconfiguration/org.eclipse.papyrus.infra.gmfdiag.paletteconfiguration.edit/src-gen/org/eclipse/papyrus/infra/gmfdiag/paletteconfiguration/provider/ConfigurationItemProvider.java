@@ -18,23 +18,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.eclipse.papyrus.infra.filters.FiltersFactory;
+import org.eclipse.papyrus.infra.filters.provider.FilteredElementItemProvider;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 
@@ -45,13 +34,7 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Paletteconfigurati
  * @generated
  */
 public class ConfigurationItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends FilteredElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -159,7 +142,6 @@ public class ConfigurationItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PaletteconfigurationPackage.Literals.CONFIGURATION__ICON);
-			childrenFeatures.add(PaletteconfigurationPackage.Literals.CONFIGURATION__FILTERS);
 		}
 		return childrenFeatures;
 	}
@@ -210,7 +192,6 @@ public class ConfigurationItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case PaletteconfigurationPackage.CONFIGURATION__ICON:
-			case PaletteconfigurationPackage.CONFIGURATION__FILTERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -227,27 +208,6 @@ public class ConfigurationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PaletteconfigurationPackage.Literals.CONFIGURATION__FILTERS,
-				 FiltersFactory.eINSTANCE.createCompoundFilter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PaletteconfigurationPackage.Literals.CONFIGURATION__FILTERS,
-				 FiltersFactory.eINSTANCE.createEquals()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PaletteConfigurationEditPlugin.INSTANCE;
 	}
 
 }

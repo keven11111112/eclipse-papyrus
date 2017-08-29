@@ -54,8 +54,7 @@ import org.eclipse.uml2.types.TypesPackage;
  *
  * @generated
  */
-public class AssistantPackageImpl extends EPackageImpl implements AssistantPackage
-{
+public class AssistantPackageImpl extends EPackageImpl implements AssistantPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,18 +160,22 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	private EDataType iAdaptableEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private AssistantPackageImpl()
-	{
+	private AssistantPackageImpl() {
 		super(eNS_URI, AssistantFactory.eINSTANCE);
 	}
 
@@ -188,15 +191,16 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link AssistantPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link AssistantPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static AssistantPackage init()
-	{
+	public static AssistantPackage init() {
 		if (isInited) {
 			return (AssistantPackage) EPackage.Registry.INSTANCE.getEPackage(AssistantPackage.eNS_URI);
 		}
@@ -209,6 +213,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
 		FiltersPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theAssistantPackage.createPackageContents();
@@ -232,8 +237,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getAssistedElementTypeFilter()
-	{
+	public EClass getAssistedElementTypeFilter() {
 		return assistedElementTypeFilterEClass;
 	}
 
@@ -244,8 +248,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getAssistedElementTypeFilter_Provider()
-	{
+	public EReference getAssistedElementTypeFilter_Provider() {
 		return (EReference) assistedElementTypeFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -256,8 +259,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getAssistedElementTypeFilter__GetProvider()
-	{
+	public EOperation getAssistedElementTypeFilter__GetProvider() {
 		return assistedElementTypeFilterEClass.getEOperations().get(0);
 	}
 
@@ -268,8 +270,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getModelingAssistantProvider()
-	{
+	public EClass getModelingAssistantProvider() {
 		return modelingAssistantProviderEClass;
 	}
 
@@ -280,8 +281,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_Name()
-	{
+	public EAttribute getModelingAssistantProvider_Name() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -292,8 +292,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getModelingAssistantProvider_Assistant()
-	{
+	public EReference getModelingAssistantProvider_Assistant() {
 		return (EReference) modelingAssistantProviderEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -304,8 +303,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getModelingAssistantProvider_OwnedFilter()
-	{
+	public EReference getModelingAssistantProvider_OwnedFilter() {
 		return (EReference) modelingAssistantProviderEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -316,8 +314,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getModelingAssistantProvider_PopupAssistant()
-	{
+	public EReference getModelingAssistantProvider_PopupAssistant() {
 		return (EReference) modelingAssistantProviderEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -328,8 +325,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getModelingAssistantProvider_ConnectionAssistant()
-	{
+	public EReference getModelingAssistantProvider_ConnectionAssistant() {
 		return (EReference) modelingAssistantProviderEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -340,8 +336,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_ElementType()
-	{
+	public EAttribute getModelingAssistantProvider_ElementType() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -352,8 +347,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_ElementTypeID()
-	{
+	public EAttribute getModelingAssistantProvider_ElementTypeID() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -364,8 +358,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_ClientContext()
-	{
+	public EAttribute getModelingAssistantProvider_ClientContext() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -376,8 +369,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_ClientContextID()
-	{
+	public EAttribute getModelingAssistantProvider_ClientContextID() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -388,8 +380,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_ExcludedElementType()
-	{
+	public EAttribute getModelingAssistantProvider_ExcludedElementType() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -400,8 +391,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_ExcludedElementTypeID()
-	{
+	public EAttribute getModelingAssistantProvider_ExcludedElementTypeID() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -412,8 +402,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_RelationshipType()
-	{
+	public EAttribute getModelingAssistantProvider_RelationshipType() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -424,8 +413,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getModelingAssistantProvider_RelationshipTypeID()
-	{
+	public EAttribute getModelingAssistantProvider_RelationshipTypeID() {
 		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -436,8 +424,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getModelingAssistantProvider__GetElementTypes()
-	{
+	public EOperation getModelingAssistantProvider__GetElementTypes() {
 		return modelingAssistantProviderEClass.getEOperations().get(0);
 	}
 
@@ -448,8 +435,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getModelingAssistantProvider__GetClientContext()
-	{
+	public EOperation getModelingAssistantProvider__GetClientContext() {
 		return modelingAssistantProviderEClass.getEOperations().get(1);
 	}
 
@@ -460,8 +446,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getModelingAssistantProvider__GetElementType__String()
-	{
+	public EOperation getModelingAssistantProvider__GetElementType__String() {
 		return modelingAssistantProviderEClass.getEOperations().get(2);
 	}
 
@@ -472,8 +457,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getModelingAssistantProvider__GetExcludedElementTypes()
-	{
+	public EOperation getModelingAssistantProvider__GetExcludedElementTypes() {
 		return modelingAssistantProviderEClass.getEOperations().get(3);
 	}
 
@@ -484,8 +468,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getModelingAssistantProvider__GetRelationshipTypes()
-	{
+	public EOperation getModelingAssistantProvider__GetRelationshipTypes() {
 		return modelingAssistantProviderEClass.getEOperations().get(4);
 	}
 
@@ -496,8 +479,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getModelingAssistantProvider__IsRelationshipType__IElementType()
-	{
+	public EOperation getModelingAssistantProvider__IsRelationshipType__IElementType() {
 		return modelingAssistantProviderEClass.getEOperations().get(5);
 	}
 
@@ -508,8 +490,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getAssistant()
-	{
+	public EClass getAssistant() {
 		return assistantEClass;
 	}
 
@@ -520,8 +501,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAssistant_ElementTypeID()
-	{
+	public EAttribute getAssistant_ElementTypeID() {
 		return (EAttribute) assistantEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -532,8 +512,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAssistant_ElementType()
-	{
+	public EAttribute getAssistant_ElementType() {
 		return (EAttribute) assistantEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -544,8 +523,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getAssistant_Provider()
-	{
+	public EReference getAssistant_Provider() {
 		return (EReference) assistantEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -556,8 +534,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getAssistant__GetElementType()
-	{
+	public EOperation getAssistant__GetElementType() {
 		return assistantEClass.getEOperations().get(0);
 	}
 
@@ -568,8 +545,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getConnectionAssistant()
-	{
+	public EClass getConnectionAssistant() {
 		return connectionAssistantEClass;
 	}
 
@@ -580,8 +556,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getConnectionAssistant_OwningProvider()
-	{
+	public EReference getConnectionAssistant_OwningProvider() {
 		return (EReference) connectionAssistantEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -592,8 +567,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getConnectionAssistant_SourceFilter()
-	{
+	public EReference getConnectionAssistant_SourceFilter() {
 		return (EReference) connectionAssistantEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -604,8 +578,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getConnectionAssistant_OwnedSourceFilter()
-	{
+	public EReference getConnectionAssistant_OwnedSourceFilter() {
 		return (EReference) connectionAssistantEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -616,8 +589,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getConnectionAssistant_TargetFilter()
-	{
+	public EReference getConnectionAssistant_TargetFilter() {
 		return (EReference) connectionAssistantEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -628,8 +600,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getConnectionAssistant_OwnedTargetFilter()
-	{
+	public EReference getConnectionAssistant_OwnedTargetFilter() {
 		return (EReference) connectionAssistantEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -640,8 +611,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getPopupAssistant()
-	{
+	public EClass getPopupAssistant() {
 		return popupAssistantEClass;
 	}
 
@@ -652,8 +622,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getPopupAssistant_Filter()
-	{
+	public EReference getPopupAssistant_Filter() {
 		return (EReference) popupAssistantEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -664,8 +633,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getPopupAssistant_OwnedFilter()
-	{
+	public EReference getPopupAssistant_OwnedFilter() {
 		return (EReference) popupAssistantEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -676,8 +644,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getPopupAssistant_OwningProvider()
-	{
+	public EReference getPopupAssistant_OwningProvider() {
 		return (EReference) popupAssistantEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -688,8 +655,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getElementTypeFilter()
-	{
+	public EClass getElementTypeFilter() {
 		return elementTypeFilterEClass;
 	}
 
@@ -700,8 +666,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getElementTypeFilter_ElementTypeID()
-	{
+	public EAttribute getElementTypeFilter_ElementTypeID() {
 		return (EAttribute) elementTypeFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -712,8 +677,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getElementTypeFilter_ElementType()
-	{
+	public EAttribute getElementTypeFilter_ElementType() {
 		return (EAttribute) elementTypeFilterEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -724,8 +688,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EReference getElementTypeFilter_Provider()
-	{
+	public EReference getElementTypeFilter_Provider() {
 		return (EReference) elementTypeFilterEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -736,8 +699,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getElementTypeFilter__GetElementType()
-	{
+	public EOperation getElementTypeFilter__GetElementType() {
 		return elementTypeFilterEClass.getEOperations().get(0);
 	}
 
@@ -748,8 +710,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getElementTypeFilter__GetProvider()
-	{
+	public EOperation getElementTypeFilter__GetProvider() {
 		return elementTypeFilterEClass.getEOperations().get(1);
 	}
 
@@ -760,8 +721,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getIProvider()
-	{
+	public EClass getIProvider() {
 		return iProviderEClass;
 	}
 
@@ -772,8 +732,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getIProvider_Listener()
-	{
+	public EAttribute getIProvider_Listener() {
 		return (EAttribute) iProviderEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -784,8 +743,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIProvider__Provides__IOperation()
-	{
+	public EOperation getIProvider__Provides__IOperation() {
 		return iProviderEClass.getEOperations().get(0);
 	}
 
@@ -796,8 +754,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIProvider__AddProviderChangeListener__IProviderChangeListener()
-	{
+	public EOperation getIProvider__AddProviderChangeListener__IProviderChangeListener() {
 		return iProviderEClass.getEOperations().get(1);
 	}
 
@@ -808,8 +765,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIProvider__RemoveProviderChangeListener__IProviderChangeListener()
-	{
+	public EOperation getIProvider__RemoveProviderChangeListener__IProviderChangeListener() {
 		return iProviderEClass.getEOperations().get(2);
 	}
 
@@ -820,8 +776,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getIModelingAssistantProvider()
-	{
+	public EClass getIModelingAssistantProvider() {
 		return iModelingAssistantProviderEClass;
 	}
 
@@ -832,8 +787,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetTypes__String_IAdaptable()
-	{
+	public EOperation getIModelingAssistantProvider__GetTypes__String_IAdaptable() {
 		return iModelingAssistantProviderEClass.getEOperations().get(0);
 	}
 
@@ -844,8 +798,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetRelTypesOnSource__IAdaptable()
-	{
+	public EOperation getIModelingAssistantProvider__GetRelTypesOnSource__IAdaptable() {
 		return iModelingAssistantProviderEClass.getEOperations().get(1);
 	}
 
@@ -856,8 +809,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetRelTypesOnTarget__IAdaptable()
-	{
+	public EOperation getIModelingAssistantProvider__GetRelTypesOnTarget__IAdaptable() {
 		return iModelingAssistantProviderEClass.getEOperations().get(2);
 	}
 
@@ -868,8 +820,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetRelTypesOnSourceAndTarget__IAdaptable_IAdaptable()
-	{
+	public EOperation getIModelingAssistantProvider__GetRelTypesOnSourceAndTarget__IAdaptable_IAdaptable() {
 		return iModelingAssistantProviderEClass.getEOperations().get(3);
 	}
 
@@ -880,8 +831,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetRelTypesForSREOnTarget__IAdaptable()
-	{
+	public EOperation getIModelingAssistantProvider__GetRelTypesForSREOnTarget__IAdaptable() {
 		return iModelingAssistantProviderEClass.getEOperations().get(4);
 	}
 
@@ -892,8 +842,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetRelTypesForSREOnSource__IAdaptable()
-	{
+	public EOperation getIModelingAssistantProvider__GetRelTypesForSREOnSource__IAdaptable() {
 		return iModelingAssistantProviderEClass.getEOperations().get(5);
 	}
 
@@ -904,8 +853,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetTypesForSource__IAdaptable_IElementType()
-	{
+	public EOperation getIModelingAssistantProvider__GetTypesForSource__IAdaptable_IElementType() {
 		return iModelingAssistantProviderEClass.getEOperations().get(6);
 	}
 
@@ -916,8 +864,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetTypesForTarget__IAdaptable_IElementType()
-	{
+	public EOperation getIModelingAssistantProvider__GetTypesForTarget__IAdaptable_IElementType() {
 		return iModelingAssistantProviderEClass.getEOperations().get(7);
 	}
 
@@ -928,8 +875,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__SelectExistingElementForSource__IAdaptable_IElementType()
-	{
+	public EOperation getIModelingAssistantProvider__SelectExistingElementForSource__IAdaptable_IElementType() {
 		return iModelingAssistantProviderEClass.getEOperations().get(8);
 	}
 
@@ -940,8 +886,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__SelectExistingElementForTarget__IAdaptable_IElementType()
-	{
+	public EOperation getIModelingAssistantProvider__SelectExistingElementForTarget__IAdaptable_IElementType() {
 		return iModelingAssistantProviderEClass.getEOperations().get(9);
 	}
 
@@ -952,8 +897,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EOperation getIModelingAssistantProvider__GetTypesForPopupBar__IAdaptable()
-	{
+	public EOperation getIModelingAssistantProvider__GetTypesForPopupBar__IAdaptable() {
 		return iModelingAssistantProviderEClass.getEOperations().get(10);
 	}
 
@@ -964,8 +908,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EDataType getElementType()
-	{
+	public EDataType getElementType() {
 		return elementTypeEDataType;
 	}
 
@@ -976,8 +919,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EDataType getClientContext()
-	{
+	public EDataType getClientContext() {
 		return clientContextEDataType;
 	}
 
@@ -988,8 +930,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EDataType getIOperation()
-	{
+	public EDataType getIOperation() {
 		return iOperationEDataType;
 	}
 
@@ -1000,8 +941,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EDataType getIProviderChangeListener()
-	{
+	public EDataType getIProviderChangeListener() {
 		return iProviderChangeListenerEDataType;
 	}
 
@@ -1012,8 +952,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public EDataType getIAdaptable()
-	{
+	public EDataType getIAdaptable() {
 		return iAdaptableEDataType;
 	}
 
@@ -1024,8 +963,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
-	public AssistantFactory getAssistantFactory()
-	{
+	public AssistantFactory getAssistantFactory() {
 		return (AssistantFactory) getEFactoryInstance();
 	}
 
@@ -1045,8 +983,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 *
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
+	public void createPackageContents() {
 		if (isCreated) {
 			return;
 		}
@@ -1146,8 +1083,7 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 *
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
+	public void initializePackageContents() {
 		if (isInitialized) {
 			return;
 		}
@@ -1177,35 +1113,35 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(assistedElementTypeFilterEClass, AssistedElementTypeFilter.class, "AssistedElementTypeFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAssistedElementTypeFilter_Provider(), this.getModelingAssistantProvider(), null,
-				"provider", null, 1, 1, AssistedElementTypeFilter.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAssistedElementTypeFilter_Provider(), this.getModelingAssistantProvider(), null, "provider", null, 1, 1, AssistedElementTypeFilter.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+				IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEOperation(getAssistedElementTypeFilter__GetProvider(), this.getModelingAssistantProvider(), "getProvider", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(modelingAssistantProviderEClass, ModelingAssistantProvider.class, "ModelingAssistantProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getModelingAssistantProvider_Name(), theTypesPackage.getString(), "name", null, 0, 1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getModelingAssistantProvider_Assistant(), this.getAssistant(), this.getAssistant_Provider(),
-				"assistant", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getModelingAssistantProvider_OwnedFilter(), theFiltersPackage.getFilter(), null,
-				"ownedFilter", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getModelingAssistantProvider_PopupAssistant(), this.getPopupAssistant(), this.getPopupAssistant_OwningProvider(),
-				"popupAssistant", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getModelingAssistantProvider_ConnectionAssistant(), this.getConnectionAssistant(), this.getConnectionAssistant_OwningProvider(),
-				"connectionAssistant", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getModelingAssistantProvider_Assistant(), this.getAssistant(), this.getAssistant_Provider(), "assistant", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getModelingAssistantProvider_OwnedFilter(), theFiltersPackage.getFilter(), null, "ownedFilter", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getModelingAssistantProvider_PopupAssistant(), this.getPopupAssistant(), this.getPopupAssistant_OwningProvider(), "popupAssistant", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, //$NON-NLS-1$
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getModelingAssistantProvider_ConnectionAssistant(), this.getConnectionAssistant(), this.getConnectionAssistant_OwningProvider(), "connectionAssistant", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getModelingAssistantProvider_ElementType(), this.getElementType(), "elementType", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelingAssistantProvider_ElementTypeID(), theTypesPackage.getString(),
-				"elementTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelingAssistantProvider_ElementTypeID(), theTypesPackage.getString(), "elementTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
 		initEAttribute(getModelingAssistantProvider_ClientContext(), this.getClientContext(), "clientContext", null, 1, 1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelingAssistantProvider_ClientContextID(), theTypesPackage.getString(),
-				"clientContextID", null, 0, 1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelingAssistantProvider_ExcludedElementType(), this.getElementType(),
-				"excludedElementType", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelingAssistantProvider_ExcludedElementTypeID(), theTypesPackage.getString(),
-				"excludedElementTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelingAssistantProvider_RelationshipType(), this.getElementType(),
-				"relationshipType", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getModelingAssistantProvider_RelationshipTypeID(), theTypesPackage.getString(),
-				"relationshipTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelingAssistantProvider_ClientContextID(), theTypesPackage.getString(), "clientContextID", null, 0, 1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+		initEAttribute(getModelingAssistantProvider_ExcludedElementType(), this.getElementType(), "excludedElementType", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+		initEAttribute(getModelingAssistantProvider_ExcludedElementTypeID(), theTypesPackage.getString(), "excludedElementTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getModelingAssistantProvider_RelationshipType(), this.getElementType(), "relationshipType", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+		initEAttribute(getModelingAssistantProvider_RelationshipTypeID(), theTypesPackage.getString(), "relationshipTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, !IS_ORDERED);
 
 		initEOperation(getModelingAssistantProvider__GetElementTypes(), this.getElementType(), "getElementTypes", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
@@ -1224,30 +1160,30 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 		initEClass(assistantEClass, Assistant.class, "Assistant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getAssistant_ElementTypeID(), theTypesPackage.getString(), "elementTypeID", null, 1, 1, Assistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getAssistant_ElementType(), this.getElementType(), "elementType", null, 1, 1, Assistant.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAssistant_Provider(), this.getModelingAssistantProvider(), this.getModelingAssistantProvider_Assistant(),
-				"provider", null, 1, 1, Assistant.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAssistant_Provider(), this.getModelingAssistantProvider(), this.getModelingAssistantProvider_Assistant(), "provider", null, 1, 1, Assistant.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEOperation(getAssistant__GetElementType(), this.getElementType(), "getElementType", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(popupAssistantEClass, PopupAssistant.class, "PopupAssistant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getPopupAssistant_Filter(), theFiltersPackage.getFilter(), null,
-				"filter", null, 0, 1, PopupAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPopupAssistant_OwnedFilter(), theFiltersPackage.getFilter(), null,
-				"ownedFilter", null, 0, 1, PopupAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPopupAssistant_OwningProvider(), this.getModelingAssistantProvider(), this.getModelingAssistantProvider_PopupAssistant(),
-				"owningProvider", null, 1, 1, PopupAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPopupAssistant_Filter(), theFiltersPackage.getFilter(), null, "filter", null, 0, 1, PopupAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+		initEReference(getPopupAssistant_OwnedFilter(), theFiltersPackage.getFilter(), null, "ownedFilter", null, 0, 1, PopupAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+		initEReference(getPopupAssistant_OwningProvider(), this.getModelingAssistantProvider(), this.getModelingAssistantProvider_PopupAssistant(), "owningProvider", null, 1, 1, PopupAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, //$NON-NLS-1$
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(connectionAssistantEClass, ConnectionAssistant.class, "ConnectionAssistant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getConnectionAssistant_SourceFilter(), theFiltersPackage.getFilter(), null,
-				"sourceFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConnectionAssistant_OwnedSourceFilter(), theFiltersPackage.getFilter(), null,
-				"ownedSourceFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConnectionAssistant_TargetFilter(), theFiltersPackage.getFilter(), null,
-				"targetFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConnectionAssistant_OwnedTargetFilter(), theFiltersPackage.getFilter(), null,
-				"ownedTargetFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConnectionAssistant_OwningProvider(), this.getModelingAssistantProvider(), this.getModelingAssistantProvider_ConnectionAssistant(),
-				"owningProvider", null, 1, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getConnectionAssistant_SourceFilter(), theFiltersPackage.getFilter(), null, "sourceFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnectionAssistant_OwnedSourceFilter(), theFiltersPackage.getFilter(), null, "ownedSourceFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnectionAssistant_TargetFilter(), theFiltersPackage.getFilter(), null, "targetFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnectionAssistant_OwnedTargetFilter(), theFiltersPackage.getFilter(), null, "ownedTargetFilter", null, 0, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+				IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnectionAssistant_OwningProvider(), this.getModelingAssistantProvider(), this.getModelingAssistantProvider_ConnectionAssistant(), "owningProvider", null, 1, 1, ConnectionAssistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(iModelingAssistantProviderEClass, IModelingAssistantProvider.class, "IModelingAssistantProvider", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1305,8 +1241,8 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 		initEClass(elementTypeFilterEClass, ElementTypeFilter.class, "ElementTypeFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getElementTypeFilter_ElementTypeID(), theTypesPackage.getString(), "elementTypeID", null, 1, 1, ElementTypeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getElementTypeFilter_ElementType(), this.getElementType(), "elementType", null, 1, 1, ElementTypeFilter.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getElementTypeFilter_Provider(), this.getModelingAssistantProvider(), null,
-				"provider", null, 1, 1, ElementTypeFilter.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getElementTypeFilter_Provider(), this.getModelingAssistantProvider(), null, "provider", null, 1, 1, ElementTypeFilter.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				IS_DERIVED, !IS_ORDERED);
 
 		initEOperation(getElementTypeFilter__GetElementType(), this.getElementType(), "getElementType", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
@@ -1336,89 +1272,70 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 *
 	 * @generated
 	 */
-	protected void createSubsetsAnnotations()
-	{
+	protected void createSubsetsAnnotations() {
 		String source = "subsets"; //$NON-NLS-1$
 		addAnnotation(getModelingAssistantProvider_PopupAssistant(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/assistant") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/assistant") //$NON-NLS-1$
 				});
 		addAnnotation(getModelingAssistantProvider_ConnectionAssistant(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/assistant") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/assistant") //$NON-NLS-1$
 				});
 		addAnnotation(getModelingAssistantProvider_RelationshipType(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/elementType") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/elementType") //$NON-NLS-1$
 				});
 		addAnnotation(getModelingAssistantProvider_RelationshipTypeID(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/elementTypeID") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/elementTypeID") //$NON-NLS-1$
 				});
 		addAnnotation(getPopupAssistant_OwnedFilter(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//PopupAssistant/filter") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//PopupAssistant/filter") //$NON-NLS-1$
 				});
 		addAnnotation(getPopupAssistant_OwningProvider(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//Assistant/provider") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//Assistant/provider") //$NON-NLS-1$
 				});
 		addAnnotation(getConnectionAssistant_OwnedSourceFilter(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//ConnectionAssistant/sourceFilter") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//ConnectionAssistant/sourceFilter") //$NON-NLS-1$
 				});
 		addAnnotation(getConnectionAssistant_OwnedTargetFilter(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//ConnectionAssistant/targetFilter") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//ConnectionAssistant/targetFilter") //$NON-NLS-1$
 				});
 		addAnnotation(getConnectionAssistant_OwningProvider(),
 				source,
-				new String[]
-				{
+				new String[] {
 				},
-				new URI[]
-				{
-				URI.createURI(eNS_URI).appendFragment("//Assistant/provider") //$NON-NLS-1$
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//Assistant/provider") //$NON-NLS-1$
 				});
 	}
 
@@ -1429,18 +1346,15 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 *
 	 * @generated
 	 */
-	protected void createUnionAnnotations()
-	{
+	protected void createUnionAnnotations() {
 		String source = "union"; //$NON-NLS-1$
 		addAnnotation(getModelingAssistantProvider_Assistant(),
 				source,
-				new String[]
-				{
+				new String[] {
 				});
 		addAnnotation(getAssistant_Provider(),
 				source,
-				new String[]
-				{
+				new String[] {
 				});
 	}
 

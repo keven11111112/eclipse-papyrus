@@ -19,17 +19,16 @@ package org.eclipse.papyrus.infra.filters;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.Equals#getObject <em>Object</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage#getEquals()
  * @model
  * @generated
  */
-public interface Equals extends Filter
-{
+public interface Equals extends Filter {
 	/**
 	 * Returns the value of the '<em><b>Object</b></em>' attribute.
 	 * <!-- begin-user-doc -->

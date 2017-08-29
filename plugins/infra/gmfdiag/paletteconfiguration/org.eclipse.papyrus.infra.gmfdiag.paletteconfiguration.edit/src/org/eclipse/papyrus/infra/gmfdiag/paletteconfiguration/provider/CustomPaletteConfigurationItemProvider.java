@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.PaletteConfigurationItemProvider;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 
 /**
@@ -44,6 +43,13 @@ public class CustomPaletteConfigurationItemProvider extends PaletteConfiguration
 	public Collection<?> getChildren(Object object) {
 		// Only gets the drawer, no the icon
 		return ((PaletteConfiguration) object).getDrawerConfigurations();
+	}
+	
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+		
+		FilteredElementUtil.collectNewFilters(newChildDescriptors, object);
 	}
 
 	/**

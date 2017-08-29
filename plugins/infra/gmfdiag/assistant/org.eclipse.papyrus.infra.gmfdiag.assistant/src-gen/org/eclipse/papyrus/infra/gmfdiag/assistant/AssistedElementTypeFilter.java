@@ -33,8 +33,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
  * @model
  * @generated
  */
-public interface AssistedElementTypeFilter extends Filter
-{
+public interface AssistedElementTypeFilter extends Filter {
 	/**
 	 * Returns the value of the '<em><b>Provider</b></em>' reference.
 	 * <!-- begin-user-doc -->

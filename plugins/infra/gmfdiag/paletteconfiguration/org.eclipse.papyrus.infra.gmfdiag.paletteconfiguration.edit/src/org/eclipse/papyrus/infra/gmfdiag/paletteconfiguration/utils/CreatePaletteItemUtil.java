@@ -141,8 +141,8 @@ public class CreatePaletteItemUtil {
 				// Get stereotype to apply
 				// TODO manage it
 				if (entry instanceof AspectCreationEntry) {
-					List advices = (List) ((AspectCreationEntry) entry).getAspectProperties(IPapyrusPaletteConstant.ADVICES_TO_APPLY);
-					if (null != advices && !((List) advices).isEmpty()) {
+					List<?> advices = (List<?>) ((AspectCreationEntry) entry).getAspectProperties(IPapyrusPaletteConstant.ADVICES_TO_APPLY);
+					if (null != advices && !((List<?>) advices).isEmpty()) {
 						// Add Advice to element type model.
 						for (Object advice : advices) {
 							if (advice instanceof AbstractAdviceBindingConfiguration) {

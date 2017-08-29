@@ -23,8 +23,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.util.AssistantResourceImpl
  * @generated
  */
-public class AssistantResourceFactoryImpl extends ResourceFactoryImpl implements AssistantResource.Factory
-{
+public class AssistantResourceFactoryImpl extends ResourceFactoryImpl implements AssistantResource.Factory {
 	/**
 	 * Creates an instance of the resource factory.
 	 * <!-- begin-user-doc -->
@@ -32,8 +31,7 @@ public class AssistantResourceFactoryImpl extends ResourceFactoryImpl implements
 	 *
 	 * @generated
 	 */
-	public AssistantResourceFactoryImpl()
-	{
+	public AssistantResourceFactoryImpl() {
 		super();
 	}
 
@@ -45,8 +43,7 @@ public class AssistantResourceFactoryImpl extends ResourceFactoryImpl implements
 	 * @generated
 	 */
 	@Override
-	public Resource createResource(URI uri)
-	{
+	public Resource createResource(URI uri) {
 		AssistantResource result = new AssistantResourceImpl(uri);
 		result.setEncoding(AssistantResource.DEFAULT_ENCODING);
 		return result;

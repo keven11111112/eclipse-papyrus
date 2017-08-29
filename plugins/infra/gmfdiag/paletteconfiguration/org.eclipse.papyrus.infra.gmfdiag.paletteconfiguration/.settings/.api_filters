@@ -1,38 +1,466 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration" version="2">
-    <resource path="META-INF/MANIFEST.MF">
-        <filter comment="Generated code not meant to be implemented" id="923795461">
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/ChildConfiguration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration">
+        <filter comment="Generated code" id="403984517">
             <message_arguments>
-                <message_argument value="3.1.0"/>
-                <message_argument value="3.0.0"/>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
             </message_arguments>
         </filter>
     </resource>
     <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/Configuration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration">
-        <filter comment="Generated code not meant to be implemented" id="403804204">
+        <filter comment="Generated code" id="403984517">
             <message_arguments>
                 <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration"/>
-                <message_argument value="getFilters()"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
             </message_arguments>
         </filter>
-        <filter comment="Generated code not meant to be implemented" id="403804204">
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/DrawerConfiguration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration">
+        <filter comment="Generated code" id="403984517">
             <message_arguments>
-                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration"/>
-                <message_argument value="getFilters(String)"/>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
             </message_arguments>
         </filter>
-        <filter comment="Generated code not meant to be implemented" id="403804204">
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/LeafConfiguration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.LeafConfiguration">
+        <filter comment="Generated code" id="403984517">
             <message_arguments>
-                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration"/>
-                <message_argument value="getFilters(String, boolean, EClass)"/>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.LeafConfiguration"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/PaletteConfiguration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration">
+        <filter comment="Generated code" id="403984517">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/PaletteconfigurationPackage.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage">
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CHILD_CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CHILD_CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CHILD_CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CHILD_CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CHILD_CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="DRAWER_CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="5"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="DRAWER_CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="DRAWER_CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="DRAWER_CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="DRAWER_CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="LEAF_CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="LEAF_CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="LEAF_CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="LEAF_CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="LEAF_CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="PALETTE_CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="6"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="PALETTE_CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="PALETTE_CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="PALETTE_CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="PALETTE_CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="PALETTE_CONFIGURATION__REQUIRED_PROFILES"/>
+                <message_argument value="5"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="SEPARATOR_CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="SEPARATOR_CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="SEPARATOR_CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="SEPARATOR_CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="SEPARATOR_CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="STACK_CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="5"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="STACK_CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="STACK_CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="STACK_CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="STACK_CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="STACK_CONFIGURATION__OWNED_CONFIGURATIONS"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION_FEATURE_COUNT"/>
+                <message_argument value="7"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION__DESCRIPTION"/>
+                <message_argument value="2"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS"/>
+                <message_argument value="5"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION__ICON"/>
+                <message_argument value="3"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION__ID"/>
+                <message_argument value="0"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION__KIND"/>
+                <message_argument value="4"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION__LABEL"/>
+                <message_argument value="1"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage"/>
+                <message_argument value="TOOL_CONFIGURATION__TOOL_CLASS_NAME"/>
+                <message_argument value="6"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="CHILD_CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="DRAWER_CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="LEAF_CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="PALETTE_CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="SEPARATOR_CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="STACK_CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Generated code" id="1211105284">
+            <message_arguments>
+                <message_argument value="TOOL_CONFIGURATION__FILTER"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/SeparatorConfiguration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfiguration">
+        <filter comment="Generated code" id="403984517">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfiguration"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/StackConfiguration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration">
+        <filter comment="Generated code" id="403984517">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/ToolConfiguration.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration">
+        <filter comment="Generated code" id="403984517">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration"/>
+                <message_argument value="org.eclipse.papyrus.infra.filters.FilteredElement"/>
+                <message_argument value="getFilter()"/>
             </message_arguments>
         </filter>
     </resource>
     <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/impl/ConfigurationImpl.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl">
-        <filter comment="Generated code not meant to be implemented" id="336658481">
+        <filter comment="Generated code detail" id="338849923">
             <message_arguments>
                 <message_argument value="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl"/>
-                <message_argument value="filters"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/util/PaletteconfigurationAdapterFactory.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util.PaletteconfigurationAdapterFactory">
+        <filter comment="Generated code" id="1143996420">
+            <message_arguments>
+                <message_argument value="createFilteredElementAdapter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/gmfdiag/paletteconfiguration/util/PaletteconfigurationSwitch.java" type="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util.PaletteconfigurationSwitch">
+        <filter comment="Generated code" id="1143996420">
+            <message_arguments>
+                <message_argument value="caseFilteredElement(FilteredElement)"/>
             </message_arguments>
         </filter>
     </resource>

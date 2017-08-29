@@ -22,7 +22,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.ToolConfigurationItemProvider;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 
 /**
@@ -47,6 +46,13 @@ public class CustomToolConfigurationItemProvider extends ToolConfigurationItemPr
 	public Collection<?> getChildren(Object object) {
 		return Collections.emptyList();
 	}
+	
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		FilteredElementUtil.collectNewFilters(newChildDescriptors, object);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -61,10 +67,6 @@ public class CustomToolConfigurationItemProvider extends ToolConfigurationItemPr
 
 		return result != null ? result : super.getImage(object);
 	}
-
-
-
-
 
 	/**
 	 * {@inheritDoc}

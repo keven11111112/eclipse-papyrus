@@ -21,18 +21,17 @@ import org.eclipse.uml2.uml.Profile;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.filters.ProfileApplied#getProfileQualifiedName <em>Profile Qualified Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.filters.ProfileApplied#getProfileURI <em>Profile URI</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.filters.UMLFiltersPackage#getProfileApplied()
  * @model
  * @generated
  */
-public interface ProfileApplied extends Filter
-{
+public interface ProfileApplied extends Filter {
 	/**
 	 * Returns the value of the '<em><b>Profile Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

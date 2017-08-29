@@ -12,10 +12,7 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.filters.Filter;
+import org.eclipse.papyrus.infra.filters.FilteredElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,14 +27,13 @@ import org.eclipse.papyrus.infra.filters.Filter;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration#getIcon <em>Icon</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration#getFilters <em>Filters</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getConfiguration()
  * @model abstract="true"
  * @generated
  */
-public interface Configuration extends EObject {
+public interface Configuration extends FilteredElement {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -141,48 +137,5 @@ public interface Configuration extends EObject {
 	 * @generated
 	 */
 	void setIcon(IconDescriptor value);
-
-	/**
-	 * Returns the value of the '<em><b>Filters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.filters.Filter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Filters</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filters</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage#getConfiguration_Filters()
-	 * @model containment="true" ordered="false"
-	 * @generated
-	 * @since 3.1
-	 */
-	EList<Filter> getFilters();
-
-	/**
-	 * Retrieves the first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>' from the '<em><b>Filters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
-	 * @return The first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>', or <code>null</code>.
-	 * @see #getFilters()
-	 * @generated
-	 * @since 3.1
-	 */
-	Filter getFilters(String name);
-
-	/**
-	 * Retrieves the first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>' from the '<em><b>Filters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
-	 * @param ignoreCase Whether to ignore case in {@link java.lang.String} comparisons.
-	 * @param eClass The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
-	 * @return The first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>', or <code>null</code>.
-	 * @see #getFilters()
-	 * @generated
-	 * @since 3.1
-	 */
-	Filter getFilters(String name, boolean ignoreCase, EClass eClass);
 
 } // Configuration

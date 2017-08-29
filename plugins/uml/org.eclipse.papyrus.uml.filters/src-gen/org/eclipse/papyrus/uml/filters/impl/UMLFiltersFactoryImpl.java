@@ -28,8 +28,7 @@ import org.eclipse.papyrus.uml.filters.*;
  *
  * @generated
  */
-public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFactory
-{
+public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -37,17 +36,13 @@ public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFac
 	 *
 	 * @generated
 	 */
-	public static UMLFiltersFactory init()
-	{
-		try
-		{
+	public static UMLFiltersFactory init() {
+		try {
 			UMLFiltersFactory theUMLFiltersFactory = (UMLFiltersFactory) EPackage.Registry.INSTANCE.getEFactory(UMLFiltersPackage.eNS_URI);
-			if (theUMLFiltersFactory != null)
-			{
+			if (theUMLFiltersFactory != null) {
 				return theUMLFiltersFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UMLFiltersFactoryImpl();
@@ -60,8 +55,7 @@ public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFac
 	 *
 	 * @generated
 	 */
-	public UMLFiltersFactoryImpl()
-	{
+	public UMLFiltersFactoryImpl() {
 		super();
 	}
 
@@ -72,10 +66,8 @@ public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFac
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case UMLFiltersPackage.PROFILE_APPLIED:
 			return createProfileApplied();
 		default:
@@ -90,8 +82,7 @@ public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFac
 	 * @generated
 	 */
 	@Override
-	public ProfileApplied createProfileApplied()
-	{
+	public ProfileApplied createProfileApplied() {
 		ProfileAppliedImpl profileApplied = new ProfileAppliedImpl();
 		return profileApplied;
 	}
@@ -103,8 +94,7 @@ public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFac
 	 * @generated
 	 */
 	@Override
-	public UMLFiltersPackage getUMLFiltersPackage()
-	{
+	public UMLFiltersPackage getUMLFiltersPackage() {
 		return (UMLFiltersPackage) getEPackage();
 	}
 
@@ -116,8 +106,7 @@ public class UMLFiltersFactoryImpl extends EFactoryImpl implements UMLFiltersFac
 	 * @generated
 	 */
 	@Deprecated
-	public static UMLFiltersPackage getPackage()
-	{
+	public static UMLFiltersPackage getPackage() {
 		return UMLFiltersPackage.eINSTANCE;
 	}
 

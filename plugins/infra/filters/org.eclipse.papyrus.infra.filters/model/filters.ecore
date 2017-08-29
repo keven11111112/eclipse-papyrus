@@ -48,4 +48,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" ordered="false"
         lowerBound="1" eType="#//Object"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilteredElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" ordered="false"
+        eType="#//Filter" containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

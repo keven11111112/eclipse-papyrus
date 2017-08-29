@@ -12,20 +12,12 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.papyrus.infra.filters.Filter;
+import org.eclipse.papyrus.infra.filters.impl.FilteredElementImpl;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.IconDescriptor;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
@@ -42,12 +34,11 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Paletteconfigurati
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl#getIcon <em>Icon</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.impl.ConfigurationImpl#getFilters <em>Filters</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ConfigurationImpl extends EObjectImpl implements Configuration {
+public abstract class ConfigurationImpl extends FilteredElementImpl implements Configuration {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,17 +108,6 @@ public abstract class ConfigurationImpl extends EObjectImpl implements Configura
 	 * @ordered
 	 */
 	protected IconDescriptor icon;
-
-	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFilters()
-	 * @generated
-	 * @ordered
-	 * @since 3.1
-	 */
-	protected EList<Filter> filters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -259,50 +239,11 @@ public abstract class ConfigurationImpl extends EObjectImpl implements Configura
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Filter> getFilters() {
-		if (filters == null) {
-			filters = new EObjectContainmentEList<Filter>(Filter.class, this, PaletteconfigurationPackage.CONFIGURATION__FILTERS);
-		}
-		return filters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Filter getFilters(String name) {
-		return getFilters(name, false, null);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Filter getFilters(String name, boolean ignoreCase, EClass eClass) {
-		filtersLoop: for (Filter filters : getFilters()) {
-			if (eClass != null && !eClass.isInstance(filters))
-				continue filtersLoop;
-			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(filters.getName()) : name.equals(filters.getName())))
-				continue filtersLoop;
-			return filters;
-		}
-		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case PaletteconfigurationPackage.CONFIGURATION__ICON:
 				return basicSetIcon(null, msgs);
-			case PaletteconfigurationPackage.CONFIGURATION__FILTERS:
-				return ((InternalEList<?>)getFilters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -323,8 +264,6 @@ public abstract class ConfigurationImpl extends EObjectImpl implements Configura
 				return getDescription();
 			case PaletteconfigurationPackage.CONFIGURATION__ICON:
 				return getIcon();
-			case PaletteconfigurationPackage.CONFIGURATION__FILTERS:
-				return getFilters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -334,7 +273,6 @@ public abstract class ConfigurationImpl extends EObjectImpl implements Configura
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -349,10 +287,6 @@ public abstract class ConfigurationImpl extends EObjectImpl implements Configura
 				return;
 			case PaletteconfigurationPackage.CONFIGURATION__ICON:
 				setIcon((IconDescriptor)newValue);
-				return;
-			case PaletteconfigurationPackage.CONFIGURATION__FILTERS:
-				getFilters().clear();
-				getFilters().addAll((Collection<? extends Filter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -378,9 +312,6 @@ public abstract class ConfigurationImpl extends EObjectImpl implements Configura
 			case PaletteconfigurationPackage.CONFIGURATION__ICON:
 				setIcon((IconDescriptor)null);
 				return;
-			case PaletteconfigurationPackage.CONFIGURATION__FILTERS:
-				getFilters().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -401,8 +332,6 @@ public abstract class ConfigurationImpl extends EObjectImpl implements Configura
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case PaletteconfigurationPackage.CONFIGURATION__ICON:
 				return icon != null;
-			case PaletteconfigurationPackage.CONFIGURATION__FILTERS:
-				return filters != null && !filters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

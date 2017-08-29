@@ -8,7 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredProfiles" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Configuration" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration" abstract="true" eSuperTypes="../../org.eclipse.papyrus.infra.filters/model/filters.ecore#//FilteredElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="unique identifier of the configuration, used by the tool to retrieve the configuration&#xA;unique identifier of the configuration, used by the tool to retrieve the configuration"/>
@@ -25,9 +25,6 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="icon" eType="#//IconDescriptor"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" ordered="false"
-        upperBound="-1" eType="ecore:EClass ../../org.eclipse.papyrus.infra.filters/model/filters.ecore#//Filter"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IconDescriptor">

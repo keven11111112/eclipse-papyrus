@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
  *
  * @generated
  */
-public interface AssistantResource extends XMIResource
-{
+public interface AssistantResource extends XMIResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * The factory for '<em><b>assistant</b></em>' resources.

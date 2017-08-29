@@ -14,12 +14,20 @@ package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.*;
+import org.eclipse.papyrus.infra.filters.FilteredElement;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ElementDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.IconDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.LeafConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,6 +124,10 @@ public class PaletteconfigurationAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseSeparatorConfiguration(SeparatorConfiguration object) {
 				return createSeparatorConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseFilteredElement(FilteredElement object) {
+				return createFilteredElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -274,6 +286,20 @@ public class PaletteconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSeparatorConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.filters.FilteredElement <em>Filtered Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.filters.FilteredElement
+	 * @generated
+	 */
+	public Adapter createFilteredElementAdapter() {
 		return null;
 	}
 

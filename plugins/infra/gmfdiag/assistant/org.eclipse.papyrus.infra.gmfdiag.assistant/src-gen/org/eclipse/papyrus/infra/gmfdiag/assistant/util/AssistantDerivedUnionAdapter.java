@@ -32,8 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage
  * @generated
  */
-public class AssistantDerivedUnionAdapter extends AdapterImpl
-{
+public class AssistantDerivedUnionAdapter extends AdapterImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -50,10 +49,8 @@ public class AssistantDerivedUnionAdapter extends AdapterImpl
 	 *
 	 * @generated
 	 */
-	public AssistantDerivedUnionAdapter()
-	{
-		if (modelPackage == null)
-		{
+	public AssistantDerivedUnionAdapter() {
+		if (modelPackage == null) {
 			modelPackage = AssistantPackage.eINSTANCE;
 		}
 	}
@@ -68,14 +65,11 @@ public class AssistantDerivedUnionAdapter extends AdapterImpl
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		Object notifier = notification.getNotifier();
-		if (notifier instanceof EObject)
-		{
+		if (notifier instanceof EObject) {
 			EClass eClass = ((EObject) notifier).eClass();
-			if (eClass.eContainer() == modelPackage)
-			{
+			if (eClass.eContainer() == modelPackage) {
 				notifyChanged(notification, eClass);
 			}
 		}
@@ -92,10 +86,8 @@ public class AssistantDerivedUnionAdapter extends AdapterImpl
 	 *            the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyChanged(Notification notification, EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	protected void notifyChanged(Notification notification, EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER:
 			notifyModelingAssistantProviderChanged(notification, eClass);
 			break;
@@ -121,8 +113,7 @@ public class AssistantDerivedUnionAdapter extends AdapterImpl
 	 *            the derived union affected by the change.
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification, EClass eClass, EStructuralFeature derivedUnion)
-	{
+	public void notifyChanged(Notification notification, EClass eClass, EStructuralFeature derivedUnion) {
 		// Do nothing.
 	}
 
@@ -137,10 +128,8 @@ public class AssistantDerivedUnionAdapter extends AdapterImpl
 	 *            the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyConnectionAssistantChanged(Notification notification, EClass eClass)
-	{
-		switch (notification.getFeatureID(ConnectionAssistant.class))
-		{
+	protected void notifyConnectionAssistantChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ConnectionAssistant.class)) {
 		case AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER:
 			notifyChanged(notification, eClass, AssistantPackage.Literals.ASSISTANT__PROVIDER);
 			break;
@@ -158,10 +147,8 @@ public class AssistantDerivedUnionAdapter extends AdapterImpl
 	 *            the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyModelingAssistantProviderChanged(Notification notification, EClass eClass)
-	{
-		switch (notification.getFeatureID(ModelingAssistantProvider.class))
-		{
+	protected void notifyModelingAssistantProviderChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(ModelingAssistantProvider.class)) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT:
 			notifyChanged(notification, eClass, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT);
 			break;
@@ -182,10 +169,8 @@ public class AssistantDerivedUnionAdapter extends AdapterImpl
 	 *            the Ecore class of the notifier.
 	 * @generated
 	 */
-	protected void notifyPopupAssistantChanged(Notification notification, EClass eClass)
-	{
-		switch (notification.getFeatureID(PopupAssistant.class))
-		{
+	protected void notifyPopupAssistantChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(PopupAssistant.class)) {
 		case AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER:
 			notifyChanged(notification, eClass, AssistantPackage.Literals.ASSISTANT__PROVIDER);
 			break;

@@ -22,19 +22,18 @@ import org.eclipse.papyrus.infra.filters.Equals;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.Filter#matches(java.lang.Object) <em>Matches</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class EqualsOperations
-{
+public class EqualsOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected EqualsOperations() {
@@ -44,11 +43,10 @@ public class EqualsOperations
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
-	public static boolean matches(Equals equals, Object input)
-	{
+	public static boolean matches(Equals equals, Object input) {
 		return Objects.equals(equals.getObject(), input);
 	}
 

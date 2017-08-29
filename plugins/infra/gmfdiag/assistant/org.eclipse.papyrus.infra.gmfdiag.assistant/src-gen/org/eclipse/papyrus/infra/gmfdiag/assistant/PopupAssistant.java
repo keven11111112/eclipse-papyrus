@@ -33,8 +33,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
  * @model
  * @generated
  */
-public interface PopupAssistant extends Assistant
-{
+public interface PopupAssistant extends Assistant {
 	/**
 	 * Returns the value of the '<em><b>Filter</b></em>' reference.
 	 * <!-- begin-user-doc -->

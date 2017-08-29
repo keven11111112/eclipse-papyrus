@@ -39,18 +39,17 @@ import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.impl.CompoundFilterImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.filters.impl.CompoundFilterImpl#getFilters <em>Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.filters.impl.CompoundFilterImpl#getOwnedFilters <em>Owned Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.filters.impl.CompoundFilterImpl#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements CompoundFilter
-{
+public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements CompoundFilter {
 	/**
 	 * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
 	 * <!-- begin-user-doc -->
@@ -163,8 +162,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 *
 	 * @generated
 	 */
-	protected CompoundFilterImpl()
-	{
+	protected CompoundFilterImpl() {
 		super();
 	}
 
@@ -175,8 +173,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return FiltersPackage.Literals.COMPOUND_FILTER;
 	}
 
@@ -187,8 +184,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -199,8 +195,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -216,11 +211,9 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public EList<Filter> getFilters()
-	{
-		if (filters == null)
-		{
-			filters = new SubsetSupersetEObjectResolvingEList<Filter>(Filter.class, this, FiltersPackage.COMPOUND_FILTER__FILTER, null, FILTER_ESUBSETS);
+	public EList<Filter> getFilters() {
+		if (filters == null) {
+			filters = new SubsetSupersetEObjectResolvingEList<>(Filter.class, this, FiltersPackage.COMPOUND_FILTER__FILTER, null, FILTER_ESUBSETS);
 		}
 		return filters;
 	}
@@ -243,8 +236,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Filter getFilter(String name)
-	{
+	public Filter getFilter(String name) {
 		return getFilter(name, false, null);
 	}
 
@@ -255,10 +247,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Filter getFilter(String name, boolean ignoreCase, EClass eClass)
-	{
-		filterLoop: for (Filter filter : getFilters())
-		{
+	public Filter getFilter(String name, boolean ignoreCase, EClass eClass) {
+		filterLoop: for (Filter filter : getFilters()) {
 			if (eClass != null && !eClass.isInstance(filter)) {
 				continue filterLoop;
 			}
@@ -277,11 +267,9 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public EList<Filter> getOwnedFilters()
-	{
-		if (ownedFilters == null)
-		{
-			ownedFilters = new SubsetSupersetEObjectContainmentEList<Filter>(Filter.class, this, FiltersPackage.COMPOUND_FILTER__OWNED_FILTER, OWNED_FILTER_ESUPERSETS, null);
+	public EList<Filter> getOwnedFilters() {
+		if (ownedFilters == null) {
+			ownedFilters = new SubsetSupersetEObjectContainmentEList<>(Filter.class, this, FiltersPackage.COMPOUND_FILTER__OWNED_FILTER, OWNED_FILTER_ESUPERSETS, null);
 		}
 		return ownedFilters;
 	}
@@ -304,8 +292,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Filter createOwnedFilter(String name, EClass eClass)
-	{
+	public Filter createOwnedFilter(String name, EClass eClass) {
 		Filter newOwnedFilter = (Filter) create(eClass);
 		getOwnedFilters().add(newOwnedFilter);
 		if (name != null) {
@@ -321,8 +308,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Filter getOwnedFilter(String name)
-	{
+	public Filter getOwnedFilter(String name) {
 		return getOwnedFilter(name, false, null, false);
 	}
 
@@ -333,10 +319,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Filter getOwnedFilter(String name, boolean ignoreCase, EClass eClass, boolean createOnDemand)
-	{
-		ownedFilterLoop: for (Filter ownedFilter : getOwnedFilters())
-		{
+	public Filter getOwnedFilter(String name, boolean ignoreCase, EClass eClass, boolean createOnDemand) {
+		ownedFilterLoop: for (Filter ownedFilter : getOwnedFilters()) {
 			if (eClass != null && !eClass.isInstance(ownedFilter)) {
 				continue ownedFilterLoop;
 			}
@@ -355,8 +339,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public OperatorKind getOperator()
-	{
+	public OperatorKind getOperator() {
 		return OPERATOR_EFLAG_VALUES[(_flags & OPERATOR_EFLAG) >>> OPERATOR_EFLAG_OFFSET];
 	}
 
@@ -367,8 +350,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setOperator(OperatorKind newOperator)
-	{
+	public void setOperator(OperatorKind newOperator) {
 		OperatorKind oldOperator = OPERATOR_EFLAG_VALUES[(_flags & OPERATOR_EFLAG) >>> OPERATOR_EFLAG_OFFSET];
 		if (newOperator == null) {
 			newOperator = OPERATOR_EDEFAULT;
@@ -386,8 +368,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public boolean matches(Object input)
-	{
+	public boolean matches(Object input) {
 		return CompoundFilterOperations.matches(this, input);
 	}
 
@@ -398,8 +379,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public boolean validateAcyclic(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateAcyclic(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return CompoundFilterOperations.validateAcyclic(this, diagnostics, context);
 	}
 
@@ -410,10 +390,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case FiltersPackage.COMPOUND_FILTER__OWNED_FILTER:
 			return ((InternalEList<?>) getOwnedFilters()).basicRemove(otherEnd, msgs);
 		}
@@ -427,10 +405,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case FiltersPackage.COMPOUND_FILTER__NAME:
 			return getName();
 		case FiltersPackage.COMPOUND_FILTER__FILTER:
@@ -451,10 +427,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case FiltersPackage.COMPOUND_FILTER__NAME:
 			setName((String) newValue);
 			return;
@@ -480,10 +454,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case FiltersPackage.COMPOUND_FILTER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -507,10 +479,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case FiltersPackage.COMPOUND_FILTER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case FiltersPackage.COMPOUND_FILTER__FILTER:
@@ -531,10 +501,8 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
 		case FiltersPackage.COMPOUND_FILTER___MATCHES__OBJECT:
 			return matches(arguments.get(0));
 		case FiltersPackage.COMPOUND_FILTER___VALIDATE_ACYCLIC__DIAGNOSTICCHAIN_MAP:
@@ -550,8 +518,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
@@ -575,8 +542,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 

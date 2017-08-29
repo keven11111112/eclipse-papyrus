@@ -77,8 +77,7 @@ import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
  *
  * @generated
  */
-public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container implements ModelingAssistantProvider
-{
+public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container implements ModelingAssistantProvider {
 	/**
 	 * The cached value of the '{@link #getListeners() <em>Listener</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -217,8 +216,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	protected ModelingAssistantProviderImpl()
-	{
+	protected ModelingAssistantProviderImpl() {
 		super();
 	}
 
@@ -229,8 +227,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER;
 	}
 
@@ -240,11 +237,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	public EList<IProviderChangeListener> getListeners()
-	{
-		if (listeners == null)
-		{
-			listeners = new EDataTypeUniqueEList<IProviderChangeListener>(IProviderChangeListener.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__LISTENER);
+	public EList<IProviderChangeListener> getListeners() {
+		if (listeners == null) {
+			listeners = new EDataTypeUniqueEList<>(IProviderChangeListener.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__LISTENER);
 		}
 		return listeners;
 	}
@@ -256,21 +251,19 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<Assistant> getAssistants()
-	{
+	public EList<Assistant> getAssistants() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Resource eResource = eResource();
 			@SuppressWarnings("unchecked")
 			EList<Assistant> assistants = (EList<Assistant>) cache.get(eResource, this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT);
-			if (assistants == null)
-			{
-				cache.put(eResource, this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT, assistants = new DerivedUnionEObjectEList<Assistant>(Assistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT,
-						ASSISTANT_ESUBSETS));
+			if (assistants == null) {
+				cache.put(eResource, this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT,
+						assistants = new DerivedUnionEObjectEList<>(Assistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT, ASSISTANT_ESUBSETS));
 			}
 			return assistants;
 		}
-		return new DerivedUnionEObjectEList<Assistant>(Assistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT, ASSISTANT_ESUBSETS);
+		return new DerivedUnionEObjectEList<>(Assistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT, ASSISTANT_ESUBSETS);
 	}
 
 	/**
@@ -291,8 +284,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -303,8 +295,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -320,11 +311,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<Filter> getOwnedFilters()
-	{
-		if (ownedFilters == null)
-		{
-			ownedFilters = new EObjectContainmentEList<Filter>(Filter.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER);
+	public EList<Filter> getOwnedFilters() {
+		if (ownedFilters == null) {
+			ownedFilters = new EObjectContainmentEList<>(Filter.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER);
 		}
 		return ownedFilters;
 	}
@@ -336,8 +325,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Filter createOwnedFilter(String name, EClass eClass)
-	{
+	public Filter createOwnedFilter(String name, EClass eClass) {
 		Filter newOwnedFilter = (Filter) create(eClass);
 		getOwnedFilters().add(newOwnedFilter);
 		if (name != null) {
@@ -353,8 +341,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Filter getOwnedFilter(String name)
-	{
+	public Filter getOwnedFilter(String name) {
 		return getOwnedFilter(name, false, null, false);
 	}
 
@@ -365,10 +352,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Filter getOwnedFilter(String name, boolean ignoreCase, EClass eClass, boolean createOnDemand)
-	{
-		ownedFilterLoop: for (Filter ownedFilter : getOwnedFilters())
-		{
+	public Filter getOwnedFilter(String name, boolean ignoreCase, EClass eClass, boolean createOnDemand) {
+		ownedFilterLoop: for (Filter ownedFilter : getOwnedFilters()) {
 			if (eClass != null && !eClass.isInstance(ownedFilter)) {
 				continue ownedFilterLoop;
 			}
@@ -387,11 +372,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<PopupAssistant> getPopupAssistants()
-	{
-		if (popupAssistants == null)
-		{
-			popupAssistants = new EObjectContainmentWithInverseEList<PopupAssistant>(PopupAssistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT, AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER);
+	public EList<PopupAssistant> getPopupAssistants() {
+		if (popupAssistants == null) {
+			popupAssistants = new EObjectContainmentWithInverseEList<>(PopupAssistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT, AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER);
 		}
 		return popupAssistants;
 	}
@@ -403,8 +386,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public PopupAssistant createPopupAssistant()
-	{
+	public PopupAssistant createPopupAssistant() {
 		PopupAssistant newPopupAssistant = (PopupAssistant) create(AssistantPackage.Literals.POPUP_ASSISTANT);
 		getPopupAssistants().add(newPopupAssistant);
 		return newPopupAssistant;
@@ -417,11 +399,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<ConnectionAssistant> getConnectionAssistants()
-	{
-		if (connectionAssistants == null)
-		{
-			connectionAssistants = new EObjectContainmentWithInverseEList<ConnectionAssistant>(ConnectionAssistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT, AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER);
+	public EList<ConnectionAssistant> getConnectionAssistants() {
+		if (connectionAssistants == null) {
+			connectionAssistants = new EObjectContainmentWithInverseEList<>(ConnectionAssistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT, AssistantPackage.CONNECTION_ASSISTANT__OWNING_PROVIDER);
 		}
 		return connectionAssistants;
 	}
@@ -433,8 +413,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public ConnectionAssistant createConnectionAssistant()
-	{
+	public ConnectionAssistant createConnectionAssistant() {
 		ConnectionAssistant newConnectionAssistant = (ConnectionAssistant) create(AssistantPackage.Literals.CONNECTION_ASSISTANT);
 		getConnectionAssistants().add(newConnectionAssistant);
 		return newConnectionAssistant;
@@ -447,15 +426,12 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getElementTypes()
-	{
+	public EList<IElementType> getElementTypes() {
 		CacheAdapter cache = getCacheAdapter();
-		if (cache != null)
-		{
+		if (cache != null) {
 			@SuppressWarnings("unchecked")
 			EList<IElementType> result = (EList<IElementType>) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE);
-			if (result == null)
-			{
+			if (result == null) {
 				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE, result = ModelingAssistantProviderOperations.getElementTypes(this));
 			}
 			return result;
@@ -470,11 +446,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<String> getElementTypeIDs()
-	{
-		if (elementTypeIDs == null)
-		{
-			elementTypeIDs = new SubsetSupersetEDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID, null, ELEMENT_TYPE_ID_ESUBSETS);
+	public EList<String> getElementTypeIDs() {
+		if (elementTypeIDs == null) {
+			elementTypeIDs = new SubsetSupersetEDataTypeUniqueEList<>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID, null, ELEMENT_TYPE_ID_ESUBSETS);
 		}
 		return elementTypeIDs;
 	}
@@ -497,14 +471,11 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public IClientContext getClientContext()
-	{
+	public IClientContext getClientContext() {
 		CacheAdapter cache = getCacheAdapter();
-		if (cache != null)
-		{
+		if (cache != null) {
 			IClientContext result = (IClientContext) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT);
-			if (result == null)
-			{
+			if (result == null) {
 				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT, result = ModelingAssistantProviderOperations.getClientContext(this));
 			}
 			return result;
@@ -519,8 +490,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public String getClientContextID()
-	{
+	public String getClientContextID() {
 		return clientContextID;
 	}
 
@@ -531,8 +501,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void setClientContextID(String newClientContextID)
-	{
+	public void setClientContextID(String newClientContextID) {
 		newClientContextID = newClientContextID == null ? CLIENT_CONTEXT_ID_EDEFAULT : newClientContextID;
 		String oldClientContextID = clientContextID;
 		clientContextID = newClientContextID;
@@ -548,15 +517,12 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getExcludedElementTypes()
-	{
+	public EList<IElementType> getExcludedElementTypes() {
 		CacheAdapter cache = getCacheAdapter();
-		if (cache != null)
-		{
+		if (cache != null) {
 			@SuppressWarnings("unchecked")
 			EList<IElementType> result = (EList<IElementType>) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE);
-			if (result == null)
-			{
+			if (result == null) {
 				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE, result = ModelingAssistantProviderOperations.getExcludedElementTypes(this));
 			}
 			return result;
@@ -571,11 +537,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<String> getExcludedElementTypeIDs()
-	{
-		if (excludedElementTypeIDs == null)
-		{
-			excludedElementTypeIDs = new EDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID);
+	public EList<String> getExcludedElementTypeIDs() {
+		if (excludedElementTypeIDs == null) {
+			excludedElementTypeIDs = new EDataTypeUniqueEList<>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID);
 		}
 		return excludedElementTypeIDs;
 	}
@@ -587,15 +551,12 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getRelationshipTypes()
-	{
+	public EList<IElementType> getRelationshipTypes() {
 		CacheAdapter cache = getCacheAdapter();
-		if (cache != null)
-		{
+		if (cache != null) {
 			@SuppressWarnings("unchecked")
 			EList<IElementType> result = (EList<IElementType>) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE);
-			if (result == null)
-			{
+			if (result == null) {
 				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE, result = ModelingAssistantProviderOperations.getRelationshipTypes(this));
 			}
 			return result;
@@ -610,11 +571,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<String> getRelationshipTypeIDs()
-	{
-		if (relationshipTypeIDs == null)
-		{
-			relationshipTypeIDs = new SubsetSupersetEDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID, RELATIONSHIP_TYPE_ID_ESUPERSETS, null);
+	public EList<String> getRelationshipTypeIDs() {
+		if (relationshipTypeIDs == null) {
+			relationshipTypeIDs = new SubsetSupersetEDataTypeUniqueEList<>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID, RELATIONSHIP_TYPE_ID_ESUPERSETS, null);
 		}
 		return relationshipTypeIDs;
 	}
@@ -637,8 +596,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public boolean provides(IOperation operation)
-	{
+	public boolean provides(IOperation operation) {
 		return ModelingAssistantProviderOperations.provides(this, operation);
 	}
 
@@ -649,8 +607,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void addProviderChangeListener(IProviderChangeListener listener)
-	{
+	public void addProviderChangeListener(IProviderChangeListener listener) {
 		ModelingAssistantProviderOperations.addProviderChangeListener(this, listener);
 	}
 
@@ -661,8 +618,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void removeProviderChangeListener(IProviderChangeListener listener)
-	{
+	public void removeProviderChangeListener(IProviderChangeListener listener) {
 		ModelingAssistantProviderOperations.removeProviderChangeListener(this, listener);
 	}
 
@@ -673,8 +629,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getTypes(String hint, IAdaptable data)
-	{
+	public EList<IElementType> getTypes(String hint, IAdaptable data) {
 		return ModelingAssistantProviderOperations.getTypes(this, hint, data);
 	}
 
@@ -685,8 +640,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getRelTypesOnSource(IAdaptable source)
-	{
+	public EList<IElementType> getRelTypesOnSource(IAdaptable source) {
 		return ModelingAssistantProviderOperations.getRelTypesOnSource(this, source);
 	}
 
@@ -697,8 +651,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getRelTypesOnTarget(IAdaptable target)
-	{
+	public EList<IElementType> getRelTypesOnTarget(IAdaptable target) {
 		return ModelingAssistantProviderOperations.getRelTypesOnTarget(this, target);
 	}
 
@@ -709,8 +662,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target)
-	{
+	public EList<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
 		return ModelingAssistantProviderOperations.getRelTypesOnSourceAndTarget(this, source, target);
 	}
 
@@ -721,8 +673,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getRelTypesForSREOnTarget(IAdaptable target)
-	{
+	public EList<IElementType> getRelTypesForSREOnTarget(IAdaptable target) {
 		return ModelingAssistantProviderOperations.getRelTypesForSREOnTarget(this, target);
 	}
 
@@ -733,8 +684,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getRelTypesForSREOnSource(IAdaptable source)
-	{
+	public EList<IElementType> getRelTypesForSREOnSource(IAdaptable source) {
 		return ModelingAssistantProviderOperations.getRelTypesForSREOnSource(this, source);
 	}
 
@@ -745,8 +695,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getTypesForSource(IAdaptable target, IElementType relationshipType)
-	{
+	public EList<IElementType> getTypesForSource(IAdaptable target, IElementType relationshipType) {
 		return ModelingAssistantProviderOperations.getTypesForSource(this, target, relationshipType);
 	}
 
@@ -757,8 +706,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getTypesForTarget(IAdaptable source, IElementType relationshipType)
-	{
+	public EList<IElementType> getTypesForTarget(IAdaptable source, IElementType relationshipType) {
 		return ModelingAssistantProviderOperations.getTypesForTarget(this, source, relationshipType);
 	}
 
@@ -769,8 +717,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType)
-	{
+	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
 		return ModelingAssistantProviderOperations.selectExistingElementForSource(this, target, relationshipType);
 	}
 
@@ -781,8 +728,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType)
-	{
+	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
 		return ModelingAssistantProviderOperations.selectExistingElementForTarget(this, source, relationshipType);
 	}
 
@@ -793,8 +739,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<IElementType> getTypesForPopupBar(IAdaptable host)
-	{
+	public EList<IElementType> getTypesForPopupBar(IAdaptable host) {
 		return ModelingAssistantProviderOperations.getTypesForPopupBar(this, host);
 	}
 
@@ -805,8 +750,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public IElementType getElementType(String id)
-	{
+	public IElementType getElementType(String id) {
 		return ModelingAssistantProviderOperations.getElementType(this, id);
 	}
 
@@ -817,8 +761,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public boolean isRelationshipType(IElementType elementType)
-	{
+	public boolean isRelationshipType(IElementType elementType) {
 		return ModelingAssistantProviderOperations.isRelationshipType(this, elementType);
 	}
 
@@ -830,10 +773,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPopupAssistants()).basicAdd(otherEnd, msgs);
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT:
@@ -849,10 +790,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER:
 			return ((InternalEList<?>) getOwnedFilters()).basicRemove(otherEnd, msgs);
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT:
@@ -870,10 +809,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__LISTENER:
 			return getListeners();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT:
@@ -914,10 +851,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__LISTENER:
 			getListeners().clear();
 			getListeners().addAll((Collection<? extends IProviderChangeListener>) newValue);
@@ -963,10 +898,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__LISTENER:
 			getListeners().clear();
 			return;
@@ -1005,10 +938,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__LISTENER:
 			return listeners != null && !listeners.isEmpty();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT:
@@ -1048,10 +979,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER___PROVIDES__IOPERATION:
 			return provides((IOperation) arguments.get(0));
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER___ADD_PROVIDER_CHANGE_LISTENER__IPROVIDERCHANGELISTENER:
@@ -1097,8 +1026,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
@@ -1130,8 +1058,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 
@@ -1143,8 +1070,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @return The cache adapter for this '<em><b>Modeling Assistant Provider</b></em>'.
 	 * @generated
 	 */
-	protected CacheAdapter getCacheAdapter()
-	{
+	protected CacheAdapter getCacheAdapter() {
 		return CacheAdapter.getCacheAdapter(this);
 	}
 
@@ -1154,8 +1080,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	public boolean isSetAssistants()
-	{
+	public boolean isSetAssistants() {
 		return eIsSet(AssistantPackage.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT)
 				|| eIsSet(AssistantPackage.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT);
 	}

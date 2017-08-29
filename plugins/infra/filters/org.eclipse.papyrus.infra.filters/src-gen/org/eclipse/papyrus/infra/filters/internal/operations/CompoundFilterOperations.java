@@ -32,16 +32,15 @@ import org.eclipse.papyrus.infra.filters.util.FiltersValidator;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.Filter#matches(java.lang.Object) <em>Matches</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.filters.CompositeFilter#validateAcyclic(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Acyclic</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.filters.CompoundFilter#validateAcyclic(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Acyclic</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class CompoundFilterOperations
-{
+public class CompoundFilterOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,8 +57,7 @@ public class CompoundFilterOperations
 	 *
 	 * @generated NOT
 	 */
-	public static boolean matches(CompoundFilter compoundFilter, Object input)
-	{
+	public static boolean matches(CompoundFilter compoundFilter, Object input) {
 		boolean result;
 
 		switch (compoundFilter.getOperator()) {
@@ -123,8 +121,7 @@ public class CompoundFilterOperations
 	 *            <!-- end-model-doc -->
 	 * @generated NOT
 	 */
-	public static boolean validateAcyclic(final CompoundFilter compoundFilter, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public static boolean validateAcyclic(final CompoundFilter compoundFilter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean result = true;
 
 		Iterator<Filter> allFilters = new AbstractTreeIterator<Filter>(compoundFilter, false) {
@@ -144,13 +141,11 @@ public class CompoundFilterOperations
 		}
 
 		if (!result && (diagnostics != null)) {
-			diagnostics.add
-					(new BasicDiagnostic
-					(Diagnostic.ERROR,
-							FiltersValidator.DIAGNOSTIC_SOURCE,
-							FiltersValidator.COMPOUND_FILTER__ACYCLIC,
-							FiltersPlugin.INSTANCE.getString("_UI_acyclic_diagnostic", new Object[] { EObjectValidator.getObjectLabel(compoundFilter, context) }), //$NON-NLS-1$
-							new Object[] { compoundFilter }));
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					FiltersValidator.DIAGNOSTIC_SOURCE,
+					FiltersValidator.COMPOUND_FILTER__ACYCLIC,
+					FiltersPlugin.INSTANCE.getString("_UI_acyclic_diagnostic", new Object[] { EObjectValidator.getObjectLabel(compoundFilter, context) }), //$NON-NLS-1$
+					new Object[] { compoundFilter }));
 		}
 
 		return result;
