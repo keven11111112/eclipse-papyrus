@@ -62,8 +62,7 @@ public class PopupAssistantItemProvider extends AssistantItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addFilterPropertyDescriptor(object);
@@ -79,36 +78,35 @@ public class PopupAssistantItemProvider extends AssistantItemProvider {
 	 * @generated NOT
 	 */
 	protected void addFilterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PopupAssistant_filter_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_PopupAssistant_filter_feature", "_UI_PopupAssistant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.POPUP_ASSISTANT__FILTER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null) {
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						Set<Object> result = new HashSet<>();
-						PopupAssistant self = (PopupAssistant) object;
+		itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PopupAssistant_filter_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PopupAssistant_filter_feature", "_UI_PopupAssistant_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.POPUP_ASSISTANT__FILTER,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null) {
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				Set<Object> result = new HashSet<>();
+				PopupAssistant self = (PopupAssistant) object;
 
-						if (self.getProvider() != null) {
-							result.addAll(self.getProvider().getOwnedFilters());
-						}
-						result.remove(self.getFilter());
+				if (self.getProvider() != null) {
+					result.addAll(self.getProvider().getOwnedFilters());
+				}
+				result.remove(self.getFilter());
 
-						return result;
-					}
-				});
+				return result;
+			}
+		});
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,8 +115,7 @@ public class PopupAssistantItemProvider extends AssistantItemProvider {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER);
 		}
@@ -158,8 +155,7 @@ public class PopupAssistantItemProvider extends AssistantItemProvider {
 	 * @generated
 	 */
 	@Override
-	protected boolean shouldComposeCreationImage()
-	{
+	protected boolean shouldComposeCreationImage() {
 		return true;
 	}
 
@@ -173,8 +169,7 @@ public class PopupAssistantItemProvider extends AssistantItemProvider {
 	@Override
 	public String getText(Object object) {
 		String label = ((PopupAssistant) object).getElementTypeID();
-		return label == null || label.length() == 0 ?
-				getString("_UI_PopupAssistant_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_PopupAssistant_type") : //$NON-NLS-1$
 				getString("_UI_PopupAssistant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -191,8 +186,7 @@ public class PopupAssistantItemProvider extends AssistantItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PopupAssistant.class))
-		{
+		switch (notification.getFeatureID(PopupAssistant.class)) {
 		case AssistantPackage.POPUP_ASSISTANT__OWNED_FILTER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -212,25 +206,17 @@ public class PopupAssistantItemProvider extends AssistantItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
-						AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
+				AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
-						AssistantFactory.eINSTANCE.createElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
+				AssistantFactory.eINSTANCE.createElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
-						FiltersFactory.eINSTANCE.createCompoundFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
+				FiltersFactory.eINSTANCE.createCompoundFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
-						FiltersFactory.eINSTANCE.createEquals()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.POPUP_ASSISTANT__OWNED_FILTER,
+				FiltersFactory.eINSTANCE.createEquals()));
 	}
 
 	/**

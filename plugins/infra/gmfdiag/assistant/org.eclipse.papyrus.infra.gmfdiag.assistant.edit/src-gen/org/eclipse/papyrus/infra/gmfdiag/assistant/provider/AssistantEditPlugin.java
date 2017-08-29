@@ -54,8 +54,7 @@ public final class AssistantEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public AssistantEditPlugin() {
-		super(new ResourceLocator[]
-		{
+		super(new ResourceLocator[] {
 				EcoreEditPlugin.INSTANCE,
 				FiltersEditPlugin.INSTANCE,
 		});

@@ -51,8 +51,7 @@ public class AssistedElementTypeFilterItemProvider
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
-		IItemPropertySource
-{
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -60,8 +59,7 @@ public class AssistedElementTypeFilterItemProvider
 	 *
 	 * @generated
 	 */
-	public AssistedElementTypeFilterItemProvider(AdapterFactory adapterFactory)
-	{
+	public AssistedElementTypeFilterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -73,10 +71,8 @@ public class AssistedElementTypeFilterItemProvider
 	 * @generated
 	 */
 	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -92,21 +88,18 @@ public class AssistedElementTypeFilterItemProvider
 	 *
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Filter_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						FiltersPackage.Literals.FILTER__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Filter_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				FiltersPackage.Literals.FILTER__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -116,21 +109,18 @@ public class AssistedElementTypeFilterItemProvider
 	 *
 	 * @generated
 	 */
-	protected void addProviderPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AssistedElementTypeFilter_provider_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AssistedElementTypeFilter_provider_feature", "_UI_AssistedElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.ASSISTED_ELEMENT_TYPE_FILTER__PROVIDER,
-						false,
-						false,
-						false,
-						null,
-						null,
-						null));
+	protected void addProviderPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AssistedElementTypeFilter_provider_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_AssistedElementTypeFilter_provider_feature", "_UI_AssistedElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.ASSISTED_ELEMENT_TYPE_FILTER__PROVIDER,
+				false,
+				false,
+				false,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -141,8 +131,7 @@ public class AssistedElementTypeFilterItemProvider
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/AssistedElementTypeFilter")); //$NON-NLS-1$
 	}
 
@@ -153,8 +142,7 @@ public class AssistedElementTypeFilterItemProvider
 	 * @generated
 	 */
 	@Override
-	protected boolean shouldComposeCreationImage()
-	{
+	protected boolean shouldComposeCreationImage() {
 		return true;
 	}
 
@@ -166,11 +154,9 @@ public class AssistedElementTypeFilterItemProvider
 	 * @generated
 	 */
 	@Override
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((AssistedElementTypeFilter) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_AssistedElementTypeFilter_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_AssistedElementTypeFilter_type") : //$NON-NLS-1$
 				getString("_UI_AssistedElementTypeFilter_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -184,12 +170,10 @@ public class AssistedElementTypeFilterItemProvider
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AssistedElementTypeFilter.class))
-		{
+		switch (notification.getFeatureID(AssistedElementTypeFilter.class)) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER__NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
@@ -206,8 +190,7 @@ public class AssistedElementTypeFilterItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -219,8 +202,7 @@ public class AssistedElementTypeFilterItemProvider
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 

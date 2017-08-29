@@ -35,8 +35,7 @@ import org.eclipse.papyrus.infra.filters.FiltersPackage;
  *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='umlfilters'"
  * @generated
  */
-public interface UMLFiltersPackage extends EPackage
-{
+public interface UMLFiltersPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -225,8 +224,7 @@ public interface UMLFiltersPackage extends EPackage
 	 *
 	 * @generated
 	 */
-	interface Literals
-	{
+	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.filters.impl.ProfileAppliedImpl <em>Profile Applied</em>}' class.
 		 * <!-- begin-user-doc -->

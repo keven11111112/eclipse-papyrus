@@ -33,8 +33,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
  * @model
  * @generated
  */
-public interface ElementTypeFilter extends Filter
-{
+public interface ElementTypeFilter extends Filter {
 	/**
 	 * Returns the value of the '<em><b>Element Type ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->

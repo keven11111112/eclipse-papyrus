@@ -73,10 +73,10 @@ import com.google.common.collect.Sets;
  * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getRelTypesForSREOnSource(org.eclipse.core.runtime.IAdaptable) <em>Get Rel Types For SRE On Source</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForSource(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Get Types For Source</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForTarget(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Get Types For Target</em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#selectExistingElementForSource(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Select Existing Element For Source
- * </em>}</li>
- * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#selectExistingElementForTarget(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Select Existing Element For Target
- * </em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#selectExistingElementForSource(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Select Existing Element For
+ * Source</em>}</li>
+ * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#selectExistingElementForTarget(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Select Existing Element For
+ * Target</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForPopupBar(org.eclipse.core.runtime.IAdaptable) <em>Get Types For Popup Bar</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementTypes() <em>Get Element Types</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getClientContext() <em>Get Client Context</em>}</li>
@@ -88,8 +88,7 @@ import com.google.common.collect.Sets;
  *
  * @generated
  */
-public class ModelingAssistantProviderOperations
-{
+public class ModelingAssistantProviderOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,8 +105,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static boolean provides(ModelingAssistantProvider modelingAssistantProvider, IOperation operation)
-	{
+	public static boolean provides(ModelingAssistantProvider modelingAssistantProvider, IOperation operation) {
 		boolean result = false;
 
 		switch (((IModelingAssistantOperation) operation).getId()) {
@@ -130,8 +128,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static void addProviderChangeListener(ModelingAssistantProvider modelingAssistantProvider, IProviderChangeListener listener)
-	{
+	public static void addProviderChangeListener(ModelingAssistantProvider modelingAssistantProvider, IProviderChangeListener listener) {
 		((ModelingAssistantProviderImpl) modelingAssistantProvider).getListeners().add(listener);
 	}
 
@@ -141,8 +138,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static void removeProviderChangeListener(ModelingAssistantProvider modelingAssistantProvider, IProviderChangeListener listener)
-	{
+	public static void removeProviderChangeListener(ModelingAssistantProvider modelingAssistantProvider, IProviderChangeListener listener) {
 		((ModelingAssistantProviderImpl) modelingAssistantProvider).getListeners().remove(listener);
 	}
 
@@ -152,8 +148,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated
 	 */
-	public static EList<IElementType> getTypes(ModelingAssistantProvider modelingAssistantProvider, String hint, IAdaptable data)
-	{
+	public static EList<IElementType> getTypes(ModelingAssistantProvider modelingAssistantProvider, String hint, IAdaptable data) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -165,8 +160,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getRelTypesOnSource(final ModelingAssistantProvider modelingAssistantProvider, IAdaptable source)
-	{
+	public static EList<IElementType> getRelTypesOnSource(final ModelingAssistantProvider modelingAssistantProvider, IAdaptable source) {
 		ProviderCache<IAdaptable, EList<IElementType>> cache = ProviderCache.getCache(modelingAssistantProvider, GetRelTypesOnSourceOperation.class);
 		if (cache == null) {
 			cache = ProviderCache.cache(modelingAssistantProvider, GetRelTypesOnSourceOperation.class, new Function<IAdaptable, EList<IElementType>>() {
@@ -197,8 +191,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getRelTypesOnTarget(final ModelingAssistantProvider modelingAssistantProvider, IAdaptable target)
-	{
+	public static EList<IElementType> getRelTypesOnTarget(final ModelingAssistantProvider modelingAssistantProvider, IAdaptable target) {
 		ProviderCache<IAdaptable, EList<IElementType>> cache = ProviderCache.getCache(modelingAssistantProvider, GetRelTypesOnTargetOperation.class);
 		if (cache == null) {
 			cache = ProviderCache.cache(modelingAssistantProvider, GetRelTypesOnTargetOperation.class, new Function<IAdaptable, EList<IElementType>>() {
@@ -229,8 +222,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getRelTypesOnSourceAndTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source, IAdaptable target)
-	{
+	public static EList<IElementType> getRelTypesOnSourceAndTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source, IAdaptable target) {
 		Set<IElementType> result = Sets.newLinkedHashSet();
 
 		for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
@@ -252,8 +244,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated
 	 */
-	public static EList<IElementType> getRelTypesForSREOnTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable target)
-	{
+	public static EList<IElementType> getRelTypesForSREOnTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable target) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -265,8 +256,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated
 	 */
-	public static EList<IElementType> getRelTypesForSREOnSource(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source)
-	{
+	public static EList<IElementType> getRelTypesForSREOnSource(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -278,8 +268,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getTypesForSource(ModelingAssistantProvider modelingAssistantProvider, IAdaptable target, IElementType relationshipType)
-	{
+	public static EList<IElementType> getTypesForSource(ModelingAssistantProvider modelingAssistantProvider, IAdaptable target, IElementType relationshipType) {
 		Set<IElementType> types = Sets.newLinkedHashSet();
 
 		// In case we had to create a proxy for diagram-specific hinted types that are not modeled
@@ -320,8 +309,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getTypesForTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source, IElementType relationshipType)
-	{
+	public static EList<IElementType> getTypesForTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source, IElementType relationshipType) {
 		Set<IElementType> types = Sets.newLinkedHashSet();
 
 		// In case we had to create a proxy for diagram-specific hinted types that are not modeled
@@ -362,8 +350,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated
 	 */
-	public static EObject selectExistingElementForSource(ModelingAssistantProvider modelingAssistantProvider, IAdaptable target, IElementType relationshipType)
-	{
+	public static EObject selectExistingElementForSource(ModelingAssistantProvider modelingAssistantProvider, IAdaptable target, IElementType relationshipType) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -375,8 +362,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated
 	 */
-	public static EObject selectExistingElementForTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source, IElementType relationshipType)
-	{
+	public static EObject selectExistingElementForTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source, IElementType relationshipType) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -388,8 +374,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getTypesForPopupBar(final ModelingAssistantProvider modelingAssistantProvider, IAdaptable host)
-	{
+	public static EList<IElementType> getTypesForPopupBar(final ModelingAssistantProvider modelingAssistantProvider, IAdaptable host) {
 		ProviderCache<IAdaptable, EList<IElementType>> cache = ProviderCache.getCache(modelingAssistantProvider, GetTypesForPopupBarOperation.class);
 		if (cache == null) {
 			cache = ProviderCache.cache(modelingAssistantProvider, GetTypesForPopupBarOperation.class, new Function<IAdaptable, EList<IElementType>>() {
@@ -448,8 +433,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getElementTypes(ModelingAssistantProvider modelingAssistantProvider)
-	{
+	public static EList<IElementType> getElementTypes(ModelingAssistantProvider modelingAssistantProvider) {
 		Set<IElementType> types = Sets.newLinkedHashSet();
 		for (String next : modelingAssistantProvider.getElementTypeIDs()) {
 			IElementType type = modelingAssistantProvider.getElementType(next);
@@ -469,8 +453,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static IClientContext getClientContext(ModelingAssistantProvider modelingAssistantProvider)
-	{
+	public static IClientContext getClientContext(ModelingAssistantProvider modelingAssistantProvider) {
 		IClientContext result = null;
 
 		if (modelingAssistantProvider.getClientContextID() != null) {
@@ -494,8 +477,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static IElementType getElementType(ModelingAssistantProvider modelingAssistantProvider, String id)
-	{
+	public static IElementType getElementType(ModelingAssistantProvider modelingAssistantProvider, String id) {
 		IElementType result = null;
 
 		// First, try metamodel types
@@ -525,8 +507,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getExcludedElementTypes(ModelingAssistantProvider modelingAssistantProvider)
-	{
+	public static EList<IElementType> getExcludedElementTypes(ModelingAssistantProvider modelingAssistantProvider) {
 		Set<IElementType> types = Sets.newLinkedHashSet();
 		for (String next : modelingAssistantProvider.getExcludedElementTypeIDs()) {
 			IElementType type = modelingAssistantProvider.getElementType(next);
@@ -546,8 +527,7 @@ public class ModelingAssistantProviderOperations
 	 *
 	 * @generated NOT
 	 */
-	public static EList<IElementType> getRelationshipTypes(ModelingAssistantProvider modelingAssistantProvider)
-	{
+	public static EList<IElementType> getRelationshipTypes(ModelingAssistantProvider modelingAssistantProvider) {
 		Set<IElementType> types = Sets.newLinkedHashSet();
 		for (String next : modelingAssistantProvider.getRelationshipTypeIDs()) {
 			IElementType type = modelingAssistantProvider.getElementType(next);
@@ -568,8 +548,7 @@ public class ModelingAssistantProviderOperations
 	 * @generated NOT
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean isRelationshipType(ModelingAssistantProvider modelingAssistantProvider, IElementType elementType)
-	{
+	public static boolean isRelationshipType(ModelingAssistantProvider modelingAssistantProvider, IElementType elementType) {
 		Set<IElementType> relationshipTypes;
 		CacheAdapter cache = CacheAdapter.getCacheAdapter(modelingAssistantProvider);
 		if (cache == null) {

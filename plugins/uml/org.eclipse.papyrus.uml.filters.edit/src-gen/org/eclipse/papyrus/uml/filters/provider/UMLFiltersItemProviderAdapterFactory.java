@@ -42,6 +42,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.papyrus.infra.filters.CompoundFilter;
+import org.eclipse.papyrus.infra.filters.FilteredElement;
 import org.eclipse.papyrus.infra.filters.FiltersPackage;
 
 import org.eclipse.papyrus.infra.filters.util.FiltersSwitch;
@@ -97,7 +98,7 @@ public class UMLFiltersItemProviderAdapterFactory extends UMLFiltersAdapterFacto
 	 *
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -132,8 +133,7 @@ public class UMLFiltersItemProviderAdapterFactory extends UMLFiltersAdapterFacto
 	 */
 	@Override
 	public Adapter createProfileAppliedAdapter() {
-		if (profileAppliedItemProvider == null)
-		{
+		if (profileAppliedItemProvider == null) {
 			profileAppliedItemProvider = new ProfileAppliedItemProvider(this);
 		}
 
@@ -195,11 +195,9 @@ public class UMLFiltersItemProviderAdapterFactory extends UMLFiltersAdapterFacto
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type))
-		{
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter)))
-			{
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -274,8 +272,7 @@ public class UMLFiltersItemProviderAdapterFactory extends UMLFiltersAdapterFacto
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null)
-		{
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -350,10 +347,22 @@ public class UMLFiltersItemProviderAdapterFactory extends UMLFiltersAdapterFacto
 			 */
 			@Override
 			public Object caseCompoundFilter(CompoundFilter object) {
-				newChildDescriptors.add
-						(createChildParameter
-						(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
-								UMLFiltersFactory.eINSTANCE.createProfileApplied()));
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
+						UMLFiltersFactory.eINSTANCE.createProfileApplied()));
+
+				return null;
+			}
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 *
+			 * @generated
+			 */
+			@Override
+			public Object caseFilteredElement(FilteredElement object) {
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.FILTERED_ELEMENT__FILTER,
+						UMLFiltersFactory.eINSTANCE.createProfileApplied()));
 
 				return null;
 			}
@@ -378,7 +387,7 @@ public class UMLFiltersItemProviderAdapterFactory extends UMLFiltersAdapterFacto
 		 */
 		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-			ArrayList<Object> result = new ArrayList<Object>();
+			ArrayList<Object> result = new ArrayList<>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}

@@ -47,8 +47,7 @@ import org.eclipse.uml2.common.util.CacheAdapter;
  *
  * @generated
  */
-public abstract class AssistantImpl extends MinimalEObjectImpl.Container implements Assistant
-{
+public abstract class AssistantImpl extends MinimalEObjectImpl.Container implements Assistant {
 	/**
 	 * The default value of the '{@link #getElementTypeID() <em>Element Type ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,8 +87,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 *
 	 * @generated
 	 */
-	protected AssistantImpl()
-	{
+	protected AssistantImpl() {
 		super();
 	}
 
@@ -100,8 +98,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return AssistantPackage.Literals.ASSISTANT;
 	}
 
@@ -112,8 +109,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public String getElementTypeID()
-	{
+	public String getElementTypeID() {
 		return elementTypeID;
 	}
 
@@ -124,8 +120,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setElementTypeID(String newElementTypeID)
-	{
+	public void setElementTypeID(String newElementTypeID) {
 		newElementTypeID = newElementTypeID == null ? ELEMENT_TYPE_ID_EDEFAULT : newElementTypeID;
 		String oldElementTypeID = elementTypeID;
 		elementTypeID = newElementTypeID;
@@ -141,14 +136,11 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public IElementType getElementType()
-	{
+	public IElementType getElementType() {
 		CacheAdapter cache = getCacheAdapter();
-		if (cache != null)
-		{
+		if (cache != null) {
 			IElementType result = (IElementType) cache.get(eResource(), this, AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE);
-			if (result == null)
-			{
+			if (result == null) {
 				cache.put(eResource(), this, AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE, result = AssistantOperations.getElementType(this));
 			}
 			return result;
@@ -163,8 +155,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider getProvider()
-	{
+	public ModelingAssistantProvider getProvider() {
 		ModelingAssistantProvider provider = basicGetProvider();
 		return provider != null && provider.eIsProxy() ? (ModelingAssistantProvider) eResolveProxy((InternalEObject) provider) : provider;
 	}
@@ -175,8 +166,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 *
 	 * @generated
 	 */
-	public ModelingAssistantProvider basicGetProvider()
-	{
+	public ModelingAssistantProvider basicGetProvider() {
 		return null;
 	}
 
@@ -187,10 +177,8 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTANT__PROVIDER:
 			if (resolve) {
 				return getProvider();
@@ -211,10 +199,8 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTANT__ELEMENT_TYPE_ID:
 			setElementTypeID((String) newValue);
 			return;
@@ -229,10 +215,8 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTANT__ELEMENT_TYPE_ID:
 			setElementTypeID(ELEMENT_TYPE_ID_EDEFAULT);
 			return;
@@ -247,10 +231,8 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTANT__PROVIDER:
 			return isSetProvider();
 		case AssistantPackage.ASSISTANT__ELEMENT_TYPE_ID:
@@ -268,8 +250,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
@@ -291,8 +272,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 
@@ -304,8 +284,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 * @return The cache adapter for this '<em><b>Assistant</b></em>'.
 	 * @generated
 	 */
-	protected CacheAdapter getCacheAdapter()
-	{
+	protected CacheAdapter getCacheAdapter() {
 		return CacheAdapter.getCacheAdapter(this);
 	}
 
@@ -315,8 +294,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 *
 	 * @generated
 	 */
-	public boolean isSetProvider()
-	{
+	public boolean isSetProvider() {
 		return false;
 	}
 

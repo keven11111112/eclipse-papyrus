@@ -33,11 +33,11 @@ import com.google.common.base.Strings;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.Filter#matches(java.lang.Object) <em>Matches</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.filters.ProfileApplied#resolveProfile(java.lang.Object) <em>Resolve Profile</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,12 +92,12 @@ public class ProfileAppliedOperations {
 	/**
 	 * Determines whether the first-level filter of a qualified profile name matches
 	 * an applied profile, enabling the second-level identity filter.
-	 * 
+	 *
 	 * @param qualifiedName
 	 *            the profile qualified name, or {@code null} if the filter has none
 	 * @param profile
 	 *            an applied profile, which may be a {@linkplain EObject#eIsProxy() proxy} if not resolved
-	 * 
+	 *
 	 * @return whether the {@code profile} matches the expected qualified name, or there is
 	 *         no expected qualified name
 	 */
@@ -116,7 +116,7 @@ public class ProfileAppliedOperations {
 	/**
 	 * Determines whether the second-level filter of a profile object URI matches an
 	 * applied profile.
-	 * 
+	 *
 	 * @param expectedURI
 	 *            the object URI of the profile that is expected to be applied
 	 * @param profile
@@ -124,7 +124,7 @@ public class ProfileAppliedOperations {
 	 *            but may be an {@linkplain EObject#eIsProxy() unresolved proxy}
 	 * @param context
 	 *            the resource set context in which URIs are to be resolved
-	 * 
+	 *
 	 * @return whether the applied {@code profile} actually is the expected one
 	 */
 	protected static boolean match(URI expectedURI, Profile profile, ResourceSet context) {

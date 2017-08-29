@@ -29,8 +29,7 @@ import org.eclipse.papyrus.infra.filters.*;
  *
  * @generated
  */
-public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
-{
+public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -38,17 +37,13 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 *
 	 * @generated
 	 */
-	public static FiltersFactory init()
-	{
-		try
-		{
+	public static FiltersFactory init() {
+		try {
 			FiltersFactory theFiltersFactory = (FiltersFactory) EPackage.Registry.INSTANCE.getEFactory(FiltersPackage.eNS_URI);
-			if (theFiltersFactory != null)
-			{
+			if (theFiltersFactory != null) {
 				return theFiltersFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new FiltersFactoryImpl();
@@ -61,8 +56,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 *
 	 * @generated
 	 */
-	public FiltersFactoryImpl()
-	{
+	public FiltersFactoryImpl() {
 		super();
 	}
 
@@ -73,14 +67,14 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case FiltersPackage.COMPOUND_FILTER:
 			return createCompoundFilter();
 		case FiltersPackage.EQUALS:
 			return createEquals();
+		case FiltersPackage.FILTERED_ELEMENT:
+			return createFilteredElement();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -93,10 +87,8 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
 		case FiltersPackage.OPERATOR_KIND:
 			return createOperatorKindFromString(eDataType, initialValue);
 		case FiltersPackage.OBJECT:
@@ -113,10 +105,8 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 * @generated
 	 */
 	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
 		case FiltersPackage.OPERATOR_KIND:
 			return convertOperatorKindToString(eDataType, instanceValue);
 		case FiltersPackage.OBJECT:
@@ -133,8 +123,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 * @generated
 	 */
 	@Override
-	public CompoundFilter createCompoundFilter()
-	{
+	public CompoundFilter createCompoundFilter() {
 		CompoundFilterImpl compoundFilter = new CompoundFilterImpl();
 		return compoundFilter;
 	}
@@ -146,8 +135,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 * @generated
 	 */
 	@Override
-	public Equals createEquals()
-	{
+	public Equals createEquals() {
 		EqualsImpl equals = new EqualsImpl();
 		return equals;
 	}
@@ -158,8 +146,19 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 *
 	 * @generated
 	 */
-	public OperatorKind createOperatorKindFromString(EDataType eDataType, String initialValue)
-	{
+	@Override
+	public FilteredElement createFilteredElement() {
+		FilteredElementImpl filteredElement = new FilteredElementImpl();
+		return filteredElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public OperatorKind createOperatorKindFromString(EDataType eDataType, String initialValue) {
 		OperatorKind result = OperatorKind.get(initialValue);
 		if (result == null)
 		 {
@@ -174,8 +173,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 *
 	 * @generated
 	 */
-	public String convertOperatorKindToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertOperatorKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -185,8 +183,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 *
 	 * @generated
 	 */
-	public Object createObjectFromString(EDataType eDataType, String initialValue)
-	{
+	public Object createObjectFromString(EDataType eDataType, String initialValue) {
 		return super.createFromString(eDataType, initialValue);
 	}
 
@@ -196,8 +193,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 *
 	 * @generated
 	 */
-	public String convertObjectToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertObjectToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -208,8 +204,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 * @generated
 	 */
 	@Override
-	public FiltersPackage getFiltersPackage()
-	{
+	public FiltersPackage getFiltersPackage() {
 		return (FiltersPackage) getEPackage();
 	}
 
@@ -221,8 +216,7 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory
 	 * @generated
 	 */
 	@Deprecated
-	public static FiltersPackage getPackage()
-	{
+	public static FiltersPackage getPackage() {
 		return FiltersPackage.eINSTANCE;
 	}
 

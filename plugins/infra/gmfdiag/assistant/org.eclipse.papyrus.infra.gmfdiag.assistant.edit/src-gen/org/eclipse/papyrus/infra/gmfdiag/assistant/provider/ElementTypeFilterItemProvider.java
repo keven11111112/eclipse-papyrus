@@ -61,8 +61,7 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -80,21 +79,18 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	 *
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Filter_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						FiltersPackage.Literals.FILTER__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Filter_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				FiltersPackage.Literals.FILTER__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -105,19 +101,17 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	 * @generated
 	 */
 	protected void addElementTypeIDPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ElementTypeFilter_elementTypeID_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ElementTypeFilter_elementTypeID_feature", "_UI_ElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE_ID,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ElementTypeFilter_elementTypeID_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ElementTypeFilter_elementTypeID_feature", "_UI_ElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE_ID,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -128,20 +122,19 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	 * @generated
 	 */
 	protected void addElementTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ElementTypeFilter_elementType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ElementTypeFilter_elementType_feature", "_UI_ElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						new String[] { "org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
-						}));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ElementTypeFilter_elementType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ElementTypeFilter_elementType_feature", "_UI_ElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				new String[] {
+						"org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
+				}));
 	}
 
 	/**
@@ -151,21 +144,18 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	 *
 	 * @generated
 	 */
-	protected void addProviderPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ElementTypeFilter_provider_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ElementTypeFilter_provider_feature", "_UI_ElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.ELEMENT_TYPE_FILTER__PROVIDER,
-						false,
-						false,
-						false,
-						null,
-						null,
-						null));
+	protected void addProviderPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ElementTypeFilter_provider_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ElementTypeFilter_provider_feature", "_UI_ElementTypeFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.ELEMENT_TYPE_FILTER__PROVIDER,
+				false,
+				false,
+				false,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -187,8 +177,7 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	 * @generated
 	 */
 	@Override
-	protected boolean shouldComposeCreationImage()
-	{
+	protected boolean shouldComposeCreationImage() {
 		return true;
 	}
 
@@ -202,8 +191,7 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	@Override
 	public String getText(Object object) {
 		String label = ((ElementTypeFilter) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ElementTypeFilter_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_ElementTypeFilter_type") : //$NON-NLS-1$
 				getString("_UI_ElementTypeFilter_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -220,8 +208,7 @@ public class ElementTypeFilterItemProvider extends ItemProviderAdapter implement
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ElementTypeFilter.class))
-		{
+		switch (notification.getFeatureID(ElementTypeFilter.class)) {
 		case AssistantPackage.ELEMENT_TYPE_FILTER__NAME:
 		case AssistantPackage.ELEMENT_TYPE_FILTER__ELEMENT_TYPE_ID:
 		case AssistantPackage.ELEMENT_TYPE_FILTER__ELEMENT_TYPE:

@@ -56,6 +56,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.gef.ui.internal.palette.PaletteStack;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.infra.filters.Filter;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
@@ -193,7 +194,8 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		// on diagrams. So... just test on both.
 		// Edit parts don't make sense either, because the palette is global to the diagram. 
 		//Moreover, the palette is created before the EditParts, so we don't always have them.
-		return paletteElement.getFilters().stream().allMatch(f -> f.matches(diagram) || f.matches(diagram.getElement()));
+		Filter filter = paletteElement.getFilter();
+		return filter == null ? true : filter.matches(diagram) || filter.matches(diagram.getElement());
 	}
 
 	/**

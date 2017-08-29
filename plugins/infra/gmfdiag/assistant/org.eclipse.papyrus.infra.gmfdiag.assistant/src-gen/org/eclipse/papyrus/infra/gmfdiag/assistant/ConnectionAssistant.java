@@ -35,8 +35,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
  * @model
  * @generated
  */
-public interface ConnectionAssistant extends Assistant
-{
+public interface ConnectionAssistant extends Assistant {
 	/**
 	 * Returns the value of the '<em><b>Owning Provider</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getConnectionAssistants <em>Connection Assistant</em>}'.

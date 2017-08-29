@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.SeparatorConfigurationItemProvider;
 
 /**
  * Custom Item provider for SeparatorConfiguration.
@@ -41,6 +40,13 @@ public class CustomSeparatorConfigurationItemProvider extends SeparatorConfigura
 	public Collection<?> getChildren(Object object) {
 		// separator don't have child
 		return Collections.emptyList();
+	}
+
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		FilteredElementUtil.collectNewFilters(newChildDescriptors, object);
 	}
 
 	/**

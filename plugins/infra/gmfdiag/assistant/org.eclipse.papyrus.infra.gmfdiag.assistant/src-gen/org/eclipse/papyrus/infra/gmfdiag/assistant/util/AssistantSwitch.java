@@ -35,8 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.*;
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage
  * @generated
  */
-public class AssistantSwitch<T> extends Switch<T>
-{
+public class AssistantSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -53,10 +52,8 @@ public class AssistantSwitch<T> extends Switch<T>
 	 *
 	 * @generated
 	 */
-	public AssistantSwitch()
-	{
-		if (modelPackage == null)
-		{
+	public AssistantSwitch() {
+		if (modelPackage == null) {
 			modelPackage = AssistantPackage.eINSTANCE;
 		}
 	}
@@ -72,8 +69,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -86,10 +82,8 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
-	{
-		switch (classifierID)
-		{
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER: {
 			AssistedElementTypeFilter assistedElementTypeFilter = (AssistedElementTypeFilter) theEObject;
 			T result = caseAssistedElementTypeFilter(assistedElementTypeFilter);
@@ -193,8 +187,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAssistedElementTypeFilter(AssistedElementTypeFilter object)
-	{
+	public T caseAssistedElementTypeFilter(AssistedElementTypeFilter object) {
 		return null;
 	}
 
@@ -211,8 +204,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelingAssistantProvider(ModelingAssistantProvider object)
-	{
+	public T caseModelingAssistantProvider(ModelingAssistantProvider object) {
 		return null;
 	}
 
@@ -229,8 +221,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAssistant(Assistant object)
-	{
+	public T caseAssistant(Assistant object) {
 		return null;
 	}
 
@@ -247,8 +238,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIModelingAssistantProvider(IModelingAssistantProvider object)
-	{
+	public T caseIModelingAssistantProvider(IModelingAssistantProvider object) {
 		return null;
 	}
 
@@ -265,8 +255,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIProvider(IProvider object)
-	{
+	public T caseIProvider(IProvider object) {
 		return null;
 	}
 
@@ -283,8 +272,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConnectionAssistant(ConnectionAssistant object)
-	{
+	public T caseConnectionAssistant(ConnectionAssistant object) {
 		return null;
 	}
 
@@ -301,8 +289,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePopupAssistant(PopupAssistant object)
-	{
+	public T casePopupAssistant(PopupAssistant object) {
 		return null;
 	}
 
@@ -319,8 +306,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElementTypeFilter(ElementTypeFilter object)
-	{
+	public T caseElementTypeFilter(ElementTypeFilter object) {
 		return null;
 	}
 
@@ -337,8 +323,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFilter(Filter object)
-	{
+	public T caseFilter(Filter object) {
 		return null;
 	}
 
@@ -356,8 +341,7 @@ public class AssistantSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
-	{
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

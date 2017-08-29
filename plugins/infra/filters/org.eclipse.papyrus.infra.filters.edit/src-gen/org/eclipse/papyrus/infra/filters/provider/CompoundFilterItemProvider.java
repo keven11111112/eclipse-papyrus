@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.filters.FiltersFactory;
 import org.eclipse.papyrus.infra.filters.FiltersPackage;
 import org.eclipse.uml2.common.edit.command.SubsetAddCommand;
 import org.eclipse.uml2.common.edit.command.SubsetSupersetReplaceCommand;
+import org.eclipse.uml2.common.edit.command.SubsetSupersetSetCommand;
 import org.eclipse.uml2.common.edit.command.SupersetRemoveCommand;
 
 /**
@@ -68,8 +69,7 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -86,21 +86,18 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	 *
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Filter_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						FiltersPackage.Literals.FILTER__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Filter_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Filter_name_feature", "_UI_Filter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				FiltersPackage.Literals.FILTER__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -110,21 +107,18 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	 *
 	 * @generated
 	 */
-	protected void addFilterPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CompoundFilter_filter_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_CompoundFilter_filter_feature", "_UI_CompoundFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						FiltersPackage.Literals.COMPOUND_FILTER__FILTER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+	protected void addFilterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CompoundFilter_filter_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_CompoundFilter_filter_feature", "_UI_CompoundFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				FiltersPackage.Literals.COMPOUND_FILTER__FILTER,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -135,23 +129,22 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	protected void addOperatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CompoundFilter_operator_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_CompoundFilter_operator_feature", "_UI_CompoundFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						FiltersPackage.Literals.COMPOUND_FILTER__OPERATOR,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CompoundFilter_operator_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_CompoundFilter_operator_feature", "_UI_CompoundFilter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				FiltersPackage.Literals.COMPOUND_FILTER__OPERATOR,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,8 +153,7 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER);
 		}
@@ -201,8 +193,7 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	@Override
-	protected boolean shouldComposeCreationImage()
-	{
+	protected boolean shouldComposeCreationImage() {
 		return true;
 	}
 
@@ -216,8 +207,7 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object) {
 		String label = ((CompoundFilter) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_CompoundFilter_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_CompoundFilter_type") : //$NON-NLS-1$
 				getString("_UI_CompoundFilter_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -234,8 +224,7 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CompoundFilter.class))
-		{
+		switch (notification.getFeatureID(CompoundFilter.class)) {
 		case FiltersPackage.COMPOUND_FILTER__NAME:
 		case FiltersPackage.COMPOUND_FILTER__FILTER:
 		case FiltersPackage.COMPOUND_FILTER__OPERATOR:
@@ -260,15 +249,11 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
-						FiltersFactory.eINSTANCE.createCompoundFilter()));
+		newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
+				FiltersFactory.eINSTANCE.createCompoundFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
-						FiltersFactory.eINSTANCE.createEquals()));
+		newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER,
+				FiltersFactory.eINSTANCE.createEquals()));
 	}
 
 	/**
@@ -279,8 +264,7 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
@@ -327,6 +311,23 @@ public class CompoundFilterItemProvider extends ItemProviderAdapter implements I
 			return new SubsetSupersetReplaceCommand(domain, owner, feature, null, new EStructuralFeature[] { FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER }, value, collection);
 		}
 		return super.createReplaceCommand(domain, owner, feature, value, collection);
+	}
+
+	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+	 *      <!-- begin-user-doc -->
+	 *      <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+		if (feature == FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER) {
+			return new SubsetSupersetSetCommand(domain, owner, feature, new EStructuralFeature[] { FiltersPackage.Literals.COMPOUND_FILTER__FILTER }, null, value);
+		}
+		if (feature == FiltersPackage.Literals.COMPOUND_FILTER__FILTER) {
+			return new SubsetSupersetSetCommand(domain, owner, feature, null, new EStructuralFeature[] { FiltersPackage.Literals.COMPOUND_FILTER__OWNED_FILTER }, value);
+		}
+		return super.createSetCommand(domain, owner, feature, value);
 	}
 
 }

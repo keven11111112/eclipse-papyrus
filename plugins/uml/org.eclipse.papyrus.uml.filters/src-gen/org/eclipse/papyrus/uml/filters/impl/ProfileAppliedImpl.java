@@ -30,17 +30,16 @@ import org.eclipse.uml2.uml.Profile;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.filters.impl.ProfileAppliedImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.filters.impl.ProfileAppliedImpl#getProfileQualifiedName <em>Profile Qualified Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.filters.impl.ProfileAppliedImpl#getProfileURI <em>Profile URI</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements ProfileApplied
-{
+public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements ProfileApplied {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -113,8 +112,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 *
 	 * @generated
 	 */
-	protected ProfileAppliedImpl()
-	{
+	protected ProfileAppliedImpl() {
 		super();
 	}
 
@@ -125,8 +123,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UMLFiltersPackage.Literals.PROFILE_APPLIED;
 	}
 
@@ -137,8 +134,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -149,8 +145,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -166,8 +161,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public String getProfileQualifiedName()
-	{
+	public String getProfileQualifiedName() {
 		return profileQualifiedName;
 	}
 
@@ -178,8 +172,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setProfileQualifiedName(String newProfileQualifiedName)
-	{
+	public void setProfileQualifiedName(String newProfileQualifiedName) {
 		newProfileQualifiedName = newProfileQualifiedName == null ? PROFILE_QUALIFIED_NAME_EDEFAULT : newProfileQualifiedName;
 		String oldProfileQualifiedName = profileQualifiedName;
 		profileQualifiedName = newProfileQualifiedName;
@@ -195,8 +188,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public String getProfileURI()
-	{
+	public String getProfileURI() {
 		return profileURI;
 	}
 
@@ -207,8 +199,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void setProfileURI(String newProfileURI)
-	{
+	public void setProfileURI(String newProfileURI) {
 		newProfileURI = newProfileURI == null ? PROFILE_URI_EDEFAULT : newProfileURI;
 		String oldProfileURI = profileURI;
 		profileURI = newProfileURI;
@@ -224,8 +215,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public boolean matches(Object input)
-	{
+	public boolean matches(Object input) {
 		return ProfileAppliedOperations.matches(this, input);
 	}
 
@@ -236,8 +226,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Profile resolveProfile(Object context)
-	{
+	public Profile resolveProfile(Object context) {
 		return ProfileAppliedOperations.resolveProfile(this, context);
 	}
 
@@ -248,10 +237,8 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UMLFiltersPackage.PROFILE_APPLIED__NAME:
 			return getName();
 		case UMLFiltersPackage.PROFILE_APPLIED__PROFILE_QUALIFIED_NAME:
@@ -269,10 +256,8 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UMLFiltersPackage.PROFILE_APPLIED__NAME:
 			setName((String) newValue);
 			return;
@@ -293,10 +278,8 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UMLFiltersPackage.PROFILE_APPLIED__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -317,10 +300,8 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UMLFiltersPackage.PROFILE_APPLIED__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case UMLFiltersPackage.PROFILE_APPLIED__PROFILE_QUALIFIED_NAME:
@@ -338,10 +319,8 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
 		case UMLFiltersPackage.PROFILE_APPLIED___MATCHES__OBJECT:
 			return matches(arguments.get(0));
 		case UMLFiltersPackage.PROFILE_APPLIED___RESOLVE_PROFILE__OBJECT:
@@ -357,8 +336,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
@@ -384,8 +362,7 @@ public class ProfileAppliedImpl extends MinimalEObjectImpl.Container implements 
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 

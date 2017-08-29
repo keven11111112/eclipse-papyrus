@@ -33,8 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.*;
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage
  * @generated
  */
-public class AssistantAdapterFactory extends AdapterFactoryImpl
-{
+public class AssistantAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -51,10 +50,8 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	public AssistantAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public AssistantAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = AssistantPackage.eINSTANCE;
 		}
 	}
@@ -69,14 +66,11 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -89,69 +83,57 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	protected AssistantSwitch<Adapter> modelSwitch =
-			new AssistantSwitch<Adapter>()
-			{
-				@Override
-				public Adapter caseAssistedElementTypeFilter(AssistedElementTypeFilter object)
-				{
-					return createAssistedElementTypeFilterAdapter();
-				}
+	protected AssistantSwitch<Adapter> modelSwitch = new AssistantSwitch<Adapter>() {
+		@Override
+		public Adapter caseAssistedElementTypeFilter(AssistedElementTypeFilter object) {
+			return createAssistedElementTypeFilterAdapter();
+		}
 
-				@Override
-				public Adapter caseModelingAssistantProvider(ModelingAssistantProvider object)
-				{
-					return createModelingAssistantProviderAdapter();
-				}
+		@Override
+		public Adapter caseModelingAssistantProvider(ModelingAssistantProvider object) {
+			return createModelingAssistantProviderAdapter();
+		}
 
-				@Override
-				public Adapter caseAssistant(Assistant object)
-				{
-					return createAssistantAdapter();
-				}
+		@Override
+		public Adapter caseAssistant(Assistant object) {
+			return createAssistantAdapter();
+		}
 
-				@Override
-				public Adapter casePopupAssistant(PopupAssistant object)
-				{
-					return createPopupAssistantAdapter();
-				}
+		@Override
+		public Adapter casePopupAssistant(PopupAssistant object) {
+			return createPopupAssistantAdapter();
+		}
 
-				@Override
-				public Adapter caseConnectionAssistant(ConnectionAssistant object)
-				{
-					return createConnectionAssistantAdapter();
-				}
+		@Override
+		public Adapter caseConnectionAssistant(ConnectionAssistant object) {
+			return createConnectionAssistantAdapter();
+		}
 
-				@Override
-				public Adapter caseIModelingAssistantProvider(IModelingAssistantProvider object)
-				{
-					return createIModelingAssistantProviderAdapter();
-				}
+		@Override
+		public Adapter caseIModelingAssistantProvider(IModelingAssistantProvider object) {
+			return createIModelingAssistantProviderAdapter();
+		}
 
-				@Override
-				public Adapter caseIProvider(IProvider object)
-				{
-					return createIProviderAdapter();
-				}
+		@Override
+		public Adapter caseIProvider(IProvider object) {
+			return createIProviderAdapter();
+		}
 
-				@Override
-				public Adapter caseElementTypeFilter(ElementTypeFilter object)
-				{
-					return createElementTypeFilterAdapter();
-				}
+		@Override
+		public Adapter caseElementTypeFilter(ElementTypeFilter object) {
+			return createElementTypeFilterAdapter();
+		}
 
-				@Override
-				public Adapter caseFilter(Filter object)
-				{
-					return createFilterAdapter();
-				}
+		@Override
+		public Adapter caseFilter(Filter object) {
+			return createFilterAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -164,8 +146,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -181,8 +162,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistedElementTypeFilter
 	 * @generated
 	 */
-	public Adapter createAssistedElementTypeFilterAdapter()
-	{
+	public Adapter createAssistedElementTypeFilterAdapter() {
 		return null;
 	}
 
@@ -197,8 +177,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider
 	 * @generated
 	 */
-	public Adapter createModelingAssistantProviderAdapter()
-	{
+	public Adapter createModelingAssistantProviderAdapter() {
 		return null;
 	}
 
@@ -213,8 +192,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.Assistant
 	 * @generated
 	 */
-	public Adapter createAssistantAdapter()
-	{
+	public Adapter createAssistantAdapter() {
 		return null;
 	}
 
@@ -229,8 +207,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider
 	 * @generated
 	 */
-	public Adapter createIModelingAssistantProviderAdapter()
-	{
+	public Adapter createIModelingAssistantProviderAdapter() {
 		return null;
 	}
 
@@ -245,8 +222,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.gmf.runtime.common.core.service.IProvider
 	 * @generated
 	 */
-	public Adapter createIProviderAdapter()
-	{
+	public Adapter createIProviderAdapter() {
 		return null;
 	}
 
@@ -261,8 +237,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant
 	 * @generated
 	 */
-	public Adapter createConnectionAssistantAdapter()
-	{
+	public Adapter createConnectionAssistantAdapter() {
 		return null;
 	}
 
@@ -277,8 +252,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant
 	 * @generated
 	 */
-	public Adapter createPopupAssistantAdapter()
-	{
+	public Adapter createPopupAssistantAdapter() {
 		return null;
 	}
 
@@ -293,8 +267,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter
 	 * @generated
 	 */
-	public Adapter createElementTypeFilterAdapter()
-	{
+	public Adapter createElementTypeFilterAdapter() {
 		return null;
 	}
 
@@ -309,8 +282,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.filters.Filter
 	 * @generated
 	 */
-	public Adapter createFilterAdapter()
-	{
+	public Adapter createFilterAdapter() {
 		return null;
 	}
 
@@ -323,8 +295,7 @@ public class AssistantAdapterFactory extends AdapterFactoryImpl
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

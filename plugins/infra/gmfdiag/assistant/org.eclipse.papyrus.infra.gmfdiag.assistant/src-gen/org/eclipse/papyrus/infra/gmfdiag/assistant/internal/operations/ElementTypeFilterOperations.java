@@ -34,8 +34,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUt
  *
  * @generated
  */
-public class ElementTypeFilterOperations
-{
+public class ElementTypeFilterOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,8 +93,7 @@ public class ElementTypeFilterOperations
 	 *
 	 * @generated NOT
 	 */
-	public static ModelingAssistantProvider getProvider(ElementTypeFilter elementTypeFilter)
-	{
+	public static ModelingAssistantProvider getProvider(ElementTypeFilter elementTypeFilter) {
 		ModelingAssistantProvider result = null;
 
 		for (EObject container = elementTypeFilter.eContainer(); (container != null) && (result == null); container = container.eContainer()) {

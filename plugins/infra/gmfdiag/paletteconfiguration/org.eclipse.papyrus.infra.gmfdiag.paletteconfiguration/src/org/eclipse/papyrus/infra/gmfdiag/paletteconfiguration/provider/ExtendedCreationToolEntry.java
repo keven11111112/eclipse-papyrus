@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 /**
  * Extended version of the {@link CombinedTemplateCreationEntry}.
  */
+@SuppressWarnings("restriction")
 public class ExtendedCreationToolEntry extends PaletteToolEntry implements IElementTypesBasedTool, IClassBasedTool {
 
 	/** list of element types created by this tool */

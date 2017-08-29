@@ -29,8 +29,7 @@ import org.eclipse.papyrus.infra.filters.*;
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage
  * @generated
  */
-public class FiltersAdapterFactory extends AdapterFactoryImpl
-{
+public class FiltersAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -47,10 +46,8 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	public FiltersAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public FiltersAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = FiltersPackage.eINSTANCE;
 		}
 	}
@@ -65,14 +62,11 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -85,33 +79,32 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	protected FiltersSwitch<Adapter> modelSwitch =
-			new FiltersSwitch<Adapter>()
-			{
-				@Override
-				public Adapter caseCompoundFilter(CompoundFilter object)
-				{
-					return createCompoundFilterAdapter();
-				}
+	protected FiltersSwitch<Adapter> modelSwitch = new FiltersSwitch<Adapter>() {
+		@Override
+		public Adapter caseCompoundFilter(CompoundFilter object) {
+			return createCompoundFilterAdapter();
+		}
 
-				@Override
-				public Adapter caseFilter(Filter object)
-				{
-					return createFilterAdapter();
-				}
+		@Override
+		public Adapter caseFilter(Filter object) {
+			return createFilterAdapter();
+		}
 
-				@Override
-				public Adapter caseEquals(Equals object)
-				{
-					return createEqualsAdapter();
-				}
+		@Override
+		public Adapter caseEquals(Equals object) {
+			return createEqualsAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter caseFilteredElement(FilteredElement object) {
+			return createFilteredElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -124,8 +117,7 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -141,8 +133,7 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.filters.CompoundFilter
 	 * @generated
 	 */
-	public Adapter createCompoundFilterAdapter()
-	{
+	public Adapter createCompoundFilterAdapter() {
 		return null;
 	}
 
@@ -157,8 +148,7 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.filters.Filter
 	 * @generated
 	 */
-	public Adapter createFilterAdapter()
-	{
+	public Adapter createFilterAdapter() {
 		return null;
 	}
 
@@ -173,8 +163,23 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.filters.Equals
 	 * @generated
 	 */
-	public Adapter createEqualsAdapter()
-	{
+	public Adapter createEqualsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.filters.FilteredElement <em>Filtered Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.filters.FilteredElement
+	 * @generated
+	 * @since 1.3
+	 */
+	public Adapter createFilteredElementAdapter() {
 		return null;
 	}
 
@@ -187,8 +192,7 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

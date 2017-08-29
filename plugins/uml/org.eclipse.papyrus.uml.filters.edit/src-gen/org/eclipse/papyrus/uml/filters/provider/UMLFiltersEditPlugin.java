@@ -56,8 +56,7 @@ public final class UMLFiltersEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public UMLFiltersEditPlugin() {
-		super(new ResourceLocator[]
-		{
+		super(new ResourceLocator[] {
 				EcoreEditPlugin.INSTANCE,
 				FiltersEditPlugin.INSTANCE,
 				UMLEditPlugin.INSTANCE,

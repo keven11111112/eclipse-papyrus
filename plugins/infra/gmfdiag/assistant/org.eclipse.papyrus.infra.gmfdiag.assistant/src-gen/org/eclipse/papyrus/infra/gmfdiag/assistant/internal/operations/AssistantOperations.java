@@ -29,8 +29,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.Assistant;
  *
  * @generated
  */
-public class AssistantOperations
-{
+public class AssistantOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

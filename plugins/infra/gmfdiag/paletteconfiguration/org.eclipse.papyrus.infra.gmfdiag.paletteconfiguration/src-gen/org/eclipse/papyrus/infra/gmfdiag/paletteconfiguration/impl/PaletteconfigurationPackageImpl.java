@@ -18,9 +18,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.infra.filters.FiltersPackage;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
@@ -35,7 +33,6 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.SeparatorConfigura
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolKind;
-
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.uml2.types.TypesPackage;
 
@@ -171,8 +168,8 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-		FiltersPackage.eINSTANCE.eClass();
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+		FiltersPackage.eINSTANCE.eClass();
 		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -260,15 +257,6 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 */
 	public EReference getConfiguration_Icon() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfiguration_Filters() {
-		return (EReference)configurationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -470,7 +458,6 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		createEAttribute(configurationEClass, CONFIGURATION__LABEL);
 		createEAttribute(configurationEClass, CONFIGURATION__DESCRIPTION);
 		createEReference(configurationEClass, CONFIGURATION__ICON);
-		createEReference(configurationEClass, CONFIGURATION__FILTERS);
 
 		iconDescriptorEClass = createEClass(ICON_DESCRIPTOR);
 		createEAttribute(iconDescriptorEClass, ICON_DESCRIPTOR__PLUGIN_ID);
@@ -534,6 +521,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 
 		// Add supertypes to classes
 		paletteConfigurationEClass.getESuperTypes().add(this.getConfiguration());
+		configurationEClass.getESuperTypes().add(theFiltersPackage.getFilteredElement());
 		drawerConfigurationEClass.getESuperTypes().add(this.getConfiguration());
 		childConfigurationEClass.getESuperTypes().add(this.getConfiguration());
 		toolConfigurationEClass.getESuperTypes().add(this.getLeafConfiguration());
@@ -551,7 +539,6 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		initEAttribute(getConfiguration_Label(), ecorePackage.getEString(), "label", null, 1, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_Description(), ecorePackage.getEString(), "description", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_Icon(), this.getIconDescriptor(), null, "icon", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfiguration_Filters(), theFiltersPackage.getFilter(), null, "filters", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(iconDescriptorEClass, IconDescriptor.class, "IconDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIconDescriptor_PluginID(), ecorePackage.getEString(), "pluginID", null, 0, 1, IconDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

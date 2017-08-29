@@ -55,8 +55,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
  * @model superTypes="org.eclipse.papyrus.infra.gmfdiag.assistant.IModelingAssistantProvider"
  * @generated
  */
-public interface ModelingAssistantProvider extends EObject, IModelingAssistantProvider
-{
+public interface ModelingAssistantProvider extends EObject, IModelingAssistantProvider {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

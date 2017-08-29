@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.papyrus.infra.filters.*;
 import org.eclipse.papyrus.infra.filters.CompoundFilter;
 import org.eclipse.papyrus.infra.filters.Equals;
 import org.eclipse.papyrus.infra.filters.Filter;
@@ -32,8 +33,7 @@ import org.eclipse.papyrus.infra.filters.internal.FiltersPlugin;
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage
  * @generated
  */
-public class FiltersValidator extends EObjectValidator
-{
+public class FiltersValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -88,8 +88,7 @@ public class FiltersValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public FiltersValidator()
-	{
+	public FiltersValidator() {
 		super();
 	}
 
@@ -101,8 +100,7 @@ public class FiltersValidator extends EObjectValidator
 	 * @generated
 	 */
 	@Override
-	protected EPackage getEPackage()
-	{
+	protected EPackage getEPackage() {
 		return FiltersPackage.eINSTANCE;
 	}
 
@@ -114,16 +112,16 @@ public class FiltersValidator extends EObjectValidator
 	 * @generated
 	 */
 	@Override
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		switch (classifierID)
-		{
+	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		switch (classifierID) {
 		case FiltersPackage.COMPOUND_FILTER:
 			return validateCompoundFilter((CompoundFilter) value, diagnostics, context);
 		case FiltersPackage.FILTER:
 			return validateFilter((Filter) value, diagnostics, context);
 		case FiltersPackage.EQUALS:
 			return validateEquals((Equals) value, diagnostics, context);
+		case FiltersPackage.FILTERED_ELEMENT:
+			return validateFilteredElement((FilteredElement) value, diagnostics, context);
 		case FiltersPackage.OPERATOR_KIND:
 			return validateOperatorKind((OperatorKind) value, diagnostics, context);
 		case FiltersPackage.OBJECT:
@@ -139,8 +137,7 @@ public class FiltersValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateCompoundFilter(CompoundFilter compoundFilter, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCompoundFilter(CompoundFilter compoundFilter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(compoundFilter, diagnostics, context)) {
 			return false;
 		}
@@ -179,8 +176,7 @@ public class FiltersValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateCompoundFilter_validateAcyclic(CompoundFilter compoundFilter, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateCompoundFilter_validateAcyclic(CompoundFilter compoundFilter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return compoundFilter.validateAcyclic(diagnostics, context);
 	}
 
@@ -190,8 +186,7 @@ public class FiltersValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateFilter(Filter filter, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateFilter(Filter filter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(filter, diagnostics, context);
 	}
 
@@ -201,8 +196,7 @@ public class FiltersValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateEquals(Equals equals, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateEquals(Equals equals, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(equals, diagnostics, context);
 	}
 
@@ -211,9 +205,19 @@ public class FiltersValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.3
 	 */
-	public boolean validateOperatorKind(OperatorKind operatorKind, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateFilteredElement(FilteredElement filteredElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(filteredElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public boolean validateOperatorKind(OperatorKind operatorKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -223,8 +227,7 @@ public class FiltersValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateObject(Object object, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateObject(Object object, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
@@ -236,8 +239,7 @@ public class FiltersValidator extends EObjectValidator
 	 * @generated NOT
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return FiltersPlugin.INSTANCE;
 	}
 

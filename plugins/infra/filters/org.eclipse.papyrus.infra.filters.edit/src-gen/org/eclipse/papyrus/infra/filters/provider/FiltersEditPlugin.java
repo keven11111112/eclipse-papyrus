@@ -50,9 +50,8 @@ public final class FiltersEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public FiltersEditPlugin() {
-		super(new ResourceLocator[]
-		{
-				});
+		super(new ResourceLocator[] {
+		});
 	}
 
 	/**

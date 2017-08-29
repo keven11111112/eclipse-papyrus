@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *   Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 
@@ -37,11 +37,11 @@ public class ElementTypeSetConfigurationContentProvider implements IStaticConten
 	public Object[] getElements(final Object inputElement) {
 		List<ElementTypeSetConfiguration> els = new ArrayList<ElementTypeSetConfiguration>();
 		Collection<Map<String, ElementTypeSetConfiguration>> values = ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().values();
-		for (Iterator iterator = values.iterator(); iterator.hasNext();) {
-			Map<String, ElementTypeSetConfiguration> map = (Map<String, ElementTypeSetConfiguration>) iterator.next();
+		for (Iterator<Map<String, ElementTypeSetConfiguration>> iterator = values.iterator(); iterator.hasNext();) {
+			Map<String, ElementTypeSetConfiguration> map = iterator.next();
 			Collection<ElementTypeSetConfiguration> values2 = map.values();
-			for (Iterator iterator2 = values2.iterator(); iterator2.hasNext();) {
-				ElementTypeSetConfiguration elementTypeSetConfiguration = (ElementTypeSetConfiguration) iterator2.next();
+			for (Iterator<ElementTypeSetConfiguration> iterator2 = values2.iterator(); iterator2.hasNext();) {
+				ElementTypeSetConfiguration elementTypeSetConfiguration = iterator2.next();
 				if (!elementTypeSetConfiguration.getElementTypeConfigurations().isEmpty()) {
 					els.add(elementTypeSetConfiguration);
 				}

@@ -27,8 +27,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum OperatorKind implements Enumerator
-{
+public enum OperatorKind implements Enumerator {
 	/**
 	 * The '<em><b>And</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -140,14 +139,12 @@ public enum OperatorKind implements Enumerator
 	 *
 	 * @generated
 	 */
-	private static final OperatorKind[] VALUES_ARRAY =
-			new OperatorKind[]
-			{
-					AND,
-					OR,
-					XOR,
-					NOT,
-			};
+	private static final OperatorKind[] VALUES_ARRAY = new OperatorKind[] {
+			AND,
+			OR,
+			XOR,
+			NOT,
+	};
 
 	/**
 	 * A public read-only list of all the '<em><b>Operator Kind</b></em>' enumerators.
@@ -163,15 +160,15 @@ public enum OperatorKind implements Enumerator
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
+	 * @param literal
+	 *            the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static OperatorKind get(String literal)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static OperatorKind get(String literal) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			OperatorKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -183,15 +180,15 @@ public enum OperatorKind implements Enumerator
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
+	 * @param name
+	 *            the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static OperatorKind getByName(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static OperatorKind getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			OperatorKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -203,12 +200,13 @@ public enum OperatorKind implements Enumerator
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
+	 * @param value
+	 *            the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static OperatorKind get(int value)
-	{
-		switch (value)
-		{
+	public static OperatorKind get(int value) {
+		switch (value) {
 		case AND_VALUE:
 			return AND;
 		case OR_VALUE:
@@ -252,8 +250,7 @@ public enum OperatorKind implements Enumerator
 	 *
 	 * @generated
 	 */
-	private OperatorKind(int value, String name, String literal)
-	{
+	private OperatorKind(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -266,8 +263,7 @@ public enum OperatorKind implements Enumerator
 	 * @generated
 	 */
 	@Override
-	public int getValue()
-	{
+	public int getValue() {
 		return value;
 	}
 
@@ -278,8 +274,7 @@ public enum OperatorKind implements Enumerator
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -290,8 +285,7 @@ public enum OperatorKind implements Enumerator
 	 * @generated
 	 */
 	@Override
-	public String getLiteral()
-	{
+	public String getLiteral() {
 		return literal;
 	}
 
@@ -303,8 +297,7 @@ public enum OperatorKind implements Enumerator
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return literal;
 	}
 

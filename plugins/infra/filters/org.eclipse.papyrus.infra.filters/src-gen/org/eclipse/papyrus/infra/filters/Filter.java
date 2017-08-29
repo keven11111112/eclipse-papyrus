@@ -20,17 +20,16 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.Filter#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage#getFilter()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface Filter extends EObject
-{
+public interface Filter extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

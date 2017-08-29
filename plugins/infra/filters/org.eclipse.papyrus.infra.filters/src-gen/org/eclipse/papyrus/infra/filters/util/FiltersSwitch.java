@@ -31,8 +31,7 @@ import org.eclipse.papyrus.infra.filters.*;
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage
  * @generated
  */
-public class FiltersSwitch<T> extends Switch<T>
-{
+public class FiltersSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -49,10 +48,8 @@ public class FiltersSwitch<T> extends Switch<T>
 	 *
 	 * @generated
 	 */
-	public FiltersSwitch()
-	{
-		if (modelPackage == null)
-		{
+	public FiltersSwitch() {
+		if (modelPackage == null) {
 			modelPackage = FiltersPackage.eINSTANCE;
 		}
 	}
@@ -62,13 +59,13 @@ public class FiltersSwitch<T> extends Switch<T>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @parameter ePackage the package in question.
+	 * @param ePackage
+	 *            the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -81,10 +78,8 @@ public class FiltersSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
-	{
-		switch (classifierID)
-		{
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
 		case FiltersPackage.COMPOUND_FILTER: {
 			CompoundFilter compoundFilter = (CompoundFilter) theEObject;
 			T result = caseCompoundFilter(compoundFilter);
@@ -115,6 +110,14 @@ public class FiltersSwitch<T> extends Switch<T>
 			}
 			return result;
 		}
+		case FiltersPackage.FILTERED_ELEMENT: {
+			FilteredElement filteredElement = (FilteredElement) theEObject;
+			T result = caseFilteredElement(filteredElement);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -133,8 +136,7 @@ public class FiltersSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCompoundFilter(CompoundFilter object)
-	{
+	public T caseCompoundFilter(CompoundFilter object) {
 		return null;
 	}
 
@@ -151,8 +153,7 @@ public class FiltersSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFilter(Filter object)
-	{
+	public T caseFilter(Filter object) {
 		return null;
 	}
 
@@ -169,8 +170,25 @@ public class FiltersSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEquals(Equals object)
-	{
+	public T caseEquals(Equals object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Filtered Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Filtered Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 * @since 1.3
+	 */
+	public T caseFilteredElement(FilteredElement object) {
 		return null;
 	}
 
@@ -188,8 +206,7 @@ public class FiltersSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
-	{
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

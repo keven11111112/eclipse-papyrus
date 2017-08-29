@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.PaletteconfigurationItemProviderAdapterFactory;
 
 /**
  * Custom Item provider adapter factory to palette configuration.

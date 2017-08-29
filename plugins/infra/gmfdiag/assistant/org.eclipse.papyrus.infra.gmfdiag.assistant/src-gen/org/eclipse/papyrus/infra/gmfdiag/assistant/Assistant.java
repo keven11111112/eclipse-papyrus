@@ -33,8 +33,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
  * @model abstract="true"
  * @generated
  */
-public interface Assistant extends EObject
-{
+public interface Assistant extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Element Type ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->

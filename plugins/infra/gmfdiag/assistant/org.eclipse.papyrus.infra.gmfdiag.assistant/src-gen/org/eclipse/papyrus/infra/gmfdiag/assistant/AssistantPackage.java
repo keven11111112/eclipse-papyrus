@@ -37,8 +37,7 @@ import org.eclipse.papyrus.infra.filters.FiltersPackage;
  * @model kind="package"
  * @generated
  */
-public interface AssistantPackage extends EPackage
-{
+public interface AssistantPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -1842,8 +1841,8 @@ public interface AssistantPackage extends EPackage
 	EOperation getIModelingAssistantProvider__GetRelTypesOnTarget__IAdaptable();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getRelTypesOnSourceAndTarget(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IAdaptable)
-	 * <em>Get Rel Types On Source And Target</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getRelTypesOnSourceAndTarget(org.eclipse.core.runtime.IAdaptable, org.eclipse.core.runtime.IAdaptable) <em>Get Rel Types On
+	 * Source And Target</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1876,8 +1875,8 @@ public interface AssistantPackage extends EPackage
 	EOperation getIModelingAssistantProvider__GetRelTypesForSREOnSource__IAdaptable();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForSource(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType)
-	 * <em>Get Types For Source</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForSource(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Get Types For
+	 * Source</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1888,8 +1887,8 @@ public interface AssistantPackage extends EPackage
 	EOperation getIModelingAssistantProvider__GetTypesForSource__IAdaptable_IElementType();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForTarget(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType)
-	 * <em>Get Types For Target</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForTarget(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Get Types For
+	 * Target</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2018,8 +2017,7 @@ public interface AssistantPackage extends EPackage
 	 *
 	 * @generated
 	 */
-	interface Literals
-	{
+	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.AssistedElementTypeFilterImpl <em>Assisted Element Type Filter</em>}' class.
 		 * <!-- begin-user-doc -->

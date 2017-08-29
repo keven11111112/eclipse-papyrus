@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.filters.FiltersPackage;
 import org.eclipse.papyrus.uml.filters.ProfileApplied;
@@ -30,8 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @generated
  */
-public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPackage
-{
+public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,18 +41,22 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	private EClass profileAppliedEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.filters.UMLFiltersPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private UMLFiltersPackageImpl()
-	{
+	private UMLFiltersPackageImpl() {
 		super(eNS_URI, UMLFiltersFactory.eINSTANCE);
 	}
 
@@ -68,15 +72,16 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link UMLFiltersPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link UMLFiltersPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static UMLFiltersPackage init()
-	{
+	public static UMLFiltersPackage init() {
 		if (isInited) {
 			return (UMLFiltersPackage) EPackage.Registry.INSTANCE.getEPackage(UMLFiltersPackage.eNS_URI);
 		}
@@ -87,7 +92,9 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		FiltersPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -112,8 +119,7 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 * @generated
 	 */
 	@Override
-	public EClass getProfileApplied()
-	{
+	public EClass getProfileApplied() {
 		return profileAppliedEClass;
 	}
 
@@ -124,8 +130,7 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getProfileApplied_ProfileQualifiedName()
-	{
+	public EAttribute getProfileApplied_ProfileQualifiedName() {
 		return (EAttribute) profileAppliedEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -136,8 +141,7 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getProfileApplied_ProfileURI()
-	{
+	public EAttribute getProfileApplied_ProfileURI() {
 		return (EAttribute) profileAppliedEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -148,8 +152,7 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 * @generated
 	 */
 	@Override
-	public EOperation getProfileApplied__ResolveProfile__Object()
-	{
+	public EOperation getProfileApplied__ResolveProfile__Object() {
 		return profileAppliedEClass.getEOperations().get(0);
 	}
 
@@ -160,8 +163,7 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 * @generated
 	 */
 	@Override
-	public UMLFiltersFactory getUMLFiltersFactory()
-	{
+	public UMLFiltersFactory getUMLFiltersFactory() {
 		return (UMLFiltersFactory) getEFactoryInstance();
 	}
 
@@ -181,8 +183,7 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 *
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
+	public void createPackageContents() {
 		if (isCreated) {
 			return;
 		}
@@ -211,8 +212,7 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 *
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
+	public void initializePackageContents() {
 		if (isInitialized) {
 			return;
 		}
@@ -258,13 +258,12 @@ public class UMLFiltersPackageImpl extends EPackageImpl implements UMLFiltersPac
 	 *
 	 * @generated
 	 */
-	protected void createUMLAnnotations()
-	{
+	protected void createUMLAnnotations() {
 		String source = "http://www.eclipse.org/uml2/2.0.0/UML"; //$NON-NLS-1$
 		addAnnotation(this,
 				source,
-				new String[]
-				{		 "originalName", "umlfilters" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"originalName", "umlfilters" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
 

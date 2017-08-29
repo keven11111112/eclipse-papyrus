@@ -30,8 +30,7 @@ import org.eclipse.papyrus.uml.filters.*;
  * @see org.eclipse.papyrus.uml.filters.UMLFiltersPackage
  * @generated
  */
-public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
-{
+public class UMLFiltersAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -48,10 +47,8 @@ public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	public UMLFiltersAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public UMLFiltersAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = UMLFiltersPackage.eINSTANCE;
 		}
 	}
@@ -66,14 +63,11 @@ public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -86,27 +80,22 @@ public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	protected UMLFiltersSwitch<Adapter> modelSwitch =
-			new UMLFiltersSwitch<Adapter>()
-			{
-				@Override
-				public Adapter caseProfileApplied(ProfileApplied object)
-				{
-					return createProfileAppliedAdapter();
-				}
+	protected UMLFiltersSwitch<Adapter> modelSwitch = new UMLFiltersSwitch<Adapter>() {
+		@Override
+		public Adapter caseProfileApplied(ProfileApplied object) {
+			return createProfileAppliedAdapter();
+		}
 
-				@Override
-				public Adapter caseFilter(Filter object)
-				{
-					return createFilterAdapter();
-				}
+		@Override
+		public Adapter caseFilter(Filter object) {
+			return createFilterAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -119,8 +108,7 @@ public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -136,8 +124,7 @@ public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.uml.filters.ProfileApplied
 	 * @generated
 	 */
-	public Adapter createProfileAppliedAdapter()
-	{
+	public Adapter createProfileAppliedAdapter() {
 		return null;
 	}
 
@@ -152,8 +139,7 @@ public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.infra.filters.Filter
 	 * @generated
 	 */
-	public Adapter createFilterAdapter()
-	{
+	public Adapter createFilterAdapter() {
 		return null;
 	}
 
@@ -166,8 +152,7 @@ public class UMLFiltersAdapterFactory extends AdapterFactoryImpl
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

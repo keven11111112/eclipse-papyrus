@@ -44,8 +44,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
  *
  * @generated
  */
-public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
-{
+public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant {
 	/**
 	 * The cached value of the '{@link #getFilter() <em>Filter</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -74,8 +73,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 *
 	 * @generated
 	 */
-	protected PopupAssistantImpl()
-	{
+	protected PopupAssistantImpl() {
 		super();
 	}
 
@@ -86,8 +84,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return AssistantPackage.Literals.POPUP_ASSISTANT;
 	}
 
@@ -98,8 +95,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider getProvider()
-	{
+	public ModelingAssistantProvider getProvider() {
 		ModelingAssistantProvider provider = basicGetProvider();
 		return provider != null && provider.eIsProxy() ? (ModelingAssistantProvider) eResolveProxy((InternalEObject) provider) : provider;
 	}
@@ -111,11 +107,9 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider basicGetProvider()
-	{
+	public ModelingAssistantProvider basicGetProvider() {
 		ModelingAssistantProvider owningProvider = getOwningProvider();
-		if (owningProvider != null)
-		{
+		if (owningProvider != null) {
 			return owningProvider;
 		}
 		return super.basicGetProvider();
@@ -128,14 +122,11 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public Filter getFilter()
-	{
-		if (filter != null && filter.eIsProxy())
-		{
+	public Filter getFilter() {
+		if (filter != null && filter.eIsProxy()) {
 			InternalEObject oldFilter = (InternalEObject) filter;
 			filter = (Filter) eResolveProxy(oldFilter);
-			if (filter != oldFilter)
-			{
+			if (filter != oldFilter) {
 				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssistantPackage.POPUP_ASSISTANT__FILTER, oldFilter, filter));
 				}
@@ -150,8 +141,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 *
 	 * @generated
 	 */
-	public Filter basicGetFilter()
-	{
+	public Filter basicGetFilter() {
 		return filter;
 	}
 
@@ -162,8 +152,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public void setFilter(Filter newFilter)
-	{
+	public void setFilter(Filter newFilter) {
 		Filter oldFilter = filter;
 		filter = newFilter;
 		if (eNotificationRequired()) {
@@ -171,8 +160,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (ownedFilter != null && ownedFilter != newFilter)
-			{
+			if (ownedFilter != null && ownedFilter != newFilter) {
 				setOwnedFilter(null);
 			}
 		}
@@ -185,8 +173,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public Filter getOwnedFilter()
-	{
+	public Filter getOwnedFilter() {
 		return ownedFilter;
 	}
 
@@ -196,12 +183,10 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedFilter(Filter newOwnedFilter, NotificationChain msgs)
-	{
+	public NotificationChain basicSetOwnedFilter(Filter newOwnedFilter, NotificationChain msgs) {
 		Filter oldOwnedFilter = ownedFilter;
 		ownedFilter = newOwnedFilter;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssistantPackage.POPUP_ASSISTANT__OWNED_FILTER, oldOwnedFilter, newOwnedFilter);
 			if (msgs == null) {
 				msgs = notification;
@@ -211,10 +196,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwnedFilter != null)
-			{
-				if (newOwnedFilter != filter)
-				{
+			if (newOwnedFilter != null) {
+				if (newOwnedFilter != filter) {
 					setFilter(newOwnedFilter);
 				}
 			}
@@ -229,10 +212,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public void setOwnedFilter(Filter newOwnedFilter)
-	{
-		if (newOwnedFilter != ownedFilter)
-		{
+	public void setOwnedFilter(Filter newOwnedFilter) {
+		if (newOwnedFilter != ownedFilter) {
 			NotificationChain msgs = null;
 			if (ownedFilter != null) {
 				msgs = ((InternalEObject) ownedFilter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssistantPackage.POPUP_ASSISTANT__OWNED_FILTER, null, msgs);
@@ -244,8 +225,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, AssistantPackage.POPUP_ASSISTANT__OWNED_FILTER, newOwnedFilter, newOwnedFilter));
 		}
 	}
@@ -257,8 +237,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public Filter createOwnedFilter(String name, EClass eClass)
-	{
+	public Filter createOwnedFilter(String name, EClass eClass) {
 		Filter newOwnedFilter = (Filter) create(eClass);
 		setOwnedFilter(newOwnedFilter);
 		if (name != null) {
@@ -274,8 +253,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider getOwningProvider()
-	{
+	public ModelingAssistantProvider getOwningProvider() {
 		if (eContainerFeatureID() != AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER) {
 			return null;
 		}
@@ -288,8 +266,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningProvider(ModelingAssistantProvider newOwningProvider, NotificationChain msgs)
-	{
+	public NotificationChain basicSetOwningProvider(ModelingAssistantProvider newOwningProvider, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newOwningProvider, AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER, msgs);
 		return msgs;
 	}
@@ -301,10 +278,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public void setOwningProvider(ModelingAssistantProvider newOwningProvider)
-	{
-		if (newOwningProvider != eInternalContainer() || (eContainerFeatureID() != AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER && newOwningProvider != null))
-		{
+	public void setOwningProvider(ModelingAssistantProvider newOwningProvider) {
+		if (newOwningProvider != eInternalContainer() || (eContainerFeatureID() != AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER && newOwningProvider != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningProvider))
 			 {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
@@ -320,8 +295,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER, newOwningProvider, newOwningProvider));
 		}
 	}
@@ -333,10 +307,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER:
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -353,10 +325,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case AssistantPackage.POPUP_ASSISTANT__OWNED_FILTER:
 			return basicSetOwnedFilter(null, msgs);
 		case AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER:
@@ -372,10 +342,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
-	{
-		switch (eContainerFeatureID())
-		{
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
 		case AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER:
 			return eInternalContainer().eInverseRemove(this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT, ModelingAssistantProvider.class, msgs);
 		}
@@ -389,10 +357,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case AssistantPackage.POPUP_ASSISTANT__FILTER:
 			if (resolve) {
 				return getFilter();
@@ -413,10 +379,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case AssistantPackage.POPUP_ASSISTANT__FILTER:
 			setFilter((Filter) newValue);
 			return;
@@ -437,10 +401,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.POPUP_ASSISTANT__FILTER:
 			setFilter((Filter) null);
 			return;
@@ -461,10 +423,8 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.POPUP_ASSISTANT__PROVIDER:
 			return isSetProvider();
 		case AssistantPackage.POPUP_ASSISTANT__FILTER:
@@ -484,8 +444,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant
 	 * @generated
 	 */
 	@Override
-	public boolean isSetProvider()
-	{
+	public boolean isSetProvider() {
 		return super.isSetProvider()
 				|| eIsSet(AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER);
 	}

@@ -75,8 +75,7 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null)
-		{
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
@@ -100,21 +99,18 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_name_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_name_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -124,21 +120,18 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated
 	 */
-	protected void addAssistantPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_assistant_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_assistant_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT,
-						false,
-						false,
-						false,
-						null,
-						null,
-						null));
+	protected void addAssistantPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_assistant_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_assistant_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT,
+				false,
+				false,
+				false,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -149,20 +142,19 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 * @generated
 	 */
 	protected void addElementTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_elementType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_elementType_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						new String[] { "org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
-						}));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_elementType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_elementType_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				new String[] {
+						"org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
+				}));
 	}
 
 	/**
@@ -173,19 +165,17 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 * @generated
 	 */
 	protected void addElementTypeIDPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_elementTypeID_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_elementTypeID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_elementTypeID_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_elementTypeID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -195,46 +185,43 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated NOT
 	 */
-	protected void addClientContextPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_clientContext_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_clientContext_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT,
-						true,
-						false,
-						true,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						new String[] { "org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
-						}) {
+	protected void addClientContextPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_clientContext_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_clientContext_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT,
+				true,
+				false,
+				true,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				new String[] { "org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
+				}) {
 
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-						return ClientContextManager.getInstance().getClientContexts();
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+				return ClientContextManager.getInstance().getClientContexts();
+			}
+
+			@Override
+			public void setPropertyValue(Object object, Object value) {
+				final EStructuralFeature feature = AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID;
+				EObject modelingAssistantProvider = (EObject) object;
+				IClientContext context = (IClientContext) value;
+
+				String newID = (context == null) ? null : context.getId();
+				String currentID = (String) modelingAssistantProvider.eGet(feature);
+				if (!Objects.equals(newID, currentID)) {
+					EditingDomain editingDomain = getEditingDomain(modelingAssistantProvider);
+					if (editingDomain == null) {
+						modelingAssistantProvider.eSet(feature, newID);
+					} else {
+						editingDomain.getCommandStack().execute(SetCommand.create(editingDomain, object, feature, newID));
 					}
-
-					@Override
-					public void setPropertyValue(Object object, Object value) {
-						final EStructuralFeature feature = AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID;
-						EObject modelingAssistantProvider = (EObject) object;
-						IClientContext context = (IClientContext) value;
-
-						String newID = (context == null) ? null : context.getId();
-						String currentID = (String) modelingAssistantProvider.eGet(feature);
-						if (!Objects.equals(newID, currentID)) {
-							EditingDomain editingDomain = getEditingDomain(modelingAssistantProvider);
-							if (editingDomain == null) {
-								modelingAssistantProvider.eSet(feature, newID);
-							} else {
-								editingDomain.getCommandStack().execute(SetCommand.create(editingDomain, object, feature, newID));
-							}
-						}
-					}
-				});
+				}
+			}
+		});
 	}
 
 	/**
@@ -244,21 +231,18 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated
 	 */
-	protected void addClientContextIDPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_clientContextID_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_clientContextID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addClientContextIDPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_clientContextID_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_clientContextID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -268,22 +252,20 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated
 	 */
-	protected void addExcludedElementTypePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_excludedElementType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_excludedElementType_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						new String[] { "org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
-						}));
+	protected void addExcludedElementTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_excludedElementType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_excludedElementType_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				new String[] {
+						"org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
+				}));
 	}
 
 	/**
@@ -293,21 +275,18 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated
 	 */
-	protected void addExcludedElementTypeIDPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_excludedElementTypeID_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_excludedElementTypeID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addExcludedElementTypeIDPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_excludedElementTypeID_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_excludedElementTypeID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -317,22 +296,20 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated
 	 */
-	protected void addRelationshipTypePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_relationshipType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_relationshipType_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						new String[] { "org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
-						}));
+	protected void addRelationshipTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_relationshipType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_relationshipType_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				new String[] {
+						"org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
+				}));
 	}
 
 	/**
@@ -342,25 +319,23 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 *
 	 * @generated
 	 */
-	protected void addRelationshipTypeIDPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ModelingAssistantProvider_relationshipTypeID_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_relationshipTypeID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addRelationshipTypeIDPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ModelingAssistantProvider_relationshipTypeID_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_relationshipTypeID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,8 +344,7 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null)
-		{
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER);
 			childrenFeatures.add(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT);
@@ -412,8 +386,7 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	 * @generated
 	 */
 	@Override
-	protected boolean shouldComposeCreationImage()
-	{
+	protected boolean shouldComposeCreationImage() {
 		return true;
 	}
 
@@ -427,8 +400,7 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelingAssistantProvider) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ModelingAssistantProvider_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_ModelingAssistantProvider_type") : //$NON-NLS-1$
 				getString("_UI_ModelingAssistantProvider_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -445,8 +417,7 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ModelingAssistantProvider.class))
-		{
+		switch (notification.getFeatureID(ModelingAssistantProvider.class)) {
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__NAME:
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT:
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE:
@@ -480,35 +451,23 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
-						AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
+				AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
-						AssistantFactory.eINSTANCE.createElementTypeFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
+				AssistantFactory.eINSTANCE.createElementTypeFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
-						FiltersFactory.eINSTANCE.createCompoundFilter()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
+				FiltersFactory.eINSTANCE.createCompoundFilter()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
-						FiltersFactory.eINSTANCE.createEquals()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
+				FiltersFactory.eINSTANCE.createEquals()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT,
-						AssistantFactory.eINSTANCE.createPopupAssistant()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__POPUP_ASSISTANT,
+				AssistantFactory.eINSTANCE.createPopupAssistant()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT,
-						AssistantFactory.eINSTANCE.createConnectionAssistant()));
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT,
+				AssistantFactory.eINSTANCE.createConnectionAssistant()));
 	}
 
 	/**

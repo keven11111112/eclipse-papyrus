@@ -48,8 +48,7 @@ import org.eclipse.uml2.common.util.CacheAdapter;
  *
  * @generated
  */
-public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container implements AssistedElementTypeFilter
-{
+public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container implements AssistedElementTypeFilter {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -78,8 +77,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	protected AssistedElementTypeFilterImpl()
-	{
+	protected AssistedElementTypeFilterImpl() {
 		super();
 	}
 
@@ -90,8 +88,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return AssistantPackage.Literals.ASSISTED_ELEMENT_TYPE_FILTER;
 	}
 
@@ -102,8 +99,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -114,8 +110,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		newName = newName == null ? NAME_EDEFAULT : newName;
 		String oldName = name;
 		name = newName;
@@ -131,8 +126,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public ModelingAssistantProvider getProvider()
-	{
+	public ModelingAssistantProvider getProvider() {
 		ModelingAssistantProvider provider = basicGetProvider();
 		return provider != null && provider.eIsProxy() ? (ModelingAssistantProvider) eResolveProxy((InternalEObject) provider) : provider;
 	}
@@ -143,8 +137,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	public ModelingAssistantProvider basicGetProvider()
-	{
+	public ModelingAssistantProvider basicGetProvider() {
 		return AssistedElementTypeFilterOperations.getProvider(this);
 	}
 
@@ -155,8 +148,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public boolean matches(Object input)
-	{
+	public boolean matches(Object input) {
 		return AssistedElementTypeFilterOperations.matches(this, input);
 	}
 
@@ -167,10 +159,8 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER__NAME:
 			return getName();
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER__PROVIDER:
@@ -189,10 +179,8 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER__NAME:
 			setName((String) newValue);
 			return;
@@ -207,10 +195,8 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -225,10 +211,8 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER__PROVIDER:
@@ -244,10 +228,8 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
 		case AssistantPackage.ASSISTED_ELEMENT_TYPE_FILTER___MATCHES__OBJECT:
 			return matches(arguments.get(0));
 		}
@@ -261,8 +243,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
@@ -284,8 +265,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
 	}
 
@@ -297,8 +277,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 * @return The cache adapter for this '<em><b>Assisted Element Type Filter</b></em>'.
 	 * @generated
 	 */
-	protected CacheAdapter getCacheAdapter()
-	{
+	protected CacheAdapter getCacheAdapter() {
 		return CacheAdapter.getCacheAdapter(this);
 	}
 

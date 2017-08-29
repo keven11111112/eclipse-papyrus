@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512110
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512110
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 
@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 /**
  * Extended connection Tool Entry
  */
+@SuppressWarnings("restriction")
 public class ExtendedConnectionToolEntry extends PaletteToolEntry implements IElementTypesBasedTool, IClassBasedTool {
 
 	/** list of element types created by this tool */

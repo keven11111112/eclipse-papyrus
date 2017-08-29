@@ -27,7 +27,6 @@ import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.StackConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ToolConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.StackConfigurationItemProvider;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.CreatePaletteItemUtil;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.utils.DragAndDropCompoundCommand;
 
@@ -121,6 +120,13 @@ public class CustomStackConfigurationItemProvider extends StackConfigurationItem
 	@Override
 	public Collection<?> getChildren(final Object object) {
 		return ((StackConfiguration) object).getOwnedConfigurations();
+	}
+	
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		FilteredElementUtil.collectNewFilters(newChildDescriptors, object);
 	}
 
 

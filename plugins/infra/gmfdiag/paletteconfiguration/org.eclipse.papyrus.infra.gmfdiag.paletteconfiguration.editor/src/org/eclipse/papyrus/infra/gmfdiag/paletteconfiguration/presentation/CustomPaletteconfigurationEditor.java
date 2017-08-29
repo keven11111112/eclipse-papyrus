@@ -21,11 +21,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.StrictCompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -37,6 +43,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CreateChildCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
@@ -47,9 +54,13 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.emf.workspace.EMFOperationCommand;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -125,6 +136,9 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 	/** icon path for the delete button */
 	protected static final String DELETE_ICON = "/icons/delete.gif";//$NON-NLS-1$
 
+	/** icon path for the filters button */
+	protected static final String FILTERS_ICON = "/icons/filter.gif";//$NON-NLS-1$
+
 	private static final String NEW_TOOL_LABEL = Messages.CustomPaletteconfigurationEditor_NewTool;
 
 	private static final String STACK_LABEL = "Stack"; //$NON-NLS-1$
@@ -199,8 +213,8 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 		// Create the editing domain with a special command stack.
 		TransactionalEditingDomainImpl editingDomain = new TransactionalEditingDomainImpl(adapterFactory, commandStack);
 		WorkspaceEditingDomainFactory.INSTANCE.mapResourceSet(editingDomain);
-		
-		this.editingDomain = editingDomain; 
+
+		this.editingDomain = editingDomain;
 	}
 
 	/**
@@ -362,41 +376,66 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 		createToolBarItem(toolbar, CREATE_SEPARATOR_ICON, Messages.CustomPaletteconfigurationEditor_Create_Separator_Tooltip, createNewSeparatorListener(), validatorForNotStackChild);
 		createToolBarItem(toolbar, CREATE_TOOL_ICON, Messages.CustomPaletteconfigurationEditor_Create_Tool_Tooltip, createNewToolListener(), validator);
 		createToolBarItem(toolbar, CREATE_STACK_ICON, Messages.CustomPaletteconfigurationEditor_Create_Stack_Tooltip, createNewStackListener(), validatorForNotStackChild);
-		createToolBarItem(toolbar, CREATE_DRAWERS_ICON, "Filter", createFilterListener(), () -> true);
+		createToolBarItem(toolbar, FILTERS_ICON, "Create a new Filter", createFilterListener(), () -> {
+			Object firstElement = ((IStructuredSelection) getSelection()).getFirstElement();
+			return firstElement instanceof Configuration || firstElement instanceof CompoundFilter;
+		});
 	}
 
-	/**
-	 * @return
-	 */
 	private Listener createFilterListener() {
 		return event -> {
 			IStructuredSelection selection = (IStructuredSelection) selectionViewer.getSelection();
 			if (selection == null || selection.size() != 1) {
 				return;
 			}
-			
+
 			Object selected = selection.getFirstElement();
-			
+
 			EObject parent;
-			
+
+			CompoundCommand command = new StrictCompoundCommand();
+
 			if (selected instanceof Configuration) {
-				parent = (Configuration)selected;
+				Configuration configuration = (Configuration) selected;
+				if (configuration.getFilter() != null) {
+					command.append(new DeleteCommand(getEditingDomain(), Collections.singleton(configuration.getFilter())));
+				}
+				parent = configuration;
 			} else if (selected instanceof CompoundFilter) {
-				parent = (CompoundFilter)selected;
+				parent = (CompoundFilter) selected;
 			} else {
 				return;
 			}
-			
+
 			List<CommandParameter> newChildDescriptors = editingDomain.getNewChildDescriptors(parent, null).stream()
-				.filter(CommandParameter.class::isInstance)
-				.map(CommandParameter.class::cast)
-				.collect(Collectors.toList());
-			
+					.filter(CommandParameter.class::isInstance)
+					.map(CommandParameter.class::cast)
+					.collect(Collectors.toList());
+
 			NewFilterDialog dialog = new NewFilterDialog(getSite().getShell(), newChildDescriptors);
 			if (dialog.open() == Dialog.OK && dialog.getNewChild() != null) {
 				CommandParameter newChild = dialog.getNewChild();
+
 				Command createCommand = editingDomain.createCommand(CreateChildCommand.class, new CommandParameter(parent, null, newChild));
-				editingDomain.getCommandStack().execute(createCommand);
+				command.append(createCommand);
+
+				TransactionalEditingDomain ted = (TransactionalEditingDomain) editingDomain;
+				
+				Command operation = new EMFOperationCommand(ted, new AbstractEMFOperation(ted, "Create filter") {
+
+					@Override
+					protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						if (command.canExecute()) {
+							command.execute();
+							return Status.OK_STATUS;
+						} else {
+							throw new ExecutionException("Unable to create a new filter - the operation is not enabled");
+						}
+					}
+					
+				});
+
+				ted.getCommandStack().execute(operation);
 			}
 		};
 	}
