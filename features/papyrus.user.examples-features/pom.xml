@@ -8,12 +8,12 @@
 	    <version>0.0.1-SNAPSHOT</version>
 	    <relativePath>../../releng/main/pom.xml</relativePath>
     </parent>
-    <artifactId>org.eclipse.papyrus.examples.features</artifactId>
+    <artifactId>org.eclipse.papyrus.user.examples-features</artifactId>
 	<packaging>pom</packaging>
 	<name>Papyrus Examples Features</name>
-	<description>Container of the Eclipse Feature definition projects for the Examples Papyrus distribution.</description>
+	<description>Container of the Eclipse Feature definition projects for the User Examples Papyrus distribution.</description>
 
 	<modules>
-		<module>org.eclipse.papyrus.examples.feature</module>
+		<module>org.eclipse.papyrus.user.examples.feature</module>
 	</modules>
 </project>

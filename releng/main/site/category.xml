@@ -12,11 +12,11 @@
    <feature url="features/org.eclipse.papyrus.toolsmiths.feature.source_1.0.0.qualifier.jar" id="org.eclipse.papyrus.toolsmiths.feature.source" version="1.0.0.qualifier">
       <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.examples.feature_0.0.1.qualifier.jar" id="org.eclipse.papyrus.examples.feature" version="0.0.1.qualifier">
-      <category name="org.eclipse.papyrus.examples.category"/>
+   <feature url="features/org.eclipse.papyrus.user.examples.feature_0.0.1.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature" version="0.0.1.qualifier">
+      <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.examples.feature.source_0.0.1.qualifier.jar" id="org.eclipse.papyrus.examples.feature.source" version="0.0.1.qualifier">
-      <category name="org.eclipse.papyrus.examples.category"/>
+   <feature url="features/org.eclipse.papyrus.user.examples.feature.source_0.0.1.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature.source" version="0.0.1.qualifier">
+      <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
    <category-def name="org.eclipse.papyrus.category" label="Papyrus">
       <description>
@@ -28,9 +28,9 @@
          Papyrus Toolsmiths offers a set of plugins dedicated to speedup the process to create your own customization on top of Papyrus.
       </description>
    </category-def>
-   <category-def name="org.eclipse.papyrus.examples.category" label="Papyrus Examples">
+   <category-def name="org.eclipse.papyrus.user.examples.category" label="Papyrus User Examples">
       <description>
-         Papyrus Examples offers a set of plugins dedicated to gather examples of Papyrus usage.
+         Papyrus User Examples offers a set of plugins dedicated to gather examples of Papyrus usage.
       </description>
    </category-def>
    <repository-reference location="http://download.eclipse.org/releases/oxygen/" enabled="true" />
