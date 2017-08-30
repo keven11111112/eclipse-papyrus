@@ -1,6 +1,6 @@
-/*
- * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
- * 
+/*****************************************************************************
+ * Copyright (c) 2014, 2017 CEA, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,8 +9,8 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865
- *
- */
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
+ *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -897,7 +897,16 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		IEditorPage editorPage = TypeUtils.as(matchedPage[0], IEditorPage.class);
 		IDiagramWorkbenchPart diagramPart = (editorPage == null) ? null : TypeUtils.as(editorPage.getIEditorPart(), IDiagramWorkbenchPart.class);
-		return (diagramPart == null) ? null : diagramPart.getDiagramEditPart();
+
+		// The lazy initialization, used in the patch for bug 519107, does not initialize the diagram edit part of UmlGmfDiagramEditor
+		// So we call the setFocus method here to initialize it manually (see patch for bug 521353)
+		if (null != diagramPart) {
+			if (null == diagramPart.getDiagramEditPart()) {
+				diagramPart.setFocus();
+			}
+			return diagramPart.getDiagramEditPart();
+		}
+		return null;
 	}
 
 	public EditPart findEditPart(EObject modelElement) {
