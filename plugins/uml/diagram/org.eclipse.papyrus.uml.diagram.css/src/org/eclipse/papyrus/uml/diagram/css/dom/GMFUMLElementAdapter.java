@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 461489: add supports of AcceptEventAction
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 517679
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 431940
+ *  Alain Le Guennec (Esterel Technologies SAS) - Bug 521575
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
@@ -19,7 +20,7 @@ import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePrope
 import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyReferenceEdgeAdvice.STEREOTYPE_PROPERTY_REFERENCE_EDGE_HINT;
 import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyReferenceEdgeAdvice.STEREOTYPE_QUALIFIED_NAME_ANNOTATION_KEY;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -36,7 +37,6 @@ import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.css.helper.CSSDOMUMLSemanticElementHelper;
-import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
@@ -171,29 +171,32 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 			// Get applied STereotypes Attributes
 			if (APPLIED_STEREOTYPES_PROPERTY.equals(attr)) {
-				List<String> appliedStereotypes = new LinkedList<String>();
-				for (Stereotype stereotype : currentElement.getAppliedStereotypes()) {
-					appliedStereotypes.add(UMLLabelInternationalization.getInstance().getKeyword(stereotype));
-					appliedStereotypes.add(stereotype.getQualifiedName());
-				}
+				List<Stereotype> appliedStereotypes = currentElement.getAppliedStereotypes();
 				if (!appliedStereotypes.isEmpty()) {
-					return ListHelper.deepToString(appliedStereotypes, CSS_VALUES_SEPARATOR);
+					List<String> appliedStereotypeNames = new ArrayList<String>(appliedStereotypes.size() * 2);
+					for (Stereotype stereotype : appliedStereotypes) {
+						appliedStereotypeNames.add(stereotype.getName());
+						appliedStereotypeNames.add(stereotype.getQualifiedName());
+					}
+					return ListHelper.deepToString(appliedStereotypeNames, CSS_VALUES_SEPARATOR);
 				}
+				return ""; //$NON-NLS-1$
 			}
 
 			if (TYPE_APPLIED_STEREOTYPES_PROPERTY.equals(attr) && semanticElement instanceof TypedElement) {
 				Type type = ((TypedElement) semanticElement).getType();
 				if (type != null) {
-					List<String> appliedStereotypes = new LinkedList<>();
-					for (Stereotype stereotype : type.getAppliedStereotypes()) {
-						appliedStereotypes.add(stereotype.getName());
-						appliedStereotypes.add(stereotype.getQualifiedName());
-					}
-
-					if (!appliedStereotypes.isEmpty()) {
-						return ListHelper.deepToString(appliedStereotypes, CSS_VALUES_SEPARATOR);
+					List<Stereotype> appliedStereotypes = type.getAppliedStereotypes();
+					if (!appliedStereotypes.isEmpty()) { 
+						List<String> appliedStereotypeNames = new ArrayList<String>(appliedStereotypes.size() * 2);
+						for (Stereotype stereotype : appliedStereotypes) {
+							appliedStereotypeNames.add(stereotype.getName());
+							appliedStereotypeNames.add(stereotype.getQualifiedName());
+						}
+						return ListHelper.deepToString(appliedStereotypeNames, CSS_VALUES_SEPARATOR);
 					}
 				}
+				return ""; //$NON-NLS-1$
 			}
 
 			for (EObject stereotypeApplication : currentElement.getStereotypeApplications()) {
@@ -201,11 +204,15 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 				if (feature != null) {
 					if (feature.isMany()) {
 						List<?> values = (List<?>) stereotypeApplication.eGet(feature);
-						List<String> cssValues = new LinkedList<String>();
-						for (Object value : values) {
-							cssValues.add(getCSSValue(feature, value));
+						if (!values.isEmpty()) {
+							List<String> cssValues = new ArrayList<String>(values.size());
+							for (Object value : values) {
+								cssValues.add(getCSSValue(feature, value));
+							}
+							return ListHelper.deepToString(cssValues, CSS_VALUES_SEPARATOR);
+						} else {
+							return ""; //$NON-NLS-1$
 						}
-						return ListHelper.deepToString(cssValues, CSS_VALUES_SEPARATOR);
 					} else {
 						Object value = stereotypeApplication.eGet(feature);
 						String cssValue = getCSSValue(feature, value);
@@ -325,7 +332,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 			DecorationNode propertyLabel = (DecorationNode) semanticElement;
 			if (propertyLabel.getElement() instanceof Property) {
 				Property prop = (Property) propertyLabel.getElement();
-				String propLabel = UMLLabelInternationalization.getInstance().getLabel(prop);
+				String propLabel = prop.getName();
 				return propLabel;
 			}
 			// CSS can match Container Name
@@ -371,7 +378,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	@Override
 	protected String getCSSValue(EStructuralFeature feature, Object value) {
 		if (feature instanceof EReference && value instanceof NamedElement) {
-			String name = UMLLabelInternationalization.getInstance().getLabel(((NamedElement) value));
+			String name = ((NamedElement) value).getName();
 			return name == null || name.isEmpty() ? EMPTY_VALUE : name; // Bug 467716: Never return null or empty string if the value is not null
 		}
 		return super.getCSSValue(feature, value);
