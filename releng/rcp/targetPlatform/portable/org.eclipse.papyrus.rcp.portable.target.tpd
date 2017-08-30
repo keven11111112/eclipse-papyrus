@@ -9,7 +9,7 @@ location egit "http://download.eclipse.org/egit/updates-4.8" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC1-201708170500/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC2-201708240635/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -28,7 +28,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.23.1/v20170623-2012" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706130827" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201708231207" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }

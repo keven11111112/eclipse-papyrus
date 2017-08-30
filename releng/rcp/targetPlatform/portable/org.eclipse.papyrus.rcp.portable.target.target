@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1503473179">
+<target name="Papyrus RCP" sequenceNumber="1504076357">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170604-1316"/>
@@ -96,10 +96,10 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.7.0.v20170515-1617"/>
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.1.v20170817-0500"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.1.v20170824-0635"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.7.1.v20170811-1325"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.7.1.v20170817-0734"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC1-201708170500/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.7.1.v20170824-0635"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC2-201708240635/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.23.0.v20170411-2108"/>
@@ -111,9 +111,9 @@
       <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.23.1/v20170623-2012"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.1.201706130827"/>
-      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.3.1.201706130827"/>
-      <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706130827"/>
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.2.201708231207"/>
+      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.3.2.201708231207"/>
+      <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201708231207"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xsd.sdk.feature.group" version="2.13.0.v20170609-0928"/>
