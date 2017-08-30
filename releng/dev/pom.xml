@@ -17,7 +17,6 @@
 	
 	<modules>
 		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.dev.feature</module>
-		<module>../../features/papyrus.dev.examples-features/org.eclipse.papyrus.dev.examples.feature</module>
 		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.junit.feature</module>
 		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature</module>
 		<module>../../plugins/developer</module>
