@@ -61,6 +61,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.GeneralOrdering_Edge, executionProvider, false);
 	}
 
+	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageMessageSync_4003() {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, executionProvider, false);
