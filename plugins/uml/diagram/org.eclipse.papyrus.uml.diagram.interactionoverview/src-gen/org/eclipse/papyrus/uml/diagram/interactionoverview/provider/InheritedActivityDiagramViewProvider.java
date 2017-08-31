@@ -1,11 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Pauline DEVILLE (CEA LIST) - Bug 521670 - [InteractionOverviewDiagram] Can not create elements in the diagram
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.provider;
@@ -15,6 +18,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
@@ -22,13 +26,21 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.CustomUMLViewProvider;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.InteractionOverviewDiagramEditPart;
 
 public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider {
 
 	/** Local graphical type registry */
 	protected IGraphicalTypeRegistry registry = new GraphicalTypeRegistry();
+
+
+	@Override
+	protected String getDiagramProvidedId() {
+		return InteractionOverviewDiagramEditPart.MODEL_ID;
+	}
 
 	@Override
 	public Edge createEdge(final IAdaptable semanticAdapter, final View containerView, final String semanticHint, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
@@ -63,10 +75,16 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 		}
 
 		if (createdEdge == null) {
-			Activator.log.error(new Exception("Could not create Edge."));
+			Activator.log.error(new Exception("Could not create Edge.")); //$NON-NLS-1$
 		}
 
 		return createdEdge;
+	}
+
+	@Override
+	protected boolean provides(CreateDiagramViewOperation op) {
+		return InteractionOverviewDiagramEditPart.MODEL_ID.equals(op.getSemanticHint()) && UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != null
+				&& !UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())).isEmpty();
 	}
 
 	@Override
@@ -411,7 +429,7 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 			return super.createNode(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
 		}
 
-		Activator.log.error(new Exception("Could not create Node."));
+		Activator.log.error(new Exception("Could not create Node.")); //$NON-NLS-1$
 		return null;
 	}
 
