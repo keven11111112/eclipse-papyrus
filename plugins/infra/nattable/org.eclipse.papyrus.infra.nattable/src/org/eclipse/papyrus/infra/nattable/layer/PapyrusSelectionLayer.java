@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519383
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.layer;
 
@@ -148,5 +148,13 @@ public class PapyrusSelectionLayer extends SelectionLayer {
 		}
 
 		return selectedRange;
+	}
+
+	/**
+	 * @return The underlying layer of this selection layer
+	 * @since 4.0
+	 */
+	public IUniqueIndexLayer getSelectionUnderlyingLayer() {
+		return this.underlyingLayer;
 	}
 }
