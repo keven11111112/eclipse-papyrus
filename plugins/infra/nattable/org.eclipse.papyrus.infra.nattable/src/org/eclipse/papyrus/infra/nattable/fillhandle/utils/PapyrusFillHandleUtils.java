@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519383
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.fillhandle.utils;
@@ -92,8 +92,8 @@ public class PapyrusFillHandleUtils {
 			// Continue
 		}
 
-		// If a number is found, check if this is not a negative number
-		if (hasNumber && NEGATIVE_CHAR.equals(result.substring(result.length() - 1))) {
+		// If result is not empty, a number is found, and if this is not a negative number
+		if (!result.isEmpty() && hasNumber && NEGATIVE_CHAR.equals(result.substring(result.length() - 1))) {
 			result = result.substring(0, result.length() - 1);
 		}
 

@@ -9,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806, 519383
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
@@ -41,6 +41,8 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.Crea
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_H3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_H1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_V1_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleInteger_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningEndingPrefix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test;
@@ -439,6 +441,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 	// Bug 515806 - Provide a preference to choose the string to display instead of N/A
 	UnsupportedColumnCellTextTest.class,
+
+	// Bug 519383 - Increment action in table throws a NPE in some cases
+	FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_V1_V1_Test.class,
+	FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test.class
 })
 public class AllTests {
 	// JUnit 4 test suite

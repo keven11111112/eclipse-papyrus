@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -228,4 +229,22 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 		Assert.assertEquals(str, clipboard);
 	}
 
+	/**
+	 * Method to hide all categories in the tree table manager.
+	 *
+	 * @param treeManager The tree table manager
+	 */
+	protected void hideAllCategories(final TreeNattableModelManager treeManager) {
+		final Table table = treeManager.getTable();
+		final int maxDepth = FillingConfigurationUtils.getMaxDepthForTree(table);
+		final List<Integer> toHide = new ArrayList<Integer>();
+		int start = 0;
+		if (!FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(table, 0)) {
+			start = 1;
+		}
+		for (int i = start; i <= maxDepth; i++) {
+			toHide.add(Integer.valueOf(i));
+		}
+		treeManager.hideShowCategories(toHide, null);
+	}
 }

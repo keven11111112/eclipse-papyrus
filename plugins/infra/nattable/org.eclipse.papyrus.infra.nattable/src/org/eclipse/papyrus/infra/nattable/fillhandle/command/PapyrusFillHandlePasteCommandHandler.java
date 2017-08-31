@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519383
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.fillhandle.command;
@@ -26,8 +26,10 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.nebula.widgets.nattable.copy.InternalCellClipboard;
 import org.eclipse.nebula.widgets.nattable.edit.command.EditUtils;
+import org.eclipse.nebula.widgets.nattable.edit.command.UpdateDataCommand;
 import org.eclipse.nebula.widgets.nattable.fillhandle.command.FillHandlePasteCommand;
 import org.eclipse.nebula.widgets.nattable.fillhandle.command.FillHandlePasteCommand.FillHandleOperation;
+import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.fillhandle.command.FillHandlePasteCommandHandler;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
@@ -35,10 +37,12 @@ import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.fillhandle.utils.PapyrusFillHandleUtils;
+import org.eclipse.papyrus.infra.nattable.layer.PapyrusSelectionLayer;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
+import org.eclipse.swt.graphics.Rectangle;
 
 /**
  * The papyrus command handler for the fill handle paste. This allows to manage the string series and the row and column difference calculation.
@@ -82,12 +86,136 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				final boolean result = PapyrusFillHandlePasteCommandHandler.super.doCommand(targetLayer, command);
+				final boolean result;
+				if (hasAtLeastOneHiddenRow()) {
+					result = PapyrusFillHandlePasteCommandHandler.this.doCommandAdaptForHiddenRows(targetLayer, command);
+				} else {
+					result = PapyrusFillHandlePasteCommandHandler.super.doCommand(targetLayer, command);
+				}
+
 				return CommandResult.newOKCommandResult(Boolean.valueOf(result));
 			}
 		};
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(transactionalCommand));
 		return ((Boolean) transactionalCommand.getCommandResult().getReturnValue()).booleanValue();
+	}
+
+	/**
+	 * @return <code>true</code> if there is at least one hidden row in the table, <code>false</code> otherwise
+	 * @since 4.0
+	 */
+	protected boolean hasAtLeastOneHiddenRow() {
+		if (this.selectionLayer instanceof PapyrusSelectionLayer &&
+				((PapyrusSelectionLayer) this.selectionLayer).getSelectionUnderlyingLayer() instanceof RowHideShowLayer) {
+			RowHideShowLayer rowHideShowLayer = (RowHideShowLayer) ((PapyrusSelectionLayer) this.selectionLayer).getSelectionUnderlyingLayer();
+			if (!rowHideShowLayer.getHiddenRowIndexes().isEmpty()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Clone the method {@link FillHandlePasteCommandHandler#doCommand(ILayer, FillHandlePasteCommand)}.
+	 * But before updating data, row index is adapted to row position when some rows are hidden.
+	 *
+	 * @param targetLayer The target layer
+	 * @param command The command
+	 * @return <code>true</code> if the command has been handled, <code>false</code> otherwise
+	 * @since 4.0
+	 */
+	protected boolean doCommandAdaptForHiddenRows(final ILayer targetLayer, final FillHandlePasteCommand command) {
+		if (null != this.clipboard.getCopiedCells()) {
+			int pasteColumn = -1;
+			int pasteRow = -1;
+			int pasteWidth = this.clipboard.getCopiedCells().length;
+			int pasteHeight = this.clipboard.getCopiedCells()[0].length;
+			Rectangle handleRegion = this.selectionLayer.getFillHandleRegion();
+			if (null != handleRegion) {
+				pasteColumn = handleRegion.x;
+				pasteRow = handleRegion.y;
+				pasteWidth = handleRegion.width;
+				pasteHeight = handleRegion.height;
+			} else {
+				PositionCoordinate coord = this.selectionLayer.getSelectionAnchor();
+				pasteColumn = coord.getColumnPosition();
+				pasteRow = coord.getRowPosition();
+			}
+
+			int pasteStartColumn = pasteColumn;
+
+			int rowStartAdjustment = 0;
+			if (command.direction == MoveDirectionEnum.UP) {
+				rowStartAdjustment = pasteHeight % this.clipboard.getCopiedCells().length;
+			}
+
+			int columnStartAdjustment = 0;
+			if (command.direction == MoveDirectionEnum.LEFT) {
+				columnStartAdjustment = pasteWidth % this.clipboard.getCopiedCells()[0].length;
+			}
+
+			for (int i = 0; i < pasteHeight; i++) {
+				ILayerCell[] cells = this.clipboard.getCopiedCells()[(i + rowStartAdjustment) % this.clipboard.getCopiedCells().length];
+				for (int j = 0; j < pasteWidth; j++) {
+					ILayerCell cell = cells[(j + columnStartAdjustment) % this.clipboard.getCopiedCells()[0].length];
+
+					Object cellValue = getPasteValue(cell, command, pasteColumn, pasteRow);
+
+					// BUG 519383: EditUtils.isCellEditable and UpdateDataCommand use row (column) position but not row (column) index as parameters.
+					// But here, the variables pasteRow and pasteColumns are retrieved from fill handle region, which means they are index not position (see FillHandleDragMode.performDragAction).
+					// As there is no hidden rows, row index and row position are the same in SelectionLayer and RowHideShowLayer.
+					// When there is at least one hidden row, using the wrong index parameter in the SelectionLayer will lead to the wrong one in RowHideShowLayer. 
+					// It seems that this is a bug in NatTable.
+
+					// A workaround is proposed here to adapt row index to row position when some rows are hidden.
+					// It should work for actions like: hide all categories, show one category or using row filter in the column header.
+					int pasteRowAdapt = adaptToRowPositionWhenHiddenRowsExist(pasteRow);
+
+					if (EditUtils.isCellEditable(
+							this.selectionLayer,
+							command.configRegistry,
+							new PositionCoordinate(this.selectionLayer,
+									pasteColumn,
+									pasteRowAdapt))) {
+						this.selectionLayer.doCommand(new UpdateDataCommand(this.selectionLayer, pasteColumn, pasteRowAdapt, cellValue));
+					}
+
+					pasteColumn++;
+
+					if (pasteColumn >= this.selectionLayer.getColumnCount()) {
+						break;
+					}
+				}
+
+				pasteRow++;
+				pasteColumn = pasteStartColumn;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Adapt row index to row position when some rows are hidden.
+	 *
+	 * @param rowIndex The row index to be adapted
+	 * @return the adapted row position
+	 * @since 4.0
+	 */
+	protected int adaptToRowPositionWhenHiddenRowsExist(final int rowIndex) {
+		int rowPos = rowIndex;
+
+		if (this.selectionLayer instanceof PapyrusSelectionLayer &&
+				((PapyrusSelectionLayer) this.selectionLayer).getSelectionUnderlyingLayer() instanceof RowHideShowLayer) {
+			RowHideShowLayer rowHideShowLayer = (RowHideShowLayer) ((PapyrusSelectionLayer) this.selectionLayer).getSelectionUnderlyingLayer();
+			for (Integer hiddenRowIndex : rowHideShowLayer.getHiddenRowIndexes()) {
+				// Decrease row position by 1 for each hidden row index smaller than the row index
+				if (hiddenRowIndex < rowIndex) {
+					rowPos--;
+				}
+			}
+		}
+
+		return rowPos;
 	}
 
 	/**
@@ -181,7 +309,7 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 				command.configRegistry,
 				new PositionCoordinate(this.selectionLayer,
 						cell.getColumnIndex(),
-						cell.getRowIndex()));
+						adaptToRowPositionWhenHiddenRowsExist(cell.getRowIndex())));
 		return !isEditable || null != result ? result : super.getPasteValue(cell, command, toColumn, toRow);
 	}
 
