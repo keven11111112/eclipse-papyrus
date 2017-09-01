@@ -30,7 +30,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.eclipse.uml2.uml.diagram"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.example.diagram.simplediagram"; //$NON-NLS-1$
 
 	/**
 	 * @generated

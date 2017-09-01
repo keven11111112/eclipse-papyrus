@@ -1,5 +1,8 @@
+Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Programmaticsequence
+Bundle-Localization: plugin
+Bundle-Vendor: %providerName
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.example.programmaticcreation;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.example.programmaticcreation.Activator
