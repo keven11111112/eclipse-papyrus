@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013,2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -64,7 +64,7 @@ public class DiagramUtils {
 				current = current.getParent();
 			} else {
 				// No more parent, assume this is a RenderedDiagramRootEditPart
-				if (current.getChildren().size() == 0) {
+				if (current.getChildren().isEmpty()) {
 					return null;
 				}
 				current = (EditPart) current.getChildren().get(0);
@@ -145,11 +145,12 @@ public class DiagramUtils {
 		if (pvs != null) {	
 			ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 			PapyrusDiagram repKind = null;
-			if (manager.getRepresentationKindById(pvs.getDiagramKindId()) instanceof PapyrusDiagram) {
-				repKind = (PapyrusDiagram) manager.getRepresentationKindById(pvs.getDiagramKindId());
+			String diagramKindId = pvs.getDiagramKindId();
+			if (manager.getRepresentationKindById(diagramKindId) instanceof PapyrusDiagram) {
+				repKind = (PapyrusDiagram) manager.getRepresentationKindById(diagramKindId);
 			}
 			else {
-				Activator.log.info("Unexpected diagram kind. Your notation file might be broken or created with a previous version of the architecture framework.");
+				Activator.log.info("Unexpected diagram kind: "+diagramKindId+" Your notation file might be broken or created with a previous version of the architecture framework."); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			// Check if the selected viewpoint contains the diagram model kind
@@ -250,7 +251,7 @@ public class DiagramUtils {
 	 */
 	public static List<Diagram> getAssociatedDiagramsFromNotationResource(EObject element, Resource notationResource) {
 		if (notationResource != null) {
-			LinkedList<Diagram> diagrams = new LinkedList<Diagram>();
+			LinkedList<Diagram> diagrams = new LinkedList<>();
 			for (EObject eObj : notationResource.getContents()) {
 				if (eObj instanceof Diagram) {
 					Diagram diagram = (Diagram) eObj;
