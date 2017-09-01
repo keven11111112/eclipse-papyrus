@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.UnsetObject;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.uml.diagram.common.messages.Messages;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Composite;
@@ -87,9 +88,12 @@ public class UMLPropertySource extends PropertySource {
 			CellEditor result = null;
 			final Object genericFeature = itemPropertyDescriptor.getFeature(object);
 
+			if (!(genericFeature instanceof EReference)) {
+				return super.createPropertyEditor(composite);
+			}
 			// If it is a single reference
-			Object initialSelection = ((EObject) object).eGet((EStructuralFeature) genericFeature);
-			if (genericFeature instanceof EReference && !((EReference) genericFeature).isMany()) {
+			if (!((EReference) genericFeature).isMany()) {
+				Object initialSelection = ((EObject) object).eGet((EStructuralFeature) genericFeature);
 				final ILabelProvider editLabelProvider = getEditLabelProvider();
 				result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
 					@Override
@@ -97,7 +101,7 @@ public class UMLPropertySource extends PropertySource {
 						CustomUMLContentProvider provider = new CustomUMLContentProvider((EObject) object, (EStructuralFeature) genericFeature);
 						provider.addTemporaryElement(UnsetObject.instance);
 						TreeSelectorDialog dialog = new TreeSelectorDialog(cellEditorWindow.getShell());
-						dialog.setTitle("Select type");
+						dialog.setTitle(Messages.UMLPropertySource_ElementSelection);
 						dialog.setContentProvider(provider);
 						dialog.setLabelProvider(new UMLLabelProvider());
 						Object[] selectedValue = { initialSelection };
@@ -131,7 +135,7 @@ public class UMLPropertySource extends PropertySource {
 						dialog.setInitialElementSelections((List) initialSelection);
 						dialog.setLabelProvider(new UMLLabelProvider());
 						dialog.setContextElement(object);
-						dialog.setTitle("Element Selection");
+						dialog.setTitle(Messages.UMLPropertySource_ElementSelection);
 
 						Object toReturn = null;
 						if (dialog.open() == Window.OK) {
@@ -178,7 +182,7 @@ public class UMLPropertySource extends PropertySource {
 			if (element != null) {
 				result = element.equals(UnsetObject.instance);
 				// avoid that we can validate on an element that is not owned by the classifier itself
-				if ((feature instanceof ENamedElement) && ((ENamedElement) feature).getName().equals("classifierBehavior")) {
+				if ((feature instanceof ENamedElement) && ((ENamedElement) feature).getName().equals("classifierBehavior")) { //$NON-NLS-1$
 					if (element instanceof EObjectTreeElement) {
 						return isOwned(object, ((EObjectTreeElement) element).getEObject());
 					}

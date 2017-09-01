@@ -84,6 +84,8 @@ public class Messages extends NLS {
 
 	public static String CreateOrSelectTypeDialog_SelectNewTypeContainerDialogMessage;
 
+	public static String UMLPropertySource_ElementSelection;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
