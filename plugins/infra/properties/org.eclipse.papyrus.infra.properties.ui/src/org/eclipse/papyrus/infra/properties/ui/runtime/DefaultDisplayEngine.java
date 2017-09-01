@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.papyrus.infra.properties.ui.util.EMFURLStreamHandler;
+import org.eclipse.papyrus.infra.properties.ui.xwt.PapyrusXWTCore;
 import org.eclipse.papyrus.infra.properties.ui.xwt.XWTTabDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -51,6 +52,7 @@ import org.eclipse.xwt.DefaultLoadingContext;
 import org.eclipse.xwt.ILoadingContext;
 import org.eclipse.xwt.IXWTLoader;
 import org.eclipse.xwt.XWT;
+import org.eclipse.xwt.XWTLoaderManager;
 
 /**
  * A default implementation for {@link DisplayEngine}
@@ -59,13 +61,14 @@ import org.eclipse.xwt.XWT;
  */
 public class DefaultDisplayEngine implements DisplayEngine {
 
-	private ILoadingContext loadingContext = new DefaultLoadingContext(getClass().getClassLoader());
+	private static ILoadingContext loadingContext = new DefaultLoadingContext(DefaultDisplayEngine.class.getClassLoader());
+	private static PapyrusXWTCore papyrusCore = new PapyrusXWTCore();
 
-	private Map<String, XWTTabDescriptor> currentTabs = new HashMap<String, XWTTabDescriptor>();
+	private Map<String, XWTTabDescriptor> currentTabs = new HashMap<>();
 
-	private TabModel<DataSource> displayedSections = new TabModel<DataSource>();
+	private TabModel<DataSource> displayedSections = new TabModel<>();
 
-	private TabModel<Control> controls = new TabModel<Control>();
+	private TabModel<Control> controls = new TabModel<>();
 
 	private boolean allowDuplicate;
 
@@ -93,9 +96,9 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 	@Override
 	public List<ITabDescriptor> getTabDescriptors(Set<View> views) {
-		Map<String, XWTTabDescriptor> result = new LinkedHashMap<String, XWTTabDescriptor>();
+		Map<String, XWTTabDescriptor> result = new LinkedHashMap<>();
 
-		Set<String> selectedSections = new HashSet<String>();
+		Set<String> selectedSections = new HashSet<>();
 
 		for (View view : views) {
 			for (Section section : view.getSections()) {
@@ -134,7 +137,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 		currentTabs = result;
 
-		return new ArrayList<ITabDescriptor>(result.values());
+		return new ArrayList<>(result.values());
 	}
 
 	/**
@@ -168,7 +171,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	}
 
 	protected void disposeControls() {
-		for (String next : new ArrayList<String>(controls.tabIDs())) {
+		for (String next : new ArrayList<>(controls.tabIDs())) {
 			disposeControls(next);
 		}
 	}
@@ -307,18 +310,25 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		}
 
 		ILoadingContext xwtContext = XWT.getLoadingContext();
-		XWT.setLoadingContext(loadingContext);
+		boolean needsRestoreProfile = XWT.applyProfile(papyrusCore);
+		IXWTLoader xwtLoader = XWTLoaderManager.getActive();
 
 		Control control = null;
 
 		try {
+			XWT.setLoadingContext(loadingContext);
+
 			ResourceSet rset = section.eResource().getResourceSet();
 			URL url = new URL(null, sectionFile.toString(), new EMFURLStreamHandler(rset.getURIConverter()));
 
-			Map<String, Object> options = new HashMap<String, Object>();
+			Map<String, Object> options = new HashMap<>();
 			options.put(IXWTLoader.CONTAINER_PROPERTY, parent);
 			options.put(IXWTLoader.DATACONTEXT_PROPERTY, source);
 			options.put(IXWTLoader.XML_CACHE_PROPERTY, (xmlCache != null) ? xmlCache : Boolean.TRUE);
+			options.put(IXWTLoader.DISABLE_USER_CONTROLS, Boolean.TRUE);
+
+			XWTLoaderManager.setActive(xwtLoader, true);
+
 			control = (Control) XWT.loadWithOptions(url, options);
 			xmlCache = options.get(IXWTLoader.XML_CACHE_PROPERTY);
 
@@ -331,10 +341,13 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			disposeControls(section.getTab().getId());
 			Label label = new Label(parent, SWT.NONE);
 			label.setText("An error occured in the property view. The file " + section.getSectionFile() + " could not be loaded"); //$NON-NLS-1$ //$NON-NLS-2$
+		} finally {
+			if (needsRestoreProfile) {
+				XWT.restoreProfile();
+			}
+			XWT.setLoadingContext(xwtContext);
 		}
 		layout(parent);
-
-		XWT.setLoadingContext(xwtContext);
 
 		return control;
 	}
