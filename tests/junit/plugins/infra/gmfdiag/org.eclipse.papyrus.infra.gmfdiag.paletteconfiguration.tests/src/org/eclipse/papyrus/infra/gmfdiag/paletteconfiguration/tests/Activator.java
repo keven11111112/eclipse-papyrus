@@ -16,7 +16,7 @@ import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
 
-	public final static String PLUGIN_ID = "org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests"; // //$NON-NLS-1$
+	public final static String PLUGIN_ID = "org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.tests"; // //$NON-NLS-1$
 
 	private static BundleContext context;
 

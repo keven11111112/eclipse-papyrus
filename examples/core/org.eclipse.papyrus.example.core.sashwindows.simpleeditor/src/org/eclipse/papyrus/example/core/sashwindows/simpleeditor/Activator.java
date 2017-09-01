@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.example.core";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.example.core.sashwindows.simpleeditor";
 
 	// The shared instance
 	private static Activator plugin;
@@ -68,7 +68,7 @@ public class Activator extends AbstractUIPlugin {
 	 * plug-in relative path
 	 * 
 	 * @param path
-	 *        the path
+	 *            the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
