@@ -83,29 +83,4 @@
          </menu>
       </menuContribution>
    </extension>
-  
-   <!--commented for the build Juno M4, because perspective doesn't work-->
-   
-   <!--<extension
-         point="org.eclipse.papyrus.editor.perspectiveconfiguration">
-      <configuration
-            perspectiveID="org.eclipse.papyrus.infra.core.perspective">
-         <toolbar
-               toolbarID="org.eclipse.papyrus.navigation.toolbars.navigationToolbar">
-         </toolbar>
-         <command
-               commandID="org.eclipse.papyrus.navigation.commands.backNavigationCommand">
-         </command>
-         <command
-               commandID="org.eclipse.papyrus.navigation.commands.nextNavigationCommand">
-         </command>
-         <command
-               commandID="org.eclipse.papyrus.navigation.commands.topNavigationCommand">
-         </command>
-         <command
-               commandID="org.eclipse.papyrus.navigation.commands.upNavigationCommand">
-         </command>
-      </configuration>
-   </extension>
-   -->
 </plugin>
