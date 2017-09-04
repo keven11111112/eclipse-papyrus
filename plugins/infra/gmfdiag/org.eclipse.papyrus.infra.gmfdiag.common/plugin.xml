@@ -496,6 +496,7 @@
          point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
       <decorationDeclaration
             class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.OpenArrowConnectionDecoration"
+            label="Open Arrow"
             name="open_arrow">
       </decorationDeclaration>
    </extension>
@@ -503,6 +504,7 @@
          point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
       <decorationDeclaration
             class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidDiamondFilledConnectionDecoration"
+            label="Solid Diamond Filled"
             name="solid_diamond_filled">
       </decorationDeclaration>
    </extension>
@@ -510,21 +512,24 @@
          point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
       <decorationDeclaration
             class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidDiamondEmptyConnectionDecoration"
+            label="Solid Diamond Empty"
             name="solid_diamond_empty">
       </decorationDeclaration>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
          <decorationDeclaration
-            class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidArrowFilledConnectionDecoration"
-            name="solid_arrow_filled">
+               class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidArrowFilledConnectionDecoration"
+               label="Solid Arrow Filled"
+               name="solid_arrow_filled">
       </decorationDeclaration>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration">
          <decorationDeclaration
-            class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidArrowEmptyConnectionDecoration"
-            name="solid_arrow_empty">
+               class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.SolidArrowEmptyConnectionDecoration"
+               label="Solid Arrow Empty"
+               name="solid_arrow_empty">
       </decorationDeclaration>
    </extension>
 

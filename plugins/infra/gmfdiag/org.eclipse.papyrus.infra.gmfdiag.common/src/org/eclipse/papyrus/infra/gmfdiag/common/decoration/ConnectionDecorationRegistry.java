@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521754
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.decoration;
@@ -38,6 +39,9 @@ public class ConnectionDecorationRegistry {
 	/** The decoration map. */
 	protected Map<String, Class<? extends RotatableDecoration>> decorationMap = null;
 
+	/** The label map. */
+	protected Map<String, String> labelMap = null;
+
 	/**
 	 * Constructor.
 	 */
@@ -61,13 +65,20 @@ public class ConnectionDecorationRegistry {
 	 */
 	protected void init() {
 		decorationMap = new HashMap<String, Class<? extends RotatableDecoration>>();
+		labelMap = new HashMap<String, String>();
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 		for (IConfigurationElement element : elements) {
 			String decorationName = element.getAttribute("name"); //$NON-NLS-1$
+
 			String decorationClass = element.getAttribute("class"); //$NON-NLS-1$
 			Class<? extends RotatableDecoration> loadClass = ClassLoaderHelper.loadClass(decorationClass, RotatableDecoration.class);
 			if (null != loadClass) {
 				decorationMap.put(decorationName, loadClass);
+			}
+
+			String decorationlabel = element.getAttribute("label"); //$NON-NLS-1$
+			if (null != decorationlabel) {
+				labelMap.put(decorationName, decorationlabel);
 			}
 		}
 	}
@@ -92,6 +103,36 @@ public class ConnectionDecorationRegistry {
 	 */
 	public Map<String, Class<? extends RotatableDecoration>> getAvailableDecoration() {
 		return decorationMap;
+	}
+
+	/**
+	 * Gets the decoration label.
+	 * 
+	 * @param decorationName
+	 *            the decoration name
+	 * @return the decoration label (null if not found)
+	 */
+	public String getLabel(final String decorationName) {
+		return labelMap.get(decorationName);
+	}
+
+	/**
+	 * Gets the decoration name.
+	 * 
+	 * @param decorationLabel
+	 *            the decoration label
+	 * @return the decoration name (null if not found)
+	 */
+	public String getName(final String decorationLabel) {
+		String name = null;
+		try {
+			name = labelMap.entrySet().stream()
+					.filter(e -> e.getValue().equals(decorationLabel))
+					.findFirst().get().getKey();
+		} catch (Exception NoSuchElementException) {
+			// Do nothing, return null if no element
+		}
+		return name;
 	}
 
 }

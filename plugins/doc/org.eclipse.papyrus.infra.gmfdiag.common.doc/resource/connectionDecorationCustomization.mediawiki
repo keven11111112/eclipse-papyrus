@@ -32,6 +32,7 @@ New decoration can be added through extension point:<br>
 ''org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration''<br><br>
 Attributes:
 *''name'':  The name of the decoration, used for the decoration values.
+*''label'':  The label of the decoration, used for the user interface (ie Properties view).
 *''class'': The class of the decoration to instanciate. Must implement ''org.eclipse.draw2d.RotatableDecoration''.
 
 Added decorations will be available in advance properties tab and in the CSS autocompletion.

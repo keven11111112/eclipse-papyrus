@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation - bug 465297
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661, 521754
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 
@@ -21,6 +21,8 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.decoration.ConnectionDecorationRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
@@ -169,7 +171,7 @@ public class AdvanceStyleModelElement extends CustomStyleModelElement {
 					PortPositionEnum.OUTSIDE.toString() };
 
 			contentProvider = new StaticContentProvider(portPositions);
-		}
+		} else
 
 		// case connector decorations
 		if (propertyPath.equals(ConnectionEditPart.TARGET_DECORATION)
@@ -181,6 +183,39 @@ public class AdvanceStyleModelElement extends CustomStyleModelElement {
 		}
 
 		return null != contentProvider ? contentProvider : super.getContentProvider(propertyPath);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.CustomStyleModelElement#getLabelProvider(java.lang.String)
+	 */
+	@Override
+	public ILabelProvider getLabelProvider(final String propertyPath) {
+		ILabelProvider labelProvider = null;
+
+		// case connector decorations
+		if (propertyPath.equals(ConnectionEditPart.TARGET_DECORATION)
+				|| propertyPath.equals(ConnectionEditPart.SOURCE_DECORATION)) {
+			Map<String, Class<? extends RotatableDecoration>> availableDecoration = ConnectionDecorationRegistry.getInstance().getAvailableDecoration();
+			List<String> decorations = new ArrayList<String>(availableDecoration.keySet());
+			decorations.addAll(Arrays.asList(ConnectionEditPart.DECORATION_VALUES));
+
+			labelProvider = new LabelProvider() {
+				@Override
+				public String getText(final Object element) {
+					if (element instanceof String) {
+						String label = ConnectionDecorationRegistry.getInstance().getLabel((String) element);
+						return null != label ? label : (String) element;
+					}
+					return null;
+				}
+			};
+		} else {
+			labelProvider = super.getLabelProvider(propertyPath);
+		}
+
+		return labelProvider;
 	}
 
 }
