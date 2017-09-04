@@ -66,6 +66,16 @@
                </appInfo>
             </annotation>
          </attribute>
+         <attribute name="label" type="string">
+            <annotation>
+               <documentation>
+                  The label of the decoration. Used in properties view, Advance tab, Source and Target decoration combo list.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

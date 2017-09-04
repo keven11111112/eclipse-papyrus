@@ -8,12 +8,14 @@
  *
  * Contributors:
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521754
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.databinding;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.decoration.ConnectionDecorationRegistry;
 
 /**
  * The {@link CustomStringStyleObservableValue} used for connector decoration value.
@@ -50,5 +52,34 @@ public final class ConnectionDecorationStyleObservableValue extends CustomString
 	@Override
 	protected String getDefaultValue() {
 		return DEFAULT_VALUE;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.AbstractCustomStyleObservableValue#doSetValue(java.lang.Object)
+	 */
+	@Override
+	protected void doSetValue(final Object value) {
+		String name = null;
+		if (value instanceof String) {
+			name = ConnectionDecorationRegistry.getInstance().getName((String) value);
+		}
+		super.doSetValue(null != name ? name : value);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.AbstractCustomStyleObservableValue#doGetValue()
+	 */
+	@Override
+	protected Object doGetValue() {
+		Object value = super.doGetValue();
+		if (value instanceof String) {
+			String label = ConnectionDecorationRegistry.getInstance().getLabel((String) value);
+			return null != label ? label : value;
+		}
+		return value;
 	}
 }
