@@ -219,14 +219,14 @@ public class InteractionCompositeEditPart extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof InteractionCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InteractionCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
 
 
-		// Papyrus Gencode :Affixed Port locator
+		//Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);
@@ -236,7 +236,7 @@ public class InteractionCompositeEditPart extends RoundedCompartmentEditPart {
 
 
 
-		// Papyrus Gencode :Affixed Port locator
+		//Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof ParameterEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart) childEditPart).getFigure(), locator);

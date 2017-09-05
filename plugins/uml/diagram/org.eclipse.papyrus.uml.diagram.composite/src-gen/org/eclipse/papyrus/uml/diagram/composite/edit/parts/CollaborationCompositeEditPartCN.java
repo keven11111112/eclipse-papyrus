@@ -201,7 +201,7 @@ public class CollaborationCompositeEditPartCN extends RoundedCompartmentEditPart
 
 		if (childEditPart instanceof CollaborationCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((CollaborationCompositeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}

@@ -37,7 +37,7 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	 */
 	@Override
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
-		EditPart editPart = decoratorTarget.getAdapter(EditPart.class);
+		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
 		if (editPart instanceof GraphicalEditPart ||
 				editPart instanceof AbstractConnectionEditPart) {
 			Object model = editPart.getModel();
@@ -66,7 +66,7 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		View view = decoratorTarget.getAdapter(
+		View view = (View) decoratorTarget.getAdapter(
 				View.class);
 		return view != null && CompositeStructureDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}

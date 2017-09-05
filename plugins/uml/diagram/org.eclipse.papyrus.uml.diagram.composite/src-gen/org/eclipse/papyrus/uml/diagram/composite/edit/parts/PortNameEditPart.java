@@ -64,6 +64,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEd
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelAlignmentEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
@@ -277,7 +278,7 @@ public class PortNameEditPart extends FloatingLabelEditPart
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
+		return DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
 	}
 
 	/**
