@@ -8,14 +8,25 @@
  *
  * Contributors:
  * 	 Maged Elaasar - Initial API and Implementation
+ *   Ansgar Radermacher (CEA LIST) - Bug 518691 (Profile diagram migration from Neon to Oxygen)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.architecture.migration;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescription;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDescriptionLanguage;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler_1_3_0;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
@@ -25,6 +36,7 @@ import org.eclipse.papyrus.uml.architecture.UMLArchitectureContextIds;
  * UML Diagram Reconciler from 1.2.0 to 1.3.0 that switches the old PapyrusViewStyle by
  * the new PapyrusDiagramStyle
  */
+@SuppressWarnings({ "deprecation", "nls" }) // Warnings are not pertinent this migration should remain on old deprecated API
 public class UMLDiagramReconciler_1_3_0 extends DiagramReconciler_1_3_0 {
 
 	private static final String ACTIVITY_DIAGRAM = "PapyrusUMLActivityDiagram";
@@ -82,6 +94,37 @@ public class UMLDiagramReconciler_1_3_0 extends DiagramReconciler_1_3_0 {
 		return null;
 	}
 
+	@Override
+	public ICommand getReconcileCommand(Diagram diagram) {
+		ICommand reconcileCommand = super.getReconcileCommand(diagram);
+		if (reconcileCommand != null && diagram != null && PROFILE_DIAGRAM.equals(diagram.getType())) {
+			Resource eResource = diagram.eResource();
+			if (eResource != null) {
+				ResourceSet resourceSet = eResource.getResourceSet();
+				if (resourceSet instanceof ModelSet) {
+					CompositeCommand compositeCommand = new CompositeCommand("Update viewpoints from configuration to architecture and set profile as default architecture");
+					compositeCommand.add(reconcileCommand);
+					Command setContextCommand = getSetContextCommand((ModelSet) resourceSet, UMLArchitectureContextIds.Profile);
+					compositeCommand.add(EMFtoGMFCommandWrapper.wrap(setContextCommand));
+					return compositeCommand;
+				}
+			}
+		}
+		return reconcileCommand;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////
+	// FIXME: should be in Papyrus core API
+	protected Command getSetContextCommand(ModelSet modelSet, String contextId) {
+		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
+			@Override
+			protected void doExecute() {
+				ArchitectureDescription description = DiModelUtils.getOrAddArchitectureDescription(modelSet);
+				description.setContextId(contextId);
+			}
+		};
+	}
+	
 	/**
 	 * Gets the diagram kind that matches given name and that supports the given diagram
 	 */
