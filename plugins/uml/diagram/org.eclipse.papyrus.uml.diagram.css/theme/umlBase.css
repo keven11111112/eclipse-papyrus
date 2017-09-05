@@ -10,6 +10,7 @@
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Generic shape default value implementation. Default symbol implementation.
  *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 471348
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 507488
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521573
  *****************************************************************************/
 
 /* Display name in italic when isAbstract=true (bug 464129)*/
@@ -346,6 +347,13 @@ CommunicationDiagram  DurationObservation > Compartment[kind="symbol"],
 CommunicationDiagram  TimeObservation > Compartment[kind="symbol"]
 {
     visible:true;
+}
+
+CommunicationDiagram DurationObservation > Label,
+CommunicationDiagram TimeObservation > Label
+{
+	visible:true;
+	textAlignment:"left";
 }
 
 CommunicationDiagram Interaction
