@@ -58,7 +58,6 @@
 				      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
 				      <persistent value="true"/>
 				   </extension>
-
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
 		      <?gmfgen generated="true"?>
 		<page
