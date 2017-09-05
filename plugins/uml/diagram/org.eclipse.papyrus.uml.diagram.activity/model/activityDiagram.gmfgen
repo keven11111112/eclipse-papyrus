@@ -8577,7 +8577,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomSideAffixedNodesCreationEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivitySideAffixedNodesCreationEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -19022,7 +19022,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomSideAffixedNodesCreationEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivitySideAffixedNodesCreationEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
