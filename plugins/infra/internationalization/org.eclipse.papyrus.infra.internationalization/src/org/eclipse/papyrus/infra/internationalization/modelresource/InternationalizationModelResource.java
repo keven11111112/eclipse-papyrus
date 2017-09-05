@@ -463,21 +463,26 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			super.createModel(uriWithoutExtension);
 
 			final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
-			final Locale locale = InternationalizationPreferencesUtils.getLocalePreference(this.resource.getURI());
-			final Resource resource = this.resource;
+			
+			// Retrieve the resource (do it because snippet can change the current resource variable) 
+			final Resource resource = getResourceSet().getResource(uri, false);
+			Locale locale = null;
+			if(resource != null){
+				locale = InternationalizationPreferencesUtils.getLocalePreference(resource.getURI());
+				
+				// Fill the properties by locale map
+				configureResource(resourceURI, resource, locale);
 
-			// Fill the properties by locale map
-			configureResource(resourceURI, resource, locale);
+				// Calculate the internationalization content
+				loadInternationalizationContent(uri, locale);
 
-			// Calculate the internationalization content
-			loadInternationalizationContent(uri, locale);
+				resource.setModified(true);
 
-			resource.setModified(true);
-
-			try {
-				saveResource(resource);
-			} catch (final IOException e) {
-				Activator.log.error(e);
+				try {
+					saveResource(resource);
+				} catch (final IOException e) {
+					Activator.log.error(e);
+				}
 			}
 		}
 	}
