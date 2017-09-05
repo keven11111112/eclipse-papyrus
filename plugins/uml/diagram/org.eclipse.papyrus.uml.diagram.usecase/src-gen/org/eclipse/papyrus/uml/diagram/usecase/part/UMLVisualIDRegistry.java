@@ -196,15 +196,13 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return "";
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return "";
 		}
 		String containerVisualID;
 		if (UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = UseCaseDiagramEditPart.VISUAL_ID;
@@ -360,15 +358,13 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
 		if (UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = UseCaseDiagramEditPart.VISUAL_ID;
@@ -785,24 +781,19 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
-				&& isAssociation_Edge((Association) domainElement)) {
+		if (UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass()) && isAssociation_Edge((Association) domainElement)) {
 			return AssociationEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
-				&& isDependency_Edge((Dependency) domainElement)) {
+		if (UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass()) && isDependency_Edge((Dependency) domainElement)) {
 			return DependencyEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass())
-				&& isAbstraction_Edge((Abstraction) domainElement)) {
+		if (UMLPackage.eINSTANCE.getAbstraction().isSuperTypeOf(domainElement.eClass()) && isAbstraction_Edge((Abstraction) domainElement)) {
 			return AbstractionEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())
-				&& isUsage_Edge((Usage) domainElement)) {
+		if (UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass()) && isUsage_Edge((Usage) domainElement)) {
 			return UsageEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getRealization().isSuperTypeOf(domainElement.eClass())
-				&& isRealization_Edge((Realization) domainElement)) {
+		if (UMLPackage.eINSTANCE.getRealization().isSuperTypeOf(domainElement.eClass()) && isRealization_Edge((Realization) domainElement)) {
 			return RealizationEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getPackageMerge().isSuperTypeOf(domainElement.eClass())) {
@@ -828,8 +819,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isAssociation_Edge(Association domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getAssociation(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getAssociation(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -837,8 +827,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isDependency_Edge(Dependency domainElement) {
-		Object result = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getDependency(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getDependency(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -846,8 +835,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isAbstraction_Edge(Abstraction domainElement) {
-		Object result = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getAbstraction(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getAbstraction(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -863,8 +851,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isRealization_Edge(Realization domainElement) {
-		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getRealization(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getRealization(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -953,8 +940,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public String getNodeVisualID(View containerView, EObject domainElement) {
-			return org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			return org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
 		/**
@@ -962,8 +948,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
-			return org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.checkNodeVisualID(containerView,
-					domainElement, candidate);
+			return org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
 		/**

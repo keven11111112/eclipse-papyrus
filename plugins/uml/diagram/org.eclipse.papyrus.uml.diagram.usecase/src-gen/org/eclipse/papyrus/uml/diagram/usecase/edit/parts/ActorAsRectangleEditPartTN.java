@@ -113,10 +113,10 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ActorAsRectangleNameEditPartTN) {
-			((ActorAsRectangleNameEditPartTN) childEditPart)
-					.setLabel(getPrimaryShape().getActorAsRectangleFigure_name());
+			((ActorAsRectangleNameEditPartTN) childEditPart).setLabel(getPrimaryShape().getActorAsRectangleFigure_name());
 			return true;
 		}
+
 
 		return false;
 	}
