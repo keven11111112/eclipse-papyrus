@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
@@ -74,6 +75,35 @@ public class DiagramUtils {
 		}
 		return null;
 	}
+
+	/**
+	 * Gets the diagram edit part associated to the given edit part
+	 *
+	 * @param part
+	 *            The edit part
+	 * @return The diagram associated to the edit part, or <code>null</code> if none is found
+	 * @since 3.1
+	 */
+	public static DiagramEditPart getDiagramEditPartFrom(EditPart part) {
+		EditPart current;
+
+		if (null != part) {
+			current = part;
+		} else {
+			return null;
+		}
+
+		while (!(current instanceof DiagramEditPart)) {
+			if (null != current.getParent()) {
+				current = current.getParent();
+			} else {
+				return null;
+			}
+		}
+
+		return (DiagramEditPart) current;
+	}
+
 
 	/**
 	 * Gets the owner of a diagram as it will appear in the model explorer.
