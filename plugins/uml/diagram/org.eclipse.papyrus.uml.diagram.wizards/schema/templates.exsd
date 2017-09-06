@@ -139,7 +139,7 @@
          <attribute name="language" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  Reference the id of the architecture framework
                </documentation>
             </annotation>
          </attribute>
@@ -153,6 +153,13 @@
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="selectedByDefault" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Define if it is selected by default or not
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -161,7 +168,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         1.0.0
       </documentation>
    </annotation>
 
@@ -172,9 +179,25 @@
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         /org.eclipse.papyrus.uml.templaterepository/plugin.xml
       </documentation>
    </annotation>
 
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         /*****************************************************************************
+ * Copyright (c) 2015 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *****************************************************************************/
+      </documentation>
+   </annotation>
 
 </schema>

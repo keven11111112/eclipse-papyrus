@@ -5,17 +5,19 @@
          point="org.eclipse.papyrus.uml.diagram.wizards.templates">
       <transformation
             Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypes"
-         	id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInModel"
+            id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInModel"
             language="org.eclipse.papyrus.infra.services.edit.TypeContext"
-            name="A UML model with basic primitive types">
+            name="A UML model with basic primitive types"
+            selectedByDefault="true">
       </transformation>
 
       <transformation
             Transformation="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypes"
             id="org.eclipse.papyrus.uml.templaterepository.ImportUMLPrimitiveTypesInProfile"
             language="org.eclipse.papyrus.uml.architecture.Profile"
-            name="A UML profile with basic primitive types">
-      </transformation>   
+            name="A UML profile with basic primitive types"
+            selectedByDefault="true">
+      </transformation>  
    </extension>
 
 </plugin>

@@ -118,6 +118,7 @@ public class SelectModelTemplateComposite extends Composite {
 		templateTableViewer.getTable().setLayoutData(gridTable);
 		templateTableViewer.getTable().setBackground(composite.getBackground());
 		templateTableViewer.setContentProvider(new ModelTemplateTransfoProvider());
+		templateTableViewer.setCheckStateProvider(new ModelTemplateCheckStateProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
 	}
 
