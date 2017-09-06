@@ -19,11 +19,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
 /**
  * @since 3.1
@@ -32,6 +34,7 @@ public class AdviceUtil {
 
 	/**
 	 * Sorts the advices, taking dependencies of the specified element types into account
+	 * 
 	 * @param advices
 	 * @param types
 	 * @param contextId
@@ -61,26 +64,37 @@ public class AdviceUtil {
 		}
 
 		LinkedHashSet<IEditHelperAdvice> sortedAdvices = new LinkedHashSet<>();
-		Map<String, IEditHelperAdvice> idToAdvice = Arrays.stream(advices).collect(Collectors.toMap(a -> a.getClass().getName(), a -> a));
+		Multimap<String, IEditHelperAdvice> idToAdvice = HashMultimap.create();
+		for (IEditHelperAdvice advice : advices) {
+			idToAdvice.put(getId(advice), advice);
+		}
 
 		for (IEditHelperAdvice advice : advices) {
-			collectSortedDependencies(advice.getClass().getName(), graph, idToAdvice, sortedAdvices);
+			collectSortedDependencies(advice, graph, idToAdvice, sortedAdvices);
 		}
 
 		return sortedAdvices.toArray(advices);
 	}
 
-	private static void collectSortedDependencies(String adviceName, OrientedGraph<String> dependencies, Map<String, IEditHelperAdvice> idToAdvice,
-			LinkedHashSet<IEditHelperAdvice> result) {
+	private static String getId(IEditHelperAdvice advice) {
+		// FIXME Bug 519446: In some cases, an advice class can be instantiated several times, so ID is not unique
+		// This also needs to be consistent with IDs returned by ElementTypeSetConfigurationRegistry.getInstance().getAdvicesDeps()
+		return advice == null ? null : advice.getClass().getName();
+	}
 
-		IEditHelperAdvice advice = idToAdvice.get(adviceName);
+	private static void collectSortedDependencies(IEditHelperAdvice advice, OrientedGraph<String> dependencies, Multimap<String, IEditHelperAdvice> idToAdvice,
+			LinkedHashSet<IEditHelperAdvice> result) {
 		if (advice != null && result.contains(advice)) {
 			return;
 		}
+		
+		String adviceName = getId(advice);
 
 		Set<String> allDependencies = dependencies.getAllConnex(adviceName);
-		for (String dependency : allDependencies) {
-			collectSortedDependencies(dependency, dependencies, idToAdvice, result);
+		for (String dependencyID : allDependencies) {
+			for (IEditHelperAdvice dependency : idToAdvice.get(dependencyID)) {
+				collectSortedDependencies(dependency, dependencies, idToAdvice, result);
+			}
 		}
 
 		if (advice != null) {
