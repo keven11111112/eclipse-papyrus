@@ -46,6 +46,8 @@ public abstract class AbstractModelTemplateContentProvider implements IStructure
 
 	protected static final String TRANSFO_URI = "Transformation_URI"; //$NON-NLS-1$
 
+	protected static final String SELECT_BY_DEFAULT = "selectedByDefault"; //$NON-NLS-1$
+
 	/** The my template descriptions. */
 	protected ModelTemplateDescription[] myTemplateDescriptions;
 
@@ -98,6 +100,7 @@ public abstract class AbstractModelTemplateContentProvider implements IStructure
 					configElement.getAttribute(ATTRIBUTE_NOTATION_FILE), configElement.getAttribute(ATTRIBUTE_DI_FILE));
 			template.setLanguage(configElement.getAttribute(ATTRIBUTE_LANGUAGE));
 			template.setTransfo(configElement.getAttribute(TRANSFO_URI));
+			template.setSelectedByDefault(Boolean.valueOf(configElement.getAttribute(SELECT_BY_DEFAULT)));
 			templates.add(template);
 		}
 		return templates;
