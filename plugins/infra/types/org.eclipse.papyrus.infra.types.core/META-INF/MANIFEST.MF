@@ -16,7 +16,7 @@ Export-Package: org.eclipse.papyrus.infra.types.core,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.types.core.Activator
