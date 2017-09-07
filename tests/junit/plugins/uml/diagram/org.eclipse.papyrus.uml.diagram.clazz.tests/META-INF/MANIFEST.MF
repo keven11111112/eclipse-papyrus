@@ -31,7 +31,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.service.types;bundle-version="[3.1.0,4.0.0)"
 Export-Package: org.eclipse.papyrus.uml.diagram.clazz.test,
  org.eclipse.papyrus.uml.diagram.clazz.test.canonical,
+ org.eclipse.papyrus.uml.diagram.clazz.test.copyPaste,
+ org.eclipse.papyrus.uml.diagram.clazz.test.dnd,
+ org.eclipse.papyrus.uml.diagram.clazz.test.legacy,
  org.eclipse.papyrus.uml.diagram.clazz.test.load,
+ org.eclipse.papyrus.uml.diagram.clazz.test.resources,
+ org.eclipse.papyrus.uml.diagram.clazz.test.tests,
  org.eclipse.papyrus.uml.diagram.clazz.tests.generation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

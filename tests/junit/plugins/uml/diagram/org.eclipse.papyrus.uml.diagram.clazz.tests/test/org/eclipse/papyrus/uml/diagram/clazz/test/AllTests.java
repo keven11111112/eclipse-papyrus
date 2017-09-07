@@ -20,6 +20,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.test.canonical.TestClassDiagram;
 import org.eclipse.papyrus.uml.diagram.clazz.test.copyPaste.ConstraintPasteStrategyTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.dnd.DragAndDropAssociationsTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.legacy.PackageDiagramLegacyTest;
+import org.eclipse.papyrus.uml.diagram.clazz.test.resources.ClassPaletteTest;
+import org.eclipse.papyrus.uml.diagram.clazz.test.resources.ModelValidationTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug382954_InstanceSpecificationLink;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug476872_MoveCommandTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug481317_MoveGeneralizationTest;
@@ -43,9 +45,11 @@ import org.junit.runners.Suite.SuiteClasses;
 		Bug476872_MoveCommandTest.class,
 		Bug481317_MoveGeneralizationTest.class,
 		MoveContentsTest.class,
-		DragAndDropAssociationsTest.class
+		DragAndDropAssociationsTest.class,
 		// load
 		// LoadTests.class
+		ClassPaletteTest.class,
+		ModelValidationTest.class
 
 })
 @DynamicClasses("org.eclipse.papyrus.uml.diagram.clazz.test.AllGenTests")
