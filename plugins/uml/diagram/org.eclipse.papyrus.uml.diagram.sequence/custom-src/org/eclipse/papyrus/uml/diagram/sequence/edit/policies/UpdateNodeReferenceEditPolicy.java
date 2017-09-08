@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * this editpolicy is to manage the movement of message on node as lifeline
@@ -69,7 +70,7 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 			ConnectionEditPart linkEditPart = reconnectRequest.getConnectionEditPart();
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE ANCHORS of " + linkEditPart.getClass().getName());//$NON-NLS-1$
 			Point locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(reconnectRequest.getLocation(), (GraphicalViewer) getHost().getViewer());
-			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+-- LocationOnDiagram " + locationOnDiagram);// $NON-NLS-2$ //$NON-NLS-1$
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+-- LocationOnDiagram " + locationOnDiagram);//$NON-NLS-1$
 
 			if (linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 				SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
@@ -80,19 +81,22 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 						GraphicalEditPart gEditPart = (GraphicalEditPart) editPart;
 						Point GEPlocationOnDiagram = CoordinateReferentialUtils.getFigurePositionRelativeToDiagramReferential(gEditPart.getFigure(), getDiagramEditPart(getHost()));
 
-						UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move  from " + GEPlocationOnDiagram + " " + editPart.getClass().getName());// $NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
+						locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(SequenceUtil.getSnappedLocation(gEditPart, reconnectRequest.getLocation().getCopy()), (GraphicalViewer) getHost().getViewer());
+
+						UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move  from " + GEPlocationOnDiagram + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
 						ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
-						changeBoundsRequest.setLocation(reconnectRequest.getLocation());
+						changeBoundsRequest.setLocation(reconnectRequest.getLocation().getCopy());
 						changeBoundsRequest.setEditParts(editPart);
+
 						if (references.getStrongReferences().get(editPart).equals(SequenceReferenceEditPolicy.ROLE_START)) {
 							int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y());
-							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName());// $NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
+							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
 							changeBoundsRequest.setMoveDelta(new Point(0, delta));
 							changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
 						}
 						if (references.getStrongReferences().get(editPart).equals(SequenceReferenceEditPolicy.ROLE_FINISH)) {
 							int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y() - gEditPart.getFigure().getBounds().height);
-							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName());// $NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$
+							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName());//$NON-NLS-1$ //$NON-NLS-2$
 							changeBoundsRequest.setMoveDelta(new Point(0, delta));
 							changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
 						}

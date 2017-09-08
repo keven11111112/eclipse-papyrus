@@ -1685,14 +1685,15 @@ public class SequenceUtil {
 
 	/**
 	 * update the bounds of the rectangle to snap to grid
+	 * Snap is done with screen position.
 	 * 
 	 * @param editPart
+	 *            the referential edit part
 	 * @param bounds
-	 * @param request
-	 * @return
+	 *            the bounds to snap
 	 * 
 	 */
-	public static PrecisionRectangle getSnappedBounds(EditPart editPart, Rectangle bounds) {
+	public static PrecisionRectangle getSnappedBounds(final EditPart editPart, final Rectangle bounds) {
 		PrecisionRectangle baseRect = new PrecisionRectangle(bounds);
 		PrecisionRectangle result = baseRect.getPreciseCopy();
 		if (editPart != null) {
@@ -1705,13 +1706,16 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * update the bounds of the rectangle to snap to grid
+	 * update the bounds of the rectangle to snap to grid.
+	 * Snap is done with screen position.
 	 * 
 	 * @param editPart
+	 *            the referential edit part
 	 * @param location
+	 *            the location to snap
 	 * 
 	 */
-	public static PrecisionPoint getSnappedLocation(EditPart editPart, Point location) {
+	public static PrecisionPoint getSnappedLocation(final EditPart editPart, final Point location) {
 		PrecisionPoint baseRect = new PrecisionPoint(location);
 		PrecisionPoint result = baseRect.getPreciseCopy();
 		if (editPart != null) {

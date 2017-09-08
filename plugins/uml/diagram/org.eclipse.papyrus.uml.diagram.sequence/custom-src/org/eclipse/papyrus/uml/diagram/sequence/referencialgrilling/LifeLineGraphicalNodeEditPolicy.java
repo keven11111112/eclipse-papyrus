@@ -100,6 +100,9 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
+
 		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
 		MessageEnd end = getPreviousEventFromPosition(request.getLocation());
 		if (end != null) {
@@ -148,7 +151,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * This method take into account the horizontal Delta to have an horizontal feedback if the target point is in the Y delta.
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy#getTargetConnectionAnchor(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *
 	 * @param request
@@ -156,7 +159,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected ConnectionAnchor getTargetConnectionAnchor(CreateConnectionRequest request) {
-
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(request);
 		ConnectionAnchor newTargetConnectionAnchor = targetConnectionAnchor;
 		if (null != targetConnectionAnchor) {
@@ -168,7 +172,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					Point sourceLocation = (Point) extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
 
 					if (referenceTargetPoint != null && sourceLocation != null) {
-
 						if (UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint().equals(((CreateConnectionViewAndElementRequest) requestForType).getConnectionViewAndElementDescriptor().getSemanticHint())
 								|| (isHorizontalConnection(sourceLocation, referenceTargetPoint))
 										&& request.getSourceEditPart() != request.getTargetEditPart()
@@ -179,7 +182,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 				}
 			}
 		}
-
 
 		return newTargetConnectionAnchor;
 	}
@@ -321,6 +323,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		// Update request with the real Location of the Event if location next to an Event
 		Point realEventLocation = displayEvent.getRealEventLocation(request.getLocation());
 		if (request.getLocation() != realEventLocation) {
@@ -345,19 +349,16 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 		updateExtendedData(request);
 
-
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())) {
 			return getCreateEdgeCommand(request, cmd);
 		}
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_DELETE_EDGE.getSemanticHint())) {
 			return getDeleteEdgeCommand(request, cmd);
 		}
-
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_ASYNCH_EDGE.getSemanticHint()) ||
 				request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_SYNCH_EDGE.getSemanticHint())) {
 			return getSyncAsyncEdgeCommand(request, cmd);
 		}
-
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_FOUND_EDGE.getSemanticHint())) {
 			// in the case of the found message, because the serialization is very specific , we must call basic editpolicy of GMF
 			// so we create an new instance of the GraphicalNode editpolicy and we delegate the operation.
@@ -405,7 +406,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			}
 		});
 
-
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new Listener() {
 
 			@Override
@@ -421,7 +421,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	/**
 	 * During creation of a message, check if the creating message can be considered as horizontal using a threshold
 	 * If this is the case, update the request to force the location as horizontal.
-	 * 
+	 *
 	 * @param request
 	 *            The request of Message creation
 	 */
@@ -448,7 +448,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * isHorizontalConnection tests whether an asynchronous message is horizontal
-	 * 
+	 *
 	 * @param conn
 	 *            controller representing the link
 	 * @param newLine
@@ -602,7 +602,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @return true if all the validation are passed
 	 */
 	private boolean isAllowedMessageEnd(CreateConnectionViewAndElementRequest request) {
-
 		Boolean allowed = true;
 		if (!precisionMode) {
 			Point targetLocation = request.getLocation();
@@ -629,9 +628,9 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		Boolean targetLowerThanSource = true;
 		// only message with a target lower than the source is allowed.
 		Point sourceLocationPoint = (Point) sourceLocation;
-
 		targetLowerThanSource = sourceLocationPoint.y() <= targetLocation.y() + SequenceDiagramConstants.HORIZONTAL_MESSAGE_MAX_Y_DELTA;
 		return targetLowerThanSource;
+
 	}
 
 	protected GraphicalNodeEditPolicy getBasicGraphicalNodeEditPolicy() {
@@ -649,6 +648,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
@@ -660,6 +661,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	@Override
 	protected Command getReconnectTargetCommand(final ReconnectRequest request) {
 		Command command = null;
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
 		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
 
@@ -728,8 +731,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		return previousEventsFromPosition.isEmpty() ? null : previousEventsFromPosition.get(0);
 	}
 
-
-
 	/**
 	 * This method update the request in order to make the point at the correct position on the grill.
 	 * 
@@ -771,7 +772,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getFeedbackHelper(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *      This method is used in order to manage the snap to grid of LOST Message
 	 */
-
 	protected FeedbackHelper getFeedbackHelper(CreateConnectionRequest request) {
 		if (request.getTargetEditPart() instanceof NodeEditPart) {
 			ConnectionAnchor targetAnchor = ((NodeEditPart) request.getTargetEditPart()).getTargetConnectionAnchor(request);
