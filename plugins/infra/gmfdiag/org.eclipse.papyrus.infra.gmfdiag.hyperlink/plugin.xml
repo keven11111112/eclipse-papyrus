@@ -40,4 +40,49 @@
             provider="org.eclipse.papyrus.infra.gmfdiag.hyperlink.providers.EditorHyperlinkLabelProvider">
       </labelProvider>
    </extension>
+   
+   
+  <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.papyrus.infra.gmfdiag.hyperlink.commands.hyperlinkManagerCommand"
+            name="Manage Hyperlinks">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.infra.gmfdiag.hyperlink.handler.ManageHyperLinksHandler"
+            commandId="org.eclipse.papyrus.infra.gmfdiag.hyperlink.commands.hyperlinkManagerCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:navigateMenu">    
+            
+            <command
+                  commandId="org.eclipse.papyrus.infra.gmfdiag.hyperlink.commands.hyperlinkManagerCommand"
+                  icon="icons/hyperlink_icon.png"
+                  id="org.eclipse.papyrus.infra.gmfdiag.hyperlink.menu.toolbars.hyperlinkManagerCommand"
+                  tooltip="Manage Hyperlinks">
+            </command>
+      </menuContribution>
+   </extension>
+<!-- commands and their bindings
+NOTE:
+M1 = CTRL/COMMAND 
+M2 = SHIFT 
+M3 = ALT 
+M4 = Platform-specific fourth key
+-->
+<extension
+        point="org.eclipse.ui.bindings">
+     <key
+           commandId="org.eclipse.papyrus.infra.gmfdiag.hyperlink.commands.hyperlinkManagerCommand"
+           schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+           sequence="M1+L"/>
+  </extension>
+
+
 </plugin>
