@@ -1476,22 +1476,6 @@
             </predicate>
           </sourceLocator>
         </setupTask>
-        <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-          <workingSet id="papyrus-others" name="Papyrus Others">
-            <predicate xsi:type="predicates:AndPredicate">
-              <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.team.svn"/>
-              <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.team\.svn"/>
-            </predicate>
-          </workingSet>
-          <workingSet id="papyrus-others-features" name="Papyrus Other Features">
-            <predicate xsi:type="predicates:AndPredicate">
-              <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.team.feature"/>
-              <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.team($|\..+)"/>
-            </predicate>
-          </workingSet>
-        </setupTask>
         <setupTask xsi:type="setup.targlets:TargletTask">
           <description>&#xD;
             Additional dependencies, e.g. for Subversive (SVN team integration), including&#xD;    &#xD;

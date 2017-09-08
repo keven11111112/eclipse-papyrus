@@ -20,7 +20,6 @@
 		<module>editor</module>
 		<module>uml</module>
 		<module>doc</module>
-		<module>team</module>
 		<module>sdk</module>
 		<module>toolsmiths</module>
 	</modules>
