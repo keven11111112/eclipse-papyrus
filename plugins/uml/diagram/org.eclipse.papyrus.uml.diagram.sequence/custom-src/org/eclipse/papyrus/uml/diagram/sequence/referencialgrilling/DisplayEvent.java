@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
@@ -150,10 +151,12 @@ public class DisplayEvent {
 	 * @return the location if no event found around, or the event precise location if existing
 	 */
 	public Point getRealEventLocation(final Point location) {
-		Point realLocationEvent = getRealEventLocationFromExecutionSpecification(location);
+		Point snappedLocation = SequenceUtil.getSnappedLocation(editpart, location).getCopy();
+		Point realLocationEvent = getRealEventLocationFromExecutionSpecification(location.getCopy());
 		if (location.equals(realLocationEvent)) {
-			realLocationEvent = getRealEventLocationFromMessage(location);
+			realLocationEvent = getRealEventLocationFromMessage(location.getCopy());
 		}
+		realLocationEvent = SequenceUtil.getSnappedLocation(editpart, realLocationEvent).getCopy();
 		return realLocationEvent;
 	}
 
@@ -212,8 +215,9 @@ public class DisplayEvent {
 	 */
 	private Point getNewEventLocationY(Point relativeMouseLocation, int referenceY, IFigure editPartFigure) {
 		Point newPoint = new Point(relativeMouseLocation);
-		if (referenceY - EVENT_SELECTION_DELTA < relativeMouseLocation.y() && relativeMouseLocation.y() < referenceY + EVENT_SELECTION_DELTA) {
 
+		// Point newPoint = SequenceUtil.getSnappedLocation(editpart, relativeMouseLocation);
+		if (referenceY - EVENT_SELECTION_DELTA < relativeMouseLocation.y() && relativeMouseLocation.y() < referenceY + EVENT_SELECTION_DELTA) {
 			newPoint.setY(referenceY);
 			newPoint.setX(relativeMouseLocation.x());
 		}
@@ -231,7 +235,8 @@ public class DisplayEvent {
 	public Point getRealEventLocationFromMessage(final Point location) {
 
 		// The Relative Position of the Mouse on screen
-		Point relativeLocation = location.getCopy();
+		// Point relativeLocation = location.getCopy();
+		Point relativeLocation = SequenceUtil.getSnappedLocation(editpart, location);
 		IFigure editPartFigure = ((GraphicalEditPart) editpart).getFigure();
 		editPartFigure.getParent().translateToRelative(relativeLocation);
 

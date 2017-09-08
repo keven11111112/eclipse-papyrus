@@ -100,6 +100,9 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
+
 		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
 		MessageEnd end = getPreviousEventFromPosition(request.getLocation());
 		if (end != null) {
@@ -156,6 +159,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected ConnectionAnchor getTargetConnectionAnchor(CreateConnectionRequest request) {
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(request);
 		ConnectionAnchor newTargetConnectionAnchor = targetConnectionAnchor;
 		if (null != targetConnectionAnchor) {
@@ -318,6 +323,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		// Update request with the real Location of the Event if location next to an Event
 		Point realEventLocation = displayEvent.getRealEventLocation(request.getLocation());
 		if (request.getLocation() != realEventLocation) {
@@ -641,6 +648,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
@@ -652,6 +661,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	@Override
 	protected Command getReconnectTargetCommand(final ReconnectRequest request) {
 		Command command = null;
+		// Snap to grid the request location
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
 		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
 
