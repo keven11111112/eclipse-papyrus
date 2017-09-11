@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -20,13 +21,16 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -36,6 +40,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 
 /**
  * this class is used to connect a node to the grid
@@ -270,6 +275,19 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 					// updateAnchors
 					if (((EObject) notification.getNotifier()).eContainer().equals(((EObject) getHost().getModel()))) {
 						Node node = (Node) this.getHost().getModel();
+
+						// children case
+						for (Object child : node.getChildren()) {
+							// Nodes
+							if (child instanceof Node) {
+								EObject element = ((Node) child).getElement();
+								// ExecutionSpecification
+								if (element instanceof ExecutionSpecification) {
+									updateExecutionSpecificationFromY((Node) child, notification.getNewIntValue(), notification.getOldIntValue());
+								}
+							}
+						}
+
 						java.util.List<Edge> sourceEdge = node.getSourceEdges();
 						for (Edge edge : sourceEdge) {
 							IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
@@ -291,6 +309,25 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 					updateColumnStartFromXNotification(bounds);
 				}
 			}
+		}
+	}
+
+	/**
+	 * This update the position of {@link ExecutionSpecification} {@link Node} after the Y move of lifeline parent.
+	 * 
+	 * @param execSpecNode
+	 *            the {@link ExecutionSpecification} {@link Node}
+	 * @param newYValue
+	 *            the new Y value
+	 * @param oldYValue
+	 *            the old Y value
+	 */
+	protected void updateExecutionSpecificationFromY(final Node execSpecNode, final int newYValue, final int oldYValue) {
+		LayoutConstraint layoutConstraint = execSpecNode.getLayoutConstraint();
+		if (layoutConstraint instanceof Bounds) {
+			int delta = newYValue - oldYValue;
+			execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update ExecutionSpecification", new EObjectAdapter(execSpecNode), //$NON-NLS-1$
+					new Point(((Bounds) layoutConstraint).getX(), ((Bounds) layoutConstraint).getY() - delta)));
 		}
 	}
 
@@ -448,7 +485,6 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	}
 
 	/**
-	 * /**
 	 * this class update the position of anchor after the move
 	 * 
 	 * @param sourceEdge
