@@ -642,11 +642,13 @@
    </diagramReconciler>
 </extension>
 
+<!-- FIXME : deactivated for Oxygen.1 RC4 (non working see Bug 522028)
 <extension point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
        <strategy
              strategy="org.eclipse.papyrus.uml.diagram.usecase.dnd.strategy.UsecaseToSubjectinUsecaseDiagramDropStrategy">
        </strategy>
    </extension>
+-->   
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
 	      <?gmfgen generated="true"?>
 	      <visualTypeProvider
