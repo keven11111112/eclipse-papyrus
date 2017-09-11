@@ -1884,8 +1884,8 @@
     <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.8" location="${jre.location-1.8}"/>
     <setupTask xsi:type="setup.targlets:TargletTask">
       <targlet name="Papyrus Test Generation Framework Dependencies">
-        <requirement name="org.eclipse.upr.utp"/>
-        <requirement name="org.eclipse.upr.utp.papyrus"/>
+        <requirement name="org.eclipse.upr.utp" optional="true"/>
+        <requirement name="org.eclipse.upr.utp.papyrus" optional="true"/>
         <requirement name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
         <repositoryList>
           <repository url="${base.downloads.url}/upr/nightly/standardized/update/"/>
@@ -1896,8 +1896,8 @@
       </targlet>
     </setupTask>
     <setupTask xsi:type="setup.p2:P2Task" label="Papyrus Test Generation Framework Tools">
-      <requirement name="org.eclipse.upr.utp"/>
-      <requirement name="org.eclipse.upr.utp.papyrus"/>
+      <requirement name="org.eclipse.upr.utp" optional="true"/>
+      <requirement name="org.eclipse.upr.utp.papyrus" optional="true"/>
       <repository url="${base.downloads.url}/upr/nightly/standardized/update/"/>
     </setupTask>
   </stream>
@@ -1906,8 +1906,8 @@
     <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.8" location="${jre.location-1.8}"/>
     <setupTask xsi:type="setup.targlets:TargletTask">
       <targlet name="Papyrus Test Generation Framework Dependencies">
-        <requirement name="org.eclipse.upr.utp"/>
-        <requirement name="org.eclipse.upr.utp.papyrus"/>
+        <requirement name="org.eclipse.upr.utp" optional="true"/>
+        <requirement name="org.eclipse.upr.utp.papyrus" optional="true"/>
         <requirement name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
         <repositoryList>
           <repository url="${base.downloads.url}/upr/nightly/standardized/update/"/>
@@ -1918,8 +1918,8 @@
       </targlet>
     </setupTask>
     <setupTask xsi:type="setup.p2:P2Task" label="Papyrus Test Generation Framework Tools">
-      <requirement name="org.eclipse.upr.utp"/>
-      <requirement name="org.eclipse.upr.utp.papyrus"/>
+      <requirement name="org.eclipse.upr.utp" optional="true"/>
+      <requirement name="org.eclipse.upr.utp.papyrus" optional="true"/>
       <repository url="${base.downloads.url}/upr/nightly/standardized/update/"/>
     </setupTask>
   </stream>
