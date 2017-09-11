@@ -236,8 +236,6 @@ public class SelectRepresentationKindPage extends WizardPage {
 		}
 		representationKindComposite.setInput(viewpoints);
 		selectTemplateComposite.setInput(contexts);
-
-		getShell().pack(true);
 	}
 
 
