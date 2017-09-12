@@ -329,7 +329,77 @@ You can now open the *.ctx file and customize your property view.
 
 Papyrus provides a simple tool to deploy a property view locally (Right click on a CTX file -> Deploy/Undeploy) 
 
-==Multipllicity Editor==
+
+===Interaction between Components===
+
+Papyrus provides a way to synchronize several widgets between them. Indeed, this is possible by modifying the XWT files corresponding to the desired components.
+
+====How to use it ?====
+
+To set up the interaction between several components, two global variables were created in "AbstractPropertyEditor":
+*	'''listeningPropertyPaths''': list of properties to listen,
+*	'''listenerClasses''': list of classes used to define the behaviors to be adopted when modifying the values of the properties. 
+	A class is defined as: 'bundle name'/'path of the class'
+
+So we need to use these names as attributes in the desired XWT files.
+
+Next, create a class that inherits from "IPropertiesListener" or use an existing class such as "ReadOnlyStringPropertiesListener". The purpose of this class is to define the behavior of the chosen editor according to the associated input.
+
+It is at the ListenerClasses attribute that will be defined this class. The link will be made between the editor and the "PropertiesListener".
+
+Here is an example of adding attributes to an XWT file:
+
+[[File:images/example_xwt.png|Adding of attributes to an XWT file]]
+
+====Examples====
+
+An example "InteractionComponent_Example.zip" is provided in the plugin '''org.eclipse.papyrus.views.properties.doc''', in the folder '''resource.examples'''. it is intended to show how the mechanism should be used.
+
+There are 3 examples of interaction between components.
+
+=====First example=====
+For this example, create and select a class. In the 'Properties' view, a new 'tab' is present "InteractionComponent".
+In this tab, if the name is not empty it is not possible to modify the label. This property is readOnly.
+This is the listener "ReadOnlyStringPropertiesListener" that is used.
+
+When the 'Name' is empty, the 'Label' can be modified:
+
+[[File:images/className_empty.jpg|'Label' can be modified]]
+
+Otherwise it is read-only:
+
+[[File:images/className_1.jpg|'Label' set to read-only]]
+
+=====Second example=====
+It is still necessary to use a class, this time the modification is done on a boolean. Modifying the 'isAbstract' property activates/deactivates the 'isActive' property.
+This is the listener "ReadOnlyBooleanPropertiesListener" that is used.
+
+When 'isAbstract' is 'true', 'isActive' can be changed:
+
+[[File:images/isAbstract_true.jpg|'Is active' can be modified]]
+
+Otherwise it is read-only:
+
+[[File:images/isAbstract_false.jpg|'Is active' set to read only]]
+
+=====Third example=====
+Here you have to create a constraint and select it.
+
+The enumerated 'Visibility' activates/deactivates the property 'Context'.
+
+If the value is 'Public', the modification is possible, otherwise the property is read-only.
+The listener used is "ReadOnlyVisibilityPropertiesListener".
+
+When 'Visibility' is 'Public', 'Context' can be changed:
+
+[[File:images/visibility_public.jpg|'Context' can be modified]]
+
+Otherwise it is read-only: 
+
+[[File:images/visibility_private.jpg|'Context' set to read only]]
+
+
+==Multiplicity Editor==
 ===Description===
 The multiplicity editor contains two modes of edition:
 * The '''simple''' mode which allows to edit the lower and the upper values from a unique editor

@@ -16,9 +16,15 @@
  *  Sebastien Gabel (Esterel Technologies SAS) - bug 497367
  *  Sebastien Gabel (Esterel Technologies SAS) - bug 497461
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 515650
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 522124
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.ChangeEvent;
@@ -27,9 +33,11 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
+import org.eclipse.papyrus.infra.properties.ui.listeners.IPropertiesListener;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSourceChangedEvent;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.IDataSourceListener;
@@ -45,6 +53,7 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Layout;
+import org.osgi.framework.Bundle;
 
 
 /**
@@ -113,6 +122,44 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * The maximum number of characters per line for wrapping descriptions
 	 */
 	public static int descriptionMaxCharPerLine = 200;
+
+	/**
+	 * List separator for listenerClasses and listeningPropertyPaths.
+	 */
+	private static final String LIST_SEPARATOR = ","; //$NON-NLS-1$
+
+	/**
+	 * Separator for bundle and class on the listenerClasses value.
+	 */
+	private static final String BUNDLE_SEPARATOR = "/"; //$NON-NLS-1$
+
+	/**
+	 * List of properties to listen.
+	 *
+	 * @since 3.1
+	 */
+	protected String listeningPropertyPaths;
+
+	/**
+	 * HashSet of Listening property paths.
+	 *
+	 * @since 3.1
+	 */
+	protected Set<String> listeningPropertyPathsSet;
+
+	/**
+	 * List of classes used to define the behaviors to be adopted when modifying the values of the properties.
+	 *
+	 * @since 3.1
+	 */
+	protected String listenerClasses;
+
+	/**
+	 * HashSet of listener classes.
+	 *
+	 * @since 3.1
+	 */
+	protected Set<IPropertiesListener> listenerClassesSet;
 
 	/**
 	 * Constructor.
@@ -280,6 +327,8 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		checkInput();
 		updateLabel();
 		updateDescription();
+
+		manageObservableListeners();
 	}
 
 	/**
@@ -337,6 +386,8 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			// Only do this after attaching our listener so that it will be ahead of
 			// any ModelElements created for properties
 			checkInput();
+
+			manageObservableListeners();
 		}
 	}
 
@@ -363,12 +414,12 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		if (customLabel != null) {
 			return customLabel;
 		}
-		
-		if(null != getInput()) {
+
+		if (null != getInput()) {
 			final ModelElement modelElement = getInput().getModelElement(propertyPath);
-			if(modelElement instanceof ILabeledModelElement) {
-				final String label = ((ILabeledModelElement)modelElement).getLabel(getLocalPropertyPath());
-				if(null != label && !label.isEmpty()) {
+			if (modelElement instanceof ILabeledModelElement) {
+				final String label = ((ILabeledModelElement) modelElement).getLabel(getLocalPropertyPath());
+				if (null != label && !label.isEmpty()) {
 					return label;
 				}
 			}
@@ -555,7 +606,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Sets the editor's Layout
-	 * 
+	 *
 	 * @param layout
 	 */
 	public void setLayout(Layout layout) {
@@ -566,15 +617,15 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Returns the editor's Layout
-	 * 
+	 *
 	 * @return
-	 *         The editor's layout
+	 * 		The editor's layout
 	 */
 	public Layout getLayout() {
 		return getEditor() == null ? null : getEditor().getLayout();
 	}
 
-	/** 
+	/**
 	 * Indicates whether the editor's label should be displayed or not
 	 *
 	 * @param showLabel
@@ -694,5 +745,172 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		}
 
 		return dataSourceListener;
+	}
+
+	/**
+	 * Return the listening property paths.
+	 *
+	 * @return the listeningPropertyPaths The listening property paths.
+	 * @since 3.1
+	 */
+	public String getListeningPropertyPaths() {
+		return listeningPropertyPaths;
+	}
+
+	/**
+	 * Return the HashSet of listening property paths.
+	 *
+	 * @return the listeningPropertyPathsSet The HashSet of listening property paths.
+	 * @since 3.1
+	 */
+	public Set<String> getListeningPropertyPathsSet() {
+		return listeningPropertyPathsSet;
+	}
+
+	/**
+	 * Return the listener classes.
+	 *
+	 * @return the listenerClasses The listener classes.
+	 * @since 3.1
+	 */
+	public String getListenerClasses() {
+		return listenerClasses;
+	}
+
+	/**
+	 * Return the HashSet of listener classes.
+	 *
+	 * @return the listenerClassesSet HashSet of listener classes.
+	 * @since 3.1
+	 */
+	public Set<IPropertiesListener> getListenerClassesSet() {
+		return listenerClassesSet;
+	}
+
+	/**
+	 * Set the HashSet of listening property paths.
+	 *
+	 * @param listeningPropertyPaths
+	 * @since 3.1
+	 */
+	public void setListeningPropertyPaths(final String listeningPropertyPaths) {
+		this.listeningPropertyPaths = listeningPropertyPaths;
+
+		if (listeningPropertyPaths.isEmpty()) {
+			this.listeningPropertyPathsSet = null;
+		} else {
+			final String[] propertyPaths = listeningPropertyPaths.trim().split(LIST_SEPARATOR);
+
+			if (null == this.listeningPropertyPathsSet) {
+				this.listeningPropertyPathsSet = new HashSet<>();
+			}
+
+			for (int i = 0; i < propertyPaths.length; i++) {
+				if (!propertyPaths[i].isEmpty()) {
+					this.listeningPropertyPathsSet.add(propertyPaths[i]);
+				}
+			}
+
+			manageObservableListeners();
+		}
+	}
+
+	/**
+	 * Set the HashSet of listener classes.
+	 *
+	 * @param listenerClasses
+	 *            The list of listener classes.
+	 * @since 3.1
+	 */
+	public void setListenerClasses(final String listenerClasses) {
+		this.listenerClasses = listenerClasses;
+		if (listenerClasses.isEmpty()) {
+			this.listenerClassesSet = null;
+		} else {
+			final String[] propertyPaths = listenerClasses.trim().split(LIST_SEPARATOR);
+
+			if (null == this.listenerClassesSet) {
+				this.listenerClassesSet = new HashSet<>();
+			}
+
+			for (int i = 0; i < propertyPaths.length; i++) {
+				final String listenerMethodPath = propertyPaths[i];
+				if (!listenerMethodPath.isEmpty()) {
+					try {
+						final String[] splittedListenerMethodPath = listenerMethodPath.split(BUNDLE_SEPARATOR);
+						final Class<?> listenerClass;
+						if (splittedListenerMethodPath.length > 1) {
+							Bundle bundle = Platform.getBundle(splittedListenerMethodPath[0]);
+							listenerClass = bundle.loadClass(splittedListenerMethodPath[1]);
+						} else {
+
+							listenerClass = Class.forName(listenerMethodPath);
+						}
+						final List<Class<?>> interfacesImplemented = Arrays.asList(listenerClass.getInterfaces());
+						if (interfacesImplemented.contains(IPropertiesListener.class)) {
+							this.listenerClassesSet.add((IPropertiesListener) listenerClass.newInstance());
+						} else {
+							Activator.log.error("The listener classes defined in listenerClasses must implement 'IPropertiesListener' interface.", null); //$NON-NLS-1$
+						}
+
+					} catch (ClassNotFoundException e) {
+						Activator.log.error("The listener classes defined in listenerClasses are not correct.", e); //$NON-NLS-1$
+					} catch (InstantiationException e) {
+						Activator.log.error(e);
+					} catch (IllegalAccessException e) {
+						Activator.log.error(e);
+					}
+				}
+			}
+
+			manageObservableListeners();
+		}
+	}
+
+	/**
+	 * Add listeners for observables corresponding to property paths.
+	 *
+	 * @since 3.1
+	 */
+	public void manageObservableListeners() {
+		final String property = getProperty();
+		final DataSource input = getInput();
+		if (null != property && !property.isEmpty() && null != input) {
+			Set<String> propertyPathsSet = getListeningPropertyPathsSet();
+			Set<IPropertiesListener> classesSet = getListenerClassesSet();
+
+			if (null != propertyPathsSet && !propertyPathsSet.isEmpty() && null != classesSet && !classesSet.isEmpty()) {
+				for (String listeningPropertyPath : propertyPathsSet) {
+					final IObservable observable = input.getObservable(listeningPropertyPath);
+					if (null != observable) {
+						observable.addChangeListener(new IChangeListener() {
+
+							@Override
+							public void handleChange(final ChangeEvent event) {
+								handlePropertiesListener(classesSet, propertyPathsSet);
+							}
+						});
+
+						handlePropertiesListener(classesSet, propertyPathsSet);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Handle the listenerClasses.
+	 *
+	 * @param classesSet
+	 *            The HashSet of listener classes.
+	 * @param propertyPathsSet
+	 *            The HashSet of property paths.
+	 * @since 3.1
+	 *
+	 */
+	private void handlePropertiesListener(final Set<IPropertiesListener> classesSet, final Set<String> propertyPathsSet) {
+		for (IPropertiesListener iPropertiesListener : classesSet) {
+			iPropertiesListener.handle(AbstractPropertyEditor.this, input, propertyPathsSet);
+		}
 	}
 }
