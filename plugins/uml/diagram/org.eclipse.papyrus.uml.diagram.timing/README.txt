@@ -16,3 +16,26 @@ pay attention to these modifications in generated code:
 
 to reset the generated src folder from git:
 git checkout HEAD -- src && git clean -f src
+
+
+===== Palette generation =====
+The generation is deactivated for all palettes in Papyrus. 
+Since papyrus element type configuration is not used for elements of this diagram, paletteConfiguration model can not be generated. So the default Eclipse palette definition is kept.
+
+If you have modified palette and want to regenerate it:
+	- go to org.eclipse.papyrus.def/aspects.xpt.plugin/plugin.xtend
+	- uncomment line 65-66:
+		«««		«palettePredefinedEntries(editorGen)»
+		«««		«paletteEntries(editorGen)»
+	- generate as usual papyrus diagram
+	- comment line 65-66
+
+If you want to generate paletteConfiguration model when element type configuration will be available for timing diagram:
+	- go to org.eclipse.papyrus.codegen.PapyrusGenerator.customRun()
+	- uncomment "generatePaletteConfiguration()"
+	- go to org.eclipse.papyrus.def/aspects.xpt.plugin/plugin.xtend
+	- uncomment line 77:
+		«««		«paletteConfiguration(editorGen)»
+	- generate as usual papyrus diagram
+	- comment previous uncommented lines
+	
