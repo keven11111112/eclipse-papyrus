@@ -54,7 +54,7 @@ public class PapyrusGenerator extends GeneratorWithXtend2 {
 	@Override
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
 		super.customRun();
-		generatePaletteConfiguration();
+		// generatePaletteConfiguration(); // commented to disable paletteConfiguration model generation
 	}
 
 	/**

@@ -78,6 +78,10 @@ import java.io.File
 		</plugin>
 	'''
 	
+	
+	/**
+	 * deprecated: palette configuration are now declared through architecture model.
+	 */
 	def paletteConfiguration(GenEditorGenerator it) '''
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
 	«xmlGeneratedTag»
