@@ -14,8 +14,8 @@ package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
-import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Group;
 
 
 public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
-	
+
 	/**
 	 * preference page editor control for choosing if and which execution specifications should be automatically created with synchronous messages
 	 */
@@ -39,29 +39,29 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	/**
 	 * preference key for asynchronous messages
 	 */
-	public static String PREF_EXECUTION_SPECIFICATION_ASYNC_MSG = "PREF_EXECUTION_SPECIFICATION_ASYNC_MSG";  //$NON-NLS-1$	
+	public static String PREF_EXECUTION_SPECIFICATION_ASYNC_MSG = "PREF_EXECUTION_SPECIFICATION_ASYNC_MSG"; //$NON-NLS-1$
 
 	/**
 	 * preference key for synchronous messages
 	 */
-	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG = "PREF_EXECUTION_SPECIFICATION_SYNC_MSG";  //$NON-NLS-1$
-	
+	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG = "PREF_EXECUTION_SPECIFICATION_SYNC_MSG"; //$NON-NLS-1$
+
 	/**
 	 * possible preference values
 	 */
-	public static final String CHOICE_BEHAVIOR_AND_REPLY= "CHOICE_BEHAVIOR_AND_REPLY"; //$NON-NLS-1$
-	public static final String CHOICE_ACTION_AND_REPLY= "CHOICE_ACTION_AND_REPLY"; //$NON-NLS-1$
-	public static final String CHOICE_BEHAVIOR= "CHOICE_BEHAVIOR"; //$NON-NLS-1$
-	public static final String CHOICE_ACTION= "CHOICE_ACTION"; //$NON-NLS-1$
-	public static final String CHOICE_NONE= "CHOICE_NONE"; //$NON-NLS-1$
-	
+	public static final String CHOICE_BEHAVIOR_AND_REPLY = "CHOICE_BEHAVIOR_AND_REPLY"; //$NON-NLS-1$
+	public static final String CHOICE_ACTION_AND_REPLY = "CHOICE_ACTION_AND_REPLY"; //$NON-NLS-1$
+	public static final String CHOICE_BEHAVIOR = "CHOICE_BEHAVIOR"; //$NON-NLS-1$
+	public static final String CHOICE_ACTION = "CHOICE_ACTION"; //$NON-NLS-1$
+	public static final String CHOICE_NONE = "CHOICE_NONE"; //$NON-NLS-1$
+
 	public CustomDiagramGeneralPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setPreferenceKey(SequenceDiagramEditPart.MODEL_ID);
 	}
-	
+
 	/**
-	 * Create new composite to contain the field editors 
+	 * Create new composite to contain the field editors
 	 *
 	 * @param parent
 	 *            the parent Composite that the field editors will be added to
@@ -90,27 +90,27 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	protected void createFieldEditors(Composite composite) {
 		// preference for choosing if and which execution specifications should be automatically created with synchronous message
 		// choice between behavior execution specification, action execution specification or nothing
-		executionSpecificationWithSyncMsg = new RadioGroupFieldEditor(PREF_EXECUTION_SPECIFICATION_SYNC_MSG, 
+		executionSpecificationWithSyncMsg = new RadioGroupFieldEditor(PREF_EXECUTION_SPECIFICATION_SYNC_MSG,
 				Messages.DiagramsPreferencePage_executionSpecificationWithSyncMsg_label, 1,
 				new String[][] {
-						{ Messages.DiagramsPreferencePage_createBehaviorExecutionSpecificationAndReply, CHOICE_BEHAVIOR_AND_REPLY },
-						{ Messages.DiagramsPreferencePage_createActionExecutionSpecificationAndReply, CHOICE_ACTION_AND_REPLY }, 
-						{ Messages.DiagramsPreferencePage_createBehaviorExecutionSpecification, CHOICE_BEHAVIOR }, 
-						{ Messages.DiagramsPreferencePage_createActionExecutionSpecification, CHOICE_ACTION }, 
+						// { Messages.DiagramsPreferencePage_createBehaviorExecutionSpecificationAndReply, CHOICE_BEHAVIOR_AND_REPLY },
+						// { Messages.DiagramsPreferencePage_createActionExecutionSpecificationAndReply, CHOICE_ACTION_AND_REPLY },
+						{ Messages.DiagramsPreferencePage_createBehaviorExecutionSpecification, CHOICE_BEHAVIOR },
+						{ Messages.DiagramsPreferencePage_createActionExecutionSpecification, CHOICE_ACTION },
 						{ Messages.DiagramsPreferencePage_createNoExecutionSpecification, CHOICE_NONE }
 				}, composite);
 
 		// preference for choosing if and which execution specifications should be automatically created with asynchronous message
 		// choice between behavior execution specification, action execution specification or nothing
-		executionSpecificationWithAsyncMsg = new RadioGroupFieldEditor(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG, 
+		executionSpecificationWithAsyncMsg = new RadioGroupFieldEditor(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG,
 				Messages.DiagramsPreferencePage_executionSpecificationWithAsyncMsg_label, 1,
 				new String[][] {
-						{ Messages.DiagramsPreferencePage_createBehaviorExecutionSpecification, CHOICE_BEHAVIOR }, 
-						{ Messages.DiagramsPreferencePage_createActionExecutionSpecification, CHOICE_ACTION }, 
+						{ Messages.DiagramsPreferencePage_createBehaviorExecutionSpecification, CHOICE_BEHAVIOR },
+						{ Messages.DiagramsPreferencePage_createActionExecutionSpecification, CHOICE_ACTION },
 						{ Messages.DiagramsPreferencePage_createNoExecutionSpecification, CHOICE_NONE }
 				}, composite);
 	}
-	
+
 	/**
 	 * Initializes the default preference values for this preference store.
 	 *
@@ -118,10 +118,11 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 *            preferenceStore
 	 */
 	public static void initSpecificDefaults(IPreferenceStore preferenceStore) {
-		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_SYNC_MSG, 
-				CHOICE_BEHAVIOR_AND_REPLY);
-		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG, 
-				CHOICE_NONE);		
+		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_SYNC_MSG,
+				// CHOICE_BEHAVIOR_AND_REPLY);
+				CHOICE_BEHAVIOR);
+		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG,
+				CHOICE_NONE);
 
-	}	
+	}
 }
