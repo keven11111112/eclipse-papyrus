@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Pierre GAUTIER (CEA LIST) - bug 521857
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.selectors;
 
@@ -33,7 +34,7 @@ import org.eclipse.swt.widgets.Text;
  */
 public class StringSelector implements IElementSelector {
 
-	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	public static final String LINE_SEPARATOR = System.getProperty("line.separator"); //$NON-NLS-1$
 
 	/**
 	 * The text box used to enter a value for this selector
@@ -45,6 +46,9 @@ public class StringSelector implements IElementSelector {
 	 */
 	protected boolean multiline;
 
+	/**
+	 * The registered IElementSelectionListener
+	 */
 	protected Set<IElementSelectionListener> elementSelectionListeners = new HashSet<IElementSelectionListener>();
 
 	/**
@@ -60,53 +64,65 @@ public class StringSelector implements IElementSelector {
 	 * @param multiline
 	 *            True if the string values can contain more than one line
 	 */
-	public StringSelector(boolean multiline) {
+	public StringSelector(final boolean multiline) {
 		this.multiline = multiline;
 	}
 
+	
 	/**
-	 * Returns a single-element array containing the current text
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#getSelectedElements()
 	 *
-	 * {@link IElementSelector#getSelectedElements()}
+	 * @return
 	 */
 	@Override
 	public Object[] getSelectedElements() {
-		String[] result = new String[] { text.getText() };
+		final String[] result = new String[] { text.getText() };
 		text.setText(""); //$NON-NLS-1$
 		return result;
 	}
-
+	
 	/**
-	 * Ignored
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#setSelectedElements(java.lang.Object[])
+	 *
+	 * @param elements
 	 */
 	@Override
-	public void setSelectedElements(Object[] elements) {
+	public void setSelectedElements(final Object[] elements) {
 		// Nothing
 	}
 
 	/**
-	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#createControls(org.eclipse.swt.widgets.Composite)
+	 *
+	 * @param parent
 	 */
 	@Override
-	public void createControls(Composite parent) {
+	public void createControls(final Composite parent) {
 		text = new Text(parent, SWT.MULTI | SWT.BORDER);
 		text.addKeyListener(new KeyListener() {
 
 			@Override
-			public void keyPressed(KeyEvent e) {
+			public void keyPressed(final KeyEvent e) {
 				// Nothing
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-				if ((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && ((e.stateMask == SWT.NONE && !multiline) || ((e.stateMask & SWT.CTRL) != 0 && multiline))) {
+			public void keyReleased(final KeyEvent e) {
+				if ((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && (e.stateMask == SWT.NONE && !multiline || (e.stateMask & SWT.CTRL) != 0 && multiline)) {
 					if (!elementSelectionListeners.isEmpty()) {
-						String str = (String) getSelectedElements()[0];
-						if (str.endsWith(LINE_SEPARATOR)) {
-							str = str.substring(0, str.length() - LINE_SEPARATOR.length());
+						final Object[] elements = getSelectedElements();
+						if (elements == null || elements.length == 0) {
+							return;
+						}
+						String str = (String) elements[0];
+						if (str.endsWith(StringSelector.LINE_SEPARATOR)) {
+							str = str.substring(0, str.length() - StringSelector.LINE_SEPARATOR.length());
 						}
 						if (!"".equals(str)) { //$NON-NLS-1$
-							for (IElementSelectionListener listener : elementSelectionListeners) {
+							for (final IElementSelectionListener listener : elementSelectionListeners) {
 								listener.addElements(new Object[] { str });
 							}
 						}
@@ -116,40 +132,62 @@ public class StringSelector implements IElementSelector {
 
 		});
 	}
-
+	
 	/**
-	 * Returns the same value as getSelectedElements
 	 *
-	 * {@link IElementSelector#getAllElements()}
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#getAllElements()
+	 *
+	 * @return
 	 */
 	@Override
 	public Object[] getAllElements() {
 		return getSelectedElements();
 	}
-
+	
 	/**
-	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#newObjectCreated(java.lang.Object)
+	 *
+	 * @param newObject
 	 */
 	@Override
-	public void newObjectCreated(Object newObject) {
+	public void newObjectCreated(final Object newObject) {
 		// Ignored
 	}
-
+	
 	/**
-	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#clearTemporaryElements()
+	 *
 	 */
 	@Override
 	public void clearTemporaryElements() {
 		// Ignored
 	}
 
+
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#addElementSelectionListener(org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener)
+	 *
+	 * @param listener
+	 */
 	@Override
-	public void addElementSelectionListener(IElementSelectionListener listener) {
+	public void addElementSelectionListener(final IElementSelectionListener listener) {
 		elementSelectionListeners.add(listener);
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelector#removeElementSelectionListener(org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener)
+	 *
+	 * @param listener
+	 */
 	@Override
-	public void removeElementSelectionListener(IElementSelectionListener listener) {
+	public void removeElementSelectionListener(final IElementSelectionListener listener) {
 		elementSelectionListeners.remove(listener);
 	}
+
+
 }
