@@ -184,7 +184,7 @@
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 			id="createConsiderIgnoreFragment16CreationTool" 
 			label="ConsiderIgnoreFragment"
-			description="Create consider Ignore Fragment">
+			description="Create a Consider Ignore Fragment">
 			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ConsiderIgnoreFragment.gif"/>
 			<elementDescriptors>
 				<elementType
@@ -256,7 +256,8 @@
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 			id="createMessageLost6CreationTool" 
 			label="Message Lost"
-			description="Create MessageLost" kind="ConnectionTool">
+			description="Create MessageLost" kind="ConnectionTool"
+        	toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageLostFoundConnectionTool">
 			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message.gif"/>
 			<elementDescriptors>
 				<elementType
@@ -267,8 +268,9 @@
 		<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
 			id="createMessageFound7CreationTool" 
 			label="Message Found"
-			description="Create MessageFound" kind="ConnectionTool">
-			<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message.gif"/>
+			description="Create MessageFound" kind="ConnectionTool"
+        	toolClassName="org.eclipse.papyrus.uml.diagram.sequence.tools.MessageLostFoundConnectionTool">
+        	<icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Message.gif"/>
 			<elementDescriptors>
 				<elementType
 					xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
