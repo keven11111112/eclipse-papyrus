@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Pierre GAUTIER (CEA LIST) - bug 521857
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.selectors;
 
@@ -36,13 +38,9 @@ public class BooleanSelector extends StringSelector {
 	@Override
 	public Boolean[] getSelectedElements() {
 		Boolean[] result = new Boolean[0];
-		try {
-			if (BooleanHelper.isBoolean(text.getText())) {
-				result = new Boolean[] { new Boolean(text.getText()) };
-				text.setText(""); //$NON-NLS-1$
-			}
-		} catch (NumberFormatException ex) {
-			// nothing to do
+		if (BooleanHelper.isBoolean(text.getText())) {
+			result = new Boolean[] { new Boolean(text.getText()) };
+			text.setText(""); //$NON-NLS-1$
 		}
 		return result;
 	}

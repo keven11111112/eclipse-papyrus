@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 Atos, CEA, and others.
+ * Copyright (c) 2012, 2014, 2017 Atos, CEA, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,11 +10,15 @@
  *  Mathieu Velten (Atos) mathieu.velten@atos.net - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 448139
+ *  Pierre GAUTIER (CEA LIST) - bug 521857
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -41,23 +45,29 @@ import org.eclipse.papyrus.infra.widgets.editors.EnumCombo;
 import org.eclipse.papyrus.infra.widgets.editors.FloatEditor;
 import org.eclipse.papyrus.infra.widgets.editors.IntegerEditor;
 import org.eclipse.papyrus.infra.widgets.editors.LongEditor;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleBooleanEditor;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleDoubleEditor;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleIntegerEditor;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleStringEditor;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
+import org.eclipse.papyrus.infra.widgets.editors.TypedMultipleStringEditor;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.PageBook;
 
-
-public class EStructuralFeatureEditor implements IValueChangeListener, IListChangeListener {
+/**
+ * A structural feature editor
+ *
+ */
+public class EStructuralFeatureEditor implements IValueChangeListener<Object>, IListChangeListener<Object> {
 
 	protected PageBook pageBook;
 
@@ -72,24 +82,73 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 	protected ReferenceValueFactory valueFactory;
 
 	protected IChangeListener changeListener;
+	
+	private static final Map<String, Class<?>> TYPE_ALIASES = new HashMap<>();
 
-	public EStructuralFeatureEditor(Composite parent, int style) {
+	static {
+		// String
+		EStructuralFeatureEditor.TYPE_ALIASES.put(String.class.getCanonicalName(), String.class);
+		EStructuralFeatureEditor.TYPE_ALIASES.put("string", String.class); //$NON-NLS-1$
+		// Boolean
+		EStructuralFeatureEditor.TYPE_ALIASES.put(Boolean.class.getCanonicalName(), Boolean.class);
+		EStructuralFeatureEditor.TYPE_ALIASES.put("boolean", Boolean.class); //$NON-NLS-1$
+		EStructuralFeatureEditor.TYPE_ALIASES.put("bool", Boolean.class); //$NON-NLS-1$
+		// Integer
+		EStructuralFeatureEditor.TYPE_ALIASES.put(Integer.class.getCanonicalName(), Integer.class);
+		EStructuralFeatureEditor.TYPE_ALIASES.put("int", Integer.class); //$NON-NLS-1$
+		EStructuralFeatureEditor.TYPE_ALIASES.put("integer", Integer.class); //$NON-NLS-1$
+		// Long
+		EStructuralFeatureEditor.TYPE_ALIASES.put(Long.class.getCanonicalName(), Long.class);
+		EStructuralFeatureEditor.TYPE_ALIASES.put("long", Long.class); //$NON-NLS-1$
+		// Float
+		EStructuralFeatureEditor.TYPE_ALIASES.put(Float.class.getCanonicalName(), Float.class);
+		EStructuralFeatureEditor.TYPE_ALIASES.put("float", Float.class); //$NON-NLS-1$
+		// Double
+		EStructuralFeatureEditor.TYPE_ALIASES.put(Double.class.getCanonicalName(), Double.class);
+		EStructuralFeatureEditor.TYPE_ALIASES.put("double", Double.class); //$NON-NLS-1$
+	}
+
+	private static final Map<Class<?>, Class<? extends MultipleStringEditor<?>>> TYPE_TO_MULTI_EDITOR_CLASS = new HashMap<>();
+	private static final Map<Class<?>, Class<? extends AbstractValueEditor>> TYPE_TO_SINGLE_EDITOR_CLASS = new HashMap<>();
+
+	static {
+		// String
+		EStructuralFeatureEditor.TYPE_TO_SINGLE_EDITOR_CLASS.put(String.class, StringEditor.class);
+		EStructuralFeatureEditor.TYPE_TO_MULTI_EDITOR_CLASS.put(String.class, TypedMultipleStringEditor.class);
+		// Boolean
+		EStructuralFeatureEditor.TYPE_TO_SINGLE_EDITOR_CLASS.put(Boolean.class, BooleanCombo.class);
+		EStructuralFeatureEditor.TYPE_TO_MULTI_EDITOR_CLASS.put(Boolean.class, MultipleBooleanEditor.class);
+		// Integer
+		EStructuralFeatureEditor.TYPE_TO_SINGLE_EDITOR_CLASS.put(Integer.class, IntegerEditor.class);
+		EStructuralFeatureEditor.TYPE_TO_MULTI_EDITOR_CLASS.put(Integer.class, MultipleIntegerEditor.class);
+		// Long
+		EStructuralFeatureEditor.TYPE_TO_SINGLE_EDITOR_CLASS.put(Long.class, LongEditor.class);
+		EStructuralFeatureEditor.TYPE_TO_MULTI_EDITOR_CLASS.put(Long.class, MultipleIntegerEditor.class);
+		// Float
+		EStructuralFeatureEditor.TYPE_TO_SINGLE_EDITOR_CLASS.put(Float.class, FloatEditor.class);
+		EStructuralFeatureEditor.TYPE_TO_MULTI_EDITOR_CLASS.put(Float.class, MultipleDoubleEditor.class);
+		// Double
+		EStructuralFeatureEditor.TYPE_TO_SINGLE_EDITOR_CLASS.put(Double.class, DoubleEditor.class);
+		EStructuralFeatureEditor.TYPE_TO_MULTI_EDITOR_CLASS.put(Double.class, MultipleDoubleEditor.class);
+	}
+
+	public EStructuralFeatureEditor(final Composite parent, final int style) {
 		this.style = style;
 		pageBook = new PageBook(parent, style);
 		currentPage = createEmptyPage();
 		pageBook.showPage(currentPage);
 	}
 
-	public void setProviders(IStaticContentProvider contentProvider, ILabelProvider labelProvider) {
+	public void setProviders(final IStaticContentProvider contentProvider, final ILabelProvider labelProvider) {
 		this.contentProvider = contentProvider;
 		this.labelProvider = labelProvider;
 	}
 
-	public void setValueFactory(ReferenceValueFactory valueFactory) {
+	public void setValueFactory(final ReferenceValueFactory valueFactory) {
 		this.valueFactory = valueFactory;
 	}
 
-	public void setChangeListener(IChangeListener changeListener) {
+	public void setChangeListener(final IChangeListener changeListener) {
 		this.changeListener = changeListener;
 	}
 
@@ -97,7 +156,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		return new Composite(pageBook, style);
 	}
 
-	public void setFeatureToEdit(String title, EStructuralFeature feature, EObject element) {
+	public void setFeatureToEdit(final String title, final EStructuralFeature feature, final EObject element) {
 		if (currentPage != null) {
 			currentPage.dispose();
 			currentPage = null;
@@ -105,26 +164,23 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 
 		if (feature instanceof EReference) {
 			if (feature.isMany()) {
-				MultipleReferenceEditor editor = new MultipleReferenceEditor(pageBook, style);
+				final MultipleReferenceEditor editor = new MultipleReferenceEditor(pageBook, style);
 				setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
-
 				editor.setProviders(contentProvider, labelProvider);
 				editor.setFactory(valueFactory);
 				currentPage = editor;
 			} else {
-				EClassifier featureType = feature.getEType();
+				final EClassifier featureType = feature.getEType();
 				if (featureType instanceof EClass && DataTypeUtil.isDataTypeDefinition((EClass) featureType, element)) {
-					EObjectContentsEditor editor = new EObjectContentsEditor(pageBook, style, (EReference) feature);
+					final EObjectContentsEditor editor = new EObjectContentsEditor(pageBook, style, (EReference) feature);
 					editor.setValue(new PapyrusObservableValue(element, feature, EMFHelper.resolveEditingDomain(element)));
 					currentPage = editor;
 				} else {
-					ReferenceDialog editor = new ReferenceDialog(pageBook, style);
+					final ReferenceDialog editor = new ReferenceDialog(pageBook, style);
 					setValueEditorProperties(editor, element, title, feature);
-
 					editor.setContentProvider(contentProvider);
 					editor.setLabelProvider(labelProvider);
 					editor.setValueFactory(valueFactory);
-
 					editor.setDirectCreation(((EReference) feature).isContainment());
 					currentPage = editor;
 				}
@@ -132,137 +188,109 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		}
 
 		if (feature instanceof EAttribute) {
-			EClassifier type = feature.getEType();
-			if (type instanceof EEnum) {
+			final EClassifier featureType = feature.getEType();
+			if (featureType instanceof EEnum) {
 				if (feature.isMany()) {
-					MultipleReferenceEditor editor = new MultipleReferenceEditor(pageBook, style);
+					final MultipleReferenceEditor editor = new MultipleReferenceEditor(pageBook, style);
 					setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
-
 					editor.setProviders(contentProvider, labelProvider);
 					editor.setFactory(valueFactory);
 					currentPage = editor;
-
 				} else {
-					EnumCombo editor = new EnumCombo(pageBook, style);
+					final EnumCombo editor = new EnumCombo(pageBook, style);
 					setValueEditorProperties(editor, element, title, feature);
 					editor.setContentProvider(new EMFEnumeratorContentProvider(feature));
 					currentPage = editor;
 				}
-			} else if (type instanceof EDataType) {
-				String instanceClassName = ((EDataType) type).getInstanceClassName();
-				if ("java.lang.String".equalsIgnoreCase(instanceClassName) || "string".equalsIgnoreCase(instanceClassName)) {
-					if (feature.isMany()) {
-						MultipleStringEditor editor = new MultipleStringEditor(pageBook, style, true);
-						setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
-						currentPage = editor;
-					} else {
-						StringEditor editor = new StringEditor(pageBook, style | SWT.MULTI);
-						setValueEditorProperties(editor, element, title, feature);
-						currentPage = editor;
-					}
-				} else if ("java.lang.Integer".equalsIgnoreCase(instanceClassName) || "integer".equalsIgnoreCase(instanceClassName) || "int".equalsIgnoreCase(instanceClassName)) {
-					if (feature.isMany()) {
-						MultipleIntegerEditor editor = new MultipleIntegerEditor(pageBook, style);
-						setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
-						currentPage = editor;
-					} else {
-						IntegerEditor editor = new IntegerEditor(pageBook, style);
-						setValueEditorProperties(editor, element, title, feature);
-						currentPage = editor;
-					}
-				} else if ("java.lang.Boolean".equals(instanceClassName) || "boolean".equalsIgnoreCase(instanceClassName) || "bool".equalsIgnoreCase(instanceClassName)) {
-					if (feature.isMany()) {
-						// TODO widget not available
-					} else {
-						BooleanCombo editor = new BooleanCombo(pageBook, style);
-						setValueEditorProperties(editor, element, title, feature);
-						currentPage = editor;
-					}
-				} else if ("java.lang.Float".equals(instanceClassName) || "float".equalsIgnoreCase(instanceClassName)) {
-					if (feature.isMany()) {
-						// TODO widget not available
-					} else {
-						FloatEditor editor = new FloatEditor(pageBook, style);
-						setValueEditorProperties(editor, element, title, feature);
-						currentPage = editor;
-					}
-				} else if ("java.lang.Double".equals(instanceClassName) || "double".equalsIgnoreCase(instanceClassName)) {
-					if (feature.isMany()) {
-						// TODO widget not available
-					} else {
-						DoubleEditor editor = new DoubleEditor(pageBook, style);
-						setValueEditorProperties(editor, element, title, feature);
-						currentPage = editor;
-					}
-				} else if ("java.lang.Long".equals(instanceClassName) || "long".equalsIgnoreCase(instanceClassName)) {
-					if (feature.isMany()) {
-						// TODO widget not available
-					} else {
-						LongEditor editor = new LongEditor(pageBook, style);
-						setValueEditorProperties(editor, element, title, feature);
-						currentPage = editor;
-					}
+			} else if (featureType instanceof EDataType) {
+				final String aliasedInstanceClassName = ((EDataType) featureType).getInstanceClassName();
+				final Class<?> clazz = EStructuralFeatureEditor.TYPE_ALIASES.get(aliasedInstanceClassName);
+				if (clazz == null) {
+					throw new IllegalArgumentException("No clazz has been found for aliasedInstanceClassName '" + aliasedInstanceClassName + "'");  //$NON-NLS-1$ //$NON-NLS-2$
+				}
+				if (feature.isMany()) {
+					createMultipleEditor(clazz, element, title, feature);
+				} else {
+					createSingleEditor(clazz, element, title, feature);
 				}
 			}
 		}
-
 		if (currentPage == null) {
 			currentPage = createEmptyPage();
 		}
-
 		pageBook.showPage(currentPage);
 	}
-
-	protected void setValueEditorProperties(AbstractValueEditor editor, EObject stereotypeApplication, String title, EStructuralFeature feature) {
-		editor.setLabel(title);
-
-		if (!isEditable(stereotypeApplication, feature)) {
-			editor.setReadOnly(true);
-		}
-
-		PapyrusObservableValue observable = new PapyrusObservableValue(stereotypeApplication, feature, EMFHelper.resolveEditingDomain(stereotypeApplication));
-
-		editor.setModelObservable(observable);
-
+	
+	protected void setValueEditorProperties(final AbstractValueEditor editor, final EObject stereotypeApplication, final String title, final EStructuralFeature feature) {
+		final PapyrusObservableValue observable = new PapyrusObservableValue(stereotypeApplication, feature, EMFHelper.resolveEditingDomain(stereotypeApplication));
 		observable.addValueChangeListener(this);
+		editor.setLabel(title);
+		editor.setReadOnly(!isEditable(stereotypeApplication, feature));
+		editor.setModelObservable(observable);
 	}
-
-	protected void setMultipleValueEditorProperties(MultipleValueEditor editor, List<?> initialList, EObject stereotypeApplication, String title, EStructuralFeature feature) {
+	
+	protected void setMultipleValueEditorProperties(final MultipleValueEditor<?> editor, final List<?> initialList, final EObject stereotypeApplication, final String title, final EStructuralFeature feature) {
+		final PapyrusObservableList observable = new PapyrusObservableList(initialList, EMFHelper.resolveEditingDomain(stereotypeApplication), stereotypeApplication, feature);
+		observable.addListChangeListener(this);
 		editor.setLabel(title);
 		editor.setUnique(feature.isUnique());
 		editor.setOrdered(feature.isOrdered());
 		editor.setUpperBound(feature.getUpperBound());
+		editor.setReadOnly(!isEditable(stereotypeApplication, feature));
 		if (feature instanceof EReference) {
 			editor.setDirectCreation(((EReference) feature).isContainment());
 		}
-
-		if (!isEditable(stereotypeApplication, feature)) {
-			editor.setReadOnly(true);
-		}
-
-		PapyrusObservableList observable = new PapyrusObservableList(initialList, EMFHelper.resolveEditingDomain(stereotypeApplication), stereotypeApplication, feature);
-
 		editor.setModelObservable(observable);
 		editor.addCommitListener(observable);
-
-		observable.addListChangeListener(this);
 	}
 
-	protected boolean isEditable(EObject object, EStructuralFeature feature) {
+	private void createMultipleEditor(final Class<?> typeClass, final EObject element, final String title, final EStructuralFeature feature) {
+		final Class<? extends MultipleStringEditor<?>> editorClazz = EStructuralFeatureEditor.TYPE_TO_MULTI_EDITOR_CLASS.get(typeClass);
+		if (editorClazz == null) {
+			throw new IllegalArgumentException("No multiple editor has been found for class '" + typeClass + "'"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		try {
+			final Constructor<? extends MultipleStringEditor<?>> constructor = editorClazz.getConstructor(Composite.class, int.class);
+			final MultipleStringEditor<?> editor = constructor.newInstance(pageBook, style);
+			setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
+			currentPage = editor;
+		} catch (final Exception e) {
+			Activator.log.error(e);
+		}
+	}
+
+	private void createSingleEditor(final Class<?> typeClass, final EObject element, final String title, final EStructuralFeature feature) {
+		final Class<? extends AbstractValueEditor> clazz = EStructuralFeatureEditor.TYPE_TO_SINGLE_EDITOR_CLASS.get(typeClass);
+		if (clazz == null) {
+			throw new IllegalArgumentException("No single editor has been found for class '" + typeClass + "'"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		try {
+			final Constructor<? extends AbstractValueEditor> constructor = clazz.getConstructor(Composite.class, int.class);
+			final AbstractValueEditor editor = constructor.newInstance(pageBook, style);
+			setValueEditorProperties(editor, element, title, feature);
+			currentPage = editor;
+		} catch (final Exception e) {
+			Activator.log.error(e);
+		}
+	}
+
+	protected boolean isEditable(final EObject object, final EStructuralFeature feature) {
 		return !feature.isDerived() && feature.isChangeable() && !EMFHelper.isReadOnly(object);
 	}
 
-	public void setLayoutData(GridData data) {
+	public void setLayoutData(final GridData data) {
 		pageBook.setLayoutData(data);
 	}
-
-	public void handleValueChange(ValueChangeEvent event) {
+	
+	@Override
+	public void handleValueChange(final ValueChangeEvent<?> event) {
 		if (changeListener != null) {
 			changeListener.handleChange(new ChangeEvent(event.getObservable()));
 		}
 	}
 
-	public void handleListChange(ListChangeEvent event) {
+	@Override
+	public void handleListChange(final ListChangeEvent<?> event) {
 		if (changeListener != null) {
 			changeListener.handleChange(new ChangeEvent(event.getObservable()));
 		}
