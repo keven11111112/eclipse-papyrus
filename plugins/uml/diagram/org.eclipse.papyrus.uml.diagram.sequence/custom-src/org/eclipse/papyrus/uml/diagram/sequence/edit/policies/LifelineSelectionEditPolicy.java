@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010, 2017 CEA List, ALL4TEC and others
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA List - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 522228
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
@@ -62,6 +74,7 @@ public class LifelineSelectionEditPolicy extends PapyrusResizableShapeEditPolicy
 		final IFigure fig = primaryShape.getFigureLifelineNameContainerFigure();
 		createResizeHandle(host, list, fig, PositionConstants.WEST);
 		createResizeHandle(host, list, fig, PositionConstants.EAST);
+		createResizeHandle(host, list, primaryShape, PositionConstants.SOUTH);
 		return list;
 	}
 
