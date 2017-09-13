@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1504683381">
+<target name="Papyrus Tests" sequenceNumber="1505286362">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170604-1316"/>
@@ -30,8 +30,8 @@
       <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201706061437"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.7.1.v20170901-1220"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC3-201709011220/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.7.1.v20170906-1700"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC4-201709061700/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.3.0.v20170607-1133"/>
@@ -65,7 +65,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.1.v201707252002"/>
-      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.9.1/S-3.9.1RC1-20170822000154/repository/"/>
+      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.9.1/R-3.9.1-20170912000144/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.team.svn.feature.group" version="0.0.0"/>
