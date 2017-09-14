@@ -38,7 +38,7 @@ Require-Bundle: org.eclipse.papyrus.uml.profile;bundle-version="[3.0.0,4.0.0)";v
  org.eclipse.papyrus.infra.internationalization;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy;exclude:="org.eclipse.papyrus.uml.properties.constraints"
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.properties.Activator
