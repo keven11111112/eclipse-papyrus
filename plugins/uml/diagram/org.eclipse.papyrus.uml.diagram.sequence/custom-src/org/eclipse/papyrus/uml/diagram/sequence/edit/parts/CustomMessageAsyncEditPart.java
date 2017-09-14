@@ -10,14 +10,12 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   Patrick Tessier (CEA LIST) change names
- *
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 522305
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.Connection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageAsync;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
@@ -54,13 +52,4 @@ public class CustomMessageAsyncEditPart extends MessageAsyncEditPart {
 		super.handleNotificationEvent(notification);
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart#createConnectionFigure()
-	 *
-	 * @return
-	 */
-	@Override
-	protected Connection createConnectionFigure() {
-		return new MessageAsync(getMapMode());
-	}
 }

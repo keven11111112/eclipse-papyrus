@@ -572,3 +572,36 @@ SequenceDiagram ConsiderIgnoreFragment {
 SequenceDiagram ConsiderIgnoreFragment > Compartment {
 	displayBorder:false;
 }
+
+SequenceDiagram Message[messageSort="createMessage"] {
+	targetDecoration: open_arrow;
+	lineStyle: dash;
+}
+
+SequenceDiagram Message[messageSort="asynchCall"] {
+	targetDecoration: open_arrow;
+}
+
+/*Message Found */
+SequenceDiagram Message[messageSort="asynchCall"][sendEvent=""] {
+	targetDecoration: open_arrow;
+}
+
+/* Message Lost */
+SequenceDiagram Message[messageSort="asynchCall"][receiveEvent=""] {
+	targetDecoration: open_arrow;
+}
+
+SequenceDiagram Message[messageSort="synchCall"] {
+	targetDecoration: solid_arrow_filled;
+}
+
+SequenceDiagram Message[messageSort="reply"] {
+	targetDecoration: open_arrow;
+	lineStyle: dash;
+}
+
+SequenceDiagram Message[messageSort="deleteMessage"] {
+	targetDecoration: solid_arrow_filled;
+}
+

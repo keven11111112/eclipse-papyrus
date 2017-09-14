@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515661, 522305
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
@@ -213,22 +213,25 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 	 *            Length of the gap between dashes
 	 */
 	private void setupLineStyle(PapyrusEdgeFigure edge, String style, int originalWidth, int lineDashLength, int lineDashGap) {
-		if ("hidden".equals(style)) {
+		if ("hidden".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_SOLID);
 			edge.setLineWidth(0);
 			edge.setVisible(false);
-		} else if ("dotted".equals(style)) {
+		} else if ("dotted".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_DOT);
 			edge.setLineWidth(originalWidth);
-		} else if ("dashed".equals(style)) {
+		} else if ("dashed".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_CUSTOM);
 			edge.setLineWidth(originalWidth);
 			edge.setLineDash(new int[] { lineDashLength, lineDashGap });
-		} else if ("solid".equals(style)) {
+		} else if ("solid".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_SOLID);
 			edge.setLineWidth(originalWidth);
-		} else if ("double".equals(style)) {
+		} else if ("double".equals(style)) {//$NON-NLS-1$
 			edge.setLineWidth(originalWidth * 2);
+		} else if ("dash".equals(style)) {//$NON-NLS-1$
+			edge.setLineStyle(Graphics.LINE_DASH);
+			edge.setLineWidth(originalWidth);
 		}
 	}
 
