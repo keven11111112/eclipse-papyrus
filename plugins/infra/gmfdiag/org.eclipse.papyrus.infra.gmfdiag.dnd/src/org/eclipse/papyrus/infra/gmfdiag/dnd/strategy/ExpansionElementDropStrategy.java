@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -115,6 +116,10 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 	@Override
 	public Command doGetCommand(Request request, final EditPart targetEditPart) {
 
+		if (RequestConstants.REQ_MOVE_CHILDREN.equals(request.getType())) {
+			return null;
+		}		
+		
 		CompositeCommand cc = new CompositeCommand(getLabel());
 		if (targetEditPart instanceof GraphicalEditPart) {
 			IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart) targetEditPart;
@@ -139,9 +144,9 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 			if (sourceElements.isEmpty()) {
 				return null;
 			}
-			final List<EObject> valuesToAdd = new ArrayList<EObject>(sourceElements.size());
+			final List<EObject> valuesToAdd = new ArrayList<>(sourceElements.size());
 			// getList of accepted ElementType
-			final ArrayList<ISpecializationType> acceptedElementTypes = new ArrayList<ISpecializationType>();
+			final ArrayList<ISpecializationType> acceptedElementTypes = new ArrayList<>();
 
 
 			for (String posibleID : childrenList) {
