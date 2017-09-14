@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
- *
- *
+ * Copyright (c) 2010 - 2017 CEA LIST, ALL4TEC and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,15 +8,11 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 522305
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -32,33 +27,19 @@ public class MessageDelete extends MessageFigure {
 	}
 
 	/**
-	 * Constructor.
-	 *
-	 * @param mapMode
-	 */
-	public MessageDelete(IMapMode mapMode) {
-		super(mapMode);
-		this.setForegroundColor(ColorConstants.black);
-	}
-
-	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createTargetDecoration()
-	 *
-	 * @return
 	 */
 	@Override
 	protected RotatableDecoration createTargetDecoration() {
-		PolygonDecoration df = new PolygonDecoration();
-		df.setFill(true);
-		df.setForegroundColor(getForegroundColor());
-		df.setBackgroundColor(getForegroundColor());
-		return df;
+		return null;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createSourceDecoration()
-	 *
-	 * @return
 	 */
 	@Override
 	protected RotatableDecoration createSourceDecoration() {

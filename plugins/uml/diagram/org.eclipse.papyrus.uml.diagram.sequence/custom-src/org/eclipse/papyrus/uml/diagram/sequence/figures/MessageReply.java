@@ -1,23 +1,18 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
- *
- *
+ * Copyright (c) 2010, 2017 CEA LIST, ALL4TEC and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Soyatec - Initial API and implementation
- *
+ *   CEA List - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 522305
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
-import org.eclipse.swt.SWT;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -30,46 +25,22 @@ public class MessageReply extends MessageFigure {
 	 */
 	public MessageReply() {
 		super();
-		setStyle();
 	}
 
 	/**
-	 * Constructor.
-	 *
-	 * @param mapMode
-	 */
-	public MessageReply(IMapMode mapMode) {
-		super(mapMode);
-		setStyle();
-	}
-
-	protected void setStyle() {
-		this.setLineStyle(SWT.LINE_DASH);
-		this.setForegroundColor(ColorConstants.black);
-	}
-
-	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createTargetDecoration()
-	 *
-	 * @return
 	 */
 	@Override
 	protected RotatableDecoration createTargetDecoration() {
-		PolylineDecoration df = new PolylineDecoration();
-		df.setForegroundColor(getForegroundColor());
-		// PointList pl = new PointList();
-		// pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-		// pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-		// pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-		// df.setTemplate(pl);
-		// df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-		return df;
+		return null;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createSourceDecoration()
-	 *
-	 * @return
 	 */
 	@Override
 	protected RotatableDecoration createSourceDecoration() {

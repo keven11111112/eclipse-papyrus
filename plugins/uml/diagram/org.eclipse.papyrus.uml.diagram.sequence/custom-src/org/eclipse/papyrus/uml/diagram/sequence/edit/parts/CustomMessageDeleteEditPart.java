@@ -10,14 +10,12 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   Patrick Tessier (CEA LIST) - modification names
- *
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 522305
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.Connection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageDelete;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
@@ -52,15 +50,5 @@ public class CustomMessageDeleteEditPart extends MessageDeleteEditPart {
 	protected void handleNotificationEvent(final Notification notification) {
 		SequenceUtil.handleMessageSortChange(getEditingDomain(), notification, (Message) resolveSemanticElement(), MessageSort.DELETE_MESSAGE_LITERAL);
 		super.handleNotificationEvent(notification);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart#createConnectionFigure()
-	 *
-	 * @return
-	 */
-	@Override
-	protected Connection createConnectionFigure() {
-		return new MessageDelete(getMapMode());
 	}
 }
