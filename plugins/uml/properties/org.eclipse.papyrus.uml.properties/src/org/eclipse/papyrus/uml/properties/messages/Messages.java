@@ -17,6 +17,16 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.properties.messages.messages"; //$NON-NLS-1$
 
+	/**
+	 * @since 3.1
+	 */
+	public static String EObjectContentsEditor_CreateElement;
+
+	/**
+	 * @since 3.1
+	 */
+	public static String EObjectContentsEditor_UnsetValue;
+
 	public static String ExpressionLanguageFactory_EditLanguage;
 
 	public static String ExpressionLanguageFactory_LanguageDuplicateError;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *  Pierre GAUTIER (CEA LIST) - bug 521865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
@@ -34,15 +35,20 @@ import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.creation.UMLPropertyEditorFactory;
+import org.eclipse.papyrus.uml.properties.messages.Messages;
 import org.eclipse.papyrus.uml.tools.providers.UMLContainerContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseWheelListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
@@ -75,6 +81,25 @@ public class EObjectContentsEditor extends Composite {
 
 	protected Composite self;
 
+	/**
+	 * the right scrollbar
+	 */
+	private final ScrolledComposite scrolled;
+
+	/**
+	 * listener to be be able to move the scrollbar with the mouse wheel
+	 * 
+	 */
+	private final MouseWheelListener mouseWheelListener = new MouseWheelListener() {
+
+		@Override
+		public void mouseScrolled(final MouseEvent e) {
+			final Point or = EObjectContentsEditor.this.scrolled.getOrigin();
+			or.y += -e.count * EObjectContentsEditor.this.scrolled.getVerticalBar().getIncrement();
+			EObjectContentsEditor.this.scrolled.setOrigin(or);
+		}
+	};
+
 	public EObjectContentsEditor(Composite parent, int style, EReference reference) {
 		super(parent, style);
 
@@ -82,7 +107,15 @@ public class EObjectContentsEditor extends Composite {
 
 		self = new Group(this, SWT.NONE);
 
-		((Group) self).setText(reference.getName() + ": " + reference.getEType().getName());
+		final StringBuilder builder = new StringBuilder();
+		if (null != reference) {
+			builder.append(reference.getName());
+			builder.append(":"); //$NON-NLS-1$
+			if (null != reference.getEType()) {
+				builder.append(reference.getEType().getName());
+			}
+		}
+		((Group) self).setText(builder.toString());
 		self.setLayout(new PropertiesLayout());
 
 		buttonsBar = new Composite(self, SWT.NONE);
@@ -94,9 +127,20 @@ public class EObjectContentsEditor extends Composite {
 
 		updateButtonsBar();
 
-		contents = new Composite(self, SWT.NONE);
+		scrolled = new ScrolledComposite(self, SWT.V_SCROLL);
+		scrolled.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		scrolled.setLayout(new PropertiesLayout());
+		scrolled.setExpandHorizontal(true);
+		scrolled.setExpandVertical(true);
+		scrolled.setMinSize(250, 100);
+
+		contents = new Composite(scrolled, SWT.NONE);
 		contents.setLayout(new PropertiesLayout());
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		contents.setBackgroundMode(SWT.INHERIT_DEFAULT);
+		contents.setBackground(self.getBackground());
+
+		scrolled.setContent(contents);
 
 		this.reference = reference;
 
@@ -135,7 +179,7 @@ public class EObjectContentsEditor extends Composite {
 
 	protected void updateContents() {
 		EObject dataTypeInstance = (EObject) modelElementObservable.getValue();
-
+		unregisteredMouseWheelListener(scrolled);
 		for (Control child : contents.getChildren()) {
 			child.dispose();
 		}
@@ -166,9 +210,42 @@ public class EObjectContentsEditor extends Composite {
 			}
 		}
 
+		scrolled.setMinSize(contents.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+
+		registerMouseWheelListener(scrolled);
 		updateButtonsBar();
 
 		layout();
+	}
+
+	/**
+	 * Register the mouse wheel listener for the control and its children
+	 * 
+	 * @param control
+	 *            a control
+	 */
+	private void registerMouseWheelListener(final Control control) {
+		control.addMouseWheelListener(this.mouseWheelListener);
+		if (control instanceof Composite) {
+			for (Control ctrl : ((Composite) control).getChildren()) {
+				registerMouseWheelListener(ctrl);
+			}
+		}
+	}
+
+	/**
+	 * Unregister the mouse wheel listener for the control and its children
+	 * 
+	 * @param control
+	 *            a control
+	 */
+	private void unregisteredMouseWheelListener(final Control control) {
+		control.removeMouseWheelListener(this.mouseWheelListener);
+		if (control instanceof Composite) {
+			for (Control ctrl : ((Composite) control).getChildren()) {
+				unregisteredMouseWheelListener(ctrl);
+			}
+		}
 	}
 
 	@Override
@@ -181,8 +258,8 @@ public class EObjectContentsEditor extends Composite {
 
 	protected void createAddButton() {
 		addButton = new Button(buttonsBar, SWT.PUSH);
-		addButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Add_12x12.gif"));
-		addButton.setToolTipText("Create element");
+		addButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Add_12x12.gif")); //$NON-NLS-1$
+		addButton.setToolTipText(Messages.EObjectContentsEditor_CreateElement); 
 
 		addButton.addSelectionListener(new SelectionListener() {
 
@@ -213,8 +290,8 @@ public class EObjectContentsEditor extends Composite {
 
 	protected void createDeleteButton() {
 		deleteButton = new Button(buttonsBar, SWT.PUSH);
-		deleteButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Delete_12x12.gif"));
-		deleteButton.setToolTipText("Unset value");
+		deleteButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Delete_12x12.gif")); //$NON-NLS-1$
+		deleteButton.setToolTipText(Messages.EObjectContentsEditor_UnsetValue); 
 
 		deleteButton.addSelectionListener(new SelectionListener() {
 
@@ -245,7 +322,7 @@ public class EObjectContentsEditor extends Composite {
 
 		ITreeContentProvider contentProvider = new UMLContainerContentProvider(dataTypeInstance, reference);
 
-		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, dataTypeInstance.eResource().getResourceSet(), HistoryUtil.getHistoryID(dataTypeInstance, reference, "container"));
+		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, dataTypeInstance.eResource().getResourceSet(), HistoryUtil.getHistoryID(dataTypeInstance, reference, "container")); //$NON-NLS-1$
 
 		factory.setContainerContentProvider(provider);
 		factory.setReferenceContentProvider(new FeatureContentProvider(type));
