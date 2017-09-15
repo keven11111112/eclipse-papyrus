@@ -1,6 +1,8 @@
 target "Papyrus Main" with requirements source
 
 
+/*** Updates from the Simrel repository ***/
+
 //updateFrom("QVT Operational",0)
 
 location qvto "http://download.eclipse.org/mmt/qvto/updates/releases/3.7.0" {
@@ -14,13 +16,6 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 	org.eclipse.xtend.feature.group
 }
 
-//manualUpdate
-
-location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
-	org.eclipse.nebula.widgets.richtext.feature.feature.group
-	org.eclipse.nebula.cwt.feature.feature.group
-}
-
 //updateFrom("MDT UML2",0) 
 
 location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3" {
@@ -29,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M1-201708022000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M2-201709132000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201708070807" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201709180850" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -54,17 +49,6 @@ location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/
 	org.eclipse.xtext.redist.feature.group
 	org.eclipse.xtext.runtime.feature.group
     org.eclipse.xtext.ui.feature.group
-}
-
-//manualUpdate
-
-location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repository" {
-	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group
 }
 
 //updateFrom("EMFT MWE",0)
@@ -91,7 +75,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("GMF Runtime",0)
+//updateFrom("GMF Runtime",1)
 
 location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201706061354" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
@@ -109,22 +93,43 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releas
 	org.eclipse.emf.query.sdk.feature.group
 }
 
-//updateFrom("EMF Services",0)
+//updateFrom("EMF Services",1)
 
 location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases/R201706061352" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
-//updateFrom("EMF Services",0)
+//updateFrom("EMF Services",2)
 
 location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201706061339" {
 	org.eclipse.emf.transaction.sdk.feature.group
 }
 
+
+/*** Manual referencing ***/
+
 //updateFrom("GEF",0)
 
 location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952" {
 	org.eclipse.gef.feature.group
+}
+
+//manualUpdate
+
+location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
+	org.eclipse.nebula.widgets.richtext.feature.feature.group
+	org.eclipse.nebula.cwt.feature.feature.group
+}
+
+//manualUpdate
+
+location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repository" {
+	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group
 }
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)

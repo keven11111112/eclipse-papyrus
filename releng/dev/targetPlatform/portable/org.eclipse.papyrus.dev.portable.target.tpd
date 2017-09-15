@@ -2,25 +2,8 @@ target "Papyrus Dev" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
-//manualUpdate
 
-location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/" {
-	fr.obeo.releng.targetplatform-feature.feature.group
-}
-
-//manualUpdate 
-
-location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.7/" {
-	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
-	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
-	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
-}
-
-//manualUpdate
-
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
-	org.eclipse.emf.compare.ide.ui.feature.group lazy
-}
+/*** Updates from the Simrel repository ***/
 
 //updateFrom("oomph",0) 
 
@@ -43,6 +26,41 @@ location oomph "http://download.eclipse.org/oomph/drops/release/1.8.0" {
 	org.eclipse.oomph.preferences.feature.group
 }
 
+//updateFrom("EGIT",0) 
+
+location egit "http://download.eclipse.org/egit/updates-4.8" // oomph
+
+//updateFrom("m2e",0)
+
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20170516-2043" // oomph
+
+//updateFrom("Mylyn",0)
+
+location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20170705-2102" // oomph
+
+
+/*** Manual referencing ***/
+
+//manualUpdate
+
+location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/" {
+	fr.obeo.releng.targetplatform-feature.feature.group
+}
+
+//manualUpdate 
+
+location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.7/" {
+	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
+	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
+	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
+}
+
+//manualUpdate
+
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
+	org.eclipse.emf.compare.ide.ui.feature.group lazy
+}
+
 //manualUpdate ("GMF Tooling",0) 
 
 location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" { // gen
@@ -56,18 +74,3 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
 	org.eclipse.upr.utp.feature.feature.group
 }
-
-//Transitive dependencies
-
-
-//updateFrom("EGIT",0) 
-
-location egit "http://download.eclipse.org/egit/updates-4.8" // oomph
-
-//updateFrom("m2e",0)
-
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20170516-2043" // oomph
-
-//updateFrom("Mylyn",0)
-
-location mylyn "http://download.eclipse.org/mylyn/drops/3.23.1/v20170623-2012" // oomph

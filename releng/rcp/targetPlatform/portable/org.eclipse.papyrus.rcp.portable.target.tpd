@@ -2,6 +2,9 @@ target "Papyrus RCP" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
+
+/*** Updates from the Simrel repository ***/
+
 //updateFrom("EGIT",0)
 location egit "http://download.eclipse.org/egit/updates-4.8" {
 	org.eclipse.egit.feature.group
@@ -9,7 +12,7 @@ location egit "http://download.eclipse.org/egit/updates-4.8" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M1-201708022000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M2-201709132000/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -17,7 +20,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.23.1/v20170623-2012" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20170705-2102" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group

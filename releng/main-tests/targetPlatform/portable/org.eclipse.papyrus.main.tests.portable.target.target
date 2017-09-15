@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1502355036">
+<target name="Papyrus Tests" sequenceNumber="1505744266">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170604-1316"/>
@@ -13,22 +13,17 @@
       <repository id="xpand" location="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
-      <unit id="org.eclipse.nebula.cwt.feature.feature.group" version="1.0.0.201703081533"/>
-      <repository id="nebula" location="http://download.eclipse.org/nebula/releases/1.2.0/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.uml2.sdk.feature.group" version="5.3.0.v20170605-1616"/>
       <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.8.0.v20170802-2000"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M1-201708022000/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.8.0.v20170913-2000"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M2-201709132000/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.4.0.v20170804-1056"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.4.0.v20170804-1200"/>
-      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201708070807"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.4.0.v20170914-1223"/>
+      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201709180850"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="1.3.0.v20170507-2219"/>
@@ -41,15 +36,6 @@
       <unit id="org.eclipse.xtext.runtime.feature.group" version="2.12.0.v20170519-1412"/>
       <unit id="org.eclipse.xtext.ui.feature.group" version="2.12.0.v20170519-1412"/>
       <repository id="xtext" location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.12.0/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.nebula.widgets.nattable.core.feature.feature.group" version="1.5.0.201703192131"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group" version="1.5.0.201703192131"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group" version="1.5.0.201703192131"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group" version="1.5.0.201703192131"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group" version="1.1.0.201703192131"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group" version="1.1.0.201703192131"/>
-      <repository id="nattable" location="http://download.eclipse.org/nattable/releases/1.5.0/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.9.1.201705291011"/>
@@ -90,6 +76,20 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gef.feature.group" version="3.11.0.201606061308"/>
       <repository id="gef" location="http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
+      <unit id="org.eclipse.nebula.cwt.feature.feature.group" version="1.0.0.201703081533"/>
+      <repository id="nebula" location="http://download.eclipse.org/nebula/releases/1.2.0/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.nebula.widgets.nattable.core.feature.feature.group" version="1.5.0.201703192131"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group" version="1.5.0.201703192131"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group" version="1.5.0.201703192131"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group" version="1.5.0.201703192131"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group" version="1.1.0.201703192131"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group" version="1.1.0.201703192131"/>
+      <repository id="nattable" location="http://download.eclipse.org/nattable/releases/1.5.0/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="com.google.guava" version="21.0.0.v20170206-1425"/>
