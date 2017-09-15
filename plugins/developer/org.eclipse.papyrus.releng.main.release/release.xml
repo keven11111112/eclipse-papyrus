@@ -124,7 +124,7 @@
 		<plugin name="org.eclipse.papyrus.infra.newchild.edit" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.sync" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.types" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.types.core" version="3.1.0"/>
+		<plugin name="org.eclipse.papyrus.infra.types.core" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.types.edit" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.types.rulebased" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.filters" version="1.3.0"/>
@@ -662,7 +662,7 @@
 	<plugin name="org.eclipse.papyrus.infra.sync" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.tools" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.types" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.types.core" version="3.1.0"/>
+	<plugin name="org.eclipse.papyrus.infra.types.core" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.types.doc" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.types.edit" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.types.editor" version="3.0.0"/>
